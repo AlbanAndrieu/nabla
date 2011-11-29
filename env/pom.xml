@@ -11,7 +11,7 @@
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
 	<inceptionYear>2011</inceptionYear>
 
-	<url>http://code.google.com/p/alban/</url>
+	<url>http://code.google.com/p/alban</url>
 	
 	<organization>
 		<name>Nabla Software</name>
@@ -38,7 +38,7 @@
 	<mailingLists>
 		<mailingList>
 			<name>${project.name} Nabla dev mailing list</name>
-			<post>alban.andrieu@nabla.mobi</post>
+			<post>dev@nabla.mobi</post>
 			<!--<archive>https://alban.andrieu.nabladev.net/servlets/SummarizeList?listName=dev</archive>-->
 		</mailingList>
 	</mailingLists>
@@ -54,7 +54,7 @@
 				<sendOnSuccess>false</sendOnSuccess>
 				<sendOnWarning>false</sendOnWarning>
 				<configuration>
-					<address>alban.andrieu@nabla.mobi</address>
+					<address>dev@nabla.mobi</address>
 				</configuration>
 			</notifier>
 		</notifiers>
@@ -76,7 +76,8 @@
 			<id>albandri</id>
 			<name>Andrieu Alban</name>
 			<email>aalban.andrieu@nabla.mobi</email>
-			<organization>NABLA</organization>
+			<url>http://plus.google.com/116805748993308767756/about</url>
+			<organization>Nabla</organization>
 			<roles>
 				<role>Java Developer</role>
 				<role>C++ Developer</role>
@@ -92,8 +93,8 @@
 		<contributor>
 			<name>Alban Andrieu</name>
 			<email>alban.andrieu@nabla.mobi</email>
-			<url>http://code.google.com/p/alban/</url>
-			<organization>NABLA</organization>
+			<url>http://plus.google.com/116805748993308767756/about</url>
+			<organization>Nabla</organization>
 			<roles>
 				<role>Project Leader</role>
 				<role>Project Manager</role>
