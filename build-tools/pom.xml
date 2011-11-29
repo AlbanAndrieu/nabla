@@ -25,12 +25,14 @@
 	<name>Maven Build Tools Configuration for quality metrics</name>
 	<description>Nabla Maven Config - global configurations for quality metrics such as PMD FindBugs CheckStyle</description>
 
-	<scm>
+                <!--
+	<scm>	
 		<connection>scm:svn:svn://alban-pc/svn/repo/main/build-tools/trunk</connection>
-		<developerConnection>scm:svn:https://alban-pc/svn/repo/main/build-tools/trunk</developerConnection>
-		<tag>HEAD</tag>
+		<developerConnection>scm:svn:https://alban-pc/svn/repo/main/build-tools/trunk</developerConnection>		
 		<url>svn:https://alban-pc/svn/repo/main/build-tools/trunk/#dirlist</url>
+		<tag>HEAD</tag>
 	</scm>
+			-->
 	<licenses>
 		<license>
 			<name>The Nabla Project</name>
@@ -70,70 +72,5 @@
 			</resource>
 		</resources>
 	</build>
-	<profiles>
-		<!--Profile configuration for local builds-->
-		<profile>
-			<id>local</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-				<file>
-					<exists>${basedir}</exists>
-				</file>
-			</activation>
-			<distributionManagement>
-				<repository>
-					<id>releases</id>
-					<name>Internal Release Repository</name>					
-					<url>${distributionManagement.repository.url}/internal/</url>
-				</repository>
-				<snapshotRepository>
-					<id>snapshots</id>
-					<name>Internal Snapshot Repository</name>
-					<url>${distributionManagement.repository.url}/snapshots/</url>
-				</snapshotRepository>
-				<site>
-					<id>website</id>
-					<name>Project Website</name>
-					<url>file://${deploy.dir}/build-tools</url>
-				</site>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<!--Profile configuration for server builds-->
-			<id>server</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-				<file>
-					<exists>${basedir}</exists>
-				</file>
-			</activation>			
-			<build>
-				<plugins>
-					<plugin>
-						<inherited>true</inherited>
-						<artifactId>maven-gpg-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-			<distributionManagement>
-				<repository>
-					<id>releases</id>
-					<name>External Staging Repository</name>
-					<url>dav:https://${basedir}/mavenrepo/internal</url>
-					<uniqueVersion>false</uniqueVersion>
-				</repository>
-				<snapshotRepository>
-					<id>snapshots</id>
-					<name>External Snapshot Repository</name>
-					<url>dav:https://${basedir}/mavenrepo/snapshots</url>
-					<uniqueVersion>false</uniqueVersion>
-				</snapshotRepository>
-				<site>
-					<id>website</id>
-					<url>file:/var/www/docs/build-tools</url>
-				</site>
-			</distributionManagement>
-		</profile>
-	</profiles>
 </project>
 
