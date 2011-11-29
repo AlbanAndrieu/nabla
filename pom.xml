@@ -2373,11 +2373,7 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<modules>
-				<module>j2ee-maven-1.0</module>
-				<module>presentation</module>
-				<module>plugins</module>
-				<module>ktpplus</module>
-				<module>mda</module>
+				<module>site</module>
 			</modules>
 			<properties>
 				<invoker.skip>true</invoker.skip>
