@@ -2373,7 +2373,8 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<modules>
-				<module>site</module>
+				<module>build-tools</module>
+				<module>build-site</module>
 			</modules>
 			<properties>
 				<invoker.skip>true</invoker.skip>
