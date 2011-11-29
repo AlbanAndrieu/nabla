@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+        <!--
+	<parent> 
+	    <artifactId>project</artifactId>
+		<groupId>com.nabla.project</groupId> 
+		<version>1.0</version>
+	</parent>
+	-->
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nabla.project.build-tools</groupId>
+	<artifactId>build-tools</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	<name>Maven Build Tools Configuration for quality metrics</name>
+	<description>Nabla Maven Config - global configurations for quality metrics such as PMD FindBugs CheckStyle</description>
+
+	<organization>
+		<name>Nabla Software</name>
+		<url>http://nabla.mobi</url>
+	</organization>
+	<issueManagement>
+		<system>bugzilla</system>
+		<url>http://localhost</url>
+	</issueManagement>
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://localhost:8070/hudson/</url>
+		<notifiers>
+			<notifier>
+				<type>mail</type>
+				<sendOnError>true</sendOnError>
+				<sendOnFailure>true</sendOnFailure>
+				<sendOnSuccess>false</sendOnSuccess>
+				<sendOnWarning>false</sendOnWarning>
+				<configuration>
+					<address>alban.andrieu@nabla.mobi</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+	<scm>
+		<connection>scm:svn:svn://alban-pc/svn/repo/main/build-tools/trunk</connection>
+		<developerConnection>scm:svn:https://alban-pc/svn/repo/main/build-tools/trunk</developerConnection>
+		<tag>HEAD</tag>
+		<url>svn:https://alban-pc/svn/repo/main/build-tools/trunk/#dirlist</url>
+	</scm>
+	<licenses>
+		<license>
+			<name>The Nabla Project</name>
+			<url>LICENSE.txt</url>
+			<distribution>repo</distribution>
+			<comments>Nabla runs under a BSD license</comments>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>albandri</id>
+			<name>Alban Andrieu</name>
+			<email>alban.andrieu@nabla.mobi</email>
+			<organization>Nabla</organization>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<properties>
+		<deploy.dir>${env.HOME}/fullsite</deploy.dir>
+		<distributionManagement.repository.url>file://localhost/${archiva.dir}</distributionManagement.repository.url>
+	</properties>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<targetPath>META-INF</targetPath>
+				<filtering>false</filtering>
+				<directory>${basedir}</directory>
+				<includes>
+					<include>README.txt</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+	<profiles>
+		<!--Profile configuration for local builds-->
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>${basedir}</exists>
+				</file>
+			</activation>
+			<distributionManagement>
+				<repository>
+					<id>internal</id>
+					<name>Internal Release Repository</name>
+					<url>${distributionManagement.repository.url}/internal/</url>
+				</repository>
+				<snapshotRepository>
+					<id>snapshots</id>
+					<name>Internal Snapshot Repository</name>
+					<url>${distributionManagement.repository.url}/snapshots/</url>
+				</snapshotRepository>
+				<site>
+					<id>website</id>
+					<name>Project Website</name>
+					<url>file://${deploy.dir}/build-tools</url>
+				</site>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<!--Profile configuration for server builds-->
+			<id>server</id>
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+			<distributionManagement>
+				<repository>
+					<id>releases</id>
+					<name>External Staging Repository</name>
+					<url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+					<uniqueVersion>false</uniqueVersion>
+				</repository>
+				<snapshotRepository>
+					<id>snapshots</id>
+					<name>External Snapshot Repository</name>
+					<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+					<uniqueVersion>false</uniqueVersion>
+				</snapshotRepository>
+				<site>
+					<id>website</id>
+					<url>file:/var/www/docs/build-tools</url>
+				</site>
+			</distributionManagement>
+		</profile>
+	</profiles>
+</project>
+
