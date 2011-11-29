@@ -11,6 +11,8 @@
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
 	<inceptionYear>2011</inceptionYear>
 
+	<url>http://code.google.com/p/alban/</url>
+	
 	<organization>
 		<name>Nabla Software</name>
 		<url>http://nabla.mobi</url>
@@ -21,8 +23,12 @@
 	</prerequisites>
 	
 	<issueManagement>
+		<!--
 		<system>bugzilla</system>
 		<url>http://localhost</url>
+		-->
+		<system>Google Code</system>
+		<url>http://code.google.com/p/alban/issues/list</url>
 	</issueManagement>
 
 	<!--
@@ -53,11 +59,17 @@
 			</notifier>
 		</notifiers>
 	</ciManagement>
+	<!--http://blog.fastconnect.fr/?p=275-->
 	<scm>
+                <connection>scm:svn:http://alban.googlecode.com/svn</connection>
+                <developerConnection>scm:svn:https://alban.googlecode.com/svn</developerConnection>
+                <url>https://alban.googlecode.com/svn</url>	
+                <!--
 		<connection>scm:${scm.base}/users/${project.svn.path}/</connection>
 		<developerConnection>scm:${scm.base}/users/${project.svn.path}/</developerConnection>
-		<tag>HEAD</tag>
 		<url>${scm.base}/users/${kplustp.workspace}/#dirlist</url>
+		-->
+		<tag>HEAD</tag>
 	</scm>
 	<developers>
 		<developer>
@@ -80,7 +92,7 @@
 		<contributor>
 			<name>Alban Andrieu</name>
 			<email>alban.andrieu@nabla.mobi</email>
-			<url>https://code.google.com/p/alban/</url>
+			<url>http://code.google.com/p/alban/</url>
 			<organization>NABLA</organization>
 			<roles>
 				<role>Project Leader</role>
@@ -108,17 +120,13 @@
 			<id>local</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-				<!--
-					Bug using: wrong multiple criteria activation (OR semantics)
-					http://jira.codehaus.org/browse/MNG-4516
-				-->
 				<file>
 					<exists>${basedir}</exists>
 				</file>
 			</activation>
 			<distributionManagement>
 				<repository>
-					<id>internal</id>
+					<id>releases</id>
 					<name>Internal Release Repository</name>
 					<url>${distributionManagement.repository.url}/internal/</url>
 					<!--<uniqueVersion>false</uniqueVersion>-->
@@ -155,13 +163,13 @@
 				<repository>
 					<id>releases</id>
 					<name>External Staging Repository</name>
-					<url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+					<url>dav:https://${basedir}/mavenrepo/internal</url>
 					<uniqueVersion>false</uniqueVersion>
 				</repository>
 				<snapshotRepository>
 					<id>snapshots</id>
 					<name>External Snapshot Repository</name>
-					<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+					<url>dav:https://${basedir}/mavenrepo/snapshots</url>
 					<uniqueVersion>false</uniqueVersion>
 				</snapshotRepository>
 				<site>
@@ -176,6 +184,10 @@
 
 	<!-- http://mvnrepository.com/search.html -->
 	<repositories>
+                <repository>
+                	<id>nabla</id>
+                	<url>http://alban.googlecode.com/svn/trunk/mavenrepo</url>
+                </repository>	
 		<repository>
 			<id>openqa-releases</id>
 			<name>Openqa Release Repository</name>
@@ -241,7 +253,11 @@
 		</repository>
 	</repositories>
 
-	<pluginRepositories>
+	<pluginRepositories>        
+ 		<pluginRepository>
+                        <id>nabla-plugins</id>
+                        <url>http://alban.googlecode.com/svn/trunk/mavenrepo</url>
+                </pluginRepository>
                 <pluginRepository>
                 	<id>Mobilvox JS Plugin Snapshots</id>
                 	<url>http://maven-js-plugin.sourceforge.net/m2snapshotrepo/</url>

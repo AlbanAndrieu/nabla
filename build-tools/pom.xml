@@ -10,6 +10,13 @@
 	</parent>
 	-->
 
+        <parent>
+	    <groupId>com.nabla.project</groupId>
+	    <artifactId>dependencies</artifactId>
+	    <version>1.0</version>
+	    <relativePath>../../env/pom.xml</relativePath>
+        </parent>
+  
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.build-tools</groupId>
 	<artifactId>build-tools</artifactId>
@@ -18,30 +25,6 @@
 	<name>Maven Build Tools Configuration for quality metrics</name>
 	<description>Nabla Maven Config - global configurations for quality metrics such as PMD FindBugs CheckStyle</description>
 
-	<organization>
-		<name>Nabla Software</name>
-		<url>http://nabla.mobi</url>
-	</organization>
-	<issueManagement>
-		<system>bugzilla</system>
-		<url>http://localhost</url>
-	</issueManagement>
-	<ciManagement>
-		<system>hudson</system>
-		<url>http://localhost:8070/hudson/</url>
-		<notifiers>
-			<notifier>
-				<type>mail</type>
-				<sendOnError>true</sendOnError>
-				<sendOnFailure>true</sendOnFailure>
-				<sendOnSuccess>false</sendOnSuccess>
-				<sendOnWarning>false</sendOnWarning>
-				<configuration>
-					<address>alban.andrieu@nabla.mobi</address>
-				</configuration>
-			</notifier>
-		</notifiers>
-	</ciManagement>
 	<scm>
 		<connection>scm:svn:svn://alban-pc/svn/repo/main/build-tools/trunk</connection>
 		<developerConnection>scm:svn:https://alban-pc/svn/repo/main/build-tools/trunk</developerConnection>
@@ -51,7 +34,7 @@
 	<licenses>
 		<license>
 			<name>The Nabla Project</name>
-			<url>LICENSE.txt</url>
+			<url>/src/main/resources/project/LICENSE-1.0.txt</url>
 			<distribution>repo</distribution>
 			<comments>Nabla runs under a BSD license</comments>
 		</license>
@@ -68,10 +51,6 @@
 			<timezone>+1</timezone>
 		</developer>
 	</developers>
-	<properties>
-		<deploy.dir>${env.HOME}/fullsite</deploy.dir>
-		<distributionManagement.repository.url>file://localhost/${archiva.dir}</distributionManagement.repository.url>
-	</properties>
 
 	<build>
 		<defaultGoal>install</defaultGoal>
@@ -82,9 +61,11 @@
 			<resource>
 				<targetPath>META-INF</targetPath>
 				<filtering>false</filtering>
-				<directory>${basedir}</directory>
+				<directory>${basedir}/src/main/resources/project</directory>
 				<includes>
-					<include>README.txt</include>
+					<include>README-1.0.txt</include>
+					<include>LICENSE-1.0.txt</include>
+					
 				</includes>
 			</resource>
 		</resources>
@@ -94,15 +75,15 @@
 		<profile>
 			<id>local</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 				<file>
 					<exists>${basedir}</exists>
 				</file>
 			</activation>
 			<distributionManagement>
 				<repository>
-					<id>internal</id>
-					<name>Internal Release Repository</name>
+					<id>releases</id>
+					<name>Internal Release Repository</name>					
 					<url>${distributionManagement.repository.url}/internal/</url>
 				</repository>
 				<snapshotRepository>
@@ -120,6 +101,12 @@
 		<profile>
 			<!--Profile configuration for server builds-->
 			<id>server</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>${basedir}</exists>
+				</file>
+			</activation>			
 			<build>
 				<plugins>
 					<plugin>
@@ -132,13 +119,13 @@
 				<repository>
 					<id>releases</id>
 					<name>External Staging Repository</name>
-					<url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+					<url>dav:https://${basedir}/mavenrepo/internal</url>
 					<uniqueVersion>false</uniqueVersion>
 				</repository>
 				<snapshotRepository>
 					<id>snapshots</id>
 					<name>External Snapshot Repository</name>
-					<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+					<url>dav:https://${basedir}/mavenrepo/snapshots</url>
 					<uniqueVersion>false</uniqueVersion>
 				</snapshotRepository>
 				<site>
