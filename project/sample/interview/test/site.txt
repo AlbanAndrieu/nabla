@@ -1,0 +1,392 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Build Tools Configuration for sample
+[INFO]    task-segment: [clean, site]
+[INFO] ------------------------------------------------------------------------
+[INFO] [clean:clean {execution: default-clean}]
+[INFO] Deleting C:\workspace\users\divers\test\target
+[INFO] Setting property: classpath.resource.loader.class => 'org.codehaus.plexus.velocity.ContextClassLoaderResourceLoader'.
+[INFO] Setting property: velocimacro.messages.on => 'false'.
+[INFO] Setting property: resource.loader => 'classpath'.
+[INFO] Setting property: resource.manager.logwhenfound => 'false'.
+[INFO] ************************************************************** 
+[INFO] Starting Jakarta Velocity v1.4
+[INFO] RuntimeInstance initializing.
+[INFO] Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+[INFO] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+[INFO] Resource Loader Instantiated: org.codehaus.plexus.velocity.ContextClassLoaderResourceLoader
+[INFO] ClasspathResourceLoader : initialization starting.
+[INFO] ClasspathResourceLoader : initialization complete.
+[INFO] ResourceCache : initialized. (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+[INFO] Default ResourceManager initialization complete.
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+[INFO] Created: 20 parsers.
+[INFO] Velocimacro : initialization starting.
+[INFO] Velocimacro : adding VMs from VM library template : VM_global_library.vm
+[ERROR] ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+[INFO] Velocimacro : error using  VM library template VM_global_library.vm : org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource 'VM_global_library.vm'
+[INFO] Velocimacro :  VM library template macro registration complete.
+[INFO] Velocimacro : allowInline = true : VMs can be defined inline in templates
+[INFO] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+[INFO] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+[INFO] Velocimacro : initialization complete.
+[INFO] Velocity successfully started.
+[INFO] Preparing plugin:report
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] [resources:resources {execution: default-resources}]
+[INFO] Using 'ISO-8859-1' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Compiling 12 source files to C:\workspace\users\divers\test\target\classes
+[INFO] Preparing surefire-report:report
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] [resources:resources {execution: default-resources}]
+[INFO] Using 'ISO-8859-1' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] [resources:testResources {execution: default-testResources}]
+[INFO] Using 'ISO-8859-1' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] [compiler:testCompile {execution: default-testCompile}]
+[INFO] Not compiling test sources
+[INFO] [surefire:test {execution: default-test}]
+[INFO] Tests are skipped.
+[INFO] Preparing surefire-report:report-only
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] Preparing findbugs:findbugs
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] [resources:resources {execution: default-resources}]
+[INFO] Using 'ISO-8859-1' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Preparing jdepend:generate
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] [resources:resources {execution: default-resources}]
+[INFO] Using 'ISO-8859-1' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Preparing clirr:clirr
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] [resources:resources {execution: default-resources}]
+[INFO] Using 'ISO-8859-1' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Preparing javadoc:javadoc
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] Preparing javadoc:aggregate
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Build Tools Configuration for sample
+[INFO] ------------------------------------------------------------------------
+[INFO] [enforcer:enforce {execution: enforce-jdk}]
+[INFO] [build-helper:add-source {execution: add-source}]
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\generated\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\src\main\resources added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\antlr added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\java added.
+[INFO] Source directory: C:\workspace\users\divers\test\target\generated-sources\main\resources added.
+[INFO] [site:site {execution: default-site}]
+[INFO] Unable to find a previous version of the project in the repository
+[INFO] Not generating Clirr report as there is no previous version of the library to compare against
+[INFO] Parent project loaded from repository: com.nabla.project:project:pom:1.0-SNAPSHOT
+[INFO] Parent project loaded from repository: com.nabla.project:dependencies:pom:1.0-SNAPSHOT
+[INFO] Skipped "Surefire Report" report, file "surefire-report.html" already exists for the English version.
+[INFO] Skipped "JavaDocs" report, file "target/uml/index.html" already exists for the English version.
+[INFO] Generating "Test Source Xref" report.
+[INFO] Generating "Source Xref" report.
+[INFO] Generating "Tag List" report.
+[INFO] Generating "Surefire Report" report.
+[INFO] Generating "Checkstyle" report.
+[INFO] 
+[INFO] Generating "PMD Report" report.
+[INFO] Generating "CPD Report" report.
+[INFO] Generating "FindBugs Report" report.
+[INFO] Locale is en
+[INFO] Generating "JDepend" report.
+[INFO] Generating "JavaNCSS Report" report.
+[INFO] Generating "JavaDocs" report.
+[INFO] 
+Loading source files for package com.reuters.sample.foobar...
+Loading source files for package com.reuters.sample.hurrican.file...
+Loading source files for package com.reuters.sample.hurrican...
+Loading source files for package com.reuters.sample.string...
+Constructing Javadoc information...
+UmlGraphDoc version 5.1, running the standard doclet
+Standard Doclet version 1.6.0_18
+Building tree for all the packages and classes...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\Foobar.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\Monetary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\Money.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\Money.MismatchedCurrencyException.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\Pocket.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\Shelf.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\FileHelper.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\IMyFile.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\MyFile.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\Hurrican.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\VelocityConvertor.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\Dictionary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\Human.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\overview-frame.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\package-frame.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\package-summary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\package-tree.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\package-frame.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\package-summary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\package-tree.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\package-frame.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\package-summary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\package-tree.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\package-frame.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\package-summary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\package-tree.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\constant-values.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\serialized-form.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\foobar\Shelf.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\foobar\Pocket.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\foobar\Money.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\foobar\Money.MismatchedCurrencyException.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\foobar\Monetary.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\foobar\Foobar.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\hurrican\file\MyFile.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\hurrican\file\IMyFile.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\hurrican\file\FileHelper.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\hurrican\VelocityConvertor.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\hurrican\Hurrican.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\string\Human.html...
+Generating C:\workspace\users\divers\test\target\site\target\uml\src-html\com\reuters\sample\string\Dictionary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\class-use\Shelf.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\class-use\Pocket.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\class-use\Money.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\class-use\Money.MismatchedCurrencyException.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\class-use\Monetary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\class-use\Foobar.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\class-use\MyFile.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\class-use\IMyFile.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\class-use\FileHelper.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\class-use\VelocityConvertor.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\class-use\Hurrican.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\class-use\Human.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\class-use\Dictionary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/foobar/\package-use.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/\package-use.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/hurrican/file/\package-use.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\com/reuters/sample/string/\package-use.html...
+Building index for all the packages and classes...
+Generating C:/workspace/users/divers/test/target/site/target/uml\overview-tree.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\index-all.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\deprecated-list.html...
+Building index for all classes...
+Generating C:/workspace/users/divers/test/target/site/target/uml\allclasses-frame.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\allclasses-noframe.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\index.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\overview-summary.html...
+Generating C:/workspace/users/divers/test/target/site/target/uml\help-doc.html...
+UmlGraphDoc version 5.1, altering javadocs
+Building Package view for package com.reuters.sample.foobar
+Building Package view for package com.reuters.sample.hurrican.file
+Building Package view for package com.reuters.sample.hurrican
+Building Package view for package com.reuters.sample.string
+Building Context view for class com.reuters.sample.foobar.Shelf
+Building Context view for class com.reuters.sample.foobar.Pocket
+Building Context view for class com.reuters.sample.foobar.Money
+Building Context view for class com.reuters.sample.foobar.Money.MismatchedCurrencyException
+Building Context view for class com.reuters.sample.foobar.Monetary
+Building Context view for class com.reuters.sample.foobar.Foobar
+Building Context view for class com.reuters.sample.hurrican.file.MyFile
+Building Context view for class com.reuters.sample.hurrican.file.IMyFile
+Building Context view for class com.reuters.sample.hurrican.file.FileHelper
+Building Context view for class com.reuters.sample.hurrican.VelocityConvertor
+Building Context view for class com.reuters.sample.hurrican.Hurrican
+Building Context view for class com.reuters.sample.string.Human
+Building Context view for class com.reuters.sample.string.Dictionary
+[INFO] Generating "Plugin Management" report.
+Downloading: http://maven-js-plugin.sourceforge.net/m2snapshotrepo//org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository Mobilvox JS Plugin Snapshots (http://maven-js-plugin.sourceforge.net/m2snapshotrepo/)
+Downloading: http://dist.codehaus.org//org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository codehaus-plugins (http://dist.codehaus.org/)
+Downloading: http://dist.codehaus.org/org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository codehaus-maven2 (http://dist.codehaus.org)
+Downloading: http://static.appfuse.org/repository/org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository appfuse (http://static.appfuse.org/repository)
+Downloading: http://el4.elca-services.ch/el4j/maven2repository/org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository elca-services (http://el4.elca-services.ch/el4j/maven2repository)
+Downloading: http://repository.codehaus.org//org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository Codehaus repository (http://repository.codehaus.org/)
+Downloading: http://oss.sonatype.org/content/groups/public/org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://snapshots.repository.codehaus.org/org/andromda/maven/plugins/andromda-multi-source-plugin/3.4-SNAPSHOT/andromda-multi-source-plugin-3.4-SNAPSHOT.pom
+[INFO] Unable to find resource 'org.andromda.maven.plugins:andromda-multi-source-plugin:pom:3.4-SNAPSHOT' in repository Codehaus Snapshots (http://snapshots.repository.codehaus.org)
+[INFO] Generating "Mailing Lists" report.
+[INFO] Generating "Continuous Integration" report.
+[INFO] Generating "Dependency Management" report.
+Downloading: http://nexus.openqa.org/content/repositories/releases/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/com/adobe/flex/compiler/flex-messaging-common/3.3.0.4852/flex-messaging-common-3.3.0.4852.pom
+[INFO] Unable to find resource 'com.adobe.flex.compiler:flex-messaging-common:pom:3.3.0.4852' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://nexus.openqa.org/content/repositories/releases/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/com/tibco/tibrv/tibrv/8.2.2/tibrv-8.2.2.pom
+[INFO] Unable to find resource 'com.tibco.tibrv:tibrv:pom:8.2.2' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://nexus.openqa.org/content/repositories/releases/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/poi/poi-contrib/3.0-FINAL/poi-contrib-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-contrib:pom:3.0-FINAL' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://nexus.openqa.org/content/repositories/releases/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/poi/poi-scratchpad/3.0-FINAL/poi-scratchpad-3.0-FINAL.pom
+[INFO] Unable to find resource 'poi:poi-scratchpad:pom:3.0-FINAL' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://nexus.openqa.org/content/repositories/releases/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/httpcomponents-httpcore/jakarta-httpcore/4.0-alpha4/jakarta-httpcore-4.0-alpha4.pom
+[INFO] Unable to find resource 'httpcomponents-httpcore:jakarta-httpcore:pom:4.0-alpha4' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://nexus.openqa.org/content/repositories/releases/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/org/apache/ws/commons/neethi/neethi/2.0.1/neethi-2.0.1.pom
+[INFO] Unable to find resource 'org.apache.ws.commons.neethi:neethi:pom:2.0.1' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+Downloading: http://nexus.openqa.org/content/repositories/releases/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository openqa-releases (http://nexus.openqa.org/content/repositories/releases)
+Downloading: http://repo1.maven.org/maven2/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository central (http://repo1.maven.org/maven2)
+Downloading: http://repository.codehaus.org/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository codehaus (http://repository.codehaus.org)
+Downloading: http://repository.jboss.org/nexus/content/groups/public-jboss/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository jboss-public (http://repository.jboss.org/nexus/content/groups/public-jboss)
+Downloading: http://download.java.net/maven/2/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository download (http://download.java.net/maven/2)
+Downloading: http://andromda.org/maven2/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository andromda (http://andromda.org/maven2)
+Downloading: http://oss.sonatype.org/content/groups/public/sybase/jconnect/6.0.5.26312/jconnect-6.0.5.26312.pom
+[INFO] Unable to find resource 'sybase:jconnect:pom:6.0.5.26312' in repository sonatype (http://oss.sonatype.org/content/groups/public)
+[INFO] Generating "Project License" report.
+[INFO] Generating "Project Team" report.
+[INFO] Generating "Source Repository" report.
+[INFO] Generating "About" report.
+[INFO] Generating "Issue Tracking" report.
+[INFO] Generating "Project Summary" report.
+[INFO] Generating "Project Plugins" report.
+[INFO] Generating "Dependencies" report.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1 minute 2 seconds
+[INFO] Finished at: Mon Nov 21 23:29:35 CET 2011
+[INFO] Final Memory: 116M/277M
+[INFO] ------------------------------------------------------------------------

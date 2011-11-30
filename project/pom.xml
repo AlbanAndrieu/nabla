@@ -2359,6 +2359,7 @@
 			</activation>
 			<modules>
 				<module>build-tools</module>
+				<module>sample</module>
 			</modules>
 			<properties>
 				<invoker.skip>true</invoker.skip>
@@ -3956,6 +3957,7 @@
 			</activation>	
 			<modules>
 				<module>build-tools</module>
+				<module>sample</module>
 			</modules>		
 			<properties> 
 				<target.dir>target-eclipse</target.dir>

@@ -196,7 +196,7 @@
 	<repositories>
                 <repository>
                 	<id>nabla</id>
-                	<url>http://alban.googlecode.com/svn/trunk/mavenrepo</url>
+                	<url>http://alban.googlecode.com/svn/mavenrepo</url>
                 </repository>	
 		<repository>
 			<id>openqa-releases</id>
@@ -268,7 +268,7 @@
 	<pluginRepositories>        
  		<pluginRepository>
                         <id>nabla-plugins</id>
-                        <url>http://alban.googlecode.com/svn/trunk/mavenrepo</url>
+                        <url>http://alban.googlecode.com/svn/mavenrepo</url>
                 </pluginRepository>
                 <pluginRepository>
                 	<id>Mobilvox JS Plugin Snapshots</id>
