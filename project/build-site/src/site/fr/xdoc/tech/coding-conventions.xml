@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <document>
+   <properties>
+    <title>
+      Lutèce : Normes de développement : Règles de codage
+    </title>
+   </properties>
+  <body>
+   <section name="Règles de codage">
+      <subsection name="Mise en forme et présentation du code Java">
+          <p>
+            Pour faciliter sa lecture, le code doit respecter des règles de mise en
+            forme appliquées à l'ensemble des sources.
+          </p>
+          <p>
+            Les principales règles concernant Lutèce sont :
+          </p>
+          <p>
+            <ul>
+                <li> Parenthèses sur une nouvelle ligne (Style C/C++) </li>
+                <li> Indentation de 4 caractères</li>
+            </ul>
+          </p>
+           <p>
+            Afin de garantir le formatage du code, l’outil Jalopy doit être utilisé
+            avec le fichier de configuration de Lutèce.
+          </p>
+          <p>
+            La présentation générale des fichiers devra respecter
+            celle existante (pour les classes java la présentation des
+            commentaires, indentation du code, utilisation de
+            l’anglais….)
+          </p>
+    
+          <p>
+            L’ensemble de l’application doit conserver une homogénéité
+            complète tant sur la présentation du code que sur les
+            règles de nommages, l’utilisation de l’anglais, l’insertion
+            de commentaires….
+          </p>
+    
+          <p>
+              Tous les fichiers sources doivent comporter la licence de diffusion en
+              entête.
+          </p>
+      </subsection>
+      
+      <subsection name="Code HTML : les normes HTML">
+          <p>
+              Le code HTML produit par Lutèce et notamment celui des templates doit
+              être conforme à la recommandation <a href="http://www.w3.org/TR/xhtml1/">
+              XHTML 1.0 stricte </a> définie par le W3C (http://www.w3.org/TR/xhtml1/).
+              Les recommandations du W3C concernant l'accessibilité doivent également
+              être respectées (<a href="http://www.w3.org/WAI/">http://www.w3.org/WAI/</a>,
+              <a href="http://www.w3.org/TR/WCAG10-HTML-TECHS/">HTML Techniques for
+              WAI 1.0: http://www.w3.org/TR/WCAG10-HTML-TECHS/</a>)
+          </p>
+      </subsection>
+      <subsection name="Le Javascript">
+          <p>
+              L'usage du javascript doit être limité au maximum en raison des problèmes
+              d'accessibilité engendrés et des problèmes liés aux utilisateurs qui désactivent
+              l'exécution des scripts dans leurs navigateurs.
+          </p>
+           <p>
+              <em><strong>ATTENTION : </strong></em>
+           </p>
+           <p>
+              <em>L'application doit impérativement rester opérationnelle lorsque les scripts sont désactivés.</em>
+          </p>
+      </subsection>
+      <subsection name="Les Styles CSS">     
+          <p>
+              Tous les attributs de mise en forme du code HTML doivent être gérés par
+              des feuilles de style CSS2 dont les spécifications sont définies par le
+              W3C (<a href="http://www.w3.org/TR/REC-CSS2/">http://www.w3.org/TR/REC-CSS2/</a>).
+          </p>
+          <p>
+              Les styles devront utiliser au maximum l'héritage et les surcharges devront être limitées au maximum.
+          </p>
+      </subsection>
+      
+      <subsection name="Requête SQL : norme SQL-92">
+      <p>
+      	Toutes les requêtes SQL (présentes dans les scripts SQL ou dans les DAO) doivent suivres la liste de règles ci-dessous afin
+      	de respecter au maximum <a href="http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt">la norme SQL-92</a>. Tous les formats de 
+      	données ou syntaxes spécifiques à un Système de Gestion de Base de Données (SGBD) doit être évité afin de garantir la possibilité 
+      	d'utilisation de Lutèce avec différents SGBD. 
+      </p>
+      		<table>
+                <tr>
+                	<th>Description</th>
+                    <th>Exemple de syntaxe SQL spécifique (MySQL)</th>
+                    <th>Syntaxe SQL-92 équivalente à utiliser</th>
+                 </tr>
+                 <tr>
+                 	<td><br />Les caractères anti-côtes utilisés pour les noms de tables ou de colonnes doivent être supprimés<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE <b>&#96;</b>core_admin_auth_db_module<b>&#96;</b></small></td>
+                 	<td><br /><small>CREATE TABLE core_admin_auth_db_module</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />La définition de l'encodage pour une colone ou une table doit être supprimé<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... (access_code VARCHAR(16) <b>collate utf8_unicode_ci</b>,</small></td>
+                 	<td><br /><small>CREATE TABLE ... (access_code VARCHAR(16),</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Lors de la création d'une table, pour une colonne, la déclaration de la valeur par défaut et le fait 
+                 	que cette colonne puisse stocker une valeur <i>NULL</i> doit être respecter un ordre donnée<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... (access_code VARCHAR(16) <b>NOT NULL DEFAULT ''</b></small></td>
+                 	<td><br /><small>CREATE TABLE ... (access_code VARCHAR(16) <b>DEFAULT '' NOT NULL</b></small></td>    	
+                 </tr>
+                 <tr>
+                 	<td><br />Lors de la création d'une table, le moteur de stockage ainsi que l'encodage ne doivent pas être spécifiés<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... ( ... ) <b> ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</b>;</small></td>
+                 	<td><br /><small>CREATE TABLE ... ( ... ) ;</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br /> Les tailles des champs de type entier (<i>INT</i>, <i>SMALLINT</i>, ...) ne doivent pas être spécifiées<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... (id_mailinglist INT<b>(11)</b> NOT NULL DEFAULT '0',</small></td>
+                 	<td><br /><small>CREATE TABLE ... (id_mailinglist INT NOT NULL DEFAULT '0',</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Suppression des types de données non signées.<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... (id_mailinglist INT <b>UNSIGNED</b> NOT NULL DEFAULT '0',</small></td>
+                 	<td><br /><small>CREATE TABLE ... (id_mailinglist INT NOT NULL DEFAULT '0',</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Déclaration des index de manière explicite et non lors de la définition de la table<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE core_admin_right ( ... , <b>KEY index_right (level_right, admin_url)</b> )</small></td>
+                 	<td><br /><small>CREATE TABLE core_admin_right ( ... );<br />CREATE INDEX index_right ON core_admin_right (level_right, admin_url);</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Ne pas utiliser la fonctionnalité <i>ON UPDATE CURRENT_TIMESTAMP</i> permettant de mettre à jour un champ date lors de 
+					la mise à jour d'un tuple.<br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... ( date_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL <b>ON UPDATE CURRENT_TIMESTAMP</b> );</small></td>
+                 	<td><br /><small>CREATE TABLE ... ( date_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Ne pas utiliser le types de données <i>TINYTEXT</i>, <i>TEXT</i>, <i>MEDIUMTEXT</i>, <i>LONGTEXT</i>. Attention utiliser <i>LONG VARCHAR</i> écrit en 
+                 	deux mots.<br /><br /></td>
+                 	<td><br /><small>TINYTEXT<br />TEXT<br />MEDIUMTEXT<br />LONGTEXT</small></td>
+                 	<td><br /><small>VARCHAR(255)<br />LONG VARCHAR<br />LONG VARCHAR<br />LONG VARCHAR</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Ne pas utiliser le types de données <i>TINYBLOD</i>, <i>BLOD</i>, <i>LONGBLOD</i>, <i>LONGBLOD</i><br /><br /></td>
+                 	<td><br /><small>TINYBLOD<br />BLOD<br />LONGBLOD<br />LONGBLOD</small></td>
+                 	<td><br /><small>VARBINARY<br />LONG VARBINARY<br />LONG VARBINARY<br />LONG VARBINARY</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Ne pas utiliser le type <i>TINYINT</i><br /><br /></td>
+                 	<td><br /><small>CREATE TABLE ... ( status <b>TINYINT</b>);</small></td>
+                 	<td><br /><small>CREATE TABLE ... ( status <b>SMALLINT</b>);</small></td>
+                 </tr>                 
+                 <tr>
+                 	<td><br />Suppression des commentaires MySQL générés lors de l'export d'une table par exemple.<br /><br /></td>
+                 	<td><br /><small><b>/*!40101 SET NAMES utf8 */;</b></small></td>
+                 	<td><br /><small>&#160;</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Ne pas faire d'insertions multiples en une seule requête SQL<br /><br /></td>
+                 	<td><br /><small>INSERT INTO core_admin_right <b>VALUES (...),(...),(...),(...)</b>;</small></td>
+                 	<td><br /><small>INSERT INTO core_admin_right VALUES (...);<br />INSERT INTO core_admin_right VALUES (...);
+                 	<br />INSERT INTO core_admin_right VALUES (...);</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Ne pas utiliser le caractère d'échappement antislash. Pour échapper une simple cote, il faut doubler chaque 
+                 	simple cote. Ne pas utiliser de bouble cote pour délimiter un champ, utiliser une simple cote.<br /><br /></td>
+                 	<td><br /><small>L<b>\'</b>accès aux ressources<br />INSERT INTO core_admin_right VALUES ("contenu")<br />Retour chariot<b>\r\n</b>Nouvelle ligne</small></td>
+                 	<td><br /><small>L<b>''</b>accès aux ressources<br />INSERT INTO core_admin_right VALUES ('contenu')<br />Retour chariot<b>&#60;br /&#62;</b>Nouvelle ligne</small></td>
+                 </tr>
+                 <tr>
+                 	<td><br />Pour limiter les risques d'incompatibilité toujours préférer stocker les données en binaire lorsque cela est possible<br /><br /></td>
+                 	<td><br /><small>INSERT INTO core_stylesheet (... ) VALUES ( <b>'&#60;xsl:stylesheet version="1.0"...' </b>)</small></td>
+                 	<td><br /><small>INSERT INTO core_stylesheet (... ) VALUES ( <b>0x3C3F786D6C207665</b>)</small></td>
+                 </tr>
+            </table>
+      
+      </subsection>
+      
+      <subsection name="Commentaires">
+          <p>
+            L’ensemble des éléments de l’application (programmes,
+            scripts, fichiers de propriétés, …) devra être commenté.
+            Les commentaires devront être rédigés en anglais.
+          </p>
+          <p>
+            Pour les programmes Java, l’ensemble des classes et de
+            leurs méthodes (y compris protected et private) devra
+            comporter des commentaires Javadoc contenant une
+            description de la fonctionnalité prise en charge par la
+            méthode, ainsi que les tags <code>@param @return @exception</code>.
+          </p>
+          <p>
+            Les modifications réalisées dans les versions successives
+            seront indiquées par des tags <code>@version</code>.
+          </p>
+          <p>
+            Les nouvelles méthodes et classes des API indiqueront leur version
+            d'introduction à l'aide de la balise <code>@since</code>.
+          </p>
+          <p>
+            Les methodes obsolètes seront identifiées à l'aide de la balise <code>@deprecated</code>.
+          </p>
+      </subsection>
+      
+      <subsection name="Respect des normes d’accessibilité">
+          <p>
+            Dans le cadre de l'article 47 de la loi n°2005-102 du 12 février 2005, 
+            les collectivités territoriales doivent rendre accessibles leurs sites web 
+            à chaque citoyen quel que soit leur matériel ou logiciel, leur infrastructure réseau, 
+            leur langue maternelle, leur culture, leur localisation géographique, ou leurs 
+            aptitudes physiques ou mentales.
+          </p>
+    
+          <p>
+            Article 47 de la loi n° 2005-102
+          </p>
+          <p><em>
+            "Les services de communication publique en ligne des
+            services de l'Etat, des collectivités territoriales
+            et des établissements publics qui en dépendent
+            doivent être accessibles aux personnes
+            handicapées.</em>
+          </p>
+          <p><em>
+            L'accessibilité des services de communication
+            publique en ligne concerne l'accès à tout type
+            d'information sous forme numérique quels que soient
+            le moyen d'accès, les contenus et le mode de
+            consultation. Les recommandations internationales
+            pour l'accessibilité de l'internet doivent être
+            appliquées pour les services de communication
+            publique en ligne."</em>
+          </p>
+        <!--  <p>
+            Un décret en Conseil d'Etat fixe les règles relatives
+            à l'accessibilité et précise, par référence aux
+            recommandations établies par l'Agence pour le
+            développement de l'administration électronique, la
+            nature des adaptations à mettre en oeuvre ainsi que
+            les délais de mise en conformité des sites existants,
+            qui ne peuvent excéder trois ans, et les sanctions
+            imposées en cas de non-respect de cette mise en
+            accessibilité. Le décret énonce en outre les
+            modalités de formation des personnels intervenant sur
+            les services de communication publique en ligne.
+          </p>
+          <p>
+            Les règles décrites à l’annexe 6.4 rappellent la liste des
+            règles relatives à l’accessibilité établies par l’Agence
+            pour le Développement de l’Administration Electronique
+            (ADAE)
+          </p>-->
+          <p>
+            Le Titulaire s'engage à respecter, pour l'ensemble de ses livrables, 
+            les règles décrites dans le référentiel accessibilité des services Internet 
+            de l'administration française établi par l'Agence pour le Développement de 
+            l'Administration Electronique (ADAE devenue DGME).
+          </p>
+          <p>
+            Dans ce cadre, le Titulaire s'engage à opérer les corrections nécessaires sur les 
+            prestations réalisées dans le cadre du marché suite à une opération de labellisation ou 
+            de certification basée sur les critères spécifiés dans ce référentiel.                            
+          </p>
+      </subsection>
+    </section>
+  </body>
+</document>

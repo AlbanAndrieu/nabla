@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <document>
+      <properties>
+          <title>
+              Lutèce : Download
+          </title>
+      </properties>
+      <body>
+          <section name="Downloads">
+              <p>
+                  You can download the latest distributions of Lutece (sources or binaries) 
+                  <a href="http://dev.lutece.paris.fr/stable_builds/site-demo/">here</a> 
+                
+              </p>
+          </section>
+      </body>
+  </document>
+          

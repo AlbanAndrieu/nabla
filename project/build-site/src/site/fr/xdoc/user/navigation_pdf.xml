@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="site">
+	
+	<bannerLeft>
+        <name>Lutece</name>
+        <src>http://fr.lutece.paris.fr/fr/images/local/skin/banner.gif</src>
+		<alt>Lutece</alt>
+        <href>../../fr/</href>
+    </bannerLeft>
+    
+    <bannerRight>
+        <src>http://fr.lutece.paris.fr/fr/images/local/skin/banner_right.gif</src>
+    </bannerRight>
+	
+	<publishDate format="dd MMMM yyyy" position="left" />
+	<version position="left" />
+	
+	<title>LUTECE</title>
+	
+	<body>
+		<menu name="Documentation utilisateur">
+    		<item name="1. Lut&#232;ce V2 : pr&#233;sentation g&#233;n&#233;rale" href="lutece_v2_overview.html" />
+			<item name="2. Pages et Contenus" href="pages_and_content.html" />
+			<item name="3. Gestion des utilisateurs" href="user_management.html" />
+			<item name="4. Glossaire" href="glossary.html" />
+    	</menu>
+	</body>
+	
+</project>

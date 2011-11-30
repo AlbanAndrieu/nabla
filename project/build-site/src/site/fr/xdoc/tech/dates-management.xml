@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>La gestion des dates dans Lutèce</title>
+	</properties>
+	<body>
+		<section name="La gestion des dates dans Lutèce">
+			<p>
+				Lutèce intègre une classe utilitaire pour la gestion des dates. <a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html">DateUtil</a> propose en effet un ensemble de fonctions permettant de formater, vérifier, convertir les dates utilisées dans Lutèce.
+				Ce chapitre détaille l'utilisation de ces fonctions.
+			</p>
+			<p>
+				La section <a href="#Affichage">Affichage</a> traitera des possibilités d'affichage d'un calendrier en Javascript.
+			</p>
+			<subsection name="Format">
+				<p>
+					Le format des dates dans Lutèce est figé. Toutes les dates du portail ont le même format. C'est un dérivé du style <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html#SHORT">SHORT</a> définit dans la classe <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html">DateFormat</a> :
+				</p>
+				<ul>
+					<li>Pour la langue française, le format attendu est JJ/MM/AAAA ;</li>
+					<li>Pour la langue anglaise, le format attendu est MM/JJ/AAAA ;</li>
+					<li>Pour les autres langues, le format attendu correspond au format <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html#SHORT">DateFormat.SHORT</a>.</li>
+				</ul>
+				<p>DateUtil propose une liste de fonctions permettant de formater une date en chaine de caractères vers un format adéquat (Date, Timestamp, ...).</p>
+				<ul>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#formatDate(java.lang.String,%20java.util.Locale)">Date formatDate( String strDate, Locale locale )</a> convertit une chaine de caractères (String) vers un type Date ;</li>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#formatTimestamp(java.lang.String,%20java.util.Locale)">Timestamp DateUtil.formatTimestamp( String strDate, Locale locale )</a> convertit une chaine de caractères vers un type java.sql.Date ;</li>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#formatDateSql(java.lang.String,%20java.util.Locale)">java.sql.date formatDateSql( String strDate, Locale locale )</a> convertit une chaine de caractères vers un type java.sql.Date.</li>
+				</ul>
+				<p>Pour chaque fonction, la locale doit être précisée en paramètres.</p>
+			</subsection>
+
+			<subsection name="Validité">
+				<p>
+					Vérifier la validité d'une date saisie par l'utilisateur s'effectue simplement par un appel à la fonction <a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#formatDate(java.lang.String,%20java.util.Locale)">DateUil.formatDate(  )</a>.
+				</p>
+				<p>
+					La fonction renvoie un type Date si la date saisie est valide ou null sinon.
+				</p>
+			</subsection>
+			
+			<subsection name="Conversion en chaine de caractères">
+				<p>
+					Pour l'affichage d'une date, il est nécéssaire de convertir la date stockée sous forme de chaine de caractères (String).
+					Cette conversion s'effectue simplement en utilisant les fonctions suivantes :
+				</p>
+				<ul>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#getDateString(java.util.Date,%20java.util.Locale)">String getDateString( Date date, Locale locale )</a> convertit un type Date en chaine de caractères (String) ;</li>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#getDateString(java.sql.Timestamp,%20java.util.Locale)">String getDateString( Timestamp date, Locale locale )</a> convertit un type Timestamp en chaine de caractères (String) ;</li>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#getDateString(long,%20java.util.Locale)">String getDateString( long lTime, Locale locale )</a> convertit un type Long en chaine de caractères (String).</li>
+				</ul>
+				<p>Une fonction permet de récupérer directement la date du jour au format String :</p>
+				<ul>
+					<li><a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html#getCurrentDateString(java.util.Locale)">String getCurrentDateString( Locale locale )</a> ;</li>
+				</ul>
+				<p>Le format d'affichage correspond à celui décrit dans la section <a href="#Format">Format</a> de ce document.</p>
+			</subsection>
+			
+			<subsection name="Affichage">
+				<p>L'affichage d'un champ date dans une page html peut être agrémenté d'un calendrier en Javascript. La saisie de la date s'en trouve simplifiée.</p>
+				<p>Le calendrier Javascript utilisé est le <a href="http://marcgrabanski.com/code/ui-datepicker/">jquery UI Datepicker</a>.</p>
+				<p>Un ensemble de macros <a href="http://freemarker.sourceforge.net/">Freemarker</a> est disponible pour l'appel à ce calendrier. Ces macros sont chargées systématiquement pour chaque template (Front ou Back office), il n'est pas nécessaire de les inclure.</p>
+				<p>Ces macros ainsi que leur descriptions sont disponibles dans le fichier <a href="http://dev.lutece.paris.fr/viewvc/portal/trunk/core/webapp/WEB-INF/templates/util/calendar/macro_datepicker.html?view=markup">webapp/WEB-INF/templates/util/calendar/macro_datepicker.html</a>.</p>
+				<em>Note : Les macros du Datepicker peuvent être appellées indifférement dans les templates du Front ou Back office de Lutèce.</em>
+				
+				<h4>Exemple d'utilisation</h4>
+					<p>Exemples de macro disponibles :</p>
+					<ul>
+						<li>&lt;@getDatePicker /&gt; : affichage du Datepicker pour un champ date simple ;</li>
+						<li>&lt;@getDatePickerRange  /&gt; : affichage des Datepickers pour une période de date (définis par deux champs).</li>
+					</ul>
+					<p>Voici un exemple d'utilisation d'une macro datepicker :</p>
+					<source>
+&lt;html&gt;
+	&lt;title&gt;
+	...
+	&lt;/title&gt;
+	&lt;body&gt;
+		...
+		&lt;form ...&gt;
+			...
+			&lt;label class=&quot;text-label&quot; for=&quot;my_date&quot;&gt;Date : &lt;/label&gt;
+			&lt;input type=&quot;text&quot; size=&quot;10&quot; id=&quot;my_date&quot; name=&quot;my_date&quot; value=&quot;${my_date?date}&quot; /&gt;
+			...
+		&lt;/form&gt;
+		&lt;@getDatePicker idField=&quot;my_date&quot; language=locale.language /&gt;
+		...
+	&lt;/body&gt;
+&lt;/html&gt;
+					</source>
+					<p>Cette template est chargée en Freemarker avec les données :</p>
+					<ul>
+						<li>my_date : variable de type <em>java.util.Date</em>. La directive Freemarker <a href="http://freemarker.sourceforge.net/docs/ref_builtins_date.html#ref_builtin_date_datetype">?date</a> permet de n'afficher que la date (le jour, le mois et l'année) ;</li>
+						<li>locale : la locale utilisée (type Locale).</li>
+					</ul>
+			</subsection>
+		</section>
+	</body>
+</document>
+

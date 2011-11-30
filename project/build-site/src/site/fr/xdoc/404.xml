@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>
+            Lutèce : Page non trouvée
+        </title>
+    </properties>
+
+    <body>
+		<section name="Page non trouvée">
+	        <p>
+				La ressource demandée n'est pas disponible sur le serveur.
+				Cliquez sur le lien suivant pour retourner à la page d'accueil : <a href="index.html">accueil</a>
+			</p>
+        </section>
+    </body>
+</document>

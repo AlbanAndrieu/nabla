@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <document>
+      <properties>
+          <title>
+              Lutèce : Normes de développement
+          </title>
+      </properties>
+        <body>
+                <section name="Normes de développement">                    
+                        <p> 
+                             Le noyau de Lutèce et ses plugins sont développés dans le respect des normes de développement suivantes, dont le respect est contrôlé par les outils checkstyle et PMD : 
+                        </p>
+                    <subsection name="Liste des normes">
+                        <p>
+							<table>
+								<tr>
+									<th>Document</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td><a href="naming-conventions.html">Règles de nommage</a></td>
+									<td>Liste des règles de nommage des fichiers, classes, packages, méthodes, variables ...</td>								</tr>
+								<tr>
+									<td><a href="coding-conventions.html">Règles de codage</a></td>
+									<td>Liste des règles à respecter en Java, Html ...</td>
+								</tr>
+								<tr>
+									<td><a href="checkcode-rules.html">Règles d'analyse de code</a></td>
+									<td>Liste des règles configurés dans l'outil checkstyle</td>
+								</tr>
+								<tr>
+									<td><a href="logging-rules.html">Règles de logging</a></td>
+									<td>Liste des règles à utiliser dans l'implémentation des logs</td>
+								</tr>									
+								<tr>
+									<td><a href="documentation.html">Règles de documentation</a></td>
+									<td>Liste des règles à utiliser pour la rédaction de la documentation utilisateur et technique</td>
+								</tr>																		
+								<tr>
+									<td><a href="unit-testing.html">Tests unitaires</a></td>
+									<td>Liste des règles pour l'impléntation des tests unitaire du noyau et des plugins</td>
+								</tr>										
+							</table>
+                        </p>
+                    </subsection>
+                </section>
+        </body>
+  </document>
+
+      

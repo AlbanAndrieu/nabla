@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <document>
+      <properties>
+          <title>
+              Lutèce : Guide de développement
+          </title>
+      </properties>
+        <body>
+                <section name="Guide de développement">                    
+                        <p> 
+                             Comment développer sur Lutèce
+                        </p>
+                    <subsection name="Liste des documentations">
+                        <p>
+							<table>
+								<tr>
+									<th>Document</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td><a href="architecture-overview.html">Architecture générale</a></td>
+									<td>Architecture générale de Lutèce, interaction entre le noyau et les plugins</td>								</tr>
+								<tr>
+									<td><a href="code-sample-hello-world.html">Hello World</a></td>
+									<td>Quelques exemples de code</td>
+								</tr>
+								<tr>
+									<td><a href="core-services.html">Services de base</a></td>
+									<td>Description des services de base rendus par le noyau de Lutèce, à utiliser dans l'implémentation des plugins</td>
+								</tr>
+								<tr>
+									<td><a href="data-access.html">Accès aux données</a></td>
+									<td>L'accès aux données</td>
+								</tr>									
+								<tr>
+									<td><a href="i18n.html">Internationalisation</a></td>
+									<td>Comment utiliser les fichiers d'internationalisation</td>
+								</tr>																		
+								<tr>
+									<td><a href="spring.html">Intégration Spring</a></td>
+									<td>Utiliser Spring dans Lutèce</td>
+								</tr>										
+								<tr>
+									<td><a href="howto-use-site-message.html">Messages du site</a></td>
+									<td>La gestion des messages sur le site</td>
+								</tr>		
+								<tr>
+									<td><a href="howto-create-plugins.html">Plugins</a></td>
+									<td>Créer un plugin Lutèce</td>
+								</tr>		
+								<tr>
+									<td><a href="how-to-formengine-create-module.html">Formulaires</a></td>
+									<td>Développer un module de formulaire avec le plugin formengine</td>
+								</tr>		
+								<tr>
+									<td><a href="migration1to2.html">Migrer de la v1 à la v2</a></td>
+									<td>les éléments permettant de migrer un plugin de la v1 à la v2</td>
+								</tr>		
+								<tr>
+									<td><a href="security.html">Sécurité</a></td>
+									<td>La sécurité dans Lutèce</td>
+								</tr>										
+							</table>
+						</p>	
+                    </subsection>
+                </section>
+        </body>
+  </document>
+
+      

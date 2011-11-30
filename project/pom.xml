@@ -18,6 +18,12 @@
 	
 	<description>Proof of concept : SOA framework for generic services</description>
 
+	<modules>
+	        <module>env</module>
+		<module>build-tools</module>
+		<module>sample</module>
+	</modules>
+			
 	<!-- ================= Default Properties ================= -->
 	<properties>
 		<andromda.version>3.4-SNAPSHOT</andromda.version>
@@ -2357,10 +2363,13 @@
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
+			<!--
 			<modules>
+			        <module>env</module>
 				<module>build-tools</module>
 				<module>sample</module>
 			</modules>
+			-->
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<andromdapp.run.skip>true</andromdapp.run.skip>
@@ -3954,11 +3963,14 @@
 					<name>env</name>
 					<value>dev</value>
 				</property>
-			</activation>	
+			</activation>
+			<!--
 			<modules>
+			        <module>env</module>
 				<module>build-tools</module>
 				<module>sample</module>
-			</modules>		
+			</modules>
+			-->	
 			<properties> 
 				<target.dir>target-eclipse</target.dir>
 				<!--

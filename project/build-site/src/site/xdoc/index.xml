@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <document>
+      <properties>
+          <title>
+              Lutece : Introduction
+          </title>
+      </properties>
+      <body>
+	  
+	  
+		<div id="downloadbox">
+			<h5>Get Lutece 2.2.7 Release</h5>
+			<div id="release-date">Released: 7 may 2009</div>
+			<p>
+				<a href="http://dev.lutece.paris.fr/stable_builds/site-demo/">
+					<img src="tech/images/icones/download.png" alt="Download Lutece 2.2.7" title="Download Lutece 2.2.7"/>
+					Lutece Demo v2.2.7
+				</a>
+			</p>
+			<ul>
+				<li><a href="readme.html">System Requirements</a></li>
+				<li><a href="install.html">Installation Guide</a></li>
+				<li><a href="http://dev.lutece.paris.fr/jira/secure/ReleaseNote.jspa?projectId&#61;10000&amp;styleName&#61;Html&amp;version&#61;10090">Release Notes</a></li>
+			</ul>
+		</div>
+		
+		
+		<section name="Welcome to the Lutece Project ">
+            <p>
+                Lutece is a portal engine which allows you <strong>to easily create your websites or intranets</strong> 
+				based upon HTML, XML... content. 
+			</p>
+			<p>
+			    Lutece provides <strong>a user friendly interface for portal management</strong> and therefore no specific technical skills are required. 
+            </p>
+            <p>
+				This software is implemented in <strong>Java</strong> and based on widely used libraries and frameworks : 
+				Spring, Freemarker, Lucene, Ehcache, Jakarta-commons, PDFBox, ... .
+				Lutece is <strong>free and Open-Source</strong> : it is distributed under <a href="license.html">a BSD-like license</a>.
+            </p>
+            <p>
+                Languages available are English and French. 
+                French users are invited to consult the <a href="http://dev.lutece.paris.fr">french site</a>. 
+            </p>
+          </section>
+		  
+		  <section name="Lutece Documentation">
+
+			<div class="list-no-marker">
+				<ul>
+					<li>
+						<div class="doc-link">
+							<a href="install.html">
+								<img src="tech/images/icones/install.png" alt="Install Lutece" title="Install Lutece"/>
+								Install Lutece</a>
+						</div>
+						<div class="doc-details">
+							Information for those needing to run a site with Lutece
+						</div>
+					</li>
+					<li>
+						<div class="doc-link">
+							<a href="tech/developers_resources.html">
+								<img src="tech/images/icones/developLutece.png" alt="Develop Lutece" title="Develop Lutece"/>
+								Develop Lutece</a>
+						</div>
+						<div class="doc-details">
+							Information for developers willing to contribute to the Lutece project
+						</div>			
+						</li>
+					<li>
+						<div class="doc-link">
+							<a href="http://dev.lutece.paris.fr/plugins/lutece-migration-tool/index.html">
+								<img src="tech/images/icones/migration.png" alt="Migrate a Lutece site" title="Migrate a Lutece site"/>
+								Migrate Lutece site data from version 1.4 to version 2.x</a>
+						</div>
+						<div class="doc-details">
+							Data migration tools from Lutece 1.4 to Lutece 2.x
+						</div>			
+					</li>
+				</ul>
+			</div>
+		  </section>
+		  
+		  <section name="Plugins">
+			<p>
+                Lutece provides an highly modular architecture based on plugins.
+            </p>	
+			<div class="list-no-marker">
+				<ul>
+					<li>
+						<div class="doc-link">
+							<a href="available-plugins.html">					
+								<img src="tech/images/icones/plugins.png" alt="Plugins List" title="Plugins List"/>
+			                    See the Plugins List</a>
+			            </div>
+						<div class="doc-details">
+							 Details about the available Lutece plugins
+						</div>	
+					</li>
+					<li>
+						<div class="doc-link">
+			                    <a href="tech/howto-create-plugins.html">
+									<img src="tech/images/icones/developPlugin.png" alt="Develop a Plugin" title="Develop a Plugin"/>
+									Develop a Plugin</a>
+			            </div>
+						<div class="doc-details">
+							Information for developers willing to create new Lutece plugins
+						</div>	
+					</li>
+				</ul>
+			</div>
+		  </section>
+		  
+		  <section name="How to Get Support">			
+			<p>
+				Support for Lutece is available in a variety of different forms.
+			</p>
+			<div class="list-no-marker">
+				<ul>
+					<li>
+						<div class="doc-link">
+							<a href="issue-tracking.html">
+								<img src="tech/images/icones/issueTracking.png" alt="Issue Tracking" title="Issue Tracking"/>
+								Issue Tracking</a>
+						</div>
+						<div class="doc-details">
+						Report a bug, request new features, follow issues, ...						
+						</div>
+					</li>
+					<li>
+						<div class="doc-link">
+							<a href="source-repository.html">
+								<img src="tech/images/icones/repository.png" alt="Source Repository" title="Source Repository"/>
+								Source Repository</a>
+						</div>
+						<div class="doc-details">
+							Access information and online view of the source files
+						</div>
+					</li>
+					<li>
+						<div class="doc-link">
+							<a href="http://dev.lutece.paris.fr/wikilutece/index.php?title=Main_Page">
+								<img src="tech/images/icones/wiki.png" alt="Wiki" title="Wiki"/>
+								Wiki</a>
+						</div>
+						<div class="doc-details">
+							Share tutorials and tips
+						</div>
+					</li>
+				</ul>
+			</div>
+		  </section>
+      </body>
+  </document>
+          

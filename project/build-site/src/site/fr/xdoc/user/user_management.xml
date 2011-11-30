@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>Guide de démarrage rapide - Lutèce V2</title>
+	</properties>
+	<body>
+	
+		<section name="3. GESTION DES UTILISATEURS">
+		<p>
+		Comme nous l’avons vu plus haut dans ce support, deux types d’utilisateurs sont à distinguer :
+		</p>
+		 <p>
+          <ul>
+              <li>Les <strong>utilisateurs de l'interface d'administration Lutèce V2</strong> ou "<strong>Gestionnaires Lutèce</strong>"</li>
+              <li>Les <strong>utilisateurs "visiteurs" du site public</strong> ou "<strong>Internautes</strong>"</li>
+           </ul>
+       </p>
+        <p>
+          <ul>
+              <li>Les <strong>gestionnaires</strong> peuvent disposer de droits d'accès différents (les uns par rapport aux autres) aux fonctionnalités d'admnistration</li>
+              <li>Les <strong>internautes</strong>, eux aussi, peuvent disposer de droits d'accès à certaines pages du site public</li>
+           </ul>
+       </p>
+       <p>
+       	<table>
+                	<tr>
+                	<th>
+                  <center>
+            			<img src="images/warning.gif" alt="" />
+                  </center>
+                  </th>
+                  <th>
+            
+            				<p>
+                    <center>
+                    <strong>Important</strong>
+                    </center>
+                    </p>
+            				<p>
+           La création et l'attribution de ces droits est totalement paramétrable avec Lutèce,
+ce qui permet de répondre aux spécificités de votre organisation interne.  
+                    </p>
+            			</th>
+                  </tr>
+                  </table>
+       </p>
+       <p>
+       	<table>
+                	<tr>
+                	<th>
+                  <center>
+            			<img src="images/information.gif" alt="" />
+                  </center>
+                  </th>
+                  <th>
+            
+            				<p>
+                    <center>
+                    <strong>Infos pratiques : Annuaires</strong>
+                    </center>
+                    </p>
+            				<p>
+          Il est possible d'utiliser un annuaire existant (LDAP...) dans Lutèce
+pour éviter une double saisie des utilisateurs.  
+                    </p>
+            			</th>
+                  </tr>
+                  </table>
+       </p>
+       
+			<subsection name="3.1 Gestion des utilisateurs de l'interface d'administration">
+				<p>
+				Ce chapitre permettra de présenter la gestion des utilisateurs de type "<strong>gestionnaires</strong>", avec : 
+				</p>
+				 <p>
+          <ul>
+              <li>la création et la modification des <strong>comptes utilisateurs</strong></li>
+              <li>Les <strong>droits</strong> associés à chaque utilisateur</li>
+              <li>la gestion des <strong>rôles</strong> de chaque utilisateur</li>
+              <li>la gestion des <strong>groupes de travail</strong> de chaque utilisateur</li>
+           </ul>
+       </p>
+				 <p>
+         <table>
+             <tr>
+                 <th>Terminologie</th>
+                 <th>Définition</th>
+             </tr>
+             <tr>
+                 <td><strong>Compte utilisateurs</strong></td>
+                  <td>
+                  <p>
+                  Pour se connecter à l'interface d'administration, chaque gestionnaire doit disposer d'un <strong>compte utilisateur</strong>, qui correspond à un identifiant-mot de passe, ainsi qu'à des informations personnelles (Nom, prénom, e-mail...). 
+                  </p>
+                  <p>
+                  A chaque compte utilisateur peuvent être associés :
+                  </p>
+                   <p>
+                      <ul>
+                          <li>un ou des droits;</li>
+                          <li>un ou des rôles;</li>
+                          <li>un ou des groupes de travail.</li>
+                       </ul>
+                   </p>
+                  </td>
+             </tr>
+             <tr>
+                 <td><strong>Droits</strong></td>
+                  <td>
+                  <p>
+                  Chaque utilisateur dispose de <strong>droits d'accès à des fonctionnalités</strong>, comme par exemple :
+                  </p>
+                   <p>
+                      <ul>
+                          <li><strong>Administration du site</strong> (Création et mise à jour dynamique des pages, des rubriques et du Portail)</li>
+                          <li><strong>Gestion des documents </strong>(Création, modification et suppression de documents)</li>
+                          <li><strong>Gestion des catégories de document</strong> (Création, modification et suppression des catégories de document) </li>
+                          <li><strong>Gestion des flux RSS</strong> (Création, modification et suppression des flux RSS) </li>
+                          <li><strong>Gestion des règles du Workflow</strong> (Gestion des règles associées au circuit de validation documentaire)</li>
+                          <li>etc...</li>
+                       </ul>
+                   </p>
+                   <p>
+                   Des niveaux de droits ont été définis sur une échelle de 0 à 3. Chaque droit et chaque compte utilisateur est associé à un niveau.
+                    </p>
+                    <p>
+                    L'association d'un niveau de droit à un compte utilisateur permet de limiter l'ensemble des droits qui peuvent lui être attribués : par exemple un compte utilisateur associé au niveau 0 se voit proposé la totalité des droits (de 0 à 3), alors qu'un compte associé au niveau 2 peut recevoir des droits de niveau 2 et 3.
+                   </p>
+                    <p>
+                        <ul>
+                            <li><strong>Niveau 0</strong> : Droits de l'administrateur technique</li>
+                            <li><strong>Niveau 1</strong> : Droits de l'administrateur fonctionnel</li>
+                            <li><strong>Niveau 2</strong> : Droits du webmestre</li>
+                            <li><strong>Niveau 3</strong> : Droits de l'assistant webmestre</li>
+                         </ul>
+                     </p>
+                  </td>
+             </tr>
+             <tr>
+                 <td><strong>Rôles</strong></td>
+                  <td>
+                  <p>
+                  Un <strong>rôle</strong> définit une <strong>liste d'actions</strong> qu'un utilisateur peut effectuer sur une ou plusieurs <strong>ressources</strong>.
+                  </p>
+                  <p>
+                  Ci-dessous quelques exemples de rôles disponibles par défaut sur Lutèce V2 : 
+                  </p>
+                   <p>
+                      <ul>
+                          <li>Administration du site</li>
+                          <p>
+                              <ul>
+                                  <li>all_site_manager (Gestion du site): <em>Permet de gérer l'ensemble des pages du site;</em> </li>
+                                 
+                               </ul>
+                           </p>
+                          <li>Gestion des documents</li>
+                          <p>
+                              <ul>
+                                  <li>comment   (Modération des commentaires d'articles): <em>Ce rôle autorise la modération des commentaire;</em>  </li>
+                                  <li>manage_spaces  (Gestion des espaces de documents): <em>L'utilisateur peux créer, modifier, déplacer et supprimer un ou des espaces;</em>     </li>
+                                   <li>view_spaces_all    (Vue sur tous les espaces): <em>Accès à tous les espaces disponibles;</em> </li>
+                                    <li>...</li>
+                               </ul>
+                           </p>
+                            <li>...</li>
+                            <p>
+                            <strong>Important</strong> :  A la création d'un nouvel utilisateur, il est donc important de lui associer un ou plusieurs rôles en complément des droits attribués.
+                            </p>
+                       </ul>
+                   </p>
+                   <p>
+                   Pour illustrer ces notions, prenons l'exemple du rôle "<strong>Content Contributor</strong>". 
+Nota bene: Au préalable, l'utilisateur doit posséder le droit de "Gestion des documents"
+Ce rôle permet d'accéder à un seul type de <strong>ressources</strong> nommé "<strong>Types de document</strong>" autorisant les <strong>permissions suivantes</strong> : 
+                   </p>
+                    <p>
+                      <ul>
+                          <li>Modifier un document validé</li>
+                          <li>Créer un document</li>
+                          <li>Supprimer un document</li>
+                          <li>Modifier un document</li>
+                          <li>Soumettre à validation </li>
+                          <li>Voir un document</li>
+                          <li>Voir l'historique d'un document</li>
+                       </ul>
+                   </p>
+                  </td>
+             </tr>
+             <tr>
+                 <td><strong>Groupe de travail</strong></td>
+                  <td>
+                  <p>
+                  Un groupe de travail permet de rassembler un ou plusieurs comptes de gestionnaires dans le but de leur réserver l'accès à des ressources particulières.
+                  </p>
+                  <p>
+                  Les gestionnaires et les ressources de Lutèce (sondage, lettre d'information, agendas, ...) peuvent être associés à aucun, un ou plusieurs groupes de travail.
+                  </p>
+                  <p>
+                  <em>Exemple de ressources accédées par des gestionnaires:</em>
+                  </p>
+                  <p>
+                  <center>
+                  <img alt="Schema groupe de travail" title="Schema groupe de travail" src="images/workgroup_schema.gif"/>
+                  </center>
+                  </p>
+                  </td>
+             </tr>
+         </table>
+     </p>
+				<a name="3.1.1_Gestion_des_rôles_et_des_groupes_de_travail"/>
+				<h4>3.1.1 Gestion des rôles et des groupes de travail</h4>
+				
+								<table>
+                	<tr>
+                	<th>
+                  <center>
+            			<img src="images/prerequis.gif" alt="" />
+                  </center>
+                  </th>
+                  <th>
+            
+            				<p>
+                    <center>
+                    <strong>Pré-requis</strong>
+                    </center>
+                    </p>
+            				<p>
+            Il se peut que vous n'ayez pas les droits d'accès à cette fonction.
+Celle-ci est en effet accessible uniquement à certains profils de gestionnaires. 
+                    </p>
+            			</th>
+                  </tr>
+                  </table>
+				
+				<a name="A_Gestion_des_rôles"/>
+				<h5>A Gestion des rôles</h5>
+				<p>
+				Pour accéder à la gestion des rôles, dans le menu sélectionner "<em>Utilisateur > gestion des rôles</em>".
+				</p>
+				<p>
+				<center>
+				<img alt="Gestion des roles" src="images/users_management/roles_management.gif"/>
+				</center>
+				</p>
+				<p>
+				Plusieurs actions sont alors possibles :
+				</p>
+				 <p>
+          <ul>
+              <li><strong>Créer un nouveau rôle.</strong></li>
+               <p>
+                  <ul>
+                      <li>Pour cela, cliquer sur le bouton "<strong>Créer un nouveau rôle</strong>"</li>
+                   </ul>
+               </p>
+              <li><strong>Modification d'un rôle</strong></li>
+              <p>
+                  <ul>
+                      <li>Pour cela, cliquer dans la colonne "<em>Clé</em>" sur le libéllé du rôle de votre choix. </li>
+                   </ul>
+               </p>
+              <li><strong>Supprimer un rôle</strong></li>
+              <p>
+                  <ul>
+                      <li>Pour cela, cliquer sur l'icône <img alt="Supprimer" src="images/icones/delete_button.gif"/> (colonne
+"Action"), associé au rôle à supprimer.
+Attention il est impossible de supprimer un rôle tant qu’il est attribué à au moins un utilisateur.</li>
+                   </ul>
+               </p>
+           </ul>
+       </p>
+       <p>
+       <em>Remarque: La définition d'un rôle n'est pas décrite dans ce guide. Cette fonction est réservée à l'Administrateur technique .</em>
+       </p>
+				
+					<a name="B_Groupe_de_travail"/>
+				<h5>B Groupe de travail</h5>
+				<p>
+				Pour accéder à la gestion des groupes de travail sélectionner "<em>Gestionnaires > groupes de travail</em>"
+				</p>
+				<p>
+				<center>
+				<img alt="Liste des groupes" src="images/users_management/Worksgroups.gif"/>
+				</center>
+				</p>
+				<p>
+				Les actions possibles sont les suivantes :
+				</p>
+				 <p>
+          <ul>
+              <li><strong>Créer un groupe de travail</strong></li>
+              <p>
+                  <ul>
+                      <li>cliquer sur le bouton "<em>Créer un nouveau groupe</em>" </li>
+                   </ul>
+               </p>
+              <li><strong>Choisir les utilisateurs qui appartiendront à ce groupe</strong></li>
+               <p>
+                  <ul>
+                      <li>cliquer sur l'icône <img alt="Assigner" src="images/icones/workgroup.gif"/> " <em>Assigner des utilisateurs</em>"</li>
+                      
+                   </ul>
+               </p>
+              <li><strong>Supprimer un groupe de travail. </strong></li>
+               <p>
+                  <ul>
+                      <li>cliquer sur l'icône <img alt="Supprimer" src="images/icones/delete_button.gif"/></li>
+                      <li>Attention, il est impossible de supprimer un groupe de travail tant que des utilisateurs y sont encore assignés.</li>
+                   </ul>
+               </p>
+              <li><strong>Pour modifier les caractéristiques d’un groupe de travail</strong></li>
+               <p>
+                  <ul>
+                      <li>cliquer sur le <strong>libellé du groupe de travail</strong>, dans la première colonne "Clé".</li>
+                   </ul>
+               </p>
+           </ul>
+       </p>
+       
+       <h6>Création d'un groupe de travail</h6>
+       
+       <p>
+       Pour créer un nouveau groupe de travail :
+       </p>
+       <p>
+          <ol>
+              <li>accéder à l'écran de liste des groupes de travail;</li>
+              <li>cliquer sur le bouton "<strong>Créer un nouveau groupe</strong>".  </li>
+           </ol>
+       </p>
+       <p>
+       <center>
+       <img alt="Creation Groupe de travail" src="images/users_management/create_worksgroups.gif"/>
+       </center>
+       </p>
+				<p>
+				La création d'un groupe de travail nécessite la saisie de 2 champs :
+				</p>
+				 <p>
+          <ul>
+              <li>Le champ "<strong>Clé</strong>" correspond au libellé du groupe de travail -Attention ! ce champs ne peut contenir ni espace, ni caractères spéciaux, ni caractères accentués.</li>
+              <li>Le champ "<strong>Description</strong>"  permet de saisir un libellé explicite qui apparaitra dans les écrans de l'interface d'administration.</li>
+           </ul>
+       </p>
+       <p>
+       Après avoir renseigné ces deux champs, cliquer sur le bouton "<strong>valider</strong>" pour créer le groupe de travail. Le nouveau groupe de travail apparait dans la liste des groupes.
+       </p>
+				<p>
+				<em>Remarque : l’utilisateur qui crée un groupe de travail est automatiquement assigné à ce groupe. </em>
+				</p>
+				
+				<h6>Assigner des utilisateurs</h6>
+				<p>
+				Pour associer un ou plusieurs utilisateurs à un groupe de travail :
+				</p>
+				<p>
+				Dans la colonne "Action" de la liste des groupe de travail , cliquer sur l'icône <img alt="Assigner" src="images/icones/workgroup.gif"/>
+"<em>Assigner des utilisateurs</em>" associée au groupe de travail sur lequel vous souhaitez associer des utilisateurs. 
+				</p>
+				<p>
+				<center>
+        <img alt="Assigner utilisateur Groupe de travail" src="images/users_management/asigne_user_worksgroups.gif"/>
+				</center>
+				</p>
+				<p>
+				Dans la liste de gauche figurent les "<em><strong>Utilisateurs disponibles</strong></em>" utilisateurs que vous pouvez associer au groupe de travail.
+				<p>
+				</p>
+La liste de droite présente les "<em><strong>Utilisateurs sélectionnés</strong></em>" qui appartiennent déjà à ce groupe de travail.
+				</p>
+				<p>
+				<strong>Pour assigner un ou plusieurs utilisateurs à ce groupe de travail :</strong>
+				</p>
+				<p>
+          <ol>
+              <li>Depuis la liste des "utilisateurs disponibles" sélectionner ceux que vous voulez assigner au groupe;</li>
+              <li>Cliquer sur l'icône <strong>[</strong>><strong>]</strong> pour les affecter;</li>
+              <li>Cliquer sur le bouton "<strong>Valider</strong>".</li>
+           </ol>
+       </p>
+				<p>
+				<strong>Pour retirer un ou plusieurs utilisateurs de ce groupe de travail</strong>, on effectue l'opération inverse.
+				</p>
+				<p>
+          <ol>
+              <li>sélectionner les utilisateurs que vous voulez retirer de ce groupe de travail dans la liste de droite;</li>
+              <li>cliquer sur le bouton [ > ] pour les désaffecter;</li>
+              <li>Cliquer sur le bouton "<strong>Valider</strong>".</li>
+           </ol>
+       </p>
+				<a name="3.1.2._Gestion_des_comptes_utilisateurs"/>
+				<h4>3.1.2. Gestion des comptes utilisateurs</h4>
+				
+								<table>
+                	<tr>
+                	<th>
+                  <center>
+            			<img src="images/prerequis.gif" alt="" />
+                  </center>
+                  </th>
+                  <th>
+            
+            				<p>
+                    <center>
+                    <strong>Pré-requis</strong>
+                    </center>
+                    </p>
+            				<p>
+Il se peut que vous n'ayez pas les droits d'accès à cette fonction.
+Celle-ci est en effet accessible uniquement à certains profils de gestionnaires. 
+                    </p>
+            			</th>
+                  </tr>
+                  </table>
+                  
+        <p>
+        Pour accéder à la « <strong>Gestion des utilisateurs</strong> », sélectionner dans le bandeau supérieur de l'interface d'administration le lien <em>Gestionnaires > Gestion des utilisateurs</em>
+        </p>
+        <p>
+        L'écran ci-dessous apparait et liste les gestionnaires de l'interface d'administration
+        </p>
+        <p>
+        Remarque: <em>Un gestionnaire ne voit que les comptes utilisateurs de niveau inférieur: Exemple un webmestre (niveau 2) ne pourra visualiser, modifier ou créer que des comptes utilisateurs "Assitant webmestre" (niveau 3)</em>.
+        </p>
+        <p>
+        <center>
+        <img alt="Liste Utilisateurs" src="images/users_management/users_list.gif"/>
+        </center>
+        </p>
+        <p>
+        <strong>Pour ajouter un utilisateur</strong>, cliquer sur le bouton "<em><strong>Ajouter un utilisateur</strong></em>"
+        </p>
+        <p>
+        <strong>Pour modifier les caractéristiques d’un utilisateur existant</strong>, cliquer sur l'utilisateur de votre choix dans la colonne "<strong>Code</strong>" de cet utilisateur
+        </p>
+        <p>
+        <strong>Pour gérer les groupes de travail</strong>, cliquer sur le bouton "<em><strong>Gérer les groupes de travail</strong></em>"
+        </p>
+        <p>
+        <strong>Pour chaque utilisateur</strong>, les actions suivantes sont possibles :
+        </p>
+          <p>
+          <ul>
+              <li>Dans la <strong>colonne Action</strong> : </li>
+               <p>
+                  <ul>
+                      <li><strong>supprimer un utilisateur</strong>, cliquer sur l'icône <img alt="Supprimer" src="images/icones/delete_button.gif"/></li>
+                      <li>Pour accéder à la<strong> gestion des droits de l’utilisateur</strong>, cliquer sur l'icône <img alt="Gestion Droits" src="images/icones/right_management.gif"/></li>
+                      <li>Pour accéder à la <strong>gestion des rôles de l’utilisateur</strong>, cliquer sur l'icône <img alt="Roles Gestion" src="images/icones/roles_management.gif"/></li>
+                      <li>Pour accéder à la <strong>gestion des groupes de travail de l’utilisateur</strong>, cliquer sur l'icône <img alt="GroupeTravail" src="images/icones/workgroup.gif"/></li>
+                   </ul>
+               </p>
+           </ul>
+       </p>
+        
+        <h5>Ajouter un utilisateur</h5>
+        <p>
+        <strong>Pour ajouter un nouvel utilisateur : </strong>
+        </p>
+        <p>
+          <ol>
+              <li>Accéder à la page de gestion des utilisateurs (Bandeau supérieur : <em>Gestionnaires > Gestion des utilisateurs</em>)</li>
+              <li>Cliquer sur le bouton "<em><strong>Ajouter un utilisateur</strong></em>". L'écran ci-dessous apparait avec des champs vides. </li>
+              <p>
+               <center>
+               <img src="images/users_management/create_user.gif" alt="Creation Utilisateur"/>
+               </center>
+               </p>
+              <li>Saisir les champs suivants : </li>
+               <p>
+                  <ul>
+                      <li>champ "<strong>Code</strong>" correspondant à l'identifiant (ou login) de l’utilisateur</li>
+                      <li>champ "<strong>Mot de passe</strong>" correspondant au mot de passe de l’utilisateur</li>
+                      <li>champ "<strong>Nom</strong>" correspondant au nom de l’utilisateur</li>
+                      <li>champ "<strong>Prénom</strong>" correspondant au prénom de l’utilisateur</li>
+                      <li>champ "<strong>Email</strong>" correspond au courriel de l’utilisateur</li>
+                      <li>champ "<strong>Langue</strong>" permet de spécifier la langue utilisée par l’utilisateur. Par exemple, si la langue de l’utilisateur est l’anglais. Lorsqu’il se connectera, l’interface d’administration sera en anglais. L'utilisateur pourra toutefois modifier la langue par défaut. </li>
+                      <li>Le champs "<strong>Statut</strong>" apparait et permet d'activer ou de désactiver le compte utilisateur. A la création le statut est "Activé". Pour désactiver un compte utilisateur, sélectionner "<strong>Désactivé</strong>". Si le compte est désactivé, l'utilisateur associé à ce compte ne pourra plus se connecter à l'interface d'administration du site.</li>
+                      <li>champ "<strong>Niveau d’utilisateur</strong>" permet de définir un niveau de droit de base qui pourra être affecté à l’utilisateur. <p></p>
+Par exemple : Un utilisateur de "<strong>niveau 1</strong>" ne pourra créer que des comptes de niveaux 2 ou 3. </li>
+                   </ul>
+               </p>
+               
+               <table>
+                	<tr>
+                	<th>
+                  <center>
+            			<img src="images/warning.gif" alt="" />
+                  </center>
+                  </th>
+                  <th>
+            
+            				<p>
+                    <center>
+                    <strong>Important</strong>
+                    </center>
+                    </p>
+            				<p>
+Le choix du niveau ne pourra pas être modifié par la suite 
+                    </p>
+            			</th>
+                  </tr>
+                  </table>
+
+               <li>Une fois tous les champs saisis, cliquer sur le bouton "<strong>Valider</strong>". Cet utilisateur apparaîtra alors dans la liste des utilisateurs.</li>
+           </ol>
+       </p>
+       
+       <h5>Modifier un utilisateur</h5>
+        <p>
+        <strong>Pour modifier les paramètres d'un utilisateur existant :</strong>
+        </p>
+        <p>
+          <ol>
+              <li>Accéder à la page de gestion des utilisateurs (Bandeau supérieur : <em>Gestionnaires > Gestion des utilisateurs</em>) </li>
+              <li>Cliquer sur le "code" de l'utilisateur pour accéder au formulaire de modification (voir la copie écran ci-dessous):</li>
+              <p>
+              <center>
+              <img alt="Modif Util" src="images/users_management/modify_user.gif"/>
+              </center>
+              </p>
+              <p>
+              Tous les champs de l'utilisateur sont modifiables (Code, Mot de passe, Nom, Prénom, Email, Langue, Statut) à l'exception du "<em>Niveau de droits</em>" affiché pour information en tête du formulaire.
+              </p>
+              <p>
+              Il est également possible d'acccéder depuis ce formulaire aux fonctionnalités suivantes : 
+              </p>
+               <p>
+                  <ul>
+                      <li><strong>gestion des droits de l’utilisateur</strong> avec sur l'icône <img alt="Gestion Droits" src="images/icones/right_management.gif"/></li>
+                      <li><strong>gestion des rôles de l’utilisateur</strong> avec sur l'icône <img alt="Roles Gestion" src="images/icones/roles_management.gif" /></li>
+                      <li><strong>gestion des groupes de travail de l’utilisateur avec</strong> l'icône<img alt="GroupeTravail" src="images/icones/workgroup.gif" /></li>
+                   </ul>
+               </p>
+               <p>
+               </p>
+              <li><strong>Modifier les champs souhaités</strong> puis cliquer sur le bouton "<strong>Valider</strong>" pour enregistrer les modifications.</li>
+           </ol>
+       </p>
+       
+       <h5>Affectation des droits à un utilisateur</h5>
+        <p>
+        Les droits d’un utilisateur correspondent aux
+        fonctionnalités de l'interface d'administration auxquelles il pourra accéder.
+        <p></p>
+        Pour accéder à la gestion des droits d’un utilisateur, cliquer sur l'icône <img alt="Gestion Droits" src="images/icones/right_management.gif" /> dans la colonne <strong>"Action"</strong> de l’utilisateur.
+        </p>
+        <p>
+        L'écran suivant présente un exemple de liste de droits de l’utilisateur.
+        </p>
+        <p>
+        <center>
+        <img alt="Gestion Droits Util" src="images/users_management/manage_user_rights.gif"/>
+        </center>
+        </p>
+        <p>
+        Les droits de l’utilisateur correspondent aux fonctionnalités d’administration auxquelles il aura accès lorsqu’il se connectera à l'interface d'administration.
+        </p>
+        <p>
+        Pour attribuer ou retirer des droits à un utilisateur cliquer sur le bouton "<strong>Modifier</strong>".
+        </p>
+        <p>
+        Vous pouvez alors, ajouter ou retirer un droit (une fonctionnalité) à cet utilisateur en sélectionnant ou déselectionnant la fonctionnalité.
+        </p>
+        <p>
+        Remarque: Toute modification d'un droits (ajout ou retrait) sera effective à la prochaine connexion de l'utilisateur à l'interface d'administration.
+        </p>
+        <p>
+        <center>
+        <img alt="Modification Droits Utilisateur" src="images/users_management/modify_user_rights.gif"/>
+        </center>
+        </p>
+        
+        <h5>Affectation des rôles à un utilisateur</h5>
+        <p>
+        <strong>Un rôle</strong> est définit par:
+        </p>
+         <p>
+          <ul>
+              <li><strong>une liste de ressources</strong> auxquelles un utilisateur peut <strong>accéder</strong> </li>
+              <li><strong>une liste d’actions</strong> que l'utilisateur peut <strong>effectuer sur cette ressource</strong></li>
+           </ul>
+       </p>
+        <p>
+        Pour accéder à la gestion des rôles
+d’un utilisateur, depuis la liste des utilisateurs
+cliquersur l'icône <img alt="Roles" src="images/icones/roles_management.gif"/> de
+l’utilisateur concerné. Pour modifier le ou les rôles d'un l’utilisateur cliquer sur le
+bouton <em><strong>"Modifier"</strong></em>
+        </p>
+        <p>
+        <strong>Modification de l'affectation des rôles à un utilisateur</strong>
+        </p>
+        <p>
+        <center>
+        <img src="images/users_management/modify_user_roles.gif" alt="Modification Role Utilisateur"/>
+        </center>
+        </p>
+        <p>
+        L'écran ci-dessus liste l'ensemble des rôles qui peuvent être attribué à l'utilisateur. 
+        </p>
+        <p>
+        Vous pouvez alors, ajouter ou retirer un role (<em>un ensemble de permissions</em>) à cet utilisateur en le sélectionnant ou le déselectionnant. Enregistrer votre modification en cliquant sur le bouton "Valider".
+        </p>
+        
+        <h5>Affectation des groupes de travail à un utilisateur</h5>
+			   <p>
+			   Pour accéder à la <strong>gestion des groupes de travail</strong> d’un utilisateur, cliquer sur l'icône <img alt="Groupe travail" src="images/icones/workgroup.gif" /> dans
+la colonne <strong>Action</strong> de l’utilisateur concerné.
+L'écran ci-dessous présente la liste des groupes de travail auxquels appartient cet utilisateur.
+			   </p>
+			   <p>
+			   <center>
+			   <img alt="Gestion des groupes de travail d un utilisateur" src="images/users_management/manage_workgroups_user.gif"/>
+			   </center>
+			   </p>
+			   <p>
+			   Il vous est possible de déléguer un ou plusieurs groupes auxquels vous appartenez à cet utilisateur. 
+			   </p>
+			   <p>
+			   Pour cela :
+			   </p>
+			    <p>
+          <ul>
+              <li>cliquer sur le bouton "<em>Déléguer ses groupes</em>"</li>
+              <li>sélectionner le ou les groupes auxquels vous voulez que l’utilisateur appartienne</li>
+              <li>cliquer sur le bouton "<em>Valider</em>"</li>
+           </ul>
+       </p>
+       
+      </subsection>
+			<subsection name="3.2 Gestion des utilisateurs du site public">
+			<p>
+			Il est de possible de restreindre l'accès à certaines pages d'un site en utilisant les "rôles internautes". Pour accéder à ces pages "réservées" l'internaute devra s'authentifier sur le site public.
+			</p>
+			
+			<a name="3.2.1_Gestion_des_rôles_Internautes"/>
+				<h4>3.2.1  Gestion des rôles "Internautes"</h4>
+			<p>
+			Pour ajouter un rôle, il faut accéder dans l'interface d'administration au menu <em>Utilisateurs > Gestion des rôles Lutèce</em>
+			</p>
+			<p>
+			<center>
+			<img alt="GU_Internautes_Role_Liste1" src="images/users_management/internet_user_manage_role.gif"/>
+			</center>
+			</p>
+			<p>
+			Pour créer un nouveau rôle saisir les deux champs suivants à saisir:
+			</p>
+			 <p>
+          <ul>
+              <li><strong>Rôle Lutèce:</strong> Ce champs ne peut pas contenir d'espace, de cartères accentués et de caractères spéciaux;</li>
+              <li><strong>Description:</strong> Libellé explicite qui apparaitra dans les liste de sélection.</li>
+          </ul>
+          <p>
+              <center>
+              <img alt="GU_Internautes_Role_Ajouter" src="images/users_management/internet_user_add_role.gif"/>
+              </center>
+              </p>
+          <ul>
+              <li>Cliquer sur le bouton "Valider" pour créer le rôle. </li>
+           </ul>
+       </p>
+       
+       <h4>Associer une page à un rôle </h4>
+			 <p>
+			 Accocier une page à un rôle aura pour effet de ne rendre accessible ces pages qu'aux internautes identifiés sur le site et associés à ce rôle 
+			 </p>
+			  <p>
+          <ul>
+              <li>Dans l'interface d'administration au menu <em><strong>Site > Administration du site</strong></em> accéder à <strong>la page</strong> dont vous désirez limiter l'accès à un rôle;</li>
+              <li>Déplier le menu "<strong>ropriété de la page</strong>" en cliquant sur le bouton +;</li>
+              <li>Dans le champs "<strong>Accès restreint au rôle</strong>", sélectionner le rôle à associer à cette page;</li>
+              <li>Cliquer sur le bouton "<strong>Modifier</strong>" pour enregistrer cette association.</li>
+           </ul>
+       </p>
+       <p>
+       <center>
+       <img alt="GU_Internautes_Role_PageRestreinte_Role" src="images/users_management/internet_user_role_restricted_page.gif"/>
+       </center>
+       </p>
+			</subsection>
+		</section>
+		
+	</body>
+</document>

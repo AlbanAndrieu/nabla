@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="My Site : Nabla" xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+    <bannerLeft>
+        <name>Welcome to Nabla page</name>
+        <src>http://maven.apache.org/images/apache-maven-project.png</src>
+        <href>http://maven.apache.org/</href>
+    </bannerLeft>
+    <bannerRight>
+        <src>http://maven.apache.org/images/maven-small.gif</src>
+    </bannerRight>
+    <body>
+        <links>
+            <item name="Nabla" href="http://code.google.com/p/alban" />
+            <item name="Apache" href="http://www.apache.org/" />
+            <item name="Maven 2" href="http://maven.apache.org/maven2/"/>
+	    <!--<item name="FR" href="/fr/index.html" />-->
+        </links>
+
+        <menu name="Nabla">
+            <item name="Introduction" href="index.html"/>
+            <item name="Read Me" href="readme.html"/>
+            <item name="Download" href="download.html"/>
+            <item name="Features" href="features.html"/>
+            <item name="Setup" href="install.html" />
+            <item name="License" href="license.html"/>
+            <item name="Dependencies" href="dependencies.html"/>
+
+            <item name="Release Notes" href="release-notes.html" />
+            <item name="General Information" href="about.html"/>
+            <!--<item name="For Maven 1.0 Users" href="maven1.html"/>
+            <item name="Road Map" href="roadmap.html" />-->
+            <item name="APT Format" href="format.html"/>
+            <item name="FAQ" href="faq.html"/>
+            <item name="Xdoc Example" href="xdoc.html"/>                 
+        </menu>
+
+        <menu name="Manuals">
+            <item name="Site Administration" href="site-administration.html"/>
+            <item name="Technical Administration" href="technical-administration.html"/>
+        </menu>
+
+        <menu name="Manuals">
+            <item name="Wiki" href="http://code.google.com/p/alban/w/list"/>        
+            <item name="Development Standards" href="tech/standard_development.html" collapse="true">
+                <item name="Naming Conventions" href="tech/naming-conventions.html"/>
+                <item name="Coding Conventions" href="tech/coding-conventions.html"/>
+                <item name="Logging Rules" href="tech/logging-rules.html"/>
+                <item name="Documentation Rule" href="tech/documentation.html"/>
+                <item name="Unit Testing" href="tech/unit-testing.html"/>
+	    </item>
+
+            <item name="Developer's Resources" href="tech/developers_resources.html"  collapse="true">
+                <item name="Architecture Overview" href="tech/architecture-overview.html"/>
+                <item name="Hello World" href="tech/code-sample-hello-world.html"/>
+                <item name="I18n" href="tech/i18n.html"/>
+                <item name="Core Services" href="tech/core-services.html"/>
+                <item name="Data Access" href="tech/data-access.html"/>
+                <item name="Site messages" href="tech/howto-use-site-message.html"/>
+                <item name="Dates management" href="tech/dates-management.html"/>
+                    <item name="Plugins" href="tech/howto-create-plugins.html" collapse="true">
+                    <item name="Portlets" href="tech/howto-create-portlets.html"/>
+                    <item name="Applications" href="tech/howto-create-xpages.html"/>
+                    <item name="Admin Features" href="tech/howto-create-admin-features.html"/>
+                    <item name="LinkServices" href="tech/howto-create-linkservices.html"/>
+                    <item name="ContentServices" href="tech/howto-create-contentservices.html"/>
+                    <item name="PageIncludeServices" href="tech/howto-create-pageincludeservices.html"/>
+                    <item name="ResourceServices" href="tech/howto-resource-service.html"/>
+					<!--    <item name="Forms" href="how-to-formengine-create-module.html" collapse="true">
+						<item name="Jaxb" href="how-to-formengine-jaxb.html"/>
+						</item>-->
+                </item>		
+            </item>
+            <!--<item name="Security" href="security.html" collapse="true">
+                  <item name="Attributes" href="attributes.html"/>
+                  <item name="Schema" href="schema.html"/>
+            </item>-->
+        </menu>
+
+       <menu name="Components">
+            <item name="Components List" href="available-plugins.html"/>
+            <item name="Lutece plugin for Maven2" href="/plugins/maven-lutece-plugin/index.html" />
+       </menu>
+
+       <menu name="Downloads" inherit="bottom">
+       	    <item name="Released versions" href="http://code.google.com/p/alban/downloads/list" />
+            <!--<item name="Nightly builds" href="/nightly_builds/site-demo" />-->
+       </menu>
+
+       <menu name="Other Resources">
+            <item name="Documents" href="../documents"/>
+       </menu> 
+       
+       <menu name="Clover Reports">
+            <item name="Clover PDF" href="clover/clover.pdf"/>
+            <item name="Clover XML" href="clover/clover.xml"/>
+            <item name="Clover History" href="clover/history/historical.html"/>
+       </menu>
+  
+       <menu ref="parent" />
+
+       <menu name="Modules">
+            <item name="Build Tools" href="/build-tools/index.html"/>
+            <item name="BackEnd" href="/kplustp/index.html"/>
+            <item name="J2EE" href="/maven-builder-common/index.html"/>
+            <item name="Presentation Server" href="/karma/index.html"/>
+            <item name="Presentation Server Sample" href="/karmaSample/index.html"/>            
+       </menu>
+       
+       <menu name="Doxygen Resources">
+            <item name="Doxygen BACKEND" href="/BACKEND/doc/html/index.html"/>
+            <item name="Doxygen BACKEND-APPS" href="/BACKEND-APPS/doc/html/index.html"/>
+            <item name="Doxygen BACKEND-COMMON" href="/BACKEND-COMMON/doc/html/index.html"/>
+            <item name="Doxygen BACKEND-INFRA" href="/BACKEND-INFRA/doc/html/index.html"/>            
+            <item name="Doxygen BACKEND-TOOLS" href="/BACKEND-TOOLS/doc/html/index.html"/>            
+       </menu> 
+
+       <menu ref="reports" inherit="bottom" />
+       
+    </body>
+</project>
