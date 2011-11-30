@@ -59,7 +59,8 @@ public final class MyFile implements IMyFile {
      * @param aUrl ask for the file name only (path will be taken from eclipse default target classes directory) example test.txt
      */
     public MyFile(final String aUrl) {
-        this(aUrl, System.getProperty("user.dir") + File.separator + "target" + File.separator + "classes" + File.separator + aUrl);
+        // this(aUrl, System.getProperty("user.dir") + File.separator + "target-eclipse" + File.separator + "classes" + File.separator + aUrl);
+        this(aUrl, System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + aUrl);
 
     }
 
