@@ -11,11 +11,11 @@
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
 	<inceptionYear>2011</inceptionYear>
 
-	<url>http://code.google.com/p/alban</url>
+	<url>http://maven.nabla.mobi/</url>
 	
 	<organization>
 		<name>Nabla Software</name>
-		<url>http://nabla.mobi</url>
+		<url>http://code.google.com/p/alban</url>
 	</organization>
 
 	<prerequisites>
@@ -75,7 +75,7 @@
 		<developer>
 			<id>albandri</id>
 			<name>Andrieu Alban</name>
-			<email>aalban.andrieu@nabla.mobi</email>
+			<email>alban.andrieu@nabla.mobi</email>
 			<url>http://plus.google.com/116805748993308767756/about</url>
 			<organization>Nabla</organization>
 			<roles>
@@ -183,7 +183,8 @@
 				</snapshotRepository>
 				<site>
 					<id>website</id>
-					<url>file:/var/www/docs</url>
+					<name>Project Website</name>
+					<url>ftp://www.nabla.mobi</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -570,6 +571,7 @@
 		<maven.tomcat.plugin.version>1.0-beta-1</maven.tomcat.plugin.version>
 		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
 		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
+		<wagon.ftp.plugin.version>1.0-beta-6</wagon.ftp.plugin.version>
 		<maven.apache.rat.plugin.version>0.7</maven.apache.rat.plugin.version>
 		<maven.cobertura.plugin.version>2.4</maven.cobertura.plugin.version>
 		<maven.release.plugin.version>2.1</maven.release.plugin.version>
@@ -662,6 +664,11 @@
 				<artifactId>wagon-svn</artifactId>
 				<version>${wagon.svn.plugin.version}</version>
 			</extension>
+			<extension>
+                           	<groupId>org.apache.maven.wagon</groupId>
+                           	<artifactId>wagon-ftp</artifactId>
+                           	<version>${wagon.ftp.plugin.version}</version>
+                        </extension>
 		</extensions>
 		<pluginManagement>
 			<plugins>
