@@ -11,7 +11,7 @@
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
 	<inceptionYear>2011</inceptionYear>
 
-	<url>http://maven.nabla.mobi/</url>
+	<url>http://maven.nabla.mobi</url>
 	
 	<organization>
 		<name>Nabla Software</name>
@@ -63,7 +63,7 @@
 	<scm>
                 <connection>scm:svn:http://alban.googlecode.com/svn</connection>
                 <developerConnection>scm:svn:https://alban.googlecode.com/svn</developerConnection>
-                <url>https://alban.googlecode.com/svn</url>	
+                <url>https://alban.googlecode.com/svn/${project.svn.path}</url>	
                 <!--
 		<connection>scm:${scm.base}/users/${project.svn.path}/</connection>
 		<developerConnection>scm:${scm.base}/users/${project.svn.path}/</developerConnection>
@@ -184,7 +184,7 @@
 				<site>
 					<id>website</id>
 					<name>Project Website</name>
-					<url>ftp://www.nabla.mobi</url>
+					<url>ftp://www.nabla.mobi/maven</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -233,6 +233,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<!--
 		<repository>
 			<id>codehaus</id>
 			<name>Codehaus Maven 2.x Release Repository 2</name>
@@ -241,6 +242,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		-->
 		<repository>
 			<id>jboss-public</id>
 			<name>JBoss Repository</name>
