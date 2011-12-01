@@ -91,11 +91,13 @@
             <item name="Documents" href="../documents"/>
        </menu> 
        
+       <!--
        <menu name="Clover Reports">
             <item name="Clover PDF" href="clover/clover.pdf"/>
             <item name="Clover XML" href="clover/clover.xml"/>
             <item name="Clover History" href="clover/history/historical.html"/>
        </menu>
+       -->
   
        <menu ref="parent" />
        <menu ref="modules" />
