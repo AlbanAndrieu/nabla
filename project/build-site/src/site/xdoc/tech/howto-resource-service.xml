@@ -2,7 +2,7 @@
   <document>
       <properties>
           <title>
-              Lutece : Development Guide : Resource Service
+              Nabla : Development Guide : Resource Service
           </title>
       </properties>
       <body>
@@ -10,7 +10,7 @@
 
               <subsection name="Objectives">
                   <p>
-                      Lutece provides a base implementation for internal services to
+                      Nabla provides a base implementation for internal services to
                       applcations, allowing them to load their resources.
                       For example , the calendar plugin manages agendas and has an
                       <code>AgendaService</code> service which enables it to load resources,
@@ -31,7 +31,7 @@
                           <li>
                               An integrated cache to optimize resource access.
                               The cache of each service can be administered from the
-                              <em>Cache Management</em> feature of Lutece.
+                              <em>Cache Management</em> feature of Nabla.
                           </li>
                           <li>
                               Configuration facilities of the service (name, cache activation, ... )
@@ -137,8 +137,8 @@ public class MyResourceService extends ResourceService
                   <p>
                       <div class="source">
                           <pre>
-import fr.paris.lutece.portal.service.resource.Resource;
-import fr.paris.lutece.portal.service.resource.ResourceLoader;
+import com.nabla.project.portal.service.resource.Resource;
+import com.nabla.project.portal.service.resource.ResourceLoader;
 
 import java.util.ArrayList;
 
@@ -175,7 +175,7 @@ public class MyResourceLoader implements ResourceLoader
               </subsection>
               <subsection name="Centralized cache management">
                  <p>
-                     Here is a centralized view of cache management of the Lutece's Administration module
+                     Here is a centralized view of cache management of the Nabla's Administration module
                      including Resource Services.
                  </p>    
                  <p>

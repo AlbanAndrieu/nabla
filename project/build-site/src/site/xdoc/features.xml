@@ -2,17 +2,17 @@
 <document>
     <properties>
         <title>
-            Lutece : Features
+            Nabla : Features
         </title>
     </properties>
 
     <body>
-        <section name="Main caracteristics of Lutece">
+        <section name="Main caracteristics of Nabla">
             <subsection name="Organization of the portal">
                 <p>
                     <ul>
                         <li>
-                            A site conceived by means of Lutece can be represented as
+                            A site conceived by means of Nabla can be represented as
                             a tree structure of dynamic pages, whose root is the home
                             page.
                         </li>

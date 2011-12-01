@@ -3,7 +3,7 @@
 <document>
     <properties>
         <title>
-            Lutece : Development Guide : Sample code : Hello World application
+            Nabla : Development Guide : Sample code : Hello World application
         </title>
     </properties>
     <body>
@@ -15,7 +15,7 @@
                 we will use an XPageApplication. The plugin name will be <strong>helloworld</strong>
                 and the implementation class will be <code>HelloWorldApp</code>. By respecting the 
                 naming rules and the internal structure of plugins, the java class will be created 
-                in the <code>fr.paris.lutece.plugins.helloworld.web</code> package.
+                in the <code>com.nabla.project.plugins.helloworld.web</code> package.
             </p>
             <p>
                 Here is the simplest implementation of this class 
@@ -23,11 +23,11 @@
             <p>
                 <div class="source">
                     <pre>
-package fr.paris.lutece.plugins.helloworld.web;
+package com.nabla.project.plugins.helloworld.web;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.portal.web.xpages.XPage;
-import fr.paris.lutece.portal.web.xpages.XPageApplication;
+import com.nabla.project.portal.service.plugin.Plugin;
+import com.nabla.project.portal.web.xpages.XPage;
+import com.nabla.project.portal.web.xpages.XPageApplication;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -86,7 +86,7 @@ public class HelloWorldApp implements XPageApplication
                 application XPage, nevertheless it does not adhere to certain
                 elementary development rules which forbid use of hard coded HTML
                 or labels variables.A correct implementation is realized by using basic 
-                Lutece services.
+                Nabla services.
             </p>
         </subsection>    
         <subsection name="Packaging the plugin">
@@ -106,7 +106,7 @@ public class HelloWorldApp implements XPageApplication
 
    &lt;!-- Plugin Information --&gt;
    &lt;name&gt;helloworld&lt;/name&gt;
-   &lt;class&gt;fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation&lt;/class&gt;
+   &lt;class&gt;com.nabla.project.portal.service.plugin.PluginDefaultImplementation&lt;/class&gt;
    &lt;version&gt;2.0&lt;/version&gt;
    &lt;documentation&gt;&lt;/documentation&gt;
    &lt;installation&gt;&lt;/installation&gt;
@@ -122,7 +122,7 @@ public class HelloWorldApp implements XPageApplication
    &lt;applications&gt;
       &lt;application&gt;
 	 &lt;application-id&gt;helloworld&lt;/application-id&gt;
-	 &lt;application-class&gt;fr.paris.lutece.plugins.helloworld.web.HelloWorldApp&lt;/application-class&gt;
+	 &lt;application-class&gt;com.nabla.project.plugins.helloworld.web.HelloWorldApp&lt;/application-class&gt;
       &lt;/application&gt;
    &lt;applications&gt;
 
@@ -147,14 +147,14 @@ public class HelloWorldApp implements XPageApplication
             <p>
                 <div class="source">
                     <pre>
-package fr.paris.lutece.plugins.helloworld.web;
+package com.nabla.project.plugins.helloworld.web;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.portal.util.AppPropertiesService;
-import fr.paris.lutece.portal.util.AppTemplateService;
-import fr.paris.lutece.portal.web.xpages.XPage;
-import fr.paris.lutece.portal.web.xpages.XPageApplication;
-import fr.paris.lutece.util.html.HtmlTemplate;
+import com.nabla.project.portal.service.plugin.Plugin;
+import com.nabla.project.portal.util.AppPropertiesService;
+import com.nabla.project.portal.util.AppTemplateService;
+import com.nabla.project.portal.web.xpages.XPage;
+import com.nabla.project.portal.web.xpages.XPageApplication;
+import com.nabla.project.util.html.HtmlTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -221,12 +221,12 @@ helloworld.pagePathLabel=Hello World
         <subsection name="Third implementation of the plugin (Multilingual)">
             <p>
                 Here is the last implementation which allows to realizing an application
-                in several languages.Lutece uses internalization functions through
+                in several languages.Nabla uses internalization functions through
                  <code>I18nService</code> service to achieve this.
             </p>
             <p>
                 To generate the resources in several languages, a property file
-                corresponding to each language must be placed in the <code>fr.paris.lutece.plugins.helloworld.resources</code>
+                corresponding to each language must be placed in the <code>com.nabla.project.plugins.helloworld.resources</code>
                 package.          
             </p>
             <p>
@@ -271,15 +271,15 @@ pagePathLabel=Bonjour le Monde
             <p>
                 <div class="source">
                     <pre>
-package fr.paris.lutece.plugins.helloworld.web;
+package com.nabla.project.plugins.helloworld.web;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.portal.service.i18n.I18nService;
-import fr.paris.lutece.portal.util.AppPropertiesService;
-import fr.paris.lutece.portal.util.AppTemplateService;
-import fr.paris.lutece.portal.web.xpages.XPage;
-import fr.paris.lutece.portal.web.xpages.XPageApplication;
-import fr.paris.lutece.util.html.HtmlTemplate;
+import com.nabla.project.portal.service.plugin.Plugin;
+import com.nabla.project.portal.service.i18n.I18nService;
+import com.nabla.project.portal.util.AppPropertiesService;
+import com.nabla.project.portal.util.AppTemplateService;
+import com.nabla.project.portal.web.xpages.XPage;
+import com.nabla.project.portal.web.xpages.XPageApplication;
+import com.nabla.project.util.html.HtmlTemplate;
 
 import java.util.Locale;
 

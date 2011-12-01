@@ -2,7 +2,7 @@
 <document>
     <properties>
         <title>
-            Lutece : Development Guide : Content Services
+            Nabla : Development Guide : Content Services
         </title>
     </properties>
     <body>
@@ -10,7 +10,7 @@
         <subsection name="Définition">
             <p>
                 A content service can create its own pages. Each service has a call parameter which
-                allows the portal to dispatch requests towards the service. Lutece uses various 
+                allows the portal to dispatch requests towards the service. Nabla uses various 
                 Content Services as enumerated below :
             </p>
             <p>
@@ -23,22 +23,22 @@
                 <tr>
                     <td>PageService</td>
                     <td>id_page</td>
-                    <td>Construction Service and diplay of Lutece pages</td>
+                    <td>Construction Service and diplay of Nabla pages</td>
                 </tr>
                 <tr>
                     <td>ArticleService</td>
                     <td>id_article</td>
-                    <td>Construction Service and diplay of Lutece pages</td>
+                    <td>Construction Service and diplay of Nabla pages</td>
                 </tr>
                 <tr>
                     <td>SearchService</td>
                     <td>query</td>
-                    <td>Lutece Search Service</td>
+                    <td>Nabla Search Service</td>
                 </tr>
                 <tr>
                     <td>XPageService</td>
                     <td>page</td>
-                    <td>Lutece's XPages application container</td>
+                    <td>Nabla's XPages application container</td>
                 </tr>
             </table>
             </p>
@@ -106,7 +106,7 @@
                     <pre>
    &lt;!-- Content Service --&gt;
    &lt;content-service&gt;
-     &lt;content-service-class&gt;fr.paris.lutece.plugins.myplugin.service.MyContentService&lt;/content-service-class&gt;
+     &lt;content-service-class&gt;com.nabla.project.plugins.myplugin.service.MyContentService&lt;/content-service-class&gt;
    &lt;/content-service&gt;                     
                     </pre>
                 </div>

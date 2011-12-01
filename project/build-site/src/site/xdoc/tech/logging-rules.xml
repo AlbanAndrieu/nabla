@@ -2,14 +2,14 @@
   <document>
    <properties>
     <title>
-      Lutece : Development Standards : Logging rules and exception handling
+      Nabla : Development Standards : Logging rules and exception handling
     </title>
    </properties>
   <body>
       <section name="Logging rule">
-          <subsection name="Lutece logs">
+          <subsection name="Nabla logs">
           <div>
-              Lutece property files : 
+              Nabla property files : 
               <ul>
                   <li>
                       <code>application.log</code> contains the main events of the 
@@ -50,9 +50,9 @@ catch( Exception e )
             <subsection name="Critical exceptions">
                 <p>
                    The exceptions requiring the stopping of the processing (examples : SQL error, file access error ...)
-                   must be throw an exception issued from <code>LuteceException</code>.
+                   must be throw an exception issued from <code>NablaException</code>.
                    
-                   (<code>PhysicalException</code> , <code>ClientException</code>...). The class <code>LuteceException</code>
+                   (<code>PhysicalException</code> , <code>ClientException</code>...). The class <code>NablaException</code>
                    handles itself log writing.
                    The <b>catch</b> block is treated as follows : 
                 </p>

@@ -2,14 +2,14 @@
 <document>
     <properties>
         <title>
-            Lutece : Installation Guide
+            Nabla : Installation Guide
         </title>
     </properties>
 
     <body>
 		<section name="Installation Guide">
 		 <p>
-				This guide allows to install and to configure the necessary environment for Lutece.
+				This guide allows to install and to configure the necessary environment for Nabla.
 			</p>
 			<OL type="I">
 				<li><a href="#I._Environment_Installation">Environment Installation</a></li>
@@ -34,13 +34,13 @@
 					</ol>
 					<li><a href="#a4._Application_Installation">Application Installation</a></li>
 				</ol>
-				<li><a href="#II._Lutece_Configuration">Lutece Configuration</a></li>
+				<li><a href="#II._Nabla_Configuration">Nabla Configuration</a></li>
 				<ol>
 					<li><a href="#a1._Configuration_of_the_config.properties_file">Configuration of the config.properties file</a></li>
 					<li><a href="#a2._Update_of_the_db.properties_file">Update of the db.properties file</a></li>
 				</ol>
 				<li><a href="#III._Launching_the_application">Launching the application</a></li>
-				<li><a href="#IV._Connection_to_Lutece_administration_module">Connection to Lutece administration module</a></li>
+				<li><a href="#IV._Connection_to_Nabla_administration_module">Connection to Nabla administration module</a></li>
 			</OL>
 		</section>
         <section name="I. Environment Installation">
@@ -139,7 +139,7 @@ max_allowed_packet=24M
 	                    Otherwise, indicate the absolute path of the files in the command.
 	                </p>
 	                <p>
-	                    <u>Create Lutece database</u> :
+	                    <u>Create Nabla database</u> :
 	                </p>
 	                <p>
 	                    <strong>[Win32] :</strong>
@@ -184,7 +184,7 @@ mysql&gt; use lutece;
 	                    </div>
 	                </p>
 	                <p>
-	                    <u>Create and initialize the database</u> : (the SQL scripts are packed in Lutece distribution)
+	                    <u>Create and initialize the database</u> : (the SQL scripts are packed in Nabla distribution)
 	                </p>
 					<p>
 						For this step, you have to differenciate core tables and plugin tables.
@@ -373,14 +373,14 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                     <p>
                         <ul>
                             <li>
-                                Download the Lutece zip files. You can go to the
+                                Download the Nabla zip files. You can go to the
 								<a href="download.html"><u>Download</u></a> page to download these files.  
 							</li>
 							<li>
-								Build Lutece project if you use the sources and not the .war file.
+								Build Nabla project if you use the sources and not the .war file.
                             </li>
                             <li>
-                                Copy the Lutece war file in the Tomcat webapps folder.
+                                Copy the Nabla war file in the Tomcat webapps folder.
                             </li>
                             <li>
                                 Launch Tomcat to deploy the application.
@@ -399,7 +399,7 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
             </subsection>
         </section>
         
-        <section name="II. Lutece Configuration">
+        <section name="II. Nabla Configuration">
             <p>
                 Application configuration files are located in the WEB-INF/conf folder of the webapp. 
 				The files that need to be configured are the following:
@@ -622,7 +622,7 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                                 </p>
                                 <p>
                                     <ul>
-                                        <li><strong><code>LuteceConnectionService</code></strong> to use Lutece connection pool.</li>
+                                        <li><strong><code>NablaConnectionService</code></strong> to use Nabla connection pool.</li>
                                         <li><strong><code>TomcatConnectionService</code></strong> to use Tomcat connection pool.</li>
                                     </ul>
                                 </p>
@@ -631,13 +631,13 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                         <tr>
                             <td>
                                 <p>
-                                    <code>portal.poolservice=fr.paris.lutece.util.pool.service.LuteceConnectionService</code>
+                                    <code>portal.poolservice=com.nabla.project.util.pool.service.NablaConnectionService</code>
                                 </p>
                                 <p>
                                     <strong>OR</strong>
                                 </p>
                                 <p>
-                                    <code>portal.poolservice=fr.paris.lutece.util.pool.service.TomcatConnectionService</code>
+                                    <code>portal.poolservice=com.nabla.project.util.pool.service.TomcatConnectionService</code>
                                 </p>
                             </td>
                         </tr>
@@ -664,7 +664,7 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                         <tr>
                             <th>
                                 Indicate <code>portal.url</code> to identify the jdbc datasource
-                                of the Lutece database. 
+                                of the Nabla database. 
                                 <code>portal.user</code> and <code>portal.password</code> indicate the 
                                 login and password required to connect to the database.
                             </th>                            
@@ -773,7 +773,7 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                 <strong><code>http://localhost:8080/lutece/</code></strong>.
             </p>
         </section>
-        <section name="IV. Connection to Lutece administration module">
+        <section name="IV. Connection to Nabla administration module">
             <p>
                 Type the following URL to go into the administration module:
                 <strong><code>http://localhost:8080/lutece/jsp/admin/AdminLogin.jsp</code></strong>.

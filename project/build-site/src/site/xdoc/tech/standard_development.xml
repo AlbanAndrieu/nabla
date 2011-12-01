@@ -2,13 +2,13 @@
   <document>
       <properties>
           <title>
-              Lutèce : Standard development
+              Nabla : Standard development
           </title>
       </properties>
         <body>
                 <section name="Standard development">                    
                         <p> 
-                             The core of Lutèce and its plugins are developed in compliance with the following standards development, respect for which is controlled by the tools and checkstyle PMD: 
+                             The core of Nabla and its plugins are developed in compliance with the following standards development, respect for which is controlled by the tools and checkstyle PMD: 
                         </p>
                     <subsection name="Liste des normes">
                         <p>

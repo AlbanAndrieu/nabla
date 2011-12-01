@@ -2,7 +2,7 @@
 <document>
     <properties>
         <title>
-            Lutece : Development Guide : Lutece plugins
+            Nabla : Development Guide : Nabla plugins
         </title>
     </properties>
     <body>
@@ -39,7 +39,7 @@
                     </tr>
                     <tr>
                         <td>File's location</td>
-                        <td>fr.paris.lutece.portal.resources</td>
+                        <td>com.nabla.project.portal.resources</td>
                     </tr>
                     <tr>
                         <td>Key's structure</td>
@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td>File location</td>
-                        <td>fr.paris.lutece.portal.<em>&lt;plugin&gt;</em>.resources</td>
+                        <td>com.nabla.project.portal.<em>&lt;plugin&gt;</em>.resources</td>
                     </tr>
                     <tr>
                         <td>Key structure</td>
@@ -71,7 +71,7 @@
                     </tr>
                     <tr>
                         <td>File's location</td>
-                        <td>fr.paris.lutece.portal.<em>&lt;plugin&gt;</em>.modules.<em>&lt;module&gt;</em>.resources</td>
+                        <td>com.nabla.project.portal.<em>&lt;plugin&gt;</em>.modules.<em>&lt;module&gt;</em>.resources</td>
                     </tr>
                     <tr>
                         <td>Key's structure</td>

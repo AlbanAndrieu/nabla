@@ -38,8 +38,8 @@
 	<menu name="Manuels">
 		<item name="Wiki" href="../wikilutece/index.php?title=Accueil"/>
 		<item name="Documentation utilisateur" href="user/lutece_v2_overview.html" collapse="true">
-    		<item name="1. Lut&#232;ce V2 : pr&#233;sentation g&#233;n&#233;rale" href="user/lutece_v2_overview.html" collapse="false">
-				<item name="Description de Lut&#232;ce" href="user/lutece_v2_overview.html#a1.1_Description_de_Lutece" />
+    		<item name="1. Nabla V2 : pr&#233;sentation g&#233;n&#233;rale" href="user/lutece_v2_overview.html" collapse="false">
+				<item name="Description de Nabla" href="user/lutece_v2_overview.html#a1.1_Description_de_Nabla" />
 				<item name="Site public / Interface dadministration" href="user/lutece_v2_overview.html#a1.2_Site_public__Interface_dadministration" collapse="false">
 					<item name="Site Public" href="user/lutece_v2_overview.html#a1.2.1_Le_site_public" />
 					<item name="Interface d'administration" href="user/lutece_v2_overview.html#a1.2.2_Linterface_dadministration" />
@@ -101,7 +101,7 @@
     </menu> 
 	<menu name="Composants">
 		<item name="Liste de composants" href="available-plugins.html"/>
-		<item name="Plugin Lutece pour Maven2" href="../plugins/maven-lutece-plugin/fr/index.html" />
+		<item name="Plugin Nabla pour Maven2" href="../plugins/maven-lutece-plugin/fr/index.html" />
     </menu>
 	
 	<menu name="Téléchargements" inherit="bottom" >

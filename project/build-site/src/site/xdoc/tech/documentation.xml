@@ -2,13 +2,13 @@
   <document>
    <properties>
     <title>
-      Lutece : Documentation Standards
+      Nabla : Documentation Standards
     </title>
    </properties>
   <body>
    <section name="Documentation standards">
        <p>
-          The documentation of Lutece is written in an XML format, then PDF and HTML files
+          The documentation of Nabla is written in an XML format, then PDF and HTML files
           can be generated with the help <a href="http://maven.apache.org/" target="_blank">Maven</a>.
        </p>
        <p>
@@ -43,7 +43,7 @@
   &lt;document&gt;
    &lt;properties&gt;
     &lt;title&gt;
-      Lutece : title of document
+      Nabla : title of document
     &lt;/title&gt;
    &lt;/properties&gt;
    &lt;body&gt;
@@ -205,7 +205,7 @@
        &lt;div class="source"&gt;
 &lt;pre&gt;
    &lt;application&gt;
-     &lt;application-class&gt;fr.paris.lutece.plugins.securedtest.SecuredTestApp&lt;/application-class&gt;
+     &lt;application-class&gt;com.nabla.project.plugins.securedtest.SecuredTestApp&lt;/application-class&gt;
      &lt;application-security-model&gt;1&lt;/application-security-model&gt;
    &lt;/application&gt;
 &lt;/pre&gt;
@@ -226,7 +226,7 @@
                 <div class="source">
 <pre>
 &lt;application&gt;
-     &lt;application-class&gt;fr.paris.lutece.plugins.securedtest.SecuredTestApp&lt;/application-class&gt;
+     &lt;application-class&gt;com.nabla.project.plugins.securedtest.SecuredTestApp&lt;/application-class&gt;
      &lt;application-security-model&gt;1&lt;/application-security-model&gt;
 &lt;/application&gt;
 </pre>

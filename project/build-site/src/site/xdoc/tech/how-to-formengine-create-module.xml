@@ -2,7 +2,7 @@
 <document>
 	<properties>
 		<title>
-			Lutèce : Guide de développement d'un module de Formengine
+			Nabla : Guide de développement d'un module de Formengine
 		</title>
 	</properties>
 
@@ -48,7 +48,7 @@
 					<p>
 <div class="source">
 <pre>
-&lt;formDefinition name="..." className="fr.paris.lutece.plugins.formengine.modules.....web.classForm"&gt;
+&lt;formDefinition name="..." className="com.nabla.project.plugins.formengine.modules.....web.classForm"&gt;
      &lt;title&gt;Titre du formulaire&lt;/title&gt;
      ...
 &lt;/formDefinition&gt;
@@ -76,7 +76,7 @@
 						<p>
 <div class="source">
 <pre>
-&lt;subFormDefinition name="..." className="fr.paris.lutece.plugins.formengine.modules.....web.classSubForm"&gt;
+&lt;subFormDefinition name="..." className="com.nabla.project.plugins.formengine.modules.....web.classSubForm"&gt;
      &lt;title&gt;Saisie des objets&lt;/title&gt;
      &lt;formElements&gt;...&lt;/formElements&gt;
 &lt;/subFormDefinition&gt;
@@ -471,7 +471,7 @@
 					<p>
 						<ul>
 							<li>
-								Les validateurs spécifiques doivent implémenter l'une des classes filles de la classe <code>Validator</code>, ou hériter de l'une des classes du package <code>fr.paris.lutece.plugins.formengine.validator</code>.
+								Les validateurs spécifiques doivent implémenter l'une des classes filles de la classe <code>Validator</code>, ou hériter de l'une des classes du package <code>com.nabla.project.plugins.formengine.validator</code>.
 							</li>
 							<li>
 								Les nouveaux types de sorties doivent implémenter la classe <code>OutputProcessor</code> ou hériter d'une des classes de formengine l'implémentant.

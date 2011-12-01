@@ -6,7 +6,7 @@
 	<body>
 		<section name="Dates management">
 			<p>
-				Lutèce provide a date utility class. <a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html">DateUtil</a> provide a list of functions lead to format, check and convert dates.
+				Nabla provide a date utility class. <a href="http://dev.lutece.paris.fr/lutece-core/fr/apidocs/fr/paris/lutece/util/date/DateUtil.html">DateUtil</a> provide a list of functions lead to format, check and convert dates.
 				This section will explain theses functions.
 			</p>
 			<p>
@@ -14,7 +14,7 @@
 			</p>
 			<subsection name="Format">
 				<p>
-					In Lutèce, format is set for all dates in portal. It's a modification of <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html#SHORT">SHORT</a> style defined in class <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html">DateFormat</a> :
+					In Nabla, format is set for all dates in portal. It's a modification of <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html#SHORT">SHORT</a> style defined in class <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/DateFormat.html">DateFormat</a> :
 				</p>
 				<ul>
 					<li>For french language, expected format is DD/MM/YYYY ;</li>

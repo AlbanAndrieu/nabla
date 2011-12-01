@@ -2,14 +2,14 @@
   <document>
       <properties>
           <title>
-              Lutece : Development Guide : Data Access
+              Nabla : Development Guide : Data Access
           </title>
       </properties>
       <body>
           <section name="Data Access">
                <subsection name="Connection pool and db.properties">
                    <p>
-                       Lutece has by default two connection pools on the database
+                       Nabla has by default two connection pools on the database
                        containing the portal data (portal and shared).
                        More pools can be declared for further plugins needs.
                     </p>
@@ -22,7 +22,7 @@
                            <pre>
 # Pool for the quiz plugin database
 
-quiz.poolservice=fr.paris.lutece.util.pool.service.LuteceConnectionService
+quiz.poolservice=com.nabla.project.util.pool.service.NablaConnectionService
 quiz.driver=org.gjt.mm.mysql.Driver
 quiz.url=jdbc:mysql://localhost/quiz?autoReconnect=true
 quiz.user=
@@ -46,9 +46,9 @@ quiz.checkvalidconnectionsql=SELECT 1   </pre>
                                </td>
                                <td>
                                    The class name which will try to connect to the pool.
-                                   By default the service is a Lutece service, but can be replaced by 
+                                   By default the service is a Nabla service, but can be replaced by 
                                    a Tomcat pool service :
-                                   <code>fr.paris.lutece.util.pool.service.TomcatConnectionService</code>
+                                   <code>com.nabla.project.util.pool.service.TomcatConnectionService</code>
                                </td>
                            </tr>
                            <tr>

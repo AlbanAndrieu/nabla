@@ -2,7 +2,7 @@
   <document>
       <properties>
           <title>
-              Lutece : Developer's Resources : General Architecture
+              Nabla : Developer's Resources : General Architecture
           </title>
       </properties>
       <body>
@@ -89,7 +89,7 @@
               
               <subsection name="1. Presentation layer">
                   <p>
-                     The components realizing the presentation and the user interface are gathered into the <strong>fr.paris.lutece.portal.web</strong> package
+                     The components realizing the presentation and the user interface are gathered into the <strong>com.nabla.project.portal.web</strong> package
                    </p>
                   <p>
                      This layer consists of JSP, Java Beans and perhaps servlets.
@@ -166,7 +166,7 @@
                   <p>
                      These beans manages the presentation of the data produced by business objects.
                      They generate HTML code which is inserted in the JSP. These components are found in  
-                     <code>fr.paris.lutece.portal.web.</code> package and have a <em>JspBean</em> suffix
+                     <code>com.nabla.project.portal.web.</code> package and have a <em>JspBean</em> suffix
                      to differ them from the business objects.
                   </p>
                   <p>
@@ -191,7 +191,7 @@
                      The advantage of these templates is that it can be shared by many JSPs and be modified by web designers without any impact on processing.
                      The templates are stored in the <em>/WEB-INF/templates</em> folder.
                      The base classes of template management are part of the our framework .
-                     and corresponds to <strong>fr.paris.lutece.util.html.*</strong>.
+                     and corresponds to <strong>com.nabla.project.util.html.*</strong>.
                   </p>
                   <p>
                      Javascripts must be avoided. Therefore, in the case of the use of javascripts, the compatibilty
@@ -206,7 +206,7 @@
                   </p>
                   <p>
                      These classes will not contain any technical HTML or SQL code. Its components are packed into
-                   packages <strong>fr.paris.lutece.portal.business.*.</strong>
+                   packages <strong>com.nabla.project.portal.business.*.</strong>
                   </p>
                   <p>
                      DAO (<code>Data Access Object</code>) manages persistence of these objects.
@@ -328,7 +328,7 @@
               </subsection>
               <subsection name="3. Other Components">
                   <p>
-                      Technical services : package <strong>fr.paris.lutece.portal.util.</strong>
+                      Technical services : package <strong>com.nabla.project.portal.util.</strong>
                   </p>
                   <p>
                       Various technical services are accessible by the application components.
@@ -357,7 +357,7 @@
                       </table>
                   </p>
               </subsection>
-              <subsection name="4. Lutece Database">
+              <subsection name="4. Nabla Database">
                   <p>
                       The column types and the SQL syntax must be MySQL and PostgreSQL compatible.
                   </p>
@@ -369,7 +369,7 @@
           
           <section name="Application files organization">
               <p>
-                  The folder structure in the sources of Lutece core is defined as follows
+                  The folder structure in the sources of Nabla core is defined as follows
                   and integrates the J2EE specification Servlet 2.2. 
               </p>
               <subsection name="Core folder structure">

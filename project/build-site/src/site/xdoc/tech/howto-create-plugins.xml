@@ -2,12 +2,12 @@
 <document>
     <properties>
         <title>
-            Lutece : Development Guide : Lutece plugins
+            Nabla : Development Guide : Nabla plugins
         </title>
     </properties>
     <body>
-        <section name="Lutece plugins">
-             <p>Lutece features can be extended by adding components called plugins.
+        <section name="Nabla plugins">
+             <p>Nabla features can be extended by adding components called plugins.
              Their purpose is to integrate the different features but share a common installation mode.
              The common steps in order to install a plugin are  :</p>
 
@@ -17,7 +17,7 @@
                  <li>[ optional] Execute scripts to create and/or initialize the tables associated to the plugin (Cf.
                      below is to locate those scripts in different distribution )</li>
                  <li>[ optional ] Configure the property file of the plugin</li>
-                 <li>[ optional ] Configure the db.properties file of Lutece to add a new specific connection pool to the plugin</li>
+                 <li>[ optional ] Configure the db.properties file of Nabla to add a new specific connection pool to the plugin</li>
                  <li>Reload the Webapp</li>
                  <li>Connect to admin and go to the "Plugin Management" feature</li>
                  <li>The new plugin is deactivated in the plugin list. Click to activate proper installation.</li>
@@ -60,7 +60,7 @@
               <subsection name="Plugins and databases">
                    <p>
                       
-                      The plugin can access to two databases. It can access to the Lutece database 
+                      The plugin can access to two databases. It can access to the Nabla database 
                       through the <code>AppConnectionService</code> class. 
                      , but it is also possible to affect a specific connection pool
                      by declaring it in the <code>db.properties</code> during the installation phase.
@@ -192,7 +192,7 @@
 &lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
 &lt;plug-in&gt;
     &lt;name&gt;myplugin&lt;/name&gt;
-    &lt;class&gt;fr.paris.lutece.portal.service.PluginDefaultImplementation&lt;/class&gt;
+    &lt;class&gt;com.nabla.project.portal.service.PluginDefaultImplementation&lt;/class&gt;
     &lt;version&gt;1.0&lt;/version&gt;
     &lt;description&gt;Plugin description&lt;/description&gt;
     &lt;provider&gt;Mairie de Paris&lt;/provider&gt;
@@ -228,7 +228,7 @@
     &lt;!-- Portlets List eventually added by the plugin--&gt;
     &lt;portlets&gt;
         &lt;portlet&gt;
-            &lt;portlet-class&gt;fr.paris.lutece.plugins.myportlet.business.portlet.MyPortletHome&lt;/portlet-class&gt;
+            &lt;portlet-class&gt;com.nabla.project.plugins.myportlet.business.portlet.MyPortletHome&lt;/portlet-class&gt;
             &lt;portlet-type-name&gt;MyNew Portlet&lt;/portlet-type-name&gt;
             &lt;portlet-creation-url&gt;plugins/article/CreatePortletMyPortlet.jsp&lt;/portlet-creation-url&gt;
             &lt;portlet-update-url&gt;plugins/article/ModifyPortletMyPortlet.jsp&lt;/portlet-update-url&gt;
@@ -240,21 +240,21 @@
     &lt;applications&gt;
            &lt;application&gt;
                    &lt;application-id&gt;app_page_name&lt;/application-id&gt;
-                   &lt;application-class&gt;fr.paris.lutece.plugins.myplugin.web.MyPluginApp&lt;/application-class&gt;
+                   &lt;application-class&gt;com.nabla.project.plugins.myplugin.web.MyPluginApp&lt;/application-class&gt;
                    &lt;application-roles&gt;role1,role2&lt;/application-roles&gt;
            &lt;/application&gt;
     &lt;/applications&gt;
 
    &lt;!-- Content Service --&gt;
    &lt;content-service&gt;
-     &lt;content-service-class&gt;fr.paris.lutece.plugins.myplugin.service.MyContentService&lt;/content-service-class&gt;
+     &lt;content-service-class&gt;com.nabla.project.plugins.myplugin.service.MyContentService&lt;/content-service-class&gt;
    &lt;/content-service&gt;
 
    &lt;!-- Links Service --&gt;
    &lt;link-service&gt;
      &lt;link-service-id&gt;mylinkservice&lt;/link-service-id&gt;
-     &lt;link-service-class&gt;fr.paris.lutece.plugins.mylinkservice.service.MyLinkService&lt;/link-service-class&gt;
-     &lt;link-service-bean-class&gt;fr.paris.lutece.plugins.mylinkservice.web.MyLinkServiceJspBean&lt;/link-service-bean-class&gt;
+     &lt;link-service-class&gt;com.nabla.project.plugins.mylinkservice.service.MyLinkService&lt;/link-service-class&gt;
+     &lt;link-service-bean-class&gt;com.nabla.project.plugins.mylinkservice.web.MyLinkServiceJspBean&lt;/link-service-bean-class&gt;
      &lt;link-service-label&gt;Link to my URIs&lt;/link-service-label&gt;
    &lt;/link-service&gt;
 
@@ -262,7 +262,7 @@
                         </div>
                     </p>    
                     <p>    
-                        A plugin dtd is availabe in the /WEB-INF/plugins folder from Lutece WebApp.
+                        A plugin dtd is availabe in the /WEB-INF/plugins folder from Nabla WebApp.
                 
                     </p>
               </subsection>

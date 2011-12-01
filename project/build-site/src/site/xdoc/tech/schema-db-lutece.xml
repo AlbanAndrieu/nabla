@@ -2,11 +2,11 @@
 <document>
     <properties>
         <title>
-            Lutèce : Schéma de la Base de données
+            Nabla : Schéma de la Base de données
         </title>
     </properties>
     <body>
-        <section name="Schéma de la base Lutèce">
+        <section name="Schéma de la base Nabla">
             <p>
                 Table actor
             </p>

@@ -2,7 +2,7 @@
   <document>
    <properties>
     <title>
-      Lutece : Developement Standards: Naming rules
+      Nabla : Developement Standards: Naming rules
     </title>
    </properties>
   <body>
@@ -162,7 +162,7 @@
              </p>
              <p>
                 For a big plugin, the constants will be collected in 
-                a class <code>fr.paris.lutece.plugins.myplugins.web.Constants</code>.
+                a class <code>com.nabla.project.plugins.myplugins.web.Constants</code>.
              </p>
           </subsection>
           

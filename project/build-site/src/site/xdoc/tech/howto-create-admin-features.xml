@@ -2,7 +2,7 @@
 <document>
   <properties>
     <title>
-      Lutece : Development Guide : Administrative funstionsFonctions d'administration
+      Nabla : Development Guide : Administrative funstionsFonctions d'administration
     </title>
    </properties>
   <body>
@@ -43,8 +43,8 @@
         <pre>
 &lt;%@ include file="../PluginAdminHeader.jsp" %&gt;
 
-&lt;jsp:useBean id="myFeature" scope="session" class="fr.paris.lutece.plugins.myplugin.web.MyFeatureJspBean" /&gt;
-&lt;jsp:useBean id="user" scope="session" class="fr.paris.lutece.portal.web.user.UserJspBean" /&gt;
+&lt;jsp:useBean id="myFeature" scope="session" class="com.nabla.project.plugins.myplugin.web.MyFeatureJspBean" /&gt;
+&lt;jsp:useBean id="user" scope="session" class="com.nabla.project.portal.web.user.UserJspBean" /&gt;
 
 &lt;%
     if( user.check( "MYFEATURE_MANAGEMENT" ) )
@@ -71,7 +71,7 @@
          
     <subsection name="Definition of an administrative feature in the plugin's configuration file">
         <p>
-           To install a new Lutece feature it must be packaged into
+           To install a new Nabla feature it must be packaged into
            a plugin [ <a href=
            "howto-create-plugins.html">HOWTO - Plugins</a> ].
         </p>

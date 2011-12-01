@@ -3,13 +3,13 @@
 <document>
 	<properties>
 		<title>
-			Lutece : Development Guide : Adding user message
+			Nabla : Development Guide : Adding user message
 		</title>
 	</properties>
 	<body>
 		<section name="Site messages">
 			<p>
-			Site messages (or user messages) can be displayed on Lutece site (front office).
+			Site messages (or user messages) can be displayed on Nabla site (front office).
 			Theses messages can be used when :
 				<ul>
 					<li>

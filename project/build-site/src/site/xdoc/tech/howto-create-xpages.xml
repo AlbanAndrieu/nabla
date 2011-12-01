@@ -2,14 +2,14 @@
   <document>
    <properties>
     <title>
-      Lutece : Development Guide : Integrated Applications (XPageApplication)
+      Nabla : Development Guide : Integrated Applications (XPageApplication)
     </title>
    </properties>
   <body>
     <section name="Create the integrated application (XPageApplication)">
-        <subsection name="The extended Lutece Pages(XPage)">
+        <subsection name="The extended Nabla Pages(XPage)">
             <p>
-               In Lutece, we can distinguish two types of page :
+               In Nabla, we can distinguish two types of page :
                
             </p>
             <p>
@@ -66,8 +66,8 @@
         <subsection name="JAVA treatment">
            <p>
               When the parameter <b>&lt;page&gt;</b> is detected in the 
-              request, the class <b>fr.paris.lutece.portal.web.PortalJspBean</b>
-              (entry page of Lutece) calls to the method :
+              request, the class <b>com.nabla.project.portal.web.PortalJspBean</b>
+              (entry page of Nabla) calls to the method :
               </p>
               <p>
                  <div class="source">
@@ -75,7 +75,7 @@
 public String getPage( HttpServletRequest request , int nMode )</pre>
                  </div>
                   of 
-                    <code>fr.paris.lutece.portal.service.XPageAppService</code> class.
+                    <code>com.nabla.project.portal.service.XPageAppService</code> class.
                     
                     The service will look for the plugin whose name is specified 
                     in the parameter <b>page</b> in the request and fetch it from 
@@ -85,7 +85,7 @@ public String getPage( HttpServletRequest request , int nMode )</pre>
                <p>
                   All the XPageApp must be implement the interface :
                   
-                  <code>fr.paris.lutece.portal.web.xpages.XPageApplication</code>.
+                  <code>com.nabla.project.portal.web.xpages.XPageApplication</code>.
                </p>
                <p>
                   It defines the following method :
@@ -136,7 +136,7 @@ public String getContent( HttpServletRequest request, int nMode, Plugin plugin )
            
            <subsection name="Access to the page">
               <p>
-                 There is no automatic links towards the XPages on Lutece.
+                 There is no automatic links towards the XPages on Nabla.
               </p>
               <p>
                  Normally, the XPages are accessible from the menu situated on 
@@ -178,7 +178,7 @@ public String getContent( HttpServletRequest request, int nMode, Plugin plugin )
                        <pre>
     &lt;!-- Application XPage --&gt;
     &lt;application&gt;
-           &lt;application-class&gt;fr.paris.lutece.plugins.myplugin.web.MyPluginApp&lt;/application-class&gt;
+           &lt;application-class&gt;com.nabla.project.plugins.myplugin.web.MyPluginApp&lt;/application-class&gt;
            &lt;application-roles&gt;role1,role2&lt;/application-roles&gt;
     &lt;/application&gt;
                        </pre>

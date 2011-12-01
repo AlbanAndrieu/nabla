@@ -2,13 +2,13 @@
 <document>
    <properties>
     <title>
-      Lutece : Development Guide : The Portlets.
+      Nabla : Development Guide : The Portlets.
     </title>
    </properties>
   <body>
     <section name="Create a new portlet">
         <p>
-            The Lutece pages are composed of portlets. It is 
+            The Nabla pages are composed of portlets. It is 
             possible to define new types of portlet which 
             will then be available for building pages
             and enrich with new features. The new portlets must be
@@ -30,9 +30,9 @@
         <p>
           The addition of a new portlet type implies the creation of
           three business class :Portlet.java, PortletHome.java,
-          PortletDAO.java belonging to the <code>fr.paris.lutece.portal.business.portlet</code>
+          PortletDAO.java belonging to the <code>com.nabla.project.portal.business.portlet</code>
           and also a bean for web display : PortletJspBean.java belonging to
-          the package <code>fr.paris.lutece.plugins.&lt;myplugin&gt;.web.portlet</code>
+          the package <code>com.nabla.project.plugins.&lt;myplugin&gt;.web.portlet</code>
           which is described as the following :
         </p>
         
@@ -40,7 +40,7 @@
             <p>
               It must derive from the abstract class : <code>Portlet</code> which
               itself implements the interface :<code>XmlContent</code> (package
-               <code>fr.paris.lutece.plugins.&lt;myplugin&gt;.business</code>).
+               <code>com.nabla.project.plugins.&lt;myplugin&gt;.business</code>).
             </p>
             
             <p>
@@ -254,8 +254,8 @@
                <div class="source">
                    <pre>
 &lt;%@ include file="../PluginAdminHeader.jsp" %&gt;
-&lt;jsp:useBean id="&lt;type&gt;Portlet" scope="session" class="fr.paris.lutece.portal.web.portlet.Portlet&lt;Type&gt;JspBean" /&gt;
-&lt;jsp:useBean id="user" scope="session" class="fr.paris.lutece.portal.web.user.UserJspBean" /&gt;
+&lt;jsp:useBean id="&lt;type&gt;Portlet" scope="session" class="com.nabla.project.portal.web.portlet.Portlet&lt;Type&gt;JspBean" /&gt;
+&lt;jsp:useBean id="user" scope="session" class="com.nabla.project.portal.web.user.UserJspBean" /&gt;
 &lt;%
     if( user.check( "DEF_ADMIN" ) )
     {
@@ -484,7 +484,7 @@
                                <td>Normal text or HTML</td>
                                <td>CreatePortletHtml.jsp</td>
                                <td>ModifyPortletHtml.jsp</td>
-                               <td>fr.paris.lutece.plugins.html.business.portlet.HtmlPortletHome</td>
+                               <td>com.nabla.project.plugins.html.business.portlet.HtmlPortletHome</td>
                            </tr>
                        </table>
                    </p>
@@ -499,7 +499,7 @@
                         <div class="source">
                              <pre>
 &lt;portlet&gt;
-    &lt;portlet-class&gt;fr.paris.lutece.plugins.myportlet.business.portlet.MyPortletHome&lt;/portlet-class&gt;
+    &lt;portlet-class&gt;com.nabla.project.plugins.myportlet.business.portlet.MyPortletHome&lt;/portlet-class&gt;
     &lt;portlet-type-name&gt;MyNew Portlet&lt;/portlet-type-name&gt;
     &lt;portlet-creation-url&gt;plugins/article/CreatePortletMyPortlet.jsp&lt;/portlet-creation-url&gt;
     &lt;portlet-update-url&gt;plugins/article/ModifyPortletMyPortlet.jsp&lt;/portlet-update-url&gt;
@@ -511,7 +511,7 @@
                    </p>
                    <p>    
                        A style corresponding to the new portlet type must e defined.
-                       This is done by using Lutece administration :
+                       This is done by using Nabla administration :
                        : <strong>Style Management</strong>.
                    </p>
 
@@ -519,7 +519,7 @@
                           Tables <strong>stylesheet</strong> and <strong>style_mode_stylesheet</strong> :
                     </p>
                     <p>
-                          Administration interface of Lutece :<strong>XSL stylesheets management</strong> 
+                          Administration interface of Nabla :<strong>XSL stylesheets management</strong> 
                           allows definition of new styles and to link them to those stored into the database.
                           All the stylesheets developed according to paragraph : XSL stylesheets must be stored
                           by using this interface.

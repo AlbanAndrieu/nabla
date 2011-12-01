@@ -79,7 +79,7 @@
 
        <menu name="Components">
             <item name="Components List" href="available-plugins.html"/>
-            <!--<item name="Lutece plugin for Maven2" href="/plugins/maven-lutece-plugin/index.html" />-->
+            <!--<item name="Nabla plugin for Maven2" href="/plugins/maven-lutece-plugin/index.html" />-->
        </menu>
 
        <menu name="Downloads" inherit="bottom">

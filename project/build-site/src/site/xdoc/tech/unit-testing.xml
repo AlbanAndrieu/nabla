@@ -2,7 +2,7 @@
   <document>
       <properties>
           <title>
-              Lutece : Development Standards : Unit Tests
+              Nabla : Development Standards : Unit Tests
           </title>
       </properties>
       <body>
@@ -19,12 +19,12 @@
           <subsection name="Using JUnit">
           <p>
               JUnit is set up in various ways.It is equally possible to exploit other utilities.
-              Lutece uses the following way to take advantage of JUnit.
+              Nabla uses the following way to take advantage of JUnit.
           </p>
-          <p style="h4" class="h4">LuteceTestCase</p>
+          <p style="h4" class="h4">NablaTestCase</p>
           <p>
               The granularity of a test is a class.
-              For each class to test, a derived class <code>LuteceTestCase</code>
+              For each class to test, a derived class <code>NablaTestCase</code>
               must be created and grouped in a set of tests to realise.
               The file structure of test classes must be reproduced as the sources of the application.
           </p>
@@ -35,10 +35,10 @@
               <ul><li><code>test/java/<strong>fr/paris/lutece/plugins/myplugin/web/MyClassTest</strong></code></li></ul>
           </p>
           <p>
-              The class <code>LuteceTestCase</code> extends the abstract <code>TestCase</code>
-              of the JUnit framework by initializing a set of Lutece services in the
+              The class <code>NablaTestCase</code> extends the abstract <code>TestCase</code>
+              of the JUnit framework by initializing a set of Nabla services in the
               method implementation <code>setUp()</code>. It is thus possible, for all
-              tests methods to access Lutece services : 
+              tests methods to access Nabla services : 
               <code>AppTemplateService</code>, <code>AppPropertiesService</code>,
               <code>AppConnectionService</code>, etc.
              
@@ -63,12 +63,12 @@
           </p>
           <div class="source">
               <pre>
-import fr.paris.lutece.test.LuteceTestCase;
-import fr.paris.lutece.test.MokeHttpServletRequest;
+import com.nabla.project.test.NablaTestCase;
+import com.nabla.project.test.MokeHttpServletRequest;
 
 import javax.servlet.http.Cookie;
 
-public class MyClassTest extends LuteceTestCase
+public class MyClassTest extends NablaTestCase
 {
     /**
      * Test getNameFromCookie
@@ -88,7 +88,7 @@ public class MyClassTest extends LuteceTestCase
           <p style="h4">Combination of tests (TestSuite)</p>
           <p>
               JUnit offers a test combination mechanism based on TestSuites.
-              For Lutece,a class <code>AllTests</code> is realized at each level of the package
+              For Nabla,a class <code>AllTests</code> is realized at each level of the package
               and provides a static method <code>suite()</code> which returns TestSuite
               containing all the tests of the package and the suites of the sub-packages.
               This mechanism enables launching of tests at all level of the package, 
@@ -115,15 +115,15 @@ public final class AllTests
      */
     public static Test suite(  )
     {
-        TestSuite suite = new TestSuite( "Test of the package fr.paris.lutece.plugins.myplugin" );
+        TestSuite suite = new TestSuite( "Test of the package com.nabla.project.plugins.myplugin" );
 
         //$JUnit-BEGIN$
         // Add tests of the current package 
         suite.addTest( new TestSuite( MyClassTest.class ) );
         
         // Add tests of sublevel packages
-        suite.addTest( fr.paris.lutece.plugins.myplugin.business.AllTests.suite(  ) );
-        suite.addTest( fr.paris.lutece.plugins.myplugin.web.AllTests.suite(  ) );
+        suite.addTest( com.nabla.project.plugins.myplugin.business.AllTests.suite(  ) );
+        suite.addTest( com.nabla.project.plugins.myplugin.web.AllTests.suite(  ) );
     
         //$JUnit-END$
         return suite;

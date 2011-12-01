@@ -74,7 +74,7 @@
       Traitement en JAVA
     </h4>Lorsque le paramètre <b>&lt;page&gt;</b> est détecté dans
     la requête, la classe
-    <b>fr.paris.lutece.portal.web.PortalJspBean</b> (point d'entrée
+    <b>com.nabla.project.portal.web.PortalJspBean</b> (point d'entrée
     de Lutèce) appelle la méthode :<br />
     <br />
 
@@ -90,7 +90,7 @@
 
     </table><br />
     de la classe
-    <b>fr.paris.lutece.portal.service.XPageAppService</b>.<br />
+    <b>com.nabla.project.portal.service.XPageAppService</b>.<br />
     <br />
     Ce service va rechercher le plugin dont le nom est spécifié
     dans le paramètre <b>page</b> de la requête et récupérer à
@@ -98,7 +98,7 @@
 
     <br />
     Toutes les XPageApp doivent implémenter l'interface :
-    <b>fr.paris.lutece.portal.web.xpages.XPageApplication</b>.<br />
+    <b>com.nabla.project.portal.web.xpages.XPageApplication</b>.<br />
 
     Elle définit donc la méthode :<br />
     <br />

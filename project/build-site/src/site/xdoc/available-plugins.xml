@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
 	<properties>
-		<title>Lutece : Available plugins</title>
+		<title>Nabla : Available plugins</title>
 	</properties>
 	<body>
 		<section name="Available plugins">
 
 			<p>
-				The architecture of Lutece is modular. The main part of the
+				The architecture of Nabla is modular. The main part of the
 				functionalities of the application comes from the plugins available
 				below : 
             </p>
 			<p>
 				<table>
 					<tr>
-						<th>Lutece kernel</th>
+						<th>Nabla kernel</th>
 						<th>Description</th>
 					</tr>
 					<tr>
 						<td>
 							<a href="/lutece-core/index.html">core</a>
 						</td>
-						<td>Core : Main piece of Lutece. The core contains fiew core
+						<td>Core : Main piece of Nabla. The core contains fiew core
 							functionalities. Functionnalities come from the plugins.</td>
 					</tr>
 				</table>
@@ -62,7 +62,7 @@
 						<td>
 							<a href="/plugins/plugin-document/">document</a>
 						</td>
-						<td>Plugin Document : The Lutece CMS plugin </td>
+						<td>Plugin Document : The Nabla CMS plugin </td>
 					</tr>
 					<tr>
 						<td>
@@ -94,7 +94,7 @@
 						<td>
 							<a href="/plugins/plugin-linkpages/">linkpages</a>
 						</td>
-						<td>Plugin Linkpages : Add Lutece internal links into page
+						<td>Plugin Linkpages : Add Nabla internal links into page
 							content</td>
 					</tr>
 					<tr>
@@ -132,7 +132,7 @@
 						<td>
 							<a href="/plugins/plugin-upload/">upload</a>
 						</td>
-						<td>Plugin Upload : File Upload from Lutece Back Office </td>
+						<td>Plugin Upload : File Upload from Nabla Back Office </td>
 					</tr>
 					<tr>
 						<td>
@@ -207,46 +207,46 @@
 						<td>
 							<a href="/plugins/module-mylutece-cas/">mylutece-cas</a>
 						</td>
-						<td>Module CAS for MyLutece - CAS authentication</td>
+						<td>Module CAS for MyNabla - CAS authentication</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/module-mylutece-database/">mylutece-database</a>
 						</td>
-						<td>Module Database for MyLutece - Database based
+						<td>Module Database for MyNabla - Database based
 							authentication</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/module-mylutece-ldapdatabase/">mylutece-ldapdatabase</a>
 						</td>
-						<td>Module LDAPDatabase for MyLutece - LDAP based
+						<td>Module LDAPDatabase for MyNabla - LDAP based
 							authentication + roles stored in DB</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/module-mylutece-openid/">mylutece-openid</a>
 						</td>
-						<td>Module OpenID for MyLutece - OpenID authentication</td>
+						<td>Module OpenID for MyNabla - OpenID authentication</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/module-mylutece-openiddatabase/">mylutece-openiddatabase</a>
 						</td>
-						<td>Module OpenID for MyLutece - OpenID authentication +
+						<td>Module OpenID for MyNabla - OpenID authentication +
 							roles stored in DB</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/module-mylutece-saml/">mylutece-saml</a>
 						</td>
-						<td>Module SAML for MyLutece - SAML authentication</td>
+						<td>Module SAML for MyNabla - SAML authentication</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/module-mylutece-webserver/">mylutece-webserver</a>
 						</td>
-						<td>Module WebServer pour MyLutece - Web Server
+						<td>Module WebServer pour MyNabla - Web Server
 							authentication (ex: Tomcat Realm)</td>
 					</tr>
 				</table>
@@ -275,7 +275,7 @@
 						<td>
 							<a href="/plugins/plugin-pagelinkservice/">pagelinkservice</a>
 						</td>
-						<td>Plugin Pagelinkservice : Create Links into Lutece
+						<td>Plugin Pagelinkservice : Create Links into Nabla
 							content</td>
 					</tr>
 					<tr>
@@ -296,7 +296,7 @@
 						<td>
 							<a href="/plugins/plugin-systeminfo/">systeminfo</a>
 						</td>
-						<td>Plugin SystemInfo : System Info display for Lutece
+						<td>Plugin SystemInfo : System Info display for Nabla
 							Backoffice</td>
 					</tr>
 					<tr>
@@ -304,14 +304,14 @@
 							<a href="/plugins/plugin-xpagelinkservice/">xpagelinkservice</a>
 						</td>
 						<td>Plugin Xpagelinkservice : Add links to applications in
-							Lutece contents</td>
+							Nabla contents</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="/plugins/plugin-insertajaxcounter/">insertajaxcounter</a>
 						</td>
 						<td>Plugin Insertajaxcounter : Add ajax counter to
-							applications in Lutece contents</td>
+							applications in Nabla contents</td>
 					</tr>
 				</table>
 			</p>
@@ -326,7 +326,7 @@
 							<a href="/plugins/plugin-codewizard/">codewizard</a>
 						</td>
 						<td>Plugin Codewizard : Java Code generator to develop
-							Lutece plugins</td>
+							Nabla plugins</td>
 					</tr>
 					<tr>
 						<td>

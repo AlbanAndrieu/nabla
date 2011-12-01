@@ -2,7 +2,7 @@
 <document>
     <properties>
         <title>
-            Lutece : Development Guide : PageIncludeServices
+            Nabla : Development Guide : PageIncludeServices
         </title>
     </properties>
     <body>
@@ -20,7 +20,7 @@
             </subsection>
             <subsection name="Declaration">
             <p>
-                Lutèce integrates par default many PageIncludeServices :
+                Nabla integrates par default many PageIncludeServices :
                 <table>
                     <tr>
                         <th>Name</th>
@@ -55,7 +55,7 @@
                     <pre>
 &lt;page-include-service&gt;        
      &lt;page-include-service-name&gt;My Include Service&lt;/page-include-service-name&gt;        
-     &lt;page-include-service-class&gt;fr.paris.lutece.myplugin.web.MyInclude&lt;/page-include-service-class&gt;        
+     &lt;page-include-service-class&gt;com.nabla.project.myplugin.web.MyInclude&lt;/page-include-service-class&gt;        
 &lt;/page-include-service&gt;        
                    </pre>
                 </div>

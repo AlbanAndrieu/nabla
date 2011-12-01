@@ -2,15 +2,15 @@
   <document>
       <properties>
           <title>
-              Lutece : Development Guide : Core Services
+              Nabla : Development Guide : Core Services
           </title>
       </properties>
       <body>
-          <section name="Lutece Services : Base Services">
+          <section name="Nabla Services : Base Services">
               <subsection name="AppPropertiesService">
                   <p>
                         The service allows to access to all parameters defined in the <code>properties</code>
-                        files. The files taken into account by this service are Lutece configuration files
+                        files. The files taken into account by this service are Nabla configuration files
                         placed into <code>WEB-INF/conf</code> folder and plugins configuration files placed in
                         <code>WEB-INF/conf/plugins</code> folder.
                   </p>
@@ -57,7 +57,7 @@ private static final String BOOKMARK_NAME = "@name@";
               </subsection>
               <subsection name="AppPathService">
                   <p>
-                      The service allows to obtaining information concerning the URI execution and the Lutece's installation folders.
+                      The service allows to obtaining information concerning the URI execution and the Nabla's installation folders.
                       The plugins must not handle URL or absolute paths, it must generate with relative paths and use
                       this service to obtain absolute references.
                   </p>

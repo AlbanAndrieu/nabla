@@ -2,15 +2,15 @@
   <document>
    <properties>
     <title>
-      Lutèce : Guide de développement : Gestion de la sécurité
+      Nabla : Guide de développement : Gestion de la sécurité
     </title>
    </properties>
   <body>
-    <section name="Gestion de la sécurité - SSO - MyLutece">
+    <section name="Gestion de la sécurité - SSO - MyNabla">
         <p>
-           Plusieurs API ont été mises en place à partir de la version 1.1 de Lutèce
+           Plusieurs API ont été mises en place à partir de la version 1.1 de Nabla
            pour gérer la sécurité des accès aux ressources du portail.
-           La principale mise en oeuvre est faite par le plugin <strong>MyLutece</strong> qui réalise de
+           La principale mise en oeuvre est faite par le plugin <strong>MyNabla</strong> qui réalise de
            manière modulaire l'authentification et la gestion des rôles associés aux
            utilisateurs authentifiés du site. L'objectif de cette API est de fournir
            un dispostif de « SSO » (Single Sign On), c'est à dire une authentification
@@ -37,25 +37,25 @@
            </p>
            <p>
               L’ensemble des implémentations doit respecter l’interface
-              <code>fr.paris.lutece.portal.service.security.LutecePortalAuthentication</code>.
+              <code>com.nabla.project.portal.service.security.NablaPortalAuthentication</code>.
            </p>
            <p>
                On distingue deux sous-ensembles d’implémentations :
            </p>
            <p>
               <ul>
-                  <li>l’authentification est assurée au niveau de Lutece.</li>
-                  <li>l’authentification est réalisée en amont de Lutece (ex : serveur web ou WSSO).</li>
+                  <li>l’authentification est assurée au niveau de Nabla.</li>
+                  <li>l’authentification est réalisée en amont de Nabla (ex : serveur web ou WSSO).</li>
               </ul>
            </p>
            <p>
-              Une authentification assurée par Lutece a les
+              Une authentification assurée par Nabla a les
               caractéristiques suivantes :
            </p>
            <p>
               <ul>
                  <li>elle doit prévoir des méthodes de connexion/déconnexion (<code>login</code> / <code>logout</code>).</li>
-                 <li>elle spécialise la classe abstraite <code>fr.paris.lutece.plugins.mylutece.authentication.PortalAuthentication</code>.</li>
+                 <li>elle spécialise la classe abstraite <code>com.nabla.project.plugins.mylutece.authentication.PortalAuthentication</code>.</li>
               </ul>
            </p>
            <p>
@@ -67,7 +67,7 @@
               <ul>
                   <li>elle ne doit pas prévoir des méthodes de connexion /déconnexion puisque celles-ci sont assurées par le dispositif
                    externe situé en amont.</li>
-                  <li>elle spécialise la classe abstraite <code>fr.paris.lutece.plugins.mylutece.authentication.ExternalAuthentication</code>.</li>
+                  <li>elle spécialise la classe abstraite <code>com.nabla.project.plugins.mylutece.authentication.ExternalAuthentication</code>.</li>
               </ul>
            </p>
            <p>
@@ -82,7 +82,7 @@
                 A chaque système d’authentification peut être associé
                 un modèle d’utilisateur qui doit implémenter le modèle
                 minimal défini par l’interface
-                <code>fr.paris.lutece.portal.service.security.LuteceUser</code>.
+                <code>com.nabla.project.portal.service.security.NablaUser</code>.
              </p>
              <p>
                  Les implémentations notamment prévues sont :
@@ -97,7 +97,7 @@
                 Ces implémentations ne font pas partie du noyau, elles
                 sont disponibles dans le plugin "mylutece" sous le
                 paquetage
-                <code>fr.paris.lutece.plugins.mylutece.modules.*</code>.
+                <code>com.nabla.project.plugins.mylutece.modules.*</code>.
              </p>
              <p>
                 La façon dont ces modèles d’utilisateurs délivrent les
@@ -126,7 +126,7 @@
                          l’utilisateur ne peut pas créer lui-même un compte. 
                          La création du compte doit alors être réalisée au niveau
                          de l’annuaire soit par une fonction d’administration intégrée 
-                         à Lutece soit par un dispositif autre.
+                         à Nabla soit par un dispositif autre.
                     </li>
                     <li>
                          l’utilisateur peut se créer un compte sans nécessiter 
@@ -167,7 +167,7 @@
         <subsection name="Le nouveau service de sécurité SecurityService" >
 
               <p>
-                 Un nouveau service a été ajouté au noyau de Lutece
+                 Un nouveau service a été ajouté au noyau de Nabla
                  pour assurer les fonctions de gestion des utilisateurs. Ce
                  service est le point d’entrée pour tous les composants :
                  plugins, portlets ou applications désirant obtenir
@@ -201,7 +201,7 @@
                    <p>
                       <div class="source">
                    <pre>
- LuteceUser user = SecurityService.getInstance().getRegisteredUser( request );
+ NablaUser user = SecurityService.getInstance().getRegisteredUser( request );
  if( user != null )
  {
   // The user is authenticated
@@ -239,7 +239,7 @@
              <p>
                 Les paramètres décrivant l’implémentation choisie sont
                 définis dans le fichier de configuration
-                <code>mylutece.properties</code> de Lutece grâce aux propriétés
+                <code>mylutece.properties</code> de Nabla grâce aux propriétés
                 suivantes :
              </p>
              <p>
@@ -248,7 +248,7 @@
 ########################################################
 #  Authentication management
 mylutece.authentication.enable=true
-mylutece.authentication.class=fr.paris.lutece.portal.service.security.LDAPAuthentication</pre>
+mylutece.authentication.class=com.nabla.project.portal.service.security.LDAPAuthentication</pre>
                  </div>
               </p>
               <p>
@@ -256,7 +256,7 @@ mylutece.authentication.class=fr.paris.lutece.portal.service.security.LDAPAuthen
               </p>
               <p>
                  <ul>
-                     <li><code>lutece.authentication.enable</code> : détermine si le mode d’authentification de l’instance de Lutece
+                     <li><code>lutece.authentication.enable</code> : détermine si le mode d’authentification de l’instance de Nabla
                      reposera sur le SSO (obligatoire)</li>
                      <li><code>lutece.authentication.class</code> : détermine la classe qui implémente l’authentification choisie (à
                      renseigner si <code>lutece.authentication.enable</code> a
@@ -270,7 +270,7 @@ mylutece.authentication.class=fr.paris.lutece.portal.service.security.LDAPAuthen
         <subsection name="L’écran d’identification par défaut">
             <p>
                Dans le cas d’une identification interne au portail,
-               le plugin MyLutece propose une page d’identification par
+               le plugin MyNabla propose une page d’identification par
                défaut :
             </p>
             <p>
@@ -291,13 +291,13 @@ mylutece.authentication.class=fr.paris.lutece.portal.service.security.LDAPAuthen
                 <div class="source">
         <pre>
 mylutece.url.login.page=Portal.jsp?page=mylutece&amp;action=login
-mylutece.url.doLogin=./plugins/mylutece/DoMyLuteceLogin.jsp</pre>
+mylutece.url.doLogin=./plugins/mylutece/DoMyNablaLogin.jsp</pre>
                  </div>
              </p>
          </subsection>
          <subsection name="Le portlet d’identification">
               <p>
-                 Le plugin MyLutece propose un portlet
+                 Le plugin MyNabla propose un portlet
                  d’identification.
               </p>
               <p>
@@ -327,7 +327,7 @@ mylutece.url.doLogin=./plugins/mylutece/DoMyLuteceLogin.jsp</pre>
          <subsection name="Les pages par défaut de gestion du compte">
              <p>
                 Les pages par défaut concernant la gestion de compte
-                disponibles dans le plugin MyLutece sont les suivantes :
+                disponibles dans le plugin MyNabla sont les suivantes :
              </p>
              <p>
                 <ul>
@@ -403,7 +403,7 @@ mylutece.portal.authentication.required=true
                    <div class="source">
 <pre>
    &lt;application&gt;
-     &lt;application-class&gt;fr.paris.lutece.plugins.securedtest.SecuredTestApp&lt;/application-class&gt;
+     &lt;application-class&gt;com.nabla.project.plugins.securedtest.SecuredTestApp&lt;/application-class&gt;
      &lt;application-security-model&gt;1&lt;/application-security-model&gt;
    &lt;/application&gt;</pre>
                    </div>
@@ -439,7 +439,7 @@ mylutece.portal.authentication.required=true
 
            <subsection name="Gestion de l’accès à l’application grâce aux rôles">
                <p>
-                   Un autre moyen, depuis Lutèce 1.3, permet de limiter l'accès
+                   Un autre moyen, depuis Nabla 1.3, permet de limiter l'accès
                    à l'application aux seuls utilisateurs disposant d'un rôle autorisé.
                    Ce dispositif est plus simple et offre une gestion plus fine que le
                    précédent. 
@@ -453,7 +453,7 @@ mylutece.portal.authentication.required=true
                    <div class="source">
 <pre>
    &lt;application&gt;
-     &lt;application-class&gt;fr.paris.lutece.plugins.myplugin.MyApp&lt;/application-class&gt;
+     &lt;application-class&gt;com.nabla.project.plugins.myplugin.MyApp&lt;/application-class&gt;
      &lt;application-roles&gt;role1,role2,admin&lt;/application-roles&gt;
    &lt;/application&gt;</pre>
                    </div>
@@ -463,7 +463,7 @@ mylutece.portal.authentication.required=true
                
            <subsection name="Gestion de l’utilisateur dans l’application">
                <p>
-                  Lors d’une connexion à une application Lutece, il y a
+                  Lors d’une connexion à une application Nabla, il y a
                   vérification du mode d’authentification de l’application
                   (ou plugin).
                </p>
@@ -486,7 +486,7 @@ mylutece.portal.authentication.required=true
                               <li>
                                   si l’utilisateur n’est pas encore authentifié, 
                                   redirection vers une page d’authentification propre à
-                                  Lutece commune à toutes les applications.
+                                  Nabla commune à toutes les applications.
                               </li>
                               <li>
                                   si l’utilisateur est authentifié, et l’application 

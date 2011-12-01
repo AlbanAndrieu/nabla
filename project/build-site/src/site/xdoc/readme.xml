@@ -2,15 +2,15 @@
   <document>
       <properties>
           <title>
-              Lutece : Read Me
+              Nabla : Read Me
           </title>
       </properties>
         <body>
                 <section name="Read Me">
                     <subsection name="Required Configuration">
                         <p> 
-                              Lutece has been developed using the J2EE specifications for web application.
-                              The following configuration is needed to run Lutece :
+                              Nabla has been developed using the J2EE specifications for web application.
+                              The following configuration is needed to run Nabla :
                             
                         </p>
                         <p>
@@ -23,11 +23,11 @@
                     </subsection>
                     <subsection name="Installation">
                         <p> 
-                              To install Lutece, follow the instructions below ( Windows and Linux )
+                              To install Nabla, follow the instructions below ( Windows and Linux )
                         </p>
                         <p>
                         <ul>
-                              <li><a href="install.html">Install Lutece </a></li>
+                              <li><a href="install.html">Install Nabla </a></li>
                         </ul>
                         </p>
                         <p>
@@ -35,8 +35,8 @@
                         </p>    
                         <p>
                         <ul>
-                              <li><a href="license-lutece.html">Lutece License</a></li>
-                              <li><a href="dependencies.html">Legal Information concerning libraries used by Lutece </a></li>
+                              <li><a href="license-lutece.html">Nabla License</a></li>
+                              <li><a href="dependencies.html">Legal Information concerning libraries used by Nabla </a></li>
                         </ul>
                         </p>
                     </subsection>
