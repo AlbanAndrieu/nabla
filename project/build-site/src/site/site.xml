@@ -36,8 +36,8 @@
         </menu>
 
         <menu name="Manuals">
-            <item name="Site Administration" href="site-administration.html"/>
-            <item name="Technical Administration" href="technical-administration.html"/>
+            <item name="Site Administration" href="tech/site-administration.html"/>
+            <item name="Technical Administration" href="tech/technical-administration.html"/>
         </menu>
 
         <menu name="Manuals">

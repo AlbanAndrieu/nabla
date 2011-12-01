@@ -19,7 +19,7 @@
 	</organization>
 
 	<prerequisites>
-		<maven>2.1.0</maven>
+		<maven>2.1.1</maven>
 	</prerequisites>
 	
 	<issueManagement>
