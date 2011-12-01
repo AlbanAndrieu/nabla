@@ -149,9 +149,6 @@
 		<project.includedictionaries>${project.target}</project.includedictionaries>
 		<maven.build.generated>src/generated</maven.build.generated>
 		<maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
-
-		<maven.test.skip>false</maven.test.skip>
-		<maven.test.failure.skip>true</maven.test.failure.skip>
 	</properties>
 	<!--
 		La balise dependencyManagement, dans le POM du projet parent permet de
@@ -1718,12 +1715,11 @@
 						<artifactId>clirr-maven-plugin</artifactId>
 						<version>${maven.clirr.plugin.version}</version>
 					</plugin>
-
-					<!--
-						<plugin> <groupId>org.apache.maven.plugins</groupId>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-changelog-plugin</artifactId>
-						<version>2.2</version> </plugin>
-					-->
+						<version>${maven.changelog.plugin.version}</version>
+					</plugin>
 					<!--
 						<plugin> <groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
@@ -1761,18 +1757,20 @@
 					<!--
 						</configuration> </execution> </executions> </plugin>
 					-->
-					<!--
-						<plugin> <groupId>org.codehaus.mojo</groupId>
+					
+					<plugin> 
+						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>emma-maven-plugin</artifactId>
 						<version>${maven.emma.plugin.version}</version>
-						<inherited>true</inherited> </plugin>
-					-->
+						<inherited>true</inherited>
+					</plugin>
 
 					<!--  Global test exclusions -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>${maven.surefire.plugin.version}</version>
+						<inherited>true</inherited>
 						<configuration>
 
 							<!--
@@ -2061,7 +2059,6 @@
 							<sortColumnNames>Key</sortColumnNames>
 						</configuration>
 					</plugin>
-
 					<!-- http://maven.apache.org/plugins/maven-changelog-plugin/faq.html -->
 					<!-- Comment connaitre l activitee d'un projet -->
 					<!-- Developer activity (last 6 months) -->
@@ -2155,13 +2152,13 @@
 						<version>${maven.dashboard.plugin.version}</version>
 						<inherited>true</inherited> </plugin>
 					-->
-					<!--
-						<plugin> <groupId>org.codehaus.mojo</groupId>
+					
+					<plugin> 
+						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>emma-maven-plugin</artifactId>
 						<version>${maven.emma.plugin.version}</version>
-						<inherited>true</inherited> </plugin>
-					-->
-
+						<inherited>true</inherited> 
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-report-plugin</artifactId>
@@ -2590,13 +2587,15 @@
 						<reportSets> <reportSet> <reports> <report>report</report>
 						</reports> </reportSet> </reportSets> </plugin>
 					-->
-
-					<!--
-						<plugin> <groupId>com.atlassian.maven.plugins</groupId>
-						<artifactId>maven-clover2-plugin</artifactId> <configuration>
-						<generatePdf>true</generatePdf> <generateXml>true</generateXml>
-						</configuration> </plugin>
-					-->
+					
+					<plugin> 
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId> 
+						<configuration>
+							<generatePdf>true</generatePdf> 
+							<generateXml>true</generateXml>
+						</configuration> 
+					</plugin>
 
 				</plugins>
 			</reporting>

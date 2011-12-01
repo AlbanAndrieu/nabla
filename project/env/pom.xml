@@ -344,6 +344,9 @@
 
 		<copyright.year>2011</copyright.year>
 		
+		<maven.test.skip>false</maven.test.skip>
+		<maven.test.failure.skip>true</maven.test.failure.skip>
+		
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
 
 		<tibjms.version>4.2.0</tibjms.version>
@@ -583,7 +586,7 @@
 		<maven.cobertura.plugin.version>2.4</maven.cobertura.plugin.version>
 		<maven.release.plugin.version>2.1</maven.release.plugin.version>
 		<maven.antrun.plugin.version>1.6</maven.antrun.plugin.version>
-		<maven.emma.plugin.version>1.0-alpha-2</maven.emma.plugin.version>
+		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
 		<maven.ejb.plugin.version>2.2.1</maven.ejb.plugin.version>
@@ -1298,6 +1301,15 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>emma-maven-plugin</artifactId>
 					<version>${maven.emma.plugin.version}</version>
+        				<inherited>true</inherited>          
+        				<executions>
+        				  <execution>
+        				    <phase>process-classes</phase>               
+        				    <goals>
+        				      <goal>instrument</goal>
+        				    </goals>
+        				  </execution>
+        				</executions>					
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
