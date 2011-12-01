@@ -79,7 +79,7 @@
 
        <menu name="Components">
             <item name="Components List" href="available-plugins.html"/>
-            <item name="Lutece plugin for Maven2" href="/plugins/maven-lutece-plugin/index.html" />
+            <!--<item name="Lutece plugin for Maven2" href="/plugins/maven-lutece-plugin/index.html" />-->
        </menu>
 
        <menu name="Downloads" inherit="bottom">
@@ -98,22 +98,27 @@
        </menu>
   
        <menu ref="parent" />
+       <menu ref="modules" />
 
-       <menu name="Modules">
-            <item name="Build Tools" href="/build-tools/index.html"/>
+            <!--
+       <menu name="Other Modules">
+            <item name="Build Tools" href="../build-tools/index.html"/>          
             <item name="BackEnd" href="/kplustp/index.html"/>
             <item name="J2EE" href="/maven-builder-common/index.html"/>
             <item name="Presentation Server" href="/karma/index.html"/>
-            <item name="Presentation Server Sample" href="/karmaSample/index.html"/>            
+            <item name="Presentation Server Sample" href="/karmaSample/index.html"/>           
        </menu>
+            -->        
        
+<!--       
        <menu name="Doxygen Resources">
             <item name="Doxygen BACKEND" href="/BACKEND/doc/html/index.html"/>
             <item name="Doxygen BACKEND-APPS" href="/BACKEND-APPS/doc/html/index.html"/>
             <item name="Doxygen BACKEND-COMMON" href="/BACKEND-COMMON/doc/html/index.html"/>
             <item name="Doxygen BACKEND-INFRA" href="/BACKEND-INFRA/doc/html/index.html"/>            
             <item name="Doxygen BACKEND-TOOLS" href="/BACKEND-TOOLS/doc/html/index.html"/>            
-       </menu> 
+       </menu>
+-->
 
        <menu ref="reports" inherit="bottom" />
        
