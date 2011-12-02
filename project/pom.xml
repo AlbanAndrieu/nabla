@@ -1593,6 +1593,35 @@
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-site-plugin</artifactId>
+						<version>${maven.site.plugin.version}</version>
+						<configuration>
+							<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+
+							<locales>en</locales>
+							<!--<locales>en,fr</locales> -->
+							<excludeModules>build-tools</excludeModules>
+							<excludeModules>maven-gui-plugin</excludeModules>
+							<siteDirectory>${basedir}/build-site/src/site</siteDirectory>
+							<port>8070</port>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.skins</groupId>
+								<artifactId>maven-default-skin</artifactId>
+								<version>${maven.default.skin.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.apache.maven.doxia</groupId>
+								<artifactId>doxia-module-twiki</artifactId>
+								<version>${doxia.module.twiki.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+									
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-project-info-reports-plugin</artifactId>
 						<version>${maven.project.info.reports.plugin.version}</version>
 					</plugin>
@@ -1601,6 +1630,12 @@
 						<artifactId>maven-dependency-plugin</artifactId>
 						<version>${maven.dependency.plugin.version}</version>
 					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+					</plugin>
+					
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>clirr-maven-plugin</artifactId>
@@ -1621,9 +1656,57 @@
 					-->				
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-report-plugin</artifactId>
-						<version>${maven.surefire.plugin.version}</version>
+						<artifactId>maven-scm-plugin</artifactId>
+						<version>${maven.scm.plugin.version}</version>
 					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>${maven.jxr.plugin.version}</version>
+					</plugin>
+
+					<!-- http://checkstyle.sourceforge.net -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>${maven.checkstyle.plugin.version}</version>						
+						<dependencies>
+							<!-- The file defined in the location is stored in this dependency -->
+							<dependency>
+								<groupId>com.nabla.project.build-tools</groupId>
+								<artifactId>build-tools</artifactId>
+								<version>1.0</version>
+							</dependency>
+						</dependencies>							
+					</plugin>
+
+					<!--
+						<groupId>net.objectlab</groupId>
+						<artifactId>mvn-qalab-plugin</artifactId>
+						<version>${maven.qalab.plugin.version}</version> </plugin>
+					-->
+					<!-- Code Coverage by Clover -->
+					<!-- Bind Clover Coverage instrumentation to the site generation -->
+					<!-- Blocked by http://jira.codehaus.org/browse/MCLOVER-50 -->
+					<!--
+					<plugin> 
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId> 
+						<configuration>
+							<generateHistorical>true</generateHistorical>
+						</configuration>
+						<executions> 
+							<execution> 
+								<phase>pre-site</phase>
+								<goals>
+									<goal>instrument</goal> 
+									<goal>aggregate</goal> 
+								</goals>
+								</execution> 
+							</executions> 
+						</plugin>
+					-->
 
 					<!-- Delete code coverage database when 'mvn clean' is executed -->
 					<plugin>
@@ -1661,13 +1744,7 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-scm-plugin</artifactId>
-						<version>${maven.scm.plugin.version}</version>
-					</plugin>
+					</plugin>					
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dashboard-maven-plugin</artifactId>
@@ -1722,82 +1799,12 @@
 								<version>1.0</version>
 							</dependency>
 						</dependencies>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jxr-plugin</artifactId>
-						<version>${maven.jxr.plugin.version}</version>
-					</plugin>
-
-					<!-- http://checkstyle.sourceforge.net -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>${maven.checkstyle.plugin.version}</version>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-site-plugin</artifactId>
-						<version>${maven.site.plugin.version}</version>
-						<configuration>
-							<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-
-							<locales>en</locales>
-							<!--<locales>en,fr</locales> -->
-							<excludeModules>build-tools</excludeModules>
-							<excludeModules>maven-gui-plugin</excludeModules>
-							<siteDirectory>${basedir}/build-site/src/site</siteDirectory>
-							<port>8070</port>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.apache.maven.skins</groupId>
-								<artifactId>maven-default-skin</artifactId>
-								<version>${maven.default.skin.version}</version>
-							</dependency>
-							<dependency>
-								<groupId>org.apache.maven.doxia</groupId>
-								<artifactId>doxia-module-twiki</artifactId>
-								<version>${doxia.module.twiki.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-
-					<!--
-						<groupId>net.objectlab</groupId>
-						<artifactId>mvn-qalab-plugin</artifactId>
-						<version>${maven.qalab.plugin.version}</version> </plugin>
-					-->
-					<!-- Code Coverage by Clover -->
-					<!-- Bind Clover Coverage instrumentation to the site generation -->
-					<!-- Blocked by http://jira.codehaus.org/browse/MCLOVER-50 -->
-					<!--
-					<plugin> 
-						<groupId>com.atlassian.maven.plugins</groupId>
-						<artifactId>maven-clover2-plugin</artifactId> 
-						<configuration>
-							<generateHistorical>true</generateHistorical>
-						</configuration>
-						<executions> 
-							<execution> 
-								<phase>pre-site</phase>
-								<goals>
-									<goal>instrument</goal> 
-									<goal>aggregate</goal> 
-								</goals>
-								</execution> 
-							</executions> 
-						</plugin>
-					-->
-
+					</plugin>			
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>taglist-maven-plugin</artifactId>
 						<version>${maven.taglist.plugin.version}</version>
-					</plugin>
+					</plugin>							
 				</plugins>
 			</build>
 
@@ -1810,21 +1817,17 @@
 						<version>${maven.plugin.plugin.plugin.version}</version>
 					</plugin>
 
-					<!-- Comment gerer un rapport de couverture des tests -->
-					<!-- Code Coverage by Cobertura -->
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>cobertura-maven-plugin</artifactId>
-						<version>${maven.cobertura.plugin.version}</version>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<inherited>false</inherited>
 						<configuration>
+							<!--<outputDirectory>/data/reports</outputDirectory> -->
 							<aggregate>true</aggregate>
-							<formats>
-								<format>xml</format>
-								<format>html</format>
-							</formats>
 						</configuration>
 					</plugin>
-
+										
 					<!-- Add this plug-ins only if you use SCM -->
 
 					<!-- http://maven.apache.org/plugins/maven-changelog-plugin/faq.html -->
@@ -1849,189 +1852,6 @@
 							</reportSet>
 						</reportSets>
 					</plugin>				
-
-					<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
-					<!-- Source code cross-reference -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jxr-plugin</artifactId>
-						<version>${maven.jxr.plugin.version}</version>
-						<configuration>
-							<linkJavadoc>true</linkJavadoc>
-							<aggregate>true</aggregate>
-							<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-						</configuration>
-					</plugin>
-					<!-- Comment gerer un rapport des tags -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>taglist-maven-plugin</artifactId>
-						<version>${maven.taglist.plugin.version}</version>
-						<configuration>
-							<charset>${project.build.sourceEncoding}</charset>
-							<docencoding>${project.build.sourceEncoding}</docencoding>
-							<encoding>${project.build.sourceEncoding}</encoding>
-							<tagListOptions>
-								<tagClasses>
-									<tagClass>
-										<displayName>Todo Work</displayName>
-										<tags>
-											<tag>
-												<matchString>todo</matchString>
-												<matchType>ignoreCase</matchType>
-											</tag>
-											<tag>
-												<matchString>FIXME</matchString>
-												<matchType>exact</matchType>
-											</tag>
-											<tag>
-												<matchString>XXX</matchString>
-												<matchType>exact</matchType>
-											</tag>
-											<tag>
-												<matchString>@deprecated</matchString>
-												<matchType>exact</matchType>
-											</tag>
-										</tags>
-									</tagClass>
-								</tagClasses>
-							</tagListOptions>
-						</configuration>
-					</plugin>
-
-					<!-- When there is JXR cross-refernce output available, it will be linked
-						to in case of test failures -->
-
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>dashboard-maven-plugin</artifactId>
-						<version>${maven.dashboard.plugin.version}</version>
-						<inherited>true</inherited>
-					</plugin>
-					<!--
-					<plugin> 
-						<groupId>org.codehaus.mojo</groupId> 
-						<artifactId>emma-maven-plugin</artifactId>
-						<version>${maven.emma.plugin.version}</version> 
-						<inherited>true</inherited>
-					</plugin>
-					-->						
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-report-plugin</artifactId>
-						<version>${maven.surefire.plugin.version}</version>
-						<inherited>false</inherited>
-						<configuration>
-							<!--<outputDirectory>/data/reports</outputDirectory> -->
-							<aggregate>true</aggregate>
-						</configuration>
-					</plugin>
-
-					<!-- Comment verifier la qualitee code avec checkstyle ou PMD -->
-					<!-- *** GENERATION CHECKSTYLE *** -->
-					<!-- Checkstyle plug-in -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>${maven.checkstyle.plugin.version}</version>
-						<configuration>
-							<linkXref>true</linkXref>
-							<!--<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding> -->
-							<charset>${project.build.sourceEncoding}</charset>
-							<docencoding>${project.build.sourceEncoding}</docencoding>
-							<encoding>${project.build.sourceEncoding}</encoding>
-							<includeTestSourceDirectory>true</includeTestSourceDirectory>
-							<configLocation>checkstyle_regles_nabla_eclipse.xml</configLocation>
-							<propertyExpansion>projectname=project</propertyExpansion>
-							<!-- 
-							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
-							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
-							 -->
-						</configuration>
-					</plugin>
-
-					<!-- *** GENERATION PMD *** -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-pmd-plugin</artifactId>
-						<version>${maven.pmd.plugin.version}</version>
-						<configuration>
-							<linkXref>true</linkXref>
-							<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-							<minimumTokens>100</minimumTokens>
-							<targetJdk>${jdkLevel}</targetJdk>
-							<excludes>
-								<exclude>**/*Bean.java</exclude>
-								<exclude>**/generated/*.java</exclude>
-							</excludes>
-							<excludeRoots>
-								<excludeRoot>${basedir}/target/generated-sources/stubs</excludeRoot>
-							</excludeRoots>
-
-							<rulesets>
-								<!-- <ruleset>project/pmd_regles_nabla.xml</ruleset> -->
-								<ruleset>/rulesets/basic.xml</ruleset>
-								<ruleset>/rulesets/braces.xml</ruleset>
-								<ruleset>/rulesets/clone.xml</ruleset>
-								<ruleset>/rulesets/codesize.xml</ruleset>
-								<ruleset>/rulesets/controversial.xml</ruleset>
-								<ruleset>/rulesets/coupling.xml</ruleset>
-								<ruleset>/rulesets/design.xml</ruleset>
-								<ruleset>/rulesets/finalizers.xml</ruleset>
-								<ruleset>/rulesets/logging-java.xml</ruleset>
-								<ruleset>/rulesets/j2ee.xml</ruleset>
-								<ruleset>/rulesets/javabeans.xml</ruleset>
-								<ruleset>/rulesets/junit.xml</ruleset>
-								<ruleset>/rulesets/naming.xml</ruleset>
-								<ruleset>/rulesets/optimizations.xml</ruleset>
-								<ruleset>/rulesets/strictexception.xml</ruleset>
-								<ruleset>/rulesets/strings.xml</ruleset>
-								<ruleset>/rulesets/sunsecure.xml</ruleset>
-								<ruleset>/rulesets/typeresolution.xml</ruleset>
-								<ruleset>/rulesets/unusedcode.xml</ruleset>
-								-->
-							</rulesets>
-						</configuration>
-					</plugin>
-
-					<!-- *** GENERATION FINDBUGS *** -->
-					<!-- Java Heap Space possible si trop de source a analyser -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>findbugs-maven-plugin</artifactId>
-						<version>${maven.findbugs.plugin.version}</version>
-						<configuration>
-							<findbugsXmlOutput>true</findbugsXmlOutput>
-							<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-							<xmlOutput>true</xmlOutput>
-							<threshold>Normal</threshold>
-							<effort>Default</effort>
-						</configuration>
-					</plugin>
-
-					<!-- Comment analyser les metriques avec JDepend -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>jdepend-maven-plugin</artifactId>
-						<version>${maven.jdepend.plugin.version}</version>
-					</plugin>
-
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>javancss-maven-plugin</artifactId>
-						<version>${maven.javancss.plugin.version}</version>
-					</plugin>
-
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>clirr-maven-plugin</artifactId>
-						<version>${maven.clirr.plugin.version}</version>
-						<configuration>
-							<minSeverity>error</minSeverity>
-						</configuration>
-					</plugin>
 
 					<!-- *** GENERATION JAVADOC *** -->
 					<!-- Javadoc settings -->
@@ -2262,7 +2082,196 @@
 							<show>private</show>
 						</configuration>
 					</plugin>
+					
+					<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
+					<!-- Source code cross-reference -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>${maven.jxr.plugin.version}</version>
+						<configuration>
+							<linkJavadoc>true</linkJavadoc>
+							<aggregate>true</aggregate>
+							<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+						</configuration>
+					</plugin>
+					<!-- Comment gerer un rapport des tags -->
+					<!-- taglist must be after dashboard in order to avoid error -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>taglist-maven-plugin</artifactId>
+						<version>${maven.taglist.plugin.version}</version>
+						<configuration>
+							<charset>${project.build.sourceEncoding}</charset>
+							<docencoding>${project.build.sourceEncoding}</docencoding>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<tagListOptions>
+								<tagClasses>
+									<tagClass>
+										<displayName>Todo Work</displayName>
+										<tags>
+											<tag>
+												<matchString>todo</matchString>
+												<matchType>ignoreCase</matchType>
+											</tag>
+											<tag>
+												<matchString>FIXME</matchString>
+												<matchType>exact</matchType>
+											</tag>
+											<tag>
+												<matchString>XXX</matchString>
+												<matchType>exact</matchType>
+											</tag>
+											<tag>
+												<matchString>@deprecated</matchString>
+												<matchType>exact</matchType>
+											</tag>
+										</tags>
+									</tagClass>
+								</tagClasses>
+							</tagListOptions>
+						</configuration>
+					</plugin>
 
+					<!-- When there is JXR cross-refernce output available, it will be linked
+						to in case of test failures -->
+
+					<!--
+					<plugin> 
+						<groupId>org.codehaus.mojo</groupId> 
+						<artifactId>emma-maven-plugin</artifactId>
+						<version>${maven.emma.plugin.version}</version> 
+						<inherited>true</inherited>
+					</plugin>
+					-->						
+
+					<!-- Comment verifier la qualitee code avec checkstyle ou PMD -->
+					<!-- *** GENERATION CHECKSTYLE *** -->
+					<!-- Checkstyle plug-in -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>${maven.checkstyle.plugin.version}</version>
+						<inherited>true</inherited>
+						<configuration>
+							<linkXref>true</linkXref>
+							<!--<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding> -->
+							<charset>${project.build.sourceEncoding}</charset>
+							<docencoding>${project.build.sourceEncoding}</docencoding>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
+							<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>
+							<headerLocation>project/LICENSE-1.0.txt</headerLocation>
+							<propertyExpansion>projectname=nabla</propertyExpansion>
+							<!-- 
+							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
+							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+							 -->
+						</configuration>														
+					</plugin>
+
+					<!-- *** GENERATION PMD *** -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+						<version>${maven.pmd.plugin.version}</version>
+						<configuration>
+							<linkXref>true</linkXref>
+							<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+							<minimumTokens>100</minimumTokens>
+							<targetJdk>${jdkLevel}</targetJdk>
+							<excludes>
+								<exclude>**/*Bean.java</exclude>
+								<exclude>**/generated/*.java</exclude>
+							</excludes>
+							<excludeRoots>
+								<excludeRoot>${basedir}/target/generated-sources/stubs</excludeRoot>
+							</excludeRoots>
+
+							<rulesets>
+								<!-- <ruleset>project/pmd_regles_nabla.xml</ruleset> -->
+								<ruleset>/rulesets/basic.xml</ruleset>
+								<ruleset>/rulesets/braces.xml</ruleset>
+								<ruleset>/rulesets/clone.xml</ruleset>
+								<ruleset>/rulesets/codesize.xml</ruleset>
+								<ruleset>/rulesets/controversial.xml</ruleset>
+								<ruleset>/rulesets/coupling.xml</ruleset>
+								<ruleset>/rulesets/design.xml</ruleset>
+								<ruleset>/rulesets/finalizers.xml</ruleset>
+								<ruleset>/rulesets/logging-java.xml</ruleset>
+								<ruleset>/rulesets/j2ee.xml</ruleset>
+								<ruleset>/rulesets/javabeans.xml</ruleset>
+								<ruleset>/rulesets/junit.xml</ruleset>
+								<ruleset>/rulesets/naming.xml</ruleset>
+								<ruleset>/rulesets/optimizations.xml</ruleset>
+								<ruleset>/rulesets/strictexception.xml</ruleset>
+								<ruleset>/rulesets/strings.xml</ruleset>
+								<ruleset>/rulesets/sunsecure.xml</ruleset>
+								<ruleset>/rulesets/typeresolution.xml</ruleset>
+								<ruleset>/rulesets/unusedcode.xml</ruleset>
+								-->
+							</rulesets>
+						</configuration>
+					</plugin>
+
+					<!-- *** GENERATION FINDBUGS *** -->
+					<!-- Java Heap Space possible si trop de source a analyser -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+						<version>${maven.findbugs.plugin.version}</version>
+						<configuration>
+							<findbugsXmlOutput>true</findbugsXmlOutput>
+							<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+							<xmlOutput>true</xmlOutput>
+							<threshold>Normal</threshold>
+							<effort>Default</effort>
+						</configuration>
+					</plugin>
+
+					<!-- Comment analyser les metriques avec JDepend -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>jdepend-maven-plugin</artifactId>
+						<version>${maven.jdepend.plugin.version}</version>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>javancss-maven-plugin</artifactId>
+						<version>${maven.javancss.plugin.version}</version>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>clirr-maven-plugin</artifactId>
+						<version>${maven.clirr.plugin.version}</version>
+						<configuration>
+							<minSeverity>error</minSeverity>
+						</configuration>
+					</plugin>
+
+					<!-- Comment gerer un rapport de couverture des tests -->
+					<!-- Code Coverage by Cobertura -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<version>${maven.cobertura.plugin.version}</version>
+						<configuration>
+							<aggregate>true</aggregate>
+							<formats>
+								<format>xml</format>
+								<format>html</format>
+							</formats>
+						</configuration>
+					</plugin>
+					
+					<!-- dashboard must be done at the end in order to have a complete report -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>dashboard-maven-plugin</artifactId>
+						<version>${maven.dashboard.plugin.version}</version>
+						<inherited>true</inherited>
+					</plugin>
 					<!--
 					<plugin> 
 						<groupId>com.atlassian.maven.plugins</groupId>
