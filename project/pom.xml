@@ -941,10 +941,6 @@
 				<!-- Start tools -->
 
 				<!--
-					<plugin> <groupId>com.atlassian.maven.plugins</groupId>
-					<artifactId>maven-upload-plugin</artifactId> <version>1.0</version>
-					</plugin>
-				-->
 				<plugin>
 					<groupId>com.agilejava.docbkx</groupId>
 					<artifactId>docbkx-maven-plugin</artifactId>
@@ -966,6 +962,7 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+				-->
 
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -1011,20 +1008,6 @@
 						<serialwarn>true</serialwarn>
 						<detectLinks>false</detectLinks>
 						<detectOfflineLinks>false</detectOfflineLinks>
-						<!--
-						<links>
-							<link>http://download.oracle.com/javase/6/docs/api/</link>
-							<link>http://download.oracle.com/javaee/1.4/api/</link>
-							<link>http://download.eclipse.org/modeling/mdt/uml2/javadoc/3.1.0/</link>
-							<link>http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/</link>
-							<link>http://jakarta.apache.org/commons/collections/apidocs</link>
-							<link>http://jakarta.apache.org/commons/logging/apidocs/</link>
-							<link>http://www.junit.org/junit/javadoc/</link>
-							<link>http://logging.apache.org/log4j/docs/api/</link>
-							<link>http://jakarta.apache.org/regexp/apidocs/</link>
-							<link>http://velocity.apache.org/engine/devel/apidocs/</link>
-						</links>
-						-->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -1375,19 +1358,6 @@
 							</dependency>
 						</dependencies>
 					</plugin>
-					<!--
-					<plugin>
-						<groupId>com.googlecode</groupId>
-						<artifactId>maven-googlecode-changes-plugin</artifactId>
-						<version>1.0</version>
-						<configuration>
-							<issueTypes>
-								<Defect>fix</Defect>
-								<Enhancement>update</Enhancement>
-							</issueTypes>
-						</configuration>
-					</plugin>
-					-->
 				</plugins>
 			</build>
 			<!-- Reporting configurations are not picked up from pluginManagement
@@ -1398,7 +1368,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-changes-plugin</artifactId>
-						<version>${maven.changes.plugin.version}</version>
+						<version>${maven.changes.plugin.version}</version>					
 						<reportSets>
 							<reportSet>
 								<reports>
@@ -1406,10 +1376,13 @@
 								</reports>
 							</reportSet>
 						</reportSets>
-					</plugin>
+						<configuration>
+							<columnNames>Key,Type,Summary,Assignee,Status,Resolution,Priority,Component</columnNames>
+							<sortColumnNames>Key</sortColumnNames>
+						</configuration>
+					</plugin>	
 
 					<!-- *** GENERATION JAVADOC *** -->
-					<!-- jxr-maven-plugin fait un equivalent -->
 					<!-- Javadoc settings -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -1585,32 +1558,16 @@
 							</tags>
 							<!-- Link to the external online JavaDoc -->
 							<links>
-								<!--
-									<link>http://java.sun.com/javaee/5/docs/api</link>
-									<link>http://java.sun.com/j2se/1.5/docs/api/</link>
-									<link>http://java.sun.com/j2ee/sdk_1.3/techdocs/api/</link>
-								-->
 								<link>http://jakarta.apache.org/commons/beanutils/commons-beanutils-1.7.0/docs/api/</link>
 								<link>http://jakarta.apache.org/commons/collections/api-3.2/</link>
 								<link>http://jakarta.apache.org/commons/io/api-1.2/</link>
 								<link>http://jakarta.apache.org/commons/lang/api-2.1/</link>
 								<link>http://jakarta.apache.org/commons/pool/apidocs/</link>
 								<link>http://logging.apache.org/log4j/docs/api/</link>
-								<!--<link>http://junit.sourceforge.net/javadoc/</link> -->
 								<link>http://jakarta.apache.org/commons/dbcp/apidocs/</link>
 								<link>http://jakarta.apache.org/commons/fileupload/apidocs/</link>
 								<link>http://jakarta.apache.org/commons/logging/apidocs/</link>
 								<link>http://jakarta.apache.org/commons/pool/apidocs/</link>
-								<!--
-									<link>http://jakarta.apache.org/commons/httpclient/apidocs/</link>
-									<link>http://jakarta.apache.org/commons/logging/commons-logging-1.0.4/docs/apidocs/</link>
-									<link>http://www.junit.org/junit/javadoc/</link>
-									<link>http://static.springframework.org/spring-ldap/docs/1.2.1/api/spring-ldap/</link>
-									<link>http://static.springframework.org/spring/docs/2.5.x/api/</link>
-									<link>http://www.junit.org/junit/javadoc/</link>
-									<link>http://jakarta.apache.org/regexp/apidocs/</link>
-									<link>http://jakarta.apache.org/velocity/api/</link>
-								-->
 							</links>
 							<detectOfflineLinks>false</detectOfflineLinks>
 						</configuration>
@@ -1661,7 +1618,7 @@
 						<version>${maven.emma.plugin.version}</version>
 						<inherited>true</inherited>
 					</plugin>
-					-->					
+					-->				
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-report-plugin</artifactId>
@@ -1724,6 +1681,7 @@
 							<username>usr</username>
 							<password>usr</password>
 							<configLocation>project/myDashboardConfig.xml</configLocation>
+							<keepVersionAsDiscriminantCriteria>false</keepVersionAsDiscriminantCriteria>
 						</configuration>
 						<dependencies>
 					<!-- http://db.apache.org/derby/ -->
@@ -1752,11 +1710,7 @@
 								<version>${jdbc.derby.version}</version>
 								<scope>compile</scope>
 							</dependency>
-							<!-- <dependency> <groupId>aspectj</groupId> <artifactId>aspectjrt</artifactId>
-								<version>${aspectj.version}</version> <scope>compile</scope> </dependency>
-								<dependency> <groupId>org.springframework</groupId> <artifactId>spring-aspects</artifactId>
-								<version>2.0</version> <scope>compile</scope> </dependency> -->
-					<!-- to override commons-logging in Hibernate library dependency -->
+					                <!-- to override commons-logging in Hibernate library dependency -->
 							<dependency>
 								<groupId>commons-logging</groupId>
 								<artifactId>commons-logging</artifactId>
@@ -1837,17 +1791,6 @@
 								</execution> 
 							</executions> 
 						</plugin>
-
-						<plugin> <groupId>com.atlassian.maven.plugins</groupId>
-						<artifactId>maven-upload-plugin</artifactId>
-						<version>1.0</version> <executions> <execution>
-						<id>upload-javadoc</id> <phase>deploy</phase> <goals>
-						<goal>upload</goal> </goals> <configuration>
-						<uploadResourceSrc>target/site/apidocs/*</uploadResourceSrc>
-						<uploadResourceDest>${pom.artifactId}/${project.version}</uploadResourceDest>
-						<uploadServerId>atlassian-documentation</uploadServerId>
-						<uploadUrl>dav:https://docs.atlassian.com/</uploadUrl>
-						</configuration> </execution> </executions> </plugin>
 					-->
 
 					<plugin>
@@ -1874,6 +1817,7 @@
 						<artifactId>cobertura-maven-plugin</artifactId>
 						<version>${maven.cobertura.plugin.version}</version>
 						<configuration>
+							<aggregate>true</aggregate>
 							<formats>
 								<format>xml</format>
 								<format>html</format>
@@ -1882,25 +1826,7 @@
 					</plugin>
 
 					<!-- Add this plug-ins only if you use SCM -->
-<!--
-					<plugin>
-						<inherited>false</inherited>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-changes-plugin</artifactId>
-						<version>${maven.changes.plugin.version}</version>
-						<reportSets>
-							<reportSet>
-								<reports>
-									<report>changes-report</report>
-								</reports>
-							</reportSet>
-						</reportSets>
-						<configuration>
-							<columnNames>Key,Type,Summary,Assignee,Status,Resolution,Priority,Component</columnNames>
-							<sortColumnNames>Key</sortColumnNames>
-						</configuration>
-					</plugin>
--->
+
 					<!-- http://maven.apache.org/plugins/maven-changelog-plugin/faq.html -->
 					<!-- Comment connaitre l activitee d'un projet -->
 					<!-- Developer activity (last 6 months) -->
@@ -1922,12 +1848,7 @@
 								</reports>
 							</reportSet>
 						</reportSets>
-					</plugin>
-
-					<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-changes-plugin</artifactId>
-						<version>${maven.changes.plugin.version}</version> <reportSets> <reportSet>
-						<reports> <report>changes-report</report> </reports> </reportSet> </reportSets>
-						</plugin> -->
+					</plugin>				
 
 					<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
 					<!-- Source code cross-reference -->
@@ -1938,7 +1859,6 @@
 						<configuration>
 							<linkJavadoc>true</linkJavadoc>
 							<aggregate>true</aggregate>
-							<!--<javadocDir>reports/apidocs</javadocDir> <javadocDir>${deploy.dir}/${product.name}/apidocs/</javadocDir> -->
 							<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
 							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 						</configuration>
@@ -1989,9 +1909,14 @@
 						<version>${maven.dashboard.plugin.version}</version>
 						<inherited>true</inherited>
 					</plugin>
-					<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>emma-maven-plugin</artifactId>
-						<version>${maven.emma.plugin.version}</version> <inherited>true</inherited>
-						</plugin> -->
+					<!--
+					<plugin> 
+						<groupId>org.codehaus.mojo</groupId> 
+						<artifactId>emma-maven-plugin</artifactId>
+						<version>${maven.emma.plugin.version}</version> 
+						<inherited>true</inherited>
+					</plugin>
+					-->						
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2018,9 +1943,12 @@
 							<docencoding>${project.build.sourceEncoding}</docencoding>
 							<encoding>${project.build.sourceEncoding}</encoding>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
-							<!-- <configLocation>/project/checkstyle_regles_nabla_eclipse.xml</configLocation> -->
+							<configLocation>/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
+							<propertyExpansion>projectname=project</propertyExpansion>
+							<!-- 
 							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
 							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+							 -->
 						</configuration>
 					</plugin>
 
@@ -2106,7 +2034,6 @@
 					</plugin>
 
 					<!-- *** GENERATION JAVADOC *** -->
-					<!-- jxr-maven-plugin fait un equivalent -->
 					<!-- Javadoc settings -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2117,17 +2044,24 @@
 								<id>non-aggregate</id>
 								<configuration>
 									<!-- Specific configuration for the non aggregate report -->
-
+              								<doctitle>Nabla API for ${project.name} ${project.version}</doctitle>
+              								<windowtitle>Nabla API for ${project.name} ${project.version}</windowtitle>
+              								<testDoctitle>Nabla Test API for ${project.name} ${project.version}</testDoctitle>
+              								<testWindowtitle>Nabla Test API for ${project.name} ${project.version}</testWindowtitle>              								
 								</configuration>
 								<reports>
 									<report>javadoc</report>
+									<report>test-javadoc</report>
 								</reports>
 							</reportSet>
-
-
+							
 							<reportSet>
 								<id>aggregate</id>
 								<configuration>
+              								<doctitle>Nabla Aggregate API for ${project.name} ${project.version}</doctitle>
+              								<windowtitle>Nabla Aggregate API for ${project.name} ${project.version}</windowtitle>
+              								<testDoctitle>Nabla Aggregate Test API for ${project.name} ${project.version}</testDoctitle>
+              								<testWindowtitle>Nabla Aggregate Test API for ${project.name} ${project.version}</testWindowtitle>								
 									<!-- Specific configuration for the aggregate report -->
 									<tags>
 										<tag>
@@ -2141,66 +2075,35 @@
 											<head>version interne</head>
 										</tag>
 									</tags>
-									<!--<detectLinks/> -->
+									<!--<detectLinks/> 
+									<detectOfflineLinks>false</detectOfflineLinks>
+									-->
 									<!-- Link to the external online JavaDoc -->
+									<!--
 									<links>
-										<!--
-											<link>http://java.sun.com/javaee/5/docs/api</link>
-											<link>http://java.sun.com/j2se/1.5/docs/api/</link>
-											<link>http://java.sun.com/j2ee/sdk_1.3/techdocs/api/</link>
-										-->
 										<link>http://jakarta.apache.org/commons/beanutils/commons-beanutils-1.7.0/docs/api/</link>
 										<link>http://jakarta.apache.org/commons/collections/api-3.2/</link>
 										<link>http://jakarta.apache.org/commons/io/api-1.2/</link>
 										<link>http://jakarta.apache.org/commons/lang/api-2.1/</link>
-										<!--
-											<link>http://jakarta.apache.org/commons/logging/commons-logging-1.0.4/docs/apidocs/</link>
-										-->
 										<link>http://jakarta.apache.org/commons/pool/apidocs/</link>
 										<link>http://logging.apache.org/log4j/docs/api/</link>
-										<!--<link>http://junit.sourceforge.net/javadoc/</link> -->
 										<link>http://jakarta.apache.org/commons/dbcp/apidocs/</link>
 										<link>http://jakarta.apache.org/commons/fileupload/apidocs/</link>
-										<!--
-											<link>http://jakarta.apache.org/commons/httpclient/apidocs/</link>
-										-->
 										<link>http://jakarta.apache.org/commons/logging/apidocs/</link>
 										<link>http://jakarta.apache.org/commons/pool/apidocs/</link>
-										<!--
-											<link>http://www.junit.org/junit/javadoc/</link>
-											<link>http://static.springframework.org/spring-ldap/docs/1.2.1/api/spring-ldap/</link>
-											<link>http://static.springframework.org/spring/docs/2.5.x/api/</link>
-											<link>http://www.junit.org/junit/javadoc/</link>
-											<link>http://jakarta.apache.org/regexp/apidocs/</link>
-											<link>http://jakarta.apache.org/velocity/api/</link>
-										-->
 									</links>
-									<detectOfflineLinks>false</detectOfflineLinks>
+									-->
 								</configuration>
 								<reports>
 									<report>aggregate</report>
-									<!--<report>javadoc</report> -->
+									<report>test-aggregate</report>									
 								</reports>
 							</reportSet>
-							<!-- <reportSet> <id>doccheck</id> <configuration> <doclet>com.sun.tools.doclets.doccheck.DocCheck</doclet> -->
-							<!-- <docletPath>/path/to/doccheck.jar</docletPath> -->
-							<!-- <docletArtifact> <groupId>com.sun.tools.doclets</groupId> <artifactId>doccheck</artifactId>
-								<version>1.2b2</version> </docletArtifact> <additionalparam> -d ${project.build.directory}/site/doccheck
-								</additionalparam> -->
-							<!-- Other dir than apidocs -->
-							<!-- <destDir>doccheck</destDir> -->
-							<!-- For the project-reports page -->
-							<!-- <name>DocCheck</name> <description>DocCheck documentation.</description>
-								</configuration> <reports> <report>javadoc</report> </reports> </reportSet> -->
 						</reportSets>
 						<configuration>
 							<!-- Default configuration for all reports -->
-							<!-- <detectLinks/> <sourcepath>${basedir}/src/main/java;${basedir}/${maven.build.generated}/main/java;${basedir}/target/generated-sources/main/java</sourcepath> -->
-							<!-- <excludePackageNames>com.mycompany.myapp.package1.*:com.mycompany.myapp.package2:*.util.*</excludePackageNames> -->
 							<excludePackageNames>*.ejb.*</excludePackageNames>
 
-							<!-- <source>${jdkLevel}</source> aggregate all when built from the
-								top-level directory <aggregate>true</aggregate> -->
 							<groups>
 								<group>
 									<title>Database</title>
@@ -2341,6 +2244,9 @@
 							<failOnError>false</failOnError>
 							<linksource>true</linksource>
 							<serialwarn>true</serialwarn>
+							<detectLinks>true</detectLinks>
+							<detectOfflineLinks>true</detectOfflineLinks>							
+							
 							<charset>${project.build.sourceEncoding}</charset>
 							<docencoding>${project.build.sourceEncoding}</docencoding>
 							<encoding>${project.build.sourceEncoding}</encoding>
@@ -2353,38 +2259,10 @@
 								<version>5.1</version>
 							</docletArtifact>
 							<additionalparam>-views</additionalparam>
-							<!--<destDir>target/uml</destDir> -->
 							<show>private</show>
-							<!-- <useStandardDocletOptions>true</useStandardDocletOptions> -->
-							<!-- <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet> <docletArtifact>
-								<groupId>gr.spinellis</groupId> <artifactId>UmlGraph</artifactId> <version>4.6</version>
-								</docletArtifact> -->
-							<!-- http://maven-plugins.sourceforge.net/maven-dotuml-plugin/properties.html -->
-
-							<!-- <additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
-								com.rfs.wffield.* -collpackages java.util.* -collpackages com.reuters.product.logical.*
-								-collpackages com.reuters.product.utils.* -qualify -postfixpackage -nodefontsize
-								9 -nodefontpackagesize 7 -outputencoding utf8 </additionalparam> -->
-							<!-- Police ariali.ttf can be found at : C:\Windows\Fonts C:\Windows\winsxs\amd64_microsoft-windows-font-truetype-arial_31bf3856ad364e35_6.1.7600.16385_none_ce7861d6c70c1a93 -->
-							<!-- -all -horizontal -attributes -operations -constructors -visibility
-								-types -enumerations -enumconstants -->
-							<!-- -nodefontname "Times New Roman Bold" -->
 						</configuration>
 					</plugin>
 
-					<!--
-						<plugin> <groupId>net.objectlab</groupId>
-						<artifactId>mvn-qalab-plugin</artifactId>
-						<version>${maven.qalab.plugin.version}</version> <reportSets>
-						<reportSet> <reports> <report>report-merge-chart</report>
-						<report>report-movers-all</report> </reports> </reportSet>
-						</reportSets> <configuration> <dateOnly>true</dateOnly>
-						<startTimeHoursOffset>1</startTimeHoursOffset> </configuration>
-						</plugin> <plugin> <groupId>net.objectlab</groupId>
-						<artifactId>maven-qalab-plugin</artifactId> <version>2.1</version>
-						<reportSets> <reportSet> <reports> <report>report</report>
-						</reports> </reportSet> </reportSets> </plugin>
-					-->
 					<!--
 					<plugin> 
 						<groupId>com.atlassian.maven.plugins</groupId>

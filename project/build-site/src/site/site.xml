@@ -11,7 +11,8 @@
     </bannerRight>
     <body>
         <links>
-            <item name="Nabla" href="http://code.google.com/p/alban" />
+            <item name="Nabla" href="http://www.maven.nabla.mobi/project" />
+            <item name="Nabla Code" href="http://code.google.com/p/alban" />
             <item name="Apache" href="http://www.apache.org/" />
             <item name="Maven 2" href="http://maven.apache.org/maven2/"/>
 	    <!--<item name="FR" href="/fr/index.html" />-->

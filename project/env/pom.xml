@@ -17,11 +17,11 @@
 		<name>Nabla Software</name>
 		<url>http://code.google.com/p/alban</url>
 	</organization>
-<!--
+
 	<prerequisites>
-		<maven>2.1.1</maven>
+		<maven>2.2.0</maven>
 	</prerequisites>
--->	
+	
 	<issueManagement>
 		<!--
 		<system>bugzilla</system>
