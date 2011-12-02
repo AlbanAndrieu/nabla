@@ -2096,8 +2096,9 @@
 							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 						</configuration>
 					</plugin>
+							
 					<!-- Comment gerer un rapport des tags -->
-					<!-- taglist must be after dashboard in order to avoid error -->
+					<!-- taglist must be after dashboard and jxr in order to avoid error -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>taglist-maven-plugin</artifactId>
@@ -2133,7 +2134,6 @@
 							</tagListOptions>
 						</configuration>
 					</plugin>
-
 					<!-- When there is JXR cross-refernce output available, it will be linked
 						to in case of test failures -->
 
@@ -2264,7 +2264,7 @@
 							</formats>
 						</configuration>
 					</plugin>
-					
+													
 					<!-- dashboard must be done at the end in order to have a complete report -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -2272,6 +2272,7 @@
 						<version>${maven.dashboard.plugin.version}</version>
 						<inherited>true</inherited>
 					</plugin>
+
 					<!--
 					<plugin> 
 						<groupId>com.atlassian.maven.plugins</groupId>
