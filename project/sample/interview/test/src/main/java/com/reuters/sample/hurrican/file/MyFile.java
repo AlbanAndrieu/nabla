@@ -38,6 +38,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 import org.apache.log4j.Logger;
 
@@ -55,12 +58,38 @@ public final class MyFile implements IMyFile {
     /** @serial */
     private final String                  path;
 
+    public void addURL(final URL url) throws Exception {
+        final URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        final Class clazz = URLClassLoader.class;
+
+        // Use reflection
+        final Method method = clazz.getDeclaredMethod("addURL", new Class[] { URL.class });
+        method.setAccessible(true);
+        method.invoke(classLoader, new Object[] { url });
+    }
+
     /**
      * @param aUrl ask for the file name only (path will be taken from eclipse default target classes directory) example test.txt
      */
     public MyFile(final String aUrl) {
         // this(aUrl, System.getProperty("user.dir") + File.separator + "target-eclipse" + File.separator + "classes" + File.separator + aUrl);
-        this(aUrl, System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + aUrl);
+        this(aUrl, System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + aUrl);
+        // this(aUrl, aUrl);
+
+        // try {
+        // this.addURL(new File("test" + File.separator + "resources").toURL());
+        // } catch (final MalformedURLException e) {
+        // if (MyFile.LOGGER.isDebugEnabled()) {
+        // MyFile.LOGGER.debug(e);
+        // }
+        // } catch (final Exception e) {
+        // if (MyFile.LOGGER.isDebugEnabled()) {
+        // MyFile.LOGGER.debug(e);
+        // }
+        // }
+        //
+        // Thread.currentThread().getContextClassLoader().getResourceAsStream(aUrl);
+        MyFile.LOGGER.info("class path=" + System.getProperty("java.class.path"));
 
     }
 

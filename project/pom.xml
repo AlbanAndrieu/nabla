@@ -1632,13 +1632,13 @@
 						<version>${maven.cobertura.plugin.version}</version>
 						<configuration>
 							<check>
-								<branchRate>85</branchRate>
-								<lineRate>85</lineRate>
+								<branchRate>55</branchRate>
+								<lineRate>55</lineRate>
 								<haltOnFailure>false</haltOnFailure>
-								<totalBranchRate>85</totalBranchRate>
-								<totalLineRate>85</totalLineRate>
-								<packageLineRate>85</packageLineRate>
-								<packageBranchRate>85</packageBranchRate>
+								<totalBranchRate>55</totalBranchRate>
+								<totalLineRate>55</totalLineRate>
+								<packageLineRate>55</packageLineRate>
+								<packageBranchRate>55</packageBranchRate>
 								<regexes>
 									<regex>
 										<pattern>${application.package}.*</pattern>
@@ -1646,7 +1646,7 @@
 										<lineRate>80</lineRate>
 									</regex>
 									<regex>
-										<pattern>com.reuters.tradeaccess.mask.*</pattern>
+										<pattern>com.reuters.sample.*</pattern>
 										<branchRate>40</branchRate>
 										<lineRate>30</lineRate>
 									</regex>
@@ -1943,7 +1943,7 @@
 							<docencoding>${project.build.sourceEncoding}</docencoding>
 							<encoding>${project.build.sourceEncoding}</encoding>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
-							<configLocation>/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
+							<configLocation>checkstyle_regles_nabla_eclipse.xml</configLocation>
 							<propertyExpansion>projectname=project</propertyExpansion>
 							<!-- 
 							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
