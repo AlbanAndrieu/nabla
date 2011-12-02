@@ -61,8 +61,8 @@
 	</ciManagement>
 	<!--http://blog.fastconnect.fr/?p=275-->
 	<scm>
-                <connection>scm:svn:http://alban.googlecode.com/svn</connection>
-                <developerConnection>scm:svn:https://alban.googlecode.com/svn</developerConnection>
+                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}</connection>
+                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}</developerConnection>
                 <url>https://alban.googlecode.com/svn/${project.svn.path}</url>	
                 <!--
 		<connection>scm:${scm.base}/users/${project.svn.path}/</connection>
@@ -583,7 +583,7 @@
 				
 		<maven.tomcat.plugin.version>1.0-beta-1</maven.tomcat.plugin.version>				
 		<maven.apache.rat.plugin.version>0.7</maven.apache.rat.plugin.version>
-		<maven.cobertura.plugin.version>2.4</maven.cobertura.plugin.version>
+		<maven.cobertura.plugin.version>2.5.1</maven.cobertura.plugin.version>
 		<maven.release.plugin.version>2.1</maven.release.plugin.version>
 		<maven.antrun.plugin.version>1.6</maven.antrun.plugin.version>
 		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
@@ -606,7 +606,7 @@
 		<maven.javancss.plugin.version>2.0</maven.javancss.plugin.version>
 		<maven.jdepend.plugin.version>2.0-beta-2</maven.jdepend.plugin.version>
 		<maven.changes.plugin.version>2.6</maven.changes.plugin.version>
-		<maven.dashboard.plugin.version>1.0-SNAPSHOT</maven.dashboard.plugin.version>
+		<maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
 		<maven.native2ascii.maven.plugin.version>1.0-alpha-1</maven.native2ascii.maven.plugin.version>
 		<maven.archetype.plugin.version>2.0</maven.archetype.plugin.version>
 		<maven.deploy.plugin.version>2.5</maven.deploy.plugin.version>
