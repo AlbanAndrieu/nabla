@@ -31,23 +31,21 @@
  *
  * License 1.0
  */
-package com.reuters.sample.hurrican;
+package com.nabla.project.hurrican;
 
-import com.reuters.sample.hurrican.file.FileHelper;
-import com.reuters.sample.hurrican.file.IMyFile;
-import com.reuters.sample.hurrican.file.MyFile;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.nabla.project.hurrican.file.FileHelper;
+import com.nabla.project.hurrican.file.IMyFile;
+import com.nabla.project.hurrican.file.MyFile;
 
 /**
  * DOCUMENT ME!

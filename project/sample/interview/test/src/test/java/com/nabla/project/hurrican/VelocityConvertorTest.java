@@ -31,12 +31,11 @@
  *
  * License 1.0
  */
-package com.reuters.sample.hurrican;
+package com.nabla.project.hurrican;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
-
 
 /**
  * DOCUMENT ME!

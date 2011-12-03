@@ -31,14 +31,13 @@
  *
  * License 1.0
  */
-package com.reuters.sample.foobar;
+package com.nabla.project.foobar;
+
+import java.math.BigDecimal;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
-
-import java.math.BigDecimal;
-
 
 /**
  * DOCUMENT ME!

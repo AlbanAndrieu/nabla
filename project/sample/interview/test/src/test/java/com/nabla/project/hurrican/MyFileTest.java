@@ -31,23 +31,21 @@
  *
  * License 1.0
  */
-package com.reuters.sample.hurrican;
-
-import com.reuters.sample.hurrican.file.FileHelper;
-import com.reuters.sample.hurrican.file.IMyFile;
-import com.reuters.sample.hurrican.file.MyFile;
-
-import junit.framework.Assert;
-
-import org.junit.Test;
-
-import org.mockito.Mockito;
+package com.nabla.project.hurrican;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import junit.framework.Assert;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import com.nabla.project.hurrican.file.FileHelper;
+import com.nabla.project.hurrican.file.IMyFile;
+import com.nabla.project.hurrican.file.MyFile;
 
 /**
  * DOCUMENT ME!
@@ -121,8 +119,7 @@ public class MyFileTest {
      * @throws Exception
      */
     @Test
-    public final void testFileReadBufferedReaderFileNotFoundException()
-        throws Exception {
+    public final void testFileReadBufferedReaderFileNotFoundException() throws Exception {
 
         final MyFile input = new MyFile("NoFile" + FileHelper.DEFAULT_FILE_NAME_TXT);
 
@@ -136,8 +133,7 @@ public class MyFileTest {
      * @throws Exception
      */
     @Test(expected = Exception.class)
-    public final void testFileReadBufferedReaderException()
-                                                   throws Exception {
+    public final void testFileReadBufferedReaderException() throws Exception {
 
         final MyFile input = new MyFile("");
 
@@ -161,8 +157,7 @@ public class MyFileTest {
      * @throws IOException DOCUMENT ME!
      */
     @Test
-    public final void testFileReadBufferedReaderCloseCatched()
-                                                      throws IOException {
+    public final void testFileReadBufferedReaderCloseCatched() throws IOException {
 
         final BufferedReader dataIn = Mockito.mock(BufferedReader.class);
 
@@ -201,8 +196,7 @@ public class MyFileTest {
      * @throws IOException DOCUMENT ME!
      */
     @Test(expected = IOException.class)
-    public final void testFileReadBufferedReaderClose()
-                                               throws IOException {
+    public final void testFileReadBufferedReaderClose() throws IOException {
 
         final BufferedReader dataIn = Mockito.mock(BufferedReader.class);
 

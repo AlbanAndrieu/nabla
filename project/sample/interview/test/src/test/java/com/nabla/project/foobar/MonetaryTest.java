@@ -31,25 +31,59 @@
  *
  * License 1.0
  */
-package com.reuters.sample.string;
+package com.nabla.project.foobar;
 
+import java.math.BigDecimal;
+
+import junit.framework.Assert;
+
+import org.junit.Test;
 
 /**
  * DOCUMENT ME!
  *
  * @author $Author$
  * @version $Revision$
+ *
  * @since $Date$
  */
-public interface Dictionary {
+public class MonetaryTest {
+
+    private static final int RIGHT_ITEMS = 20;
 
     /**
-     * Translate Human to Martian.
-     *
-     * @param aWord any word
-     *
-     * @return a string
+     * DOCUMENT ME!
      */
-    String translate(String aWord);
+    @Test
+    public final void test() {
+
+        final Shelf shelf = new Shelf(Monetary.MAX_ITEMS);
+
+        System.out.println(shelf);
+
+        final Pocket pocket = new Pocket(Monetary.DEFAULT_POCKET);
+
+        Assert.assertFalse(pocket.solve(shelf));
+
+        System.out.println(pocket);
+
+        System.out.println("Routine stopped at " + pocket.getItem() + " items");
+        Assert.assertEquals(MonetaryTest.RIGHT_ITEMS, pocket.getItem());
+
+        final BigDecimal amountSpendInPocket = Monetary.DEFAULT_POCKET.subtract(pocket.getRemaining());
+
+        System.out.println("So for a shelf of " + pocket.getItem() + " items, we must have the somme amount spend in pocket " + amountSpendInPocket);
+
+        // We are trying a shelf of 20 items
+        final Shelf exactShelf = new Shelf(pocket.getItem());
+
+        System.out.println(exactShelf);
+
+        Assert.assertEquals(pocket.getItem(), exactShelf.size());
+        Assert.assertEquals(amountSpendInPocket, exactShelf.sum());
+
+        System.out.println("Amount spend in routine is " + amountSpendInPocket + " must equals amount in a shelf of " + pocket.getItem() + " : " + exactShelf.sum());
+
+    }
 
 }

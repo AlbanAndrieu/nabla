@@ -31,13 +31,12 @@
  *
  * License 1.0
  */
-package com.reuters.sample.foobar;
-
-import java.math.BigDecimal;
+package com.nabla.project.string;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * DOCUMENT ME!
@@ -47,22 +46,19 @@ import org.junit.Test;
  *
  * @since $Date$
  */
-public class FoobarTest {
+public class HumanTest {
 
     /**
-     * Must use BigDecimal method instead.
-     *
-     * @param aPrice a price
-     *
-     * @return the Rounded Price
+     * DOCUMENT ME!
      */
-    @Deprecated
-    public static float round(float aPrice) {
+    @Test
+    public final void testMock() {
 
-        aPrice *= 100;
-        aPrice = (float) Math.round(aPrice) / 100;
+        final Dictionary human = Mockito.mock(Dictionary.class);
 
-        return aPrice;
+        Mockito.when(human.translate("foobar")).thenReturn("raboof");
+        Assert.assertEquals("raboof", human.translate("foobar"));
+        Mockito.verify(human).translate("foobar");
 
     }
 
@@ -70,66 +66,12 @@ public class FoobarTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void roundFloat() {
+    public final void test() {
 
-        float f = 1.234f;
+        final Dictionary human = new Human();
+        final String martian = human.translate("foobar");
 
-        System.out.println(f);
-        f *= 100;
-        System.out.println(f + "-" + Math.round(f));
-        f = (float) Math.round(f) / 100;
-        System.out.println(f);
-        Assert.assertEquals(1.23f, f);
-
-    }
-
-    /**
-     * DOCUMENT ME!
-     */
-    @Test
-    public final void testRoundFloat() {
-
-        final float f = 1.234f;
-        final float price = FoobarTest.round(f);
-
-        Assert.assertEquals(1.23f, price);
-
-    }
-
-    /**
-     * DOCUMENT ME!
-     */
-    @Test
-    public final void testRoundBigDecimal() {
-
-        final BigDecimal f = new BigDecimal("1.234");
-        final BigDecimal price = Foobar.round(f);
-
-        Assert.assertEquals("1.23", price.toString());
-
-    }
-
-    /**
-     * DOCUMENT ME!
-     */
-    @Test
-    public final void testAddPercent() {
-
-        final Foobar Foobar1 = new Foobar(BigDecimal.ONE);
-
-        Assert.assertEquals(1f, Foobar1.getPrice().floatValue());
-
-        final Foobar Foobar2 = new Foobar(Foobar.addPercent(Foobar1.getPrice()));
-
-        Assert.assertEquals(1.2f, Foobar2.getPrice().floatValue());
-
-        final Foobar Foobar3 = new Foobar(Foobar.addPercent(Foobar2.getPrice()));
-
-        Assert.assertEquals(1.44f, Foobar3.getPrice().floatValue());
-
-        final Foobar Foobar4 = new Foobar(Foobar.addPercent(Foobar3.getPrice()));
-
-        Assert.assertEquals(1.73f, Foobar4.getPrice().floatValue());
+        Assert.assertEquals("raboof", martian);
 
     }
 
