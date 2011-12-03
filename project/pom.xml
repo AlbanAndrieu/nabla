@@ -21,6 +21,7 @@
 		<!--<module>env</module> -->
 		<module>build-tools</module>
 		<module>sample</module>
+		<module>nabla</module>
 	</modules>
 
 	<!-- ================= Default Properties ================= -->
