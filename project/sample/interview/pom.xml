@@ -19,5 +19,6 @@
 	<description>Sample project for easily doing interview test</description>
 	<modules>
 		<module>test</module>
+		<module>javascript</module>
 	</modules>
 </project>
