@@ -26,8 +26,6 @@
 
 	<!-- ================= Default Properties ================= -->
 	<properties>
-		<andromda.version>3.4-SNAPSHOT</andromda.version>
-		<source.version>${jdkLevel}</source.version>
 		<compiler.fork>false</compiler.fork>
 
 		<downloadSources>true</downloadSources>
@@ -62,7 +60,7 @@
 		<product.load.number>01</product.load.number>
 		<product.patch.number>000</product.patch.number>
 		<product.patch.version>${product.major.version}.${product.status.number}.${product.load.number}${product.patch.number}</product.patch.version>
-		<product.dependencies>${product.name} ${kplus.patch.version}</product.dependencies>
+		<product.dependencies>${product.name} ${product.patch.version}</product.dependencies>
 		<product.push.number>01</product.push.number>
 		<product.push.version>${product.patch.version}.${product.push.number}</product.push.version>
 		<product.version>${product.major.version}${product.push.version}</product.version>
@@ -73,6 +71,7 @@
 		<product.thirdparty>${env.THIRDPARTY_ROOT}</product.thirdparty> <!-- used for dtd in mda -->
 
 		<!-- START overrided in cargo profile -->
+		<server.domain>nabla</server.domain>
 		<!-- START INFO USE BY MDA -->
 		<server.home>${jboss.home}</server.home>
 		<server.name>${product.name}</server.name>
@@ -82,50 +81,15 @@
 		<webservice.host>localhost</webservice.host>
 		<webservice.port>8180</webservice.port>
 		<!-- END INFO USE BY MDA -->
+		<!--
 		<cargo.container>jboss4x</cargo.container>
 		<cargo.container.home>${env.JBOSS_HOME}</cargo.container.home>
 		<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
 		<cargo.host>localhost</cargo.host>
 		<cargo.port>8180</cargo.port>
 		<cargo.wait>false</cargo.wait>
-		<!-- END overrided in cargo profile -->
-
-		<!-- START overrided in uml profile -->
-		<!--
-		<uml.type>uml14</uml.type>
-		<repo.type>netBeansMDR</repo.type>
-		<profile.type>xml.zip</profile.type>
-		<model.uri>jar:file:${src.dir}/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</model.uri>
 		-->
-		<!-- END overrided in uml profile -->
-
-		<!-- START overrided in Database profile -->
-		<database>oracle</database>
-		<database.name>ktp30b</database.name>
-		<!-- Database settings -->
-		<dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
-		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-		<dbunit.schema>KTP30B</dbunit.schema>
-		<!-- Make sure to capitalize the schema name -->
-		<sql.mappings>Oracle9i</sql.mappings>
-		<jdbc.exception.sorter>org.hibernate.dialect.Oracle10gDialect</jdbc.exception.sorter>
-		<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
-		<jdbc.groupId>com.oracle</jdbc.groupId>
-		<jdbc.artifactId>ojdbc14</jdbc.artifactId>
-		<jdbc.client.artifactId>ojdbc14</jdbc.client.artifactId>
-		<jdbc.version>10.2.0.2.0</jdbc.version>
-		<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}.jar</jdbc.driver.jar>
-		<jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
-
-		<database.host>localhost</database.host>
-		<database.port>1521</database.port>
-		<jdbc.url><![CDATA[jdbc:oracle:thin:@${database.host}:${database.port}:xe]]></jdbc.url>
-		<jdbc.username>ktp30b</jdbc.username>
-		<jdbc.password>ktp30b</jdbc.password>
-		<!-- END overrided in Database profile -->
-
-		<mda.username>${product.username}</mda.username>
-		<mda.workspace>${mda.username}${product.major.version}</mda.workspace>
+		<!-- END overrided in cargo profile -->
 
 		<unpack>false</unpack>
 		<lumbermill.port>4445</lumbermill.port>
@@ -884,14 +848,18 @@
 						<wait>${cargo.wait}</wait>
 						<container>
 							<containerId>${cargo.container}</containerId>
+							<type>installed</type>
 							<home>${cargo.container.home}</home>
+							<!--
 							<zipUrlInstaller>
 								<url>${cargo.container.url}</url>
 								<installDir>${installDir}</installDir>
 							</zipUrlInstaller>
+							-->
 						</container>
 						<configuration>
-							<home>${project.build.directory}/${cargo.container}/container</home>
+							<type>standalone</type>
+							<!--<home>${project.build.directory}/${cargo.container}/container</home>-->
 							<properties>
 								<cargo.hostname>${cargo.host}</cargo.hostname>
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
@@ -1003,66 +971,12 @@
 					<configuration>
 						<show>package</show>
 						<version>true</version>
-						<javadocVersion>${source.version}</javadocVersion>
+						<javadocVersion>${jdkLevel}</javadocVersion>
 						<failOnError>false</failOnError>
 						<linksource>true</linksource>
 						<serialwarn>true</serialwarn>
 						<detectLinks>false</detectLinks>
 						<detectOfflineLinks>false</detectOfflineLinks>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.andromda.maven.plugins</groupId>
-					<artifactId>andromda-multi-source-plugin</artifactId>
-					<version>${andromda.version}</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>add-source</goal>
-							</goals>
-							<configuration>
-								<sourceDirectories>
-									<directory>${maven.build.src}/main/java</directory>
-									<directory>${maven.build.src}/main/resources</directory>
-									<directory>${maven.build.src}/main/dictionaries</directory>
-									<directory>${maven.build.src}/main/xml</directory>
-								</sourceDirectories>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.andromda.maven.plugins</groupId>
-					<artifactId>andromda-maven-plugin</artifactId>
-					<version>${andromda.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.andromda.maven.plugins</groupId>
-					<artifactId>andromdapp-maven-plugin</artifactId>
-					<version>${andromda.version}</version>
-					<!--
-						provides the injection of the script wrapper support into the
-						class files (this should only be done when developing locally),
-						uncomment this executions element to enable <executions>
-						<execution> <id>instrument-scripts</id> <goals>
-						<goal>instrument-scripts</goal> </goals> </execution>
-						</executions>
-					-->
-					<configuration>
-						<scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
-						<locations>
-							<location>
-								<rootPath>${project.basedir}/src/main/java</rootPath>
-								<!--
-									adjust these to include or exclude specific files, by default
-									all files found in the rootPath are considered <includes>
-									<include>relative/path/to/file/to/include/SomeClass.java</include>
-									</includes> <excludes>
-									<exclude>relative/path/to/file/to/include/SomeClass.java</exclude>
-									</excludes>
-								-->
-							</location>
-						</locations>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -1308,8 +1222,10 @@
 		<profile>
 			<id>site-light</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>			
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<andromdapp.run.skip>true</andromdapp.run.skip>
@@ -1843,9 +1759,6 @@
 		</profile>
 		<profile>
 			<id>site</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<andromdapp.run.skip>true</andromdapp.run.skip>
@@ -2017,9 +1930,7 @@
 						<version>${maven.dashboard.plugin.version}</version>
 						<configuration>
 							<dialect>org.hibernate.dialect.DerbyDialect</dialect>
-					<!-- org.apache.derby.jdbc.ClientDriver org.apache.derby.jdbc.EmbeddedDriver -->
 							<driverClass>org.apache.derby.jdbc.ClientDriver</driverClass>
-					<!-- <connectionUrl>jdbc:derby:C:/workspace/workspace/users/albandri30/database/derby/dashboard;create=true</connectionUrl> -->
 							<connectionUrl>jdbc:derby://localhost:1527/myDB;create=true</connectionUrl>
 							<username>usr</username>
 							<password>usr</password>
@@ -2027,7 +1938,6 @@
 							<keepVersionAsDiscriminantCriteria>false</keepVersionAsDiscriminantCriteria>
 						</configuration>
 						<dependencies>
-					<!-- http://db.apache.org/derby/ -->
 							<!-- Comment out if deploying to a Java EE 5 server with a server
 								provided data source -->
 							<dependency>
@@ -2324,7 +2234,7 @@
 							<!--<show>package</show>-->
 							<show>public</show>
 							<version>true</version>
-							<javadocVersion>${source.version}</javadocVersion>
+							<javadocVersion>${jdkLevel}</javadocVersion>
 							<failOnError>false</failOnError>
 							<linksource>true</linksource>
 							<serialwarn>true</serialwarn>
@@ -2554,12 +2464,11 @@
 
 		<profile>
 			<id>sonar</id>
-			<!--
-				http://linsolas.developpez.com/articles/java/qualite/sonar/?page=page_2
-			-->
 			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
 			<properties>
 				<!-- sonar user admin password admin -->
 				<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
@@ -2582,8 +2491,10 @@
 		<profile>
 			<id>spring</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
 			<dependencies>
 				<!--
 				<dependency> <groupId>org.springframework</groupId>
@@ -2613,8 +2524,10 @@
 		<profile>
 			<id>jboss</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
 			<properties>
 				<!-- START INFO USE BY MDA -->
 				<jboss.home>${env.JBOSS_HOME}</jboss.home>
@@ -2674,23 +2587,17 @@
 		</profile>
 		<profile>
 			<id>jetty6</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 			<properties>
 				<cargo.container>jetty6x</cargo.container>
 				<cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
 			</properties>
 		</profile>
 		<profile>
-			<id>tomcat5x</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
+			<id>tomcat7x</id>
 			<properties>
 				<cargo.container>tomcat5x</cargo.container>
 				<cargo.container.home>${env.CATALINA_HOME}</cargo.container.home>
-				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.14/bin/apache-tomcat-6.0.14.zip</cargo.container.url>
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.16/bin/apache-tomcat-7.0.16.zip</cargo.container.url>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>8070</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -2698,9 +2605,6 @@
 		</profile>
 		<profile>
 			<id>tomcat6x</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 			<properties>
 				<cargo.container>tomcat6x</cargo.container>
 				<cargo.container.home>${env.CATALINA_HOME}</cargo.container.home>
@@ -2710,33 +2614,50 @@
 				<cargo.wait>false</cargo.wait>
 			</properties>
 		</profile>
+		<profile>
+			<id>glassfish</id>
+			<properties>
+			        <!--<glassfish.home>${env.J2EE_HOME}</glassfish.home>-->
+			        <glassfish.home>C:/Sun/SDK</glassfish.home>			        
+				<server.home>${glassfish.home}</server.home>
+				<cargo.container>glassfish3x</cargo.container>
+				<cargo.container.home>${server.home}</cargo.container.home>
+				<cargo.container.url>http://download.java.net/glassfish/3.1.1/release/glassfish-3.1.1.zip</cargo.container.url>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${glassfish.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+			</properties>
+		</profile>		
 		<!-- ================= END Container Profiles ================= -->
 
 		<!-- ================= START MDA Profiles ================= -->
 		<profile>
 			<id>uml14</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 			<properties>
 				<uml.type>uml14</uml.type>
 				<repo.type>netBeansMDR</repo.type>
 				<profile.type>xml.zip</profile.type>
-				<model.uri>jar:file:${src.dir}/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</model.uri>
+				<model.name>nabla</model.name>
+				<model.uri>jar:file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</model.uri>
 				<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri>
+				<andromda.version>3.2</andromda.version>
 			</properties>
 		</profile>
 		<profile>
 			<id>uml2</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
 			<properties>
 				<uml.type>uml2</uml.type>
 				<repo.type>emf-uml22</repo.type>
 				<profile.type>uml2</profile.type>
-				<model.uri>file:${src.dir}/main/uml/${uml.type}/${model.name}.uml</model.uri>
+				<model.name>nabla</model.name>
+				<model.uri>file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.uml</model.uri>
 				<maven.andromda.model.uri>file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri>
+				<andromda.version>3.4-SNAPSHOT</andromda.version>
 			</properties>
 		</profile>
 		<!-- ================= END MDA Profiles ================= -->
@@ -2891,7 +2812,7 @@
 			<properties>
 
 				<database>sybase</database>
-				<database.name>ktp30b</database.name>
+				<database.name>myDBGlobal</database.name>
 				<!-- Database settings -->
 				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
@@ -2922,8 +2843,8 @@
 				<!-- Change this the port on which your database will be deploy -->
 				<database.port>4100</database.port>
 
-				<jdbc.username>kplus</jdbc.username>
-				<jdbc.password>kplus11</jdbc.password>
+				<jdbc.username>sa</jdbc.username>
+				<jdbc.password></jdbc.password>
 
 				<!-- jdbc:mysql://localhost:3306/myDB -->
 				<jdbc.client.url><![CDATA[jdbc:sybase:Tds://${database.host}:${database.port}/${database.name}]]></jdbc.client.url>
@@ -3047,8 +2968,10 @@
 		<profile>
 			<id>hsqldb</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
 			<properties>
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
 				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
@@ -3063,17 +2986,14 @@
 		</profile>
 		<profile>
 			<id>oracle</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 			<properties>
 				<database>oracle</database>
-				<database.name>ktp30b</database.name>
-				<!-- Database settings -->
+				<database.name>myDBGlobal</database.name>
+				<!-- Database settings -->				
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 				<!--<dbunit.schema>SYSTEM</dbunit.schema> -->
-				<dbunit.schema>KTP30B</dbunit.schema>
+				<dbunit.schema>NABLA</dbunit.schema>
 				<!-- Make sure to capitalize the schema name -->
 				<!--<sql.mappings>Oracle10g</sql.mappings> -->
 				<sql.mappings>Oracle9i</sql.mappings>
@@ -3097,8 +3017,8 @@
 					<jdbc.username>system</jdbc.username>
 					<jdbc.password>admin</jdbc.password>
 				-->
-				<jdbc.username>ktp30b</jdbc.username>
-				<jdbc.password>ktp30b</jdbc.password>
+				<jdbc.username>sa</jdbc.username>
+				<jdbc.password></jdbc.password>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -3146,14 +3066,13 @@
 		<!-- ================= END Database Profiles ================= -->
 
 		<!-- ================= START Persistence Profiles ================= -->
-		<!--
-			http://www.jaceklaskowski.pl/wiki/Nauka_Java_Persistence_z_Apache_Maven_2_i_dostawcami_JPA:_OpenJPA,_Hibernate_i_TopLink
-		-->
 		<profile>
 			<id>hibernate</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
 
 			<!-- see file pom_persistence-SAV.txt -->
 			<dependencies>
@@ -3228,10 +3147,8 @@
 		<profile>
 			<id>development</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
 				<property>
-					<name>env</name>
-					<value>dev</value>
+					<name>!profile.activation</name>
 				</property>
 			</activation>
 			<!--
