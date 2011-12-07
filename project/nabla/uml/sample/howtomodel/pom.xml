@@ -460,6 +460,32 @@
         <testSourceDirectory>src-test</testSourceDirectory -->
         <pluginManagement>
             <plugins>
+<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build 
+          itself. -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <versionRange>[1.7,)</versionRange>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>            
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
@@ -470,11 +496,19 @@
                             <goals>
                                 <goal>add-source</goal>
                             </goals>
-                            <configuration>
-                                <sources>
-                                    <source>target/src/main/java</source>
-                                </sources>
-                            </configuration>
+			    <configuration>
+			    	<sources>
+			    		<source>${basedir}/src/generated/main/java</source>
+			    		<source>${basedir}/src/generated/main/resources</source>
+			    		<source>${basedir}/src/main/java</source>
+			    		<source>${basedir}/src/main/resources</source>
+			    		<source>${basedir}/target/generated-sources/antlr</source>
+			    		<source>${basedir}/target/generated-sources/main/java</source>
+			    		<!--<source>${basedir}/target/generated-sources/test/java</source> -->
+			    		<source>${basedir}/target/generated-sources/main/resources</source>
+			    		<!-- <source>${basedir}/target/generated-sources/test/resources</source> -->
+			    	</sources>
+			    </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -559,7 +593,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.6</version>
+                    <version>1.7</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -611,6 +645,8 @@
                                 <!-- Allow mvn clean install > install.log -->
                                 <exclude>build.log</exclude>
                                 <exclude>install.log</exclude>
+                                <!--<exclude>andromda.log</exclude>-->                                          
+                                <exclude>server.log</exclude>                             
                             </excludes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
@@ -754,9 +790,6 @@
         <jbpm.version>3.3.1.GA</jbpm.version>
         <myfaces.version>1.2.14</myfaces.version>
         <myfaces.tomahawk.version>1.1.10</myfaces.tomahawk.version>
-	<configuration.mda.dir>${pom.basedir}/configuration</configuration.mda.dir>
-	<!--<manual.mappings.location>${pom.basedir}/configuration/generation/manualMapping</manual.mappings.location>-->
-	<merge.templates.location>${configuration.mda.dir}/generation/merges</merge.templates.location>        
     </properties>
     <profiles>
         <profile>

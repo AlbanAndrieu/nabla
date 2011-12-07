@@ -115,7 +115,7 @@
         <dependency>
             <groupId>net.java.dev.ajax4jsf</groupId>
             <artifactId>ajax4jsf</artifactId>
-            <version>1.0.6</version>   
+            <version>1.0.6</version>
             <!--
             <groupId>net.java.dev.ajax4jsf</groupId>
             <artifactId>ajax4jsf</artifactId>
@@ -209,7 +209,7 @@
         </dependency>
         <dependency>
                 <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>            
+                <artifactId>hibernate-entitymanager</artifactId>
                 <!--
                 <groupId>hibernate-entitymanager</groupId>
                 <artifactId>ejb3-persistence</artifactId>
@@ -247,7 +247,7 @@
                         </copy>
                     </target>
                 </configuration>
-            </plugin>             
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
