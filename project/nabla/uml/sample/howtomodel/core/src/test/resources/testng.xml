@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="howtomodel Test Suite" verbose="2" parallel="false">
+    <test name="howtomodel Services Test">
+        <classes>
+            <!-- Always start the EJB3 embeddable container before running the tests -->
+            <class name="org.andromda.test.test.EJB3Container"/>
+            <class name="org.andromda.test.howto3.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto3.b.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto4.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto4.b.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto5.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto6.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto7.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto8.b.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto9.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto9.b.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto10.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto10.a.test.PaymentServiceTest"/>
+            <class name="org.andromda.test.howto11.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto16.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto13.a.test.RentalServiceTest"/>
+            <class name="org.andromda.test.howto18.a.test.UserServiceTest"/>
+            <class name="org.andromda.test.howto18.a.test.UserEndPointServiceTest"/>
+            <class name="org.andromda.test.howto10.a.test.PaymentProcessorTest"/>
+        </classes>
+    </test>
+</suite>
