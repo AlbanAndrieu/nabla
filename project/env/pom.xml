@@ -120,11 +120,10 @@
 		<profile>
 			<id>local</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
-				<file>
-					<exists>${basedir}</exists>
-				</file>
-			</activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>				
 			<distributionManagement>
 				<repository>
 					<id>local-releases</id>
@@ -153,11 +152,10 @@
 			<!--Profile configuration for server builds-->
 			<id>server</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-				<file>
-					<exists>${basedir}</exists>
-				</file>
-			</activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>			
 			<!--	
 			<build>
 				<plugins>
@@ -341,7 +339,7 @@
 
 		<!-- Default JDK Level -->
 		<jdkLevel>1.6</jdkLevel>
-
+		
 		<copyright.year>2011</copyright.year>
 		
 		<maven.test.skip>false</maven.test.skip>
@@ -641,7 +639,7 @@
 		<maven.versions.plugin.version>1.2</maven.versions.plugin.version>
 		<maven.xml.plugin.version>1.0-beta-3</maven.xml.plugin.version>
 		<maven.idea.plugin.version>2.1</maven.idea.plugin.version>
-		<maven.cargo.maven2.plugin.version>1.0</maven.cargo.maven2.plugin.version>
+		<maven.cargo.maven2.plugin.version>1.0.3</maven.cargo.maven2.plugin.version>
 		<maven.jetty.plugin.version>6.1.21</maven.jetty.plugin.version>
 		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>		
 		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
@@ -1089,8 +1087,8 @@
 								<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
 								<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
 								<Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-								<X-Compile-Source-JDK>${maven.compile.source}</X-Compile-Source-JDK>
-								<X-Compile-Target-JDK>${maven.compile.target}</X-Compile-Target-JDK>
+								<X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
+								<X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>
 							</manifestEntries>
 
 							<!--
@@ -1642,8 +1640,24 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>${servlet.api.version}</version>
-				<scope>compile</scope>
+				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp.version}</version>
+				<scope>provided</scope>
+			</dependency>			
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>${taglibs.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>jboss</groupId>
+				<artifactId>jboss-j2ee</artifactId>
+			  	<version>${jboss.version}</version>
+			</dependency>				
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-api</artifactId>
@@ -1941,6 +1955,36 @@
 				<artifactId>maven-plugin-api</artifactId>
 				<version>${maven.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-archiver</artifactId>
+				<version>${maven.archiver.plugin.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-artifact</artifactId>
+				<version>${maven.artifact.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven.dependency.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+ 				<version>${maven.war.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven.jar.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven.assembly.plugin.version}</version>
+			</dependency>			
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-project</artifactId>
