@@ -238,13 +238,16 @@
                 <configuration>
                     <target>
                         <copy todir="${project.basedir}/target/src/main/webapp" overwrite="true" failonerror="false">
+                            <fileset dir="${project.basedir}/src/generated/main/webapp">
+                                <include name="**/*"/>
+                            </fileset>
                             <fileset dir="${project.basedir}/src/main/webapp">
                                 <include name="**/*"/>
                             </fileset>
                         </copy>
                     </target>
                 </configuration>
-            </plugin>
+            </plugin>             
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>

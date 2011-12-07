@@ -128,7 +128,12 @@
         <!-- ant script location for temp copy of resources -->
         <andromda.project>${project.basedir}/..</andromda.project>
         <conf.dir>${project.basedir}/src/main/config</conf.dir>
+	<configuration.mda.dir>${andromda.project}/configuration</configuration.mda.dir>
+	<!--<manual.mappings.location>${pom.basedir}/configuration/generation/manualMapping</manual.mappings.location>-->
+	<merge.templates.location>${configuration.mda.dir}/generation/merges</merge.templates.location>                
         <!-- cartridge output locations -->
+        <maven.build.generated>src/generated</maven.build.generated>
+        <maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
         <common.generated.dir>${project.basedir}/../common/${maven.build.generated}/main/java</common.generated.dir>
         <common.manual.dir>${project.basedir}/../common/src/main/java</common.manual.dir>        
         <core.generated.dir>${project.basedir}/../core/${maven.build.generated}/main/java</core.generated.dir>
@@ -137,9 +142,8 @@
         <core.manual.test.resources>${project.basedir}/../core/src/test/resources</core.manual.test.resources>
         <core.generated.test.dir>${project.basedir}/../core/${maven.build.generated}/main/java</core.generated.test.dir>
         <core.manual.test.dir>${project.basedir}/../core/src/test/java</core.manual.test.dir>
-        <web.generated.dir>${project.basedir}/../web/target</web.generated.dir>
-        <web.generated.java.dir>${web.generated.dir}/src/main/java</web.generated.java.dir>
-        <web.generated.web.dir>${web.generated.dir}/src/main/webapp</web.generated.web.dir>
+        <web.generated.java.dir>${project.basedir}/../web/${maven.build.generated}/main/java</web.generated.java.dir>
+        <web.generated.web.dir>${project.basedir}/../web/${maven.build.generated}/main/webapp</web.generated.web.dir>
         <web.manual.dir>${project.basedir}/../web/src/main</web.manual.dir>
         <web.manual.web.dir>${web.manual.dir}/webapp</web.manual.web.dir>
         <web.manual.java.dir>${web.manual.dir}/java</web.manual.java.dir>

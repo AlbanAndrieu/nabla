@@ -331,13 +331,13 @@
 		<!--
 			used for mergeMappingsUri
 			file:${test.src.dir}/mappings/MergeMappings.xml in
-			karma-cardtridge\conf\test\andromda.xml
+			gui-cardtridge\conf\test\andromda.xml
 		-->
 		<test.output.dir>${pom.basedir}/target/cartridge-test/actual</test.output.dir>
 		<!--
 			used for mergeMappingsUri
 			file:${test.src.dir}/mappings/MergeMappings.xml in
-			karma-cardtridge\conf\test\andromda.xml
+			gui-cardtridge\conf\test\andromda.xml
 		-->
 
 		<nabla.mda.profiles.dir>/cartridges/dev-cartridges/profiles/${uml.type}</nabla.mda.profiles.dir>
@@ -363,10 +363,10 @@
 		<merge.templates.location>${configuration.mda.dir}/generation/merges</merge.templates.location>
 		<merge.mappings.spring>file:${merge.templates.location}/SpringMergeMappings.xml</merge.mappings.spring>
 		<merge.mappings.hibernate>file:${merge.templates.location}/HibernateMergeMappings.xml</merge.mappings.hibernate>
-		<merge.mappings.bo.karma>file:${merge.templates.location}/businessobjects/KarmaMergeMappings.xml</merge.mappings.bo.karma>
-		<merge.mappings.rules.karma>file:${merge.templates.location}/rules/KarmaMergeMappings.xml</merge.mappings.rules.karma>
-		<merge.mappings.staticdata.karma>file:${merge.templates.location}/staticdata/KarmaMergeMappings.xml</merge.mappings.staticdata.karma>
-		<merge.mappings.validation.karma>file:${merge.templates.location}/validation/KarmaMergeMappings.xml</merge.mappings.validation.karma>
+		<merge.mappings.bo.gui>file:${merge.templates.location}/businessobjects/GuiMergeMappings.xml</merge.mappings.bo.gui>
+		<merge.mappings.rules.gui>file:${merge.templates.location}/rules/GuiMergeMappings.xml</merge.mappings.rules.gui>
+		<merge.mappings.staticdata.gui>file:${merge.templates.location}/staticdata/GuiMergeMappings.xml</merge.mappings.staticdata.gui>
+		<merge.mappings.validation.gui>file:${merge.templates.location}/validation/GuiMergeMappings.xml</merge.mappings.validation.gui>
 
 		<!-- cartridge output locations -->
 		<web.generated.dir>${pom.basedir}/../presentation/${maven.build.generated}/main/java</web.generated.dir>
