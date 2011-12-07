@@ -25,6 +25,6 @@
                 <module>waf-taglibs</module>
                 <module>waf-template</module>
                 <module>waf-util</module>
-                <module>waf-web</module>
+                <!--<module>waf-web</module>-->
         </modules>
 </project>

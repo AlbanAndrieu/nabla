@@ -8,11 +8,11 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sun.j2ee.blueprints</groupId>
+<!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
 	<artifactId>util-tracer</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven Petstore Modules Util Tracer</name>
-	<version>1.0</version>
+<!-- 	<version>1.0</version> -->
 	<!-- This element provides a basic description of your project -->
 	<description>Maven : Petstore Modules Util Tracer</description>
 

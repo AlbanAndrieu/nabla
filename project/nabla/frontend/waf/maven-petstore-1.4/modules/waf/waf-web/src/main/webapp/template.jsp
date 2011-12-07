@@ -5,23 +5,23 @@
 
 <!--
  Copyright 2002 Sun Microsystems, Inc. All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
  are met:
- 
+
  - Redistributions of source code must retain the above copyright
    notice, this list of conditions and the following disclaimer.
- 
+
  - Redistribution in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in
    the documentation and/or other materials provided with the
    distribution.
- 
+
  Neither the name of Sun Microsystems, Inc. or the names of
  contributors may be used to endorse or promote products derived
  from this software without specific prior written permission.
- 
+
  This software is provided "AS IS," without a warranty of any
  kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
  WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
@@ -34,7 +34,7 @@
  PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
  LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
  EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- 
+
  You acknowledge that Software is not designed, licensed or intended
  for use in the design, construction, operation or maintenance of
  any nuclear facility.
@@ -52,11 +52,11 @@
 <center>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="25%" valign="top" bgccolor="gray"> 
+    <td width="25%" valign="top" bgccolor="gray">
       <template:insert parameter="sidebar"/>
     </td>
     <td valign="top" width="75%"><template:insert parameter="body"/></td>
-  </tr> 
+  </tr>
 </table>
 <template:insert parameter="footer"/>
 </center>

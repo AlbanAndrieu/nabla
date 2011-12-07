@@ -66,29 +66,23 @@
  */
 package com.sun.j2ee.blueprints.servicelocator.web;
 
-import com.sun.j2ee.blueprints.servicelocator.ServiceLocatorException;
-
 import java.net.URL;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.ejb.EJBHome;
 import javax.ejb.EJBLocalHome;
-
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.Topic;
 import javax.jms.TopicConnectionFactory;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import javax.rmi.PortableRemoteObject;
-
 import javax.sql.DataSource;
 
+import com.sun.j2ee.blueprints.servicelocator.ServiceLocatorException;
 
 /**
  * DOCUMENT ME!
@@ -100,8 +94,9 @@ import javax.sql.DataSource;
  */
 public class ServiceLocator implements java.io.Serializable {
 
-    private InitialContext ic;
-    private Map<String, Object> cache;
+    private static final long     serialVersionUID = 1L;
+    private InitialContext        ic;
+    private Map<String, Object>   cache;
     private static ServiceLocator me;
 
     static {
@@ -119,11 +114,11 @@ public class ServiceLocator implements java.io.Serializable {
 
     }
 
-/**
-     * Creates a new ServiceLocator object.
-     * 
-     * @throws ServiceLocatorException DOCUMENT ME!
-     */
+    /**
+         * Creates a new ServiceLocator object.
+         *
+         * @throws ServiceLocatorException DOCUMENT ME!
+         */
     private ServiceLocator() throws ServiceLocatorException {
 
         try {
@@ -163,8 +158,7 @@ public class ServiceLocator implements java.io.Serializable {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public EJBLocalHome getLocalHome(final String jndiHomeName)
-                              throws ServiceLocatorException {
+    public EJBLocalHome getLocalHome(final String jndiHomeName) throws ServiceLocatorException {
 
         EJBLocalHome home = null;
 
@@ -205,8 +199,7 @@ public class ServiceLocator implements java.io.Serializable {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public EJBHome getRemoteHome(final String jndiHomeName, final Class<?> className)
-                          throws ServiceLocatorException {
+    public EJBHome getRemoteHome(final String jndiHomeName, final Class<?> className) throws ServiceLocatorException {
 
         EJBHome home = null;
 
@@ -249,8 +242,7 @@ public class ServiceLocator implements java.io.Serializable {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public QueueConnectionFactory getQueueConnectionFactory(final String qConnFactoryName)
-                                                     throws ServiceLocatorException {
+    public QueueConnectionFactory getQueueConnectionFactory(final String qConnFactoryName) throws ServiceLocatorException {
 
         QueueConnectionFactory factory = null;
 
@@ -330,8 +322,7 @@ public class ServiceLocator implements java.io.Serializable {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public TopicConnectionFactory getTopicConnectionFactory(final String topicConnFactoryName)
-                                                     throws ServiceLocatorException {
+    public TopicConnectionFactory getTopicConnectionFactory(final String topicConnFactoryName) throws ServiceLocatorException {
 
         TopicConnectionFactory factory = null;
 
@@ -411,8 +402,7 @@ public class ServiceLocator implements java.io.Serializable {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public DataSource getDataSource(final String dataSourceName)
-                             throws ServiceLocatorException {
+    public DataSource getDataSource(final String dataSourceName) throws ServiceLocatorException {
 
         DataSource dataSource = null;
 

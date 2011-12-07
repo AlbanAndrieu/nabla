@@ -8,11 +8,11 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sun.j2ee.blueprints</groupId>
+<!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
 	<artifactId>waf-controller-ejb</artifactId>
 	<packaging>ejb</packaging>
 	<name>Maven Petstore Modules Waf Controller EJB</name>
-	<version>1.0</version>
+<!-- 	<version>1.0</version> -->
 	<!-- This element provides a basic description of your project -->
 	<description>Maven : Petstore Modules Waf Controller EJB</description>
 
@@ -41,7 +41,6 @@
 						</manifest>
 					</archive>
 					<includeJar>false</includeJar>
-
 				</configuration>
 			</plugin>
 		</plugins>

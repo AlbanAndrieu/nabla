@@ -9,10 +9,10 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sun.j2ee.blueprints</groupId>
+<!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
 	<artifactId>waf-web</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
+<!-- 	<version>1.0</version> -->
 	<name>Maven Petstore Modules Web Application Framework</name>
 	<!-- This element provides a basic description of your project -->
 	<description>Maven : Petstore Modules Web Application Framework</description>

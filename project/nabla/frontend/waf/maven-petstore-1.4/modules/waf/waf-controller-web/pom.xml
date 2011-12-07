@@ -9,11 +9,11 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sun.j2ee.blueprints</groupId>
+<!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
 	<artifactId>waf-controller-web</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven Petstore Modules Waf Controller WEB</name>
-	<version>1.0</version>
+<!-- 	<version>1.0</version> -->
 	<!-- This element provides a basic description of your project -->
 	<description>Maven : Petstore Modules Waf Controller WEB</description>
 
@@ -21,20 +21,20 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>${servlet.version}</version>
+	<!-- 		<version>${servlet.version}</version> -->
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>${commons.codec.version}</version>
+	<!-- 		<version>${commons.codec.version}</version> -->
 		</dependency>
 
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
-			<version>${taglibs.version}</version>
+<!-- 			<version>${taglibs.version}</version> -->
 		</dependency>
 
 		<dependency>

@@ -9,11 +9,11 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sun.j2ee.blueprints</groupId>
+<!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
 	<artifactId>waf-template</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven Petstore Modules Waf Template</name>
-	<version>1.0</version>
+<!-- 	<version>1.0</version> -->
 	<!-- This element provides a basic description of your project -->
 	<description>Maven : Petstore Modules Waf Template</description>
 
@@ -21,19 +21,19 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>${servlet.version}</version>
+	<!-- 		<version>${servlet.version}</version> -->
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>${jsp.version}</version>
+<!-- 			<version>${jsp.version}</version> -->
 		</dependency>
 
 		<dependency>
 			<groupId>jboss</groupId>
 			<artifactId>jboss-j2ee</artifactId>
-			<version>${jboss.version}</version>
+		<!-- 	<version>${jboss.version}</version> -->
 		</dependency>
 
 		<dependency>
