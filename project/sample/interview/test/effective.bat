@@ -1,3 +1,3 @@
 cls
-call mvn help:effective-pom > effective.txt
+call mvn help:effective-pom > effective.log
 pause
