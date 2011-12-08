@@ -19,6 +19,5 @@
 	<description>Nabla project</description>
 	<modules>
 		<module>frontend</module>
-		<module>uml</module>
 	</modules>
 </project>
