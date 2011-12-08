@@ -54,7 +54,7 @@
                             </goals>
                         </configuration>
                     </execution>
-                    <!-- call deploy goal
+                    <!-- use propeties <invoker.skip>true</invoker.skip> to avoid this -->
                     <execution>
                         <id>install-invoker</id>
                         <phase>install</phase>
@@ -67,7 +67,6 @@
                             </goals>
                         </configuration>
                     </execution>
-                    -->
                 </executions> 
             </plugin>            
             <plugin>
