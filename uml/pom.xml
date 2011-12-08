@@ -16,7 +16,11 @@
 	<version>1.0</version>
 	<name>Nabla UML</name>
 	<description>Parent of all MDA-related modules.</description>
-
+	
+	<modules>
+		<module>sample</module>
+	</modules>
+	
    <dependencyManagement>
         <dependencies>
             <dependency>
