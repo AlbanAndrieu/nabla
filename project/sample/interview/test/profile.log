@@ -10,7 +10,7 @@ Active Profiles for Project 'com.nabla.project.sample.interview.test:test:jar:1.
 
 The following profiles are active:
 
- - site-light (source: pom)
+ - site (source: pom)
  - sonar (source: pom)
  - spring (source: pom)
  - jboss (source: pom)
@@ -26,6 +26,6 @@ The following profiles are active:
 [INFO] BUILD SUCCESSFUL
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time: 2 seconds
-[INFO] Finished at: Wed Dec 07 15:09:11 CET 2011
-[INFO] Final Memory: 31M/247M
+[INFO] Finished at: Thu Dec 08 11:13:25 CET 2011
+[INFO] Final Memory: 32M/247M
 [INFO] ------------------------------------------------------------------------

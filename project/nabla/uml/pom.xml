@@ -89,6 +89,7 @@
     
 	<dependencies>
                 <!-- andromda-profile is used to load uml14 -->
+                <!-- only on mda project
 		<dependency>
 			<groupId>org.andromda.profiles.uml14</groupId>
 			<artifactId>andromda-profile</artifactId>
@@ -96,6 +97,7 @@
 			<type>xml.zip</type>
 			<scope>runtime</scope>
 		</dependency>	
+		-->
 		<dependency>
 			<groupId>org.andromda</groupId>
 			<artifactId>andromda-script-wrappers</artifactId>
@@ -297,8 +299,9 @@
                                             <!-- Allow mvn clean install > install.log -->
                                             <exclude>build.log</exclude>
                                             <exclude>install.log</exclude>
-                                            <exclude>andromda.log</exclude>                                            
-                                            <exclude>server.log</exclude> 
+                                            <!--<exclude>andromda.log</exclude>-->
+                                            <exclude>server.log</exclude>
+                                            <exclude>site.log</exclude>
                                         </excludes>
                                         <followSymlinks>false</followSymlinks>
                                     </fileset>

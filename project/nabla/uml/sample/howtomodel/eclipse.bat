@@ -44,25 +44,20 @@
 @REM App generator does not copy empty directories into project, but they must exist for eclipse plugin to work
 mkdir common\src\generated\main\java
 mkdir common\src\main\java
-@REM mkdir common\target\src\main\java
 
 mkdir core\src\generated\main\java
 mkdir core\src\main\java
 mkdir core\src\test\java
-@REM mkdir core\target\src\main\java
 
 mkdir web\src\generated\main\java
 mkdir web\src\main\java
-@REM mkdir web\target\src\main\java
 
 mkdir webservice\src\generated\main\java
 mkdir webservice\src\main\java
 mkdir webservice\src\test\java
-@REM mkdir webservice\target\src\main\java
 
 mkdir workflow\src\generated\main\java
 mkdir workflow\src\main\java
-@REM mkdir workflow\target\src\main\java
 
 rename ..\.project old.project
 rename ..\.classpath old.classpath

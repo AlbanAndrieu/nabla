@@ -1,3 +1,3 @@
 cls
-call mvn help:active-profiles > profile.log
+call mvn help:active-profiles -Psite > profile.log
 pause

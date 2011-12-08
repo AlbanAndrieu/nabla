@@ -11,11 +11,11 @@
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes.
     To start server from mda directory: mvn andromda:start-server.
-    Leave commented, or else AndroMDA will try to connect each time.>
+    Leave commented, or else AndroMDA will try to connect each time. -->
     <server>
         <host>localhost</host>
         <port>4447</port>
-    </server -->
+    </server>
     <repositories>
         <repository name="emf-uml22">
             <models>

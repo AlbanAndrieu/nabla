@@ -11,7 +11,7 @@
                 	
 	<modelVersion>4.0.0</modelVersion>
     	<groupId>com.nabla.project.nabla.uml.sample</groupId>
-    	<artifactId>andromda-sample</artifactId>
+    	<artifactId>sample</artifactId>
 	<packaging>pom</packaging>
 	<name>AndroMDA Samples</name>
 	<version>1.0</version>
@@ -19,6 +19,6 @@
 	<modules>
 		<module>empty</module>
 		<module>howtomodel</module>
-		<!--<module>nabla</module>-->
+		<module>nabla</module>
 	</modules>
 </project>

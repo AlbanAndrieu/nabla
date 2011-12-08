@@ -9,9 +9,9 @@
         <artifactId>howtomodel</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>howtomodel-mda</artifactId>
+    <artifactId>mda</artifactId>
     <packaging>pom</packaging>
-    <name>howtomodel MDA</name>
+    <name>AndroMDA HowToModel Sample MDA</name>
     <dependencies>
         <dependency>
             <groupId>org.andromda.profiles.emf.uml22</groupId>

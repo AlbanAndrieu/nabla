@@ -7,9 +7,9 @@
         <artifactId>howtomodel</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>howtomodel-common</artifactId>
+    <artifactId>common</artifactId>
     <packaging>jar</packaging>
-    <name>howtomodel Common</name>
+    <name>AndroMDA HowToModel Sample Common</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

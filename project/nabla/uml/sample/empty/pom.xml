@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
     	<groupId>com.nabla.project.nabla.uml.sample</groupId>
-	<artifactId>andromda-sample</artifactId>
+	<artifactId>sample</artifactId>
     	<version>1.0</version>
     </parent>
     <groupId>com.nabla.project.nabla.uml.sample.empty</groupId>
-    <artifactId>andromda-empty</artifactId>
+    <artifactId>empty</artifactId>
     <packaging>pom</packaging>
     <name>AndroMDA Empty</name>
     <description>Andromda Empty</description>

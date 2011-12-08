@@ -7,9 +7,9 @@
         <artifactId>howtomodel</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>howtomodel-app</artifactId>
+    <artifactId>app</artifactId>
     <packaging>ear</packaging>
-    <name>howtomodel Application</name>
+    <name>AndroMDA HowToModel Sample Application</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

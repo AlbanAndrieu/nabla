@@ -7,9 +7,9 @@
         <artifactId>howtomodel</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>howtomodel-core</artifactId>
+    <artifactId>core</artifactId>
     <packaging>jar</packaging>
-    <name>howtomodel Core Business Tier</name>
+    <name>AndroMDA HowToModel Sample Core Business Tier</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

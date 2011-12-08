@@ -7,9 +7,9 @@
         <artifactId>howtomodel</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>howtomodel-workflow</artifactId>
+    <artifactId>workflow</artifactId>
     <packaging>jar</packaging>
-    <name>howtomodel Workflow Module</name>
+    <name>AndroMDA HowToModel Sample Workflow</name>
     <dependencies>
         <dependency>
             <groupId>org.jbpm</groupId>

@@ -5,7 +5,7 @@
 		<groupId>com.nabla.project</groupId>
 		<artifactId>dependencies</artifactId>
 		<version>1.0</version>
-		<relativePath>../env/pom.xml</relativePath>
+		<relativePath>../dependencies/pom.xml</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -18,8 +18,6 @@
 	<description>Proof of concept : SOA framework for generic services</description>
 
 	<modules>
-		<module>env</module> 
-		<module>build-tools</module>
 		<module>sample</module>
 	</modules>
 
@@ -1221,8 +1219,6 @@
 		<profile>
 			<id>all</id>				
 			<modules>
-				<module>env</module> 
-				<module>build-tools</module>
 				<module>sample</module>
 				<module>nabla</module>
 			</modules>
@@ -1252,7 +1248,7 @@
 							<!--<locales>en,fr</locales> -->
 							<excludeModules>build-tools</excludeModules>
 							<excludeModules>maven-gui-plugin</excludeModules>
-							<siteDirectory>${basedir}/build-site/src/site</siteDirectory>
+							<siteDirectory>${basedir}/site/src/site</siteDirectory>
 							<port>8070</port>
 						</configuration>
 						<dependencies>
@@ -1730,7 +1726,7 @@
 							<!--<locales>en,fr</locales> -->
 							<excludeModules>build-tools</excludeModules>
 							<excludeModules>maven-gui-plugin</excludeModules>
-							<siteDirectory>${basedir}/build-site/src/site</siteDirectory>
+							<siteDirectory>${basedir}/site/src/site</siteDirectory>
 							<port>8070</port>
 						</configuration>
 						<dependencies>
