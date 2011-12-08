@@ -1,0 +1,2070 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nabla.project</groupId>
+	<artifactId>dependencies</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>Dependencies pom file</name>
+	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
+	<inceptionYear>2011</inceptionYear>
+
+	<url>http://maven.nabla.mobi</url>
+	
+	<organization>
+		<name>Nabla Software</name>
+		<url>http://code.google.com/p/alban</url>
+	</organization>
+
+	<prerequisites>
+		<maven>2.2.0</maven>
+	</prerequisites>
+	
+	<issueManagement>
+		<!--
+		<system>bugzilla</system>
+		<url>http://localhost</url>
+		-->
+		<system>Google Code</system>
+		<url>http://code.google.com/p/alban/issues/list</url>
+	</issueManagement>
+
+	<!--
+		Mailing lists are a great tool for keeping in touch with people about
+		a project. Most mailing lists are for developers and users.
+	-->
+	<mailingLists>
+		<mailingList>
+			<name>${project.name} Nabla dev mailing list</name>
+			<post>dev@nabla.mobi</post>
+			<!--<archive>https://alban.andrieu.nabladev.net/servlets/SummarizeList?listName=dev</archive>-->
+		</mailingList>
+	</mailingLists>
+
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://localhost:8070/hudson/</url>
+		<notifiers>
+			<notifier>
+				<type>mail</type>
+				<sendOnError>true</sendOnError>
+				<sendOnFailure>true</sendOnFailure>
+				<sendOnSuccess>false</sendOnSuccess>
+				<sendOnWarning>false</sendOnWarning>
+				<configuration>
+					<address>dev@nabla.mobi</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+	<!--http://blog.fastconnect.fr/?p=275-->
+	<scm>
+                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}</connection>
+                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}</developerConnection>
+                <url>https://alban.googlecode.com/svn/${project.svn.path}</url>	
+                <!--
+		<connection>scm:${scm.base}/users/${project.svn.path}/</connection>
+		<developerConnection>scm:${scm.base}/users/${project.svn.path}/</developerConnection>
+		<url>${scm.base}/users/${kplustp.workspace}/#dirlist</url>
+		-->
+		<tag>HEAD</tag>
+	</scm>
+	<developers>
+		<developer>
+			<id>albandri</id>
+			<name>Andrieu Alban</name>
+			<email>alban.andrieu@nabla.mobi</email>
+			<url>http://plus.google.com/116805748993308767756/about</url>
+			<organization>Nabla</organization>
+			<roles>
+				<role>Java Developer</role>
+				<role>C++ Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<!--
+		Contributors are like developers yet play an ancillary role in a
+		project's lifecycle.
+	-->
+	<contributors>
+		<contributor>
+			<name>Alban Andrieu</name>
+			<email>alban.andrieu@nabla.mobi</email>
+			<url>http://plus.google.com/116805748993308767756/about</url>
+			<organization>Nabla</organization>
+			<roles>
+				<role>Project Leader</role>
+				<role>Project Manager</role>
+				<role>Architect</role>
+				<role>Technical Analyst</role>
+			</roles>
+			<timezone>+1</timezone>
+		</contributor>
+
+	</contributors>
+	<licenses>
+		<license>
+			<name>Nabla</name>
+			<url>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</url>
+			<distribution>perso</distribution>
+			<comments>This program is the property of Nabla</comments>
+		</license>
+	</licenses>
+
+	<profiles>
+		<!-- ================= START Environment Profiles ================= -->
+		<!--Profile configuration for local builds-->
+		<profile>
+			<id>local</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>				
+			<distributionManagement>
+				<repository>
+					<id>local-releases</id>
+					<name>Internal Release Repository</name>
+					<url>${distributionManagement.repository.url}/releases/</url>
+					<!--<uniqueVersion>false</uniqueVersion>-->
+				</repository>
+				<snapshotRepository>
+					<id>local-snapshots</id>
+					<name>Internal Snapshot Repository</name>
+					<url>${distributionManagement.repository.url}/snapshots/</url>
+					<!--<uniqueVersion>false</uniqueVersion>-->
+				</snapshotRepository>
+				<site>
+					<id>website</id>
+					<name>Project Website</name>
+					<!--
+						<url>scp://${site.server}/${home.dir}/fullsite/site-deploy</url>
+						<url>file:/var/www/docs</url>
+					-->
+					<url>file://${deploy.dir}</url>
+				</site>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<!--Profile configuration for server builds-->
+			<id>server</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>			
+			<!--	
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+			-->
+			<distributionManagement>
+				<repository>
+					<id>server-releases</id>
+					<name>External Staging Repository</name>
+					<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
+					<uniqueVersion>false</uniqueVersion>
+				</repository>
+				<snapshotRepository>
+					<id>server-snapshots</id>
+					<name>External Snapshot Repository</name>
+					<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+					<uniqueVersion>false</uniqueVersion>
+				</snapshotRepository>
+				<site>
+					<id>website</id>
+					<name>Project Website</name>
+					<url>ftp://www.nabla.mobi/maven</url>
+				</site>
+			</distributionManagement>
+		</profile>
+		<!-- ================= END Environment Profiles ================= -->
+
+	</profiles>
+
+	<!-- http://mvnrepository.com/search.html -->
+	<repositories>
+                <repository>
+                	<id>nabla</id>
+                	<url>http://alban.googlecode.com/svn/mavenrepo</url>
+                </repository>	
+		<repository>
+			<id>openqa-releases</id>
+			<name>Openqa Release Repository</name>
+			<url>http://nexus.openqa.org/content/repositories/releases</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>openqa-snapshots</id>
+			<name>Openqa Snapshot Repository</name>
+			<url>http://nexus.openqa.org/content/repositories/snapshots</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>central</id>
+			<name>Codehaus Maven 2.x Release Repository 1</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!--
+		<repository>
+			<id>codehaus</id>
+			<name>Codehaus Maven 2.x Release Repository 2</name>
+			<url>http://repository.codehaus.org</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		-->
+		<repository>
+			<id>jboss-public</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
+		</repository>
+		<repository>
+			<id>download</id>
+			<name>Java.Net Download</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>andromda</id>
+			<name>AndroMDA Maven 2.x Repository</name>
+			<url>http://andromda.org/maven2</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<name>Sonatype AndroMDA Repository</name>
+			<url>http://oss.sonatype.org/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>        
+ 		<pluginRepository>
+                        <id>nabla-plugins</id>
+                        <url>http://alban.googlecode.com/svn/mavenrepo</url>
+                </pluginRepository>
+                <pluginRepository>
+                	<id>Mobilvox JS Plugin Snapshots</id>
+                	<url>http://maven-js-plugin.sourceforge.net/m2snapshotrepo/</url>
+                	<snapshots>
+                		<enabled>true</enabled>
+                	</snapshots>
+                	<releases>
+                		<enabled>false</enabled>
+                	</releases>
+                </pluginRepository>	
+		<pluginRepository>
+			<releases />
+			<snapshots />
+			<id>codehaus-plugins</id>
+			<url>http://dist.codehaus.org/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>codehaus-maven2</id>
+			<name>Codehaus Maven2 Repo</name>
+			<url>http://dist.codehaus.org</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>appfuse</id>
+			<url>http://static.appfuse.org/repository</url>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>elca-services</id>
+			<url>http://el4.elca-services.ch/el4j/maven2repository</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<!--
+			be sure to add this repository to retreive the dashboard plugin
+		-->
+		<pluginRepository>
+			<id>Codehaus repository</id>
+			<url>http://repository.codehaus.org/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>sonatype</id>
+			<name>Sonatype AndroMDA Repository</name>
+			<url>http://oss.sonatype.org/content/groups/public</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>Codehaus Snapshots</id>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- Keep Alphabetical Order. Capital Letter goes first -->
+	<properties>
+		<project.svn.path>trunk</project.svn.path>
+
+		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base>-->
+		<scm.base>svn:http://alban.googlecode.com/svn/</scm.base>
+		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
+		<distributionManagement.repository.url>file://localhost/${archiva.dir}</distributionManagement.repository.url>
+		<deploy.dir>${env.HOME}/fullsite</deploy.dir>
+
+		<!-- Default JDK Level -->
+		<jdkLevel>1.6</jdkLevel>
+		
+		<copyright.year>2011</copyright.year>
+		
+		<maven.test.skip>false</maven.test.skip>
+		<maven.test.failure.skip>true</maven.test.failure.skip>
+		
+		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
+
+		<tibjms.version>4.2.0</tibjms.version>
+		<tibco.version>8.1.2</tibco.version>
+		<mq.version>1.0</mq.version>
+		<jaxen.version>1.1.1</jaxen.version>
+		<isorelax.version>1.0</isorelax.version>
+		<msv.version>1.0</msv.version>
+
+		<castor.version>1.3.1</castor.version>
+
+		<geronimo.version>1.0</geronimo.version>
+		<geronimo.jms.version>1.1.1</geronimo.jms.version>
+		<neethi.version>2.0.1</neethi.version>
+		<stax.api.version>1.0.1</stax.api.version>
+		<woden.impl.om.version>1.0M8</woden.impl.om.version>
+		<concurrent.version>1.3.4</concurrent.version>
+
+		<jaws.version>1.0</jaws.version>
+		<cssparser.version>0.9.4</cssparser.version>
+		<!--<itext.version>1.3.1</itext.version>-->
+		<itext.version>2.1.7</itext.version>
+		<poi.version>3.0-FINAL</poi.version>
+		<ws.version>1.0</ws.version>
+
+		<jfreechart.version>1.0.7</jfreechart.version>
+		<jfreechart.version2>1.0.13</jfreechart.version2>
+		<jfree.jcommon.version>1.0.16</jfree.jcommon.version>
+		<jfreechart-demo.version>1.0.13</jfreechart-demo.version>
+		<junitperf.version>1.8</junitperf.version>
+		<dbunit.version>2.4.4</dbunit.version>
+		<testng.version>5.10</testng.version>
+		<htmlunit.version>1.11</htmlunit.version>
+		<oro.version>2.0.8</oro.version>
+
+		<javax.j2ee.version>1.3.1</javax.j2ee.version>
+		<xalan.version>2.7.0</xalan.version>
+		<saxon.version>8.7</saxon.version>
+		<dom4j.version>1.6.1</dom4j.version>
+
+		<fop.version>0.95</fop.version>
+		<axis.version>1.4</axis.version>
+		<axis.jaxrpc.version>1.4</axis.jaxrpc.version>
+		<axis2.version>1.2</axis2.version>
+		<annogen.version>0.1.0</annogen.version>
+		<axiom.api.version>1.2.8</axiom.api.version>
+		<axiom.impl.version>${axiom.api.version}</axiom.impl.version>
+		<axiom.dom.version>${axiom.api.version}</axiom.dom.version>
+
+		<backport.util.concurrent.version>3.1</backport.util.concurrent.version>
+		<!-- common parties versions --> 
+		<commons.lang.version>2.5</commons.lang.version>
+		<commons.beanutils.version>1.8.3</commons.beanutils.version>
+		<commons.dbcp.version>1.2.2</commons.dbcp.version>
+		<commons.pool.version>1.4</commons.pool.version>
+		<commons.fileupload.version>1.2.2</commons.fileupload.version>
+		<commons.io.version>1.4</commons.io.version>		
+		<commons.collections.version>3.2.1</commons.collections.version>		
+		<commons.httpclient.version>3.1</commons.httpclient.version>
+		<commons.logging.version>1.1.1</commons.logging.version>
+		<commons.configuration.version>1.6</commons.configuration.version>
+		<commons.validator.version>1.3.1</commons.validator.version>
+		<commons.discovery.version>0.2</commons.discovery.version>
+		<commons.digester.version>2.0</commons.digester.version>
+		<commons.codec.version>1.4</commons.codec.version>
+		<commons.cli.version>1.2</commons.cli.version>
+		<lucene.version>2.0.0</lucene.version>
+
+		<jakarta.httpcore.version>4.0-alpha4</jakarta.httpcore.version>
+
+		<avalon.framework.version>4.1.3</avalon.framework.version>
+		<odmg.version>3.0</odmg.version>
+		<aopalliance.version>1.0</aopalliance.version>
+		<activemq.core.version>4.1.1</activemq.core.version>
+
+		<taglibs.version>1.1.1</taglibs.version>
+		<javax.activation.version>1.1.1</javax.activation.version>
+		<antlr.version>3.1.3</antlr.version>
+		<jdom.version>1.0</jdom.version>
+		<ant-nodeps.version>1.7.0</ant-nodeps.version>
+		<ant.version>1.7.0</ant.version>
+		<ant.trax.version>1.7.0</ant.trax.version>
+
+		<jdbc.derby.version>10.3.1.4</jdbc.derby.version>
+		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
+		<jconn.version>6.0</jconn.version>
+		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
+		<cglib.version>2.1_3</cglib.version>
+		<acegi.security.version>1.0.1</acegi.security.version>
+		<xml.security.version>1.3.0</xml.security.version>
+		<xml.apis.version>1.0.b2</xml.apis.version>
+		<slf4j.version>1.5.6</slf4j.version>
+
+		<jboss.version>4.2.2.GA</jboss.version>
+		<jboss-j2ee.version>3.2.3</jboss-j2ee.version>
+		<jboss.dist.path>${env.JBOSS_HOME}</jboss.dist.path>
+		<application.server>jboss</application.server>
+
+		<acegi.version>1.0.5</acegi.version>
+		<acegijsf.version>1.1.2</acegijsf.version>
+		<ajax4jsf.version>1.0.6</ajax4jsf.version>
+		<asm.version>2.2.3</asm.version>
+		<aspectj.version>1.6.6</aspectj.version>
+		<clickstream.version>1.0.2</clickstream.version>
+		<corejsf.validator.version>1.0</corejsf.validator.version>
+		<displaytag.version>1.2</displaytag.version>
+		<dwr.version>2.0.1</dwr.version>
+		<ehcache.version>1.3.0</ehcache.version>
+		<el.version>1.2</el.version>
+		<facelets.version>1.1.13</facelets.version>
+		<hibernate.version>3.2.6.ga</hibernate.version>
+		<toplink.essentials.version>2.0-40</toplink.essentials.version>
+		<openjpa.all.version>0.9.7-incubating-SNAPSHOT</openjpa.all.version>
+		<hibernate.annotations.version>3.3.0.ga</hibernate.annotations.version>
+		<hibernate.entitymanager.version>3.3.1.ga</hibernate.entitymanager.version>
+		<jbpm.version>3.3.1.GA</jbpm.version>
+		<ibatis.version>2.3.0</ibatis.version>
+		<javamail.version>1.4</javamail.version>
+		<javax.mail.version>1.4.1</javax.mail.version>
+		<jpa.version>1.0</jpa.version>
+		<jstl.version>1.2</jstl.version>
+		<log4j.version>1.2.16</log4j.version>
+		<myfaces.version>1.2.0</myfaces.version>
+		<myfaces.tomahawk.version>1.1.6</myfaces.tomahawk.version>
+		<oscache.version>2.3</oscache.version>
+		<shale.version>1.0.4</shale.version>
+		<sitemesh.version>2.2.1</sitemesh.version>
+		<spring.version>2.5.6.SEC02</spring.version>
+		<spring.jpa.version>2.0.6</spring.jpa.version>
+		<springmodules.validation.version>0.8</springmodules.validation.version>
+		<spring.mock.version>2.0.8</spring.mock.version>
+		<struts.version>1.2.9</struts.version>
+		<struts.menu.version>2.4.3</struts.menu.version>
+		<tacos.version>4.1.0</tacos.version>
+		<tapestry.version>4.1.3</tapestry.version>
+		<tapestry.flash.version>1.0.0</tapestry.flash.version>
+		<tapestry.spring.version>1.0.0</tapestry.spring.version>
+		<urlrewrite.version>3.0.4</urlrewrite.version>
+		<velocity.version>1.7</velocity.version>
+		<webtest.version>R_1600</webtest.version>
+		<xfire.version>1.2.6</xfire.version>
+
+		<!-- Testing dependency versions -->
+		<cargo.version>1.0</cargo.version>
+		<jmock.version>2.5.1</jmock.version>
+		<easymock.version>2.2</easymock.version>
+		<mockito.version>1.8.0</mockito.version>
+		<jsp.version>2.0</jsp.version>
+		<junit.version>4.8.1</junit.version>
+		<httpunit.version>1.6.2</httpunit.version>
+		<xmlunit.version>1.2</xmlunit.version>
+		<servlet.version>2.4</servlet.version>
+		<wiser.version>1.2</wiser.version>
+
+		<google.api.client>1.0.10-alpha</google.api.client>
+		<selenium.version>0.8.1</selenium.version>
+		<org.apache.myfaces.tomahawk.version>1.1.10</org.apache.myfaces.tomahawk.version>
+		<org.apache.myfaces.trinidad.version>1.2.14</org.apache.myfaces.trinidad.version>
+
+		<!-- APPFUSE settings -->
+		<amp.genericCore>true</amp.genericCore>
+		<amp.fullSource>false</amp.fullSource>
+		<!-- APPFUSE Persistence settings -->
+		<dao.framework>jpa</dao.framework>
+		<web.framework>struts</web.framework>
+		<appfuse.version>2.1.0-M1</appfuse.version>
+		
+		<javax.persistence.version>1.0</javax.persistence.version>
+
+		<cxf.version>2.2.10</cxf.version>
+		<log4j.version>1.2.16</log4j.version>
+		<spring.version>2.5.6</spring.version>
+		<xalan.version>2.7.1</xalan.version>
+		<xerces.version>2.9.1</xerces.version>
+		<tomcat.version>6.0.29</tomcat.version>
+		
+		<jconnect.version>6.0.5.26312</jconnect.version>
+		<testng.version>5.11</testng.version>
+		<tibrv.version>8.2.2</tibrv.version>
+		<xmlunit.version>1.1</xmlunit.version>
+		<logback.version>0.9.26</logback.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<derby.version>10.5.3.0_1</derby.version>
+		<commons.dbcp>1.2.2</commons.dbcp>
+	
+		<blazeds.version>3.2.0.3978</blazeds.version>
+		<ezmorph.version>1.0.6</ezmorph.version>
+		<fastinfoset.version>1.2.3</fastinfoset.version>
+		<flex.messaging.common.version>3.3.0.4852</flex.messaging.common.version>
+		<geronimo.activation.spec.version>1.0.2</geronimo.activation.spec.version>
+		<geronimo.annotation.spec.version>1.1.1</geronimo.annotation.spec.version>
+		<geronimo.jaxws.spec.version>1.0</geronimo.jaxws.spec.version>
+		<geronimo.j2ee.specs.version>1.1</geronimo.j2ee.specs.version>
+		<geronimo.stax.api.spec.version>1.0.1</geronimo.stax.api.spec.version>
+		<geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
+	
+		<jaxb.api.version>2.1</jaxb.api.version>
+		<jaxb.impl.version>2.1.13</jaxb.impl.version>
+		<jms.version>1.1</jms.version>
+		<json.lib.version>2.3</json.lib.version>
+
+		<saaj.api.version>1.3</saaj.api.version>
+		<saaj.impl.version>1.3.2</saaj.impl.version>
+		<servlet.api.version>2.5</servlet.api.version>
+		<wstx.asl.version>3.2.9</wstx.asl.version>
+
+		<xml.resolver>1.2</xml.resolver>
+		<xmlschema.version>1.4.6</xmlschema.version>
+		<xmlsec.version>1.4.3</xmlsec.version>
+		<wss4j.version>1.5.8</wss4j.version>
+		<wsdl4j.version>1.6.2</wsdl4j.version>
+
+		<!--
+			French Encoding in some files: can't use UTF-8, TODO update source
+			files
+		-->
+		<!--
+			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		-->
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Plugin version definitions-->				
+		<maven.version>2.2.1</maven.version>
+		<plexus.util.version>2.0.7</plexus.util.version>
+		<plexus.container.default.version>1.5.5</plexus.container.default.version>		
+
+		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
+		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
+		<wagon.ftp.plugin.version>1.0-beta-6</wagon.ftp.plugin.version>
+		
+		<docbkx.maven.plugin.version>2.0.8</docbkx.maven.plugin.version>
+		<doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
+		<xdoclet.maven.plugin.version>1.0-alpha-2</xdoclet.maven.plugin.version>
+		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
+				
+		<maven.tomcat.plugin.version>1.0-beta-1</maven.tomcat.plugin.version>				
+		<maven.apache.rat.plugin.version>0.7</maven.apache.rat.plugin.version>
+		<maven.cobertura.plugin.version>2.5.1</maven.cobertura.plugin.version>
+		<maven.release.plugin.version>2.1</maven.release.plugin.version>
+		<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
+		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
+		<maven.shared.jar.version>1.0</maven.shared.jar.version>
+		<maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
+		<maven.ejb.plugin.version>2.2.1</maven.ejb.plugin.version>
+		<maven.war.plugin.version>2.1.1</maven.war.plugin.version>
+		<maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
+		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
+		<maven.archiver.plugin.version>2.2</maven.archiver.plugin.version>		
+		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
+		<maven.artifact.plugin.version>2.0.1</maven.artifact.plugin.version>
+		<maven.gui.plugin.version>1.0</maven.gui.plugin.version>
+		<maven.plugin.plugin.plugin.version>2.5.1</maven.plugin.plugin.plugin.version>
+		<maven.clirr.plugin.version>2.3</maven.clirr.plugin.version>
+		<maven.patch.plugin.version>1.0</maven.patch.plugin.version>
+		<maven.invoker.plugin.version>1.0</maven.invoker.plugin.version>
+		<maven.one.plugin.version>1.2</maven.one.plugin.version>
+		<maven.findbugs.plugin.version>2.3.1</maven.findbugs.plugin.version>
+		<maven.javancss.plugin.version>2.0</maven.javancss.plugin.version>
+		<maven.jdepend.plugin.version>2.0-beta-2</maven.jdepend.plugin.version>
+		<maven.changes.plugin.version>2.6</maven.changes.plugin.version>
+		<maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
+		<maven.native2ascii.maven.plugin.version>1.0-alpha-1</maven.native2ascii.maven.plugin.version>
+		<maven.archetype.plugin.version>2.0</maven.archetype.plugin.version>
+		<maven.deploy.plugin.version>2.5</maven.deploy.plugin.version>
+		<maven.assembly.plugin.version>2.1</maven.assembly.plugin.version>
+		<maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
+		<maven.scm.plugin.version>1.2</maven.scm.plugin.version>
+		<maven.checkstyle.plugin.version>2.6</maven.checkstyle.plugin.version>
+		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+		<maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+		<maven.dependency.plugin.version>2.2</maven.dependency.plugin.version>
+		<maven.eclipse.plugin.version>2.8</maven.eclipse.plugin.version>
+		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
+		<maven.shade.plugin.version>1.0.1</maven.shade.plugin.version>
+		<maven.rar.plugin.version>2.2</maven.rar.plugin.version>
+		<maven.install.plugin.version>2.3.1</maven.install.plugin.version>
+		<maven.ear.plugin.version>2.5</maven.ear.plugin.version>
+		<maven.jboss.plugin.version>1.4</maven.jboss.plugin.version>
+		<maven.jboss.packaging.plugin.version>2.1.1</maven.jboss.packaging.plugin.version>
+		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
+		<maven.javadoc.plugin.version>2.8</maven.javadoc.plugin.version>
+		<maven.jxr.plugin.version>2.2</maven.jxr.plugin.version>
+		<maven.pmd.plugin.version>2.6</maven.pmd.plugin.version>
+		<maven.project.info.reports.plugin.version>2.4</maven.project.info.reports.plugin.version>
+		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
+		<maven.site.plugin.version>2.3</maven.site.plugin.version>
+		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
+		<maven.verifier.plugin.version>1.0-beta-1</maven.verifier.plugin.version>
+		<maven.surefire.plugin.version>2.10</maven.surefire.plugin.version>
+		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
+		<maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
+		<maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
+		<maven.versions.plugin.version>1.2</maven.versions.plugin.version>
+		<maven.xml.plugin.version>1.0-beta-3</maven.xml.plugin.version>
+		<maven.idea.plugin.version>2.1</maven.idea.plugin.version>
+		<maven.cargo.maven2.plugin.version>1.0.3</maven.cargo.maven2.plugin.version>
+		<maven.jetty.plugin.version>6.1.21</maven.jetty.plugin.version>
+		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>		
+		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
+		<maven.axistools.plugin.version>1.3</maven.axistools.plugin.version>
+		<maven.enforcer.plugin.version>1.0-beta-1</maven.enforcer.plugin.version>
+		<maven.doap.plugin.version>1.1</maven.doap.plugin.version>
+		<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>
+		<maven.help.plugin.version>2.0.2</maven.help.plugin.version>
+		<maven.build.helper.plugin.version>1.5</maven.build.helper.plugin.version>
+		<maven.repository.plugin.version>2.0</maven.repository.plugin.version>
+		<maven.remote.resources.plugin.version>1.0</maven.remote.resources.plugin.version>
+		<maven.default.skin.version>1.0</maven.default.skin.version>
+		
+		<package.tomcat.zip.version>${tomcat.version}</package.tomcat.zip.version>
+	</properties>
+
+	<build>
+		<extensions>
+			<!--  WebDAV for remote deployment -->
+			<!-- sonar desactivation required -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>${wagon.webdav.plugin.version}</version>
+			</extension>
+			<extension>
+				<groupId>org.jvnet.wagon-svn</groupId>
+				<artifactId>wagon-svn</artifactId>
+				<version>${wagon.svn.plugin.version}</version>
+			</extension>
+			<extension>
+                           	<groupId>org.apache.maven.wagon</groupId>
+                           	<artifactId>wagon-ftp</artifactId>
+                           	<version>${wagon.ftp.plugin.version}</version>
+                        </extension>
+		</extensions>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven.eclipse.plugin.version}</version>
+				</plugin>
+                                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+        			<plugin>
+        			  <groupId>org.eclipse.m2e</groupId>
+        			  <artifactId>lifecycle-mapping</artifactId>
+        			  <version>${lifecycle.mapping.version}</version>
+        			  <configuration>
+        			    <lifecycleMappingMetadata>
+        			      <pluginExecutions>
+        			        <pluginExecution>
+        			          <pluginExecutionFilter>
+        			            <groupId>org.apache.maven.plugins</groupId>
+        			            <artifactId>maven-antrun-plugin</artifactId>
+        			            <versionRange>[1.7,)</versionRange>
+        			            <goals>
+        			              <goal>run</goal>
+        			            </goals>
+        			          </pluginExecutionFilter>
+        			          <action>
+        			            <ignore />
+        			          </action>
+        			        </pluginExecution>
+					<pluginExecution>
+        			            <pluginExecutionFilter>
+        			                <groupId>org.codehaus.mojo</groupId>
+        			                <artifactId>aspectj-maven-plugin</artifactId>
+        			                <versionRange>[1.0,)</versionRange>
+        			                <goals>
+        			                    <goal>test-compile</goal>
+        			                    <goal>compile</goal>
+        			                </goals>
+        			            </pluginExecutionFilter>
+        			            <action>
+        			                <execute />
+        			            </action>
+        			        </pluginExecution>                
+        			      </pluginExecutions>
+        			    </lifecycleMappingMetadata>
+        			  </configuration>
+        			</plugin>       				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven.gpg.plugin.version}</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven.antrun.plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.ant</groupId>
+							<artifactId>ant</artifactId>
+							<version>${ant.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.ant</groupId>
+							<artifactId>ant-trax</artifactId>
+							<version>${ant.trax.version}</version>
+						</dependency>
+					</dependencies>
+					<!--
+						<executions> <execution> <id>echodir</id> <goals> <goal>run</goal>
+						</goals> <phase>verify</phase> <inherited>false</inherited>
+						<configuration> <tasks> <echo> Build Dir:
+						${project.build.directory} </echo> </tasks> </configuration>
+						</execution> </executions> <dependencies> <dependency>
+						<groupId>ant</groupId> <artifactId>ant-trax</artifactId>
+						<version>1.6.5</version> </dependency> </dependencies>
+					-->
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.plugin.version}</version>
+					<configuration>
+						<source>${jdkLevel}</source>
+						<target>${jdkLevel}</target>
+						<meminitial>128m</meminitial>
+						<maxmem>512m</maxmem>
+						<fork>${compiler.fork}</fork>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
+						<!--
+							<verbose>true</verbose> <excludes>
+							<exclude>**/*Point*.java</exclude> </excludes>
+						-->
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven.deploy.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-repository-plugin</artifactId>
+					<version>${maven.repository.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>${maven.archetype.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven.install.plugin.version}</version>
+					<configuration>
+						<createChecksum>true</createChecksum>
+					</configuration>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+
+					<!--
+						We must force maven site 2.0-beta-5 because beta-6 does compile
+						only with Java 5
+					-->
+					<version>${maven.release.plugin.version}</version>
+					<configuration>
+						<useReleaseProfile>true</useReleaseProfile>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<useReleaseProfile>true</useReleaseProfile>
+						<arguments>-Prelease</arguments>
+						<preparationGoals>clean install</preparationGoals>
+						<!--
+							<preparationGoals>install</preparationGoals>
+
+							<tagBase>https://svn.apache.org/repos/asf/maven/components/releases</tagBase>
+						-->
+
+						<tagBase>https://alban.googlecode.com/svn/releases</tagBase>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven.enforcer.plugin.version}</version>
+					<executions>
+						<execution>
+							<id>enforce-jdk</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireMavenVersion>
+										<!--  minimum version is 2.0.7, higher versions allowed -->
+										<version>[2.2.1,)</version>
+										<!--<version>[3.0.0,)</version>-->
+									</requireMavenVersion>
+
+									<requireJavaVersion>
+										<message>You need at least Java 1.5!</message>
+										<!--  minimum version is 1.5, higher versions allowed -->
+										<version>[1.5,)</version>
+										<!--
+											<version>[1.6.0,]</version>
+										-->
+									</requireJavaVersion>
+									<!--
+									<requirePluginVersions>
+										<message>Best Practice is to always define plugin versions!</message>
+										<banLatest>true</banLatest>
+										<banRelease>true</banRelease>
+										<banSnapshots>false</banSnapshots>
+										<banTimestamps>true</banTimestamps>
+										<phases>clean,deploy,site</phases>
+									</requirePluginVersions>
+									-->
+								</rules>
+								<fail>true</fail>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>				
+				<!-- allow to create a single jar with all dependencies -->
+				<!-- only use for tests and not in production -->
+				<!-- command : mvn assembly:assembly -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven.assembly.plugin.version}</version>
+					<configuration>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-assembly</id> <!-- this is used for inheritance merges -->
+							<phase>package</phase> <!-- append to the packaging phase. -->
+							<goals>
+								<goal>directory-inline</goal> <!-- goals == mojos -->
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${maven.site.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven.resources.plugin.version}</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<!--
+					Automatically attach sources to build artifact as
+					artifact-version-sources.jar and deploy to local repository
+				-->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.plugin.version}</version>
+					<configuration>
+						<includePom>true</includePom>
+					</configuration>
+					<!--
+				        mvn source:jar mvn source:test-jar 				
+				        -->
+				        <!--
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+					-->
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-verifier-plugin</artifactId>
+					<version>${maven.verifier.plugin.version}</version>
+				</plugin>				
+				<!--  Global test exclusions -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.plugin.version}</version>
+					<configuration>
+						<!--
+							Permet de desactiver les tests JUnit, car il consomme trop de
+							temps.
+						-->
+						<!-- Enable or disable JUnit tests -->
+						<skip>${maven.test.skip}</skip>
+						<linkXRef>true</linkXRef>
+						<argLine>-Xms64m -Xmx256m</argLine>
+						<excludes>
+							<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
+						</excludes>
+						<!-- Enable or disable Stop maven -->
+						<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+						<!-- when forked, debugging in Eclipse won't work -->
+						<!-- <forkMode>never</forkMode> -->
+						<!--
+							pertest forkMode is broken in version 2.2. use version 2.1.3
+							instead. RT 6/30/06 <forkMode>pertest</forkMode>
+						-->
+						<forkMode>once</forkMode>
+						<!--<forkMode>pertest</forkMode>-->
+						<!-- shows total/fail/error summaries on stdout:  -->
+						<printSummary>true</printSummary>
+						<!-- this gives test class name & time elapsed in report files:  -->
+						<!--<reportFormat>plain</reportFormat>-->
+						<reportFormat>xml</reportFormat>
+						<!--<classesDirectory>${project.build.directory}/generated-classes/emma/classes</classesDirectory>-->
+						<systemPropertyVariables>
+							<property>
+								<name>application.property.dir</name>
+								<value>${product.sourceDirectory}/presentation/ear/etc</value>
+							</property>
+							<property>
+								<name>application.property.name</name>
+								<value>product.properties</value>
+							</property>
+						</systemPropertyVariables>
+						<!--
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+						-->						
+					</configuration>
+
+					<!--
+						Skip the normal tests, we'll run them in the integration-test
+						phase with selenium
+					-->
+					<!--
+						<configuration> <skip>true</skip> </configuration> <executions>
+						<execution> <phase>integration-test</phase> <goals>
+						<goal>test</goal> </goals> <configuration> <skip>false</skip>
+						</configuration> </execution> </executions>
+					-->
+
+				</plugin>				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>xdoclet-maven-plugin</artifactId>
+					<version>${xdoclet.maven.plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>xdoclet</groupId>
+							<artifactId>xjavadoc</artifactId>
+							<version>1.5-050611</version>
+							<scope>runtime</scope>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<id>xdoclet</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>xdoclet</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>${maven.ejb.plugin.version}</version>
+					<configuration>
+						<ejbVersion>2.1</ejbVersion>
+						<!--<generateClient>true</generateClient>-->
+						<generateClient>false</generateClient>
+						<!--
+							<clientIncludes> <clientInclude>**/ejb/**</clientInclude>
+							<clientInclude>**/exceptions/**</clientInclude>
+							<clientInclude>**/events/**</clientInclude>
+							<clientInclude>**/util/**</clientInclude>
+							<clientInclude>**/filters/**</clientInclude>
+							<clientInclude>**/mask/**</clientInclude> </clientIncludes>
+							<clientExcludes> <clientExclude>**/meta-inf/**</clientExclude>
+							<clientExclude>**/META-INF/**</clientExclude> </clientExcludes>
+						-->
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Implementation-Title>${product.title}</Implementation-Title>
+								<Implementation-Version>${product.version}</Implementation-Version>
+							</manifestEntries>
+						</archive>
+						<!--
+							<archive> <manifest> <addClasspath>true</addClasspath>
+							</manifest> </archive>
+						-->
+						<includeJar>false</includeJar>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>axistools-maven-plugin</artifactId>
+					<version>${maven.axistools.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>${maven.ear.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.plugin.version}</version>
+					<configuration>
+						<excludes>
+							<exclude>**/*.ref</exclude>
+						</excludes>
+						<archive>
+							<!--
+
+								! prevent maven from adding pom meta-data to our jars. ! See:
+								http://maven.apache.org/guides/mini/guide-archive-configuration.html
+								! for info on the archiver configuration properties. ! NOTE:
+								<addMavenDescriptor> requires v 2.1 or greater archive plugin.
+							-->
+							<addMavenDescriptor>false</addMavenDescriptor>
+
+							<!--
+								Disabled for http://mule.mulesource.org/jira/browse/MULE-1153
+								and http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4408526
+
+								<index>false</index>
+							-->
+							<!--
+								<index>true</index>
+							-->
+							<!-- List dependencies in the MANIFEST.MF -->
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<!--
+									<mainClass>
+									com.sgcib.services.extract.eoleextract.FullExtract</mainClass>
+									<addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+									<addDefaultImplementationEntries>false</addDefaultImplementationEntries>
+								-->
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+
+								<!--
+									<addExtensions>true</addExtensions>
+								-->
+								<!--
+									DO NOT USE classpathMavenRepositoryLayout TO OVERIDE KARMA
+									<classpathMavenRepositoryLayout>true</classpathMavenRepositoryLayout>
+								-->
+							</manifest>
+
+							<!--  Custom Entries -->
+							<manifestEntries>
+								<Specification-Title>${project.name}</Specification-Title>
+								<Specification-Version>${project.version}</Specification-Version>
+								<Specification-Vendor>${project.organization.name}</Specification-Vendor>
+								<Implementation-Title>${project.name}</Implementation-Title>
+								<Implementation-Version>${project.version}</Implementation-Version>
+								<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+								<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+								<Implementation-Build>${maven.build.timestamp}</Implementation-Build>
+								<X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
+								<X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>
+							</manifestEntries>
+
+							<!--
+								<manifestSections> <manifestSection> <name>Custom</name>
+								<manifestEntries> <Mode>Development</Mode>
+								<Built-By>Alban</Built-By>
+								<Implementation-URL>${pom.url}</Implementation-URL>
+								<More-Info>For more information go to ${pom.url}</More-Info>
+								<Support>Get commercial support:
+								${pom.organization.url}/support</Support> <Description>Nabla ESB
+								and Integration Platform</Description> <License>Nabla Source
+								http://www.nabla.com/</License>
+								<Vendor-Url>${pom.organization.url}</Vendor-Url>
+								<Product-Url>${pom.url}</Product-Url>
+								<Dtd-Public-Id>-//${pom.organization.name} //DTD
+								nabla-configuration XML V1.0//EN</Dtd-Public-Id>
+								<Dtd-System-Id>${pom.url}/dtds</Dtd-System-Id>
+							-->
+							<!--
+								This would work if this issue gets closed:
+								http://jira.codehaus.org/browse/MNG-1832
+							-->
+							<!-- Build-Date>${mvn.timestamp.yyyy-MM-dd-HH:mm:ss}</Build-Date -->
+							<!--  include repository revision from buildnumber plugin -->
+							<!--<Build-Revision>${buildNumber}</Build-Revision>-->
+							<!--
+								</manifestEntries> </manifestSection> </manifestSections>
+							-->
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ant-plugin</artifactId>
+					<version>${maven.ant.plugin.version}</version>
+				</plugin>	
+				<plugin>
+					<groupId>org.antlr</groupId>
+					<artifactId>antlr3-maven-plugin</artifactId>
+					<version>${maven.antlr3.plugin.version}</version>
+				</plugin>		
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>native2ascii-maven-plugin</artifactId>
+					<version>${maven.native2ascii.maven.plugin.version}</version>
+					<!--
+						<dependencies> <dependency> <groupId>com.sun</groupId>
+						<artifactId>tools</artifactId> <version>1.5.0</version>
+						<scope>system</scope>
+						<systemPath>${java.home}/../lib/tools.jar</systemPath>
+						</dependency> </dependencies>
+					-->
+				</plugin>				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jalopy-maven-plugin</artifactId>
+					<version>${maven.jalopy.plugin.version}</version>
+				</plugin>									
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-rar-plugin</artifactId>
+					<version>${maven.rar.plugin.version}</version>
+				</plugin>	
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${maven.build.helper.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+					<version>${maven.help.plugin.version}</version>
+				</plugin>											
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven.clean.plugin.version}</version>
+					<!--
+						<configuration> <filesets> <fileset>
+						<directory>${project.basedir}</directory> <includes>
+						<include>*.log</include> <include>**/*.exc</include>
+						<include>**/*.bak</include> </includes> <excludes>
+					-->
+					<!-- Allow mvn clean install > install.log -->
+					<!--
+						<exclude>build.log</exclude> <exclude>install.log</exclude>
+						</excludes> <followSymlinks>false</followSymlinks> </fileset>
+						</filesets> </configuration>
+					-->
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven.war.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-plugin-plugin</artifactId>
+					<version>${maven.plugin.plugin.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-remote-resources-plugin</artifactId>
+					<version>${maven.remote.resources.plugin.version}</version>
+				</plugin>								
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${maven.shade.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-invoker-plugin</artifactId>
+					<version>${maven.invoker.plugin.version}</version>
+				</plugin>	
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-one-plugin</artifactId>
+					<version>${maven.one.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-patch-plugin</artifactId>
+					<version>${maven.patch.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>clirr-maven-plugin</artifactId>
+					<version>${maven.clirr.plugin.version}</version>
+					<configuration>
+						<minSeverity>info</minSeverity>
+						<comparisonVersion>1.0</comparisonVersion>
+					</configuration>
+				</plugin>	
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${maven.versions.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${maven.project.info.reports.plugin.version}</version>
+				</plugin>		
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+        				<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>${maven.surefire.report.plugin.version}</version>
+				</plugin>																								
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-scm-plugin</artifactId>
+					<version>${maven.scm.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jxr-plugin</artifactId>
+					<version>${maven.jxr.plugin.version}</version>
+				</plugin>					
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>taglist-maven-plugin</artifactId>
+					<version>${maven.taglist.plugin.version}</version>
+					<configuration>
+						<tagListOptions>
+							<tagClasses>
+								<tagClass>
+									<displayName>Todo Work</displayName>
+									<tags>
+										<tag>
+											<matchString>todo</matchString>
+											<matchType>ignoreCase</matchType>
+										</tag>
+										<tag>
+											<matchString>FIXME</matchString>
+											<matchType>exact</matchType>
+										</tag>
+										<tag>
+											<matchString>XXX</matchString>
+											<matchType>exact</matchType>
+										</tag>
+										<tag>
+											<matchString>@deprecated</matchString>
+											<matchType>exact</matchType>
+										</tag>
+									</tags>
+								</tagClass>
+							</tagClasses>
+						</tagListOptions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>${maven.findbugs.plugin.version}</version>
+					<configuration>
+						<xmlOutput>true</xmlOutput>
+						<effort>Default</effort>
+						<threshold>Normal</threshold>
+						<failOnError>false</failOnError>
+						<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
+					</configuration>
+				</plugin>				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>emma-maven-plugin</artifactId>
+					<version>${maven.emma.plugin.version}</version>
+        				<inherited>true</inherited>          
+        				<executions>
+        				  <execution>
+        				    <phase>process-classes</phase>               
+        				    <goals>
+        				      <goal>instrument</goal>
+        				    </goals>
+        				  </execution>
+        				</executions>					
+				</plugin>
+				<plugin> 
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId> 
+					<version>${maven.cobertura.plugin.version}</version>
+					<configuration>
+						<formats> 
+							<format>html</format> 
+							<format>xml</format> 
+						</formats>
+					</configuration> 
+				</plugin>
+				<plugin> 
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>dashboard-maven-plugin</artifactId>
+					<version>${maven.dashboard.plugin.version}</version> 
+				</plugin>		
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-changelog-plugin</artifactId>
+					<version>${maven.changelog.plugin.version}</version>
+				</plugin>	
+				<plugin>
+      				  	<groupId>org.apache.maven.plugins</groupId>
+      				  	<artifactId>maven-changes-plugin</artifactId>
+      				  	<version>${maven.changes.plugin.version}</version>
+      				</plugin>							
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jdepend-maven-plugin</artifactId>
+					<version>${maven.jdepend.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>javancss-maven-plugin</artifactId>
+					<version>${maven.javancss.plugin.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>${maven.pmd.plugin.version}</version>
+					<configuration>
+						<targetJdk>${jdkLevel}</targetJdk>
+						<linkXRef>true</linkXRef>
+						<rulesets>
+							<!--<ruleset>project/pmd_ruleset.xml</ruleset>-->
+							<ruleset>project/pmd_regles_nabla.xml</ruleset>
+						</rulesets>
+						<excludeRoots>
+							<excludeRoot>target/generated-sources</excludeRoot>
+						</excludeRoots>
+					</configuration>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${maven.checkstyle.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${maven.dependency.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>com.atlassian.maven.plugins</groupId>
+					<artifactId>maven-clover2-plugin</artifactId>
+					<!-- <version>3.7</version> -->
+					<configuration>
+						<jdk>${jdkLevel}</jdk>
+						<!--
+							<licenseLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</licenseLocation>
+							<generateHtml>false</generateHtml>
+						-->
+						<generateXml>true</generateXml>
+						<generatePdf>true</generatePdf>
+					</configuration>
+				</plugin>				
+				<plugin>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-java2ws-plugin</artifactId>
+					<version>${cxf.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-codegen-plugin</artifactId>
+					<version>${cxf.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.cxf</groupId>
+							<artifactId>cxf-rt-frontend-jaxws</artifactId>
+							<version>${cxf.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.cxf</groupId>
+							<artifactId>cxf-rt-frontend-simple</artifactId>
+							<version>${cxf.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-doap-plugin</artifactId>
+					<version>${maven.doap.plugin.version}</version>
+					<configuration>
+						<doapOptions>
+							<programmingLanguage>java</programmingLanguage>
+							<category>build-management</category>
+						</doapOptions>
+						<asfExtOptions>
+							<included>false</included>
+						</asfExtOptions>
+					</configuration>
+				</plugin>				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<version>${maven.tomcat.plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junitperf</groupId>
+				<artifactId>junitperf</artifactId>
+				<version>${junitperf.version}</version>
+				<scope>test</scope>
+			</dependency>			
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>${xerces.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>xalan</groupId>
+				<artifactId>xalan</artifactId>
+				<version>${xalan.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-j2ee_1.4_spec</artifactId>
+				<version>${geronimo.j2ee.specs.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring</artifactId>
+				<version>${spring.version}</version>
+				<!--<optional>false</optional>-->
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate</artifactId>
+				<version>${hibernate.version}</version>
+		        	<scope>compile</scope>
+		        	<exclusions>
+		        		<exclusion>
+		        			<groupId>javax.transaction</groupId>
+		        			<artifactId>jta</artifactId>
+		        		</exclusion>
+		        	</exclusions>
+		        </dependency>		
+            		<dependency>
+            		    <groupId>org.apache.activemq</groupId>
+            		    <artifactId>activemq-core</artifactId>
+            		    <version>${activemq.core.version}</version>
+            		    <scope>runtime</scope>
+            		</dependency>
+            		<dependency>
+            		    <groupId>commons-pool</groupId>
+            		    <artifactId>commons-pool</artifactId>
+            		    <version>${commons.pool.version}</version>
+            		    <scope>runtime</scope>
+            		</dependency>
+            		<dependency>
+            		    <groupId>aopalliance</groupId>
+            		    <artifactId>aopalliance</artifactId>
+            		    <version>${aopalliance.version}</version>
+            		</dependency>		        	
+			<dependency>
+				<groupId>com.tibco.jms</groupId>
+				<artifactId>tibjms</artifactId>
+				<version>${tibjms.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.jms</groupId>
+				<artifactId>jms</artifactId>
+				<version>${jms.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${javamail.version}</version>
+				<scope>compile</scope>
+			</dependency>			
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>jfree</groupId>
+				<artifactId>jfreechart</artifactId>
+				<version>${jfreechart.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>jfree</groupId>
+				<artifactId>jcommon</artifactId>
+				<version>${jfree.jcommon.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.lowagie</groupId>
+				<artifactId>itext</artifactId>
+				<version>${itext.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>poi</groupId>
+				<artifactId>poi-contrib</artifactId>
+				<version>${poi.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>poi</groupId>
+				<artifactId>poi-scratchpad</artifactId>
+				<version>${poi.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>${javax.activation.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>ant</groupId>
+				<artifactId>ant</artifactId>
+				<version>${ant.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-core</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-analyzers</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-queries</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-similarity</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons.collections.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-digester</groupId>
+				<artifactId>commons-digester</artifactId>
+				<version>${commons.digester.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons.fileupload.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons.logging.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${commons.configuration.version}</version>
+				<scope>compile</scope>
+			</dependency>			
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons.lang.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>${commons.cli.version}</version>
+				<scope>compile</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>			
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons.beanutils.version}</version>
+			</dependency>
+            		<dependency>
+            		    	<groupId>commons-codec</groupId>
+            		    	<artifactId>commons-codec</artifactId>
+            		    	<version>${commons.codec.version}</version>
+            		</dependency>			
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils-core</artifactId>
+				<version>${commons.beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>concurrent</groupId>
+				<artifactId>concurrent</artifactId>
+				<version>${concurrent.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp.version}</version>
+				<scope>provided</scope>
+			</dependency>			
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>${taglibs.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>jboss</groupId>
+				<artifactId>jboss-j2ee</artifactId>
+			  	<version>${jboss.version}</version>
+			  	<scope>provided</scope>
+			</dependency>				
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-api</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-core</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-simple</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-common-schemas</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-common-utilities</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-tools-common</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-bindings-soap</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-databinding-jaxb</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-bindings-xml</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-addr</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-annotation_1.0_spec</artifactId>
+				<version>${geronimo.annotation.spec.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-activation_1.1_spec</artifactId>
+				<version>${geronimo.activation.spec.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
+				<version>${geronimo.ws.metadata.spec.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jaxws_2.1_spec</artifactId>
+				<version>${geronimo.jaxws.spec.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-stax-api_1.0_spec</artifactId>
+				<version>${geronimo.stax.api.spec.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>${jaxb.api.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>${jaxb.impl.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>wsdl4j</groupId>
+				<artifactId>wsdl4j</artifactId>
+				<version>${wsdl4j.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>wstx-asl</artifactId>
+				<version>${wstx.asl.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.soap</groupId>
+				<artifactId>saaj-api</artifactId>
+				<version>${saaj.api.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.messaging.saaj</groupId>
+				<artifactId>saaj-impl</artifactId>
+				<version>${saaj.impl.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.commons.schema</groupId>
+				<artifactId>XmlSchema</artifactId>
+				<version>${xmlschema.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>xml-resolver</groupId>
+				<artifactId>xml-resolver</artifactId>
+				<version>${xml.resolver}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.fastinfoset</groupId>
+				<artifactId>FastInfoset</artifactId>
+				<version>${fastinfoset.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>${cglib.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>${asm.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<!-- WS Security -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-security</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache</groupId>
+				<artifactId>xmlsec</artifactId>
+				<version>${xmlsec.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.security</groupId>
+				<artifactId>wss4j</artifactId>
+				<version>${wss4j.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.flex.compiler</groupId>
+				<artifactId>flex-messaging-common</artifactId>
+				<version>${flex.messaging.common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.blazeds</groupId>
+				<artifactId>blazeds-remoting</artifactId>
+				<version>${blazeds.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.blazeds</groupId>
+				<artifactId>blazeds-core</artifactId>
+				<version>${blazeds.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.blazeds</groupId>
+				<artifactId>blazeds-opt</artifactId>
+				<version>${blazeds.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.blazeds</groupId>
+				<artifactId>blazeds-proxy</artifactId>
+				<version>${blazeds.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>${json.lib.version}</version>
+				<classifier>jdk15</classifier>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ezmorph</groupId>
+				<artifactId>ezmorph</artifactId>
+				<version>${ezmorph.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${testng.version}</version>
+				<classifier>jdk15</classifier>
+			</dependency>
+			<dependency>
+				<groupId>xmlunit</groupId>
+				<artifactId>xmlunit</artifactId>
+				<version>${xmlunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.tibco.tibrv</groupId>
+				<artifactId>tibrv</artifactId>
+				<version>${tibrv.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>sybase</groupId>
+				<artifactId>jconnect</artifactId>
+				<version>${jconnect.version}</version>
+				<scope>provided</scope> 
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>catalina</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>coyote</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>jasper</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.extras</groupId>
+				<artifactId>juli-adapters</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons.dbcp}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-plugin-api</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-archiver</artifactId>
+				<version>${maven.archiver.plugin.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-artifact</artifactId>
+				<version>${maven.artifact.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven.dependency.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+ 				<version>${maven.war.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven.jar.plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven.assembly.plugin.version}</version>
+			</dependency>			
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-project</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
