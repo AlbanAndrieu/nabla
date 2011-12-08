@@ -18,10 +18,9 @@
 	<description>Proof of concept : SOA framework for generic services</description>
 
 	<modules>
-		<!--<module>env</module> -->
+		<module>env</module> 
 		<module>build-tools</module>
 		<module>sample</module>
-		<module>nabla</module>
 	</modules>
 
 	<!-- ================= Default Properties ================= -->
@@ -1220,12 +1219,16 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>site-light</id>
-			<activation>
-				<property>
-					<name>!profile.activation</name>
-				</property>
-			</activation>			
+			<id>all</id>				
+			<modules>
+				<module>env</module> 
+				<module>build-tools</module>
+				<module>sample</module>
+				<module>nabla</module>
+			</modules>
+		</profile>	
+		<profile>
+			<id>site-light</id>		
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<andromdapp.run.skip>true</andromdapp.run.skip>
@@ -1329,7 +1332,7 @@
 										<lineRate>80</lineRate>
 									</regex>
 									<regex>
-										<pattern>com.reuters.sample.*</pattern>
+										<pattern>org.andromda.test.*</pattern>
 										<branchRate>40</branchRate>
 										<lineRate>30</lineRate>
 									</regex>
@@ -1373,7 +1376,6 @@
 						</configuration>
 					</plugin>				
 					<!-- Add this plug-ins only if you use SCM -->
-					<!--
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-changes-plugin</artifactId>
@@ -1390,8 +1392,6 @@
 							<sortColumnNames>Key</sortColumnNames>
 						</configuration>
 					</plugin>	
-					-->
-
 					<!-- *** GENERATION JAVADOC *** -->
 					<!-- Javadoc settings -->
 					<plugin>
@@ -1433,46 +1433,14 @@
 										<group>
 											<title>Validation</title>
 											<packages>${application.package}.validation.*</packages>
-										</group>
-										<group>
-											<title>Mail Import</title>
-											<packages>${application.package}.mailimport.*</packages>
-										</group>
+										</group>						
 										<group>
 											<title>Service</title>
 											<packages>${application.package}.service.*</packages>
-										</group>
-										<group>
-											<title>Import Export Service</title>
-											<packages>${application.package}.ImportExport.*</packages>
-										</group>
-										<group>
-											<title>CashPooling Service</title>
-											<packages>${application.package}.CashPooling.*</packages>
-										</group>
-										<group>
-											<title>Archival Service</title>
-											<packages>${application.package}.ArchivalService.*</packages>
-										</group>
-										<group>
-											<title>CorporateAction Service</title>
-											<packages>${application.package}.CorporateAction.*</packages>
-										</group>
-										<group>
-											<title>MessagingService Service</title>
-											<packages>${application.package}.MessagingService.*</packages>
-										</group>
-										<group>
-											<title>SDValidation Service</title>
-											<packages>${application.package}.SDValidation.*</packages>
-										</group>
+										</group>								
 										<group>
 											<title>Realtime Service</title>
 											<packages>${application.package}.realtime.*</packages>
-										</group>
-										<group>
-											<title>Workflow Service</title>
-											<packages>${application.package}.Workflow.*</packages>
 										</group>
 										<group>
 											<title>Corba</title>
@@ -1481,15 +1449,7 @@
 										<group>
 											<title>Tool</title>
 											<packages>${application.package}.tool.*</packages>
-										</group>
-										<group>
-											<title>Common JDBManager</title>
-											<packages>${application.package}.common.JDBManager*</packages>
-										</group>
-										<group>
-											<title>Common JObjectDB</title>
-											<packages>${application.package}.common.JObjectDB*</packages>
-										</group>
+										</group>										
 										<group>
 											<title>Common Service</title>
 											<packages>${application.package}.common.service*</packages>
@@ -1517,22 +1477,10 @@
 										<group>
 											<title>Choice</title>
 											<packages>${application.package}.choice.*</packages>
-										</group>
-										<group>
-											<title>KDB</title>
-											<packages>com.rfs.kdb.*</packages>
-										</group>
-										<group>
-											<title>Karma</title>
-											<packages>com.rfs.wffield.*</packages>
-										</group>
-										<group>
-											<title>Modules (not part of the application core)</title>
-											<packages>com.reuters.tradeaccess.mask.*</packages>
-										</group>
+										</group>									
 										<group>
 											<title>Examples</title>
-											<packages>com.nabla.samples.*:com.nabla.demo.*</packages>
+											<packages>com.nabla.samples.*:com.nabla.demo.*:org.andromda.test.*</packages>
 										</group>
 									</groups>
 									<doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
@@ -1542,10 +1490,10 @@
 										<version>4.6</version>
 									</docletArtifact>
 									<additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
-										com.rfs.wffield.* -collpackages java.util.* -collpackages
-										com.reuters.product.logical.*
+										com.nabla.gui.* -collpackages java.util.* -collpackages
+										com.nabla.logical.*
 										-collpackages
-										com.reuters.product.utils.* -qualify
+										com.nabla.utils.* -qualify
 										-postfixpackage
 										-nodefontsize 9 -nodefontpackagesize 7
 										-outputencoding utf8</additionalparam>
@@ -1859,12 +1807,6 @@
 							</dependency>
 						</dependencies>							
 					</plugin>
-
-					<!--
-						<groupId>net.objectlab</groupId>
-						<artifactId>mvn-qalab-plugin</artifactId>
-						<version>${maven.qalab.plugin.version}</version> </plugin>
-					-->
 					<!-- Code Coverage by Clover -->
 					<!-- Bind Clover Coverage instrumentation to the site generation -->
 					<!-- Blocked by http://jira.codehaus.org/browse/MCLOVER-50 -->
@@ -1908,7 +1850,7 @@
 										<lineRate>80</lineRate>
 									</regex>
 									<regex>
-										<pattern>com.reuters.sample.*</pattern>
+										<pattern>org.andromda.test.*</pattern>
 										<branchRate>40</branchRate>
 										<lineRate>30</lineRate>
 									</regex>
@@ -1923,7 +1865,7 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>					
+					</plugin>	
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dashboard-maven-plugin</artifactId>
@@ -2001,7 +1943,24 @@
 							<aggregate>true</aggregate>
 						</configuration>
 					</plugin>
-										
+								
+					<!-- Add this plug-ins only if you use SCM -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-changes-plugin</artifactId>
+						<version>${maven.changes.plugin.version}</version>					
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>changes-report</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+						<configuration>
+							<columnNames>Key,Type,Summary,Assignee,Status,Resolution,Priority,Component</columnNames>
+							<sortColumnNames>Key</sortColumnNames>
+						</configuration>
+					</plugin>										
 					<!-- Add this plug-ins only if you use SCM -->
 
 					<!-- http://maven.apache.org/plugins/maven-changelog-plugin/faq.html -->
@@ -2016,7 +1975,8 @@
 								<id>dual-report</id>
 								<configuration>
 									<type>range</type>
-									<range>60</range>
+									<range>90</range>
+                            						<dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
 								</configuration>
 								<reports>
 									<report>changelog</report>
@@ -2026,7 +1986,6 @@
 							</reportSet>
 						</reportSets>
 					</plugin>
-
 					<!-- *** GENERATION JAVADOC *** -->
 					<!-- Javadoc settings -->
 					<plugin>
@@ -2097,7 +2056,6 @@
 						<configuration>
 							<!-- Default configuration for all reports -->
 							<excludePackageNames>*.ejb.*</excludePackageNames>
-
 							<groups>
 								<group>
 									<title>Database</title>
@@ -2118,46 +2076,14 @@
 								<group>
 									<title>Validation</title>
 									<packages>${application.package}.validation.*</packages>
-								</group>
-								<group>
-									<title>Mail Import</title>
-									<packages>${application.package}.mailimport.*</packages>
-								</group>
+								</group>						
 								<group>
 									<title>Service</title>
 									<packages>${application.package}.service.*</packages>
-								</group>
-								<group>
-									<title>Import Export Service</title>
-									<packages>${application.package}.ImportExport.*</packages>
-								</group>
-								<group>
-									<title>CashPooling Service</title>
-									<packages>${application.package}.CashPooling.*</packages>
-								</group>
-								<group>
-									<title>Archival Service</title>
-									<packages>${application.package}.ArchivalService.*</packages>
-								</group>
-								<group>
-									<title>CorporateAction Service</title>
-									<packages>${application.package}.CorporateAction.*</packages>
-								</group>
-								<group>
-									<title>MessagingService Service</title>
-									<packages>${application.package}.MessagingService.*</packages>
-								</group>
-								<group>
-									<title>SDValidation Service</title>
-									<packages>${application.package}.SDValidation.*</packages>
-								</group>
+								</group>								
 								<group>
 									<title>Realtime Service</title>
 									<packages>${application.package}.realtime.*</packages>
-								</group>
-								<group>
-									<title>Workflow Service</title>
-									<packages>${application.package}.Workflow.*</packages>
 								</group>
 								<group>
 									<title>Corba</title>
@@ -2166,15 +2092,7 @@
 								<group>
 									<title>Tool</title>
 									<packages>${application.package}.tool.*</packages>
-								</group>
-								<group>
-									<title>Common JDBManager</title>
-									<packages>${application.package}.common.JDBManager*</packages>
-								</group>
-								<group>
-									<title>Common JObjectDB</title>
-									<packages>${application.package}.common.JObjectDB*</packages>
-								</group>
+								</group>										
 								<group>
 									<title>Common Service</title>
 									<packages>${application.package}.common.service*</packages>
@@ -2202,25 +2120,13 @@
 								<group>
 									<title>Choice</title>
 									<packages>${application.package}.choice.*</packages>
-								</group>
-								<group>
-									<title>KDB</title>
-									<packages>com.rfs.kdb.*</packages>
-								</group>
-								<group>
-									<title>Karma</title>
-									<packages>com.rfs.wffield.*</packages>
-								</group>
-								<group>
-									<title>Modules (not part of the application core)</title>
-									<packages>com.reuters.tradeaccess.mask.*</packages>
-								</group>
+								</group>									
 								<group>
 									<title>Examples</title>
-									<packages>com.nabla.samples.*:com.nabla.demo.*</packages>
+									<packages>com.nabla.samples.*:com.nabla.demo.*:org.andromda.test.*</packages>
 								</group>
 							</groups>
-
+							
 							<stylesheet>maven</stylesheet>
 							<!--
 								<minmemory>128m</minmemory> <maxmemory>512m</maxmemory>
@@ -2415,14 +2321,46 @@
 						<artifactId>javancss-maven-plugin</artifactId>
 						<version>${maven.javancss.plugin.version}</version>
 					</plugin>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>clirr-maven-plugin</artifactId>
-						<version>${maven.clirr.plugin.version}</version>
-						<configuration>
-							<minSeverity>error</minSeverity>
-						</configuration>
-					</plugin>
+					<!-- waiting 1.3 version
+            				<plugin>
+            				    <groupId>org.codehaus.mojo</groupId>
+            				    <artifactId>versions-maven-plugin</artifactId>
+            				    <version>${maven.versions.plugin.version}</version>
+            				    <reportSets>
+            				        <reportSet>
+            				          <reports>
+            				            <report>dependency-updates-report</report>
+            				            <report>plugin-updates-report</report>
+            				            <report>property-updates-report</report>
+            				          </reports>
+            				        </reportSet>
+            				    </reportSets>
+            				</plugin>
+            				-->
+            				<plugin>
+            				    <groupId>org.apache.maven.plugins</groupId>
+					    <artifactId>maven-doap-plugin</artifactId>
+					    <version>${maven.doap.plugin.version}</version>
+            				    <configuration>
+            				        <doapOptions>
+            				            <programmingLanguage>java</programmingLanguage>
+            				            <category>build-management</category>
+            				        </doapOptions>
+            				        <asfExtOptions>
+            				            <included>false</included>
+            				        </asfExtOptions>
+            				    </configuration>
+            				</plugin>
+           				<!-- Compare APIs to a previous version, uncomment when a release version exists -->
+            				<plugin>
+            				    <groupId>org.codehaus.mojo</groupId>
+            				    <artifactId>clirr-maven-plugin</artifactId>
+            				    <version>${maven.clirr.plugin.version}</version>
+            				    <inherited>true</inherited>
+            				    <configuration>
+            				        <minSeverity>info</minSeverity>
+            				    </configuration>
+            				</plugin>
 
 					<!-- Comment gerer un rapport de couverture des tests -->
 					<!-- Code Coverage by Cobertura -->
@@ -3086,7 +3024,6 @@
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate</artifactId>
 					<version>${hibernate.version}</version>
-		                	<!--
 		                	<scope>compile</scope>
 		                	<exclusions>
 		                		<exclusion>
@@ -3094,7 +3031,6 @@
 		                			<artifactId>jta</artifactId>
 		                		</exclusion>
 		                	</exclusions>
-		                	-->
 		                </dependency>
 				<dependency>
 					<groupId>org.hibernate</groupId>
