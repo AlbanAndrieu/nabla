@@ -13,13 +13,13 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
             <scope>provided</scope>

@@ -13,24 +13,24 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-web</artifactId>
+            <artifactId>web</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-workflow</artifactId>
+            <artifactId>workflow</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -125,21 +125,21 @@
                         -->
                         <jarModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>howtomodel-common</artifactId>
+                            <artifactId>common</artifactId>
                             <includeInApplicationXml>true</includeInApplicationXml>
                         </jarModule>
                         <ejbModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>howtomodel-core</artifactId>
+                            <artifactId>core</artifactId>
                         </ejbModule>
                         <webModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>howtomodel-web</artifactId>
+                            <artifactId>web</artifactId>
                             <contextRoot>/${application.id}</contextRoot>
                         </webModule>
                         <jarModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>howtomodel-workflow</artifactId>
+                            <artifactId>workflow</artifactId>
                         </jarModule>
                     </modules>
                     <jboss>

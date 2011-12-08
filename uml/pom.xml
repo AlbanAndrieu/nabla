@@ -16,7 +16,14 @@
 	<version>1.0</version>
 	<name>Nabla UML</name>
 	<description>Parent of all MDA-related modules.</description>
-	
+
+	<scm>
+                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/uml</connection>
+                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/uml</developerConnection>
+                <url>https://alban.googlecode.com/svn/${project.svn.path}/uml</url>
+		<tag>HEAD</tag>
+	</scm>
+		
 	<modules>
 		<module>sample</module>
 	</modules>

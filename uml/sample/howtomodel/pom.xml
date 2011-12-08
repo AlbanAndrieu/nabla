@@ -661,10 +661,12 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>2.2</version>
             </plugin>
+            -->
         </plugins>
     </build>
     <modules>
@@ -739,9 +741,7 @@
         For Progress use: org.hibernate.dialect.ProgressDialect
         For Derby use: org.hibernate.dialect.DerbyDialect
         -->
-        <hibernate.dialect>
-            org.hibernate.dialect.MySQL5InnoDBDialect
-        </hibernate.dialect>
+        <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
         <!--
             Change this to the correct database type mappings (for Jboss)
             For MySql use: mySQL
