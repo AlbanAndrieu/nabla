@@ -1,7 +1,7 @@
 // license-header java merge-point
 //
 /**
- * @author Generated on 12/07/2011 19:18:39+0100 Do not modify by hand!
+ * @author Generated on 12/08/2011 02:04:02+0100 Do not modify by hand!
  *
  * TEMPLATE:     ValueObject.vsl in andromda-java-cartridge.
  * MODEL CLASS:  Data::EJB3 Example::org.andromda.test::howto16::a::CareValueObject

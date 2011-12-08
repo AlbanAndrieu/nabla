@@ -939,6 +939,10 @@
     </profiles>
     <repositories>
         <repository>
+        	<id>nabla</id>
+        	<url>http://alban.googlecode.com/svn/mavenrepo</url>
+        </repository>	    
+        <repository>
             <id>sonatype</id>
             <name>Sonatype AndroMDA Repository</name>
             <url>http://oss.sonatype.org/content/groups/public</url>
