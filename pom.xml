@@ -12,7 +12,7 @@
         <!-- This element provides a basic description of your project -->
         <description>Users</description>
         <modules>
-                <module>env</module>
+                <module>dependencies</module>
                 <module>build-tools</module>
                 <module>project</module>
                 <module>uml</module>
