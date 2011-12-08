@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>howtomodel-mda</artifactId>
+            <artifactId>mda</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
             <scope>runtime</scope>
