@@ -332,7 +332,8 @@
 	<properties>
 		<project.svn.path>trunk</project.svn.path>
 
-		<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base>
+		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base>-->
+		<scm.base>svn:http://alban.googlecode.com/svn/</scm.base>
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<distributionManagement.repository.url>file://localhost/${archiva.dir}</distributionManagement.repository.url>
 		<deploy.dir>${env.HOME}/fullsite</deploy.dir>
@@ -418,6 +419,7 @@
 		<avalon.framework.version>4.1.3</avalon.framework.version>
 		<odmg.version>3.0</odmg.version>
 		<aopalliance.version>1.0</aopalliance.version>
+		<activemq.core.version>4.1.1</activemq.core.version>
 
 		<taglibs.version>1.1.1</taglibs.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
@@ -578,12 +580,13 @@
 		<docbkx.maven.plugin.version>2.0.8</docbkx.maven.plugin.version>
 		<doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
 		<xdoclet.maven.plugin.version>1.0-alpha-2</xdoclet.maven.plugin.version>
+		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
 				
 		<maven.tomcat.plugin.version>1.0-beta-1</maven.tomcat.plugin.version>				
 		<maven.apache.rat.plugin.version>0.7</maven.apache.rat.plugin.version>
 		<maven.cobertura.plugin.version>2.5.1</maven.cobertura.plugin.version>
 		<maven.release.plugin.version>2.1</maven.release.plugin.version>
-		<maven.antrun.plugin.version>1.6</maven.antrun.plugin.version>
+		<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
 		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
@@ -683,6 +686,45 @@
 					<artifactId>maven-eclipse-plugin</artifactId>
 					<version>${maven.eclipse.plugin.version}</version>
 				</plugin>
+                                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+        			<plugin>
+        			  <groupId>org.eclipse.m2e</groupId>
+        			  <artifactId>lifecycle-mapping</artifactId>
+        			  <version>${lifecycle.mapping.version}</version>
+        			  <configuration>
+        			    <lifecycleMappingMetadata>
+        			      <pluginExecutions>
+        			        <pluginExecution>
+        			          <pluginExecutionFilter>
+        			            <groupId>org.apache.maven.plugins</groupId>
+        			            <artifactId>maven-antrun-plugin</artifactId>
+        			            <versionRange>[1.7,)</versionRange>
+        			            <goals>
+        			              <goal>run</goal>
+        			            </goals>
+        			          </pluginExecutionFilter>
+        			          <action>
+        			            <ignore />
+        			          </action>
+        			        </pluginExecution>
+					<pluginExecution>
+        			            <pluginExecutionFilter>
+        			                <groupId>org.codehaus.mojo</groupId>
+        			                <artifactId>aspectj-maven-plugin</artifactId>
+        			                <versionRange>[1.0,)</versionRange>
+        			                <goals>
+        			                    <goal>test-compile</goal>
+        			                    <goal>compile</goal>
+        			                </goals>
+        			            </pluginExecutionFilter>
+        			            <action>
+        			                <execute />
+        			            </action>
+        			        </pluginExecution>                
+        			      </pluginExecutions>
+        			    </lifecycleMappingMetadata>
+        			  </configuration>
+        			</plugin>       				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
@@ -733,11 +775,9 @@
 						<meminitial>128m</meminitial>
 						<maxmem>512m</maxmem>
 						<fork>${compiler.fork}</fork>
-						<!--
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
 						<compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
-						-->
 						<!--
 							<verbose>true</verbose> <excludes>
 							<exclude>**/*Point*.java</exclude> </excludes>
@@ -788,7 +828,7 @@
 							<tagBase>https://svn.apache.org/repos/asf/maven/components/releases</tagBase>
 						-->
 
-						<tagBase>${scm.base}/releases</tagBase>
+						<tagBase>https://alban.googlecode.com/svn/releases</tagBase>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -1220,7 +1260,7 @@
 					<version>${maven.clirr.plugin.version}</version>
 					<configuration>
 						<minSeverity>info</minSeverity>
-						<comparisonVersion>3.3</comparisonVersion>
+						<comparisonVersion>1.0</comparisonVersion>
 					</configuration>
 				</plugin>	
 				<plugin>
@@ -1471,6 +1511,35 @@
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate</artifactId>
+				<version>${hibernate.version}</version>
+		        	<scope>compile</scope>
+		        	<exclusions>
+		        		<exclusion>
+		        			<groupId>javax.transaction</groupId>
+		        			<artifactId>jta</artifactId>
+		        		</exclusion>
+		        	</exclusions>
+		        </dependency>		
+            		<dependency>
+            		    <groupId>org.apache.activemq</groupId>
+            		    <artifactId>activemq-core</artifactId>
+            		    <version>${activemq.core.version}</version>
+            		    <scope>runtime</scope>
+            		</dependency>
+            		<dependency>
+            		    <groupId>commons-pool</groupId>
+            		    <artifactId>commons-pool</artifactId>
+            		    <version>${commons.pool.version}</version>
+            		    <scope>runtime</scope>
+            		</dependency>
+            		<dependency>
+            		    <groupId>aopalliance</groupId>
+            		    <artifactId>aopalliance</artifactId>
+            		    <version>${aopalliance.version}</version>
+            		</dependency>		        	
+			<dependency>
 				<groupId>com.tibco.jms</groupId>
 				<artifactId>tibjms</artifactId>
 				<version>${tibjms.version}</version>
@@ -1625,6 +1694,11 @@
 				<artifactId>commons-beanutils</artifactId>
 				<version>${commons.beanutils.version}</version>
 			</dependency>
+            		<dependency>
+            		    	<groupId>commons-codec</groupId>
+            		    	<artifactId>commons-codec</artifactId>
+            		    	<version>${commons.codec.version}</version>
+            		</dependency>			
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils-core</artifactId>
@@ -1657,6 +1731,7 @@
 				<groupId>jboss</groupId>
 				<artifactId>jboss-j2ee</artifactId>
 			  	<version>${jboss.version}</version>
+			  	<scope>provided</scope>
 			</dependency>				
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
