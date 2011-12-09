@@ -16,13 +16,13 @@
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
 
-	<profiles>	
+	<profiles>
 		<profile>
-		        <!-- site light for jenkins -->
+			<!-- site light for jenkins -->
 			<id>jenkins-site</id>
-			<properties>				
+			<properties>
 				<invoker.skip>true</invoker.skip>
-			</properties>					
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -53,7 +53,7 @@
 							</dependency>
 						</dependencies>
 					</plugin>
-									
+
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-project-info-reports-plugin</artifactId>
@@ -69,7 +69,7 @@
 						<artifactId>maven-surefire-report-plugin</artifactId>
 						<version>${maven.surefire.plugin.version}</version>
 					</plugin>
-					
+
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>clirr-maven-plugin</artifactId>
@@ -80,12 +80,11 @@
 						<artifactId>maven-jxr-plugin</artifactId>
 						<version>${maven.jxr.plugin.version}</version>
 					</plugin>
-
 					<!-- http://checkstyle.sourceforge.net -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>${maven.checkstyle.plugin.version}</version>						
+						<version>${maven.checkstyle.plugin.version}</version>
 						<dependencies>
 							<!-- The file defined in the location is stored in this dependency -->
 							<dependency>
@@ -93,7 +92,7 @@
 								<artifactId>build-tools</artifactId>
 								<version>1.0</version>
 							</dependency>
-						</dependencies>							
+						</dependencies>
 					</plugin>
 
 					<!-- Delete code coverage database when 'mvn clean' is executed -->
@@ -132,13 +131,12 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>			
+					</plugin>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>taglist-maven-plugin</artifactId>
 						<version>${maven.taglist.plugin.version}</version>
-					</plugin>							
-
+					</plugin>
 				</plugins>
 			</build>
 			<!-- Reporting configurations are not picked up from pluginManagement
@@ -159,12 +157,12 @@
 							<!--<outputDirectory>/data/reports</outputDirectory> -->
 							<aggregate>true</aggregate>
 						</configuration>
-					</plugin>				
+					</plugin>
 					<!-- Add this plug-ins only if you use SCM -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-changes-plugin</artifactId>
-						<version>${maven.changes.plugin.version}</version>					
+						<version>${maven.changes.plugin.version}</version>
 						<reportSets>
 							<reportSet>
 								<reports>
@@ -176,7 +174,7 @@
 							<columnNames>Key,Type,Summary,Assignee,Status,Resolution,Priority,Component</columnNames>
 							<sortColumnNames>Key</sortColumnNames>
 						</configuration>
-					</plugin>	
+					</plugin>
 					<!-- *** GENERATION JAVADOC *** -->
 					<!-- Javadoc settings -->
 					<plugin>
@@ -218,11 +216,11 @@
 										<group>
 											<title>Validation</title>
 											<packages>${application.package}.validation.*</packages>
-										</group>						
+										</group>
 										<group>
 											<title>Service</title>
 											<packages>${application.package}.service.*</packages>
-										</group>								
+										</group>
 										<group>
 											<title>Realtime Service</title>
 											<packages>${application.package}.realtime.*</packages>
@@ -234,7 +232,7 @@
 										<group>
 											<title>Tool</title>
 											<packages>${application.package}.tool.*</packages>
-										</group>										
+										</group>
 										<group>
 											<title>Common Service</title>
 											<packages>${application.package}.common.service*</packages>
@@ -262,7 +260,7 @@
 										<group>
 											<title>Choice</title>
 											<packages>${application.package}.choice.*</packages>
-										</group>									
+										</group>
 										<group>
 											<title>Examples</title>
 											<packages>com.nabla.samples.*:com.nabla.demo.*:org.andromda.test.*</packages>
@@ -272,7 +270,7 @@
 									<docletArtifact>
 										<groupId>gr.spinellis</groupId>
 										<artifactId>UmlGraph</artifactId>
-										<version>4.6</version>
+										<version>4.9.0</version>
 									</docletArtifact>
 									<additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
 										com.nabla.gui.* -collpackages java.util.* -collpackages
@@ -315,8 +313,8 @@
 							<detectOfflineLinks>false</detectOfflineLinks>
 						</configuration>
 					</plugin>
-					
-					
+
+
 					<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
 					<!-- Source code cross-reference -->
 					<plugin>
@@ -330,7 +328,7 @@
 							<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 						</configuration>
 					</plugin>
-							
+
 					<!-- Comment gerer un rapport des tags -->
 					<!-- taglist must be after dashboard and jxr in order to avoid error -->
 					<plugin>
@@ -367,7 +365,7 @@
 								</tagClasses>
 							</tagListOptions>
 						</configuration>
-					</plugin>				
+					</plugin>
 
 					<!-- Comment verifier la qualitee code avec checkstyle ou PMD -->
 					<!-- *** GENERATION CHECKSTYLE *** -->
@@ -433,7 +431,6 @@
 								<ruleset>/rulesets/sunsecure.xml</ruleset>
 								<ruleset>/rulesets/typeresolution.xml</ruleset>
 								<ruleset>/rulesets/unusedcode.xml</ruleset>
-								-->
 							</rulesets>
 						</configuration>
 					</plugin>
@@ -486,7 +483,7 @@
 								<format>html</format>
 							</formats>
 						</configuration>
-					</plugin>				
+					</plugin>
 				</plugins>
 			</reporting>
 		</profile>

@@ -18,8 +18,8 @@
 
 	<!-- ================= Default Properties ================= -->
 	<properties>
-		<invoker.skip>true</invoker.skip>	
-			        	
+		<invoker.skip>true</invoker.skip>
+
 		<compiler.fork>false</compiler.fork>
 
 		<downloadSources>true</downloadSources>
@@ -108,14 +108,8 @@
 		<project.includexml>${project.target}</project.includexml>
 		<project.includedictionaries>${project.target}</project.includedictionaries>
 		<maven.build.generated>src/generated</maven.build.generated>
-		<maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>	
+		<maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
 	</properties>
-	<!--
-		La balise dependencyManagement, dans le POM du projet parent permet de
-		declarer une version et un scope pour une dependance. Si un des
-		modules enfants utilise cette dependance, sans preciser de version ou
-		de scope, celle dans le dependencyManagement sera utilise
-	-->
 	<dependencyManagement>
 		<dependencies>
 
@@ -483,10 +477,6 @@
 				<version>${commons.fileupload.version}</version>
 				<scope>compile</scope>
 			</dependency>
-			<!--
-				Maven2, Spring 2.0 and JPA using Xerces 2.0.2 has some bug and
-				maven2 comes with it. Instead you need to use Xerces 2.8.1
-			-->
 			<dependency>
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
@@ -621,11 +611,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-
-	<!--
-		In order for you to see what happens during the inheritance process
-		you will need to use the handy mvn help:effective-pom command.
-	-->
 	<dependencies>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -732,10 +717,7 @@
 		<defaultGoal>install</defaultGoal>
 
 		<extensions>
-			<!--
-				Needed for dashboard-maven-plugin and jalopy-maven-plugin and
-				maven-checkstyle-plugin
-			-->
+			<!-- Needed for dashboard-maven-plugin and jalopy-maven-plugin and maven-checkstyle-plugin -->
 			<extension>
 				<groupId>com.nabla.project.build-tools</groupId>
 				<artifactId>build-tools</artifactId>
@@ -898,9 +880,7 @@
 			</plugins>
 		</pluginManagement>
 
-		<!--
-			Other Good tool quality code for http://sonar.hortis.ch/installation/
-		-->
+		<!-- Other Good tool quality code for http://sonar.hortis.ch/installation/ -->
 		<!-- Plugin Configuration -->
 		<plugins>
 			<plugin>
@@ -1122,10 +1102,7 @@
 					<version>1.5.0</version>
 					<scope>system</scope>
 					<systemPath>${java.home}/lib/tools.jar</systemPath>
-					<!--
-						<systemPath>C:\Program Files
-						(x86)\Java\jdk1.5.0_22\lib\tools.jar</systemPath>
-					-->
+					<!-- <systemPath>C:\Program Files (x86)\Java\jdk1.5.0_22\lib\tools.jar</systemPath> -->
 				</dependency>
 			</dependencies>
 		</profile>
@@ -1134,17 +1111,17 @@
 			<properties>
 				<target.dir>target-eclipse</target.dir>
 			</properties>
-		</profile>			        
+		</profile>
 		<profile>
 			<id>site</id>
-			<properties>		
+			<properties>
 				<andromdapp.run.skip>true</andromdapp.run.skip>
 				<andromda.run.skip>true</andromda.run.skip>
 				<skipProcessing>true</skipProcessing>
 				<maven.test.skip>false</maven.test.skip>
 				<andromda.translation.test.skip>true</andromda.translation.test.skip>
 			</properties>
-		</profile>		
+		</profile>
 
 		<profile>
 			<id>spring</id>
@@ -1152,7 +1129,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
 			<dependencies>
 				<!--
 				<dependency> <groupId>org.springframework</groupId>
@@ -1177,7 +1154,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 		<!-- ================= START MDA Profiles ================= -->
 		<profile>
 			<id>uml14</id>
@@ -1197,7 +1173,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
 			<properties>
 				<uml.type>uml2</uml.type>
 				<repo.type>emf-uml22</repo.type>
@@ -1218,13 +1194,6 @@
 					<name>!profile.activation</name>
 				</property>
 			</activation>
-			<!--
-			<modules>
-			        <module>env</module>
-				<module>build-tools</module>
-				<module>sample</module>
-			</modules>
-			-->	
 			<properties> 
 				<target.dir>target-eclipse</target.dir>
 				<!--
@@ -1235,10 +1204,8 @@
 			</properties>
 			<build>
 				<plugins>
-					<!--
-						Automatically attach sources to build artifact as
-						artifact-version-sources.jar and deploy to local repository
-					-->
+					<!-- Automatically attach sources to build artifact as artifact-version-sources.jar
+						and deploy to local repository -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
@@ -1283,11 +1250,9 @@
 					<value>int</value>
 				</property>
 			</activation>
-			<!--
-				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
-				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
-				<webservice.host /> <webservice.port /> </properties>
-			-->
+			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
+				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
+				/> </properties> -->
 		</profile>
 		<profile>
 			<id>validation</id>
@@ -1297,11 +1262,9 @@
 					<value>val</value>
 				</property>
 			</activation>
-			<!--
-				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
-				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
-				<webservice.host /> <webservice.port /> </properties>
-			-->
+			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
+				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
+				/> </properties> -->
 		</profile>
 		<profile>
 			<id>homologation</id>
@@ -1311,11 +1274,9 @@
 					<value>hom</value>
 				</property>
 			</activation>
-			<!--
-				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
-				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
-				<webservice.host /> <webservice.port /> </properties>
-			-->
+			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
+				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
+				/> </properties> -->
 		</profile>
 		<profile>
 			<id>production</id>
@@ -1325,11 +1286,9 @@
 					<value>prod</value>
 				</property>
 			</activation>
-			<!--
-				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
-				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
-				<webservice.host /> <webservice.port /> </properties>
-			-->
+			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
+				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
+				/> </properties> -->
 		</profile>
 		<profile>
 			<id>release</id>
@@ -1339,11 +1298,9 @@
 					<value>rel</value>
 				</property>
 			</activation>
-			<!--
-				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
-				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
-				<webservice.host /> <webservice.port /> </properties>
-			-->
+			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
+				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
+				/> </properties> -->
 			<build>
 				<plugins>
 					<plugin>

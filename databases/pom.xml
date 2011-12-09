@@ -17,7 +17,7 @@
 	<packaging>pom</packaging>
 	<description>The Databases pom file is a superpom to centralize all third parties</description>
 
-	<profiles>		
+	<profiles>
 		<!-- ================= START Database Profiles ================= -->
 		<profile>
 			<id>mysql</id>
@@ -296,10 +296,12 @@
 
 				<!-- org.apache.derby.jdbc.ClientDriver -->
 				<!--
-					<dependency> <groupId>${jdbc.groupId}</groupId>
+				<dependency> 
+					<groupId>${jdbc.groupId}</groupId>
 					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version> <scope>compile</scope>
-					</dependency>
+					<version>${jdbc.version}</version> 
+					<scope>compile</scope>
+				</dependency>
 				-->
 			</dependencies>
 		</profile>
@@ -327,7 +329,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
 			<properties>
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
 				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
@@ -345,7 +347,7 @@
 			<properties>
 				<database>oracle</database>
 				<database.name>myDBGlobal</database.name>
-				<!-- Database settings -->				
+				<!-- Database settings -->
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 				<!--<dbunit.schema>SYSTEM</dbunit.schema> -->
@@ -428,7 +430,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
 
 			<!-- see file pom_persistence-SAV.txt -->
 			<dependencies>
@@ -442,14 +444,14 @@
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate</artifactId>
 					<version>${hibernate.version}</version>
-		                	<scope>compile</scope>
-		                	<exclusions>
-		                		<exclusion>
-		                			<groupId>javax.transaction</groupId>
-		                			<artifactId>jta</artifactId>
-		                		</exclusion>
-		                	</exclusions>
-		                </dependency>
+					<scope>compile</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>javax.transaction</groupId>
+							<artifactId>jta</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-annotations</artifactId>

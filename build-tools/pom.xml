@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-        <parent>
-	    <groupId>com.nabla.project</groupId>
-	    <artifactId>dependencies</artifactId>
-	    <version>1.0</version>
-	    <relativePath>../dependencies/pom.xml</relativePath>
-        </parent>
-  
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>dependencies</artifactId>
+		<version>1.0</version>
+		<relativePath>../dependencies/pom.xml</relativePath>
+	</parent>
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.build-tools</groupId>
 	<artifactId>build-tools</artifactId>
@@ -18,9 +18,9 @@
 	<description>Nabla Maven Config - global configurations for quality metrics such as PMD FindBugs CheckStyle</description>
 
 	<scm>
-                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/build-tools</connection>
-                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/build-tools</developerConnection>
-                <url>https://alban.googlecode.com/svn/${project.svn.path}/build-tools</url>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/build-tools</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/build-tools</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/build-tools</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -58,7 +58,7 @@
 				<includes>
 					<include>README-1.0.txt</include>
 					<include>LICENSE-1.0.txt</include>
-					
+
 				</includes>
 			</resource>
 		</resources>

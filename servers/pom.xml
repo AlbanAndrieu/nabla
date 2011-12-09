@@ -8,7 +8,7 @@
 		<version>1.0</version>
 		<relativePath>../main/pom.xml</relativePath>
 	</parent>
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project</groupId>
 	<artifactId>servers</artifactId>
@@ -41,7 +41,7 @@
 						</container>
 						<configuration>
 							<type>standalone</type>
-							<!--<home>${project.build.directory}/${cargo.container}/container</home>-->
+							<!--<home>${project.build.directory}/${cargo.container}/container</home> -->
 							<properties>
 								<cargo.hostname>${cargo.host}</cargo.hostname>
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
@@ -102,18 +102,18 @@
 					<version>${maven.jboss.plugin.version}</version>
 				</plugin>
 			</plugins>
-		</pluginManagement>	
+		</pluginManagement>
 	</build>
-										
-	<profiles>	
-		
+
+	<profiles>
+
 		<profile>
 			<id>sonar</id>
 			<activation>
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
 			<properties>
 				<!-- sonar user admin password admin -->
 				<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
@@ -130,10 +130,10 @@
 					est modifie dans le fichier de configuration.
 				-->
 				<sonar.host.url>http://localhost:${sonar.port}</sonar.host.url>
-				<!--<sonar.host.url>http://localhost:8080/sonar/</sonar.host.url>-->
+				<!--<sonar.host.url>http://localhost:8080/sonar/</sonar.host.url> -->
 			</properties>
 		</profile>
-				
+
 		<!-- ================= START Container Profiles ================= -->
 		<profile>
 			<id>jboss</id>
@@ -141,7 +141,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
 			<properties>
 				<!-- START INFO USE BY MDA -->
 				<jboss.home>${env.JBOSS_HOME}</jboss.home>
@@ -151,9 +151,7 @@
 				<dataSource.name>jdbc/${application.id}</dataSource.name>
 				<dataSource>java:/${dataSource.name}</dataSource>
 
-				<!--
-					Change this to the host on which your webservice will be deployed
-				-->
+				<!-- Change this to the host on which your webservice will be deployed -->
 				<webservice.host>localhost</webservice.host>
 				<!-- Change this the port on which your webservice will be deploy -->
 				<webservice.port>8180</webservice.port>
@@ -166,12 +164,6 @@
 				<cargo.port>8180</cargo.port>
 				<cargo.wait>false</cargo.wait>
 			</properties>
-			<!--
-				<distributionManagement> <site> <id>localhost</id> <name>Project
-				Website</name>
-				<url>file:///${env.JBOSS_HOME}/server/${server.name}/deploy/project</url>
-				</site> </distributionManagement>
-			-->
 
 			<dependencies>
 				<dependency>
@@ -183,7 +175,7 @@
 				<dependency>
 					<groupId>jboss</groupId>
 					<artifactId>jboss-j2ee</artifactId>
-					<version>${jboss-j2ee.version}</version>
+					<version>${jboss.version}</version>
 					<scope>provided</scope>
 				</dependency>
 
@@ -231,8 +223,8 @@
 		<profile>
 			<id>glassfish</id>
 			<properties>
-			        <!--<glassfish.home>${env.J2EE_HOME}</glassfish.home>-->
-			        <glassfish.home>C:/Sun/SDK</glassfish.home>			        
+				<!--<glassfish.home>${env.J2EE_HOME}</glassfish.home> -->
+				<glassfish.home>C:/Sun/SDK</glassfish.home>
 				<server.home>${glassfish.home}</server.home>
 				<cargo.container>glassfish3x</cargo.container>
 				<cargo.container.home>${server.home}</cargo.container.home>
@@ -241,9 +233,9 @@
 				<cargo.port>${glassfish.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
 			</properties>
-		</profile>		
+		</profile>
 		<!-- ================= END Container Profiles ================= -->
-		
+
 	</profiles>
 
 </project>
