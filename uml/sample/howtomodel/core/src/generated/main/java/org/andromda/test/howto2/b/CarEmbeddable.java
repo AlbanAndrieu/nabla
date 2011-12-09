@@ -6,6 +6,7 @@
 package org.andromda.test.howto2.b;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -157,7 +158,7 @@ public abstract class CarEmbeddable
      *
      * @return Person
      */
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "OWNER_FK")
     public Person getOwner()
     {
