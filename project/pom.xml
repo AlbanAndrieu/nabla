@@ -19,6 +19,7 @@
 
 	<modules>
 		<module>sample</module>
+		<module>nabla</module>
 	</modules>
 
 	<!-- ================= Default Properties ================= -->
@@ -1215,18 +1216,11 @@
 			<properties>
 				<target.dir>target-eclipse</target.dir>
 			</properties>
-		</profile>
-		<profile>
-			<id>all</id>				
-			<modules>
-				<module>sample</module>
-				<module>nabla</module>
-			</modules>
-		</profile>	
+		</profile>			        
 		<profile>
 			<id>site</id>
 			<properties>
-				<invoker.skip>true</invoker.skip>
+			        <invoker.skip>true</invoker.skip>			
 				<andromdapp.run.skip>true</andromdapp.run.skip>
 				<andromda.run.skip>true</andromda.run.skip>
 				<skipProcessing>true</skipProcessing>
@@ -1235,7 +1229,11 @@
 			</properties>
 		</profile>		
 		<profile>
-			<id>site-light</id>		
+		        <!-- site light for jenkins -->
+			<id>jenkins-site</id>
+			<properties>				
+				<invoker.skip>true</invoker.skip>
+			</properties>					
 			<build>
 				<plugins>
 					<plugin>
@@ -1704,7 +1702,7 @@
 			</reporting>
 		</profile>
 		<profile>
-			<id>maven-2</id>		
+			<id>maven-2-site</id>		
 			<build>
 				<plugins>
 					<plugin>
@@ -2389,7 +2387,7 @@
 			</reporting>
 		</profile>
     		<profile>
-    		  <id>maven-3</id>
+    		  <id>maven-3-site</id>
     		  <activation>
     		    <file>
     		      <!--  This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
