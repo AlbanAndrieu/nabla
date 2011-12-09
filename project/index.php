@@ -11,7 +11,7 @@
 	{
 
 		//on redirige la page principale
-		document.location = "./project/index.html";
+		document.location = "./databases/main/servers/customs/project/index.html";
 
 	}
 
