@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<groupId>com.sun.j2ee.blueprints</groupId>
-		<artifactId>maven-petstore-modules-util</artifactId>
+		<artifactId>util</artifactId>
 		<version>1.0</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 <!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
-	<artifactId>util-tracer</artifactId>
+	<artifactId>tracer</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven Petstore Modules Util Tracer</name>
 <!-- 	<version>1.0</version> -->

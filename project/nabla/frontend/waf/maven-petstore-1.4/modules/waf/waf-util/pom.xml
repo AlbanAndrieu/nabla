@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.sun.j2ee.blueprints</groupId>
-			<artifactId>util-tracer</artifactId>
+			<artifactId>tracer</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

@@ -5,7 +5,7 @@
 
         <parent>
                	<groupId>com.sun.j2ee.blueprints</groupId>
-                <artifactId>waf</artifactId>
+		<artifactId>waf</artifactId>
           	<version>1.0</version>
         </parent>
 

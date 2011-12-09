@@ -66,25 +66,20 @@
  */
 package com.sun.j2ee.blueprints.servicelocator.ejb;
 
-import com.sun.j2ee.blueprints.servicelocator.ServiceLocatorException;
-
 import java.net.URL;
 
 import javax.ejb.EJBHome;
 import javax.ejb.EJBLocalHome;
-
 import javax.jms.Queue;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.Topic;
 import javax.jms.TopicConnectionFactory;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import javax.rmi.PortableRemoteObject;
-
 import javax.sql.DataSource;
 
+import com.sun.j2ee.blueprints.servicelocator.ServiceLocatorException;
 
 /**
  * DOCUMENT ME!
@@ -98,11 +93,11 @@ public class ServiceLocator {
 
     private InitialContext ic;
 
-/**
-     * Creates a new ServiceLocator object.
-     *
-     * @throws ServiceLocatorException DOCUMENT ME!
-     */
+    /**
+         * Creates a new ServiceLocator object.
+         *
+         * @throws ServiceLocatorException DOCUMENT ME!
+         */
     public ServiceLocator() throws ServiceLocatorException {
 
         try {
@@ -130,8 +125,7 @@ public class ServiceLocator {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public EJBLocalHome getLocalHome(final String jndiHomeName)
-                              throws ServiceLocatorException {
+    public EJBLocalHome getLocalHome(final String jndiHomeName) throws ServiceLocatorException {
 
         EJBLocalHome home = null;
 
@@ -163,8 +157,7 @@ public class ServiceLocator {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public EJBHome getRemoteHome(final String jndiHomeName, final Class<?> className)
-                          throws ServiceLocatorException {
+    public EJBHome getRemoteHome(final String jndiHomeName, final Class<?> className) throws ServiceLocatorException {
 
         EJBHome home = null;
 
@@ -198,8 +191,7 @@ public class ServiceLocator {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public QueueConnectionFactory getQueueConnectionFactory(final String qConnFactoryName)
-                                                     throws ServiceLocatorException {
+    public QueueConnectionFactory getQueueConnectionFactory(final String qConnFactoryName) throws ServiceLocatorException {
 
         QueueConnectionFactory factory = null;
 
@@ -261,8 +253,7 @@ public class ServiceLocator {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public TopicConnectionFactory getTopicConnectionFactory(final String topicConnFactoryName)
-                                                     throws ServiceLocatorException {
+    public TopicConnectionFactory getTopicConnectionFactory(final String topicConnFactoryName) throws ServiceLocatorException {
 
         TopicConnectionFactory factory = null;
 
@@ -324,8 +315,7 @@ public class ServiceLocator {
      *
      * @throws ServiceLocatorException DOCUMENT ME!
      */
-    public DataSource getDataSource(final String dataSourceName)
-                             throws ServiceLocatorException {
+    public DataSource getDataSource(final String dataSourceName) throws ServiceLocatorException {
 
         DataSource dataSource = null;
 
