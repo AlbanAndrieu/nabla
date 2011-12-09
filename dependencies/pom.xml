@@ -108,7 +108,7 @@
 	<licenses>
 		<license>
 			<name>Nabla</name>
-			<url>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</url>
+			<url>../build-tools/src/main/resources/project/LICENSE-1.0.txt</url>
 			<distribution>perso</distribution>
 			<comments>This program is the property of Nabla</comments>
 		</license>
@@ -633,6 +633,7 @@
 		<maven.project.info.reports.plugin.version>2.4</maven.project.info.reports.plugin.version>
 		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
 		<maven.site.plugin.version>2.3</maven.site.plugin.version>
+		<!--<maven.site.plugin.version>3.0</maven.site.plugin.version>-->
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.verifier.plugin.version>1.0-beta-1</maven.verifier.plugin.version>
 		<maven.surefire.plugin.version>2.10</maven.surefire.plugin.version>
@@ -828,7 +829,7 @@
 							<tagBase>https://svn.apache.org/repos/asf/maven/components/releases</tagBase>
 						-->
 
-						<tagBase>https://alban.googlecode.com/svn/releases</tagBase>
+						<tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>
 					</configuration>
 				</plugin>
 				<plugin>
