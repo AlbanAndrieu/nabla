@@ -13,7 +13,12 @@
         <description>Users</description>
         <modules>
                 <module>dependencies</module>
-                <module>build-tools</module>
+                <module>build-tools</module>                
+                <module>databases</module>                                
+                <module>main</module>
+                <module>servers</module>                
+                <module>customs</module>
+                
                 <module>project</module>
                 <module>uml</module>
         </modules>

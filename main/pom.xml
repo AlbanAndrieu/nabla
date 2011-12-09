@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>databases</artifactId>
+		<version>1.0</version>
+		<relativePath>../databases/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nabla.project</groupId>
+	<artifactId>main</artifactId>
+	<name>Main</name>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<description>The Main pom file is a superpom to centralize all third parties</description>
+
+	<!-- ================= Default Properties ================= -->
+	<properties>
+		<invoker.skip>true</invoker.skip>	
+			        	
+		<compiler.fork>false</compiler.fork>
+
+		<downloadSources>true</downloadSources>
+		<createChecksum>true</createChecksum>
+		<uniqueVersion>false</uniqueVersion>
+
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
+		<target.dir>target</target.dir>
+		<!--
+			specifies the path to the current JRE_HOME environment use with
+			relative paths to get <jvm>${java.home}../bin/java.exe</jvm>
+		-->
+		<java.home>${env.JAVA_HOME}</java.home>
+
+		<!-- Application settings -->
+		<application.id>application</application.id> <!-- used by MDA -->
+		<application.name>Nabla</application.name>
+		<application.version>1.0</application.version>
+		<application.package>com.nabla.backend</application.package> <!-- used by MDA -->
+		<application.context.name>applicationContext-daos.xml</application.context.name>
+
+		<product.id>nabla</product.id>
+		<product.name>nabla</product.name>
+		<product.title>${product.name} Application</product.title>
+		<product.major.version>${env.VERSION}</product.major.version>
+
+		<product.sourceDirectory>${home.dir}/${product.name}</product.sourceDirectory>
+
+		<product.branch.version>1.0</product.branch.version>
+		<product.status.number>1</product.status.number>
+		<product.load.number>01</product.load.number>
+		<product.patch.number>000</product.patch.number>
+		<product.patch.version>${product.major.version}.${product.status.number}.${product.load.number}${product.patch.number}</product.patch.version>
+		<product.dependencies>${product.name} ${product.patch.version}</product.dependencies>
+		<product.push.number>01</product.push.number>
+		<product.push.version>${product.patch.version}.${product.push.number}</product.push.version>
+		<product.version>${product.major.version}${product.push.version}</product.version>
+
+		<product.username>${env.UNIX_USERNAME}</product.username>
+
+		<product.workspace>${product.username}${product.major.version}</product.workspace>
+		<product.thirdparty>${env.THIRDPARTY_ROOT}</product.thirdparty> <!-- used for dtd in mda -->
+
+		<!-- START overrided in cargo profile -->
+		<server.domain>nabla</server.domain>
+		<!-- START INFO USE BY MDA -->
+		<!--
+		<server.home>${jboss.home}</server.home>
+		<server.name>${product.name}</server.name>
+		<server.port>8180</server.port>
+		<dataSource.name>jdbc/${application.id}</dataSource.name>
+		<dataSource>java:/${dataSource.name}</dataSource>
+		<webservice.host>localhost</webservice.host>
+		<webservice.port>8180</webservice.port>
+		-->
+		<!-- END INFO USE BY MDA -->
+		<!--
+		<cargo.container>jboss4x</cargo.container>
+		<cargo.container.home>${env.JBOSS_HOME}</cargo.container.home>
+		<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
+		<cargo.host>localhost</cargo.host>
+		<cargo.port>8180</cargo.port>
+		<cargo.wait>false</cargo.wait>
+		-->
+		<!-- END overrided in cargo profile -->
+
+		<unpack>false</unpack>
+		<lumbermill.port>4445</lumbermill.port>
+		<hudson.lumbermill.port>4431</hudson.lumbermill.port>
+		<glassfish.port>8090</glassfish.port><!-- 4848 -->
+		<oracle.port>8080</oracle.port>
+		<archiva.port>8010</archiva.port>
+		<continuum.port>8020</continuum.port>
+		<sonar.port>9000</sonar.port>
+		<sonar.derby.port>1527</sonar.derby.port>
+		<fitness.port>9090</fitness.port>
+		<bugzilla.mysql.port>3306</bugzilla.mysql.port>
+
+		<apache-continuum.version>1.2.3</apache-continuum.version>
+
+		<home.dir>${env.HOME}</home.dir>
+		<!-- <home.dir>${env.WORKSPACE}</home.dir> -->
+		<project.target>C:\target</project.target>
+		<project.includeidl>${project.target}</project.includeidl>
+		<project.includexml>${project.target}</project.includexml>
+		<project.includedictionaries>${project.target}</project.includedictionaries>
+		<maven.build.generated>src/generated</maven.build.generated>
+		<maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>	
+	</properties>
+	<!--
+		La balise dependencyManagement, dans le POM du projet parent permet de
+		declarer une version et un scope pour une dependance. Si un des
+		modules enfants utilise cette dependance, sans preciser de version ou
+		de scope, celle dans le dependencyManagement sera utilise
+	-->
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${jmock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>httpunit</groupId>
+				<artifactId>httpunit</artifactId>
+				<version>${httpunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junitperf</groupId>
+				<artifactId>junitperf</artifactId>
+				<version>${junitperf.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>xmlunit</groupId>
+				<artifactId>xmlunit</artifactId>
+				<version>${xmlunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.dbunit</groupId>
+				<artifactId>dbunit</artifactId>
+				<version>${dbunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jmock</groupId>
+				<artifactId>jmock</artifactId>
+				<version>${jmock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-mock</artifactId>
+				<version>${spring.mock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${testng.version}</version>
+				<classifier>jdk15</classifier>
+			</dependency>
+
+			<dependency>
+				<groupId>wsdl4j</groupId>
+				<artifactId>wsdl4j</artifactId>
+				<version>${wsdl4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${javax.mail.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2</artifactId>
+				<version>${axis2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>annogen</groupId>
+				<artifactId>annogen</artifactId>
+				<version>${annogen.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.commons.axiom</groupId>
+				<artifactId>axiom-api</artifactId>
+				<version>${axiom.api.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.commons.axiom</groupId>
+				<artifactId>axiom-impl</artifactId>
+				<version>${axiom.impl.version}</version>
+				<scope>runtime</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.commons.axiom</groupId>
+				<artifactId>axiom-dom</artifactId>
+				<version>${axiom.dom.version}</version>
+				<scope>runtime</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring</artifactId>
+				<version>${spring.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.lowagie</groupId>
+				<artifactId>itext</artifactId>
+				<version>${itext.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>oro</groupId>
+				<artifactId>oro</artifactId>
+				<version>${oro.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>httpcomponents-httpcore</groupId>
+				<artifactId>jakarta-httpcore</artifactId>
+				<version>${jakarta.httpcore.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jms_1.1_spec</artifactId>
+				<version>${geronimo.jms.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.commons.neethi</groupId>
+				<artifactId>neethi</artifactId>
+				<version>${neethi.version}</version>
+				<scope>runtime</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>stax</groupId>
+				<artifactId>stax-api</artifactId>
+				<version>${stax.api.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.woden</groupId>
+				<artifactId>woden-impl-om</artifactId>
+				<version>${woden.impl.om.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>struts</groupId>
+				<artifactId>struts</artifactId>
+				<version>${struts.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-chain</groupId>
+						<artifactId>commons-chain</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-digester</groupId>
+						<artifactId>commons-digester</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xalan</groupId>
+						<artifactId>xalan</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>struts-menu</groupId>
+				<artifactId>struts-menu</artifactId>
+				<version>${struts.menu.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>displaytag</groupId>
+				<artifactId>displaytag</artifactId>
+				<version>${displaytag.version}</version>
+				<scope>runtime</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>taglibs</groupId>
+						<artifactId>standard</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>${javax.activation.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons.validator.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>backport-util-concurrent</groupId>
+				<artifactId>backport-util-concurrent</artifactId>
+				<version>${backport.util.concurrent.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons.httpclient.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons.lang.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons.beanutils.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons.collections.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${commons.configuration.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons.logging.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons.codec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-discovery</groupId>
+				<artifactId>commons-discovery</artifactId>
+				<version>${commons.discovery.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons.fileupload.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<!--
+				Maven2, Spring 2.0 and JPA using Xerces 2.0.2 has some bug and
+				maven2 comes with it. Instead you need to use Xerces 2.8.1
+			-->
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>${xerces.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>xalan</groupId>
+				<artifactId>xalan</artifactId>
+				<version>${xalan.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-digester</groupId>
+				<artifactId>commons-digester</artifactId>
+				<version>${commons.digester.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr</artifactId>
+				<version>${antlr.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons.dbcp.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${commons.pool.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.nabla.project</groupId>
+				<artifactId>maven-gui-plugin</artifactId>
+				<version>${maven.gui.plugin.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-core</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-analyzers</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-queries</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-highlighter</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-snowball</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-similarity</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.tibco.jms</groupId>
+				<artifactId>tibjms</artifactId>
+				<version>${tibjms.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.tibco</groupId>
+				<artifactId>tibrv</artifactId>
+				<version>${tibco.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>${xml.apis.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.api.client</groupId>
+				<artifactId>google-api-client</artifactId>
+				<version>${google.api.client}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-plugin-api</artifactId>
+				<version>${maven.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.plexus</groupId>
+				<artifactId>plexus-utils</artifactId>
+				<version>${plexus.util.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.plexus</groupId>
+				<artifactId>plexus-container-default</artifactId>
+				<version>${plexus.container.default.version}</version>
+			</dependency>
+
+			<!-- DATABASE DRIVER -->
+			<dependency>
+				<groupId>${jdbc.groupId}</groupId>
+				<artifactId>${jdbc.artifactId}</artifactId>
+				<version>${jdbc.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<!--
+		In order for you to see what happens during the inheritance process
+		you will need to use the handy mvn help:effective-pom command.
+	-->
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junitperf</groupId>
+			<artifactId>junitperf</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xmlunit</groupId>
+			<artifactId>xmlunit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Command lines parsing -->
+		<!-- ONLY FOR BATCH
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>${commons.cli.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		-->
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons.logging.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons.lang.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--
+			For J2EE <dependency> <groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-j2ee_1.4_spec</artifactId>
+			<version>${geronimo.version}</version> <scope>provided</scope>
+			</dependency> INSTEAD GERONIMO use
+		-->
+
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>${xerces.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>${xalan.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--
+			<dependency> <groupId>org.openqa.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>${selenium.version}</version> <scope>test</scope>
+			</dependency> <dependency>
+			<groupId>org.openqa.selenium.server</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>${selenium.version}</version> </dependency>
+		-->
+	</dependencies>
+
+	<build>
+		<directory>target</directory>
+		<!-- <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName> -->
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
+		<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+		<outputDirectory>${basedir}/${target.dir}/classes</outputDirectory>
+		<testOutputDirectory>${basedir}/${target.dir}/test-classes</testOutputDirectory>
+		<defaultGoal>install</defaultGoal>
+
+		<extensions>
+			<!--
+				Needed for dashboard-maven-plugin and jalopy-maven-plugin and
+				maven-checkstyle-plugin
+			-->
+			<extension>
+				<groupId>com.nabla.project.build-tools</groupId>
+				<artifactId>build-tools</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven.eclipse.plugin.version}</version>
+					<configuration>
+						<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+						<wtpmanifest>true</wtpmanifest>
+						<wtpapplicationxml>true</wtpapplicationxml>
+						<wtpversion>2.0</wtpversion>
+						<ajdtVersion>1.5</ajdtVersion>
+						<sourceExcludes>
+							<sourceExclude>**/.svn/**</sourceExclude>
+						</sourceExcludes>
+						<manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>
+						<useProjectReferences>true</useProjectReferences>
+						<!-- by default download all sources when generating project files -->
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
+						<buildOutputDirectory>target/classes</buildOutputDirectory>
+						<addVersionToProjectName>true</addVersionToProjectName>
+						<outputDirectory>${basedir}/classes</outputDirectory>
+						<additionalProjectnatures>
+							<!--
+								<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+								<projectnature>org.hibernate.eclipse.console.hibernateNature</projectnature>
+								<projectnature>org.eclipse.jem.workbench.JavaEMFNature</projectnature>
+							-->
+							<!--
+								<projectnature>org.eclipse.wst.common.project.facet.core.nature</projectnature>
+								<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+								<projectnature>org.eclipse.wst.common.modulecore.ModuleCoreNature</projectnature>
+								<projectnature>org.eclipse.jem.workbench.JavaEMFNature</projectnature>
+								<projectnature>com.atlassw.tools.eclipse.checkstyle.CheckstyleNature</projectnature>
+							-->
+							<projectnature>org.maven.ide.eclipse.maven2Nature</projectnature>
+						</additionalProjectnatures>
+						<additionalBuildcommands>
+							<!--
+								<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+							-->
+							<!--
+								<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+								<buildcommand>org.eclipse.wst.common.project.facet.core.builder</buildcommand>
+								<buildcommand>org.eclipse.wst.validation.validationbuilder</buildcommand>
+								<buildcommand>com.atlassw.tools.eclipse.checkstyle.CheckstyleBuilder</buildcommand>
+							-->
+							<buildcommand>org.maven.ide.eclipse.maven2Builder</buildcommand>
+						</additionalBuildcommands>
+						<additionalConfig>
+							<file>
+								<name>.checkstyle</name>
+								<location>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</location>
+							</file>
+						</additionalConfig>
+						<!--
+							<additionalProjectFacets> <jst.jsf>1.1</jst.jsf>
+							<jst.ejb.xdoclet>1.2.3</jst.ejb.xdoclet>
+							<jst.web.xdoclet>1.2.3</jst.web.xdoclet>
+							</additionalProjectFacets> <workspace>${basedir}</workspace>
+						-->
+						<workspaceCodeStylesURL>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml</workspaceCodeStylesURL>
+						<sourceExcludes>
+							<sourceExclude>**/.svn/**</sourceExclude>
+							<sourceExclude>**/.ref</sourceExclude>
+							<sourceExclude>**/.exc</sourceExclude>
+							<sourceExclude>**/.log</sourceExclude>
+						</sourceExcludes>
+					</configuration>
+					<dependencies>
+						<!-- The file defined in the location is stored in this dependency -->
+						<dependency>
+							<groupId>com.nabla.project.build-tools</groupId>
+							<artifactId>build-tools</artifactId>
+							<version>1.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-idea-plugin</artifactId>
+					<version>${maven.idea.plugin.version}</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
+						<dependenciesAsLibraries>true</dependenciesAsLibraries>
+						<jdkName>${jdkLevel}</jdkName>
+						<useFullNames>false</useFullNames>
+					</configuration>
+				</plugin>
+
+
+
+				<!-- Start tools -->
+
+				<!--
+				<plugin>
+					<groupId>com.agilejava.docbkx</groupId>
+					<artifactId>docbkx-maven-plugin</artifactId>
+					<version>${docbkx.maven.plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>net.sf.docbook</groupId>
+							<artifactId>docbook-xml</artifactId>
+							<version>5.0</version>
+							<type>pom</type>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>net.sf.docbook</groupId>
+							<artifactId>docbook-xsl</artifactId>
+							<version>1.74.0</version>
+							<type>pom</type>
+							<scope>runtime</scope>
+						</dependency>
+					</dependencies>
+				</plugin>
+				-->
+
+				<!--
+					<plugin> <groupId>org.codehaus.mojo</groupId>
+					<artifactId>xml-maven-plugin</artifactId>
+					<version>1.0-beta-3</version> <executions> <execution>
+					<phase>pre-site</phase> <goals> <goal>transform</goal> </goals>
+					</execution> </executions> </plugin>
+				-->
+
+				<!--
+					NoClassDefFoundError running maven plugins site, always shows 0%
+					coverage anyway
+				-->
+
+
+				<!-- attach-javadocs -->
+				<!-- do not add maven-javadoc-plugin definition because attach-javadocs
+					will not work properly -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.plugin.version}</version>
+					<configuration>
+						<show>package</show>
+						<version>true</version>
+						<javadocVersion>${jdkLevel}</javadocVersion>
+						<failOnError>false</failOnError>
+						<linksource>true</linksource>
+						<serialwarn>true</serialwarn>
+						<detectLinks>false</detectLinks>
+						<detectOfflineLinks>false</detectOfflineLinks>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<!--
+			Other Good tool quality code for http://sonar.hortis.ch/installation/
+		-->
+		<!-- Plugin Configuration -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-plugin-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+			</plugin>
+
+			<!--
+				Below you find a plugin that performs formatting after each compile
+				run finished successfully, disables logging of Javadoc related
+				messages, only displays messages with warning severity or higher,
+				activates the profile "test" during formatting and imports a code
+				convention from a shared server. Formatting is applied to all Java
+				source files of the project that are not located below the
+				"testdata" folder.
+			-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jalopy-maven-plugin</artifactId>
+				<configuration>
+					<!-- UNIX", "DOS", "MAC", "DEFAULT" or "AUTO -->
+					<fileFormat>AUTO</fileFormat>
+					<!-- <convention>${home.dir}/build-tools/src/main/resources/project/jalopy_regles_nabla.xml</convention> -->
+					<convention>project/jalopy_regles_nabla.xml</convention>
+					<failOnError>false</failOnError>
+					<excludes>
+						<exclude>**/PortalAccessesManager.java</exclude>
+						<exclude>**/BalanceComputing.java</exclude>
+						<exclude>**/GramExpressionLexer.java</exclude>
+						<exclude>**/SessionManager.java</exclude>
+					</excludes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.nabla.project.build-tools</groupId>
+						<artifactId>build-tools</artifactId>
+						<version>1.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<!-- add repository revision to manifests -->
+			<!--
+				<plugin> <groupId>org.codehaus.mojo</groupId>
+				<artifactId>maven-buildnumber-plugin</artifactId>
+				<version>0.9.6</version> <executions> <execution>
+				<phase>validate</phase> <goals> <goal>create</goal> </goals>
+				</execution> </executions> <configuration>
+			-->                                     <!--  never touch svn : do check = false -->
+			<!--
+				<doCheck>true</doCheck> <doUpdate>false</doUpdate> <format>
+				{0,number}-{1,date,yyyy-MM-dd-HH-mm-ss} </format> <items>
+				<item>buildNumber0</item> <item>timestamp</item> </items>
+				</configuration> </plugin>
+			-->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-doap-plugin</artifactId>
+				<configuration>
+					<linkXref>true</linkXref>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<category>build-management</category>
+					<language>Intercal</language>
+				</configuration>
+			</plugin>
+			<!--
+				<plugin> <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-docck-plugin</artifactId> <executions> <execution>
+				<configuration> <output>docck-results.txt</output> </configuration>
+				<goals> <goal>check</goal> </goals> </execution> </executions>
+				</plugin>
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<configuration>
+					<goals>install</goals>
+					<!-- <username>username</username> <password>password</password> -->
+					<startDate>YYYY-MM-DD</startDate>
+					<endDate>YYYY-MM-DD</endDate>
+					<startRevision>connection</startRevision>
+					<endRevision>connection</endRevision>
+					<tagName>tag</tagName>
+				</configuration>
+			</plugin>
+			<!--
+				<plugin> <groupId>com.agilejava.docbkx</groupId>
+				<artifactId>docbkx-maven-plugin</artifactId> <configuration>
+				<htmlStylesheet>rocks.css</htmlStylesheet>
+				<chunkedOutput>false</chunkedOutput>
+				<xincludeSupported>true</xincludeSupported>
+				<doubleSided>true</doubleSided>
+				<bodyFontFamily>Georgia</bodyFontFamily>
+				<bodyFontSize>9</bodyFontSize>
+				<monospaceFontFamily>Monaco</monospaceFontFamily>
+				<sansFontFamily>Calibri</sansFontFamily>
+				<titleFontFamily>Calibri</titleFontFamily> <entities> <entity>
+				<name>version</name> <value>${project.version}</value> </entity>
+				<entity> <name>thisyear</name> <value>2009</value> </entity>
+				</entities> </configuration> <executions> <execution> <goals>
+				<goal>generate-html</goal> <goal>generate-pdf</goal>
+				<goal>generate-manpages</goal> <goal>generate-eclipse</goal>
+				</goals> <phase>pre-site</phase>
+			--><!--<phase>generate-sources</phase>-->
+			<!--
+				</execution> </executions> <dependencies> <dependency>
+				<groupId>net.sf.docbook</groupId>
+				<artifactId>docbook-xml</artifactId> <version>5.0</version>
+				<type>pom</type> <scope>runtime</scope> </dependency> <dependency>
+				<groupId>net.sf.docbook</groupId>
+				<artifactId>docbook-xsl</artifactId> <version>1.74.0</version>
+				<type>pom</type> <scope>runtime</scope> </dependency>
+				</dependencies> </plugin>
+			-->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<!--
+				too long so i desactivate it <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId> </plugin>
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/src/generated/main/java</source>
+								<source>${basedir}/src/generated/main/resources</source>
+								<source>${basedir}/src/main/java</source>
+								<source>${basedir}/src/main/resources</source>
+								<source>${basedir}/target/generated-sources/antlr</source>
+								<source>${basedir}/target/generated-sources/main/java</source>
+								<!--<source>${basedir}/target/generated-sources/test/java</source> -->
+								<source>${basedir}/target/generated-sources/main/resources</source>
+								<!-- <source>${basedir}/target/generated-sources/test/resources</source> -->
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!--
+				<plugin> <groupId>org.codehaus.mojo</groupId>
+				<artifactId>jboss-packaging-maven-plugin</artifactId> <executions>
+				<execution> <id>buildsar</id> <phase>deploy</phase> <goals>
+				<goal>sar</goal> </goals> <configuration>
+				<deploymentDescriptorFile>${pom.basedir}/xml/jboss-service.xml</deploymentDescriptorFile>
+				</configuration> </execution> </executions> </plugin> <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>selenium-maven-plugin</artifactId> <executions>
+				<execution> <phase>pre-integration-test</phase> <goals>
+				<goal>start-server</goal> </goals> <configuration>
+				<background>true</background> </configuration> </execution>
+				</executions> </plugin>
+			-->
+
+		</plugins>
+
+	</build>
+
+	<profiles>
+		<profile>
+			<id>default-tools.jar</id>
+			<activation>
+				<file>
+					<exists>${java.home}/lib/tools.jar</exists>
+				</file>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.sun</groupId>
+					<artifactId>tools</artifactId>
+					<version>1.5.0</version>
+					<scope>system</scope>
+					<systemPath>${java.home}/lib/tools.jar</systemPath>
+					<!--
+						<systemPath>C:\Program Files
+						(x86)\Java\jdk1.5.0_22\lib\tools.jar</systemPath>
+					-->
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>eclipse-folders</id>
+			<properties>
+				<target.dir>target-eclipse</target.dir>
+			</properties>
+		</profile>			        
+		<profile>
+			<id>site</id>
+			<properties>		
+				<andromdapp.run.skip>true</andromdapp.run.skip>
+				<andromda.run.skip>true</andromda.run.skip>
+				<skipProcessing>true</skipProcessing>
+				<maven.test.skip>false</maven.test.skip>
+				<andromda.translation.test.skip>true</andromda.translation.test.skip>
+			</properties>
+		</profile>		
+
+		<profile>
+			<id>spring</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
+			<dependencies>
+				<!--
+				<dependency> <groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId> <version>2.0</version>
+				<scope>compile</scope> </dependency>
+				-->
+				<!-- test et spring-test -->
+				<dependency>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-test</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-mock</artifactId>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+					<scope>compile</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<!-- ================= START MDA Profiles ================= -->
+		<profile>
+			<id>uml14</id>
+			<properties>
+				<uml.type>uml14</uml.type>
+				<repo.type>netBeansMDR</repo.type>
+				<profile.type>xml.zip</profile.type>
+				<model.name>nabla</model.name>
+				<model.uri>jar:file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</model.uri>
+				<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri>
+				<andromda.version>3.2</andromda.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>uml2</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
+			<properties>
+				<uml.type>uml2</uml.type>
+				<repo.type>emf-uml22</repo.type>
+				<profile.type>uml2</profile.type>
+				<model.name>nabla</model.name>
+				<model.uri>file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.uml</model.uri>
+				<maven.andromda.model.uri>file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri>
+				<andromda.version>3.4-SNAPSHOT</andromda.version>
+			</properties>
+		</profile>
+		<!-- ================= END MDA Profiles ================= -->
+
+		<!-- ================= START Environment Profiles ================= -->
+		<profile>
+			<id>development</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>
+			<!--
+			<modules>
+			        <module>env</module>
+				<module>build-tools</module>
+				<module>sample</module>
+			</modules>
+			-->	
+			<properties> 
+				<target.dir>target-eclipse</target.dir>
+				<!--
+				<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
+				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
+				<webservice.host /> <webservice.port /> 
+				-->
+			</properties>
+			<build>
+				<plugins>
+					<!--
+						Automatically attach sources to build artifact as
+						artifact-version-sources.jar and deploy to local repository
+					-->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<inherited>true</inherited>
+						<configuration>
+							<includePom>true</includePom>
+						</configuration>
+						<executions>
+							<execution>
+								<id>bundle-sources</id>
+								<phase>package</phase>
+								<goals>
+									<!-- produce source artifact for main project sources -->
+									<goal>jar</goal>
+
+									<!-- produce source artifact for project test sources -->
+									<goal>test-jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>integration</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>int</value>
+				</property>
+			</activation>
+			<!--
+				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
+				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
+				<webservice.host /> <webservice.port /> </properties>
+			-->
+		</profile>
+		<profile>
+			<id>validation</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>val</value>
+				</property>
+			</activation>
+			<!--
+				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
+				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
+				<webservice.host /> <webservice.port /> </properties>
+			-->
+		</profile>
+		<profile>
+			<id>homologation</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>hom</value>
+				</property>
+			</activation>
+			<!--
+				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
+				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
+				<webservice.host /> <webservice.port /> </properties>
+			-->
+		</profile>
+		<profile>
+			<id>production</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<!--
+				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
+				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
+				<webservice.host /> <webservice.port /> </properties>
+			-->
+		</profile>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>rel</value>
+				</property>
+			</activation>
+			<!--
+				<properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
+				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
+				<webservice.host /> <webservice.port /> </properties>
+			-->
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<inherited>true</inherited>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<updateReleaseInfo>true</updateReleaseInfo>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.rat</groupId>
+						<artifactId>apache-rat-plugin</artifactId>
+						<version>${maven.apache.rat.plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- ================= END Environment Profiles ================= -->
+
+	</profiles>
+
+</project>
