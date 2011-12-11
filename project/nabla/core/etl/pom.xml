@@ -17,7 +17,7 @@
 
         <modules>
                 <module>core</module>
-                <!--<module>model</module>-->
+                <module>model</module>
                 <module>tool</module>
 
         </modules>
