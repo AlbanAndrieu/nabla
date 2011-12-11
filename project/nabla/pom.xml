@@ -10,7 +10,7 @@
         </parent>
                 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project.nabla</groupId>
+	<groupId>com.nabla.project</groupId>
 	<artifactId>nabla</artifactId>
 	<packaging>pom</packaging>
 	<name>Nabla</name>
@@ -19,5 +19,6 @@
 	<description>Nabla project</description>
 	<modules>
 		<module>frontend</module>
+		<module>core</module>
 	</modules>
 </project>
