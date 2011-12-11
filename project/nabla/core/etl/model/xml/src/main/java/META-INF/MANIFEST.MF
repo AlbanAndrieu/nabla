@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Class-Path: antlr-2.7.7.jar asm-2.2.3.jar asm-attrs-1.5.3.jar backport
+ -util-concurrent-3.1.jar cglib-2.1_3.jar commons-lang-2.5.jar commons
+ -logging-1.1.1.jar dom4j-1.6.1.jar ehcache-1.5.0.jar hibernate-3.2.6.
+ ga.jar hibernate-annotations-3.5.6-Final.jar hibernate-commons-annota
+ tions-3.2.0.Final.jar hibernate-core-3.5.6-Final.jar hibernate-jpa-2.
+ 0-api-1.0.0.Final.jar jsr107cache-1.0.jar persistence-api-1.0.jar slf
+ 4j-api-1.6.1.jar spring-2.5.6.SEC02.jar xml-apis-1.0.b2.jar
+
