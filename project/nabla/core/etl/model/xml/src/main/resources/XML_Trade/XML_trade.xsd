@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_Trade:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_Trade" mnemonic="TRD" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Include shared structures -->
+	<xs:import namespace="urn:test:XML_TradeHeader:1_0_0" schemaLocation="../XML_TradeHeader/XML_tradeHeader.xsd" />
+	<xs:import namespace="urn:test:XML_TradeConditions:1_0_0" schemaLocation="../XML_TradeConditions/XML_tradeConditions.xsd" />
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
+	<!-- *********************************************** -->
+	<!--*** Version attribute - COMMON for all generic models around the Trade/Product models *** -->
+	<xs:attributeGroup name="XML_TradeVersion">
+		<xs:attribute name="version" type="xs:string" use="required" fixed="4.10" />
+	</xs:attributeGroup>
+	<!-- *********************************************** -->
+	<!--*** GENERIC STRUCTURES to be extended in services *** -->
+	<xs:complexType name="XML_GenericTrade">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Generic structure of the Trade to be extend with SpecificTradeConditons and SpecificTradeManagements</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tradeHeader" type="THD:XML_TradeHeader">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Identification, Audit and Typology info</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tradeConditions" type="TCD:XML_TradeConditions">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Main Financial infos</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="REF:XML_Id" />
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** TEMPLATE STRUCTURES to be specialized in services *** -->
+	<xs:group name="XML_TradeTemplate">
+		<xs:sequence>
+			<xs:element name="trade" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="TRD:XML_GenericTrade">
+							<xs:sequence>
+								<xs:element name="specificTradeConditions" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>
+											<definition>Specific Trade Parameters depending on Product Chain - to be specialized in Services</definition>
+										</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="GEN:productReference" />
+											<xs:choice>
+												<xs:element name="product1SpecificTradeConditions" type="xs:string" />
+												<xs:element name="product2SpecificTradeConditions" type="xs:string" />
+											</xs:choice>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="specificTradeManagement" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>
+											<definition>Specific Trade internal management informations depending on Product Chain - to be specialized in
+												Services</definition>
+										</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:choice>
+											<xs:element name="productSpecificTradeManagement" type="xs:string" />
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+</xs:schema>

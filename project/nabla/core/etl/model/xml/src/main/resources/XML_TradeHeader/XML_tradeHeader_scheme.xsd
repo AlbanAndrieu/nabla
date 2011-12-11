@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradeHeader:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_TradeHeader" mnemonic="THD" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--*** Trade Schemes *** -->
+	<!-- *********************************************** -->
+	<!--*** Schemes v3 *** -->
+	<xs:simpleType name="XML_TradeInputTypeScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Type of trade input by a user or a system (Creation, Modification...)</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Creation" />
+			<xs:enumeration value="Modification" />
+			<xs:enumeration value="Deletion" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

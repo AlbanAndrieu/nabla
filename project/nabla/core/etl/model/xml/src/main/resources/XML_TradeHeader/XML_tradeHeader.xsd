@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradeHeader:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_TradeHeader" mnemonic="THD" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Include shared structures -->
+	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<xs:include schemaLocation="./XML_tradeHeader_shared.xsd" />
+	<!-- *********************************************** -->
+	<!--*** Trade ComplexTypes *** -->
+	<!-- *********************************************** -->
+	<xs:complexType name="XML_TradeLink">
+		<xs:sequence>
+			<xs:element ref="THD:linkedTradeId" />
+			<xs:element name="tradeLinkLabel" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Negotiation context description</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_TraderIdentifier">
+		<xs:complexContent>
+			<xs:extension base="GEN:XML_UserInfo" />
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** Main Structure *** -->
+	<xs:complexType name="XML_TradeHeader">
+		<xs:sequence>
+			<xs:element ref="THD:tradeIdentifier" />
+			<xs:element name="tradeLink" type="THD:XML_TradeLink" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="otherTradeInfo" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Complementary information defining the trade</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

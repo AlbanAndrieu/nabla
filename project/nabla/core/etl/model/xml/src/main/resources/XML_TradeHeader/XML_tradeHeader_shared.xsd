@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradeHeader:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_TradeHeader" mnemonic="THD" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Include shared structures -->
+	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<xs:include schemaLocation="./XML_tradeHeader_scheme.xsd" />
+	<!-- *********************************************** -->
+	<!--*** Trade ComplexTypes *** -->
+	<!-- *********************************************** -->
+	<xs:complexType name="XML_TradeId">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>A trade identifier allocated by an application or a party</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="REF:XML_Id" />
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="XML_TradeIdentifier">
+		<xs:sequence>
+			<xs:element ref="THD:tradeId" minOccurs="0" />
+			<xs:element ref="THD:tradeVersion" minOccurs="0" />
+			<xs:element name="tradeCode" type="REF:XML_Code" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Trade Codification for other Referentials that manage the same trade</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractReference" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Internal pointer to a contract reference define in the message</definition>
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attributeGroup ref="REF:XML_Reference" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** Trade Shared Elements *** -->
+	<!-- *********************************************** -->
+	<xs:element name="linkedTradeId" type="THD:XML_TradeId">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>A trade identifier linked to the trade</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tradeComment" type="REF:XML_Comment">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Various comments on a trade commentSource="FO,MO,BO"</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tradeId" type="THD:XML_TradeId">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>A trade reference identification allocated by a trading system (identify by the 'idScheme' defined for
+					each product chain) for a party - not given for external Party</definition>
+				<idScheme>xxxTrade</idScheme>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tradeIdentifier" type="THD:XML_TradeIdentifier">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>A trade reference identifier allocated by a trading system belonging to a party (includes internal
+					systems)</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tradeVersion" type="REF:XML_DatetimeVersion">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>The version of the trade inside a trading system</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- *********************************************** -->
+	<!--*** DEFIML target Typology **** -->
+	<xs:complexType name="XML_TradeContextTypology">
+		<xs:sequence>
+			<xs:element name="tradeContextLabel" type="xs:string" />
+			<xs:element name="tradeContextSubLabel" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

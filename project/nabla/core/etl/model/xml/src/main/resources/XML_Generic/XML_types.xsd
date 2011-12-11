@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_ReferentialGeneric:1_0_0">
+	<xs:annotation>
+		<xs:documentation>************************************************************</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:appinfo source="XML">
+			<package>
+				<name>Data/Generic</name>
+				<version>1.0.0</version>
+				<prefix>GEN</prefix>
+			</package>
+		</xs:appinfo>
+		<xs:documentation>packageVersion</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_ReferentialGeneric" mnemonic="GEN" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!-- *** Static lists *** -->
+	<xs:simpleType name="idScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>This scheme is used to indicate the name of the coding scheme asociated with each entity. This is the
+					reference list.</definition>
+				<example>
+					address
+					application
+					backOffice
+					bond
+					branch
+					cashSettlementMode
+					cashSettlementTemplate
+					closedDay
+					contributor
+					country
+					creder
+					currency
+					currencyCutOff
+					currencyPair
+					document
+					documentFolder
+					exchangeRate
+					file
+					followUpEntity
+					fra
+					future
+					group
+					index
+					interestRate
+					legalEntity
+					loroAccount
+					market
+					marketCalendar
+					marketObjectType
+					masterAgreement
+					masterAgreementProduct
+					maturity
+					mutualFund
+					nostroAccount
+					operatingGroup
+					party
+					partyRegulator
+					portfolio
+					product
+					productFamily
+					productSubFamily
+					quotationMedia
+					rateCategory
+					rateCurve
+					referenceMarketDataSet
+					responsibilityCenter
+					settlementAccount
+					settlementSystem
+					settlementSystemCalendar
+					share
+					specificCalendar
+					subGroup
+					subsidiary
+					tradeType
+					tradingPlace
+					tradingPlaceCalendar
+					user
+				</example>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<!-- ************************* -->
+	<!-- *** Generic types *** -->
+	<xs:complexType name="XML_Reference">
+		<xs:attributeGroup ref="REF:XML_Reference" />
+	</xs:complexType>
+	<xs:complexType name="XML_Amount">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>This complex type is only used when we need to define an amount without a currency. In general always
+					prefer to use the XML_Money complex type. In some cases there will be many amounts with the same currency and in
+					those cases it is OK to mutualise the curreny in one element and define many amounts with this type.</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal" />
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="XML_Id">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Definition of an absolute identifer </definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Unique Identifier value</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idScheme" type="REF:idScheme">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Unique identifier scheme for each entity.</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_IdWithMnemonic">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Definition of an absolute identifer</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Unique Identifier value</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idScheme" type="REF:idScheme">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Unique identifier scheme for each entity.</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mnemonic" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>The mnemonic is a "easy to remember" string to uniquely identifies an entity pointed by this mnemonic.
+							This is not the official id. The offcial Id of an entity is to be found in the id element of the XML_Id
+							complexType.</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_Code">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Codification different from Identification</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="codingScheme" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Standard Scheme (ISO-4217 for Currency) or Coding Scheme name</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Codification Value</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_Comment">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Definition of a structure of comments. Contains both a free text part (CommentInfo) and a free text
+					place where to define wome indication of who originated the comment.</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="commentSource" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Source of comment : Sales, FO, MO, BO, ...</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commentInfo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Text of comment</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_DatetimeVersion">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Definition of versionning. It allows to specify a version between two timestamp. To specify a version
+					with business dates validity, use XML_ersion</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="versionNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Version number of an entity.</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validityDatetimeRange" type="REF:XML_DatetimeRange" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Timerange range during which the entity is valid.</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_DatetimeRange">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Structure defining a time range. A time range is defined between two time stamps. Both time endpoints
+					are included in the rage by default. To exclude one of both endpoint, clearly specify this in the definition of the
+					element using this complex type.</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTimestamp" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>First timedate time range</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTimestamp" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Last timedate in a time range</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ********************************************* -->
+	<!-- *** Services (request/reply) types *** -->
+	<!--*** Common Group attribute - should be rename in XML version *** -->
+	<xs:attributeGroup name="XML_Reference">
+		<xs:attribute name="href" type="xs:IDREF" use="required" />
+	</xs:attributeGroup>
+	<xs:attributeGroup name="XML_Id">
+		<xs:attribute name="id" type="xs:ID" use="required" />
+	</xs:attributeGroup>
+</xs:schema>

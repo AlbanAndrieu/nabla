@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradeConditions:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_TradeConditions" mnemonic="TCD" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Include shared structures -->
+	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<xs:import namespace="urn:test:XML_TradingParty:1_0_0" schemaLocation="../XML_TradingParty/XML_tradingParty.xsd" />
+	<!-- *********************************************** -->
+	<!--*** Trade ComplexTypes *** -->
+	<!-- *********************************************** -->
+	<xs:simpleType name="XML_ExchangeProductTypeScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Type of exchange product, it's used to know the accounting nature of the echanged product</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Soulte" />
+			<xs:enumeration value="Premium" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="XML_ExchangedProduct">
+		<xs:sequence>
+			<xs:element ref="GEN:productReference" minOccurs="0" />
+			<xs:element ref="GEN:productId" minOccurs="0" />
+			<xs:element name="quantity" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Exchanged quantity of product (nominal of product at initial negotiation)</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>The adjusted value date at which the product is delivered</definition>
+					</xs:documentation>
+					<xs:documentation>
+						<definition>The value date at which the product is delivered</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** ActivityEvent ComplexTypes *** -->
+	<!-- *********************************************** -->
+	<!--*** Trade Shared Elements *** -->
+	<!-- *********************************************** -->
+	<xs:element name="ATradeDirection" type="REF:tradeDirectionScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Redondant information used by transversal systems to identify trade direction (Buy or Sell) from partyA</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tradeDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>The conclusion date for the trade</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tradeTimeStamp" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>A date / time of trade entry in trade system</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- *********************************************** -->
+	<!--*** Main Structure *** -->
+	<!-- *********************************************** -->
+	<xs:complexType name="XML_TradeConditions">
+		<xs:sequence>
+			<xs:element ref="TCD:tradeDate" />
+			<xs:element ref="TCD:tradeTimeStamp" minOccurs="0" />
+			<xs:element name="APartyReference" type="REF:XML_Reference">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>First principal party implied in the trade - INTERNAL by convention - the trade Direction is expressed
+							from AParty point of view</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BPartyReference" type="REF:XML_Reference">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>Second principal party implied in the trade - can be INTERNAL or EXTERNAL</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="exchangedProduct" type="TCD:XML_ExchangedProduct">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>First product exchanged description - if Quantity is positive, PartyA "buy" ("receive") product</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="TCD:ATradeDirection" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

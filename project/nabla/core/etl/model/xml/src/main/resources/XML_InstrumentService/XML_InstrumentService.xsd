@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_InstrumentService:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_InstrumentService" mnemonic="INS" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<xs:import namespace="urn:test:XML_Trade:1_0_0" schemaLocation="../XML_Trade/XML_trade.xsd" />
+	<xs:import namespace="urn:test:XML_ProductHeader:1_0_0" schemaLocation="../XML_ProductHeader/XML_productHeader.xsd" />
+	<xs:import namespace="urn:test:XML_TradingParty:1_0_0" schemaLocation="../XML_TradingParty/XML_tradingParty.xsd" />
+	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<!-- *********************************************** -->
+	<!--*** complex types *** -->
+	<xs:complexType name="XML_Product">
+		<xs:sequence>
+			<xs:element name="productHeader" type="PHD:XML_ProductHeader" />
+		</xs:sequence>
+		<xs:attributeGroup ref="REF:XML_Id" />
+	</xs:complexType>
+	<xs:complexType name="XML_Trade">
+		<xs:complexContent>
+			<xs:extension base="TRD:XML_GenericTrade">
+				<xs:attributeGroup ref="TRD:XML_TradeVersion" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** messages types *** -->
+	<xs:complexType name="XML_InventoryTradeMessage">
+		<xs:sequence>
+			<xs:element name="trade" type="INS:XML_Trade" />
+			<xs:element name="party" type="PTY:XML_Party" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="XML_ProductSetMessage">
+		<xs:sequence>
+			<xs:element name="product" type="INS:XML_Product" maxOccurs="unbounded" />
+			<xs:element name="party" type="PTY:XML_Party" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** messages *** -->
+	<xs:element name="endOfDayInventoryTrade" type="INS:XML_InventoryTradeMessage">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Inventory trade of productPosition on ProductRefParty</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="endOfMonthInventoryTrade" type="INS:XML_InventoryTradeMessage">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Inventory trade of productPosition on ProductRefParty with Valuation</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productSet" type="INS:XML_ProductSetMessage">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Publication of all products</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

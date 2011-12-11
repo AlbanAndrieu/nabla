@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_ReferentialGeneric:1_0_0">
+	<xs:annotation>
+		<xs:documentation>************************************************************</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:appinfo source="XML">
+			<package>
+				<name>Data/Generic</name>
+				<version>1.0.0</version>
+				<prefix>GEN</prefix>
+			</package>
+		</xs:appinfo>
+		<xs:documentation>packageVersion</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_ReferentialGeneric" mnemonic="REF" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<xs:include schemaLocation="XML_types.xsd" />
+	<xs:annotation>
+		<xs:documentation>************************************************************</xs:documentation>
+	</xs:annotation>
+	<!-- *** Domain : Referential generic : Schemes *** -->
+	<xs:annotation>
+		<xs:documentation>************************************************************</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="instrumentCategoryScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>High level Category of the instrument.</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="commodity" />
+			<xs:enumeration value="debtBond" />
+			<xs:enumeration value="debtMoneyMarket" />
+			<xs:enumeration value="equity" />
+			<xs:enumeration value="mutualFund" />
+			<xs:enumeration value="equityFuture" />
+			<xs:enumeration value="rate" />
+			<xs:enumeration value="warrant" />
+			<xs:enumeration value="equityOption" />
+			<xs:enumeration value="other" />
+			<xs:enumeration value="index" />
+			<xs:enumeration value="unknown" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tradeDirectionScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Indicate if a trade is marked as a Buy or Sell trade.</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5" />
+			<xs:enumeration value="Buy" />
+			<xs:enumeration value="Sell" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>************************************************************</xs:documentation>
+	</xs:annotation>
+	<!-- *** Domain : Referential generic : Elements *** -->
+	<xs:annotation>
+		<xs:documentation>************************************************************</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="userId" type="REF:XML_Id">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>User unique identifier.</definition>
+				<idScheme>user</idScheme>
+				<format>6</format>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

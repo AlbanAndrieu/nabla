@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradingGeneric:1_0_0">
+	<!--Core Generic Data for trading entities (trade, product, contract, event...) -->
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_TradingGeneric" mnemonic="GEN" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--Include XML common types -->
+	<!--Include Shared Schemes -->
+	<!-- <xs:include schemaLocation="XML_trading_generic_scheme.xsd" /> -->
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<!--*** Include Enumerated Referential Shared Schemes *** -->
+	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_types.xsd" />
+	<!-- *********************************************** -->
+	<!--Common reference -->
+	<xs:element name="productReference" type="REF:XML_Reference">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Internal pointer to a product</definition>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- *********************************************** -->
+	<!--*** Shared complexTypes *** -->
+	<xs:complexType name="XML_UserInfo">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Informations to identify a user</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="REF:userId" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- *********************************************** -->
+	<!--*** Shared shared elements *** -->
+	<xs:element name="productId" type="REF:XML_Id">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>A product identifier in the master referential that manage the product</definition>
+				<idScheme>product</idScheme>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>

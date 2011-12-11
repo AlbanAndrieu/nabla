@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
+	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
+	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_ProductHeader:1_0_0">
+	<!-- *********************************************** -->
+	<!--Version Of The Package -->
+	<xs:annotation>
+		<xs:documentation>
+			<package name="XML_ProductHeader" mnemonic="PHD" version="1.0.0" />
+		</xs:documentation>
+	</xs:annotation>
+	<!-- *********************************************** -->
+	<!--*** ProductHeader Schemes *** -->
+	<!-- *********************************************** -->
+	<xs:simpleType name="maturityDateTypeScheme">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fixed" />
+			<xs:enumeration value="Open" />
+			<xs:enumeration value="Theoretical" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="productPartyRoleScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>role of the party inside the product</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InstrumentIssuer" />
+			<xs:enumeration value="Party" />
+			<xs:enumeration value="SecondaryBorrower" />
+			<xs:enumeration value="PrimaryBorrower" />
+			<xs:enumeration value="Exporter" />
+			<xs:enumeration value="RiskParty" />
+			<xs:enumeration value="Sponsor" />
+			<xs:enumeration value="Guarantor" />
+			<xs:enumeration value="Obligor" />
+			<xs:enumeration value="ReferenceEntity" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="productClassScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>High-level product Class like "BOND", "IRD", "FX"...</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="fix" />
+			<xs:enumeration value="ird" />
+			<xs:enumeration value="fx" />
+			<xs:enumeration value="fxOption" />
+			<xs:enumeration value="deposit" />
+			<xs:enumeration value="cty" />
+			<xs:enumeration value="loan" />
+			<xs:enumeration value="creder" />
+			<xs:enumeration value="ListedDerivatives" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="productComplexityScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Exotic, Semi-exotic or Vanilla category of the product</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Exotic" />
+			<xs:enumeration value="SemiExotic" />
+			<xs:enumeration value="Vanilla" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="productLinkTypeScheme">
+		<xs:annotation>
+			<xs:documentation>
+				<definition>Product link type</definition>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MasterExercise" />
+			<xs:enumeration value="SlaveExercise" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
