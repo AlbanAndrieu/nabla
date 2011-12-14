@@ -6,6 +6,7 @@
 package org.andromda.test.howto1.e;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,30 +22,29 @@ import javax.persistence.Table;
  *
  * DO NOT MODIFY this class.
  *
- * 
+ *
  *
  */
 @Entity
 @Table(name = "CAR")
 @NamedQuery(name = "Car.findAll", query = "select car from Car AS car")
-public class Car
-    implements Serializable, Comparable<Car>
-{
+public class Car implements Serializable, Comparable<Car> {
 
     private static final long serialVersionUID = 5852341216223813462L;
 
     // ----------- Attribute Definitions ------------
 
-    private String serial;
-    private String name;
-    private String type;
+    private String            serial;
+    private String            name;
+    private String            type;
 
     // --------------- Constructors -----------------
 
     /**
      * Default empty constructor
      */
-    public Car() {}
+    public Car() {
+    }
 
     /**
      * Implementation for the constructor with all POJO attributes except auto incremented identifiers.
@@ -55,78 +55,68 @@ public class Car
      * @param name Value for the name property
      * @param type Value for the type property
      */
-    public Car(String serial, String name, String type)
-    {
-        setSerial(serial);
-        setName(name);
-        setType(type);
+    public Car(final String serial, final String name, final String type) {
+        this.setSerial(serial);
+        this.setName(name);
+        this.setType(type);
     }
-
-
 
     // -------- Attribute Accessors ----------
 
     /**
      * Get the serial property.
-     * 
+     *
      * @return String The value of serial
      */
     @Id
     @Column(name = "SERIAL", unique = true, nullable = false, insertable = true, updatable = true)
-    public String getSerial()
-    {
-        return serial;
+    public String getSerial() {
+        return this.serial;
     }
 
     /**
      * Set the serial property.
      * @param value the new value
      */
-    public void setSerial(String value)
-    {
+    public void setSerial(final String value) {
         this.serial = value;
     }
 
     /**
      * Get the name property.
-     * 
+     *
      * @return String The value of name
      */
-    @Column(name = "NAME", unique = true, nullable = false, insertable = true, updatable = true)
-    public String getName()
-    {
-        return name;
+    @Column(name = "NAME", insertable = true, updatable = true)
+    public String getName() {
+        return this.name;
     }
 
     /**
      * Set the name property.
      * @param value the new value
      */
-    public void setName(String value)
-    {
+    public void setName(final String value) {
         this.name = value;
     }
 
     /**
      * Get the type property.
-     * 
+     *
      * @return String The value of type
      */
     @Column(name = "TYPE", unique = true, nullable = false, insertable = true, updatable = true)
-    public String getType()
-    {
-        return type;
+    public String getType() {
+        return this.type;
     }
 
     /**
      * Set the type property.
      * @param value the new value
      */
-    public void setType(String value)
-    {
+    public void setType(final String value) {
         this.type = value;
     }
-
 
     // ------------- Relations ------------------
 
@@ -138,19 +128,16 @@ public class Car
      * @param object The target object to compare with
      * @return boolean True if both objects a 'equal'
      */
-    public boolean equals(Object object)
-    {
-        if (this == object)
-        {
+    @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
             return true;
         }
-        if (!(object instanceof Car))
-        {
+        if (!(object instanceof Car)) {
             return false;
         }
-        final Car that = (Car)object;
-        if (this.getSerial() == null || that.getSerial() == null || !this.getSerial().equals(that.getSerial()))
-        {
+        final Car that = (Car) object;
+        if ((this.getSerial() == null) || (that.getSerial() == null) || !this.getSerial().equals(that.getSerial())) {
             return false;
         }
         return true;
@@ -161,10 +148,10 @@ public class Car
      *
      * @return int The hash code value
      */
-    public int hashCode()
-    {
+    @Override
+    public int hashCode() {
         int hashCode = 0;
-        hashCode = 29 * hashCode + (getSerial() == null ? 0 : getSerial().hashCode());
+        hashCode = (29 * hashCode) + (this.getSerial() == null ? 0 : this.getSerial().hashCode());
 
         return hashCode;
     }
@@ -174,16 +161,16 @@ public class Car
      *
      * @return String Textual representation of the object displaying name/value pairs for all attributes
      */
-    public String toString()
-    {
-        StringBuilder sb = new StringBuilder();
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
         sb.append("Car(=");
         sb.append("serial: ");
-        sb.append(getSerial());
+        sb.append(this.getSerial());
         sb.append(", name: ");
-        sb.append(getName());
+        sb.append(this.getName());
         sb.append(", type: ");
-        sb.append(getType());
+        sb.append(this.getType());
         sb.append(")");
         return sb.toString();
     }
@@ -191,21 +178,16 @@ public class Car
     /**
      * @see Comparable#compareTo(T)
      */
-    public int compareTo(Car o)
-    {
+    @Override
+    public int compareTo(final Car o) {
         int cmp = 0;
-        if (this.getSerial() != null)
-        {
+        if (this.getSerial() != null) {
             cmp = this.getSerial().compareTo(o.getSerial());
-        }
-        else
-        {
-            if (this.getName() != null)
-            {
+        } else {
+            if (this.getName() != null) {
                 cmp = (cmp != 0 ? cmp : this.getName().compareTo(o.getName()));
             }
-            if (this.getType() != null)
-            {
+            if (this.getType() != null) {
                 cmp = (cmp != 0 ? cmp : this.getType().compareTo(o.getType()));
             }
         }

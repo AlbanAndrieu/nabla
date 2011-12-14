@@ -63,9 +63,7 @@ public class Car
     // -------------- Entity Methods -----------------
 
     /**
-     * <p>
      * Returns true if all cars are currently rented.
-     * </p>
      */
     @Transient
     public static boolean allCarsAreRented()
@@ -75,9 +73,7 @@ public class Car
     }
 
     /**
-     * <p>
      * Returns true if this car is current rented.
-     * </p>
      */
     @Transient
     public boolean isRented()
