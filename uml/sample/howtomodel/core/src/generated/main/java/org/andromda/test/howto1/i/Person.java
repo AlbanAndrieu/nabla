@@ -34,7 +34,7 @@ import javax.persistence.TemporalType;
 ({
     @NamedQuery(name = "Person.findAll", query = "from Person as person"), 
     @NamedQuery(name = "Person.findByName", query = "from Person as person where person.name = :name and"), 
-    @NamedQuery(name = "Person.findByNameOrBirthDate", query = "where person.name = :name or person.birthDate = :birthDate")
+    @NamedQuery(name = "Person.findByNameOrBirthDate", query = "from Person as person where person.name = :name or person.birthDate = :birthDate")
 })
 public class Person
     implements Serializable, Comparable<Person>
@@ -80,7 +80,7 @@ public class Person
      * 
      * @return String The value of name
      */
-    @Column(name = "NAME", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "NAME", nullable = false, insertable = true, updatable = true)
     public String getName()
     {
         return name;
@@ -100,7 +100,7 @@ public class Person
      * 
      * @return Date The value of birthDate
      */
-    @Column(name = "BIRTH_DATE", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "BIRTH_DATE", nullable = false, insertable = true, updatable = true)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getBirthDate()
     {
