@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+      
+	<!-- 
+	<bean id="personDao" class="org.appfuse.dao.jpa.GenericDaoJpa">
+		<constructor-arg value="com.nabla.project.application.database.business.global.model.Person"/> 
+	</bean>
+
+	<bean id="personDaoJpa"
+		class="com.nabla.project.application.database.business.global.dao.jpa.PersonDaoJpa" />
+	-->
+	<!-- 
+	<bean id="personManager" class="org.appfuse.service.impl.GenericManagerImpl">     
+		<constructor-arg ref="personDaoJpa"/> 
+	</bean>
+	 -->
+	 
+	<!-- 
+	<bean id="personManagerJpa"
+		class="org.appfuse.service.impl.GenericManagerImpl">
+		<constructor-arg>
+		-->
+			<!--     
+				* iBATIS: <bean class="org.appfuse.dao.ibatis.GenericDaoiBatis" ...
+				* JPA: <bean class="org.appfuse.dao.jpa.GenericDaoJpa" ...
+				* HIBERNATE: <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate" ...
+			-->
+			<!-- 
+			<bean class="org.appfuse.dao.jpa.GenericDaoJpa"
+				autowire="byType">
+				<constructor-arg
+					value="com.nabla.project.application.database.business.global.model.Person" />
+			</bean>
+		</constructor-arg>
+	</bean>
+	-->
+    <!-- 
+    <bean id="personDaoHibernate" class="com.nabla.project.application.database.business.global.dao.hibernate.PersonDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    -->
+    <!-- Add new DAOs here -->
+    <!-- 
+    <bean id="personManagerHibernate" class="com.nabla.project.application.database.business.global.service.impl.PersonManagerImpl">
+        <constructor-arg ref="personDaoHibernate"/>
+    </bean>
+     -->
+    <!-- Add new Managers here -->
+    <!-- 
+    <bean id="personAction" class="com.nabla.project.application.database.business.global.webapp.action.PersonAction" scope="prototype">
+        <property name="personManager" ref="personManagerHibernate"/> 
+    </bean>
+ 	-->
+    <!-- Add new Actions here -->
+</beans>

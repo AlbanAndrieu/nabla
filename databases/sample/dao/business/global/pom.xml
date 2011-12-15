@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+        <parent>
+                <groupId>com.nabla.project.databases.sample.dao.business</groupId>
+                <artifactId>business</artifactId>
+                <version>1.0</version>
+        </parent>
+        <modelVersion>4.0.0</modelVersion>
+        <name>Databases DAO global</name>
+        <groupId>com.nabla.project.databases.sample.dao.business.global</groupId>
+        <artifactId>global</artifactId>
+        <version>1.0</version>
+        <packaging>jar</packaging>
+        <description>Database-Business-Global Dao : mapping objet-relationnel (ORM)</description>
+        <!-- This element indicates where the project's site can be found -->
+        <build>
+                <plugins>
+                        <plugin>
+                                <groupId>org.appfuse.plugins</groupId>
+                                <artifactId>appfuse-maven-plugin</artifactId>
+                                <version>${appfuse.version}</version>
+                                <configuration>
+                                        <genericCore>${amp.genericCore}</genericCore>
+                                        <fullSource>${amp.fullSource}</fullSource>
+                                </configuration>
+                                <!-- Dependency needed by appfuse:gen-model to connect to database. -->
+                                <!-- See http://issues.appfuse.org/browse/APF-868 to learn more.    -->
+                                <dependencies>
+                                        <dependency>
+                                                <groupId>${jdbc.groupId}</groupId>
+                                                <artifactId>${jdbc.artifactId}</artifactId>
+                                                <version>${jdbc.version}</version>
+                                        </dependency>
+        </dependencies>
+                        </plugin>
+
+                        <!-- Nabla has a requirement to generate Java sources from a model -->
+                        <!--
+                                <plugin>
+                                <groupId>org.codehaus.modello</groupId>
+                                <artifactId>modello-maven-plugin</artifactId>
+                                <version>1.0-alpha-5</version>
+                                <executions>
+                                <execution>
+                                <goals>
+                                <goal>java</goal>
+                                </goals>
+                                </execution>
+                                </executions>
+                                <configuration>
+                                <version>1.0.0</version>
+                                <packageWithVersion>false</packageWithVersion>
+                                <model>src/main/mdo/nabla.mdo</model>
+                                </configuration>
+                                </plugin>
+                        -->
+                </plugins>
+        </build>
+
+        <dependencies>
+                 <dependency>
+            <groupId>org.appfuse</groupId>
+            <artifactId>appfuse-web</artifactId>
+            <version>${appfuse.version}</version>
+            <type>pom</type>
+            <!-- This exclusion and the dependency following this one allow DAO framework switching. -->
+            <!-- You only need these if you want to use JPA or iBATIS. See APF-565 for more information. -->
+            <!-- It does no harm to leave it in for Hibernate, but it's not needed. -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.appfuse</groupId>
+                    <artifactId>appfuse-hibernate</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    <dependency>
+      <groupId>org.appfuse</groupId>
+      <artifactId>appfuse-${dao.framework}</artifactId>
+      <version>${appfuse.version}</version>
+    </dependency>
+
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-jpa</artifactId>
+                        <version>${spring.jpa.version}</version>
+                </dependency>
+
+                <!-- Maven2, Spring 2.0 and JPA using
+                        Xerces 2.0.2 has some bug and maven2 comes with it. Instead you need to use Xerces 2.8.1 -->
+                <dependency>
+                        <groupId>xerces</groupId>
+                        <artifactId>xercesImpl</artifactId>
+                        <version>${xerces.version}</version>
+                </dependency>
+
+                <!-- used by org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver -->
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-agent</artifactId>
+                        <version>${spring.version}</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-aspects</artifactId>
+                        <version>${spring.version}</version>
+                </dependency>
+
+                <!-- Used by org.apache.commons.dbcp.BasicDataSource
+                        pool de connexions comme c3p0-->
+                <dependency>
+                        <groupId>commons-dbcp</groupId>
+                        <artifactId>commons-dbcp</artifactId>
+                        <version>${commons.dbcp.version}</version>
+                        <!-- <scope>runtime</scope> -->
+                </dependency>
+
+                <dependency>
+                        <groupId>jboss</groupId>
+                        <artifactId>jboss-common-core</artifactId>
+                        <version>${jboss.common.version}</version>
+                        <exclusions>
+                                <exclusion>
+                                        <groupId>apache-xerces</groupId>
+                                        <artifactId>xml-apis</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                        <groupId>apache-httpclient</groupId>
+                                        <artifactId>commons-httpclient</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                        <groupId>oswego-concurrent</groupId>
+                                        <artifactId>concurrent</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                        <groupId>apache-slide</groupId>
+                                        <artifactId>webdavlib</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                        <groupId>jboss</groupId>
+                                        <artifactId>jboss-common-logging-spi</artifactId>
+                                </exclusion>
+                        </exclusions>
+                </dependency>
+
+                <dependency>
+                        <groupId>concurrent</groupId>
+                        <artifactId>concurrent</artifactId>
+                        <version>${concurrent.version}</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                        <version>${commons.logging.version}</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>commons-collections</groupId>
+                        <artifactId>commons-collections</artifactId>
+                        <version>${commons.collections.version}</version>
+                </dependency>
+
+                <dependency>
+                        <groupId>net.sf.ehcache</groupId>
+                        <artifactId>ehcache</artifactId>
+                        <version>${ehcache.version}</version>
+                        <scope>compile</scope>
+                        <!-- <scope>provided</scope>  -->
+                </dependency>
+
+                <!-- MUST BE DECLARE IN HIBERNATE OR JPA PROJECT
+                <dependency>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
+                </dependency>
+                -->
+        </dependencies>
+
+        <profiles>
+                <profile>
+                        <id>create_db</id>
+                        <build>
+                                <plugins>
+                                        <!-- Hibernate3 plugin -->
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>hibernate3-maven-plugin</artifactId>
+                                                <version>${hibernate3.maven.plugin.version}</version>
+                                                <configuration>
+                                                        <components>
+                                                                <component>
+                                                                        <name>hbm2ddl</name>
+                                                                        <implementation>jpaconfiguration</implementation>
+                                                                </component>
+                                                        </components>
+                                                        <componentProperties>
+                                                                <drop>true</drop>
+                                                                <jdk5>true</jdk5>
+                                                                <propertyfile>target/classes/jdbc.properties</propertyfile>
+                                                                <skip>${maven.test.skip}</skip>
+                                                        </componentProperties>
+                                                        <!--
+                                                                <hibernate>
+                                                                <configurationFile>
+                                                                /src/main/resources/hibernate.cfg.xml
+                                                                </configurationFile>
+                                                                </hibernate>
+                                                                <outputDirectory>
+                                                                <hbm2java>/src/main/java</hbm2java>
+                                                                </outputDirectory>
+                                                        -->
+                                                </configuration>
+                                                <executions>
+                                                        <execution>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>hbm2ddl</goal>
+                                                                </goals>
+                                                        </execution>
+                                                </executions>
+                                                <dependencies>
+                                                        <dependency>
+                                                                <groupId>${jdbc.groupId}</groupId>
+                                                                <artifactId>${jdbc.artifactId}</artifactId>
+                                                                <version>${jdbc.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                        </plugin>
+                                </plugins>
+
+                                <!-- necessary to enable replacement of property placeholders -->
+                                <resources>
+                                        <resource>
+                                                <directory>${basedir}/src/main/java</directory>
+                                                <includes>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                                <excludes>
+                                                        <exclude>**/web.xml</exclude>
+                                                </excludes>
+                                        </resource>
+                                        <resource>
+                                                <directory>${basedir}/src/main/resources/hibernate/${database}</directory>
+                                                <filtering>true</filtering>
+                                                <excludes>
+                                                        <exclude>applicationContext-resources.xml</exclude>
+                                                </excludes>
+                                                <includes>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                        </resource>
+                                </resources>
+                                <testResources>
+                                        <testResource>
+                                                <directory>${basedir}/src/test/java</directory>
+                                                <includes>
+                                                        <include>**/*Test.java</include>
+                                                        <include>**/Test*.java</include>
+                                                        <include>**/*TestCase.java</include>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                                <excludes>
+                                                        <exclude>**/Abstract*Test.java</exclude>
+                                                        <exclude>**/Abstract*TestCase.java</exclude>
+                                                </excludes>
+                                        </testResource>
+                                        <testResource>
+                                                <directory>${basedir}/src/test/resources/hibernate/${database}</directory>
+                                                <filtering>true</filtering>
+                                                <includes>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                        </testResource>
+                                </testResources>
+                        </build>
+                </profile>
+                <profile>
+                        <id>hibernate</id>
+                        <activation>
+                                <activeByDefault>true</activeByDefault>
+                        </activation>
+                        <build>
+                                <plugins>
+                                        <!-- Hibernate3 plugin -->
+                                        <!--
+                                                <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>hibernate3-maven-plugin</artifactId>
+                                                <version>${hibernate3.maven.plugin.version}</version>
+                                                <configuration>
+                                                <components>
+                                                <component>
+                                                <name>hbm2ddl</name>
+                                                <implementation>
+                                                jpaconfiguration
+                                                </implementation>
+                                                </component>
+                                                </components>
+                                                <componentProperties>
+                                                <drop>true</drop>
+                                                <jdk5>true</jdk5>
+                                                <propertyfile>
+                                                target/classes/jdbc.properties
+                                                </propertyfile>
+                                                <skip>${maven.test.skip}</skip>
+                                                </componentProperties>
+                                        -->
+                                        <!--
+                                                <hibernate>
+                                                <configurationFile>
+                                                /src/main/resources/hibernate.cfg.xml
+                                                </configurationFile>
+                                                </hibernate>
+                                                <outputDirectory>
+                                                <hbm2java>/src/main/java</hbm2java>
+                                                </outputDirectory>
+                                        -->
+                                        <!--
+                                                </configuration>
+                                                <executions>
+                                                <execution>
+                                                <phase>process-test-resources</phase>
+                                                <goals>
+                                                <goal>hbm2ddl</goal>
+                                                </goals>
+                                                </execution>
+                                                </executions>
+                                                <dependencies>
+                                                <dependency>
+                                                <groupId>${jdbc.groupId}</groupId>
+                                                <artifactId>
+                                                ${jdbc.artifactId}
+                                                </artifactId>
+                                                <version>${jdbc.version}</version>
+                                                </dependency>
+                                                </dependencies>
+                                                </plugin>
+                                        -->
+                                </plugins>
+
+                                <!-- necessary to enable replacement of property placeholders -->
+                                <resources>
+                                        <resource>
+                                                <directory>${basedir}/src/main/resources/hibernate/${database}</directory>
+                                                <filtering>true</filtering>
+                                <excludes>
+                                        <!--
+                                        <exclude>applicationContext-resources.xml</exclude>
+                                        <exclude>spring-config.xml</exclude>
+                                        -->
+                                </excludes>
+                                <includes>
+                                        <include>**/*.xml</include>
+                                        <include>**/*.properties</include>
+                                </includes>
+                                        </resource>
+                                </resources>
+                                <testResources>
+                        <testResource>
+                                <directory>${basedir}/src/test/java</directory>
+                                <includes>
+                                        <include>**/*Test.java</include>
+                                        <include>**/Test*.java</include>
+                                        <include>**/*TestCase.java</include>
+                                        <include>**/*.xml</include>
+                                        <include>**/*.properties</include>
+                                </includes>
+                                <excludes>
+                                        <exclude>**/Abstract*Test.java</exclude>
+                                        <exclude>**/Abstract*TestCase.java</exclude>
+                                </excludes>
+                        </testResource>
+                                        <testResource>
+                                                <directory>
+                                                        ${basedir}/src/test/resources/hibernate/${database}
+                                                </directory>
+                                                <filtering>true</filtering>
+                                                <includes>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                        </testResource>
+                                </testResources>
+                        </build>
+                </profile>
+                <profile>
+                        <id>hibernate_natif</id>
+                        <properties>
+                                <maven.test.skip>true</maven.test.skip>
+                        </properties>
+                        <build>
+                                <resources>
+                                        <resource>
+                                                <directory>${basedir}/src/main/java</directory>
+                                                <includes>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                                <excludes>
+                                                        <exclude>**/web.xml</exclude>
+                                                </excludes>
+                                        </resource>
+                                        <resource>
+                                                <directory>${basedir}/src/main/resources/hibernate/${database}</directory>
+                                                <includes>
+                                                        <include>**/*.xml</include>
+                                                        <include>**/*.properties</include>
+                                                </includes>
+                                        </resource>
+                                </resources>
+                                <plugins>
+                                        <plugin>
+                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <artifactId>maven-surefire-plugin</artifactId>
+                                                <configuration>
+                                                        <!-- Permet de desactiver les tests JUnit, car il consomme trop de temps. -->
+                                                        <!-- Enable or disable JUnit tests -->
+                                                        <skip>${maven.test.skip}</skip>
+                                                </configuration>
+                                        </plugin>
+                                        <!--
+                                                <plugin>
+                                                <artifactId>maven-assembly-plugin</artifactId>
+                                                <configuration>
+                                                <descriptors>
+                                                <descriptor>
+                                                src/main/assembly/assembly-hibernate_sql.xml
+                                                </descriptor>
+                                                </descriptors>
+                                                </configuration>
+                                                </plugin>
+                                        -->
+                                        <!-- Used to create the database schema when using Hibernate or JPA for the DAO framework -->
+                                        <!-- mvn hibernate3:hbm2ddl -->
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>hibernate3-maven-plugin</artifactId>
+                                                <version>${hibernate3.maven.plugin.version}</version>
+                                                <configuration>
+                                                        <components>
+                                                                <component>
+                                                                        <name>hbm2ddl</name>
+                                                                </component>
+                                                        </components>
+                                                        <componentProperties>
+                                                                <implementation>jpaconfiguration</implementation>
+                                                                <drop>true</drop>
+                                                                <create>true</create>
+                                                                <export>true</export>
+                                                                <jdk5>true</jdk5>
+                                                                <persistenceunit>jpa</persistenceunit>
+                                                                <!--
+                                                                        <propertyfile>
+                                                                        target/classes/jdbc.properties
+                                                                        </propertyfile>
+                                                                -->
+                                                                <skip>${maven.test.skip}</skip>
+                                                        </componentProperties>
+                                                </configuration>
+                                                <!--
+                                                        <executions>
+                                                        <execution>
+                                                        <phase>process-test-resources</phase>
+                                                        <goals>
+                                                        <goal>hbm2ddl</goal>
+                                                        </goals>
+                                                        </execution>
+                                                        </executions>
+                                                -->
+                                                <dependencies>
+                                                        <dependency>
+                                                                <groupId>${jdbc.groupId}</groupId>
+                                                                <artifactId>${jdbc.embedded.artifactId}</artifactId>
+                                                                <version>${jdbc.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                        </plugin>
+
+                                        <plugin>
+                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <artifactId>maven-antrun-plugin</artifactId>
+                                                <executions>
+                                                        <execution>
+                                                                <id>process-classes</id>
+                                                                <phase>process-classes</phase>
+                                                                <configuration>
+                                                                        <tasks>
+                                                                                <ant
+                                                                                        antfile="src/test/ant/build.xml" inheritRefs="true">
+                                                                                        <target name="schemaexport" />
+                                                                                </ant>
+                                                                        </tasks>
+                                                                </configuration>
+                                                                <goals>
+                                                                        <goal>run</goal>
+                                                                </goals>
+                                                        </execution>
+                                                </executions>
+                                                <dependencies>
+                                                        <dependency>
+                                                                <groupId>org.hibernate</groupId>
+                                                                <artifactId>hibernate-tools</artifactId>
+                                                                <version>${hibernate.version}</version>
+                                                                <!--<version>3.2.0.beta9a</version>-->
+                                                        </dependency>
+                                                        <dependency>
+                                                                <groupId>org.hibernate</groupId>
+                                                                <artifactId>hibernate-entitymanager</artifactId>
+                                                                <version>${hibernate.entitymanager.version}</version>
+                                                                <!--<version>3.2.1.ga</version>-->
+                                                        </dependency>
+                                                        <dependency>
+                                                                <groupId>log4j</groupId>
+                                                                <artifactId>log4j</artifactId>
+                                                                <version>${log4j.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                        </plugin>
+                                </plugins>
+                        </build>
+                </profile>
+
+                <profile>
+                        <id>dbunit_import</id>
+                        <build>
+                                <plugins>
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>dbunit-maven-plugin</artifactId>
+                                                <version>${dbunit.maven.plugin.version}</version>
+                                                <configuration>
+                                                        <dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
+                                                        <driver>${jdbc.driver}</driver>
+                                                        <username>${jdbc.username}</username>
+                                                        <password>${jdbc.password}</password>
+                                                        <url>${jdbc.url}</url>
+                                                        <src>${basedir}/src/test/resources/hibernate/${database}/import-data.xml</src>
+                                                        <type>${dbunit.operation.type}</type>
+                                                        <schema>${dbunit.schema}</schema>
+                                                        <skip>${maven.test.skip}</skip>
+                                                </configuration>
+                                                <executions>
+                                                        <execution>
+                                                                <id>test-compile</id>
+                                                                <phase>test-compile</phase>
+                                                                <goals>
+                                                                        <goal>operation</goal>
+                                                                </goals>
+                                                        </execution>
+                                                        <!-- Runs before integration tests and jetty:run-war -->
+                                                        <!--
+                                                                <execution>
+                                                                <id>test</id>
+                                                                <phase>test</phase>
+                                                                <goals>
+                                                                <goal>operation</goal>
+                                                                </goals>
+                                                                </execution>
+                                                        -->
+                                                </executions>
+                                                <dependencies>
+                                                        <dependency>
+                                                                <groupId>${jdbc.groupId}</groupId>
+                                                                <artifactId>${jdbc.artifactId}</artifactId>
+                                                                <version>${jdbc.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                        </plugin>
+                                </plugins>
+                        </build>
+                </profile>
+                <profile>
+                        <id>dbunit_export</id>
+                        <build>
+                                <plugins>
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>dbunit-maven-plugin</artifactId>
+                                                <version>${dbunit.maven.plugin.version}</version>
+                                                <configuration>
+                                                        <dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
+                                                        <driver>${jdbc.driver}</driver>
+                                                        <username>${jdbc.username}</username>
+                                                        <password>${jdbc.password}</password>
+                                                        <url>${jdbc.url}</url>
+                                                        <!--
+                                                        <src>
+                                                                ${basedir}/src/test/resources/hibernate/${database}/export-data.xml
+                                                        </src>
+                                                        <type>${dbunit.operation.type}</type>
+                                                        -->
+                                                        <schema>${dbunit.schema}</schema>
+                                                        <skip>${maven.test.skip}</skip>
+                                                </configuration>
+                                                <executions>
+                                                        <!-- insert data before test -->
+                                                        <!--
+                                                                <execution>
+                                                                <id>test-compile</id>
+                                                                <phase>test-compile</phase>
+                                                                <goals>
+                                                                <goal>operation</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                <type>${dbunit.operation.type}</type>
+                                                                <src>src/test/data/insert.xml</src>
+                                                                </configuration>
+                                                                </execution>
+                                                        -->
+                                                        <!-- export data after test -->
+                                                        <execution>
+                                                                <id>test</id>
+                                                                <phase>test-compile</phase>
+                                                                <goals>
+                                                                        <goal>export</goal>
+                                                                </goals>
+                                                                <!--
+                                                                <phase>test</phase>
+                                                                 -->
+                                                                <!-- specific configurations -->
+                                                                <configuration>
+                                                                        <format>xml</format>
+                                                                        <src>target/export-data.xml</src>
+                                                                </configuration>
+                                                        </execution>
+                                                </executions>
+                                                <dependencies>
+                                                        <dependency>
+                                                                <groupId>${jdbc.groupId}</groupId>
+                                                                <artifactId>${jdbc.artifactId}</artifactId>
+                                                                <version>${jdbc.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                        </plugin>
+                                </plugins>
+                        </build>
+                </profile>
+                <profile>
+                        <id>sql</id>
+                        <build>
+                                <plugins>
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>sql-maven-plugin</artifactId>
+                                                <dependencies>
+                                                        <!-- specify the dependent jdbc driver here -->
+                                                        <!-- inlude org.apache.derby.jdbc.EmbeddedDriver -->
+                                                        <dependency>
+                                                                <groupId>${jdbc.groupId}</groupId>
+                                                                <artifactId>${jdbc.artifactId}</artifactId>
+                                                                <version>${jdbc.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                                <configuration>
+                                                        <username>APP</username>
+                                                        <password>APP</password>
+                                                        <!-- You can comment out username/password configurations and
+                                                                have maven to look them up in your settings.xml using ${settingsKey}
+                                                        -->
+                                                        <!-- <settingsKeys>sensibleKey</settingsKeys> -->
+                                                        <driver>${jdbc.driver}</driver>
+                                                        <url>${jdbc.url};create=true</url>
+                                                        <!--all executions are ignored if -Dmaven.test.skip=true-->
+                                                        <skip>${maven.test.skip}</skip>
+                                                </configuration>
+
+                                                <executions>
+                                                        <execution>
+                                                                <id>test-db-before-test-if-any</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <sqlCommand>
+                                                                                SELECT * FROM SYS.SYSTABLES
+                                                                        </sqlCommand>
+                                                                        <!-- ignore error when database is not avaiable -->
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+
+                                                        <!-- drop db before test -->
+                                                        <execution>
+                                                                <id>drop-schema-after-test</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <!--
+                                                                                <url>
+                                                                                ${jdbc.url};shutdown=true
+                                                                                </url>
+                                                                        -->
+                                                                        <autocommit>true</autocommit>
+                                                                        <sqlCommand>
+                                                                                CREATE SCHEMA APP
+                                                                        </sqlCommand>
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+                                                        <!--
+                                                                <execution>
+                                                                <id>create-schema</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                <autocommit>true</autocommit>
+                                                                <sqlCommand>
+                                                                CREATE SCHEMA APP
+                                                                </sqlCommand>
+                                                                <onError>continue</onError>
+                                                                </configuration>
+                                                                </execution>
+                                                        -->
+
+                                                </executions>
+                                        </plugin>
+                                </plugins>
+                        </build>
+                </profile>
+                <profile>
+                        <id>sql_sav</id>
+                        <build>
+                                <plugins>
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>sql-maven-plugin</artifactId>
+                                                <dependencies>
+                                                        <!-- specify the dependent jdbc driver here -->
+                                                        <!-- inlude org.apache.derby.jdbc.EmbeddedDriver -->
+                                                        <dependency>
+                                                                <groupId>${jdbc.groupId}</groupId>
+                                                                <artifactId>${jdbc.artifactId}</artifactId>
+                                                                <version>${jdbc.version}</version>
+                                                        </dependency>
+                                                </dependencies>
+                                                <configuration>
+                                                        <username>APP</username>
+                                                        <password>APP</password>
+                                                        <!-- You can comment out username/password configurations and
+                                                                have maven to look them up in your settings.xml using ${settingsKey}
+                                                        -->
+                                                        <!-- <settingsKeys>sensibleKey</settingsKeys> -->
+                                                        <driver>${jdbc.driver}</driver>
+                                                        <url>${jdbc.url};create=true</url>
+                                                        <!--all executions are ignored if -Dmaven.test.skip=true-->
+                                                        <skip>${maven.test.skip}</skip>
+                                                </configuration>
+
+                                                <executions>
+
+                                                        <execution>
+                                                                <id>test-db-before-test-if-any</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <sqlCommand>
+                                                                                SELECT * FROM SYS.SYSTABLES
+                                                                        </sqlCommand>
+                                                                        <!-- ignore error when database is not avaiable -->
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+
+                                                        <execution>
+                                                                <id>create-schema</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <!-- no transaction -->
+                                                                        <autocommit>true</autocommit>
+                                                                        <sqlCommand>
+                                                                                CREATE SCHEMA APP
+                                                                        </sqlCommand>
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+
+                                                        <!--
+                                                                <execution>
+                                                                <id>create-tables</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                <autocommit>true</autocommit>
+                                                                <srcFiles>
+                                                                <srcFile>
+                                                                src/main/resourced/your-schema.sql
+                                                                </srcFile>
+                                                                </srcFiles>
+                                                                </configuration>
+                                                                </execution>
+
+                                                                <execution>
+                                                                <id>create-data</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                <fileset>
+                                                                <basedir>${basedir}</basedir>
+                                                                <includes>
+                                                        -->
+                                                        <!-- These 2 files may not get executed in sequence, use srcFiles instead, if needed -->
+                                                        <!--
+                                                                <include>
+                                                                test/sql/test-data1.sql
+                                                                </include>
+                                                                <include>
+                                                                test/sql/test-data2.sql
+                                                                </include>
+                                                                </includes>
+                                                                </fileset>
+                                                                </configuration>
+                                                                </execution>
+                                                        -->
+
+                                                        <execution>
+                                                                <id>drop-tables</id>
+                                                                <phase>test</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <autocommit>true</autocommit>
+                                                                        <srcFiles>
+                                                                                <srcFile>
+                                                                                        ${basedir}/src/test/sql/Person-delete.sql
+                                                                                </srcFile>
+                                                                        </srcFiles>
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+
+                                                        <!-- drop db after test -->
+                                                        <execution>
+                                                                <id>drop-schema-after-test</id>
+                                                                <phase>test</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <autocommit>true</autocommit>
+                                                                        <sqlCommand>
+                                                                                DROP SCHEMA APP
+                                                                        </sqlCommand>
+                                                                </configuration>
+                                                        </execution>
+
+                                                        <execution>
+                                                                <id>shutdown-db-after-test</id>
+                                                                <phase>test</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <!-- need another database to drop the targeted one -->
+                                                                        <url>${jdbc.url};shutdown=true</url>
+                                                                        <autocommit>true</autocommit>
+                                                                        <sqlCommand>
+                                                                                SELECT * FROM SYS.SYSTABLES
+                                                                        </sqlCommand>
+                                                                        <!-- ignore error when database is not avaiable -->
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+
+                                                </executions>
+                                        </plugin>
+                                </plugins>
+                        </build>
+                </profile>
+        </profiles>
+
+        <properties>
+                <dao.framework>hibernate</dao.framework>
+                <maven.test.skip>false</maven.test.skip>
+<!--
+                <database.name>myDBGlobal</database.name>
+-->
+                <!-- Database settings -->
+<!--
+                <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                <database>derby</database>
+                <dbunit.schema>APP</dbunit.schema>
+                <hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+                <jdbc.groupId>org.apache.derby</jdbc.groupId>
+-->
+                <!-- <jdbc.artifactId>derbyclient</jdbc.artifactId> -->
+<!--
+                <jdbc.artifactId>derby</jdbc.artifactId>
+                <jdbc.version>${jdbc.derby.version}</jdbc.version>
+                <database.host>localhost</database.host>
+                <database.port>4848</database.port>
+-->
+                <!--
+                        <jdbc.driver>
+                        org.apache.derby.jdbc.ClientDriver
+                        org.apache.derby.jdbc.EmbeddedDriver
+                        org.apache.derby.jdbc.AutoloadedDriver
+                        </jdbc.driver>
+                -->
+<!--
+                <jdbc.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driver>
+                <jdbc.client.url><![CDATA[jdbc:derby:${database.host}:${database.port}/${database.name};create=true]]></jdbc.client.url>
+                <jdbc.url><![CDATA[jdbc:derby:${prj.dir}/application/database/business/global/${database.name};create=true]]></jdbc.url>
+                <jdbc.username>${dbunit.schema}</jdbc.username>
+                <jdbc.password>${dbunit.schema}</jdbc.password>
+-->
+        </properties>
+
+</project>

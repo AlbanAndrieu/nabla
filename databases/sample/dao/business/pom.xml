@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+        <parent>
+                <groupId>com.nabla.project.databases.sample.dao</groupId>
+                <artifactId>dao</artifactId>
+                <version>1.0</version>
+        </parent>
+        <modelVersion>4.0.0</modelVersion>
+        <name>Databases DOA Business</name>
+        <groupId>com.nabla.project.databases.sample.dao.business</groupId>
+        <artifactId>business</artifactId>
+        <version>1.0</version>
+        <packaging>pom</packaging>
+        <modules>
+                <!-- <module>appfuse</module> -->
+                <module>global</module>
+                <!-- <module>local</module> WORKING BUT DO NOT ERASE ECLIPSE SETTINGS -->
+        </modules>
+</project>

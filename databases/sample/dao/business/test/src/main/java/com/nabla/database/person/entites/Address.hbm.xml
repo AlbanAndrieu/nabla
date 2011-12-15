@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.nabla.database.person.entites.Address" table="Address">
+        <id name="id" column="ADDRESS_ID">
+            <generator class="native"/>
+        </id>
+        <property name="version"/>
+        <property name="adr1"/>
+        <property name="adr2"/>
+    </class>
+
+</hibernate-mapping>

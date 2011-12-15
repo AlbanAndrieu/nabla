@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <!--
+          Generate DDL files for schema creation.
+    -->
+    <target name="schemaexport">
+        <taskdef name="hibernatetool"
+                 classname="org.hibernate.tool.ant.HibernateToolTask"/>
+        <hibernatetool destdir="target">
+            <classpath refid="maven.compile.classpath"/>
+            <!-- Use JPA annotations, as opposed to Hibernate's hbm
+                 files. If there are multiple persistence units, specify
+                 the correct one using the  "persistenceunit" attribute.
+            -->
+            <jpaconfiguration />
+            <!-- Write all CREATE statements to a file. -->
+            <hbm2ddl drop="false" create="true" export="false"
+                     outputfilename="schema-create.ddl"
+                     delimiter=";" format="true"/>
+            <!-- Write all DROP statements to a different file. -->
+            <hbm2ddl drop="true" create="false" export="false"
+                     outputfilename="schema-drop.ddl"
+                     delimiter=";" format="true"/>
+        </hibernatetool>
+
+    </target>
+</project>
