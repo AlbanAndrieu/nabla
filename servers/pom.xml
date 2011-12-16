@@ -178,7 +178,7 @@
 					<version>${jboss.version}</version>
 					<scope>provided</scope>
 				</dependency>
-
+				<!--
 				<dependency>
 					<groupId>org.jbpm.jbpm3</groupId>
 					<artifactId>jbpm-jpdl</artifactId>
@@ -189,6 +189,7 @@
 					<artifactId>jbpm-identity</artifactId>
 					<version>${jbpm.version}</version>
 				</dependency>
+				-->
 			</dependencies>
 		</profile>
 		<profile>
