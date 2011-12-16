@@ -26,7 +26,7 @@
 
 	<modules>
 		<module>sample</module>
-		<!--<module>nabla</module> -->
+		<!--<module>nabla</module>-->
 	</modules>
 
 	<profiles>
@@ -119,6 +119,7 @@
 							</dependency>
 						</dependencies>
 					</plugin>
+															
 					<!-- Code Coverage by Clover -->
 					<!-- Bind Clover Coverage instrumentation to the site generation -->
 					<!-- Blocked by http://jira.codehaus.org/browse/MCLOVER-50 -->
@@ -705,7 +706,21 @@
 							<minSeverity>info</minSeverity>
 						</configuration>
 					</plugin>
-
+					<!--					
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>rat-maven-plugin</artifactId>
+						<version>${maven.rat.plugin.version}</version>
+					</plugin>
+					-->
+					<!--
+					<plugin>
+						<groupId>org.apache.rat</groupId>
+						<artifactId>apache-rat-plugin</artifactId>
+						<version>${maven.apache.rat.plugin.version}</version>
+					</plugin>	
+					-->				
+			
 					<!-- Comment gerer un rapport de couverture des tests -->
 					<!-- Code Coverage by Cobertura -->
 					<plugin>
@@ -1262,12 +1277,13 @@
 								</plugin>
 
 								<!-- dashboard must be done at the end in order to have a complete report -->
+								<!--
 								<plugin>
 									<groupId>org.codehaus.mojo</groupId>
 									<artifactId>dashboard-maven-plugin</artifactId>
 									<version>${maven.dashboard.plugin.version}</version>
 								</plugin>
-                                        		
+                                        			-->
 							</reportPlugins>
 						</configuration>
 						<dependencies>
@@ -1368,6 +1384,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					<!--
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dashboard-maven-plugin</artifactId>
@@ -1382,7 +1399,6 @@
 							<keepVersionAsDiscriminantCriteria>false</keepVersionAsDiscriminantCriteria>
 						</configuration>
 						<dependencies>
-							<!-- Comment out if deploying to a Java EE 5 server with a server provided data source -->
 							<dependency>
 								<groupId>org.apache.derby</groupId>
 								<artifactId>derbyclient</artifactId>
@@ -1406,7 +1422,6 @@
 								<version>${jdbc.derby.version}</version>
 								<scope>compile</scope>
 							</dependency>
-					                <!-- to override commons-logging in Hibernate library dependency -->
 							<dependency>
 								<groupId>commons-logging</groupId>
 								<artifactId>commons-logging</artifactId>
@@ -1418,7 +1433,8 @@
 								<version>1.0</version>
 							</dependency>
 						</dependencies>
-					</plugin>			
+					</plugin>	
+					-->		
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>taglist-maven-plugin</artifactId>
