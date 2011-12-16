@@ -4,11 +4,11 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-	<!-- la JVM doit être lancée avec l'argument -javaagent:C:\data\2006-2007\eclipse\dvp-jpa\lib\spring\spring-agent.jar 
+	<!-- la JVM doit être lancée avec l'argument -javaagent:C:\data\2006-2007\eclipse\dvp-jpa\lib\spring\spring-agent.jar
 		(à remplacer par le chemin exact de spring-agent.jar)-->
 
 	<!-- couches applicatives -->
@@ -36,7 +36,7 @@
 	<!-- la source de donnéees DBCP -->
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />		
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/myDBLocal" />
 		<property name="username" value="root" />
 		<property name="password" value="" />

@@ -281,10 +281,12 @@
                         </build>
                 </profile>
                 <profile>
-                        <id>hibernate</id>
-                        <activation>
-                                <activeByDefault>true</activeByDefault>
-                        </activation>
+                        <id>hibernate-resource</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
                         <build>
                                 <plugins>
                                         <!-- Hibernate3 plugin -->
@@ -377,9 +379,7 @@
                                 </excludes>
                         </testResource>
                                         <testResource>
-                                                <directory>
-                                                        ${basedir}/src/test/resources/hibernate/${database}
-                                                </directory>
+                                                <directory>${basedir}/src/test/resources/hibernate/${database}</directory>
                                                 <filtering>true</filtering>
                                                 <includes>
                                                         <include>**/*.xml</include>
@@ -918,8 +918,9 @@
                         org.apache.derby.jdbc.AutoloadedDriver
                         </jdbc.driver>
                 -->
-<!--
-                <jdbc.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driver>
+
+                <jdbc.driver>org.apache.derby.jdbc.ClientDriver</jdbc.driver>
+<!--                
                 <jdbc.client.url><![CDATA[jdbc:derby:${database.host}:${database.port}/${database.name};create=true]]></jdbc.client.url>
                 <jdbc.url><![CDATA[jdbc:derby:${prj.dir}/application/database/business/global/${database.name};create=true]]></jdbc.url>
                 <jdbc.username>${dbunit.schema}</jdbc.username>

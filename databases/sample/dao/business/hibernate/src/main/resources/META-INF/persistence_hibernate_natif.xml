@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0"
 	xmlns="http://java.sun.com/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -17,13 +17,13 @@
 				value="org.hibernate.dialect.DerbyDialect" />
 			<property name="hibernate.connection.driver_class"
 				value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="hibernate.connection.username" value="user" />
-			<property name="hibernate.connection.password" value="user" />
+			<property name="hibernate.connection.username" value="APP" />
+			<property name="hibernate.connection.password" value="APP" />
 			<property name="hibernate.connection.url"
-				value="jdbc:derby:C:\tmp\myDBGlobal;create=true;" />
+				value="jdbc:derby:C:\workspace\project\application\database\business\global\myDBGlobal;create=true;" />
 		</properties>
 	</persistence-unit>
-	<!--
+	<!-- 
 		<persistence-unit name="default">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
@@ -32,7 +32,7 @@
 	<!--
 		<property name="hibernate.archive.autodetection"
 		value="class" />
-
+		
 	-->
 	<!-- Datasource -->
 	<!--
@@ -43,8 +43,8 @@
 		<property name="hibernate.connection.username" value="APP" />
 		<property name="hibernate.connection.password" value="APP" />
 		<property name="hibernate.connection.url"
-		value="jdbc:derby:C:\tmp\myDBGlobal;create=true;" />
-
+		value="jdbc:derby:C:\workspace\project\application\database\business\global\myDBGlobal;create=true;" />
+		
 	-->
 	<!--
 		<property name="hibernate.dialect"

@@ -17,6 +17,10 @@
 	<packaging>pom</packaging>
 	<description>The Databases pom file is a superpom to centralize all third parties</description>
 
+	<modules>
+		<module>sample</module>
+	</modules>
+	
 	<profiles>
 		<!-- ================= START Database Profiles ================= -->
 		<profile>
@@ -226,16 +230,21 @@
 		</profile>
 		<profile>
 			<id>derby</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>			
 			<properties>
 				<database>derby</database>
 				<database.name>myDBGlobal</database.name>
 				<!-- Database settings -->
 				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT
-				</dbunit.operation.type>
+				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 				<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
 				<dbunit.schema>APP</dbunit.schema>
 				<jdbc.driver.jar></jdbc.driver.jar>
+				
 				<jdbc.groupId>org.apache.derby</jdbc.groupId>
 				<jdbc.client.artifactId>derbyclient</jdbc.client.artifactId>
 				<jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId>
@@ -243,6 +252,7 @@
 				<jdbc.version>${jdbc.derby.version}</jdbc.version>
 				<jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
 				<jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
+				<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
 				<database.host>localhost</database.host>
 				<database.port>1527</database.port>
 				<!-- informartion must be declare in pom module -->
@@ -254,10 +264,10 @@
 					<jdbc.client.url><![CDATA[jdbc:derby://${database.host}:${database.port}/myDB]]></jdbc.client.url>
 				-->
 				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.username>${dbunit.schema}</jdbc.username>
-				<jdbc.password>${dbunit.schema}</jdbc.password>
+				<jdbc.username>user</jdbc.username>
+				<jdbc.password>user</jdbc.password>
 				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.client.url><![CDATA[jdbc:derby:C:/workspace/workspace/users/albandri30/database/derby/${database.name};create=true]]></jdbc.client.url>
+				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
 				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
 				<!--
 					<jdbc.driverClassName> org.apache.derby.jdbc.ClientDriver
@@ -325,11 +335,6 @@
 		</profile>
 		<profile>
 			<id>hsqldb</id>
-			<activation>
-				<property>
-					<name>!profile.activation</name>
-				</property>
-			</activation>
 			<properties>
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
 				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
@@ -450,8 +455,42 @@
 							<groupId>javax.transaction</groupId>
 							<artifactId>jta</artifactId>
 						</exclusion>
+						<exclusion>
+							<groupId>asm</groupId>
+							<artifactId>asm</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>asm</groupId>
+							<artifactId>asm-attrs</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>cglib</groupId>
+							<artifactId>cglib</artifactId>
+						</exclusion>						
 					</exclusions>
 				</dependency>
+				<dependency>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+					<version>${asm.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>cglib</groupId>
+					<artifactId>cglib-nodep</artifactId>
+					<version>${cglib.nodep.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>javax.transaction</groupId>
+					<artifactId>jta</artifactId>
+					<version>${javax.transaction.version}</version>
+				</dependency>		
+
+                <dependency>
+                	<groupId>commons-dbcp</groupId>
+                	<artifactId>commons-dbcp</artifactId>
+                	<version>${commons.dbcp.version}</version>
+                </dependency>				
+						
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-annotations</artifactId>

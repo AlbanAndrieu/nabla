@@ -1,0 +1,11 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.default_schema">APP</property>
+		<mapping class="org.appfuse.model.User" />
+		<mapping class="org.appfuse.model.Role" />
+		<mapping class="com.nabla.project.application.database.business.global.model.Person" />
+	</session-factory>
+</hibernate-configuration>
