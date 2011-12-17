@@ -1,201 +1,195 @@
-/*
- * Copyright (c) 2002-2004, Nabla
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *  1. Redistributions of source code must retain the above copyright notice
- *     and the following disclaimer.
- *
- *  2. Redistributions in binary form must reproduce the above copyright notice
- *     and the following disclaimer in the documentation and/or other materials
- *     provided with the distribution.
- *
- *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
- *     contributors may be used to endorse or promote products derived from
- *     this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * License 1.0
- */
 package com.nabla.project.application.database.business.global.model;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 import org.appfuse.model.BaseObject;
-import org.compass.annotations.SearchableId;
 
-/**
- * DOCUMENT ME!
- *
- * @author $Author: albandri $
- * @version $Revision: 358 $
- * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+@SuppressWarnings({ "unused", "serial" })
 @Entity
-@Table(name = "person", schema = "APP", catalog = "")
-public class Person extends BaseObject {
-
-    private Long   id;
-    private String firstName;
-    private String lastName;
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
-     */
+@Table(name = "Person")
+public class Person extends BaseObject implements Serializable {
     @Id
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @SearchableId
+    private Long          id;
+    @Column(nullable = false)
+    @Version
+    private int           version;
+    @Column(length = 30, nullable = false, unique = true)
+    private String        lastName;
+    @Column(length = 30, nullable = false)
+    private String        firstName;
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date          birthDate;
+    @Column(nullable = false)
+    private boolean       married;
+    @Column(nullable = false)
+    private int           nbChildren;
+
+    // relation principale Person (one) -> Address (one)
+    // implémentée par la clé étrangère Person(adresse_id) -> Address
+    // cascade insertion Person -> insertion Address
+    // cascade maj Person -> maj Address
+    // cascade suppression Person -> suppression Address
+    // une Person doit avoir 1 Address (nullable=false)
+    // 1 Address n'appartient qu'à 1 personne (unique=true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ADDRESS_ID", unique = true, nullable = false)
+    private Address       address;
+
+    // relation Person (many) -> Activity (many) via une table de jointure PersonneActivite
+    // PersonneActivite5(PERSONNE_ID) est clé étangère sur Person(id)
+    // PersonneActivite5(ACTIVITE_ID) est clé étangère sur Activity(id)
+    // plus de cascade sur les activités
+    // @ManyToMany(cascade={CascadeType.PERSIST})
+    @ManyToMany()
+    @JoinTable(name = "PersonActivity", joinColumns = @JoinColumn(name = "PERSON_ID"), inverseJoinColumns = @JoinColumn(name = "ACTIVITY_ID")
+
+    )
+    private Set<Activity> activities = new HashSet<Activity>();
+
+    // constructeurs
+    public Person() {
+    }
+
+    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbChildren) {
+        this.setLastName(lastname);
+        this.setFirstName(firstname);
+        this.setBirthDate(birtdate);
+        this.setMarried(married);
+        this.setNbChildren(nbChildren);
+    }
+
+    // getters and setters
     public Long getId() {
-
         return this.id;
-
     }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @param id DOCUMENT ME!
-     */
-    public void setId(final Long id) {
-
+    private void setId(final Long id) {
         this.id = id;
-
     }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
-     */
-    @Column(name = "first_name", length = 50)
-    public String getFirstName() {
-
-        return this.firstName;
-
+    public int getVersion() {
+        return this.version;
     }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @param firstName DOCUMENT ME!
-     */
-    public void setFirstName(final String firstName) {
-
-        this.firstName = firstName;
-
+    private void setVersion(final int version) {
+        this.version = version;
     }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
-     */
-    @Column(name = "last_name", length = 50)
     public String getLastName() {
-
         return this.lastName;
+    }
 
+    public void setLastName(final String lastname) {
+        this.lastName = lastname;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(final String firstname) {
+        this.firstName = firstname;
+    }
+
+    public Date getBirthDate() {
+        return this.birthDate;
+    }
+
+    public void setBirthDate(final Date birthdate) {
+        this.birthDate = birthdate;
+    }
+
+    public boolean isMarried() {
+        return this.married;
+    }
+
+    public void setMarried(final boolean married) {
+        this.married = married;
+    }
+
+    public int getNbChildren() {
+        return this.nbChildren;
+    }
+
+    public void setNbChildren(final int nbChildren) {
+        this.nbChildren = nbChildren;
+    }
+
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(final Address address) {
+        this.address = address;
+    }
+
+    public Set<Activity> getActivities() {
+        return this.activities;
+    }
+
+    public void setActivities(final Set<Activity> activities) {
+        this.activities = activities;
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param lastName DOCUMENT ME!
-     */
-    public void setLastName(final String lastName) {
-
-        this.lastName = lastName;
-
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param o DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object o) {
-
         if (this == o) {
-
             return true;
-
         }
-
-        if ((o == null) || (this.getClass() != o.getClass())) {
-
+        if (!(o instanceof Person)) {
             return false;
-
         }
 
         final Person person = (Person) o;
 
-        if ((this.firstName != null) ? (!this.firstName.equals(person.firstName)) : (person.firstName != null)) {
-
-            return false;
-
-        }
-
-        if ((this.lastName != null) ? (!this.lastName.equals(person.lastName)) : (person.lastName != null)) {
-
-            return false;
-
-        }
-
-        return true;
-
+        return this.hashCode() == person.hashCode();
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
-
         int result;
-
-        result = ((this.firstName != null) ? this.firstName.hashCode() : 0);
-        result = (31 * result) + ((this.lastName != null) ? this.lastName.hashCode() : 0);
-
+        result = (this.lastName != null ? this.lastName.hashCode() : 0);
+        result = (29 * result) + (this.firstName != null ? this.firstName.hashCode() : 0);
+        result = (29 * result) + (this.birthDate != null ? this.birthDate.hashCode() : 0);
         return result;
-
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
-
-        return "Person{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + '}';
-
+        return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastName(), this.getFirstName(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthDate()), this.isMarried(),
+                this.getNbChildren());
+        // return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),
+        // this.getNbChildren(), this.getAddress().getId());
     }
-
 }
