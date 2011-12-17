@@ -1,17 +1,19 @@
-package com.nabla.project.application.database.business.hibernate.dao;
+package com.nabla.project.application.database.business.jpa.dao;
 
 import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.appfuse.dao.BaseDaoTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.orm.ObjectRetrievalFailureException;
 
 import com.nabla.project.application.database.business.global.dao.IPersonDao;
 import com.nabla.project.application.database.business.global.model.Person;
 
-public class PersonDaoHibernateTest extends BaseDaoTestCase {
+public class PersonDaoJpaTest extends BaseDaoTestCase {
     @Autowired
     private IPersonDao personDao = null;
 
@@ -28,9 +30,6 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase {
     @Test
     public void testFindPersonByLastName() throws Exception {
         System.out.println("PersonDao : " + this.personDao);
-
-        // final ApplicationContext ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
-        // this.personDao = (IPersonDao) ctx.getBean("personDao");
 
         final List<Person> people = this.personDao.findByLastName("Raible");
         Assert.assertTrue(people.size() > 0);
@@ -63,9 +62,11 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase {
         try {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        } catch (final DataAccessException dae) {
-            this.log.debug("Expected exception: " + dae.getMessage());
-            Assert.assertNotNull(dae);
+        } catch (final EntityNotFoundException enf) {
+            this.log.debug("Expected exception: " + enf.getMessage());
+            Assert.assertNotNull(enf);
+        } catch (final ObjectRetrievalFailureException orf) {
+            this.log.debug("Expected exception: " + orf.getMessage());
         }
     }
 }

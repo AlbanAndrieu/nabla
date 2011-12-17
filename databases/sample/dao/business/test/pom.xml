@@ -12,64 +12,9 @@
 	<name>Databases DAO test</name>
 	<groupId>com.nabla.project.databases.sample.dao.business.test</groupId>
 	<artifactId>test</artifactId>
-<!-- 	<version>1.0</version> -->
+	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
-	<description>Database-Business-Local Dao : Test</description>
-	<build>
-		<!-- voir aussi http://www.i-proving.ca/space/Technologies/Maven/Maven+Recipes/Using+Hibernate+Annotations+and+Maven -->
-		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<!-- Permet de desactiver les tests JUnit, car il consomme trop de temps. -->
-					<!-- Enable or disable JUnit tests -->
-					<skip>${maven.test.skip}</skip>
-				</configuration>
-			</plugin>
-
-                        <!--
-                                <plugin>
-                                <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>dbunit-maven-plugin</artifactId>
-                                <version>1.0-beta-1</version>
-                                <configuration>
-                                <dataTypeFactoryName>
-                                ${dbunit.dataTypeFactoryName}
-                                </dataTypeFactoryName>
-                                <driver>${jdbc.driverClassName}</driver>
-                                <username>${jdbc.username}</username>
-                                <password>${jdbc.password}</password>
-                                <url>${jdbc.url}</url>
-                                <src>src/test/resources/sample-data.xml</src>
-                                <type>${dbunit.operation.type}</type>
-                                <schema>${dbunit.schema}</schema>
-                                <skip>${maven.test.skip}</skip>
-                                </configuration>
-                                <executions>
-                                <execution>
-                                <id>test-compile</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                <goal>operation</goal>
-                                </goals>
-                                </execution>
-                                </executions>
-                                <dependencies>
-                                <dependency>
-                                <groupId>${jdbc.groupId}</groupId>
-                                <artifactId>${jdbc.artifactId}</artifactId>
-                                <version>${jdbc.version}</version>
-                                </dependency>
-                                </dependencies>
-                                </plugin>
-                        -->
-
-		</plugins>
-
-		<defaultGoal>install</defaultGoal>
-	</build>
+	<description>Database DAO Test : Test Spring Jpa Hibernate compatibility</description>
 
 	<dependencies>
 		<dependency>
@@ -79,18 +24,18 @@
 			<version>${spring.version}</version>
 		</dependency>
         <!--
-                <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-jpa</artifactId>
-                        <version>${spring.jpa.version}</version>
-                </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+            <artifactId>spring-jpa</artifactId>
+            <version>${spring.jpa.version}</version>
+        </dependency>
 
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		-->
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
@@ -236,10 +181,8 @@
 
 	<!-- ================= Default Properties ================= -->
 	<properties>
-		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 		<maven.test.skip>false</maven.test.skip>
-		<compiler.fork>true</compiler.fork>
-		<database.name>myDBGlobal</database.name>
+		<database.name>myDBTest</database.name>
 	</properties>
 
 	<profiles>
@@ -247,11 +190,17 @@
 			<id>mysql</id>
 			<properties>
 				<database>mysql</database>
+				<hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
+				<dbunit.schema>APP</dbunit.schema>
 				<jdbc.groupId>mysql</jdbc.groupId>
 				<jdbc.client.artifactId>mysql-connector-java</jdbc.client.artifactId>
 				<jdbc.version>5.0.4</jdbc.version>
+				<jdbc.username>sa</jdbc.username>
+				<jdbc.password></jdbc.password>
+				<jdbc.driver>${jdbc.client.driver}</jdbc.driver>
 				<!-- jdbc:mysql://localhost:3306/myDB -->
 				<jdbc.client.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}]]></jdbc.client.url>
+				<jdbc.url>${jdbc.client.url}</jdbc.url>
 			</properties>
 			<dependencies>
 				<!-- com.mysql.jdbc.Driver -->
@@ -272,12 +221,21 @@
 			</activation>
 			<properties>
 				<database>derby</database>
+				<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+				<dbunit.schema>APP</dbunit.schema>
 				<jdbc.groupId>org.apache.derby</jdbc.groupId>
 				<jdbc.client.artifactId>derbyclient</jdbc.client.artifactId>
 				<jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId>
 				<jdbc.version>10.3.1.4</jdbc.version>
+				<jdbc.username>user</jdbc.username>
+				<jdbc.password>user</jdbc.password>
+				<jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
+				<jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
+				<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
 				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.client.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}]]></jdbc.client.url>
+				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
+				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
+				<jdbc.url>${jdbc.embedded.url}</jdbc.url>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -300,7 +258,6 @@
 					<!-- <scope>provided</scope> -->
 					<scope>compile</scope>
 				</dependency>
-
 				<!-- org.apache.derby.jdbc.ClientDriver -->
                                 <!--
                                 <dependency>
@@ -320,46 +277,7 @@
 				</property>
 			</activation>
 			<build>
-                            <!-- Then in a POM which extends this parent, I'll add hbm2java to a lifecycle phase. Note, I need to do this because not all submodules generate Java from HBM. Some projects use Hibernate annotations: -->
-                            <!--
-                                <plugins>
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>hibernate3-maven-plugin</artifactId>
-                                                <version>2.0-SNAPSHOT</version>
-                                                <configuration>
-                                                        <componentProperties>
-                                                                <drop>false</drop>
-                                                                <configurationfile>
-                                                                        src/hibernate.cfg.xml
-                                                                </configurationfile>
-                                                        </componentProperties>
-                                                </configuration>
-                                        </plugin>
 
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>hibernate3-maven-plugin</artifactId>
-                                                <version>2.0-SNAPSHOT</version>
-                                                <executions>
-                                                        <execution>
-                                                                <id>generate-ddl</id>
-                                                                <phase>process-classes</phase>
-                                                                <goals>
-                                                                        <goal>hbm2ddl</goal>
-                                                                </goals>
-                                                        </execution>
-                                                        <execution>
-                                                                <id>generate-java</id>
-                                                                <phase>generate-sources</phase>
-                                                                <goals>
-                                                                        <goal>hbm2java</goal>
-                                                                </goals>
-                                                        </execution>
-                                                </executions>
-                                        </plugin>
-                                </plugins>
-                                -->
 				<!-- necessary to enable replacement of property placeholders -->
 				<resources>
 					<resource>

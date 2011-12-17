@@ -15,6 +15,7 @@ public class PersonDaoHibernate extends GenericDaoHibernate<Person, Long> implem
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Person> findByLastName(final String lastName) {
         return this.getHibernateTemplate().find("from Person where lastName=?", lastName);
     }

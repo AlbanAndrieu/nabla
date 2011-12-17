@@ -34,15 +34,13 @@
 	</bean>
 
 	<!-- la source de donnéees DBCP -->
-	<!-- Derby fonctionne avec driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver -->
-	<!-- connect 'jdbc:derby://localhost:1527/myDB;user=APP;password=APP'; -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<!-- <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />-->
 		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
-		<property name="url" value="jdbc:derby:C:\tmp\myDBLocal;create=true;" />
+		<property name="url" value="jdbc:derby:C:\tmp\myDBTest;create=true;" />
 		<!-- <property name="url" value="jdbc:derby://localhost:1527/myDB;create=true" />-->
-		<property name="username" value="APP" />
-		<property name="password" value="APP" />
+		<property name="username" value="user" />
+		<property name="password" value="user" />
 	</bean>
 
 	<!-- le gestionnaire de transactions -->

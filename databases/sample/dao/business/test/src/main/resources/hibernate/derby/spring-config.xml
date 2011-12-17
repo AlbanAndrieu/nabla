@@ -24,7 +24,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 					<property name="showSql" value="true" />
-				<property name="databasePlatform" value="org.hibernate.dialect.DerbyDialect" />
+				<property name="databasePlatform" value="${hibernate.dialect}" />
 				<property name="generateDdl" value="true" />
 			</bean>
 		</property>
@@ -34,13 +34,11 @@
 	</bean>
 
 	<!-- la source de donnéees DBCP -->
-	<!-- Derby fonctionne avec driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver -->
-	<!-- connect 'jdbc:derby://localhost:1527/Database;user=APP;password=APP'; -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
-		<property name="url" value="jdbc:derby:C:\tmp\myDBLocal;create=true;" />
-		<property name="username" value="user" />
-		<property name="password" value="user" />
+		<property name="driverClassName" value="${jdbc.client.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
 	<!-- le gestionnaire de transactions -->
