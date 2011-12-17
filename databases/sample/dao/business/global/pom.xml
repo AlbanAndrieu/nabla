@@ -198,6 +198,7 @@
                                                         <componentProperties>
                                                                 <drop>true</drop>
                                                                 <jdk5>true</jdk5>
+                                                                <configurationfile>target/classes/hibernate.cfg.xml</configurationfile>
                                                                 <propertyfile>target/classes/jdbc.properties</propertyfile>
                                                                 <skip>${maven.test.skip}</skip>
                                                         </componentProperties>
@@ -286,66 +287,8 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>	
+			</activation>
                         <build>
-                                <plugins>
-                                        <!-- Hibernate3 plugin -->
-                                        <!--
-                                                <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>hibernate3-maven-plugin</artifactId>
-                                                <version>${hibernate3.maven.plugin.version}</version>
-                                                <configuration>
-                                                <components>
-                                                <component>
-                                                <name>hbm2ddl</name>
-                                                <implementation>
-                                                jpaconfiguration
-                                                </implementation>
-                                                </component>
-                                                </components>
-                                                <componentProperties>
-                                                <drop>true</drop>
-                                                <jdk5>true</jdk5>
-                                                <propertyfile>
-                                                target/classes/jdbc.properties
-                                                </propertyfile>
-                                                <skip>${maven.test.skip}</skip>
-                                                </componentProperties>
-                                        -->
-                                        <!--
-                                                <hibernate>
-                                                <configurationFile>
-                                                /src/main/resources/hibernate.cfg.xml
-                                                </configurationFile>
-                                                </hibernate>
-                                                <outputDirectory>
-                                                <hbm2java>/src/main/java</hbm2java>
-                                                </outputDirectory>
-                                        -->
-                                        <!--
-                                                </configuration>
-                                                <executions>
-                                                <execution>
-                                                <phase>process-test-resources</phase>
-                                                <goals>
-                                                <goal>hbm2ddl</goal>
-                                                </goals>
-                                                </execution>
-                                                </executions>
-                                                <dependencies>
-                                                <dependency>
-                                                <groupId>${jdbc.groupId}</groupId>
-                                                <artifactId>
-                                                ${jdbc.artifactId}
-                                                </artifactId>
-                                                <version>${jdbc.version}</version>
-                                                </dependency>
-                                                </dependencies>
-                                                </plugin>
-                                        -->
-                                </plugins>
-
                                 <!-- necessary to enable replacement of property placeholders -->
                                 <resources>
                                         <resource>
@@ -455,11 +398,8 @@
                                                                 <export>true</export>
                                                                 <jdk5>true</jdk5>
                                                                 <persistenceunit>jpa</persistenceunit>
-                                                                <!--
-                                                                        <propertyfile>
-                                                                        target/classes/jdbc.properties
-                                                                        </propertyfile>
-                                                                -->
+                                                                <!-- <configurationfile>target/classes/hibernate.cfg.xml</configurationfile> -->
+                                                                <!-- <propertyfile>target/classes/jdbc.properties</propertyfile>-->
                                                                 <skip>${maven.test.skip}</skip>
                                                         </componentProperties>
                                                 </configuration>
@@ -920,7 +860,7 @@
                 -->
 
                 <jdbc.driver>org.apache.derby.jdbc.ClientDriver</jdbc.driver>
-<!--                
+<!--
                 <jdbc.client.url><![CDATA[jdbc:derby:${database.host}:${database.port}/${database.name};create=true]]></jdbc.client.url>
                 <jdbc.url><![CDATA[jdbc:derby:${prj.dir}/application/database/business/global/${database.name};create=true]]></jdbc.url>
                 <jdbc.username>${dbunit.schema}</jdbc.username>
