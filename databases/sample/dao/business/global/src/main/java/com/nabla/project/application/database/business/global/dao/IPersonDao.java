@@ -33,12 +33,11 @@
  */
 package com.nabla.project.application.database.business.global.dao;
 
-import com.nabla.project.application.database.business.global.model.Person;
+import java.util.List;
 
 import org.appfuse.dao.GenericDao;
 
-import java.util.List;
-
+import com.nabla.project.application.database.business.global.model.Person;
 
 /**
  * DOCUMENT ME!

@@ -33,10 +33,15 @@
  */
 package com.nabla.project.application.database.business.global.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.appfuse.model.BaseObject;
-
-import javax.persistence.*;
-
+import org.compass.annotations.SearchableId;
 
 /**
  * DOCUMENT ME!
@@ -46,10 +51,10 @@ import javax.persistence.*;
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
 @Entity
-@Table(name = "person")
+@Table(name = "person", schema = "APP", catalog = "")
 public class Person extends BaseObject {
 
-    private Long id;
+    private Long   id;
     private String firstName;
     private String lastName;
 
@@ -60,9 +65,10 @@ public class Person extends BaseObject {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @SearchableId
     public Long getId() {
 
-        return id;
+        return this.id;
 
     }
 
@@ -71,7 +77,7 @@ public class Person extends BaseObject {
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(Long id) {
+    public void setId(final Long id) {
 
         this.id = id;
 
@@ -85,7 +91,7 @@ public class Person extends BaseObject {
     @Column(name = "first_name", length = 50)
     public String getFirstName() {
 
-        return firstName;
+        return this.firstName;
 
     }
 
@@ -94,7 +100,7 @@ public class Person extends BaseObject {
      *
      * @param firstName DOCUMENT ME!
      */
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
 
         this.firstName = firstName;
 
@@ -108,7 +114,7 @@ public class Person extends BaseObject {
     @Column(name = "last_name", length = 50)
     public String getLastName() {
 
-        return lastName;
+        return this.lastName;
 
     }
 
@@ -117,7 +123,7 @@ public class Person extends BaseObject {
      *
      * @param lastName DOCUMENT ME!
      */
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
 
         this.lastName = lastName;
 
@@ -130,7 +136,8 @@ public class Person extends BaseObject {
      *
      * @return DOCUMENT ME!
      */
-    public boolean equals(Object o) {
+    @Override
+    public boolean equals(final Object o) {
 
         if (this == o) {
 
@@ -138,21 +145,21 @@ public class Person extends BaseObject {
 
         }
 
-        if ((o == null) || (getClass() != o.getClass())) {
+        if ((o == null) || (this.getClass() != o.getClass())) {
 
             return false;
 
         }
 
-        Person person = (Person) o;
+        final Person person = (Person) o;
 
-        if ((firstName != null) ? (!firstName.equals(person.firstName)) : (person.firstName != null)) {
+        if ((this.firstName != null) ? (!this.firstName.equals(person.firstName)) : (person.firstName != null)) {
 
             return false;
 
         }
 
-        if ((lastName != null) ? (!lastName.equals(person.lastName)) : (person.lastName != null)) {
+        if ((this.lastName != null) ? (!this.lastName.equals(person.lastName)) : (person.lastName != null)) {
 
             return false;
 
@@ -167,12 +174,13 @@ public class Person extends BaseObject {
      *
      * @return DOCUMENT ME!
      */
+    @Override
     public int hashCode() {
 
         int result;
 
-        result = ((firstName != null) ? firstName.hashCode() : 0);
-        result = (31 * result) + ((lastName != null) ? lastName.hashCode() : 0);
+        result = ((this.firstName != null) ? this.firstName.hashCode() : 0);
+        result = (31 * result) + ((this.lastName != null) ? this.lastName.hashCode() : 0);
 
         return result;
 
@@ -183,9 +191,10 @@ public class Person extends BaseObject {
      *
      * @return DOCUMENT ME!
      */
+    @Override
     public String toString() {
 
-        return "Person{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + '}';
+        return "Person{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + '}';
 
     }
 
