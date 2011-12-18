@@ -362,6 +362,11 @@
                                                                         <!--<outputDirectory>target/cfg</outputDirectory>-->
                                                                         <implementation>annotationconfiguration</implementation>
                                                                 </component>
+                                                                <component>
+                                                                        <name>hbmtemplate</name>
+                                                                        <!--<outputDirectory>target/cfg</outputDirectory>-->
+                                                                        <implementation>jpaconfiguration</implementation>
+                                                                </component>
                                                         </components>
                                                         <componentProperties>
                                                                 <drop>true</drop>
