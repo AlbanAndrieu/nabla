@@ -1,5 +1,7 @@
 package com.nabla.project.application.database.business.jpa.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ObjectRetrievalFailureException;
 
 import com.nabla.project.application.database.business.global.dao.IPersonDao;
+import com.nabla.project.application.database.business.global.model.Address;
 import com.nabla.project.application.database.business.global.model.Person;
 
 public class PersonDaoJpaTest extends BaseDaoTestCase {
@@ -31,7 +34,16 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
     public void testFindPersonByLastName() throws Exception {
         System.out.println("PersonDao : " + this.personDao);
 
-        final List<Person> people = this.personDao.findByLastName("Raible");
+        Person person = new Person();
+        person.setFirstName("Marc");
+        person.setLastName("Giry");
+        person.setBirthDate(new Date());
+        final Address address = new Address("adr1", null, null, "49000", "Angers", null, null, null, "France");
+        person.setAddress(address);
+
+        person = this.personDao.save(person);
+
+        final List<Person> people = this.personDao.findByLastName("Giry");
         Assert.assertTrue(people.size() > 0);
         System.out.println("Person : " + people.get(0).getLastName());
     }
@@ -42,8 +54,11 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
 
         // Use the file PersonDaoHibernateTest.properties
         // person = (Person) populate(person);
-        person.setFirstName("Matt");
-        person.setLastName("Raible");
+        person.setFirstName("Alban");
+        person.setLastName("Andrieu");
+        person.setBirthDate(new SimpleDateFormat("dd/MM/yy").parse("21/07/1981"));
+        final Address address = new Address("adr1", null, null, "49000", "Angers", null, null, null, "France");
+        person.setAddress(address);
 
         person = this.personDao.save(person);
 
@@ -51,8 +66,8 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
         System.out.println("Last name : " + person.getLastName());
         System.out.println("ID : " + person.getId());
 
-        Assert.assertEquals("Matt", person.getFirstName());
-        Assert.assertEquals("Raible", person.getLastName());
+        Assert.assertEquals("Alban", person.getFirstName());
+        Assert.assertEquals("Andrieu", person.getLastName());
         Assert.assertNotNull(person.getId());
 
         this.log.debug("removing person...");

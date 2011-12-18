@@ -20,17 +20,9 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase {
         this.personDao = personDao;
     }
 
-    /*
-     * public void setPersonDao(GenericDao<Person, Long> personDao) {
-     * this.personDao = personDao;
-     * }
-     */
     @Test
     public void testFindPersonByLastName() throws Exception {
         System.out.println("PersonDao : " + this.personDao);
-
-        // final ApplicationContext ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
-        // this.personDao = (IPersonDao) ctx.getBean("personDao");
 
         final List<Person> people = this.personDao.findByLastName("Raible");
         Assert.assertTrue(people.size() > 0);
@@ -42,7 +34,7 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase {
         Person person = new Person();
 
         // Use the file PersonDaoHibernateTest.properties
-        // person = (Person) populate(person);
+        //person = (Person) this.populate(person);
         person.setFirstName("Matt");
         person.setLastName("Raible");
 

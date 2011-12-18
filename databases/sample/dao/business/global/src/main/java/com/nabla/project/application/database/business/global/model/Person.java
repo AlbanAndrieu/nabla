@@ -1,7 +1,6 @@
 package com.nabla.project.application.database.business.global.model;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,12 +20,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import org.appfuse.model.BaseObject;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.compass.annotations.SearchableProperty;
 
 @SuppressWarnings({ "unused", "serial" })
 @Entity
 @Table(name = "Person")
-public class Person extends BaseObject implements Serializable {
+public class Person /* extends BaseObject */implements Serializable {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,9 +35,11 @@ public class Person extends BaseObject implements Serializable {
     @Column(nullable = false)
     @Version
     private int           version;
-    @Column(length = 30, nullable = false, unique = true)
+    @Column(name = "last_name", nullable = false, length = 50)
+    @SearchableProperty
     private String        lastName;
-    @Column(length = 30, nullable = false)
+    @Column(name = "first_name", nullable = false, length = 50)
+    @SearchableProperty
     private String        firstName;
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
@@ -54,7 +57,7 @@ public class Person extends BaseObject implements Serializable {
     // une Person doit avoir 1 Address (nullable=false)
     // 1 Address n'appartient qu'à 1 personne (unique=true)
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ADDRESS_ID", unique = true, nullable = false)
+    @JoinColumn(name = "address_id", unique = true, nullable = false)
     private Address       address;
 
     // relation Person (many) -> Activity (many) via une table de jointure PersonneActivite
@@ -63,7 +66,7 @@ public class Person extends BaseObject implements Serializable {
     // plus de cascade sur les activités
     // @ManyToMany(cascade={CascadeType.PERSIST})
     @ManyToMany()
-    @JoinTable(name = "PersonActivity", joinColumns = @JoinColumn(name = "PERSON_ID"), inverseJoinColumns = @JoinColumn(name = "ACTIVITY_ID")
+    @JoinTable(name = "PersonActivity", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "ACTIVITY_ID")
 
     )
     private Set<Activity> activities = new HashSet<Activity>();
@@ -187,9 +190,11 @@ public class Person extends BaseObject implements Serializable {
      */
     @Override
     public String toString() {
-        return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastName(), this.getFirstName(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthDate()), this.isMarried(),
-                this.getNbChildren());
-        // return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),
-        // this.getNbChildren(), this.getAddress().getId());
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id).append("version", this.version).append("lastName", this.lastName).append("firstName", this.firstName)
+                .append("birthDate", this.birthDate).append("married", this.married).append("nbChildren", this.nbChildren).append("address", this.address).toString();
     }
+    // public String toString() {
+    // return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),
+    // this.getNbChildren(), this.getAddress().getId());
+    // }
 }

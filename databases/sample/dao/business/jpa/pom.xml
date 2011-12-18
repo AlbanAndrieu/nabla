@@ -373,9 +373,9 @@
 		<!-- <jdbc.artifactId>derbyclient</jdbc.artifactId> -->
 		<jdbc.artifactId>derby</jdbc.artifactId>
 		<jdbc.version>${jdbc.derby.version}</jdbc.version>
-		<!-- <jdbc.driverClassName> org.apache.derby.jdbc.ClientDriver org.apache.derby.jdbc.EmbeddedDriver org.apache.derby.jdbc.AutoloadedDriver
-			</jdbc.driverClassName> -->
-		<jdbc.driverClassName>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driverClassName>
+		<!-- <jdbc.driver> org.apache.derby.jdbc.ClientDriver org.apache.derby.jdbc.EmbeddedDriver org.apache.derby.jdbc.AutoloadedDriver
+			</jdbc.driver> -->
+		<jdbc.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driver>
 		<jdbc.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.url>
 		<!-- -->
 		<jdbc.username>user</jdbc.username>

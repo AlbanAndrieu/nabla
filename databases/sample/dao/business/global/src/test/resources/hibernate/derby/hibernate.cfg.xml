@@ -10,8 +10,10 @@
 		<property name="connection.password">user</property>
 		<property name="connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
 		<property name="hibernate.default_schema">APP</property>
-		<mapping class="org.appfuse.model.User" />
-		<mapping class="org.appfuse.model.Role" />
+  		<mapping class="com.nabla.project.application.database.business.global.model.User" />
+		<mapping class="com.nabla.project.application.database.business.global.model.Role" />
 		<mapping class="com.nabla.project.application.database.business.global.model.Person" />
+		<mapping class="com.nabla.project.application.database.business.global.model.Address" />
+		<mapping class="com.nabla.project.application.database.business.global.model.Activity" />
 	</session-factory>
 </hibernate-configuration>

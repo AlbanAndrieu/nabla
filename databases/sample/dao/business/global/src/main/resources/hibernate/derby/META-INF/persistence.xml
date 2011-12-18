@@ -7,6 +7,10 @@
 	<persistence-unit name="ApplicationEntityManager" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.nabla.project.application.database.business.global.model.Person</class>
+		<class>com.nabla.project.application.database.business.global.model.Activity</class>
+		<class>com.nabla.project.application.database.business.global.model.Address</class>
+		<class>com.nabla.project.application.database.business.global.model.User</class>
+		<class>com.nabla.project.application.database.business.global.model.Role</class>
 		<properties>
 			<property name="hibernate.default_schema" value="APP"/>
 		</properties>
