@@ -1,0 +1,30 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.andromda.profiles</groupId>
+        <artifactId>andromda-profiles</artifactId>
+        <version>3.4-SNAPSHOT</version>
+    </parent>
+    <groupId>org.andromda.profiles.uml2</groupId>
+    <artifactId>andromda-profiles-uml2</artifactId>
+    <name>AndroMDA UML 2.0 Profile</name>
+    <packaging>pom</packaging>
+    <description>
+        Contains the AndroMDA UML 2.0 profiles.
+    </description>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-model-archiver-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <modules>        
+        <module>gui</module>
+        <module>backend</module>
+        <module>test</module>
+        <module>shared</module>
+    </modules>
+</project>
