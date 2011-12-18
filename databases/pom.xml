@@ -252,6 +252,14 @@
 				<jdbc.version>${jdbc.derby.version}</jdbc.version>
 				<jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
 				<jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
+				<!--
+					<jdbc.driver> 
+					org.apache.derby.jdbc.ClientDriver
+					org.apache.derby.jdbc.EmbeddedDriver
+					org.apache.derby.jdbc.AutoloadedDriver 
+					</jdbc.driver>
+				-->
+				<!--<jdbc.driver>org.apache.derby.jdbc.AutoloadedDriver</jdbc.driver>-->				
 				<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
 				<database.host>localhost</database.host>
 				<database.port>1527</database.port>
@@ -269,12 +277,6 @@
 				<!-- jdbc:mysql://localhost:3306/myDB -->
 				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
 				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
-				<!--
-					<jdbc.driverClassName> org.apache.derby.jdbc.ClientDriver
-					org.apache.derby.jdbc.EmbeddedDriver
-					org.apache.derby.jdbc.AutoloadedDriver </jdbc.driverClassName>
-				-->
-				<jdbc.driverClassName>org.apache.derby.jdbc.AutoloadedDriver</jdbc.driverClassName>
 				<jdbc.url>${jdbc.embedded.url}</jdbc.url>
 			</properties>
 			<dependencies>
@@ -327,7 +329,7 @@
 				<jdbc.groupId>com.h2database</jdbc.groupId>
 				<jdbc.artifactId>h2</jdbc.artifactId>
 				<jdbc.version>1.0.20061217</jdbc.version>
-				<jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+				<jdbc.driver>org.h2.Driver</jdbc.driver>
 				<jdbc.url><![CDATA[jdbc:h2:tutorial-service]]></jdbc.url>
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
@@ -341,7 +343,7 @@
 				<jdbc.groupId>hsqldb</jdbc.groupId>
 				<jdbc.artifactId>hsqldb</jdbc.artifactId>
 				<jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
-				<jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
+				<jdbc.driver>org.hsqldb.jdbcDriver</jdbc.driver>
 				<jdbc.url><![CDATA[jdbc:hsqldb:tutorial-service;shutdown=true]]></jdbc.url>
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
@@ -368,7 +370,7 @@
 				<!-- <jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId> -->
 				<jdbc.version>10.2.0.2.0</jdbc.version>
 				<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}.jar</jdbc.driver.jar>
-				<jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
+				<jdbc.driver>oracle.jdbc.OracleDriver</jdbc.driver>
 
 				<database.host>localhost</database.host>
 				<database.port>1521</database.port>
@@ -400,7 +402,7 @@
 				<jdbc.groupId>postgresql</jdbc.groupId>
 				<jdbc.artifactId>postgresql</jdbc.artifactId>
 				<jdbc.version>8.1-407.jdbc3</jdbc.version>
-				<jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
+				<jdbc.driver>org.postgresql.Driver</jdbc.driver>
 				<jdbc.url><![CDATA[jdbc:postgresql://localhost/tutorial-service]]></jdbc.url>
 				<jdbc.username>postgres</jdbc.username>
 				<jdbc.password>postgres</jdbc.password>
@@ -420,7 +422,7 @@
 				<jdbc.groupId>net.sourceforge.jtds</jdbc.groupId>
 				<jdbc.artifactId>jtds</jdbc.artifactId>
 				<jdbc.version>1.2</jdbc.version>
-				<jdbc.driverClassName>net.sourceforge.jtds.jdbc.Driver</jdbc.driverClassName>
+				<jdbc.driver>net.sourceforge.jtds.jdbc.Driver</jdbc.driver>
 				<jdbc.url><![CDATA[jdbc:jtds:sqlserver://localhost:3683/tutorial-service]]></jdbc.url>
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
@@ -485,11 +487,11 @@
 					<version>${javax.transaction.version}</version>
 				</dependency>		
 
-                <dependency>
-                	<groupId>commons-dbcp</groupId>
-                	<artifactId>commons-dbcp</artifactId>
-                	<version>${commons.dbcp.version}</version>
-                </dependency>				
+                		<dependency>
+                			<groupId>commons-dbcp</groupId>
+                			<artifactId>commons-dbcp</artifactId>
+                			<version>${commons.dbcp.version}</version>
+                		</dependency>				
 						
 				<dependency>
 					<groupId>org.hibernate</groupId>

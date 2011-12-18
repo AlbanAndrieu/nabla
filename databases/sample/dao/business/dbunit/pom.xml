@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project.databases.sample.dao.business</groupId>
+		<artifactId>business</artifactId>
+		<version>1.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<name>Databases DAO dbunit</name>
+	<groupId>com.nabla.project.databases.sample.dao.business.dbunit</groupId>
+	<artifactId>dbunit</artifactId>
+	<!-- <version>1.0</version> -->
+	<packaging>jar</packaging>
+	<description>Database-Business-Dbunit Dao : mapping objet-relationnel (ORM)</description>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+
+			<!-- http://db.apache.org/torque/releases/torque-3.1.1/index.html http://turbine.apache.org/turbine/development/turbine-2.4/ -->
+			<!-- sample at : http://www.developer.com/java/article.php/1457081 -->
+			<!--
+			<plugin>
+				<groupId>org.apache.db.torque</groupId>
+				<artifactId>torque-maven-plugin</artifactId>
+				<version>${maven.torque.plugin.version}</version>
+				<configuration>
+					<reportFile>report.${project.artifact.artifactId}.sql.generation</reportFile>
+					<runOnlyOnSchemaChange>false</runOnlyOnSchemaChange>
+					<targetDatabase>derby</targetDatabase>
+					<schemaDir>${basedir}/src/torque-schemas</schemaDir>
+					<templatePath>${basedir}/src/torque-templates</templatePath>
+					<driver>${jdbc.embedded.driver}</driver>
+					<user>${jdbc.username}</user>
+					<password>${jdbc.password}</password>
+					<url>${jdbc.embedded.url}</url>
+					<schemaIncludes>*schema.xml</schemaIncludes>
+					<schemaExcludes>id-table-schema.xml</schemaExcludes>
+					<targetPackage>com.synyx.minos.om</targetPackage>
+					<idTableXmlFile>id-table-schema.xml</idTableXmlFile>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>${jdbc.groupId}</groupId>
+						<artifactId>${jdbc.embedded.artifactId}</artifactId>
+						<version>${jdbc.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>Creating .sql files</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>sql</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>OM Goal (Generating Classes, Beans, ...)</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>om</goal>
+						</goals>
+						<configuration>
+							<enableJava5Features>
+								true
+							</enableJava5Features>
+							<complexObjectModel>
+								true
+							</complexObjectModel>
+							<generateBeans>true</generateBeans>
+							<beanSuffix>Bean</beanSuffix>
+						</configuration>
+					</execution>
+					<execution>
+						<id>Fire sql to the database!!!</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>sqlExec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			 -->
+
+		</plugins>
+		<!-- necessary to enable replacement of property placeholders -->
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+				<excludes>
+					<exclude>**/web.xml</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources/</directory>
+				<filtering>true</filtering>
+				<!-- <excludes> <exclude>applicationContext-resources.xml</exclude> </excludes> -->
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<!-- <resource> <directory>${basedir}/src/main/resources/</directory> <includes> <include>applicationContext-resources.xml</include>
+				</includes> <filtering>false</filtering> </resource> -->
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/java</directory>
+				<includes>
+					<include>**/*Test.java</include>
+					<include>**/Test*.java</include>
+					<include>**/*TestCase.java</include>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+				<excludes>
+					<exclude>**/Abstract*Test.java</exclude>
+					<exclude>**/Abstract*TestCase.java</exclude>
+				</excludes>
+			</testResource>
+			<testResource>
+				<directory>${basedir}/src/test/resources/</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</testResource>
+		</testResources>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons.logging.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.appfuse</groupId>
+			<artifactId>appfuse-${dao.framework}</artifactId>
+			<version>${appfuse.version}</version>
+		</dependency>
+		<!-- Used by org.apache.commons.dbcp.BasicDataSource pool de connexions comme c3p0 -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons.dbcp.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>${dbunit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>${easymock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-junit4</artifactId>
+			<version>${jmock.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-mock</artifactId>
+			<version>${spring.mock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--
+		<dependency>
+			<groupId>torque</groupId>
+			<artifactId>maven-torque-plugin</artifactId>
+			<version>3.2-rc2</version>
+		</dependency>
+		 -->
+	</dependencies>
+
+	<!-- ================= Default Properties ================= -->
+	<properties>
+		<maven.test.skip>false</maven.test.skip>
+		<database.name>myDBDBUnit</database.name>
+	</properties>
+</project>

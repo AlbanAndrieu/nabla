@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- Run your application with the following system property -Dcom.sun.management.jmxremote -->
+	<!-- JMX -->
+	<bean id="loggingMBean"
+		class="com.nabla.project.application.core.log.Log4jMBean" />
+
+	<bean id="exporter"
+		class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="bean:name=logging" value-ref="loggingMBean" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- 
+		<bean name="daoLog"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass"
+		value="org.apache.log4j.LogManager" />
+		<property name="targetMethod" value="getLogger" />
+		<property name="arguments">
+		<list>
+		<value>[DAO]</value>
+		</list>
+		</property>
+		</bean>
+		
+		<bean name="abstractDao" abstract="true">
+		<property name="log" ref="daoLog" />
+		</bean>
+		
+		<bean name="userDao"
+		class="com.nabla.project.application.core.log.UserDao"
+		parent="abstractDao" />
+	-->
+	
+	<!-- Add the following to the Spring appContext.xml to force Spring to pick up a Log4j configuration file from a specified location. -->
+	<bean id="log4jInitialization"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+
+		<property name="targetClass"
+			value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+			<list>
+				<value>classpath:log4j.xml</value>
+				<!--<value>classpath:log4j.properties</value>-->
+				<!-- <value>c:/somedir/log4j.properties</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="loggingfactorybean"
+		class="org.springframework.beans.factory.config.CommonsLogFactoryBean">
+		<property name="logName" value="mylogger" />
+	</bean>
+	<!-- 
+		<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+		<value>
+		validadorprincipal/resources/validador.properties
+		</value>
+		</property>
+		</bean>
+	-->
+
+	<bean id="loggingConfigurer"
+		class="com.nabla.project.application.core.log.LoggingConfigurer"
+		lazy-init="false">
+		<constructor-arg>
+			<props>
+				<prop key="org.springframework">WARN</prop>
+				<prop key="org.hibernate">INFO</prop>
+			</props>
+		</constructor-arg>
+	</bean>
+</beans>

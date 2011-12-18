@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+<address id="1" version="1" adr1="5 rue de Prague" adr2="" adr3="" cedex="" city="Paris" code="75012" country="France" />
+<address id="2" version="1" adr1="23 Some street" adr2="" adr3="" cedex="" city="New York" code="23435" country="USA" />
+<person id="1" address_id="1" version="1" firstname="Firstname 1" lastname="Lastname 1" birthdate="2007-04-20 00:00:00.0" married="1" nbchildren="2" />
+<person id="2" address_id="2" version="1" firstname="Matt" lastname="Raible" birthdate="2000-01-01 00:00:00.0" married="1" nbchildren="3" />  
+</dataset>
