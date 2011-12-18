@@ -396,7 +396,7 @@
 				</testResources>
 			</build>
 		</profile>
-<profile>
+		<profile>
                         <id>sql</id>
                         <build>
                                 <plugins>
@@ -433,9 +433,7 @@
                                                                         <goal>execute</goal>
                                                                 </goals>
                                                                 <configuration>
-                                                                        <sqlCommand>
-                                                                                SELECT * FROM SYS.SYSTABLES
-                                                                        </sqlCommand>
+                                                                        <sqlCommand>SELECT * FROM SYS.SYSTABLES</sqlCommand>
                                                                         <!-- ignore error when database is not avaiable -->
                                                                         <onError>continue</onError>
                                                                 </configuration>
@@ -455,9 +453,7 @@
                                                                                 </url>
                                                                         -->
                                                                         <autocommit>true</autocommit>
-                                                                        <sqlCommand>
-                                                                                CREATE SCHEMA APP
-                                                                        </sqlCommand>
+                                                                        <sqlCommand>CREATE SCHEMA APP</sqlCommand>
                                                                         <onError>continue</onError>
                                                                 </configuration>
                                                         </execution>
@@ -485,6 +481,9 @@
                 </profile>
                 <profile>
                         <id>sql_sav</id>
+                        <properties>
+				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name}]]></jdbc.client.url>
+			</properties>
                         <build>
                                 <plugins>
                                         <plugin>
@@ -521,9 +520,7 @@
                                                                         <goal>execute</goal>
                                                                 </goals>
                                                                 <configuration>
-                                                                        <sqlCommand>
-                                                                                SELECT * FROM SYS.SYSTABLES
-                                                                        </sqlCommand>
+                                                                        <sqlCommand>SELECT * FROM SYS.SYSTABLES</sqlCommand>
                                                                         <!-- ignore error when database is not avaiable -->
                                                                         <onError>continue</onError>
                                                                 </configuration>
@@ -538,27 +535,22 @@
                                                                 <configuration>
                                                                         <!-- no transaction -->
                                                                         <autocommit>true</autocommit>
-                                                                        <sqlCommand>
-                                                                                CREATE SCHEMA APP
-                                                                        </sqlCommand>
+                                                                        <sqlCommand>CREATE SCHEMA APP</sqlCommand>
                                                                         <onError>continue</onError>
                                                                 </configuration>
                                                         </execution>
 
-                                                        <!--
-                                                                <execution>
+                                                        <execution>
                                                                 <id>create-tables</id>
                                                                 <phase>process-test-resources</phase>
                                                                 <goals>
-                                                                <goal>execute</goal>
+                                                                	<goal>execute</goal>
                                                                 </goals>
                                                                 <configuration>
-                                                                <autocommit>true</autocommit>
-                                                                <srcFiles>
-                                                                <srcFile>
-                                                                src/main/resourced/your-schema.sql
-                                                                </srcFile>
-                                                                </srcFiles>
+                                                                	<autocommit>true</autocommit>
+                                                                	<srcFiles>
+                                                                		<srcFile>sql/create-schema.sql</srcFile>
+                                                                	</srcFiles>
                                                                 </configuration>
                                                                 </execution>
 
@@ -572,9 +564,7 @@
                                                                 <fileset>
                                                                 <basedir>${basedir}</basedir>
                                                                 <includes>
-                                                        -->
                                                         <!-- These 2 files may not get executed in sequence, use srcFiles instead, if needed -->
-                                                        <!--
                                                                 <include>
                                                                 test/sql/test-data1.sql
                                                                 </include>
@@ -585,7 +575,6 @@
                                                                 </fileset>
                                                                 </configuration>
                                                                 </execution>
-                                                        -->
 
                                                         <execution>
                                                                 <id>drop-tables</id>
@@ -596,9 +585,7 @@
                                                                 <configuration>
                                                                         <autocommit>true</autocommit>
                                                                         <srcFiles>
-                                                                                <srcFile>
-                                                                                        ${basedir}/src/test/sql/Person-delete.sql
-                                                                                </srcFile>
+                                                                                <srcFile>${basedir}/src/test/sql/Person-delete.sql</srcFile>
                                                                         </srcFiles>
                                                                         <onError>continue</onError>
                                                                 </configuration>
@@ -613,9 +600,7 @@
                                                                 </goals>
                                                                 <configuration>
                                                                         <autocommit>true</autocommit>
-                                                                        <sqlCommand>
-                                                                                DROP SCHEMA APP
-                                                                        </sqlCommand>
+                                                                        <sqlCommand>DROP SCHEMA APP</sqlCommand>
                                                                 </configuration>
                                                         </execution>
 
@@ -629,9 +614,7 @@
                                                                         <!-- need another database to drop the targeted one -->
                                                                         <url>${jdbc.url};shutdown=true</url>
                                                                         <autocommit>true</autocommit>
-                                                                        <sqlCommand>
-                                                                                SELECT * FROM SYS.SYSTABLES
-                                                                        </sqlCommand>
+                                                                        <sqlCommand>SELECT * FROM SYS.SYSTABLES</sqlCommand>
                                                                         <!-- ignore error when database is not avaiable -->
                                                                         <onError>continue</onError>
                                                                 </configuration>
