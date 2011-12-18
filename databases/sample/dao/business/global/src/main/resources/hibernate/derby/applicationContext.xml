@@ -10,9 +10,15 @@
 	</bean>
 	-->
 
-	<bean id="personDao" class="com.nabla.project.application.database.business.jpa.dao.PersonDaoJpa">
+	<bean id="personDao" class="com.nabla.project.application.database.business.global.dao.PersonDaoJpa">
 <!--         <property name="sessionFactory" ref="sessionFactory"/> -->
     </bean>
+
+	<!-- couches applicatives -->
+	<bean id="dao" class="com.nabla.project.application.database.business.global.dao.Dao" />
+	<bean id="service" class="com.nabla.project.application.database.business.global.service.Service">
+		<property name="dao" ref="dao" />
+	</bean>
 
 	<!--
 	<bean id="personManager" class="org.appfuse.service.impl.GenericManagerImpl">
@@ -39,21 +45,21 @@
 		</constructor-arg>
 	</bean>
 	-->
-    <!-- 
+    <!--
     <bean id="personDaoHibernate" class="com.nabla.project.application.database.business.global.dao.hibernate.PersonDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     -->
     <!-- Add new DAOs here -->
-    <!-- 
+    <!--
     <bean id="personManagerHibernate" class="com.nabla.project.application.database.business.global.service.impl.PersonManagerImpl">
         <constructor-arg ref="personDaoHibernate"/>
     </bean>
      -->
     <!-- Add new Managers here -->
-    <!-- 
+    <!--
     <bean id="personAction" class="com.nabla.project.application.database.business.global.webapp.action.PersonAction" scope="prototype">
-        <property name="personManager" ref="personManagerHibernate"/> 
+        <property name="personManager" ref="personManagerHibernate"/>
     </bean>
  	-->
     <!-- Add new Actions here -->
