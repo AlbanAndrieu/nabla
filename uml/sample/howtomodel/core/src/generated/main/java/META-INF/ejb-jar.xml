@@ -378,6 +378,19 @@
                 
                 ]]>
             </description>
+            <ejb-name>PersonDao</ejb-name>
+            <local>org.andromda.test.howto1.i.PersonDao</local>
+            <ejb-class>org.andromda.test.howto1.i.PersonDaoImpl</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+
+        <session>
+            <description>
+                <![CDATA[
+                
+                ]]>
+            </description>
             <ejb-name>CarDao</ejb-name>
             <local>org.andromda.test.howto2.a.CarDao</local>
             <ejb-class>org.andromda.test.howto2.a.CarDaoImpl</ejb-class>

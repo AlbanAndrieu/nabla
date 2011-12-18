@@ -767,10 +767,6 @@
         <!-- SCM user ID and Password here, or in user specific settings.xml file -->
         <username></username>
         <password></password>
-        <hibernate.annotations.version>3.3.0.ga</hibernate.annotations.version>
-        <jbpm.version>3.3.1.GA</jbpm.version>
-        <myfaces.version>1.2.14</myfaces.version>
-        <myfaces.tomahawk.version>1.1.10</myfaces.tomahawk.version>
     </properties>
     <profiles>
         <profile>

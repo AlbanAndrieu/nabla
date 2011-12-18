@@ -117,6 +117,10 @@
         </session>
 
         <session>
+            <ejb-name>PersonDao</ejb-name>
+        </session>
+
+        <session>
             <ejb-name>CarDao</ejb-name>
         </session>
 
