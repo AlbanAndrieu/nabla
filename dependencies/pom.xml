@@ -509,7 +509,6 @@
 		<javax.persistence.version>1.0</javax.persistence.version>
 
 		<cxf.version>2.2.10</cxf.version>
-		<log4j.version>1.2.16</log4j.version>
 		<xalan.version>2.7.1</xalan.version>
 		<xerces.version>2.9.1</xerces.version>
 		<tomcat.version>6.0.29</tomcat.version>
@@ -652,6 +651,8 @@
 		<maven.default.skin.version>1.0</maven.default.skin.version>
 		<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
 		<maven.jaxb2.plugin.version>0.7.1</maven.jaxb2.plugin.version>
+		<maven.sql.plugin.version>1.5</maven.sql.plugin.version>
+		<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
 		<hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 		<dbunit.maven.plugin.version>1.0-beta-3</dbunit.maven.plugin.version>
 
@@ -1603,7 +1604,7 @@
 				<groupId>cglib</groupId>
 				<artifactId>cglib-nodep</artifactId>
 				<version>${cglib.nodep.version}</version>
-			</dependency>			
+			</dependency>	
 			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib</artifactId>
