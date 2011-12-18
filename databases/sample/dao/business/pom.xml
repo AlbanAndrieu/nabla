@@ -17,6 +17,8 @@
                 <module>test</module>
                 <module>global</module>
                 <module>hibernate</module>
+                <module>jpa</module>
+                <module>dbunit</module>
                 <!-- <module>local</module> WORKING BUT DO NOT ERASE ECLIPSE SETTINGS -->
         </modules>
 </project>
