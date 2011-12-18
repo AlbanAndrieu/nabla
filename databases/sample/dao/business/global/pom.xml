@@ -89,7 +89,6 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 <!--
                <dependency>
                         <groupId>org.springframework</groupId>
@@ -185,7 +184,7 @@
 						</excludes>
 					</resource>
 					<resource>
-                        <directory>${basedir}/src/main/resources/hibernate/${database}</directory>
+                        			<directory>${basedir}/src/main/resources/hibernate/${database}</directory>
 						<filtering>true</filtering>
 <!--
 						<excludes>
@@ -327,13 +326,111 @@
 			</build>
 		</profile>
 		<profile>
+			<id>hibernate3</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+			</properties>			
+			<build>
+				<plugins>
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+						<artifactId>hibernate3-maven-plugin</artifactId>
+						<version>${hibernate3.maven.plugin.version}</version>
+                                                <configuration>
+                                                        <components>
+                                                                <component>
+                                                                        <name>hbm2ddl</name>                                                                        
+                                                                        <!--<outputDirectory>target/database-ddl</outputDirectory>-->
+                                                                        <implementation>annotationconfiguration</implementation>
+                                                                </component>
+                                                                <component>
+                                                                        <name>hbm2hbmxml</name>
+                                                                        <!--<outputDirectory>target/hbm</outputDirectory>-->
+                                                                        <implementation>jdbcconfiguration</implementation>
+                                                                </component>
+                                                                <component>
+                                                                        <name>hbm2java</name>
+                                                                        <!--<outputDirectory>target/java</outputDirectory>-->
+                                                                        <implementation>annotationconfiguration</implementation>
+                                                                </component>
+                                                                <component>
+                                                                        <name>hbm2doc</name>
+                                                                        <!--<outputDirectory>target/doc</outputDirectory>-->
+                                                                </component>
+                                                                <component>
+                                                                        <name>hbm2cfgxml</name>
+                                                                        <!--<outputDirectory>target/cfg</outputDirectory>-->
+                                                                        <implementation>annotationconfiguration</implementation>
+                                                                </component>
+                                                        </components>
+                                                        <componentProperties>
+                                                                <drop>true</drop>
+                                                                <configurationfile>target/classes/hibernate.cfg.xml</configurationfile>
+								<propertyfile>target/classes/jdbc.properties</propertyfile>
+                                                                <revengfile>src/main/resources/hibernate/${database}/hibernate.reveng.xml</revengfile>
+                                                                <!--<template>target/hbm/hibernate-mapping.hbm.ftl</template>-->
+                                                                <jdk5>true</jdk5>
+                                                                <ejb3>true</ejb3>
+                                                                <outputfilename>create-schema.sql</outputfilename>
+                                                                <!--
+								<outputfilename>
+								hbm2ddl-${database}.sql
+								</outputfilename>
+								-->
+                                                        </componentProperties>
+                                                </configuration>
+						<executions>
+							<execution>
+								<phase>process-test-resources</phase>
+								<goals>
+									<goal>hbm2ddl</goal>									
+									<goal>hbm2java</goal>
+									<goal>hbm2doc</goal>
+									<goal>hbm2cfgxml</goal>
+									<!--<goal>hbm2hbmxml</goal>-->
+									<!--<goal>hbmtemplate</goal>-->
+								</goals>
+							</execution>
+						</executions>                                                
+        					<dependencies>
+        					  	<dependency>
+        					  	        <groupId>${jdbc.groupId}</groupId>
+								<artifactId>${jdbc.artifactId}</artifactId>
+								<version>${jdbc.version}</version>
+        					  	</dependency>
+							<dependency>
+								<groupId>asm</groupId>
+								<artifactId>asm</artifactId>
+								<version>${asm.version}</version>
+							</dependency>        		
+							<dependency>
+								<groupId>cglib</groupId>
+								<artifactId>cglib-nodep</artifactId>
+								<version>${cglib.nodep.version}</version>
+							</dependency>		
+							<dependency>
+								<groupId>javax.transaction</groupId>
+								<artifactId>jta</artifactId>
+								<version>${javax.transaction.version}</version>
+							</dependency>
+							<dependency>
+                						<groupId>commons-dbcp</groupId>
+                						<artifactId>commons-dbcp</artifactId>
+                						<version>${commons.dbcp.version}</version>
+                					</dependency>		  	
+        					</dependencies>
+                                        </plugin>
+                                </plugins>
+                        </build>
+                </profile>
+		<profile>
 			<id>global-resource</id>
 			<activation>
 				<property>
 					<name>!profile.activation</name>
 				</property>
 			</activation>
-			<build>
+			<build>                                
 				<!-- necessary to enable replacement of property placeholders -->
 				<resources>
 					<resource>
@@ -395,92 +492,9 @@
 					</testResource>
 				</testResources>
 			</build>
-		</profile>
-		<profile>
-                        <id>sql</id>
-                        <build>
-                                <plugins>
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>sql-maven-plugin</artifactId>
-                                                <dependencies>
-                                                        <!-- specify the dependent jdbc driver here -->
-                                                        <!-- inlude org.apache.derby.jdbc.EmbeddedDriver -->
-                                                        <dependency>
-                                                                <groupId>${jdbc.groupId}</groupId>
-                                                                <artifactId>${jdbc.artifactId}</artifactId>
-                                                                <version>${jdbc.version}</version>
-                                                        </dependency>
-                                                </dependencies>
-                                                <configuration>
-                                                        <username>APP</username>
-                                                        <password>APP</password>
-                                                        <!-- You can comment out username/password configurations and
-                                                                have maven to look them up in your settings.xml using ${settingsKey}
-                                                        -->
-                                                        <!-- <settingsKeys>sensibleKey</settingsKeys> -->
-                                                        <driver>${jdbc.driver}</driver>
-                                                        <url>${jdbc.url};create=true</url>
-                                                        <!--all executions are ignored if -Dmaven.test.skip=true-->
-                                                        <skip>${maven.test.skip}</skip>
-                                                </configuration>
-
-                                                <executions>
-                                                        <execution>
-                                                                <id>test-db-before-test-if-any</id>
-                                                                <phase>process-test-resources</phase>
-                                                                <goals>
-                                                                        <goal>execute</goal>
-                                                                </goals>
-                                                                <configuration>
-                                                                        <sqlCommand>SELECT * FROM SYS.SYSTABLES</sqlCommand>
-                                                                        <!-- ignore error when database is not avaiable -->
-                                                                        <onError>continue</onError>
-                                                                </configuration>
-                                                        </execution>
-
-                                                        <!-- drop db before test -->
-                                                        <execution>
-                                                                <id>drop-schema-after-test</id>
-                                                                <phase>process-test-resources</phase>
-                                                                <goals>
-                                                                        <goal>execute</goal>
-                                                                </goals>
-                                                                <configuration>
-                                                                        <!--
-                                                                                <url>
-                                                                                ${jdbc.url};shutdown=true
-                                                                                </url>
-                                                                        -->
-                                                                        <autocommit>true</autocommit>
-                                                                        <sqlCommand>CREATE SCHEMA APP</sqlCommand>
-                                                                        <onError>continue</onError>
-                                                                </configuration>
-                                                        </execution>
-                                                        <!--
-                                                                <execution>
-                                                                <id>create-schema</id>
-                                                                <phase>process-test-resources</phase>
-                                                                <goals>
-                                                                <goal>execute</goal>
-                                                                </goals>
-                                                                <configuration>
-                                                                <autocommit>true</autocommit>
-                                                                <sqlCommand>
-                                                                CREATE SCHEMA APP
-                                                                </sqlCommand>
-                                                                <onError>continue</onError>
-                                                                </configuration>
-                                                                </execution>
-                                                        -->
-
-                                                </executions>
-                                        </plugin>
-                                </plugins>
-                        </build>
-                </profile>
+		</profile>	
                 <profile>
-                        <id>sql_sav</id>
+                        <id>sql</id>
                         <properties>
 				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name}]]></jdbc.client.url>
 			</properties>
@@ -489,6 +503,7 @@
                                         <plugin>
                                                 <groupId>org.codehaus.mojo</groupId>
                                                 <artifactId>sql-maven-plugin</artifactId>
+                                                <version>${maven.sql.plugin.version}</version>
                                                 <dependencies>
                                                         <!-- specify the dependent jdbc driver here -->
                                                         <!-- inlude org.apache.derby.jdbc.EmbeddedDriver -->
@@ -565,17 +580,30 @@
                                                                 <basedir>${basedir}</basedir>
                                                                 <includes>
                                                         <!-- These 2 files may not get executed in sequence, use srcFiles instead, if needed -->
-                                                                <include>
-                                                                test/sql/test-data1.sql
-                                                                </include>
-                                                                <include>
-                                                                test/sql/test-data2.sql
-                                                                </include>
+                                                                <include>sql/test-data1.sql</include>
+                                                                <include>sql/test-data2.sql</include>
                                                                 </includes>
                                                                 </fileset>
                                                                 </configuration>
                                                                 </execution>
 
+							<!--
+                                                        <execution>
+                                                                <id>shutdown-db-before-test</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <url>${jdbc.url};shutdown=true</url>
+                                                                        <autocommit>true</autocommit>
+                                                                        <sqlCommand>SELECT * FROM SYS.SYSTABLES</sqlCommand>
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+                                                        -->
+                                                        
+                                                        <!--
                                                         <execution>
                                                                 <id>drop-tables</id>
                                                                 <phase>test</phase>
@@ -590,8 +618,10 @@
                                                                         <onError>continue</onError>
                                                                 </configuration>
                                                         </execution>
+                                                        -->
 
                                                         <!-- drop db after test -->
+                                                        <!--
                                                         <execution>
                                                                 <id>drop-schema-after-test</id>
                                                                 <phase>test</phase>
@@ -603,7 +633,8 @@
                                                                         <sqlCommand>DROP SCHEMA APP</sqlCommand>
                                                                 </configuration>
                                                         </execution>
-
+                                                        -->
+							<!--
                                                         <execution>
                                                                 <id>shutdown-db-after-test</id>
                                                                 <phase>test</phase>
@@ -611,14 +642,13 @@
                                                                         <goal>execute</goal>
                                                                 </goals>
                                                                 <configuration>
-                                                                        <!-- need another database to drop the targeted one -->
                                                                         <url>${jdbc.url};shutdown=true</url>
                                                                         <autocommit>true</autocommit>
                                                                         <sqlCommand>SELECT * FROM SYS.SYSTABLES</sqlCommand>
-                                                                        <!-- ignore error when database is not avaiable -->
                                                                         <onError>continue</onError>
                                                                 </configuration>
                                                         </execution>
+                                                        -->
 
                                                 </executions>
                                         </plugin>
