@@ -95,7 +95,7 @@
                     <version>${andromda.version}</version>
                     <executions>
                         <execution>
-                            <id>uml14</id>
+                            <id>uml2</id>
                             <phase>generate-test-sources</phase>
                             <goals>
                                 <goal>test</goal>

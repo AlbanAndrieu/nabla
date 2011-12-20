@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>org.andromda.cartridges</groupId>
-    		<artifactId>andromda-cartridges</artifactId>
+    	<artifactId>andromda-cartridges</artifactId>
 		<version>1.0</version>
 	</parent>
 
@@ -56,8 +56,8 @@ inv:manageableServiceName->notEmpty()
                                     <allowMultipleRuns>true</allowMultipleRuns>
                                     <magicDrawHome></magicDrawHome>
                                     -->
-                                </configuration>				
-			</plugin>		
+                                </configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.andromda.maven.plugins</groupId>
 				<artifactId>andromda-cartridge-plugin</artifactId>
@@ -76,9 +76,9 @@ inv:manageableServiceName->notEmpty()
                             </configuration>
                         </execution>
                     </executions>
-                    -->           				
+                    -->
 			</plugin>
-		
+
 			<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -89,7 +89,7 @@ inv:manageableServiceName->notEmpty()
               <!--
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>                    
+                    <artifactId>xml-maven-plugin</artifactId>
                     <executions>
                         <execution>
                             <id>transform</id>
@@ -133,15 +133,15 @@ inv:manageableServiceName->notEmpty()
                             </transformationSet>
                         </transformationSets>
                     </configuration>
-                </plugin>            
-            
+                </plugin>
+
             <plugin>
                 <groupId>org.andromda.maven.plugins.site</groupId>
                 <artifactId>andromda-site-cartridge-plugin</artifactId>
-                -->	
+                -->
                 <!--<version>${andromda.version}</version>-->
                 <!--
-                <version>3.4-SNAPSHOT</version>               
+                <version>3.4-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>cartridge-howto-artifacts</id>
@@ -153,8 +153,8 @@ inv:manageableServiceName->notEmpty()
                 <configuration>
                     <howtoCartridgePicturesOutputDirectory>${project.basedir}/target/site/images</howtoCartridgePicturesOutputDirectory>
                 </configuration>
-            </plugin>       
-            -->     	
+            </plugin>
+            -->
                           <plugin>
                 <groupId>org.andromda.maven.plugins.site</groupId>
                 <artifactId>andromda-site-plugin</artifactId>
@@ -219,13 +219,13 @@ inv:manageableServiceName->notEmpty()
 	</build>
 
 	<dependencies>
-         	<!--     	
+         	<!--
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-meta-cartridge</artifactId>
             <version>${andromda.version}</version>
             <scope>provided</scope>
-        </dependency>  
+        </dependency>
         <dependency>
             <groupId>org.andromda.translationlibraries</groupId>
             <artifactId>andromda-ocl-query-library</artifactId>
@@ -244,13 +244,13 @@ inv:manageableServiceName->notEmpty()
             <artifactId>andromda-core</artifactId>
             <version>${andromda.version}</version>
             <scope>compile</scope>
-        </dependency>	
+        </dependency>
 		<dependency>
 			<groupId>org.andromda.metafacades</groupId>
 			<artifactId>andromda-metafacades-uml</artifactId>
 			<version>${andromda.version}</version>
 			<scope>compile</scope>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.andromda.translationlibraries</groupId>
 			<artifactId>andromda-ocl-translation-core</artifactId>
