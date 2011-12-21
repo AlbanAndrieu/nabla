@@ -242,11 +242,23 @@
 			<id>andromda</id>
 			<name>AndroMDA Maven 2.x Repository</name>
 			<url>http://andromda.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>			
 		</repository>
 		<repository>
 			<id>sonatype</id>
 			<name>Sonatype AndroMDA Repository</name>
 			<url>http://oss.sonatype.org/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>			
 		</repository>
 	</repositories>
 
@@ -333,6 +345,7 @@
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
+		<andromda.version>3.4-SNAPSHOT</andromda.version>
 
 		<tibjms.version>4.2.0</tibjms.version>
 		<tibco.version>8.1.2</tibco.version>
@@ -735,6 +748,45 @@
 										<execute />
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.andromda.maven.plugins</groupId>
+										<artifactId>andromda-cartridge-plugin</artifactId>
+										<versionRange>[${andromda.version},)</versionRange>
+										<goals>
+											<goal>test</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.andromda.maven.plugins</groupId>
+										<artifactId>andromda-maven-plugin</artifactId>
+										<versionRange>[${andromda.version},)</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>	
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.andromda.maven.plugins</groupId>
+                								<artifactId>andromdapp-maven-plugin</artifactId>
+										<versionRange>[${andromda.version},)</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>																																																
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
