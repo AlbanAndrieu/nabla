@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+<fieldline>
+	<control id="startDateMin" maskId="ReportDisplayMask"/>
+	<control id="startDateMax" maskId="ReportDisplayMask"/>
+</fieldline>
+
+<fieldline>
+	<control id="endDateMin" maskId="ReportDisplayMask"/>
+	<control id="endDateMax" maskId="ReportDisplayMask"/>
+</fieldline>
+
+<fieldline>
+	<control id="user" maskId="ReportDisplayMask"/>
+    <control id="commentField" maskId="ReportDisplayMask"/>
+</fieldline>
+
+<fieldline>
+	<control id="userOwner" maskId="ReportDisplayMask"/>
+</fieldline>
+
+<fieldline>
+	<control id="reportName" maskId="ReportDisplayMask"/>
+</fieldline>
+
+<fieldline></fieldline>
+
+<fieldline>
+	
+			
+	<control id="applyCommand" maskId="ReportDisplayMask"><navigation type="standard" name="openWindow" params="windowId=fields.report.search.results"/></control>
+	
+			
+	<control id="clearCommand" maskId="ReportDisplayMask"><navigation type="standard" name="closeWindow" params="windowId=fields.report.search.setup"/></control>
+</fieldline>
+
+</view_content>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<header>
+   		<control id="popupInstance" maskId="OpenPopupWorksheetSample2"/>
+   		<control id="sDestroyInstance" maskId="OpenPopupWorksheetSample2"/>
+   	</header>
+   	
+	<fieldline>
+   		<control id="selectSpotDeal" maskId="OpenPopupWorksheetSample2"/>
+    	<control id="selectDestroyInstance" maskId="OpenPopupWorksheetSample2" gType="checkBox"/>
+   	</fieldline>
+    <fieldline>
+    	<control id="selectStatusbar" maskId="OpenPopupWorksheetSample2" gType="checkBox"/>
+    	<control id="selectResizable" maskId="OpenPopupWorksheetSample2" gType="checkBox"/>
+    </fieldline>
+  	<fieldline></fieldline>
+    <fieldline>
+    	<control id="modifyPopupSize" maskId="OpenPopupWorksheetSample2" gType="checkBox"/>
+    	<control id="popupWidth" maskId="OpenPopupWorksheetSample2"/>
+    	<control id="popupHeight" maskId="OpenPopupWorksheetSample2"/>
+    </fieldline>
+  	<fieldline></fieldline>
+    <fieldline>
+    	<control id="useCustomId" maskId="OpenPopupWorksheetSample2" gType="checkBox"/>
+    	<control id="workbookId" maskId="OpenPopupWorksheetSample2"/>
+    	<control id="worksheetId" maskId="OpenPopupWorksheetSample2"/>
+  	</fieldline>
+    <fieldline>
+    	<control id="changePopupInstance" maskId="OpenPopupWorksheetSample2" gType="checkBox"/>
+    	<control id="updatePopupInstance" maskId="OpenPopupWorksheetSample2"/>
+  	</fieldline>
+  	<fieldline></fieldline>
+	<fieldline>
+   		<control id="openWorksheet" maskId="OpenPopupWorksheetSample2" autoAlignInForm="true"/>
+  	</fieldline>
+</view_content>

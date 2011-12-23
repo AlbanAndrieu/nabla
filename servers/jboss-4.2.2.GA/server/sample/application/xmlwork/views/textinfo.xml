@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldset position="5,5" width="369" height="82">
+		<control id="TextInfo@~TextInfo" maskId="Text Info for Deals@~Global" gType="textArea" position="-100,6"/>
+	</fieldset>
+	
+	<fieldset position="45,100" width="275" height="25">
+		<control id="TextInfo@~Save" maskId="Text Info for Deals@~Global"/>
+		<control id="TextInfo@~Delete" maskId="Text Info for Deals@~Global"/>
+		<control id="TextInfo@~Clear" maskId="Text Info for Deals@~Global"/>
+	</fieldset>
+		
+</view_content>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<fieldset noborder="true" position="-30,2">
+		<fieldline>
+			
+				
+			<control maskId="KGLGenericSearch" id="searchCriteria" gType="comboBox"><navigation type="custom" name="com.rfs.sample.navigation.KGLSearchNavigation"/></control>
+		</fieldline>
+		<fieldline>
+			<control maskId="Generic Deal" nbField="1" id="DealMask@~DealSearch@~CurrencySearch"/>	
+		</fieldline>
+	</fieldset>
+	
+	<fieldset noborder="true" position="10,55" width="190" height="35">
+		
+ 			
+		<control label="Search" maskId="Generic Deal" id="DealMask@~DealSearch@~SearchCommand" accesskey="S" position="5,5"><navigation type="standard" name="openWindow" params="windowId=search.result"/></control>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~Clear" accesskey="C" position="95,5"/>
+	</fieldset>
+	
+	
+</view_content>

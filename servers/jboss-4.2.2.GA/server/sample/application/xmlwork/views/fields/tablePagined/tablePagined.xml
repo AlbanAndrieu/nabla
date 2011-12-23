@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control id="tablePagined" maskId="TableSample" width="800" height="350" gType="pagined" />
+	</fieldline>
+	<fieldline>
+		<control id="tablePaginedSorted" maskId="TableSample" width="800" height="350" gType="pagined"
+			fullSort="true" />
+	</fieldline>
+</view_content>

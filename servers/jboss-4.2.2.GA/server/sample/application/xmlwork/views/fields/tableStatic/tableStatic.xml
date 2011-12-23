@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldline>
+		<control id="tableStatic" maskId="TableSample" static="true" width="800" height="175"/>
+	</fieldline>	
+	
+	<fieldline/>
+	
+	<fieldline>
+		<control id="tableStaticPagined" maskId="TableSample" gType="pagined" static="true" width="800" height="175"/>
+	</fieldline>	
+
+	<fieldline/>
+	
+	<fieldline>
+		<control id="tableStaticList" maskId="TableSample" gType="list" static="true" width="800" height="175"/>
+	</fieldline>	
+	
+</view_content>

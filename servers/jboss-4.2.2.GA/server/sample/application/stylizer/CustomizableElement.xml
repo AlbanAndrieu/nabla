@@ -1,0 +1,20 @@
+<stylecustomizer>				
+	<simplefields>
+		<common/>
+	</simplefields>
+	<complexfields>
+		<matrix/>
+		<table/>
+		<tree/>
+		<treeTable/>
+	</complexfields>
+	<containers>
+		<types/>
+		<decorations/>
+		<others/>		
+	</containers>
+	<others>
+		<navigation/>		
+		<signon/>						
+	</others>
+</stylecustomizer>

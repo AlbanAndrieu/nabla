@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content> 	
+	<control id="HGFieldSetMenuMore" maskId="MaskCustomizer" position="-31,16"/>
+    <control id="HGFieldMenuMore" maskId="MaskCustomizer" position="-31,42"/>
+</view_content>

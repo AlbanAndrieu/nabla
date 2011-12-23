@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="async" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<container:expandable id="async">
+		<view:view>
+			<view:title>Async</view:title>
+			<view:body href="views/async/async.xml"/>
+		</view:view>
+	</container:expandable>
+	
+	<container:tabs id="async.tabs" height="300" width="500" selected="tab0">
+									<container:tab id="tab0">
+										<view:title>Tab 1</view:title>
+										<view:body href="views/container/tabs/tab1.xml"/>
+									</container:tab>
+									<container:tab id="tab1">
+										<view:title>Tab 2</view:title>
+										<view:body href="views/container/tabs/tab2.xml"/>
+									</container:tab>
+									<container:tab id="tab2">
+										<view:title>Tab 3</view:title>
+										<view:body href="views/container/tabs/tab3.xml"/>
+									</container:tab>
+	</container:tabs>
+	
+	
+	<container:window id="window.style.new" height="200" width="400" position="50,50" closed="true">
+		<view:view>
+			<view:title>New style</view:title>
+			<view:body href="views/admin/stylizer/newStyle.xml"/>
+		</view:view>
+	</container:window>
+	
+</worksheet>

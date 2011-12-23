@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="xmlvalidation" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <main_toolbar>
+        <control id="newValidation" maskId="XmlValidationMask"/>
+    </main_toolbar>
+  
+    <layout:table>
+          <!--The first row containers-->
+          
+           <layout:row>
+                <layout:cell>
+                  <layout:table>
+                  
+            <layout:row>
+				 <layout:cell>
+				 	
+				   <container:transparent id="fields.validation.selectType" height="23" width="600">
+						<view:view>
+							<view:body href="views/admin/xmlvalidation/selectvalidation.xml"/>
+						</view:view>
+					</container:transparent>
+
+				 </layout:cell>   
+            </layout:row>
+            
+                 </layout:table>
+			    </layout:cell>
+			</layout:row>
+
+      <!--The second row containers-->
+           <layout:row>
+                <layout:cell>
+                  <layout:table>
+                  
+            <layout:row>
+				
+				 <layout:cell>			
+					<container:transparent id="fields.validation.tree" height="220" width="215">
+						<view:view>
+							<view:body href="views/admin/xmlvalidation/xmlexplorer.xml"/>
+						</view:view>
+					</container:transparent>
+				</layout:cell>
+				
+				  <layout:cell>
+						<container:transparent id="fields.validation.upperInterSpaceOne" height="50" width="30">
+								<view:view>
+									<view:body href="views/admin/xmlvalidation/empty.xml"/>
+								</view:view>
+						</container:transparent>
+				</layout:cell>
+				
+				 <layout:cell>
+						<container:transparent id="fields.validation.addRemoveButtons" height="220" width="100">
+								<view:view>
+									<view:body href="views/admin/xmlvalidation/addremove.xml"/>
+								</view:view>
+						</container:transparent>
+				</layout:cell>
+				
+				
+				 <layout:cell>
+						<container:transparent id="fields.validation.upperInterSpaceTwo" height="50" width="30">
+								<view:view>
+									<view:body href="views/admin/xmlvalidation/empty.xml"/>
+								</view:view>
+						</container:transparent>
+				</layout:cell>
+				
+				
+				 <layout:cell>			
+					<container:transparent id="fields.validation.area" height="220" width="200">
+						<view:view>
+							<view:body href="views/admin/xmlvalidation/validation.xml"/>
+						</view:view>
+					</container:transparent>
+				</layout:cell>
+
+			   
+			    <layout:cell>
+						<container:transparent id="fields.validation.startButton" height="220" width="100">
+								<view:view>
+									<view:body href="views/admin/xmlvalidation/start.xml"/>
+								</view:view>
+						</container:transparent>
+				</layout:cell>
+				
+            </layout:row>
+            
+             </layout:table>
+			</layout:cell>
+			</layout:row>
+         
+            
+       <!--The bottom row containers-->
+            
+             <layout:row>
+				<layout:cell>
+                    	<layout:table>
+            
+            <!--The 2 expandable containers -->
+            
+              <layout:row>
+				<layout:cell>
+                    	<layout:table>
+            
+            <layout:row>
+				<layout:cell>
+						
+            <layout:table>
+            
+            <layout:row>
+				<layout:cell>
+					    <container:expandable id="fields.validation.LogConsole" height="450" width="400" heldFieldId="logTextArea" heldFieldMaskId="XmlValidationMask">
+								<view:view>
+									<view:title>Log Console</view:title>
+									<view:body href="views/admin/xmlvalidation/logconsole.xml"/>
+								</view:view>
+						</container:expandable>
+				</layout:cell>
+				
+				<layout:cell>
+						<container:transparent id="fields.validation.espaceBas" height="50" width="200">
+								<view:view>
+									<view:body href="views/admin/xmlvalidation/empty.xml"/>
+								</view:view>
+						</container:transparent>
+				</layout:cell>
+		      
+				<layout:cell>
+				    	<container:expandable id="fields.validation.XmlEditor" height="450" width="630">
+								<view:view>
+									<view:title>Xml Editor</view:title>
+									<view:body href="views/admin/xmlvalidation/xmleditor.xml"/>
+								</view:view>
+						</container:expandable>
+				</layout:cell>
+
+			</layout:row>
+			
+			           </layout:table>
+			         </layout:cell>
+			         
+			      </layout:row>
+			
+			  </layout:table>
+			  </layout:cell>
+			  </layout:row>
+			
+			 </layout:table>
+			</layout:cell>
+			</layout:row>
+            
+        </layout:table>
+
+</worksheet>

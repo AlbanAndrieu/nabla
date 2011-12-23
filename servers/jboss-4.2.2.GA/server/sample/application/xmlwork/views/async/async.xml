@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	
+	<control id="Command" maskId="AsyncSampleMask"><navigation type="standard" name="openWindow" params="windowId=window.style.new;;"/></control>
+	<control id="CommandMessage" maskId="AsyncSampleMask"/>
+	<control id="CommandQuery" maskId="AsyncSampleMask"/>
+	<control id="CommandNavigation" maskId="AsyncSampleMask"/>
+	<control id="CommandExpColContainer" maskId="AsyncSampleMask"/>
+    <control id="cmdkpls829" maskId="AsyncSampleMask"/>
+    <control id="ContainerChange" maskId="AsyncSampleMask"/>
+	<control id="CommandGoToStylizer" maskId="AsyncSampleMask"/>	
+	<control id="ProgressBar" maskId="AsyncSampleMask"/>
+	<control id="ResultQuery" maskId="AsyncSampleMask"/>
+	<control id="Table" maskId="AsyncSampleMask" width="550" height="150"/>
+	<control id="TreeTable" maskId="AsyncSampleMask" width="500" height="300"/>
+	<control id="Chart" maskId="AsyncSampleMask" width="500" height="300"/>
+	<!--control id="SVG" maskId="AsyncSampleMask" width="1000" height="300"/-->
+</view_content>

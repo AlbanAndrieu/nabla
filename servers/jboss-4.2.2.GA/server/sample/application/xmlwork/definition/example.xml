@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fieldGroup PUBLIC "-//fw3.x/Reuters Karma FieldGroup DTD 1.0 //EN" "logicalFieldGroup.dtd">
+
+<fieldGroup name="example" label="Example Logical FieldGroup from xml file">
+
+	<field name="amount" label="Amount" type="double">
+		<decimalCount>4</decimalCount>
+		<minValue>0.0</minValue>
+		<maxValue>10.0</maxValue>
+		<defaultValue>0.0</defaultValue>
+		<zeroDisplayed>true</zeroDisplayed>
+		<zeroValidInput>true</zeroValidInput>
+	</field>
+	
+	<field name="captureDate" label="Capture Date" type="date">
+		<type>datetime</type>
+	</field>
+	
+	<field name="status" label="Deal Status" type="choice">
+		<value>1</value>
+		<defaultValue>2</defaultValue>
+		<definition>
+			<definitionItem value="0" text="Valid"></definitionItem>
+			<definitionItem value="1" text="Pending"></definitionItem>
+			<definitionItem value="2" text="Simulated"></definitionItem>
+		</definition>
+	</field>
+	
+	<xi:include parse="xml" href="kiwi://definition/example2.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	
+</fieldGroup>

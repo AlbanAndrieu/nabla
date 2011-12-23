@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <control maskId="sample1" id="table" gType="simple" width="400" height="170"/>
+</view_content>

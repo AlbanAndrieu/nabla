@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control id="fileOpenedString" maskId="StyleCustomizerMask" gType="readOnly"/>
+	</fieldline>
+	<fieldline/>
+	<fieldline>
+		<control id="groupsChoice" maskId="StyleCustomizerMask" gType="comboBox"/>
+		<control gType="readOnly" id="groupsChoiceHelp" maskId="StyleCustomizerMask"/> 
+	</fieldline>
+	<fieldline/>
+	<fieldline>
+		<control id="subGroupsChoice" maskId="StyleCustomizerMask" gType="comboBox"/>
+		<control gType="readOnly" id="subGroupsChoiceHelp" maskId="StyleCustomizerMask"/>
+	</fieldline>
+	<fieldline/>
+	<fieldline><control id="propertiesTree" maskId="StyleCustomizerMask" height="200" width="600"/></fieldline>
+	<fieldline/>
+	<fieldline><control id="propertiesListTable" maskId="StyleCustomizerMask" height="200" width="600"/></fieldline>
+	<fieldline/>
+	<fieldline>
+		<control id="dDouble" maskId="StyleCustomizerMask"/>
+		<control id="dString" maskId="StyleCustomizerMask"/>
+		<control id="dChoice" maskId="StyleCustomizerMask" gType="comboBox"/>
+	</fieldline>
+	<fieldline/>
+	<fieldline>
+		<control id="apply" maskId="StyleCustomizerMask"/>
+		<control id="reset" maskId="StyleCustomizerMask"/>
+	</fieldline>
+	<fieldline/>
+</view_content>

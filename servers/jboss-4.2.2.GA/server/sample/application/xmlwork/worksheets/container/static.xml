@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="Static" xmlns:container="http://www.rfs.com/fw30/container"
+	xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<layout:table>
+					<layout:row>
+						<layout:cell>
+							<xml_sample id="sample" xmlns:container="http://www.rfs.com/fw30/container"
+								xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+								<container:static id="containers.static" height="300" width="600">
+									<view:view>
+										<view:title>Static Container</view:title>
+										<view:body href="views/container/commonFields.xml" />
+									</view:view>
+								</container:static>
+							</xml_sample>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="containers.static.light" height="300" width="600" light="true">
+									<view:view>
+										<view:title>Static Container Light</view:title>
+										<view:body href="views/container/commonFields.xml" />
+									</view:view>
+								</container:static>
+						</layout:cell>
+					</layout:row>
+				</layout:table>
+			</layout:cell>
+			<layout:cell>
+				<container:transparent id="xml" height="600" width="625">
+					<view:body href="views/container/static/staticComment.xml" />
+				</container:transparent>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+
+</worksheet>

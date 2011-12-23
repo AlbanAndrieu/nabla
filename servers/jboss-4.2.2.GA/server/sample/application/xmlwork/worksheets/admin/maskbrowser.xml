@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="bond deal" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		
+		<control id="refreshMaskList" maskId="ApplicationBrowser"></control>
+		<toolbar_separator/>
+		
+		<control id="refreshFieldList" maskId="ApplicationBrowser"></control>
+		<toolbar_separator/>
+		
+		<control id="maskXML" maskId="ApplicationBrowser"></control>
+	</main_toolbar>
+
+	<container:transparent id="ApplicationBrowserContainer" height="730" width="1250">
+		<view:view>
+			<view:title></view:title>
+			<view:body href="views/admin/maskbrowser/maskbrowser.xml"/>
+		</view:view>
+	</container:transparent>
+	
+	<container:window id="MaskBrowserXML" width="800" height="500" position="50,50" resizable="true">
+		
+		<view:view>
+			<view:title>Mask XML</view:title>
+			<view:body parse="html" href="fieldgroupxml.jsp?id=ApplicationBrowser"/>
+		</view:view>
+		
+	</container:window>
+
+</worksheet>

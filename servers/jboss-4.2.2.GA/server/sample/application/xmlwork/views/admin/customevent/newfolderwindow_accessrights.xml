@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view">
+	
+	<toolbar width="350" height="30">
+		
+		
+			
+			
+			
+		<control id="accessRightNew" maskId="newFolderWindow" img="new"><navigation type="standard" name="openWindow" params="windowId=customwindow.newfolderwindow.accessright.setup"/></control>
+	
+		<toolbar_separator/>
+		
+		
+			
+			
+			
+		<control id="accessRightEdit" maskId="newFolderWindow" img="edit"><navigation type="standard" name="openWindow" params="windowId=customwindow.newfolderwindow.accessright.setup"/></control>
+	
+		<toolbar_separator/>
+		
+		
+			
+				
+		<control id="accessRightDelete" maskId="newFolderWindow" img="delete"></control>
+		
+	</toolbar>
+	
+	<control id="accessRightTable" maskId="newFolderWindow" position="10,40" width="350" height="280"/>
+	
+</view_content>

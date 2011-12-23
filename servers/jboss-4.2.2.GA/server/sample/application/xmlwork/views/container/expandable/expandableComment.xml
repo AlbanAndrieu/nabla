@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<container:transparent id="expandableXML" height="400">
+		<view:body parse="html" href="xmlView.jsp?xmlView=worksheets/container/expandable.xml&amp;blockId=sample"/>
+	</container:transparent>
+	
+	<html>
+		<p style="font-size: 10pt;">
+			<b style="color:red">This is a container type Expandable</b>
+		</p>
+		<p style="font-size: 10pt;">
+			You can :<br/>
+			- Expand or Collapse it by clicking on the button or on the title<br/>
+			- Maximize it by double clicking on the title bar<br/>
+			- Display a context menu by right-clicking on the title bar<br/>
+			- Pop-out or Maximize it in the context menu<br/>
+		</p>		
+	</html>
+	<fieldline>
+		<control id="showExpandableContainer" maskId="CommandSample"/>
+	</fieldline>
+	
+</view_content>

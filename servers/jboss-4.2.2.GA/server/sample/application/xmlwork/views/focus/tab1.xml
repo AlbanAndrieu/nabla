@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<control id="string4" maskId="FocusSample"/>
+	<control id="messageWithFocus" maskId="FocusSample" width="150"/>
+	<control id="string5" maskId="FocusSample"/>
+	
+</view_content>

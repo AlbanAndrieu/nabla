@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<main_toolbar>
+		<control id="EditStoreProcLoad" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="EditStoreProcDelete" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="EditStoreProcSave" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="EditStoreProcGenerateParameters" maskId="OpenReportDBDefinitionMask"/>
+	</main_toolbar>
+
+	<fieldline>
+		<control id="EditStoreProcDataBase" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="EditStoreProcName" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="EditStoreProcString" maskId="OpenReportDBDefinitionMask" gType="textArea" rows="30" cols="100"/>
+	</fieldline>
+</view_content>

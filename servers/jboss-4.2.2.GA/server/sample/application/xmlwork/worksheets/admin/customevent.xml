@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="customevent" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		
+		
+			
+			
+			
+		<control id="eventHandlerNew" maskId="customEventHandler" img="new"><navigation type="custom" name="com.rfs.wfcustom.ui.event.navigation.NewEventHandlerWindowOpen" params=""/></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+				
+		<control id="eventHandlerSave" maskId="customEventHandler" img="save"></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+				
+			
+		<control id="eventHandlerSaveAs" maskId="customEventHandler" img="saveas"><navigation type="custom" name="com.rfs.wfcustom.ui.event.navigation.EventHandlerWindowSaveAs" params=""/></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+				
+		<control id="eventHandlerDelete" maskId="customEventHandler" img="delete"></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+		<control id="eventHandlerRename" maskId="customEventHandler"><navigation type="custom" name="com.rfs.wfcustom.ui.event.navigation.EventHandlerWindowRename" params=""/></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+		<control id="eventHandlerMove" maskId="customEventHandler"><navigation type="custom" name="com.rfs.wfcustom.ui.event.navigation.EventHandlerWindowMove" params=""/></control>
+		
+		<toolbar_separator/>
+		
+		<group type="menuToolbarButton" label="Directory" id="customwindow_commandbar_folder">
+			
+			
+				<!--navigation type="custom" name="com.rfs.wfcustom.ui.common.navigation.NewFolderWindowOpen" params=""/-->
+				
+				
+				
+				
+			<control id="folderNew" maskId="customEventHandler" gType="menuToolBarCommand" img="new"><navigation type="standard" name="openWindow" params="windowId=customevent.newfolder"/><navigation type="standard" name="changeContainerProperties" params="containerId=newfolderwindow.contentpane;;href=views/admin/customevent/newfolderwindow_properties.xml"/></control>
+			
+			
+				
+			<control id="folderRename" maskId="customEventHandler" gType="menuToolBarCommand"><navigation type="standard" name="openWindow" params="windowId=customevent.rename"/></control>
+			
+			
+						
+			<control id="folderMove" maskId="customEventHandler" gType="menuToolBarCommand"><navigation type="standard" name="openWindow" params="windowId=customevent.move"/></control>
+			
+			
+				
+				
+			<control id="folderDelete" maskId="customEventHandler" gType="menuToolBarCommand" img="delete"></control>
+			
+		</group>
+		
+		<toolbar_separator/>
+		
+		<group type="menuToolbarButton" label="Access Right" id="customwindow_commandbar_accessrights">
+			
+				
+				
+				
+			<control id="accessRightNew" maskId="customEventHandler" gType="menuToolBarCommand" img="new"><navigation type="standard" name="openWindow" params="windowId=customevent.accessright.setup"/></control>
+			
+			
+				
+				
+				
+			<control id="accessRightEdit" maskId="customEventHandler" gType="menuToolBarCommand" img="edit"><navigation type="standard" name="openWindow" params="windowId=customevent.accessright.setup"/></control>
+			
+			
+				
+					
+			<control id="accessRightDelete" maskId="customEventHandler" gType="menuToolBarCommand" img="delete"></control>
+		</group>
+		
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<container:transparent id="customevent.setup" width="1200" height="600">
+					<view:view>
+						<view:body href="views/admin/customevent/customevent_setup.xml"/>
+					</view:view>
+				</container:transparent>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+				
+	<container:window id="customevent.accessright.setup" width="525" height="125" position="405,385" closed="true" associatedFieldId="accessRightCancel" associatedFieldMaskId="customEventHandler">
+		<view:view>
+			<view:title>kiwi.custom.ui.accessright</view:title>
+			<view:body href="views/admin/customevent/customevent_accessright_setup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.newfolder" width="380" height="375" position="360,5" closed="true" associatedFieldId="cancel" associatedFieldMaskId="newFolderWindow">
+		<view:view>
+			<view:title>kiwi.custom.ui.folderchooser.new.properties</view:title>
+			<view:body href="views/admin/customevent/newfolderwindow.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.newfolderwindow.accessright.setup" width="525" height="125" position="405,385" closed="true" associatedFieldId="accessRightCancel" associatedFieldMaskId="newCustomWindow">
+		<view:view>
+			<view:title>kiwi.custom.ui.accessright</view:title>
+			<view:body href="views/admin/customevent/newfolderwindow_accessrights_setup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.rename" width="390" height="65" position="360,5" closed="true" associatedFieldId="cancel" associatedFieldMaskId="renameWindow">
+		<view:view>
+			<view:title>kiwi.custom.ui.rename</view:title>
+			<view:body href="views/admin/customevent/customevent_rename.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.move" width="375" height="350" position="360,5" closed="true" associatedFieldId="cancel" associatedFieldMaskId="moveWindow">
+		<view:view>
+			<view:title>kiwi.custom.ui.move</view:title>
+			<view:body href="views/admin/customevent/customevent_move.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.storeprocedureparameter.setup" width="380" height="80" position="150,150" associatedFieldId="parameterMappingCancel" associatedFieldMaskId="newCustomEventHandler" closed="true">
+		<view:view>
+			<view:title>kiwi.custom.ui.eventhandler.storedprocedure.parameter</view:title>
+			<view:body href="views/admin/customevent/customevent_storedprocedureparameter_setup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.new" width="380" height="375" position="360,5" closed="true" associatedFieldId="cancel" associatedFieldMaskId="newCustomEventHandler">
+		<view:view>
+			<view:title>kiwi.custom.ui.neweventhandler.properties</view:title>
+			<view:body href="views/admin/customevent/newcustomevent.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.new.accessright.setup" width="525" height="125" position="405,385" closed="true" associatedFieldId="accessRightCancel" associatedFieldMaskId="newCustomEventHandler">
+		<view:view>
+			<view:title>kiwi.custom.ui.accessright</view:title>
+			<view:body href="views/admin/customevent/newcustomevent_accessright_setup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="customevent.new.storeprocedureparameter.setup" width="380" height="80" position="150,150" associatedFieldId="parameterMappingCancel" associatedFieldMaskId="newCustomEventHandler" closed="true">
+		<view:view>
+			<view:title>kiwi.custom.ui.eventhandler.storedprocedure.parameter</view:title>
+			<view:body href="views/admin/customevent/newcustomevent_storedprocedureparameter_setup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<!--container:window id="customevent.querywindow" width="675" height="505" position="350,150" associatedFieldId="cancel" associatedFieldMaskId="queryWindow" closed="true">
+		<view:view>
+			<view:title>SQL Window</view:title>
+			<view:body href="views/admin/customevent/querywindow.xml"/>
+		</view:view>
+	</container:window-->
+	
+	<container:window id="customevent.new.storedprocedurewindow" width="672" height="529" position="350,150" associatedFieldId="storedProcedureCancel" associatedFieldMaskId="newCustomEventHandler" closed="true">
+		<view:view>
+			<view:title>kiwi.custom.ui.eventhandler.storedprocedure</view:title>
+			<view:body href="views/admin/customevent/storedprocedurewindow.xml"/>
+		</view:view>
+	</container:window>
+	
+	
+</worksheet>

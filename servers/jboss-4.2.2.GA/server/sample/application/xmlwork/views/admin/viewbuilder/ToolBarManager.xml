@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+	
+	<container:tabs id="toolBarTabs" width="400" height="150" selected="modifyTab">
+		<container:tab id="modifyTab">
+			<view:view>
+				<view:title>Modify</view:title> 
+				<view:body href="ToolBarModify.xml"/> 
+			</view:view>
+		</container:tab>
+		<container:tab id="addTab">
+			<view:view>
+				<view:title>Add</view:title> 
+				<view:body href="ToolBarAdd.xml"/> 
+			</view:view>
+		</container:tab>
+		<container:tab id="removeTab">
+			<view:view>
+				<view:title>Remove</view:title> 
+				<view:body href="ToolBarRemove.xml"/> 
+			</view:view>
+		</container:tab>
+	</container:tabs>	
+	<!--fieldline>
+		<control id="btCloseWindowToolBarManager" maskId="MaskCustomizer" >	
+			<navigation type="standard" name="closeWindow" params="windowId=toolbarPopup"/>
+		</control>
+	</fieldline-->
+</view_content>

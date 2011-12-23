@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="label" maskId="LabelSample"/>
+    <control id="labelBig" maskId="LabelSample" sizeLabel="120"/>
+</view_content>

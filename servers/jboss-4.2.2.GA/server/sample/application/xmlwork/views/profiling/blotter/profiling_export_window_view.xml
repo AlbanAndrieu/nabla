@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="viewExportFile" maskId="ProfilingExportBlotterMask" gType="textArea" rows="20" cols="78" nolabel="true"/>
+</view_content>

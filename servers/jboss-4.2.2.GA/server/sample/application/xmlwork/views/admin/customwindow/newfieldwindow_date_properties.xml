@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="dateExample" maskId="newFieldWindow" gType="radioButtonColumn" position="112,5"/>
+	<fieldline/>
+	<fieldline/>
+	<fieldline/>
+	<fieldline/>
+	<control id="datePattern" maskId="newFieldWindow"/>
+	<control id="dateTest" maskId="newFieldWindow"/>
+</view_content>

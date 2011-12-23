@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+  <fieldline>
+    <control id="navigationType" maskId="LogicalNavigationSample"/>
+  </fieldline>
+  <fieldline>
+    <control gType="long" id="navigationName" maskId="LogicalNavigationSample"/>
+  </fieldline>
+  <fieldline>
+    <control gType="longComboBox" id="navigationNameHelper" maskId="LogicalNavigationSample"/>
+  </fieldline>
+  <fieldline>
+    <control gType="long" id="navigationParameters" maskId="LogicalNavigationSample"/>
+  </fieldline>
+  <control id="performNavigation" maskId="LogicalNavigationSample" position="126,102"/>
+</view_content>

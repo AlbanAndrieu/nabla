@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <fieldline>
+        <control maskId="AboutMask" id="kiwi.version" gType="list" width="700"/>
+    </fieldline>
+</view_content>

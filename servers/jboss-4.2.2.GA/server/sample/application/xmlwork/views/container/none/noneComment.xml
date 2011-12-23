@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<container:none id="noneXML" height="250">
+		<view:body parse="html" href="xmlView.jsp?xmlView=worksheets/container/none.xml&amp;blockId=sample"/>
+	</container:none>
+	
+	<html>
+		<p style="font-size: 10pt;">
+			<b style="color:red">This is a container type None</b>
+		</p>
+		<br/>
+		<br/>
+	</html>
+	
+	<fieldline>
+		<control id="showNoneContainer" maskId="CommandSample"/>
+	</fieldline>
+
+</view_content>

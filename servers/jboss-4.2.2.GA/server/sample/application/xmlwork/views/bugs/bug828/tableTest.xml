@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <control id="list" maskId="BugTableAsyncTranslateSample" gType="list" width="530" height="160"/>
+</view_content>

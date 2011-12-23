@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content> 
+	
+	<control id="treeSavingPath" maskId="MaskCustomizer" position="10,10" width="400" height="230"/>    	
+    
+	<control gType="readOnly" id="strRepositoryPath" maskId="MaskCustomizer" position="10,240" width="400"/>    
+	
+	<control gType="long" id="strFilenamePath" maskId="MaskCustomizer" position="10,270" fixedSizeLabel="false"/>
+	
+	<control id="btSaveOk" maskId="MaskCustomizer" position="115,305"/>
+	
+	<control id="btSaveCancel" maskId="MaskCustomizer" position="215,305"/>
+	
+</view_content>

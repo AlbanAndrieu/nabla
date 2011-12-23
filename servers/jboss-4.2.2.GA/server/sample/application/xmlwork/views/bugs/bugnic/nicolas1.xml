@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <main_toolbar>
+        <control id="nicCommand" maskId="NicolasSample"/>
+    </main_toolbar>
+    <fieldline>
+        <control id="nicTable" maskId="NicolasSample"/>
+    </fieldline>    
+    <fieldline>
+        <control id="treeTable" maskId="NicolasSample" width="500" height="300"/>
+    </fieldline>
+    
+</view_content>

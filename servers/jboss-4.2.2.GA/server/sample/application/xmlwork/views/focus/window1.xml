@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<control id="string8" maskId="FocusSample"/>
+	<control id="string9" maskId="FocusSample"/>
+	<control id="double1" maskId="FocusSample"/>
+	<control id="buttoncw1" maskId="FocusSample"/>
+	<control id="labelcw1" maskId="FocusSample" gType="header"/>
+	<control id="numbercw1" maskId="FocusSample"/>
+	<control id="datecw1" maskId="FocusSample"/>
+	<control id="choicecw1" maskId="FocusSample"/>
+	<control id="stringcw1" maskId="FocusSample"/>
+
+</view_content>

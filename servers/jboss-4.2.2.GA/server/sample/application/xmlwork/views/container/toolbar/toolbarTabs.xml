@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<main_toolbar id="toolbarTabs">
+		
+			
+			
+		<control id="cmd19" maskId="ToolbarSample" img="insert"></control>		
+		<toolbar_separator/>
+		<group type="menuToolbarButton" label="More" id="more5">
+			
+				
+				
+			<control id="cmd20" maskId="ToolbarSample" gType="menuToolBarCommand" img="insert"></control>
+			
+				
+				
+			<control id="cmd21" maskId="ToolbarSample" gType="menuToolBarCommand" img="insert"></control>							
+		</group>		
+	</main_toolbar>
+	
+</view_content>

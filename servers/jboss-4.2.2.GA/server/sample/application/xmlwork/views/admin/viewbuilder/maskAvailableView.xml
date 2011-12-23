@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline/>
+	<fieldline>
+		<control id="HGFieldSet" maskId="MaskCustomizer"/>
+		<control id="bsSeparator" maskId="MaskCustomizer"/>
+	</fieldline>
+	<fieldline/>	
+	<fieldline>
+		<control id="treeListFields" width="300" height="400" maskId="MaskCustomizer"/>
+	</fieldline>
+	<control id="btInsertAllChilds" width="100" position="107,480" maskId="MaskCustomizer"/>
+</view_content>

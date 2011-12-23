@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldline>
+		<control id="stringTooltipXML" maskId="StringSample" title="tooltip Fixed by XML"/>
+	</fieldline>
+	<fieldline>
+		<control id="stringTooltipJAVA" maskId="StringSample" title=""/>
+		<control id="putTooltip" maskId="StringSample"/>
+		<control id="resetTooltip" maskId="StringSample"/>
+	</fieldline>
+
+</view_content>

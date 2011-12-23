@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+   
+    <control id="tableEditable" maskId="DrillThruTableSampleMask" width="1000" height="600"/>
+</view_content>

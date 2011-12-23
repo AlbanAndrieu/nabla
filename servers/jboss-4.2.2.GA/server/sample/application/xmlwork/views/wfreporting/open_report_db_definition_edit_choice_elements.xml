@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<toolbar width="480">
+		<control id="ChoiceInsertElement" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="ChoiceUpdateElement" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="ChoiceDeleteElement" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="ChoiceUpElement" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="ChoiceDownElement" maskId="OpenReportDBDefinitionMask"/>
+	</toolbar>
+
+	<fieldline>
+		<control id="ChoiceElements" maskId="OpenReportDBDefinitionMask" gType="pagined" pageSize="5" width="480" height="200"/>
+	</fieldline>
+	<fieldline>
+		<control id="ChoiceElementValue" maskId="OpenReportDBDefinitionMask"/>
+		<control id="ChoiceElementLabel" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+</view_content>

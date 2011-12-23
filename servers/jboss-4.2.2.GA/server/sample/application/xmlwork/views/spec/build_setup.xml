@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view">
+  <fieldset height="150" legend="" noborder="true" position="321,108" width="131">
+    
+    <control id="addbutton" maskId="LandrySample" position="20,22"></control>
+    
+    <control id="removeButton" maskId="LandrySample" position="21,55"></control>
+    
+    <control id="removeAllButton" maskId="LandrySample" position="21,102"></control>
+  </fieldset>
+  <fieldline/>
+  <fieldline height="23" type="absolute">
+    <control gType="long" id="name" maskId="LandrySample" position="24,novalue"/>
+  </fieldline>
+  <fieldline height="18" type="absolute">
+  </fieldline>
+  <fieldline height="204" type="absolute">
+    
+    <control id="tree" maskId="LandrySample" position="10,novalue"></control>
+    <control gType="list" height="200" id="tableList" maskId="LandrySample" position="461,novalue" width="250"/>
+  </fieldline>
+  <fieldline height="18" type="absolute">
+  </fieldline>
+  <fieldline>
+  </fieldline>
+  <fieldline height="18" type="absolute">
+    
+    <control id="okbutton" maskId="LandrySample" position="632,novalue"></control>
+  </fieldline>
+  <fieldset height="145" legend="" noborder="true" position="725,108" width="103">
+    
+    <control id="moveDownButton" maskId="LandrySample" position="4,93"></control>
+    
+    <control id="moveUpButton" maskId="LandrySample" position="3,29"></control>
+  </fieldset>
+  <control cols="100" gType="textArea" id="description" maskId="LandrySample" position="0,287" rows="5" width="100"/>
+  <control id="okButton" maskId="LandrySample" position="513,391"/>
+  
+  <control id="cancelButton" maskId="LandrySample" position="630,391"></control>
+</view>

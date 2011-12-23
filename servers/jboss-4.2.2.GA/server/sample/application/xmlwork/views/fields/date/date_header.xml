@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<header>
+		<control id="dateHeader" maskId="DateSample"/>
+	</header>
+	
+</view_content>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+<control id="docTitle" maskId="ReportDisplayMask" gType="readOnly" position="5,30" width="345"/>
+<control id="docInfo" maskId="ReportDisplayMask" gType="readOnly" position="360,30" width="671"/>	
+
+<control id="navigationTree" maskId="ReportDisplayMask" position="5,55" width="345" height="320"/>
+<control id="mainTreeTable" maskId="ReportDisplayMask" position="360,55" width="671" height="320"/>
+
+</view_content>

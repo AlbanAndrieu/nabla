@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="AsyncTreeTable" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<main_toolbar id="AsyncStressTreeTableToolbar">
+		<control id="Start" maskId="AsyncStressTreeTableSample"/>
+		<control id="Stop" maskId="AsyncStressTreeTableSample"/>
+	</main_toolbar>	
+	<container:static id="AsyncTreeTableParameters" width="1000" height="800">
+		<view:view>
+			<view:title>Async Tree Table Parameters</view:title>
+			<view:body href="views/async/stress/TreeTable.xml"/>
+		</view:view>
+	</container:static>
+</worksheet>

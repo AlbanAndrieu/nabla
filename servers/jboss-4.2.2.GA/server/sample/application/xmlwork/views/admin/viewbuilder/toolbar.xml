@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>				
+		<control gType="toolBarCommand" id="btNewView" maskId="MaskCustomizer">
+			<navigation type="custom" name="com.rfs.j2ee.KiWI.controller.web.actions.navigation.viewbuilder.NewAction" params=""/>
+		</control>
+				
+		<control gType="toolBarCommand" id="btSaveView" maskId="MaskCustomizer">			
+			<navigation type="custom" name="com.rfs.j2ee.KiWI.controller.web.actions.navigation.viewbuilder.SaveAction" params=""/>
+		</control>		
+		
+		
+		
+		<control gType="readOnly" width="200" maskId="MaskCustomizer" id="bsViewFileName"/>		
+		
+</view_content>

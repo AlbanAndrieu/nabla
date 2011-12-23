@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="ok" maskId="XmlTryItEditor"/>
+		<control id="reset" maskId="XmlTryItEditor"/>
+		<control id="fragment" maskId="XmlTryItEditor" gType="longComboBox" fixedSizeLabel="false"/>
+	</main_toolbar>
+	
+	<container:transparent id="setup" width="1000" height="750">
+		<view:view>
+			<view:body href="views/admin/xmltryit/setup.xml"/>
+		</view:view>
+	</container:transparent>
+	
+	<container:window id="result" width="600" height="600" position="100,25" closed="true">
+		<view:view>
+			<view:title>Result</view:title>
+			<view:body href="views/admin/xmltryit/result.xml"/>
+		</view:view>
+	</container:window>
+
+</worksheet>

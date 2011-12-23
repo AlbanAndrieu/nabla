@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <control id="helpgroupTest" maskId="HelpGroupSample" gType="short"/>
+
+    <control id="helpgroupAjax" maskId="HelpGroupSample" gType="ajax"/>
+</view_content>

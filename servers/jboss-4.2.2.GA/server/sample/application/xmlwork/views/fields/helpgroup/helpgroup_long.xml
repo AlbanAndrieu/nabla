@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+    <control id="helpgroupLong" maskId="HelpGroupSample" gType="long"/>
+
+</view_content>

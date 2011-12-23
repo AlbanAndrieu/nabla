@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="tableSorted" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				
+				<container:static id="fields.tableSorted" width="600" height="370">
+					<view:view>
+						<view:title>Table Sorted</view:title>
+						<view:body href="views/fields/tableSorted/tableSorted.xml"/>
+					</view:view>
+				</container:static>
+				
+			</layout:cell>			
+		</layout:row>
+	</layout:table>
+	
+</worksheet>

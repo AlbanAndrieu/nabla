@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="Expandable" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+
+	<header>
+		
+		<control id="string" maskId="StringSample"/>
+		
+	</header>
+
+</worksheet>

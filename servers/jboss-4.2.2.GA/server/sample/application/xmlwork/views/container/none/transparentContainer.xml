@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldline>
+		<control id="string" maskId="StringSample" title="BasicString in container type transparent"/>
+	</fieldline>
+
+</view_content>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control maskId="Generic Enquiry" gType="pagined" id="EnquiryMask@~EnquiryResults@~Credit" width="750" height="250" position="0,30"/>
+    
+
+    <control maskId="Generic Enquiry" id="EnquiryMask@~EnquiryResults@~CreditDrillDown" position="650,4"></control>
+</view_content>

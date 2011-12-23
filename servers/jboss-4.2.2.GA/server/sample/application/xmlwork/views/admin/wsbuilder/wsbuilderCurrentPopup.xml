@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content> 
+
+	<fieldline>
+		<control id="bsCurrentType" maskId="WSBuilderMask" gType="readOnlyNoBorder" fixedSize="false"/>
+	</fieldline>
+	<fieldline>
+		<control id="bsCurrentUser" maskId="WSBuilderMask" gType="readOnlyNoBorder" fixedSize="false"/>
+	</fieldline>
+	<fieldline>
+		<control id="bsCurrentUserGroup" maskId="WSBuilderMask" gType="readOnlyNoBorder" fixedSize="false"/>
+	</fieldline>
+	<fieldline>
+		<control id="bsCurrentXMLPath" maskId="WSBuilderMask" gType="readOnlyNoBorder" fixedSize="false"/>
+	</fieldline>
+	<fieldline>
+		<control id="bsCurrentWorksheet" maskId="WSBuilderMask" gType="readOnlyNoBorder" fixedSize="false"/>
+	</fieldline>
+	
+</view_content>

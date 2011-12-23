@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<main_toolbar>		
+
+		<group id="tcAddFieldButton" label="Add" type="menuToolbarButton">
+			
+			<control id="tcAddFieldButton" maskId="MaskCustomizer" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/insert-normal.gif"/>
+			</control>
+			<control id="tcAddExistingFieldButton" maskId="MaskCustomizer" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/insert-normal.gif"/>
+			</control>
+		</group>
+		
+		<toolbar_separator/>
+		
+		<group id="tcInsertSeparatorButton" label="Insert" type="menuToolbarButton">
+			<control id="tcInsertMenuMoreButton" maskId="MaskCustomizer" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/insert-normal.gif"/>
+			</control>			
+			<control id="tcInsertSeparatorAbove" maskId="MaskCustomizer" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/hierarchy-normal.gif"/>
+			</control>
+			<control id="tcInsertSeparatorBelow" maskId="MaskCustomizer" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/hierarchy-normal.gif"/>
+			</control>	
+		</group>
+		 
+		<toolbar_separator/>
+		
+		<control id="tcMoveToNewBranch" maskId="MaskCustomizer"/> 
+		
+		<toolbar_separator/>
+		
+		<control id="tcAddNavigationActionButton" maskId="MaskCustomizer">
+			<img forstate="normal" src="images/icones/insert-normal.gif"/>
+		</control>	
+		
+		<toolbar_separator/>
+			
+		<control id="tcRemoveFieldButton" maskId="MaskCustomizer">
+			<img forstate="normal" src="images/icones/delete-normal.gif"/>
+		</control>   
+		 
+		<toolbar_separator/>
+		 
+		<control id="tcUp" maskId="MaskCustomizer">
+			<img forstate="normal" src="images/kiwi/builder/up-normal.gif"/>
+		</control>
+		
+		<toolbar_separator/>
+		 
+		<control id="tcDown" maskId="MaskCustomizer">
+			<img forstate="normal" src="images/kiwi/builder/down-normal.gif"/>
+		</control>
+		
+		<toolbar_separator/>
+		
+		<control id="tcClose" maskId="MaskCustomizer">
+			<navigation type="standard" name="closeWindow" params="windowId=toolbarCustomizer"/>
+		</control>
+		
+	</main_toolbar>
+	
+	<control id="tcTree" maskId="MaskCustomizer" position="10,10" height="345" width="570"/>
+	
+</view_content>

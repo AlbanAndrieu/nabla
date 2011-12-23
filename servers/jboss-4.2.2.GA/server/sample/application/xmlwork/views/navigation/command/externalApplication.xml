@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    
+        
+        
+    <control id="command3" maskId="CommandSample" img="excelexport"><navigation type="javascript" name="window.open('help.jsp','toto','width='+(parseInt(screen.width)-100)+',height='+(parseInt(screen.height)-150)+',top=50,left=50,toolbar=no,menubar=no,resizable=yes,status=no,location=no,directories=no');"/></control>
+</view_content>

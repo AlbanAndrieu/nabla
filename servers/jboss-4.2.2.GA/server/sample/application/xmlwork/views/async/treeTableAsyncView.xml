@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+    <toolbar>
+	    <control id="bsCmd" maskId="AsyncTreeTableMask"/>
+    </toolbar>
+    <fieldset>
+        <control id="treeTable1" maskId="AsyncTreeTableMask" width="500" height="300"/>
+    </fieldset>
+</view_content>

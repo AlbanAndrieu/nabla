@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<main_toolbar>
+		<control id="tcAddExistingFieldToMainToolBar" maskId="MaskCustomizer" gType="menuToolBarCommand">
+			<img forstate="normal" src="images/icones/insert-normal.gif"/>
+		</control>
+		<toolbar_separator/>
+		<control id="tcAddExistingFieldCancelButton" maskId="MaskCustomizer" gType="menuToolBarCommand">
+			<img forstate="normal" src="images/icones/delete-normal.gif"/>
+			<navigation type="standard" name="closeWindow" params="windowId=tcAddExistingPopup"/>
+		</control>
+	</main_toolbar>
+	<fieldline/>
+	<fieldline>
+		<control id="tcAddExistingFieldsTable" width="390" height="300" maskId="MaskCustomizer"/>
+	</fieldline>
+</view_content>

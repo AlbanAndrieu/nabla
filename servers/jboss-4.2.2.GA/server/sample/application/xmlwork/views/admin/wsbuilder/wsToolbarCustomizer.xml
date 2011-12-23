@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<main_toolbar>		
+
+		<group id="tcAddFieldButton" label="Add" type="menuToolbarButton">
+			
+			<control id="tcAddFieldButton" maskId="WSBuilderMask" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/insert-normal.gif"/>
+			</control>
+			<control id="tcAddExistingFieldButton" maskId="WSBuilderMask" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/insert-normal.gif"/>
+			</control>
+		</group>
+		
+		<toolbar_separator/>
+		
+		<group id="tcInsertSeparatorButton" label="Insert" type="menuToolbarButton">
+			<control id="tcInsertMenuMoreButton" maskId="WSBuilderMask" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/insert-normal.gif"/>
+			</control>			
+			<control id="tcInsertSeparatorAbove" maskId="WSBuilderMask" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/hierarchy-normal.gif"/>
+			</control>
+			<control id="tcInsertSeparatorBelow" maskId="WSBuilderMask" gType="menuToolBarCommand">
+				<img forstate="normal" src="images/icones/hierarchy-normal.gif"/>
+			</control>	
+		</group>
+		 
+		<toolbar_separator/>
+		
+		<control id="tcMoveToNewBranch" maskId="WSBuilderMask"/> 
+		
+		<toolbar_separator/>
+		
+		<control id="tcAddNavigationActionButton" maskId="WSBuilderMask">
+			<img forstate="normal" src="images/icones/insert-normal.gif"/>
+		</control>	
+		
+		<toolbar_separator/>
+			
+		<control id="tcRemoveFieldButton" maskId="WSBuilderMask">
+			<img forstate="normal" src="images/icones/delete-normal.gif"/>
+		</control>   
+		 
+		<toolbar_separator/>
+		 
+		<control id="tcUp" maskId="WSBuilderMask">
+			<img forstate="normal" src="images/kiwi/builder/up-normal.gif"/>
+		</control>
+		
+		<toolbar_separator/>
+		 
+		<control id="tcDown" maskId="WSBuilderMask">
+			<img forstate="normal" src="images/kiwi/builder/down-normal.gif"/>
+		</control>
+		
+		<toolbar_separator/>
+		 
+		<control id="tcRefreshWorksheet" maskId="WSBuilderMask">
+			<img forstate="normal" src="images/icones/confirm-normal.gif"/>
+		</control>
+		
+		<toolbar_separator/>
+		
+		<control id="tcClose" maskId="WSBuilderMask">
+			<navigation type="standard" name="closeWindow" params="windowId=wsToolbarCustomizer___0"/>
+		</control>
+		
+	</main_toolbar>
+	
+	<control id="tcTree" maskId="WSBuilderMask" position="10,10" height="345" width="570"/>
+	
+</view_content>

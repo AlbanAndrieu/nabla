@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<main_toolbar>
+		<control id="command" maskId="CommandSample"/>
+	</main_toolbar>
+	
+	<control id="stringTextArea" maskId="StringSample" gType="textArea" holder="expandableHeldWithToolbarAndStatusbar"/>	
+	
+	<statusbar>
+		
+			
+				
+				
+			
+		<control id="choice" maskId="ChoiceSample"><mappings><mapping value="65" img="images/icones/quote-normal.gif"/><mapping value="66" img="images/icones/quote-down.gif"/></mappings></control>
+		<control id="string" maskId="StringSample"/>
+	</statusbar>
+	
+</view_content>

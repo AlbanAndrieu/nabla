@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content> 
+	
+	<fieldline>
+		<control id="bcXMLPathType" maskId="WSBuilderMask">
+			<navigation name="wsbuilderUpdateUserGroupsOrUsers" type="standard" params=""/>
+		</control>
+	</fieldline>
+	
+	<fieldline height="25">
+		<control id="bhUserGroup" maskId="WSBuilderMask"/>
+		<control id="bhUser" maskId="WSBuilderMask"/>	
+	</fieldline>
+		
+	<fieldline height="10"/>
+	
+	<fieldline>
+		<control id="treeFolder" maskId="WSBuilderMask" width="300" height="300"/>
+	</fieldline>
+	
+	<fieldset legend="Create Folder" position="320,55" width="210" height="85">
+		<control id="bsFolderName" maskId="WSBuilderMask" position="15,30" fixedSizeLabel="false"/>
+		<control id="bcCreateFolder" maskId="WSBuilderMask" position="81,53" width="98"/>
+	</fieldset>
+	
+	<fieldset legend="Create Worksheet" position="320,165" width="210" height="190">
+		<control id="bcLayoutType" maskId="WSBuilderMask" position="34,30" fixedSizeLabel="false"/>
+		<control id="bdLayoutWidth" maskId="WSBuilderMask" position="39,53" fixedSizeLabel="false"/>
+		<control id="bdLayoutHeight" maskId="WSBuilderMask" position="36,76" fixedSizeLabel="false"/>
+		<control id="bcContainerType" maskId="WSBuilderMask" position="21,99" fixedSizeLabel="false"/>
+		<control id="bsWorksheetName" maskId="WSBuilderMask" position="21,135" fixedSizeLabel="false"/>
+		<control id="bcCreateWorksheet" maskId="WSBuilderMask" position="74,158" width="97"/>
+	</fieldset>
+	
+</view_content>

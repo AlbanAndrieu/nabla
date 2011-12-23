@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>	
+	<main_toolbar>
+		<control id="templateChoice" maskId="TemplateMask" sizeInput="150"/>
+		<control id="cmdStartStop" maskId="TemplateMask">
+			<img src="images/icones/save-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/save-unavailable.gif"/>
+		</control>
+		<control id="cmdDeleteTemplate" maskId="TemplateMask">
+			<img src="images/icones/delete-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/delete-unavailable.gif"/>
+		</control>	
+		<control id="cmdClear" maskId="TemplateMask">
+			<img src="images/icones/clear-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/clear-unavailable.gif"/>
+		</control>
+		<control id="cmdVerify" maskId="TemplateMask">
+			<img src="images/icones/confirm-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/confirm-unavailable.gif"/>
+		</control>		
+	</main_toolbar>
+	<fieldline/>	
+	<fieldline>
+		<control id="templateName" maskId="TemplateMask"/>
+		<control id="default" maskId="TemplateMask" gType="checkBox"/>		
+	</fieldline>
+	<fieldline/>
+	<control id="tableRecords" maskId="TemplateMask" width="690" height="150"/>
+	<control id="cmdMoveTop"  maskId="TemplateMask" position="700,80"/>
+	<control id="cmdMoveUp" maskId="TemplateMask" position="700,102"/>
+	<control id="cmdMoveDown" maskId="TemplateMask" position="700,124"/>
+	<control id="cmdMoveBottom" maskId="TemplateMask" position="700,146"/>
+	<control id="cmdDeleteRow" maskId="TemplateMask" position="700,192"/>
+	<fieldline/>
+	<separator width="790"/>
+	<control id="cmdSave" maskId="TemplateMask" position="470,250"/>		
+	<control id="cmdCancel" maskId="TemplateMask" position="570,250"/>	
+</view_content>

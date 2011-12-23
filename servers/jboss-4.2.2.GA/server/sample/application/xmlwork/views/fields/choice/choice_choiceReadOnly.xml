@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<control id="choiceWithScrollRO" maskId="ChoiceSample" gType="readOnly" fixHeight="65"/>	
+	<control id="choice" maskId="ChoiceSample" gType="readOnly"/>
+
+	<fieldline>
+		<control id="choiceRadioButtonRO" maskId="ChoiceSample" gType="readOnly"/>
+	</fieldline>
+	<fieldline>
+		<control id="choiceRadioButtonLongRO" maskId="ChoiceSample" gType="readOnly"/>	
+		<control id="choiceRadioButtonLineRO" maskId="ChoiceSample" gType="readOnly"/>
+	</fieldline>
+	<fieldline>
+		<control id="choiceRadioButtonColumnRO" maskId="ChoiceSample" gType="readOnly"/>
+		<control id="choiceRadioButtonBlocRO" maskId="ChoiceSample" gType="readOnly"/>
+	</fieldline>
+
+</view_content>

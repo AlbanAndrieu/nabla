@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<control id="string" maskId="StringSample" sizeLabel="60" sizeInput="300" sizeUnit="0"/>
+    <control id="string" maskId="StringSample" sizeLabel="30" sizeInput="45" sizeUnit="0"/>
+    <control id="double" maskId="DoubleSample" sizeUnit="20"/>
+    <control id="floatUnit" maskId="FloatSample" sizeUnit="50"/>
+    <control id="floatUnit" maskId="FloatSample"/>
+
+</view_content>

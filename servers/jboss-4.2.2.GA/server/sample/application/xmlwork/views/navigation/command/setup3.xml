@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <fieldset legend="Command Bar">
+
+        
+            <!--navigation type="standard" name="expand" params="expandableId=commandResult"/-->
+            
+        <control maskId="NavigationSample" id="expand"><navigation type="custom" name="com.rfs.sample.navigation.NavigationSample1"/></control>
+        
+            
+        <control maskId="NavigationSample" id="collapse"><navigation type="standard" name="collapse" params="expandableId=commandResult"/></control>
+        
+        <control maskId="NavigationSample" id="selectNode"></control>
+    </fieldset>
+
+    
+        
+    <control fixedSizeLabel="false" maskId="NavigationSample" id="newRef"><navigation type="standard" name="selectContainerContent" params="containerId=commandResult;;newHref=${field().value}"/></control>
+    <control maskId="NavigationSample" id="xmlViews" width="100" height="100"/>
+</view_content>

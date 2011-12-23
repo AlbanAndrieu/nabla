@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="tree" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="singleSelection" maskId="TreeSample"/>		
+		<toolbar_separator/>
+		<control id="multiSelection" maskId="TreeSample"/>		
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+							
+				<container:expandable id="fields.tree.tree.held" width="850" height="400" heldFieldId="treeHeld" heldFieldMaskId="TreeSample">
+					<view:view>
+						<view:body href="views/fields/treeHeld/treeHeld.xml"/>
+					</view:view>
+				</container:expandable>
+				
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+
+</worksheet>

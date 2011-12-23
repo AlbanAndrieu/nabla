@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+    	<control id="shortName" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="name" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="status" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="downloadKey" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="comment" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="portfolio" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="currency" maskId="FolderMask" gType="short"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="spotRiskFolder" maskId="FolderMask"/>
+  	</fieldline>
+	<fieldline>
+    	<control id="interbankFolder" maskId="FolderMask"/>
+  	</fieldline> 
+</view_content>

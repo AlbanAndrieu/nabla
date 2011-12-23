@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<control id="label" maskId="LabelSample"/>
+
+    <!-- The securityId is defined in class InMemorySecurityAcces -->
+    <!-- Use this custom security factory rather than the TradeAcces one for testing.-->
+    <toolbar>
+        <!-- Version TestKTP -> Write Only (this is the bug found by Patrick) -->
+        
+            
+            
+            
+        <control maskId="CreditLimitCoverage" id="cmdInsert_Coverage" securityId="WriteOnly" img="insert"><navigation type="custom" name="com.rfs.ktpplus.navigation.NavigationAccreditation"/></control>
+        <toolbar_separator/>
+
+    </toolbar>
+
+</view_content>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="bugmultinavigation" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <main_toolbar>
+
+        
+            
+            
+        <control id="command" maskId="CommandSample" label="Test multi navigation with XML"><navigation type="standard" name="selectWorkSheet" params="workBook=container;;workSheet=container.tabs"/><navigation type="standard" name="selectTab" params="tabsId=containers.tabs;;tabId=tab3"/></control>
+
+        
+        <control id="command2" maskId="CommandSample" label="Test multi navigation with LogicalViewNavigation"></control>
+
+
+    </main_toolbar>
+
+</worksheet>

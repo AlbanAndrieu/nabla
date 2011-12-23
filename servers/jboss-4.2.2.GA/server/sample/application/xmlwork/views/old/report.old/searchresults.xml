@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+
+	<!--navigation type="standard" name="closeWindow" params="windowId=fields.report.search.results"/-->	
+<control id="results" maskId="ReportSample" gType="pagined" holder="fields.report.search.results"></control>
+
+</view_content>

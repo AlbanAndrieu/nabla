@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    	
+    	<fieldline>
+  			<control id="logTextArea" cols="75" rows="26" maskId="XmlValidationMask" holder="fields.validation.LogConsole" gType="textAreaNoSync" sizeLabel=""/> 
+    	</fieldline>
+    	
+        <fieldline></fieldline>
+        
+        <fieldline>
+        <control id="buttonClear" maskId="XmlValidationMask"/>
+        </fieldline>
+        
+</view_content>

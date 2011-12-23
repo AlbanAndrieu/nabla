@@ -1,0 +1,134 @@
+<worksheet 
+	version="1.0" 
+	name="string" 
+	xmlns:container="http://www.rfs.com/fw30/container" 
+	xmlns:view="http://www.rfs.com/fw30/view" 
+	xmlns:layout="http://www.rfs.com/fw30/layout" 
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control gType="toolBarCommand" id="searchCommand" maskId="ReportSample">
+			<img src="images/uaf/Search-16-Normal.gif"/>
+			<img forstate="unavailable" src="images/uaf/Search-16-Unavailable.gif"/>	
+			<navigation type="standard" name="openWindow" params="windowId=fields.report.search.setup"/>
+		</control>
+		
+		<toolbar_separator/>
+
+		<control gType="toolBarCommand" id="recapCmd" maskId="ReportSample">
+			<img src="images/icones/recap_normal_16x16.gif"/>
+			<img forstate="unavailable" src="images/icones/recap_unavailable_16x16.gif"/>	
+			<navigation type="standard" name="openWindow" params="windowId=fields.report.recap"/>
+		</control>
+		
+		<toolbar_separator/>
+
+		<control gType="toolBarCommand" id="detailCmd" maskId="ReportSample">
+			<navigation type="standard" name="openWindow" params="windowId=fields.report.detail"/>
+		</control>
+		
+		<toolbar_separator/>
+
+		<control gType="toolBarCommand" id="subdetailCmd" maskId="ReportSample">
+			<navigation type="standard" name="openWindow" params="windowId=fields.report.subdetail"/>
+		</control>
+		
+		<toolbar_separator/>
+
+		<control gType="toolBarCommand" id="sortSetupCommand" maskId="ReportSample">
+			<img src="images/icones/Sort-16-Normal.gif"/>
+			<img forstate="unavailable" src="images/icones/Sort-16-Unavailable.gif"/>	
+			<navigation type="standard" name="openWindow" params="windowId=fields.report.sort.setup"/>
+		</control>
+		
+		<toolbar_separator/>
+		
+		<control gType="toolBarCommand" id="groupSetupCommand" maskId="ReportSample">
+			<img src="images/icones/hierarchy_normal_16x16.gif"/>
+			<img forstate="unavailable" src="images/icones/hierarchy_unavailable_16x16.gif"/>	
+			<navigation type="standard" name="openWindow" params="windowId=fields.report.group.setup"/>
+		</control>
+		
+		<toolbar_separator/>
+
+		<control gType="toolBarCommand" id="exportToExcelCommand" maskId="ReportSample">
+			<img src="images/uaf/Export-to-Excel-Normal.gif"/>
+			<img forstate="unavailable" src="images/uaf/Export-to-Excel-Unavailable.gif"/>	
+			<navigation type="javascript" name="reportExcelExportSelection('ReportSample');" />
+		</control>
+		
+		<toolbar_separator/>
+
+		<control gType="toolBarCommand" id="exportToPDFCommand" maskId="ReportSample">
+			<img src="images/icones/acrobat_normal_16x16.gif"/>
+			<img forstate="unavailable" src="images/icones/acrobat_unavailable_16x16.gif"/>	
+			<navigation type="javascript" name="reportPDFExportSelection('ReportSample');"/>
+		</control>
+		
+	</main_toolbar>
+
+	<container:transparent id="fields.report.display" width="1200" height="700">
+		<view:view>
+			<view:title></view:title>
+			<view:body href="views/fields/report/display.xml"/>
+		</view:view>
+	</container:transparent>
+					
+	<container:window id="fields.report.search.setup" width="510" height="200" closed="true" position="10,400">
+		<view:view>
+			<view:title>Report Search Setup</view:title>
+			<view:body href="views/fields/report/searchsetup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window width="335" height="190" position="100,100" id="fields.report.sort.setup" closed="true">
+		<view:view>
+			<view:title>Report Sort Setup</view:title>
+			<view:body href="views/fields/report/sortsetup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window width="335" height="190" position="100,100" id="fields.report.group.setup" closed="true">
+		<view:view>
+			<view:title>Report Group Setup</view:title>
+			<view:body href="views/fields/report/groupsetup.xml"/>
+		</view:view>
+	</container:window>
+	<!--
+
+-->	
+	<container:window 
+		heldFieldId="results"
+		heldFieldMaskId="ReportSample"
+		id="fields.report.search.results" 
+		closed="true" 
+		width="510" height="300" 
+		position="530,400">
+		<view:view>
+			<view:title>Report Search Results</view:title>
+			<view:body href="views/fields/report/searchresults.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="fields.report.recap" width="510" height="200" closed="true" position="10,45">
+		<view:view>
+			<view:title>Recap</view:title>
+			<view:body href="views/fields/report/recap.xml"/>
+		</view:view>
+	</container:window>
+					
+	<container:window id="fields.report.detail" width="510" height="320" closed="true" position="45,45">
+		<view:view>
+			<view:title>Details</view:title>
+			<view:body href="views/fields/report/detail.xml"/>
+		</view:view>
+	</container:window>
+					
+	<container:window id="fields.report.subdetail" width="510" height="320" closed="true" position="45,45">
+		<view:view>
+			<view:title>Sub-Details</view:title>
+			<view:body href="views/fields/report/subdetail.xml"/>
+		</view:view>
+	</container:window>
+
+</worksheet>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<!--control id="table" maskId="BugAsyncKGR" holder="bugasynckgr.main"/-->
+	<control id="treeTable" maskId="BugAsyncKGR" holder="bugasynckgr.main"/>
+</view_content>

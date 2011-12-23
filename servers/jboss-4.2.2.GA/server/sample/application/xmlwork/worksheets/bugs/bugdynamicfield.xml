@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="bugdynamicfield" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <main_toolbar>
+        
+            
+        <control id="addControl" maskId="BugDynamicField"><navigation type="standard" name="refreshWorkSheet" params=""/></control>
+        
+            
+        <control id="removeControl" maskId="BugDynamicField"><navigation type="standard" name="refreshWorkSheet" params=""/></control>
+    </main_toolbar>
+
+
+    <layout:table>
+        <layout:row>
+            <layout:cell>
+                <container:static id="test.fieldset" height="200" width="600">
+                    <view:view>
+                        <view:title>New field area</view:title>
+                        <view:body href="views/bugs/bugdynamicfield/bugDynField.xml"/>
+                    </view:view>
+                </container:static>
+            </layout:cell>
+        </layout:row>
+    </layout:table>
+
+</worksheet>

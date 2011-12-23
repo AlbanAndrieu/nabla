@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<container:transparent id="labelXML" height="400">
+		<view:body parse="html" href="xmlView.jsp?xmlView=views/fields/label/label.xml"/>
+	</container:transparent>
+	
+	<html>
+		<p style="font-size: 10pt;">
+			
+		</p>
+	</html>
+	
+</view_content>

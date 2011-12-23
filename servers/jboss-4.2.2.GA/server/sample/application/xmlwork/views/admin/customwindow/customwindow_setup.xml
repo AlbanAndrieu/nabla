@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view">
+	
+<control id="folderTree" maskId="customFieldSet" width="340" height="290" position="5,5"/>
+<control id="fieldSetTable" maskId="customFieldSet" width="340" height="290" position="5,300"/>
+<control id="fieldTable" maskId="customFieldSet" width="740" height="290" position="350,5"/>	
+<control id="accessRightTable" maskId="customFieldSet" width="365" height="290" position="350,300"/>
+<control id="mappingSummaryTable" maskId="customFieldSet" width="365" height="290" position="725,300"/>
+
+</view_content>

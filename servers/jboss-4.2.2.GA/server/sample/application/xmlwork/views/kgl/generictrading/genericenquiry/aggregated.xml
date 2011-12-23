@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+         <control maskId="Generic Enquiry" gType="readonly" id="EnquiryMask@~EnquiryResults@~MinAvailable"/>
+         
+ 			
+         <control maskId="KGLGenericSearch" id="showCharts"><navigation type="standard" name="openWindow" params="windowId=chartsWindow"/></control>
+         <control maskId="Generic Enquiry" id="EnquiryMask@~EnquiryResults@~Clear"/>
+	</fieldline>
+	
+	<control maskId="Generic Enquiry" gType="simple" id="EnquiryMask@~EnquiryResults@~CreditSynth" width="700" height="180"/>
+	<control maskId="Generic Enquiry" gType="simple" id="EnquiryMask@~EnquiryResults@~SettlementSynth" width="700" height="180"/>
+</view_content>

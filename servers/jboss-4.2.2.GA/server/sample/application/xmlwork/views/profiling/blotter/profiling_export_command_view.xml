@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="viewExport" maskId="ProfilingExportBlotterMask">
+		<navigation type="standard" name="openWindow" params="windowId=viewExportPopup"/>
+	</control>	
+</view_content>

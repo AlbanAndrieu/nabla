@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control id="NbColumns" maskId="AsyncStressTableSample"/>
+		<control id="NbRows" maskId="AsyncStressTableSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="NbValuesUpdates" maskId="AsyncStressTableSample"/>
+		<control id="ElapseValuesFirstUpdates" maskId="AsyncStressTableSample"/>
+		<control id="ElapseValuesUpdates" maskId="AsyncStressTableSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="NbColorsUpdates" maskId="AsyncStressTableSample"/>
+		<control id="ElapseColorsFirstUpdates" maskId="AsyncStressTableSample"/>
+		<control id="ElapseColorsUpdates" maskId="AsyncStressTableSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="PercentStringCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentNumericCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentDateCell" maskId="AsyncStressTableSample"/>
+    	<control id="PercentBooleanCell" maskId="AsyncStressTableSample"/>
+    	<control id="PercentPercentCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentPositivePercentCell" maskId="AsyncStressTableSample"/>	
+		<control id="PercentImgCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentLinkCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentChoiceCell" maskId="AsyncStressTableSample"/>	
+		<control id="PercentHelpGroupCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentCustomCell" maskId="AsyncStressTableSample"/>
+		<control id="PercentChoiceCommonValueCell" maskId="AsyncStressTableSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="Table" maskId="AsyncStressTableSample" width="800" height="500"/>
+	</fieldline>
+</view_content>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<control id="parameterMappingFieldSetId" maskId="newCustomEventHandler"/>
+	<control id="parameterMappingFieldId" maskId="newCustomEventHandler"/>
+	
+		
+	<control id="parameterMappingOK" maskId="newCustomEventHandler" width="70" position="220,65"><navigation type="standard" name="closeWindow" params="windowId=customevent.new.storeprocedureparameter.setup"/></control>		
+	
+		
+	<control id="parameterMappingCancel" maskId="newCustomEventHandler" width="70" position="295,65"><navigation type="standard" name="closeWindow" params="windowId=customevent.new.storeprocedureparameter.setup"/></control>
+	
+</view_content>

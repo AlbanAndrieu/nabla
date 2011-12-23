@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="string" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view"
+	xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="enable" maskId="StringSample" accesskey="e"/>
+		<toolbar_separator/>
+		<control id="visible" maskId="StringSample" accesskey="s"/>
+		<toolbar_separator/>
+		<control id="visible2" maskId="StringSample" accesskey="g" title="Alt+g" img="currency"/>
+		<toolbar_separator/>
+		<control id="templateAndStringTemplateSearch" maskId="TemplateMask" sizeInput="150"/>
+		<control id="templateAndStringTemplateEdit" maskId="TemplateMask"/>
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<layout:table>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string" width="600" height="60">
+								<view:view>
+									<view:title>String</view:title>
+									<view:body href="views/fields/string/string.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.readOnly" width="600" height="60">
+								<view:view>
+									<view:title>String (readOnly)</view:title>
+									<view:body href="views/fields/string/string_readOnly.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.readOnlyNoBorder" width="600" height="60">
+								<view:view>
+									<view:title>String (readOnlyNoBorder)</view:title>
+									<view:body href="views/fields/string/string_readOnlyNoBorder.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.header" width="600" height="60">
+								<view:view>
+									<view:title>String (header)</view:title>
+									<view:body href="views/fields/string/string_header.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.long" width="600" height="60">
+								<view:view>
+									<view:title>String (long)</view:title>
+									<view:body href="views/fields/string/string_long.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.password" width="600" height="60">
+								<view:view>
+									<view:title>String (password)</view:title>
+									<view:body href="views/fields/string/string_password.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.textArea" width="600" height="250">
+								<view:view>
+									<view:title>String (textArea)</view:title>
+									<view:body href="views/fields/string/string_textArea.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.string.string.tooltip" width="600" height="90">
+								<view:view>
+									<view:title>String with tooltip</view:title>
+									<view:body href="views/fields/string/string_tooltip.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+				</layout:table>
+			</layout:cell>
+			<layout:cell>
+				<container:tabs id="tabs.xml" height="450" width="600" selected="tabs.xml.tab1">
+					<container:tab id="tabs.xml.tab1">
+						<view:title>default</view:title>
+						<view:body href="views/fields/string/stringComment.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab2">
+						<view:title>readOnly</view:title>
+						<view:body href="views/fields/string/stringComment_readOnly.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab3">
+						<view:title>readOnlyNoBorder</view:title>
+						<view:body href="views/fields/string/stringComment_readOnlyNoBorder.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab4">
+						<view:title>header</view:title>
+						<view:body href="views/fields/string/stringComment_header.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab5">
+						<view:title>long</view:title>
+						<view:body href="views/fields/string/stringComment_long.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab6">
+						<view:title>password</view:title>
+						<view:body href="views/fields/string/stringComment_password.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab7">
+						<view:title>textArea</view:title>
+						<view:body href="views/fields/string/stringComment_textArea.xml"/>
+					</container:tab>
+				</container:tabs>				
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+				
+</worksheet>

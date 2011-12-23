@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldset position="5,5">
+	
+		
+			
+		
+	<control id="table6" maskId="BugTableContextMenu" width="140" height="140" position="5,5"><group type="context_menu"><control id="command6" maskId="BugTableContextMenu" gType="menuToolBarCommand"/></group></control>
+	</fieldset>
+	
+</view_content>

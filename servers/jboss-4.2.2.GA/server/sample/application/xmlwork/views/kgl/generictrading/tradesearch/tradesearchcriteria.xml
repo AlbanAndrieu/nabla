@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~ArchivedSearch" gType="checkBox"/>
+	</fieldline>
+	
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~SourceSearch"/>
+	</fieldline>
+	
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~UserSearch"/>
+	</fieldline>
+	
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~DealTableSearch"/>
+	</fieldline>
+	
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~DealStamp"/>
+	</fieldline>
+	
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~CptySearch"/>
+	</fieldline>
+
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~FolderSearch"/>
+	</fieldline>
+
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~InstrumentSearch"/>
+	</fieldline>
+
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~CurrencySearch"/>
+	</fieldline>
+	
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~BeginDate"/>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~EndDate"/>
+	</fieldline>
+
+	<fieldline>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~BeginMaturityDate"/>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~EndMaturityDate"/>
+	</fieldline>
+
+	<fieldset noborder="true" position="300,255" width="190" height="35">
+		
+ 			
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~SearchCommand" accesskey="S" position="5,5"><navigation type="standard" name="selectTab" params="tabsId=trade.search.tabs;;tabId=search.result"/></control>
+		<control maskId="Generic Deal" id="DealMask@~DealSearch@~Clear" accesskey="C" position="95,5"/>
+	</fieldset>
+	
+	
+	<control maskId="Generic Deal" id="DealMask@~DealSearch@~RiskKind" width="150" position="108,230"/>
+
+
+</view_content>

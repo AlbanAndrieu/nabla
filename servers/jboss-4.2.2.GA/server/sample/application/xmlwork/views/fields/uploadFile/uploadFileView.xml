@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ (c)Copyright Reuters 2006. All rights reserved.
+  -->
+<view_content>
+
+    <!-- the id uploadFileTest is defined in UploadFileSampleMask, a java ejb mask -->
+    <control id="uploadFileTest" maskId="UploadFileSample" label="Upload a report"/>
+    <control id="uploadFileImage" maskId="UploadFileSample" label="Upload a file" img="simulate"></control>
+    <control id="uploadFileLink" maskId="UploadFileSample" label="Upload a file (Link)" gType="link" img="simulate"></control>
+    
+</view_content>

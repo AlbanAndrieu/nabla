@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="table" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+							
+				<container:expandable id="tableTest" width="550" height="190">
+					<view:view>
+						<view:body href="views/bugs/bug828/tableTest.xml"/>
+					</view:view>
+				</container:expandable>
+				<control id="asyncCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="insertCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="removeCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="setValueCmd" maskId="BugTableAsyncTranslateSample"/>
+			</layout:cell>			
+		</layout:row>
+		<layout:row>
+			<layout:cell>
+				<container:expandable id="treeTableTest" width="550" height="190">
+					<view:view>
+						<view:body href="views/bugs/bug828/treeTableTest.xml"/>
+					</view:view>
+				</container:expandable>
+				<control id="asyncTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="resetTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="cellTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="nodeTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="columnTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="setValueTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="insertTTCmd" maskId="BugTableAsyncTranslateSample"/>
+				<control id="removeTTCmd" maskId="BugTableAsyncTranslateSample"/>
+			</layout:cell>			
+		</layout:row>
+	</layout:table>
+	
+	
+</worksheet>

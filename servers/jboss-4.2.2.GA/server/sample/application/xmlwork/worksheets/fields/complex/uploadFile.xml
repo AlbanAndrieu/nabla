@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ (c)Copyright Reuters 2006. All rights reserved.
+  -->
+<worksheet version="1.0" name="table" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <container:transparent id="fields.uploadFile" width="850" height="650">
+        <view:view>
+            <view:body href="views/fields/uploadFile/uploadFileView.xml"/>
+        </view:view>
+    </container:transparent>
+
+</worksheet>

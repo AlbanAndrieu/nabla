@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+<control maskId="SVGSample" id="svg" position="0,0" width="1000" height="300"/>
+<!--control maskId="SVGSample" id="taskValue" position="5,305" gType="readOnly"/-->
+</view_content>

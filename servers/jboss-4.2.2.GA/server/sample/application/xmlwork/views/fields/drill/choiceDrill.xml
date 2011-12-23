@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<fieldline>
+    <control id="choiceCommand" maskId="DrillThruSample" commandLabel="true"/>
+	</fieldline>
+	<fieldline>
+	<control id="choiceRadioButtonCommand" maskId="DrillThruSample" commandLabel="true" gType="radioButton"/>
+	</fieldline>
+	<fieldline>
+	<control id="choiceRadioButtonLineCommand" maskId="DrillThruSample" commandLabel="true" gType="radioButtonLine"/>
+	</fieldline>	
+</view_content>

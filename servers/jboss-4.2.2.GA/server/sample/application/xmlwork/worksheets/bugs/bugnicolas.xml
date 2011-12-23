@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="bugmultinavigation" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <main_toolbar>
+        <control id="command" maskId="NicolasSample" label="Action1"/>
+    </main_toolbar>
+    <layout:table>
+            <layout:row>
+                <layout:cell>
+
+                    <container:expandable id="bugs.nicfieldset" height="800" width="600">
+                        <view:view>
+                            <view:title>Nicolas test</view:title>
+                            <view:body href="views/bugs/bugnic/nicolas1.xml"/>
+                        </view:view>
+                    </container:expandable>
+
+                </layout:cell>
+            </layout:row>
+        </layout:table>
+
+</worksheet>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+    <html>
+    	<b style="color:red">This is a container type window</b>
+    	<p>
+    		You can :<br/>
+    		- Move it by moving the wondow title bar.<br/>
+    		- Resize it by moving the bottom corner on the right side.<br/>
+    		- Close it by clicking on close button <br/>
+    		- Maximize it by double cliking on the titlebar <br/>
+    		<br/>
+    	</p>
+    	<p>
+    		If your Profiling module is on, you can save the window position. 
+    		Open the context menu by clicking on the mouse right button and you
+    		will see the persitence features.
+    	</p>
+    	<p>
+    		
+    	</p>
+	</html>
+</view_content>

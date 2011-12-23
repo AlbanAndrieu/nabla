@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="treeSavePath" maskId="StyleCustomizerMask" position="10,10" width="400" height="230"/>    	
+	<control gType="readOnly" id="strSavePath" maskId="StyleCustomizerMask" position="10,240" width="400"/>    
+	<control gType="long" id="strSaveFilenamePath" maskId="StyleCustomizerMask" position="10,270" fixedSizeLabel="false"/>
+	<control id="btSaveOk" maskId="StyleCustomizerMask" position="115,305"/>
+	<control id="btSaveCancel" maskId="StyleCustomizerMask" position="215,305">
+		<navigation type="standard" name="closeWindow" params="windowId=btSaveAsPopup"/>
+	</control>
+</view_content>

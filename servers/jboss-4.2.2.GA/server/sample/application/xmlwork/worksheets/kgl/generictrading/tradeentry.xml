@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="Trade Entry Worksheet" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+	
+	<!--worksheetDictionary name="GenericEnquiry" priority="true"/-->
+
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<container:leftnavigation id="leftNav" height="300" width="230">
+					<view:view>
+						<view:title>Test Left Navigation</view:title>
+						<view:body href="views/kgl/generictrading/LeftNavigation.xml"/>
+					</view:view>
+				</container:leftnavigation>
+				<container:expandable id="Messages" height="200" width="230" collapsed="true">
+					<view:view>
+						<view:title>Messages</view:title>
+						<view:body href="views/kgl/generictrading/messages.xml"/>
+					</view:view>
+				</container:expandable>
+				<container:expandable id="Search" height="200" width="230" collapsed="true">
+					<view:view>
+						<view:title>Search</view:title>
+						<view:body href="views/kgl/generictrading/genericsearch/search_Folder.xml"/>
+					</view:view>
+				</container:expandable>
+			</layout:cell>
+			<layout:cell>
+				<container:header id="TradeEntryHeader" height="35" width="1250">
+					<view:view>
+						<view:title>Trade Entry - Header</view:title>
+						
+					</view:view>
+				</container:header>
+				<!--
+				<container:transparent id="TradeEntryHeader" height="80" width="750">
+					<view:view>
+						<view:body href="views/kgl/generictrading/tradeentry/header.xml"/>
+					</view:view>
+				</container:transparent>
+				-->
+				<container:tabs id="TE1" height="400" width="750" selected="properties">
+					<container:tab id="properties" height="300" width="750"> 
+						<view:view>
+							<view:title>Properties</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/properties.xml"/>
+						</view:view>
+					</container:tab>
+					<container:tab id="CL1"> 
+						<view:view>
+							<view:title>Credit Leg 1</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/creditleg1.xml"/>
+						</view:view>
+					</container:tab>
+					<container:tab id="CL2"> 
+						<view:view>
+							<view:title>Credit Leg 2</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/creditleg2.xml"/>
+						</view:view>
+					</container:tab>
+					<container:tab id="CLN"> 
+						<view:view>
+							<view:title>Credit Leg #</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/creditleglnew.xml"/>
+						</view:view>
+					</container:tab>
+					<container:tab id="SL1"> 
+						<view:view>
+							<view:title>Settlement Leg 1</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/settlementleg1.xml"/>
+						</view:view>
+					</container:tab>
+					<container:tab id="SL2"> 
+						<view:view>
+							<view:title>Settlement Leg 2</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/settlementleg2.xml"/>
+						</view:view>
+					</container:tab>
+					<container:tab id="SLN"> 
+						<view:view>
+							<view:title>Settlement Leg #</view:title>
+							<view:body href="views/kgl/generictrading/tradeentry/settlementlegnew.xml"/>
+						</view:view>
+					</container:tab>
+				</container:tabs>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+	
+	<container:window id="search.result" width="760" height="310" position="100,100" closed="true">
+		<view:view>
+			<view:title>Search Result</view:title>
+			<view:body href="views/kgl/generictrading/tradesearch/tradesearchresult.xml"/>
+		</view:view>
+	</container:window>
+	
+</worksheet>

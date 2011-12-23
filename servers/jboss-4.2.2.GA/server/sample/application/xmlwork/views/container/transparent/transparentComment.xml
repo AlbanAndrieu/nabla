@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<container:transparent id="transparentXML" height="400">
+		<view:body parse="html" href="xmlView.jsp?xmlView=worksheets/container/transparent.xml&amp;blockId=sample"/>
+	</container:transparent>
+	
+	<html>
+		<p style="font-size: 10pt;">
+			<b style="color:red">This is a container type Transparent</b>
+		</p>
+	</html>
+	<fieldline><control id="showTransparentContainer" maskId="CommandSample"/></fieldline>
+	<fieldline/>
+</view_content>

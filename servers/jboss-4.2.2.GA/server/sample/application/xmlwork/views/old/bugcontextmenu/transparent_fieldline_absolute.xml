@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+	
+		
+			
+		
+	<control id="table4" maskId="BugTableContextMenu" width="140" height="140" position="5,5"><group type="context_menu"><control id="command4" maskId="BugTableContextMenu" gType="menuToolBarCommand"/></group></control>
+	</fieldline>
+	
+</view_content>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+
+	
+	
+<control id="accessRightNew" maskId="customFieldSet" gType="toolBarCommand" img="new"><navigation type="standard" name="openWindow" params="windowId=customwindow.accessright.setup"/></control>
+
+
+	
+	
+<control id="accessRightEdit" maskId="customFieldSet" gType="toolBarCommand" img="edit"><navigation type="standard" name="openWindow" params="windowId=customwindow.accessright.setup"/></control>
+
+
+		
+<control id="accessRightDelete" maskId="customFieldSet" gType="toolBarCommand" img="delete"></control>
+	
+</view_content>

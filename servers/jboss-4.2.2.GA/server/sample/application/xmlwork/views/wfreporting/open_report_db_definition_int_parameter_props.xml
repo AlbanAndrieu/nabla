@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control id="ParameterName" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="ParameterMandatory" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="ParameterLength" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="ConfirmParameterProps" maskId="OpenReportDBDefinitionMask">
+			<navigation name="closeWindow" params="windowId=OpenReportDBDefinitionIntParameterPropsWindow" type="standard"/>
+		</control>
+		<control id="CancelParameterProps" maskId="OpenReportDBDefinitionMask">
+			<navigation name="closeWindow" params="windowId=OpenReportDBDefinitionIntParameterPropsWindow" type="standard"/>
+		</control>
+	</fieldline>
+</view_content>

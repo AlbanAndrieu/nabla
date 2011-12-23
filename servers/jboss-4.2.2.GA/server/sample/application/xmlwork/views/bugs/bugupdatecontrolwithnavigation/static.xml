@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<main_toolbar>
+		<control id="updateButton" maskId="BugUpdateControlWithNavigation" accesskey="B"/>
+		<control id="updateChoice" maskId="BugUpdateControlWithNavigation" accesskey="C"/>
+		
+			
+		<control id="closeWindow" maskId="BugUpdateControlWithNavigation"><navigation type="standard" name="closeWindow" params="windowId=bugupdatecontrolwithnavigation.window"/></control>
+	</main_toolbar>
+	
+	
+		
+	<control id="button" maskId="BugUpdateControlWithNavigation"><navigation type="standard" name="openWindow" params="windowId=bugupdatecontrolwithnavigation.window"/></control>
+	
+	
+		
+	<control id="choice" maskId="BugUpdateControlWithNavigation"><navigation type="standard" name="closeWindow" params="windowId=bugupdatecontrolwithnavigation.window"/></control>
+</view_content>

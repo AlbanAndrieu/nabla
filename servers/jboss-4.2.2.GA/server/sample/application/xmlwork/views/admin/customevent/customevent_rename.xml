@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<control id="name" maskId="renameWindow" gType="long" fixedSizeLabel="false" position="10,10"/>
+	
+	
+				
+	<control id="ok" maskId="renameWindow" position="150, 45"><navigation type="standard" name="closeWindow" params="windowId=customevent.rename"/></control>
+	
+	
+				
+	<control id="cancel" maskId="renameWindow" position="250, 45"><navigation type="standard" name="closeWindow" params="windowId=customevent.rename"/></control>
+	
+</view_content>

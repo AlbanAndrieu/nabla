@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<container:transparent id="export.1" width="100"/>
+			</layout:cell>
+			<layout:cell>
+				<container:transparent id="export.2" width="125">
+					<view:view>
+						<view:body href="views/profiling/blotter/profiling_export_command_create.xml"/>
+					</view:view>
+				</container:transparent>
+			</layout:cell>
+			<layout:cell>
+				<container:transparent id="export.3" width="125">
+					<view:view>
+						<view:body href="views/profiling/blotter/profiling_export_command_view.xml"/>
+					</view:view>
+				</container:transparent>
+			</layout:cell>
+			<layout:cell>
+				<container:transparent id="export.4" width="125">
+					<view:view>
+						<view:body href="views/profiling/blotter/profiling_export_command_save.xml"/>
+					</view:view>
+				</container:transparent>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+</view_content>

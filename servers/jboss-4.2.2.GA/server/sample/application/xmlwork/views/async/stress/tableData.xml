@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control table3="true" id="Table" maskId="AsyncStressTableSample" width="1000" height="500"/>
+	</fieldline>
+</view_content>

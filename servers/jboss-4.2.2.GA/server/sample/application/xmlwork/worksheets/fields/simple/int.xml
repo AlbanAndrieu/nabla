@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="int" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view"
+	xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="enable" maskId="IntSample"/>
+		<toolbar_separator/>
+		<control id="visible" maskId="IntSample"/>
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<layout:table>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int" width="600" height="60">
+								<view:view>
+									<view:title>Int</view:title>
+									<view:body href="views/fields/int/int.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.readOnly" width="600" height="60">
+								<view:view>
+									<view:title>Int (readOnly)</view:title>
+									<view:body href="views/fields/int/int_readOnly.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.readOnlyNoBorder" width="600" height="60">
+								<view:view>
+									<view:title>Int (readOnlyNoBorder)</view:title>
+									<view:body href="views/fields/int/int_readOnlyNoBorder.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.header" width="600" height="60">
+								<view:view>
+									<view:title>Int (header)</view:title>
+									<view:body href="views/fields/int/int_header.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.unit" width="600" height="60">
+								<view:view>
+									<view:title>Unit</view:title>
+									<view:body href="views/fields/int/int_unit.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.spinner" width="600" height="60">
+								<view:view>
+									<view:title>Spinner</view:title>
+									<view:body href="views/fields/int/int_spinner.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.longunit" width="600" height="60">
+								<view:view>
+									<view:title>Long Unit</view:title>
+									<view:body href="views/fields/int/int_longUnit.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.leftbound" width="600" height="60">
+								<view:view>
+									<view:title>Left Bound</view:title>
+									<view:body href="views/fields/int/int_leftBound.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.rightbound" width="600" height="60">
+								<view:view>
+									<view:title>Right Bound</view:title>
+									<view:body href="views/fields/int/int_rightBound.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.int.int.leftandrightbound" width="600" height="60">
+								<view:view>
+									<view:title>Left and Right Bounds</view:title>
+									<view:body href="views/fields/int/int_leftAndRightBound.xml"/>
+								</view:view>
+							</container:static>							
+						</layout:cell>
+					</layout:row>
+				</layout:table>
+			</layout:cell>
+			<layout:cell>				
+				<container:tabs id="tabs.xml" height="450" width="600" selected="tabs.xml.tab1">
+					<container:tab id="tabs.xml.tab1">
+						<view:title>default</view:title>
+						<view:body href="views/fields/int/intComment.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab2">
+						<view:title>readOnly</view:title>
+						<view:body href="views/fields/int/intComment_readOnly.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab3">
+						<view:title>readOnlyNoBorder</view:title>
+						<view:body href="views/fields/int/intComment_readOnlyNoBorder.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab4">
+						<view:title>header</view:title>
+						<view:body href="views/fields/int/intComment_header.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab5">
+						<view:title>unit</view:title>
+						<view:body href="views/fields/int/intComment_unit.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab6">
+						<view:title>spinner</view:title>
+						<view:body href="views/fields/int/intComment_spinner.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab7">
+						<view:title>longUnit</view:title>
+						<view:body href="views/fields/int/intComment_longUnit.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab8">
+						<view:title>leftBound</view:title>
+						<view:body href="views/fields/int/intComment_leftBound.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab9">
+						<view:title>rightBound</view:title>
+						<view:body href="views/fields/int/intComment_rightBound.xml"/>
+					</container:tab>
+					<container:tab id="tabs.xml.tab10">
+						<view:title>leftAndRightBound</view:title>
+						<view:body href="views/fields/int/intComment_leftAndRightBound.xml"/>
+					</container:tab>					
+				</container:tabs>				
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+	
+</worksheet>

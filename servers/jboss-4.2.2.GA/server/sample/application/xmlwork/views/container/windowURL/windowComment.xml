@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<container:transparent id="windowXML" height="400">
+		<view:body parse="html" href="xmlView.jsp?xmlView=worksheets/container/windowURL.xml&amp;blockId=sample"/>
+	</container:transparent>
+	
+	<html>
+		<p style="font-size: 10pt;">
+			<b style="color:red">This is a container type Window With an URL link</b>
+		</p>
+		<p style="font-size: 10pt;">
+			You can :<br/>
+			- Move it by moving the window title bar<br/>
+    		- Resize it by moving the bottom corner on the right side<br/>
+    		- Maximize it by double clicking on the title bar<br/>
+			- Display a context menu by right-clicking on the title bar<br/>
+			- Pop-out or Maximize it in the context menu<br/>
+		</p>
+		<p style="font-size: 10pt;">
+			If your Profiling module is on, you can save the window position. 
+    		Open the context menu by clicking on the mouse right button and you
+    		will see the persitence features.
+    	</p>
+	</html>
+	
+</view_content>

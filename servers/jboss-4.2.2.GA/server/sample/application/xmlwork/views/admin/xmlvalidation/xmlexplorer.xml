@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	  <fieldline>
+			<control id="treeFile" maskId="XmlValidationMask" width="180" height="180"/>
+	  </fieldline>
+	
+</view_content>

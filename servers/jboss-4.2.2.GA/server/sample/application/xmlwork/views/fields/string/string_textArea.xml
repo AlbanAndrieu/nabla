@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldline>	
+		<control id="stringTextArea" maskId="StringSample" gType="textArea" rows="5" cols="25"/>
+	</fieldline>
+	<fieldline>
+		<fieldline>
+			<control id="textAreaNoSync" maskId="StringSample" gType="textAreaNoSync" rows="5" cols="25"/>
+		</fieldline>
+		<fieldline>
+			<control id="valueToInsert" maskId="StringSample"/>
+			<control id="insertValue" maskId="StringSample"/>	
+			<control id="resetValue" maskId="StringSample"/>	
+		</fieldline>
+	</fieldline>
+</view_content>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<main_toolbar id="asyncToolbar">
+		<control id="start" maskId="AsyncBlotterSampleMask"/>
+		<toolbar_separator/>
+		<control id="stop" maskId="AsyncBlotterSampleMask"/>
+	</main_toolbar>
+	
+	<fieldline>
+		<control id="refreshDelay" maskId="AsyncBlotterSampleMask"/>
+	</fieldline>		
+	<fieldline>
+		<control id="nbCellUpdatedByRefresh" maskId="AsyncBlotterSampleMask"/>
+	</fieldline>		
+	
+	<fieldline>
+		<control id="blotter" maskId="AsyncBlotterSampleMask" width="800" height="600" gType="pagined"/>
+	</fieldline>		
+	
+</view_content>

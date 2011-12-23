@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+    <html>
+	   <head>
+        <script language="javascript">
+            showLineNumbers();
+        </script>
+	    </head>
+		<body onLoad="showLineNumbers();">
+		</body>
+    </html>
+
+    <fieldline>
+        <control id="comboBoxReparing" maskId="XmlValidationMask" gType="comboBox" sizeInput="150"/>
+        <control id="buttonReValidate" maskId="XmlValidationMask"/>
+        <control id="buttonRepaired" maskId="XmlValidationMask"/>
+    </fieldline>
+
+
+    <fieldline>
+        <control id="xmlTextArea" gType="editor" sizeLabel="" cols="110" rows="24" maskId="XmlValidationMask"/>
+    </fieldline>
+
+    <fieldline></fieldline>
+
+    <fieldline>
+
+        
+            
+        <control id="buttonLoad" maskId="XmlValidationMask"><navigation type="javascript" name="window.location.reload()" params=""/></control>
+
+        <control id="buttonSave" maskId="XmlValidationMask"/>
+
+    </fieldline>
+
+</view_content>

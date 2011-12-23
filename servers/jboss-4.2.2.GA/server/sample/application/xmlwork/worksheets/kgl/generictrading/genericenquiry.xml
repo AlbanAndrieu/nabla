@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="Trade Entry Worksheet" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<i18nDictionary name="GenericEnquiry" priority="true"/>
+
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<container:leftmenu id="leftNav" height="300" width="230">
+					<view:title>Test Left Navigation</view:title>
+					<view:body href="views/kgl/generictrading/leftnavigation.xml"/>
+				</container:leftmenu>
+				<container:expandable id="Messages" height="200" width="230" collapsed="true">
+					<view:title>Messages</view:title>
+					<view:body href="views/kgl/generictrading/messages.xml"/>
+				</container:expandable>
+				<container:expandable id="trade.search" height="200" width="230" collapsed="true">
+					<view:title>Search</view:title>
+					<view:body href="views/kgl/generictrading/genericsearch/search_Folder.xml"/>
+				</container:expandable>
+			</layout:cell>
+			<layout:cell>
+				<container:tabs id="tabs1" selected="coverage" height="180" width="800">
+					<container:tab id="coverage">
+						<view:title>Coverage</view:title>
+						<view:body href="views/kgl/generictrading/genericenquiry/coverage.xml"/>
+					</container:tab>
+					<container:tab id="reservation">
+						<view:title>Reservation</view:title>
+						<view:body href="views/kgl/generictrading/genericenquiry/reservation.xml"/>
+					</container:tab>
+					<container:tab id="set-up">
+						<view:title>Set-up</view:title>
+						<view:body href="views/kgl/generictrading/genericenquiry/set-up.xml"/>
+					</container:tab>
+				</container:tabs>
+				
+				
+				<container:tabs id="tabs2" selected="aggregated" height="300" width="800">
+					<container:tab id="aggregated">
+						<view:title>Aggregated</view:title>
+						<view:body href="views/kgl/generictrading/genericenquiry/aggregated.xml"/>
+					</container:tab>
+					<container:tab id="credit">
+						<view:title>Credit Details</view:title>
+						<view:body href="views/kgl/generictrading/genericenquiry/credit.xml"/>
+					</container:tab>
+					<container:tab id="settlement">
+						<view:title>Settlement Details</view:title>
+						<view:body href="views/kgl/generictrading/genericenquiry/settlement.xml"/>
+					</container:tab>
+				</container:tabs>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+	
+	<container:window id="chartsWindow" width="608" height="192" position="100,100" closed="true">
+		<view:title>Charts</view:title>
+		<view:body href="views/kgl/generictrading/genericenquiry/charts.xml"/>
+	</container:window>
+
+	<container:window id="CreditDrillDownWindow" width="700" height="250" position="100,100" closed="true">
+		<view:title>Credit Drill-down</view:title>
+		<view:body href="views/kgl/generictrading/genericenquiry/creditdrilldown.xml"/>
+	</container:window>
+	
+	<container:window id="SettlementDrillDownWindow" width="700" height="250" position="100,100" closed="true">
+		<view:title>Settlement Drill-down</view:title>
+		<view:body href="views/kgl/generictrading/genericenquiry/settlementdrilldown.xml"/>
+	</container:window>
+	
+	<container:window id="search.result" width="760" height="310" position="100,100" closed="true">
+		<view:title>Search Result</view:title>
+		<view:body href="views/kgl/generictrading/tradesearch/tradesearchresult.xml"/>
+	</container:window>
+	
+</worksheet>

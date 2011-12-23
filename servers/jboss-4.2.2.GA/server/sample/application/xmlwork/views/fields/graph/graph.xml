@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldline>
+		<control id="graph" maskId="GraphSample" width="650" height="450"/>
+	</fieldline>
+	
+</view_content>

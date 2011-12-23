@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldset legend="Navigation action" width="470" height="300">
+  		<fieldline></fieldline>
+ 		<fieldline>
+    		<control id="treeDownloadFile" maskId="DownloadFileMask"/>
+    	</fieldline>
+    	<fieldline>
+    		<control id="choiceBehaviour" maskId="DownloadFileMask"/>
+    	</fieldline>
+  		<fieldline></fieldline>
+    	<fieldline>
+    		<control id="downloadFile" maskId="DownloadFileMask" autoAlignInForm="true"/>
+  		</fieldline>
+  	</fieldset>
+  	<fieldline></fieldline>
+  	<fieldset legend="Table with download links" width="470" height="310">
+  		<fieldline></fieldline>
+	  	<fieldline>
+	    	<control id="table" maskId="DownloadFileMask" width="450" height="300"/>
+	  	</fieldline>
+	</fieldset>
+</view_content>

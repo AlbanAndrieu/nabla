@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="None" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+	
+	<layout:table>
+		
+		<layout:row>
+			<layout:cell>
+				
+				<xml_sample id="sample" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+					<container:none id="containers.none" height="400" width="600">
+						<view:view>
+							<view:body href="views/container/commonFields.xml"/>
+						</view:view>
+					</container:none>
+				</xml_sample>
+								
+			</layout:cell>
+			<layout:cell>
+				
+				<container:none id="xml" height="600" width="625">
+					<view:body href="views/container/none/noneComment.xml"/>											
+				</container:none>
+				
+			</layout:cell>
+		</layout:row>
+		
+		<!--  layout:row>
+			<layout:cell>
+				
+				<xml_sample id="sample2" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout">
+					<container:none id="containers.none2" width="600">
+						<view:view>
+							<view:title>BasicString in container type none (see tooltip)</view:title>
+							<view:body href="views/container/none/nonecontainer.xml"/>
+						</view:view>
+					</container:none>
+					<container:transparent id="containers.transparent.fields" width="600">
+						<view:view>
+							<view:title>BasicString in container type transparent (see tooltip)</view:title>
+							<view:body href="views/container/none/transparentcontainer.xml"/>
+						</view:view>
+					</container:transparent>
+				</xml_sample>
+								
+			</layout:cell>
+			<layout:cell>
+				
+				<container:none id="xml2" height="300" width="625">
+					<view:body href="views/container/none/noneComment2.xml"/>											
+				</container:none>
+				
+			</layout:cell>
+		</layout:row-->
+		
+	</layout:table>
+	
+</worksheet>

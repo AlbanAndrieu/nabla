@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+		
+	<fieldset legend="legendBold" legendBold="true" width="400" height="100">
+		<fieldline><control id="string" maskId="StringSample"/></fieldline>
+		<fieldline><control id="calculator" maskId="AlgebraCalculatorSample"/></fieldline>
+		<fieldline><control id="command" maskId="CommandSample"/></fieldline>
+	</fieldset>
+	
+</view_content>

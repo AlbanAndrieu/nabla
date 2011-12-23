@@ -1,0 +1,31 @@
+<view_content>
+
+<fieldset legend="Sort by" position="5,5" width="515" height="50">
+	<control id="sortSetup.column1" maskId="TableSortEditorMask"  position="-95,23"/>
+	<control id="sortSetup.sortType1" maskId="TableSortEditorMask" fixedSizeLabel="false" gType="comboBox" position="390,24"/>
+</fieldset>
+
+<fieldset legend="And then by" position="5,55" width="515" height="50">
+	<control id="sortSetup.column2" maskId="TableSortEditorMask"  position="-95,23"/>
+	<control id="sortSetup.sortType2" maskId="TableSortEditorMask" fixedSizeLabel="false" gType="comboBox" position="390,24"/>
+</fieldset>
+
+<fieldset legend="And then by" position="5,105" width="515" height="50">
+	<control id="sortSetup.column3" maskId="TableSortEditorMask"  position="-95,23"/>
+	<control id="sortSetup.sortType3" maskId="TableSortEditorMask" fixedSizeLabel="false" gType="comboBox" position="390,24"/>
+</fieldset>
+
+<fieldset legend="And then by" position="5,155" width="515" height="50">
+	<control id="sortSetup.column4" maskId="TableSortEditorMask"  position="-95,23"/>
+	<control id="sortSetup.sortType4" maskId="TableSortEditorMask" fixedSizeLabel="false" gType="comboBox" position="390,24"/>
+</fieldset>
+
+<control id="ok" maskId="TableSortEditorMask" position="300,225">
+	<navigation type="standard" name="tableSortWindow.ok" params=""/>
+</control>
+
+<control id="cancel" maskId="TableSortEditorMask" position="400,225">
+	<navigation type="standard" name="tableSortWindow.cancel" params=""/>
+</control>
+
+</view_content>

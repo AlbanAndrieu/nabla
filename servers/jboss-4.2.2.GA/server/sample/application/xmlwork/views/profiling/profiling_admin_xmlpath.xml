@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<main_toolbar>
+		<control id="bcUserGroup" maskId="ProfilingAdminXMLPathMask">
+			<navigation name="profilingXMLPathInit" type="standard" params=""/>
+		</control>
+		<toolbar_separator/>
+		<control id="bcUser" maskId="ProfilingAdminXMLPathMask">
+			<navigation name="profilingXMLPathInit" type="standard" params=""/>
+		</control>
+	</main_toolbar>
+	
+	<fieldline>
+		<control id="bhUserGroup" maskId="ProfilingAdminXMLPathMask"/>
+		<control id="bhUser" maskId="ProfilingAdminXMLPathMask"/>
+	</fieldline>
+	
+	<fieldline>
+		<control id="bsXmlPath" maskId="ProfilingAdminXMLPathMask" gType="long"/>
+	</fieldline>
+	<fieldline>
+		<control id="bcApplyXmlPath" maskId="ProfilingAdminXMLPathMask" position="112,novalue">
+			<navigation name="profilingXMLPathSave" type="standard" params=""/>
+		</control>
+		<control id="bcClearXmlPath" maskId="ProfilingAdminXMLPathMask" position="205,novalue">
+			<navigation name="profilingXMLPathClear" type="standard" params=""/>
+		</control>
+	</fieldline>
+	
+</view_content>

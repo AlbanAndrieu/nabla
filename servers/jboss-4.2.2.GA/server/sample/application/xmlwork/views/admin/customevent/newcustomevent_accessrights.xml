@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<toolbar width="350" position="10,5">
+			
+		
+			
+			
+			
+		<control id="accessRightNew" maskId="newCustomEventHandler" img="new"><navigation type="standard" name="openWindow" params="windowId=customevent.new.accessright.setup"/></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+			
+			
+		<control id="accessRightEdit" maskId="newCustomEventHandler" img="edit"><navigation type="standard" name="openWindow" params="windowId=customevent.new.accessright.setup"/></control>
+		
+		<toolbar_separator/>
+		
+		
+			
+				
+		<control id="accessRightDelete" maskId="newCustomEventHandler" img="delete"></control>
+		
+	</toolbar>
+	
+	<control id="accessRightTable" maskId="newCustomEventHandler" position="10,30" width="350" height="290"/>
+	
+</view_content>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="xmlgenerator" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<main_toolbar>					
+		<control id="btNew" maskId="StyleCustomizerMask">
+			<img src="images/icones/new-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/new-unavailable.gif"/>
+		</control>	
+		<toolbar_separator/>
+		<control id="btOpen" maskId="StyleCustomizerMask">
+			<img src="images/icones/open-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/open-unavailable.gif"/>
+			<navigation type="standard" name="openWindow" params="windowId=btOpenPopup"/>
+		</control>	
+		<toolbar_separator/>
+		<control id="btSave" maskId="StyleCustomizerMask">
+			<img src="images/icones/save-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/save-unavailable.gif"/>
+		</control>
+		<toolbar_separator/>
+		<control id="btSaveAs" maskId="StyleCustomizerMask">
+			<img src="images/icones/save-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/save-unavailable.gif"/>
+			<navigation type="standard" name="openWindow" params="windowId=btSaveAsPopup"/>
+		</control>
+		<toolbar_separator/>
+		<control id="btApplyCSS" maskId="StyleCustomizerMask">
+			<img forstate="normal" src="images/icones/insert-normal.gif"/>
+		</control>
+	</main_toolbar>	
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>			
+				<container:static id="stylecustomizer.xmlgenerator" width="1024" height="768">
+					<view:view>
+						<view:title>XML Generator</view:title>
+						<view:body href="views/admin/styleCustomizer/xmlGenerator.xml"/>
+					</view:view>
+				</container:static>				
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+
+	<container:window id="btOpenPopup" width="420" height="325" position="150,50" closed="true">
+		<view:view>
+			<view:title>Open</view:title>
+			<view:body href="views/admin/styleCustomizer/open_popup.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="btSaveAsPopup" width="420" height="325" position="150,50" closed="true">
+		<view:view>
+			<view:title>Save As</view:title>
+			<view:body href="views/admin/styleCustomizer/save_as_popup.xml"/>
+		</view:view>
+	</container:window>
+
+</worksheet>

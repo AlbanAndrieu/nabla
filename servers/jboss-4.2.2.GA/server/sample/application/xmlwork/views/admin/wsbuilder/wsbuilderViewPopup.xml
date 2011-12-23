@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content> 
+		
+	<fieldline height="10"/>
+	
+	<fieldline>
+		<control id="treeView" maskId="WSBuilderMask" width="300" height="300"/>
+	</fieldline>
+	
+	<fieldset legend="File Info" position="320,35" width="210" height="85">
+		<control id="bsViewSelectedName" maskId="WSBuilderMask" position="17,30" gType="readOnlyNoBorder" fixedSizeLabel="false"/>
+		<control id="bsViewSelectedInfo" maskId="WSBuilderMask" position="17,53" gType="readOnlyNoBorder" fixedSizeLabel="false"/>
+		
+	</fieldset>
+	
+	<fieldset legend="Kustom Window" position="320,135" width="210" height="135">
+		<control id="bcInsertAsKustomWindow" maskId="WSBuilderMask" position="88,30" gType="checkBox" nolabel="true" fixedSizeLabel="false"/>
+		<control id="bsKustomWindowTitle" maskId="WSBuilderMask" position="61,53" fixedSizeLabel="false"/>
+		<control id="bsKustomWindowFieldId" maskId="WSBuilderMask" position="22,76" fixedSizeLabel="false"/>
+		<control id="bsKustomWindowMaskId" maskId="WSBuilderMask" position="19,99" fixedSizeLabel="false"/>
+	</fieldset>
+	
+	<control id="bcInsertView" maskId="WSBuilderMask" position="410,290" width="98"/>
+	
+</view_content>

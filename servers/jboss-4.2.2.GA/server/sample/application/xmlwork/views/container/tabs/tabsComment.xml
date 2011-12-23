@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<container:transparent id="tabXML" height="400" width="450">
+		<view:body parse="html" href="xmlView.jsp?xmlView=worksheets/container/tabs.xml&amp;blockId=sample"/>
+	</container:transparent>
+	
+	<html>
+		<p style="font-size: 10pt;">
+			<b style="color:red">This is a container type Tabs</b>
+		</p>
+		<p style="font-size: 10pt;">
+            The first tabs is linked to a basic choice. See the 3rd tab.
+            - Double-click a tab label will maximize it.<br/>
+            - Display a context menu by right-clicking on the tab title bar<br/>
+            - Pop-out or Maximize it in the context menu<br/>
+            <br/>
+            The second tabs is linked to a disabled choice, it cannot be selected.
+		</p>
+	</html>
+	<fieldline>
+		<control id="showTabContainer" maskId="CommandSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="showTabsContainer" maskId="CommandSample"/>
+	</fieldline>
+</view_content>

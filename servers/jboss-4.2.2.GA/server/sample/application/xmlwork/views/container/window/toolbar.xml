@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+		
+		<!--navigation type="standard" name="openWindow" params="windowId=window.2"/-->
+	<control maskId="ContainerSample" id="open.1" gType="toolBarCommand"><navigation type="standard" name="openWindow" params="windowId=window.1"/></control>
+	
+		
+	<control maskId="ContainerSample" id="open.2" gType="toolBarCommand"><navigation type="standard" name="openWindow" params="windowId=window.2"/></control>
+	
+		
+	<control maskId="ContainerSample" id="open.3" gType="toolBarCommand"><navigation type="custom" name="com.rfs.sample.navigation.container.OpenWindowWithHrefSetting" params="windowId=window.3;;href=views/container/window/win3.xml"/></control>
+	<control maskId="ContainerSample" id="monitor" gType="readOnly"/>
+</view_content>

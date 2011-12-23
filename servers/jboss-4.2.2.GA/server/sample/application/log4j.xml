@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" threshold="all" debug="false">
+
+    <!-- Appender for all messages -->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <!--param name="Target" value="System.out"/-->
+		<param name="threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- webapp is defined in KiWIMainServlet -->
+            <param name="ConversionPattern" value="LATEST %d{ABSOLUTE} %-5p[%c] %m%n"/>
+        </layout>
+    </appender>
+	
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="threshold" value="ERROR"/>
+        <param name="File" value="C:\jboss-4.2.2.GA\server\karmaSample\log\jboss_log.txt"/>
+        <param name="MaxFileSize" value="1MB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%5r %-5p [%t] %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+   <appender name="SOCKET" class="org.apache.log4j.net.SocketAppender">
+      <param name="Port" value="4431"/>
+      <param name="RemoteHost" value="localhost"/>
+      <param name="ReconnectionDelay" value="60000"/>
+      <param name="Threshold" value="DEBUG"/>
+      <layout class="org.apache.log4j.PatternLayout">
+         <!-- The default pattern: Date Priority [Category] Message\n -->
+         <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+      </layout>
+   </appender>
+
+    <!-- ======================= -->
+    <!-- Setup the Root category -->
+    <!-- ======================= -->
+    <root>
+        <!--priority value="INFO"/-->
+		<level value="DEBUG"/>
+        <!-- To log all messages uncomment the appender CONSOLE-ALL -->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SOCKET"/>
+		<appender-ref ref="FILE"/>
+    </root>
+
+    <!-- ================ -->
+    <!-- Limit categories -->
+    <!-- ================ -->
+    
+   <category name="com.rfs">
+      <priority value="DEBUG"/>
+   </category>
+       
+    <!--category name="com" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="CONSOLE-ALL2"/>
+    </category>
+    <category name="kiwi" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="CONSOLE-ALL2"/>
+    </category>
+
+    <category name="org.apache.jasper" additivity="false">
+        <priority value="INFO"/>
+        <appender-ref ref="CONSOLE-ALL2"/>
+    </category>
+
+ </log4j:configuration>
+
+

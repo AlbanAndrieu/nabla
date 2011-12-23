@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet lastModified="1148036826015"
+    xmlns:container="http://www.rfs.com/fw30/container"
+    xmlns:layout="http://www.rfs.com/fw30/layout"
+    xmlns:view="http://www.rfs.com/fw30/view" xmlns:xi="http://www.w3.org/2001/XInclude">
+    
+    <main_toolbar id="toolbarLive">
+    
+    	<control id="btStylename" maskId="StylizerMask" gType="readOnly" width="200"/>
+    	
+    	<toolbar_separator/>
+    	
+    	<control id="btNew" maskId="StylizerMask">
+    		<img src="images/icones/new-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/new-unavailable.gif"/>								
+    	</control>
+    	
+    	<toolbar_separator/>
+    	
+    	<control id="btOpen" maskId="StylizerMask">
+    		<img src="images/icones/open-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/open-unavailable.gif"/>			
+    	</control>
+    	
+    	<!--toolbar_separator/>
+    	
+    	<control id="btSave" maskId="StylizerMask">    		
+			<img src="images/icones/save-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/save-unavailable.gif"/>		
+    	</control>
+    	
+    	<toolbar_separator/>
+    	
+    	<control id="btShowHideWindow" maskId="StylizerMask">
+    		<img src="images/icones/utilities-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/utilities-unavailable.gif"/>
+			<navigation name="openWindow" type="standard" params="windowId=fields.toolbar"/>
+    	</control>
+    	
+    	<toolbar_separator/>
+    	
+    	<control id="btClose" maskId="StylizerMask">
+    		<img src="images/icones/delete-normal.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/icones/delete-unavailable.gif"/>
+    	</control-->
+    	
+
+    	
+    	    	
+    	
+		<!--control id="enable" maskId="StylizerMask"/>		
+		<toolbar_separator/>
+		<control id="visible" maskId="StylizerMask"/-->		
+	</main_toolbar>
+	
+	<container:window id="window.style.new" height="200" width="400" position="50,50" closed="true">
+		<view:view>
+			<view:title>New style</view:title>
+			<view:body href="views/admin/stylizer/newStyle.xml"/>
+		</view:view>
+	</container:window>
+	
+	<container:window id="window.style.open" height="200" width="400" position="50,50" closed="true">
+		<view:view>
+			<view:title>Open style</view:title>
+			<view:body href="views/admin/stylizer/openStyle.xml"/>
+		</view:view>
+	</container:window>
+	
+    
+
+</worksheet>

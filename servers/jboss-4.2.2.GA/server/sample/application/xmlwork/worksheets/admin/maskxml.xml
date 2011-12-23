@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="bond deal" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<layout:table>
+	<layout:row>
+	<layout:cell>
+	<container:expandable id="fieldgroupxml.select" width="250" height="580" heldFieldId="fieldSetTable" heldFieldMaskId="FieldGroupXML">
+		<view:view>
+			<view:title>Select Mask</view:title>
+			<view:body href="views/admin/maskxml/select.xml"/>
+		</view:view>
+	</container:expandable>
+	</layout:cell>
+
+	<layout:cell>
+	<container:expandable id="fieldgroupxml.view" width="788" height="580">
+		<view:view>
+			<view:title>Mask XML</view:title>
+			<view:body parse="html" href="fieldgroupxml.jsp?id=FieldGroupXML"/>
+		</view:view>
+	</container:expandable>
+	</layout:cell>
+	</layout:row>
+	</layout:table>	
+	
+</worksheet>

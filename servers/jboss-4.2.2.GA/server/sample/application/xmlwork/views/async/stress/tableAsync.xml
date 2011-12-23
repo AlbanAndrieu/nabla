@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<main_toolbar>
+		<control id="Start" maskId="AsyncStressTableSample"/>
+		<toolbar_separator/>
+		<control id="Stop" maskId="AsyncStressTableSample"/>
+	</main_toolbar>
+	<fieldline>
+		<control id="ElapseValuesFirstUpdates" maskId="AsyncStressTableSample"/>
+		<control id="ElapseValuesUpdates" maskId="AsyncStressTableSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="ElapseColorsFirstUpdates" maskId="AsyncStressTableSample"/>
+		<control id="ElapseColorsUpdates" maskId="AsyncStressTableSample"/>
+	</fieldline>
+</view_content>

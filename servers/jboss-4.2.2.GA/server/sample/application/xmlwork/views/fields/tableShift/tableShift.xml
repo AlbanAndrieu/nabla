@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+	    <control id="rowIndex" maskId="TableSample"/>
+	    <control id="columnIndex" maskId="TableSample"/>
+	</fieldline>
+	
+    <control id="tableShift" maskId="TableSample" width="800" height="600" gType="pagined"/>
+</view_content>

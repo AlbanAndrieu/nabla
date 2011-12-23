@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="graph" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="generateGraphCmd" maskId="GraphSample"/>		
+		<toolbar_separator/>
+		<control id="optimizeLayoutCmd" maskId="GraphSample"/>	
+		<toolbar_separator/>
+		<control id="graphShapeChoice" maskId="GraphSample"/>		
+			
+			
+		<control id="removeShapeCmd" maskId="GraphSample" img="delete"></control>
+		<toolbar_separator/>
+		<control id="graphConnectionChoice" maskId="GraphSample"/>				
+				
+			
+		<control id="removeConnectionCmd" maskId="GraphSample" img="delete"></control>
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<container:transparent id="graph" height="500" width="700">
+					<view:view>
+						<view:body href="views/fields/graph/graph.xml"/>
+					</view:view>
+				</container:transparent>
+			</layout:cell>
+			<layout:cell>
+				<container:transparent id="config" height="500" width="270">
+					<view:view>
+						<view:body href="views/fields/graph/config.xml"/>
+					</view:view>
+				</container:transparent>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+	
+</worksheet>

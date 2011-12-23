@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<fieldline>
+    <control id="doubleCommand" maskId="DrillThruSample" commandLabel="true"/>
+	</fieldline>
+	<fieldline>
+	
+		
+		
+	<control id="doubleSpinnerCommand" maskId="DrillThruSample" commandLabel="true"><navigation type="custom" name="com.rfs.wfNavigation.action.standard.SelectWorkSheetAction" params="workBook=simpleFields;;workSheet=fields.toolbarmode"/><spinner validate="true"/></control>
+	</fieldline>
+
+</view_content>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+<main_toolbar id="toolbarStatic">
+		<control id="toolbarCommon" maskId="StylizerMask">
+			<img src="images/kiwi/stylecustomizer/toolbarProperties/common.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/kiwi/stylecustomizer/toolbarProperties/common-unavailable.gif"/>
+			<navigation name="stylizerSetContainerContent" type="standard" params="viewHref=views/admin/stylizer/toolbarCommon.xml;;containerId=fields.toolbar___0"/>			
+		</control>
+		<toolbar_separator/>
+		<control id="toolbarText" maskId="StylizerMask">
+			<img src="images/kiwi/stylecustomizer/toolbarProperties/text.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/kiwi/stylecustomizer/toolbarProperties/text-unavailable.gif"/>
+			<navigation name="stylizerSetContainerContent" type="standard" params="viewHref=views/admin/stylizer/toolbarText.xml;;containerId=fields.toolbar___0"/>			
+		</control>
+		<toolbar_separator/>
+		<control id="toolbarGraphic" maskId="StylizerMask">
+			<img src="images/kiwi/stylecustomizer/toolbarProperties/image.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/kiwi/stylecustomizer/toolbarProperties/image-unavailable.gif"/>
+			<navigation name="stylizerSetContainerContent" type="standard" params="viewHref=views/admin/stylizer/toolbarGraphic.xml;;containerId=fields.toolbar___0"/>			
+		</control>
+		<toolbar_separator/>
+		<control id="toolbarBorder" maskId="StylizerMask">
+			<img src="images/kiwi/stylecustomizer/toolbarProperties/border.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/kiwi/stylecustomizer/toolbarProperties/border-unavailable.gif"/>
+			<navigation name="stylizerSetContainerContent" type="standard" params="viewHref=views/admin/stylizer/toolbarBorder.xml;;containerId=fields.toolbar___0"/>			
+		</control>
+		<toolbar_separator/>
+		<control id="toolbarScroll" maskId="StylizerMask">
+			<img src="images/kiwi/stylecustomizer/toolbarProperties/scrollbar.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/kiwi/stylecustomizer/toolbarProperties/scrollbar-unavailable.gif"/>
+			<navigation name="stylizerSetContainerContent" type="standard" params="viewHref=views/admin/stylizer/toolbarScroll.xml;;containerId=fields.toolbar___0"/>			
+		</control>
+		<toolbar_separator/>
+		<control id="toolbarNavigation" maskId="StylizerMask">
+			<img src="images/kiwi/stylecustomizer/toolbarProperties/navigation.gif" forstate="normal"/>
+			<img forstate="unavailable" src="images/kiwi/stylecustomizer/toolbarProperties/navigation-unavailable.gif"/>
+			<navigation name="stylizerSetContainerContent" type="standard" params="viewHref=views/admin/stylizer/toolbarNavigation.xml;;containerId=fields.toolbar___0"/>			
+		</control>			
+</main_toolbar>
+
+	
+<fieldset noborder="true" width="760" height="300">
+
+<header>
+		<control id="labelToolbarText" maskId="StylizerMask"/>
+</header>
+
+<fieldline height="4"></fieldline>
+	
+	<fieldline>
+		<fieldset legend="font" legendBold="true" width="760">
+		<fieldline>
+			<control id="font-family" maskId="StylizerMask"/>
+			<control id="font-size" maskId="StylizerMask">
+				<spinner validate="true"/>
+			</control>			
+		</fieldline>
+		<fieldline height="2"></fieldline>
+		<fieldline>
+			<control id="font-style" maskId="StylizerMask"/>
+			<control id="font-weight" maskId="StylizerMask"/>			
+		</fieldline>
+	</fieldset>
+	</fieldline>
+	
+	<fieldline>
+		<fieldset legend="text/link" legendBold="true" width="760" >
+		<fieldline>
+			<control id="text-align" maskId="StylizerMask"/>
+			<control id="text-decoration" maskId="StylizerMask"/>
+			<control id="text-transform" maskId="StylizerMask"/>
+		</fieldline>
+		<fieldline height="2"></fieldline>
+		<fieldline>
+			<control id="text-indent" maskId="StylizerMask"/>
+			<control id="text-size" maskId="StylizerMask"/>
+			<control id="color" maskId="StylizerMask"/>
+		</fieldline>
+		<fieldline height="5"></fieldline>
+		<fieldline>
+			<control id="labelHover" maskId="StylizerMask"/>
+		</fieldline>
+		<fieldline height="5"></fieldline>
+		<fieldline>
+			<control id="text-align2" maskId="StylizerMask"/>
+			<control id="text-decoration2" maskId="StylizerMask"/>
+			<control id="text-transform2" maskId="StylizerMask"/>
+		</fieldline>
+		<fieldline height="2"></fieldline>
+		<fieldline>
+			<control id="text-indent2" maskId="StylizerMask"/>
+			<control id="text-size2" maskId="StylizerMask"/>
+			<control id="color2" maskId="StylizerMask"/>
+		</fieldline>				
+		</fieldset>
+	</fieldline>
+	
+	
+	<fieldline>
+		<control id="stylename" maskId="StylizerMask"/>
+	</fieldline>
+	
+		</fieldset>	
+		
+	
+</view_content>

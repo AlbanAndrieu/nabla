@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="admin" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<layout:table>
+		<layout:row>
+			<layout:cell>					
+				<container:expandable id="adminLanguage" height="300" width="620">
+					<view:view>
+						<view:title>Language</view:title>
+						<view:body href="views/profiling/profiling_admin_locale.xml"/>
+					</view:view>
+				</container:expandable>
+			</layout:cell>
+		</layout:row>
+		<layout:row>
+			<layout:cell>					
+				<container:expandable id="adminXMLPath" height="120" width="620">
+					<view:view>
+						<view:title>XML Path</view:title>
+						<view:body href="views/profiling/profiling_admin_xmlpath.xml"/>
+					</view:view>
+				</container:expandable>
+			</layout:cell>
+		</layout:row>
+		<layout:row>
+			<layout:cell>					
+				<container:expandable id="adminLastWorksheet" height="120" width="620">
+					<view:view>
+						<view:title>Remove last worksheet</view:title>
+						<view:body href="views/profiling/profiling_last_worksheet.xml"/>
+					</view:view>
+				</container:expandable>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+</worksheet>

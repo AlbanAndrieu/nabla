@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view:body xmlns:view="http://www.rfs.com/fw30/view">
+	<!--
+	<control maskId="RealTimeFollowUpMask" id="refreshServer"  />
+	-->
+	<control maskId="RealTimeFollowUpMask" id="reportServerTable" gType="simple" width="432" height="100"/> 
+
+</view:body>

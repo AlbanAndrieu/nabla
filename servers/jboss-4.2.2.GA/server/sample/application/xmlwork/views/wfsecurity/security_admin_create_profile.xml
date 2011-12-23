@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control id="ProfileName" maskId="SecurityAdminMask"/>
+		<control id="ConfirmCreateProfile" maskId="SecurityAdminMask">
+			<navigation name="closeWindow" params="windowId=SecurityCreateProfileWindow" type="standard"/>
+			<navigation name="openWindow" params="windowId=SecurityAdminEditProfileWindow" type="standard"/>
+		</control>
+	</fieldline>
+</view_content>

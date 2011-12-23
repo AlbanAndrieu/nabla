@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="cloneworksheet" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		
+			
+		<control id="red" maskId="TableSample" label="Open Window"><navigation type="standard" name="openWindow" params="windowId=cloneworksheet.window"/></control>
+	</main_toolbar>
+	
+	<container:static id="cloneworksheet.static" width="150" height="100">
+		
+		<view:view>
+			<view:title>Static</view:title>
+			<view:body href="views/navigation/cloneworksheet/static.xml"/>
+		</view:view>
+		
+	</container:static>
+	
+	<container:window id="cloneworksheet.window" width="165" height="165" position="200,150" heldFieldId="table" heldFieldMaskId="TableSample" closed="true">
+		
+		<view:view>
+			<view:title></view:title>
+			<view:body href="views/navigation/cloneworksheet/window.xml"/>
+		</view:view>
+		
+	</container:window>
+
+</worksheet>

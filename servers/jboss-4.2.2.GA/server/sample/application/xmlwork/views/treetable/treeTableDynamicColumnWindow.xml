@@ -1,0 +1,39 @@
+<view_content>
+	<main_toolbar>
+		<control id="insertCmd" maskId="TreeTableDynamicColumnEditorMask">
+			<img src="images/icones/insert-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/insert-unavailable.gif"/>
+		</control><toolbar_separator/>
+		<control id="updateCmd" maskId="TreeTableDynamicColumnEditorMask">
+			<img src="images/icones/update-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/update-unavailable.gif"/>
+		</control><toolbar_separator/>
+		<control id="deleteCmd" maskId="TreeTableDynamicColumnEditorMask">
+			<img src="images/icones/delete-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/delete-unavailable.gif"/>
+		</control><toolbar_separator/>
+		<control id="clearCmd" maskId="TreeTableDynamicColumnEditorMask">
+			<img src="images/icones/clear-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/clear-unavailable.gif"/>
+		</control><toolbar_separator/>
+	</main_toolbar>
+	
+	<control id="dynamicColumnsList" maskId="TreeTableDynamicColumnEditorMask" width="500" height="150" />
+	<fieldline/>
+	
+	<fieldline>
+		<control id="columnName" maskId="TreeTableDynamicColumnEditorMask"/>
+		<control id="leafOnly" maskId="TreeTableDynamicColumnEditorMask" gType="checkBox"/>
+	</fieldline>
+	
+	<fieldline>
+		<control id="calculatorFormula" maskId="TreeTableDynamicColumnEditorMask"/>
+		<control id="fractionDigitsChoice" maskId="TreeTableDynamicColumnEditorMask" sizeUnit="0"/>
+	</fieldline>
+	
+	<fieldline/>
+	<separator width="495"/>
+		
+	<control id="okCmd" maskId="TreeTableDynamicColumnEditorMask" position="275,275">
+		<navigation name="treeTableDynamicColumnWindow.ok" type="standard" params=""/>
+	</control>
+	<control id="cancelCmd" maskId="TreeTableDynamicColumnEditorMask" position="375,275">
+		<navigation name="treeTableDynamicColumnWindow.cancel" type="standard" params=""/>
+	</control>
+</view_content>

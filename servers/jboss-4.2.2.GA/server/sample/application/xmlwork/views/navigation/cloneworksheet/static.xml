@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	
+		
+	<control id="green" maskId="TableSample" label="Create New Mask"><navigation type="standard" name="cloneWorkSheet"/></control>
+	
+</view_content>

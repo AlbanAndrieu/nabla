@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content> 	
+	<!--fieldline>
+		<control id="blRemoveElement" maskId="MaskCustomizer" />						
+	</fieldline-->
+	<fieldline/>
+	<fieldline>
+		<control id="bcElementToRemove" maskId="MaskCustomizer"/>							
+		<control id="btRemoveElement" maskId="MaskCustomizer">		
+			<img forstate="normal" src="images/icones/delete-normal.gif"/>
+			<navigation type="standard" name="closeWindow" params="windowId=toolbarDeletePopup"/>
+		</control>
+			
+	</fieldline>	
+</view_content>

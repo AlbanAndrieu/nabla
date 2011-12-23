@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline/>
+	<fieldline>
+		<control id="kustomHGFieldSet" maskId="MaskCustomizer"/>
+		<control id="kwBsSeparator" maskId="MaskCustomizer"/>
+	</fieldline>
+	<fieldline/>	
+	<fieldline>
+		<control id="kwTreeListFields" width="300" height="400" maskId="MaskCustomizer"/>
+	</fieldline>
+	<fieldline/>
+	<fieldline>
+		<control id="bsKustomTitle" width="100" maskId="MaskCustomizer"/>
+	</fieldline>	
+	<fieldline/>	
+	<control id="btSaveAsKustomWindow" width="200" position="57,520" maskId="MaskCustomizer"/>
+</view_content>

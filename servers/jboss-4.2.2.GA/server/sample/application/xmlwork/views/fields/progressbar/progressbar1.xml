@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<fieldline>
+		<control id="staticProgressBar1" maskId="ProgressBarSample"/>
+		<control id="intValue1" maskId="ProgressBarSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="staticProgressBar2" maskId="ProgressBarSample"/>
+		<control id="intValue2" maskId="ProgressBarSample"/>
+	</fieldline>
+	<fieldline>
+		<control id="staticProgressBar3" maskId="ProgressBarSample"/>
+		<control id="intValue3" maskId="ProgressBarSample"/>
+	</fieldline>
+</view_content>

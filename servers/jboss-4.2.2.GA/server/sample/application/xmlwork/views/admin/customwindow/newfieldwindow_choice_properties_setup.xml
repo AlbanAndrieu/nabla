@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="choiceValue" maskId="newFieldWindow"></control>
+	<control id="choiceValueText" maskId="newFieldWindow"></control>
+	
+		
+	<control id="choiceOK" maskId="newFieldWindow" position="100,60"><navigation type="standard" name="closeWindow" params="windowId=customwindow.new.choice.setup"/></control>
+	
+		
+	<control id="choiceCancel" maskId="newFieldWindow" position="200,60"><navigation type="standard" name="closeWindow" params="windowId=customwindow.new.choice.setup"/></control>
+</view_content>

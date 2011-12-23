@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<fieldline>
+        <control id="choiceCheckBoxCRO" maskId="ChoiceSample" gType="checkboxReadOnly"/>
+    </fieldline>
+    <fieldline>
+        <control id="choiceCheckBoxLongTextCRO" maskId="ChoiceSample" gType="checkboxReadOnly" fixedSizeLabel="false"/>
+    </fieldline>
+    <fieldline>
+        <control id="choiceCheckBoxNoLabelCRO" maskId="ChoiceSample" gType="checkboxReadOnly" nolabel="true"/>
+    </fieldline>
+    <fieldline>
+        <control id="choiceCheckBoxNoLabelLongTextCRO" maskId="ChoiceSample" gType="checkboxReadOnly" nolabel="true" fixedSizeLabel="false"/>
+    </fieldline>
+	
+</view_content>

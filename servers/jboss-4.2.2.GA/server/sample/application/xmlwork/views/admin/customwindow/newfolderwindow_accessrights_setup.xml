@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="accessRightUser" maskId="newFolderWindow"/>
+	<control id="accessRightMode" maskId="newFolderWindow" position="112,25" width="170" gType="radioButtonBloc"/>
+	<control id="accessRightValue" maskId="newFolderWindow" position="287,25" width="170"/>
+	
+	
+		
+	<control id="accessRightOk" maskId="newFolderWindow" position="271,110"><navigation type="standard" name="closeWindow" params="windowId=customwindow.newfolderwindow.accessright.setup"/></control>
+	
+		
+	<control id="accessRightCancel" maskId="newFolderWindow" position="371,110"><navigation type="standard" name="closeWindow" params="windowId=customwindow.newfolderwindow.accessright.setup"/></control>
+</view_content>

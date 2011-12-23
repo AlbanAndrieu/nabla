@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="table" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="enable" maskId="TableSample"/>		
+		<toolbar_separator/>
+		<control id="visible" maskId="TableSample"/>	
+		<toolbar_separator/>
+		<control id="hideHolderExpandable" maskId="TableSample"/>	
+		<toolbar_separator/>
+		<control id="showHolderExpandable" maskId="TableSample"/>	
+		<toolbar_separator/>
+		<control id="randomCellColor" maskId="TableSample"/>
+		<toolbar_separator/>
+		<control id="randomRowColor" maskId="TableSample"/>
+		<toolbar_separator/>
+        <control id="randomColsColor" maskId="TableSample"/>
+        <toolbar_separator/>
+        <control id="singleRowSelection" maskId="TableSample"/>
+		<toolbar_separator/>
+		<control id="multiRowSelection" maskId="TableSample"/>
+		<toolbar_separator/>
+		<control id="singleCellSelection" maskId="TableSample"/>
+		<toolbar_separator/>
+		<control id="multiCellSelection" maskId="TableSample"/>
+        <toolbar_separator/>
+        <control id="clearColorRow" maskId="TableSample"/>
+        <toolbar_separator/>
+        <control id="clearColorCols" maskId="TableSample"/>
+		<toolbar_separator/>
+        <control id="insertRowCmd" maskId="TableSample"/>
+		<toolbar_separator/>
+        <control id="removeRowCmd" maskId="TableSample"/>
+    </main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				
+				<container:expandable id="fields.table.tableHeld" width="850" height="400" heldFieldId="tableHeld" heldFieldMaskId="TableSample">
+					<view:view>
+						<view:body href="views/fields/tableHeld/tableHeld.xml"/>
+					</view:view>
+				</container:expandable>
+				
+			</layout:cell>			
+		</layout:row>
+	</layout:table>
+	
+</worksheet>

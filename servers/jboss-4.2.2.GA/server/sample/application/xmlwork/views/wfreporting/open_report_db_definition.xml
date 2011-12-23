@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<toolbar>
+		<control id="LoadReports" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="CreateReport" maskId="OpenReportDBDefinitionMask">
+			<navigation name="openWindow" params="windowId=OpenReportDBDefinitionCreateNameWindow" type="standard"/>
+		</control>
+		<toolbar_separator/>
+		<control id="DeleteReport" maskId="OpenReportDBDefinitionMask"/>
+		<toolbar_separator/>
+		<control id="SaveReport" maskId="OpenReportDBDefinitionMask"/>
+	</toolbar>
+	<fieldline>
+		<control id="Reports" maskId="OpenReportDBDefinitionMask" gType="pagined" width="980" height="220"/>
+	</fieldline>
+</view_content>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<main_toolbar>
+		<control id="EditStoreProc" maskId="OpenReportDBDefinitionMask">
+			<navigation name="openWindow" params="windowId=OpenReportDBDefinitionEditStoreProcWindow" type="standard"/>
+		</control>
+	</main_toolbar>
+
+	<fieldline>
+		<control id="StoreProcDataBase" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="StoreProcName" maskId="OpenReportDBDefinitionMask"/>
+	</fieldline>
+</view_content>

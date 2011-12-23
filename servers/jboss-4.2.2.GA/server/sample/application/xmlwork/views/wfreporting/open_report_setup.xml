@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<toolbar>
+		<control id="LoadAvailableReports" maskId="OpenReportSetupMask"/>
+	</toolbar>
+	<fieldline>
+		<control id="AvailableReports" maskId="OpenReportSetupMask" gType="pagined" width="980" height="220">
+			<navigation type="standard" name="refreshWorkSheet" params=""/>
+		</control>	
+	</fieldline>
+</view_content>

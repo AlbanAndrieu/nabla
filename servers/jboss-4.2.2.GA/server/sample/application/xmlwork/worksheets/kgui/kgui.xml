@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="KGUI" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" useMaskId="TableSample">
+	
+	<main_toolbar>
+		<control id="changeView" maskId="KGUISample" sizeInput="160"/>
+		<toolbar_separator/>
+		<control id="cleanView" maskId="KGUISample"/>
+		<toolbar_separator/>
+		<control id="resetView" maskId="KGUISample"/>
+		<toolbar_separator/>
+		<control id="addWindow" maskId="KGUISample"/>
+		<toolbar_separator/>
+		<control id="openWindow" maskId="KGUISample"/>
+		<toolbar_separator/>
+		<control id="wOpenWindowModal" maskId="KGUISample"/>
+		<toolbar_separator/>
+		<control id="openDynWindow" maskId="KGUISample"/>
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<container:expandable id="kgui.dynamic.view">
+					<view:view>
+						<view:title>Container with Dynamic View</view:title>
+						<view:body parse="kgui"/>
+					</view:view>
+				</container:expandable>
+			</layout:cell>
+		</layout:row>
+		<layout:row>
+			<layout:cell>
+				<container:expandable id="kgui.dynamic.clean.view">
+					<view:view>
+						<view:title>Clean View Example</view:title>
+						<view:body parse="kgui"/>
+					</view:view>
+				</container:expandable>
+			</layout:cell>
+		</layout:row>
+		<layout:row>
+			<layout:cell>
+				<container:static id="kgui.dynamic.held.view">
+					<view:view>
+						<view:title>Held Example</view:title>
+						<view:body parse="kgui"/>
+					</view:view>
+				</container:static>
+			</layout:cell>
+		</layout:row>
+		<layout:row>
+			<layout:cell>
+				<container:static id="kgui.dynamic.associated.view">
+					<view:view>
+						<view:title>Associated Field Example</view:title>
+						<view:body parse="kgui"/>
+					</view:view>
+				</container:static>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+	
+	<kguiWindowGroup id="kguiwgroup"></kguiWindowGroup>
+	<kguiWindowGroup id="otherkguiwgroup"></kguiWindowGroup>
+	
+</worksheet>

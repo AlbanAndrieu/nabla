@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<layout:table>
+		<layout:row>
+			<layout:cell>
+				<fieldline/>
+				<fieldline>
+					<layout:table>
+						<layout:row>
+							<layout:cell>
+								<control id="userConfiguration" maskId="ProfilingExportBlotterMask" gType="radioButtonColumn"/>
+							</layout:cell>
+							<layout:cell>
+								<fieldline/>
+								<control id="groupConfig" maskId="ProfilingExportBlotterMask"/>
+							</layout:cell>
+						</layout:row>
+					</layout:table>
+				</fieldline>
+				<fieldset legend="Select blotter configuration" legendBold="true" width="420" height="265">
+					<control id="selectExport" maskId="ProfilingExportBlotterMask" width="400" height="245"/>
+				</fieldset>
+			</layout:cell>
+			<layout:cell>
+				<fieldline/>
+				<fieldline>
+					<control id="exportAll" maskId="ProfilingExportBlotterMask" gType="checkBox"/>
+				</fieldline>
+				<fieldline/>
+				<fieldline>
+					<control id="exportTitle" maskId="ProfilingExportBlotterMask" gType="long"/>
+				</fieldline>
+				<fieldline>
+					<control id="comments" maskId="ProfilingExportBlotterMask" gType="textArea" rows="15" cols="66"/>
+				</fieldline>
+				<fieldline/>
+				<fieldline>
+					<container:none id="none.export.1">
+						<view:view>
+							<view:body href="views/profiling/blotter/profiling_export_command.xml"/>
+						</view:view>
+					</container:none>
+				</fieldline>
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+</view_content>

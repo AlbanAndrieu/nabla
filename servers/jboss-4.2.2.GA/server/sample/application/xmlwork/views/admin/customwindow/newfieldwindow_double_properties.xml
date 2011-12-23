@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control position="26,5" id="doubleGroupingSeparator" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="56,25" id="doubleGroupingSize" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="33,45" id="doubleDecimalSeparator" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="9,65" id="doubleMinimumFractionDigits" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="5,85" id="doubleMaximumFractionDigits" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="12,105" id="doubleMinimumIntegerDigits" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="8,125" id="doubleMaximumIntegerDigits" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="84,144" id="doublePattern" maskId="newFieldWindow" fixedSizeLabel="false"/>
+	<control position="99,163" id="doubleTest" maskId="newFieldWindow" fixedSizeLabel="false"/>
+</view_content>

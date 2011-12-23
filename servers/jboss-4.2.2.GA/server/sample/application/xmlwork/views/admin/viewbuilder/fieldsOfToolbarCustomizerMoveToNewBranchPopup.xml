@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	<main_toolbar>		
+		
+		<control id="tcMoveToNewBranchOk" maskId="MaskCustomizer" gType="menuToolBarCommand">
+			<img forstate="normal" src="images/icones/insert-normal.gif"/>
+		</control>
+		
+		<toolbar_separator/>
+		
+		<control id="tcMoveToNewBranchCancel" maskId="MaskCustomizer" gType="menuToolBarCommand">
+			<navigation type="standard" name="closeWindow" params="windowId=tcMoveToNewBranch"/>
+		</control>
+		
+	</main_toolbar>
+	
+	<control id="tcMoveToNewBranchTree" maskId="MaskCustomizer" position="10,10" height="345" width="375"/>
+	
+</view_content>

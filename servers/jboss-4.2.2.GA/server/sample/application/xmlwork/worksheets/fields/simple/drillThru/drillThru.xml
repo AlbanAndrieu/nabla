@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet version="1.0" name="drillThru" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view"
+	xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<main_toolbar>
+		<control id="toolbarCommand" maskId="DrillThruSample" commandLabel="true"/>
+		<toolbar_separator/>
+		<control id="drillThruOnlyTemplateSearch" maskId="TemplateMask" sizeInput="150"/>
+		<toolbar_separator/>
+		<control id="drillThruOnlyTemplateEdit" maskId="TemplateMask"/>
+	</main_toolbar>
+	
+	<layout:table>
+		<layout:row>
+			<layout:cell>				
+				<layout:table>
+					<layout:row>
+						<layout:cell>
+							<container:static id="fields.double.drill" width="600" height="75">
+								<view:view>
+									<view:title>Double with command label</view:title>
+									<view:body href="views/fields/drill/doubleDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.string.drill" width="600" height="60">
+								<view:view>
+									<view:title>String with command label</view:title>
+									<view:body href="views/fields/drill/stringDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.choice.drill" width="600" height="100">
+								<view:view>
+									<view:title>Choice with command label</view:title>
+									<view:body href="views/fields/drill/choiceDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.date.drill" width="600" height="60">
+								<view:view>
+									<view:title>Date with command label</view:title>
+									<view:body href="views/fields/drill/dateDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.helpgroup.drill" width="600" height="60">
+								<view:view>
+									<view:title>Helpgroup with command label</view:title>
+									<view:body href="views/fields/drill/helpgroupDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.progressbar.drill" width="600" height="60">
+								<view:view>
+									<view:title>Progressbar with command label</view:title>
+									<view:body href="views/fields/drill/progressbarDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+					<layout:row>
+						<layout:cell>							
+							<container:static id="fields.colorPicker.drill" width="600" height="60">
+								<view:view>
+									<view:title>Color with command label</view:title>
+									<view:body href="views/fields/drill/colorDrill.xml"/>
+								</view:view>
+							</container:static>
+						</layout:cell>
+					</layout:row>
+				</layout:table>				
+			</layout:cell>
+			<layout:cell>				
+				<container:tabs id="drill.tabs.xml" height="450" width="600" selected="drill.tabs.xml.tab1">
+					<container:tab id="drill.tabs.xml.tab1">
+						<view:title>double</view:title>
+						<view:body href="views/fields/drill/doubleDrillComment.xml"/>
+					</container:tab>
+					<container:tab id="drill.tabs.xml.tab2">
+						<view:title>string</view:title>
+						<view:body href="views/fields/drill/stringDrillComment.xml"/>
+					</container:tab>
+					<container:tab id="drill.tabs.xml.tab3">
+						<view:title>choice</view:title>
+						<view:body href="views/fields/drill/choiceDrillComment.xml"/>
+					</container:tab>
+					<container:tab id="drill.tabs.xml.tab4">
+						<view:title>date</view:title>
+						<view:body href="views/fields/drill/dateDrillComment.xml"/>
+					</container:tab>
+					<container:tab id="drill.tabs.xml.tab5">
+						<view:title>helpgroup</view:title>
+						<view:body href="views/fields/drill/helpgroupDrillComment.xml"/>
+					</container:tab>
+					<container:tab id="drill.tabs.xml.tab6">
+						<view:title>progressbar</view:title>
+						<view:body href="views/fields/drill/progressbarDrillComment.xml"/>
+					</container:tab>
+					<container:tab id="drill.tabs.xml.tab7">
+						<view:title>color picker</view:title>
+						<view:body href="views/fields/drill/colorDrillComment.xml"/>
+					</container:tab>					
+				</container:tabs>				
+			</layout:cell>
+		</layout:row>
+	</layout:table>
+	
+</worksheet>

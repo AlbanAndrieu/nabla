@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+<fieldset legend="Sort by">
+	<control id="sortSetup.column1" maskId="ReportDisplayMask" fixedSizeLabel="false"/>
+	<control id="sortSetup.sortType1" maskId="ReportDisplayMask" fixedSizeLabel="false" gType="radioButtonLine"/>
+</fieldset>
+
+<fieldset legend="And then by">
+	<control id="sortSetup.column2" maskId="ReportDisplayMask" fixedSizeLabel="false"/>
+	<control id="sortSetup.sortType2" maskId="ReportDisplayMask" fixedSizeLabel="false" gType="radioButtonLine"/>
+</fieldset>
+
+<fieldset legend="And then by">
+	<control id="sortSetup.column3" maskId="ReportDisplayMask" fixedSizeLabel="false"/>
+	<control id="sortSetup.sortType3" maskId="ReportDisplayMask" fixedSizeLabel="false" gType="radioButtonLine"/>
+</fieldset>
+
+<fieldset legend="And then by">
+	<control id="sortSetup.column4" maskId="ReportDisplayMask" fixedSizeLabel="false"/>
+	<control id="sortSetup.sortType4" maskId="ReportDisplayMask" fixedSizeLabel="false" gType="radioButtonLine"/>
+</fieldset>
+
+
+	
+<control id="sortSetup.ok" maskId="ReportDisplayMask" position="125,220"><navigation type="standard" name="closeWindow" params="windowId=fields.report.sort.setup"/></control>
+
+
+	
+<control id="sortSetup.cancel" maskId="ReportDisplayMask" position="225,220"><navigation type="standard" name="closeWindow" params="windowId=fields.report.sort.setup"/></control>
+
+</view_content>

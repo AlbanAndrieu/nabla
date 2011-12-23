@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="accessRightUser" maskId="newCustomFieldSet"/>
+	<control id="accessRightMode" maskId="newCustomFieldSet" position="112,25" width="170" gType="radioButtonBloc"/>
+	<control id="accessRightValue" maskId="newCustomFieldSet" position="287,25" width="170"/>
+	
+	
+		
+	<control id="accessRightOk" maskId="newCustomFieldSet" position="271,110"><navigation type="standard" name="closeWindow" params="windowId=customwindow.new.accessright.setup"/></control>
+	
+		
+	<control id="accessRightCancel" maskId="newCustomFieldSet" position="371,110"><navigation type="standard" name="closeWindow" params="windowId=customwindow.new.accessright.setup"/></control>
+</view_content>

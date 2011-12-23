@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://www.reuters.com/karma/navigation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="navigationKarma.xsd">
+
+
+	<!--
+		Load a dictionary, and put it a weight of 0. The greater the weight, the more important is the
+		dictionary
+	-->
+	<!--
+		Thus if you define a key "MyString" in a dictionary of weight 2 it will be retrieve before the
+		same key
+	-->
+	<!-- in a dictionary of a lower weight -->
+	<i18nDictionary name="navigation" weight="0" />
+
+	<worksheetgroup id="Administration" label="Home">
+		<worksheet id="admin.1" label="Worksheet Builder" href="worksheets/admin/wsbuilder.xml"
+			builderType="WorksheetBuilder" />
+		<worksheet id="admin.2" label="View Builder" href="worksheets/admin/viewbuilder.xml"
+			builderType="ViewBuilder" />
+		<worksheet id="admin.3" label="User preferences" href="worksheets/admin/userPreferences.xml" />
+		<worksheet id="admin.4" label="Admin" href="worksheets/admin/admin.xml" />
+		<worksheet id="admin.5" label="Mask Browser" href="worksheets/admin/maskbrowser.xml" />
+		<worksheet id="admin.51" label="Navigation Builder" href="worksheets/admin/navigationbuilder.xml" />
+		<worksheet id="admin.6" label="kiwi.custom.ui.fieldset" href="worksheets/admin/customwindow.xml" />
+		<worksheet id="admin.7" label="kiwi.custom.ui.event" href="worksheets/admin/customevent.xml" />
+		<worksheet id="admin.75" label="Xml Editor" href="worksheets/admin/xmltryit.xml" />
+		<worksheet id="admin.77" label="Controller" href="worksheets/admin/controller.xml" />
+		<worksheet id="admin.79" label="Blotter Manager" href="worksheets/admin/profiling_blotter.xml" />
+		<worksheet id="admin.76" label="Xml Validation" href="worksheets/admin/xmlvalidation.xml" />
+		<worksheet id="admin.8" label="About" href="worksheets/admin/about.xml" img="help" />
+		<worksheet id="admin.userConnection" label="User Connection"
+			href="worksheets/wfsecurity/security_user_connection.xml" />
+		<!--
+			worksheet id="admin.9" label="Lucene"
+			href="worksheets/admin/lucene.xml"/
+		-->
+	</worksheetgroup>
+
+	<worksheetgroup id="financial" label="Financial">
+		<worksheet id="spot" label="Spot Deal" href="worksheets/financial/spot.xml" selected="true"/>
+		<worksheet id="folder" label="Folder" href="worksheets/financial/folder.xml" />
+		<worksheet id="foldergroup" label="Folder Group" href="worksheets/financial/foldergroup.xml" />
+		<worksheet id="dealsearch" label="Deal Search" href="worksheets/financial/dealsearch.xml" />
+	</worksheetgroup>
+
+	<worksheetgroup id="simpleFields" label="Simple Fields">
+
+		<worksheet id="fields.calculator" label="Algebra Calculator" href="worksheets/fields/simple/algebracalculator.xml" />
+		<worksheet id="fields.choice" label="Choice" href="worksheets/fields/simple/choice.xml" />
+		<worksheet id="fields.command" label="Command" href="worksheets/fields/simple/command.xml" />
+		<worksheet id="fields.date" label="Date" href="worksheets/fields/simple/date.xml" />
+		<worksheet id="fields.double" label="Double" href="worksheets/fields/simple/double.xml" />
+		<worksheet id="fields.float" label="Float" href="worksheets/fields/simple/float.xml" />
+		<worksheet id="fields.int" label="Int" href="worksheets/fields/simple/int.xml" />
+		<worksheet id="fields.long" label="Long" href="worksheets/fields/simple/long.xml" />
+		<worksheet id="fields.helpgroup" label="Help Group" href="worksheets/fields/simple/helpgroup.xml" />
+		<worksheet id="fields.label" label="Label" href="worksheets/fields/simple/label.xml" />
+		<worksheet id="fields.multichoice" label="Multi Choice" href="worksheets/fields/simple/multichoice.xml" />
+		<worksheet id="fields.progressbar" label="Progress Bar" href="worksheets/fields/simple/progressbar.xml" />
+		<worksheet id="fields.query" label="Query" href="worksheets/fields/simple/query.xml" />
+		<worksheet id="fields.string" label="String" href="worksheets/fields/simple/string.xml" />
+		<worksheet id="fields.kpls200" label="kpls200" href="worksheets/fields/simple/kpls200.xml" />
+		<worksheet id="fields.toolbarmode" label="Fields in main toolbar" href="worksheets/fields/simple/toolbarMode.xml" />
+		<worksheet id="fields.drillThru" label="Drill thru label fields"
+			href="worksheets/fields/simple/drillThru/drillThru.xml" />
+		<worksheet id="fields.templating" label="Templating" href="worksheets/fields/simple/templating.xml" />
+	</worksheetgroup>
+
+	<worksheetgroup id="complexFields" label="Complex Fields">
+
+		<worksheet id="fields.chart" label="Chart" href="worksheets/fields/complex/chart.xml" />
+
+		<worksheetgroup id="fields.matrixgroup" label="Matrix">
+			<worksheet id="fields.matrix" label="Matrix" href="worksheets/fields/complex/matrix.xml" />
+			<worksheet id="fields.matrixiframe" label="Matrix IFrame" href="worksheets/fields/complex/matrix_iframe.xml" />
+		</worksheetgroup>
+
+		<worksheet id="fields.svg" label="SVG" href="worksheets/fields/complex/svg.xml" />
+		<worksheet id="fields.graph" label="Graph" href="worksheets/fields/complex/graph.xml" />
+
+		<worksheetgroup id="fields.tablegroup" label="Table">
+			<worksheet id="fields.table" label="Default" title="Default Table"
+				href="worksheets/fields/complex/table.xml" />
+			<worksheet id="fields.tableHeld" label="Held" title="Held Table"
+				href="worksheets/fields/complex/tableHeld.xml" />
+			<worksheet id="fields.tablePagined" label="Pagined" title="Pagined Table"
+				href="worksheets/fields/complex/tablePagined.xml" />
+			<worksheet id="fields.tableList" label="List" title="List Table"
+				href="worksheets/fields/complex/tableList.xml" />
+			<worksheet id="fields.tableStatic" label="Static" title="Static Table"
+				href="worksheets/fields/complex/tableStatic.xml" />
+			<worksheet id="fields.tableEditable" label="Editable" title="Editable Table"
+				href="worksheets/fields/complex/tableEditable.xml" />
+			<worksheet id="fields.tableTranslated" label="Translated"
+				href="worksheets/fields/complex/tableTranslated.xml" />
+			<worksheet id="fields.tableSorted" label="Sorted" href="worksheets/fields/complex/tableSorted.xml" />
+			<worksheet id="fields.tableShift" label="Shift" href="worksheets/fields/complex/tableShift.xml" />
+			<worksheet id="fields.tableVarious" label="Various &amp; Row Header" href="worksheets/fields/complex/tableVarious.xml" />
+			<worksheet id="fields.tableRowHeaded" label="Row Header with Commands (Custom)"
+				href="worksheets/fields/complex/tableRowHeaded.xml" />
+			<worksheet id="fields.tableHeaderCommand" label="Row Header with Commands (Special)"
+				href="worksheets/fields/complex/tableHeaderCommand.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="fields.treegroup" label="Tree">
+			<worksheet id="fields.tree" label="Default" title="Default Tree" href="worksheets/fields/complex/tree.xml" />
+			<worksheet id="fields.treeHeld" label="Held" title="Held Tree"
+				href="worksheets/fields/complex/treeHeld.xml" />
+			<worksheet id="fields.treeFast" label="Fast" title="Fast Tree"
+				href="worksheets/fields/complex/treeFast.xml" />
+			<worksheet id="fields.treeFile" label="File" title="File Tree"
+				href="worksheets/fields/complex/treeFile.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="fields.treetablegroup" label="TreeTable">
+			<worksheet id="fields.treetable" label="Default" title="Default TreeTable"
+				href="worksheets/fields/complex/treeTable.xml" />
+			<worksheet id="fields.treetableHeld" label="Held" title="Held TreeTable"
+				href="worksheets/fields/complex/treeTableHeld.xml" />
+			<worksheet id="fields.treetable2" label="TreeTable AddRemove" href="worksheets/fields/complex/treeTable2.xml" />
+		</worksheetgroup>
+
+		<worksheet id="fields.uploadFile" label="Upload File" href="worksheets/fields/complex/uploadFile.xml" />
+		<worksheet id="fields.colorPicker" label="ColorPicker" href="worksheets/fields/complex/colorPicker.xml" />
+
+	</worksheetgroup>
+
+	<worksheetgroup id="container" label="Containers">
+
+		<worksheetgroup id="container.types" label="Container Types">
+			<worksheet id="container.transparent" label="Transparent" href="worksheets/container/transparent.xml" />
+			<worksheet id="container.none" label="None" href="worksheets/container/none.xml" />
+			<worksheet id="container.static" label="Static" href="worksheets/container/static.xml" />
+			<worksheet id="container.expandable" label="Expandable" href="worksheets/container/expandable.xml" />
+			<worksheet id="container.tabs" label="Tabs" href="worksheets/container/tabs.xml" />
+			<worksheet id="container.window" label="Window" href="worksheets/container/window.xml" />
+			<worksheet id="container.modalWindow" label="Modal Window" href="worksheets/container/modalWindow.xml" />
+			<worksheet id="container.leftmenu" label="LeftMenu" href="worksheets/container/leftmenu.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="container.decorations" label="Container Decorations">
+			<worksheet id="container.toolbar.statusbar" label="Toolbar &amp; Statusbar" href="worksheets/container/bar.xml" />
+			<worksheet id="container.border" label="Border" href="worksheets/container/border.xml" />
+			<worksheet id="container.scrollbar" label="Scrollbar" href="worksheets/container/scrollbar.xml" />
+			<worksheet id="container.held" label="Held Mode" href="worksheets/container/held.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="container.others" label="Others">
+			<worksheet id="container.header" label="Header" href="worksheets/container/header.xml" />
+			<worksheet id="container.fieldline" label="Fieldline" href="worksheets/container/fieldline.xml" />
+			<worksheet id="container.fieldset" label="Fieldset" href="worksheets/container/fieldset.xml" />
+			<worksheet id="container.titlebar" label="Title Bar" href="worksheets/container/titlebar.xml" />
+		</worksheetgroup>
+
+		<worksheet id="container.windowURL" label="Container With URL" href="worksheets/container/windowURL.xml" />
+
+	</worksheetgroup>
+
+	<worksheetgroup id="other" label="Other">
+
+		<worksheetgroup id="clone" label="Clone">
+			<worksheet id="clonews" label="Clone" href="worksheets/clone/clone.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="bugs" label="Bugs">
+			<i18nDictionary name="defaultKiwiSample" weight="1" />
+
+			<worksheet id="bugasynckgr" label="Bug Async KGR" href="worksheets/bugs/bugasynckgr.xml" />
+			<worksheet id="bugtableasyncupdate" label="Bug Table Async Update" href="worksheets/bugs/bugtableasyncupdate.xml" />
+			<worksheet id="bugtoomanyexpandableinwindow" label="Bug Too Many Exp in Window"
+				href="worksheets/bugs/bugtoomanyexpandableinwindow.xml" />
+			<worksheet id="bughtmlinwindowtruncated" label="HTML page truncated in Window"
+				href="worksheets/bugs/bughtmlinwindowtruncated.xml" />
+			<worksheet id="bugupdatecontrolwithnavigation" label="Bug Update Control With Navigation"
+				href="worksheets/bugs/bugupdatecontrolwithnavigation.xml" />
+			<worksheet id="bugmultinavigation" label="Bug Multi Navigation" href="worksheets/bugs/bugmultinavigation.xml" />
+			<worksheet id="bugclosealgebracalculator" label="Bug Close Calculator"
+				href="worksheets/bugs/bugclosealgebracalculator.xml" />
+			<worksheet id="bugdynamicfield" label="Bug Dynamic Field" href="worksheets/bugs/bugdynamicfield.xml" />
+			<worksheet id="bugnicolas" label="Bug Nicolas" href="worksheets/bugs/bugnicolas.xml" />
+			<worksheet id="bug733" label="Bug 733 et 744" href="worksheets/bugs/bug733.xml" />
+			<worksheet id="bug828" label="Bug 828 et 907" href="worksheets/bugs/bug828.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="nav" label="Navigation">
+			<worksheet id="nav.1" label="Clone Worksheet" href="worksheets/navigation/cloneworksheet.xml" />
+			<worksheet id="nav.2" label="Command" href="worksheets/navigation/command.xml" />
+			<worksheet id="nav.3" label="More Menu" href="worksheets/navigation/moremenu.xml" />
+			<worksheet id="nav.4" label="Navigation Test" href="worksheets/navigation/logical_navigation.xml" />
+			<worksheet id="nav.5" label="External application" href="worksheets/navigation/externalApplication.xml" />
+			<worksheet id="nav.6" label="Download File" href="worksheets/navigation/downloadfile.xml" />
+			<worksheet id="nav.7" label="Open Popup Worksheet" href="worksheets/navigation/openPopupWorksheet.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="report" label="Reporting">
+			<worksheet id="reportservertest" label="Report Server Test" href="worksheets/reporting/reportservertest.xml" />
+			<!--
+				worksheet id="report.0" label="Report Follow Up"
+				href="worksheets/reporting/RealTimeFollowUp.xml"/
+			-->
+			<worksheet id="report.1" label="Report Display" href="worksheets/reporting/report_display.xml" />
+			<worksheet id="open.report.db.definition" label="Open Report DB Definition"
+				href="worksheets/wfreporting/open_report_db_definition.xml" />
+			<worksheet id="open.report.setup" label="Open Report Setup" href="worksheets/wfreporting/open_report_setup.xml" />
+			<worksheet id="report.ketat.result" label="Ketat Report Result"
+				href="worksheets/wfreporting/ketat_report_result.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="focus" label="Focus">
+			<worksheet id="focus.sample" label="Focus" href="worksheets/focus/focus.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="wfsecurity" label="Security">
+			<worksheet id="securityAdmin" label="Admin" href="worksheets/wfsecurity/security_admin.xml" />
+			<worksheetgroup id="security1.wb" label="SecurityTest">
+				<!--
+					You can test with securityID=ReadWrite or ReadOnly or a dummy value to block access for the
+					default user
+				-->
+				<worksheet id="security1.ws" label="SecurityWorksheet1" href="worksheets/security/securityWorkSheet01.xml" />
+				<worksheet id="security2.ws" label="SecurityWorksheet2" href="worksheets/security/securityWorkSheet02.xml" />
+			</worksheetgroup>
+		</worksheetgroup>
+
+		<worksheetgroup id="async" label="Async">
+			<worksheet id="asyncTreeTable" label="TreeTable" href="worksheets/async/treeTableAsync.xml" />
+			<worksheet id="asyncMask" label="Async" href="worksheets/async/async.xml" />
+			<worksheet id="asyncBlotter" label="Async Blotter" href="worksheets/async/asyncBlotter.xml" />
+			<worksheetgroup id="async.stress" label="AsyncStress">
+				<worksheet id="async.stress.table" label="Table" href="worksheets/async/stress/Table.xml" />
+				<worksheet id="async.stress.treetable" label="TreeTable" href="worksheets/async/stress/TreeTable.xml" />
+			</worksheetgroup>
+		</worksheetgroup>
+
+		<worksheetgroup id="spec" label="Spec">
+			<worksheet id="build" label="Build Setup" href="worksheets/spec/build_setup.xml" />
+		</worksheetgroup>
+
+		<worksheetgroup id="wfOther" label="Other">
+			<worksheet id="testJSP" label="Worksheet With URL" type="html" href="http://www.google.com" />
+			<worksheet id="spotdeal.sample" label="Spot Deal Sample" href="worksheets/navigation/spotDealSample.xml" />
+			<worksheet id="blotter.sample" label="Blotter Sample" href="worksheets/navigation/blotterSample.xml" />
+			<worksheet id="kgui" label="KGUI" href="worksheets/kgui/kgui.xml" />
+		</worksheetgroup>
+
+	</worksheetgroup>
+
+	<statusbar href="views/statusbar.xml" />
+
+</application>

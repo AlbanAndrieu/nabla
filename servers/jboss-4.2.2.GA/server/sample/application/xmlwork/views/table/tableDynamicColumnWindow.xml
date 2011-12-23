@@ -1,0 +1,38 @@
+<view_content>
+	<main_toolbar>
+		<control id="insertCmd" maskId="TableDynamicColumnEditorMask">
+			<img src="images/icones/insert-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/insert-unavailable.gif"/>
+		</control><toolbar_separator/>
+		<control id="updateCmd" maskId="TableDynamicColumnEditorMask">
+			<img src="images/icones/update-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/update-unavailable.gif"/>
+		</control><toolbar_separator/>
+		<control id="deleteCmd" maskId="TableDynamicColumnEditorMask">
+			<img src="images/icones/delete-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/delete-unavailable.gif"/>
+		</control><toolbar_separator/>
+		<control id="clearCmd" maskId="TableDynamicColumnEditorMask">
+			<img src="images/icones/clear-normal.gif" forstate="normal"/><img forstate="unavailable" src="images/icones/clear-unavailable.gif"/>
+		</control><toolbar_separator/>
+	</main_toolbar>
+	
+	<control id="dynamicColumnsList" maskId="TableDynamicColumnEditorMask" width="490" height="150" />
+	<fieldline></fieldline>
+	
+	<fieldline>
+		<control id="columnName" maskId="TableDynamicColumnEditorMask"/>
+	</fieldline>
+	<fieldline>
+		<control id="calculatorFormula" maskId="TableDynamicColumnEditorMask"/>
+		<control id="fractionDigitsChoice" maskId="TableDynamicColumnEditorMask" sizeUnit="0"/>
+	</fieldline>
+	
+	<fieldline></fieldline>
+	<separator width="495"/>
+		
+	<control id="okCmd" maskId="TableDynamicColumnEditorMask" position="275,250">
+		<navigation name="tableDynamicColumnWindow.ok" type="standard" params=""/>
+	</control>
+	<control id="cancelCmd" maskId="TableDynamicColumnEditorMask" position="375,250">
+		<navigation name="tableDynamicColumnWindow.cancel" type="standard" params=""/>
+	</control>
+</view_content>
+

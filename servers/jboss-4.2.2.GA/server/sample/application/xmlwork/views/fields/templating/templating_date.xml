@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	<control id="date" maskId="TemplateSample"/>
+	
+		
+	<control id="dateRightBounded" maskId="TemplateSample"><spinner/></control>
+</view_content>

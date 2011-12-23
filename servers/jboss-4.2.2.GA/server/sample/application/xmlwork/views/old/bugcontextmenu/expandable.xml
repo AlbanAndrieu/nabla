@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+	
+	
+		
+			
+				
+			
+		
+	<control id="table10" maskId="BugTableContextMenu" width="140" height="140"><group type="context_menu"><control id="command10" maskId="BugTableContextMenu" gType="menuToolBarCommand"><navigation type="standard" name="collapse" params="expandableId=bugcontextmenu.expandable"/></control></group></control>
+	
+</view_content>

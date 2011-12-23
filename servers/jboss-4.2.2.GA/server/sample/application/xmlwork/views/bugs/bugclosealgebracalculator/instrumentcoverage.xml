@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view_content>
+
+	<!-- Panel Button -->
+	<toolbar>
+		
+
+	
+		
+	<control id="cmdInsert_Coverage" maskId="CreditLimitCoverage" img="insert"></control><toolbar_separator/>
+	
+		
+	<control id="cmdUpdate_Coverage" maskId="CreditLimitCoverage" img="refresh"></control><toolbar_separator/>
+	
+		
+	<control id="cmdDelete_Coverage" maskId="CreditLimitCoverage" img="delete"></control><toolbar_separator/>
+
+
+	</toolbar>
+	
+	<!-- Properties -->
+	<container:transparent id="definition.instrumentcoverage">
+		<view:body href="coverage.xml"/>	
+	</container:transparent>		
+
+</view_content>
