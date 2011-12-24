@@ -12,8 +12,8 @@
         <!-- This element provides a basic description of your project -->
         <description>Users</description>
         <modules>
-                <module>dependencies</module>
-                <module>build-tools</module>                
+		<module>build-tools</module>        
+                <module>dependencies</module>                             
                 <module>databases</module>                                
                 <module>main</module>
                 <module>servers</module>                
