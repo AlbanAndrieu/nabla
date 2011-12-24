@@ -20,16 +20,16 @@
 			<type>profile.uml</type>
 			<scope>runtime</scope>
 		</dependency>
-        <!--
-        <dependency>
-            <groupId>org.andromda.profiles.emf.uml22</groupId>
-            <artifactId>andromda-seam</artifactId>
-            <version>1.1-SNAPSHOT</version>
-            <type>profile.uml</type>
-            <scope>runtime</scope>
-        </dependency>
-        -->
-        <dependency>
+                <!--
+                <dependency>
+                    <groupId>org.andromda.profiles.emf.uml22</groupId>
+                    <artifactId>andromda-seam</artifactId>
+                    <version>1.1-SNAPSHOT</version>
+                    <type>profile.uml</type>
+                    <scope>runtime</scope>
+                </dependency>
+                -->
+                <dependency>
 			<groupId>org.andromda.cartridges</groupId>
 			<artifactId>andromda-ejb3-cartridge</artifactId>
 			<version>${andromda.version}</version>
@@ -53,15 +53,15 @@
 			<version>${andromda.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-        <!--
-        <dependency>
-            <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-seam-cartridge</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        -->
-        <dependency>
+                <!--
+                <dependency>
+                    <groupId>org.andromda.cartridges</groupId>
+                    <artifactId>andromda-seam-cartridge</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                    <scope>runtime</scope>
+                </dependency>
+                -->
+                <dependency>
 			<groupId>org.andromda.translationlibraries</groupId>
 			<artifactId>andromda-ocl-query-library</artifactId>
 			<scope>runtime</scope>
@@ -88,11 +88,7 @@
 							<excludes>
 								<exclude>app/pom.xml</exclude>
 							</excludes>
-							<classpathMerge>
-                                <![CDATA[
-                                <classpathentry kind="var" path="M2_REPO/org/testng/testng/5.14.2/testng-5.14.2.jar"/>
-                                ]]>
-							</classpathMerge>
+							<classpathMerge><![CDATA[<classpathentry kind="var" path="M2_REPO/org/testng/testng/5.14.2/testng-5.14.2.jar"/>]]></classpathMerge>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -100,7 +96,7 @@
 		</profile>
 	</profiles>
 	<build>
-		<sourceDirectory>${project.basedir}/src/main/uml</sourceDirectory>
+		<sourceDirectory>${project.basedir}/src/main/uml/${uml.type}</sourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.andromda.maven.plugins</groupId>
@@ -113,7 +109,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<configurationUri>${project.basedir}/src/main/config/andromda.xml</configurationUri>
+					<configurationUri>${project.basedir}/src/main/config/${uml.type}/andromda.xml</configurationUri>
 					<!-- Check model dates vs output file dates from previous gen, skip
 						if files are later -->
 					<lastModifiedCheck>true</lastModifiedCheck>
@@ -125,7 +121,7 @@
 		<!-- Avoid JDK6 XJC runtime error on wdsl2java from conflicting Jaxb2.2 -->
 		<!-- Versioned independently from CXF core -->
 		<cxf.xjc.version>2.3.0</cxf.xjc.version>
-		<model.uri>file:${project.basedir}/src/main/uml/HowToModel.uml</model.uri>
+		<model.uri>file:${project.basedir}/src/main/uml/${uml.type}/HowToModel.uml</model.uri>
 		<filter></filter>
 		<validation>true</validation>
 		<!-- ant script location for temp copy of resources -->
