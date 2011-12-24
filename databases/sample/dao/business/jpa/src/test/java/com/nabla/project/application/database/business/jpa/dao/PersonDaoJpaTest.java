@@ -31,7 +31,13 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
     public void testFindPersonByLastName() throws Exception {
         System.out.println("PersonDao : " + this.personDao);
 
-        final List<Person> people = this.personDao.findByLastName("Raible");
+        Person person = new Person();
+        person.setFirstName("Marc");
+        person.setLastName("Giry");
+
+        person = this.personDao.save(person);
+
+        final List<Person> people = this.personDao.findByLastName("Giry");
         Assert.assertTrue(people.size() > 0);
         System.out.println("Person : " + people.get(0).getLastName());
     }

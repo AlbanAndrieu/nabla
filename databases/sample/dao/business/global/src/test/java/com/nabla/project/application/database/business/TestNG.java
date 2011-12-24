@@ -152,7 +152,7 @@ public class TestNG extends TestCase /* BaseDaoTestCase */{
         assert 3 == personnes.size();
         // liste des adresses
         final List<Address> adresses = this.service.getAllAddresses();
-        assert 5 == adresses.size();
+        assert 3 == adresses.size();
         // liste des activites
         final List<Activity> activites = this.service.getAllActivities();
         assert 3 == activites.size();
