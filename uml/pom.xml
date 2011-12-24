@@ -10,7 +10,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project.uml</groupId>
+	<groupId>com.nabla.project</groupId>
 	<artifactId>uml</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0</version>
@@ -135,6 +135,19 @@
 					<groupId>org.andromda.maven.plugins</groupId>
 					<artifactId>andromda-maven-plugin</artifactId>
 					<version>${andromda.version}</version>
+                    			<executions>
+                    			    <execution>
+                    			        <goals>
+                    			            <goal>run</goal>
+                    			        </goals>
+                    			        <configuration>
+                    			            <buildSourceDirectory>${project.basedir}/target/src</buildSourceDirectory>
+                    			            <!--<configurationUri>file:${project.basedir}/../conf/${uml.type}/andromda.xml</configurationUri>-->
+                    			            <configurationUri>${project.basedir}/src/main/config/${uml.type}/andromda.xml</configurationUri>
+                    			            <lastModifiedCheck>true</lastModifiedCheck>
+                    			        </configuration>
+                    			    </execution>
+                    			</executions>					
 				</plugin>
 				<plugin>
 					<groupId>org.andromda.maven.plugins</groupId>
@@ -165,6 +178,14 @@
 						</locations>
 					</configuration>
 				</plugin>
+            			<!--The Model Archiver plugin allows to package model files (such as xml.zip files) as versioned model files files, i.e. andromda-profile.xml.zip will become andromda-profile-3.1.xml.zip if the current version is 3.1.-->
+                		<!-- it also says that <packaging>xml.zip</packaging> exists -->
+                		<plugin>                    
+                		    <groupId>org.andromda.maven.plugins</groupId>
+                		    <artifactId>andromda-model-archiver-plugin</artifactId>
+                		    <version>${andromda.version}</version>
+                		    <extensions>true</extensions>
+                		</plugin>				
 			</plugins>
 		</pluginManagement>
 
@@ -203,6 +224,8 @@
 		<!-- Check model dates vs output file dates from previous gen, skip if files
 			are later -->
 		<lastModifiedCheck>false</lastModifiedCheck>
+        	<downloadSources>true</downloadSources>
+        	<createChecksum>true</createChecksum>		
 		<mda.username>${product.username}</mda.username>
 		<mda.workspace>${mda.username}${product.major.version}</mda.workspace>
 
@@ -213,9 +236,14 @@
 		<jdbc.nabla.password>${database.name}</jdbc.nabla.password>
 
 		<maven.repo.local>${env.M2_REPO}</maven.repo.local>
-
+        
+                <!--<src.dir>${project.basedir}/src</src.dir>-->
 		<src.dir>${pom.basedir}/src</src.dir>
 		<!-- used for facades and facade-logics in andromda.xml -->
+		<!--
+		<java.src.dir>${project.build.sourceDirectory}</java.src.dir>
+        	<test.src.dir>${project.basedir}/src/test</test.src.dir>
+        	-->		
 		<java.src.dir>${pom.basedir}/src/main/java</java.src.dir> <!-- used for facade-logic-impls in andromda.xml -->
 		<test.src.dir>${pom.basedir}/src/test</test.src.dir>
 		<!--
@@ -229,6 +257,8 @@
 			file:${test.src.dir}/mappings/MergeMappings.xml in
 			gui-cardtridge\conf\test\andromda.xml
 		-->
+		<howto.output.dir>${project.basedir}/target/site/howto</howto.output.dir>
+		<andromda.cartridge.howto.model.uri>jar:file:.${pom.basedir}/sample/howtomodel/mda/src/main/uml/${uml.type}/HowToModel.xml.zip!/HowToModel.xml</andromda.cartridge.howto.model.uri>
 
 		<nabla.mda.profiles.dir>/cartridges/dev-cartridges/profiles/${uml.type}</nabla.mda.profiles.dir>
 		<nabla.mda.entities.dir>/common/nabla-entities/model/src/main/uml/${uml.type}</nabla.mda.entities.dir>
@@ -242,7 +272,7 @@
 			<maven.andromda.model.uri.no.validables>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri.no.validables> -->
 		<validation>true</validation>
 		<cartridge.filter></cartridge.filter>
-		<conf.dir>${pom.basedir}/src/main/config</conf.dir>
+		<conf.dir>${pom.basedir}/src/main/config/${uml.type}</conf.dir>
 		<nabla.mda.dir>${pom.basedir}/../../..</nabla.mda.dir>
 		<configuration.mda.dir>${nabla.mda.dir}/configuration</configuration.mda.dir>
 		<manual.mappings.location>${nabla.mda.dir}/configuration/generation/manualMapping</manual.mappings.location>
