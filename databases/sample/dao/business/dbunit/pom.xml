@@ -8,7 +8,7 @@
 		<version>1.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<name>Databases DAO dbunit</name>
+	<name>Databases DAO DBUnit</name>
 	<groupId>com.nabla.project.databases.sample.dao.business.dbunit</groupId>
 	<artifactId>dbunit</artifactId>
 	<!-- <version>1.0</version> -->

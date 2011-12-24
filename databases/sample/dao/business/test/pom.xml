@@ -389,7 +389,7 @@
 			</build>
 		</profile>
 	</profiles>
-
+<!--
 	<reporting>
 		<plugins>
 			<plugin>
@@ -399,4 +399,5 @@
 			</plugin>
 		</plugins>
 	</reporting>
+-->	
 </project>

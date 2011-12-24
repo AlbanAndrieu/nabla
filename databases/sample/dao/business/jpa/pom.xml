@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.databases.sample.dao.business.jpa</groupId>
 	<artifactId>jpa</artifactId>
-	<name>jpa</name>
+	<name>Database DAO Jpa</name>
 	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
 
