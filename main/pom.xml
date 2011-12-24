@@ -1164,7 +1164,6 @@
 				<model.name>nabla</model.name>
 				<model.uri>jar:file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</model.uri>
 				<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri>
-				<andromda.version>3.2</andromda.version>
 			</properties>
 		</profile>
 		<profile>
@@ -1180,8 +1179,7 @@
 				<profile.type>uml2</profile.type>
 				<model.name>nabla</model.name>
 				<model.uri>file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.uml</model.uri>
-				<maven.andromda.model.uri>file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri>
-				<andromda.version>3.4-SNAPSHOT</andromda.version>
+				<maven.andromda.model.uri>file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri>				
 			</properties>
 		</profile>
 		<!-- ================= END MDA Profiles ================= -->
