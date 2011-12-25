@@ -327,9 +327,16 @@
 		</profile>
 		<profile>
 			<id>hibernate3</id>
+			<!--
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>
+			-->			
 			<properties>
 				<maven.test.skip>true</maven.test.skip>
-			</properties>			
+			</properties>
 			<build>
 				<plugins>
                                         <plugin>
@@ -340,7 +347,7 @@
                                                         <components>
                                                                 <component>
                                                                         <name>hbm2ddl</name>                                                                        
-                                                                        <!--<outputDirectory>target/database-ddl</outputDirectory>-->
+                                                                        <outputDirectory>target/site/hibernate3/sql</outputDirectory>
                                                                         <implementation>annotationconfiguration</implementation>
                                                                 </component>
                                                                 <component>
@@ -355,11 +362,11 @@
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2doc</name>
-                                                                        <!--<outputDirectory>target/doc</outputDirectory>-->
+                                                                        <outputDirectory>target/site/hibernate3/javadoc</outputDirectory>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2cfgxml</name>
-                                                                        <!--<outputDirectory>target/cfg</outputDirectory>-->
+                                                                        <outputDirectory>target/site/hibernate3/generated-mappings</outputDirectory>
                                                                         <implementation>annotationconfiguration</implementation>
                                                                 </component>
                                                                 <component>
@@ -389,14 +396,14 @@
 								<phase>process-test-resources</phase>
 								<goals>
 									<goal>hbm2ddl</goal>									
-									<goal>hbm2java</goal>
+									<!--<goal>hbm2java</goal>-->
 									<goal>hbm2doc</goal>
 									<goal>hbm2cfgxml</goal>
 									<!--<goal>hbm2hbmxml</goal>-->
 									<!--<goal>hbmtemplate</goal>-->
 								</goals>
 							</execution>
-						</executions>                                                
+						</executions>
         					<dependencies>
         					  	<dependency>
         					  	        <groupId>${jdbc.groupId}</groupId>
@@ -667,22 +674,6 @@
 		<dao.framework>jpa</dao.framework>
 		<maven.test.skip>false</maven.test.skip>
 		<database.name>myDBGlobal</database.name>
-
-		<!-- Database settings -->
-		<!--
-		<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-		<database>derby</database>
-		<dbunit.schema>APP</dbunit.schema>
-		<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
-		<jdbc.groupId>org.apache.derby</jdbc.groupId>
-		<jdbc.artifactId>derby</jdbc.artifactId>
-		<jdbc.version>${jdbc.derby.version}</jdbc.version>
-		<jdbc.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driver>
-		<jdbc.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.url>
-		<jdbc.username>user</jdbc.username>
-		<jdbc.password>user</jdbc.password>
-		 -->
 	</properties>
 
 </project>
