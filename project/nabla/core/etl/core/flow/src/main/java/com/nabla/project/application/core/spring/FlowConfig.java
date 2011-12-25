@@ -33,9 +33,6 @@
  */
 package com.nabla.project.application.core.spring;
 
-import com.nabla.project.application.core.spring.ApplicationContextFlowFactory;
-
-
 /**
  * DOCUMENT ME!
  *
@@ -44,6 +41,11 @@ import com.nabla.project.application.core.spring.ApplicationContextFlowFactory;
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
 public class FlowConfig extends AbstractFlowConfig {
+
+    /**
+     * DOCUMENT ME!
+     */
+    public static String beanConfig = "defaultConfigurationFlow";
 
     /**
      * Creates a new FlowConfig object.
@@ -60,7 +62,7 @@ public class FlowConfig extends AbstractFlowConfig {
      */
     public static FlowConfig getInstance() {
 
-        return (FlowConfig) ApplicationContextFlowFactory.getInstance().getApplicationContext().getBean(beanConfig);
+        return (FlowConfig) ApplicationContextFlowFactory.getInstance().getApplicationContext().getBean(FlowConfig.beanConfig);
 
     }
 

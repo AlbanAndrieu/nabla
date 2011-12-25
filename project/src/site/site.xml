@@ -91,6 +91,8 @@
 -->
        <menu name="Other Resources">
             <item name="Documents" href="../documents"/>
+            <item name="Databases Samples" href="../../../../index.html"/>
+            <item name="UML Samples" href="/uml/index.html"/>
        </menu> 
        
        <!--

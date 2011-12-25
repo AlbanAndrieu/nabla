@@ -19,7 +19,7 @@
 	<!-- *********************************************** -->
 	<!--*** Version attribute - COMMON for all generic models around the Trade/Product models *** -->
 	<xs:attributeGroup name="XML_TradeVersion">
-		<xs:attribute name="version" type="xs:string" use="required" fixed="4.10" />
+		<xs:attribute name="version" type="xs:string" use="required" fixed="1.0" />
 	</xs:attributeGroup>
 	<!-- *********************************************** -->
 	<!--*** GENERIC STRUCTURES to be extended in services *** -->

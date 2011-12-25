@@ -6,12 +6,12 @@
                 <artifactId>core</artifactId>
                 <version>1.0</version>
         </parent>
-        
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.nabla.project.core.etl.core.configuration</groupId>
   <artifactId>configuration</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+<!--   <version>1.0</version> -->
   <name>Etl Core Configuration</name>
   <description>Java core configuration of Etl</description>
 
@@ -22,7 +22,6 @@
                         <filter>src/main/resources/filters/filter.properties</filter>
                 </filters>
                 <resources>
-                        <!--
                         <resource>
                                 <directory>${basedir}/src/main/resources</directory>
                                 <filtering>true</filtering>
@@ -33,13 +32,11 @@
                                         <include>**/*.vm</include>
                                 </includes>
                                 <excludes>
-                                        -->
                                         <!-- Preventing Filtering of Binary Resources -->
-                                        <!--
                                         <exclude>images/**</exclude>
                                 </excludes>
                         </resource>
-                        
+
                         <resource>
                                 <directory>${basedir}/src/main/resources</directory>
                                 <includes>
@@ -50,7 +47,7 @@
                                         <include>**/*.vm</include>
                                 </includes>
                         </resource>
-                        -->
+                        
                         <resource>
                                 <directory>${basedir}/src/main/java</directory>
                                 <includes>
@@ -82,7 +79,7 @@
                         <!--
                         <testResource>
                                 <directory>${basedir}/src/test/resources</directory>
-                                <includes>                                        
+                                <includes>
                                         <include>images/**</include>
                                         <include>**/*.xml</include>
                                         <include>**/*.properties</include>

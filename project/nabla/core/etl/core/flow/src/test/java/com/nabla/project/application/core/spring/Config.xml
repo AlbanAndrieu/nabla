@@ -5,7 +5,7 @@
 	<bean id="defaultAbstractConfiguration" class="com.nabla.project.application.core.spring.AbstractFlowConfig" abstract="true">
 		<property name="queueSize" value="1000"/>
 	</bean>
-	
-	<bean id="defaultConfiguration" class="com.nabla.project.application.core.spring.FlowConfig" parent="defaultAbstractConfiguration" lazy-init="true"/>
+
+	<bean id="defaultConfigurationFlow" class="com.nabla.project.application.core.spring.FlowConfig" parent="defaultAbstractConfiguration" lazy-init="true"/>
 
 </beans>

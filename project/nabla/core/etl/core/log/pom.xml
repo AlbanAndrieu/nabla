@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-        <parent>
-                <groupId>com.nabla.project.core.etl.core</groupId>
-                <artifactId>core</artifactId>
-                <version>1.0</version>
-        </parent>
-        
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.nabla.project.core.etl.core.log</groupId>
-  <artifactId>log</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0</version>
-  <name>Etl Core Log</name>
-  <description>Java core log of the Etl</description>
+	<parent>
+		<groupId>com.nabla.project.core.etl.core</groupId>
+		<artifactId>core</artifactId>
+		<version>1.0</version>
+	</parent>
 
-        <dependencies>
-                <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring</artifactId>
-                        <optional>false</optional>
-                        <scope>compile</scope>
-                </dependency>
-                <dependency>
-                        <groupId>commons-collections</groupId>
-                        <artifactId>commons-collections</artifactId>
-                        <scope>compile</scope>
-                </dependency>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nabla.project.core.etl.core.log</groupId>
+	<artifactId>log</artifactId>
+	<packaging>jar</packaging>
+	<!-- <version>1.0</version> -->
+	<name>Etl Core Log</name>
+	<description>Java core log of the Etl</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<optional>false</optional>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<scope>compile</scope>
+		</dependency>
                 <!--
                 <dependency>
                         <groupId>log4j</groupId>
@@ -36,36 +37,42 @@
                 </dependency>
                 -->
                 <dependency>
-                        <groupId>jmdns</groupId>
-                        <artifactId>jmdns</artifactId>
-                        <version>${jmdns.version}</version>
-                </dependency>
-                <!--
-                        <dependency>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                        <version>1.1</version>
-                        <scope>compile</scope>
-                        </dependency>
-                -->
-        </dependencies>
-        <build>
-                <testResources>
-                        <testResource>
-                                <directory>${basedir}/src/test/java</directory>
-                                <filtering>true</filtering>
-                                <includes>
-                                        <include>**/*.xml</include>
-                                </includes>
-                        </testResource>
-                        <testResource>
-                                <directory>${basedir}/src/test/resources</directory>
-                                <filtering>true</filtering>
-                                <includes>
-                                        <include>**/*.xml</include>
-                                        <include>**/*.properties</include>
-                                </includes>
-                        </testResource>                          
-                </testResources>
-       </build>
+			<groupId>jmdns</groupId>
+			<artifactId>jmdns</artifactId>
+			<version>${jmdns.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/java</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</testResource>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -43,6 +43,11 @@ package com.nabla.project.application.core.spring;
 public class PipeConfig extends AbstractPipeConfig {
 
     /**
+     * DOCUMENT ME!
+     */
+    public static String beanConfig = "defaultConfigurationPipe";
+
+    /**
      * Creates a new PipeConfig object.
      */
     private PipeConfig() {
@@ -57,7 +62,7 @@ public class PipeConfig extends AbstractPipeConfig {
      */
     public static PipeConfig getInstance() {
 
-        return (PipeConfig) ApplicationContexPipeFactory.getInstance().getApplicationContext().getBean(beanConfig);
+        return (PipeConfig) ApplicationContexPipeFactory.getInstance().getApplicationContext().getBean(PipeConfig.beanConfig);
 
     }
 
