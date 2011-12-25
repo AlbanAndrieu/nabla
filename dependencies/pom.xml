@@ -205,7 +205,7 @@
 							<!--<locales>en,fr</locales> -->
 							<excludeModules>build-tools</excludeModules>
 							<excludeModules>maven-gui-plugin</excludeModules>
-							<siteDirectory>${basedir}/site/src/site</siteDirectory>
+							<!--<siteDirectory>${basedir}/site/src/site</siteDirectory>-->
 							<port>8070</port>
 						</configuration>
 						<dependencies>
