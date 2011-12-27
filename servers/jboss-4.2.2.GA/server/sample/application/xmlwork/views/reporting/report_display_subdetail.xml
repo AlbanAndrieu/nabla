@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-
-<control id="subdetailTable" maskId="ReportDisplayMask" width="500" height="300" holder="fields.report.subdetail"/>
-
-</view_content>

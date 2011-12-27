@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	
-	<container:none id="noneXML2" height="250">
-		<view:body parse="html" href="xmlView.jsp?xmlView=worksheets/container/none.xml&amp;blockId=sample2"/>
-	</container:none>
-	
-</view_content>

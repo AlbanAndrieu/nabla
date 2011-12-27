@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	<control id="double" maskId="TemplateSample"/>
-	
-		
-	<control id="doubleSpinner" maskId="TemplateSample"><spinner validate="true"/></control>
-</view_content>

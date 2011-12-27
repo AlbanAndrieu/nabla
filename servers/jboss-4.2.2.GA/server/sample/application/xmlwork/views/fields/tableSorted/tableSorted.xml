@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-    <!-- <control id="tableSorted" maskId="TableSortedSample" width="390" height="330"/> -->
-    <control id="tableSorted" maskId="TableSortedSample" width="570" height="330" sortIgnoreCase="true"/>
-</view_content>

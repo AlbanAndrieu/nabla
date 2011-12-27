@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-<control maskId="ApplicationBrowser" id="fieldSetTable" width="504" height="580" gType="pagined" pageSize="25" position="5,5"/>
-<control maskId="ApplicationBrowser" id="fieldTable" width="688" height="580" gType="pagined" pageSize="25" position="514,5"/>
-</view_content>

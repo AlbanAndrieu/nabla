@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-    <control id="command" maskId="CommandSample"/>
-    <control id="command2" maskId="CommandSample"/>
-    <control id="command3" maskId="CommandSample"/>
-</view_content>

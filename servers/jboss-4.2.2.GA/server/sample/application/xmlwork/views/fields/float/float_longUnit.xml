@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	
-	
-		
-	<control id="floatLongUnit" maskId="FloatSample" longUnit="true"><spinner validate="true"/></control>
-	
-</view_content>

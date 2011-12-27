@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content> 
-	
-	<control id="bsXMLeditor" maskId="MaskCustomizer" position="0,10" gType="textArea" cols="75" rows="21" label="" fixedSizeLabel="false"/>    	
-    
-	<control id="btApplyXMLeditor" maskId="MaskCustomizer" position="155,305"/>
-	
-</view_content>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-    <control id="helpgroupLongReadOnly1" maskId="HelpGroupSample" gType="longReadOnly"/>
-    <control id="helpgroupLongReadOnly2" maskId="HelpGroupSample" autosuggest="true" gType="longReadOnly"/>   
-</view_content>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-
-<control id="recap" maskId="ReportDisplayMask" gType="textArea" fixedSizeLabel="false" holder="fields.report.recap"/>
-
-</view_content>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	<control id="helpGroupMask" maskId="TemplateSample" gType="short"/>   
-	<control id="helpGroupCountry" maskId="TemplateSample" autosuggest="true"/> 
-	<control id="helpGroupUsers" maskId="TemplateSample"/>	
-	<control id="helpGroupUsersAuto" maskId="TemplateSample" autosuggest="true"/>
-	<control id="helpGroupUsersPersonal" maskId="TemplateSample"/>
-</view_content>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE fieldGroup PUBLIC "-//fw3.x/Reuters Karma FieldGroup DTD 1.0 //EN" "logicalFieldGroup.dtd">
-
-<fieldGroup name="example2" label="Example Logical FieldGroup from xml file, to be included">
-	<field name="label" label="Currency 1" type="label"/>
-</fieldGroup>

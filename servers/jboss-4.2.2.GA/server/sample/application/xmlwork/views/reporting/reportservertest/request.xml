@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-
-	<control id="name" maskId="ReportServerTest" gType="long"/>
-	<control id="setup" maskId="ReportServerTest" gType="textArea"/>
-	<control id="comment" maskId="ReportServerTest" gType="long"/>
-	<control id="request" maskId="ReportServerTest"/>
-	
-</view_content>

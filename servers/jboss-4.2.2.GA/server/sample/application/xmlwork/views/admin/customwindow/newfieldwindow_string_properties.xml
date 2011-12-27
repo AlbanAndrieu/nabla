@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	<control id="stringUppercase" maskId="newFieldWindow"/>
-	<control id="stringMaxLength" maskId="newFieldWindow"/>
-	<control id="stringTest" maskId="newFieldWindow"/>
-</view_content>

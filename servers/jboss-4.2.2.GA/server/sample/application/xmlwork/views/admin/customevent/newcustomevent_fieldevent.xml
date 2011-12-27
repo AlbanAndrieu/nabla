@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	<control id="fieldSetId" maskId="newCustomEventHandler"/>
-	<control id="fieldId" maskId="newCustomEventHandler"/>
-	<control id="subType" maskId="newCustomEventHandler"/>		
-</view_content>

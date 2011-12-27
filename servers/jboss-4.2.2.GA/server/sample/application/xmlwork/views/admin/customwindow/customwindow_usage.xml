@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	<fieldline/>
-	<control id="usageFieldSet" maskId="customFieldSetUsage"/>
-	<control id="usageFieldSetTable" maskId="customFieldSetUsage" position="10,45" width="365" height="290"/>
-</view_content>

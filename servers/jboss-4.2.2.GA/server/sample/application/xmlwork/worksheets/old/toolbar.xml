@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<worksheet version="1.0" name="ToolbarSample" xmlns:container="http://www.rfs.com/fw30/container" xmlns:view="http://www.rfs.com/fw30/view" xmlns:layout="http://www.rfs.com/fw30/layout" xmlns:xi="http://www.w3.org/2001/XInclude">
-
-	<main_toolbar id="toolbar1">
-		<control id="cmd1" maskId="ToolbarSample"/>
-		<toolbar_separator/>
-		<group type="menuToolbarButton" label="More" id="CapFloorMenuToolbarButton">
-			
-				

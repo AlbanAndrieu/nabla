@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content> 	
-	<control id="HGFieldToolBar" maskId="MaskCustomizer" position="-31,42"/>
-	<control id="HGFieldSetToolBar" maskId="MaskCustomizer" position="-31,16"/>
-	
-</view_content>

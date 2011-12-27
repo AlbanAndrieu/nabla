@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	<fieldline>
-		<control id="tableEditable" maskId="TableSample" width="800" height="350" />
-	</fieldline>
-</view_content>

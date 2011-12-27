@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-	
-	<control id="choiceToolTip" maskId="ChoiceSample" gType="comboBox" sizeInput="170" fixHeight="45" />
-	
-</view_content>

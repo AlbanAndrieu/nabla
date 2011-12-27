@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<view_content>
-<control id="folderTree" maskId="customFieldSet" width="340" height="290"/>
-<control id="fieldSetTable" maskId="customFieldSet" width="340" height="290"/>
-</view_content>
