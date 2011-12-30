@@ -22,6 +22,16 @@
         </plugins>
     </build>
     <modules>        
+        <module>datatype</module>
+        <module>messaging</module>
+        <module>meta</module>
+        <module>persistence</module>
+        <module>presentation</module>
+        <module>process</module>
+        <module>service</module>
+        <module>webservice</module>
+        <module>common</module>        
+        <module>xml</module>    
         <module>gui</module>
         <module>backend</module>
         <module>test</module>
