@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
@@ -26,7 +25,7 @@
     <logger name="org.hibernate">
         <level value="WARN"/>
     </logger>
-  
+
     <!--logger name="org.hibernate.SQL">
         <level value="DEBUG"/>
     </logger-->
@@ -34,11 +33,11 @@
     <logger name="org.springframework">
         <level value="WARN"/>
     </logger>
-   
+
     <logger name="com.nabla.project.application">
         <level value="INFO"/>
     </logger>
-    
+
     <logger name="com.nabla.project.application.model">
         <level value="DEBUG"/>
     </logger>

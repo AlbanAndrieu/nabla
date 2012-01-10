@@ -11,13 +11,14 @@
 	<!-- Global beans -->
 	<import resource="applicationContext-resources.xml"/>
 
-	<!-- la JVM doit être lancée avec l'argument -javaagent:C:\data\2006-2007\eclipse\dvp-jpa\lib\spring\spring-agent.jar 
+	<!-- la JVM doit être lancée avec l'argument -javaagent:C:\data\2006-2007\eclipse\dvp-jpa\lib\spring\spring-agent.jar
 		(à remplacer par le chemin exact de spring-agent.jar)-->
 
 	<!-- le gestionnaire de transactions -->
 	<!-- http://www.mydeveloperconnection.com/html/spring-hibernate-QnA.htm-->
 	<!-- Transaction manager for a single EntityManagerFactory (alternative to JTA) -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<!-- sessionFactory -->
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -25,7 +26,7 @@
 
 	<!-- org.springframework.orm.jpa.vendor.TopLinkJpaVendorAdapter -->
 	<!-- oracle.toplink.essentials.platform.database.DerbyPlatform -->
-	<!-- 
+	<!--
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
@@ -64,7 +65,7 @@
 		</property>
 		<property name="loadTimeWeaver">
 			<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
-		</property>        
+		</property>
     </bean>
 
     <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
@@ -83,15 +84,15 @@
     <!-- Needed so the @PersistenceUnit annotation is recognized -->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
-    <!-- UniversalDao - can be used when doing standard CRUD - made available 
-        for those who don't mind casting.  If you don't want to cast, look at 
+    <!-- UniversalDao - can be used when doing standard CRUD - made available
+        for those who don't mind casting.  If you don't want to cast, look at
         'fooDao' below. -->
     <!--
     <bean id="universalDao" class="org.appfuse.dao.jpa.UniversalDaoJpa"/>
      -->
 
     <!-- LookupDao - can be used when doing standard CRUD -->
-    <!-- 
+    <!--
     <bean id="lookupDao" class="org.appfuse.dao.jpa.LookupDaoJpa"/>
      -->
 
@@ -101,22 +102,22 @@
     <!-- RoleDao: Hibernate implementation -->
     <bean id="roleDao" class="org.appfuse.dao.jpa.RoleDaoJpa"/>
 
-    <!-- If you want to be able to do simple CRUD for new domain objects without 
-        having to cast, you don't have create a Dao interface and implementation 
-        for that domain object, you simply have to do the following.  
-        
+    <!-- If you want to be able to do simple CRUD for new domain objects without
+        having to cast, you don't have create a Dao interface and implementation
+        for that domain object, you simply have to do the following.
+
         <bean id="fooDao" class="org.appfuse.dao.jpa.GenericDaoJpa">
             <constructor-arg value="org.appfuse.model.Foo"/>
         </bean>
-        
-        You will need to create a Dao interface and implementation for that 
-        domain object if you need more than simple CRUD to occur.  
+
+        You will need to create a Dao interface and implementation for that
+        domain object if you need more than simple CRUD to occur.
         (finders, bulk update/delete, etc.) eg... 'fooDao'
     -->
 
-    <!-- Add new DAOs here -->	
-	
-	<!-- 
+    <!-- Add new DAOs here -->
+
+	<!--
 	<bean id="AddressDAO"
 		class="com.nabla.project.application.model.dao.person.dao.AddressDAO">
 		<property name="entityManagerFactory"
@@ -132,7 +133,7 @@
 		<property name="entityManagerFactory"
 			ref="entityManagerFactory" />
 	</bean>
- 	-->	
+ 	-->
 
 	<!-- couches applicatives -->
 

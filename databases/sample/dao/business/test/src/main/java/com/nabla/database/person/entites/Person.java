@@ -45,20 +45,20 @@ public class Person implements Serializable {
     private int           nbChildren;
 
     // relation principale Person (one) -> Address (one)
-    // implémentée par la clé étrangère Person(adresse_id) -> Address
+    // implementee par la cle etrangere Person(adresse_id) -> Address
     // cascade insertion Person -> insertion Address
     // cascade maj Person -> maj Address
     // cascade suppression Person -> suppression Address
     // une Person doit avoir 1 Address (nullable=false)
-    // 1 Address n'appartient qu'à 1 personne (unique=true)
+    // 1 Address n'appartient qu'a 1 personne (unique=true)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ADDRESS_ID", unique = true, nullable = false)
     private Address       address;
 
     // relation Person (many) -> Activity (many) via une table de jointure PersonneActivite
-    // PersonneActivite5(PERSONNE_ID) est clé étangère sur Person(id)
-    // PersonneActivite5(ACTIVITE_ID) est clé étangère sur Activity(id)
-    // plus de cascade sur les activités
+    // PersonneActivite5(PERSONNE_ID) est cle etangere sur Person(id)
+    // PersonneActivite5(ACTIVITE_ID) est cle etangere sur Activity(id)
+    // plus de cascade sur les activites
     // @ManyToMany(cascade={CascadeType.PERSIST})
     @ManyToMany()
     @JoinTable(name = "PersonActivity", joinColumns = @JoinColumn(name = "PERSON_ID"), inverseJoinColumns = @JoinColumn(name = "ACTIVITY_ID")

@@ -32,19 +32,19 @@ public class Service implements IService {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public List<Person> getAllPersons() {
         return this.dao.getAllPersons();
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public List<Person> getAllPersonsWithNameLike(final String modelName) {
         return this.dao.getAllPersonsWithNameLike(modelName);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public List<Activity> getActivitiesOfPerson(final Long personId) {
         return this.dao.getActivitiesOfPerson(personId);
     }
@@ -75,20 +75,19 @@ public class Service implements IService {
         }
     }
 
-    // activites
     @Override
     public Activity getActivity(final Long activityId) {
         return this.dao.getActivity(activityId);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public List<Activity> getAllActivities() {
         return this.dao.getAllActivities();
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public List<Activity> getAllActivitiesWithNameLike(final String modelName) {
         return this.dao.getAllActivitiesWithNameLike(modelName);
     };
@@ -113,7 +112,6 @@ public class Service implements IService {
         return this.dao.getPersonsDoingActivity(activityId);
     }
 
-    // adresses
     @Override
     public List<Address> getAllAddresses() {
         return this.dao.getAllAddresses();

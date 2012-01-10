@@ -22,39 +22,39 @@ import org.compass.annotations.SearchableProperty;
 // @Searchable(root = false)
 public class Address /* extends BaseObject */implements Serializable {
 
-    // private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long   id;
+    private Long              id;
     @Column(nullable = false)
     @Version
-    private int    version;
+    private int               version;
     @Column(length = 150, nullable = false)
     @SearchableProperty
-    private String address;
+    private String            address;
     @Column(name = "address_info", length = 30)
-    private String addressInfo;
+    private String            addressInfo;
     @Column(length = 5, nullable = false)
-    private String code;
+    private String            code;
     @Column(length = 20, nullable = false)
     @SearchableProperty
-    private String city;
+    private String            city;
     @Column(length = 100)
     @SearchableProperty
-    private String province;
+    private String            province;
     @Column(name = "postal_code", length = 15)
     @SearchableProperty
-    private String postalCode;
+    private String            postalCode;
     @Column(length = 3)
     @SearchableProperty
-    private String cedex;
+    private String            cedex;
     @Column(length = 20, nullable = false)
     @SearchableProperty
-    private String country;
+    private String            country;
     @OneToOne(mappedBy = "address")
-    private Person person;
+    private Person            person;
 
     public Address() {
     }

@@ -22,7 +22,7 @@ public class Dao implements IDao {
         return this.entityManager;
     }
 
-    // personnes
+    // persons
     @Override
     public Person getPerson(final Long categoryId) {
         return this.entityManager.find(Person.class, categoryId);
@@ -69,7 +69,7 @@ public class Dao implements IDao {
         this.entityManager.remove(person);
     }
 
-    // activités
+    // activity
     @Override
     public Activity getActivity(final Long activityId) {
         return this.entityManager.find(Activity.class, activityId);
@@ -113,15 +113,15 @@ public class Dao implements IDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<Person> getPersonsDoingActivity(final Long activityId) {
-        // la requête suivante marche avec Hibernate, pas avec Toplink qui refuse la navigation p.activites.id
+        // The following query works with Hibernate, not with Toplink which does not accept the following navigation p.activites.id
         // return em.createQuery("select p from Person p, Activity a where p.activites.id=a.id and a.id=:activiteId").setParameter("activiteId",
         // activiteId).getResultList();
 
-        // la requête suivante est acceptée par les deux
+        // The following query works for both
         return this.entityManager.createQuery("select p from Person p join p.activities a where a.id=:activityId").setParameter("activityId", activityId).getResultList();
     }
 
-    // adresses
+    // addresses
     @Override
     @SuppressWarnings("unchecked")
     public List<Address> getAllAddresses() {

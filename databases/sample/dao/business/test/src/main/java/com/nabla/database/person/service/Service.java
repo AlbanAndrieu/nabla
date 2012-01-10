@@ -1,125 +1,116 @@
 package com.nabla.database.person.service;
 
+import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import com.nabla.database.person.dao.IDao;
 import com.nabla.database.person.entites.Activity;
 import com.nabla.database.person.entites.Address;
 import com.nabla.database.person.entites.Person;
 
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
-//ttes les méthodes de la classe se déroulent dans une transaction
+// All method go through one transaction
 @Transactional
-public class Service
-    implements IService
-{
+public class Service implements IService {
     // couche [dao]
     private IDao dao;
 
-    public IDao getDao(  )
-    {
-        return dao;
+    public IDao getDao() {
+        return this.dao;
     }
 
-    public void setDao( IDao dao )
-    {
+    public void setDao(final IDao dao) {
         this.dao = dao;
     }
 
-    // catégories
-    public Person getPerson( Long personId )
-    {
-        return dao.getPerson( personId );
+    @Override
+    public Person getPerson(final Long personId) {
+        return this.dao.getPerson(personId);
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Person> getAllPersons(  )
-    {
-        return dao.getAllPersons(  );
+    @Override
+    // @SuppressWarnings("unchecked")
+    public List<Person> getAllPersons() {
+        return this.dao.getAllPersons();
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Person> getAllPersonsWithNameLike( String modelName )
-    {
-        return dao.getAllPersonsWithNameLike( modelName );
+    @Override
+    // @SuppressWarnings("unchecked")
+    public List<Person> getAllPersonsWithNameLike(final String modelName) {
+        return this.dao.getAllPersonsWithNameLike(modelName);
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Activity> getActivitiesOfPerson( Long personId )
-    {
-        return dao.getActivitiesOfPerson( personId );
+    @Override
+    // @SuppressWarnings("unchecked")
+    public List<Activity> getActivitiesOfPerson(final Long personId) {
+        return this.dao.getActivitiesOfPerson(personId);
     }
 
-    public Person updatePerson( Person person )
-    {
-        return dao.updatePerson( person );
+    @Override
+    public Person updatePerson(final Person person) {
+        return this.dao.updatePerson(person);
     }
 
-    public Person savePerson( Person person )
-    {
-        return dao.savePerson( person );
-    }
-    ;
-    public void deletePerson( Long personId )
-    {
-        dao.deletePerson( personId );
+    @Override
+    public Person savePerson(final Person person) {
+        return this.dao.savePerson(person);
+    };
+
+    @Override
+    public void deletePerson(final Long personId) {
+        this.dao.deletePerson(personId);
     }
 
-    public void savePersonsWithActivities( Person[] persons )
-    {
-        for ( Person person : persons )
-        {
-            dao.savePerson( person );
+    @Override
+    public void savePersonsWithActivities(final Person[] persons) {
+        for (final Person person : persons) {
+            this.dao.savePerson(person);
 
-            for ( Activity activity : person.getActivities(  ) )
-            {
-                dao.saveActivity( activity );
+            for (final Activity activity : person.getActivities()) {
+                this.dao.saveActivity(activity);
             }
         }
     }
 
-    // activites
-    public Activity getActivity( Long activityId )
-    {
-        return dao.getActivity( activityId );
+    @Override
+    public Activity getActivity(final Long activityId) {
+        return this.dao.getActivity(activityId);
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Activity> getAllActivities(  )
-    {
-        return dao.getAllActivities(  );
+    @Override
+    // @SuppressWarnings("unchecked")
+    public List<Activity> getAllActivities() {
+        return this.dao.getAllActivities();
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Activity> getAllActivitiesWithNameLike( String modelName )
-    {
-        return dao.getAllActivitiesWithNameLike( modelName );
-    }
-    ;
-    public Activity saveActivity( Activity activity )
-    {
-        return dao.saveActivity( activity );
+    @Override
+    // @SuppressWarnings("unchecked")
+    public List<Activity> getAllActivitiesWithNameLike(final String modelName) {
+        return this.dao.getAllActivitiesWithNameLike(modelName);
+    };
+
+    @Override
+    public Activity saveActivity(final Activity activity) {
+        return this.dao.saveActivity(activity);
     }
 
-    public Activity updateActivity( Activity activity )
-    {
-        return dao.updateActivity( activity );
+    @Override
+    public Activity updateActivity(final Activity activity) {
+        return this.dao.updateActivity(activity);
     }
 
-    public void deleteActivity( Long activityId )
-    {
-        dao.deleteActivity( activityId );
+    @Override
+    public void deleteActivity(final Long activityId) {
+        this.dao.deleteActivity(activityId);
     }
 
-    public List<Person> getPersonsDoingActivity( Long activityId )
-    {
-        return dao.getPersonsDoingActivity( activityId );
+    @Override
+    public List<Person> getPersonsDoingActivity(final Long activityId) {
+        return this.dao.getPersonsDoingActivity(activityId);
     }
 
-    // adresses
-    public List<Address> getAllAddresses(  )
-    {
-        return dao.getAllAddresses(  );
+    @Override
+    public List<Address> getAllAddresses() {
+        return this.dao.getAllAddresses();
     }
 }

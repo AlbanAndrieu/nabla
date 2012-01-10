@@ -21,7 +21,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
 			<!-- <version>2.5.6</version> -->
-			<version>${spring.version}</version>
 		</dependency>
         <!--
         <dependency>
@@ -39,7 +38,7 @@
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>
-			<version>${xerces.version}</version>
+			<!-- <version>${xerces.version}</version> -->
 		</dependency>
 
 		<!-- used by org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver -->
@@ -57,7 +56,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-mock</artifactId>
-			<version>${spring.mock.version}</version>
+			<!-- <version>${spring.mock.version}</version> -->
 		</dependency>
 
 		<!-- Used by org.apache.commons.dbcp.BasicDataSource pool de connexions comme c3p0 -->
@@ -65,7 +64,6 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<!-- <version>1.2.1</version> -->
-			<version>${commons.dbcp.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -101,28 +99,24 @@
 			<groupId>concurrent</groupId>
 			<artifactId>concurrent</artifactId>
 			<!-- <version>1.3.4</version> -->
-			<version>${concurrent.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<!-- <version>1.1</version> -->
-			<version>${commons.logging.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<!-- <version>3.2</version> -->
-			<version>${commons.collections.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
 			<!-- <version>3.2.6.GA</version> -->
-			<version>${hibernate.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>asm</groupId>
@@ -142,24 +136,23 @@
 		<dependency>
 			<groupId>asm</groupId>
 			<artifactId>asm</artifactId>
-			<version>${asm.version}</version>
+			<!-- <version>${asm.version}</version> -->
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
-			<version>${cglib.nodep.version}</version>
+			<!-- <version>${cglib.nodep.version}</version> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
-			<version>${javax.transaction.version}</version>
+			<!-- <version>${javax.transaction.version}</version> -->
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<!-- <version>3.3.1.GA</version> -->
-			<version>${hibernate.annotations.version}</version>
 		</dependency>
 
 		<dependency>
@@ -167,14 +160,12 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<!-- <version>3.3.2.GA</version> -->
 			<version>${hibernate.entitymanager.version}</version>
-
 		</dependency>
 
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<!-- <version>1.2.3</version> -->
-			<version>${ehcache.version}</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
@@ -399,5 +390,5 @@
 			</plugin>
 		</plugins>
 	</reporting>
--->	
+-->
 </project>

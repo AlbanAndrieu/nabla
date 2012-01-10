@@ -1,129 +1,121 @@
 package com.nabla.database.person.dao;
 
-import com.nabla.database.person.entites.Activity;
-import com.nabla.database.person.entites.Address;
-import com.nabla.database.person.entites.Person;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public class Dao
-    implements IDao
-{
+import com.nabla.database.person.entites.Activity;
+import com.nabla.database.person.entites.Address;
+import com.nabla.database.person.entites.Person;
+
+public class Dao implements IDao {
     @PersistenceContext
     private EntityManager em;
 
-    // personnes
-    public Person getPerson( Long categoryId )
-    {
-        return em.find( Person.class, categoryId );
+    // persons
+    @Override
+    public Person getPerson(final Long categoryId) {
+        return this.em.find(Person.class, categoryId);
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Person> getAllPersons(  )
-    {
-        return em.createQuery( "select p from Person p" ).getResultList(  );
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Person> getAllPersons() {
+        return this.em.createQuery("select p from Person p").getResultList();
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Person> getAllPersonsWithNameLike( String modelName )
-    {
-        return em.createQuery( "select p from Person p where p.lastname like :model" ).setParameter( "model", modelName )
-                 .getResultList(  );
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Person> getAllPersonsWithNameLike(final String modelName) {
+        return this.em.createQuery("select p from Person p where p.lastname like :model").setParameter("model", modelName).getResultList();
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Activity> getActivitiesOfPerson( Long personId )
-    {
-        return em.createQuery( "select a from Person p join p.activities a where p.id=:personId" )
-                 .setParameter( "personId", personId ).getResultList(  );
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Activity> getActivitiesOfPerson(final Long personId) {
+        return this.em.createQuery("select a from Person p join p.activities a where p.id=:personId").setParameter("personId", personId).getResultList();
     }
 
-    public Person updatePerson( Person person )
-    {
-        return em.merge( person );
+    @Override
+    public Person updatePerson(final Person person) {
+        return this.em.merge(person);
     }
 
-    public Person savePerson( Person person )
-    {
-        em.persist( person );
+    @Override
+    public Person savePerson(final Person person) {
+        this.em.persist(person);
 
         return person;
     }
 
-    public void deletePerson( Long personId )
-    {
-        Person person = em.find( Person.class, personId );
+    @Override
+    public void deletePerson(final Long personId) {
+        final Person person = this.em.find(Person.class, personId);
 
-        if ( person == null )
-        {
-            throw new DaoException( 30 );
+        if (person == null) {
+            throw new DaoException(30);
         }
 
-        em.remove( person );
+        this.em.remove(person);
     }
 
-    // activités
-    public Activity getActivity( Long activityId )
-    {
-        return em.find( Activity.class, activityId );
+    // activity
+    @Override
+    public Activity getActivity(final Long activityId) {
+        return this.em.find(Activity.class, activityId);
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Activity> getAllActivities(  )
-    {
-        return em.createQuery( "select a from Activity a" ).getResultList(  );
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Activity> getAllActivities() {
+        return this.em.createQuery("select a from Activity a").getResultList();
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Activity> getAllActivitiesWithNameLike( String modelName )
-    {
-        return em.createQuery( "select a from Activity a where a.name like :model" ).setParameter( "model", modelName )
-                 .getResultList(  );
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Activity> getAllActivitiesWithNameLike(final String modelName) {
+        return this.em.createQuery("select a from Activity a where a.name like :model").setParameter("model", modelName).getResultList();
     }
 
-    public Activity saveActivity( Activity activity )
-    {
-        em.persist( activity );
+    @Override
+    public Activity saveActivity(final Activity activity) {
+        this.em.persist(activity);
 
         return activity;
     }
 
-    public Activity updateActivity( Activity activity )
-    {
-        return em.merge( activity );
+    @Override
+    public Activity updateActivity(final Activity activity) {
+        return this.em.merge(activity);
     }
 
-    public void deleteActivity( Long activityId )
-    {
-        Activity article = em.find( Activity.class, activityId );
+    @Override
+    public void deleteActivity(final Long activityId) {
+        final Activity article = this.em.find(Activity.class, activityId);
 
-        if ( article == null )
-        {
-            throw new DaoException( 20 );
+        if (article == null) {
+            throw new DaoException(20);
         }
 
-        em.remove( article );
+        this.em.remove(article);
     }
 
-    @SuppressWarnings( "unchecked" )
-    public List<Person> getPersonsDoingActivity( Long activityId )
-    {
-        // la requête suivante marche avec Hibernate, pas avec Toplink qui refuse la navigation p.activites.id
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Person> getPersonsDoingActivity(final Long activityId) {
+        // The following query works with Hibernate, not with Toplink which does not accept the following navigation p.activites.id
         // return em.createQuery("select p from Person p, Activity a where p.activites.id=a.id and a.id=:activiteId").setParameter("activiteId",
         // activiteId).getResultList();
 
-        // la requête suivante est acceptée par les deux
-        return em.createQuery( "select p from Person p join p.activities a where a.id=:activityId" )
-                 .setParameter( "activityId", activityId ).getResultList(  );
+        // The following query works for both
+        return this.em.createQuery("select p from Person p join p.activities a where a.id=:activityId").setParameter("activityId", activityId).getResultList();
     }
 
-    // adresses
-    @SuppressWarnings( "unchecked" )
-    public List<Address> getAllAddresses(  )
-    {
-        return em.createQuery( "select a from Address a" ).getResultList(  );
+    // addresses
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Address> getAllAddresses() {
+        return this.em.createQuery("select a from Address a").getResultList();
     }
 }

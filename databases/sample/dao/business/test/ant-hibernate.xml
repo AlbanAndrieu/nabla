@@ -8,7 +8,7 @@
 
 	<!-- Propriété globales -->
 	<property name="src.java.dir" value="src" />
-	<property name="lib.dir" value="../../../lib" />
+	<property name="lib.dir" value="./lib" />
 	<property name="build.dir" value="bin" />
 
 	<!-- le Classpath du projet -->

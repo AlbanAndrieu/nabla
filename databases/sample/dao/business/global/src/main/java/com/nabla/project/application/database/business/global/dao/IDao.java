@@ -7,7 +7,7 @@ import com.nabla.project.application.database.business.global.model.Address;
 import com.nabla.project.application.database.business.global.model.Person;
 
 public interface IDao {
-    // activités
+    // activity
     public Activity getActivity(Long activityId);
 
     public List<Activity> getAllActivities();
@@ -22,7 +22,7 @@ public interface IDao {
 
     public List<Person> getPersonsDoingActivity(Long activityId);
 
-    // personnes
+    // persons
     public Person getPerson(Long personId);
 
     public List<Person> getAllPersons();
@@ -37,7 +37,7 @@ public interface IDao {
 
     public List<Activity> getActivitiesOfPerson(Long personId);
 
-    // adresses
+    // addresses
     public List<Address> getAllAddresses();
 
     public void deleteAddress(Long addressId);

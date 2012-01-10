@@ -54,9 +54,11 @@ import org.compass.annotations.SearchableId;
 @Table(name = "person", schema = "APP", catalog = "")
 public class Person extends BaseObject {
 
-    private Long   id;
-    private String firstName;
-    private String lastName;
+    private static final long serialVersionUID = 1L;
+
+    private Long              id;
+    private String            firstName;
+    private String            lastName;
 
     /**
      * DOCUMENT ME!
