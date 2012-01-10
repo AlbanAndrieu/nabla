@@ -77,18 +77,18 @@ public class NGTest extends TestCase {
 
     // remplissage tables
     public void fill() throws ParseException {
-        // création activites
+        // creation activites
         final Activity act1 = new Activity();
         act1.setName("act1");
         final Activity act2 = new Activity();
         act2.setName("act2");
         final Activity act3 = new Activity();
         act3.setName("act3");
-        // création personnes
+        // creation personnes
         final Person p1 = new Person("p1", "Paul", new SimpleDateFormat("dd/MM/yy").parse("31/01/2000"), true, 2);
         final Person p2 = new Person("p2", "Sylvie", new SimpleDateFormat("dd/MM/yy").parse("05/07/2001"), false, 0);
         final Person p3 = new Person("p3", "Sylvie", new SimpleDateFormat("dd/MM/yy").parse("05/07/2001"), false, 0);
-        // création adresses
+        // creation adresses
         final Address adr1 = new Address("adr1", null, null, "49000", "Angers", null, "France");
         final Address adr2 = new Address("adr2", "Les Mimosas", "15 av Foch", "49002", "Angers", "03", "France");
         final Address adr3 = new Address("adr3", "x", "x", "x", "x", "x", "x");
@@ -109,17 +109,17 @@ public class NGTest extends TestCase {
          * p3.getActivities().add(act2);
          * p3.getActivities().add(act3);
          */
-        // persistance des personnes avec leurs activités
+        // persistance des personnes avec leurs activites
         this.service.savePersonsWithActivities(new Person[] { p1, p2, p3 });
     }
 
-    // supression éléments des tables
+    // supression elements des tables
     public void clean() {
         // on supprime ttes les personnes et donc toutes les adresses
         for (final Person personne : this.service.getAllPersons()) {
             this.service.deletePerson(personne.getId());
         }
-        // on supprime ttes les activités
+        // on supprime ttes les activites
         for (final Activity activite : this.service.getAllActivities()) {
             this.service.deleteActivity(activite.getId());
         }
@@ -206,19 +206,19 @@ public class NGTest extends TestCase {
         final List<Person> personnes = this.service.getAllPersonsWithNameLike("p1%");
         assert 1 == personnes.size();
         final Person p1 = personnes.get(0);
-        // activites associés
+        // activites associes
         final List<Activity> activitesP1 = this.service.getActivitiesOfPerson(p1.getId());
-        // vérification
+        // verification
         assert 2 == activitesP1.size();
-        // on crée une nouvelle activite
+        // on cree une nouvelle activite
         final Activity act4 = new Activity();
         act4.setName("act4");
         // qu'on persiste
         this.service.saveActivity(act4);
-        // vérification
+        // verification
         List<Activity> activites = this.service.getAllActivitiesWithNameLike("act4%");
         assert 1 == activites.size();
-        // on l'ajoute aux activités de la personne p1
+        // on l'ajoute aux activites de la personne p1
         final Set<Activity> activitesPersonP1 = new HashSet<Activity>();
         for (final Activity a : activitesP1) {
             activitesPersonP1.add(a);
@@ -227,19 +227,19 @@ public class NGTest extends TestCase {
         p1.setActivities(activitesPersonP1);
         // on persiste la personne
         this.service.updatePerson(p1);
-        // activites associées à la personne p1
+        // activites associees e la personne p1
         activites = this.service.getActivitiesOfPerson(p1.getId());
-        // vérification - il doit y en avoir 1 de plus
+        // verification - il doit y en avoir 1 de plus
         assert 3 == activites.size();
     }
 
     public void test04() {
         NGTest.logger.info("test04");
-        // activité act1
+        // activite act1
         final List<Activity> activites = this.service.getAllActivitiesWithNameLike("act1%");
         assert 1 == activites.size();
         final Activity act1 = activites.get(0);
-        // personnes faisant l'activité act1
+        // personnes faisant l'activite act1
         List<Person> personnesAct1 = this.service.getPersonsDoingActivity(act1.getId());
         assert 2 == personnesAct1.size();
         // suppression personne P2
@@ -247,10 +247,10 @@ public class NGTest extends TestCase {
         assert 1 == personnes.size();
         final Person p2 = personnes.get(0);
         this.service.deletePerson(p2.getId());
-        // vérification
+        // verification
         personnes = this.service.getAllPersonsWithNameLike("p2%");
         assert 0 == personnes.size();
-        // activités act1 - la personne p2 faisait l'activité act1
+        // activites act1 - la personne p2 faisait l'activite act1
         personnesAct1 = this.service.getPersonsDoingActivity(act1.getId());
         assert 1 == personnesAct1.size();
     }
@@ -264,19 +264,19 @@ public class NGTest extends TestCase {
         // on modifie son nom
         p1.setLastname("p1+");
         this.service.updatePerson(p1);
-        // vérification
+        // verification
         personnes = this.service.getAllPersonsWithNameLike("p1%");
         assert 1 == personnes.size();
         p1 = personnes.get(0);
         assert "p1+".equals(p1.getLastname());
-        // activité act2
+        // activite act2
         List<Activity> activites = this.service.getAllActivitiesWithNameLike("act2%");
         assert 1 == activites.size();
         Activity act2 = activites.get(0);
         // on modifie son nom
         act2.setName("act2+");
         this.service.updateActivity(act2);
-        // vérification
+        // verification
         activites = this.service.getAllActivitiesWithNameLike("act2%");
         assert 1 == activites.size();
         act2 = activites.get(0);
@@ -285,18 +285,18 @@ public class NGTest extends TestCase {
 
     public void test06() throws ParseException {
         NGTest.logger.info("test06");
-        // liste des activités
+        // liste des activites
         List<Activity> activites = this.service.getAllActivities();
         final int nbActivities = activites.size();
-        // créer deux nouvelles personnes
+        // creer deux nouvelles personnes
         final Person p4 = new Person("p4", "p4", new SimpleDateFormat("dd/MM/yy").parse("05/07/2001"), false, 0);
         final Person p5 = new Person("p5", "p5", new SimpleDateFormat("dd/MM/yy").parse("05/07/2001"), false, 0);
-        // créer 1 nouvelle activité avec un nom existant (violation contrainte d'unicité)
+        // creer 1 nouvelle activite avec un nom existant (violation contrainte d'unicite)
         final Activity act4 = new Activity();
         act4.setName("act1");
-        // la personne p4 pratique l'activité act4
+        // la personne p4 pratique l'activite act4
         p4.getActivities().add(act4);
-        // on doit avoir une exception lors de la sauvegarde de l'activité act4 et un rollback général
+        // on doit avoir une exception lors de la sauvegarde de l'activite act4 et un rollback general
         boolean erreur = false;
         try {
             // persister les personnes et les activites
@@ -304,7 +304,7 @@ public class NGTest extends TestCase {
         } catch (final RuntimeException e) {
             erreur = true;
         }
-        // vérifications : il y a du avoir une exception
+        // verifications : il y a du avoir une exception
         assert erreur;
         // et un rollback
         // personne p4 : elle ne doit pas exister
@@ -313,7 +313,7 @@ public class NGTest extends TestCase {
         // personne p5 : elle ne doit pas exister
         personnes = this.service.getAllPersonsWithNameLike("p5%");
         assert 0 == personnes.size();
-        // le nbre d'activités n'a pas du changer
+        // le nbre d'activites n'a pas du changer
         activites = this.service.getAllActivities();
         assert nbActivities == activites.size();
     }
