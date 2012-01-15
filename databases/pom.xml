@@ -234,7 +234,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>			
+			</activation>
 			<properties>
 				<database>derby</database>
 				<database.name>myDBGlobal</database.name>
@@ -337,16 +337,35 @@
 		</profile>
 		<profile>
 			<id>hsqldb</id>
+			<!--
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>	
+			-->		
 			<properties>
+				<database>hsqldb</database>
+				<database.name>myDBGlobal</database.name>			
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+				<dbunit.schema>NABLA</dbunit.schema>
+				<sql.mappings>HypersonicSql</sql.mappings>
+				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>				
 				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
 				<jdbc.groupId>hsqldb</jdbc.groupId>
 				<jdbc.artifactId>hsqldb</jdbc.artifactId>
 				<jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
 				<jdbc.driver>org.hsqldb.jdbcDriver</jdbc.driver>
-				<jdbc.url><![CDATA[jdbc:hsqldb:tutorial-service;shutdown=true]]></jdbc.url>
+				
+				<database.host>localhost</database.host>
+				<database.port>1701</database.port>				
+				<!--<jdbc.url><![CDATA[jdbc:hsqldb:tutorial-service;shutdown=true]]></jdbc.url>-->
+				<jdbc.url>jdbc:hsqldb:hsql://${database.host}:${database.port}</jdbc.url>
+				<jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar>
+				
 				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>
+				<jdbc.password></jdbc.password>				
 			</properties>
 		</profile>
 		<profile>
