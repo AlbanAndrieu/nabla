@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	
         <parent>
-	    <groupId>com.nabla.project.nabla</groupId>
+	    <groupId>com.nabla.project</groupId>
 	    <artifactId>nabla</artifactId>
 	    <version>1.0</version>
         </parent>
                 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project.nabla.frontend</groupId>
+	<groupId>com.nabla.project.frontend</groupId>
 	<artifactId>frontend</artifactId>
 	<packaging>pom</packaging>
 	<name>Frontend</name>
