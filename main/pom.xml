@@ -27,8 +27,6 @@
 		<uniqueVersion>false</uniqueVersion>
 
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
-
-		<target.dir>target</target.dir>
 		<!--
 			specifies the path to the current JRE_HOME environment use with
 			relative paths to get <jvm>${java.home}../bin/java.exe</jvm>
@@ -37,8 +35,8 @@
 
 		<!-- Application settings -->
 		<application.id>application</application.id> <!-- used by MDA -->
-		<application.name>Nabla</application.name>
-		<application.version>1.0</application.version>
+		<application.name>Nabla</application.name> <!-- used by MDA -->
+		<application.version>1.0</application.version> <!-- used by MDA -->
 		<application.package>com.nabla.backend</application.package> <!-- used by MDA -->
 		<application.context.name>applicationContext-daos.xml</application.context.name>
 
@@ -706,7 +704,7 @@
 	</dependencies>
 
 	<build>
-		<directory>target</directory>
+		<directory>${target.dir}</directory>
 		<!-- <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName> -->
 		<finalName>${project.artifactId}-${project.version}</finalName>
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
@@ -1057,11 +1055,11 @@
 								<source>${basedir}/src/generated/main/resources</source>
 								<source>${basedir}/src/main/java</source>
 								<source>${basedir}/src/main/resources</source>
-								<source>${basedir}/target/generated-sources/antlr</source>
-								<source>${basedir}/target/generated-sources/main/java</source>
-								<!--<source>${basedir}/target/generated-sources/test/java</source> -->
-								<source>${basedir}/target/generated-sources/main/resources</source>
-								<!-- <source>${basedir}/target/generated-sources/test/resources</source> -->
+								<source>${basedir}/${target.dir}/generated-sources/antlr</source>
+								<source>${basedir}/${target.dir}/generated-sources/main/java</source>
+								<!--<source>${basedir}/${target.dir}/generated-sources/test/java</source> -->
+								<source>${basedir}/${target.dir}/generated-sources/main/resources</source>
+								<!-- <source>${basedir}/${target.dir}/generated-sources/test/resources</source> -->
 							</sources>
 						</configuration>
 					</execution>
@@ -1162,8 +1160,8 @@
 				<repo.type>netBeansMDR</repo.type>
 				<profile.type>xml.zip</profile.type>
 				<model.name>nabla</model.name>
-				<model.uri>jar:file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</model.uri>
-				<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri>
+				<model.uri>jar:file:${pom.basedir}/../../model/src/main/uml/${uml.type}/modules/${model.name}.xml.zip!/${model.name}.xml</model.uri>
+				<!--<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri>-->
 			</properties>
 		</profile>
 		<profile>
@@ -1178,8 +1176,8 @@
 				<repo.type>emf-uml22</repo.type>
 				<profile.type>uml2</profile.type>
 				<model.name>nabla</model.name>
-				<model.uri>file:${pom.basedir}/src/main/uml/${uml.type}/${model.name}.uml</model.uri>
-				<maven.andromda.model.uri>file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri>				
+				<model.uri>file:${pom.basedir}/../../model/src/main/uml/${uml.type}/modules/${model.name}.uml</model.uri>
+				<!--<maven.andromda.model.uri>file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri>-->
 			</properties>
 		</profile>
 		<!-- ================= END MDA Profiles ================= -->
@@ -1200,6 +1198,16 @@
 				<webservice.host /> <webservice.port /> 
 				-->
 			</properties>
+			
+		</profile>
+		<profile>
+			<id>integration</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>int</value>
+				</property>
+			</activation>
 			<build>
 				<plugins>
 					<!-- Automatically attach sources to build artifact as artifact-version-sources.jar
@@ -1238,16 +1246,7 @@
 						</executions>
 					</plugin>
 				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>integration</id>
-			<activation>
-				<property>
-					<name>env</name>
-					<value>int</value>
-				</property>
-			</activation>
+			</build>			
 			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
 				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
 				/> </properties> -->
