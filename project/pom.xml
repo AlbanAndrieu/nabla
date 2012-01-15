@@ -26,7 +26,7 @@
 
 	<modules>
 		<module>sample</module>
-		<!--<module>nabla</module>-->
+		<module>nabla</module>
 	</modules>
 
 	<profiles>
