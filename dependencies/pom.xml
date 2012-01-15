@@ -1101,7 +1101,7 @@
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<andromda.version>3.4</andromda.version>
+		<andromda.version>3.4-SNAPSHOT</andromda.version>
 
 		<tibjms.version>4.2.0</tibjms.version>
 		<tibco.version>8.1.2</tibco.version>
