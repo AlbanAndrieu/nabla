@@ -141,10 +141,9 @@
                     			            <goal>run</goal>
                     			        </goals>
                     			        <configuration>
-                    			            <buildSourceDirectory>${project.basedir}/target/src</buildSourceDirectory>
-                    			            <!--<configurationUri>file:${project.basedir}/../conf/${uml.type}/andromda.xml</configurationUri>-->
-                    			            <configurationUri>${project.basedir}/src/main/config/${uml.type}/andromda.xml</configurationUri>
-                    			            <lastModifiedCheck>true</lastModifiedCheck>
+                    			            <configurationUri>file:${nabla.mda.dir}/model/src/main/config/${uml.type}/andromda-${model.name}.xml</configurationUri>
+						    <!-- Check model dates vs output file dates from previous gen, skip if files are later -->
+                                                    <lastModifiedCheck>${lastModifiedCheck}</lastModifiedCheck>                    			            
                     			        </configuration>
                     			    </execution>
                     			</executions>					
@@ -153,27 +152,32 @@
 					<groupId>org.andromda.maven.plugins</groupId>
 					<artifactId>andromdapp-maven-plugin</artifactId>
 					<version>${andromda.version}</version>
-					<!--
-						provides the injection of the script wrapper support into the
-						class files (this should only be done when developing locally),
-						uncomment this executions element to enable <executions>
-						<execution> <id>instrument-scripts</id> <goals>
-						<goal>instrument-scripts</goal> </goals> </execution>
-						</executions>
-					-->
+                            		<!-- provides the injection of the script wrapper support into the class files (this should only
+                            		     be done when developing locally), uncomment this executions element to enable -->    
+                            		<!--                     		
+                            		<executions>
+                            		    <execution>
+                            		        <id>instrument-scripts</id>
+                            		        <goals>
+                            		            <goal>instrument-scripts</goal>
+                            		        </goals>
+                            		    </execution>
+                            		</executions> 
+                            		-->                           		
 					<configuration>
 						<scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
 						<locations>
 							<location>
 								<rootPath>${project.basedir}/src/main/java</rootPath>
-								<!--
-									adjust these to include or exclude specific files, by default
-									all files found in the rootPath are considered <includes>
-									<include>relative/path/to/file/to/include/SomeClass.java</include>
-									</includes> <excludes>
-									<exclude>relative/path/to/file/to/include/SomeClass.java</exclude>
-									</excludes>
-								-->
+                                        			<!-- adjust these to include or exclude specific files, by default
+                                        			     all files found in the rootPath are considered
+                                        			<includes>
+                                        			    <include>relative/path/to/file/to/include/SomeClass.java</include>
+                                        			</includes>
+                                        			<excludes>
+                                        			    <exclude>relative/path/to/file/to/include/SomeClass.java</exclude>
+                                        			</excludes>
+                                        			-->
 							</location>
 						</locations>
 					</configuration>
@@ -221,11 +225,11 @@
 
 	<properties>
 		<mda.sourceDirectory>${project.basedir}</mda.sourceDirectory>
-		<!-- Check model dates vs output file dates from previous gen, skip if files
-			are later -->
+		<!-- Check model dates vs output file dates from previous gen, skip if files are later -->
 		<lastModifiedCheck>false</lastModifiedCheck>
         	<downloadSources>true</downloadSources>
-        	<createChecksum>true</createChecksum>		
+        	<createChecksum>true</createChecksum>	
+        	<uniqueVersion>false</uniqueVersion>	
 		<mda.username>${product.username}</mda.username>
 		<mda.workspace>${mda.username}${product.major.version}</mda.workspace>
 
@@ -246,34 +250,30 @@
         	-->		
 		<java.src.dir>${pom.basedir}/src/main/java</java.src.dir> <!-- used for facade-logic-impls in andromda.xml -->
 		<test.src.dir>${pom.basedir}/src/test</test.src.dir>
+		<!--maven.build.src check in main-->
 		<!--
 			used for mergeMappingsUri
 			file:${test.src.dir}/mappings/MergeMappings.xml in
 			gui-cardtridge\conf\test\andromda.xml
 		-->
-		<test.output.dir>${pom.basedir}/target/cartridge-test/actual</test.output.dir>
+		<test.output.dir>${pom.basedir}/${target.dir}/cartridge-test/actual</test.output.dir>
 		<!--
 			used for mergeMappingsUri
 			file:${test.src.dir}/mappings/MergeMappings.xml in
 			gui-cardtridge\conf\test\andromda.xml
 		-->
-		<howto.output.dir>${project.basedir}/target/site/howto</howto.output.dir>
+		<howto.output.dir>${project.basedir}/${target.dir}/site/howto</howto.output.dir>
 		<andromda.cartridge.howto.model.uri>jar:file:.${pom.basedir}/sample/howtomodel/mda/src/main/uml/${uml.type}/HowToModel.xml.zip!/HowToModel.xml</andromda.cartridge.howto.model.uri>
 
-		<nabla.mda.profiles.dir>/cartridges/dev-cartridges/profiles/${uml.type}</nabla.mda.profiles.dir>
+		<nabla.mda.profiles.dir>/profiles/${uml.type}</nabla.mda.profiles.dir>
 		<nabla.mda.entities.dir>/common/nabla-entities/model/src/main/uml/${uml.type}</nabla.mda.entities.dir>
 		<nabla.mda.valueobjects.dir>/common/nabla-valueobjects/model/src/uml/${uml.type}</nabla.mda.valueobjects.dir>
 
-		<!--<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri>
-			<maven.andromda.model.uri>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.uml</maven.andromda.model.uri> -->
-		<!-- <maven.andromda.model.uri.no.manageables>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/no-manageables/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri.no.manageables>
-			<maven.andromda.model.uri.no.validables>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/no-validables/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri.no.validables> -->
-		<!-- <maven.andromda.model.uri.no.manageables>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri.no.manageables>
-			<maven.andromda.model.uri.no.validables>jar:file:${pom.basedir}/../model/src/main/uml/${uml.type}/${model.name}.xml.zip!/${model.name}.xml</maven.andromda.model.uri.no.validables> -->
 		<validation>true</validation>
 		<cartridge.filter></cartridge.filter>
 		<conf.dir>${pom.basedir}/src/main/config/${uml.type}</conf.dir>
-		<nabla.mda.dir>${pom.basedir}/../../..</nabla.mda.dir>
+		<nabla.mda.dir>${pom.basedir}/../..</nabla.mda.dir>
+		<!--<model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules/${model.name}.uml</model.uri>-->
 		<configuration.mda.dir>${nabla.mda.dir}/configuration</configuration.mda.dir>
 		<manual.mappings.location>${nabla.mda.dir}/configuration/generation/manualMapping</manual.mappings.location>
 		<merge.templates.location>${configuration.mda.dir}/generation/merges</merge.templates.location>
@@ -357,6 +357,29 @@
 
 	</properties>
 	<profiles>
+		<profile>
+			<id>reset</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>${maven.build.src}</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<id>eclipse</id>
 			<build>
