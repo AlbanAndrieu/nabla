@@ -8,7 +8,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-<!-- 	<groupId>com.sun.j2ee.blueprints</groupId> -->
+	<!--<groupId>com.sun.j2ee.blueprints</groupId>-->
 	<artifactId>tracer</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven Petstore Modules Util Tracer</name>

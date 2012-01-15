@@ -14,7 +14,7 @@
         <artifactId>waf</artifactId>
         <packaging>pom</packaging>
         <name>Maven Petstore Modules Waf</name>
-        <version>1.0</version>
+        <!--<version>1.0</version>-->
         <!-- This element provides a basic description of your project -->
         <description>Maven : Petstore Modules Waf</description>
         <modules>
