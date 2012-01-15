@@ -213,7 +213,7 @@
 						</excludes>
 					</testResource>
 					<testResource>
-                        <directory>${basedir}/src/test/resources/hibernate/${database}</directory>
+                        			<directory>${basedir}/src/test/resources/hibernate/${database}</directory>
 						<filtering>true</filtering>
 						<includes>
 							<include>**/*.xml</include>
