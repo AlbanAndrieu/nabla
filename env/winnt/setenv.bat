@@ -26,6 +26,9 @@ set M2_HOME=C:\apache-maven-2.2.1
 set M2=%M2_HOME%\bin
 set M2_REPO=C:\repos
 
+set MD_HOME=C:\MagicDraw UML 16.5
+set ANDROMDA_HOME=C:\repo\org\andromda
+
 set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
 
 set JBOSS_HOME=C:\jboss-4.2.2.GA
