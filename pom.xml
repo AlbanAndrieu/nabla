@@ -21,5 +21,6 @@
                 
                 <module>project</module>
                 <module>uml</module>
+                <module>nabla</module>
         </modules>
 </project>
