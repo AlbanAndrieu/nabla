@@ -805,7 +805,7 @@
 								<exclude>**/generated/*.java</exclude>
 							</excludes>
 							<excludeRoots>
-								<excludeRoot>${basedir}/target/generated-sources/stubs</excludeRoot>
+								<excludeRoot>${basedir}/${target.dir}/generated-sources/stubs</excludeRoot>
 							</excludeRoots>
 
 							<rulesets>
@@ -996,9 +996,9 @@
 		<repository>
 			<id>andromda</id>
 			<name>AndroMDA Maven 2.x Repository</name>
-			<url>http://andromda.org/maven2</url>
+			<url>http://andromda.org/maven2</url>			
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 			<releases>
 				<enabled>true</enabled>
@@ -1085,6 +1085,7 @@
 	<!-- Keep Alphabetical Order. Capital Letter goes first -->
 	<properties>
 		<project.svn.path>trunk</project.svn.path>
+		<target.dir>target</target.dir> <!-- default value that can be overrided -->
 
 		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base> -->
 		<scm.base>svn:http://alban.googlecode.com/svn/</scm.base>
@@ -1100,7 +1101,7 @@
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<andromda.version>3.4-SNAPSHOT</andromda.version>
+		<andromda.version>3.4</andromda.version>
 
 		<tibjms.version>4.2.0</tibjms.version>
 		<tibco.version>8.1.2</tibco.version>
@@ -1362,7 +1363,7 @@
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
 		<maven.artifact.plugin.version>2.0.1</maven.artifact.plugin.version>
 		<maven.gui.plugin.version>1.0</maven.gui.plugin.version>
-		<maven.plugin.plugin.plugin.version>2.5.1</maven.plugin.plugin.plugin.version>
+		<maven.plugin.plugin.plugin.version>2.9</maven.plugin.plugin.plugin.version>
 		<maven.clirr.plugin.version>2.3</maven.clirr.plugin.version>
 		<maven.patch.plugin.version>1.0</maven.patch.plugin.version>
 		<maven.invoker.plugin.version>1.0</maven.invoker.plugin.version>
