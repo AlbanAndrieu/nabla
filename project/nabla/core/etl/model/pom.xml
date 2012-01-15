@@ -16,9 +16,8 @@
   <description>Java model</description>
 
         <modules>
-                <module>dao</module>
-                <module>nstools</module>              
-                <module>message</module>
+                <!--<module>nstools</module>
+                <module>message</module>-->
                 <module>xml</module>
         </modules>
 
