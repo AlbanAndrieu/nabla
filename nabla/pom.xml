@@ -27,9 +27,11 @@
     
     <modules>
     	<module>maven</module>
+    	<!--
         <module>metafacades</module>
         <module>profiles</module>
-        <module>cartridges</module>        
+        <module>cartridges</module> 
+        -->       
         <!--<module>empty</module>-->
     </modules>
         
