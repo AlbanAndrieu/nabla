@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_RCa7IDL5EeGLVZ_fW0VLdw/0" xmlns:UseCaseDescriptionProfile="http:///schemas/UseCaseDescriptionProfile/_RCkFEDL5EeGLVZ_fW0VLdw/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/MagicDrawProfile/_RCa7IDL5EeGLVZ_fW0VLdw/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_Rbap8jL5EeGLVZ_fW0VLdw http:///schemas/UseCaseDescriptionProfile/_RCkFEDL5EeGLVZ_fW0VLdw/0 UseCase_Description_Profile.profile.uml#_RbtodjL5EeGLVZ_fW0VLdw">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_VFluAT_QEeGf1ooA3i4zww/0" xmlns:UseCaseDescriptionProfile="http:///schemas/UseCaseDescriptionProfile/_VFyiUD_QEeGf1ooA3i4zww/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/MagicDrawProfile/_VFluAT_QEeGf1ooA3i4zww/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_VYs3oT_QEeGf1ooA3i4zww http:///schemas/UseCaseDescriptionProfile/_VFyiUD_QEeGf1ooA3i4zww/0 UseCase_Description_Profile.profile.uml#_VYmwrj_QEeGf1ooA3i4zww">
   <uml:Model xmi:id="eee_1045467100313_135436_1" name="Data" viewpoint="">
     <packageImport xmi:id="_0primitiveTypesData">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -33,18 +33,18 @@
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738468_66146_460" name="Recalculate possible loan date &#xA;and e-mail  notifications" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_736065_508" incoming="_10_0EAPbeta2_8740266_1126593738484_446965_495"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_135394_461" name="Decrease the number&#xA; of reading items by one" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738484_876340_492" incoming="_10_0EAPbeta2_8740266_1126593738484_201598_498 _10_0EAPbeta2_8740266_1126593738484_532530_496"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_972326_462" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738500_226498_505"/>
-            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_274122_463" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738484_201598_498 _10_0EAPbeta2_8740266_1126593738484_746417_497" incoming="_10_0EAPbeta2_8740266_1126593738500_511926_507"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_274122_463" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738484_746417_497 _10_0EAPbeta2_8740266_1126593738484_201598_498" incoming="_10_0EAPbeta2_8740266_1126593738500_511926_507"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_742026_464" name="Notify manager&#xA; and request confirmation" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_881567_510" incoming="_10_0EAPbeta2_8740266_1126593738484_746417_497"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_749031_465" name="Reading item removal &#xA;is cancelled" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738484_368573_501" incoming="_10_0EAPbeta2_8740266_1126593738484_308301_500"/>
-            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_700646_466" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738484_308301_500 _10_0EAPbeta2_8740266_1126593738484_133480_499 _10_0EAPbeta2_8740266_1126593738500_364860_513" incoming="_10_0EAPbeta2_8740266_1126593738500_850993_511"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_700646_466" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_364860_513 _10_0EAPbeta2_8740266_1126593738484_133480_499 _10_0EAPbeta2_8740266_1126593738484_308301_500" incoming="_10_0EAPbeta2_8740266_1126593738500_850993_511"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_941703_467" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738484_368573_501"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_197545_468" name="E-mail notification to the &#xA;readers that have &#xA;reserved the reading item" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_198814_503" incoming="_10_0EAPbeta2_8740266_1126593738500_13594_502"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_269216_469" name="Removes the reading&#xA; item from reservation lists" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_395000_504" incoming="_10_0EAPbeta2_8740266_1126593738500_198814_503"/>
-            <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_368164_470" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738500_395000_504 _10_0EAPbeta2_8740266_1126593738500_662301_512 _10_0EAPbeta2_8740266_1126593738500_364860_513"/>
+            <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_368164_470" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738500_662301_512 _10_0EAPbeta2_8740266_1126593738500_364860_513 _10_0EAPbeta2_8740266_1126593738500_395000_504"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_417745_471" name="Increase reading item number&#xA;by the entered quantity" visibility="public"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_873493_472" name="Display the new possible loan date&#xA;in the reservations lists to the readers" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738484_532530_496" incoming="_10_0EAPbeta2_8740266_1126593738500_855227_509"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_128206_473" name="Verify if there are reserved entered &#xA;reading items that are &#xA;not ‘currently available’" visibility="public"/>
-            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_561548_474" name="Remove&#xA;reading item" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_13594_502 _10_0EAPbeta2_8740266_1126593738500_662301_512" incoming="_10_0EAPbeta2_8740266_1126593738484_133480_499"/>
+            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_561548_474" name="Remove&#xA;reading item" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_662301_512 _10_0EAPbeta2_8740266_1126593738500_13594_502" incoming="_10_0EAPbeta2_8740266_1126593738484_133480_499"/>
             <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_627683_475" name="" visibility="public"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738484_362210_476" name="" visibility="public"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738484_941970_477" name="Update reservation lists &#xA;with the available reading items" visibility="public"/>
@@ -114,8 +114,8 @@
                 <body>Removal &#xA;cancelled</body>
               </guard>
             </edge>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126850894468_872037_3" name="System" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738484_953748_491 _10_0EAPbeta2_8740266_1126593738484_201598_498 _10_0EAPbeta2_8740266_1126593738484_446965_495 _10_0EAPbeta2_8740266_1126593738500_736065_508 _10_0EAPbeta2_8740266_1126593738484_276626_489 _10_0EAPbeta2_8740266_1126593738484_817169_487 _10_0EAPbeta2_8740266_1126593738484_848368_494 _10_0EAPbeta2_8740266_1126593738500_511926_507 _10_0EAPbeta2_8740266_1126593738484_746417_497 _10_0EAPbeta2_8740266_1126593738500_881567_510 _10_0EAPbeta2_8740266_1126593738500_855227_509 _10_0EAPbeta2_8740266_1126593738484_532530_496 _10_0EAPbeta2_8740266_1126593738484_876340_492 _10_0EAPbeta2_8740266_1126593738500_662301_512 _10_0EAPbeta2_8740266_1126593738484_133480_499 _10_0EAPbeta2_8740266_1126593738500_364860_513 _10_0EAPbeta2_8740266_1126593738500_226498_505 _10_0EAPbeta2_8740266_1126593738484_931558_486 _10_0EAPbeta2_8740266_1126593738484_966663_493"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126850894468_854666_1" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738500_339116_506 _10_0EAPbeta2_8740266_1126593738484_490832_490 _10_0EAPbeta2_8740266_1126593738484_318468_488 _10_0EAPbeta2_8740266_1126593738500_850993_511"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126850894468_854666_1" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738484_318468_488 _10_0EAPbeta2_8740266_1126593738484_490832_490 _10_0EAPbeta2_8740266_1126593738500_850993_511 _10_0EAPbeta2_8740266_1126593738500_339116_506"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126850894468_872037_3" name="System" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738500_881567_510 _10_0EAPbeta2_8740266_1126593738484_746417_497 _10_0EAPbeta2_8740266_1126593738500_662301_512 _10_0EAPbeta2_8740266_1126593738500_364860_513 _10_0EAPbeta2_8740266_1126593738484_931558_486 _10_0EAPbeta2_8740266_1126593738484_133480_499 _10_0EAPbeta2_8740266_1126593738484_276626_489 _10_0EAPbeta2_8740266_1126593738484_817169_487 _10_0EAPbeta2_8740266_1126593738484_953748_491 _10_0EAPbeta2_8740266_1126593738484_848368_494 _10_0EAPbeta2_8740266_1126593738484_446965_495 _10_0EAPbeta2_8740266_1126593738500_511926_507 _10_0EAPbeta2_8740266_1126593738484_201598_498 _10_0EAPbeta2_8740266_1126593738500_736065_508 _10_0EAPbeta2_8740266_1126593738500_855227_509 _10_0EAPbeta2_8740266_1126593738484_532530_496 _10_0EAPbeta2_8740266_1126593738484_876340_492 _10_0EAPbeta2_8740266_1126593738500_226498_505 _10_0EAPbeta2_8740266_1126593738484_966663_493"/>
           </ownedBehavior>
           <include xmi:id="_10_0EAPbeta2_8740266_1126593738312_378696_250" name="" visibility="public" addition="_10_0EAPbeta2_8740266_1126593738234_6544_142"/>
         </packagedElement>
@@ -130,7 +130,7 @@
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738500_962154_526" name="Enter the number of&#xA;received reading items" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_193171_537" incoming="_10_0EAPbeta2_8740266_1126593738500_30343_538"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738500_107163_527" name="Increase reading item number&#xA;by the entered quantity" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_530501_539" incoming="_10_0EAPbeta2_8740266_1126593738500_193171_537"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738500_540981_528" name="Verify if there are reserved entered &#xA;reading items that are &#xA;not ‘currently available’" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_387887_540" incoming="_10_0EAPbeta2_8740266_1126593738500_530501_539"/>
-            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738500_943336_529" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_563341_541 _10_0EAPbeta2_8740266_1126593738500_102927_542" incoming="_10_0EAPbeta2_8740266_1126593738500_387887_540"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738500_943336_529" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_102927_542 _10_0EAPbeta2_8740266_1126593738500_563341_541" incoming="_10_0EAPbeta2_8740266_1126593738500_387887_540"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738500_893156_530" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738500_102927_542"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738500_96603_531" name="Update reservation lists &#xA;with the available reading items" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_542087_543" incoming="_10_0EAPbeta2_8740266_1126593738500_563341_541"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738500_221546_532" name="Send the notification to the&#xA;readers that reserved item&#xA;becomes ‘currently available’" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738500_148315_544" incoming="_10_0EAPbeta2_8740266_1126593738500_542087_543"/>
@@ -149,17 +149,17 @@
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738500_542087_543" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738500_96603_531" target="_10_0EAPbeta2_8740266_1126593738500_221546_532" inPartition="_10_0_8740266_1127456928968_947352_673"/>
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738500_148315_544" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738500_221546_532" target="_10_0EAPbeta2_8740266_1126593738500_807052_533" inPartition="_10_0_8740266_1127456928968_947352_673"/>
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738500_157142_545" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738500_539395_534" target="_10_0EAPbeta2_8740266_1126593738500_930243_525" inPartition="_10_0_8740266_1127456928968_584407_671"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0_8740266_1127456928968_584407_671" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738500_30343_538 _10_0EAPbeta2_8740266_1126593738500_193171_537 _10_0EAPbeta2_8740266_1126593738500_157142_545"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0_8740266_1127456928968_947352_673" name="System" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738500_530501_539 _10_0EAPbeta2_8740266_1126593738500_387887_540 _10_0EAPbeta2_8740266_1126593738500_542087_543 _10_0EAPbeta2_8740266_1126593738500_563341_541 _10_0EAPbeta2_8740266_1126593738500_148315_544 _10_0EAPbeta2_8740266_1126593738500_102927_542"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0_8740266_1127456928968_584407_671" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738500_193171_537 _10_0EAPbeta2_8740266_1126593738500_30343_538 _10_0EAPbeta2_8740266_1126593738500_157142_545"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0_8740266_1127456928968_947352_673" name="System" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738500_387887_540 _10_0EAPbeta2_8740266_1126593738500_542087_543 _10_0EAPbeta2_8740266_1126593738500_530501_539 _10_0EAPbeta2_8740266_1126593738500_148315_544 _10_0EAPbeta2_8740266_1126593738500_102927_542 _10_0EAPbeta2_8740266_1126593738500_563341_541"/>
           </ownedBehavior>
         </packagedElement>
         <packagedElement xmi:type="uml:UseCase" xmi:id="_10_0EAPbeta2_8740266_1126860742078_77740_14" name="Order&#xA;items"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_655962_21" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_106241_79 _10_0EAPbeta2_8740266_1126593738218_589394_80">
+      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_655962_21" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_589394_80 _10_0EAPbeta2_8740266_1126593738218_106241_79">
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_106241_79" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126593738187_655962_21"/>
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_589394_80" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_778784_173" association="_10_0EAPbeta2_8740266_1126593738187_655962_21"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_889870_22" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_486250_81 _10_0EAPbeta2_8740266_1126593738218_24310_82">
+      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_889870_22" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_24310_82 _10_0EAPbeta2_8740266_1126593738218_486250_81">
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_486250_81" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_656883_98" association="_10_0EAPbeta2_8740266_1126593738187_889870_22"/>
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_24310_82" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_267513_180" association="_10_0EAPbeta2_8740266_1126593738187_889870_22"/>
       </packagedElement>
@@ -167,13 +167,13 @@
         <packagedElement xmi:type="uml:UseCase" xmi:id="_10_0EAPbeta2_8740266_1126593738218_758571_83" name="Make&#xA;reservation">
           <ownedComment xmi:id="_10_0EAPbeta2_8740266_1126593738328_50274_281" body="The reader shall be able to reserve the selected reading item. The reading item is added to the readers reserved items list. The list item displays the reading item information and the time when the reading item is available for the loan." annotatedElement="_10_0EAPbeta2_8740266_1126593738218_758571_83"/>
           <ownedBehavior xmi:type="uml:Activity" xmi:id="_10_0EAPbeta2_8740266_1126593738328_6878_280" name="Make Reservation">
-            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738515_565288_554" name="Search for Items" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_689032_572" incoming="_10_0EAPbeta2_8740266_1126593738515_284576_569 _10_0EAPbeta2_8740266_1126593738515_15076_568"/>
+            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738515_565288_554" name="Search for Items" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_689032_572" incoming="_10_0EAPbeta2_8740266_1126593738515_15076_568 _10_0EAPbeta2_8740266_1126593738515_284576_569"/>
             <node xmi:type="uml:InitialNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_359216_555" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_15076_568"/>
             <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_618083_556" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_284576_569 _10_0EAPbeta2_8740266_1126593738515_983054_574 _10_0EAPbeta2_8740266_1126593738515_944524_576" incoming="_10_0EAPbeta2_8740266_1126593738515_236091_571"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738515_973202_557" name="Make  Item Revervation" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_818042_577" incoming="_10_0EAPbeta2_8740266_1126593738515_944524_576"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738515_212432_558" name="Get Item Details" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_236091_571" incoming="_10_0EAPbeta2_8740266_1126593738515_775129_570"/>
             <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_144178_559" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_775129_570 _10_0EAPbeta2_8740266_1126593738515_949346_573" incoming="_10_0EAPbeta2_8740266_1126593738515_689032_572"/>
-            <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_660168_560" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738515_949346_573 _10_0EAPbeta2_8740266_1126593738515_983054_574"/>
+            <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_660168_560" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738515_983054_574 _10_0EAPbeta2_8740266_1126593738515_949346_573"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738515_837625_561" name="Display Date when&#xA;Item Will be &#xA;Available to Loan" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_328936_575" incoming="_10_0EAPbeta2_8740266_1126593738515_773878_578"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_481958_562" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738515_328936_575"/>
             <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738515_738326_563" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738515_773878_578 _10_0EAPbeta2_8740266_1126593738515_57223_579" incoming="_10_0EAPbeta2_8740266_1126593738515_818042_577"/>
@@ -216,8 +216,8 @@
               </guard>
             </edge>
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738515_776069_580" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738515_920450_565" target="_10_0EAPbeta2_8740266_1126593738515_241262_564" inPartition="_10_0EAPbeta2_8740266_1126593738515_235152_567"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738515_809898_566" name="Customer" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738515_775129_570 _10_0EAPbeta2_8740266_1126593738515_236091_571 _10_0EAPbeta2_8740266_1126593738515_949346_573 _10_0EAPbeta2_8740266_1126593738515_15076_568 _10_0EAPbeta2_8740266_1126593738515_284576_569 _10_0EAPbeta2_8740266_1126593738515_689032_572 _10_0EAPbeta2_8740266_1126593738515_983054_574 _10_0EAPbeta2_8740266_1126593738515_944524_576 _10_0EAPbeta2_8740266_1126593738515_818042_577"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738515_235152_567" name="System" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738515_776069_580 _10_0EAPbeta2_8740266_1126593738515_328936_575 _10_0EAPbeta2_8740266_1126593738515_773878_578 _10_0EAPbeta2_8740266_1126593738515_57223_579"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738515_809898_566" name="Customer" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738515_775129_570 _10_0EAPbeta2_8740266_1126593738515_689032_572 _10_0EAPbeta2_8740266_1126593738515_15076_568 _10_0EAPbeta2_8740266_1126593738515_818042_577 _10_0EAPbeta2_8740266_1126593738515_284576_569 _10_0EAPbeta2_8740266_1126593738515_236091_571 _10_0EAPbeta2_8740266_1126593738515_949346_573 _10_0EAPbeta2_8740266_1126593738515_983054_574 _10_0EAPbeta2_8740266_1126593738515_944524_576"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738515_235152_567" name="System" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738515_328936_575 _10_0EAPbeta2_8740266_1126593738515_773878_578 _10_0EAPbeta2_8740266_1126593738515_57223_579 _10_0EAPbeta2_8740266_1126593738515_776069_580"/>
           </ownedBehavior>
           <include xmi:id="_10_0EAPbeta2_8740266_1126593738328_541943_278" name="" visibility="public" addition="_10_0EAPbeta2_8740266_1126593738234_755671_143"/>
           <include xmi:id="_10_0EAPbeta2_8740266_1126593738328_249894_279" name="" visibility="public" addition="_10_0EAPbeta2_8740266_1126593738234_237216_118"/>
@@ -244,7 +244,7 @@
           <ownedComment xmi:id="_10_0EAPbeta2_8740266_1126593738343_577505_310" body="Every user shall be able to constantly change his/her password for security reasons." annotatedElement="_10_0EAPbeta2_8740266_1126593738218_540065_100"/>
         </packagedElement>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_489566_32" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_98020_109 _10_0EAPbeta2_8740266_1126593738218_666582_108">
+      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_489566_32" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_666582_108 _10_0EAPbeta2_8740266_1126593738218_98020_109">
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_666582_108" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126593738187_489566_32"/>
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_98020_109" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_35764_172" association="_10_0EAPbeta2_8740266_1126593738187_489566_32"/>
       </packagedElement>
@@ -256,7 +256,7 @@
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_89962_114" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_267513_180" association="_10_0EAPbeta2_8740266_1126593738187_952455_35"/>
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_284834_115" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_933260_99" association="_10_0EAPbeta2_8740266_1126593738187_952455_35"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_302940_36" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_316399_116 _10_0EAPbeta2_8740266_1126593738218_977512_117">
+      <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126593738187_302940_36" name="" memberEnd="_10_0EAPbeta2_8740266_1126593738218_977512_117 _10_0EAPbeta2_8740266_1126593738218_316399_116">
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_316399_116" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_816420_171" association="_10_0EAPbeta2_8740266_1126593738187_302940_36"/>
         <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126593738218_977512_117" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_872630_178" association="_10_0EAPbeta2_8740266_1126593738187_302940_36"/>
       </packagedElement>
@@ -315,7 +315,7 @@
               </guard>
             </edge>
             <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738546_104401_641" name="System" visibility="public"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738546_807674_640" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738546_985900_646 _10_0EAPbeta2_8740266_1126593738546_824810_650 _10_0EAPbeta2_8740266_1126593738546_98079_649 _10_0EAPbeta2_8740266_1126593738546_342528_645 _10_0EAPbeta2_8740266_1126593738546_451417_642 _10_0EAPbeta2_8740266_1126593738546_438239_644 _10_0EAPbeta2_8740266_1126593738546_667978_647 _10_0EAPbeta2_8740266_1126593738546_178446_648 _10_0EAPbeta2_8740266_1126593738546_591742_651"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738546_807674_640" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738546_451417_642 _10_0EAPbeta2_8740266_1126593738546_178446_648 _10_0EAPbeta2_8740266_1126593738546_985900_646 _10_0EAPbeta2_8740266_1126593738546_438239_644 _10_0EAPbeta2_8740266_1126593738546_342528_645 _10_0EAPbeta2_8740266_1126593738546_667978_647 _10_0EAPbeta2_8740266_1126593738546_98079_649 _10_0EAPbeta2_8740266_1126593738546_824810_650 _10_0EAPbeta2_8740266_1126593738546_591742_651"/>
             <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126593738546_24595_639" name="Customer" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738546_752264_643"/>
           </ownedBehavior>
         </packagedElement>
@@ -329,7 +329,7 @@
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738546_300184_665" name="Confirm Return" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_904933_680" incoming="_10_0EAPbeta2_8740266_1126593738562_424656_674 _10_0EAPbeta2_8740266_1126593738562_581842_677"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738546_389549_666" name="Get Loan Details" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_258541_678" incoming="_10_0EAPbeta2_8740266_1126593738562_936503_679"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738546_128758_667" name="Penalize&#xA; for Overdue" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_424656_674" incoming="_10_0EAPbeta2_8740266_1126593738562_661534_675"/>
-            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738562_562542_668" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_661534_675 _10_0EAPbeta2_8740266_1126593738562_581842_677" incoming="_10_0EAPbeta2_8740266_1126593738562_258541_678"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738562_562542_668" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_581842_677 _10_0EAPbeta2_8740266_1126593738562_661534_675" incoming="_10_0EAPbeta2_8740266_1126593738562_258541_678"/>
             <node xmi:type="uml:InitialNode" xmi:id="_10_0EAPbeta2_8740266_1126593738562_941768_669" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_260922_676"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738562_474817_670" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738562_130217_681"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738562_693589_671" name="Mark Item &#xA;available for loaning" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738562_130217_681" incoming="_10_0EAPbeta2_8740266_1126593738562_904933_680"/>
@@ -349,8 +349,8 @@
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738562_936503_679" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738546_758763_664" target="_10_0EAPbeta2_8740266_1126593738546_389549_666" inPartition="_10_0EAPbeta2_8740266_1126678513140_518220_4681"/>
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738562_904933_680" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738546_300184_665" target="_10_0EAPbeta2_8740266_1126593738562_693589_671" inPartition="_10_0EAPbeta2_8740266_1126678513140_104905_4683"/>
             <edge xmi:type="uml:ControlFlow" xmi:id="_10_0EAPbeta2_8740266_1126593738562_130217_681" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738562_693589_671" target="_10_0EAPbeta2_8740266_1126593738562_474817_670" inPartition="_10_0EAPbeta2_8740266_1126678513140_104905_4683"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126678513140_104905_4683" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738562_130217_681 _10_0EAPbeta2_8740266_1126593738562_904933_680 _10_0EAPbeta2_8740266_1126593738562_258541_678 _10_0EAPbeta2_8740266_1126593738562_661534_675 _10_0EAPbeta2_8740266_1126593738562_581842_677 _10_0EAPbeta2_8740266_1126593738562_424656_674"/>
             <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126678513140_518220_4681" name="Reader" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738562_936503_679 _10_0EAPbeta2_8740266_1126593738562_260922_676"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_10_0EAPbeta2_8740266_1126678513140_104905_4683" name="Manager" visibility="public" edge="_10_0EAPbeta2_8740266_1126593738562_904933_680 _10_0EAPbeta2_8740266_1126593738562_424656_674 _10_0EAPbeta2_8740266_1126593738562_258541_678 _10_0EAPbeta2_8740266_1126593738562_661534_675 _10_0EAPbeta2_8740266_1126593738562_130217_681 _10_0EAPbeta2_8740266_1126593738562_581842_677"/>
           </ownedBehavior>
           <include xmi:id="_10_0EAPbeta2_8740266_1126593738359_909272_322" name="" visibility="public" addition="_10_0EAPbeta2_8740266_1126593738234_237216_118"/>
           <extensionPoint xmi:id="_10_0EAPbeta2_8740266_1126593738359_732176_346" name="Return violation" visibility="public"/>
@@ -406,11 +406,11 @@
         <packagedElement xmi:type="uml:UseCase" xmi:id="_10_0EAPbeta2_8740266_1126593738250_20629_174" name="Remove&#xA;customer user">
           <ownedComment xmi:id="_10_0EAPbeta2_8740266_1126593738390_205340_402" body="Manager shall be able to remove customer users (readers) from library system. The customer user may only be removed from the system after he returns all his loans. All reservations user had made are cancelled." annotatedElement="_10_0EAPbeta2_8740266_1126593738250_20629_174"/>
           <ownedBehavior xmi:type="uml:Activity" xmi:id="_10_0EAPbeta2_8740266_1126593738390_347536_401" name="Remove Reader">
-            <node xmi:type="uml:InitialNode" xmi:id="_10_0EAPbeta2_8740266_1126593738578_349259_736" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_458063_786 _10_0EAPbeta2_8740266_1126593738593_167972_766" inPartition="_11_5_8740266_1151592719515_190023_5"/>
+            <node xmi:type="uml:InitialNode" xmi:id="_10_0EAPbeta2_8740266_1126593738578_349259_736" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_167972_766 _10_0EAPbeta2_8740266_1126593738593_458063_786" inPartition="_11_5_8740266_1151592719515_190023_5"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_861034_737" name="Request to manage readers" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_965223_767" incoming="_10_0EAPbeta2_8740266_1126593738593_167972_766"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_298325_738" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_560010_768"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_432590_739" name="The system requests to &#xA;enter reader information" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_51493_769" incoming="_10_0EAPbeta2_8740266_1126593738593_560010_768"/>
-            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_566236_740" name="Enter reader information, &#xA;also login and password" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738593_315427_781 _10_0EAPbeta2_8740266_1126593738593_51493_769"/>
+            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_566236_740" name="Enter reader information, &#xA;also login and password" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738593_51493_769 _10_0EAPbeta2_8740266_1126593738593_315427_781"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_776822_741" name="Verify login information" visibility="public"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_182531_742" name="Create new reader user" visibility="public"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_552649_743" name="Request to enter new login &#xA;information for reader" visibility="public"/>
@@ -421,10 +421,10 @@
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_682061_748" name="Select reader to modify" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_223984_771" incoming="_10_0EAPbeta2_8740266_1126593738593_787307_770 _10_0EAPbeta2_8740266_1126593738593_622924_782"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_457270_749" name="Modify needed information" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738593_223984_771"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_583085_750" name=" The manager requests to&#xA; remove existing reader" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_390463_772"/>
-            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_486613_751" name="Select reader&#xA;to remove" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_520884_773" incoming="_10_0EAPbeta2_8740266_1126593738593_390463_772 _10_0EAPbeta2_8740266_1126593738593_458063_786 _10_0EAPbeta2_8740266_1126593738593_171616_783" inPartition="_11_5_8740266_1151592719515_190023_5"/>
+            <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_486613_751" name="Select reader&#xA;to remove" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_520884_773" incoming="_10_0EAPbeta2_8740266_1126593738593_390463_772 _10_0EAPbeta2_8740266_1126593738593_171616_783 _10_0EAPbeta2_8740266_1126593738593_458063_786" inPartition="_11_5_8740266_1151592719515_190023_5"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_15281_752" name="Request confirmation" visibility="public" outgoing="_11_5_8740266_1151592853062_43733_177" incoming="_10_0EAPbeta2_8740266_1126593738593_520884_773" inPartition="_11_5_8740266_1151592719531_204420_7"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_378468_753" name="Verify if reader has loaned&#xA; some reading items" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_490679_777" incoming="_11_5_8740266_1151592847734_514083_174" inPartition="_11_5_8740266_1151592719531_204420_7"/>
-            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738578_383136_754" name="" visibility="public" outgoing="_11_5_8740266_1151592847734_514083_174 _10_0EAPbeta2_8740266_1126593738593_933971_775" incoming="_11_5_8740266_1151592826375_844370_171" inPartition="_11_5_8740266_1151592719531_204420_7"/>
+            <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738578_383136_754" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_933971_775 _11_5_8740266_1151592847734_514083_174" incoming="_11_5_8740266_1151592826375_844370_171" inPartition="_11_5_8740266_1151592719531_204420_7"/>
             <node xmi:type="uml:CallBehaviorAction" xmi:id="_10_0EAPbeta2_8740266_1126593738578_525845_755" name="The removal&#xA;is cancelled" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_554422_776" incoming="_10_0EAPbeta2_8740266_1126593738593_933971_775" inPartition="_11_5_8740266_1151592719531_204420_7"/>
             <node xmi:type="uml:ActivityFinalNode" xmi:id="_10_0EAPbeta2_8740266_1126593738593_543210_756" name="" visibility="public" incoming="_10_0EAPbeta2_8740266_1126593738593_554422_776"/>
             <node xmi:type="uml:DecisionNode" xmi:id="_10_0EAPbeta2_8740266_1126593738593_756199_757" name="" visibility="public" outgoing="_10_0EAPbeta2_8740266_1126593738593_667344_778 _10_0EAPbeta2_8740266_1126593738593_337993_779" incoming="_10_0EAPbeta2_8740266_1126593738593_490679_777" inPartition="_11_5_8740266_1151592719531_204420_7"/>
@@ -484,8 +484,8 @@
               </guard>
             </edge>
             <edge xmi:type="uml:ControlFlow" xmi:id="_11_5_8740266_1151592853062_43733_177" name="" visibility="public" source="_10_0EAPbeta2_8740266_1126593738578_15281_752" target="_10_0EAPbeta2_8740266_1126593738593_979312_762" inPartition="_11_5_8740266_1151592719531_204420_7"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_11_5_8740266_1151592719531_204420_7" name="System" visibility="public" node="_10_0EAPbeta2_8740266_1126593738578_378468_753 _10_0EAPbeta2_8740266_1126593738593_764150_763 _10_0EAPbeta2_8740266_1126593738593_986923_759 _10_0EAPbeta2_8740266_1126593738578_15281_752 _10_0EAPbeta2_8740266_1126593738578_383136_754 _10_0EAPbeta2_8740266_1126593738578_525845_755 _10_0EAPbeta2_8740266_1126593738593_756199_757 _10_0EAPbeta2_8740266_1126593738593_546721_758 _10_0EAPbeta2_8740266_1126593738593_234978_760" edge="_10_0EAPbeta2_8740266_1126593738593_554422_776 _10_0EAPbeta2_8740266_1126593738593_933971_775 _10_0EAPbeta2_8740266_1126593738593_490679_777 _10_0EAPbeta2_8740266_1126593738593_337993_779 _10_0EAPbeta2_8740266_1126593738593_667344_778 _10_0EAPbeta2_8740266_1126593738593_104643_780 _10_0EAPbeta2_8740266_1126593738593_477429_787 _11_5_8740266_1151592847734_514083_174 _11_5_8740266_1151592853062_43733_177"/>
-            <group xmi:type="uml:ActivityPartition" xmi:id="_11_5_8740266_1151592719515_190023_5" name="Manager" visibility="public" node="_10_0EAPbeta2_8740266_1126593738593_979312_762 _10_0EAPbeta2_8740266_1126593738578_349259_736 _10_0EAPbeta2_8740266_1126593738578_486613_751" edge="_10_0EAPbeta2_8740266_1126593738593_458063_786 _11_5_8740266_1151592826375_844370_171 _10_0EAPbeta2_8740266_1126593738593_520884_773"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_11_5_8740266_1151592719531_204420_7" name="System" visibility="public" node="_10_0EAPbeta2_8740266_1126593738593_234978_760 _10_0EAPbeta2_8740266_1126593738578_378468_753 _10_0EAPbeta2_8740266_1126593738593_764150_763 _10_0EAPbeta2_8740266_1126593738593_546721_758 _10_0EAPbeta2_8740266_1126593738593_756199_757 _10_0EAPbeta2_8740266_1126593738578_383136_754 _10_0EAPbeta2_8740266_1126593738578_15281_752 _10_0EAPbeta2_8740266_1126593738578_525845_755 _10_0EAPbeta2_8740266_1126593738593_986923_759" edge="_10_0EAPbeta2_8740266_1126593738593_104643_780 _10_0EAPbeta2_8740266_1126593738593_554422_776 _10_0EAPbeta2_8740266_1126593738593_490679_777 _10_0EAPbeta2_8740266_1126593738593_933971_775 _10_0EAPbeta2_8740266_1126593738593_477429_787 _11_5_8740266_1151592847734_514083_174 _10_0EAPbeta2_8740266_1126593738593_337993_779 _10_0EAPbeta2_8740266_1126593738593_667344_778 _11_5_8740266_1151592853062_43733_177"/>
+            <group xmi:type="uml:ActivityPartition" xmi:id="_11_5_8740266_1151592719515_190023_5" name="Manager" visibility="public" node="_10_0EAPbeta2_8740266_1126593738578_349259_736 _10_0EAPbeta2_8740266_1126593738578_486613_751 _10_0EAPbeta2_8740266_1126593738593_979312_762" edge="_10_0EAPbeta2_8740266_1126593738593_520884_773 _10_0EAPbeta2_8740266_1126593738593_458063_786 _11_5_8740266_1151592826375_844370_171"/>
           </ownedBehavior>
         </packagedElement>
       </packagedElement>
@@ -511,11 +511,11 @@
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126681245500_382734_5" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_35764_172" association="_10_0EAPbeta2_8740266_1126681245500_55622_4"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126681245500_401593_6" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126681245500_55622_4"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126681471375_660810_6" name="" memberEnd="_10_0EAPbeta2_8740266_1126681471375_570435_8 _10_0EAPbeta2_8740266_1126681471375_753686_7">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126681471375_660810_6" name="" memberEnd="_10_0EAPbeta2_8740266_1126681471375_753686_7 _10_0EAPbeta2_8740266_1126681471375_570435_8">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126681471375_753686_7" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_35764_172" association="_10_0EAPbeta2_8740266_1126681471375_660810_6"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126681471375_570435_8" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126681471375_660810_6"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682011171_930710_4" name="" memberEnd="_10_0EAPbeta2_8740266_1126682011171_191697_6 _10_0EAPbeta2_8740266_1126682011171_299591_5">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682011171_930710_4" name="" memberEnd="_10_0EAPbeta2_8740266_1126682011171_299591_5 _10_0EAPbeta2_8740266_1126682011171_191697_6">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682011171_299591_5" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_35764_172" association="_10_0EAPbeta2_8740266_1126682011171_930710_4"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682011171_191697_6" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682011171_930710_4"/>
         </packagedElement>
@@ -523,19 +523,19 @@
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682019250_97122_95" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_778784_173" association="_10_0EAPbeta2_8740266_1126682019250_345101_94"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682019250_725309_96" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682019250_345101_94"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682020937_69266_139" name="" memberEnd="_10_0EAPbeta2_8740266_1126682020937_129036_141 _10_0EAPbeta2_8740266_1126682020937_155797_140">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682020937_69266_139" name="" memberEnd="_10_0EAPbeta2_8740266_1126682020937_155797_140 _10_0EAPbeta2_8740266_1126682020937_129036_141">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682020937_155797_140" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_20629_174" association="_10_0EAPbeta2_8740266_1126682020937_69266_139"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682020937_129036_141" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682020937_69266_139"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682866484_61055_511" name="" memberEnd="_10_0EAPbeta2_8740266_1126682866484_394407_513 _10_0EAPbeta2_8740266_1126682866484_538100_512">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682866484_61055_511" name="" memberEnd="_10_0EAPbeta2_8740266_1126682866484_538100_512 _10_0EAPbeta2_8740266_1126682866484_394407_513">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682866484_538100_512" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738203_429271_69" association="_10_0EAPbeta2_8740266_1126682866484_61055_511"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682866484_394407_513" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682866484_61055_511"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682878562_42338_612" name="" memberEnd="_10_0EAPbeta2_8740266_1126682878562_161054_613 _10_0EAPbeta2_8740266_1126682878562_264330_614">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682878562_42338_612" name="" memberEnd="_10_0EAPbeta2_8740266_1126682878562_264330_614 _10_0EAPbeta2_8740266_1126682878562_161054_613">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682878562_161054_613" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_73443_71" association="_10_0EAPbeta2_8740266_1126682878562_42338_612"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682878562_264330_614" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682878562_42338_612"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682896828_676528_657" name="" memberEnd="_10_0EAPbeta2_8740266_1126682896828_750365_659 _10_0EAPbeta2_8740266_1126682896828_160798_658">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126682896828_676528_657" name="" memberEnd="_10_0EAPbeta2_8740266_1126682896828_160798_658 _10_0EAPbeta2_8740266_1126682896828_750365_659">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682896828_160798_658" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_108613_70" association="_10_0EAPbeta2_8740266_1126682896828_676528_657"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682896828_750365_659" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682896828_676528_657"/>
         </packagedElement>
@@ -543,15 +543,15 @@
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682899031_721916_703" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_25373_72" association="_10_0EAPbeta2_8740266_1126682899031_931891_702"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126682899031_904437_704" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126682899031_931891_702"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683212625_522027_747" name="" memberEnd="_10_0EAPbeta2_8740266_1126683212625_563931_749 _10_0EAPbeta2_8740266_1126683212625_101448_748">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683212625_522027_747" name="" memberEnd="_10_0EAPbeta2_8740266_1126683212625_101448_748 _10_0EAPbeta2_8740266_1126683212625_563931_749">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683212625_101448_748" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_755671_143" association="_10_0EAPbeta2_8740266_1126683212625_522027_747"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683212625_563931_749" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126683212625_522027_747"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683214890_513398_792" name="" memberEnd="_10_0EAPbeta2_8740266_1126683214890_165861_794 _10_0EAPbeta2_8740266_1126683214890_438793_793">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683214890_513398_792" name="" memberEnd="_10_0EAPbeta2_8740266_1126683214890_438793_793 _10_0EAPbeta2_8740266_1126683214890_165861_794">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683214890_438793_793" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_466517_144" association="_10_0EAPbeta2_8740266_1126683214890_513398_792"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683214890_165861_794" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126683214890_513398_792"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683217265_617721_837" name="" memberEnd="_10_0EAPbeta2_8740266_1126683217265_198673_839 _10_0EAPbeta2_8740266_1126683217265_223012_838">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683217265_617721_837" name="" memberEnd="_10_0EAPbeta2_8740266_1126683217265_223012_838 _10_0EAPbeta2_8740266_1126683217265_198673_839">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683217265_223012_838" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_6544_142" association="_10_0EAPbeta2_8740266_1126683217265_617721_837"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683217265_198673_839" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126683217265_617721_837"/>
         </packagedElement>
@@ -559,15 +559,15 @@
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683230812_699732_883" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_491674_135" association="_10_0EAPbeta2_8740266_1126683230812_645009_882"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683230812_569348_884" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126683230812_645009_882"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683232640_915138_927" name="" memberEnd="_10_0EAPbeta2_8740266_1126683232640_585424_928 _10_0EAPbeta2_8740266_1126683232640_716442_929">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683232640_915138_927" name="" memberEnd="_10_0EAPbeta2_8740266_1126683232640_716442_929 _10_0EAPbeta2_8740266_1126683232640_585424_928">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683232640_585424_928" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_762717_137" association="_10_0EAPbeta2_8740266_1126683232640_915138_927"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683232640_716442_929" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126683232640_915138_927"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683234234_897382_972" name="" memberEnd="_10_0EAPbeta2_8740266_1126683234234_783128_974 _10_0EAPbeta2_8740266_1126683234234_883833_973">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683234234_897382_972" name="" memberEnd="_10_0EAPbeta2_8740266_1126683234234_883833_973 _10_0EAPbeta2_8740266_1126683234234_783128_974">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683234234_883833_973" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_887279_136" association="_10_0EAPbeta2_8740266_1126683234234_897382_972"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683234234_783128_974" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_145087_181" association="_10_0EAPbeta2_8740266_1126683234234_897382_972"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683244906_201027_1017" name="" memberEnd="_10_0EAPbeta2_8740266_1126683244906_314839_1018 _10_0EAPbeta2_8740266_1126683244906_369645_1019">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683244906_201027_1017" name="" memberEnd="_10_0EAPbeta2_8740266_1126683244906_369645_1019 _10_0EAPbeta2_8740266_1126683244906_314839_1018">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683244906_314839_1018" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738234_6544_142" association="_10_0EAPbeta2_8740266_1126683244906_201027_1017"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683244906_369645_1019" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_481715_179" association="_10_0EAPbeta2_8740266_1126683244906_201027_1017"/>
         </packagedElement>
@@ -587,7 +587,7 @@
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683253140_881986_1198" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_489191_85" association="_10_0EAPbeta2_8740266_1126683253140_367432_1197"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683253140_474408_1199" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_481715_179" association="_10_0EAPbeta2_8740266_1126683253140_367432_1197"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683254390_234659_1242" name="" memberEnd="_10_0EAPbeta2_8740266_1126683254390_901963_1243 _10_0EAPbeta2_8740266_1126683254390_904012_1244">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683254390_234659_1242" name="" memberEnd="_10_0EAPbeta2_8740266_1126683254390_904012_1244 _10_0EAPbeta2_8740266_1126683254390_901963_1243">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683254390_901963_1243" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_239851_84" association="_10_0EAPbeta2_8740266_1126683254390_234659_1242"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683254390_904012_1244" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_481715_179" association="_10_0EAPbeta2_8740266_1126683254390_234659_1242"/>
         </packagedElement>
@@ -595,7 +595,7 @@
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683255562_318579_1288" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_855173_86" association="_10_0EAPbeta2_8740266_1126683255562_523250_1287"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683255562_357462_1289" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_481715_179" association="_10_0EAPbeta2_8740266_1126683255562_523250_1287"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683257031_448106_1332" name="" memberEnd="_10_0EAPbeta2_8740266_1126683257031_913135_1334 _10_0EAPbeta2_8740266_1126683257031_956858_1333">
+        <packagedElement xmi:type="uml:Association" xmi:id="_10_0EAPbeta2_8740266_1126683257031_448106_1332" name="" memberEnd="_10_0EAPbeta2_8740266_1126683257031_956858_1333 _10_0EAPbeta2_8740266_1126683257031_913135_1334">
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683257031_956858_1333" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738218_758571_83" association="_10_0EAPbeta2_8740266_1126683257031_448106_1332"/>
           <ownedEnd xmi:id="_10_0EAPbeta2_8740266_1126683257031_913135_1334" name="" visibility="private" type="_10_0EAPbeta2_8740266_1126593738250_481715_179" association="_10_0EAPbeta2_8740266_1126683257031_448106_1332"/>
         </packagedElement>
@@ -632,7 +632,7 @@
           </ownedAttribute>
           <icon xmi:id="_10_0_8740266_1131952390140_791231_497" content="47 49 46 38 39 61 10 0 10 0 d5 37 0 eb f0 f5 e7 ec f3 e2 e9 f1 f9 fa fc 9f b4 ce cc d8 e5 dd e5 ee e9 ee f4 ea ef f4 ee f2 f7 e0 e7 f0 d4 de ea ef f3 f6 e6 ec f3 b6 c6 d9 dd e5 ec f0 f3 f8 db e3 ed c8 d3 e1 df e5 ec d8 e1 ec e4 ea f2 c2 ce df f3 f6 f9 ed f1 f6 d3 dc e7 df e6 ef f2 f5 f9 f2 f5 f8 f5 f7 fa cd d8 e4 dc e4 ee bc cb dd f7 f9 fb f6 f8 fa e6 ec f2 fa fb fd a7 bb d1 fc fd fe f1 f4 f8 e4 e9 ef bd cb dc f6 f8 fb f4 f7 fa ee f2 f6 e9 ee f2 ff ff ff db e2 ea e0 e6 ee b1 c2 d6 d6 df e9 f8 fa fc ab be d4 80 80 80 0 0 0 ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 21 f9 4 1 0 0 37 0 2c 0 0 0 0 10 0 10 0 0 6 66 c0 9b 70 48 2c 1a 8f 47 9b 72 69 43 de 6c 90 8b 6a 60 52 22 6d 80 9a 76 66 73 35 8d b6 0 20 b1 e9 30 c1 82 c6 1 73 5a 85 48 5f a2 cd a0 ad d7 44 f1 a1 8d f2 51 54 c4 c 1c 79 42 36 5 b 11 1a 2 23 8 2c 83 4f 20 76 5a 2d 8e 36 34 e 16 1e 32 f 30 28 94 4 25 31 29 12 19 2f 13 94 4c a8 4e aa ab 45 41 0 3b " location="D:\andrius\work\demo\full\icons\documentation.gif" format="GIF"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Extension" xmi:id="_10_0_8740266_1131952390140_717447_498" name="" memberEnd="_10_0_8740266_1131952390140_4434_500 _10_0_8740266_1131952390140_116416_499">
+        <packagedElement xmi:type="uml:Extension" xmi:id="_10_0_8740266_1131952390140_717447_498" name="" memberEnd="_10_0_8740266_1131952390140_116416_499 _10_0_8740266_1131952390140_4434_500">
           <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_10_0_8740266_1131952390140_4434_500" name="extension_Document" visibility="private" type="_10_0_8740266_1131952390125_461825_496" aggregation="composite" association="_10_0_8740266_1131952390140_717447_498">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_10_0_8740266_1131952390140_824786_502" name="" value="1"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_10_0_8740266_1131952390140_440004_501" name=""/>
@@ -650,212 +650,188 @@
     <packagedElement xmi:type="uml:Package" xmi:id="magicdraw_uml_standard_profile_v_0001" name="UML Standard Profile">
       <ownedComment xmi:id="_be00301_1078843546940_242228_131" body="UML Standard Profile contains several popular stereotypes, tag definitions and constraints described in UML  2 Specifications." annotatedElement="magicdraw_uml_standard_profile_v_0001"/>
     </packagedElement>
+    <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
+      <eAnnotations xmi:id="_VY1aID_QEeGf1ooA3i4zww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_VYs3oT_QEeGf1ooA3i4zww"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
+    </profileApplication>
     <profileApplication xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
-      <eAnnotations xmi:id="_RcKRQTL5EeGLVZ_fW0VLdw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_Rb2yLzL5EeGLVZ_fW0VLdw"/>
+      <eAnnotations xmi:id="_VY65sT_QEeGf1ooA3i4zww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_VYsQYz_QEeGf1ooA3i4zww"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
     </profileApplication>
+    <profileApplication xmi:id="_be00301_1066743716538_320440_0profileApplicationData">
+      <eAnnotations xmi:id="_VY9V8T_QEeGf1ooA3i4zww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UseCase_Description_Profile.profile.uml#_VYmwrj_QEeGf1ooA3i4zww"/>
+      </eAnnotations>
+      <appliedProfile href="UseCase_Description_Profile.profile.uml#_be00301_1066743716538_320440_0"/>
+    </profileApplication>
     <profileApplication xmi:id="_9_0_be00301_1108050582343_527400_10847profileApplicationData">
-      <eAnnotations xmi:id="_RcTawTL5EeGLVZ_fW0VLdw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_Rb2whTL5EeGLVZ_fW0VLdw"/>
+      <eAnnotations xmi:id="_VY_LIT_QEeGf1ooA3i4zww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_VYqbJz_QEeGf1ooA3i4zww"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_9_0_be00301_1108050582343_527400_10847"/>
     </profileApplication>
     <profileApplication xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
-      <eAnnotations xmi:id="_RcmVsTL5EeGLVZ_fW0VLdw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_RbtmbzL5EeGLVZ_fW0VLdw"/>
+      <eAnnotations xmi:id="_VZBnYD_QEeGf1ooA3i4zww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_VYus2T_QEeGf1ooA3i4zww"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
     </profileApplication>
-    <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
-      <eAnnotations xmi:id="_RcwGsTL5EeGLVZ_fW0VLdw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_Rbap8jL5EeGLVZ_fW0VLdw"/>
-      </eAnnotations>
-      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
-    </profileApplication>
-    <profileApplication xmi:id="_be00301_1066743716538_320440_0profileApplicationData">
-      <eAnnotations xmi:id="_Rc53sTL5EeGLVZ_fW0VLdw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UseCase_Description_Profile.profile.uml#_RbtodjL5EeGLVZ_fW0VLdw"/>
-      </eAnnotations>
-      <appliedProfile href="UseCase_Description_Profile.profile.uml#_be00301_1066743716538_320440_0"/>
-    </profileApplication>
   </uml:Model>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVVjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_378468_753"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVVzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_128758_667"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVWDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_522150_482"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVWTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_298325_738"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVWjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_973202_557"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVWzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_873493_472"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVXDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_221546_532"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVXTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_367656_451"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVXjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_338663_628"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVXzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_966663_493"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVYDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_284576_569"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrVVYTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_640139_452"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefMDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_289057_450"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefMTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738593_667344_778"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefMjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_525845_755"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefMzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_749031_465"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefNDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_457270_749"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefNTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_973136_631"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefNjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_566236_740"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefNzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_82447_638"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefODL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_197545_468"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefOTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738562_693589_671"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefOjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_941970_477"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefOzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_333935_483"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefPDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_565288_554"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefPTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_758763_664"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefPjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_861034_737"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefPzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_15281_752"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefQDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_563341_541"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefQTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738593_979312_762"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefQjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_269216_469"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefQzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_391568_480"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefRDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_583085_750"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefRTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_920450_565"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefRjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_432590_739"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RrefRzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_300184_665"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQMDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_290395_629"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQMTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_682061_748"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQMjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_389549_666"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQMzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_776822_741"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQNDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_445109_457"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQNTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_424688_632"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQNjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_417745_471"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQNzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_313945_456"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQODL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_66146_460"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQOTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738546_826003_627"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQOjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_135394_461"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQOzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_182531_742"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQPDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_552649_743"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQPTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_467609_747"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQPjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_540981_528"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQPzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738593_986923_759"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQQDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_107163_527"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQQTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_96603_531"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQQjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_931558_486"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQQzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_212432_558"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQRDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_64441_478"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQRTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_930243_525"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQRjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738593_659993_761"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQRzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_837625_561"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RroQSDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_561548_474"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBMDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_964619_454"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBMTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738578_486613_751"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBMjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738593_337993_779"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBMzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_446965_495"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBNDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738468_577743_453"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBNTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_944524_576"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBNjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738515_775129_570"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBNzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_742026_464"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBODL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738500_962154_526"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBOTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738484_128206_473"/>
-  <MagicDrawProfile:TODO_Owner xmi:id="_RryBOjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738593_546721_758"/>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBOzL5EeGLVZ_fW0VLdw" base_Element="_10_0_8740266_1131952401343_743303_504" hyperlinkTextActive="file://&lt;project.dir>/../reports/Nabla System Requirements.rtf">
-    <hyperlinkText>file://&lt;project.dir>/../reports/Nabla System Requirements.rtf</hyperlinkText>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZZa0z_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_861034_737"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZaB4D_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738593_659993_761"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZaB4T_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_577743_453"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZao8D_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_338663_628"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZao8T_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_221546_532"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZao8j_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_367656_451"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZao8z_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_640139_452"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZbQAD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_66146_460"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZbQAT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_378468_753"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZbQAj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_758763_664"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZbQAz_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_973202_557"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZb3ED_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_966663_493"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZb3ET_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_424688_632"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZb3Ej_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_298325_738"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZb3Ez_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_930243_525"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZb3FD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738593_667344_778"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZceID_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_445109_457"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZceIT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_333935_483"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZceIj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_389549_666"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZdFMD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_212432_558"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZdFMT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738593_546721_758"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZdFMj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_973136_631"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZdsQD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_826003_627"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZdsQT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738593_986923_759"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZdsQj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_96603_531"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZeTUD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_561548_474"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZeTUT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_775129_570"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZeTUj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_565288_554"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZeTUz_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_197545_468"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZe6YD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738562_693589_671"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZe6YT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_540981_528"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZe6Yj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_313945_456"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZfhcD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738593_979312_762"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZfhcT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_82447_638"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZfhcj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_446965_495"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZfhcz_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_682061_748"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgIgD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_128758_667"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgIgT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_486613_751"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgIgj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_566236_740"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgIgz_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_457270_749"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgvkD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_920450_565"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgvkT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_873493_472"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZgvkj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_552649_743"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZhWoD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_284576_569"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZhWoT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_300184_665"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZhWoj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_135394_461"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZhWoz_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_525845_755"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZh9sD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_391568_480"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZh9sT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_742026_464"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZh9sj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_107163_527"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZh9sz_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_289057_450"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZikwD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_563341_541"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZikwT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_417745_471"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZikwj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_583085_750"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjL0D_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_837625_561"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjL0T_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_776822_741"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjL0j_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738500_962154_526"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjL0z_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_182531_742"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjy4D_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_467609_747"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjy4T_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_128206_473"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjy4j_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738546_290395_629"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZjy4z_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_269216_469"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZkZ8D_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738593_337993_779"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZkZ8T_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738515_944524_576"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZkZ8j_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_941970_477"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZlBAD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_15281_752"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZlBAT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_64441_478"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZlBAj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_522150_482"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZloED_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738468_964619_454"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZloET_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738578_432590_739"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZloEj_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_931558_486"/>
+  <MagicDrawProfile:TODO_Owner xmi:id="_VZmPID_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738484_749031_465"/>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZmPIT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738218_25373_72" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565390_781165_3842/_10_0EAPbeta2_8740266_1126595565390_781165_3842">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565390_781165_3842/_10_0EAPbeta2_8740266_1126595565390_781165_3842</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBPDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738234_762717_137" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126678473609_620045_4543/_10_0EAPbeta2_8740266_1126678473609_620045_4543">
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZorYD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738250_20629_174" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565421_617197_4107/_10_0EAPbeta2_8740266_1126595565421_617197_4107">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565421_617197_4107/_10_0EAPbeta2_8740266_1126595565421_617197_4107</hyperlinkText>
+  </MagicDrawProfile:HyperlinkOwner>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZpScD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738234_762717_137" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126678473609_620045_4543/_10_0EAPbeta2_8740266_1126678473609_620045_4543">
     <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565406_466334_4065/_10_0EAPbeta2_8740266_1126595565406_466334_4065</hyperlinkText>
     <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126678473609_620045_4543/_10_0EAPbeta2_8740266_1126678473609_620045_4543</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBPTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738187_425860_23" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565343_182009_3687/_10_0EAPbeta2_8740266_1126595565343_182009_3687">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565343_182009_3687/_10_0EAPbeta2_8740266_1126595565343_182009_3687</hyperlinkText>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZpScT_QEeGf1ooA3i4zww" base_Element="_10_0_8740266_1131952401343_743303_504" hyperlinkTextActive="file://&lt;project.dir>/../reports/Nabla System Requirements.rtf">
+    <hyperlinkText>file://&lt;project.dir>/../reports/Nabla System Requirements.rtf</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBPjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738234_491674_135" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565406_834165_3997/_10_0EAPbeta2_8740266_1126595565406_834165_3997">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565406_834165_3997/_10_0EAPbeta2_8740266_1126595565406_834165_3997</hyperlinkText>
-  </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBPzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738187_320764_19" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565328_639197_3668/_10_0EAPbeta2_8740266_1126595565328_639197_3668">
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZp5gD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738187_320764_19" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565328_639197_3668/_10_0EAPbeta2_8740266_1126595565328_639197_3668">
     <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565328_639197_3668/_10_0EAPbeta2_8740266_1126595565328_639197_3668</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBQDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738218_758571_83" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565390_839840_3907/_10_0EAPbeta2_8740266_1126595565390_839840_3907">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565390_839840_3907/_10_0EAPbeta2_8740266_1126595565390_839840_3907</hyperlinkText>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZp5gT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738187_587634_46" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565359_725681_3739/_10_0EAPbeta2_8740266_1126595565359_725681_3739">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565359_725681_3739/_10_0EAPbeta2_8740266_1126595565359_725681_3739</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBQTL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738250_20629_174" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565421_617197_4107/_10_0EAPbeta2_8740266_1126595565421_617197_4107">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565421_617197_4107/_10_0EAPbeta2_8740266_1126595565421_617197_4107</hyperlinkText>
-  </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_RryBQjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738187_167488_45" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565359_82959_3729/_10_0EAPbeta2_8740266_1126595565359_82959_3729">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565359_82959_3729/_10_0EAPbeta2_8740266_1126595565359_82959_3729</hyperlinkText>
-  </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_Rr7LIDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738203_102209_58" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565312_523736_3628/_10_0EAPbeta2_8740266_1126595565312_523736_3628">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565312_523736_3628/_10_0EAPbeta2_8740266_1126595565312_523736_3628</hyperlinkText>
-  </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_Rr7LITL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738187_128946_37" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565359_289323_3712/_10_0EAPbeta2_8740266_1126595565359_289323_3712">
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZqgkD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738187_128946_37" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565359_289323_3712/_10_0EAPbeta2_8740266_1126595565359_289323_3712">
     <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565359_289323_3712/_10_0EAPbeta2_8740266_1126595565359_289323_3712</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_Rr7LIjL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738218_108613_70" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126678851546_442004_4703/_10_0EAPbeta2_8740266_1126678851546_442004_4703">
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZqgkT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738203_102209_58" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565312_523736_3628/_10_0EAPbeta2_8740266_1126595565312_523736_3628">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565312_523736_3628/_10_0EAPbeta2_8740266_1126595565312_523736_3628</hyperlinkText>
+  </MagicDrawProfile:HyperlinkOwner>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZrHoD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738218_108613_70" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126678851546_442004_4703/_10_0EAPbeta2_8740266_1126678851546_442004_4703">
     <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565375_236276_3746/_10_0EAPbeta2_8740266_1126595565375_236276_3746</hyperlinkText>
     <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126678851546_442004_4703/_10_0EAPbeta2_8740266_1126678851546_442004_4703</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_Rr7LIzL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738218_25373_72" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565390_781165_3842/_10_0EAPbeta2_8740266_1126595565390_781165_3842">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565390_781165_3842/_10_0EAPbeta2_8740266_1126595565390_781165_3842</hyperlinkText>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZrHoT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738187_425860_23" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565343_182009_3687/_10_0EAPbeta2_8740266_1126595565343_182009_3687">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565343_182009_3687/_10_0EAPbeta2_8740266_1126595565343_182009_3687</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:HyperlinkOwner xmi:id="_Rr7LJDL5EeGLVZ_fW0VLdw" base_Element="_10_0EAPbeta2_8740266_1126593738187_587634_46" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565359_725681_3739/_10_0EAPbeta2_8740266_1126595565359_725681_3739">
-    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565359_725681_3739/_10_0EAPbeta2_8740266_1126595565359_725681_3739</hyperlinkText>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZrusD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738234_491674_135" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565406_834165_3997/_10_0EAPbeta2_8740266_1126595565406_834165_3997">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565406_834165_3997/_10_0EAPbeta2_8740266_1126595565406_834165_3997</hyperlinkText>
   </MagicDrawProfile:HyperlinkOwner>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LJTL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738203_102209_58"/>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LJjL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738187_167488_45"/>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LJzL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738187_425860_23"/>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LKDL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738187_128946_37"/>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LKTL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738187_587634_46"/>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LKjL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738187_425495_29"/>
-  <MagicDrawProfile:useCaseModel xmi:id="_Rr7LKzL5EeGLVZ_fW0VLdw" base_Model="_10_0EAPbeta2_8740266_1126593738187_320764_19"/>
-  <MagicDrawProfile:auxiliaryResource xmi:id="_Rr7LLjL5EeGLVZ_fW0VLdw" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rr7LNDL5EeGLVZ_fW0VLdw" UseCaseNumber="2" Priority="Above Normal" ComponentType="Internal Logical File" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_755671_143"/>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsE8IDL5EeGLVZ_fW0VLdw" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_6544_142">
-    <NonFunctionalRequirements>The search shall be available according any property of the reading item. Also, the search shall be available according the type of reading.</NonFunctionalRequirements>
-    <AlternativeFlowofEvents>Alternative Flow #1: System did not find any reading item matching the search criteria [step 2 of main flow]:&#xA;1. System notifies the user.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
-    <BasicFlowofEvents>1. User defines the search criteria.&#xA;2. System founds some reading items according search criteria.&#xA;3. System allows browsing between search criteria. </BasicFlowofEvents>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZrusT_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738187_167488_45" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565359_82959_3729/_10_0EAPbeta2_8740266_1126595565359_82959_3729">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565359_82959_3729/_10_0EAPbeta2_8740266_1126595565359_82959_3729</hyperlinkText>
+  </MagicDrawProfile:HyperlinkOwner>
+  <MagicDrawProfile:HyperlinkOwner xmi:id="_VZsVwD_QEeGf1ooA3i4zww" base_Element="_10_0EAPbeta2_8740266_1126593738218_758571_83" hyperlinkTextActive="mdel://_10_0EAPbeta2_8740266_1126595565390_839840_3907/_10_0EAPbeta2_8740266_1126595565390_839840_3907">
+    <hyperlinkText>mdel://_10_0EAPbeta2_8740266_1126595565390_839840_3907/_10_0EAPbeta2_8740266_1126595565390_839840_3907</hyperlinkText>
+  </MagicDrawProfile:HyperlinkOwner>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZsVwT_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738187_167488_45"/>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZs80D_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738187_425495_29"/>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZs80T_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738187_587634_46"/>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZs80j_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738187_320764_19"/>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZs80z_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738203_102209_58"/>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZs81D_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738187_128946_37"/>
+  <MagicDrawProfile:useCaseModel xmi:id="_VZtj4D_QEeGf1ooA3i4zww" base_Model="_10_0EAPbeta2_8740266_1126593738187_425860_23"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_VZtj4z_QEeGf1ooA3i4zww" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfIPYT_QEeGf1ooA3i4zww" UseCaseNumber="6" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_20629_174">
+    <PreCondition>Request to remove customer user.</PreCondition>
+    <PostCondition>Customer user is removed.</PostCondition>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsE8ITL5EeGLVZ_fW0VLdw" UseCaseNumber="3" Priority="High" ComponentComplexity="High Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_762717_137">
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfKroD_QEeGf1ooA3i4zww" UseCaseNumber="3" Priority="High" ComponentComplexity="High Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_762717_137">
     <PreCondition>Request to register item return.</PreCondition>
     <PostCondition>The item return is registered for customer. Item is available for loaning. </PostCondition>
     <NonFunctionalRequirements>The loan period gets passed the next day after the loaned item return date.</NonFunctionalRequirements>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsE8IjL5EeGLVZ_fW0VLdw" UseCaseNumber="2" Priority="Above Normal" ComponentComplexity="Low Complexity" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_887279_136">
-    <PreCondition>Request to display customer status.</PreCondition>
-    <NonFunctionalRequirements>Loaned items list for customer shall be displayed. List shall include: &#xA;- information about item, &#xA;- loan date,&#xA;- the date when item must be returned.</NonFunctionalRequirements>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfL5wD_QEeGf1ooA3i4zww" UseCaseNumber="3" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_816420_171">
+    <PreCondition>Request to remove manager user.</PreCondition>
+    <PostCondition>Manager user is removed.</PostCondition>
+    <BasicFlowofEvents>1. User confirms manager user removal.&#xA;2. System removes manager user from the database.</BasicFlowofEvents>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsE8IzL5EeGLVZ_fW0VLdw" UseCaseNumber="3" ComponentType="External Interface File" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_466517_144">
-    <NonFunctionalRequirements>The expanded form list item shall contain the reading item type, and all reading item information.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>The short form of list item shall contain the name of reading item.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>The user shall be able to switch between the short and expanded form of lists.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>User shall be able to list all reading items.</NonFunctionalRequirements>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfMg0D_QEeGf1ooA3i4zww" UseCaseNumber="3" Priority="Below Normal" ComponentComplexity="High Complexity" ComponentType="External Output" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_489191_85">
+    <PreCondition>Reserved reading item is available</PreCondition>
+    <PreCondition>Reading item reservation is cancelled</PreCondition>
+    <PreCondition>Loaned reading item must be returned within 1 day.</PreCondition>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsOGEDL5EeGLVZ_fW0VLdw" UseCaseNumber="2" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_239851_84">
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfNu8D_QEeGf1ooA3i4zww" Priority="High" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_491674_135">
+    <PreCondition>Request to register loan.</PreCondition>
+    <PostCondition>Reading item is loaned to customer.</PostCondition>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfOWAD_QEeGf1ooA3i4zww" UseCaseNumber="2" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_239851_84">
     <PreCondition>Request to cancel reservation.</PreCondition>
     <PostCondition>Reservation is cancelled.</PostCondition>
     <AlternativeFlowofEvents>Alternative Flow #2: The next customer that has requested the reservation of the selected reading item [step 4 of main flow]:&#xA;1. The system updates all following readers reservation dates.&#xA;2. The system e-mails the notification to the next customer.&#xA;</AlternativeFlowofEvents>
     <BasicFlowofEvents>1. Select item to canel reservation.&#xA;2.  Confirm the cancellation.&#xA;3. The system removes the reading item from the reserved items list.&#xA;4. The system marks the reading item as available.</BasicFlowofEvents>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsOGETL5EeGLVZ_fW0VLdw" Priority="High" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_491674_135">
-    <PreCondition>Request to register loan.</PreCondition>
-    <PostCondition>Reading item is loaned to customer.</PostCondition>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsOGEjL5EeGLVZ_fW0VLdw" UseCaseNumber="4" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_35764_172">
-    <PreCondition>Requests to add new customer.</PreCondition>
-    <PostCondition>Customer user is added.</PostCondition>
-    <NonFunctionalRequirements>The customer user's login name shall be unique. &#xA;Customer user's login name shall be longer than 5 symbols. </NonFunctionalRequirements>
-    <NonFunctionalRequirements>The customer's user password shall be longer than 4 symbols.</NonFunctionalRequirements>
-    <AlternativeFlowofEvents>Alternative Flow #1: Entered user name already exists [step 1 of main flow]:&#xA;1. System notifies about already existing user name.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
-    <AlternativeFlowofEvents>Alternative Flow #2: Passwords do not match [step 3 of main flow]:&#xA;1. System notifies that entered passwords do not match.&#xA;2. Step 2 of main flow.</AlternativeFlowofEvents>
-    <BasicFlowofEvents>1. Manager enters new customer user name.&#xA;2. Manager enters customer user passsword.&#xA;3. Manager reenters customer user password.&#xA;4. Manager enters customer user personal information.&#xA;6. Syatem adds customer to a database.</BasicFlowofEvents>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsOGEzL5EeGLVZ_fW0VLdw" UseCaseNumber="3" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_816420_171">
-    <PreCondition>Request to remove manager user.</PreCondition>
-    <PostCondition>Manager user is removed.</PostCondition>
-    <BasicFlowofEvents>1. User confirms manager user removal.&#xA;2. System removes manager user from the database.</BasicFlowofEvents>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsX3EDL5EeGLVZ_fW0VLdw" UseCaseNumber="4" Priority="Below Normal" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_591348_138">
-    <PreCondition>Return violation extension point is reached - the reader is late to return the loaned reading item.</PreCondition>
-    <NonFunctionalRequirements>The penalizing methods are:&#xA;- No penalization&#xA;- Warning&#xA;- Shorten number of reading items for loan after 2 warnings</NonFunctionalRequirements>
-    <AlternativeFlowofEvents>Alternative Flow #1: The manager selects not to penalize customer [step 2 of main flow]:&#xA;1. The system applies no penalization for the reader.</AlternativeFlowofEvents>
-    <AlternativeFlowofEvents>Alternative Flow #2: The manager selects to give warning to the customer [step 2 of main flow]:&#xA;1. The system adds warning for the customer.&#xA;2. Step 3 of main flow.</AlternativeFlowofEvents>
-    <AlternativeFlowofEvents>Alternative Flow #3: The customer has 3 warnings [step 3 of main flow]:&#xA;1. The system decreases customer number of reading items for loan&#xA;2. The system resets number of warnings&#xA;3. The system updates reader properties information.</AlternativeFlowofEvents>
-    <BasicFlowofEvents>1. The system displays possible items of penalizing.&#xA;2. The manager selects the penalizing method.&#xA;3. The system updates reader properties information.</BasicFlowofEvents>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsX3ETL5EeGLVZ_fW0VLdw" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_782783_169">
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfPkID_QEeGf1ooA3i4zww" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_782783_169">
     <PreCondition>Administrator requests to add new user.</PreCondition>
     <PostCondition>Manager user is added.</PostCondition>
     <NonFunctionalRequirements>The manager user's login name shall be unique. &#xA;Manager user's login name shall be longer than 5 symbols. </NonFunctionalRequirements>
@@ -864,64 +840,8 @@
     <AlternativeFlowofEvents>Alternative Flow #2: Passwords do not match [step 3 of main flow]:&#xA;1. System notifies that entered passwords do not match.&#xA;2. Step 2 of main flow.</AlternativeFlowofEvents>
     <BasicFlowofEvents>1. User enters new manager user name.&#xA;2. User enters  manager user passsword.&#xA;3. User reenters manager user password.&#xA;4. User enters manager user personal information.&#xA;5. User specify manager user permissions.&#xA;6. System adds manager to a database.</BasicFlowofEvents>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsX3EjL5EeGLVZ_fW0VLdw" UseCaseNumber="3" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_73443_71">
-    <PreCondition>Request to edit reading item data.</PreCondition>
-    <PostCondition>Modified reading item data are saved in a database.</PostCondition>
-    <NonFunctionalRequirements>Reading item ID may not be edited.</NonFunctionalRequirements>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsX3EzL5EeGLVZ_fW0VLdw" Priority="High" ComponentComplexity="High Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_758571_83">
-    <PreCondition>Request to make item reservation.</PreCondition>
-    <PostCondition>The reading item is added to the reserved items list for the customer.</PostCondition>
-    <NonFunctionalRequirements>The reserved items list item shall contain the reading item information and the date when the reading item is available for loan.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>If reading item is available at current time - none has taken it for loan - the available time is 'currently available'.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>If there are no currently available copies of reading item, the date when reading item is available is the first return date of the reading item plus one day.&#xA;</NonFunctionalRequirements>
-    <NonFunctionalRequirements>The availability for loan is defined using the FIFO principle.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>User is allowed to make reservation if reservation limit is not exceeded.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>Reservation limit is set in system settings.</NonFunctionalRequirements>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RshoEDL5EeGLVZ_fW0VLdw" UseCaseNumber="2" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_477077_119">
-    <PreCondition>Request to change system settings</PreCondition>
-    <PostCondition>System settings are changed.</PostCondition>
-    <NonFunctionalRequirements>System settings include:&#xA; - Reading item loaning time&#xA; - Reading items loaning limit&#xA; - Reservations limit&#xA; - Penalties for reading item return violation.</NonFunctionalRequirements>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RshoETL5EeGLVZ_fW0VLdw" UseCaseNumber="5" Priority="Below Normal" base_UseCase="_10_0EAPbeta2_8740266_1126860742078_77740_14"/>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RshoEjL5EeGLVZ_fW0VLdw" UseCaseNumber="4" Priority="Below Normal" ComponentComplexity="Low Complexity" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_855173_86">
-    <PreCondition>Request to review reserved items list.</PreCondition>
-    <NonFunctionalRequirements>Reserved items list item shall display the reserved item and the time when the item becomes available for loan.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>If reading item is available at current time - none has taken it fo loan - the available time is 'currently available'.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>If there are no currently available copies of reading item, the date when reading item is available is the first return date of the reading item plus one day.</NonFunctionalRequirements>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RshoEzL5EeGLVZ_fW0VLdw" UseCaseNumber="3" Priority="Below Normal" ComponentComplexity="High Complexity" ComponentType="External Output" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_489191_85">
-    <PreCondition>Reserved reading item is available</PreCondition>
-    <PreCondition>Reading item reservation is cancelled</PreCondition>
-    <PreCondition>Loaned reading item must be returned within 1 day.</PreCondition>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RshoFDL5EeGLVZ_fW0VLdw" UseCaseNumber="2" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_933260_99">
-    <PreCondition>The user requests to log out from the system.</PreCondition>
-    <PostCondition>The user is logged out from the system.</PostCondition>
-    <BasicFlowofEvents>1. System saves user settings and logs user out.&#xA;</BasicFlowofEvents>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsqyADL5EeGLVZ_fW0VLdw" Priority="Above Normal" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_656883_98">
-    <PreCondition>User requests to login to a system.</PreCondition>
-    <PostCondition>The user is logged into the system and may use appropriate functionality according user type - reader, manager, or administrator.</PostCondition>
-    <AlternativeFlowofEvents>Alternative Flow #1: User name or password is incorrect [step 2 of main flow]:&#xA;1. System informs user that incorrect password or username is entered.&#xA;3. Refer to step 1 of main flow.</AlternativeFlowofEvents>
-    <BasicFlowofEvents>1. The system requests the user to enter his login name and password.&#xA;2. The user enters the login name and password.&#xA;</BasicFlowofEvents>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsqyATL5EeGLVZ_fW0VLdw" UseCaseNumber="2" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_904439_170">
-    <PreCondition>Request to edit manager user information.</PreCondition>
-    <PostCondition>Manager user information is changed.</PostCondition>
-    <NonFunctionalRequirements>The  password shall be longer than 4 symbols.</NonFunctionalRequirements>
-    <AlternativeFlowofEvents>Alternative Flow #1: Incorrect password is entered [step 1 of main flow]:&#xA;1. System notifies about incorrect password and asks reenter password.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
-    <AlternativeFlowofEvents>Alternative Flow #1: Entered passwords do not match [step 1 of main flow]:&#xA;1. System notifies about that passwords do not match and asks reenter password.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
-    <BasicFlowofEvents>1. User edits manager personal information, permissions or password.&#xA;2. System saves modified manager user information.</BasicFlowofEvents>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_RsqyAjL5EeGLVZ_fW0VLdw" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738203_429271_69">
-    <PreCondition>Request to add new item.</PreCondition>
-    <PostCondition>Item is added to library system.</PostCondition>
-    <NonFunctionalRequirements>Each item has and unique ID.</NonFunctionalRequirements>
-    <NonFunctionalRequirements>Each items shall consist:&#xA; - Item ID&#xA; - Information aout item&#xA; - Number of copies owned&#xA; - Available loan period</NonFunctionalRequirements>
-  </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rs0jADL5EeGLVZ_fW0VLdw" UseCaseNumber="3" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_540065_100">
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfQLMD_QEeGf1ooA3i4zww" UseCaseNumber="2" Priority="Above Normal" ComponentType="Internal Logical File" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_755671_143"/>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfQyQD_QEeGf1ooA3i4zww" UseCaseNumber="3" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_540065_100">
     <PreCondition>The user requests to change password.</PreCondition>
     <PreCondition>System requests user to change password after password validation limit has expired.</PreCondition>
     <PostCondition>The user password is changed. </PostCondition>
@@ -931,11 +851,79 @@
     <AlternativeFlowofEvents>Alternative Flow #2: New passwords do not match each other [step 4 of main flow]:&#xA;1. System informs that passwords do not match.&#xA;2. Step 3 of main flow.</AlternativeFlowofEvents>
     <BasicFlowofEvents>1. The system requests to enter old password.&#xA;2. The user enters his old password.&#xA;3. The system requests to enter new password and repeat new password.&#xA;4. User enters and repeats his new password.&#xA;5. The system changes the user password.</BasicFlowofEvents>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rs0jATL5EeGLVZ_fW0VLdw" UseCaseNumber="6" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_20629_174">
-    <PreCondition>Request to remove customer user.</PreCondition>
-    <PostCondition>Customer user is removed.</PostCondition>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfSAYD_QEeGf1ooA3i4zww" UseCaseNumber="5" Priority="Below Normal" base_UseCase="_10_0EAPbeta2_8740266_1126860742078_77740_14"/>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfSncD_QEeGf1ooA3i4zww" UseCaseNumber="4" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_25373_72"/>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfT1kD_QEeGf1ooA3i4zww" UseCaseNumber="4" Priority="Below Normal" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_591348_138">
+    <PreCondition>Return violation extension point is reached - the reader is late to return the loaned reading item.</PreCondition>
+    <NonFunctionalRequirements>The penalizing methods are:&#xA;- No penalization&#xA;- Warning&#xA;- Shorten number of reading items for loan after 2 warnings</NonFunctionalRequirements>
+    <AlternativeFlowofEvents>Alternative Flow #1: The manager selects not to penalize customer [step 2 of main flow]:&#xA;1. The system applies no penalization for the reader.</AlternativeFlowofEvents>
+    <AlternativeFlowofEvents>Alternative Flow #2: The manager selects to give warning to the customer [step 2 of main flow]:&#xA;1. The system adds warning for the customer.&#xA;2. Step 3 of main flow.</AlternativeFlowofEvents>
+    <AlternativeFlowofEvents>Alternative Flow #3: The customer has 3 warnings [step 3 of main flow]:&#xA;1. The system decreases customer number of reading items for loan&#xA;2. The system resets number of warnings&#xA;3. The system updates reader properties information.</AlternativeFlowofEvents>
+    <BasicFlowofEvents>1. The system displays possible items of penalizing.&#xA;2. The manager selects the penalizing method.&#xA;3. The system updates reader properties information.</BasicFlowofEvents>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rs0jAjL5EeGLVZ_fW0VLdw" UseCaseNumber="5" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_778784_173">
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfUcoD_QEeGf1ooA3i4zww" UseCaseNumber="2" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_933260_99">
+    <PreCondition>The user requests to log out from the system.</PreCondition>
+    <PostCondition>The user is logged out from the system.</PostCondition>
+    <BasicFlowofEvents>1. System saves user settings and logs user out.&#xA;</BasicFlowofEvents>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfVqwD_QEeGf1ooA3i4zww" Priority="Above Normal" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_656883_98">
+    <PreCondition>User requests to login to a system.</PreCondition>
+    <PostCondition>The user is logged into the system and may use appropriate functionality according user type - reader, manager, or administrator.</PostCondition>
+    <AlternativeFlowofEvents>Alternative Flow #1: User name or password is incorrect [step 2 of main flow]:&#xA;1. System informs user that incorrect password or username is entered.&#xA;3. Refer to step 1 of main flow.</AlternativeFlowofEvents>
+    <BasicFlowofEvents>1. The system requests the user to enter his login name and password.&#xA;2. The user enters the login name and password.&#xA;</BasicFlowofEvents>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfW44D_QEeGf1ooA3i4zww" UseCaseNumber="2" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_904439_170">
+    <PreCondition>Request to edit manager user information.</PreCondition>
+    <PostCondition>Manager user information is changed.</PostCondition>
+    <NonFunctionalRequirements>The  password shall be longer than 4 symbols.</NonFunctionalRequirements>
+    <AlternativeFlowofEvents>Alternative Flow #1: Incorrect password is entered [step 1 of main flow]:&#xA;1. System notifies about incorrect password and asks reenter password.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
+    <AlternativeFlowofEvents>Alternative Flow #1: Entered passwords do not match [step 1 of main flow]:&#xA;1. System notifies about that passwords do not match and asks reenter password.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
+    <BasicFlowofEvents>1. User edits manager personal information, permissions or password.&#xA;2. System saves modified manager user information.</BasicFlowofEvents>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfYHAD_QEeGf1ooA3i4zww" UseCaseNumber="4" Priority="Below Normal" ComponentComplexity="Low Complexity" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_855173_86">
+    <PreCondition>Request to review reserved items list.</PreCondition>
+    <NonFunctionalRequirements>Reserved items list item shall display the reserved item and the time when the item becomes available for loan.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>If reading item is available at current time - none has taken it fo loan - the available time is 'currently available'.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>If there are no currently available copies of reading item, the date when reading item is available is the first return date of the reading item plus one day.</NonFunctionalRequirements>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfZVID_QEeGf1ooA3i4zww" UseCaseNumber="4" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_35764_172">
+    <PreCondition>Requests to add new customer.</PreCondition>
+    <PostCondition>Customer user is added.</PostCondition>
+    <NonFunctionalRequirements>The customer user's login name shall be unique. &#xA;Customer user's login name shall be longer than 5 symbols. </NonFunctionalRequirements>
+    <NonFunctionalRequirements>The customer's user password shall be longer than 4 symbols.</NonFunctionalRequirements>
+    <AlternativeFlowofEvents>Alternative Flow #1: Entered user name already exists [step 1 of main flow]:&#xA;1. System notifies about already existing user name.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
+    <AlternativeFlowofEvents>Alternative Flow #2: Passwords do not match [step 3 of main flow]:&#xA;1. System notifies that entered passwords do not match.&#xA;2. Step 2 of main flow.</AlternativeFlowofEvents>
+    <BasicFlowofEvents>1. Manager enters new customer user name.&#xA;2. Manager enters customer user passsword.&#xA;3. Manager reenters customer user password.&#xA;4. Manager enters customer user personal information.&#xA;6. Syatem adds customer to a database.</BasicFlowofEvents>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfajQD_QEeGf1ooA3i4zww" UseCaseNumber="2" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_477077_119">
+    <PreCondition>Request to change system settings</PreCondition>
+    <PostCondition>System settings are changed.</PostCondition>
+    <NonFunctionalRequirements>System settings include:&#xA; - Reading item loaning time&#xA; - Reading items loaning limit&#xA; - Reservations limit&#xA; - Penalties for reading item return violation.</NonFunctionalRequirements>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfbKUD_QEeGf1ooA3i4zww" UseCaseNumber="2" ComponentComplexity="High Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_108613_70">
+    <PreCondition>Request to remove reading item.</PreCondition>
+    <PostCondition>Reading item is removed from loning items database.</PostCondition>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfbxYD_QEeGf1ooA3i4zww" UseCaseNumber="3" ComponentType="External Interface File" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_466517_144">
+    <NonFunctionalRequirements>The expanded form list item shall contain the reading item type, and all reading item information.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>The short form of list item shall contain the name of reading item.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>The user shall be able to switch between the short and expanded form of lists.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>User shall be able to list all reading items.</NonFunctionalRequirements>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Vfc_gD_QEeGf1ooA3i4zww" UseCaseNumber="3" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_73443_71">
+    <PreCondition>Request to edit reading item data.</PreCondition>
+    <PostCondition>Modified reading item data are saved in a database.</PostCondition>
+    <NonFunctionalRequirements>Reading item ID may not be edited.</NonFunctionalRequirements>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfeNoD_QEeGf1ooA3i4zww" Priority="Above Normal" ComponentComplexity="Low Complexity" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_237216_118">
+    <PreCondition>Request to check system settings</PreCondition>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Vfe0sD_QEeGf1ooA3i4zww" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_6544_142">
+    <NonFunctionalRequirements>The search shall be available according any property of the reading item. Also, the search shall be available according the type of reading.</NonFunctionalRequirements>
+    <AlternativeFlowofEvents>Alternative Flow #1: System did not find any reading item matching the search criteria [step 2 of main flow]:&#xA;1. System notifies the user.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
+    <BasicFlowofEvents>1. User defines the search criteria.&#xA;2. System founds some reading items according search criteria.&#xA;3. System allows browsing between search criteria. </BasicFlowofEvents>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VffbwD_QEeGf1ooA3i4zww" UseCaseNumber="5" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738250_778784_173">
     <PreCondition>Request to edit customer user's information.</PreCondition>
     <PostCondition>Customer user information has changed.</PostCondition>
     <NonFunctionalRequirements>The customer user's password shall be longer than 4 symbols.</NonFunctionalRequirements>
@@ -943,24 +931,36 @@
     <AlternativeFlowofEvents>Alternative Flow #1: Entered passwords do not match [step 1 of main flow]:&#xA;1. System notifies about that passwords do not match and asks reenter password.&#xA;2. Step 1 of main flow.</AlternativeFlowofEvents>
     <BasicFlowofEvents>1. Manager edits customer user's personal info and/or password&#xA;2. System saves changed customer profile.</BasicFlowofEvents>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rs0jAzL5EeGLVZ_fW0VLdw" Priority="Above Normal" ComponentComplexity="Low Complexity" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_237216_118">
-    <PreCondition>Request to check system settings</PreCondition>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Vfgp4D_QEeGf1ooA3i4zww" Priority="High" ComponentComplexity="High Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_758571_83">
+    <PreCondition>Request to make item reservation.</PreCondition>
+    <PostCondition>The reading item is added to the reserved items list for the customer.</PostCondition>
+    <NonFunctionalRequirements>The reserved items list item shall contain the reading item information and the date when the reading item is available for loan.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>If reading item is available at current time - none has taken it for loan - the available time is 'currently available'.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>If there are no currently available copies of reading item, the date when reading item is available is the first return date of the reading item plus one day.&#xA;</NonFunctionalRequirements>
+    <NonFunctionalRequirements>The availability for loan is defined using the FIFO principle.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>User is allowed to make reservation if reservation limit is not exceeded.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>Reservation limit is set in system settings.</NonFunctionalRequirements>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rs9s8DL5EeGLVZ_fW0VLdw" UseCaseNumber="2" ComponentComplexity="High Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_108613_70">
-    <PreCondition>Request to remove reading item.</PreCondition>
-    <PostCondition>Reading item is removed from loning items database.</PostCondition>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_VfhQ8D_QEeGf1ooA3i4zww" UseCaseNumber="2" Priority="Above Normal" ComponentComplexity="Low Complexity" ComponentType="External Inquiry" base_UseCase="_10_0EAPbeta2_8740266_1126593738234_887279_136">
+    <PreCondition>Request to display customer status.</PreCondition>
+    <NonFunctionalRequirements>Loaned items list for customer shall be displayed. List shall include: &#xA;- information about item, &#xA;- loan date,&#xA;- the date when item must be returned.</NonFunctionalRequirements>
   </UseCaseDescriptionProfile:requirementUseCase>
-  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Rs9s8TL5EeGLVZ_fW0VLdw" UseCaseNumber="4" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738218_25373_72"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWMDL5EeGLVZ_fW0VLdw" UCOwnerNumber="" base_Classifier="_10_0EAPbeta2_8740266_1126593738171_859592_18"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWMTL5EeGLVZ_fW0VLdw" UCOwnerNumber="" base_Package="_10_0_8740266_1127379830484_585539_960"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWMjL5EeGLVZ_fW0VLdw" UCOwnerNumber="" base_Package="_10_0EAPbeta2_8740266_1126593738203_125202_59"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWMzL5EeGLVZ_fW0VLdw" UCOwnerNumber="3" base_Package="_10_0EAPbeta2_8740266_1126593738203_102209_58"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWNDL5EeGLVZ_fW0VLdw" UCOwnerNumber="7" base_Package="_10_0EAPbeta2_8740266_1126593738187_167488_45"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWNTL5EeGLVZ_fW0VLdw" UCOwnerNumber="" base_Classifier="_10_0EAPbeta2_8740266_1126593738187_622863_41"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxbWNjL5EeGLVZ_fW0VLdw" UCOwnerNumber="6" base_Package="_10_0EAPbeta2_8740266_1126593738187_425860_23"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxlHMDL5EeGLVZ_fW0VLdw" UCOwnerNumber="2" base_Package="_10_0EAPbeta2_8740266_1126593738187_128946_37"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxlHMTL5EeGLVZ_fW0VLdw" UCOwnerNumber="" base_Classifier="_10_0EAPbeta2_8740266_1126593738187_214794_43"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxlHMjL5EeGLVZ_fW0VLdw" UCOwnerNumber="5" base_Package="_10_0EAPbeta2_8740266_1126593738187_587634_46"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxlHMzL5EeGLVZ_fW0VLdw" base_Package="_10_0EAPbeta2_8740266_1126593738187_425495_29"/>
-  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_RxlHNDL5EeGLVZ_fW0VLdw" UCOwnerNumber="4" base_Package="_10_0EAPbeta2_8740266_1126593738187_320764_19"/>
+  <UseCaseDescriptionProfile:requirementUseCase xmi:id="_Vfh4AD_QEeGf1ooA3i4zww" ComponentComplexity="Low Complexity" base_UseCase="_10_0EAPbeta2_8740266_1126593738203_429271_69">
+    <PreCondition>Request to add new item.</PreCondition>
+    <PostCondition>Item is added to library system.</PostCondition>
+    <NonFunctionalRequirements>Each item has and unique ID.</NonFunctionalRequirements>
+    <NonFunctionalRequirements>Each items shall consist:&#xA; - Item ID&#xA; - Information aout item&#xA; - Number of copies owned&#xA; - Available loan period</NonFunctionalRequirements>
+  </UseCaseDescriptionProfile:requirementUseCase>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjsmUD_QEeGf1ooA3i4zww" UCOwnerNumber="" base_Classifier="_10_0EAPbeta2_8740266_1126593738187_622863_41"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjtNYD_QEeGf1ooA3i4zww" UCOwnerNumber="7" base_Package="_10_0EAPbeta2_8740266_1126593738187_167488_45"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjtNYT_QEeGf1ooA3i4zww" base_Package="_10_0EAPbeta2_8740266_1126593738187_425495_29"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjtNYj_QEeGf1ooA3i4zww" UCOwnerNumber="" base_Classifier="_10_0EAPbeta2_8740266_1126593738187_214794_43"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjtNYz_QEeGf1ooA3i4zww" UCOwnerNumber="5" base_Package="_10_0EAPbeta2_8740266_1126593738187_587634_46"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_Vjt0cD_QEeGf1ooA3i4zww" UCOwnerNumber="4" base_Package="_10_0EAPbeta2_8740266_1126593738187_320764_19"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_Vjt0cT_QEeGf1ooA3i4zww" UCOwnerNumber="" base_Package="_10_0_8740266_1127379830484_585539_960"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_Vjt0cj_QEeGf1ooA3i4zww" UCOwnerNumber="3" base_Package="_10_0EAPbeta2_8740266_1126593738203_102209_58"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_Vjt0cz_QEeGf1ooA3i4zww" UCOwnerNumber="2" base_Package="_10_0EAPbeta2_8740266_1126593738187_128946_37"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjubgD_QEeGf1ooA3i4zww" UCOwnerNumber="" base_Package="_10_0EAPbeta2_8740266_1126593738203_125202_59"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_VjubgT_QEeGf1ooA3i4zww" UCOwnerNumber="" base_Classifier="_10_0EAPbeta2_8740266_1126593738171_859592_18"/>
+  <UseCaseDescriptionProfile:useCaseOwner xmi:id="_Vjubgj_QEeGf1ooA3i4zww" UCOwnerNumber="6" base_Package="_10_0EAPbeta2_8740266_1126593738187_425860_23"/>
 </xmi:XMI>
