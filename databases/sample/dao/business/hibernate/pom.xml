@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.databases.sample.dao.business.hibernate</groupId>
 	<artifactId>hibernate</artifactId>
-	<name>Database DAO Hibernate</name>
+	<name>Databases DAO Hibernate</name>
 	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
 	<description>Database DAO Hibernate : Test Main Spring Jpa Hibernate compatibility and DBUnit</description>

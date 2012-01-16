@@ -275,7 +275,8 @@
 				<jdbc.username>user</jdbc.username>
 				<jdbc.password>user</jdbc.password>
 				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
+				<!-- create database in C:/tmp -->
+				<jdbc.client.url><![CDATA[jdbc:derby:localhost:1527/tmp/${database.name};create=true]]></jdbc.client.url>				
 				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
 				<jdbc.url>${jdbc.embedded.url}</jdbc.url>
 			</properties>
