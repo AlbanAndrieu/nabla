@@ -1,21 +1,20 @@
 rem récupère le répertoire courant sous windows
 rem set POC_HOME=%~dp0
 
-set VERSION=30
+set VERSION=10
 
 set UNIX_USERNAME=albandri
 set HOME=C:\workspace\users\%UNIX_USERNAME%%VERSION%
 set WORKSPACE=%HOME%
 set HOMEPATH=%HOME%
 
-#set KPLUSTP_HOME=%HOME%
-set KPLUS_ROOT=C:\thirdparty\kondor
-set KPLUSTP_DEV=%HOME%
-set KPLUSTP_SRC=%HOME%\ktpplus
-set KPLUSTP_OBJ=C:\target
+#set PROJECT_HOME=%HOME%
+set PROJECT_DEV=%HOME%
+set PROJECT_SRC=%HOME%\ktpplus
+set PROJECT_OBJ=C:\target
 rem set THIRDPARTY_ROOT=T:\thirdparty
 set THIRDPARTY_ROOT=C:\thirdparty
-set KPLUSTP_USER_PROFILE=%KPLUSTP_DEV%\integration\config\profiles\%UNIX_USERNAME%.dev.properties
+set PROJECT_USER_PROFILE=%PROJECT_DEV%\integration\config\profiles\%UNIX_USERNAME%.dev.properties
 
 set JAVA_HOME=C:\Sun\SDK\jdk
 set JAVA=%JAVA_HOME%\bin
@@ -55,7 +54,7 @@ set TAO_ROOT=%THIRDPARTY_ROOT%\tao\ACE_wrappers\TAO
 set QTDIR=C:\cygwin\lib\qt3
 
 set MACHINE=x86Linux
-set TMPLDIR=%KPLUSTP_DEV%\integration\tmpl
+set TMPLDIR=%PROJECT_DEV%\integration\tmpl
 set TIBCO_HOME=C:\Tibco\Tibrv
 
 set HUDSON_HOME=C:\hudson
