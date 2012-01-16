@@ -100,7 +100,9 @@
         </plugins>	
     </build>
     
+    <!--
     <properties>
         <andromda.version>3.4-SNAPSHOT</andromda.version>
     </properties>
+    -->
 </project>

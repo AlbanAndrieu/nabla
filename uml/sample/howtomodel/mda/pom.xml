@@ -96,11 +96,12 @@
 		</profile>
 	</profiles>
 	<build>
-		<sourceDirectory>${project.basedir}/src/main/uml/${uml.type}</sourceDirectory>
+		<!--<sourceDirectory>${project.basedir}/src/main/uml/${uml.type}</sourceDirectory>-->
 		<plugins>
 			<plugin>
 				<groupId>org.andromda.maven.plugins</groupId>
 				<artifactId>andromda-maven-plugin</artifactId>
+				<!--
 				<executions>
 					<execution>
 						<goals>
@@ -110,10 +111,12 @@
 				</executions>
 				<configuration>
 					<configurationUri>${project.basedir}/src/main/config/${uml.type}/andromda.xml</configurationUri>
-					<!-- Check model dates vs output file dates from previous gen, skip
-						if files are later -->
+					-->
+					<!-- Check model dates vs output file dates from previous gen, skip if files are later -->
+					<!--
 					<lastModifiedCheck>true</lastModifiedCheck>
 				</configuration>
+				-->
 			</plugin>
 		</plugins>
 	</build>
@@ -121,7 +124,8 @@
 		<!-- Avoid JDK6 XJC runtime error on wdsl2java from conflicting Jaxb2.2 -->
 		<!-- Versioned independently from CXF core -->
 		<cxf.xjc.version>2.3.0</cxf.xjc.version>
-		<model.uri>file:${project.basedir}/src/main/uml/${uml.type}/HowToModel.uml</model.uri>
+		<model.name>HowToModel</model.name>		
+		<!--<model.uri>file:${project.basedir}/src/main/uml/${uml.type}/HowToModel.uml</model.uri>-->
 		<filter></filter>
 		<validation>true</validation>
 		<!-- ant script location for temp copy of resources -->
