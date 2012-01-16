@@ -43,8 +43,13 @@
 	</mailingLists>
 
 	<ciManagement>
+
 		<system>hudson</system>
 		<url>http://localhost:8070/hudson/</url>
+		<!--
+		<system>jenkins</system>
+		<url>http://ec2-50-16-122-165.compute-1.amazonaws.com/hudson/job/alban/</url>
+        -->
 		<notifiers>
 			<notifier>
 				<type>mail</type>
@@ -116,11 +121,17 @@
 		<!--Profile configuration for local builds -->
 		<profile>
 			<id>local</id>
-			<activation>
+            		<activation>
 				<property>
 					<name>profile.activation</name>
 				</property>
-			</activation>
+<!--
+            		    <activeByDefault>true</activeByDefault>
+            		    <file>
+            		        <exists>${basedir}</exists>
+            		    </file>
+-->
+            		</activation>
 			<distributionManagement>
 				<repository>
 					<id>local-releases</id>
@@ -141,7 +152,8 @@
 						<url>scp://${site.server}/${home.dir}/fullsite/site-deploy</url>
 						<url>file:/var/www/docs</url>
 					-->
-					<url>file://${deploy.dir}</url>
+					<!--<url>file://${deploy.dir}</url>-->
+					<url>file:/tmp</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -153,16 +165,16 @@
 					<name>!profile.activation</name>
 				</property>
 			</activation>
-			<!--	
 			<build>
+				<!--
 				<plugins>
 					<plugin>						
 						<artifactId>maven-gpg-plugin</artifactId>
 						<inherited>true</inherited>
 					</plugin>
 				</plugins>
+				-->
 			</build>
-			-->
 			<distributionManagement>
 				<repository>
 					<id>server-releases</id>
@@ -182,6 +194,10 @@
 					<url>ftp://www.nabla.mobi/maven</url>
 				</site>
 			</distributionManagement>
+            		<properties>
+            		    <repositoryId>server-snapshots</repositoryId>
+            		    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+            		</properties>    			
 		</profile>
 		<!-- ================= END Environment Profiles ================= -->
 
@@ -209,10 +225,17 @@
 							<port>8070</port>
 						</configuration>
 						<dependencies>
+							<!--
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-default-skin</artifactId>
 								<version>${maven.default.skin.version}</version>
+							</dependency>
+							-->
+							<dependency>
+								<groupId>org.andromda.maven.plugins.site</groupId>
+								<artifactId>nabla-site-skin</artifactId>
+								<version>3.4</version>
 							</dependency>
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
@@ -780,7 +803,8 @@
 							<docencoding>${project.build.sourceEncoding}</docencoding>
 							<encoding>${project.build.sourceEncoding}</encoding>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
-							<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>
+							<!--<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>-->
+							<configLocation>project/checkstyle_checks.xml</configLocation>
 							<headerLocation>project/LICENSE-1.0.txt</headerLocation>
 							<propertyExpansion>projectname=nabla</propertyExpansion>
 							<!-- 
@@ -805,12 +829,13 @@
 								<exclude>**/generated/*.java</exclude>
 							</excludes>
 							<excludeRoots>
-								<excludeRoot>${basedir}/${target.dir}/generated-sources/stubs</excludeRoot>
+								<excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
 							</excludeRoots>
 
 							<rulesets>
 								<!-- <ruleset>project/pmd_regles_nabla.xml</ruleset> -->
-								<ruleset>/rulesets/basic.xml</ruleset>
+								<ruleset>project/pmd_ruleset.xml</ruleset>
+								<!--<ruleset>/rulesets/basic.xml</ruleset>
 								<ruleset>/rulesets/braces.xml</ruleset>
 								<ruleset>/rulesets/clone.xml</ruleset>
 								<ruleset>/rulesets/codesize.xml</ruleset>
@@ -829,8 +854,9 @@
 								<ruleset>/rulesets/sunsecure.xml</ruleset>
 								<ruleset>/rulesets/typeresolution.xml</ruleset>
 								<ruleset>/rulesets/unusedcode.xml</ruleset>
+								-->																
 							</rulesets>
-						</configuration>
+						</configuration>			
 					</plugin>
 
 					<!-- *** GENERATION FINDBUGS *** -->
@@ -845,6 +871,8 @@
 							<xmlOutput>true</xmlOutput>
 							<threshold>Normal</threshold>
 							<effort>Default</effort>
+							<!--<failOnError>true</failOnError>-->						
+							<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 						</configuration>
 					</plugin>
 
@@ -1101,7 +1129,8 @@
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<andromda.version>3.4-SNAPSHOT</andromda.version>
+		<!--<andromda.version>3.4-SNAPSHOT</andromda.version>-->
+		<andromda.version>3.4</andromda.version>
 
 		<tibjms.version>4.2.0</tibjms.version>
 		<tibco.version>8.1.2</tibco.version>
@@ -1366,7 +1395,6 @@
 		<maven.plugin.plugin.plugin.version>2.9</maven.plugin.plugin.plugin.version>
 		<maven.clirr.plugin.version>2.3</maven.clirr.plugin.version>
 		<maven.patch.plugin.version>1.0</maven.patch.plugin.version>
-		<maven.invoker.plugin.version>1.0</maven.invoker.plugin.version>
 		<maven.one.plugin.version>1.2</maven.one.plugin.version>
 		<maven.findbugs.plugin.version>2.3.1</maven.findbugs.plugin.version>
 		<maven.javancss.plugin.version>2.0</maven.javancss.plugin.version>
@@ -1392,6 +1420,7 @@
 		<maven.jboss.plugin.version>1.4</maven.jboss.plugin.version>
 		<maven.jboss.packaging.plugin.version>2.1.1</maven.jboss.packaging.plugin.version>
 		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
+		<maven.minify.plugin.version>1.3.5</maven.minify.plugin.version>
 		<maven.javadoc.plugin.version>2.8</maven.javadoc.plugin.version>
 		<maven.jxr.plugin.version>2.2</maven.jxr.plugin.version>
 		<maven.pmd.plugin.version>2.6</maven.pmd.plugin.version>
@@ -1450,6 +1479,13 @@
 				<artifactId>wagon-ftp</artifactId>
 				<version>${wagon.ftp.plugin.version}</version>
 			</extension>
+			
+			<!-- Needed for dashboard-maven-plugin and jalopy-maven-plugin and maven-checkstyle-plugin -->
+			<extension>
+				<groupId>com.nabla.project.build-tools</groupId>
+				<artifactId>build-tools</artifactId>
+				<version>1.0</version>
+			</extension>			
 		</extensions>
 		<pluginManagement>
 			<plugins>
@@ -1561,7 +1597,20 @@
 									<action>
 										<ignore />
 									</action>
-								</pluginExecution>																																																							
+								</pluginExecution>	
+								<pluginExecution>
+        								<pluginExecutionFilter>
+        									<groupId>org.andromda.maven.plugins</groupId>
+        									<artifactId>andromda-bootstrap-plugin</artifactId>
+        									<versionRange>[${andromda.version},)</versionRange>
+        									<goals>
+        										<goal>run</goal>
+        									</goals>
+        								</pluginExecutionFilter>
+        								<action>
+        									<ignore />
+        								</action>
+        							</pluginExecution>																																																						
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -2067,6 +2116,11 @@
 					<version>${maven.invoker.plugin.version}</version>
 				</plugin>
 				<plugin>
+        				<groupId>com.samaxes.maven</groupId>
+        				<artifactId>maven-minify-plugin</artifactId>
+        				<version>${maven.minify.plugin.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-one-plugin</artifactId>
 					<version>${maven.one.plugin.version}</version>
@@ -2152,10 +2206,12 @@
 					<artifactId>findbugs-maven-plugin</artifactId>
 					<version>${maven.findbugs.plugin.version}</version>
 					<configuration>
+						<findbugsXmlOutput>true</findbugsXmlOutput>
+						<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
 						<xmlOutput>true</xmlOutput>
-						<effort>Default</effort>
 						<threshold>Normal</threshold>
-						<failOnError>false</failOnError>
+						<effort>Default</effort>
+						<!--<failOnError>true</failOnError>-->
 						<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 					</configuration>
 				</plugin>
@@ -2215,11 +2271,11 @@
 						<targetJdk>${jdkLevel}</targetJdk>
 						<linkXRef>true</linkXRef>
 						<rulesets>
-							<!--<ruleset>project/pmd_ruleset.xml</ruleset> -->
-							<ruleset>project/pmd_regles_nabla.xml</ruleset>
+							<ruleset>project/pmd_ruleset.xml</ruleset>
+							<!--<ruleset>project/pmd_regles_nabla.xml</ruleset> -->
 						</rulesets>
 						<excludeRoots>
-							<excludeRoot>target/generated-sources</excludeRoot>
+							<excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
 						</excludeRoots>
 					</configuration>
 				</plugin>
