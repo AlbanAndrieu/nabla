@@ -25,6 +25,13 @@
         </dependency>
     </dependencies>
     
+    <modules>
+        <module>metafacades</module>
+        <module>profiles</module>
+        <module>cartridges</module>        
+        <module>empty</module>
+    </modules>
+        
     <profiles>
         <profile>
             <id>root-mda</id>
