@@ -1960,13 +1960,31 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
                 try {
 
-                    final Collection<AttributeFacade> voRequiredConstructorParameters = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters();
+                    for (final Iterator<ModelElementFacade> it = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters().iterator(); it.hasNext();) {
 
-                    if (voRequiredConstructorParameters != null) {
+                        final Object o = it.next();
 
-                        voAttributes.addAll(voRequiredConstructorParameters);
+                        if (o instanceof AttributeFacade) {
+
+                            final AttributeFacade attribute = (AttributeFacade) o;
+
+                            voAttributes.add(attribute);
+
+                        } else {
+
+                            this.logger_.info("GetCorrespondingVOAttr : The attribute " + ((ModelElementFacade) o).getName() + " can not be handle");
+
+                        }
 
                     }
+
+                    // final Collection<ModelElementFacade> voRequiredConstructorParameters = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters();
+                    //
+                    // if (voRequiredConstructorParameters != null) {
+                    //
+                    // voAttributes.addAll(voRequiredConstructorParameters);
+                    //
+                    // }
 
                 } catch (final Exception e) {
 
@@ -2009,7 +2027,24 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             final Collection<AttributeFacade> voAttributes = vo.getAttributes();
 
-            voAttributes.addAll(((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters());
+            // voAttributes.addAll(((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters());
+            for (final Iterator<ModelElementFacade> it = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters().iterator(); it.hasNext();) {
+
+                final Object o = it.next();
+
+                if (o instanceof AttributeFacade) {
+
+                    final AttributeFacade attribute = (AttributeFacade) o;
+
+                    voAttributes.add(attribute);
+
+                } else {
+
+                    this.logger_.info("GetCorrespondingVOAttr : The attribute " + ((ModelElementFacade) o).getName() + " can not be handle");
+
+                }
+
+            }
 
             final String dictDetailAssocName = manageableAssocEnd.getName().replaceAll("DictDetail_Id_", "");
 
