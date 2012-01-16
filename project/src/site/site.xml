@@ -1,23 +1,56 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="My Site : Nabla" xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
+  name="My Site : Nabla">
+  
+    <skin>
+      <groupId>org.andromda.maven.plugins.site</groupId>
+      <artifactId>nabla-site-skin</artifactId>
+      <!--<version>${project.version}</version>-->
+      <version>3.4</version>
+    </skin>
+    
+    <custom>
+      <fluidoSkin>
+	<topBarEnabled>true</topBarEnabled>
+        <!--<sideBarEnabled>false</sideBarEnabled>-->     
+        <googleSearch>
+          <sitesearch/>
+        </googleSearch>
+        <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+        <profile>(pre-release|sandbox|retired)</profile>
+        <twitter>
+          <user>AlbanAndrieu</user>
+          <showUser>true</showUser>
+          <showFollowers>true</showFollowers>
+        </twitter>        
+      </fluidoSkin>
+    </custom>
+    
     <bannerLeft>
-        <name>Welcome to Nabla page</name>
-        <src>http://maven.apache.org/images/apache-maven-project.png</src>
-        <href>http://maven.apache.org/</href>
+      <name>${project.name}</name>
     </bannerLeft>
     <bannerRight>
-        <src>http://maven.apache.org/images/maven-small.gif</src>
+      <src></src>
     </bannerRight>
-    <body>
+    
+    <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
+
+    <body>    	
+    	<breadcrumbs>
+    	  <!--<item name="Maven" href="http://maven.apache.org/index.html" />-->
+    	  <item name="Skins" href="http://maven.apache.org/skins/index.html" />
+    	</breadcrumbs>    
+    	
         <links>
             <item name="Nabla" href="http://www.maven.nabla.mobi/project" />
             <item name="Nabla Code" href="http://code.google.com/p/alban" />
-            <item name="Apache" href="http://www.apache.org/" />
-            <item name="Maven 2" href="http://maven.apache.org/maven2/"/>
 	    <!--<item name="FR" href="/fr/index.html" />-->
         </links>
 
+        <menu ref="parent"/>
+        <menu ref="modules"/>
+               
         <menu name="Nabla">
             <item name="Introduction" href="index.html"/>
             <item name="Read Me" href="readme.html"/>
@@ -93,6 +126,7 @@
             <item name="Documents" href="../documents"/>
             <item name="Databases Samples" href="../../../../index.html"/>
             <item name="UML Samples" href="/uml/index.html"/>
+            <item name="Other Links" href="otherlinks.html"/>
        </menu> 
        
        <!--
@@ -102,10 +136,12 @@
             <item name="Clover History" href="clover/history/historical.html"/>
        </menu>
        -->
-  
+       
+<!--
        <menu ref="parent" inherit="bottom" />
        <menu ref="modules" inherit="bottom" />
        <menu ref="reports" inherit="bottom" />
+-->
        
        <!--
        <menu name="Other Modules">
@@ -127,5 +163,10 @@
        </menu>
 -->
        
+    <menu ref="reports"/>
+
+    <footer>
+      <div class="row span16">All other marks mentioned (not @project.name@) may be trademarks or registered trademarks of their respective owners.</div>
+    </footer>       
     </body>
 </project>
