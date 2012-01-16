@@ -714,15 +714,6 @@
 		<testOutputDirectory>${basedir}/${target.dir}/test-classes</testOutputDirectory>
 		<defaultGoal>install</defaultGoal>
 
-		<extensions>
-			<!-- Needed for dashboard-maven-plugin and jalopy-maven-plugin and maven-checkstyle-plugin -->
-			<extension>
-				<groupId>com.nabla.project.build-tools</groupId>
-				<artifactId>build-tools</artifactId>
-				<version>1.0</version>
-			</extension>
-		</extensions>
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
