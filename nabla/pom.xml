@@ -26,6 +26,7 @@
     </dependencies>
     
     <modules>
+    	<module>maven</module>
         <module>metafacades</module>
         <module>profiles</module>
         <module>cartridges</module>        
