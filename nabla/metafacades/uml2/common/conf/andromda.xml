@@ -34,7 +34,7 @@
       <properties>
         <property name="languageMappingsUri">Java</property>
         <property name="wrapperMappingsUri">JavaWrapper</property>
-        <property name="facades">${maven.build.src}</property>
+        <property name="facades">${maven.build.src}/main/java</property>
         <property name="facade-logics" ignore="true"/>
         <property name="facade-logic-impls" ignore="true"/>
         <property name="enableTemplating">true</property>

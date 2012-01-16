@@ -12,15 +12,6 @@
     <description>
         The common UML metafacades. This is the set of core UML metafacades used to provide access UML meta models.
     </description>
-    <issueManagement>
-        <system>jira</system>
-        <url>http://www.andromda.org/jira/browse/UMLMETA</url>
-    </issueManagement>
-    <scm>
-        <connection>scm:svn:http://andromda.svn.sourceforge.net/svnroot/andromda/trunk/metafacades/uml/common</connection>
-        <developerConnection>scm:svn:https://andromda.svn.sourceforge.net/svnroot/andromda/trunk/metafacades/uml/common</developerConnection>
-        <url>http://andromda.svn.sourceforge.net/</url>
-    </scm>
     <build>
         <plugins>
             <plugin>
@@ -60,6 +51,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>xml-maven-plugin</artifactId>
+                <version>${maven.xml.plugin.version}</version>
                 <configuration>
                     <transformationSets>
                         <transformationSet>
