@@ -1135,6 +1135,7 @@
 	<!-- Keep Alphabetical Order. Capital Letter goes first -->
 	<properties>
 		<project.svn.path>trunk</project.svn.path>
+		<!--<project.url>alban.googlecode.com</project.url>-->
 		<target.dir>target</target.dir> <!-- default value that can be overrided -->
 
 		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base> -->
@@ -1151,8 +1152,8 @@
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<!--<andromda.version>3.4-SNAPSHOT</andromda.version>-->
-		<andromda.version>3.4</andromda.version>
+		<andromda.version>3.4-SNAPSHOT</andromda.version>
+		<!--<andromda.version>3.4</andromda.version>-->
 
 		<tibjms.version>4.2.0</tibjms.version>
 		<tibco.version>8.1.2</tibco.version>
