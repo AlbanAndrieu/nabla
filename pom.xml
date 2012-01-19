@@ -11,10 +11,11 @@
         <version>1.0</version>
         <!-- This element provides a basic description of your project -->
         <description>Users</description>
+        <url>http://www.maven.nabla.mobi</url>
         <modules>
 		<module>build-tools</module>        
                 <module>dependencies</module>                             
-                <module>databases</module>                                
+                <!--<module>databases</module>                                
                 <module>main</module>
                 <module>servers</module>                
                 <module>customs</module>
@@ -22,5 +23,6 @@
                 <module>project</module>
                 <module>uml</module>
                 <module>nabla</module>
+                -->
         </modules>
 </project>
