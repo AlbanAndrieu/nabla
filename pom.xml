@@ -15,7 +15,7 @@
         <modules>
 		<module>build-tools</module>        
                 <module>dependencies</module>                             
-                <!--<module>databases</module>                                
+                <module>databases</module>                                
                 <module>main</module>
                 <module>servers</module>                
                 <module>customs</module>
@@ -23,6 +23,5 @@
                 <module>project</module>
                 <module>uml</module>
                 <module>nabla</module>
-                -->
         </modules>
 </project>
