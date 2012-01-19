@@ -17,7 +17,7 @@
 	<version>1.0</version>
     	<description>Andromda Samples</description>
 	<modules>
-		<module>empty</module>
+		<!--<module>empty</module>-->
 		<module>howtomodel</module>
 	</modules>
 </project>
