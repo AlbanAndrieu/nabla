@@ -16,6 +16,13 @@
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
 
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/customs</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/customs</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/customs</url>
+		<tag>HEAD</tag>
+	</scm>
+	
 	<profiles>
 		<profile>
 			<!-- site light for jenkins -->
@@ -23,6 +30,7 @@
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<maven.test.failure.skip>true</maven.test.failure.skip>
+				<andromda.version>3.4-SNAPSHOT</andromda.version> <!-- remove once andromda will be released -->
 			</properties>
 			<build>
 				<plugins>
