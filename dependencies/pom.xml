@@ -224,19 +224,20 @@
 							<!--<siteDirectory>${basedir}/site/src/site</siteDirectory>-->
 							<port>8070</port>
 						</configuration>
-						<dependencies>
-							<!--
+						<dependencies>							
+							
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-default-skin</artifactId>
 								<version>${maven.default.skin.version}</version>
-							</dependency>
-							-->
+							</dependency>														
+							<!--
 							<dependency>
 								<groupId>org.andromda.maven.plugins.site</groupId>
 								<artifactId>nabla-site-skin</artifactId>
 								<version>3.4</version>
 							</dependency>
+							-->
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
@@ -1135,7 +1136,6 @@
 	<!-- Keep Alphabetical Order. Capital Letter goes first -->
 	<properties>
 		<project.svn.path>trunk</project.svn.path>
-		<!--<project.url>alban.googlecode.com</project.url>-->
 		<target.dir>target</target.dir> <!-- default value that can be overrided -->
 
 		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base> -->
@@ -1416,6 +1416,7 @@
 		<maven.artifact.plugin.version>2.0.1</maven.artifact.plugin.version>
 		<maven.gui.plugin.version>1.0</maven.gui.plugin.version>
 		<maven.plugin.plugin.plugin.version>2.9</maven.plugin.plugin.plugin.version>
+		<!--<maven.plugin.plugin.plugin.version>2.5.1</maven.plugin.plugin.plugin.version>-->
 		<maven.clirr.plugin.version>2.3</maven.clirr.plugin.version>
 		<maven.patch.plugin.version>1.0</maven.patch.plugin.version>
 		<maven.one.plugin.version>1.2</maven.one.plugin.version>
@@ -2234,7 +2235,7 @@
 						<xmlOutput>true</xmlOutput>
 						<threshold>Normal</threshold>
 						<effort>Default</effort>
-						<!--<failOnError>true</failOnError>-->
+						<failOnError>false</failOnError>
 						<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 					</configuration>
 				</plugin>
