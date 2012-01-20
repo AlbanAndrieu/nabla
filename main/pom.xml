@@ -16,6 +16,13 @@
 	<packaging>pom</packaging>
 	<description>The Main pom file is a superpom to centralize all third parties</description>
 
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/main</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/main</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/main</url>
+		<tag>HEAD</tag>
+	</scm>
+	
 	<!-- ================= Default Properties ================= -->
 	<properties>
 		<invoker.skip>true</invoker.skip>
