@@ -17,6 +17,13 @@
     <name>AndroMDA Assembly</name>
     <description>Andromda Assembly</description>
 
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla</url>
+    	<tag>HEAD</tag>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>org.andromda</groupId>
@@ -27,11 +34,9 @@
     
     <modules>
     	<module>maven</module>
-    	<!--
         <module>metafacades</module>
         <module>profiles</module>
         <module>cartridges</module> 
-        -->       
         <!--<module>empty</module>-->
     </modules>
         
