@@ -17,6 +17,13 @@
 	<packaging>pom</packaging>
 	<description>The Databases pom file is a superpom to centralize all third parties</description>
 
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/databases</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/databases</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/databases</url>
+		<tag>HEAD</tag>
+	</scm>
+	
 	<modules>
 		<module>sample</module>
 	</modules>
