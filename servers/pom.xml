@@ -17,6 +17,13 @@
 	<packaging>pom</packaging>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
 
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
+		<tag>HEAD</tag>
+	</scm>
+	
 	<build>
 		<pluginManagement>
 			<plugins>
