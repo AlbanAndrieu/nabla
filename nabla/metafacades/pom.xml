@@ -8,7 +8,6 @@
     </parent>
     <groupId>org.andromda.metafacades</groupId>
     <artifactId>andromda-metafacades</artifactId>
-    <version>3.4</version>
     <packaging>pom</packaging>
     <name>AndroMDA Metafacades</name>
     <modules>
