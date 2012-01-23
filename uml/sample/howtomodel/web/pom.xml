@@ -81,7 +81,7 @@
 		<dependency>
 			<groupId>org.apache.myfaces.tomahawk</groupId>
 			<artifactId>tomahawk</artifactId>
-			<version>${myfaces.tomahawk.version}</version>
+			<version>${org.apache.myfaces.tomahawk.version}</version>
             <!--version>unknown</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/target/src/WEB-INF/lib/tomahawk.jar</systemPath-->
@@ -97,7 +97,7 @@
 		<dependency>
 			<groupId>org.apache.myfaces.trinidad</groupId>
 			<artifactId>trinidad-impl</artifactId>
-			<version>${myfaces.version}</version>
+			<version>${org.apache.myfaces.trinidad.version}</version>
             <!--version>unknown</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/target/src/WEB-INF/lib/trinidad-impl-1.0.1-incubating-SNAPSHOT.jar</systemPath-->
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>net.java.dev.ajax4jsf</groupId>
             <artifactId>ajax4jsf</artifactId>
-            <version>1.0.6</version>
+            <version>${ajax4jsf.version}</version>
             <!--
             <groupId>net.java.dev.ajax4jsf</groupId>
             <artifactId>ajax4jsf</artifactId>

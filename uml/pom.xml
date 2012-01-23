@@ -36,6 +36,18 @@
 				<version>${andromda.version}</version>
 				<scope>runtime</scope>
 				<exclusions>
+                    			<exclusion>
+                    			    <groupId>xml-apis</groupId>
+                    			    <artifactId>xml-apis</artifactId>
+                    			</exclusion>
+                    			<exclusion>
+                    			    <groupId>xerces</groupId>
+                    			    <artifactId>xercesImpl</artifactId>
+                    			</exclusion>
+                    			<exclusion>
+                    			    <groupId>xalan</groupId>
+                    			    <artifactId>xalan</artifactId>
+                    			</exclusion>				
 					<exclusion>
 						<groupId>log4j</groupId>
 						<artifactId>log4j</artifactId>
@@ -83,6 +95,30 @@
 				<artifactId>andromda-profile</artifactId>
 				<version>${andromda.version}</version>
 			</dependency>
+			<dependency>
+        		    <groupId>org.andromda</groupId>
+        		    <artifactId>andromda-utils</artifactId>
+        		    <version>${andromda.version}</version>
+        		    <scope>runtime</scope>
+        		    <exclusions>
+        		        <exclusion>
+        		            <groupId>xml-apis</groupId>
+        		            <artifactId>xml-apis</artifactId>
+        		        </exclusion>
+        		        <exclusion>
+        		            <groupId>xerces</groupId>
+        		            <artifactId>xercesImpl</artifactId>
+        		        </exclusion>
+        		        <exclusion>
+        		            <groupId>xalan</groupId>
+        		            <artifactId>xalan</artifactId>
+        		        </exclusion>
+        		        <exclusion>
+        		            <groupId>log4j</groupId>
+        		            <artifactId>log4j</artifactId>
+        		        </exclusion>
+        		    </exclusions>
+        		</dependency>			
 			<!-- This dependency provides the ability to implement your business logic
 				in an interpreted manner during development on your local machine -->
 			<dependency>
@@ -138,10 +174,13 @@
                     			<executions>
                     			    <execution>
                     			        <goals>
-                    			            <goal>run</goal>
+                    			            <!--<goal>export2emf</goal>-->
+                    			            <goal>run</goal>                 			                             			            
                     			        </goals>
                     			        <configuration>
-                    			            <configurationUri>file:${nabla.mda.dir}/model/src/main/config/${uml.type}/andromda-${model.name}.xml</configurationUri>
+                    			            <configurationUri>file:${conf.dir}/${uml.type}/andromda-${model.name}.xml</configurationUri>
+                    			            <!--<allowMultipleRuns>true</allowMultipleRuns>--> <!-- Yes for AndroMDA serve -->
+                    			            <magicDrawHome>/cygdrive/c/MagicDraw</magicDrawHome>
 						    <!-- Check model dates vs output file dates from previous gen, skip if files are later -->
                                                     <lastModifiedCheck>${lastModifiedCheck}</lastModifiedCheck>                    			            
                     			        </configuration>
@@ -271,14 +310,17 @@
 
 		<validation>true</validation>
 		<cartridge.filter></cartridge.filter>
-		<conf.dir>${pom.basedir}/src/main/config/${uml.type}</conf.dir>
+		<!--<conf.dir>${pom.basedir}/src/main/config/${uml.type}</conf.dir>-->
+		<conf.dir>${nabla.mda.dir}/model/src/main/config</conf.dir>		
 		<nabla.mda.dir>${pom.basedir}/../..</nabla.mda.dir>
 		<!--<model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules/${model.name}.uml</model.uri>-->
-		<configuration.mda.dir>${nabla.mda.dir}/configuration</configuration.mda.dir>
-		<manual.mappings.location>${nabla.mda.dir}/configuration/generation/manualMapping</manual.mappings.location>
+		<configuration.mda.dir>${nabla.mda.dir}/configuration/${andromda.version}</configuration.mda.dir>
+		<manual.mappings.location>${configuration.mda.dir}/generation/manualMapping</manual.mappings.location>
 		<merge.templates.location>${configuration.mda.dir}/generation/merges</merge.templates.location>
+		<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>
 		<merge.mappings.spring>file:${merge.templates.location}/SpringMergeMappings.xml</merge.mappings.spring>
 		<merge.mappings.hibernate>file:${merge.templates.location}/HibernateMergeMappings.xml</merge.mappings.hibernate>
+		<merge.mappings.ejb>file:${merge.templates.location}/EJB3MergeMappings.xml</merge.mappings.ejb>
 		<merge.mappings.bo.gui>file:${merge.templates.location}/businessobjects/GuiMergeMappings.xml</merge.mappings.bo.gui>
 		<merge.mappings.rules.gui>file:${merge.templates.location}/rules/GuiMergeMappings.xml</merge.mappings.rules.gui>
 		<merge.mappings.staticdata.gui>file:${merge.templates.location}/staticdata/GuiMergeMappings.xml</merge.mappings.staticdata.gui>

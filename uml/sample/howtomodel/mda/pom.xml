@@ -101,6 +101,7 @@
 			<plugin>
 				<groupId>org.andromda.maven.plugins</groupId>
 				<artifactId>andromda-maven-plugin</artifactId>
+				<version>${andromda.version}</version>
 				<!--
 				<executions>
 					<execution>
@@ -125,22 +126,10 @@
 		<!-- Versioned independently from CXF core -->
 		<cxf.xjc.version>2.3.0</cxf.xjc.version>
 		<model.name>HowToModel</model.name>		
-		<!--<model.uri>file:${project.basedir}/src/main/uml/${uml.type}/HowToModel.uml</model.uri>-->
 		<filter></filter>
 		<validation>true</validation>
-		<!-- ant script location for temp copy of resources -->
-		<andromda.project>${project.basedir}/..</andromda.project>
-		<conf.dir>${project.basedir}/src/main/config</conf.dir>
-		<configuration.mda.dir>${andromda.project}/configuration</configuration.mda.dir>
-		<!--<manual.mappings.location>${pom.basedir}/configuration/generation/manualMapping</manual.mappings.location> -->
-		<merge.templates.location>${configuration.mda.dir}/generation/merges</merge.templates.location>
+		<merge.templates.location>${project.basedir}/../configuration/generation/merges</merge.templates.location>
 		<!-- cartridge output locations -->
-		<maven.build.generated>src/generated</maven.build.generated>
-		<maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
-        <!--
-        <mda.generated.dir>${project.basedir}/../mda/target/src/main/java</mda.generated.dir>
-        <mda.manual.dir>${project.basedir}/../mda/src/main/java</mda.manual.dir>
-        -->
 		<common.generated.dir>${project.basedir}/../common/${maven.build.generated}/main/java</common.generated.dir>
 		<common.manual.dir>${project.basedir}/../common/src/main/java</common.manual.dir>
 		<core.generated.dir>${project.basedir}/../core/${maven.build.generated}/main/java</core.generated.dir>

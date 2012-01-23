@@ -22,11 +22,7 @@
     <context-param>
         <param-name>facelets.LIBRARIES</param-name>
         <param-value>
-        <!-- uncomment if you want to add your own project specific facelet tags
-         (and of course make sure "/WEB-INF/custom.taglib.xml" is the actual path
-          to your facelet tag descriptor)
-            /WEB-INF/custom.taglib.xml;
-    -->
+        <!-- facelets-libraries merge-point -->
             /WEB-INF/ajsfc.taglib.xml;
         </param-value>
     </context-param>
@@ -153,7 +149,7 @@
     </context-param>
 
     <!-- context-param merge-point -->
-    
+    <!-- filter merge-point -->
     <!-- Extensions Filter -->
     <filter>
         <filter-name>MyFaces Extensions Filter</filter-name>
@@ -199,7 +195,7 @@
         <filter-class>org.andromda.presentation.jsf.ODSFilter</filter-class>
     </filter>
 
-    
+    <!-- filter-mapping merge-point -->
 
     <filter-mapping>
         <filter-name>ODSFilter</filter-name>
@@ -218,9 +214,9 @@
     <listener>
         <listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
     </listener>
-    
+    <!-- listener merge-point -->
 
-    
+    <!-- servlet merge-point -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -254,7 +250,7 @@
     </servlet>
 
     <!-- precompilation merge-point -->
-    
+    <!-- servlet-mapping merge-point -->
     <servlet-mapping>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
         <url-pattern>/jsf/*</url-pattern>
