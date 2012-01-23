@@ -13,6 +13,7 @@
 		<property name="connection.password">${jdbc.password}</property>
 		<property name="connection.driver_class">${jdbc.driver}</property>
 		<property name="hibernate.default_schema">${dbunit.schema}</property>
+		<property name="hibernate.hbm2ddl.auto">create-drop</property>
   		<mapping class="org.appfuse.model.User" />
 		<mapping class="org.appfuse.model.Role" />
 		<mapping class="com.nabla.project.application.database.business.global.model.Person" />

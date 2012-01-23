@@ -6,6 +6,10 @@
 
     <persistence-unit name="ApplicationEntityManager" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<!-- <property name="hibernate.default_schema" value="APP"/>-->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+		</properties>
         <class>org.appfuse.model.User</class>
         <class>org.appfuse.model.Role</class>
 
@@ -16,6 +20,6 @@
 		<class>com.nabla.project.application.model.person.entity.Address</class>
 		<class>com.nabla.project.application.model.person.entity.AbstractActivity</class>
 		<class>com.nabla.project.application.model.person.entity.Activity</class>
-		 -->
+		-->
 	</persistence-unit>
 </persistence>
