@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="Application_ID" version="1.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/application_1_4.xsd">
+	<display-name>timetracker-app</display-name>
+	<module id="EjbModule_1295128915882">
+		<ejb>timetracker-core-3.4-SNAPSHOT.jar</ejb>
+	</module>
+	<module id="WebModule_1298301642628">
+		<web>
+			<web-uri>timetracker-web-3.4-SNAPSHOT.war</web-uri>
+			<context-root>timetracker-web</context-root>
+		</web>
+	</module>
+</application>
