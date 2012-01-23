@@ -16,8 +16,21 @@
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-core</artifactId>
-            <version>${andromda.version}</version>
-        </dependency>
+            <version>${andromda.version}</version>  
+            <scope>compile</scope>
+        </dependency>    
+	<dependency>
+	    <groupId>org.andromda.translationlibraries</groupId>
+	    <artifactId>andromda-ocl-translation-core</artifactId>
+	    <version>${andromda.version}</version>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.andromda.translationlibraries</groupId>
+	    <artifactId>andromda-ocl-validation-library</artifactId>
+	    <version>${andromda.version}</version>
+	    <scope>compile</scope>
+	</dependency>         
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-utils</artifactId>
@@ -26,13 +39,8 @@
         <dependency>
             <groupId>org.andromda.metafacades</groupId>
             <artifactId>andromda-metafacades-uml</artifactId>
-            <version>${andromda.version}</version>
+            <version>${andromda.version}</version>     
             <type>xml.zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.translationlibraries</groupId>
-            <artifactId>andromda-ocl-validation-library</artifactId>
-            <version>${andromda.version}</version>
         </dependency>
         <dependency>
             <groupId>org.andromda.profiles.emf.uml22</groupId>
@@ -73,24 +81,6 @@
             	<!--
                 <plugin>
                     <groupId>org.andromda.maven.plugins</groupId>
-                    <artifactId>andromda-maven-plugin</artifactId>
-                    <version>${andromda.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                            <configuration>
-                                <buildSourceDirectory>${project.basedir}/target/src</buildSourceDirectory>
-                                <configurationUri>file:${project.basedir}/../conf/${uml.type}/andromda.xml</configurationUri>
-                                <lastModifiedCheck>true</lastModifiedCheck>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                -->
-                <plugin>
-                    <groupId>org.andromda.maven.plugins</groupId>
                     <artifactId>andromda-cartridge-plugin</artifactId>
                     <version>${andromda.version}</version>
                     <executions>
@@ -101,15 +91,17 @@
                                 <goal>test</goal>
                             </goals>
                             <configuration>
-                                <configurationUri>file:${project.basedir}/conf/${uml.type}/test/andromda.xml</configurationUri>
+                                <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
                             </configuration>
                         </execution>
                     </executions>
                 </plugin>
+                -->
                 <!--Perform xslt transformation of profile.xml and namespace.xml for site generation-->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>                    
+                    <artifactId>xml-maven-plugin</artifactId>     
+                    <version>${maven.xml.plugin.version}</version>
                     <executions>
                         <execution>
                             <id>transform</id>
@@ -158,6 +150,7 @@
         </pluginManagement>
     </build>
     <modules>
+        <!--<module>andromda-gui-components</module>-->
         <module>andromda-gui</module>
     </modules>
 </project>

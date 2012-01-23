@@ -53,12 +53,32 @@
         <priority value="DEBUG" />
     </category>
 
+    <category name="de.plushnikov.doctorjim">
+        <priority value="ERROR" />
+    </category>
+    
     <category name="org.andromda">
+        <priority value="ERROR" />
+    </category>
+
+    <category name="org.andromda.core">
         <priority value="DEBUG" />
     </category>
 
-    <category name="org.andromda.core.metafacades">
+    <category name="org.andromda.cartridges">
         <priority value="DEBUG" />
+    </category>
+
+    <category name="org.andromda.metafacades">
+        <priority value="DEBUG" />
+    </category>
+
+    <category name="org.andromda.namespaces">
+        <priority value="DEBUG" />
+    </category>
+
+    <category name="org.andromda.utils.beautifier.core.JavaImportBeautifierImpl">
+        <priority value="ERROR" />
     </category>
 
     <category name="org.andromda.core.configuration">
@@ -72,10 +92,6 @@
     <!--category name="org.andromda.namespaces.java">
         <priority value="DEBUG" />
     </category-->
-
-    <category name="org.andromda.cartridges">
-        <priority value="INFO" />
-    </category>
 
     <category name="org.andromda.cartridges.webservice">
         <priority value="DEBUG" />
@@ -91,10 +107,6 @@
 
     <category name="org.andromda.translation">
         <priority value="INFO" />
-    </category>
-
-    <category name="com.nabla.andromda.cartridges">
-        <priority value="DEBUG" />
     </category>
     
     <!-- =========================

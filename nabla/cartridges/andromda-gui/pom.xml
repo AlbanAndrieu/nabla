@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>org.andromda.cartridges</groupId>
-    	<artifactId>andromda-cartridges</artifactId>
+    		<artifactId>andromda-cartridges</artifactId>
 		<version>1.0</version>
 	</parent>
 
@@ -17,281 +17,105 @@
 	<description>
 	    The Gui cartridge provides meta-model and templates for Gui components generation.
 	</description>
-
 <!--
 A manageable entity service defined must have a valid name
 context GuiManageableEntity
 inv:manageableServiceName->notEmpty()
 -->
-	<build>
-		<plugins>
-<plugin>
-				<groupId>org.andromda.maven.plugins</groupId>
-				<artifactId>andromda-maven-plugin</artifactId>
-				<version>${andromda.version}</version>
-				<!-- for homemade cardtridge -->
-				<dependencies>
-					<dependency>
-						<groupId>org.andromda.cartridges</groupId>
-						<artifactId>andromda-meta-cartridge</artifactId>
-						<version>${andromda.version}</version>
-					</dependency>
-				</dependencies>
-                                <executions>
-                                    <execution>
-                                        <goals>
-                                            <!--<goal>export2emf</goal>-->
-                                            <goal>run</goal>
-                                        </goals>
-                                    </execution>
-                                </executions>
-                                <configuration>
-                                    <!--<buildSourceDirectory>${maven.build.src}</buildSourceDirectory>-->
-                                    <configurationUri>file:${basedir}/../conf/${uml.type}/andromda.xml</configurationUri>
-                                    <!--<configurationUri>${project.basedir}/src/main/config/andromda.xml</configurationUri>
-                                    <configurationUri>file:${basedir}/cartridges/dev-cartridges/conf/${uml.type}/andromda.xml</configurationUri>-->
-                                    <!-- Check model dates vs output file dates from previous gen, skip if files are later -->
-                                    <lastModifiedCheck>${lastModifiedCheck}</lastModifiedCheck>
-                                    <!--
-                                    <allowMultipleRuns>true</allowMultipleRuns>
-                                    <magicDrawHome></magicDrawHome>
-                                    -->
-                                </configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.andromda.maven.plugins</groupId>
-				<artifactId>andromda-cartridge-plugin</artifactId>
-				<version>${andromda.version}</version>
-                  <!--<extensions>true</extensions>-->
-                    <!--
-                    <executions>
-                        <execution>
-                            <id>uml14</id>
-                            <phase>generate-test-sources</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <configurationUri>file:${basedir}/conf/test/andromda.xml</configurationUri>
-                            </configuration>
-                        </execution>
-                    </executions>
-                    -->
-			</plugin>
-
-			<!--
+    <dependencies>
+    	<!--
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}-components</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+         -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>andromda-meta-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>provided</scope>
+        </dependency>           
+    </dependencies>
+    <build>
+        <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>xml-maven-plugin</artifactId>
-            </plugin>
-            -->
-              <!--Perform xslt transformation of profile.xml and namespace.xml for site generation-->
-              <!--
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>transform</id>
-                            <phase>site</phase>
-                            <goals>
-                                <goal>transform</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <transformationSets>
-                            <transformationSet>
-                                <addedToClasspath>false</addedToClasspath>
-                                <dir>src/main/resources/META-INF/andromda</dir>
-                                <includes>
-                                    <include>namespace.xml</include>
-                                </includes>
-                                <stylesheet>../../andromda-etc/xsl/namespace.xsl</stylesheet>
-                                <parameters>
-                                    <parameter>
-                                        <name>projectName</name>
-                                        <value>${project.name}</value>
-                                    </parameter>
-                                </parameters>
-                                <outputDir>src/site/xdoc</outputDir>
-                            </transformationSet>
-                            <transformationSet>
-                                <addedToClasspath>false</addedToClasspath>
-                                <dir>src/main/resources/META-INF/andromda</dir>
-                                <includes>
-                                    <include>profile.xml</include>
-                                </includes>
-                                <stylesheet>../../andromda-etc/xsl/profile.xsl</stylesheet>
-                                <parameters>
-                                    <parameter>
-                                        <name>projectName</name>
-                                        <value>${project.name}</value>
-                                    </parameter>
-                                </parameters>
-                                <outputDir>src/site/xdoc</outputDir>
-                            </transformationSet>
-                        </transformationSets>
-                    </configuration>
-                </plugin>
-
-            <plugin>
-                <groupId>org.andromda.maven.plugins.site</groupId>
-                <artifactId>andromda-site-cartridge-plugin</artifactId>
-                -->
-                <!--<version>${andromda.version}</version>-->
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-maven-plugin</artifactId>
+				<version>${andromda.version}</version>
                 <!--
-                <version>3.4-SNAPSHOT</version>
-                <executions>
-                    <execution>
-                        <id>cartridge-howto-artifacts</id>
-                        <goals>
-                            <goal>generate-cartridge-howto-artifacts</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <howtoCartridgePicturesOutputDirectory>${project.basedir}/target/site/images</howtoCartridgePicturesOutputDirectory>
-                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.andromda.cartridges</groupId>
+                        <artifactId>andromda-meta-cartridge</artifactId>
+                        <version>${andromda.version}</version>
+                    </dependency>
+                </dependencies>
+                -->
             </plugin>
-            -->
-                          <plugin>
-                <groupId>org.andromda.maven.plugins.site</groupId>
-                <artifactId>andromda-site-plugin</artifactId>
-                <version>${andromda.version}</version>
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>namespace-transform</id>
+                        <id>copy</id>
+                        <phase>generate-resources</phase>
                         <goals>
-                            <goal>namespace-xsl</goal>
+                            <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <namespaceDocumentPath>${project.basedir}/target/classes/META-INF/andromda/namespace.xml</namespaceDocumentPath>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}-components</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.outputDirectory}/resources/WEB-INF/lib</outputDirectory>
+                            <stripVersion>true</stripVersion>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-		</plugins>
-		<defaultGoal>install</defaultGoal>
-		<!--
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/test/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-					<include>**/*.java</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main</directory>
-				<excludes>
-					<exclude>java/**/*.java</exclude>
-					<exclude>uml/**/*</exclude>
-					<exclude>test/**/*</exclude>
-					<exclude>xml/**/*</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>src</directory>
-				<excludes>
-					<exclude>main/**/*</exclude>
-					<exclude>test/**/*</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>target/src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-					<exclude>xml/**/*</exclude>
-				</excludes>
-			</resource>
-		</resources>
-		-->
-	</build>
-
-	<dependencies>
-         	<!--
-        <dependency>
-            <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-meta-cartridge</artifactId>
-            <version>${andromda.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.translationlibraries</groupId>
-            <artifactId>andromda-ocl-query-library</artifactId>
-            <version>${andromda.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-java-cartridge</artifactId>
-            <version>${andromda.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-                -->
-                <dependency>
-            <groupId>org.andromda</groupId>
-            <artifactId>andromda-core</artifactId>
-            <version>${andromda.version}</version>
-            <scope>compile</scope>
-        </dependency>
-		<dependency>
-			<groupId>org.andromda.metafacades</groupId>
-			<artifactId>andromda-metafacades-uml</artifactId>
-			<version>${andromda.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.andromda.translationlibraries</groupId>
-			<artifactId>andromda-ocl-translation-core</artifactId>
-			<version>${andromda.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.andromda.translationlibraries</groupId>
-			<artifactId>andromda-ocl-validation-library</artifactId>
-			<version>${andromda.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
-	</dependencies>
-
-	<properties>
-		<model.name>GuiMetafacadeModel</model.name>
-	</properties>
-
-	<profiles>
-		<profile>
-			<id>reset</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-clean-plugin</artifactId>
-						<configuration>
-							<filesets>
-								<fileset>
-									<directory>${maven.build.src}</directory>
-								</fileset>
-							</filesets>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
+             -->
+            <plugin>
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-cartridge-plugin</artifactId>
+                <version>${andromda.version}</version>
+                <executions>
+                    <execution>
+                        <id>gui-uml2</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <actualDirectory>${project.build.directory}/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.build.directory}/cartridge-test/expectedUML2</expectedDirectory>
+                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <reportDirectory>${project.build.directory}/cartridge-test/reportsUML2</reportDirectory>
+                        </configuration>
+                    </execution>
+                </executions>          
+            </plugin>
+            <!--
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>   
+            -->         
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>${maven.xml.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+    <properties>
+    	<model.name>GuiMetafacadeModel</model.name>
+        <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
+        <test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>
+    </properties>
 </project>
