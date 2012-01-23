@@ -31,14 +31,17 @@
       <name>${project.name}</name>
     </bannerLeft>
     <bannerRight>
-      <src></src>
+      <href>http://www.maven.nabla.mobi/project</href> 
+      <border>1</border> 
+      <width>48</width> 
+      <height>48</height> 
+      <src>images/home.png</src>     
     </bannerRight>
     
     <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
 
     <body>    	
     	<breadcrumbs>
-    	  <!--<item name="Maven" href="http://maven.apache.org/index.html" />-->
     	  <item name="Skins" href="http://maven.apache.org/skins/index.html" />
     	</breadcrumbs>    
     	
@@ -47,9 +50,6 @@
             <item name="Nabla Code" href="http://code.google.com/p/alban" />
 	    <!--<item name="FR" href="/fr/index.html" />-->
         </links>
-
-        <menu ref="parent"/>
-        <menu ref="modules"/>
                
         <menu name="Nabla">
             <item name="Introduction" href="index.html"/>
@@ -69,12 +69,18 @@
             <item name="Xdoc Example" href="xdoc.html"/>                 
         </menu>
 
+       <menu name="Project">
+            <item name="AndroMDA Profiles" href="/uml/nabla/profiles/uml2/index.html"/>
+            <item name="AndroMDA Cartridges" href="/uml/nabla/cartridges/index.html"/>
+            <item name="AndroMDA Metafacades" href="/uml/nabla/metafacades/index.html"/>
+            <item name="AndroMDA Empty" href="/uml/nabla/empty/index.html"/>
+            <item name="Etl" href="/nabla/core/etl/index.html"/>      
+       </menu>
+       
         <menu name="Manuals">
             <item name="Site Administration" href="tech/site-administration.html"/>
             <item name="Technical Administration" href="tech/technical-administration.html"/>
-        </menu>
 
-        <menu name="Manuals">
             <item name="Wiki" href="http://code.google.com/p/alban/w/list"/>        
             <item name="Development Standards" href="tech/standard_development.html" collapse="true">
                 <item name="Naming Conventions" href="tech/naming-conventions.html"/>
@@ -123,12 +129,17 @@
        </menu>
 -->
        <menu name="Other Resources">
-            <item name="Documents" href="../documents"/>
-            <item name="Databases Samples" href="../../../../index.html"/>
-            <item name="UML Samples" href="/uml/index.html"/>
+            <item name="Documents" href="./documents"/>
             <item name="Other Links" href="otherlinks.html"/>
        </menu> 
        
+       <menu name="Sample Project">       	    
+       	    <item name="Maven Site Default Samples" href="/sample/interview/index.html"/>
+            <item name="Maven Site Skin Samples" href="/uml/nabla/maven/skin/index.html"/>       	    
+            <item name="Databases Samples" href="../../../../sample/dao/business/index.html"/>
+            <item name="UML Samples" href="/uml/sample/index.html"/>
+       </menu> 
+              
        <!--
        <menu name="Clover Reports">
             <item name="Clover PDF" href="clover/clover.pdf"/>
@@ -136,11 +147,10 @@
             <item name="Clover History" href="clover/history/historical.html"/>
        </menu>
        -->
-       
+
 <!--
        <menu ref="parent" inherit="bottom" />
        <menu ref="modules" inherit="bottom" />
-       <menu ref="reports" inherit="bottom" />
 -->
        
        <!--
