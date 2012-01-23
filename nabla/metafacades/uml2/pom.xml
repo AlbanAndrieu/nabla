@@ -41,6 +41,7 @@
             <groupId>org.andromda</groupId>
             <artifactId>andromda-utils</artifactId>
             <version>${andromda.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.andromda.profiles.uml14</groupId>
