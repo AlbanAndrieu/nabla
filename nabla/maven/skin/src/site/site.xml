@@ -23,21 +23,37 @@ under the License.
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
   name="Apache Maven Nabla-Skin">
 
-  <bannerLeft>
-    <name>${project.name}</name>
-  </bannerLeft>
-  <bannerRight>
-    <src></src>
-  </bannerRight>
-
   <skin>
     <groupId>${project.groupId}</groupId>
     <artifactId>${project.artifactId}</artifactId>
     <version>${project.version}</version>
   </skin>
+  
+  <bannerLeft>
+    <name>${project.name}</name>
+  </bannerLeft>
+  <bannerRight>
+    <!--
+    <href>http://maven.apache.org</href> 
+    <border>1</border> 
+    <width>473</width> 
+    <height>93</height> 
+    <src>images/apache-maven-project-2.png</src>      
+    -->
+    <href>http://www.maven.nabla.mobi/project</href> 
+    <border>1</border> 
+    <width>48</width> 
+    <height>48</height> 
+    <src>images/home.png</src>     
+  </bannerRight>
 
+  <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
+   
   <body>
-
+    <breadcrumbs>
+      <item name="Skins" href="http://maven.apache.org/skins/index.html" />
+    </breadcrumbs> 
+    	
     <menu ref="parent"/>
 
     <menu name="Overview">
