@@ -38,9 +38,7 @@
         <module>metafacades</module>
         -->        
         <module>profiles</module>
-        <!--
-        <module>cartridges</module> 
-        -->
+        <module>cartridges</module>
         <!--
         <module>empty</module>
         <module>timetracker</module>
