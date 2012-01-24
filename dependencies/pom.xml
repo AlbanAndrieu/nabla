@@ -1910,12 +1910,12 @@
 						<!-- Enable or disable Stop maven -->
 						<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 						<!-- when forked, debugging in Eclipse won't work -->
-						<forkMode>never</forkMode>
+						<!--<forkMode>never</forkMode>-->
 						<!--
 							pertest forkMode is broken in version 2.2. use version 2.1.3
 							instead. RT 6/30/06 <forkMode>pertest</forkMode>
 						-->
-						<!-- <forkMode>once</forkMode> -->
+						<forkMode>once</forkMode>
 						<!--<forkMode>pertest</forkMode> -->
 						<!-- shows total/fail/error summaries on stdout: -->
 						<printSummary>true</printSummary>
