@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>org.andromda.cartridges</groupId>
-    		<artifactId>andromda-cartridges</artifactId>
+    		<artifactId>cartridges</artifactId>
 		<version>1.0</version>
 	</parent>
 
