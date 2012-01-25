@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.nabla.project.uml</groupId>
-        <artifactId>andromda-site-plugins</artifactId>
+        <artifactId>maven</artifactId>
         <version>1.0</version>
     </parent>
     <groupId>org.andromda.maven.plugins.site</groupId>
@@ -15,6 +15,13 @@
         The Nabla site skin
     </description>
 
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/maven/skin</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/maven/skin</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/maven/skin</url>
+    	<tag>HEAD</tag>
+    </scm>
+    
   <build>
     <resources>
       <resource>
