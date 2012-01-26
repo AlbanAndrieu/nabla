@@ -8,4 +8,12 @@
     <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-gui</artifactId>
     <name>AndroMDA UML 2.0 Gui Profile</name>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/gui</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/gui</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/gui</url>
+    	<tag>HEAD</tag>
+    </scm>
+    
 </project>

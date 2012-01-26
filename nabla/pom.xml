@@ -33,12 +33,14 @@
     </dependencies>
     
     <modules>
-    	<module>maven</module>
-        <!--
+    	<!--
+    	<module>maven</module>        
         <module>metafacades</module>
         -->        
         <module>profiles</module>
+        <!--
         <module>cartridges</module>
+        -->
         <!--
         <module>empty</module>
         <module>timetracker</module>

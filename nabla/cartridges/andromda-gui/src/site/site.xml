@@ -4,10 +4,9 @@
   name="AndroMDA GUI Cartridge">
   
     <skin>
-      <groupId>org.andromda.maven.plugins.site</groupId>
-      <artifactId>nabla-site-skin</artifactId>
-      <!--<version>${project.version}</version>-->
-      <version>3.4</version>
+      <groupId>com.nabla.project</groupId>
+      <artifactId>skin</artifactId>
+      <version>1.0</version>
     </skin>
     
     <custom>

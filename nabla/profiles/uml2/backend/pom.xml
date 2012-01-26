@@ -8,4 +8,12 @@
     <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-backend</artifactId>
     <name>AndroMDA UML 2.0 Backend Profile</name>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/backend</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/backend</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/backend</url>
+    	<tag>HEAD</tag>
+    </scm>
+        
 </project>

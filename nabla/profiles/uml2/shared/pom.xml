@@ -8,6 +8,14 @@
     <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-shared</artifactId>
     <name>AndroMDA UML 2.0 Shared Profile</name>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/shared</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/shared</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/shared</url>
+    	<tag>HEAD</tag>
+    </scm>
+    
     <dependencies>
         <dependency>
             <groupId>org.andromda.profiles.uml2</groupId>

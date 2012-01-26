@@ -8,4 +8,12 @@
     <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-test</artifactId>
     <name>AndroMDA UML 2.0 Test Profile</name>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/test</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/test</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/test</url>
+    	<tag>HEAD</tag>
+    </scm>
+        
 </project>

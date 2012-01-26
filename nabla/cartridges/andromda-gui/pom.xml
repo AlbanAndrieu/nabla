@@ -42,7 +42,7 @@ inv:manageableServiceName->notEmpty()
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-maven-plugin</artifactId>
-				<version>${andromda.version}</version>
+		<version>${andromda.version}</version>
                 <!--
                 <dependencies>
                     <dependency>
@@ -115,6 +115,7 @@ inv:manageableServiceName->notEmpty()
     </build>
     <properties>
     	<model.name>GuiMetafacadeModel</model.name>
+    	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
         <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
         <test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>
     </properties>

@@ -129,8 +129,7 @@ public class Parser {
 
                 final List<Field> fields = new ArrayList<Field>();
 
-                for (@SuppressWarnings("unchecked")
-                final Iterator<Element> i = root.elementIterator(); i.hasNext();) {
+                for (final Iterator<Element> i = root.elementIterator(); i.hasNext();) {
 
                     final Element element = i.next();
 
@@ -216,8 +215,7 @@ public class Parser {
         final Cell cell = new Cell(element.attributeValue("align"));
         final List<Field> fields = new ArrayList<Field>();
 
-        for (@SuppressWarnings("unchecked")
-        final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
 
             final Element e = i.next();
 
@@ -255,8 +253,7 @@ public class Parser {
 
         final List<Field> fields = new ArrayList<Field>();
 
-        for (@SuppressWarnings("unchecked")
-        final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
 
             final Element e = i.next();
 
@@ -282,8 +279,7 @@ public class Parser {
 
         final List<Field> fields = new ArrayList<Field>();
 
-        for (@SuppressWarnings("unchecked")
-        final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
 
             final Element e = i.next();
 
@@ -373,8 +369,7 @@ public class Parser {
 
         final List<Field> fields = new ArrayList<Field>();
 
-        for (@SuppressWarnings("unchecked")
-        final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
 
             final Element e = i.next();
 
@@ -409,8 +404,7 @@ public class Parser {
         final Fieldset fieldset = new Fieldset();
         final List<Field> fields = new ArrayList<Field>();
 
-        for (@SuppressWarnings("unchecked")
-        final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
 
             final Element e = i.next();
 

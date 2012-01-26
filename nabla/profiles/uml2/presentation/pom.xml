@@ -8,4 +8,12 @@
     <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-presentation</artifactId>
     <name>AndroMDA UML 2.0 Presentation Profile</name>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/presentation</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/presentation</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/presentation</url>
+    	<tag>HEAD</tag>
+    </scm>
+        
 </project>

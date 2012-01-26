@@ -8,4 +8,12 @@
     <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-webservice</artifactId>
     <name>AndroMDA UML 2.0 WebService Profile</name>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/webservice</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/webservice</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/profiles/uml2/webservice</url>
+    	<tag>HEAD</tag>
+    </scm>
+        
 </project>

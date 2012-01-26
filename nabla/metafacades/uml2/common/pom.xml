@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.andromda.metafacades</groupId>
-        <artifactId>andromda-uml-metafacades</artifactId>
+        <artifactId>uml2</artifactId>
         <version>1.0</version>
     </parent>
     <artifactId>andromda-metafacades-uml</artifactId>
@@ -13,6 +13,14 @@
     <description>
         The common UML metafacades. This is the set of core UML metafacades used to provide access UML meta models.
     </description>
+    
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/metafacades/uml2/common</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/metafacades/uml2/common</developerConnection>
+    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/metafacades/uml2/common</url>
+    	<tag>HEAD</tag>
+    </scm>
+        
     <build>
         <plugins>
             <plugin>

@@ -30,7 +30,7 @@
                     <moduleSearchLocations>
                         <!--<location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}</location>-->
                         <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/profiles/${uml.type}/**/${andromda.version}/**</location>
-                        <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-${uml.type}</location>
+                        <!--<location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-${uml.type}</location>-->
                     </moduleSearchLocations>
                     <modelPackages>
                         <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>

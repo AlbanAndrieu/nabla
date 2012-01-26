@@ -2,25 +2,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.nabla.project.uml</groupId>
+        <groupId>com.nabla.project</groupId>
         <artifactId>maven</artifactId>
         <version>1.0</version>
     </parent>
-    <groupId>org.andromda.maven.plugins.site</groupId>
-    <artifactId>nabla-site-skin</artifactId>
-    <version>3.4</version>
+    <groupId>com.nabla.project</groupId>
+    <artifactId>skin</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>Nabla Site Skin</name>
     <description>
         The Nabla site skin
     </description>
-
-    <scm>
-    	<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/nabla/maven/skin</connection>
-    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/nabla/maven/skin</developerConnection>
-    	<url>https://alban.googlecode.com/svn/${project.svn.path}/nabla/maven/skin</url>
-    	<tag>HEAD</tag>
-    </scm>
     
   <build>
     <resources>

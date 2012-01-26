@@ -6,7 +6,7 @@
     	<artifactId>nabla</artifactId>
         <version>1.0</version>
     </parent>
-    <groupId>com.nabla.project.uml</groupId>
+    <groupId>com.nabla.project</groupId>
     <artifactId>maven</artifactId>
     <packaging>pom</packaging>
     <name>AndroMDA Maven Site Plugins</name>

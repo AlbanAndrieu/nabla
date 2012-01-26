@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.andromda.metafacades</groupId>
-    	<artifactId>andromda-metafacades</artifactId>
+    	<artifactId>metafacades</artifactId>
         <version>1.0</version>
     </parent>
-    <artifactId>andromda-uml-metafacades</artifactId>
+    <artifactId>uml2</artifactId>
     <packaging>pom</packaging>
     <name>AndroMDA UML Metafacades</name>
     <description>
