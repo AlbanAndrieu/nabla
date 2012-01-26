@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
-  name="My Site : Nabla">
+  name="Customs">
   
     <skin>
-      <groupId>org.andromda.maven.plugins.site</groupId>
-      <artifactId>nabla-site-skin</artifactId>
-      <!--<version>${project.version}</version>-->
-      <version>3.4</version>
+      <groupId>com.nabla.project</groupId>
+      <artifactId>skin</artifactId>
+      <version>1.0</version>
     </skin>
     
     <custom>
