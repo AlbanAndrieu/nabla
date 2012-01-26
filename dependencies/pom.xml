@@ -205,6 +205,7 @@
 			<id>maven-2-site</id>
 			<properties>		
 				<maven.test.skip>false</maven.test.skip>
+				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
 				<application.package>com.nabla.project</application.package>
 			</properties>			
 			<build>
@@ -301,7 +302,7 @@
 						<dependencies>
 							<!-- The file defined in the location is stored in this dependency -->
 							<dependency>
-								<groupId>com.nabla.project.build-tools</groupId>
+								<groupId>com.nabla.project</groupId>
 								<artifactId>build-tools</artifactId>
 								<version>1.0</version>
 							</dependency>
@@ -413,7 +414,7 @@
 								<version>${commons.logging.version}</version>
 							</dependency>
 							<dependency>
-								<groupId>com.nabla.project.build-tools</groupId>
+								<groupId>com.nabla.project</groupId>
 								<artifactId>build-tools</artifactId>
 								<version>1.0</version>
 							</dependency>
@@ -927,12 +928,38 @@
 						<configuration>
 							<minSeverity>info</minSeverity>
 						</configuration>
-					</plugin>	
+					</plugin>
+					<!--
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>rat-maven-plugin</artifactId>
 						<version>${maven.rat.plugin.version}</version>
+					</plugin>						
+					-->	
+					<!--
+					<plugin>
+						<groupId>org.apache.rat</groupId>
+						<artifactId>apache-rat-plugin</artifactId>
+						<version>${maven.apache.rat.plugin.version}</version>
+						<configuration>
+        					  <licenses>
+        					    <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+        					      <licenseFamilyCategory>YASL1</licenseFamilyCategory>
+        					      <licenseFamilyName>Yet Another Software License (YASL) 1.0</licenseFamilyName>
+        					      <notes></notes>
+        					      <patterns>
+        					        <pattern>Copyright (c) 2002-2004, Nabla</pattern>
+        					      </patterns>
+        					    </license>
+        					  </licenses>
+	  					  <licenseFamilies>
+          					    <licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+          					      <familyName>Yet Another Software License</familyName>
+          					    </licenseFamily>
+          					  </licenseFamilies>        					  
+        					</configuration>						
 					</plugin>
+					-->
 
 					<!-- Comment gerer un rapport de couverture des tests -->
 					<!-- Code Coverage by Cobertura -->
@@ -1331,6 +1358,9 @@
 		<!--<myfaces.tomahawk.version>1.1.10</myfaces.tomahawk.version>-->
 		<org.apache.myfaces.tomahawk.version>1.1.10</org.apache.myfaces.tomahawk.version>
 		<org.apache.myfaces.trinidad.version>1.2.14</org.apache.myfaces.trinidad.version>
+		<el.api.version>2.2.1-b04</el.api.version>
+		<portlet.api.version>1.0</portlet.api.version>
+		<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>		
 
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
@@ -1412,7 +1442,7 @@
 		<maven.xdoclet.plugin.version>1.0-alpha-2</maven.xdoclet.plugin.version>
 		<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
 		<maven.tomcat.plugin.version>1.0-beta-1</maven.tomcat.plugin.version>
-		<maven.apache.rat.plugin.version>0.8</maven.apache.rat.plugin.version>
+		<maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
 		<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>		
 		<maven.cobertura.plugin.version>2.5.1</maven.cobertura.plugin.version>
 		<maven.release.plugin.version>2.1</maven.release.plugin.version>
@@ -1520,7 +1550,7 @@
 			
 			<!-- Needed for dashboard-maven-plugin and jalopy-maven-plugin and maven-checkstyle-plugin -->
 			<extension>
-				<groupId>com.nabla.project.build-tools</groupId>
+				<groupId>com.nabla.project</groupId>
 				<artifactId>build-tools</artifactId>
 				<version>1.0</version>
 			</extension>			
@@ -2317,11 +2347,13 @@
 					<artifactId>jdepend-maven-plugin</artifactId>
 					<version>${maven.jdepend.plugin.version}</version>
 				</plugin>
+				<!--
 				<plugin>
 					<groupId>org.apache.rat</groupId>
 					<artifactId>apache-rat-plugin</artifactId>
 					<version>${maven.apache.rat.plugin.version}</version>
 				</plugin>
+				-->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>javancss-maven-plugin</artifactId>
