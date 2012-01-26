@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-        
-        <modelVersion>4.0.0</modelVersion>
-        <groupId>com.nabla</groupId>
-        <artifactId>users</artifactId>
-        <packaging>pom</packaging>
-        <name>Users</name>
-        <version>1.0</version>
-        <!-- This element provides a basic description of your project -->
-        <description>Users</description>
-        <url>http://www.maven.nabla.mobi</url>
-        <modules>
-		<module>build-tools</module>        
-                <module>dependencies</module>                             
-                <module>databases</module>                                
-                <module>main</module>
-                <module>servers</module>                
-                <module>customs</module>
-                
-                <module>project</module>
-                <module>uml</module>
-                <module>nabla</module>
-        </modules>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nabla</groupId>
+	<artifactId>users</artifactId>
+	<packaging>pom</packaging>
+	<name>Users</name>
+	<version>1.0</version>
+	<!-- This element provides a basic description of your project -->
+	<description>Users</description>
+	<url>http://www.maven.nabla.mobi</url>
+	<modules>
+		<module>build-tools</module>	 
+		<module>maven</module>
+		<module>dependencies</module>				  
+		<module>databases</module>				  
+		<module>main</module>
+		<module>servers</module>		
+		<module>customs</module>
+		
+		<module>project</module>
+		<module>uml</module>
+		<module>nabla</module>
+	</modules>
 </project>
