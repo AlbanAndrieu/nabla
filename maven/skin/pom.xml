@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+<!--    
     <parent>
       <groupId>org.apache.maven.skins</groupId>
       <artifactId>maven-skins</artifactId>
       <version>6-SNAPSHOT</version>
       <relativePath>../maven-skins/pom.xml</relativePath>
     </parent>
-<!--
+-->
     <parent>
         <groupId>com.nabla.project</groupId>
         <artifactId>maven</artifactId>
         <version>1.0</version>
     </parent>
--->
+    
     <groupId>com.nabla.project</groupId>
     <artifactId>skin</artifactId>
     <version>1.0</version>
@@ -29,6 +29,8 @@
       <maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
       <maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
       <maven.site.plugin.version>2.3</maven.site.plugin.version>
+      <!--<site.destination>${project.artifactId}</site.destination>-->
+      <site.destination>${project.artifactId}-${project.version}</site.destination>
     </properties>
       
     <build>
@@ -107,20 +109,86 @@
     </build>
     
     <profiles>
-      <!--
-      <profile>
-        <id>rc</id>
-        <distributionManagement>
-          -->
-          <!-- Cannot define in parent -->
-          <!--
-          <site>
-            <id>apache.website</id>
-            <url>scp://people.apache.org/www/maven.apache.org/skins/${site.destination}</url>
-          </site>
-        </distributionManagement>
-      </profile>
-      -->
+		<profile>
+			<id>local</id>
+            		<activation>            			
+			    <property>
+			    	<name>profile.activation</name>
+			    </property>
+			    <!--
+            		    <activeByDefault>true</activeByDefault>
+            		    <file>
+            		        <exists>${basedir}</exists>
+            		    </file>
+            		    -->
+            		</activation>
+			<distributionManagement>
+				<repository>
+					<id>local-releases</id>
+					<name>Internal Release Repository</name>
+					<url>${distributionManagement.repository.url}/releases/</url>
+					<!--<uniqueVersion>false</uniqueVersion> -->
+				</repository>
+				<snapshotRepository>
+					<id>local-snapshots</id>
+					<name>Internal Snapshot Repository</name>
+					<url>${distributionManagement.repository.url}/snapshots/</url>
+					<!--<uniqueVersion>false</uniqueVersion> -->
+				</snapshotRepository>
+				<site>
+					<id>website</id>
+					<name>Project Website</name>
+					<!--
+						<url>scp://${site.server}/${home.dir}/fullsite/site-deploy</url>
+						<url>file:/var/www/docs</url>
+					-->
+					<!--<url>file://${deploy.dir}</url>-->
+					<url>file:/tmp</url>
+				</site>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<!--Profile configuration for server builds -->
+			<id>server</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>
+			<build>
+				<!--
+				<plugins>
+					<plugin>						
+						<artifactId>maven-gpg-plugin</artifactId>
+						<inherited>true</inherited>
+					</plugin>
+				</plugins>
+				-->
+			</build>
+			<distributionManagement>
+				<repository>
+					<id>server-releases</id>
+					<name>External Staging Repository</name>
+					<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
+					<uniqueVersion>false</uniqueVersion>
+				</repository>
+				<snapshotRepository>
+					<id>server-snapshots</id>
+					<name>External Snapshot Repository</name>
+					<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+					<uniqueVersion>false</uniqueVersion>
+				</snapshotRepository>
+				<site>
+					<id>website</id>
+					<name>Project Website</name>
+					<url>ftp://www.nabla.mobi/maven</url>
+				</site>
+			</distributionManagement>
+            		<properties>
+            		    <repositoryId>server-snapshots</repositoryId>
+            		    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+            		</properties>    			
+		</profile>
       <profile>
         <id>run-its</id>
         <activation>

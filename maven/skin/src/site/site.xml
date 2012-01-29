@@ -34,17 +34,13 @@ under the License.
   </bannerLeft>
   <bannerRight>
     <!--
-    <href>http://maven.apache.org</href> 
-    <border>1</border> 
-    <width>473</width> 
-    <height>93</height> 
-    <src>images/apache-maven-project-2.png</src>      
-    -->
     <href>http://www.maven.nabla.mobi/project</href> 
     <border>1</border> 
     <width>48</width> 
     <height>48</height> 
-    <src>images/home.png</src>     
+    <src>images/home.png</src>   
+    -->  
+    <src></src> 
   </bannerRight>
 
   <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
@@ -85,9 +81,11 @@ under the License.
 
     <menu ref="reports"/>
 
+    <!--
     <footer>
       <div class="row span16">Apache Maven, Apache @project.name@, Apache, the Apache feather logo, and the Apache Maven project logos are trademarks of The Apache Software Foundation.
       All other marks mentioned may be trademarks or registered trademarks of their respective owners.</div>
     </footer>
+    -->
   </body>
 </project>
