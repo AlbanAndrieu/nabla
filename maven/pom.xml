@@ -1,11 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!--
     <parent>
         <groupId>com.nabla.project.uml</groupId>
     	<artifactId>nabla</artifactId>
         <version>1.0</version>
     </parent>
+    -->
     <groupId>com.nabla.project</groupId>
     <artifactId>maven</artifactId>
     <packaging>pom</packaging>
@@ -13,12 +15,15 @@
     <description>
         The AndroMDA Maven site plugins
     </description>
-    <!--<inceptionYear>2006</inceptionYear>-->
+
+    <scm>
+    	<connection>scm:svn:http://alban.googlecode.com/svn/trunk/maven</connection>
+    	<developerConnection>scm:svn:https://alban.googlecode.com/svn/trunk/maven</developerConnection>
+    	<url>https://alban.googlecode.com/svn/trunk/maven</url>
+    	<tag>HEAD</tag>
+    </scm>
+	
     <modules>
-    	<!--
-        <module>site</module>
-        <module>cartridge</module>
-        -->
         <module>skin</module>
     </modules>
 </project>
