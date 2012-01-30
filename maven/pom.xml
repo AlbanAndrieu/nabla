@@ -10,11 +10,10 @@
     -->
     <groupId>com.nabla.project</groupId>
     <artifactId>maven</artifactId>
+    <version>1.0</version>
     <packaging>pom</packaging>
     <name>AndroMDA Maven Site Plugins</name>
-    <description>
-        The AndroMDA Maven site plugins
-    </description>
+    <description>The Nabla Maven site plugins</description>
 
     <scm>
     	<connection>scm:svn:http://alban.googlecode.com/svn/trunk/maven</connection>
