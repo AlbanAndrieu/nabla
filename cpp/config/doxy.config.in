@@ -463,82 +463,15 @@ WARN_LOGFILE           = doc/doxy.log
 # with spaces.
 
 #INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@ \
-#                         @CMAKE_CURRENT_BINARY_DIR@
-
-## APPS
-#INPUT                  = ../../pages \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/any.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/scoped_ptr.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/shared_ptr.hpp \
-#                         ../tools/apps/daemonMgr
-#               
-## INFRA
-#INPUT                  = ../../pages \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/any.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/scoped_ptr.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/shared_ptr.hpp \
-#                         ../../tools/infra/infratools/compat
-#                         ../../tools/infra/infracpptools/std \   
-#                         ../../tools/infra/infracpptools/cppcompat \   
-#                         ../../tools/infra/infracpptools/ith \                         
-#                         ../../tools/infra/infracpptools/cfm \
-#                         ../../tools/infra/infracpptools/KROFLOG \
-#                         ../../tools/infra/infracpptools/KROResult \
-#                         ../../tools/infra/infracpptools/KROSLOG \
-#                         ../../tools/infra/infracpptools/KROString \
-#                         ../../tools/infra/infracpptools/ShLibs_loader \
-#                         ../../tools/infra/KNEL \
-#                         ../../tools/infra/KTools \
-#                         ../../tools/infra/ida_V4 \
-#                         ../../tools/infra/ida_after \                         
-#                         ../../tools/infra/KTools \
-#                         ../../tools/infra/kml \
-#                         ../../tools/infra/kmlconfig \
-#                         ../../tools/infra/kmllog \
-#                         ../../tools/infra/kplusGenerator/NewPackage/src/KDBCHOICESCommon \
-#                         ../../tools/infra/kplusGenerator/NewPackage/src/KDBCHOICESKondor \
-#                         ../../tools/infra/kplustpGenerator/NewPackage/src/KTPCHOICES \
-#                         ../../tools/infra/kplustpGenerator/NewPackage/src/KTPGENCPP \
-#                         ../../tools/infra/kplustpGenerator/NewPackage/src/KTPRDVGEN
-#
-## TOOLS
-#INPUT                  = ../../pages \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/any.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/scoped_ptr.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/shared_ptr.hpp \
-#                         ../../tools/libs
-#                        
-## COMMON
-#INPUT                  = ../../pages \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/any.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/scoped_ptr.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/shared_ptr.hpp \               
-#                         ../../src/common/BOStruct \
-#                         ../../src/common/DBTools \
-#                         ../../src/common/DictAuditor \
-#                         ../../src/common/DictManager \
-#                         ../../src/common/RulesManager \
-#                         ../../src/common/service \
-#                         ../../src/common/Session \
-#                         ../../src/common/Setup
+#                         @CMAKE_CURRENT_BINARY_DIR@         
            
-# BACKEND                                       
+# PROJECT                                       
 INPUT                  = ../../pages \
                          /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/any.hpp \
                          /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/scoped_ptr.hpp \
                          /cygdrive/c/cygwin/usr/include/boost-1_33_1/boost/shared_ptr.hpp \
-                         ../../src/FungibleRevaluation \
-                         ../../src/MarginCall \
-                         ../../src/PositionManager
                          ../../microsoft/src/main/cpp
-			
 #                         ../ql \			 
-#                         ../src/AccountingManager \
-#                         ../src/EventManager \			 
-#			 ../src/SettlementManager \
-#                         ../src/CustodianBalanceManager \
-#                         ../src/DeliveryManager \
-#                         ../src/SessionManager
 			 
 # If the value of the INPUT tag contains directories, you can use the 
 # FILE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp 

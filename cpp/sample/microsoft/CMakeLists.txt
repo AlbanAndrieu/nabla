@@ -1,5 +1,7 @@
 PROJECT(MICROSOFT CXX)
 
+INCLUDE(${PROJECT_SOURCE_DIR}/../../config/Project.cmake)
+
 SET(EXPORT_FILE microsoft-build.cmake)
 
 INSTALL(EXPORT microsoft-install

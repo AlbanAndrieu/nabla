@@ -46,22 +46,20 @@ MESSAGE("OS is : ${CMAKE_SYSTEM}-${CMAKE_SYSTEM_VERSION} ${CMAKE_UNAME} ${CMAKE_
 
 SET(PROJECT_TARGET ${CMAKE_BUILD_TYPE})
 
-MESSAGE(STATUS "KPLUSTP_SRC, KPLUSTP_OBJ, KPLUS_ROOT and THIRDPARTY_ROOT setted to environement values")
+MESSAGE(STATUS "PROJECT_SRC, PROJECT_OBJ and THIRDPARTY_ROOT setted to environement values")
   
-SET(DEV_SOURCE_DIR "$ENV{KPLUSTP_SRC}")
-SET(DEV_BINARY_DIR "$ENV{KPLUSTP_OBJ}")
-SET(PROJECT_SOURCE_DIR "$ENV{KPLUSTP_SRC}")
-SET(PROJECT_BINARY_DIR "$ENV{KPLUSTP_OBJ}")
-SET(TOOLS_ROOT "$ENV{KPLUS_ROOT}/tools")
-#SET(TOOLS_ROOT "/kplus/tools")
+#SET(DEV_SOURCE_DIR "$ENV{PROJECT_SRC}")
+SET(DEV_SOURCE_DIR "/cygdrive/c/workspace/users/albandri10/cpp")
+#SET(DEV_BINARY_DIR "$ENV{PROJECT_OBJ}")
+SET(DEV_BINARY_DIR "/cygdrive/c/target")
+SET(PROJECT_SOURCE_DIR "${DEV_SOURCE_DIR}")
+SET(PROJECT_BINARY_DIR "${DEV_BINARY_DIR}")
 SET(THIRDPARTY_ROOT "$ENV{THIRDPARTY_ROOT}")
 SET(THIRDPARTY_ROOT_LOCAL "${THIRDPARTY_ROOT}")
 
 SET(DATABASE_ROOT "${THIRDPARTY_ROOT_LOCAL}/database")
 
 MESSAGE("CMAKE_SYSTEM is ${CMAKE_SYSTEM}")
-
-INCLUDE(${PROJECT_SOURCE_DIR}/config/ProjectVersion.cmake)
 
 IF(UNIX)
 
@@ -72,9 +70,7 @@ IF(UNIX)
     SET(MACHINE x86Linux)
 
     SET(CMAKE_CXX_FLAGS "-g -Wall -pthread")
-    #SET(CMAKE_CXX_FLAGS "-g -Wall -Werror -pthread")
     SET(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
-    # DO NOT NEED FOR __GNUC__ -DEffix_Infra_HAS_BOOL
     ADD_DEFINITIONS(-Dlinux -DP100)
 
   ELSE(CMAKE_HOST_SYSTEM_NAME MATCHES "Linux")
@@ -85,7 +81,7 @@ IF(UNIX)
     MESSAGE(STATUS "SunOS found")
     SET(MACHINE sun4sol)
 
-    ADD_DEFINITIONS(-Dsolaris -DSYSV -DSVR4 -DEffix_Infra_HAS_BOOL -DP100 -DDEBUG -DANSI_C -D_POSIX_THREADS -mt -xildoff -DOWTOOLKIT_WARNING_DISABLED)
+    ADD_DEFINITIONS(-Dsolaris -DSYSV -DSVR4 -DP100 -DDEBUG -DANSI_C -D_POSIX_THREADS -mt -xildoff -DOWTOOLKIT_WARNING_DISABLED)
     
   ELSE(CMAKE_HOST_SYSTEM_NAME MATCHES "SunOS")
     MESSAGE(STATUS "SunOS not found")
@@ -101,19 +97,13 @@ IF(UNIX)
 
   IF(CMAKE_HOST_SYSTEM_NAME MATCHES "CYGWIN")
     MESSAGE(STATUS "CYGWIN found")
-    SET(MACHINE x86Linux)
-    
-    #INCLUDE_DIRECTORIES("/cygdrive/c/cygwin/lib/gcc/i686-pc-cygwin/${GCC_VERSION}/include/c++")
-    #LINK_DIRECTORIES("/cygdrive/c/cygwin/lib/gcc/i686-pc-cygwin/${GCC_VERSION}/debug")    
+    SET(MACHINE x86Linux)    
     
     SET(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 
     ADD_DEFINITIONS(-Dcygwin -Dlinux -DP100)
-    #ADD_DEFINITIONS(-DANSI_C -D_POSIX_THREADS)
-    #ADD_DEFINITIONS(-DTAO_EXPORT_MACRO -DACE_NO_INLINE -DACE_BUILD_DLL)
-    #ADD_DEFINITIONS(-DACE_HAS_EXCEPTIONS)
-    ADD_DEFINITIONS(-DEffix_Infra_HAS_NEW_IOSTREAMS -DDEBUG -DNOMINMAX)
-    ADD_DEFINITIONS(-DEXCEPTION_EXPORTS -DKTPPLUSTHREAD_EXPORTS -DLOGMGR_EXPORTS -DIDA_UTILS_EXPORTS -DUTILS_EXPORTS -DPROPMGR_EXPORTS -DOBJECTMGR_EXPORTS -DMSGMGR_EXPORTS)
+    ADD_DEFINITIONS(-DDEBUG -DNOMINMAX)
+    ADD_DEFINITIONS(-DEXCEPTION_EXPORTS)
  
   ELSE(CMAKE_HOST_SYSTEM_NAME MATCHES "CYGWIN")
     MESSAGE(STATUS "CYGWIN not found")
@@ -142,10 +132,12 @@ ELSE(MINGW)
   
 ENDIF(MINGW)
 
-SET(PROJECT_INCLUDE_DIR ${PROJECT_BINARY_DIR}/include/${PROJECT_TARGET})
+#SET(PROJECT_INCLUDE_DIR ${PROJECT_BINARY_DIR}/include/${PROJECT_TARGET})
+SET(PROJECT_INCLUDE_DIR ${PROJECT_BINARY_DIR}/install/${MACHINE}/${PROJECT_TARGET}/include)
 SET(PROJECT_INSTALL_DIR ${PROJECT_BINARY_DIR}/install/${MACHINE}/${PROJECT_TARGET})
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib/${MACHINE}/${PROJECT_TARGET})
-  
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin/${MACHINE}/${PROJECT_TARGET})
+
 SET(CORBA_PC_DIR ${PROJECT_BINARY_DIR}/project/corba/${MACHINE}/${PROJECT_TARGET})
 
 MESSAGE(STATUS "MACHINE is ${MACHINE}")
@@ -167,24 +159,14 @@ SET(COPY_FILE_COMMAND cp)
 MESSAGE(STATUS "Project source directory is ${PROJECT_SOURCE_DIR}")
 MESSAGE(STATUS "Project include directory is ${PROJECT_INCLUDE_DIR}")
 
+INCLUDE(${PROJECT_SOURCE_DIR}/config/ProjectVersion.cmake)
+
 INCLUDE(${PROJECT_SOURCE_DIR}/config/ProjectMacro.cmake)
 
 OPTION(ENABLE_TESTS "Enable building of tests" ON)
 
 IF( ENABLE_TESTS )
-
   INCLUDE(FindCppUnit)
-  
-  # If not in standard paths, set CMAKE_xxx_PATH's in environment, eg.
-  # export CMAKE_INCLUDE_PATH=/opt/local/include
-  # export CMAKE_LIBRARY_PATH=/opt/local/lib
-  #FIND_LIBRARY(CPPUNIT cppunit)
-  #FIND_PATH(CPPUNIT_HEADERS cppunit/TestRunner.h)
-  #IF ( CPPUNIT AND CPPUNIT_HEADERS)
-  #  MESSAGE("-- Looking for Cppunit - found")
-  #ELSE ( CPPUNIT AND CPPUNIT_HEADERS )
-  #  MESSAGE( FATAL_ERROR "-- Looking for Cppunit - not found")
-  #ENDIF ( CPPUNIT AND CPPUNIT_HEADERS )
 ENDIF(ENABLE_TESTS )
 
 #Inclusion
@@ -246,22 +228,9 @@ IF(UNIX)
 
     SET(TIBCO_VERSION "7.2.x")
 
-    SET(KONDOR_DATABASE_VERSION_MAIN "5.0")
-    SET(KONDOR_DATABASE_VERSION_MAJOR "30")
-    SET(KONDOR_DATABASE_VERSION_MINOR "95")
-    SET(KONDOR_DATABASE_VERSION "v${KONDOR_DATABASE_VERSION_MAJOR}u${KONDOR_DATABASE_VERSION_MINOR}")
-    SET(KONDOR_DATABASE_VERSION_UPRGRADE "UPGRADE_${KONDOR_DATABASE_VERSION_MINOR}")
-    
-    SET(INFRAFA_FAKETAT_VERSION "12008")
-    
-    SET(KONDOR_VERSION2 "")    
-    
     SET(SYBASE_VERSION "12.5")
     SET(SYBASE_SERVER_VERSION "12.51")
     SET(SYBASE_ESD_VERSION "17")    
-    
-    SET(IDA_MAJOR_VERSION "4")
-    SET(IDA_VERSION "v4r31")
 
     LINK_DIRECTORIES(/usr/lib)
         
@@ -292,13 +261,6 @@ IF(UNIX)
     #INCLUDE_DIRECTORIES(/cygdrive/c/oraclexe/app/oracle/product/10.2.0/server/OCI/include)
     #LINK_DIRECTORIES(/cygdrive/c/oraclexe/app/oracle/product/10.2.0/server/OCI/lib/MSVC/vc71)
 
-    #Inclusion de KPLUS
-    SET(KPLUS_ROOT ${THIRDPARTY_ROOT_LOCAL}/kondor/${KONDOR_VERSION1})
-
-    SET(KPLUS_LIB_DIRS ${KPLUS_ROOT}/lib/${MACHINE})
-  
-    LINK_DIRECTORIES(${KPLUS_LIB_DIRS} ${KPLUS_LIB_DIRS}/dependencies)
-    
     INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/artix30/${MACHINE}/artix/3.0/include)
     LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/artix30/${MACHINE}/bin)  
     
@@ -313,25 +275,12 @@ IF(UNIX)
     #SET(LIB_STATIC_SUFFIX .a)
     #SET(LIB_DYNAMIC_SUFFIX .dll)
 
-    SET(TIBCO_VERSION "7.2.x")
-
-    SET(KONDOR_DATABASE_VERSION_MAIN "5.0")
-    SET(KONDOR_DATABASE_VERSION_MAJOR "30")
-    SET(KONDOR_DATABASE_VERSION_MINOR "95")
-    SET(KONDOR_DATABASE_VERSION "v${KONDOR_DATABASE_VERSION_MAJOR}u${KONDOR_DATABASE_VERSION_MINOR}")
-    SET(KONDOR_DATABASE_VERSION_UPRGRADE "UPGRADE_${KONDOR_DATABASE_VERSION_MINOR}")
-    
-    SET(INFRAFA_FAKETAT_VERSION "12008")
-    
-    SET(KONDOR_VERSION2 "")    
+    SET(TIBCO_VERSION "7.2.x")   
     
     SET(SYBASE_VERSION "12.5")
     SET(SYBASE_SERVER_VERSION "12.51")
     SET(SYBASE_ESD_VERSION "17")    
     
-    SET(IDA_MAJOR_VERSION "4")
-    SET(IDA_VERSION "v4r31")
-
     LINK_DIRECTORIES(/usr/lib)
         
     SET(BOOST_OUTPUT_PATH ${PROJECT_BINARY_DIR}/install/${MACHINE}/${PROJECT_TARGET}/lib/boost-1_41_0)
@@ -367,34 +316,8 @@ IF(UNIX)
     #SET(JAVA_AWT_LIBRARY ${JAVA_JVM_LIBRARY_DIRECTORIES}/jawt.dll)
     #SET(JAVA_JVM_LIBRARY ${JAVA_JVM_LIBRARY_DIRECTORIES}/jvm.dll)    
 
-    #Inclusion de KPLUS
-    SET(KPLUS_ROOT ${THIRDPARTY_ROOT_LOCAL}/kondor/${KONDOR_VERSION1})
-    #SET(ADFIN_ROOT ${THIRDPARTY_ROOT}/adfin/${ADFIN_VERSION})
-
-    ###SET(KPLUS_INCLUDE_DIRS ${KPLUS_ROOT}/include)
-    #SET(ADFIN_INCLUDE_DIRS ${ADFIN_ROOT}/include)
-    SET(KPLUS_LIB_DIRS ${KPLUS_ROOT}/lib/${MACHINE})
-    #SET(ADFIN_LIB_DIRS ${ADFIN_ROOT}/lib/${MACHINE})
-  
-    ###INCLUDE_DIRECTORIES(${KPLUS_INCLUDE_DIRS})
-    #INCLUDE_DIRECTORIES(${ADFIN_INCLUDE_DIRS})
-  
-    LINK_DIRECTORIES(${KPLUS_LIB_DIRS} ${KPLUS_LIB_DIRS}/dependencies)
-    #LINK_DIRECTORIES(${ADFIN_LIB_DIRS}/debug/shared ${ADFIN_LIB_DIRS}/opt)
-    
     INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/artix30/${MACHINE}/artix/3.0/include)
     LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/artix30/${MACHINE}/bin)  
-      
-    #Inclusion de KML
-    #INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT}/KML/V1/${KML_VERSION}/include)
-    #LINK_DIRECTORIES(${THIRDPARTY_ROOT}/KML/V1/${KML_VERSION}/lib/${MACHINE}/opt/shared)            
-            
-    #Inclusion de DATABASE KONDOR
-    #INCLUDE_DIRECTORIES(${DATABASE_ROOT}/products/kondor/${KONDOR_DATABASE_VERSION_MAIN}/${KONDOR_DATABASE_VERSION_UPRGRADE}/src/include)
-    #LINK_DIRECTORIES(${DATABASE_ROOT}/products/kondor/${KONDOR_DATABASE_VERSION_MAIN}/${KONDOR_DATABASE_VERSION_UPRGRADE}/src/lib/${MACHINE}/opt/shared)
-    #/rms/packages/kdb/3.0_upg97/lib
-    #/database/release/kmf/package/V1/LAST_SRC
-    #/infra/dev/projects/kml
                     
   ENDIF(CMAKE_HOST_SYSTEM_NAME MATCHES "CYGWIN")  
   
@@ -443,47 +366,11 @@ IF(UNIX)
     INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT}/cppunit/${CPPUNIT_VERSION}/include)
     LINK_DIRECTORIES(${THIRDPARTY_ROOT}/cppunit/${CPPUNIT_VERSION}/lib/${MACHINE}/gcc/debug/shared)
 
-    #Inclusion de ZLIB  
-    #INCLUDE_DIRECTORIES(${DATABASE_ROOT}/3rd/tools/Cpp/zlib-1.2.3.vc7/include)
-    #LINK_DIRECTORIES(${DATABASE_ROOT}/3rd/tools/Cpp/zlib-1.2.3.vc7/lib/${MACHINE}/opt/shared)
-
-    #Inclusion de IDA 
-    INCLUDE_DIRECTORIES(${DATABASE_ROOT}/ida/package/V${IDA_MAJOR_VERSION}/${IDA_VERSION}/include)
-    LINK_DIRECTORIES(${DATABASE_ROOT}/ida/package/V${IDA_MAJOR_VERSION}/${IDA_VERSION}/lib/${MACHINE}/opt/shared)  
-    #/database/release/ida/package/V2
-              
     #Inclusion de LIBXML2
     #INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/libxml2/2.7.2/winnt/include)
     #LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/libxml2/2.7.2/winnt/lib)  
 
-    #Inclusion de ADFIN
-    #INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT}/adfin/${ADFIN_VERSION}/include)
-
-    #Inclusion de KPLUS
-    SET(KPLUS_ROOT ${THIRDPARTY_ROOT}/kondor/${KONDOR_VERSION})
-    SET(ADFIN_ROOT ${THIRDPARTY_ROOT}/adfin/${ADFIN_VERSION})
-
-    SET(KPLUS_INCLUDE_DIRS ${KPLUS_ROOT}/include)
-    SET(ADFIN_INCLUDE_DIRS ${ADFIN_ROOT}/include)
-    SET(KPLUS_LIB_DIRS ${KPLUS_ROOT}/lib/${MACHINE})
-    SET(ADFIN_LIB_DIRS ${ADFIN_ROOT}/lib/${MACHINE})
-  
-    INCLUDE_DIRECTORIES(${KPLUS_INCLUDE_DIRS})
-    INCLUDE_DIRECTORIES(${ADFIN_INCLUDE_DIRS})
-  
-    LINK_DIRECTORIES(${KPLUS_LIB_DIRS}/debug/shared ${KPLUS_LIB_DIRS}/opt)
-    LINK_DIRECTORIES(${ADFIN_LIB_DIRS}/debug/shared ${ADFIN_LIB_DIRS}/opt)
-
-    #Inclusion de KML
-    INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT}/KML/V1/${KML_VERSION}/include)
-    LINK_DIRECTORIES(${THIRDPARTY_ROOT}/KML/V1/${KML_VERSION}/lib/${MACHINE}/opt/shared)
-    
     #INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/database/sybase/openclient/${SYBASE_SERVER_VERSION}/ESD_${SYBASE_ESD_VERSION}/${MACHINE}/include)
-  
-    #Inclusion de DATABASE KONDOR
-    #INCLUDE_DIRECTORIES(${DATABASE_ROOT}/products/kondor/${KONDOR_DATABASE_VERSION_MAIN}/${KONDOR_DATABASE_VERSION_UPRGRADE}/src/include)
-    #LINK_DIRECTORIES(${DATABASE_ROOT}/products/kondor/${KONDOR_DATABASE_VERSION_MAIN}/${KONDOR_DATABASE_VERSION_UPRGRADE}/src/lib/${MACHINE}/opt/shared)
-    #/rms/packages/kdb/3.0_upg97/lib
 
   ENDIF(CMAKE_HOST_SYSTEM_NAME MATCHES "SunOS")       
     
@@ -497,28 +384,6 @@ ENDIF(UNIX)
   #Inclusion de TIBCO
   INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/tibco/tibrv/${TIBCO_VERSION}/${MACHINE}/include)
   LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/tibco/tibrv/${TIBCO_VERSION}/${MACHINE}/lib)
-  
-  #Inclusion de ELS
-  ###INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infra/common/els${ELS_VERSION}/els_api/include)
-  ###LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infra/common/els${ELS_VERSION}/els_api/libs/${MACHINE})
-
-  #Inclusion de INFRAFA for KNEL
-  ###INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infrafa/${INFRAFA_VERSION}/include)  
-  ###LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infrafa/${INFRAFA_VERSION}/lib/${MACHINE}/opt/shared)
-  #/infrafa/build/infra16/src
-
-  #Inclusion de INFRA
-  #INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/include)  
-  #LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/opt)
-  #LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/opt/shared)
-  #LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/modules/pixl/opt/${MACHINE})
-          
-  #Inclusion de infrafa for FAKETAT
-  ###INCLUDE_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infrafa/faketat/${INFRAFA_FAKETAT_VERSION}/include)  
-  ###LINK_DIRECTORIES(${THIRDPARTY_ROOT_LOCAL}/infrafa/faketat/${INFRAFA_FAKETAT_VERSION}/P${INFRA_PACKAGE_VERSION}/lib/${MACHINE}/opt/shared)  
-
-  #Inclusion de DATABASE KTPPLUS
-  #LINK_DIRECTORIES(${DATABASE_ROOT}/products/ktpplus/3.0/V44/package/lib/${MACHINE}/debug/shared)
     
 IF(CYGWIN)
 
@@ -660,92 +525,7 @@ ELSE(CYGWIN)
   
   SET(BASETIBCO tibrv tibrvcm tibrvcmq tibrvft)
   
-ENDIF(CYGWIN)
- 
-IF(CYGWIN)
-
-  SET(BASEIDA KDBC_CT KDBCommon KDBC KDBType KDB KRDV)
-  
-ELSE(CYGWIN)
-  MESSAGE(STATUS "CYGWIN not found")
-
-  SET(BASEIDA KDBC_CT${IDA_VERSION} KDBCommon${IDA_VERSION} KDBC${IDA_VERSION} KDBType${IDA_VERSION} KDB${IDA_VERSION} KRDV${IDA_VERSION})
-
-ENDIF(CYGWIN)       
-      
-IF(CYGWIN)
-
-  #ADD_LIBRARY(INFRACPPTOOLS SHARED IMPORTED)                                                                                                                   
-  #SET_PROPERTY(TARGET INFRACPPTOOLS PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/infracpptools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll)
-  #SET_PROPERTY(TARGET INFRACPPTOOLS PROPERTY IMPORTED_IMPLIB ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/infracpptools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.lib)
-    
-  ADD_LIBRARY(CFM STATIC IMPORTED)                                                                                                                   
-  #SET_PROPERTY(TARGET CFM PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/x86Linux/debug/libcfm.a)
-  SET_PROPERTY(TARGET CFM PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/cfm.lib)  
-  ADD_LIBRARY(FXMSG STATIC IMPORTED)                                                                                                                   
-  #SET_PROPERTY(TARGET FXMSG PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/x86Linux/debug/libFxMsg.a)
-  SET_PROPERTY(TARGET FXMSG PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/FxMsg.lib)  
-  #ADD_LIBRARY(ITH STATIC IMPORTED)                                                                                                                   
-  #SET_PROPERTY(TARGET ITH PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/x86Linux/debug/libith.a)
-  #SET_PROPERTY(TARGET ITH PROPERTY IMPORTED_LOCATION ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/ith.lib)  
-
-  #SET(BASEINFRA ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/infracpptools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/infratools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/infratooltest${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/kml05${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/kmlconfig${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/kmllog${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/pixl${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/ucontribpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/ucontribsub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/udatapub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/udatashared${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/udatasub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/upermpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/usessionpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/usessionsub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-  #              CFM FXMSG)
-  
-  #                infratooltest${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll
-  SET(BASEINFRA ${KPLUS_LIB_DIRS}/dependencies/infracpptools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/infratools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/pixl${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/ucontribpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/ucontribsub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/udatapub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/udatashared${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/udatasub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/upermpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/usessionpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${KPLUS_LIB_DIRS}/dependencies/usessionsub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}.dll
-                ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/kml${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER}.dll
-                ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/kmlconfig${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER}.dll
-                ${THIRDPARTY_ROOT_LOCAL}/infra/common/${INFRA_VERSION}/lib/${MACHINE}/debug/shared/kmllog${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER}.dll)
-                
-   #SET(BASEINFRA ${KPLUS_LIB_DIRS}/dependencies/infratools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER}.dll)
-   SET(BASEINFRA)
-                   
-ELSE(CYGWIN)
-  MESSAGE(STATUS "CYGWIN not found")
-  
-  SET(BASEINFRA externstaticdeps${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}
-                infracpptools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER} 
-                infratools${INFRA_VERSION_NUMBER2}${INFRA_VERSION_LETTER} 
-                kml${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER} 
-                kmlconfig${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER} 
-                kmllog${INFRA_VERSION_NUMBER1}${INFRA_VERSION_LETTER} 
-		pixl${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		ucontribpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		ucontribsub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		udatapub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		udatashared${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		udatasub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		upermpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		usessionpub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER} 
-		usessionsub${INFRA_VERSION_NUMBER3}${INFRA_VERSION_LETTER}
-		posix4 pthread thread m socket nsl)  
-   
-ENDIF(CYGWIN)
+ENDIF(CYGWIN)   
       
 IF(CYGWIN)
 
@@ -760,22 +540,6 @@ ELSE(CYGWIN)
   SET(BASELIBXML2 xml2)
 
 ENDIF(CYGWIN)  
-
-IF(CYGWIN)
-
-  SET(BASEINFRAFA)
-  
-ELSE(CYGWIN)
-  MESSAGE(STATUS "CYGWIN not found")
-  
-  SET(BASEINFRAFA HAT${INFRAFA_VERSION_NUMBER} 
-                  HATMethods${INFRAFA_VERSION_NUMBER} 
-                  KMI${INFRAFA_VERSION_NUMBER} 
-                  KMIMethods${INFRAFA_VERSION_NUMBER} 
-                  KNEL${INFRAFA_VERSION_NUMBER} 
-                  KTools${INFRAFA_VERSION_NUMBER})  
-  
-ENDIF(CYGWIN)
 
 IF(CYGWIN)
         
@@ -811,155 +575,7 @@ ELSE(CYGWIN)
   
 ENDIF(CYGWIN)
 
-IF(CYGWIN)
-
-  SET(BASEKTP KDBCHOICESCommonv30c01 
-              KDBCHOICESKondor${KONDOR_DATABASE_VERSION}
-              KDBGENCPPLOCAL2${KONDOR_DATABASE_VERSION}
-              KDBGENCPPLOCAL1${KONDOR_DATABASE_VERSION}
-              KDBGENCPPGLOBAL${KONDOR_DATABASE_VERSION}
-              KDBGENCPPKUSTOM${KONDOR_DATABASE_VERSION}
-              KDBGENCPPARCHIVE${KONDOR_DATABASE_VERSION}
-              KDBGENCPPVERSION${KONDOR_DATABASE_VERSION}
-              KDBGEN${KONDOR_DATABASE_VERSION} 
-              KRDVGEN${KONDOR_DATABASE_VERSION})  
-              
-ELSE(CYGWIN)
-  MESSAGE(STATUS "CYGWIN not found")
-  
-  #KDBCHOICESCommonv30c01 
-  SET(BASEKTP KDBCHOICESCommon${KONDOR_DATABASE_VERSION}
-              KDBCHOICESKondor${KONDOR_DATABASE_VERSION}
-              KDBGENCPPLOCAL2${KONDOR_DATABASE_VERSION}
-              KDBGENCPPLOCAL1${KONDOR_DATABASE_VERSION}
-              KDBGENCPPGLOBAL${KONDOR_DATABASE_VERSION}
-              KDBGENCPPKUSTOM${KONDOR_DATABASE_VERSION}
-              KDBGENCPPARCHIVE${KONDOR_DATABASE_VERSION}
-              KDBGENCPPVERSION${KONDOR_DATABASE_VERSION}
-              KDBGEN${KONDOR_DATABASE_VERSION} 
-              KRDVGEN${KONDOR_DATABASE_VERSION})
-  
-ENDIF(CYGWIN)
-
-  #SET(BASEKDB KDBCHOICESCommonv30u55 KDBCHOICESKondorv30u55 KDBGENCPPLOCAL2v30u55 KDBGENCPPLOCAL1v30u55 KDBGENCPPGLOBALv30u55 KDBGENCPPKUSTOMv30u55 KDBGENCPPARCHIVEv30u55 KDBGENCPPVERSIONv30u55 KDBGENv30u55 KRDVGENv30u55)
-
-  #elscpptk_pure_q832_104010059_32 elscpptools_pure_q832_104010059_32 elsctk_pure_q832_104010059_32 elsctools_pure_q832_104010059_32 elsseed_pure_q832_104010059_32
-  SET(BASEELS elscpptk elscpptools elsctk elsctools elsseed)
-
-  #SET(BASEKTP KTPCHOICESv30u20 KTPGENCPPv30u20 KTPRDVGENv30u20)
-  #SET(BASEKPLUSTP KTPKDBTypes${KONDOR_DATABASE_VERSION} KTPCHOICES${KONDOR_DATABASE_VERSION} KTPGENCPPARCHIVE${KONDOR_DATABASE_VERSION} KTPGENCPP${KONDOR_DATABASE_VERSION} KTPRDVGEN${KONDOR_DATABASE_VERSION})
-    
-  SET(BASEKPLUSTP KTPCHOICES KTPGENCPP KTPRDVGEN) 
-  #SET(BASEKPLUSTPARCH KTPGENCPPARCHIVE${KONDOR_DATABASE_VERSION})   
-
   SET(BASEXERCES xerces-c)
-
-  SET(BASEKPLUS KINIT
-                KOMM
-                KTHREAD
-                KRDVwatch
-                KC
-                dl
-                qt-mt
-                ith
-                KFS
-                KBATCH
-                KOPENimpl
-                KOTDealsDb
-                KOTProvider
-                KOTDynProvider
-                KOTConvert
-                KOTDeals
-                KOTDealsLight
-                KDEALSmodel
-                KDEALSutils
-                KOPENimpl
-                KEXERCISE
-                KSCHED
-                KINFLATION
-                KFINDEALSimpl
-                KFINDEALS
-                KOTTypes
-                KOTServer
-                KCORREL
-                KVOLATcurves
-                KVOLATengine
-                KFIN
-                KOTShared
-                KOPEN
-                KDEALSoperationsdb
-                KSCHEDgenerator
-                KSCHEDengine
-                KPROBAcurves
-                KURVE
-                KURVEengine
-                KURVEassign
-                KUSTOM
-                KOTTools
-                KFINDEALS
-                KFINMATH
-                KFINTOOLS
-                KPRICES
-                KCALCONF
-                KURVEdynamic
-                KAccessRights
-                KETAT
-                KHL
-                KELS
-                KONDOR
-                KPRINT
-                KHLTOOLS
-                KOMM
-                KTHREAD
-                KRDVwatch
-                KDBTOOLS
-                KDBUTILS
-                KDATE
-                KUICOMPONENTS
-                KXV
-                KQT
-                FL3
-                Serialize
-                Loggers
-                KCPP
-                KRDVwatch
-                KC
-                KRYPTONcore
-                Kew_Admin
-                Kew_Session
-                Kew
-                KUSTOM_Config
-                KDBUTILS
-                KREPORTkbOpenReport
-                XML
-                xml2
-	        AdfDef AdfApi AdfDef AdfStyle AdfBasic AdfMath AdfComp AdfRes AdfRand)
-
-  SET(BASETOOL PropMgr MsgMgr Exception Utils XMLUtils DateTime ObjectMgr KTPKDBTypes LogMgr SchedulerMgr Digest Security KTPPlusThread CorbaMgr IDAUtils)
-
-  #NettingDB ValidationDB
-  SET(BASEDB ExceptionDB ObjectDB JoinDB DictAuditorDB EventDB QueryDB ChoicesDB DBMessage DBManager MsgGeneratorDB WorkflowDB CriteriaTableDB BOStaticDataDB BODealDB SessionDB)
-
-  #ElsManager SessionHelper
-  SET(BASESERVICE CommonIncludes 
-                  BOStruct Workflow Communication Core Persistence ServiceUtils Validators
-		  KtpKml
-		  KMF KML KNEL KMLKtpAddon
-		  KtpSecurity
-		  RulesManager
-		  DictAuditor
-		  Attributes-corba-${PROJECT_TARGET}
-		  AttributesHelper
-		  Session-corba-${PROJECT_TARGET}
-		  CommonCfgHelper)  
-  
-  SET(DICTMANAGER ConfigAPI 
-                  Dictionary 
-                  Elements 
-                  DictManagerConstants DictManagerDataFields DictManagerExpressions 
-                  DictManagerCompiler DictManagerXML 
-                  DictManagerOperations DictManagerArithmetic DictManagerBranch DictManagerDate DictManagerOperatorDB DictManagerFinancial DictManagerGeneral DictManagerLogical DictManagerString DictManagerSystem
-                  DictManagerHelper DictManagerStorage)
 
 OPTION(WITH_GUI "Compil graphic unser interface" ON)
 
