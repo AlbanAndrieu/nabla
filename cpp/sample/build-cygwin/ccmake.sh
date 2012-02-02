@@ -1,2 +1,2 @@
 
-ccmake ../
+ccmake ../microsoft

@@ -2,9 +2,10 @@
 #PROJECT(LIB-MainLibrary CXX)
 
 # ######### General setup ##########
-COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
+#COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
 
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/main/cpp/include")
+MESSAGE(STATUS "MAIN CPP: " ${CMAKE_SOURCE_DIR}/src/main/cpp )
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/main/cpp/include")
 
 # ########## MainLibrary executable ##########
 # Sources:

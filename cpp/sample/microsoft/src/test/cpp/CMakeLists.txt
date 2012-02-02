@@ -2,10 +2,11 @@
 #PROJECT(TEST-LIB-TestLibrary CXX)
 
 # ######### General setup ##########
-COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
+#COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
 
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/test/cpp/include")
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/main/cpp/include")
+MESSAGE(STATUS "TEST CPP: " ${CMAKE_SOURCE_DIR}/src/test/cpp )
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/test/cpp/include")
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/main/cpp/include")
 
 # ########## TestLibrary executable ##########
 # Sources:

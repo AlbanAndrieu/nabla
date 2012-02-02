@@ -1,9 +1,11 @@
 ########## Project setup ##########
 #PROJECT(APP-Run CXX)
 
-COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
+# ######### General setup ##########
+#COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
 
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/main/cpp/include")
+MESSAGE(STATUS "MAIN APP: " ${CMAKE_SOURCE_DIR}/src/main/app )
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/main/cpp/include")
 
 ADD_EXECUTABLE(run_app run_app.cpp)
 
@@ -14,6 +16,5 @@ INSTALL(TARGETS run_app
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib)
-  
+
 #INSTALL_PROGRAMS(/bin FILES run_app)
-  

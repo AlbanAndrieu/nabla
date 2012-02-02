@@ -1,10 +1,12 @@
 ########## Project setup ##########
 #PROJECT(TEST-APP-Run CXX)
 
-COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
+# ######### General setup ##########
+#COPY_HEADER_LIST(${PROJECT_INCLUDE_DIR} h)
 
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/main/cpp/include")
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src/test/cpp/include")
+MESSAGE(STATUS "TEST APP: " ${CMAKE_SOURCE_DIR}/src/test/cpp/ )
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/main/cpp/include")
+INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src/test/cpp/include")
 
 ADD_EXECUTABLE(run_tests run_tests.cpp)
 
