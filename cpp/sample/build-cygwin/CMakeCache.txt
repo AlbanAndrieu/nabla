@@ -72,26 +72,6 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the compiler during Release with Debug Info builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g
 
-//C compiler.
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc.exe
-
-//Flags used by the compiler during all build types.
-CMAKE_C_FLAGS:STRING=
-
-//Flags used by the compiler during debug builds.
-CMAKE_C_FLAGS_DEBUG:STRING=-g
-
-//Flags used by the compiler during release minsize builds.
-CMAKE_C_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
-
-//Flags used by the compiler during release builds (/MD /Ob1 /Oi
-// /Ot /Oy /Gs will produce slightly less optimized but smaller
-// files).
-CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
-
-//Flags used by the compiler during Release with Debug Info builds.
-CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g
-
 //Flags used by the linker.
 CMAKE_EXE_LINKER_FLAGS:STRING=
 
@@ -324,7 +304,7 @@ MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
 
 //Value Computed by CMake
-MICROSOFT_BINARY_DIR:STATIC=/cygdrive/c/workspace/users/albandri10/cpp/sample/build-cygwin/microsoft
+MICROSOFT_BINARY_DIR:STATIC=/cygdrive/c/workspace/users/albandri10/cpp/sample/build-cygwin
 
 //Value Computed by CMake
 MICROSOFT_SOURCE_DIR:STATIC=/cygdrive/c/workspace/users/albandri10/cpp/sample/microsoft
@@ -346,12 +326,6 @@ PERL_EXECUTABLE:FILEPATH=/usr/bin/perl.exe
 
 //Path to a program.
 PS2PDF_CONVERTER:FILEPATH=PS2PDF_CONVERTER-NOTFOUND
-
-//Value Computed by CMake
-Project_BINARY_DIR:STATIC=/cygdrive/c/workspace/users/albandri10/cpp/sample/build-cygwin
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/cygdrive/c/workspace/users/albandri10/cpp/sample
 
 //Path to a program.
 RM:FILEPATH=/usr/bin/rm.exe
@@ -600,27 +574,10 @@ CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //Advanced flag for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//Advanced flag for variable: CMAKE_C_COMPILER
-CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
-CMAKE_C_COMPILER_WORKS:INTERNAL=1
-//Advanced flag for variable: CMAKE_C_FLAGS
-CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
-//Advanced flag for variable: CMAKE_C_FLAGS_DEBUG
-CMAKE_C_FLAGS_DEBUG-ADVANCED:INTERNAL=1
-//Advanced flag for variable: CMAKE_C_FLAGS_MINSIZEREL
-CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
-//Advanced flag for variable: CMAKE_C_FLAGS_RELEASE
-CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
-//Advanced flag for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
-CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //Result of TRY_COMPILE
 CMAKE_DETERMINE_CXX_ABI_COMPILED:INTERNAL=TRUE
-//Result of TRY_COMPILE
-CMAKE_DETERMINE_C_ABI_COMPILED:INTERNAL=TRUE
 //CXX compiler system include directories
-CMAKE_ECLIPSE_CXX_SYSTEM_INCLUDE_DIRS:INTERNAL=/usr/lib/gcc/i686-pc-cygwin/3.4.4/include/c++;;/usr/lib/gcc/i686-pc-cygwin/3.4.4/include/c++/i686-pc-cygwin;;/usr/lib/gcc/i686-pc-cygwin/3.4.4/include/c++/backward;;/usr/local/include;;/usr/lib/gcc/i686-pc-cygwin/3.4.4/include;;/usr/include;;/usr/lib/gcc/i686-pc-cygwin/3.4.4/../../../../include/w32api
-//C compiler system include directories
-CMAKE_ECLIPSE_C_SYSTEM_INCLUDE_DIRS:INTERNAL=/usr/local/include;;/usr/lib/gcc/i686-pc-cygwin/3.4.4/include;;/usr/include;;/usr/lib/gcc/i686-pc-cygwin/3.4.4/../../../../include/w32api
+CMAKE_ECLIPSE_CXX_SYSTEM_INCLUDE_DIRS:INTERNAL=
 //Path to cache edit program executable.
 CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/ccmake.exe
 //Executable file format
@@ -640,18 +597,28 @@ CMAKE_EXTRA_GENERATOR:INTERNAL=Eclipse CDT4
 //Name of generator.
 CMAKE_GENERATOR:INTERNAL=Unix Makefiles
 //Have function connect
-CMAKE_HAVE_CONNECT:INTERNAL=1
+CMAKE_HAVE_CONNECT:INTERNAL=
 //Have function gethostbyname
-CMAKE_HAVE_GETHOSTBYNAME:INTERNAL=1
+CMAKE_HAVE_GETHOSTBYNAME:INTERNAL=
 //Have function remove
-CMAKE_HAVE_REMOVE:INTERNAL=1
+CMAKE_HAVE_REMOVE:INTERNAL=
 //Have function shmat
-CMAKE_HAVE_SHMAT:INTERNAL=1
+CMAKE_HAVE_SHMAT:INTERNAL=
 //Start directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/cygdrive/c/workspace/users/albandri10/cpp/sample
+CMAKE_HOME_DIRECTORY:INTERNAL=/cygdrive/c/workspace/users/albandri10/cpp/sample/microsoft
+//Have library bsd
+CMAKE_LIB_BSD_HAS_GETHOSTBYNAME:INTERNAL=
 //Have library ICE
-CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER:INTERNAL=1
+CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER:INTERNAL=
+//Have library ipc
+CMAKE_LIB_IPS_HAS_SHMAT:INTERNAL=
+//Have library nsl
+CMAKE_LIB_NSL_HAS_GETHOSTBYNAME:INTERNAL=
+//Have library posix
+CMAKE_LIB_POSIX_HAS_REMOVE:INTERNAL=
+//Have library socket
+CMAKE_LIB_SOCKET_HAS_CONNECT:INTERNAL=
 //Advanced flag for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //Advanced flag for variable: CMAKE_MAKE_PROGRAM
@@ -669,7 +636,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //Advanced flag for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=9
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=8
 //Advanced flag for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //Advanced flag for variable: CMAKE_OBJDUMP
@@ -814,8 +781,12 @@ WGET_EXECUTABLE-ADVANCED:INTERNAL=1
 X11_ICE_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //Advanced flag for variable: X11_ICE_LIB
 X11_ICE_LIB-ADVANCED:INTERNAL=1
+//Have library dnet
+X11_LIB_DNET_HAS_DNET_NTOA:INTERNAL=
+//Have library dnet_stub
+X11_LIB_DNET_STUB_HAS_DNET_NTOA:INTERNAL=
 //Have library /lib/libX11.dll.a;/lib/libXext.dll.a
-X11_LIB_X11_SOLO:INTERNAL=1
+X11_LIB_X11_SOLO:INTERNAL=
 //Advanced flag for variable: X11_SM_LIB
 X11_SM_LIB-ADVANCED:INTERNAL=1
 //Advanced flag for variable: X11_X11_INCLUDE_PATH

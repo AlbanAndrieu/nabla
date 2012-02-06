@@ -10,7 +10,7 @@
 //! The constructor.
 // Attributes initialization
 circular_queue::circular_queue(const unsigned int size) :
-	ui_size(DEFAULT_SIZE), m_queue(0), i_head(0), i_tail(0), i_nbElement(0) {
+	ui_size(DEFAULT_SIZE), m_queue(0), ui_head(0), ui_tail(0), ui_nbElement(0) {
 
 	std::cout << "Constructor..." << std::endl;
 
@@ -33,7 +33,8 @@ circular_queue::circular_queue(const unsigned int size) :
 }
 
 //! The destructor.
-// virtual is not necessary as I hope circular_queue will not be derivated (but it is best pratice to put virtual in the destructor), you can remove it for optimization of v_table
+// virtual is not necessary as I hope circular_queue will not be derived (but it is best practices to put virtual in the destructor),
+// you can remove it for optimization of v_table
 circular_queue::~circular_queue() {
 
 	std::cout << "Destructor..." << std::endl;
@@ -49,36 +50,35 @@ circular_queue::~circular_queue() {
 	//pthread_mutex_destroy(&mutex);
 }
 
-void circular_queue::initialize(const int x) {
+void circular_queue::initialize(const int data) {
 
 	//TODO put a mutex if method is public
 	for (unsigned int i = 0; i < ui_size; i++) {
-		m_queue[i] = x;
+		m_queue[i] = data;
 		std::cout << "Value of index " << i << " is " << m_queue[i]
 				<< std::endl;
 	}
 	//clear();
 }
 
-bool circular_queue::enqueue(const int x) {
-	bool res = false;
+bool circular_queue::enqueue(const int data) {
 	boost::mutex::scoped_lock lock(m_mutex);
 	//p_thread_mutex_lock(&mp);
-	if (i_nbElement == (ui_size)) {
-		res = false;
+	if (ui_nbElement == ui_size) {
 		std::cerr << "We cannot enqueue without dequeuing" << std::endl;
-		std::cout << "Number of element is : " << i_nbElement << std::endl;
+		std::cout << "Number of element is : " << ui_nbElement << std::endl;
+		//p_thread_mutex_unlock(&mp);
+		return false;
 	} else {
-		std::cout << "Current value : " << x << " inserted at position : "
-				<< i_tail << std::endl;
-		m_queue[i_tail] = x;
-		i_nbElement++;
-		i_tail = (i_tail + 1) % (ui_size);
-		std::cout << "Next value is : " << i_tail << std::endl;
-		res = true;
+		std::cout << "Current value : " << data << " inserted at position : "
+				<< ui_tail << std::endl;
+		m_queue[ui_tail] = data;
+		ui_nbElement++;
+		ui_tail = (ui_tail + 1) % ui_size;
+		std::cout << "Next value is : " << ui_tail << std::endl;
+		//p_thread_mutex_unlock(&mp);
+		return true;
 	}
-	//p_thread_mutex_unlock(&mp);
-	return res;
 }
 
 int circular_queue::dequeue(const bool reset) {
@@ -86,24 +86,24 @@ int circular_queue::dequeue(const bool reset) {
 
 	boost::mutex::scoped_lock lock(m_mutex);
 	//pthread_mutex_lock(&mp);
-	if (i_nbElement == 0) {
-		//std::cout << "We cannot dequeuing because queue is empty" << std::endl;
+	if (ui_nbElement == 0) {
+		//std::cout << "Unable to dequeue because the queue is empty" << std::endl;
 		//pthread_mutex_unlock(&mp);
 		throw std::logic_error("Queue is empty");
 	} else {
-		std::cout << "Current value retrieve from position : " << i_head
+		std::cout << "Current value retrieve from position : " << ui_head
 				<< std::endl;
 
-		res = m_queue[i_head];
+		res = m_queue[ui_head];
 		if (reset) {
-			// This is for test purposes and may not be activated
-			m_queue[i_head] = DEFAULT_VALUE;
+			// This is for test purposes and must not be activated
+			m_queue[ui_head] = DEFAULT_VALUE;
 		}
-		i_head = (i_head + 1) % (ui_size);
+		ui_head = (ui_head + 1) % ui_size;
 
-		i_nbElement--;
-		std::cout << "Next head value is at position : " << i_head << std::endl;
-		std::cout << "There is/are : " << i_nbElement
+		ui_nbElement--;
+		std::cout << "Next head value is at position : " << ui_head << std::endl;
+		std::cout << "There is/are : " << ui_nbElement
 				<< " remaining element(s)" << std::endl;
 	}
 	//pthread_mutex_unlock(&mp);
@@ -111,7 +111,7 @@ int circular_queue::dequeue(const bool reset) {
 }
 
 /**
- * This method has been designed for test purpose and my access inconsistent memory values
+ * This method has been designed for test purposes and may access inconsistent memory values
  * (if the queue is not full and initialized)
  */
 std::string circular_queue::values() {

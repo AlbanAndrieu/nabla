@@ -9,12 +9,6 @@
 #define TRIANGLE_H_
 
 enum TriangleType{SCALENE, ISOSCELES, EQUILATERAL, ERROR };
-/*
-#define SCALENE 1
-#define ISOSCELES 2
-#define EQUILATERAL 3
-#define ERROR 4
-*/
 
 class Triangle {
 public:
