@@ -22,7 +22,7 @@ Triangle::Triangle() {
 Triangle::~Triangle() {
 }
 
-int Triangle::triangleType(const int a, const int b, const int c) {
+const int Triangle::triangleType(const int a, const int b, const int c) {
 	std::cout << "\t[a : " << a << ", b : " << b << ", c : " << c << "]" << std::endl;
 	if ((a + b < c) || (b + c < a) || (a + c < b) || ((a <= 0) || (b <= 0) || (c <= 0))) {
 		std::cout << "\t\tThis is NOT a triangle!" << std::endl;

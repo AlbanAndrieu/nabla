@@ -1,7 +1,6 @@
 //TODO Win32#include "StdAfx.h"
 #include <circular_queue.h>
 
-#include <iostream>
 #include <string>
 #include <exception>
 //TODO Win32#include <sstream>
@@ -14,8 +13,8 @@
 
 //! The constructor.
 // Attributes initialization
-circular_queue::circular_queue(const unsigned int size) :
-	ui_size(DEFAULT_SIZE), m_queue(0), ui_head(0), ui_tail(0), ui_nbElement(0) {
+circular_queue::circular_queue(const unsigned int size, const std::string& name) :
+	ui_size(DEFAULT_SIZE), s_name(name), m_queue(0), ui_head(0), ui_tail(0), ui_nbElement(0) {
 
 	std::cout << "Constructor..." << std::endl;
 
@@ -36,7 +35,7 @@ circular_queue::circular_queue(const unsigned int size) :
 	//TODO Win32 hMutex=CreateMutex(NULL,FALSE,MUTEXNAME);
 	//TODO Win32 assert(hMutex!=NULL);
 
-	initialize(DEFAULT_VALUE);	
+	initialize(DEFAULT_VALUE);
 }
 
 //! The destructor.
@@ -58,6 +57,22 @@ circular_queue::~circular_queue() {
 	//TODO Win32 check if we need to destroy the mutex properly
 }
 
+circular_queue::circular_queue(const circular_queue& copy)
+    : ui_size(copy.ui_size), s_name(copy.s_name), m_queue(new int[copy.ui_size])
+{
+	std::cout << "Copy constructor..." << std::endl;
+
+    std::copy(copy.m_queue, copy.m_queue + copy.ui_size, m_queue);    // #include <algorithm> for std::copy
+}
+
+const std::string& circular_queue::name() const {
+    return s_name;
+}
+
+void circular_queue::name(const std::string& name) {
+	s_name = name;
+}
+
 void circular_queue::initialize(const int data) {
 
 	//TODO put a mutex if method is public
@@ -69,7 +84,7 @@ void circular_queue::initialize(const int data) {
 	//clear();
 }
 
-bool circular_queue::enqueue(const int data) {
+const bool circular_queue::enqueue(const int data) {
 	boost::mutex::scoped_lock lock(m_mutex);
 	//p_thread_mutex_lock(&mp);
 	//TODO Win32 WaitForSingleObject(hMutex,INFINITE); // wait for ownership
@@ -92,7 +107,7 @@ bool circular_queue::enqueue(const int data) {
 	}
 }
 
-int circular_queue::dequeue(const bool reset) {
+const int circular_queue::dequeue(const bool reset) {
 	int res = 0;
 
 	boost::mutex::scoped_lock lock(m_mutex);
@@ -128,12 +143,13 @@ int circular_queue::dequeue(const bool reset) {
  * This method has been designed for test purposes and may access inconsistent memory values
  * (if the queue is not full and initialized)
  */
-std::string circular_queue::values() {
+const std::string circular_queue::values() const {
 	std::ostringstream values;
 	values << "[";
-	std::cout << "Print value of circular_queue of " << ui_size << " : " << std::endl;
+	std::cout << "Print value of circular_queue " << s_name << "of " << ui_size << " : " << std::endl;
 
-	boost::mutex::scoped_lock lock(m_mutex);
+	// Mutex is not necessary has we do not change any values
+	//boost::mutex::scoped_lock lock(m_mutex);
 	//TODO Win32 WaitForSingleObject(hMutex,INFINITE); // wait for ownership
 	for (unsigned int i = 0; i < ui_size; i++) {
 		std::cout << "Value of index " << i << " is " << m_queue[i] << std::endl;
@@ -145,4 +161,10 @@ std::string circular_queue::values() {
 	values << "]";
 	//TODO Win32 ReleaseMutex(hMutex);
 	return values.str();
+}
+
+std::ostream& operator<<(std::ostream& out, const circular_queue& queue)
+{
+    out << queue.values();
+    return out;
 }

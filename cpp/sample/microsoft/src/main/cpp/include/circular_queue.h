@@ -6,6 +6,8 @@
 #ifndef CIRCULARQUEUE_HPP_
 #define CIRCULARQUEUE_HPP_
 
+#include <iostream>
+
 #include <pthread.h>
 #include <boost/thread/mutex.hpp>
 // I usually use Boost, because I trust it
@@ -19,6 +21,12 @@
     \note This is a sample
  */
 class circular_queue {
+
+	//Now that the overloaded operator function is using two variables, it cannot be part of the class
+	//You must declare it outside of the class.
+	//In order for the function to access private (and/or protected) member variables of the class, you should make it a friend of the class
+	friend std::ostream& operator<<(std::ostream& out, const circular_queue& queue);
+
 private:
 	// A pointer to an array of integer
 	// I usually use boost::shared_array<int> m_queue;
@@ -59,16 +67,26 @@ private:
 
 	void initialize(const int data);
 
+	std::string s_name;
+
 public:
-	circular_queue(const unsigned int size);
+	circular_queue(const unsigned int size, const std::string& name = "default");
 
 	virtual ~circular_queue();
 
-	bool enqueue(const int data);
+	// Copy contructor because of the pointer int* m_queue
+	circular_queue(const circular_queue& copy);
 
-	int dequeue(const bool reset = false);
+	// getter for size
+	const std::string& name() const;
+	// setter for size
+	void name(const std::string& size);
 
-	std::string values();
+	const bool enqueue(const int data);
+
+	const int dequeue(const bool reset = false);
+
+	const std::string values() const;
 
 	inline void clear(void) { ui_head = ui_tail = ui_nbElement = 0; }
 

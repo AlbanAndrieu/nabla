@@ -70,6 +70,42 @@ void circular_queueTest::testConstructorWithZero() {
 	std::cout << "END testConstructorWithZero..." << std::endl;
 }
 
+void circular_queueTest::testCopyConstructor() {
+
+	std::cout << "START testCopyConstructor..." << std::endl;
+
+	try {
+
+		circular_queue first(3);
+		CPPUNIT_ASSERT(first.enqueue(4) == true);
+		CPPUNIT_ASSERT_EQUAL( std::string("[4-0-0]"), first.values() );
+
+		circular_queue second(5);
+		CPPUNIT_ASSERT(second.enqueue(6) == true);
+		CPPUNIT_ASSERT_EQUAL( std::string("[6-0-0-0-0]"), second.values() );
+
+		circular_queue first_clone = first; // Need copy constructor
+		CPPUNIT_ASSERT_EQUAL( std::string("[4-0-0]"), first.values() );
+		CPPUNIT_ASSERT_EQUAL( std::string("[6-0-0-0-0]"), second.values() );
+		CPPUNIT_ASSERT_EQUAL( std::string("[4-0-0]"), first_clone.values() );
+		//std::cout << first.values() << " " << second.values() << " " << first_clone.values() << std::endl;
+		CPPUNIT_ASSERT(first.enqueue(8) == true);
+		CPPUNIT_ASSERT_EQUAL( std::string("[4-8-0]"), first.values() );
+		CPPUNIT_ASSERT_EQUAL( std::string("[6-0-0-0-0]"), second.values() );
+		CPPUNIT_ASSERT_EQUAL( std::string("[4-0-0]"), first_clone.values() );
+		//std::cout << first.values() << " " << second.values() << " " << first_clone.values() << std::endl;
+
+	} catch(const char * str ) {
+		std::cout << "Exception raised : " << str << std::endl;
+	} catch(const std::exception& e) {
+		std::cout << "std::exception catched : " << e.what() << std::endl;
+	} catch(...) {
+		std::cout << "Other Exception catched" << std::endl;
+	}
+
+	std::cout << "END testCopyConstructor..." << std::endl;
+}
+
 void circular_queueTest::testEnqueue() {
 
 	std::cout << "START testEnqueue..." << std::endl;
@@ -99,6 +135,40 @@ void circular_queueTest::testEnqueue() {
 	delete a;
 
 	std::cout << "END testEnqueue..." << std::endl;
+}
+
+void circular_queueTest::testOperatorOutput() {
+
+	std::cout << "START testOperatorOutput..." << std::endl;
+
+	circular_queue a(3);
+
+	try {
+
+		CPPUNIT_ASSERT(a.enqueue(1) == true);
+		CPPUNIT_ASSERT(a.enqueue(2) == true);
+		CPPUNIT_ASSERT(a.enqueue(3) == true);
+
+		std::ostringstream os;
+		os << a.values();
+		CPPUNIT_ASSERT_EQUAL( std::string("[1-2-3]"), os.str() );
+		std::ostringstream outputstring1;
+		outputstring1 << a;
+		CPPUNIT_ASSERT_EQUAL( std::string("[1-2-3]"), outputstring1.str() );
+		std::ostringstream outputstring2;
+		outputstring2 << "The result is : " << a << " as expected";
+		CPPUNIT_ASSERT_EQUAL( std::string("The result is : [1-2-3] as expected"), outputstring2.str() );
+		std::cout << "Result is : " << a << " at @ : " << &a << std::endl;
+
+	} catch(const char * str ) {
+		std::cout << "Exception raised : " << str << std::endl;
+	} catch(const std::exception& e) {
+		std::cout << "std::exception catched : " << e.what() << std::endl;
+	} catch(...) {
+		std::cout << "Other Exception catched" << std::endl;
+	}
+
+	std::cout << "END testOperatorOutput..." << std::endl;
 }
 
 void circular_queueTest::testEnqueueTooMany() {

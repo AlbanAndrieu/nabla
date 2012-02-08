@@ -8,7 +8,9 @@ class circular_queueTest: public CppUnit::TestFixture {
     CPPUNIT_TEST( testConstructor );
     CPPUNIT_TEST( testConstructorWithNegative );
     CPPUNIT_TEST( testConstructorWithZero );
+    CPPUNIT_TEST( testCopyConstructor );
     CPPUNIT_TEST( testEnqueue );
+    CPPUNIT_TEST( testOperatorOutput );
     CPPUNIT_TEST( testEnqueueTooMany );
     CPPUNIT_TEST( testEnqueueNotEnough );
     CPPUNIT_TEST( testDequeue );
@@ -24,7 +26,9 @@ public:
 	void testConstructor();
 	void testConstructorWithNegative();
 	void testConstructorWithZero();
+	void testCopyConstructor();
 	void testEnqueue();
+	void testOperatorOutput();
 	void testEnqueueTooMany();
 	void testEnqueueNotEnough();
 	void testDequeue();
