@@ -1,8 +1,6 @@
 /*
  * circular_queueThread.h
  *
- *  Created on: 1 févr. 2012
- *      Author: Alban
  */
 
 #ifndef CIRCULAR_QUEUETHREAD_H_

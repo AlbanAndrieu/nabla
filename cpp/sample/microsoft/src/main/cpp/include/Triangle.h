@@ -1,8 +1,6 @@
 /*
  * Triangle.h
  *
- *  Created on: 1 févr. 2012
- *      Author: Alban
  */
 
 #ifndef TRIANGLE_H_

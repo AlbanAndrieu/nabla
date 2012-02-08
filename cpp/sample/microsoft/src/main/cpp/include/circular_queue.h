@@ -1,8 +1,6 @@
 /*
  * circular_queue.h
  *
- *  Created on: 31 janv. 2012
- *      Author: Alban
  */
 
 #ifndef CIRCULARQUEUE_HPP_
@@ -11,6 +9,8 @@
 #include <pthread.h>
 #include <boost/thread/mutex.hpp>
 // I usually use Boost, because I trust it
+//TODO Win32 #include <windows.h>
+//MFC #include <afxmt.h>
 
 /*!
     \class circular_queue
@@ -34,9 +34,28 @@ private:
 	unsigned int ui_nbElement;
 
 	// A mutex, I usually use boost::mutex m_mutex;
-	//pthread_mutex_t mp = PTHREAD_MUTEX_INITIALIZER;
-	//static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+	//POSIX thread pthread_mutex_t mp = PTHREAD_MUTEX_INITIALIZER;
 	boost::mutex m_mutex;
+	//TODO Win32 HANDLE hMutex;
+	//TODO For MFC CMutex my_mutex(FALSE, _T("MyAppMutex"));
+    //CSingleLock mutex_lock(&my_mutex, FALSE);
+	// See http://msdn.microsoft.com/en-us/library/bwk62eb7.aspx
+/*
+	if(mutex_lock.IsLocked() == FALSE)
+{
+	BOOL bRet = mutex_lock.Lock(100);
+
+	if(bRet == TRUE)
+
+	{
+        ...
+	} else
+	{
+		std::cout << "Another instance of the same application is running.\n";
+		return 0;
+	}
+}
+*/
 
 	void initialize(const int data);
 

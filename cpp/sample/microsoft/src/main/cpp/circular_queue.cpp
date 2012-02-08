@@ -1,11 +1,16 @@
+//TODO Win32#include "StdAfx.h"
 #include <circular_queue.h>
-//#include <boost/shared_ptr.hpp>
+
 #include <iostream>
 #include <string>
 #include <exception>
+//TODO Win32#include <sstream>
+//TODO Win32#include <assert.h>
 
 #define DEFAULT_SIZE 100
 #define DEFAULT_VALUE 0
+
+//TODO Win32 const wchar_t* MUTEXNAME = L"MyMutex";
 
 //! The constructor.
 // Attributes initialization
@@ -27,9 +32,11 @@ circular_queue::circular_queue(const unsigned int size) :
 		throw;
 	}
 
-	initialize(DEFAULT_VALUE);
-
 	//pthread_mutex_init(&mutex, NULL);
+	//TODO Win32 hMutex=CreateMutex(NULL,FALSE,MUTEXNAME);
+	//TODO Win32 assert(hMutex!=NULL);
+
+	initialize(DEFAULT_VALUE);	
 }
 
 //! The destructor.
@@ -48,6 +55,7 @@ circular_queue::~circular_queue() {
 	ui_size = 0;
 
 	//pthread_mutex_destroy(&mutex);
+	//TODO Win32 check if we need to destroy the mutex properly
 }
 
 void circular_queue::initialize(const int data) {
@@ -64,10 +72,12 @@ void circular_queue::initialize(const int data) {
 bool circular_queue::enqueue(const int data) {
 	boost::mutex::scoped_lock lock(m_mutex);
 	//p_thread_mutex_lock(&mp);
+	//TODO Win32 WaitForSingleObject(hMutex,INFINITE); // wait for ownership
 	if (ui_nbElement == ui_size) {
 		std::cerr << "We cannot enqueue without dequeuing" << std::endl;
 		std::cout << "Number of element is : " << ui_nbElement << std::endl;
 		//p_thread_mutex_unlock(&mp);
+		//TODO Win32 ReleaseMutex(hMutex);
 		return false;
 	} else {
 		std::cout << "Current value : " << data << " inserted at position : "
@@ -77,6 +87,7 @@ bool circular_queue::enqueue(const int data) {
 		ui_tail = (ui_tail + 1) % ui_size;
 		std::cout << "Next value is : " << ui_tail << std::endl;
 		//p_thread_mutex_unlock(&mp);
+		//TODO Win32 ReleaseMutex(hMutex);
 		return true;
 	}
 }
@@ -86,9 +97,11 @@ int circular_queue::dequeue(const bool reset) {
 
 	boost::mutex::scoped_lock lock(m_mutex);
 	//pthread_mutex_lock(&mp);
+	//TODO Win32 WaitForSingleObject(hMutex,INFINITE); // wait for ownership
 	if (ui_nbElement == 0) {
 		//std::cout << "Unable to dequeue because the queue is empty" << std::endl;
 		//pthread_mutex_unlock(&mp);
+		//TODO Win32 ReleaseMutex(hMutex);
 		throw std::logic_error("Queue is empty");
 	} else {
 		std::cout << "Current value retrieve from position : " << ui_head
@@ -107,6 +120,7 @@ int circular_queue::dequeue(const bool reset) {
 				<< " remaining element(s)" << std::endl;
 	}
 	//pthread_mutex_unlock(&mp);
+	//TODO Win32 ReleaseMutex(hMutex);
 	return res;
 }
 
@@ -120,6 +134,7 @@ std::string circular_queue::values() {
 	std::cout << "Print value of circular_queue of " << ui_size << " : " << std::endl;
 
 	boost::mutex::scoped_lock lock(m_mutex);
+	//TODO Win32 WaitForSingleObject(hMutex,INFINITE); // wait for ownership
 	for (unsigned int i = 0; i < ui_size; i++) {
 		std::cout << "Value of index " << i << " is " << m_queue[i] << std::endl;
 		if (i != 0) {
@@ -128,5 +143,6 @@ std::string circular_queue::values() {
 		values << m_queue[i];
 	}
 	values << "]";
+	//TODO Win32 ReleaseMutex(hMutex);
 	return values.str();
 }
