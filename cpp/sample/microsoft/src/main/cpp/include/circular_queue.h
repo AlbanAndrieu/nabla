@@ -2,13 +2,19 @@
  * circular_queue.h
  *
  */
-
+// see http://en.wikipedia.org/wiki/Pragma_once
+#pragma once
 #ifndef CIRCULARQUEUE_HPP_
 #define CIRCULARQUEUE_HPP_
 
+// used for std::ostream
 #include <iostream>
+// used for std::string
+#include <string>
 
-#include <pthread.h>
+// used for POSIX thread
+//TODO POSIX #include <pthread.h>
+// used for boost::mutex
 #include <boost/thread/mutex.hpp>
 // I usually use Boost, because I trust it
 //TODO Win32 #include <windows.h>
@@ -25,6 +31,7 @@ class circular_queue {
 	//Now that the overloaded operator function is using two variables, it cannot be part of the class
 	//You must declare it outside of the class.
 	//In order for the function to access private (and/or protected) member variables of the class, you should make it a friend of the class
+	// See : http://www.functionx.com/cpp/Lesson25.htm
 	friend std::ostream& operator<<(std::ostream& out, const circular_queue& queue);
 
 private:

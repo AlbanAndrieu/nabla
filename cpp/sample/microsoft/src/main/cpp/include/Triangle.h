@@ -2,7 +2,7 @@
  * Triangle.h
  *
  */
-
+#pragma once
 #ifndef TRIANGLE_H_
 #define TRIANGLE_H_
 

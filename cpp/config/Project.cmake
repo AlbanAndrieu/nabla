@@ -99,6 +99,10 @@ IF(UNIX)
     MESSAGE(STATUS "CYGWIN found")
     SET(MACHINE x86Linux)    
     
+    #For Eclipse to avoid : Unresolved inclusion
+    INCLUDE_DIRECTORIES("/cygdrive/c/cygwin/lib/gcc/i686-pc-cygwin/${GCC_VERSION}/include/c++")
+    #LINK_DIRECTORIES("/cygdrive/c/cygwin/lib/gcc/i686-pc-cygwin/${GCC_VERSION}/debug")
+        
     SET(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 
     ADD_DEFINITIONS(-Dcygwin -Dlinux -DP100)
@@ -151,7 +155,8 @@ OPTION(BUILD_SHARED_LIBS "Build PROJECT shared libraries." OFF)
 #  ADD_DEFINITIONS("-DWIN32")
 #ENDIF(WIN32)
 
-#CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/config/config.h.in ${PROJECT_BINARY_DIR}/include/config.h)
+CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/config/config.h.in ${PROJECT_INCLUDE_DIR}/config.h)
+MESSAGE(STATUS "configured ${PROJECT_SOURCE_DIR}/config/config.h.in --> ${PROJECT_INCLUDE_DIR}/config.h")
 
 SET(MOVE_FILE_COMMAND mv)
 SET(COPY_FILE_COMMAND cp)
@@ -674,6 +679,9 @@ ELSE(MINGW)
   #LINK_DIRECTORIES(${JNI_LIBRARIES})
 ENDIF(MINGW)
 
+#SET(EXCLUDE Unittest)
+#SET(EXCLUDE_PATTERNS */*Unittest*/* )
+
 OPTION(BUILD_REFERENCE_DOCS "Build Project reference documentation using doxygen (use: make DoxygenDoc)" ON)
 
 IF(BUILD_REFERENCE_DOCS)
@@ -688,11 +696,6 @@ ENDIF(BUILD_REFERENCE_DOCS)
 #/usr/bin
 #)
 FIND_PACKAGE(Doxygen)
-
-SET(EXCLUDE Unittest)
-SET(EXCLUDE_PATTERNS */*Unittest*/* )
-
-#http://www.graphviz.org/
 
 IF (DOXYGEN_FOUND)
 
@@ -743,9 +746,9 @@ IF (DOXYGEN_FOUND)
   #CMAKE_CURRENT_SOURCE_DIR --> PROJECT_SOURCE_DIR 
   IF   (EXISTS "${PROJECT_SOURCE_DIR}/config/doxy.config.in")
     MESSAGE(STATUS "configured ${PROJECT_SOURCE_DIR}/config/doxy.config.in --> ${CMAKE_CURRENT_BINARY_DIR}/doxy.config")
-    #CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/config/doxy.config.in 
-    #  ${CMAKE_CURRENT_BINARY_DIR}/doxy.config
-    #  @ONLY )
+    CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/config/doxy.config.in 
+      ${CMAKE_CURRENT_BINARY_DIR}/doxy.config
+      @ONLY )
     ## use (configured) doxy.config from (out of place) BUILD tree:
     SET(DOXY_CONFIG "${CMAKE_CURRENT_BINARY_DIR}/doxy.config")
   ELSE (EXISTS "${PROJECT_SOURCE_DIR}/config/doxy.config.in")

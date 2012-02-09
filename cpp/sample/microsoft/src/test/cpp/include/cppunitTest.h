@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CPPUNITTEST_H
 #define CPPUNITTEST_H
 

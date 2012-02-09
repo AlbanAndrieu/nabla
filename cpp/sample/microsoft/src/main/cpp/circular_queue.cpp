@@ -1,7 +1,6 @@
 //TODO Win32#include "StdAfx.h"
 #include <circular_queue.h>
 
-#include <string>
 #include <exception>
 //TODO Win32#include <sstream>
 //TODO Win32#include <assert.h>

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TRIANGLETEST_H
 #define TRIANGLETEST_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CIRCULAR_QUEUETEST_H
 #define CIRCULAR_QUEUETEST_H
 

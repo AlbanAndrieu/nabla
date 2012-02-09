@@ -1,8 +1,4 @@
-/*
- * circular_queueThread.h
- *
- */
-
+#pragma once
 #ifndef CIRCULAR_QUEUETHREAD_H_
 #define CIRCULAR_QUEUETHREAD_H_
 
