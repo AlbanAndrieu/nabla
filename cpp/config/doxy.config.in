@@ -182,7 +182,10 @@ TAB_SIZE               = 2
 # will result in a user-defined paragraph with heading "Side Effects:". 
 # You can put \n's in the value part of an alias to insert newlines.
 
-ALIASES                = 
+ALIASES                = "warning=\xrefitem caveats \"Warning\" \"Caveats\" " \
+                         "test=\xrefitem test \"Tests\" \"Test Suite\" " \
+                         "todo=\xrefitem todo \"Possible enhancements\" \"Possible Enhancements\" " \
+                         "bug=\xrefitem bug \"Bug\" \"Known Bugs\" "
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C 
 # sources only. Doxygen will then generate output that is more tailored for C. 
@@ -466,12 +469,11 @@ WARN_LOGFILE           = doc/doxy.log
 #                         @CMAKE_CURRENT_BINARY_DIR@         
            
 # PROJECT                                       
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/pages \
-                         /cygdrive/c/cygwin/usr/include/boost000/any.hpp \
-                         /cygdrive/c/cygwin/usr/include/boost000/scoped_ptr.hpp \
-                         /cygdrive/c/cygwin/usr/include/boost000/shared_ptr.hpp \
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/../doxygen/pages \
+                         /cygdrive/c/cygwin/usr/include/boost/any.hpp \
+                         /cygdrive/c/cygwin/usr/include/boost/scoped_ptr.hpp \
+                         /cygdrive/c/cygwin/usr/include/boost/shared_ptr.hpp \
                          @CMAKE_CURRENT_SOURCE_DIR@/src/main/cpp
-#                         ../ql \			 
 			 
 # If the value of the INPUT tag contains directories, you can use the 
 # FILE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp 
@@ -485,7 +487,8 @@ INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/pages \
 
 INPUT_ENCODING         = UTF-8
 
-FILE_PATTERNS          = *.cpp \
+FILE_PATTERNS          = *.docs \
+                         *.cpp \
                          *.h \
                          *.hpp \
                          *.ipp \
@@ -565,7 +568,7 @@ EXAMPLE_RECURSIVE      = YES
 # directories that contain image that are included in the documentation (see 
 # the \image command).
 
-IMAGE_PATH             = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/images
+IMAGE_PATH             = @CMAKE_CURRENT_SOURCE_DIR@/../doxygen/images/
 
 
 # The INPUT_FILTER tag can be used to specify a program that doxygen should 
@@ -688,14 +691,14 @@ HTML_FILE_EXTENSION    = .html
 # The HTML_HEADER tag can be used to specify a personal HTML header for 
 # each generated HTML page. If it is left blank doxygen will generate a 
 # standard header.
-HTML_HEADER            = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/nablaheader.html
+HTML_HEADER            = @CMAKE_CURRENT_SOURCE_DIR@/../doxygen/nablaheader.html
 
 
 # The HTML_FOOTER tag can be used to specify a personal HTML footer for 
 # each generated HTML page. If it is left blank doxygen will generate a 
 # standard footer.
 
-HTML_FOOTER            = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/nablafooter.html
+HTML_FOOTER            = @CMAKE_CURRENT_SOURCE_DIR@/../doxygen/nablafooter.html
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading 
 # style sheet that is used by each HTML page. It can be used to 
@@ -704,7 +707,7 @@ HTML_FOOTER            = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/nablafooter.html
 # the style sheet file to the HTML output directory, so don't put your own 
 # stylesheet in the HTML output directory as well, or it will be erased!
 
-HTML_STYLESHEET        = @CMAKE_CURRENT_SOURCE_DIR@/doxygen/nabla.css
+HTML_STYLESHEET        = @CMAKE_CURRENT_SOURCE_DIR@/../doxygen/nabla.css
 
 # If the HTML_ALIGN_MEMBERS tag is set to YES, the members of classes, 
 # files or namespaces will be aligned in HTML using tables. If set to 
@@ -724,7 +727,7 @@ GENERATE_HTMLHELP      = YES
 # can add a path in front of the file if the result should not be 
 # written to the html output directory.
 
-CHM_FILE               = 
+CHM_FILE               = ../Project_version.chm
 
 # If the GENERATE_HTMLHELP tag is set to YES, the HHC_LOCATION tag can 
 # be used to specify the location (absolute path including file name) of 
@@ -1038,13 +1041,12 @@ SEARCH_INCLUDES        = YES
 # the preprocessor.
 
 INCLUDE_PATH           = /cygdrive/c/cygwin/lib/gcc/i686-pc-cygwin/@GCC_VERSION@/include/c++ \
-#                         /cygdrive/c/cygwin/usr/include \
-#                         /cygdrive/c/target/include/@MACHINE@/debug \
                          /cygdrive/c/cygwin/usr/include/boost \
                          /cygdrive/c/cygwin/usr/include/libxml2 \
                          /cygdrive/c/thirdparty/tibco/tibrv/@TIBCO_VERSION@/@MACHINE@/include \
                          /cygdrive/c/thirdparty/tao/ACE_wrappers/TAO
-
+#                         /cygdrive/c/cygwin/usr/include \
+#                         /cygdrive/c/target/include/@MACHINE@/debug \
 
 # You can use the INCLUDE_FILE_PATTERNS tag to specify one or more wildcard 
 # patterns (like *.h and *.hpp) to filter out the header-files in the 
@@ -1258,7 +1260,8 @@ DOTFILE_DIRS           =
 # and MAX_DOT_GRAPH_HEIGHT). If 0 is used for the depth value (the default), 
 # the graph is not depth-constrained.
 
-MAX_DOT_GRAPH_DEPTH    = 0
+DOT_GRAPH_MAX_NODES    = 20
+MAX_DOT_GRAPH_DEPTH    = 2
 
 # Set the DOT_TRANSPARENT tag to YES to generate images with a transparent 
 # background. This is disabled by default, which results in a white background. 
@@ -1328,3 +1331,7 @@ SEARCHENGINE           = YES
 # is installed.
 
 DOXYFILE_ENCODING      = UTF-8
+
+GENERATE_DOCSET        = NO
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+DOCSET_BUNDLE_ID       = org.doxygen.Project
