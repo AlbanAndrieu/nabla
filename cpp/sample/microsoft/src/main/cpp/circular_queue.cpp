@@ -5,7 +5,9 @@
 //TODO Win32#include <sstream>
 //TODO Win32#include <assert.h>
 
+// \def DEFAULT_SIZE 100
 #define DEFAULT_SIZE 100
+// \def DEFAULT_VALUE 100
 #define DEFAULT_VALUE 0
 
 //TODO Win32 const wchar_t* MUTEXNAME = L"MyMutex";
@@ -138,10 +140,6 @@ const int circular_queue::dequeue(const bool reset) {
 	return res;
 }
 
-/**
- * This method has been designed for test purposes and may access inconsistent memory values
- * (if the queue is not full and initialized)
- */
 const std::string circular_queue::values() const {
 	std::ostringstream values;
 	values << "[";
