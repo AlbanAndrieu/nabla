@@ -1,31 +1,14 @@
 
-/*
- Copyright (C) 2000-2003 StatPro Italia srl
+/*! \page where Where to get Nabla
 
- This file is part of QuantLib, a free-software/open-source library
- for financial quantitative analysts and developers - http://quantlib.org/
-
- QuantLib is free software: you can redistribute it and/or modify it
- under the terms of the QuantLib license.  You should have received a
- copy of the license along with this program; if not, please email
- <quantlib-dev@lists.sf.net>. The license is also available online at
- <http://quantlib.org/license.shtml>.
-
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-*/
-
-/*! \page where Where to get QuantLib
-
-    \section download QuantLib releases
+    \section download Nabla releases
     Source code, documentation, modules, etc. of current and previous
-    %QuantLib releases can be downloaded from
-    http://quantlib.org/download.shtml
+    %Nabla releases can be downloaded from
+    http://code.google.com/p/alban/downloads/list
 
-    \section cvs Current snapshot
-    Instructions for Subversion access are available at
-    http://quantlib.org/svn.shtml
+    \section SVN Trunk
+    Code access for Subversion access are available at
+    http://code.google.com/p/alban/source/browse/#svn%2Ftrunk%2Fcpp
 
     Access to the Subversion repository is intended mainly for
     developers and is not recommended to end users which should

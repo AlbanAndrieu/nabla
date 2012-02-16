@@ -470,11 +470,10 @@ WARN_LOGFILE           = doc/doxy.log
            
 # PROJECT                                       
 INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/../doxygen/pages \
+                         /cygdrive/c/cygwin/usr/include/boost/any.hpp \
+                         /cygdrive/c/cygwin/usr/include/boost/scoped_ptr.hpp \
+                         /cygdrive/c/cygwin/usr/include/boost/shared_ptr.hpp \
                          @CMAKE_CURRENT_SOURCE_DIR@/src/main/cpp
-
-#                         /cygdrive/c/cygwin/usr/include/boost/any.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost/scoped_ptr.hpp \
-#                         /cygdrive/c/cygwin/usr/include/boost/shared_ptr.hpp \
 			 
 # If the value of the INPUT tag contains directories, you can use the 
 # FILE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp 
