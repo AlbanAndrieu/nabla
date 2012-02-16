@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <name>AndroMDA Maven Site Plugins</name>
     <description>The Nabla Maven site plugins</description>
+    <url>http://maven.apache.org/skins/</url>
 
     <scm>
     	<connection>scm:svn:http://alban.googlecode.com/svn/trunk/maven</connection>

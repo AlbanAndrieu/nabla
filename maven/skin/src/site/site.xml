@@ -83,9 +83,8 @@ under the License.
 
     <!--
     <footer>
-      <div class="row span16">Apache Maven, Apache @project.name@, Apache, the Apache feather logo, and the Apache Maven project logos are trademarks of The Apache Software Foundation.
-      All other marks mentioned may be trademarks or registered trademarks of their respective owners.</div>
-    </footer>
+      <div class="row span16">All other marks mentioned (not @project.name@) may be trademarks or registered trademarks of their respective owners.</div>
+    </footer>  
     -->
   </body>
 </project>

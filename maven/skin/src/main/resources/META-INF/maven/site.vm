@@ -723,7 +723,9 @@
 #if ( $locale )
     <meta http-equiv="Content-Language" content="$locale.language" />
 #end
+#if ( $headContent )
     $headContent
+#end    
     #googleAnalytics( $decoration.googleAnalyticsAccountId )
   </head>
   <body>
