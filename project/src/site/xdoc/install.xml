@@ -71,7 +71,7 @@ max_allowed_packet=24M
 			</subsection>
 			<subsection name="2. Database Creation">
                 <p>
-                    Two installation procedures are proposed for setting up <code>lutece</code> database :
+                    Two installation procedures are proposed for setting up <code>nabla</code> database :
                 </p>
                 <ul>
                     <li>Database creation using Ant.</li>
@@ -93,7 +93,7 @@ max_allowed_packet=24M
 					</subsection>
 					<subsection name="2.1.b Database Creation">
 						<p>
-							Now, you only have to create the <code>lutece</code> database.
+							Now, you only have to create the <code>nabla</code> database.
 						</p>
 						<p>
 							To do this, please go to the <code>WEB-INF/sql</code> folder in the webapp and execute 
@@ -106,8 +106,8 @@ max_allowed_packet=24M
 							<strong>Information :</strong> This command creates and initializes the database and the tables.
 							It uses the <code>build.xml</code> file which is automatically generated during the project building.
 							This script will use all SQL files in the <code>WEB-INF/sql</code> directory of the webapp. First, it will call
-							creation and initialization files of the lutece core tables
-							(<code>create_db_lutece_core.sql</code> and	<code>init_db_lutece_core.sql</code>).
+							creation and initialization files of the nabla core tables
+							(<code>create_db_nabla_core.sql</code> and	<code>init_db_nabla_core.sql</code>).
 							After that, if the webapp contains some plugins, the script will execute the SQL files for each plugin
 							 which are in the <code>WEB-INF/sql/plugins</code> directory (these files can be creation and 
 							 initialization scripts for plugin tables but can also initialize core tables).
@@ -154,7 +154,7 @@ max_allowed_packet=24M
 	                    <div class="source">
 	                        <pre>
 mysql.exe
-mysql&gt; create database lutece;
+mysql&gt; create database nabla;
 	                        </pre>
 	                    </div>
 	                </p>
@@ -166,7 +166,7 @@ mysql&gt; create database lutece;
 	                        <pre>
 # mysql -u root -p <em>new_password</em>
 
-mysql&gt; create database lutece;
+mysql&gt; create database nabla;
 							</pre>
 						</div>
 					</p>
@@ -179,7 +179,7 @@ mysql&gt; create database lutece;
 	                <p>
 	                    <div class="source">
 	                        <pre>
-mysql&gt; use lutece;
+mysql&gt; use nabla;
 	                        </pre>
 	                    </div>
 	                </p>
@@ -200,8 +200,8 @@ mysql&gt; use lutece;
 	                <p>
 	                    <div class="source">
 	                        <pre>
-mysql&gt; source create_db_lutece_core.sql;
-mysql&gt; source init_db_lutece_core.sql;
+mysql&gt; source create_db_nabla_core.sql;
+mysql&gt; source init_db_nabla_core.sql;
 	                        </pre>
 	                    </div>
 	                </p>
@@ -229,7 +229,7 @@ mysql&gt; source init_&lt;X&gt;.sql;
 			        </p>
 	                <p>
 	                    <u>To verify whether the database is correctly configured for 
-	                    user lutece (by default), run the commands</u> :
+	                    user nabla (by default), run the commands</u> :
 	                </p>
 	                <p>
 	                    <strong>[Win32] &amp; [Unix] :</strong>
@@ -248,10 +248,10 @@ mysql&gt; select * from core_admin_right;
                 <p>
                     The installation described below concerns the Tomcat Server.
                 </p>
-                <subsection name="3.1 JDK 5.0 Installation">
+                <subsection name="3.1 JDK 6.0 Installation">
                     <p>
                         Tomcat installation needs the installation of Java 2 SDK Standard Edition (the version used must be at 
-						least <strong>jdk 1.5.0</strong>) on the server.
+						least <strong>jdk 1.6.0</strong>) on the server.
                     </p>
                     <p>
                         <strong>Installation of Java 2 SDK, Standard Edition :</strong>
@@ -474,7 +474,7 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                     <table>
                         <tr>
                             <th>
-                                Adjust the absolute paths to access to the property files <code>lutece, jtidy and webmaster</code>.
+                                Adjust the absolute paths to access to the property files <code>nabla, jtidy and webmaster</code>.
                             </th>                            
                         </tr>
                         <tr>
@@ -483,16 +483,16 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                                     <code># Property files</code>
                                 </p>
                                 <p>
-                                    <code>file.lutece.properties=C:/tomcat/webapps/lutece/WEB-INF/conf/lutece.properties</code>
+                                    <code>file.nabla.properties=C:/tomcat/webapps/nabla/WEB-INF/conf/nabla.properties</code>
                                 </p>
                                 <p>
-                                    <code>file.jtidy.properties=C:/tomcat/webapps/lutece/WEB-INF/conf/jtidy.properties</code>
+                                    <code>file.jtidy.properties=C:/tomcat/webapps/nabla/WEB-INF/conf/jtidy.properties</code>
                                 </p>
                                 <p>
-                                    <code>file.webmaster.properties=C:/tomcat/webapps/lutece/WEB-INF/conf/webmaster.properties</code>
+                                    <code>file.webmaster.properties=C:/tomcat/webapps/nabla/WEB-INF/conf/webmaster.properties</code>
                                 </p>
                                 <p>
-                                    <code>file.dir.plugins=C:/tomcat/webapps/lutece/WEB-INF/conf/plugins</code>
+                                    <code>file.dir.plugins=C:/tomcat/webapps/nabla/WEB-INF/conf/plugins</code>
                                 </p>
                             </td>
                         </tr>
@@ -511,13 +511,13 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                                     <code># Log files</code>
                                 </p>
                                 <p>
-                                    <code>file.lutece.error.log=C:/tomcat/webapps/lutece/WEB-INF/logs/errors.log</code>
+                                    <code>file.nabla.error.log=C:/tomcat/webapps/nabla/WEB-INF/logs/errors.log</code>
                                 </p>
                                 <p>
-                                    <code>file.lutece.app.log=C:/tomcat/webapps/lutece/WEB-INF/logs/application.log</code>
+                                    <code>file.nabla.app.log=C:/tomcat/webapps/nabla/WEB-INF/logs/application.log</code>
                                 </p>
                                 <p>
-                                    <code>file.pool.log=C:/tomcat/webapps/lutece/WEB-INF/logs/pool.log</code>
+                                    <code>file.pool.log=C:/tomcat/webapps/nabla/WEB-INF/logs/pool.log</code>
                                 </p>
                             </td>
                         </tr>
@@ -590,19 +590,19 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                                     <code>log4j.rootLogger=WARNING, Error</code>
                                 </p>
 								<p>
-                                    <code>log4j.logger.lutece.error=ERROR, Error, Console</code>
+                                    <code>log4j.logger.nabla.error=ERROR, Error, Console</code>
                                 </p>
 								<p>
-                                    <code>log4j.logger.lutece.pool=ERROR, Error</code>
+                                    <code>log4j.logger.nabla.pool=ERROR, Error</code>
                                 </p>
 								<p>
                                     <code>...</code>
                                 </p>
                                 <p>
-                                    <code>log4j.appender.Error.File=C:/tomcat/webapps/lutece/WEB-INF/logs/error.log</code>
+                                    <code>log4j.appender.Error.File=C:/tomcat/webapps/nabla/WEB-INF/logs/error.log</code>
                                 </p>
                                 <p>
-                                    <code>log4j.appender.Application.File=C:/tomcat/webapps/lutece/WEB-INF/logs/application.log</code>
+                                    <code>log4j.appender.Application.File=C:/tomcat/webapps/nabla/WEB-INF/logs/application.log</code>
                                 </p>
                                 <p>
                                     <code>...</code>
@@ -672,13 +672,13 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                         <tr>
                             <td>
                                 <p>
-                                    <code>portal.url=jdbc:mysql://127.0.0.1/lutece?autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8</code>
+                                    <code>portal.url=jdbc:mysql://127.0.0.1/nabla?autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8</code>
                                 </p>
                                 <p>                              
-                                    <code>portal.user=lutece</code>
+                                    <code>portal.user=nabla</code>
                                 </p>
                                 <p>
-                                    <code>portal.password=lutece</code>
+                                    <code>portal.password=nabla</code>
                                 </p>
                             </td>
                         </tr>        
@@ -770,13 +770,13 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
             <p>
                 To launch the webapp, type in your browser the 
                 following URL (the tomcat server must be running):
-                <strong><code>http://localhost:8080/lutece/</code></strong>.
+                <strong><code>http://localhost:8080/nabla/</code></strong>.
             </p>
         </section>
         <section name="IV. Connection to Nabla administration module">
             <p>
                 Type the following URL to go into the administration module:
-                <strong><code>http://localhost:8080/lutece/jsp/admin/AdminLogin.jsp</code></strong>.
+                <strong><code>http://localhost:8080/nabla/jsp/admin/AdminLogin.jsp</code></strong>.
             </p>
             <p>
                 Two accounts are created by default:
@@ -788,7 +788,7 @@ CATALINA_OPTS="-Xms128m -Xmx512m"
                         (Technical administrator account).
                     </li>
                     <li>
-                        Login : <code>lutece</code> - Password : <code>lutece</code>
+                        Login : <code>nabla</code> - Password : <code>nabla</code>
 						(Content administrator account).
                     </li>
                 </ul>

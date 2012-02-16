@@ -19,7 +19,7 @@
 					</tr>
 					<tr>
 						<td>
-							<a href="/lutece-core/index.html">core</a>
+							<a href="/nabla-core/index.html">core</a>
 						</td>
 						<td>Core : Main piece of Nabla. The core contains fiew core
 							functionalities. Functionnalities come from the plugins.</td>
@@ -39,114 +39,6 @@
 						<td>Plugin Calendar : multi-projects Agenda (iCalendar
 							compliant)</td>
 					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-childpages/">childpages</a>
-						</td>
-						<td>Plugin Childpages : Child pages Portlet</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-contact/">contact</a>
-						</td>
-						<td>Plugin Contact : contact form</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-dbpage/">dbpage</a>
-						</td>
-						<td>Plugin DbPage : easy database data publishing (no java
-							required)</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-document/">document</a>
-						</td>
-						<td>Plugin Document : The Nabla CMS plugin </td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-folderlisting/">folderlisting</a>
-						</td>
-						<td>Plugin Folderlisting : Folder publishing</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-html/">html</a>
-						</td>
-						<td>Plugin Html : HTML Portlet using a WYSIWYG editor</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-jsr170/">jsr170</a>
-						</td>
-						<td>Plugin Jsr170 : Publishing and storing data from a Java
-							Content Repository (such as Alfresco, JackRabbit, ...)</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-library/">library</a>
-						</td>
-						<td>Plugin Library : Multimedia Library (publishing and
-							Management)</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-linkpages/">linkpages</a>
-						</td>
-						<td>Plugin Linkpages : Add Nabla internal links into page
-							content</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-links/">links</a>
-						</td>
-						<td>Plugin Links : links Portlet</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-myapps/">myapps</a>
-						</td>
-						<td>Plugin Myapps : My favorites Applications</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-newsletter/">newsletter</a>
-						</td>
-						<td>Plugin Newsletter : News letter based on latest
-							documents published</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-rss/">rss</a>
-						</td>
-						<td>Plugin RSS : RSS feeds producer and publisher</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-tagcloud/">tagcloud</a>
-						</td>
-						<td>Plugin TagCloud : Classical Tag Cloud Portlet</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-upload/">upload</a>
-						</td>
-						<td>Plugin Upload : File Upload from Nabla Back Office </td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-whatsnew/">whatsnew</a>
-						</td>
-						<td>Plugin Whatsnew : Displays latest documents or pages
-							updated in a Portlet</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-xmlpage/">xmlpage</a>
-						</td>
-						<td>Plugin Xmlpage : XML document publishing</td>
-					</tr>
 				</table>
 
 			</p>
@@ -162,19 +54,6 @@
 						</td>
 						<td>Plugin Form : Design and provides various forms on the
 							site (conditionnal questions, list of values, ...)</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-formengine/">formengine</a>
-						</td>
-						<td>Plugin Formengine : Form engine to build complex forms
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-jsr168/">jsr168</a>
-						</td>
-						<td>Plugin Jsr168 : JSR168 portlets container</td>
 					</tr>
 					<tr>
 						<td>
@@ -198,56 +77,10 @@
 					</tr>
 					<tr>
 						<td>
-							<a href="/plugins/plugin-mylutece/">mylutece</a>
+							<a href="/plugins/plugin-mynabla/">mynabla</a>
 						</td>
-						<td>Plugin Mylutece : Authentication management to manage
+						<td>Plugin Mynabla : Authentication management to manage
 							private area and user's customization</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-cas/">mylutece-cas</a>
-						</td>
-						<td>Module CAS for MyNabla - CAS authentication</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-database/">mylutece-database</a>
-						</td>
-						<td>Module Database for MyNabla - Database based
-							authentication</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-ldapdatabase/">mylutece-ldapdatabase</a>
-						</td>
-						<td>Module LDAPDatabase for MyNabla - LDAP based
-							authentication + roles stored in DB</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-openid/">mylutece-openid</a>
-						</td>
-						<td>Module OpenID for MyNabla - OpenID authentication</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-openiddatabase/">mylutece-openiddatabase</a>
-						</td>
-						<td>Module OpenID for MyNabla - OpenID authentication +
-							roles stored in DB</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-saml/">mylutece-saml</a>
-						</td>
-						<td>Module SAML for MyNabla - SAML authentication</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/module-mylutece-webserver/">mylutece-webserver</a>
-						</td>
-						<td>Module WebServer pour MyNabla - Web Server
-							authentication (ex: Tomcat Realm)</td>
 					</tr>
 				</table>
 			</p>
@@ -298,21 +131,7 @@
 						</td>
 						<td>Plugin SystemInfo : System Info display for Nabla
 							Backoffice</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-xpagelinkservice/">xpagelinkservice</a>
-						</td>
-						<td>Plugin Xpagelinkservice : Add links to applications in
-							Nabla contents</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-insertajaxcounter/">insertajaxcounter</a>
-						</td>
-						<td>Plugin Insertajaxcounter : Add ajax counter to
-							applications in Nabla contents</td>
-					</tr>
+					</tr>					
 				</table>
 			</p>
 			<p>
@@ -327,65 +146,7 @@
 						</td>
 						<td>Plugin Codewizard : Java Code generator to develop
 							Nabla plugins</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="plugins/plugin-jcaptcha/">jcaptcha</a>
-						</td>
-						<td>Plugin JCaptcha : To Add Captcha in all kind of forms
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="plugins/plugin-ohloh/">ohloh</a>
-						</td>
-						<td>Plugin Ohloh : Display Open Source developers activity
-							based on Ohloh data and API</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-pluginwizard/">pluginwizard</a>
-						</td>
-						<td>Plugin Pluginwizard : Generate most files needed to make
-							a simple plugin</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-sitemap/">sitemap</a>
-						</td>
-						<td>Plugin Sitemap : Generate a sitemap file for search
-							engines</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-urlrewriter/">urlrewriter</a>
-						</td>
-						<td>Plugin UrlRewriter : Url Rewriting features</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-parisalacarte/">parisalacarte</a>
-						</td>
-						<td>Plugin parisalacarte : integration with <a href="http://paris-a-la-carte-version-pl.paris.fr/carto/mapping">Paris a la carte</a></td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-parisvideo/">parisvideo</a>
-						</td>
-						<td>Plugin parisvideo : integration with <a href="http://www.v2asp.paris.fr/v2/paristv/">Paris video</a> webservices</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-insertajax/">insertajax</a>
-						</td>
-						<td>Plugin insertajax : insert asynchronous datas in your pages.</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="/plugins/plugin-insertalbum/">insertalbum</a>
-						</td>
-						<td>Plugin insertalbum : insert Jquery gallery in your pages in 3 clics.</td>
-					</tr>
+					</tr>					
 					<tr>
 						<td>
 							<a href="/plugins/plugin-map/">map</a>

@@ -67,12 +67,12 @@ private static final String BOOKMARK_NAME = "@name@";
                                    <pre>
 
 {
-    // Get the base URL ( i.e.: "http://localhost:8080/lutece/" )
+    // Get the base URL ( i.e.: "http://localhost:8080/nabla/" )
     String strBaseUrl = AppPathService.getBaseUrl( request );
 
     ...
     
-    // Get the WebApp absolute path ( i.e.: "/usr/local/tomcat/webapps/lutece" )
+    // Get the WebApp absolute path ( i.e.: "/usr/local/tomcat/webapps/nabla" )
     String strWebAppPath = AppPathService.getWebAppPath();
    
 }                                </pre>

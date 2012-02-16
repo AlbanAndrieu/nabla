@@ -15,9 +15,9 @@
                         </p>
                         <p>
                         <ul>
-                              <li>A Java Virtual Machine(1.5.x or greater) must be installed on your Operating System</li>
-                              <li>A Servlet engine which is compatible with the API 2.2 ( Apache Tomcat is recommanded)</li>
-                              <li>A Relational Database (Default configuration is MySQL v4.xx). </li>
+                              <li>A Java Virtual Machine(1.6.x or greater) must be installed on your Operating System</li>
+                              <li>A Servlet engine which is compatible with the API 2.2 (Apache Tomcat is recommanded)</li>
+                              <li>A Relational Database (Default configuration is Derby). </li>
                         </ul>
                         </p>
                     </subsection>
@@ -35,7 +35,7 @@
                         </p>    
                         <p>
                         <ul>
-                              <li><a href="license-lutece.html">Nabla License</a></li>
+                              <li><a href="license.html">Nabla License</a></li>
                               <li><a href="dependencies.html">Legal Information concerning libraries used by Nabla </a></li>
                         </ul>
                         </p>

@@ -30,9 +30,9 @@
           </p>
           <p>
               To realize the tests on the class :
-              <ul><li><code>src/java/<strong>fr/paris/lutece/plugins/myplugin/web/MyClass</strong></code></li></ul>
+              <ul><li><code>src/java/<strong>fr/paris/nabla/plugins/myplugin/web/MyClass</strong></code></li></ul>
               A class must be created :
-              <ul><li><code>test/java/<strong>fr/paris/lutece/plugins/myplugin/web/MyClassTest</strong></code></li></ul>
+              <ul><li><code>test/java/<strong>fr/paris/nabla/plugins/myplugin/web/MyClassTest</strong></code></li></ul>
           </p>
           <p>
               The class <code>NablaTestCase</code> extends the abstract <code>TestCase</code>

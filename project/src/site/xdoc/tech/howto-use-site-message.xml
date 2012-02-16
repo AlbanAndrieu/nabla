@@ -67,7 +67,7 @@ SiteMessageService.setMessage( request, PROPERTY_ACCESS_DENIED_ERROR_MESSAGE, nu
 						internationalization strings of message and title message.
 					</p>
 					<p>
-						mylutece database module now using this service. It can be used in example.
+						mynabla database module now using this service. It can be used in example.
 					</p>
 					<subsection name="Using service in filter">
 						<p>

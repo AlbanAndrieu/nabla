@@ -156,19 +156,19 @@
                            </tr>
                            <tr>
                                <td>The java source files in the business layer</td>
-                               <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/business/*.java</td>
+                               <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/business/*.java</td>
                            </tr>
                            <tr>
                                <td>The java source files in the service layer</td>
-                               <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/service/*.java</td>
+                               <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/service/*.java</td>
                            </tr>
                            <tr>
                                <td>The java source files in the presentation layer</td>
-                               <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/web/*.java</td>
+                               <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/web/*.java</td>
                            </tr>
                            <tr>
                                <td>The linguistic resources of different message types</td>
-                               <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/resources/*.properties</td>
+                               <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/resources/*.properties</td>
                            </tr>
                            <tr>
                                <td>The installation SQL scripts and installation script ofthe plugin tables (source distribution)</td>
@@ -196,7 +196,7 @@
     &lt;version&gt;1.0&lt;/version&gt;
     &lt;description&gt;Plugin description&lt;/description&gt;
     &lt;provider&gt;Mairie de Paris&lt;/provider&gt;
-    &lt;provider-url&gt;http://lutece.paris.fr&lt;/provider-url&gt;
+    &lt;provider-url&gt;http://nabla.paris.fr&lt;/provider-url&gt;
     &lt;icon-url&gt;../../images/admin/skin/plugins/myplugin/myplugin.gif&lt;/icon-url&gt;
     &lt;copyright&gt;Copyright (c) 2001-2008 Mairie de Paris&lt;/copyright&gt;
 
@@ -270,7 +270,7 @@
               <subsection name="Modules">
                   <p>
                        Some plugins need their own plugins. These are called <b>modules</b>.
-                      The plugins such as mylutece,formengine and codewizard have modules.
+                      The plugins such as mynabla,formengine and codewizard have modules.
                   </p>
                   <p>
                       The rules concerning the modules are the following :
@@ -283,7 +283,7 @@
                           </tr>   
                           <tr>
                               <td>Java source files packages</td>
-                              <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/modules/&lt;module_name&gt;/**/*.java</td>
+                              <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/modules/&lt;module_name&gt;/**/*.java</td>
                           </tr>
                           <tr>
                               <td>Location of HTML template files</td>

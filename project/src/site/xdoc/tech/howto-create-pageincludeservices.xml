@@ -45,7 +45,7 @@
                 </table>
             </p>
             <p>
-                Default services are declared in <code>lutece.properties</code> file.
+                Default services are declared in <code>nabla.properties</code> file.
                 
             </p>
             <p>

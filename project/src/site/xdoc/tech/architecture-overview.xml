@@ -362,7 +362,7 @@
                       The column types and the SQL syntax must be MySQL and PostgreSQL compatible.
                   </p>
                   <p>
-                      <a href="shema-db-lutece.html">Database Schema</a>
+                      <a href="shema-db-nabla.html">Database Schema</a>
                   </p>
                </subsection>
           </section>
@@ -459,7 +459,7 @@
                           <tr>
                                 <td>&lt;webapp&gt;/WEB-INF/lib</td>
                                 <td>*.jar</td>
-                                <td>Archive files containing the classes imported by the application and lutece core.
+                                <td>Archive files containing the classes imported by the application and nabla core.
                                     (specs Servlet 2.2)</td>
                           </tr>
                           <tr>
@@ -522,17 +522,17 @@
                               <th>Description</th>
                           </tr>
                           <tr>
-                                <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/business/</td>
+                                <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/business/</td>
                                 <td>*.java</td>
                                 <td>Java source files in the business layer</td>
                           </tr>
                           <tr>
-                                <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/service/</td>
+                                <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/service/</td>
                                 <td>*.java</td>
                                 <td>Java source files of the presentation service</td>
                           </tr>
                           <tr>
-                                <td>/src/java/fr/lutece/plugins/&lt;plugin_name&gt;/web/</td>
+                                <td>/src/java/fr/nabla/plugins/&lt;plugin_name&gt;/web/</td>
                                 <td>*.java</td>
                                 <td>Java source files of the presentation layer</td>
                           </tr>

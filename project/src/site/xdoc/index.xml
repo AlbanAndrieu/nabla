@@ -10,7 +10,7 @@
 	  
 		<div id="downloadbox">
 			<h5>Get Nabla 1.0.0 Release</h5>
-			<div id="release-date">Released: 1 december 2011</div>
+			<div id="release-date">Released: 1 january 2012</div>
 			<p>
 				<a href="http://code.google.com/p/alban/downloads/list">
 					<img src="tech/images/icones/download.png" alt="Download Nabla 1.0.0" title="Download Nabla 1.0.0"/>
@@ -35,13 +35,15 @@
             </p>
             <p>
 				This software is implemented in <strong>Java</strong> and based on widely used libraries and frameworks : 
-				Spring, Freemarker, Lucene, Ehcache, Jakarta-commons, PDFBox, ... .
+				Spring, Freemarker, Lucene, Ehcache, Jakarta-commons, ... .
 				Nabla is <strong>free and Open-Source</strong> : it is distributed under <a href="license.html">a BSD-like license</a>.
             </p>
+            <!--
             <p>
                 Languages available are English and French. 
                 French users are invited to consult the <a href="http://code.google.com/p/alban">french site</a>. 
             </p>
+            -->
           </section>
 		  
 		  <section name="Nabla Documentation">
@@ -72,10 +74,10 @@
 						<div class="doc-link">
 							<a href="http://code.google.com/p/alban/nabla-migration-tool/index.html">
 								<img src="tech/images/icones/migration.png" alt="Migrate a Nabla site" title="Migrate a Nabla site"/>
-								Migrate Nabla site data from version 1.4 to version 2.x</a>
+								Migrate Nabla site data from version 1.0 to version 2.x</a>
 						</div>
 						<div class="doc-details">
-							Data migration tools from Nabla 1.4 to Nabla 2.x
+							Data migration tools from Nabla 1.0 to Nabla 2.x
 						</div>			
 					</li>
 				</ul>

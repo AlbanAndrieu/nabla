@@ -177,7 +177,7 @@
                   <li><code>public String doModify( HttpServletRequest request );</code> : Processes the portlet (must call to the update method of the class
                   &lt;type&gt;Portlet)</li>
                   <li><code>public String getPropertiesPrefix();</code> : Returns the prefix of properties of the portlet defined in the configuration file :
-                   lutece.properties</li>
+                   nabla.properties</li>
               </ul>
            </p>
            <p>

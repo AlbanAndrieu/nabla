@@ -2,14 +2,14 @@
   <document>
    <properties>
     <title>
-      Nabla : Schema de la base lutece_users
+      Nabla : Schema de la base nabla_users
     </title>
    </properties>
    <body>
-    <section name="Schéma de la base mylutece_users">
+    <section name="Schéma de la base mynabla_users">
         
 
-        <subsection name="lutece_group">
+        <subsection name="nabla_group">
             <p>
                <table border="1">
                    <tr>
@@ -40,7 +40,7 @@
             </p>    
         </subsection>
         
-        <subsection name="lutece_group_role">
+        <subsection name="nabla_group_role">
             <p>
                 <table border="1">
                     <tr>
@@ -71,7 +71,7 @@
                </p>
            </subsection>        
 
-           <subsection name="lutece_role">
+           <subsection name="nabla_role">
                <p>
                    <table border="1">
 	                   <tr>
@@ -102,7 +102,7 @@
                </p>
            </subsection>    
               
-           <subsection name="lutece_user">
+           <subsection name="nabla_user">
                <p>
                    <table border="1">
 	                   <tr>
@@ -165,7 +165,7 @@
                </p>    
            </subsection>
                    
-           <subsection name="lutece_user_group">
+           <subsection name="nabla_user_group">
                <p> 
                    <table border="1">
                        <tr>
@@ -196,7 +196,7 @@
                </p>
            </subsection>
            
-           <subsection name="lutece_user_role">
+           <subsection name="nabla_user_role">
                <p>
                    <table border="1">
 	                   <tr>

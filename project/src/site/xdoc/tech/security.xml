@@ -55,7 +55,7 @@
            <p>
               <ul>
                  <li>elle doit prévoir des méthodes de connexion/déconnexion (<code>login</code> / <code>logout</code>).</li>
-                 <li>elle spécialise la classe abstraite <code>com.nabla.project.plugins.mylutece.authentication.PortalAuthentication</code>.</li>
+                 <li>elle spécialise la classe abstraite <code>com.nabla.project.plugins.mynabla.authentication.PortalAuthentication</code>.</li>
               </ul>
            </p>
            <p>
@@ -67,7 +67,7 @@
               <ul>
                   <li>elle ne doit pas prévoir des méthodes de connexion /déconnexion puisque celles-ci sont assurées par le dispositif
                    externe situé en amont.</li>
-                  <li>elle spécialise la classe abstraite <code>com.nabla.project.plugins.mylutece.authentication.ExternalAuthentication</code>.</li>
+                  <li>elle spécialise la classe abstraite <code>com.nabla.project.plugins.mynabla.authentication.ExternalAuthentication</code>.</li>
               </ul>
            </p>
            <p>
@@ -95,9 +95,9 @@
              </p>
              <p>
                 Ces implémentations ne font pas partie du noyau, elles
-                sont disponibles dans le plugin "mylutece" sous le
+                sont disponibles dans le plugin "mynabla" sous le
                 paquetage
-                <code>com.nabla.project.plugins.mylutece.modules.*</code>.
+                <code>com.nabla.project.plugins.mynabla.modules.*</code>.
              </p>
              <p>
                 La façon dont ces modèles d’utilisateurs délivrent les
@@ -194,7 +194,7 @@
                      principale du site, <code>Portal.jsp</code>. Celle-ci
                      enregistre les paramètres courants de l’url, redirige
                      l’utilisateur vers la page de login paramétrée dans le
-                     fichier <code>mylutece.properties</code>. Une fois
+                     fichier <code>mynabla.properties</code>. Une fois
                      l’identification réalisée, l’utilisateur est redirigé vers
                      l’url à laquelle il tentait d’accéder initialement :
                </p>
@@ -225,21 +225,21 @@
      </section> 
      <section name="Mise en oeuvre" >
         
-        <subsection name="Paramétrage de l’authentification : Installation du plugin mylutece">
+        <subsection name="Paramétrage de l’authentification : Installation du plugin mynabla">
             <p>
                Le plugin doit être déployé comme n’importe quel
                plugin. Si le dispositif d’authentification utilise la base
                de données proposée par défaut, il faut installer la base
-               <a href="shema.html"><code>lutece_users</code></a>, déclarer
+               <a href="shema.html"><code>nabla_users</code></a>, déclarer
                un pool de connexion vers cette base et associer ce pool au
                plugin dans l’interface de gestion des plugins.
             </p>
         </subsection>
-        <subsection name="Paramétrage du plugin mylutece">
+        <subsection name="Paramétrage du plugin mynabla">
              <p>
                 Les paramètres décrivant l’implémentation choisie sont
                 définis dans le fichier de configuration
-                <code>mylutece.properties</code> de Nabla grâce aux propriétés
+                <code>mynabla.properties</code> de Nabla grâce aux propriétés
                 suivantes :
              </p>
              <p>
@@ -247,8 +247,8 @@
         <pre>
 ########################################################
 #  Authentication management
-mylutece.authentication.enable=true
-mylutece.authentication.class=com.nabla.project.portal.service.security.LDAPAuthentication</pre>
+mynabla.authentication.enable=true
+mynabla.authentication.class=com.nabla.project.portal.service.security.LDAPAuthentication</pre>
                  </div>
               </p>
               <p>
@@ -256,10 +256,10 @@ mylutece.authentication.class=com.nabla.project.portal.service.security.LDAPAuth
               </p>
               <p>
                  <ul>
-                     <li><code>lutece.authentication.enable</code> : détermine si le mode d’authentification de l’instance de Nabla
+                     <li><code>nabla.authentication.enable</code> : détermine si le mode d’authentification de l’instance de Nabla
                      reposera sur le SSO (obligatoire)</li>
-                     <li><code>lutece.authentication.class</code> : détermine la classe qui implémente l’authentification choisie (à
-                     renseigner si <code>lutece.authentication.enable</code> a
+                     <li><code>nabla.authentication.class</code> : détermine la classe qui implémente l’authentification choisie (à
+                     renseigner si <code>nabla.authentication.enable</code> a
                      la valeur <code>true</code>).</li>
                  </ul>
               </p>
@@ -279,19 +279,19 @@ mylutece.authentication.class=com.nabla.project.portal.service.security.LDAPAuth
                </center>
             </p>
             <p>
-               Cette page est accessible à partir de l’adresse <a href="http://myhost/lutece/jsp/site/Portal.jsp?page=mylutece&amp;action=login">
-               http://myhost/lutece/jsp/site/Portal.jsp?page=mylutece&amp;action=login</a>.
+               Cette page est accessible à partir de l’adresse <a href="http://myhost/nabla/jsp/site/Portal.jsp?page=mynabla&amp;action=login">
+               http://myhost/nabla/jsp/site/Portal.jsp?page=mynabla&amp;action=login</a>.
             </p>
             <p>               
                 Son adresse et celle du traitement du formulaire
                 d’identification sont paramétrées dans le fichier
-                <code>mylutece.properties</code> comme suit :
+                <code>mynabla.properties</code> comme suit :
             </p>
             <p>
                 <div class="source">
         <pre>
-mylutece.url.login.page=Portal.jsp?page=mylutece&amp;action=login
-mylutece.url.doLogin=./plugins/mylutece/DoMyNablaLogin.jsp</pre>
+mynabla.url.login.page=Portal.jsp?page=mynabla&amp;action=login
+mynabla.url.doLogin=./plugins/mynabla/DoMyNablaLogin.jsp</pre>
                  </div>
              </p>
          </subsection>
@@ -352,16 +352,16 @@ mylutece.url.doLogin=./plugins/mylutece/DoMyNablaLogin.jsp</pre>
              </p>
              <p>
                 Le paramétrage des URL de ces fonctions est réalisé dans le
-                fichier <code>mylutece.properties</code>. L’exemple suivant
+                fichier <code>mynabla.properties</code>. L’exemple suivant
                 montre le paramétrage d’une implémentation réalisée avec
                 une XPageApp nommée <code>account_manager</code> :
              </p>
              <p>
                 <div class="source">
         <pre>
-mylutece.url.createAccount.page=Portal.jsp?page=account_manager&amp;action=createAccount
-mylutece.url.viewAccount.page=Portal.jsp?page= account_manager&amp;action=viewAccount
-mylutece.url.lostPassword.page=Portal.jsp?page= account_manager&amp;action=lostPassword</pre>
+mynabla.url.createAccount.page=Portal.jsp?page=account_manager&amp;action=createAccount
+mynabla.url.viewAccount.page=Portal.jsp?page= account_manager&amp;action=viewAccount
+mynabla.url.lostPassword.page=Portal.jsp?page= account_manager&amp;action=lostPassword</pre>
                  </div>
               </p>    
            </subsection>
@@ -376,13 +376,13 @@ mylutece.url.lostPassword.page=Portal.jsp?page= account_manager&amp;action=lostP
             <p>
                 Pour mettre en oeuvre ce mode de fonctionnement il faut positionner
                 à <code>true</code> la propriété suivante dans le fichier 
-                <code>mylutece.properties</code> :
+                <code>mynabla.properties</code> :
             </p>
             <p>
                 <div class="source">
                     <pre>
 # Only authenticated users can access to the portal
-mylutece.portal.authentication.required=true
+mynabla.portal.authentication.required=true
                     </pre>
                 </div>
             </p>
@@ -555,8 +555,8 @@ mylutece.portal.authentication.required=true
                       </td>
                   </tr>
                   <tr>                   
-<td><pre>Dans mylutece.properties :
-mylutece.authentication.enable=false</pre></td>
+<td><pre>Dans mynabla.properties :
+mynabla.authentication.enable=false</pre></td>
                   </tr>
                   <tr>
                       <td>
@@ -567,10 +567,10 @@ mylutece.authentication.enable=false</pre></td>
                   </tr>
                   <tr>
                       <td> 
-<pre>Dans  mylutece.properties :
-mylutece.authentication.enable=true
-mylutece.authentication.class=&lt; classe module authentification &gt;                          
-mylutece.portal.authentication.required=true
+<pre>Dans  mynabla.properties :
+mynabla.authentication.enable=true
+mynabla.authentication.class=&lt; classe module authentification &gt;                          
+mynabla.portal.authentication.required=true
 </pre>
                       </td>
                   </tr>
@@ -584,9 +584,9 @@ mylutece.portal.authentication.required=true
                   </tr>
                   <tr>
                       <td> 
-<pre>Dans  mylutece.properties :
-mylutece.authentication.enable=true
-mylutece.authentication.class=&lt; classe module authentification &gt;                          
+<pre>Dans  mynabla.properties :
+mynabla.authentication.enable=true
+mynabla.authentication.class=&lt; classe module authentification &gt;                          
 
 Dans le fichier XML du plugin de l'application :
    &lt;application-security-model&gt;1&lt;/application-security-model&gt;
@@ -605,9 +605,9 @@ Dans le fichier XML du plugin de l'application :
                   <tr>
                       <td> 
                           
-<pre>Dans  mylutece.properties :
-mylutece.authentication.enable=true
-mylutece.authentication.class=&lt; classe module authentification &gt;                          
+<pre>Dans  mynabla.properties :
+mynabla.authentication.enable=true
+mynabla.authentication.class=&lt; classe module authentification &gt;                          
 
 Dans le fichier XML du plugin de l'application :
      &lt;application-roles&gt;role1,role2,admin&lt;/application-roles&gt;
@@ -624,9 +624,9 @@ Dans le fichier XML du plugin de l'application :
                   </tr>
                   <tr>
                       <td> 
-<pre>Dans  mylutece.properties :
-mylutece.authentication.enable=true
-mylutece.authentication.class=&lt; classe module authentification &gt;                          
+<pre>Dans  mynabla.properties :
+mynabla.authentication.enable=true
+mynabla.authentication.class=&lt; classe module authentification &gt;                          
 
 Dans le code de l'application :
 - Tester si l'utilisateur dispose du rôle pour 

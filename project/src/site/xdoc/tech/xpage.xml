@@ -11,7 +11,7 @@
       Qu'appelle-t-on Page spéciale?
     </h3>
     <p>
-      Sur Lutèce, on peut distinguer deux types de page :
+      Sur Nabla, on peut distinguer deux types de page :
     </p>
     <ul>
       <li>des pages que l'on pourrait qualifier de "classiques" qui
@@ -60,7 +60,7 @@
       du site.<br />
 
       Par exemple,
-      http://myhost/lutece/jsp/site/Portal.jsp?page=plan pour
+      http://myhost/nabla/jsp/site/Portal.jsp?page=plan pour
       obtenir le plan du site.<br />
       Ce paramètre spécifie le nom du plugin contenant la
       XPageApp.<br />

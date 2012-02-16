@@ -41,7 +41,8 @@
 
     <body>    	
     	<breadcrumbs>
-    	  <item name="Skins" href="http://maven.apache.org/skins/index.html" />
+    	  <!--<item name="Skins" href="http://maven.apache.org/skins/index.html" />-->
+    	  <item name="Home" href="http://www.maven.nabla.mobi/project/index.html" />
     	</breadcrumbs>    
     	
         <links>
@@ -59,9 +60,8 @@
             <item name="License" href="license.html"/>
             <item name="Dependencies" href="dependencies.html"/>
 
-            <item name="Release Notes" href="release-notes.html" />
+            <!--<item name="Release Notes" href="release-notes.html" />
             <item name="General Information" href="about.html"/>
-            <!--<item name="For Maven 1.0 Users" href="maven1.html"/>
             <item name="Road Map" href="roadmap.html" />-->
             <item name="APT Format" href="format.html"/>
             <item name="FAQ" href="faq.html"/>
@@ -118,7 +118,7 @@
 
        <menu name="Components">
             <item name="Components List" href="available-plugins.html"/>
-            <!--<item name="Nabla plugin for Maven2" href="/plugins/maven-lutece-plugin/index.html" />-->
+            <!--<item name="Nabla plugin for Maven2" href="/plugins/maven-nabla-plugin/index.html" />-->
        </menu>
 
 <!--
@@ -128,13 +128,14 @@
        </menu>
 -->
        <menu name="Other Resources">
-            <item name="Documents" href="./documents"/>
+            <!--<item name="Documents" href="/project/documents"/>-->
+            <item name="Maven Site Skin Documentation" href="/../../../../../index.html"/>
+            <item name="C++ Documentation sample" href="/../../../../../cpp/index.html"/>
             <item name="Other Links" href="otherlinks.html"/>
        </menu> 
        
        <menu name="Sample Project">       	    
-       	    <item name="Maven Site Default Samples" href="/sample/interview/index.html"/>
-            <item name="Maven Site Skin Samples" href="/uml/nabla/maven/skin/index.html"/>       	    
+       	    <item name="Maven Site Default Samples" href="/sample/interview/index.html"/>            
             <item name="Databases Samples" href="../../../../sample/dao/business/index.html"/>
             <item name="UML Samples" href="/uml/sample/index.html"/>
        </menu> 
@@ -161,16 +162,6 @@
             <item name="Presentation Server Sample" href="/karmaSample/index.html"/>           
        </menu>
        -->        
-       
-       <!--       
-       <menu name="Doxygen Resources">
-            <item name="Doxygen BACKEND" href="/BACKEND/doc/html/index.html"/>
-            <item name="Doxygen BACKEND-APPS" href="/BACKEND-APPS/doc/html/index.html"/>
-            <item name="Doxygen BACKEND-COMMON" href="/BACKEND-COMMON/doc/html/index.html"/>
-            <item name="Doxygen BACKEND-INFRA" href="/BACKEND-INFRA/doc/html/index.html"/>            
-            <item name="Doxygen BACKEND-TOOLS" href="/BACKEND-TOOLS/doc/html/index.html"/>            
-       </menu>
--->
        
     <menu ref="reports"/>
 
