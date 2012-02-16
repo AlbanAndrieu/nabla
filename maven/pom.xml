@@ -1,13 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--
+
+<!--
     <parent>
-        <groupId>com.nabla.project.uml</groupId>
-    	<artifactId>nabla</artifactId>
-        <version>1.0</version>
+    	<groupId>com.nabla.project</groupId>
+    	<artifactId>dependencies</artifactId>
+    	<version>1.0</version>
+    	<relativePath>../dependencies/pom.xml</relativePath>
     </parent>
-    -->
+-->    
     <groupId>com.nabla.project</groupId>
     <artifactId>maven</artifactId>
     <version>1.0</version>
@@ -26,4 +28,94 @@
     <modules>
         <module>skin</module>
     </modules>
+
+    <properties>    
+    	<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
+      	<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
+	<wagon.ftp.plugin.version>1.0-beta-6</wagon.ftp.plugin.version>
+    </properties>
+    
+    <build>
+    	<extensions>
+    		<!-- WebDAV for remote deployment -->
+    		<!-- sonar desactivation required -->
+    		<extension>
+    			<groupId>org.apache.maven.wagon</groupId>
+    			<artifactId>wagon-webdav</artifactId>
+    			<version>${wagon.webdav.plugin.version}</version>
+    		</extension>
+    		<extension>
+    			<groupId>org.jvnet.wagon-svn</groupId>
+    			<artifactId>wagon-svn</artifactId>
+    			<version>${wagon.svn.plugin.version}</version>
+    		</extension>
+    		<extension>
+    			<groupId>org.apache.maven.wagon</groupId>
+    			<artifactId>wagon-ftp</artifactId>
+    			<version>${wagon.ftp.plugin.version}</version>
+    		</extension>
+    	</extensions>		
+    </build>			
+	
+    <profiles>
+	<profile>
+		<id>local</id>
+        	<activation>            			
+		    <property>
+		    	<name>profile.activation</name>
+		    </property>
+        	</activation>
+		<distributionManagement>
+			<repository>
+				<id>local-releases</id>
+				<name>Internal Release Repository</name>
+				<url>${distributionManagement.repository.url}/releases/</url>
+			</repository>
+			<snapshotRepository>
+				<id>local-snapshots</id>
+				<name>Internal Snapshot Repository</name>
+				<url>${distributionManagement.repository.url}/snapshots/</url>
+			</snapshotRepository>
+			<site>
+				<id>website</id>
+				<name>Project Website</name>
+				<url>file:/tmp</url>
+			</site>
+		</distributionManagement>
+	</profile>
+	<profile>
+		<id>server</id>
+		<activation>
+			<property>
+				<name>!profile.activation</name>
+			</property>
+		</activation>
+		<build>
+		</build>
+		<distributionManagement>
+			<repository>
+				<id>server-releases</id>
+				<name>External Staging Repository</name>
+				<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
+				<uniqueVersion>false</uniqueVersion>
+			</repository>
+			<snapshotRepository>
+				<id>server-snapshots</id>
+				<name>External Snapshot Repository</name>
+				<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+				<uniqueVersion>false</uniqueVersion>
+			</snapshotRepository>
+			<site>
+				<id>website</id>
+				<name>Project Website</name>
+				<url>ftp://www.nabla.mobi/maven</url>
+			</site>
+		</distributionManagement>
+        	<properties>
+        	    <repositoryId>server-snapshots</repositoryId>
+        	    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+        	</properties>    			
+	</profile>   
+    </profiles>		
+
 </project>
