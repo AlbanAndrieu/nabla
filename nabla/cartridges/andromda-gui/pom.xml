@@ -23,13 +23,11 @@ context GuiManageableEntity
 inv:manageableServiceName->notEmpty()
 -->
     <dependencies>
-    	<!--
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>${project.artifactId}-components</artifactId>
             <version>${project.version}</version>
         </dependency>
-         -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>andromda-meta-cartridge</artifactId>
@@ -53,7 +51,6 @@ inv:manageableServiceName->notEmpty()
                 </dependencies>
                 -->
             </plugin>
-            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -79,7 +76,6 @@ inv:manageableServiceName->notEmpty()
                     </execution>
                 </executions>
             </plugin>
-             -->
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-cartridge-plugin</artifactId>
@@ -92,10 +88,11 @@ inv:manageableServiceName->notEmpty()
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <actualDirectory>${project.build.directory}/cartridge-test/actualUML2</actualDirectory>
-                            <expectedDirectory>${project.build.directory}/cartridge-test/expectedUML2</expectedDirectory>
                             <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
                             <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <!--<actualDirectory>${project.build.directory}/cartridge-test/actualUML2</actualDirectory>-->
+                            <actualDirectory>${project.basedir}/target/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.build.directory}/cartridge-test/expectedUML2</expectedDirectory>                            
                             <reportDirectory>${project.build.directory}/cartridge-test/reportsUML2</reportDirectory>
                         </configuration>
                     </execution>
@@ -117,6 +114,7 @@ inv:manageableServiceName->notEmpty()
     	<model.name>GuiMetafacadeModel</model.name>
     	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
         <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
-        <test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>
+        <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
+        <test.output.dir>${project.basedir}/target/cartridge-test/actualUML2</test.output.dir>
     </properties>
 </project>
