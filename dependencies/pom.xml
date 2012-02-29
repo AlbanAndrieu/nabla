@@ -1289,6 +1289,7 @@
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
 		<jsf.facelets.version>1.1.15</jsf.facelets.version>
+		<jsf.api.version>1.2_15</jsf.api.version>
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<asm.version>2.2.3</asm.version>
 		<aspectj.version>1.6.6</aspectj.version>
@@ -1343,6 +1344,7 @@
 		<easymock.version>2.2</easymock.version>
 		<mockito.version>1.8.0</mockito.version>
 		<jsp.version>2.0</jsp.version>
+		<jsp-api.version>2.2.1-b03</jsp-api.version>
 		<!--<junit.version>4.8.2</junit.version>-->
 		<junit.version>4.4</junit.version>
 		<httpunit.version>1.6.2</httpunit.version>
@@ -1483,7 +1485,7 @@
 		<maven.shade.plugin.version>1.0.1</maven.shade.plugin.version>
 		<maven.rar.plugin.version>2.2</maven.rar.plugin.version>
 		<maven.install.plugin.version>2.3.1</maven.install.plugin.version>
-		<maven.ear.plugin.version>2.5</maven.ear.plugin.version>
+		<maven.ear.plugin.version>2.6</maven.ear.plugin.version>
 		<maven.jboss.plugin.version>1.4</maven.jboss.plugin.version>
 		<maven.jboss.packaging.plugin.version>2.1.1</maven.jboss.packaging.plugin.version>
 		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
@@ -2912,6 +2914,12 @@
 				<version>${jsp.version}</version>
 				<scope>provided</scope>
 			</dependency>
+            		<dependency>
+            		    	<groupId>javax.servlet.jsp</groupId>
+            		    	<artifactId>jsp-api</artifactId>
+            		    	<version>${jsp-api.version}</version>
+            		    	<scope>provided</scope>
+            		</dependency>			
 			<dependency>
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
