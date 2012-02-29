@@ -69,7 +69,7 @@
 							<excludeModules>build-tools</excludeModules>
 							<excludeModules>maven-gui-plugin</excludeModules>
 							<!--<siteDirectory>${basedir}/site/src/site</siteDirectory>-->
-							<port>8070</port>
+							<port>${server.port}</port>
 
 							<reportPlugins>
 								<plugin>
