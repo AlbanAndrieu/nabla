@@ -167,6 +167,7 @@
 			<artifactId>ehcache</artifactId>
 			<!-- <version>1.2.3</version> -->
 			<scope>compile</scope>
+			<type>pom</type>
 		</dependency>
 	</dependencies>
 
