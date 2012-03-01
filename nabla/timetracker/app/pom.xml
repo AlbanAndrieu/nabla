@@ -38,6 +38,17 @@
             <artifactId>log4j</artifactId>
             <scope>provided</scope>
         </dependency-->
+        <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
+        <dependency>
+            <groupId>org.andromda</groupId>
+            <artifactId>andromda-script-wrappers</artifactId>
+            <scope>provided</scope>
+        </dependency>        
+	<dependency>
+	   <groupId>xml-apis</groupId>
+	   <artifactId>xml-apis</artifactId>
+	   <scope>provided</scope>
+	</dependency>	
     </dependencies>
     <build>
         <finalName>${application.id}-${project.version}</finalName>
