@@ -16,4 +16,11 @@
 	<name>Etl Core API</name>
 	<description>Java interfaces of the Etl</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
 </project>
