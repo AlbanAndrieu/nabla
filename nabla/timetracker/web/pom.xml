@@ -181,7 +181,7 @@
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
-            <version>1.2_15</version>
+            <version>${jsf.api.version}</version>
         </dependency>
         <!--dependency>
             <groupId>com.sun.faces</groupId>
@@ -195,8 +195,13 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <targetPath>${project.basedir}/target/src/main/webapp</targetPath>
+                <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>true</filtering>
+            </resource>
+	        <resource>
+                <directory>${maven.build.generated}/main/webapp</directory>
+                <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
+                <filtering>false</filtering>
             </resource>
         </resources>
         <plugins>
@@ -212,7 +217,7 @@
                 </executions>
                 <configuration>
                     <target>
-                        <copy todir="${project.basedir}/target/src/main/webapp" overwrite="true" failonerror="false">
+                        <copy todir="${project.basedir}/${target.dir}/src/main/webapp" overwrite="true" failonerror="false">
                             <fileset dir="${project.basedir}/src/main/webapp">
                                 <include name="**/*"/>
                             </fileset>
@@ -226,9 +231,9 @@
             </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <!-- <version>${maven.war.plugin.version}</version>-->
                 <configuration>
-                    <warSourceDirectory>target/src/main/webapp</warSourceDirectory>
+                    <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>
                     <!-- Needed for mvn 2.1 with war-plugin 2.1. See http://jira.codehaus.org/browse/MWAR-187 -->
                     <useCache>false</useCache>
                     <excludes>**/*.java</excludes>
