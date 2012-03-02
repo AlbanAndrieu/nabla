@@ -1290,7 +1290,7 @@
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
 		<jsf.facelets.version>1.1.15</jsf.facelets.version>
-		<jsf.api.version>1.2_15</jsf.api.version>
+		<!--<jsf.api.version>1.2_15</jsf.api.version>-->
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<asm.version>2.2.3</asm.version>
 		<aspectj.version>1.6.6</aspectj.version>
@@ -1314,7 +1314,8 @@
 		<!--<hibernate.validator.version>3.0.0.ga</hibernate.validator.version>-->
 		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>	
 		<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
-		<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>	
+		<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>	 
+		<hibernate.search.version>4.0.0.Final</hibernate.search.version>
 		<jbpm.version>3.3.1.GA</jbpm.version>
 		<ibatis.version>2.3.0</ibatis.version>
 		<javax.mail.version>1.4.3</javax.mail.version>
@@ -1355,12 +1356,14 @@
 
 		<google.api.client>1.0.10-alpha</google.api.client>
 		<selenium.version>0.8.1</selenium.version>
-		<!--<myfaces.version>1.2.14</myfaces.version>-->
-		<myfaces.version>1.2.9</myfaces.version>		
-		<myfaces.extval.version>1.2.4</myfaces.extval.version>
-		<!--<myfaces.tomahawk.version>1.1.10</myfaces.tomahawk.version>-->
-		<org.apache.myfaces.tomahawk.version>1.1.10</org.apache.myfaces.tomahawk.version>
+		<myfaces.version>1.2.9</myfaces.version>
+		<!--<myfaces.version>1.2.11</myfaces.version> does not work-->
+		<!--<myfaces.version>2.1.6</myfaces.version>-->
+		<myfaces.extval.version>1.2.5</myfaces.extval.version>
+		<!--<myfaces.extval.version>2.0.5</myfaces.extval.version>-->	
+		<org.apache.myfaces.tomahawk.version>1.1.11</org.apache.myfaces.tomahawk.version>
 		<org.apache.myfaces.trinidad.version>1.2.14</org.apache.myfaces.trinidad.version>
+		<!--<org.apache.myfaces.trinidad.version>2.0.0</org.apache.myfaces.trinidad.version>-->
 		<el.api.version>2.2.1-b04</el.api.version>
 		<portlet.api.version>1.0</portlet.api.version>
 		<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>		
@@ -1486,7 +1489,7 @@
 		<maven.shade.plugin.version>1.0.1</maven.shade.plugin.version>
 		<maven.rar.plugin.version>2.2</maven.rar.plugin.version>
 		<maven.install.plugin.version>2.3.1</maven.install.plugin.version>
-		<maven.ear.plugin.version>2.6</maven.ear.plugin.version>
+		<maven.ear.plugin.version>2.7</maven.ear.plugin.version>
 		<maven.jboss.plugin.version>1.4</maven.jboss.plugin.version>
 		<maven.jboss.packaging.plugin.version>2.1.1</maven.jboss.packaging.plugin.version>
 		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
@@ -2507,12 +2510,19 @@
 				<artifactId>testng</artifactId>
 				<version>${testng.version}</version>
 				<!--<classifier>jdk15</classifier>-->
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
 				<version>${xerces.version}</version>
 				<scope>provided</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+				</exclusions>				
 			</dependency>
 			<dependency>
 				<groupId>xalan</groupId>
@@ -2623,6 +2633,7 @@
 				<groupId>cglib</groupId>
 				<artifactId>cglib-nodep</artifactId>
 				<version>${cglib.nodep.version}</version>
+				<scope>runtime</scope>
 			</dependency>	
 			<dependency>
 				<groupId>cglib</groupId>
@@ -2640,7 +2651,11 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate.validator.version}</version>
 			</dependency>
-
+	                <dependency>
+	                	<groupId>org.hibernate</groupId>
+	                	<artifactId>hibernate-search</artifactId>
+	                	<version>${hibernate.search.version}</version> 
+	                </dependency>    
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-annotations</artifactId>
@@ -2728,7 +2743,7 @@
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
 				<version>${log4j.version}</version>
-				<scope>compile</scope>
+				<!--scope>provided</scope-->
 			</dependency>
 			<dependency>
 				<groupId>jfree</groupId>
@@ -2752,7 +2767,18 @@
 				<groupId>com.lowagie</groupId>
 				<artifactId>itext</artifactId>
 				<version>${itext.version}</version>
-				<scope>compile</scope>
+				<scope>runtime</scope>
+				<!-- Same jars included twice in the dependencies with different versions -->
+                                <exclusions>
+                                    <exclusion>
+                                        <groupId>org.bouncycastle</groupId>
+                                        <artifactId>bcprov-jdk14</artifactId>
+                                    </exclusion>
+                                    <exclusion>
+                                        <groupId>org.bouncycastle</groupId>
+                                        <artifactId>bcmail-jdk14</artifactId>
+                                    </exclusion>
+                                </exclusions>
 			</dependency>
 			<dependency>
 				<groupId>poi</groupId>
@@ -2841,18 +2867,20 @@
 				<artifactId>commons-collections</artifactId>
 				<version>${commons.collections.version}</version>
 				<scope>compile</scope>
+				<!-- JBoss contains a version which causes a classloader conflict unless not bundled>
+                                <scope>provided</scope -->
 			</dependency>
 			<dependency>
 				<groupId>commons-digester</groupId>
 				<artifactId>commons-digester</artifactId>
 				<version>${commons.digester.version}</version>
-				<scope>compile</scope>
+				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
 				<version>${commons.fileupload.version}</version>
-				<scope>compile</scope>
+				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -2970,6 +2998,12 @@
 				<version>${servlet.api.version}</version>
 				<scope>provided</scope>
 			</dependency>
+                        <dependency>
+                                <groupId>com.sun.facelets</groupId>
+                                <artifactId>jsf-facelets</artifactId>
+                                <version>${jsf.facelets.version}</version>
+                                <scope>runtime</scope>
+                        </dependency> 			
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
@@ -2982,12 +3016,14 @@
 				<version>${jsp.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			<!-- seems to be the same as jsp-api
             		<dependency>
             		    	<groupId>javax.servlet.jsp</groupId>
             		    	<artifactId>jsp-api</artifactId>
             		    	<version>${jsp-api.version}</version>
             		    	<scope>provided</scope>
             		</dependency>			
+            		-->
 			<dependency>
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
@@ -3071,7 +3107,7 @@
 				<groupId>xml-apis</groupId>
 				<artifactId>xml-apis</artifactId>
 				<version>${xml.apis.version}</version>
-				<scope>compile</scope>
+				<scope>provided</scope>
 			</dependency>			
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
@@ -3352,11 +3388,13 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>${slf4j.version}</version>
+				<!--scope>provided</scope-->
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
+				<!--scope>provided</scope-->
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
