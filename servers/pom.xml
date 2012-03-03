@@ -137,7 +137,6 @@
 					est modifie dans le fichier de configuration.
 				-->
 				<sonar.host.url>http://localhost:${sonar.port}</sonar.host.url>
-				<!--<sonar.host.url>http://localhost:8080/sonar/</sonar.host.url> -->
 			</properties>
 		</profile>
 
