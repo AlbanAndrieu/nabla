@@ -95,11 +95,11 @@
     </managed-bean>
 #end
 ##Helpers
-    <managed-bean>
-        <managed-bean-name>autocompleteHelper</managed-bean-name>
-        <managed-bean-class>${managedBeansPackage}.AutocompleteHelper</managed-bean-class>
-        <managed-bean-scope>${controllerScope}</managed-bean-scope>
-    </managed-bean>
+##    <managed-bean>
+##        <managed-bean-name>autocompleteHelper</managed-bean-name>
+##        <managed-bean-class>${managedBeansPackage}.AutocompleteHelper</managed-bean-class>
+##        <managed-bean-scope>${controllerScope}</managed-bean-scope>
+##    </managed-bean>
 
 #if ($standalone)
     <!-- menuModel nodes -->

@@ -33,7 +33,13 @@ inv:manageableServiceName->notEmpty()
             <artifactId>andromda-meta-cartridge</artifactId>
             <version>${andromda.version}</version>
             <scope>provided</scope>
-        </dependency>           
+        </dependency>         
+	<dependency>
+	    <groupId>dom4j</groupId>
+	    <artifactId>dom4j</artifactId>
+	    <version>${dom4j.version}</version>
+	</dependency>
+                     
     </dependencies>
     <build>
         <plugins>
