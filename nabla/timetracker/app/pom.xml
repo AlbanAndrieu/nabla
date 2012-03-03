@@ -39,16 +39,18 @@
             <scope>provided</scope>
         </dependency-->
         <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-script-wrappers</artifactId>
             <scope>provided</scope>
-        </dependency>        
+        </dependency>
 	<dependency>
 	   <groupId>xml-apis</groupId>
 	   <artifactId>xml-apis</artifactId>
 	   <scope>provided</scope>
-	</dependency>	
+	</dependency>
+	-->
     </dependencies>
     <build>
         <finalName>${application.id}-${project.version}</finalName>
@@ -66,15 +68,19 @@
         </resources>
         <plugins>
             <plugin>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>${maven.ear.plugin.version}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-ear-plugin</artifactId>
+                <!--<version>${maven.ear.plugin.version}</version>-->
                 <configuration>
                     <generateApplicationXml>true</generateApplicationXml>
                     <includeJar>false</includeJar>
+                    <fileNameMapping>no-version</fileNameMapping>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <!--
                     <includes>**/*.xml</includes>
                     <excludes>**/jboss-app.xml</excludes>
-                    <version>6</version>
+                    -->
+                    <version>6</version><!-- Java EE 6 -->
                     <modules>
                         <!--jarModule>
                             <groupId>${project.groupId}</groupId>
@@ -117,7 +123,18 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-source-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-source-plugin</artifactId>
+		<!-- <version>${maven.source.plugin.version}</version>-->
+		<executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
             </plugin>
         </plugins>
     </build>
