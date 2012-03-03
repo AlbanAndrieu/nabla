@@ -81,7 +81,11 @@
     <context-param>
         <param-name>facelets.LIBRARIES</param-name>
         <param-value>
-        <!-- facelets-libraries merge-point -->
+        <!-- uncomment if you want to add your own project specific facelet tags
+         (and of course make sure "/WEB-INF/custom.taglib.xml" is the actual path
+          to your facelet tag descriptor)
+            /WEB-INF/custom.taglib.xml;
+    -->
             /WEB-INF/ajsfc.taglib.xml;
         </param-value>
     </context-param>
@@ -159,8 +163,23 @@
         <param-value>true</param-value>
     </context-param>
 
-    <!-- context-param merge-point -->
-    <!-- filter merge-point -->
+    <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
+    <context-param>
+         <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+         <param-value>true</param-value>
+    </context-param>
+    <!-- uncomment the following if you're using the open-session-in-view pattern
+         note: that you'll need to update the filter-class value if you've changed
+         the defaults for the package and/or filter name
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>org.andromda.spring.presentation.AndroMDAOpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    -->
     <!-- Extensions Filter -->
     <filter>
         <filter-name>MyFaces Extensions Filter</filter-name>
@@ -234,7 +253,12 @@
         <filter-class>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-class>
     </filter>
 
-    <!-- filter-mapping merge-point -->
+    <!-- uncomment the following if you're using the open-session-in-view pattern
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    -->
 
     <filter-mapping>
         <filter-name>ODSFilter</filter-name>
@@ -280,9 +304,9 @@
         <url-pattern>/faces/*</url-pattern>
     </filter-mapping>
 
-    <!-- listener merge-point -->
+    
 
-    <!-- servlet merge-point -->
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -318,7 +342,7 @@
 
 
     <!-- precompilation merge-point -->
-    <!-- servlet-mapping merge-point -->
+    
     <servlet-mapping>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
         <url-pattern>/jsf/*</url-pattern>
@@ -355,11 +379,11 @@
         <session-timeout>45</session-timeout>
         <!-- session-config merge-point -->
     </session-config>
-    <!-- mime-type merge-point -->
+    
 
     <!-- Welcome files -->
     <welcome-file-list>
-        <!-- welcome-file-list merge-point -->
+        
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
@@ -371,10 +395,10 @@
         <error-code>403</error-code>
         <location>/403.jsp</location>
     </error-page>
-    <!-- error-page merge-point -->
+    
     <!-- taglib merge-point -->
     <!-- resource-ref merge-point -->
-    <!-- security-constraint merge-point -->
+    
 
     <security-constraint>
         <web-resource-collection>

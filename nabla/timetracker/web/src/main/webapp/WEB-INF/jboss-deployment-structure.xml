@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- See http://community.jboss.org/blogs/marek-novotny/2011/07/15/seam-2-jpa-example-on-jboss-as7,
 https://docs.jboss.org/author/display/AS7/Class+Loading+in+AS7
 This configuration is for the standalone war deployment, not the ear/war bundle
 JBoss7: Need to exclude JSF2 and Hibernate4 OSGI dependencies, use war/ear bundled dependencies.
 JSF2 is loaded automatically through the scanner by default.
 Hibernate4 conflicts with Spring 3.0, need v3.1 -->
+<!--<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.1">-->
 <jboss-deployment-structure>
    <deployment>
         <exclusions>

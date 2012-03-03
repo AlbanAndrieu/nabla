@@ -81,21 +81,27 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>        
+        <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-        </dependency>
+        </dependency>        
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk12</artifactId>
         </dependency>
+        <!--
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>org.apache.myfaces.tomahawk</groupId>
+            <artifactId>tomahawk20</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.apache.myfaces.extensions.validator</groupId>
             <artifactId>myfaces-extval-core</artifactId>
@@ -116,24 +122,48 @@
             <groupId>org.apache.myfaces.extensions.validator.component-support-modules</groupId>
             <artifactId>myfaces-extval-trinidad-support</artifactId>
         </dependency>
+        <!-- JBoss7 requires overriding default classloader to support JSF 1.2 -->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <!--<version>${jsf.api.version}</version>--> 
+            <version>1.2_15</version>      
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.1.2</version>
+            <scope>compile</scope>
+        </dependency>   
+        -->     
         <dependency>
             <artifactId>hibernate-validator</artifactId>
             <groupId>org.hibernate</groupId>
         </dependency>
+        <!--
+        <dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-search</artifactId>
+	</dependency>        
+	-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <!--scope>provided</scope-->
+            <!-- for jboss 5.1.0-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <!--scope>provided</scope-->
+            <!-- for jboss 5.1.0-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <!--scope>provided</scope-->
+            <!-- for jboss 5.1.0-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.facelets</groupId>
@@ -177,18 +207,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
-        <!-- JBoss7 requires overriding default classloader to support JSF 1.2 -->
-        <dependency>
-            <groupId>javax.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>${jsf.api.version}</version>
-        </dependency>
-        <!--dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-impl</artifactId>
-            <version>2.1.2</version>
-            <scope>compile</scope>
-        </dependency-->
     </dependencies>
     <build>
         <finalName>timetracker</finalName>
@@ -198,13 +216,19 @@
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>true</filtering>
             </resource>
-	        <resource>
+	    <resource>
                 <directory>${maven.build.generated}/main/webapp</directory>
+                <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>false</filtering>
             </resource>
         </resources>
         <plugins>
+            <!--
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
@@ -225,12 +249,14 @@
                     </target>
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
                 <!-- <version>${maven.war.plugin.version}</version>-->
                 <configuration>
                     <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>
