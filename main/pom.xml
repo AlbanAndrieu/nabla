@@ -96,7 +96,9 @@
 		<lumbermill.port>4445</lumbermill.port>
 		<hudson.lumbermill.port>4431</hudson.lumbermill.port>
 		<glassfish.port>8090</glassfish.port><!-- 4848 -->
+		<!-- change jboss port at \server\default\deploy\jbossweb.sar\server.xml -->
 		<jboss.port>8180</jboss.port>
+		<jboss.debug.port>8787</jboss.debug.port>
 		<tomcat.port>8070</tomcat.port>		
 		<oracle.port>8080</oracle.port>
 		<archiva.port>8010</archiva.port>
@@ -176,6 +178,7 @@
 		</dependency>
 		-->
 
+		<!-- do not want it in timetracker app 
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -188,6 +191,7 @@
 			<version>${commons.lang.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		-->
 		<!--
 			For J2EE <dependency> <groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-j2ee_1.4_spec</artifactId>
