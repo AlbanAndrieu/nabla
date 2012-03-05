@@ -172,14 +172,10 @@ $action.trigger.getDocumentation("     * ")
     {
 #if ($action.finalStateTarget)
 #set ($targetUseCase = $action.target.targetUseCase)
-##
         $targetUseCase.controller.fullyQualifiedName controller =
             ($targetUseCase.controller.fullyQualifiedName)this.resolveVariable(
                 "$targetUseCase.controller.beanName");
         return controller.${targetUseCase.controllerAction}();
-###else
-##        return "";
-###end
 #else
         String forward = null;
         final Object currentForm = this.resolveVariable("$action.formKey");
@@ -199,8 +195,9 @@ $action.trigger.getDocumentation("     * ")
             {
 #end
 #if ($formPopulationOperationRequired)
+#set ($formPopulateOverride = $icefaces && $action.useCaseStart)
             ${indent}// - pass any properties from the previous form along
-            ${indent}${managedBeansPackage}.${formPopulatorName}.populateForm(currentForm, form);
+            ${indent}${managedBeansPackage}.${formPopulatorName}.populateForm(currentForm, form, $formPopulateOverride);
             ${indent}// - populate the form with any event attributes that may match
             ${indent}// IMPORTANT: it isn't possible to automatically populate any property named "id" since that
             ${indent}// is a reserved name in JSF (the id of a component), therefore we have to unfortunately ignore any available "id" attribute
@@ -294,29 +291,13 @@ $action.trigger.getDocumentation("     * ")
 #foreach ($actionState in $action.actionStates)
     /**
 $actionState.getDocumentation("     * ")
-     * It can be safely overridden in descendant classes,
-     * you should return the forward unless you want to change the default flow.
-#if (!$action.formFields.empty)
-     * @param form
-#end
-     * @param forward
-     * @return forward
-     */
-    protected String ${actionState.actionMethodName}(#if (!$action.formFields.empty)final $action.fullyQualifiedFormImplementationName form,#end String forward)
-    {
-        //this method can be overridden
-        return forward;
-    }
-
-    /**
-$actionState.getDocumentation("     * ")
 #if (!$action.formFields.empty)
      * @param form
 #end
      * @return forward
      * @throws Throwable
      */
-    private String ${actionState.actionMethodName}(#if (!$action.formFields.empty)final $action.fullyQualifiedFormImplementationName form#end)
+    protected String ${actionState.actionMethodName}(#if (!$action.formFields.empty)final $action.fullyQualifiedFormImplementationName form#end)
         throws Throwable
     {
         String forward = null;
@@ -383,7 +364,6 @@ ${ident}        forward = #processTransition($actionState.forward)
         }
 #end
 #end
-        forward = ${actionState.actionMethodName}(#if (!$action.formFields.empty)form,#end forward);
 #if($trinidad)
 ##it can be optmized if we pass the start view, to know if the dest view is the org view, and only updating the viewroot in this case
 #if($actionState.forward.enteringView)
@@ -428,7 +408,7 @@ ${ident}        forward = #processTransition($actionState.forward)
     /**
 $decisionTransition.getDocumentation("     * ")
      */
-    private String __${decisionTransition.operationCall.name}(#if (!$action.formFields.empty)final $action.fullyQualifiedFormImplementationName form#end)
+    protected String __${decisionTransition.operationCall.name}(#if (!$action.formFields.empty)final $action.fullyQualifiedFormImplementationName form#end)
         throws Throwable
     {
         final String value = String.valueOf($decisionTransition.operationCall.formCall);
