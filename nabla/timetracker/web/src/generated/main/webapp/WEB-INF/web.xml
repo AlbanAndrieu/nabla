@@ -327,12 +327,12 @@
         <servlet-class>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
         <servlet-class>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
+        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
@@ -368,12 +368,12 @@
         <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.jsf</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard-details.jsf</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
         <url-pattern>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
+        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard-details.jsf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>45</session-timeout>
