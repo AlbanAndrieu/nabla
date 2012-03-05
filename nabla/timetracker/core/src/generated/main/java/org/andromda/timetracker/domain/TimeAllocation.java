@@ -61,26 +61,6 @@ public abstract class TimeAllocation
     }
 
     // Generate 2 associations
-    private Timecard timecard;
-
-    /**
-     * 
-     * @return this.timecard Timecard
-     */
-    public Timecard getTimecard()
-    {
-        return this.timecard;
-    }
-
-    /**
-     * 
-     * @param timecardIn Timecard
-     */
-    public void setTimecard(Timecard timecardIn)
-    {
-        this.timecard = timecardIn;
-    }
-
     private Task task;
 
     /**
@@ -99,6 +79,26 @@ public abstract class TimeAllocation
     public void setTask(Task taskIn)
     {
         this.task = taskIn;
+    }
+
+    private Timecard timecard;
+
+    /**
+     * 
+     * @return this.timecard Timecard
+     */
+    public Timecard getTimecard()
+    {
+        return this.timecard;
+    }
+
+    /**
+     * 
+     * @param timecardIn Timecard
+     */
+    public void setTimecard(Timecard timecardIn)
+    {
+        this.timecard = timecardIn;
     }
 
     /**
@@ -155,16 +155,16 @@ public abstract class TimeAllocation
          * Constructs a new instance of {@link TimeAllocation}, taking all possible properties
          * (except the identifier(s))as arguments.
          * @param timePeriod TimePeriod
-         * @param timecard Timecard
          * @param task Task
+         * @param timecard Timecard
          * @return newInstance TimeAllocation
          */
-        public static TimeAllocation newInstance(TimePeriod timePeriod, Timecard timecard, Task task)
+        public static TimeAllocation newInstance(TimePeriod timePeriod, Task task, Timecard timecard)
         {
             final TimeAllocation entity = new TimeAllocationImpl();
             entity.setTimePeriod(timePeriod);
-            entity.setTimecard(timecard);
             entity.setTask(task);
+            entity.setTimecard(timecard);
             return entity;
         }
     }

@@ -19,7 +19,7 @@ public abstract class Timecard
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -450260575900550958L;
+    private static final long serialVersionUID = -635666710596476780L;
 
     // Generate 4 attributes
     private TimecardStatus status;
@@ -103,26 +103,6 @@ public abstract class Timecard
     }
 
     // Generate 3 associations
-    private User submitter;
-
-    /**
-     * 
-     * @return this.submitter User
-     */
-    public User getSubmitter()
-    {
-        return this.submitter;
-    }
-
-    /**
-     * 
-     * @param submitterIn User
-     */
-    public void setSubmitter(User submitterIn)
-    {
-        this.submitter = submitterIn;
-    }
-
     private User approver;
 
     /**
@@ -141,6 +121,26 @@ public abstract class Timecard
     public void setApprover(User approverIn)
     {
         this.approver = approverIn;
+    }
+
+    private User submitter;
+
+    /**
+     * 
+     * @return this.submitter User
+     */
+    public User getSubmitter()
+    {
+        return this.submitter;
+    }
+
+    /**
+     * 
+     * @param submitterIn User
+     */
+    public void setSubmitter(User submitterIn)
+    {
+        this.submitter = submitterIn;
     }
 
     private Collection<TimeAllocation> allocations = new HashSet<TimeAllocation>();
@@ -265,19 +265,19 @@ public abstract class Timecard
          * @param status TimecardStatus
          * @param startDate Date
          * @param comments String
-         * @param submitter User
          * @param approver User
+         * @param submitter User
          * @param allocations Collection<TimeAllocation>
          * @return newInstance Timecard
          */
-        public static Timecard newInstance(TimecardStatus status, Date startDate, String comments, User submitter, User approver, Collection<TimeAllocation> allocations)
+        public static Timecard newInstance(TimecardStatus status, Date startDate, String comments, User approver, User submitter, Collection<TimeAllocation> allocations)
         {
             final Timecard entity = new TimecardImpl();
             entity.setStatus(status);
             entity.setStartDate(startDate);
             entity.setComments(comments);
-            entity.setSubmitter(submitter);
             entity.setApprover(approver);
+            entity.setSubmitter(submitter);
             entity.setAllocations(allocations);
             return entity;
         }

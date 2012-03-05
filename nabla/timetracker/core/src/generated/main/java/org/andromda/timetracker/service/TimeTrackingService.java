@@ -5,7 +5,7 @@
 //
 /**
  * TEMPLATE:    SpringService.vsl in andromda-spring cartridge
- * MODEL CLASS: Data::timetracker::org.andromda.timetracker::service::TimeTrackingService
+ * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::TimeTrackingService
  * STEREOTYPE:  Service
  */
 package org.andromda.timetracker.service;
