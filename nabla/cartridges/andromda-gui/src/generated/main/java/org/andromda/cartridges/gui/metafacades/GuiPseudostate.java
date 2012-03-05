@@ -7,8 +7,8 @@ package org.andromda.cartridges.gui.metafacades;
 import org.andromda.metafacades.uml.FrontEndPseudostate;
 
 /**
- * Encapsulates a pseudostate and provides specific Struts services. This pseudostate can be a
- * decision point, junction or initial state.
+ * Encapsulates a pseudostate and provides specific Gui services. This pseudostate can be a decision
+ * point, junction or initial state.
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

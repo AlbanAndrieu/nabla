@@ -5294,10 +5294,12 @@ inv: rulesSearchData->notEmpty() implies rulesCriteriasSearchValueObject->notEmp
      * <p><b>Error:</b> Each business object reference (dependency) must have a correct discriminator name. It must be the name of an attribute or an association end of the source entity.The target element (Entity) must also have a dedicated Value Object.</p>
      * <p><b>OCL:</b> context GuiManageableEntity
 inv: eachBusinessObjectReferenceIsValid()</p>
+     * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiManageableEntity::A manageable entity service defined must have a valid name</p>
+     * <p><b>Error:</b> The service specified that will be attached to the manageable entity must be valid (exist and correct name). More over, each Manageable Entity must be attached to a Service. Model this by modeling a dependency between them (Service is source), and giving the 'true' value to @andromda.service.manageable tagged value. You can also specify it by filling service name tagged value on the manageable entity.</p>
+     * <p><b>OCL:</b> -- context GuiManageableEntity inv:manageableServiceName->notEmpty()</p>
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiManageableEntity::A manageable entity with show deal use case activated must provide all info</p>
      * <p><b>Error:</b> A manageable entity with show deal use case activated must provide 2 attributes with tagged values corresponding to deal type and deal id</p>
-     * <p><b>OCL:</b> context GuiManageableEntity
-inv: hasCorrectShowDealInfo()</p>
+     * <p><b>OCL:</b> -- context GuiManageableEntity inv: hasCorrectShowDealInfo()</p>
      * @param validationMessages Collection<ModelValidationMessage>
      * @see MetafacadeBase#validateInvariants(Collection validationMessages)
      */
@@ -5383,7 +5385,32 @@ inv: hasCorrectShowDealInfo()</p>
         try
         {
             final Object contextElement = this.THIS();
-            boolean constraintValid = OCLResultEnsurer.ensure(OCLIntrospector.invoke(contextElement,"hasCorrectShowDealInfo()"));
+            boolean constraintValid = OCLResultEnsurer.ensure();
+            if (!constraintValid)
+            {
+                validationMessages.add(
+                    new ModelValidationMessage(
+                        (MetafacadeBase)contextElement ,
+                        "org::andromda::cartridges::gui::metafacades::GuiManageableEntity::A manageable entity service defined must have a valid name",
+                        "The service specified that will be attached to the manageable entity must be valid (exist and correct name). More over, each Manageable Entity must be attached to a Service. Model this by modeling a dependency between them (Service is source), and giving the 'true' value to @andromda.service.manageable tagged value. You can also specify it by filling service name tagged value on the manageable entity."));
+            }
+        }
+        catch (Throwable th)
+        {
+            Throwable cause = th.getCause();
+            int depth = 0; // Some throwables have infinite recursion
+            while (cause != null && depth < 7)
+            {
+                th = cause;
+                depth++;
+            }
+            logger.error("Error validating constraint 'org::andromda::cartridges::gui::metafacades::GuiManageableEntity::A manageable entity service defined must have a valid name' ON "
+                + this.THIS().toString() + ": " + th.getMessage(), th);
+        }
+        try
+        {
+            final Object contextElement = this.THIS();
+            boolean constraintValid = OCLResultEnsurer.ensure();
             if (!constraintValid)
             {
                 validationMessages.add(

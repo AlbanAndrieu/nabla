@@ -41,10 +41,8 @@ import org.andromda.metafacades.uml.TaggedValueFacade;
 import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 import org.andromda.translation.ocl.validation.OCLCollections;
-import org.andromda.translation.ocl.validation.OCLExpressions;
 import org.andromda.translation.ocl.validation.OCLIntrospector;
 import org.andromda.translation.ocl.validation.OCLResultEnsurer;
-import org.apache.commons.collections.Predicate;
 import org.apache.log4j.Logger;
 
 /**
@@ -3159,7 +3157,7 @@ public abstract class GuiUseCaseLogic
      * <p><b>OCL:</b> context GuiUseCase inv: cyclic implies pages->notEmpty()</p>
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiUseCase::use cases graph contains one workbook</p>
      * <p><b>Error:</b> use cases graph must contain at least one use case tagged with 'workbook' value</p>
-     * <p><b>OCL:</b> context GuiUseCase inv: allUseCases->exists(u : GuiUseCase | workbook=true)</p>
+     * <p><b>OCL:</b> -- context GuiUseCase inv: allUseCases->exists(u : GuiUseCase | workbook=true)</p>
      * @param validationMessages Collection<ModelValidationMessage>
      * @see MetafacadeBase#validateInvariants(Collection validationMessages)
      */
@@ -3195,7 +3193,7 @@ public abstract class GuiUseCaseLogic
         try
         {
             final Object contextElement = this.THIS();
-            boolean constraintValid = OCLResultEnsurer.ensure(OCLCollections.exists(OCLIntrospector.invoke(contextElement,"allUseCases"),new Predicate(){public boolean evaluate(Object object){return Boolean.valueOf(String.valueOf(OCLExpressions.equal(OCLIntrospector.invoke(object,"workbook"),true))).booleanValue();}}));
+            boolean constraintValid = OCLResultEnsurer.ensure();
             if (!constraintValid)
             {
                 validationMessages.add(

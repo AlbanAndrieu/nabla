@@ -36,7 +36,7 @@ import org.andromda.translation.ocl.validation.OCLResultEnsurer;
 import org.apache.log4j.Logger;
 
 /**
- * Represents the activity graph describing the details of a Struts use-case.
+ * Represents the activity graph describing the details of a Gui use-case.
  * MetafacadeLogic for GuiActivityGraph
  *
  * @see GuiActivityGraph
@@ -815,7 +815,7 @@ public abstract class GuiActivityGraphLogic
     /**
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiActivityGraph::graph must have an action modeled on it's initial state</p>
      * <p><b>Error:</b> Each activity graph must have an action transition exiting the initial state, this is the minimum required.</p>
-     * <p><b>OCL:</b> context StrutsActivityGraph inv: firstAction->notEmpty()</p>
+     * <p><b>OCL:</b> context GuiActivityGraph inv: firstAction->notEmpty()</p>
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiActivityGraph::front end graph must have a controller context</p>
      * <p><b>Error:</b> An activity graph must have a controller class context to which (optionally) operations can be deferred. Make sure this graph's use-case has the FrontEndUseCase stereotype.</p>
      * <p><b>OCL:</b> context FrontEndActivityGraph inv: controller->notEmpty()</p>

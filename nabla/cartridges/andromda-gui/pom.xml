@@ -9,15 +9,17 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.andromda.cartridges</groupId>
+	<!--<groupId>org.andromda.cartridges</groupId>-->
 	<artifactId>andromda-gui</artifactId>
-	<!-- <packaging>andromda-cartridge</packaging> -->
+	<version>3.4</version>
+	<!-- <packaging>andromda-cartridge</packaging> -->	
 	<packaging>jar</packaging>
 	<name>Gui Cartridge</name>
 	<description>
 	    The Gui cartridge provides meta-model and templates for Gui components generation.
 	</description>
 <!--
+OCL :
 A manageable entity service defined must have a valid name
 context GuiManageableEntity
 inv:manageableServiceName->notEmpty()
@@ -32,12 +34,12 @@ inv:manageableServiceName->notEmpty()
             <groupId>${project.groupId}</groupId>
             <artifactId>andromda-meta-cartridge</artifactId>
             <version>${andromda.version}</version>
-            <scope>provided</scope>
+            <scope>runtime</scope> 
         </dependency>         
 	<dependency>
 	    <groupId>dom4j</groupId>
 	    <artifactId>dom4j</artifactId>
-	    <version>${dom4j.version}</version>
+	    <!--<version>${dom4j.version}</version>-->
 	</dependency>
                      
     </dependencies>
@@ -91,24 +93,34 @@ inv:manageableServiceName->notEmpty()
                         <id>gui-uml2</id>
                         <phase>generate-test-sources</phase>
                         <goals>
+                            <!-- Use update goal when you want to validate your change (comment test goal) -->
                             <goal>test</goal>
+                            <!--<goal>update</goal>-->
                         </goals>
                         <configuration>
                             <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
-                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
-                            <!--<actualDirectory>${project.build.directory}/cartridge-test/actualUML2</actualDirectory>-->
-                            <actualDirectory>${project.basedir}/target/cartridge-test/actualUML2</actualDirectory>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <actualDirectory>${project.basedir}/${target.dir}/cartridge-test/actualUML2</actualDirectory>
                             <expectedDirectory>${project.build.directory}/cartridge-test/expectedUML2</expectedDirectory>                            
                             <reportDirectory>${project.build.directory}/cartridge-test/reportsUML2</reportDirectory>
                         </configuration>
                     </execution>
                 </executions>          
             </plugin>
-            <!--
             <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>   
-            -->         
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-source-plugin</artifactId>
+		<!-- <version>${maven.source.plugin.version}</version>-->
+		<executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+            </plugin>  
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>xml-maven-plugin</artifactId>
@@ -118,9 +130,9 @@ inv:manageableServiceName->notEmpty()
     </build>
     <properties>
     	<model.name>GuiMetafacadeModel</model.name>
-    	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
+    	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
         <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
-        <test.output.dir>${project.basedir}/target/cartridge-test/actualUML2</test.output.dir>
+        <test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>
     </properties>
 </project>

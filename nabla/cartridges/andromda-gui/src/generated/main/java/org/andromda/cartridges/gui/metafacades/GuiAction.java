@@ -47,15 +47,15 @@ public interface GuiAction
     public List<GuiParameter> getActionFormFieldsToDeletes();
 
     /**
-     * The action input corresponding to this action, as found in the struts deployment descriptor.
-     * The action input maps the action to the page on which it originated.
+     * The action input corresponding to this action, as found in the gui deployment descriptor. The
+     * action input maps the action to the page on which it originated.
      * @return String
      */
     public String getActionInput();
 
     /**
-     * The action name corresponding to this action, as found in the struts deployment descriptor.
-     * The action name maps the action to a form bean.
+     * The action name corresponding to this action, as found in the gui deployment descriptor. The
+     * action name maps the action to a form bean.
      * @return String
      */
     public String getActionName();
@@ -67,8 +67,8 @@ public interface GuiAction
     public List<GuiParameter> getActionParametersToDeletes();
 
     /**
-     * Tthe action path corresponding to this action, as found in the struts deployment descriptor.
-     * The action path specifies the URL to enter in order to call the action.
+     * The action path corresponding to this action, as found in the gui deployment descriptor. The
+     * action path specifies the URL to enter in order to call the action.
      * @return String
      */
     public String getActionPath();
@@ -81,9 +81,9 @@ public interface GuiAction
     public String getActionPathRoot();
 
     /**
-     * The action roles corresponding to this action, as found in the struts deployment descriptor.
-     * The action roles specifiy the roles in which the user must be in order to be authorized to
-     * call the action. One of the roles must be satisfied.
+     * The action roles corresponding to this action, as found in the gui deployment descriptor. The
+     * action roles specifiy the roles in which the user must be in order to be authorized to call
+     * the action. One of the roles must be satisfied.
      * @return String
      */
     public String getActionRoles();
@@ -140,7 +140,7 @@ public interface GuiAction
 
     /**
      * The name of the form bean associated to this action. The name is returned as it should appear
-     * in the Struts deployment descriptor.
+     * in the Gui deployment descriptor.
      * @return String
      */
     public String getFormBeanName();
@@ -277,7 +277,7 @@ public interface GuiAction
     /**
      * Those parameters that are directly entering a final state and have been submitted into the
      * request, they will be able to survive a trip to the next use-case. All returned elements are
-     * of type StrutsParameter.
+     * of type GuiParameter.
      * @param finalState GuiFinalState
      * @return List
      */

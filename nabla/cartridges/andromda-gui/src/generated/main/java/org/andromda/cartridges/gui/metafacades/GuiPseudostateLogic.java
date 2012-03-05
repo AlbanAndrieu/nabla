@@ -27,8 +27,8 @@ import org.andromda.metafacades.uml.TransitionFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * Encapsulates a pseudostate and provides specific Struts services. This pseudostate can be a
- * decision point, junction or initial state.
+ * Encapsulates a pseudostate and provides specific Gui services. This pseudostate can be a decision
+ * point, junction or initial state.
  * MetafacadeLogic for GuiPseudostate
  *
  * @see GuiPseudostate

@@ -31,13 +31,11 @@ import org.andromda.metafacades.uml.StereotypeFacade;
 import org.andromda.metafacades.uml.TaggedValueFacade;
 import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
-import org.andromda.translation.ocl.validation.OCLExpressions;
-import org.andromda.translation.ocl.validation.OCLIntrospector;
 import org.andromda.translation.ocl.validation.OCLResultEnsurer;
 import org.apache.log4j.Logger;
 
 /**
- * A Struts exception handler intercepts action exceptions and delegates them into a page that will
+ * A Gui exception handler intercepts action exceptions and delegates them into a page that will
  * handle it, by for example simply displaying it.
  * MetafacadeLogic for GuiExceptionHandler
  *
@@ -968,7 +966,7 @@ public abstract class GuiExceptionHandlerLogic
     /**
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiExceptionHandler::must target page or final state</p>
      * <p><b>Error:</b> When you model an action-exception you must either target a FrontEndView action state or a final state.</p>
-     * <p><b>OCL:</b> context GuiExceptionHandler inv: enteringPage = false implies enteringFinalState</p>
+     * <p><b>OCL:</b> -- context GuiExceptionHandler inv: enteringPage = false implies enteringFinalState</p>
      * @param validationMessages Collection<ModelValidationMessage>
      * @see MetafacadeBase#validateInvariants(Collection validationMessages)
      */
@@ -979,7 +977,7 @@ public abstract class GuiExceptionHandlerLogic
         try
         {
             final Object contextElement = this.THIS();
-            boolean constraintValid = OCLResultEnsurer.ensure((Boolean.valueOf(String.valueOf(OCLExpressions.equal(OCLIntrospector.invoke(contextElement,"enteringPage"),false))).booleanValue()?Boolean.valueOf(String.valueOf(OCLIntrospector.invoke(contextElement,"enteringFinalState"))).booleanValue():true));
+            boolean constraintValid = OCLResultEnsurer.ensure();
             if (!constraintValid)
             {
                 validationMessages.add(

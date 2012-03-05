@@ -16,7 +16,12 @@
 
 
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
-
+<!--
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+-->
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -400,10 +405,12 @@
         <converter-id>$enumeration.fullyQualifiedName</converter-id>
         <converter-class>$enumeration.fullyQualifiedConverterName</converter-class>
     </converter>
+    <!--
     <converter>
         <converter-for-class>$enumeration.fullyQualifiedName</converter-for-class>
         <converter-class>$enumeration.fullyQualifiedConverterName</converter-class>
     </converter>
+    -->
 #end
 
 #foreach ($manageable in $manageables)
@@ -411,10 +418,12 @@
         <converter-id>$manageable.converterType</converter-id>
         <converter-class>$manageable.converterType</converter-class>
     </converter>
+    <!--
     <converter>
         <converter-for-class>$manageable.converterType</converter-for-class>
         <converter-class>$manageable.converterType</converter-class>
     </converter>
+    -->
 #end
 
     <!-- faces-config merge-point -->

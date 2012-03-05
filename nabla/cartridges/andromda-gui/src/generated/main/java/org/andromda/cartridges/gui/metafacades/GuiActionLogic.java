@@ -151,8 +151,8 @@ public abstract class GuiActionLogic
     private boolean __actionName1aSet = false;
 
     /**
-     * The action name corresponding to this action, as found in the struts deployment descriptor.
-     * The action name maps the action to a form bean.
+     * The action name corresponding to this action, as found in the gui deployment descriptor. The
+     * action name maps the action to a form bean.
      * @return (String)handleGetActionName()
      */
     public final String getActionName()
@@ -182,8 +182,8 @@ public abstract class GuiActionLogic
     private boolean __actionPath2aSet = false;
 
     /**
-     * Tthe action path corresponding to this action, as found in the struts deployment descriptor.
-     * The action path specifies the URL to enter in order to call the action.
+     * The action path corresponding to this action, as found in the gui deployment descriptor. The
+     * action path specifies the URL to enter in order to call the action.
      * @return (String)handleGetActionPath()
      */
     public final String getActionPath()
@@ -213,8 +213,8 @@ public abstract class GuiActionLogic
     private boolean __actionInput3aSet = false;
 
     /**
-     * The action input corresponding to this action, as found in the struts deployment descriptor.
-     * The action input maps the action to the page on which it originated.
+     * The action input corresponding to this action, as found in the gui deployment descriptor. The
+     * action input maps the action to the page on which it originated.
      * @return (String)handleGetActionInput()
      */
     public final String getActionInput()
@@ -244,9 +244,9 @@ public abstract class GuiActionLogic
     private boolean __actionRoles4aSet = false;
 
     /**
-     * The action roles corresponding to this action, as found in the struts deployment descriptor.
-     * The action roles specifiy the roles in which the user must be in order to be authorized to
-     * call the action. One of the roles must be satisfied.
+     * The action roles corresponding to this action, as found in the gui deployment descriptor. The
+     * action roles specifiy the roles in which the user must be in order to be authorized to call
+     * the action. One of the roles must be satisfied.
      * @return (String)handleGetActionRoles()
      */
     public final String getActionRoles()
@@ -398,7 +398,7 @@ public abstract class GuiActionLogic
 
     /**
      * The name of the form bean associated to this action. The name is returned as it should appear
-     * in the Struts deployment descriptor.
+     * in the Gui deployment descriptor.
      * @return (String)handleGetFormBeanName()
      */
     public final String getFormBeanName()
@@ -2268,7 +2268,7 @@ public abstract class GuiActionLogic
      * Method to be implemented in descendants
      * Those parameters that are directly entering a final state and have been submitted into the
      * request, they will be able to survive a trip to the next use-case. All returned elements are
-     * of type StrutsParameter.
+     * of type GuiParameter.
      * @param finalState
      * @return List
      */
@@ -2277,7 +2277,7 @@ public abstract class GuiActionLogic
     /**
      * Those parameters that are directly entering a final state and have been submitted into the
      * request, they will be able to survive a trip to the next use-case. All returned elements are
-     * of type StrutsParameter.
+     * of type GuiParameter.
      * @param finalState GuiFinalState
      * @return handleGetInterUseCaseParameters(finalState)
      */
@@ -3444,9 +3444,9 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiAction::each action must carry a trigger</p>
+     * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiAction::each action coming out of a page must carry a trigger</p>
      * <p><b>Error:</b> Each action transition coming out of a page must have a trigger (the name could be sufficient), it is recommended to add a trigger of type 'signal'.</p>
-     * <p><b>OCL:</b> context GuiAction inv: exitingPage implies triggerPresent</p>
+     * <p><b>OCL:</b> -- context GuiAction inv: exitingPage implies triggerPresent</p>
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiAction::table links must target an existing table page-variable</p>
      * <p><b>Error:</b> When specifying a table link for this action you will need to target a table page-variable from the input page, the specified table does not exist in that page.</p>
      * <p><b>OCL:</b> context GuiAction inv: tableLinkName->notEmpty() implies tableLink</p>
@@ -3463,13 +3463,13 @@ public abstract class GuiActionLogic
         try
         {
             final Object contextElement = this.THIS();
-            boolean constraintValid = OCLResultEnsurer.ensure((Boolean.valueOf(String.valueOf(Boolean.valueOf(String.valueOf(OCLIntrospector.invoke(contextElement,"exitingPage"))).booleanValue())).booleanValue()?Boolean.valueOf(String.valueOf(OCLIntrospector.invoke(contextElement,"triggerPresent"))).booleanValue():true));
+            boolean constraintValid = OCLResultEnsurer.ensure();
             if (!constraintValid)
             {
                 validationMessages.add(
                     new ModelValidationMessage(
                         (MetafacadeBase)contextElement ,
-                        "org::andromda::cartridges::gui::metafacades::GuiAction::each action must carry a trigger",
+                        "org::andromda::cartridges::gui::metafacades::GuiAction::each action coming out of a page must carry a trigger",
                         "Each action transition coming out of a page must have a trigger (the name could be sufficient), it is recommended to add a trigger of type 'signal'."));
             }
         }
@@ -3482,7 +3482,7 @@ public abstract class GuiActionLogic
                 th = cause;
                 depth++;
             }
-            logger.error("Error validating constraint 'org::andromda::cartridges::gui::metafacades::GuiAction::each action must carry a trigger' ON "
+            logger.error("Error validating constraint 'org::andromda::cartridges::gui::metafacades::GuiAction::each action coming out of a page must carry a trigger' ON "
                 + this.THIS().toString() + ": " + th.getMessage(), th);
         }
         try

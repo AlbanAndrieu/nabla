@@ -69,9 +69,11 @@
         <priority value="DEBUG" />
     </category>
 
+    <!--
     <category name="org.andromda.metafacades">
-        <priority value="DEBUG" />
+        <priority value="INFO" />
     </category>
+    -->
     
     <!-- this produce a lot of output in debug mode -->
     <category name="org.andromda.namespaces">

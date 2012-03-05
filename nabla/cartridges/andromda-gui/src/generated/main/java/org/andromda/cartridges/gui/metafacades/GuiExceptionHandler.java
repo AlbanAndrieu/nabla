@@ -7,7 +7,7 @@ package org.andromda.cartridges.gui.metafacades;
 import org.andromda.metafacades.uml.FrontEndExceptionHandler;
 
 /**
- * A Struts exception handler intercepts action exceptions and delegates them into a page that will
+ * A Gui exception handler intercepts action exceptions and delegates them into a page that will
  * handle it, by for example simply displaying it.
  *
  * Metafacade interface to be used by AndroMDA cartridges.

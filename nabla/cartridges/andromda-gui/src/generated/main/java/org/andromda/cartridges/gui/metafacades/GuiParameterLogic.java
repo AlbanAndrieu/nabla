@@ -323,7 +323,7 @@ public abstract class GuiParameterLogic
     private boolean __resetRequired7aSet = false;
 
     /**
-     * True if the value of this parameter must be reset between requests (Struts requires this for
+     * True if the value of this parameter must be reset between requests (Gui requires this for
      * specific types), false otherwise.
      * @return (boolean)handleIsResetRequired()
      */
@@ -385,8 +385,8 @@ public abstract class GuiParameterLogic
     private boolean __widgetType9aSet = false;
 
     /**
-     * The widget type for this parameter, this value is the tagname for the Struts HTML taglib.
-     * This method is useful only when rendering forms.
+     * The widget type for this parameter, this value is the tagname for the Gui HTML taglib. This
+     * method is useful only when rendering forms.
      * @return (String)handleGetWidgetType()
      */
     public final String getWidgetType()
@@ -510,7 +510,7 @@ public abstract class GuiParameterLogic
 
     /**
      * A collection of all the validator types for this parameter. Use this value in conjunction
-     * with the Struts validator plugin.
+     * with the Gui validator plugin.
      * @return (Collection)handleGetValidatorTypes()
      */
     public final Collection getValidatorTypes()
@@ -601,8 +601,7 @@ public abstract class GuiParameterLogic
 
     /**
      * The validator's 'validwhen' value, this is useful when the validation of a parameter depends
-     * on the validation of others. See the Struts validator plugin documentation for more
-     * information.
+     * on the validation of others. See the Gui validator plugin documentation for more information.
      * @return (String)handleGetValidWhen()
      */
     public final String getValidWhen()
@@ -2068,7 +2067,7 @@ public abstract class GuiParameterLogic
 
     /**
      * True if this parameter has a name that can properly be handled by Jakarta commons (this lib
-     * is used by Struts but contains a bug)
+     * is used by Gui but contains a bug)
      * @return (boolean)handleIsSafeNamePresent()
      */
     public final boolean isSafeNamePresent()

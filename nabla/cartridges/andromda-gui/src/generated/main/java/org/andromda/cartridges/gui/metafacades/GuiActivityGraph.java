@@ -7,7 +7,7 @@ package org.andromda.cartridges.gui.metafacades;
 import org.andromda.metafacades.uml.FrontEndActivityGraph;
 
 /**
- * Represents the activity graph describing the details of a Struts use-case.
+ * Represents the activity graph describing the details of a Gui use-case.
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

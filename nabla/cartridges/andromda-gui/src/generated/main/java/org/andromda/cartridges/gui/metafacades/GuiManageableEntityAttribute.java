@@ -406,7 +406,7 @@ public interface GuiManageableEntityAttribute
 
     /**
      * True if this parameter has a name that can properly be handled by Jakarta commons (this lib
-     * is used by Struts but contains a bug)
+     * is used by Gui but contains a bug)
      * @return boolean
      */
     public boolean isSafeNamePresent();
