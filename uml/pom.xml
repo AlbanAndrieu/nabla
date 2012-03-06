@@ -134,12 +134,20 @@
 		<dependency>
 			<groupId>org.andromda</groupId>
 			<artifactId>andromda-script-wrappers</artifactId>
-			<scope>runtime</scope>
+			<version>${andromda.version}</version>
+			<!--<scope>runtime</scope>-->
+			<scope>provided</scope>
 			<exclusions>
+				<!--
 				<exclusion>
 					<groupId>groovy</groupId>
 					<artifactId>groovy-all-1.0-jsr</artifactId>
 				</exclusion>
+				-->
+				<exclusion>
+					<groupId>org.codehaus.groovy</groupId>
+					<artifactId>groovy-all</artifactId>
+				</exclusion>				
 			</exclusions>
 		</dependency>
 	</dependencies>
@@ -295,13 +303,13 @@
 			file:${test.src.dir}/mappings/MergeMappings.xml in
 			gui-cardtridge\conf\test\andromda.xml
 		-->
-		<test.output.dir>${pom.basedir}/${target.dir}/cartridge-test/actual</test.output.dir>
+		<!--<test.output.dir>${pom.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
 		<!--
 			used for mergeMappingsUri
 			file:${test.src.dir}/mappings/MergeMappings.xml in
 			gui-cardtridge\conf\test\andromda.xml
 		-->
-		<howto.output.dir>${project.basedir}/${target.dir}/site/howto</howto.output.dir>
+		<!--<howto.output.dir>${project.basedir}/${target.dir}/site/howto</howto.output.dir>-->
 		<andromda.cartridge.howto.model.uri>jar:file:.${pom.basedir}/sample/howtomodel/mda/src/main/uml/${uml.type}/HowToModel.xml.zip!/HowToModel.xml</andromda.cartridge.howto.model.uri>
 
 		<nabla.mda.profiles.dir>/profiles/${uml.type}</nabla.mda.profiles.dir>
@@ -341,9 +349,11 @@
 		<transaction.manager.class>org.springframework.transaction.jta.JtaTransactionManage</transaction.manager.class>
 		<transaction.user.name>null</transaction.user.name>
 
-		<!-- hibernate configuration -->
-		<datasource.name>nabla/datasource</datasource.name>
-		<datasource>${datasource.name}</datasource>
+		<!-- hibernate configuration -->	
+		<dataSource.name>jdbc/${application.id}</dataSource.name>
+                <!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
+                <!--<datasource>${datasource.name}</datasource>-->
+                <dataSource>java:/${dataSource.name}</dataSource>
 		<hibernate.db.showSql>true</hibernate.db.showSql>
 		<hibernate.db.dialect>${hibernate.dialect}</hibernate.db.dialect>
 		<!-- <sql.mappings>Sybase</sql.mappings> <hibernate.dialect>org.hibernate.dialect.SybaseDialect</hibernate.dialect> -->
@@ -369,11 +379,11 @@
 
 		<!-- unittest cartridge configuration -->
 		<!-- <unittest.datasource.driver.class.name>com.sybase.jdbc3.jdbc.SybDriver</unittest.datasource.driver.class.name> -->
-		<unittest.datasource.driver.class.name>${jdbc.driverClassName}</unittest.datasource.driver.class.name>
+		<unittest.datasource.driver.class.name>${jdbc.driver}</unittest.datasource.driver.class.name>
 		<unittest.datasource.class.name>org.springframework.jdbc.datasource.DriverManagerDataSource</unittest.datasource.class.name>
 		<unittest.server.test.beanref.factory>file:${mda.sourceDirectory}/common/nabla-daos/unittest/src/test/resources/beanRefFactory.xml</unittest.server.test.beanref.factory>
-		<unittest.beanref.factory.reference>file:${mda.sourceDirectory}/configuration/applicationContext/${application.server}/${maven.build.generated}/resources/${application.context.name}</unittest.beanref.factory.reference>
-		<unittest.daos.reference>${mda.sourceDirectory}/configuration/applicationContext/${application.server}/${maven.build.generated}/resources/applicationContext-daos.xml</unittest.daos.reference>
+		<unittest.beanref.factory.reference>file:${configuration.mda.dir}/applicationContext/${application.server}/${maven.build.generated}/resources/${application.context.name}</unittest.beanref.factory.reference>
+		<unittest.daos.reference>${configuration.mda.dir}/applicationContext/${application.server}/${maven.build.generated}/resources/applicationContext-daos.xml</unittest.daos.reference>
 		<unittest.local.datasource>file:${pom.basedir}/../unittest/src/test/java/applicationContext-localDataSource.xml</unittest.local.datasource>
 
 		<unittest.datasource.user>${jdbc.nabla.username}</unittest.datasource.user>
@@ -385,14 +395,14 @@
 		<maven.andromda.schema2xmi.password>${jdbc.password}</maven.andromda.schema2xmi.password>
 		<maven.andromda.schema2xmi.schema>${database.name}</maven.andromda.schema2xmi.schema>
 
-		<maven.andromda.schema2xmi.driverClass>${jdbc.driverClassName}</maven.andromda.schema2xmi.driverClass>
+		<maven.andromda.schema2xmi.driverClass>${jdbc.driver}</maven.andromda.schema2xmi.driverClass>
 		<!--
 			<maven.andromda.schema2xmi.connectionUrl>Data Source=.;Initial
 			Catalog=Camgar;User
 			ID=sa;Password=p</maven.andromda.schema2xmi.connectionUrl>
 		-->
 		<maven.andromda.schema2xmi.connectionUrl>${jdbc.url}</maven.andromda.schema2xmi.connectionUrl>
-		<maven.andromda.schema2xmi.mappingsUri>file:${mda.sourceDirectory}/configuration/schema2xmi/mappings.xml</maven.andromda.schema2xmi.mappingsUri>
+		<maven.andromda.schema2xmi.mappingsUri>file:${configuration.mda.dir}/schema2xmi/mappings.xml</maven.andromda.schema2xmi.mappingsUri>
 		<maven.andromda.schema2xmi.classStereotype>Entity</maven.andromda.schema2xmi.classStereotype>
 		<maven.andromda.schema2xmi.identifierStereotypes>Identifier</maven.andromda.schema2xmi.identifierStereotypes>
 		<maven.andromda.schema2xmi.package>com.nabla.andromda</maven.andromda.schema2xmi.package>
