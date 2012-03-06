@@ -14,7 +14,7 @@
         <property name="connection.username">sa</property>
         <property name="connection.password">sa</property>
         <property name="connection.datasource">java:/jdbc/timetracker</property>
-        <property name="connection.url">jdbc:h2:~/timetracker;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</property>
+        <property name="connection.url">jdbc:h2:~/myDBGlobal;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</property>
         <property name="jta.UserTransaction">UserTransaction</property>
         <property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
         <property name="session_factory_name">java:/hibernate/SessionFactory</property>

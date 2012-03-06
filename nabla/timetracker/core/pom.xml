@@ -10,7 +10,7 @@
     <artifactId>timetracker-core</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker Core Business Tier</name>
-    <dependencies>
+    <dependencies>  
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>timetracker-common</artifactId>
@@ -167,12 +167,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency-->
+        <!--
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>${testdb.version}</version>
-            <!--scope>test</scope-->
+            <version>${jdbc.version}</version>
         </dependency>
+        -->          
     </dependencies>
     <build>
         <plugins>
@@ -243,6 +244,11 @@
                   <phase>process-classes</phase>
                   <goals>
                     <goal>hbm2ddl</goal>
+		    <!--<goal>hbm2java</goal>-->
+		    <goal>hbm2doc</goal>
+		    <goal>hbm2cfgxml</goal>
+		    <!--<goal>hbm2hbmxml</goal>-->
+		    <!--<goal>hbmtemplate</goal>-->
                   </goals>
                 </execution>
               </executions>
@@ -250,6 +256,16 @@
                 <components>
                   <component>
                     <name>hbm2ddl</name>
+                    <implementation>configuration</implementation>
+                  </component>
+                  <component>
+                    <name>hbm2doc</name>
+                    <outputDirectory>${target.dir}/site/hibernate3/javadoc</outputDirectory>
+                  </component>
+                  <component>
+                    <name>hbm2cfgxml</name>
+                    <outputDirectory>${target.dir}/site/hibernate3/generated-mappings</outputDirectory>
+                    <!--<implementation>annotationconfiguration</implementation>-->
                     <implementation>configuration</implementation>
                   </component>
                 </components>
@@ -263,13 +279,17 @@
                   <persistenceunit>${project.parent.artifactId}</persistenceunit>
                   <configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
                   <outputfilename>../../../../app/src/main/sql/schema.sql</outputfilename>
+                  <!--
+                  <revengfile>src/test/resources/hibernate.reveng.xml</revengfile>
+                  <propertyfile>target/classes/jdbc.properties</propertyfile>
+                  -->
                 </componentProperties>
               </configuration>
               <dependencies>
                   <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                    <version>${testdb.version}</version>
+                    <groupId>${jdbc.groupId}</groupId>
+		    <artifactId>${jdbc.artifactId}</artifactId>
+		    <version>${jdbc.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
@@ -338,9 +358,9 @@
                 </configuration>
                 <dependencies>
                   <dependency>
-                    <groupId>${testdb.groupId}</groupId>
-                    <artifactId>${testdb.artifactId}</artifactId>
-                    <version>${testdb.version}</version>
+                    <groupId>${jdbc.groupId}</groupId>
+		    <artifactId>${jdbc.artifactId}</artifactId>
+		    <version>${jdbc.version}</version>
                   </dependency>
                 </dependencies>
             </plugin>
@@ -356,10 +376,10 @@
                 <artifactId>sql-maven-plugin</artifactId>
                 <version>${maven.sql.plugin.version}</version>
                 <configuration>
-                    <driver>${testdb.driver}</driver>
-                    <url>${testdb.url}</url>
-                    <username>${testdb.username}</username>
-                    <password>${testdb.password}</password>
+                    <driver>${jdbc.driver}</driver>
+                    <url>${jdbc.url}</url>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
                     <autocommit>true</autocommit>
                     <skip>${maven.test.skip}</skip>
                 </configuration>
@@ -387,9 +407,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>${testdb.groupId}</groupId>
-                        <artifactId>${testdb.artifactId}</artifactId>
-                        <version>${testdb.version}</version>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -411,9 +431,11 @@
             <!--plugin>
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin-->
+            <!--
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
             </plugin>
+            -->
         </plugins>
         <resources>
             <resource>
@@ -425,54 +447,140 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-        </resources>
-        <!--
-        <pluginManagement>
-         <plugins>
-          <plugin>
-           <groupId>org.eclipse.m2e</groupId>
-           <artifactId>lifecycle-mapping</artifactId>
-           <version>1.0.0</version>
-           <configuration>
-            <lifecycleMappingMetadata>
-             <pluginExecutions>
-              <pluginExecution>
-               <pluginExecutionFilter>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>hibernate3-maven-plugin</artifactId>
-                <versionRange>[${hibernate3.maven.plugin.version},)</versionRange>
-                <goals>
-                 <goal>hbm2ddl</goal>
-                </goals>
-               </pluginExecutionFilter>
-               <action>
-                <ignore></ignore>
-               </action>
-              </pluginExecution>
-              <pluginExecution>
-               <pluginExecutionFilter>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <versionRange>[1.5,)</versionRange>
-                <goals>
-                 <goal>execute</goal>
-                </goals>
-               </pluginExecutionFilter>
-               <action>
-                <ignore></ignore>
-               </action>
-              </pluginExecution>
-             </pluginExecutions>
-            </lifecycleMappingMetadata>
-           </configuration>
-          </plugin>
-         </plugins>
-        </pluginManagement>
-        -->
+        </resources>       
     </build>
     <properties>
         <!-- Need a running db instance. Changed to automatic maven configured H2 DB -->
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <testFailureIgnore>true</testFailureIgnore>
     </properties>
+    
+    <profiles>
+		<profile>
+			<id>xmi</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+			                <plugin>
+			                	<groupId>org.apache.maven.plugins</groupId>
+			                	<artifactId>maven-antrun-plugin</artifactId>
+			                	<configuration>
+			                		<target>
+			                			<echo> Generate XMI from Database.</echo>
+			                			<property name="src.dir" value="." />
+			                			<!--
+			                				<property name="model.dir"
+			                				value="${project.basedir}/test/mda/src/main/uml/"/>
+			                			-->
+			                			<property name="output.dir" value="${target.dir}/uml/" />
+			                			<property name="lib.dir" value="${jdbc.driver.lib}" />			                			
+			                			<property name="mappings.dir" value="${configuration.mda.dir}" />
+			                			<property name="build.dir" value="${target.dir}" />
+			                			<path id="schema2xmi.classpath">
+			                				<fileset dir="${lib.dir}">
+			                					<include name="*.jar" />
+			                				</fileset>
+			                				<!--
+			                				<fileset dir="${lib.dir}">
+			                					<include name="*.zip" />
+			                				</fileset>
+			                				-->
+			                			</path>
+			                			<java classname="org.andromda.schema2xmi.Schema2XMI" fork="true">
+			                				<classpath>
+			                					<path refid="schema2xmi.classpath" />
+			                					<path refid="maven.compile.classpath" />
+			                				</classpath>
+			                				<!--
+			                					<arg value="-i"/> <arg
+			                					value="jar:file:${basedir}/src/main/uml/${uml.type}/GuiMetafacadeModel.xml.zip!/GuiMetafacadeModel.xml"/>
+			                				-->
+			                				<arg value="-u" />
+			                				<arg value="${jdbc.username}" />
+			                				<arg value="-p" />
+			                				<arg value="${jdbc.password}" />
+			                				<!--
+			                					<arg value="-s"/> <arg
+			                					value="${maven.andromda.schema2xmi.schema}"/>
+			                				-->
+			                				<arg value="-c" />
+			                				<arg value="${maven.andromda.schema2xmi.connectionUrl}" />
+			                				<arg value="-d" />
+			                				<arg value="${maven.andromda.schema2xmi.driverClass}" />
+			                				<arg value="-m" />
+			                				<arg value="file:${mappings.dir}/schema2xmi/mappings.xml" />
+			                				<arg value="-o" />
+			                				<arg value="${build.dir}/schema2xmi/transformed.xmi" />
+			                				<arg value="-t" />
+			                				<!--<arg value="[\p{Lower}\p{Upper}[_]]*"/>-->
+			                				<arg value="[\p{Lower}\p{Upper}\digit]*" />
+			                				<arg value="-P" />
+			                				<arg value="${application.package}" />
+			                				<arg value="-C" />
+			                				<arg value="entity,persistent" />
+			                				<arg value="-I" />
+			                				<arg value="identifier" />
+			                				<arg value="-V" />
+			                				<arg value="@andromda.persistence.table" />
+			                				<arg value="-v" />
+			                				<arg value="@andromda.persistence.column" />
+			                			</java>
+			                		</target>
+			                	</configuration>
+			                	<executions>
+			                		<execution>
+			                			<phase>process-classes</phase> 			                			
+			                			<goals>
+			                				<goal>run</goal>
+			                			</goals>
+			                		</execution>
+			                	</executions>
+			                	<dependencies>		                                                         			                				                			   			                	
+			                		<dependency>
+			                			<groupId>${jdbc.groupId}</groupId>
+			                			<artifactId>${jdbc.artifactId}</artifactId>
+			                			<version>${jdbc.version}</version>
+			                		</dependency>
+			                	</dependencies>
+			                </plugin>
+				</plugins>
+			</build>
+			<dependencies>
+                        	<dependency>
+                        	    <groupId>org.andromda</groupId>
+                        	    <artifactId>andromda-schema2xmi</artifactId>
+                        	    <version>${andromda.version}</version>
+                        	    <scope>compile</scope>
+                        	</dependency>             
+                        	<!-- START USED BY Schema2XMI -->
+        	        	<dependency>
+                        	           <groupId>org.andromda</groupId>
+                        	           <artifactId>andromda-core</artifactId>
+                        	           <version>${andromda.version}</version>
+                        	           <scope>compile</scope>
+                        	           <exclusions>
+                        	               <exclusion>
+                        	                   <groupId>log4j</groupId>
+                        	                   <artifactId>log4j</artifactId>
+                        	               </exclusion>
+                        	           </exclusions>
+                        	       </dependency>
+        	        	<dependency>
+        	        		<groupId>org.andromda.repositories</groupId>
+        	        		<artifactId>andromda-repository-mdr-uml14</artifactId>
+        	        		<version>${andromda.version}</version>
+        	        	</dependency>
+        	        	<dependency>
+        	        		<groupId>org.andromda.metafacades</groupId>
+        	        		<artifactId>andromda-metafacades-uml14</artifactId>
+        	        		<version>${andromda.version}</version>
+        	        	</dependency>
+        	        	<!-- END USED BY Schema2XMI -->        
+    			</dependencies>			
+		</profile>
+	</profiles>	    
 </project>
