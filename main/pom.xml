@@ -40,13 +40,6 @@
 		-->
 		<java.home>${env.JAVA_HOME}</java.home>
 
-		<!-- Application settings -->
-		<application.id>application</application.id> <!-- used by MDA -->
-		<application.name>Nabla</application.name> <!-- used by MDA -->
-		<application.version>1.0</application.version> <!-- used by MDA -->
-		<application.package>com.nabla.backend</application.package> <!-- used by MDA -->
-		<application.context.name>applicationContext-daos.xml</application.context.name>
-
 		<product.id>nabla</product.id>
 		<product.name>nabla</product.name>
 		<product.title>${product.name} Application</product.title>
@@ -69,6 +62,14 @@
 		<product.workspace>${product.username}${product.major.version}</product.workspace>
 		<product.thirdparty>${env.THIRDPARTY_ROOT}</product.thirdparty> <!-- used for dtd in mda -->
 
+		<!-- Application settings -->
+		<application.id>application</application.id> <!-- used by MDA -->
+		<application.name>Nabla</application.name> <!-- used by MDA -->
+		<!--<application.version>${project.version}</application.version>--> <!-- used by MDA -->
+		<application.version>${product.version}</application.version> <!-- used by MDA -->
+		<application.package>com.nabla.backend</application.package> <!-- used by MDA -->
+		<application.context.name>applicationContext-daos.xml</application.context.name>
+		
 		<!-- START overrided in cargo profile -->
 		<server.domain>nabla</server.domain>
 		<!-- START INFO USE BY MDA -->
