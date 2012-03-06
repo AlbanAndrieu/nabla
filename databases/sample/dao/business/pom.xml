@@ -21,4 +21,116 @@
                 <module>dbunit</module>
                 <!-- <module>local</module> WORKING BUT DO NOT ERASE ECLIPSE SETTINGS -->
         </modules>
+        
+	<profiles>        
+		<!-- ================= START Persistence Profiles ================= -->
+		<profile>
+			<id>hibernate</id>
+			<activation>
+				<property>
+					<name>!profile.activation</name>
+				</property>
+			</activation>
+
+			<!-- see file pom_persistence-SAV.txt -->
+			<dependencies>
+				<dependency>
+					<groupId>javax.persistence</groupId>
+					<artifactId>persistence-api</artifactId>
+					<version>${javax.persistence.version}</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate</artifactId>
+					<version>${hibernate.version}</version>
+					<scope>compile</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>javax.transaction</groupId>
+							<artifactId>jta</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>asm</groupId>
+							<artifactId>asm</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>asm</groupId>
+							<artifactId>asm-attrs</artifactId>
+						</exclusion>
+						<exclusion>
+							<groupId>cglib</groupId>
+							<artifactId>cglib</artifactId>
+						</exclusion>						
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+					<version>${asm.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>cglib</groupId>
+					<artifactId>cglib-nodep</artifactId>
+					<version>${cglib.nodep.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>javax.transaction</groupId>
+					<artifactId>jta</artifactId>
+					<version>${javax.transaction.version}</version>
+				</dependency>		
+
+                		<dependency>
+                			<groupId>commons-dbcp</groupId>
+                			<artifactId>commons-dbcp</artifactId>
+                			<version>${commons.dbcp.version}</version>
+                		</dependency>				
+						
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-annotations</artifactId>
+					<version>${hibernate.annotations.version}</version>
+				</dependency>
+				<!--
+					<dependency> <groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search</artifactId>
+					<version>${hibernate.search.version}</version> </dependency>
+				-->
+			</dependencies>
+		</profile>
+		<profile>
+			<id>toplink</id>
+			<!-- Toplink Dependencies -->
+			<!--
+				<dependency> <groupId>javax.persistence</groupId>
+				<artifactId>toplink-essentials</artifactId> <version>1.0</version>
+				</dependency>
+			-->
+
+			<!-- Comment out if deploying to a Java EE 5 server -->
+			<!--
+				<dependency> <groupId>oracle.toplink.essentials</groupId>
+				<artifactId>toplink-essentials-agent</artifactId>
+				<version>1.0</version> </dependency>
+			-->
+			<dependencies>
+				<dependency>
+					<groupId>toplink.essentials</groupId>
+					<artifactId>toplink-essentials</artifactId>
+					<version>${toplink.essentials.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>openjpa</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.openjpa</groupId>
+					<artifactId>openjpa-all</artifactId>
+					<version>${openjpa.all.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<!-- ================= END Persistence Profiles ================= -->	  
+	</profiles>        		      
 </project>

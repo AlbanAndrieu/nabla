@@ -57,18 +57,24 @@
             </exclusions>
         </dependency>
 -->
-    	<dependency>
-      		<groupId>org.appfuse</groupId>
+    		<dependency>
+      			<groupId>org.appfuse</groupId>
 			<artifactId>appfuse-${dao.framework}</artifactId>
 			<version>${appfuse.version}</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<scope>compile</scope>
+		</dependency>	
+		
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
 			<!-- <version>${easymock.version}</version> -->
 			<scope>test</scope>
-		</dependency>
+		</dependency>	
 		<!--
 		<dependency>
 			<groupId>org.jmock</groupId>
@@ -106,14 +112,16 @@
                         <version>${spring.version}</version>
                 </dependency>
 -->
+<!--
 		<dependency>
 			<groupId>${jdbc.groupId}</groupId>
 			<artifactId>${jdbc.artifactId}</artifactId>
 			<version>${jdbc.version}</version>
 		</dependency>
+-->		
 	</dependencies>
 
-	<profiles>
+	<profiles>		
 		<profile>
 			<id>create_db</id>
 			<properties>
@@ -139,8 +147,8 @@
 								<drop>true</drop>
 								<jdk5>true</jdk5>
 								<!--<console>false</console> -->
-								<configurationfile>target/classes/hibernate.cfg.xml</configurationfile>
-								<propertyfile>target/classes/jdbc.properties</propertyfile>
+								<configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
+								<propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 								<!--<propertyfile>src/test/resources/jdbc.properties</propertyfile> -->
 								<!--<persistenceunit>jpa</persistenceunit> -->
 								<outputfilename>create-schema.sql</outputfilename>
@@ -236,7 +244,7 @@
 						<version>${dbunit.maven.plugin.version}</version>
 						<configuration>
 							<dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
-							<driver>${jdbc.embedded.driver}</driver>
+							<driver>${jdbc.driver}</driver>
 							<username>${jdbc.username}</username>
 							<password>${jdbc.password}</password>
 							<url>${jdbc.url}</url>
@@ -290,7 +298,7 @@
 						<version>${dbunit.maven.plugin.version}</version>
 						<configuration>
 							<dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
-							<driver>${jdbc.embedded.driver}</driver>
+							<driver>${jdbc.driver}</driver>
 							<username>${jdbc.username}</username>
 							<password>${jdbc.password}</password>
 							<url>${jdbc.url}</url>
@@ -347,40 +355,40 @@
                                                         <components>
                                                                 <component>
                                                                         <name>hbm2ddl</name>
-                                                                        <outputDirectory>target/site/hibernate3/sql</outputDirectory>
+                                                                        <outputDirectory>${target.dir}/site/hibernate3/sql</outputDirectory>
                                                                         <implementation>annotationconfiguration</implementation>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2hbmxml</name>
-                                                                        <!--<outputDirectory>target/hbm</outputDirectory>-->
+                                                                        <!--<outputDirectory>${target.dir}/hbm</outputDirectory>-->
                                                                         <implementation>jdbcconfiguration</implementation>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2java</name>
-                                                                        <!--<outputDirectory>target/java</outputDirectory>-->
+                                                                        <!--<outputDirectory>${target.dir}/java</outputDirectory>-->
                                                                         <implementation>annotationconfiguration</implementation>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2doc</name>
-                                                                        <outputDirectory>target/site/hibernate3/javadoc</outputDirectory>
+                                                                        <outputDirectory>${target.dir}/site/hibernate3/javadoc</outputDirectory>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2cfgxml</name>
-                                                                        <outputDirectory>target/site/hibernate3/generated-mappings</outputDirectory>
+                                                                        <outputDirectory>${target.dir}/site/hibernate3/generated-mappings</outputDirectory>
                                                                         <implementation>annotationconfiguration</implementation>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbmtemplate</name>
-                                                                        <!--<outputDirectory>target/cfg</outputDirectory>-->
+                                                                        <!--<outputDirectory>${target.dir}/cfg</outputDirectory>-->
                                                                         <implementation>jpaconfiguration</implementation>
                                                                 </component>
                                                         </components>
                                                         <componentProperties>
                                                                 <drop>true</drop>
-                                                                <configurationfile>target/classes/hibernate.cfg.xml</configurationfile>
-								<propertyfile>target/classes/jdbc.properties</propertyfile>
+                                                                <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
+								<propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
                                                                 <revengfile>src/main/resources/hibernate/${database}/hibernate.reveng.xml</revengfile>
-                                                                <!--<template>target/hbm/hibernate-mapping.hbm.ftl</template>-->
+                                                                <!--<template>${target.dir}/hbm/hibernate-mapping.hbm.ftl</template>-->
                                                                 <jdk5>true</jdk5>
                                                                 <ejb3>true</ejb3>
                                                                 <outputfilename>create-schema.sql</outputfilename>

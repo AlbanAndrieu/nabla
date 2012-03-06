@@ -16,7 +16,7 @@
 	<description>Database-Business-Dbunit Dao : mapping objet-relationnel (ORM)</description>
 
 	<build>
-		<defaultGoal>install</defaultGoal>
+		<!--<defaultGoal>install</defaultGoal>-->
 		<plugins>
 
 			<!-- http://db.apache.org/torque/releases/torque-3.1.1/index.html http://turbine.apache.org/turbine/development/turbine-2.4/ -->
@@ -32,7 +32,7 @@
 					<targetDatabase>derby</targetDatabase>
 					<schemaDir>${basedir}/src/torque-schemas</schemaDir>
 					<templatePath>${basedir}/src/torque-templates</templatePath>
-					<driver>${jdbc.embedded.driver}</driver>
+					<driver>${jdbc.driver}</driver>
 					<user>${jdbc.username}</user>
 					<password>${jdbc.password}</password>
 					<url>${jdbc.embedded.url}</url>
@@ -156,12 +156,19 @@
 			<version>${appfuse.version}</version>
 		</dependency>
 		<!-- Used by org.apache.commons.dbcp.BasicDataSource pool de connexions comme c3p0 -->
+		<!-- check parent
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<!-- <version>${commons.dbcp.version}</version> -->
 		</dependency>
+		-->
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
@@ -202,11 +209,38 @@
 			<version>3.2-rc2</version>
 		</dependency>
 		 -->
+		<dependency>
+			<groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.artifactId}</artifactId>
+			<version>${jdbc.version}</version>
+		</dependency>		 
 	</dependencies>
 
 	<!-- ================= Default Properties ================= -->
 	<properties>
 		<maven.test.skip>false</maven.test.skip>
 		<database.name>myDBDBUnit</database.name>
+		
+		<!-- Database settings override to Derby -->
+		<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+		<database>derby</database>
+		<dbunit.schema>APP</dbunit.schema>
+		<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+		<jdbc.groupId>org.apache.derby</jdbc.groupId>
+		<jdbc.client.artifactId>derbyclient</jdbc.client.artifactId>
+		<jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId>
+		<jdbc.artifactId>${jdbc.embedded.artifactId}</jdbc.artifactId>
+		<jdbc.artifactId>${jdbc.embedded.artifactId}</jdbc.artifactId>
+		<jdbc.version>${jdbc.derby.version}</jdbc.version>
+		<jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
+		<jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
+		<!-- <jdbc.driver> org.apache.derby.jdbc.ClientDriver org.apache.derby.jdbc.EmbeddedDriver org.apache.derby.jdbc.AutoloadedDriver
+			</jdbc.driver> -->
+		<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
+		<jdbc.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.url>
+		<!-- -->
+		<jdbc.username>user</jdbc.username>
+		<jdbc.password>user</jdbc.password>		
 	</properties>
 </project>

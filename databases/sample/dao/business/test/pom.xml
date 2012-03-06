@@ -14,7 +14,7 @@
 	<artifactId>test</artifactId>
 	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
-	<description>Database DAO Test : Test Spring Jpa Hibernate compatibility</description>
+	<description>Database DAO Test : Test Spring Jpa Hibernate and Derby compatibility</description>
 
 	<dependencies>
 		<dependency>
@@ -204,6 +204,7 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<!-- Database settings override to Derby -->
 		<profile>
 			<id>derby</id>
 			<activation>
@@ -218,7 +219,7 @@
 				<jdbc.groupId>org.apache.derby</jdbc.groupId>
 				<jdbc.client.artifactId>derbyclient</jdbc.client.artifactId>
 				<jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId>
-				<jdbc.version>10.3.1.4</jdbc.version>
+				<jdbc.version>${jdbc.derby.version}</jdbc.version>
 				<jdbc.username>user</jdbc.username>
 				<jdbc.password>user</jdbc.password>
 				<jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
@@ -359,7 +360,7 @@
 						<configuration>
 							<reportFile>${project.build.directory}/${project.build.finalName}.rat</reportFile>
 							<excludes>
-								<exclude>**/target/**/*</exclude>
+								<exclude>**/${target.dir}/**/*</exclude>
 								<!-- left around after creating the site -->
 								<exclude>**/cobertura.ser</exclude>
 								<!-- left around after some unit tests -->
@@ -371,9 +372,7 @@
 								<exclude>**/*.iws</exclude>
 								<!-- Eclipse files -->
 								<exclude>**/.*</exclude>
-								<exclude>
-									**/eclipse-classes/**/*
-								</exclude>
+								<exclude>**/eclipse-classes/**/*</exclude>
 							</excludes>
 						</configuration>
 					</plugin>

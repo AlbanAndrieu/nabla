@@ -29,7 +29,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 					<property name="showSql" value="true" />
-				<property name="databasePlatform" value="org.hibernate.dialect.DerbyDialect" />
+				<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
 				<property name="generateDdl" value="true" />
 			</bean>
 		</property>
@@ -40,10 +40,10 @@
 
 	<!-- la source de donnéees DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
-		<property name="url" value="jdbc:derby:C:/tmp/myDBGlobal;create=true" />
-		<property name="username" value="user" />
-		<property name="password" value="user" />
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:~/myDBGlobal;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1" />
+		<property name="username" value="sa" />
+		<property name="password" value="sa" />
         <property name="maxActive" value="100"/>
         <property name="maxWait" value="1000"/>
         <property name="poolPreparedStatements" value="true"/>
