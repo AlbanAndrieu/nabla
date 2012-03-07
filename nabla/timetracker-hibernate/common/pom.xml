@@ -33,20 +33,16 @@
         </dependency>
     </dependencies>
     <build>
-        <!-- To change from default src/main/java and src/test/java - doesn't work for Cobertura>
-        <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>src-test</testSourceDirectory -->
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
+            <!--
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
+            -->
         </plugins>
     </build>
 </project>

@@ -218,6 +218,7 @@
     </dependencies>
     <build>
         <finalName>timetracker</finalName>
+        <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -277,9 +278,6 @@
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

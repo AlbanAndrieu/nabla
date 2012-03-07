@@ -436,10 +436,8 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!--plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-            </plugin-->
         </plugins>
+        <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

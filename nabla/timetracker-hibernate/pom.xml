@@ -184,7 +184,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
-        <defaultGoal>install</defaultGoal>
+        <!--<defaultGoal>install</defaultGoal>-->
         <pluginManagement>
             <plugins>         
                 <!--     
@@ -276,7 +276,7 @@
                                 <scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
                                 <locations>
                                     <location>
-                                        <rootPath>${project.basedir}/src/main/java</rootPath>
+                                        <rootPath>${project.basedir}/src/main/java</rootPath> 
                                         <rootPath>${project.basedir}/${maven.build.generated}/main/java</rootPath>
                                         <rootPath>${project.basedir}/${maven.build.generated}/main/webapp</rootPath> 
                                         <!-- adjust these to include or exclude specific files, by default
