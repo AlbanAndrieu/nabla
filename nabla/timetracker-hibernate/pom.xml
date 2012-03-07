@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.andromda.timetracker</groupId>
-    <artifactId>timetracker</artifactId>
+    <artifactId>timetracker-hibernate</artifactId>
     <packaging>pom</packaging>
     <version>3.4</version>
     <name>TimeTracker</name>
@@ -26,17 +26,9 @@
                <type>sar</type>
              </dependency>        
              -->
-             <!--
             <dependency>
                 <groupId>org.andromda.cartridges</groupId>
                 <artifactId>andromda-jsf-cartridge-components</artifactId>
-                <version>${andromda.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            -->
-            <dependency>
-                <groupId>org.andromda.cartridges</groupId>
-                <artifactId>andromda-gui-components</artifactId>
                 <version>${andromda.version}</version>
                 <scope>runtime</scope>
             </dependency>
@@ -285,6 +277,8 @@
                                 <locations>
                                     <location>
                                         <rootPath>${project.basedir}/src/main/java</rootPath>
+                                        <rootPath>${project.basedir}/${maven.build.generated}/main/java</rootPath>
+                                        <rootPath>${project.basedir}/${maven.build.generated}/main/webapp</rootPath> 
                                         <!-- adjust these to include or exclude specific files, by default
                                              all files found in the rootPath are considered
                                         <includes>

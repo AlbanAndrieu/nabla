@@ -55,12 +55,11 @@
         <menu name="Nabla">
             <item name="Introduction" href="index.html"/> 
             <item name="Hibernate SQL" href="sql/ddlCreate_hbm2ddl.sql"/>
-            <item name="Hibernate SQL" href="sql/schema.sql"/>
-            <item name="Hibernate SQL" href="sql/static-data-delete.sql"/>
-            <item name="Hibernate SQL" href="sql/static-data-insert.sql"/>
-            <item name="Hibernate SQL" href="sql/test-data-delete.sql"/>
-            <item name="Hibernate SQL" href="sql/test-data-insert.sql"/>
-            schema-create.sql
+            <item name="Schema SQL" href="sql/schema.sql"/>
+            <item name="Static Data Delete SQL" href="sql/static-data-delete.sql"/>
+            <item name="Static Data Insert SQL" href="sql/static-data-insert.sql"/>
+            <item name="Test Data Delete SQL" href="sql/test-data-delete.sql"/>
+            <item name="Test Data Insert SQL" href="sql/test-data-insert.sql"/>
             <item name="SQL" href="sql"/>
         </menu>
 
