@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_SvaGsEAFEeGqgMH9RehX7g/0" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLStandardProfile="http:///schemas/UMLStandardProfile/_Su-B0EAFEeGqgMH9RehX7g/0" xmlns:andromdameta="http:///schemas/andromdameta/_SvC6UEAFEeGqgMH9RehX7g/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/MagicDrawProfile/_SvaGsEAFEeGqgMH9RehX7g/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_TAfPoUAFEeGqgMH9RehX7g http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w http:///schemas/UMLStandardProfile/_Su-B0EAFEeGqgMH9RehX7g/0 UML_Standard_Profile.UML_Standard_Profile.profile.uml#_TAtSF0AFEeGqgMH9RehX7g http:///schemas/andromdameta/_SvC6UEAFEeGqgMH9RehX7g/0 org.andromda.profile.andromda-meta.profile.uml#_TBmqGEAFEeGqgMH9RehX7g">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http:///schemas/MagicDrawProfile/_eLTVwGZmEeGLl4ZDpysGdg/0" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLStandardProfile="http:///schemas/UMLStandardProfile/_eLQScGZmEeGLl4ZDpysGdg/0" xmlns:andromdameta="http:///schemas/andromdameta/_eLN2MGZmEeGLl4ZDpysGdg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/MagicDrawProfile/_eLTVwGZmEeGLl4ZDpysGdg/0 UML_Standard_Profile.MagicDraw_Profile.profile.uml#_eYju1GZmEeGLl4ZDpysGdg http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w http:///schemas/UMLStandardProfile/_eLQScGZmEeGLl4ZDpysGdg/0 UML_Standard_Profile.UML_Standard_Profile.profile.uml#_eYkWK2ZmEeGLl4ZDpysGdg http:///schemas/andromdameta/_eLN2MGZmEeGLl4ZDpysGdg/0 org.andromda.profile.andromda-meta.profile.uml#_eYk9O2ZmEeGLl4ZDpysGdg">
   <uml:Model xmi:id="eee_1045467100313_135436_1" name="Data" viewpoint="">
     <ownedComment xmi:id="_d860307_1071503001754_461086_1" body="Author:AA.&#xA;Created:15.12.03 16:37.&#xA;Title:.&#xA;Comment:.&#xA;" annotatedElement="eee_1045467100313_135436_1"/>
     <packageImport xmi:id="_0primitiveTypesData">
@@ -774,7 +774,7 @@
                 <ownedComment xmi:id="_9_0_2_2cb0161_1134249799500_363349_530" body="The other association end owned by this end's association." annotatedElement="_d860307_1071505058269_2676_836"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505058269_759931_837" name="" memberEnd="_d860307_1071505058269_379091_835 _d860307_1071505058269_2676_836">
+            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505058269_759931_837" name="" memberEnd="_d860307_1071505058269_2676_836 _d860307_1071505058269_379091_835">
               <ownedEnd xmi:id="_d860307_1071505058269_379091_835" name="" visibility="private" type="_d860307_1071505012453_158614_819" association="_d860307_1071505058269_759931_837"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505183199_132404_943" name="associationEnds" memberEnd="_d860307_1071505183199_558016_941 _d860307_1071505183199_480465_942">
@@ -906,10 +906,10 @@
                 <ownedParameter xmi:id="_24400562_1086482944250_103483_129" name="" visibility="public" type="_d860307_1071506074180_318219_1633" direction="return"/>
               </ownedOperation>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505837309_478677_1510" name="" memberEnd="_d860307_1071505837309_966405_1508 _d860307_1071505837309_174703_1509">
+            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505837309_478677_1510" name="" memberEnd="_d860307_1071505837309_174703_1509 _d860307_1071505837309_966405_1508">
               <ownedEnd xmi:id="_d860307_1071505837309_966405_1508" name="" visibility="private" type="_d860307_1071505762942_565408_1372" association="_d860307_1071505837309_478677_1510"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505881323_798739_1549" name="" memberEnd="_d860307_1071505881323_460948_1547 _d860307_1071505881323_211957_1548">
+            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505881323_798739_1549" name="" memberEnd="_d860307_1071505881323_211957_1548 _d860307_1071505881323_460948_1547">
               <ownedEnd xmi:id="_d860307_1071505881323_460948_1547" name="" visibility="private" type="_d860307_1071505787688_603234_1398" association="_d860307_1071505881323_798739_1549"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071505916814_518979_1588" name="" memberEnd="_d860307_1071505916814_116211_1586 _d860307_1071505916814_306318_1587">
@@ -1726,7 +1726,7 @@
                 <ownedComment xmi:id="_9_0_2_2cb0161_1134249202281_291138_288" body="The entry action for this action state (if any)." annotatedElement="_1fe00f9_1103364596140_800000_301"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_ecb034c_1074429542848_328695_368" name="" memberEnd="_ecb034c_1074429542847_689126_366 _ecb034c_1074429542848_636988_367">
+            <packagedElement xmi:type="uml:Association" xmi:id="_ecb034c_1074429542848_328695_368" name="" memberEnd="_ecb034c_1074429542848_636988_367 _ecb034c_1074429542847_689126_366">
               <ownedEnd xmi:id="_ecb034c_1074429542847_689126_366" name="" visibility="public" type="_ecb034c_1074379407701_127218_171" association="_ecb034c_1074429542848_328695_368"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_ecb034c_1074429708731_957334_552" name="ObjectFlowStateFacade">
@@ -1873,7 +1873,7 @@
                 <ownedParameter xmi:id="_1fe00f9_1097398012390_722054_206" name="" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" direction="return"/>
               </ownedOperation>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1077460205921_840800_243" name="" memberEnd="_d860307_1077460205921_622501_241 _d860307_1077460205921_325945_242">
+            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1077460205921_840800_243" name="" memberEnd="_d860307_1077460205921_325945_242 _d860307_1077460205921_622501_241">
               <ownedEnd xmi:id="_d860307_1077460205921_622501_241" name="" visibility="private" type="_d860307_1071506074180_318219_1633" association="_d860307_1077460205921_840800_243"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_d860307_1077738600685_387777_175" name="ActorFacade">
@@ -1890,7 +1890,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1326686844928_542038_871" name=""/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1078085857383_935311_98" name="" memberEnd="_24400562_1078085857383_908713_97 _24400562_1078085857383_70722_96"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1078085857383_935311_98" name="" memberEnd="_24400562_1078085857383_70722_96 _24400562_1078085857383_908713_97"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_24400562_1078456000396_796309_243" name="GeneralizableElementFacade">
               <ownedComment xmi:id="_9_5_12ab03bf_1112928520996_234077_136" body="The model element that represents an element that can be generalized or specialized." annotatedElement="_24400562_1078456000396_796309_243"/>
               <generalization xmi:id="_24400562_1078456191100_195994_598" isSubstitutable="true" general="_d860307_1071506074180_318219_1633"/>
@@ -1949,7 +1949,7 @@
               <ownedComment xmi:id="_9_5_1_2e90116_1256329101524_669443_117" body="Defines how an existing metaclass may be extended, and enables the use of platform or domain specific terminology or notation in place of, or in addition to, the ones used for the extended metaclass." annotatedElement="_24400562_1078456132886_364804_350"/>
               <generalization xmi:id="_24400562_1078456152655_775512_366" isSubstitutable="true" general="_24400562_1078456000396_796309_243"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1078456517309_594480_1085" name="" memberEnd="_24400562_1078456517309_407098_1084 _24400562_1078456517309_651825_1083"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1078456517309_594480_1085" name="" memberEnd="_24400562_1078456517309_651825_1083 _24400562_1078456517309_407098_1084"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_8a70287_1078527510288_746033_187" name="ArgumentFacade">
               <generalization xmi:id="_24400562_1093489174203_764491_284" isSubstitutable="true" general="_d860307_1071506074180_318219_1633"/>
             </packagedElement>
@@ -2002,10 +2002,10 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1326686844860_547985_735" name=""/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078528936238_695957_1287" name="" memberEnd="_8a70287_1078528936238_947508_1286 _8a70287_1078528936238_489998_1285">
+            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078528936238_695957_1287" name="" memberEnd="_8a70287_1078528936238_489998_1285 _8a70287_1078528936238_947508_1286">
               <ownedEnd xmi:id="_8a70287_1078528936238_489998_1285" name="" visibility="public" type="_8a70287_1078527740759_977341_264" association="_8a70287_1078528936238_695957_1287"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078530511533_466820_322" name="" memberEnd="_8a70287_1078530511533_990242_320 _8a70287_1078530511533_60098_321"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078530511533_466820_322" name="" memberEnd="_8a70287_1078530511533_60098_321 _8a70287_1078530511533_990242_320"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078530518463_976369_325" name="" memberEnd="_8a70287_1078530518463_22414_323 _8a70287_1078530518463_635952_324"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078530761453_351169_562" name="" memberEnd="_8a70287_1078530761453_887435_560 _8a70287_1078530761453_682274_561"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078530764688_277202_565" name="" memberEnd="_8a70287_1078530764688_718214_563 _8a70287_1078530764688_29541_564"/>
@@ -2018,7 +2018,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1326686844862_33925_739" name=""/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078532392789_133831_941" name="" memberEnd="_8a70287_1078532392789_740041_939 _8a70287_1078532392789_849667_940">
+            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078532392789_133831_941" name="" memberEnd="_8a70287_1078532392789_849667_940 _8a70287_1078532392789_740041_939">
               <ownedEnd xmi:id="_8a70287_1078532392789_740041_939" name="namespace" visibility="public" type="_8a70287_1078532325622_971459_759" association="_8a70287_1078532392789_133831_941">
                 <ownedComment xmi:id="_24400562_1082334764203_217080_84" body="Gets the namespace to which this model element belongs." annotatedElement="_8a70287_1078532392789_740041_939"/>
                 <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_16_5_4_55001df_1326686844862_844745_738" name="" value="1"/>
@@ -2045,7 +2045,7 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078687437115_922948_674" name="" memberEnd="_8a70287_1078687437115_754473_672 _8a70287_1078687437115_951210_673">
               <ownedEnd xmi:id="_8a70287_1078687437115_754473_672" name="" visibility="public" type="_8a70287_1078687370189_842249_401" association="_8a70287_1078687437115_922948_674"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078864830620_172509_280" name="" memberEnd="_8a70287_1078864830620_693723_278 _8a70287_1078864830620_541056_279"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078864830620_172509_280" name="" memberEnd="_8a70287_1078864830620_541056_279 _8a70287_1078864830620_693723_278"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_8a70287_1078939289723_161411_215" name="GuardFacade">
               <ownedComment xmi:id="_9_5_1_2e90116_1256329101524_298924_121" body="A representation of the model object 'Constraint'. A condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element." annotatedElement="_8a70287_1078939289723_161411_215"/>
               <generalization xmi:id="_8a70287_1078952020671_525620_351" isSubstitutable="true" general="_d860307_1071506074180_318219_1633"/>
@@ -2065,7 +2065,7 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1079984120656_224169_500" name="" memberEnd="_8a70287_1079984120656_510077_498 _8a70287_1079984120656_884195_499">
               <ownedEnd xmi:id="_8a70287_1079984120656_510077_498" name="" visibility="private" type="_8a70287_1079983887000_419904_240" association="_8a70287_1079984120656_224169_500"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1082333776687_363861_199" name="" memberEnd="_24400562_1082333776687_113194_198 _24400562_1082333776687_910568_197">
+            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1082333776687_363861_199" name="" memberEnd="_24400562_1082333776687_910568_197 _24400562_1082333776687_113194_198">
               <ownedEnd xmi:id="_24400562_1082333776687_910568_197" name="" visibility="private" type="_d860307_1071506074180_318219_1633" association="_24400562_1082333776687_363861_199"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_24400562_1084729534630_226077_291" name="ConstraintFacade">
@@ -2114,7 +2114,7 @@
                 <ownedParameter xmi:id="_ecb034c_1087068362112_576379_392" name="" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" direction="return"/>
               </ownedOperation>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1084729610099_555502_322" name="" memberEnd="_24400562_1084729610099_721092_321 _24400562_1084729610099_756606_320"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1084729610099_555502_322" name="" memberEnd="_24400562_1084729610099_756606_320 _24400562_1084729610099_721092_321"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_24400562_1086300630984_552734_109" name="EntityAssociation">
               <ownedComment xmi:id="_24400562_1086300703937_963930_352" body="Represents an association between entities." annotatedElement="_24400562_1086300630984_552734_109"/>
               <generalization xmi:id="_24400562_1086300700687_563345_342" isSubstitutable="true" general="_24400562_1073854558969_92049_331"/>
@@ -2131,7 +2131,7 @@
               </ownedAttribute>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1086482015250_490918_3" name="" memberEnd="_24400562_1086482015250_52608_1 _24400562_1086482015250_638989_2"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071759243425_864940_27" name="returnType" memberEnd="_d860307_1071759243425_639512_26 _d860307_1071759243425_986914_25">
+            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071759243425_864940_27" name="returnType" memberEnd="_d860307_1071759243425_986914_25 _d860307_1071759243425_639512_26">
               <ownedComment xmi:id="_d860307_1071759375194_81832_103" body="The return type of an operation." annotatedElement="_d860307_1071759243425_864940_27"/>
               <ownedEnd xmi:id="_d860307_1071759243425_986914_25" name="" visibility="private" type="_d860307_1071504751869_985718_574" association="_d860307_1071759243425_864940_27"/>
             </packagedElement>
@@ -2448,7 +2448,7 @@
                 </specification>
               </ownedRule>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1089571192890_423342_131" name="" memberEnd="_24400562_1089571192890_279088_130 _24400562_1089571192890_979346_129">
+            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1089571192890_423342_131" name="" memberEnd="_24400562_1089571192890_979346_129 _24400562_1089571192890_279088_130">
               <ownedEnd xmi:id="_24400562_1089571192890_279088_130" name="" visibility="private" type="_24400562_1078456000396_796309_243" association="_24400562_1089571192890_423342_131"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1090094553812_417973_330" name="" memberEnd="_24400562_1090094553812_89292_328 _24400562_1090094553812_504888_329">
@@ -2463,7 +2463,7 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1094288955171_171193_3" name="" memberEnd="_8a70287_1094288955171_250865_1 _8a70287_1094288955171_434879_2">
               <ownedEnd xmi:id="_8a70287_1094288955171_250865_1" name="" visibility="private" type="_d860307_1071505787688_603234_1398" association="_8a70287_1094288955171_171193_3"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1098633517413_620152_147" name="" memberEnd="_24400562_1098633517413_7197_145 _24400562_1098633517413_886668_146">
+            <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1098633517413_620152_147" name="" memberEnd="_24400562_1098633517413_886668_146 _24400562_1098633517413_7197_145">
               <ownedEnd xmi:id="_24400562_1098633517413_7197_145" name="" visibility="public" type="_d860307_1071574234068_992089_84" association="_24400562_1098633517413_620152_147"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_24400562_1098633524593_544354_186" name="" memberEnd="_24400562_1098633524593_365540_184 _24400562_1098633524593_256328_185">
@@ -2522,10 +2522,10 @@
               <ownedEnd xmi:id="_e8f0348_1102215457953_925389_19" name="" visibility="private" type="_e8f0348_1102200843718_167772_250" association="_e8f0348_1102215457953_233593_21"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_e8f0348_1102256123078_5145_32" name="" memberEnd="_e8f0348_1102256123078_238631_30 _e8f0348_1102256123078_768734_31"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078785864802_675541_399" name="" memberEnd="_8a70287_1078785864802_636640_398 _8a70287_1078785864802_11776_397">
+            <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078785864802_675541_399" name="" memberEnd="_8a70287_1078785864802_11776_397 _8a70287_1078785864802_636640_398">
               <ownedEnd xmi:id="_8a70287_1078785864802_11776_397" name="" visibility="public" type="_d860307_1071505762942_565408_1372" association="_8a70287_1078785864802_675541_399"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1102599526237_575579_565" name="" memberEnd="_1fe00f9_1102599526237_182390_564 _1fe00f9_1102599526237_45921_563">
+            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1102599526237_575579_565" name="" memberEnd="_1fe00f9_1102599526237_45921_563 _1fe00f9_1102599526237_182390_564">
               <ownedEnd xmi:id="_1fe00f9_1102599526237_45921_563" name="" visibility="private" type="_d860307_1071505762942_565408_1372" association="_1fe00f9_1102599526237_575579_565"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1102599548070_855314_604" name="" memberEnd="_1fe00f9_1102599548070_78912_602 _1fe00f9_1102599548070_672203_603">
@@ -2535,16 +2535,16 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103061013441_354072_2" name="staticAttributes" memberEnd="_1fe00f9_1103061013441_277436_1 _1fe00f9_1103061013441_733478_0">
               <ownedEnd xmi:id="_1fe00f9_1103061013441_733478_0" name="" visibility="public" type="_d860307_1071504650353_319894_500" association="_1fe00f9_1103061013441_354072_2"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103061021456_406613_41" name="instanceAttributes" memberEnd="_1fe00f9_1103061021456_500886_40 _1fe00f9_1103061021456_221842_39">
+            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103061021456_406613_41" name="instanceAttributes" memberEnd="_1fe00f9_1103061021456_221842_39 _1fe00f9_1103061021456_500886_40">
               <ownedEnd xmi:id="_1fe00f9_1103061021456_221842_39" name="" visibility="public" type="_d860307_1071504650353_319894_500" association="_1fe00f9_1103061021456_406613_41"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103061226067_981667_88" name="staticOperations" memberEnd="_1fe00f9_1103061226067_920709_86 _1fe00f9_1103061226067_606339_87">
               <ownedEnd xmi:id="_1fe00f9_1103061226067_920709_86" name="" visibility="public" type="_d860307_1071504650353_319894_500" association="_1fe00f9_1103061226067_981667_88"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103061256645_286231_127" name="instanceOperations" memberEnd="_1fe00f9_1103061256645_936453_126 _1fe00f9_1103061256645_600825_125">
+            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103061256645_286231_127" name="instanceOperations" memberEnd="_1fe00f9_1103061256645_600825_125 _1fe00f9_1103061256645_936453_126">
               <ownedEnd xmi:id="_1fe00f9_1103061256645_600825_125" name="" visibility="public" type="_d860307_1071504650353_319894_500" association="_1fe00f9_1103061256645_286231_127"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103364596140_527118_302" name="" memberEnd="_1fe00f9_1103364596140_800000_301 _1fe00f9_1103364596140_680369_300"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1103364596140_527118_302" name="" memberEnd="_1fe00f9_1103364596140_680369_300 _1fe00f9_1103364596140_800000_301"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_e8f0348_1103736423718_945658_2" name="" memberEnd="_e8f0348_1103736423718_348825_0 _e8f0348_1103736423718_479626_1">
               <ownedEnd xmi:id="_e8f0348_1103736423718_348825_0" name="" visibility="private" type="_d860307_1071574465881_881793_352" association="_e8f0348_1103736423718_945658_2"/>
             </packagedElement>
@@ -2598,7 +2598,7 @@
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1105576140731_873033_187" name="enumeration" memberEnd="_9_0_1fe00f9_1105576140731_508177_186 _9_0_1fe00f9_1105576140731_32974_185"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_e8f0348_1107223833046_426650_109" name="" memberEnd="_9_0_e8f0348_1107223833046_337243_108 _9_0_e8f0348_1107223833046_217556_107">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_e8f0348_1107223833046_426650_109" name="" memberEnd="_9_0_e8f0348_1107223833046_217556_107 _9_0_e8f0348_1107223833046_337243_108">
               <ownedEnd xmi:id="_9_0_e8f0348_1107223833046_217556_107" name="" visibility="private" type="_d860307_1071574234068_992089_84" association="_9_0_e8f0348_1107223833046_426650_109"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_e8f0348_1107223913953_777742_195" name="" memberEnd="_9_0_e8f0348_1107223913953_464277_193 _9_0_e8f0348_1107223913953_927530_194">
@@ -2610,7 +2610,7 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_e8f0348_1109172943609_283497_2" name="" memberEnd="_9_0_e8f0348_1109172943609_624441_1 _9_0_e8f0348_1109172943609_157289_0">
               <ownedEnd xmi:id="_9_0_e8f0348_1109172943609_157289_0" name="" visibility="private" type="_d860307_1071504751869_985718_574" association="_9_0_e8f0348_1109172943609_283497_2"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_e8f0348_1109213410625_442250_160" name="" memberEnd="_9_0_e8f0348_1109213410625_804055_159 _9_0_e8f0348_1109213410625_868578_158">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_e8f0348_1109213410625_442250_160" name="" memberEnd="_9_0_e8f0348_1109213410625_868578_158 _9_0_e8f0348_1109213410625_804055_159">
               <ownedEnd xmi:id="_9_0_e8f0348_1109213410625_804055_159" name="" visibility="private" type="_d860307_1071504650353_319894_500" association="_9_0_e8f0348_1109213410625_442250_160"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_1fe00f9_1111223458470_189098_0" name="SubactivityStateFacade">
@@ -2636,7 +2636,7 @@
               </ownedAttribute>
               <ownedAttribute xmi:id="_9_0_1fe00f9_1111224974707_229161_1086" name="activityGraph" visibility="public" type="_ecb034c_1074379407701_127218_171" association="_9_0_1fe00f9_1111224974707_782031_1087"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1111224974707_782031_1087" name="" memberEnd="_9_0_1fe00f9_1111224974707_848178_1085 _9_0_1fe00f9_1111224974707_229161_1086"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1111224974707_782031_1087" name="" memberEnd="_9_0_1fe00f9_1111224974707_229161_1086 _9_0_1fe00f9_1111224974707_848178_1085"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_12ab03bf_1111294317312_560428_120" name="" memberEnd="_9_0_12ab03bf_1111294317312_139244_118 _9_0_12ab03bf_1111294317312_720427_119">
               <ownedEnd xmi:id="_9_0_12ab03bf_1111294317312_139244_118" name="" visibility="private" type="_9_0_1fe00f9_1104625440681_53845_33" association="_9_0_12ab03bf_1111294317312_560428_120"/>
             </packagedElement>
@@ -2653,7 +2653,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1326686844914_644871_829" name="" value="2"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1111794643743_357993_973" name="" memberEnd="_9_0_1fe00f9_1111794643743_931761_971 _9_0_1fe00f9_1111794643743_196602_972">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1111794643743_357993_973" name="" memberEnd="_9_0_1fe00f9_1111794643743_196602_972 _9_0_1fe00f9_1111794643743_931761_971">
               <ownedEnd xmi:id="_9_0_1fe00f9_1111794643743_931761_971" name="" visibility="public" type="_9_0_1fe00f9_1111792430944_743355_131" association="_9_0_1fe00f9_1111794643743_357993_973"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_2_12ab03bf_1112204654656_123732_0" name="ValueObject">
@@ -2674,17 +2674,17 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1326686844915_149764_831" name="" value="1"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1112638265768_480037_201" name="type" memberEnd="_9_0_1fe00f9_1112638265768_988723_199 _9_0_1fe00f9_1112638265768_631531_200">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1112638265768_480037_201" name="type" memberEnd="_9_0_1fe00f9_1112638265768_631531_200 _9_0_1fe00f9_1112638265768_988723_199">
               <ownedEnd xmi:id="_9_0_1fe00f9_1112638265768_988723_199" name="" visibility="public" type="_ecb034c_1074429708731_957334_552" association="_9_0_1fe00f9_1112638265768_480037_201"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1112638449555_418679_495" name="" memberEnd="_9_0_1fe00f9_1112638449555_348913_494 _9_0_1fe00f9_1112638449555_132969_493"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1112638449555_418679_495" name="" memberEnd="_9_0_1fe00f9_1112638449555_132969_493 _9_0_1fe00f9_1112638449555_348913_494"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1112638736161_526782_877" name="" memberEnd="_9_0_1fe00f9_1112638736161_173126_875 _9_0_1fe00f9_1112638736161_224315_876">
               <ownedEnd xmi:id="_9_0_1fe00f9_1112638736161_173126_875" name="" visibility="public" type="_8a70287_1078528386918_321974_1041" association="_9_0_1fe00f9_1112638736161_526782_877"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_12ab03bf_1112847572859_778539_198" name="" memberEnd="_9_5_12ab03bf_1112847572859_215646_196 _9_5_12ab03bf_1112847572859_165390_197">
               <ownedEnd xmi:id="_9_5_12ab03bf_1112847572859_215646_196" name="" visibility="private" type="_d860307_1071504751869_985718_574" association="_9_5_12ab03bf_1112847572859_778539_198"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_12ab03bf_1112847586062_22596_240" name="" memberEnd="_9_5_12ab03bf_1112847586062_849740_238 _9_5_12ab03bf_1112847586062_638673_239">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_12ab03bf_1112847586062_22596_240" name="" memberEnd="_9_5_12ab03bf_1112847586062_638673_239 _9_5_12ab03bf_1112847586062_849740_238">
               <ownedEnd xmi:id="_9_5_12ab03bf_1112847586062_849740_238" name="" visibility="private" type="_d860307_1071504751869_985718_574" association="_9_5_12ab03bf_1112847586062_22596_240"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1113367047375_642873_130" name="" memberEnd="_9_0_2_12ab03bf_1113367047375_793931_128 _9_0_2_12ab03bf_1113367047375_32239_129">
@@ -2781,7 +2781,7 @@
               </ownedAttribute>
               <ownedAttribute xmi:id="_9_0_1fe00f9_1113918180165_136276_529" name="manageableIdentifier" visibility="public" type="_24400562_1076241072504_416910_88" isReadOnly="true" association="_9_0_1fe00f9_1113918180165_196739_530"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1113843062297_431766_127" name="" memberEnd="_9_0_1fe00f9_1113843062297_22230_126 _9_0_1fe00f9_1113843062297_693565_125">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1113843062297_431766_127" name="" memberEnd="_9_0_1fe00f9_1113843062297_693565_125 _9_0_1fe00f9_1113843062297_22230_126">
               <ownedEnd xmi:id="_9_0_1fe00f9_1113843062297_693565_125" name="" visibility="public" type="_9_0_1fe00f9_1113402182518_384484_232" association="_9_0_1fe00f9_1113843062297_431766_127"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_1fe00f9_1113897549413_287358_18" name="ManageableEntityAttribute">
@@ -2800,7 +2800,7 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1113918180165_196739_530" name="" memberEnd="_9_0_1fe00f9_1113918180165_312133_528 _9_0_1fe00f9_1113918180165_136276_529">
               <ownedEnd xmi:id="_9_0_1fe00f9_1113918180165_312133_528" name="" visibility="public" type="_9_0_1fe00f9_1113843043548_33809_34" association="_9_0_1fe00f9_1113918180165_196739_530"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1114113906200_832748_141" name="" memberEnd="_9_0_1fe00f9_1114113906200_358076_140 _9_0_1fe00f9_1114113906200_462290_139">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1114113906200_832748_141" name="" memberEnd="_9_0_1fe00f9_1114113906200_462290_139 _9_0_1fe00f9_1114113906200_358076_140">
               <ownedEnd xmi:id="_9_0_1fe00f9_1114113906200_462290_139" name="" visibility="public" type="_9_0_1fe00f9_1113402182518_384484_232" isReadOnly="true" association="_9_0_1fe00f9_1114113906200_832748_141"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1114129889340_482438_2" name="" memberEnd="_9_0_1fe00f9_1114129889340_375098_0 _9_0_1fe00f9_1114129889340_326338_1">
@@ -2810,7 +2810,7 @@
               <ownedEnd xmi:id="_9_0_1fe00f9_1114285065964_379784_75" name="" visibility="public" type="_9_0_1fe00f9_1113402182518_384484_232" association="_9_0_1fe00f9_1114285065964_948512_77"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1114287519522_79977_258" name="" memberEnd="_9_0_1fe00f9_1114287519522_698455_257 _9_0_1fe00f9_1114287519522_482735_256"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1114338156064_124296_90" name="" memberEnd="_9_0_1fe00f9_1114338156064_948975_89 _9_0_1fe00f9_1114338156064_604908_88">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1114338156064_124296_90" name="" memberEnd="_9_0_1fe00f9_1114338156064_604908_88 _9_0_1fe00f9_1114338156064_948975_89">
               <ownedEnd xmi:id="_9_0_1fe00f9_1114338156064_604908_88" name="" visibility="public" type="_d860307_1071505762942_565408_1372" association="_9_0_1fe00f9_1114338156064_124296_90"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_1fe00f9_1115149256331_843166_82" name="ExtensionPointFacade">
@@ -2893,11 +2893,11 @@
                 <ownedComment xmi:id="_9_0_2_2cb0161_1153211921980_762374_0" body="The first instance to which this link end is attached." annotatedElement="_9_0_1fe00f9_1116004351784_467381_758"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004318535_757405_718" name="" memberEnd="_9_0_1fe00f9_1116004318535_49127_717 _9_0_1fe00f9_1116004318535_291043_716">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004318535_757405_718" name="" memberEnd="_9_0_1fe00f9_1116004318535_291043_716 _9_0_1fe00f9_1116004318535_49127_717">
               <ownedEnd xmi:id="_9_0_1fe00f9_1116004318535_291043_716" name="" visibility="public" type="_9_0_1fe00f9_1116003869282_276578_71" association="_9_0_1fe00f9_1116004318535_757405_718"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004351784_240756_760" name="" memberEnd="_9_0_1fe00f9_1116004351784_335984_759 _9_0_1fe00f9_1116004351784_467381_758"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004431219_616270_1009" name="" memberEnd="_9_0_1fe00f9_1116004431219_636558_1007 _9_0_1fe00f9_1116004431219_122046_1008">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004351784_240756_760" name="" memberEnd="_9_0_1fe00f9_1116004351784_467381_758 _9_0_1fe00f9_1116004351784_335984_759"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004431219_616270_1009" name="" memberEnd="_9_0_1fe00f9_1116004431219_122046_1008 _9_0_1fe00f9_1116004431219_636558_1007">
               <ownedEnd xmi:id="_9_0_1fe00f9_1116004431219_636558_1007" name="" visibility="private" type="_9_0_1fe00f9_1116004188633_221941_439" association="_9_0_1fe00f9_1116004431219_616270_1009"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_1fe00f9_1116004487874_253309_1067" name="LinkFacade">
@@ -2909,11 +2909,11 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1326686844935_257646_889" name=""/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004547154_835754_1220" name="" memberEnd="_9_0_1fe00f9_1116004547154_86533_1219 _9_0_1fe00f9_1116004547154_925048_1218"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004592622_67496_1262" name="" memberEnd="_9_0_1fe00f9_1116004592622_373717_1260 _9_0_1fe00f9_1116004592622_321378_1261">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004547154_835754_1220" name="" memberEnd="_9_0_1fe00f9_1116004547154_925048_1218 _9_0_1fe00f9_1116004547154_86533_1219"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004592622_67496_1262" name="" memberEnd="_9_0_1fe00f9_1116004592622_321378_1261 _9_0_1fe00f9_1116004592622_373717_1260">
               <ownedEnd xmi:id="_9_0_1fe00f9_1116004592622_373717_1260" name="" visibility="private" type="_9_0_1fe00f9_1116003869282_276578_71" association="_9_0_1fe00f9_1116004592622_67496_1262"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004619559_280182_1304" name="" memberEnd="_9_0_1fe00f9_1116004619559_56536_1302 _9_0_1fe00f9_1116004619559_184686_1303">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116004619559_280182_1304" name="" memberEnd="_9_0_1fe00f9_1116004619559_184686_1303 _9_0_1fe00f9_1116004619559_56536_1302">
               <ownedEnd xmi:id="_9_0_1fe00f9_1116004619559_56536_1302" name="" visibility="private" type="_9_0_1fe00f9_1116003869282_276578_71" association="_9_0_1fe00f9_1116004619559_280182_1304"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_1fe00f9_1116499094484_143315_18" name="AttributeLinkFacade">
@@ -2934,15 +2934,15 @@
                 <ownedComment xmi:id="_9_0_2_2cb0161_1134250151171_276948_632" body="The attribute for this link." annotatedElement="_9_0_1fe00f9_1116499212296_464596_318"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499212296_539642_319" name="attribute" memberEnd="_9_0_1fe00f9_1116499212296_987760_317 _9_0_1fe00f9_1116499212296_464596_318">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499212296_539642_319" name="attribute" memberEnd="_9_0_1fe00f9_1116499212296_464596_318 _9_0_1fe00f9_1116499212296_987760_317">
               <ownedEnd xmi:id="_9_0_1fe00f9_1116499212296_987760_317" name="" visibility="private" type="_9_0_1fe00f9_1116499094484_143315_18" association="_9_0_1fe00f9_1116499212296_539642_319"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499275421_938884_403" name="" memberEnd="_9_0_1fe00f9_1116499275421_502674_401 _9_0_1fe00f9_1116499275421_913957_402"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499275421_938884_403" name="" memberEnd="_9_0_1fe00f9_1116499275421_913957_402 _9_0_1fe00f9_1116499275421_502674_401"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499303109_159412_445" name="" memberEnd="_9_0_1fe00f9_1116499303093_949264_443 _9_0_1fe00f9_1116499303109_628749_444">
               <ownedEnd xmi:id="_9_0_1fe00f9_1116499303093_949264_443" name="" visibility="private" type="_9_0_1fe00f9_1116499094484_143315_18" association="_9_0_1fe00f9_1116499303109_159412_445"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499937078_811977_616" name="" memberEnd="_9_0_1fe00f9_1116499937078_48980_615 _9_0_1fe00f9_1116499937078_792530_614"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1116977006953_998709_2" name="" memberEnd="_9_0_2_12ab03bf_1116977006953_280161_0 _9_0_2_12ab03bf_1116977006953_415134_1">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1116499937078_811977_616" name="" memberEnd="_9_0_1fe00f9_1116499937078_792530_614 _9_0_1fe00f9_1116499937078_48980_615"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1116977006953_998709_2" name="" memberEnd="_9_0_2_12ab03bf_1116977006953_415134_1 _9_0_2_12ab03bf_1116977006953_280161_0">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1116977006953_280161_0" name="" visibility="public" type="_24400562_1078456000396_796309_243" association="_9_0_2_12ab03bf_1116977006953_998709_2">
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1116977155390_270416_96" body="" annotatedElement="_9_0_2_12ab03bf_1116977006953_280161_0"/>
               </ownedEnd>
@@ -2989,7 +2989,7 @@
               </ownedAttribute>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119517872491_973477_1457" name="" memberEnd="_9_0_1fe00f9_1119517872491_602273_1456 _9_0_1fe00f9_1119517872491_560391_1455"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518090704_674765_1496" name="" memberEnd="_9_0_1fe00f9_1119518090704_56028_1495 _9_0_1fe00f9_1119518090704_574518_1494">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518090704_674765_1496" name="" memberEnd="_9_0_1fe00f9_1119518090704_574518_1494 _9_0_1fe00f9_1119518090704_56028_1495">
               <ownedEnd xmi:id="_9_0_1fe00f9_1119518090704_56028_1495" name="" visibility="public" type="_9_0_1fe00f9_1119517503209_398663_27" association="_9_0_1fe00f9_1119518090704_674765_1496"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518251798_154582_1532" name="" memberEnd="_9_0_1fe00f9_1119518251798_796491_1530 _9_0_1fe00f9_1119518251798_799050_1531">
@@ -2997,7 +2997,7 @@
                 <ownedComment xmi:id="_9_0_1fe00f9_1119014678276_139995_0" body="" annotatedElement="_9_0_1fe00f9_1119518251798_796491_1530"/>
               </ownedEnd>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518279806_924133_1557" name="" memberEnd="_9_0_1fe00f9_1119518279806_337288_1556 _9_0_1fe00f9_1119518279806_65454_1555">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518279806_924133_1557" name="" memberEnd="_9_0_1fe00f9_1119518279806_65454_1555 _9_0_1fe00f9_1119518279806_337288_1556">
               <ownedEnd xmi:id="_9_0_1fe00f9_1119518279806_65454_1555" name="" visibility="private" type="_9_0_1fe00f9_1119517503209_398663_27" association="_9_0_1fe00f9_1119518279806_924133_1557"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518295189_840203_1582" name="" memberEnd="_9_0_1fe00f9_1119518295189_526751_1581 _9_0_1fe00f9_1119518295189_145313_1580">
@@ -3006,10 +3006,10 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518331909_368954_1607" name="" memberEnd="_9_0_1fe00f9_1119518331909_693742_1606 _9_0_1fe00f9_1119518331909_981844_1605">
               <ownedEnd xmi:id="_9_0_1fe00f9_1119518331909_981844_1605" name="" visibility="public" type="_9_0_1fe00f9_1119517503209_398663_27" association="_9_0_1fe00f9_1119518331909_368954_1607"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518338424_697040_1632" name="" memberEnd="_9_0_1fe00f9_1119518338424_908529_1631 _9_0_1fe00f9_1119518338424_377215_1630">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518338424_697040_1632" name="" memberEnd="_9_0_1fe00f9_1119518338424_377215_1630 _9_0_1fe00f9_1119518338424_908529_1631">
               <ownedEnd xmi:id="_9_0_1fe00f9_1119518338424_377215_1630" name="" visibility="private" type="_9_0_1fe00f9_1119517503209_398663_27" association="_9_0_1fe00f9_1119518338424_697040_1632"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518343302_373526_1657" name="" isLeaf="true" memberEnd="_9_0_1fe00f9_1119518343302_105263_1656 _9_0_1fe00f9_1119518343302_292471_1655">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518343302_373526_1657" name="" isLeaf="true" memberEnd="_9_0_1fe00f9_1119518343302_292471_1655 _9_0_1fe00f9_1119518343302_105263_1656">
               <ownedEnd xmi:id="_9_0_1fe00f9_1119518343302_292471_1655" name="" visibility="public" type="_9_0_1fe00f9_1119517503209_398663_27" association="_9_0_1fe00f9_1119518343302_373526_1657"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119518367227_619293_1682" name="" memberEnd="_9_0_1fe00f9_1119518367227_548026_1681 _9_0_1fe00f9_1119518367227_806721_1680">
@@ -3018,31 +3018,31 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1119519349392_542537_2461" name="" memberEnd="_9_0_1fe00f9_1119519349392_871760_2460 _9_0_1fe00f9_1119519349392_983367_2459">
               <ownedEnd xmi:id="_9_0_1fe00f9_1119519349392_871760_2460" name="" visibility="private" type="_9_0_1fe00f9_1119517503209_398663_27" association="_9_0_1fe00f9_1119519349392_542537_2461"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120167656265_138569_191" name="" memberEnd="_9_0_2_12ab03bf_1120167656265_179159_190 _9_0_2_12ab03bf_1120167656265_550403_189">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120167656265_138569_191" name="" memberEnd="_9_0_2_12ab03bf_1120167656265_550403_189 _9_0_2_12ab03bf_1120167656265_179159_190">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120167656265_550403_189" name="" visibility="private" type="_9_0_2_12ab03bf_1120167034531_347865_28" association="_9_0_2_12ab03bf_1120167656265_138569_191"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120168262390_633909_433" name="" memberEnd="_9_0_2_12ab03bf_1120168262390_387973_431 _9_0_2_12ab03bf_1120168262390_957079_432"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120168262390_633909_433" name="" memberEnd="_9_0_2_12ab03bf_1120168262390_957079_432 _9_0_2_12ab03bf_1120168262390_387973_431"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120168968078_856343_638" name="" memberEnd="_9_0_2_12ab03bf_1120168968078_634078_636 _9_0_2_12ab03bf_1120168968078_75347_637">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120168968078_634078_636" name="" visibility="public" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1120168968078_856343_638">
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1120169105937_965162_680" body="The use case to which this activity graph belongs." annotatedElement="_9_0_2_12ab03bf_1120168968078_634078_636"/>
               </ownedEnd>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120169428562_360045_690" name="" memberEnd="_9_0_2_12ab03bf_1120169428562_751927_688 _9_0_2_12ab03bf_1120169428562_865150_689">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120169428562_360045_690" name="" memberEnd="_9_0_2_12ab03bf_1120169428562_865150_689 _9_0_2_12ab03bf_1120169428562_751927_688">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120169428562_751927_688" name="" visibility="private" type="_9_0_2_12ab03bf_1120168768156_445295_516" association="_9_0_2_12ab03bf_1120169428562_360045_690"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120182229281_104503_1211" name="" memberEnd="_9_0_2_12ab03bf_1120182229281_323290_1209 _9_0_2_12ab03bf_1120182229281_327393_1210">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120182229281_104503_1211" name="" memberEnd="_9_0_2_12ab03bf_1120182229281_327393_1210 _9_0_2_12ab03bf_1120182229281_323290_1209">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120182229281_327393_1210" name="" visibility="private" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1120182229281_104503_1211"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120242028593_356910_1440" name="" memberEnd="_9_0_2_12ab03bf_1120242028593_505899_1439 _9_0_2_12ab03bf_1120242028593_969829_1438">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120242028593_356910_1440" name="" memberEnd="_9_0_2_12ab03bf_1120242028593_969829_1438 _9_0_2_12ab03bf_1120242028593_505899_1439">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120242028593_969829_1438" name="" visibility="private" type="_9_0_2_12ab03bf_1120241748796_84658_1361" association="_9_0_2_12ab03bf_1120242028593_356910_1440"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120246146531_184607_1587" name="" memberEnd="_9_0_2_12ab03bf_1120246146531_990515_1586 _9_0_2_12ab03bf_1120246146531_788014_1585">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120246146531_184607_1587" name="" memberEnd="_9_0_2_12ab03bf_1120246146531_788014_1585 _9_0_2_12ab03bf_1120246146531_990515_1586">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120246146531_788014_1585" name="" visibility="private" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1120246146531_184607_1587"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120246257140_942429_1629" name="" memberEnd="_9_0_2_12ab03bf_1120246257140_520985_1628 _9_0_2_12ab03bf_1120246257140_272723_1627">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120246257140_942429_1629" name="" memberEnd="_9_0_2_12ab03bf_1120246257140_272723_1627 _9_0_2_12ab03bf_1120246257140_520985_1628">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120246257140_272723_1627" name="" visibility="private" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1120246257140_942429_1629"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1122488202859_146447_370" name="" memberEnd="_9_0_2_12ab03bf_1122488202859_420414_369 _9_0_2_12ab03bf_1122488202859_648878_368">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1122488202859_146447_370" name="" memberEnd="_9_0_2_12ab03bf_1122488202859_648878_368 _9_0_2_12ab03bf_1122488202859_420414_369">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1122488202859_648878_368" name="" visibility="private" type="_9_0_2_12ab03bf_1122481242500_184900_184" association="_9_0_2_12ab03bf_1122488202859_146447_370"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1122488530281_429779_545" name="" memberEnd="_9_0_2_12ab03bf_1122488530281_160735_543 _9_0_2_12ab03bf_1122488530281_721103_544">
@@ -3054,16 +3054,16 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120676804000_921255_756" name="" memberEnd="_9_0_2_12ab03bf_1120676804000_744728_754 _9_0_2_12ab03bf_1120676804000_806699_755">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120676804000_744728_754" name="" visibility="private" type="_9_0_2_12ab03bf_1122488049984_677962_258" association="_9_0_2_12ab03bf_1120676804000_921255_756"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120678801250_279290_847" name="" memberEnd="_9_0_2_12ab03bf_1120678801250_16479_846 _9_0_2_12ab03bf_1120678801250_556440_845">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120678801250_279290_847" name="" memberEnd="_9_0_2_12ab03bf_1120678801250_556440_845 _9_0_2_12ab03bf_1120678801250_16479_846">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120678801250_556440_845" name="" visibility="private" type="_9_0_2_12ab03bf_1122481242500_184900_184" association="_9_0_2_12ab03bf_1120678801250_279290_847"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120684802406_120829_1026" name="" memberEnd="_9_0_2_12ab03bf_1120684802406_871921_1025 _9_0_2_12ab03bf_1120684802406_941970_1024"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120684802406_120829_1026" name="" memberEnd="_9_0_2_12ab03bf_1120684802406_941970_1024 _9_0_2_12ab03bf_1120684802406_871921_1025"/>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120748453421_363431_2" name="" memberEnd="_9_0_2_12ab03bf_1120748453421_234487_0 _9_0_2_12ab03bf_1120748453421_714934_1">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1120748453421_234487_0" name="" visibility="private" type="_9_0_2_12ab03bf_1122488049984_677962_258" association="_9_0_2_12ab03bf_1120748453421_363431_2"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120789949031_60614_308" name="" memberEnd="_9_0_2_12ab03bf_1120789949031_209314_307 _9_0_2_12ab03bf_1120789949031_700002_306"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120791506750_179105_378" name="" memberEnd="_9_0_2_12ab03bf_1120791506750_518911_377 _9_0_2_12ab03bf_1120791506750_70510_376"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120835533359_328409_619" name="" memberEnd="_9_0_2_12ab03bf_1120835533343_182492_618 _9_0_2_12ab03bf_1120835533343_427134_617"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120789949031_60614_308" name="" memberEnd="_9_0_2_12ab03bf_1120789949031_700002_306 _9_0_2_12ab03bf_1120789949031_209314_307"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120791506750_179105_378" name="" memberEnd="_9_0_2_12ab03bf_1120791506750_70510_376 _9_0_2_12ab03bf_1120791506750_518911_377"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1120835533359_328409_619" name="" memberEnd="_9_0_2_12ab03bf_1120835533343_427134_617 _9_0_2_12ab03bf_1120835533343_182492_618"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_0_2_12ab03bf_1120168768156_445295_516" name="FrontEndActivityGraph">
               <ownedComment xmi:id="_9_0_2_12ab03bf_1120168820109_122891_532" body="Represents the activity graph describing the details of a presentation tier or &quot;front end&quot; use case." annotatedElement="_9_0_2_12ab03bf_1120168768156_445295_516"/>
               <generalization xmi:id="_9_0_2_12ab03bf_1120168908984_753618_625" isSubstitutable="true" general="_ecb034c_1074379407701_127218_171"/>
@@ -3467,13 +3467,13 @@
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1122488260687_601123_410" body="The next transition, there can be only one transition going out of an action state, otherwise decision points should be used (triggers are not supported at the server-side)." annotatedElement="_9_0_2_12ab03bf_1122488202859_420414_369"/>
               </ownedAttribute>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121125758921_735011_2" name="" memberEnd="_9_0_2_12ab03bf_1121125758859_943421_0 _9_0_2_12ab03bf_1121125758906_945883_1"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121132734968_659066_133" name="" memberEnd="_9_0_2_12ab03bf_1121132734968_563332_131 _9_0_2_12ab03bf_1121132734968_954994_132">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121125758921_735011_2" name="" memberEnd="_9_0_2_12ab03bf_1121125758906_945883_1 _9_0_2_12ab03bf_1121125758859_943421_0"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121132734968_659066_133" name="" memberEnd="_9_0_2_12ab03bf_1121132734968_954994_132 _9_0_2_12ab03bf_1121132734968_563332_131">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121132734968_563332_131" name="" visibility="private" type="_9_0_2_12ab03bf_1122489990718_108299_588" association="_9_0_2_12ab03bf_1121132734968_659066_133"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121145633515_197756_260" name="" memberEnd="_9_0_2_12ab03bf_1121145633515_718879_259 _9_0_2_12ab03bf_1121145633515_942058_258"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121177056593_82749_401" name="" memberEnd="_9_0_2_12ab03bf_1121177056593_65964_399 _9_0_2_12ab03bf_1121177056593_283268_400"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121177756187_322407_613" name="" memberEnd="_9_0_2_12ab03bf_1121177756187_294818_611 _9_0_2_12ab03bf_1121177756187_207731_612">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121177056593_82749_401" name="" memberEnd="_9_0_2_12ab03bf_1121177056593_283268_400 _9_0_2_12ab03bf_1121177056593_65964_399"/>
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121177756187_322407_613" name="" memberEnd="_9_0_2_12ab03bf_1121177756187_207731_612 _9_0_2_12ab03bf_1121177756187_294818_611">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121177756187_294818_611" name="" visibility="private" type="_9_0_2_12ab03bf_1120167314500_763531_126" association="_9_0_2_12ab03bf_1121177756187_322407_613"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121178179109_548170_656" name="" memberEnd="_9_0_2_12ab03bf_1121178179109_585369_654 _9_0_2_12ab03bf_1121178179109_286969_655"/>
@@ -3503,14 +3503,14 @@
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1121184889437_477022_1576" body="" annotatedElement="_9_0_2_12ab03bf_1121182612578_631127_1024"/>
               </ownedEnd>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121182857187_938154_1115" name="" memberEnd="_9_0_2_12ab03bf_1121182857187_492125_1113 _9_0_2_12ab03bf_1121182857187_325488_1114">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121182857187_938154_1115" name="" memberEnd="_9_0_2_12ab03bf_1121182857187_325488_1114 _9_0_2_12ab03bf_1121182857187_492125_1113">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121182857187_492125_1113" name="" visibility="private" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1121182857187_938154_1115"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121183156078_788546_1220" name="" memberEnd="_9_0_2_12ab03bf_1121183156078_110174_1218 _9_0_2_12ab03bf_1121183156078_404036_1219">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121183156078_110174_1218" name="" visibility="private" type="_9_0_2_12ab03bf_1120168768156_445295_516" association="_9_0_2_12ab03bf_1121183156078_788546_1220"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121184128000_717691_1528" name="" memberEnd="_9_0_2_12ab03bf_1121184128000_295933_1526 _9_0_2_12ab03bf_1121184128000_412246_1527"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121279283546_819090_109" name="" memberEnd="_9_0_2_12ab03bf_1121279283546_701231_108 _9_0_2_12ab03bf_1121279283546_527821_107">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121279283546_819090_109" name="" memberEnd="_9_0_2_12ab03bf_1121279283546_527821_107 _9_0_2_12ab03bf_1121279283546_701231_108">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121279283546_527821_107" name="" visibility="public" type="_9_0_2_12ab03bf_1120835338500_225560_590" isReadOnly="true" association="_9_0_2_12ab03bf_1121279283546_819090_109">
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1121279543734_651707_151" body="" annotatedElement="_9_0_2_12ab03bf_1121279283546_527821_107"/>
               </ownedEnd>
@@ -3518,7 +3518,7 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121285528515_187566_240" name="" memberEnd="_9_0_2_12ab03bf_1121285528515_959640_238 _9_0_2_12ab03bf_1121285528515_436302_239">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121285528515_959640_238" name="" visibility="private" type="_9_0_2_12ab03bf_1122488049984_677962_258" association="_9_0_2_12ab03bf_1121285528515_187566_240"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121289888765_611062_333" name="" memberEnd="_9_0_2_12ab03bf_1121289888765_574876_331 _9_0_2_12ab03bf_1121289888765_359869_332">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121289888765_611062_333" name="" memberEnd="_9_0_2_12ab03bf_1121289888765_359869_332 _9_0_2_12ab03bf_1121289888765_574876_331">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121289888765_574876_331" name="" visibility="private" type="_9_0_2_12ab03bf_1122481800031_890384_216" association="_9_0_2_12ab03bf_1121289888765_611062_333"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121291855921_709143_392" name="" memberEnd="_9_0_2_12ab03bf_1121291855921_951071_390 _9_0_2_12ab03bf_1121291855921_621631_391">
@@ -3526,22 +3526,22 @@
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1121292043078_17240_444" body="" annotatedElement="_9_0_2_12ab03bf_1121291855921_951071_390"/>
               </ownedEnd>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121890074203_709322_128" name="" memberEnd="_9_0_2_12ab03bf_1121890074203_787257_127 _9_0_2_12ab03bf_1121890074203_806735_126">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121890074203_709322_128" name="" memberEnd="_9_0_2_12ab03bf_1121890074203_806735_126 _9_0_2_12ab03bf_1121890074203_787257_127">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121890074203_806735_126" name="" visibility="private" type="_9_0_2_12ab03bf_1120792857812_717688_419" association="_9_0_2_12ab03bf_1121890074203_709322_128"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1121991135828_419574_238" name="" memberEnd="_9_0_2_12ab03bf_1121991135750_388410_236 _9_0_2_12ab03bf_1121991135796_855285_237">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1121991135750_388410_236" name="" visibility="private" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1121991135828_419574_238"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1123879977156_737255_2" name="" memberEnd="_9_0_2_12ab03bf_1123879977156_399984_0 _9_0_2_12ab03bf_1123879977156_670105_1">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1123879977156_737255_2" name="" memberEnd="_9_0_2_12ab03bf_1123879977156_670105_1 _9_0_2_12ab03bf_1123879977156_399984_0">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1123879977156_399984_0" name="" visibility="private" type="_9_0_2_12ab03bf_1122488049984_677962_258" association="_9_0_2_12ab03bf_1123879977156_737255_2"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1124131894921_700728_90" name="" memberEnd="_9_0_2_12ab03bf_1124131894921_176184_89 _9_0_2_12ab03bf_1124131894921_42731_88">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1124131894921_42731_88" name="" visibility="private" type="_9_0_2_12ab03bf_1120792857812_717688_419" association="_9_0_2_12ab03bf_1124131894921_700728_90"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1124137333656_887802_308" name="" memberEnd="_9_0_2_12ab03bf_1124137333656_181921_306 _9_0_2_12ab03bf_1124137333656_60895_307">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1124137333656_887802_308" name="" memberEnd="_9_0_2_12ab03bf_1124137333656_60895_307 _9_0_2_12ab03bf_1124137333656_181921_306">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1124137333656_60895_307" name="" visibility="private" type="_9_0_2_12ab03bf_1122481800031_890384_216" association="_9_0_2_12ab03bf_1124137333656_887802_308"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1124165953000_973866_120" name="" memberEnd="_9_0_2_12ab03bf_1124165953000_455174_119 _9_0_2_12ab03bf_1124165953000_553030_118">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1124165953000_973866_120" name="" memberEnd="_9_0_2_12ab03bf_1124165953000_553030_118 _9_0_2_12ab03bf_1124165953000_455174_119">
               <ownedEnd xmi:id="_9_0_2_12ab03bf_1124165953000_553030_118" name="" visibility="private" type="_9_0_2_12ab03bf_1120168241718_803102_404" association="_9_0_2_12ab03bf_1124165953000_973866_120"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_12ab03bf_1124247742687_161110_211" name="" memberEnd="_9_0_2_12ab03bf_1124247742656_825925_209 _9_0_2_12ab03bf_1124247742656_864461_210">
@@ -3580,42 +3580,42 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_ee1034a_1127266903067_511095_1075" name="" memberEnd="_9_5_1_ee1034a_1127266903067_257013_1074 _9_5_1_ee1034a_1127266903067_762227_1073">
               <ownedEnd xmi:id="_9_5_1_ee1034a_1127266903067_762227_1073" name="" visibility="private" type="_9_5_1_ee1034a_1127266738260_303405_459" association="_9_5_1_ee1034a_1127266903067_511095_1075"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_ee1034a_1127267062316_631242_1449" name="" memberEnd="_9_5_1_ee1034a_1127267062316_35932_1447 _9_5_1_ee1034a_1127267062316_123705_1448">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_ee1034a_1127267062316_631242_1449" name="" memberEnd="_9_5_1_ee1034a_1127267062316_123705_1448 _9_5_1_ee1034a_1127267062316_35932_1447">
               <ownedEnd xmi:id="_9_5_1_ee1034a_1127267062316_35932_1447" name="" visibility="private" type="_d860307_1071506074180_318219_1633" association="_9_5_1_ee1034a_1127267062316_631242_1449"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_ee1034a_1127267093090_733270_1491" name="" memberEnd="_9_5_1_ee1034a_1127267093090_248069_1489 _9_5_1_ee1034a_1127267093090_704670_1490">
               <ownedEnd xmi:id="_9_5_1_ee1034a_1127267093090_248069_1489" name="" visibility="private" type="_9_5_1_ee1034a_1127266745841_402315_493" association="_9_5_1_ee1034a_1127267093090_733270_1491"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_ee1034a_1127267096095_714444_1533" name="" memberEnd="_9_5_1_ee1034a_1127267096095_318994_1532 _9_5_1_ee1034a_1127267096095_90044_1531">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_ee1034a_1127267096095_714444_1533" name="" memberEnd="_9_5_1_ee1034a_1127267096095_90044_1531 _9_5_1_ee1034a_1127267096095_318994_1532">
               <ownedEnd xmi:id="_9_5_1_ee1034a_1127267096095_90044_1531" name="" visibility="private" type="_9_5_1_ee1034a_1127266745841_402315_493" association="_9_5_1_ee1034a_1127267096095_714444_1533"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071506504899_392026_1893" name="" memberEnd="_d860307_1071506504899_919443_1891 _d860307_1071506504899_829513_1892">
+            <packagedElement xmi:type="uml:Association" xmi:id="_d860307_1071506504899_392026_1893" name="" memberEnd="_d860307_1071506504899_829513_1892 _d860307_1071506504899_919443_1891">
               <ownedComment xmi:id="_24400562_1082334721187_107751_83" body="Gets all tagged values of this model element." annotatedElement="_d860307_1071506504899_392026_1893"/>
               <ownedEnd xmi:id="_d860307_1071506504899_919443_1891" name="" visibility="private" type="_d860307_1071506074180_318219_1633" association="_d860307_1071506504899_392026_1893"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1134248853578_649925_171" name="" memberEnd="_9_0_2_2cb0161_1134248853578_12792_169 _9_0_2_2cb0161_1134248853578_832838_170">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1134248853578_12792_169" name="" visibility="private" type="_9_0_1fe00f9_1113402182518_384484_232" association="_9_0_2_2cb0161_1134248853578_649925_171"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1134251890468_561276_861" name="" memberEnd="_9_0_2_2cb0161_1134251890468_275130_859 _9_0_2_2cb0161_1134251890468_932406_860">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1134251890468_561276_861" name="" memberEnd="_9_0_2_2cb0161_1134251890468_932406_860 _9_0_2_2cb0161_1134251890468_275130_859">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1134251890468_275130_859" name="" visibility="private" type="_9_0_1fe00f9_1113402182518_384484_232" association="_9_0_2_2cb0161_1134251890468_561276_861"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1136155028578_382568_458" name="" memberEnd="_9_0_2_2cb0161_1136155028578_297906_456 _9_0_2_2cb0161_1136155028578_308405_457">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1136155028578_297906_456" name="" visibility="private" type="_d860307_1071504650353_319894_500" association="_9_0_2_2cb0161_1136155028578_382568_458"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137085034820_512765_417" name="" memberEnd="_9_0_2_2cb0161_1137085034820_274458_415 _9_0_2_2cb0161_1137085034820_200331_416"/>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137357698203_755600_189" name="" memberEnd="_9_0_2_2cb0161_1137357698203_335895_188 _9_0_2_2cb0161_1137357698203_199240_187">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137357698203_755600_189" name="" memberEnd="_9_0_2_2cb0161_1137357698203_199240_187 _9_0_2_2cb0161_1137357698203_335895_188">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1137357698203_199240_187" name="" visibility="private" type="_24400562_1073854558969_92049_331" association="_9_0_2_2cb0161_1137357698203_755600_189"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137357739812_407573_231" name="" memberEnd="_9_0_2_2cb0161_1137357739812_952373_229 _9_0_2_2cb0161_1137357739812_611226_230">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137357739812_407573_231" name="" memberEnd="_9_0_2_2cb0161_1137357739812_611226_230 _9_0_2_2cb0161_1137357739812_952373_229">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1137357739812_952373_229" name="" visibility="private" type="_24400562_1073854558969_92049_331" association="_9_0_2_2cb0161_1137357739812_407573_231"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137759961508_462228_969" name="" memberEnd="_9_0_2_2cb0161_1137759961508_466294_968 _9_0_2_2cb0161_1137759961508_171837_967">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1137759961508_462228_969" name="" memberEnd="_9_0_2_2cb0161_1137759961508_171837_967 _9_0_2_2cb0161_1137759961508_466294_968">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1137759961508_171837_967" name="" visibility="private" type="_24400562_1078456000396_796309_243" association="_9_0_2_2cb0161_1137759961508_462228_969"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_0_66e017e_1139870123558_332504_173" name="" memberEnd="_9_0_66e017e_1139870123558_790417_172 _9_0_66e017e_1139870123558_20850_171">
               <ownedEnd xmi:id="_9_0_66e017e_1139870123558_20850_171" name="" visibility="private" type="_d860307_1071574465881_881793_352" association="_9_0_66e017e_1139870123558_332504_173"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1142120130937_956207_255" name="" memberEnd="_9_0_2_2cb0161_1142120130937_815831_253 _9_0_2_2cb0161_1142120130937_514717_254">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1142120130937_956207_255" name="" memberEnd="_9_0_2_2cb0161_1142120130937_514717_254 _9_0_2_2cb0161_1142120130937_815831_253">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1142120130937_815831_253" name="" visibility="private" type="_d860307_1071505762942_565408_1372" association="_9_0_2_2cb0161_1142120130937_956207_255"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_9_5_1_626020b_1151603106573_799941_0" name="IncludeFacade">
@@ -3640,16 +3640,16 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1152541846781_939069_486" name="" memberEnd="_9_5_1_12ab03bf_1152541846781_731933_484 _9_5_1_12ab03bf_1152541846781_227181_485">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1152541846781_731933_484" name="" visibility="private" type="_9_0_2_12ab03bf_1122489990718_108299_588" association="_9_5_1_12ab03bf_1152541846781_939069_486"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1152886411975_410916_610" name="" memberEnd="_9_0_2_2cb0161_1152886411975_826867_609 _9_0_2_2cb0161_1152886411975_252626_608">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1152886411975_410916_610" name="" memberEnd="_9_0_2_2cb0161_1152886411975_252626_608 _9_0_2_2cb0161_1152886411975_826867_609">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1152886411975_826867_609" name="" visibility="private" type="_d860307_1071504650353_319894_500" association="_9_0_2_2cb0161_1152886411975_410916_610"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1153482052812_2535_172" name="" memberEnd="_9_0_2_2cb0161_1153482052812_319170_171 _9_0_2_2cb0161_1153482052812_582563_170">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_2cb0161_1153482052812_2535_172" name="" memberEnd="_9_0_2_2cb0161_1153482052812_582563_170 _9_0_2_2cb0161_1153482052812_319170_171">
               <ownedEnd xmi:id="_9_0_2_2cb0161_1153482052812_582563_170" name="" visibility="private" type="_9_0_1fe00f9_1116004188633_221941_439" association="_9_0_2_2cb0161_1153482052812_2535_172"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_8c50279_1158215816546_5192_142" name="memberVariables" memberEnd="_9_5_1_8c50279_1158215816546_415687_141 _9_5_1_8c50279_1158215816546_300767_140">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_8c50279_1158215816546_5192_142" name="memberVariables" memberEnd="_9_5_1_8c50279_1158215816546_300767_140 _9_5_1_8c50279_1158215816546_415687_141">
               <ownedEnd xmi:id="_9_5_1_8c50279_1158215816546_300767_140" name="enumeration" visibility="public" type="_9_0_1fe00f9_1104625440681_53845_33" association="_9_5_1_8c50279_1158215816546_5192_142"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_8c50279_1159494317703_695952_292" name="" memberEnd="_9_5_1_8c50279_1159494317703_33006_291 _9_5_1_8c50279_1159494317703_46419_290">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_8c50279_1159494317703_695952_292" name="" memberEnd="_9_5_1_8c50279_1159494317703_46419_290 _9_5_1_8c50279_1159494317703_33006_291">
               <ownedEnd xmi:id="_9_5_1_8c50279_1159494317703_33006_291" name="" visibility="private" type="_d860307_1071504650353_319894_500" association="_9_5_1_8c50279_1159494317703_695952_292"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_8c50279_1159494637312_575217_439" name="" memberEnd="_9_5_1_8c50279_1159494637312_329746_437 _9_5_1_8c50279_1159494637312_280260_438">
@@ -3668,10 +3668,10 @@
               <ownedComment xmi:id="_9_5_1_2e90116_1256329101555_279285_134" body="A computational resource upon which artifacts may be deployed for execution. Nodes can be interconnected through communication paths to define network structures." annotatedElement="_9_5_1_12ab03bf_1166676364406_947166_87"/>
               <generalization xmi:id="_9_5_1_12ab03bf_1166899818187_212278_1279" isSubstitutable="true" general="_d860307_1071504650353_319894_500"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1166893378156_368040_1110" name="" memberEnd="_9_5_1_12ab03bf_1166893378156_476834_1108 _9_5_1_12ab03bf_1166893378156_589342_1109">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1166893378156_368040_1110" name="" memberEnd="_9_5_1_12ab03bf_1166893378156_589342_1109 _9_5_1_12ab03bf_1166893378156_476834_1108">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1166893378156_476834_1108" name="" visibility="private" type="_e8f0348_1102200843718_167772_250" association="_9_5_1_12ab03bf_1166893378156_368040_1110"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1166893686312_531005_1152" name="" memberEnd="_9_5_1_12ab03bf_1166893686312_849674_1150 _9_5_1_12ab03bf_1166893686312_137772_1151">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1166893686312_531005_1152" name="" memberEnd="_9_5_1_12ab03bf_1166893686312_137772_1151 _9_5_1_12ab03bf_1166893686312_849674_1150">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1166893686312_849674_1150" name="" visibility="private" type="_e8f0348_1102200843718_167772_250" association="_9_5_1_12ab03bf_1166893686312_531005_1152"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1166931031968_27636_1541" name="" memberEnd="_9_5_1_12ab03bf_1166931031968_145955_1539 _9_5_1_12ab03bf_1166931031968_394309_1540">
@@ -3680,22 +3680,22 @@
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1167340799812_654319_177" name="" memberEnd="_9_5_1_12ab03bf_1167340799812_333723_175 _9_5_1_12ab03bf_1167340799812_38617_176">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1167340799812_333723_175" name="" visibility="private" type="_d860307_1071574465881_881793_352" association="_9_5_1_12ab03bf_1167340799812_654319_177"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1167341162843_787053_350" name="" memberEnd="_9_5_1_12ab03bf_1167341162843_79473_348 _9_5_1_12ab03bf_1167341162843_601054_349">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1167341162843_787053_350" name="" memberEnd="_9_5_1_12ab03bf_1167341162843_601054_349 _9_5_1_12ab03bf_1167341162843_79473_348">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1167341162843_79473_348" name="" visibility="private" type="_d860307_1071574465881_881793_352" association="_9_5_1_12ab03bf_1167341162843_787053_350"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1167344479562_624919_503" name="" memberEnd="_9_5_1_12ab03bf_1167344479562_216998_502 _9_5_1_12ab03bf_1167344479562_417934_501">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1167344479562_624919_503" name="" memberEnd="_9_5_1_12ab03bf_1167344479562_417934_501 _9_5_1_12ab03bf_1167344479562_216998_502">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1167344479562_417934_501" name="" visibility="private" type="_d860307_1071574234068_992089_84" association="_9_5_1_12ab03bf_1167344479562_624919_503"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_12ab03bf_1183997862149_464171_100" name="" memberEnd="_9_5_1_12ab03bf_1183997862149_392752_98 _9_5_1_12ab03bf_1183997862149_407859_99">
               <ownedEnd xmi:id="_9_5_1_12ab03bf_1183997862149_392752_98" name="" visibility="private" type="_9_0_2_12ab03bf_1122481800031_890384_216" association="_9_5_1_12ab03bf_1183997862149_464171_100"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_2cb0161_1209296933518_185998_345" name="" memberEnd="_9_5_1_2cb0161_1209296933518_833999_344 _9_5_1_2cb0161_1209296933518_238649_343">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_2cb0161_1209296933518_185998_345" name="" memberEnd="_9_5_1_2cb0161_1209296933518_238649_343 _9_5_1_2cb0161_1209296933518_833999_344">
               <ownedEnd xmi:id="_9_5_1_2cb0161_1209296933518_238649_343" name="" visibility="private" type="_d860307_1071505762942_565408_1372" association="_9_5_1_2cb0161_1209296933518_185998_345"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_2e90116_1239369735869_466583_1194" name="" memberEnd="_9_5_1_2e90116_1239369735869_22796_1192 _9_5_1_2e90116_1239369735869_268345_1193">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_2e90116_1239369735869_466583_1194" name="" memberEnd="_9_5_1_2e90116_1239369735869_268345_1193 _9_5_1_2e90116_1239369735869_22796_1192">
               <ownedEnd xmi:id="_9_5_1_2e90116_1239369735869_22796_1192" name="" visibility="private" type="_9_0_2_12ab03bf_1112204654656_123732_0" association="_9_5_1_2e90116_1239369735869_466583_1194"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_2e90116_1243147480860_669741_1263" name="" memberEnd="_9_5_1_2e90116_1243147480860_319284_1261 _9_5_1_2e90116_1243147480860_836617_1262">
+            <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_2e90116_1243147480860_669741_1263" name="" memberEnd="_9_5_1_2e90116_1243147480860_836617_1262 _9_5_1_2e90116_1243147480860_319284_1261">
               <ownedEnd xmi:id="_9_5_1_2e90116_1243147480860_836617_1262" name="input" visibility="public" type="_9_0_2_12ab03bf_1122481800031_890384_216" isReadOnly="true" association="_9_5_1_2e90116_1243147480860_669741_1263">
                 <ownedComment xmi:id="_9_0_2_12ab03bf_1120794514984_988168_492" body="The StateVertex (FrontEndView or PseudostateFacade) on which this action can be triggered." annotatedElement="_9_5_1_2e90116_1243147480860_836617_1262"/>
               </ownedEnd>
@@ -3722,16 +3722,16 @@
                 <ownedComment xmi:id="_8a70287_1081190812432_139362_240" body="Represents a Gui action. Such an action typically is associated with a form bean handling all parameters of this action.&#xA;This action model element extends a transition, but the actual logic contained by the action envelops all action states called, until either a final state or View is reached." annotatedElement="_8a70287_1078847052918_864802_369"/>
                 <generalization xmi:id="_16_5_4_55001df_1325285508215_366374_2616" isSubstitutable="true" general="_9_0_2_12ab03bf_1120792857812_717688_419"/>
                 <ownedAttribute xmi:id="_1fe00f9_1097248006218_989620_157" name="actionName" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097248007515_392901_221" body="The action name corresponding to this action, as found in the struts deployment descriptor. The action name maps the action to a form bean." annotatedElement="_1fe00f9_1097248006218_989620_157"/>
+                  <ownedComment xmi:id="_1fe00f9_1097248007515_392901_221" body="The action name corresponding to this action, as found in the gui deployment descriptor. The action name maps the action to a form bean." annotatedElement="_1fe00f9_1097248006218_989620_157"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097248006218_992855_158" name="actionPath" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097248007515_383811_223" body="Tthe action path corresponding to this action, as found in the struts deployment descriptor. The action path specifies the URL to enter in order to call the action." annotatedElement="_1fe00f9_1097248006218_992855_158"/>
+                  <ownedComment xmi:id="_1fe00f9_1097248007515_383811_223" body="The action path corresponding to this action, as found in the gui deployment descriptor. The action path specifies the URL to enter in order to call the action." annotatedElement="_1fe00f9_1097248006218_992855_158"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097248006218_171398_159" name="actionInput" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097248007515_271482_225" body="The action input corresponding to this action, as found in the struts deployment descriptor. The action input maps the action to the page on which it originated." annotatedElement="_1fe00f9_1097248006218_171398_159"/>
+                  <ownedComment xmi:id="_1fe00f9_1097248007515_271482_225" body="The action input corresponding to this action, as found in the gui deployment descriptor. The action input maps the action to the page on which it originated." annotatedElement="_1fe00f9_1097248006218_171398_159"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097248006218_769003_160" name="actionRoles" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097248007515_934350_227" body="The action roles corresponding to this action, as found in the struts deployment descriptor. The action roles specifiy the roles in which the user must be in order to be authorized to call the action. One of the roles must be satisfied." annotatedElement="_1fe00f9_1097248006218_769003_160"/>
+                  <ownedComment xmi:id="_1fe00f9_1097248007515_934350_227" body="The action roles corresponding to this action, as found in the gui deployment descriptor. The action roles specifiy the roles in which the user must be in order to be authorized to call the action. One of the roles must be satisfied." annotatedElement="_1fe00f9_1097248006218_769003_160"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097248006218_592241_161" name="formPost" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097248007515_44504_229" body="Specifies whether or not this action is represented by the posting of a form." annotatedElement="_1fe00f9_1097248006218_592241_161"/>
@@ -3746,7 +3746,7 @@
                   <ownedComment xmi:id="_1fe00f9_1097248007515_999170_235" body="Returns the class name of the form bean associated to this action." annotatedElement="_1fe00f9_1097248006218_662742_164"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097248006218_593728_165" name="formBeanName" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097248007515_629988_237" body="The name of the form bean associated to this action. The name is returned as it should appear in the Struts deployment descriptor." annotatedElement="_1fe00f9_1097248006218_593728_165"/>
+                  <ownedComment xmi:id="_1fe00f9_1097248007515_629988_237" body="The name of the form bean associated to this action. The name is returned as it should appear in the Gui deployment descriptor." annotatedElement="_1fe00f9_1097248006218_593728_165"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097248540687_763116_242" name="formValidationMethodName" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097248562031_916485_411" body="The Javascript function name of the validation method that will validate the action parameters." annotatedElement="_1fe00f9_1097248540687_763116_242"/>
@@ -3967,7 +3967,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1325280678798_972894_1768" name=""/>
                 </ownedAttribute>
                 <ownedOperation xmi:id="_9_0_1fe00f9_1118771155270_610646_91" name="getInterUseCaseParameters" visibility="public">
-                  <ownedComment xmi:id="_9_0_1fe00f9_1118771197437_600188_156" body="Those parameters that are directly entering a final state and have been submitted into the request, they will be able to survive a trip to the next use-case. All returned elements are of type StrutsParameter." annotatedElement="_9_0_1fe00f9_1118771155270_610646_91"/>
+                  <ownedComment xmi:id="_9_0_1fe00f9_1118771197437_600188_156" body="Those parameters that are directly entering a final state and have been submitted into the request, they will be able to survive a trip to the next use-case. All returned elements are of type GuiParameter." annotatedElement="_9_0_1fe00f9_1118771155270_610646_91"/>
                   <ownedParameter xmi:id="_9_0_1fe00f9_1118771154257_310367_89" name="finalState" visibility="public" type="_8a70287_1078847414388_685090_264" direction="inout"/>
                   <ownedParameter xmi:id="_9_0_1fe00f9_1118771154257_374505_90" name="" visibility="public" type="_9_0_1fe00f9_1119336925531_809265_8" direction="return"/>
                 </ownedOperation>
@@ -4107,7 +4107,7 @@
                 </ownedOperation>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_8a70287_1078847402551_259569_263" name="GuiExceptionHandler">
-                <ownedComment xmi:id="_8a70287_1081190812442_718090_241" body="A Struts exception handler intercepts action exceptions and delegates them into a page that will handle it, by for example simply displaying it." annotatedElement="_8a70287_1078847402551_259569_263"/>
+                <ownedComment xmi:id="_8a70287_1081190812442_718090_241" body="A Gui exception handler intercepts action exceptions and delegates them into a page that will handle it, by for example simply displaying it." annotatedElement="_8a70287_1078847402551_259569_263"/>
                 <generalization xmi:id="_9_0_2_12ab03bf_1120751716796_671894_1108" isSubstitutable="true" general="_9_0_2_12ab03bf_1120678285078_403523_813"/>
                 <ownedAttribute xmi:id="_1fe00f9_1097249731734_630634_550" name="exceptionKey" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097250415437_33650_653" body="The key to use with this handler's message resource bundle that will retrieve the error message template for this exception." annotatedElement="_1fe00f9_1097249731734_630634_550"/>
@@ -4153,13 +4153,13 @@
                   <ownedComment xmi:id="_1fe00f9_1097253383859_324972_1265" body="The backing list name for this parameter. This is useful if you want to be able to select the parameter value from a list." annotatedElement="_1fe00f9_1097253381843_826289_1088"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381843_317416_1089" name="resetRequired" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097253383859_159677_1267" body="True if the value of this parameter must be reset between requests (Struts requires this for specific types), false otherwise." annotatedElement="_1fe00f9_1097253381843_317416_1089"/>
+                  <ownedComment xmi:id="_1fe00f9_1097253383859_159677_1267" body="True if the value of this parameter must be reset between requests (Gui requires this for specific types), false otherwise." annotatedElement="_1fe00f9_1097253381843_317416_1089"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_545592_1090" name="nullValue" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097253383875_490938_1269" body="The null value for the type of this parameter. For decimals this would be zero, for booleans this would be 'false', etc..." annotatedElement="_1fe00f9_1097253381859_545592_1090"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_232049_1091" name="widgetType" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097253383875_661109_1271" body="The widget type for this parameter, this value is the tagname for the Struts HTML taglib. This method is useful only when rendering forms." annotatedElement="_1fe00f9_1097253381859_232049_1091"/>
+                  <ownedComment xmi:id="_1fe00f9_1097253383875_661109_1271" body="The widget type for this parameter, this value is the tagname for the Gui HTML taglib. This method is useful only when rendering forms." annotatedElement="_1fe00f9_1097253381859_232049_1091"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_711611_1092" name="resetValue" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097253383875_356571_1273" body="The reset value for this parameter. The reset value is the non-null value to which this parameter is set by default between requests, you can use this method to be able to generate an application that will deploy and run with default data." annotatedElement="_1fe00f9_1097253381859_711611_1092"/>
@@ -4171,7 +4171,7 @@
                   <ownedComment xmi:id="_1fe00f9_1097253383875_600326_1277" body="The reset value for this parameter's value list. Only makes sense if this parameter is selectable." annotatedElement="_1fe00f9_1097253381859_675565_1094"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_363345_1095" name="validatorTypes" visibility="public" type="_9_0_1fe00f9_1119336925531_331753_26" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097253383875_657224_1279" body="A collection of all the validator types for this parameter. Use this value in conjunction with the Struts validator plugin." annotatedElement="_1fe00f9_1097253381859_363345_1095"/>
+                  <ownedComment xmi:id="_1fe00f9_1097253383875_657224_1279" body="A collection of all the validator types for this parameter. Use this value in conjunction with the Gui validator plugin." annotatedElement="_1fe00f9_1097253381859_363345_1095"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_944077_1096" name="validatorMsgKey" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097253383875_263058_1281" body="The message key for this parameter, equivalent to getMessageKey()." annotatedElement="_1fe00f9_1097253381859_944077_1096"/>
@@ -4180,7 +4180,7 @@
                   <ownedComment xmi:id="_1fe00f9_1097253383875_222861_1283" body="The validator arguments." annotatedElement="_1fe00f9_1097253381859_382955_1097"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_673897_1098" name="validWhen" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
-                  <ownedComment xmi:id="_1fe00f9_1097253383875_853111_1285" body="The validator's 'validwhen' value, this is useful when the validation of a parameter depends on the validation of others. See the Struts validator plugin documentation for more information." annotatedElement="_1fe00f9_1097253381859_673897_1098"/>
+                  <ownedComment xmi:id="_1fe00f9_1097253383875_853111_1285" body="The validator's 'validwhen' value, this is useful when the validation of a parameter depends on the validation of others. See the Gui validator plugin documentation for more information." annotatedElement="_1fe00f9_1097253381859_673897_1098"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_1fe00f9_1097253381859_806116_1099" name="optionKeys" visibility="public" type="_9_0_1fe00f9_1119336925531_809265_8" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097253383875_236752_1287" body="If this parameter is a choice between radio buttons, then you may use this method to retrieve the message keys for the resource bundle. The message keys hold the value to be displayed for the possible options." annotatedElement="_1fe00f9_1097253381859_806116_1099"/>
@@ -4318,7 +4318,7 @@
                   <ownedComment xmi:id="_9_0_2_1fe00f9_1124218442698_602590_156" body="" annotatedElement="_9_0_2_1fe00f9_1124218404817_598052_79"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_9_0_2_1fe00f9_1124351794625_458866_45" name="safeNamePresent" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true">
-                  <ownedComment xmi:id="_9_0_2_1fe00f9_1124351864765_839675_81" body="True if this parameter has a name that can properly be handled by Jakarta commons (this lib is used by Struts but contains a bug)" annotatedElement="_9_0_2_1fe00f9_1124351794625_458866_45"/>
+                  <ownedComment xmi:id="_9_0_2_1fe00f9_1124351864765_839675_81" body="True if this parameter has a name that can properly be handled by Jakarta commons (this lib is used by Gui but contains a bug)" annotatedElement="_9_0_2_1fe00f9_1124351794625_458866_45"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_9_5_1_36500660_1147439999500_447598_392" name="multiSelection" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true"/>
                 <ownedAttribute xmi:id="_211f050e_1092224919314_682447_133" name="guiAction" visibility="public" type="_8a70287_1078847052918_864802_369" isOrdered="true" isReadOnly="true" association="_211f050e_1092224919314_566509_134">
@@ -4693,7 +4693,7 @@
                 </ownedAttribute>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_8a70287_1078849092892_31297_3104" name="GuiPseudostate">
-                <ownedComment xmi:id="_8a70287_1081194948009_181819_381" body="Encapsulates a pseudostate and provides specific Struts services. This pseudostate can be a decision point, junction or initial state." annotatedElement="_8a70287_1078849092892_31297_3104"/>
+                <ownedComment xmi:id="_8a70287_1081194948009_181819_381" body="Encapsulates a pseudostate and provides specific Gui services. This pseudostate can be a decision point, junction or initial state." annotatedElement="_8a70287_1078849092892_31297_3104"/>
                 <generalization xmi:id="_9_0_2_12ab03bf_1121186219171_610887_4611" isSubstitutable="true" general="_9_0_2_12ab03bf_1121180438203_964334_702"/>
                 <ownedAttribute xmi:id="_1fe00f9_1097250955359_124624_909" name="actionMethodName" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true">
                   <ownedComment xmi:id="_1fe00f9_1097250987687_606034_932" body="The method name that delegates transitions from this state." annotatedElement="_1fe00f9_1097250955359_124624_909"/>
@@ -4715,7 +4715,7 @@
                 </ownedEnd>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_8a70287_1078863037131_619628_1350" name="GuiActivityGraph">
-                <ownedComment xmi:id="_8a70287_1081190812462_552074_247" body="Represents the activity graph describing the details of a Struts use-case." annotatedElement="_8a70287_1078863037131_619628_1350"/>
+                <ownedComment xmi:id="_8a70287_1081190812462_552074_247" body="Represents the activity graph describing the details of a Gui use-case." annotatedElement="_8a70287_1078863037131_619628_1350"/>
                 <generalization xmi:id="_9_0_2_12ab03bf_1120233009640_234361_540" isSubstitutable="true" general="_9_0_2_12ab03bf_1120168768156_445295_516"/>
                 <ownedAttribute xmi:id="_1fe00f9_1096105910125_679075_881" name="firstAction" visibility="public" type="_8a70287_1078847052918_864802_369" isOrdered="true" isReadOnly="true" association="_1fe00f9_1096105910125_371367_882">
                   <ownedComment xmi:id="_1fe00f9_1096106013781_369051_919" body="Returns the first action encountered in this activity graph. This is the one and only transition coming out of the initial state." annotatedElement="_1fe00f9_1096105910125_679075_881"/>
@@ -4809,8 +4809,8 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_16_5_4_55001df_1325280998872_289834_1983" name=""/>
                 </ownedAttribute>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078967863872_707176_772" name="" memberEnd="_8a70287_1078967863872_440612_771 _8a70287_1078967863872_580015_770"/>
-              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1079029556421_562320_1018" name="" memberEnd="_8a70287_1079029556421_37348_1017 _8a70287_1079029556421_499150_1016"/>
+              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1078967863872_707176_772" name="" memberEnd="_8a70287_1078967863872_580015_770 _8a70287_1078967863872_440612_771"/>
+              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1079029556421_562320_1018" name="" memberEnd="_8a70287_1079029556421_499150_1016 _8a70287_1079029556421_37348_1017"/>
               <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1080353327337_177804_214" name="" memberEnd="_8a70287_1080353327337_276932_212 _8a70287_1080353327337_259737_213">
                 <ownedEnd xmi:id="_8a70287_1080353327337_276932_212" name="" visibility="private" type="_8a70287_1078847052918_864802_369" isReadOnly="true" association="_8a70287_1080353327337_177804_214"/>
               </packagedElement>
@@ -4852,37 +4852,37 @@
                 <ownedRule xmi:id="_8a70287_1094252628441_766055_721" name="no more than one usecase per package">
                   <ownedComment xmi:id="_8a70287_1094252658274_332425_1530" body="In order to avoid possible naming collisions at most one FrontEndUseCase per package is allowed. It is recommended to refactor your model." annotatedElement="_8a70287_1094252628441_766055_721"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_1fe00f9_1099743378713_299900_225" name="">
-                    <body>context StrutsPackage inv: strutsUseCases->size() &lt; 2</body>
+                    <body>context GuiPackage inv: guiUseCases->size() &lt; 2</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_8a70287_1094304640575_731906_310" name="no more than one controller per package">
                   <ownedComment xmi:id="_8a70287_1094304644180_443378_313" body="In order to avoid possible naming collisions at most one controller per package is allowed. It is recommended to refactor your model." annotatedElement="_8a70287_1094304640575_731906_310"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_2_12ab03bf_1120242762078_623183_762" name="">
-                    <body>context StrutsPackage inv: strutsControllers->size() &lt; 2</body>
+                    <body>context GuiPackage inv: guiControllers->size() &lt; 2</body>
                   </specification>
                 </ownedRule>
-                <ownedRule xmi:id="_8a70287_1094306782014_334841_1198" name="each action must carry a trigger" constrainedElement="_8a70287_1078847052918_864802_369">
+                <ownedRule xmi:id="_8a70287_1094306782014_334841_1198" name="each action coming out of a page must carry a trigger" constrainedElement="_8a70287_1078847052918_864802_369">
                   <ownedComment xmi:id="_8a70287_1094306812588_29434_1207" body="Each action transition coming out of a page must have a trigger (the name could be sufficient), it is recommended to add a trigger of type 'signal'." annotatedElement="_8a70287_1094306782014_334841_1198"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_5_1_36500660_1150365239953_72431_323" name="">
-                    <body>context GuiAction inv: exitingPage implies triggerPresent</body>
+                    <body>-- context GuiAction inv: exitingPage implies triggerPresent</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_1fe00f9_1096969940904_283952_402" name="graph must have an action modeled on it's initial state" constrainedElement="_8a70287_1078863037131_619628_1350">
                   <ownedComment xmi:id="_1fe00f9_1096969950154_145014_642" body="Each activity graph must have an action transition exiting the initial state, this is the minimum required." annotatedElement="_1fe00f9_1096969940904_283952_402"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_2_12ab03bf_1121134531484_882584_2464" name="">
-                    <body>context StrutsActivityGraph inv: firstAction->notEmpty()</body>
+                    <body>context GuiActivityGraph inv: firstAction->notEmpty()</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_1fe00f9_1096988969591_403235_131" name="each controller operation argument must be used by deferring actions">
                   <ownedComment xmi:id="_1fe00f9_1096988986060_85120_347" body="All actions deferring to controller operations must have a parameter or page-variable with the same name for all arguments of those operations. Failing to do so will lead to uncompilable code." annotatedElement="_1fe00f9_1096988969591_403235_131"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_2_12ab03bf_1121134531484_282942_2465" name="">
-                    <body>context StrutsParameter inv: controllerOperationArgument implies&#xA;formFields->size() = controllerOperation.deferringActions->size()</body>
+                    <body>context GuiParameter inv: controllerOperationArgument implies&#xA;formFields->size() = controllerOperation.deferringActions->size()</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_1fe00f9_1099645330086_983915_123" name="must target page or final state" constrainedElement="_8a70287_1078847402551_259569_263">
                   <ownedComment xmi:id="_1fe00f9_1099645530398_836749_412" body="When you model an action-exception you must either target a FrontEndView action state or a final state." annotatedElement="_1fe00f9_1099645330086_983915_123"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_5_1_36500660_1192450345468_880443_1425" name="">
-                    <body>context GuiExceptionHandler inv: enteringPage = false implies enteringFinalState</body>
+                    <body>-- context GuiExceptionHandler inv: enteringPage = false implies enteringFinalState</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_1fe00f9_1099686865843_346617_403" name="non-empty controller operation names" constrainedElement="_8a70287_1093899393454_672176_99">
@@ -4936,19 +4936,19 @@
                 <ownedRule xmi:id="_9_0_1fe00f9_1113121715583_943276_274" name="table hyperlinks cannot share columns">
                   <ownedComment xmi:id="_9_0_1fe00f9_1113121721677_181430_278" body="When different hyperlink actions are targetting this table it is not allowed let them have parameters with the same name. Each hyperlink should target a different table column." annotatedElement="_9_0_1fe00f9_1113121715583_943276_274"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_1fe00f9_1113131229298_65199_309" name="">
-                    <body>context StrutsParameter inv: table implies not tableHyperlinkActionSharingColumns</body>
+                    <body>context GuiParameter inv: table implies not tableHyperlinkActionSharingColumns</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_0_1fe00f9_1113121715599_853722_275" name="table form actions need parameters sharing widgets">
                   <ownedComment xmi:id="_9_0_1fe00f9_1113121721677_852510_280" body="Different form actions targetting this table must not specify different widgets for shared parameters. Per parameter only a single widget can be used and you will need to repeat this for each form action using that parameter." annotatedElement="_9_0_1fe00f9_1113121715599_853722_275"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_2_12ab03bf_1121134531484_846357_2466" name="">
-                    <body>context StrutsParameter inv: table implies tableFormActionSharingWidgets</body>
+                    <body>context GuiParameter inv: table implies tableFormActionSharingWidgets</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_0_1fe00f9_1113124320122_479234_285" name="table event parameters must match a table column">
                   <ownedComment xmi:id="_9_0_1fe00f9_1113124365339_152000_290" body="Each table event parameter must have a name matching a column in the target table." annotatedElement="_9_0_1fe00f9_1113124320122_479234_285"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_1fe00f9_1113131077346_658870_307" name="">
-                    <body>context StrutsParameter inv: action.tableLink implies action.tableLinkParameter.tableColumnNames->includes(self = name)</body>
+                    <body>context GuiParameter inv: action.tableLink implies action.tableLinkParameter.tableColumnNames->includes(self = name)</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_0_1fe00f9_1113235783368_686244_202" name="hyperlink table actions need to indicate the column" constrainedElement="_8a70287_1078847052918_864802_369">
@@ -4959,7 +4959,7 @@
                 </ownedRule>
                 <ownedRule xmi:id="_9_0_1fe00f9_1113236786133_618084_223" name="all tablelink event parameters must have known column names">
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_0_1fe00f9_1113236787945_239961_226" name="">
-                    <body>context StrutsAction inv: (hyperlink and tableLink) implies actionParameters->forAll()</body>
+                    <body>context GuiAction inv: (hyperlink and tableLink) implies actionParameters->forAll()</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_0_1fe00f9_1113606922125_400093_231" name="controller/service operations need matching parameter types and names" constrainedElement="_8a70287_1093899393454_672176_99">
@@ -5019,7 +5019,7 @@
                 <ownedRule xmi:id="_9_5_1_36500660_1147178748484_21639_892" name="use cases graph contains one workbook" constrainedElement="_8a70287_1078847462888_359571_347">
                   <ownedComment xmi:id="_9_5_1_36500660_1147178783312_747525_955" body="use cases graph must contain at least one use case tagged with 'workbook' value" annotatedElement="_9_5_1_36500660_1147178748484_21639_892"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_5_1_36500660_1154094841828_193570_193" name="">
-                    <body>context GuiUseCase inv: allUseCases->exists(u : GuiUseCase | workbook=true)</body>
+                    <body>-- context GuiUseCase inv: allUseCases->exists(u : GuiUseCase | workbook=true)</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_5_1_36500660_1153225263015_195162_373" name="An attribute can be a source or a target coherency if it is a choice" constrainedElement="_9_0_1fe00f9_1113480536055_254222_571">
@@ -5068,7 +5068,7 @@
                   <ownedComment xmi:id="_9_5_1_36500660_1175244244468_879426_9" body="The service specified that will be attached to the manageable entity must be valid (exist and correct name). More over, each Manageable Entity must be attached to a Service. Model this by modeling a dependency between them (Service is source), and giving the 'true' value to @andromda.service.manageable tagged value. You can also specify it by filling service name tagged value on the manageable entity." annotatedElement="_9_5_1_36500660_1175244232187_752826_4"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_5_1_55001df_1299195515045_72867_0" name="">
                     <language>English</language>
-                    <body></body>
+                    <body>-- context GuiManageableEntity inv:manageableServiceName->notEmpty()</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_5_1_36500660_1197645156330_936505_496" name="Each Validable Object reference must be valid" constrainedElement="_9_5_1_36500660_1197035822492_202620_0">
@@ -5079,20 +5079,20 @@
                 </ownedRule>
                 <ownedRule xmi:id="_9_5_1_36500660_1204110542466_25687_399" name="Filter Element must be coherent">
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_5_1_36500660_1204110585436_452559_403" name="">
-                    <body>context GuiFilterElement inv: isFilterElementValid()</body>
+                    <body>-- context GuiFilterElement inv: isFilterElementValid()</body>
                   </specification>
                 </ownedRule>
                 <ownedRule xmi:id="_9_5_1_36500660_1221553190554_892703_150" name="A manageable entity with show deal use case activated must provide all info" constrainedElement="_9_0_1fe00f9_1113470016883_345878_53">
                   <ownedComment xmi:id="_9_5_1_36500660_1221553239039_238945_155" body="A manageable entity with show deal use case activated must provide 2 attributes with tagged values corresponding to deal type and deal id" annotatedElement="_9_5_1_36500660_1221553190554_892703_150"/>
                   <specification xmi:type="uml:OpaqueExpression" xmi:id="_9_5_1_36500660_1236591034903_660293_2" name="">
-                    <body>context GuiManageableEntity&#xA;inv: hasCorrectShowDealInfo()</body>
+                    <body>-- context GuiManageableEntity inv: hasCorrectShowDealInfo()</body>
                   </specification>
                 </ownedRule>
               </packagedElement>
               <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1090410987283_858460_3" name="" memberEnd="_8a70287_1090410987283_629107_1 _8a70287_1090410987283_462442_2">
                 <ownedEnd xmi:id="_8a70287_1090410987283_629107_1" name="" visibility="public" type="_8a70287_1078964797924_8826_290" isReadOnly="true" association="_8a70287_1090410987283_858460_3"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_211f050e_1092224919314_566509_134" name="" memberEnd="_211f050e_1092224919314_682447_133 _211f050e_1092224919314_243567_132">
+              <packagedElement xmi:type="uml:Association" xmi:id="_211f050e_1092224919314_566509_134" name="" memberEnd="_211f050e_1092224919314_243567_132 _211f050e_1092224919314_682447_133">
                 <ownedEnd xmi:id="_211f050e_1092224919314_243567_132" name="" visibility="public" type="_8a70287_1078847441076_370168_298" isReadOnly="true" association="_211f050e_1092224919314_566509_134">
                   <ownedComment xmi:id="_8a70287_1094120193055_821122_280" body="" annotatedElement="_211f050e_1092224919314_243567_132"/>
                 </ownedEnd>
@@ -5106,7 +5106,7 @@
                   <ownedComment xmi:id="_1fe00f9_1097250987703_448480_937" body="The full path to the session object class file (comparable to the package name)." annotatedElement="_1fe00f9_1097250986546_588479_926"/>
                 </ownedAttribute>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1093698991389_44023_517" name="" memberEnd="_8a70287_1093698991389_445332_516 _8a70287_1093698991389_609259_515">
+              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1093698991389_44023_517" name="" memberEnd="_8a70287_1093698991389_609259_515 _8a70287_1093698991389_445332_516">
                 <ownedEnd xmi:id="_8a70287_1093698991389_609259_515" name="" visibility="private" type="_8a70287_1078964797924_8826_290" isReadOnly="true" association="_8a70287_1093698991389_44023_517"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_8a70287_1093899393454_672176_99" name="GuiControllerOperation">
@@ -5155,7 +5155,7 @@
               <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1094155341787_71364_379" name="" memberEnd="_8a70287_1094155341787_379263_377 _8a70287_1094155341787_72765_378">
                 <ownedEnd xmi:id="_8a70287_1094155341787_379263_377" name="" visibility="private" type="_8a70287_1093899393454_672176_99" isReadOnly="true" association="_8a70287_1094155341787_71364_379"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1094306231222_726254_1160" name="" memberEnd="_8a70287_1094306231222_86539_1159 _8a70287_1094306231222_336298_1158">
+              <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1094306231222_726254_1160" name="" memberEnd="_8a70287_1094306231222_336298_1158 _8a70287_1094306231222_86539_1159">
                 <ownedEnd xmi:id="_8a70287_1094306231222_336298_1158" name="" visibility="private" type="_8a70287_1078847058606_923206_403" isReadOnly="true" association="_8a70287_1094306231222_726254_1160"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Association" xmi:id="_8a70287_1094653563825_354584_1027" name="" memberEnd="_8a70287_1094653563825_544486_1025 _8a70287_1094653563825_173976_1026">
@@ -5172,7 +5172,7 @@
               <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1096988482154_739920_93" name="" memberEnd="_1fe00f9_1096988482154_83440_91 _1fe00f9_1096988482154_464978_92">
                 <ownedEnd xmi:id="_1fe00f9_1096988482154_83440_91" name="" visibility="private" type="_8a70287_1078847441076_370168_298" isReadOnly="true" association="_1fe00f9_1096988482154_739920_93"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1097580997965_455386_460" name="" memberEnd="_1fe00f9_1097580997965_185265_458 _1fe00f9_1097580997965_158789_459">
+              <packagedElement xmi:type="uml:Association" xmi:id="_1fe00f9_1097580997965_455386_460" name="" memberEnd="_1fe00f9_1097580997965_158789_459 _1fe00f9_1097580997965_185265_458">
                 <ownedEnd xmi:id="_1fe00f9_1097580997965_185265_458" name="" visibility="private" type="_8a70287_1078847414388_685090_264" isReadOnly="true" association="_1fe00f9_1097580997965_455386_460"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_1fe00f9_1100284760688_481823_18" name="GuiBackendService">
@@ -5181,7 +5181,7 @@
                   <ownedComment xmi:id="_1fe00f9_1100285331257_540666_231" body="The implementation to use in a controller template in order to get an instance of this service." annotatedElement="_1fe00f9_1100285310506_31606_227"/>
                 </ownedAttribute>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_e8f0348_1100878948234_578221_141" name="" memberEnd="_e8f0348_1100878948234_303066_140 _e8f0348_1100878948234_290831_139">
+              <packagedElement xmi:type="uml:Association" xmi:id="_e8f0348_1100878948234_578221_141" name="" memberEnd="_e8f0348_1100878948234_290831_139 _e8f0348_1100878948234_303066_140">
                 <ownedEnd xmi:id="_e8f0348_1100878948234_290831_139" name="" visibility="public" type="_8a70287_1078847052918_864802_369" isReadOnly="true" association="_e8f0348_1100878948234_578221_141">
                   <ownedComment xmi:id="_9_0_2_1fe00f9_1122623450828_877382_0" body="" annotatedElement="_e8f0348_1100878948234_290831_139"/>
                 </ownedEnd>
@@ -5450,7 +5450,7 @@
                   <ownedComment xmi:id="_9_0_2_1fe00f9_1123966441884_548385_104" body="True if this field is a date type and the date format is not be interpreted strictly." annotatedElement="_9_0_2_1fe00f9_1123966406665_498439_101"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_9_0_2_1fe00f9_1124390078005_112122_47" name="safeNamePresent" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true">
-                  <ownedComment xmi:id="_9_0_2_1fe00f9_1124390112956_127227_61" body="True if this parameter has a name that can properly be handled by Jakarta commons (this lib is used by Struts but contains a bug)" annotatedElement="_9_0_2_1fe00f9_1124390078005_112122_47"/>
+                  <ownedComment xmi:id="_9_0_2_1fe00f9_1124390112956_127227_61" body="True if this parameter has a name that can properly be handled by Jakarta commons (this lib is used by Gui but contains a bug)" annotatedElement="_9_0_2_1fe00f9_1124390078005_112122_47"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_9_5_1_36500660_1151655946515_224609_0" name="filterElement" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true"/>
                 <ownedAttribute xmi:id="_9_5_1_36500660_1152703821906_445996_196" name="mandatory" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true"/>
@@ -5572,7 +5572,7 @@
                   <ownedParameter xmi:id="_16_5_4_55001df_1325279930874_919999_1684" name="" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" direction="return"/>
                 </ownedOperation>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1113592649328_824329_205" name="" memberEnd="_9_0_1fe00f9_1113592649328_416843_204 _9_0_1fe00f9_1113592649328_412219_203">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1113592649328_824329_205" name="" memberEnd="_9_0_1fe00f9_1113592649328_412219_203 _9_0_1fe00f9_1113592649328_416843_204">
                 <ownedEnd xmi:id="_9_0_1fe00f9_1113592649328_412219_203" name="" visibility="public" type="_8a70287_1078847052918_864802_369" association="_9_0_1fe00f9_1113592649328_824329_205"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Association" xmi:id="_9_0_1fe00f9_1113696271575_43294_49" name="" memberEnd="_9_0_1fe00f9_1113696271575_546195_47 _9_0_1fe00f9_1113696271575_398495_48">
@@ -5581,7 +5581,7 @@
               <packagedElement xmi:type="uml:Class" xmi:id="_9_0_1fe00f9_1113895913850_698380_48" name="GuiManageableEntityAssociationEnd">
                 <generalization xmi:id="_9_0_1fe00f9_1113895967116_668318_196" isSubstitutable="true" general="_9_0_1fe00f9_1113843043548_33809_34"/>
                 <ownedAttribute xmi:id="_9_0_2_1fe00f9_1124390075722_497122_30" name="safeNamePresent" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true">
-                  <ownedComment xmi:id="_9_0_2_1fe00f9_1124390112956_841141_65" body="True if this parameter has a name that can properly be handled by Jakarta commons (this lib is used by Struts but contains a bug)" annotatedElement="_9_0_2_1fe00f9_1124390075722_497122_30"/>
+                  <ownedComment xmi:id="_9_0_2_1fe00f9_1124390112956_841141_65" body="True if this parameter has a name that can properly be handled by Jakarta commons (this lib is used by Gui but contains a bug)" annotatedElement="_9_0_2_1fe00f9_1124390075722_497122_30"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_9_5_1_36500660_1151658612171_939764_194" name="filterElement" visibility="public" type="_9_0_1fe00f9_1119336925531_736816_6" isReadOnly="true"/>
                 <ownedAttribute xmi:id="_9_5_1_36500660_1154436197781_580256_117" name="displayName" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" isReadOnly="true"/>
@@ -5614,16 +5614,16 @@
                   <ownedComment xmi:id="_9_0_2_1fe00f9_1122626487281_59432_167" body="" annotatedElement="_9_0_2_12ab03bf_1119303330109_613314_0"/>
                 </ownedEnd>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_1fe00f9_1122553191312_910326_148" name="" memberEnd="_9_0_2_1fe00f9_1122553191312_148659_147 _9_0_2_1fe00f9_1122553191312_15340_146">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_1fe00f9_1122553191312_910326_148" name="" memberEnd="_9_0_2_1fe00f9_1122553191312_15340_146 _9_0_2_1fe00f9_1122553191312_148659_147">
                 <ownedEnd xmi:id="_9_0_2_1fe00f9_1122553191312_15340_146" name="" visibility="private" type="_8a70287_1078847441076_370168_298" association="_9_0_2_1fe00f9_1122553191312_910326_148"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_1fe00f9_1122555677421_511804_250" name="" memberEnd="_9_0_2_1fe00f9_1122555677421_815454_249 _9_0_2_1fe00f9_1122555677421_87135_248">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_0_2_1fe00f9_1122555677421_511804_250" name="" memberEnd="_9_0_2_1fe00f9_1122555677421_87135_248 _9_0_2_1fe00f9_1122555677421_815454_249">
                 <ownedEnd xmi:id="_9_0_2_1fe00f9_1122555677421_87135_248" name="" visibility="private" type="_8a70287_1078847441076_370168_298" association="_9_0_2_1fe00f9_1122555677421_511804_250"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1147178754843_431944_895" name="" memberEnd="_9_5_1_36500660_1147178754843_428724_893 _9_5_1_36500660_1147178754843_6973_894">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1147178754843_431944_895" name="" memberEnd="_9_5_1_36500660_1147178754843_6973_894 _9_5_1_36500660_1147178754843_428724_893">
                 <ownedEnd xmi:id="_9_5_1_36500660_1147178754843_428724_893" name="" visibility="public" type="_8a70287_1078847462888_359571_347" isReadOnly="true" association="_9_5_1_36500660_1147178754843_431944_895"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1147786223656_539593_386" name="" memberEnd="_9_5_1_36500660_1147786223656_979980_384 _9_5_1_36500660_1147786223656_843554_385">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1147786223656_539593_386" name="" memberEnd="_9_5_1_36500660_1147786223656_843554_385 _9_5_1_36500660_1147786223656_979980_384">
                 <ownedEnd xmi:id="_9_5_1_36500660_1147786223656_979980_384" name="" visibility="public" type="_8a70287_1078847462888_359571_347" isReadOnly="true" association="_9_5_1_36500660_1147786223656_539593_386"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1153148846093_562296_242" name="" memberEnd="_9_5_1_36500660_1153148846078_187977_240 _9_5_1_36500660_1153148846093_402162_241">
@@ -5635,10 +5635,10 @@
               <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1153227240421_701501_379" name="" memberEnd="_9_5_1_36500660_1153227240421_679656_377 _9_5_1_36500660_1153227240421_500766_378">
                 <ownedEnd xmi:id="_9_5_1_36500660_1153227240421_679656_377" name="" visibility="private" type="_9_0_1fe00f9_1113480536055_254222_571" association="_9_5_1_36500660_1153227240421_701501_379"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1154687078453_413512_637" name="" memberEnd="_9_5_1_36500660_1154687078453_627067_635 _9_5_1_36500660_1154687078453_723422_636">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1154687078453_413512_637" name="" memberEnd="_9_5_1_36500660_1154687078453_723422_636 _9_5_1_36500660_1154687078453_627067_635">
                 <ownedEnd xmi:id="_9_5_1_36500660_1154687078453_627067_635" name="" visibility="private" type="_9_0_1fe00f9_1113470016883_345878_53" association="_9_5_1_36500660_1154687078453_413512_637"/>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1170755563453_506364_133" name="" memberEnd="_9_5_1_36500660_1170755563453_30111_132 _9_5_1_36500660_1170755563453_816595_131">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1170755563453_506364_133" name="" memberEnd="_9_5_1_36500660_1170755563453_816595_131 _9_5_1_36500660_1170755563453_30111_132">
                 <ownedComment xmi:id="_9_5_1_36500660_1211537573061_175123_50" body="Link between a custom(s) owner and its children. K+TP rules uses this concept to define a Rule and its Custom Rules." annotatedElement="_9_5_1_36500660_1170755563453_506364_133"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1171304964562_77456_233" name="" memberEnd="_9_5_1_36500660_1171304964562_949469_231 _9_5_1_36500660_1171304964562_298344_232">
@@ -5661,7 +5661,7 @@
                   <ownedParameter xmi:id="_9_5_1_36500660_1197644957966_82417_51" name="" visibility="public" type="_9_0_1fe00f9_1119336925531_364079_66" direction="return"/>
                 </ownedOperation>
               </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1197645460914_788313_502" name="" memberEnd="_9_5_1_36500660_1197645460914_805893_500 _9_5_1_36500660_1197645460914_364135_501">
+              <packagedElement xmi:type="uml:Association" xmi:id="_9_5_1_36500660_1197645460914_788313_502" name="" memberEnd="_9_5_1_36500660_1197645460914_364135_501 _9_5_1_36500660_1197645460914_805893_500">
                 <ownedEnd xmi:id="_9_5_1_36500660_1197645460914_805893_500" name="" visibility="public" type="_9_5_1_36500660_1197035822492_202620_0" association="_9_5_1_36500660_1197645460914_788313_502"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_16_5_4_55001df_1324459048191_534647_1273" name="GuiAttribute">
@@ -5962,148 +5962,148 @@
       <ownedComment xmi:id="_be00301_1078843546940_242228_131" body="UML Standard Profile contains several popular stereotypes, tag definitions and constraints described in UML  2 Specifications." annotatedElement="magicdraw_uml_standard_profile_v_0001"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_8a70287_1078771814628_224704_589" name="org.andromda.profile"/>
-    <profileApplication xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
-      <eAnnotations xmi:id="_TBul5EAFEeGqgMH9RehX7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_TBswuEAFEeGqgMH9RehX7g"/>
-      </eAnnotations>
-      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
-    </profileApplication>
-    <profileApplication xmi:id="_9_0_be00301_1108050582343_527400_10847profileApplicationData">
-      <eAnnotations xmi:id="_TDYyoUAFEeGqgMH9RehX7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_TAtSF0AFEeGqgMH9RehX7g"/>
-      </eAnnotations>
-      <appliedProfile href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_9_0_be00301_1108050582343_527400_10847"/>
-    </profileApplication>
     <profileApplication xmi:id="_11_5_e240333_1154527253281_154549_26profileApplicationData">
-      <eAnnotations xmi:id="_TFCYcUAFEeGqgMH9RehX7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="org.andromda.profile.andromda-meta.profile.uml#_TBmqGEAFEeGqgMH9RehX7g"/>
+      <eAnnotations xmi:id="_eYk9a2ZmEeGLl4ZDpysGdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="org.andromda.profile.andromda-meta.profile.uml#_eYk9O2ZmEeGLl4ZDpysGdg"/>
       </eAnnotations>
       <appliedProfile href="org.andromda.profile.andromda-meta.profile.uml#_11_5_e240333_1154527253281_154549_26"/>
     </profileApplication>
-    <profileApplication xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
-      <eAnnotations xmi:id="_TGr-QEAFEeGqgMH9RehX7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_TBnRIkAFEeGqgMH9RehX7g"/>
+    <profileApplication xmi:id="_9_0_be00301_1108050582343_527400_10847profileApplicationData">
+      <eAnnotations xmi:id="_eZDd4WZmEeGLl4ZDpysGdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_eYkWK2ZmEeGLl4ZDpysGdg"/>
       </eAnnotations>
-      <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
+      <appliedProfile href="UML_Standard_Profile.UML_Standard_Profile.profile.uml#_9_0_be00301_1108050582343_527400_10847"/>
     </profileApplication>
     <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
-      <eAnnotations xmi:id="_TIVkEUAFEeGqgMH9RehX7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_TAfPoUAFEeGqgMH9RehX7g"/>
+      <eAnnotations xmi:id="_eZQSMWZmEeGLl4ZDpysGdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_eYju1GZmEeGLl4ZDpysGdg"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
     </profileApplication>
+    <profileApplication xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
+      <eAnnotations xmi:id="_eZgJ0WZmEeGLl4ZDpysGdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_eYjIGmZmEeGLl4ZDpysGdg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
+    </profileApplication>
+    <profileApplication xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
+      <eAnnotations xmi:id="_eZuMQWZmEeGLl4ZDpysGdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_eYh5x2ZmEeGLl4ZDpysGdg"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
+    </profileApplication>
     <profileApplication xmi:id="_0profileApplicationData">
-      <eAnnotations xmi:id="_TRvXsUAFEeGqgMH9RehX7g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <eAnnotations xmi:id="_eaQXwWZmEeGLl4ZDpysGdg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
   </uml:Model>
-  <Standard:ModelLibrary xmi:id="_TTV6MEAFEeGqgMH9RehX7g" base_Package="_9_0_1fe00f9_1119336925546_238419_77"/>
-  <UMLStandardProfile:modelLibrary xmi:id="_TTWhQEAFEeGqgMH9RehX7g" base_Package="_9_0_1fe00f9_1119336925546_238419_77"/>
-  <andromdameta:metafacade xmi:id="_TTWhQUAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120792857812_717688_419"/>
-  <andromdameta:metafacade xmi:id="_TTXIUEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078532325622_971459_759"/>
-  <andromdameta:metafacade xmi:id="_TTXIUUAFEeGqgMH9RehX7g" base_Class="_d860307_1071574234068_992089_84"/>
-  <andromdameta:metafacade xmi:id="_TTXvYEAFEeGqgMH9RehX7g" base_Class="_16_5_4_55001df_1324459048227_590449_1275"/>
-  <andromdameta:metafacade xmi:id="_TTXvYUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1104625440681_53845_33"/>
-  <andromdameta:metafacade xmi:id="_TTYWcEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078528251564_981527_908"/>
-  <andromdameta:metafacade xmi:id="_TTYWcUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078863037131_619628_1350"/>
-  <andromdameta:metafacade xmi:id="_TTYWckAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120789489859_66479_150"/>
-  <andromdameta:metafacade xmi:id="_TTY9gEAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1122481800031_890384_216"/>
-  <andromdameta:metafacade xmi:id="_TTY9gUAFEeGqgMH9RehX7g" base_Class="_24400562_1076241072504_416910_88"/>
-  <andromdameta:metafacade xmi:id="_TTZkkEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078939289723_161411_215"/>
-  <andromdameta:metafacade xmi:id="_TTZkkUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1113402182518_384484_232"/>
-  <andromdameta:metafacade xmi:id="_TTaLoEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078847414388_685090_264"/>
-  <andromdameta:metafacade xmi:id="_TTaLoUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078847462888_359571_347"/>
-  <andromdameta:metafacade xmi:id="_TTaLokAFEeGqgMH9RehX7g" base_Class="_9_5_1_ee1034a_1127266732722_101474_425"/>
-  <andromdameta:metafacade xmi:id="_TTaysEAFEeGqgMH9RehX7g" base_Class="_24400562_1084729534630_226077_291"/>
-  <andromdameta:metafacade xmi:id="_TTaysUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078528386918_321974_1041"/>
-  <andromdameta:metafacade xmi:id="_TTbZwEAFEeGqgMH9RehX7g" base_Class="_ecb034c_1074384938560_560855_449"/>
-  <andromdameta:metafacade xmi:id="_TTbZwUAFEeGqgMH9RehX7g" base_Class="_d860307_1071504589255_899792_464"/>
-  <andromdameta:metafacade xmi:id="_TTcA0EAFEeGqgMH9RehX7g" base_Class="_d860307_1071505012453_158614_819"/>
-  <andromdameta:metafacade xmi:id="_TTcA0UAFEeGqgMH9RehX7g" base_Class="_8a70287_1079983887000_419904_240"/>
-  <andromdameta:metafacade xmi:id="_TTcn4EAFEeGqgMH9RehX7g" base_Class="_16_5_4_55001df_1324459048226_868170_1274"/>
-  <andromdameta:metafacade xmi:id="_TTcn4UAFEeGqgMH9RehX7g" base_Class="_8a70287_1078527731536_138307_221"/>
-  <andromdameta:metafacade xmi:id="_TTcn4kAFEeGqgMH9RehX7g" base_Class="_ecb034c_1074380269911_797015_119"/>
-  <andromdameta:metafacade xmi:id="_TTdO8EAFEeGqgMH9RehX7g" base_Class="_d860307_1071504650353_319894_500"/>
-  <andromdameta:metafacade xmi:id="_TTdO8UAFEeGqgMH9RehX7g" base_Class="_8a70287_1078849092892_31297_3104"/>
-  <andromdameta:metafacade xmi:id="_TTd2AEAFEeGqgMH9RehX7g" base_Class="_d860307_1071506134827_941134_1737"/>
-  <andromdameta:metafacade xmi:id="_TTd2AUAFEeGqgMH9RehX7g" base_Class="_e8f0348_1102200843718_167772_250"/>
-  <andromdameta:metafacade xmi:id="_TTedEEAFEeGqgMH9RehX7g" base_Class="_ecb034c_1074429494297_377714_181"/>
-  <andromdameta:metafacade xmi:id="_TTedEUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078847052918_864802_369"/>
-  <andromdameta:metafacade xmi:id="_TTedEkAFEeGqgMH9RehX7g" base_Class="_8a70287_1078936644009_176288_638"/>
-  <andromdameta:metafacade xmi:id="_TTfEIEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078848129016_762070_2125"/>
-  <andromdameta:metafacade xmi:id="_TTfEIUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1113895913850_698380_48"/>
-  <andromdameta:metafacade xmi:id="_TTfrMEAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1113843043548_33809_34"/>
-  <andromdameta:metafacade xmi:id="_TTfrMUAFEeGqgMH9RehX7g" base_Class="_24400562_1086300630984_552734_109"/>
-  <andromdameta:metafacade xmi:id="_TTfrMkAFEeGqgMH9RehX7g" base_Class="_24400562_1073854558969_92049_331"/>
-  <andromdameta:metafacade xmi:id="_TTgSQEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078847441076_370168_298"/>
-  <andromdameta:metafacade xmi:id="_TTgSQUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1111224849004_128280_609"/>
-  <andromdameta:metafacade xmi:id="_TTg5UEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078852368151_67627_4214"/>
-  <andromdameta:metafacade xmi:id="_TTg5UUAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1121180438203_964334_702"/>
-  <andromdameta:metafacade xmi:id="_TThgYEAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1111792430944_743355_131"/>
-  <andromdameta:metafacade xmi:id="_TThgYUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1104625624120_556816_327"/>
-  <andromdameta:metafacade xmi:id="_TTiHcEAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120835338500_225560_590"/>
-  <andromdameta:metafacade xmi:id="_TTiHcUAFEeGqgMH9RehX7g" base_Class="_ecb034c_1074429719333_393099_586"/>
-  <andromdameta:metafacade xmi:id="_TTiHckAFEeGqgMH9RehX7g" base_Class="_8a70287_1078527740759_977341_264"/>
-  <andromdameta:metafacade xmi:id="_TTiugEAFEeGqgMH9RehX7g" base_Class="_9_5_1_ee1034a_1127266738260_303405_459"/>
-  <andromdameta:metafacade xmi:id="_TTiugUAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1122481242500_184900_184"/>
-  <andromdameta:metafacade xmi:id="_TTjVkEAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120168768156_445295_516"/>
-  <andromdameta:metafacade xmi:id="_TTjVkUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078687370189_842249_401"/>
-  <andromdameta:metafacade xmi:id="_TTjVkkAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1122488049984_677962_258"/>
-  <andromdameta:metafacade xmi:id="_TTj8oEAFEeGqgMH9RehX7g" base_Class="_8a70287_1078847402551_259569_263"/>
-  <andromdameta:metafacade xmi:id="_TTj8oUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1115149256331_843166_82"/>
-  <andromdameta:metafacade xmi:id="_TTkjsEAFEeGqgMH9RehX7g" base_Class="_24400562_1076817919491_693372_552"/>
-  <andromdameta:metafacade xmi:id="_TTkjsUAFEeGqgMH9RehX7g" base_Class="_ecb034c_1076522576308_951601_2800"/>
-  <andromdameta:metafacade xmi:id="_TTlKwEAFEeGqgMH9RehX7g" base_Class="_9_5_1_36500660_1197035822492_202620_0"/>
-  <andromdameta:metafacade xmi:id="_TTlKwUAFEeGqgMH9RehX7g" base_Class="_9_5_1_ee1034a_1127266745841_402315_493"/>
-  <andromdameta:metafacade xmi:id="_TTlx0EAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120167034531_347865_28"/>
-  <andromdameta:metafacade xmi:id="_TTlx0UAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1113897549413_287358_18"/>
-  <andromdameta:metafacade xmi:id="_TTlx0kAFEeGqgMH9RehX7g" base_Class="_8a70287_1078847058606_923206_403"/>
-  <andromdameta:metafacade xmi:id="_TTmY4EAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1116004188633_221941_439"/>
-  <andromdameta:metafacade xmi:id="_TTmY4UAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120168241718_803102_404"/>
-  <andromdameta:metafacade xmi:id="_TTm_8EAFEeGqgMH9RehX7g" base_Class="_d860307_1077738600685_387777_175"/>
-  <andromdameta:metafacade xmi:id="_TTm_8UAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120241748796_84658_1361"/>
-  <andromdameta:metafacade xmi:id="_TTm_8kAFEeGqgMH9RehX7g" base_Class="_ecb034c_1074429708731_957334_552"/>
-  <andromdameta:metafacade xmi:id="_TTnnAEAFEeGqgMH9RehX7g" base_Class="_1fe00f9_1100284760688_481823_18"/>
-  <andromdameta:metafacade xmi:id="_TTnnAUAFEeGqgMH9RehX7g" base_Class="_8a70287_1093899393454_672176_99"/>
-  <andromdameta:metafacade xmi:id="_TToOEEAFEeGqgMH9RehX7g" base_Class="_24400562_1078456000396_796309_243"/>
-  <andromdameta:metafacade xmi:id="_TToOEUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1119517503209_398663_27"/>
-  <andromdameta:metafacade xmi:id="_TToOEkAFEeGqgMH9RehX7g" base_Class="_9_5_1_13200cf_1271167652862_42903_9"/>
-  <andromdameta:metafacade xmi:id="_TTo1IEAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1116004487874_253309_1067"/>
-  <andromdameta:metafacade xmi:id="_TTo1IUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078527510288_746033_187"/>
-  <andromdameta:metafacade xmi:id="_TTpcMEAFEeGqgMH9RehX7g" base_Class="_9_5_1_626020b_1151603106573_799941_0"/>
-  <andromdameta:metafacade xmi:id="_TTpcMUAFEeGqgMH9RehX7g" base_Class="_ecb034c_1076522978739_404388_3123"/>
-  <andromdameta:metafacade xmi:id="_TTpcMkAFEeGqgMH9RehX7g" base_Class="_9_5_1_12ab03bf_1166676364406_947166_87"/>
-  <andromdameta:metafacade xmi:id="_TTqDQEAFEeGqgMH9RehX7g" base_Class="_d860307_1071505297814_60220_1019"/>
-  <andromdameta:metafacade xmi:id="_TTqDQUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1116499094484_143315_18"/>
-  <andromdameta:metafacade xmi:id="_TTqqUEAFEeGqgMH9RehX7g" base_Class="_ecb034c_1074379407701_127218_171"/>
-  <andromdameta:metafacade xmi:id="_TTqqUUAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1112204654656_123732_0"/>
-  <andromdameta:metafacade xmi:id="_TTqqUkAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1122489990718_108299_588"/>
-  <andromdameta:metafacade xmi:id="_TTrRYEAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1111223458470_189098_0"/>
-  <andromdameta:metafacade xmi:id="_TTrRYUAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1115149273430_479398_116"/>
-  <andromdameta:metafacade xmi:id="_TTr4cEAFEeGqgMH9RehX7g" base_Class="_d860307_1071505762942_565408_1372"/>
-  <andromdameta:metafacade xmi:id="_TTr4cUAFEeGqgMH9RehX7g" base_Class="_16_5_4_55001df_1324459048191_534647_1273"/>
-  <andromdameta:metafacade xmi:id="_TTsfgEAFEeGqgMH9RehX7g" base_Class="_d860307_1071574465881_881793_352"/>
-  <andromdameta:metafacade xmi:id="_TTsfgUAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1112205391203_582580_0"/>
-  <andromdameta:metafacade xmi:id="_TTsfgkAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1111223534538_306164_2"/>
-  <andromdameta:metafacade xmi:id="_TTtGkEAFEeGqgMH9RehX7g" base_Class="_8a70287_1093698636308_616967_197"/>
-  <andromdameta:metafacade xmi:id="_TTtGkUAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120167314500_763531_126"/>
-  <andromdameta:metafacade xmi:id="_TTttoEAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1116003869282_276578_71"/>
-  <andromdameta:metafacade xmi:id="_TTttoUAFEeGqgMH9RehX7g" base_Class="_8a70287_1078964797924_8826_290"/>
-  <andromdameta:metafacade xmi:id="_TTttokAFEeGqgMH9RehX7g" base_Class="_24400562_1076929607659_603849_252"/>
-  <andromdameta:metafacade xmi:id="_TTuUsEAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1113470016883_345878_53"/>
-  <andromdameta:metafacade xmi:id="_TTu7wEAFEeGqgMH9RehX7g" base_Class="_9_0_2_12ab03bf_1120678285078_403523_813"/>
-  <andromdameta:metafacade xmi:id="_TTu7wUAFEeGqgMH9RehX7g" base_Class="_d860307_1071504751869_985718_574"/>
-  <andromdameta:metafacade xmi:id="_TTvi0EAFEeGqgMH9RehX7g" base_Class="_9_5_1_12ab03bf_1166674061937_23375_133"/>
-  <andromdameta:metafacade xmi:id="_TTvi0UAFEeGqgMH9RehX7g" base_Class="_9_5_1_12ab03bf_1166674037093_8685_1"/>
-  <andromdameta:metafacade xmi:id="_TTwJ4EAFEeGqgMH9RehX7g" base_Class="_9_5_1_12ab03bf_1166674056828_343682_132"/>
-  <andromdameta:metafacade xmi:id="_TTwJ4UAFEeGqgMH9RehX7g" base_Class="_e8f0348_1102215391953_383987_0"/>
-  <andromdameta:metafacade xmi:id="_TTww8EAFEeGqgMH9RehX7g" base_Class="_9_0_1fe00f9_1113480536055_254222_571"/>
-  <andromdameta:metafacade xmi:id="_TTxYAEAFEeGqgMH9RehX7g" base_Class="_24400562_1078456132886_364804_350"/>
-  <andromdameta:metafacade xmi:id="_TTxYAUAFEeGqgMH9RehX7g" base_Class="_d860307_1071506074180_318219_1633"/>
-  <andromdameta:metafacade xmi:id="_TTx_EEAFEeGqgMH9RehX7g" base_Class="_d860307_1071505787688_603234_1398"/>
-  <andromdameta:metafacade xmi:id="_TTx_EUAFEeGqgMH9RehX7g" base_Class="_d860307_1071761469244_994549_110"/>
-  <andromdameta:metafacade xmi:id="_TTx_EkAFEeGqgMH9RehX7g" base_Class="_16_5_4_55001df_1325281275335_974593_2042"/>
-  <MagicDrawProfile:auxiliaryResource xmi:id="_TdBaoEAFEeGqgMH9RehX7g" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
+  <andromdameta:metafacade xmi:id="_eaExkGZmEeGLl4ZDpysGdg" base_Class="_24400562_1086300630984_552734_109"/>
+  <andromdameta:metafacade xmi:id="_eaExkWZmEeGLl4ZDpysGdg" base_Class="_d860307_1071574465881_881793_352"/>
+  <andromdameta:metafacade xmi:id="_eaExkmZmEeGLl4ZDpysGdg" base_Class="_9_5_1_13200cf_1271167652862_42903_9"/>
+  <andromdameta:metafacade xmi:id="_eaExk2ZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1113897549413_287358_18"/>
+  <andromdameta:metafacade xmi:id="_eaExlGZmEeGLl4ZDpysGdg" base_Class="_d860307_1071505297814_60220_1019"/>
+  <andromdameta:metafacade xmi:id="_eaFYoGZmEeGLl4ZDpysGdg" base_Class="_24400562_1076929607659_603849_252"/>
+  <andromdameta:metafacade xmi:id="_eaFYoWZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1074429708731_957334_552"/>
+  <andromdameta:metafacade xmi:id="_eaFYomZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078847402551_259569_263"/>
+  <andromdameta:metafacade xmi:id="_eaFYo2ZmEeGLl4ZDpysGdg" base_Class="_1fe00f9_1100284760688_481823_18"/>
+  <andromdameta:metafacade xmi:id="_eaFYpGZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1074429719333_393099_586"/>
+  <andromdameta:metafacade xmi:id="_eaFYpWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1111223534538_306164_2"/>
+  <andromdameta:metafacade xmi:id="_eaF_sGZmEeGLl4ZDpysGdg" base_Class="_d860307_1077738600685_387777_175"/>
+  <andromdameta:metafacade xmi:id="_eaF_sWZmEeGLl4ZDpysGdg" base_Class="_16_5_4_55001df_1324459048227_590449_1275"/>
+  <andromdameta:metafacade xmi:id="_eaF_smZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1074379407701_127218_171"/>
+  <andromdameta:metafacade xmi:id="_eaF_s2ZmEeGLl4ZDpysGdg" base_Class="_d860307_1071505787688_603234_1398"/>
+  <andromdameta:metafacade xmi:id="_eaF_tGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078528251564_981527_908"/>
+  <andromdameta:metafacade xmi:id="_eaF_tWZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1074384938560_560855_449"/>
+  <andromdameta:metafacade xmi:id="_eaF_tmZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078527731536_138307_221"/>
+  <andromdameta:metafacade xmi:id="_eaGmwGZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120241748796_84658_1361"/>
+  <andromdameta:metafacade xmi:id="_eaGmwWZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1122488049984_677962_258"/>
+  <andromdameta:metafacade xmi:id="_eaGmwmZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120168241718_803102_404"/>
+  <andromdameta:metafacade xmi:id="_eaGmw2ZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1119517503209_398663_27"/>
+  <andromdameta:metafacade xmi:id="_eaGmxGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078847058606_923206_403"/>
+  <andromdameta:metafacade xmi:id="_eaGmxWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1111224849004_128280_609"/>
+  <andromdameta:metafacade xmi:id="_eaHN0GZmEeGLl4ZDpysGdg" base_Class="_9_5_1_12ab03bf_1166676364406_947166_87"/>
+  <andromdameta:metafacade xmi:id="_eaHN0WZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078528386918_321974_1041"/>
+  <andromdameta:metafacade xmi:id="_eaHN0mZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078848129016_762070_2125"/>
+  <andromdameta:metafacade xmi:id="_eaHN02ZmEeGLl4ZDpysGdg" base_Class="_9_5_1_ee1034a_1127266732722_101474_425"/>
+  <andromdameta:metafacade xmi:id="_eaHN1GZmEeGLl4ZDpysGdg" base_Class="_d860307_1071506074180_318219_1633"/>
+  <andromdameta:metafacade xmi:id="_eaHN1WZmEeGLl4ZDpysGdg" base_Class="_9_5_1_ee1034a_1127266745841_402315_493"/>
+  <andromdameta:metafacade xmi:id="_eaHN1mZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078847441076_370168_298"/>
+  <andromdameta:metafacade xmi:id="_eaH04GZmEeGLl4ZDpysGdg" base_Class="_9_5_1_12ab03bf_1166674061937_23375_133"/>
+  <andromdameta:metafacade xmi:id="_eaH04WZmEeGLl4ZDpysGdg" base_Class="_24400562_1078456132886_364804_350"/>
+  <andromdameta:metafacade xmi:id="_eaH04mZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1112205391203_582580_0"/>
+  <andromdameta:metafacade xmi:id="_eaH042ZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078939289723_161411_215"/>
+  <andromdameta:metafacade xmi:id="_eaH05GZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1076522576308_951601_2800"/>
+  <andromdameta:metafacade xmi:id="_eaH05WZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078527510288_746033_187"/>
+  <andromdameta:metafacade xmi:id="_eaIb8GZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1104625440681_53845_33"/>
+  <andromdameta:metafacade xmi:id="_eaIb8WZmEeGLl4ZDpysGdg" base_Class="_24400562_1084729534630_226077_291"/>
+  <andromdameta:metafacade xmi:id="_eaIb8mZmEeGLl4ZDpysGdg" base_Class="_d860307_1071504751869_985718_574"/>
+  <andromdameta:metafacade xmi:id="_eaIb82ZmEeGLl4ZDpysGdg" base_Class="_e8f0348_1102200843718_167772_250"/>
+  <andromdameta:metafacade xmi:id="_eaIb9GZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078847052918_864802_369"/>
+  <andromdameta:metafacade xmi:id="_eaIb9WZmEeGLl4ZDpysGdg" base_Class="_d860307_1071761469244_994549_110"/>
+  <andromdameta:metafacade xmi:id="_eaIb9mZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078863037131_619628_1350"/>
+  <andromdameta:metafacade xmi:id="_eaJDAGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078849092892_31297_3104"/>
+  <andromdameta:metafacade xmi:id="_eaJDAWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1111223458470_189098_0"/>
+  <andromdameta:metafacade xmi:id="_eaJDAmZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120678285078_403523_813"/>
+  <andromdameta:metafacade xmi:id="_eaJDA2ZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078532325622_971459_759"/>
+  <andromdameta:metafacade xmi:id="_eaJDBGZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120835338500_225560_590"/>
+  <andromdameta:metafacade xmi:id="_eaJDBWZmEeGLl4ZDpysGdg" base_Class="_24400562_1076817919491_693372_552"/>
+  <andromdameta:metafacade xmi:id="_eaJqEGZmEeGLl4ZDpysGdg" base_Class="_d860307_1071574234068_992089_84"/>
+  <andromdameta:metafacade xmi:id="_eaJqEWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1115149256331_843166_82"/>
+  <andromdameta:metafacade xmi:id="_eaJqEmZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078527740759_977341_264"/>
+  <andromdameta:metafacade xmi:id="_eaJqE2ZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1112204654656_123732_0"/>
+  <andromdameta:metafacade xmi:id="_eaJqFGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078936644009_176288_638"/>
+  <andromdameta:metafacade xmi:id="_eaJqFWZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120789489859_66479_150"/>
+  <andromdameta:metafacade xmi:id="_eaKRIGZmEeGLl4ZDpysGdg" base_Class="_d860307_1071505012453_158614_819"/>
+  <andromdameta:metafacade xmi:id="_eaKRIWZmEeGLl4ZDpysGdg" base_Class="_8a70287_1079983887000_419904_240"/>
+  <andromdameta:metafacade xmi:id="_eaKRImZmEeGLl4ZDpysGdg" base_Class="_d860307_1071506134827_941134_1737"/>
+  <andromdameta:metafacade xmi:id="_eaKRI2ZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120167034531_347865_28"/>
+  <andromdameta:metafacade xmi:id="_eaKRJGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078847414388_685090_264"/>
+  <andromdameta:metafacade xmi:id="_eaKRJWZmEeGLl4ZDpysGdg" base_Class="_d860307_1071505762942_565408_1372"/>
+  <andromdameta:metafacade xmi:id="_eaKRJmZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1113480536055_254222_571"/>
+  <andromdameta:metafacade xmi:id="_eaK4MGZmEeGLl4ZDpysGdg" base_Class="_9_5_1_12ab03bf_1166674037093_8685_1"/>
+  <andromdameta:metafacade xmi:id="_eaK4MWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1111792430944_743355_131"/>
+  <andromdameta:metafacade xmi:id="_eaK4MmZmEeGLl4ZDpysGdg" base_Class="_24400562_1076241072504_416910_88"/>
+  <andromdameta:metafacade xmi:id="_eaK4M2ZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1113402182518_384484_232"/>
+  <andromdameta:metafacade xmi:id="_eaK4NGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078687370189_842249_401"/>
+  <andromdameta:metafacade xmi:id="_eaK4NWZmEeGLl4ZDpysGdg" base_Class="_9_5_1_36500660_1197035822492_202620_0"/>
+  <andromdameta:metafacade xmi:id="_eaK4NmZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1122489990718_108299_588"/>
+  <andromdameta:metafacade xmi:id="_eaLfQGZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120792857812_717688_419"/>
+  <andromdameta:metafacade xmi:id="_eaLfQWZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120167314500_763531_126"/>
+  <andromdameta:metafacade xmi:id="_eaLfQmZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1116499094484_143315_18"/>
+  <andromdameta:metafacade xmi:id="_eaLfQ2ZmEeGLl4ZDpysGdg" base_Class="_24400562_1078456000396_796309_243"/>
+  <andromdameta:metafacade xmi:id="_eaLfRGZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1122481800031_890384_216"/>
+  <andromdameta:metafacade xmi:id="_eaLfRWZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1074429494297_377714_181"/>
+  <andromdameta:metafacade xmi:id="_eaMGUGZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1113895913850_698380_48"/>
+  <andromdameta:metafacade xmi:id="_eaMGUWZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1122481242500_184900_184"/>
+  <andromdameta:metafacade xmi:id="_eaMGUmZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1113470016883_345878_53"/>
+  <andromdameta:metafacade xmi:id="_eaMGU2ZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078852368151_67627_4214"/>
+  <andromdameta:metafacade xmi:id="_eaMGVGZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1120168768156_445295_516"/>
+  <andromdameta:metafacade xmi:id="_eaMGVWZmEeGLl4ZDpysGdg" base_Class="_16_5_4_55001df_1324459048226_868170_1274"/>
+  <andromdameta:metafacade xmi:id="_eaMGVmZmEeGLl4ZDpysGdg" base_Class="_9_5_1_626020b_1151603106573_799941_0"/>
+  <andromdameta:metafacade xmi:id="_eaMtYGZmEeGLl4ZDpysGdg" base_Class="_9_0_2_12ab03bf_1121180438203_964334_702"/>
+  <andromdameta:metafacade xmi:id="_eaMtYWZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1076522978739_404388_3123"/>
+  <andromdameta:metafacade xmi:id="_eaMtYmZmEeGLl4ZDpysGdg" base_Class="_16_5_4_55001df_1325281275335_974593_2042"/>
+  <andromdameta:metafacade xmi:id="_eaMtY2ZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1116004487874_253309_1067"/>
+  <andromdameta:metafacade xmi:id="_eaMtZGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078847462888_359571_347"/>
+  <andromdameta:metafacade xmi:id="_eaMtZWZmEeGLl4ZDpysGdg" base_Class="_8a70287_1093698636308_616967_197"/>
+  <andromdameta:metafacade xmi:id="_eaMtZmZmEeGLl4ZDpysGdg" base_Class="_16_5_4_55001df_1324459048191_534647_1273"/>
+  <andromdameta:metafacade xmi:id="_eaNUcGZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1116004188633_221941_439"/>
+  <andromdameta:metafacade xmi:id="_eaNUcWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1104625624120_556816_327"/>
+  <andromdameta:metafacade xmi:id="_eaNUcmZmEeGLl4ZDpysGdg" base_Class="_8a70287_1093899393454_672176_99"/>
+  <andromdameta:metafacade xmi:id="_eaNUc2ZmEeGLl4ZDpysGdg" base_Class="_9_5_1_ee1034a_1127266738260_303405_459"/>
+  <andromdameta:metafacade xmi:id="_eaNUdGZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1116003869282_276578_71"/>
+  <andromdameta:metafacade xmi:id="_eaNUdWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1115149273430_479398_116"/>
+  <andromdameta:metafacade xmi:id="_eaNUdmZmEeGLl4ZDpysGdg" base_Class="_d860307_1071504589255_899792_464"/>
+  <andromdameta:metafacade xmi:id="_eaN7gGZmEeGLl4ZDpysGdg" base_Class="_e8f0348_1102215391953_383987_0"/>
+  <andromdameta:metafacade xmi:id="_eaN7gWZmEeGLl4ZDpysGdg" base_Class="_ecb034c_1074380269911_797015_119"/>
+  <andromdameta:metafacade xmi:id="_eaN7gmZmEeGLl4ZDpysGdg" base_Class="_24400562_1073854558969_92049_331"/>
+  <andromdameta:metafacade xmi:id="_eaN7g2ZmEeGLl4ZDpysGdg" base_Class="_9_5_1_12ab03bf_1166674056828_343682_132"/>
+  <andromdameta:metafacade xmi:id="_eaN7hGZmEeGLl4ZDpysGdg" base_Class="_d860307_1071504650353_319894_500"/>
+  <andromdameta:metafacade xmi:id="_eaN7hWZmEeGLl4ZDpysGdg" base_Class="_9_0_1fe00f9_1113843043548_33809_34"/>
+  <andromdameta:metafacade xmi:id="_eaOikGZmEeGLl4ZDpysGdg" base_Class="_8a70287_1078964797924_8826_290"/>
+  <Standard:ModelLibrary xmi:id="_eagPYGZmEeGLl4ZDpysGdg" base_Package="_9_0_1fe00f9_1119336925546_238419_77"/>
+  <UMLStandardProfile:modelLibrary xmi:id="_eagPYWZmEeGLl4ZDpysGdg" base_Package="_9_0_1fe00f9_1119336925546_238419_77"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_eamWBGZmEeGLl4ZDpysGdg" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
 </xmi:XMI>

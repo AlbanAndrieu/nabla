@@ -114,7 +114,7 @@ TimecardDetailsFormImpl)
             form.setEvent(event);
             this.setForm("form", form, true);
             // - pass any properties from the previous form along
-            FormPopulator.populateForm(currentForm, form);
+            FormPopulator.populateForm(currentForm, form, false);
             // - populate the form with any event attributes that may match
             // IMPORTANT: it isn't possible to automatically populate any property named "id" since that
             // is a reserved name in JSF (the id of a component), therefore we have to unfortunately ignore any available "id" attribute

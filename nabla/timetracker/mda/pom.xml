@@ -7,9 +7,9 @@
     <parent>
         <groupId>org.andromda.timetracker</groupId>
         <artifactId>timetracker</artifactId>
-        <version>3.4-SNAPSHOT</version>
+        <version>3.4</version>
     </parent>
-    <artifactId>timetracker-mda</artifactId>
+    <artifactId>mda</artifactId>
     <packaging>pom</packaging>
     <name>TimeTracker MDA</name>
     <dependencies>
@@ -38,12 +38,23 @@
             <version>${andromda.version}</version>
             <scope>runtime</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-jsf-cartridge</artifactId>
             <version>${andromda.version}</version>
             <scope>runtime</scope>
+        </dependency>        
+        
+        <!--
+        <dependency>
+            <groupId>org.andromda.cartridges</groupId>
+            <artifactId>andromda-gui</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
         </dependency>
+        -->
+        
         <dependency>
             <groupId>org.andromda.translationlibraries</groupId>
             <artifactId>andromda-ocl-validation-library</artifactId>
@@ -81,6 +92,145 @@
                 </plugins>
             </build>
         </profile>
+	<profile>
+		<id>xmi</id>
+		<activation>
+			<property>
+				<name>!profile.activation</name>
+			</property>
+		</activation>
+		<build>
+			<plugins>
+		                <plugin>
+		                	<groupId>org.apache.maven.plugins</groupId>
+		                	<artifactId>maven-antrun-plugin</artifactId>
+		                	<configuration>
+		                		<target>
+		                			<echo>Generate XMI from Database at ${buildNumber}. </echo>
+		                			<property name="src.dir" value="." />
+		                			<!--
+		                				<property name="model.dir"
+		                				value="${project.basedir}/test/mda/src/main/uml/"/>
+		                			-->
+		                			<property name="output.dir" value="${target.dir}/uml/" />
+		                			<property name="lib.dir" value="${jdbc.driver.lib}" />			                			
+		                			<property name="mappings.dir" value="${configuration.mda.dir}" />
+		                			<property name="build.dir" value="${target.dir}" />
+		                			<path id="schema2xmi.classpath">
+		                				<fileset dir="${lib.dir}">
+		                					<include name="*.jar" />
+		                				</fileset>
+		                				<!--
+		                				<fileset dir="${lib.dir}">
+		                					<include name="*.zip" />
+		                				</fileset>
+		                				-->
+		                			</path>
+		                			<java classname="org.andromda.schema2xmi.Schema2XMI" fork="true">
+		                				<classpath>
+		                					<path refid="schema2xmi.classpath" />
+		                					<path refid="maven.compile.classpath" />
+		                				</classpath>
+		                				<!--
+		                					<arg value="-i"/> <arg
+		                					value="jar:file:${basedir}/src/main/uml/${uml.type}/GuiMetafacadeModel.xml.zip!/GuiMetafacadeModel.xml"/>
+		                				-->
+		                				<arg value="-u" />
+		                				<arg value="${jdbc.username}" />
+		                				<arg value="-p" />
+		                				<arg value="${jdbc.password}" />
+		                				<!--
+		                					<arg value="-s"/> <arg
+		                					value="${maven.andromda.schema2xmi.schema}"/>
+		                				-->
+		                				<arg value="-c" />
+		                				<arg value="${maven.andromda.schema2xmi.connectionUrl}" />
+		                				<arg value="-d" />
+		                				<arg value="${maven.andromda.schema2xmi.driverClass}" />
+		                				<arg value="-m" />
+		                				<arg value="file:${mappings.dir}/schema2xmi/mappings.xml" />
+		                				<arg value="-o" />
+		                				<arg value="${build.dir}/schema2xmi/transformed.xmi" />
+		                				<arg value="-t" />
+		                				<!--<arg value="[\p{Lower}\p{Upper}[_]]*"/>-->
+		                				<arg value="[\p{Lower}\p{Upper}\digit]*" />
+		                				<arg value="-P" />
+		                				<arg value="${application.package}" />
+		                				<arg value="-C" />
+		                				<arg value="entity,persistent" />
+		                				<arg value="-I" />
+		                				<arg value="identifier" />
+		                				<arg value="-V" />
+		                				<arg value="@andromda.persistence.table" />
+		                				<arg value="-v" />
+		                				<arg value="@andromda.persistence.column" />
+		                			</java>
+		                		</target>
+		                	</configuration>
+		                	<executions>
+		                		<execution>
+		                			<!--<phase>process-classes</phase>-->
+		                			<phase>package</phase>		                			
+		                			<goals>
+		                				<goal>run</goal>
+		                			</goals>
+		                		</execution>
+		                	</executions>
+		                	<dependencies>		                                                         			                				                			   			                	
+		                		<dependency>
+		                			<groupId>${jdbc.groupId}</groupId>
+		                			<artifactId>${jdbc.artifactId}</artifactId>
+		                			<version>${jdbc.version}</version>
+		                		</dependency>
+		                	</dependencies>
+		                </plugin>
+			</plugins>
+		</build>
+		<dependencies>
+               	    <dependency>
+               	        <groupId>org.andromda</groupId>
+               	        <artifactId>andromda-schema2xmi</artifactId>
+               	        <version>${andromda.version}</version>
+               	        <scope>compile</scope>
+               	    </dependency>             
+               	    <!-- START USED BY Schema2XMI -->
+               	    <dependency>
+               	               <groupId>org.andromda</groupId>
+               	               <artifactId>andromda-core</artifactId>
+               	               <version>${andromda.version}</version>
+               	               <scope>compile</scope>
+               	               <exclusions>
+               	                   <exclusion>
+               	                       <groupId>log4j</groupId>
+               	                       <artifactId>log4j</artifactId>
+               	                   </exclusion>
+               	               </exclusions>
+               	           </dependency>
+               	    <dependency>
+               	    	<groupId>org.andromda.repositories</groupId>
+               	    	<artifactId>andromda-repository-mdr-uml14</artifactId>
+               	    	<version>${andromda.version}</version>
+               	    </dependency>
+               	    <dependency>
+               	    	<groupId>org.andromda.metafacades</groupId>
+               	    	<artifactId>andromda-metafacades-uml14</artifactId>
+               	    	<version>${andromda.version}</version>
+               	    	<scope>provided</scope>
+               	    </dependency>     
+                    <dependency>
+                        <groupId>org.andromda.translationlibraries</groupId>
+                        <artifactId>andromda-ocl-translation-core</artifactId>
+                        <scope>provided</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.andromda.translationlibraries</groupId>
+                        <artifactId>andromda-ocl-validation-library</artifactId>
+                        <scope>provided</scope>
+                    </dependency>                                            
+               	    <!-- END USED BY Schema2XMI -->        
+               	    
+    		</dependencies>			
+	</profile>        
     </profiles>
     <build>
         <sourceDirectory>${project.basedir}/src/main/uml2</sourceDirectory>
@@ -97,14 +247,11 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <configurationUri>${project.basedir}/src/main/config/andromda.xml</configurationUri>
+                    <configurationUri>file:${conf.dir}/${uml.type}/andromda-${model.name}.xml</configurationUri>                    
                     <lastModifiedCheck>true</lastModifiedCheck>
                 </configuration>
                 -->
             </plugin>
-            <!--plugin>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin-->
         </plugins>
     </build>
     <properties>
@@ -149,7 +296,8 @@
         <core.generated.test.dir>${project.basedir}/../core/${maven.build.generated}/main/java</core.generated.test.dir>        
         <core.manual.dir>${project.basedir}/../core/src/main/java</core.manual.dir>
         <core.manual.java.dir>${project.basedir}/../core/src/main/java</core.manual.java.dir>
-        <core.manual.java.resources>${project.basedir}/../core/src/main/resources</core.manual.java.resources>
+        <!--<core.manual.java.resources>${project.basedir}/../core/src/main/resources</core.manual.java.resources>-->
+        <core.generated.java.resources>${project.basedir}/../core/${maven.build.generated}/main/resources</core.generated.java.resources>
         <core.manual.test.dir>${project.basedir}/../core/src/test/java</core.manual.test.dir>
         <core.manual.test.resources>${project.basedir}/../core/src/test/resources</core.manual.test.resources>        
         
@@ -171,6 +319,7 @@
         <application.generated.dir>${project.basedir}/../app/${target.dir}/src</application.generated.dir>        
                 
 	<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>
+	<merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
         <!--<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>-->
         <!-- hibernate configuration -->
         <!-- default strategy to use when using inheritance -->
@@ -178,4 +327,5 @@
         <!-- hibernate generator class to use for identifiers -->
         <hibernate.generatorClass>native</hibernate.generatorClass>
     </properties>
+            
 </project>

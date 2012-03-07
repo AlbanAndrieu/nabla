@@ -1,7 +1,7 @@
 <andromda xmlns="http://andromda.org/core/configuration">
     <properties>
         <property name="cartridgeFilter">meta</property>
-        <!--<property name="failOnValidationErrors">false</property>-->
+        <property name="failOnValidationErrors">true</property>
         <!--<property name="loggingConfigurationUri">file:${basedir}/../log4j.xml</property>-->
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes. 
@@ -22,7 +22,7 @@
                         <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}</location>
                         <!--<location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-${uml.type}</location>-->
                         <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-uml</location>
-                    </moduleSearchLocations>
+                    </moduleSearchLocations>                    
                     <modelPackages>
                         <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>
                     </modelPackages>

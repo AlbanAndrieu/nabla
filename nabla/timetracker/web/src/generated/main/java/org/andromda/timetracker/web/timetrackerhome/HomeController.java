@@ -43,52 +43,6 @@ public abstract class HomeController
 
     /**
      * 
-     * This method is called when 'latestTimecard' is triggered in the view 'TimeTracker Home'.
-     * It can be safely overridden in descendant classes.
-     */
-    protected void _timeTrackerHome_latestTimecard()
-    {
-        //this method can be overridden
-    }
-
-    /**
-     * @return timeTrackerHomeLatestTimecard
-     */
-    public String timeTrackerHomeLatestTimecard()
-    {
-        return timeTrackerHomeLatestTimecard((FacesEvent)null);
-    }
-
-    /**
-     * @param event
-     */
-    public void timeTrackerHomeLatestTimecard(final ActionEvent event)
-    {
-        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
-    }
-
-    /**
-     * @param event
-     */
-    public void timeTrackerHomeLatestTimecard(final ValueChangeEvent event)
-    {
-        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
-    }
-
-    /**
-     * @param event
-     * @return timeTrackerHomeLatestTimecard
-     */
-    public String timeTrackerHomeLatestTimecard(final FacesEvent event)
-    {
-        TimecardController controller =
-            (TimecardController)this.resolveVariable(
-                "timecardController");
-        return controller.timecardDetails();
-    }
-
-    /**
-     * 
      * This method is called when 'searchTimecards' is triggered in the view 'TimeTracker Home'.
      * It can be safely overridden in descendant classes.
      */
@@ -223,6 +177,52 @@ public abstract class HomeController
             (HomeController)this.resolveVariable(
                 "homeController");
         return controller.timeTrackerHome();
+    }
+
+    /**
+     * 
+     * This method is called when 'latestTimecard' is triggered in the view 'TimeTracker Home'.
+     * It can be safely overridden in descendant classes.
+     */
+    protected void _timeTrackerHome_latestTimecard()
+    {
+        //this method can be overridden
+    }
+
+    /**
+     * @return timeTrackerHomeLatestTimecard
+     */
+    public String timeTrackerHomeLatestTimecard()
+    {
+        return timeTrackerHomeLatestTimecard((FacesEvent)null);
+    }
+
+    /**
+     * @param event
+     */
+    public void timeTrackerHomeLatestTimecard(final ActionEvent event)
+    {
+        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
+    }
+
+    /**
+     * @param event
+     */
+    public void timeTrackerHomeLatestTimecard(final ValueChangeEvent event)
+    {
+        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
+    }
+
+    /**
+     * @param event
+     * @return timeTrackerHomeLatestTimecard
+     */
+    public String timeTrackerHomeLatestTimecard(final FacesEvent event)
+    {
+        TimecardController controller =
+            (TimecardController)this.resolveVariable(
+                "timecardController");
+        return controller.timecardDetails();
     }
 
     /**

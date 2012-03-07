@@ -7,13 +7,13 @@
         <artifactId>timetracker</artifactId>
         <version>3.4</version>
     </parent>
-    <artifactId>timetracker-common</artifactId>
+    <artifactId>common</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker Common</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-mda</artifactId>
+            <artifactId>mda</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
             <scope>runtime</scope>

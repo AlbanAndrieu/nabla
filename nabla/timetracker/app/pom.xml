@@ -5,27 +5,27 @@
     <parent>
         <groupId>org.andromda.timetracker</groupId>
         <artifactId>timetracker</artifactId>
-        <version>3.4-SNAPSHOT</version>
+        <version>3.4</version>
     </parent>
-    <artifactId>timetracker-app</artifactId>
+    <artifactId>app</artifactId>
     <packaging>ear</packaging>
     <name>TimeTracker Application</name>
     <dependencies>
         <!-- jar dependencies not needed if not using EJBs -->
         <!--dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
         </dependency-->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-web</artifactId>
+            <artifactId>web</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
@@ -65,6 +65,11 @@
                 <targetPath>../${application.id}-${project.version}</targetPath>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+                <directory>src/main/sql</directory>
+                <targetPath>${target.dir}/sql</targetPath>
+                <filtering>true</filtering>
+            </resource>
         </resources>
         <plugins>
             <plugin>
@@ -84,16 +89,16 @@
                     <modules>
                         <!--jarModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>timetracker-common</artifactId>
+                            <artifactId>common</artifactId>
                             <includeInApplicationXml>false</includeInApplicationXml>
                         </jarModule>
                         <ejbModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>timetracker-core</artifactId>
+                            <artifactId>core</artifactId>
                         </ejbModule-->
                         <webModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>timetracker-web</artifactId>
+                            <artifactId>web</artifactId>
                             <contextRoot>/${application.id}</contextRoot>
                         </webModule>
                     </modules>
@@ -104,6 +109,26 @@
                     </jboss>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <target>
+                        <copy todir="${project.basedir}/${target.dir}/site/sql" overwrite="true" failonerror="false">
+                            <fileset dir="${project.basedir}/src/main/sql">
+                                <include name="**/*"/>
+                            </fileset>
+                        </copy>
+                    </target>
+                </configuration>
+            </plugin>            
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>

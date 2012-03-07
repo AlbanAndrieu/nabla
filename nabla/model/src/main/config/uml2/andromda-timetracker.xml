@@ -1,5 +1,5 @@
 <andromda xmlns="http://andromda.org/core/configuration">
-    <!-- See http://docs.andromda.org/configuration.html for andromda.xml properties documentation -->
+    <!-- See http://www.andromda.org/docs/configuration.html for andromda.xml properties documentation -->
     <properties>
         <property name="modelValidation">${validation}</property>
         <property name="xmlValidation">true</property>
@@ -11,11 +11,11 @@
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes.
     To start server from mda directory: mvn andromda:start-server.
-    Leave commented, or else AndroMDA will try to connect each time.>
+    Leave commented, or else AndroMDA will try to connect each time.-->
     <server>
         <host>localhost</host>
         <port>4447</port>
-    </server -->
+    </server>
     <repositories>
         <repository name="emf-uml22">
             <models>
@@ -26,11 +26,16 @@
                     <!-- List any additional referenced models needed for code generation here, even if already referenced internally within the model file -->
                     <!--uri>file:${project.basedir}/uml/AdditionalModel.emx</uri-->
                     <moduleSearchLocations>
-                        <location patterns="*.uml">${project.basedir}/src/main/uml2</location>
+                        <!--<location patterns="*.uml">${project.basedir}/src/main/uml2</location>-->
+                        <!--
                         <location patterns="**/${andromda.version}/**/*-${andromda.version}.uml">${settings.localRepository}/org/andromda/profiles/emf/uml22</location>
                         <location patterns="**/${andromda.version}/**/*-${andromda.version}.profile.uml">${settings.localRepository}/org/andromda/profiles/emf/uml22</location>
                         <location patterns="**/${andromda.version}/**/*-${andromda.version}.library.uml">${settings.localRepository}/org/andromda/profiles/emf/uml22</location>
                         <location patterns="**/${andromda.version}/*.e*x">${settings.localRepository}/org/andromda/profiles/emf/rsm75</location>
+                        -->
+                        <location patterns="**/*.xml.zip, **/*.uml">${nabla.mda.dir}/${nabla.mda.profiles.dir}/gui/src/main/uml/${uml.type}</location>
+          	    	<location patterns="**/*.xml.zip, **/*.uml">${nabla.mda.dir}/${nabla.mda.profiles.dir}/backend/src/main/uml/${uml.type}</location>
+          	    	<location patterns="**/*.xml.zip, **/*.uml">${nabla.mda.dir}/${nabla.mda.profiles.dir}/test/src/main/uml/${uml.type}</location>
         <!--repository name="netBeansMDR">
             <models>
                 <model>
@@ -53,7 +58,8 @@
                          types in required (multiplicity > 0) parameters or VO attributes-->
                     <constraints>
                         <constraint enforce="false">**::wrapped primitive attribute should not be required</constraint>
-                        <constraint enforce="false">**::wrapped primitive parameter should not be required</constraint>
+                        <constraint enforce="false">**::each action coming out of a page must carry a trigger</constraint>
+                        <constraint enforce="false">**::use cases graph contains one workbook</constraint>
                     </constraints>
                     <!-- Can filter in/out specific model packages (in UML notation) to generate code from (default true=process all) -->
                     <!--modelPackages>
@@ -68,7 +74,7 @@
       of any *.xml files in the search locations (instead of having to specify explicit paths...).
       Except for 'profileMappingsUri', this approach did not seem to work as there is no
       "logical" mapping name. mappingsUri is specified without 'Mappings' suffix on file name.
-      See http://docs.andromda.org/mappings.html.
+      See http://www.andromda.org/docs/mappings.html.
       A default empty mda/config/mappings/JavaMappings.xml is provided with the generated project.
       It can be used to customize mappings from UML to Java datatypes used by all cartridges. -->
     <mappingsSearchLocations>
@@ -122,15 +128,15 @@
                 <property name="password">${jdbc.password}</property>
                 <property name="driver">${jdbc.driver}</property>
                 <property name="connectionUrl">${jdbc.url}</property>
-                <property name="testUsername">${testdb.username}</property>
-                <property name="testPassword">${testdb.password}</property>
-                <property name="testDriver">${testdb.driver}</property>
-                <property name="testConnectionUrl">${testdb.url}</property>
-                <property name="testDialect">${testdb.dialect}</property>
+                <property name="testUsername">${jdbc.username}</property>
+                <property name="testPassword">${jdbc.password}</property>
+                <property name="testDriver">${jdbc.driver}</property>
+                <property name="testConnectionUrl">${jdbc.url}</property>
+                <property name="testDialect">${hibernate.dialect}</property>
                 <property name="hibernateHbm2DDLAuto">update</property>
             </properties>
         </namespace>
-        <!-- See http://docs.andromda.org/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
         <namespace name="spring">
             <properties>
                 <property name="hibernateQueryUseNamedParameters">true</property>
@@ -145,7 +151,7 @@
                 <property name="springTypesPackage">${application.package}</property>
                 <property name="daos">${core.generated.dir}</property>
                 <property name="dao-impls">${core.manual.java.dir}</property>
-                <property name="spring-configuration">${core.manual.java.resources}</property>
+                <property name="spring-configuration">${core.generated.java.resources}</property>
                 <property name="server-test-config">${core.manual.test.resources}</property>
                 <property name="server-test">${core.manual.test.dir}</property>
                 <property name="services">${core.generated.dir}</property>
@@ -161,7 +167,7 @@
                  -->
             </properties>
         </namespace>
-        <!-- See http://docs.andromda.org/andromda-cartridges/andromda-hibernate-cartridge/namespace.html -->
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-hibernate-cartridge/namespace.html -->
         <namespace name="hibernate">
             <properties>
                 <property name="jndiNamePrefix">${application.id}-${project.version}</property>
@@ -181,7 +187,7 @@
                 <property name="defaultHibernateGeneratorClass">${hibernate.generatorClass}</property>
                 <property name="hibernateAggregationCascade">delete</property>
                 <property name="hibernateDefaultCascade">none</property>
-                <property name="configuration">${core.manual.java.resources}</property>
+                <property name="configuration">${core.generated.java.resources}</property>
                 <property name="test-configuration">${core.manual.test.resources}</property>
                 <property name="entities">${core.generated.dir}</property>
                 <property name="entity-impls">${core.manual.java.dir}</property>
@@ -196,7 +202,7 @@
                 <property name="persistenceProviderExtensions">hibernate</property>
             </properties>
         </namespace>
-        <!-- See http://docs.andromda.org/andromda-cartridges/andromda-java-cartridge/namespace.html -->
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-java-cartridge/namespace.html -->
         <namespace name="java">
             <properties>
                 <property name="generateEqualPropertiesMethod">true</property>
@@ -206,7 +212,7 @@
                 <property name="interfaces">${common.generated.dir}</property>
             </properties>
         </namespace>
-        <!-- See http://docs.andromda.org/andromda-cartridges/andromda-jsf-cartridge/namespace.html -->
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-jsf-cartridge/namespace.html -->
         <namespace name="jsf">
             <properties>
                 <property name="viewType">facelets</property>
@@ -232,6 +238,6 @@
                 <property name="enableFaceletsDevelopmentSupport">true</property>
                 <property name="enableMyFacesDevelopmentSupport">true</property>
             </properties>
-        </namespace>
+        </namespace>     
     </namespaces>
 </andromda>
