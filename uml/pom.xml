@@ -91,10 +91,35 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>org.andromda.profiles.uml14</groupId>
-				<artifactId>andromda-profile</artifactId>
-				<version>${andromda.version}</version>
-			</dependency>
+                            <groupId>org.andromda.metafacades</groupId>
+                            <artifactId>andromda-metafacades-uml</artifactId>
+                            <version>${andromda.version}</version>     
+                            <type>xml.zip</type>
+                        </dependency>
+			<dependency>
+         		    <groupId>org.andromda.profiles.emf.uml22</groupId>
+         		    <artifactId>andromda-common</artifactId>
+         		    <version>${andromda.version}</version>
+         		    <type>profile.uml</type>
+         		    <scope>runtime</scope>
+         		    <optional>true</optional>
+         		</dependency>
+         		<!--dependency>
+         		    <groupId>org.andromda.profiles.emf.uml2</groupId>
+         		    <artifactId>andromda-profile-common</artifactId>
+         		    <version>${andromda.version}</version>
+         		    <type>uml2</type>
+         		    <scope>runtime</scope>
+         		    <optional>true</optional>
+         		</dependency-->
+         		<dependency>
+         		    <groupId>org.andromda.profiles.uml14</groupId>
+         		    <artifactId>andromda-profile</artifactId>
+         		    <version>${andromda.version}</version>
+         		    <type>xml.zip</type>
+         		    <scope>runtime</scope>
+         		    <optional>true</optional>
+         		</dependency>
 			<dependency>
         		    <groupId>org.andromda</groupId>
         		    <artifactId>andromda-utils</artifactId>
