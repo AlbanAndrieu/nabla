@@ -23,6 +23,10 @@
 		<url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
 		<tag>HEAD</tag>
 	</scm>
+
+	<modules>
+		<module>sample</module>
+	</modules>	
 	
 	<build>
 		<pluginManagement>
