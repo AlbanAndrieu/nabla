@@ -132,11 +132,14 @@
 			-->
 
 			<!-- DATABASE DRIVER -->
+			<!-- allready in pom.xml in database -->
+			<!--
 			<dependency>
 				<groupId>${jdbc.groupId}</groupId>
 				<artifactId>${jdbc.artifactId}</artifactId>
 				<version>${jdbc.version}</version>
 			</dependency>
+			-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -451,21 +454,6 @@
 				</dependencies>
 			</plugin>
 
-			<!-- add repository revision to manifests -->
-			<!--
-				<plugin> <groupId>org.codehaus.mojo</groupId>
-				<artifactId>maven-buildnumber-plugin</artifactId>
-				<version>0.9.6</version> <executions> <execution>
-				<phase>validate</phase> <goals> <goal>create</goal> </goals>
-				</execution> </executions> <configuration>
-			-->                                     <!--  never touch svn : do check = false -->
-			<!--
-				<doCheck>true</doCheck> <doUpdate>false</doUpdate> <format>
-				{0,number}-{1,date,yyyy-MM-dd-HH-mm-ss} </format> <items>
-				<item>buildNumber0</item> <item>timestamp</item> </items>
-				</configuration> </plugin>
-			-->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-doap-plugin</artifactId>
@@ -591,7 +579,12 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+      			  	<groupId>org.codehaus.mojo</groupId>
+      			  	<artifactId>buildnumber-maven-plugin</artifactId>
+      			  	<version>${maven.buildnumber.plugin.version}</version>
+      			</plugin>
+			      			
 			<!--
 				<plugin> <groupId>org.codehaus.mojo</groupId>
 				<artifactId>jboss-packaging-maven-plugin</artifactId> <executions>
