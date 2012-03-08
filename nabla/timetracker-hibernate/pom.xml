@@ -264,6 +264,7 @@
                             <!-- provides the injection of the script wrapper support into the class files (this should only
                                  be done when developing locally), uncomment this executions element to enable
                             -->
+                            <!-- Error ocurs when tests are run
                             <executions>
                                 <execution>
                                     <id>instrument-scripts</id>
@@ -272,13 +273,13 @@
                                     </goals>
                                 </execution>
                             </executions>
+                            -->
                             <configuration>
                                 <scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
                                 <locations>
                                     <location>
                                         <rootPath>${project.basedir}/src/main/java</rootPath> 
-                                        <rootPath>${project.basedir}/${maven.build.generated}/main/java</rootPath>
-                                        <rootPath>${project.basedir}/${maven.build.generated}/main/webapp</rootPath> 
+                                        <!--<rootPath>${project.basedir}/${maven.build.generated}/main/java</rootPath>-->
                                         <!-- adjust these to include or exclude specific files, by default
                                              all files found in the rootPath are considered
                                         <includes>
