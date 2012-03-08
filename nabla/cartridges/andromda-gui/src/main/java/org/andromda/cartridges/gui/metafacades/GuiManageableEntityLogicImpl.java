@@ -48,7 +48,8 @@ import org.dom4j.DocumentException;
  *
  * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity
  */
-public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
+public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
+{
     private static final long serialVersionUID = 34L;
 
     private final Logger      logger_          = Logger.getLogger(GuiManageableEntityLogicImpl.class);
@@ -57,7 +58,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @param metaObject
      * @param context
      */
-    public GuiManageableEntityLogicImpl(final Object metaObject, final String context) {
+    public GuiManageableEntityLogicImpl(final Object metaObject, final String context)
+    {
         super(metaObject, context);
     }
 
@@ -66,7 +68,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getViewName()
      */
     @Override
-    protected String handleGetViewName() {
+    protected String handleGetViewName()
+    {
         return this.getName().toLowerCase() + "-crud";
     }
 
@@ -75,7 +78,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getViewTitleKey()
      */
     @Override
-    protected String handleGetViewTitleKey() {
+    protected String handleGetViewTitleKey()
+    {
         return StringUtilsHelper.toResourceMessageKey(this.getName()) + ".view.title";
     }
 
@@ -84,7 +88,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getViewTitleValue()
      */
     @Override
-    protected String handleGetViewTitleValue() {
+    protected String handleGetViewTitleValue()
+    {
         return StringUtilsHelper.toPhrase(this.getName());
     }
 
@@ -93,7 +98,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getListName()
      */
     @Override
-    protected String handleGetListName() {
+    protected String handleGetListName()
+    {
         return "manageableList";
     }
 
@@ -102,7 +108,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getFormBeanType()
      */
     @Override
-    protected String handleGetFormBeanType() {
+    protected String handleGetFormBeanType()
+    {
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getFormBeanClassName();
     }
 
@@ -111,7 +118,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getFormBeanName()
      */
     @Override
-    protected String handleGetFormBeanName() {
+    protected String handleGetFormBeanName()
+    {
         final String pattern = ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.FORM_BEAN_PATTERN));
         final String formBeanName = pattern.replaceFirst("\\{0\\}", "manage");
         return formBeanName.replaceFirst("\\{1\\}", this.getName());
@@ -122,7 +130,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getExceptionKey()
      */
     @Override
-    protected String handleGetExceptionKey() {
+    protected String handleGetExceptionKey()
+    {
         return StringUtilsHelper.toResourceMessageKey(this.getName()) + ".exception";
     }
 
@@ -131,7 +140,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getActionType()
      */
     @Override
-    protected String handleGetActionType() {
+    protected String handleGetActionType()
+    {
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getActionClassName();
     }
 
@@ -140,7 +150,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getActionFullPath()
      */
     @Override
-    protected String handleGetActionFullPath() {
+    protected String handleGetActionFullPath()
+    {
         return GuiGlobals.SEPARATOR + StringUtils.replace(this.getActionType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
     }
 
@@ -149,7 +160,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getActionPath()
      */
     @Override
-    protected String handleGetActionPath() {
+    protected String handleGetActionPath()
+    {
         return GuiGlobals.SEPARATOR + this.getName() + GuiGlobals.SEPARATOR + "Manage";
     }
 
@@ -158,7 +170,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getActionClassName()
      */
     @Override
-    protected String handleGetActionClassName() {
+    protected String handleGetActionClassName()
+    {
         return "Manage" + this.getName();
     }
 
@@ -167,7 +180,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getExceptionPath()
      */
     @Override
-    protected String handleGetExceptionPath() {
+    protected String handleGetExceptionPath()
+    {
         return this.getViewFullPath();
     }
 
@@ -176,7 +190,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isPreload()
      */
     @Override
-    protected boolean handleIsPreload() {
+    protected boolean handleIsPreload()
+    {
         return false; // TODO think about...
         // return this.isCreate() || this.isRead() || this.isUpdate() || this.isDelete();
     }
@@ -185,7 +200,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntityLogic#getManageableIdentifier()
      */
     @Override
-    public org.andromda.metafacades.uml.ManageableEntityAttribute getManageableIdentifier() {
+    public org.andromda.metafacades.uml.ManageableEntityAttribute getManageableIdentifier()
+    {
         return super.getManageableIdentifier();
     }
 
@@ -194,7 +210,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getFormBeanClassName()
      */
     @Override
-    protected String handleGetFormBeanClassName() {
+    protected String handleGetFormBeanClassName()
+    {
         return StringUtils.capitalize(this.getFormBeanName());
     }
 
@@ -203,7 +220,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getFormBeanFullPath()
      */
     @Override
-    protected String handleGetFormBeanFullPath() {
+    protected String handleGetFormBeanFullPath()
+    {
         return StringUtils.replace(this.getFormBeanType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
     }
 
@@ -212,7 +230,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getListGetterName()
      */
     @Override
-    protected String handleGetListGetterName() {
+    protected String handleGetListGetterName()
+    {
         return "getManageableList";
     }
 
@@ -221,7 +240,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getListSetterName()
      */
     @Override
-    protected String handleGetListSetterName() {
+    protected String handleGetListSetterName()
+    {
         return "setManageableList";
     }
 
@@ -230,7 +250,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getMessageKey()
      */
     @Override
-    protected String handleGetMessageKey() {
+    protected String handleGetMessageKey()
+    {
         return StringUtilsHelper.toResourceMessageKey(this.getName());
     }
 
@@ -239,7 +260,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getMessageValue()
      */
     @Override
-    protected String handleGetMessageValue() {
+    protected String handleGetMessageValue()
+    {
         return StringUtilsHelper.toPhrase(this.getName());
     }
 
@@ -249,7 +271,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      */
     @Override
     // TODO REMOVE
-    protected String handleGetOnlineHelpKey() {
+    protected String handleGetOnlineHelpKey()
+    {
         return this.getMessageKey() + ".online.help";
     }
 
@@ -259,7 +282,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      */
     @Override
     // TODO REMOVE
-    protected String handleGetOnlineHelpValue() {
+    protected String handleGetOnlineHelpValue()
+    {
         final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation("", 64, false));
         return (value == null) ? "No entity documentation has been specified" : value;
     }
@@ -270,7 +294,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      */
     @Override
     // TODO REMOVE
-    protected String handleGetOnlineHelpActionPath() {
+    protected String handleGetOnlineHelpActionPath()
+    {
         return this.getActionPath() + "Help";
     }
 
@@ -280,7 +305,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      */
     @Override
     // TODO REMOVE
-    protected String handleGetOnlineHelpPagePath() {
+    protected String handleGetOnlineHelpPagePath()
+    {
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getName().toLowerCase() + "_help";
     }
 
@@ -289,7 +315,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isTableExportable()
      */
     @Override
-    protected boolean handleIsTableExportable() {
+    protected boolean handleIsTableExportable()
+    {
         return this.getTableExportTypes().indexOf("none") == -1;
     }
 
@@ -298,7 +325,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getTableExportTypes()
      */
     @Override
-    protected String handleGetTableExportTypes() {
+    protected String handleGetTableExportTypes()
+    {
         return null;
         // TODO a resolver
         // return GuiUtils.getDisplayTagExportTypes(
@@ -311,13 +339,17 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getTableMaxRows()
      */
     @Override
-    protected int handleGetTableMaxRows() {
+    protected int handleGetTableMaxRows()
+    {
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_TABLE_MAXROWS);
         int pageSize;
 
-        try {
+        try
+        {
             pageSize = Integer.parseInt(String.valueOf(taggedValue));
-        } catch (final Exception e) {
+        }
+        catch (final Exception e)
+        {
             pageSize = GuiProfile.TAGGEDVALUE_TABLE_MAXROWS_DEFAULT_COUNT;
         }
 
@@ -329,7 +361,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isTableSortable()
      */
     @Override
-    protected boolean handleIsTableSortable() {
+    protected boolean handleIsTableSortable()
+    {
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_TABLE_SORTABLE);
         return (taggedValue == null) ? GuiProfile.TAGGEDVALUE_TABLE_SORTABLE_DEFAULT_VALUE : Boolean.valueOf(String.valueOf(taggedValue)).booleanValue();
     }
@@ -339,7 +372,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getControllerType()
      */
     @Override
-    protected String handleGetControllerType() {
+    protected String handleGetControllerType()
+    {
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getControllerName();
     }
 
@@ -348,7 +382,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getControllerBeanName()
      */
     @Override
-    protected String handleGetControllerBeanName() {
+    protected String handleGetControllerBeanName()
+    {
         return StringUtils.uncapitalize(this.getName()) + "Controller";
     }
 
@@ -357,7 +392,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getControllerFullPath()
      */
     @Override
-    protected String handleGetControllerFullPath() {
+    protected String handleGetControllerFullPath()
+    {
         return GuiGlobals.SEPARATOR + StringUtils.replace(this.getControllerType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
     }
 
@@ -366,7 +402,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getControllerName()
      */
     @Override
-    protected String handleGetControllerName() {
+    protected String handleGetControllerName()
+    {
         return this.getName() + "Controller";
     }
 
@@ -375,7 +412,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getValueObjectClassName()
      */
     @Override
-    protected String handleGetValueObjectClassName() {
+    protected String handleGetValueObjectClassName()
+    {
         return this.getName() + this.getConfiguredProperty(GuiGlobals.CRUD_VALUE_OBJECT_SUFFIX);
     }
 
@@ -384,7 +422,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getFormSerialVersionUID()
      */
     @Override
-    protected String handleGetFormSerialVersionUID() {
+    protected String handleGetFormSerialVersionUID()
+    {
         final StringBuilder buffer = new StringBuilder();
         buffer.append(this.getFormBeanType());
         this.addSerialUIDData(buffer);
@@ -396,7 +435,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getActionSerialVersionUID()
      */
     @Override
-    protected String handleGetActionSerialVersionUID() {
+    protected String handleGetActionSerialVersionUID()
+    {
         final StringBuilder buffer = new StringBuilder();
         buffer.append(this.getActionFullPath());
         this.addSerialUIDData(buffer);
@@ -408,7 +448,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getPopulatorName()
      */
     @Override
-    protected String handleGetPopulatorName() {
+    protected String handleGetPopulatorName()
+    {
         return ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.VIEW_POPULATOR_PATTERN)).replaceAll("\\{0\\}", StringUtilsHelper.upperCamelCaseName(this.getFormBeanClassName()));
     }
 
@@ -417,7 +458,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getPopulatorFullPath()
      */
     @Override
-    protected String handleGetPopulatorFullPath() {
+    protected String handleGetPopulatorFullPath()
+    {
         return GuiGlobals.SEPARATOR + StringUtils.replace(this.getPopulatorType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
     }
 
@@ -426,7 +468,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getPopulatorType()
      */
     @Override
-    protected String handleGetPopulatorType() {
+    protected String handleGetPopulatorType()
+    {
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getPopulatorName();
     }
 
@@ -435,7 +478,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getViewFullPath()
      */
     @Override
-    protected String handleGetViewFullPath() {
+    protected String handleGetViewFullPath()
+    {
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getViewName();
     }
 
@@ -444,7 +488,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getViewFullPath()
      */
     @Override
-    protected String handleGetOdsExportFullPath() {
+    protected String handleGetOdsExportFullPath()
+    {
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getName().toLowerCase() + "-ods-export";
     }
 
@@ -453,11 +498,15 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isValidationRequired()
      */
     @Override
-    protected boolean handleIsValidationRequired() {
-        for (final ManageableEntityAttribute attribute : this.getManageableAttributes()) {
-            if (attribute instanceof GuiManageableEntityAttribute) {
+    protected boolean handleIsValidationRequired()
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            if (attribute instanceof GuiManageableEntityAttribute)
+            {
                 final GuiManageableEntityAttribute jsfAttribute = (GuiManageableEntityAttribute) attribute;
-                if (jsfAttribute.isValidationRequired()) {
+                if (jsfAttribute.isValidationRequired())
+                {
                     return true;
                 }
             }
@@ -470,7 +519,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getSearchFormBeanName()
      */
     @Override
-    protected String handleGetSearchFormBeanName() {
+    protected String handleGetSearchFormBeanName()
+    {
         final String pattern = ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.FORM_BEAN_PATTERN));
         final String formBeanName = pattern.replaceFirst("\\{0\\}", "manage");
         return formBeanName.replaceFirst("\\{1\\}", this.getName() + "Search");
@@ -481,7 +531,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getSearchFormBeanType()
      */
     @Override
-    protected String handleGetSearchFormBeanType() {
+    protected String handleGetSearchFormBeanType()
+    {
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getSearchFormBeanClassName();
     }
 
@@ -490,7 +541,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getSearchFormBeanFullPath()
      */
     @Override
-    protected String handleGetSearchFormBeanFullPath() {
+    protected String handleGetSearchFormBeanFullPath()
+    {
         return StringUtils.replace(this.getSearchFormBeanType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
     }
 
@@ -499,7 +551,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getSearchFormBeanClassName()
      */
     @Override
-    protected String handleGetSearchFormBeanClassName() {
+    protected String handleGetSearchFormBeanClassName()
+    {
         return StringUtils.capitalize(this.getSearchFormBeanName());
     }
 
@@ -508,12 +561,16 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getManageableSearchAttributes()
      */
     @Override
-    protected Collection<GuiManageableEntityAttribute> handleGetManageableSearchAttributes() {
+    protected Collection<GuiManageableEntityAttribute> handleGetManageableSearchAttributes()
+    {
         final Collection<GuiManageableEntityAttribute> coll = new ArrayList<GuiManageableEntityAttribute>();
-        for (final ManageableEntityAttribute attribute : this.getManageableAttributes()) {
-            if (attribute instanceof GuiManageableEntityAttribute) {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            if (attribute instanceof GuiManageableEntityAttribute)
+            {
                 final GuiManageableEntityAttribute attr = (GuiManageableEntityAttribute) attribute;
-                if (!attr.isHidden()) {
+                if (!attr.isHidden())
+                {
                     coll.add(attr);
                 }
             }
@@ -526,12 +583,14 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getManageableSearchAssociationEnds()
      */
     @Override
-    protected Collection<ManageableEntityAssociationEnd> handleGetManageableSearchAssociationEnds() {
+    protected Collection<ManageableEntityAssociationEnd> handleGetManageableSearchAssociationEnds()
+    {
         return this.getManageableAssociationEnds();
     }
 
     @Override
-    public List<ManageableEntityAttribute> getManageableAttributes() {
+    public List<ManageableEntityAttribute> getManageableAttributes()
+    {
 
         return super.getManageableAttributes();
 
@@ -549,15 +608,32 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    public List<ManageableEntityAssociationEnd> getManageableAssociationEnds() {
+    public List<ManageableEntityAssociationEnd> getManageableAssociationEnds()
+    {
 
         // return super.getManageableAssociationEnds();
         // TODO try to use getManageableAssociationEndsGuiManageableEntity it is faster
-        return this.getManageableAssociationEndsEntity();
+        return this.getManageableAssociationEndsManageableEntity(); // error go throught parent and got duplicated fields
 
     }
 
-    public List<ManageableEntityAssociationEnd> getManageableAssociationEndsEntity() {
+    public List<ManageableEntityAssociationEnd> getManageableAssociationEndsManageableEntity()
+    {
+
+        // See in ManageableEntityLogicImpl.java in
+        // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
+        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+        // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
+        // linked hashset to guarantee ordering wo duplicates
+        this.collectAssociationEndsManageableEntity(manageableAssociationEnds, this, true);
+
+        return new ArrayList<ManageableEntityAssociationEnd>(manageableAssociationEnds);
+        // return manageableAssociationEnds;
+
+    }
+
+    private List<ManageableEntityAssociationEnd> getManageableAssociationEndsEntity()
+    {
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
@@ -571,21 +647,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
-     */
-    public List<AssociationEndFacade> getManageableAssociationEndsGuiManageableEntity() {
+    // TODO remove never used
+    public List<ManageableEntityAssociationEnd> getManageableAssociationEndsGuiManageableEntity()
+    {
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-        final Set<AssociationEndFacade> manageableAssociationEnds = new LinkedHashSet<AssociationEndFacade>();
+        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
         this.collectAssociationEndsGuiManageableEntity(manageableAssociationEnds, this, true);
 
-        return new ArrayList<AssociationEndFacade>(manageableAssociationEnds);
+        return new ArrayList<ManageableEntityAssociationEnd>(manageableAssociationEnds);
         // return manageableAssociationEnds;
 
     }
@@ -594,20 +667,26 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @param manageableAssociationEnds
      * @param entity
      */
-    private void collectAssociationEndsEntity(final Collection<ManageableEntityAssociationEnd> manageableAssociationEnds, final Entity entity, final boolean filterRelevantAssoc) {
+    // TODO remove same as super.getManageableAssociationEnds();
+    private void collectAssociationEndsEntity(final Collection<ManageableEntityAssociationEnd> manageableAssociationEnds, final Entity entity, final boolean filterRelevantAssoc)
+    {
 
         final List<AssociationEndFacade> associationEnds = entity.getAssociationEnds();
 
-        for (final AssociationEndFacade associationEnd : associationEnds) {
+        for (final AssociationEndFacade associationEnd : associationEnds)
+        {
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            // this.logger_.info("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - " +
-            // this.getFullyQualifiedName());
+            this.logger_.info("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
+                    + this.getFullyQualifiedName());
 
-            if (otherEnd instanceof ManageableEntityAssociationEnd) {
+            // if (otherEnd instanceof ManageableEntityAssociationEnd)
+            if (otherEnd.isNavigable() && (otherEnd.getType() instanceof Entity))
+            {
                 manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
-            } else {
+            } else
+            {
                 this.logger_.info("collectAssociationEndsEntity : " + otherEnd.getName() + " is not ManageableEntityAssociationEnd for : " + otherEnd.getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
             }
 
@@ -615,13 +694,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         final Collection<GeneralizableElementFacade> parentEntities = entity.getAllGeneralizations();
 
-        for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();) {
+        for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
+        {
 
             final Object parentEntityObject = parentEntityIterator.next();
 
-            if (parentEntityObject instanceof Entity) {
+            if (parentEntityObject instanceof /* ManageableEntity */Entity)
+            {
 
-                this.collectAssociationEndsEntity(manageableAssociationEnds, (Entity) parentEntityObject, filterRelevantAssoc);
+                this.logger_.info("collectAssociationEndsEntity : " + ((/* ManageableEntity */Entity) parentEntityObject).getName() + " parent found : "
+                        + ((/* ManageableEntity */Entity) parentEntityObject).getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
+
+                this.collectAssociationEndsEntity(manageableAssociationEnds, (/* ManageableEntity */Entity) parentEntityObject, filterRelevantAssoc);
 
             }
 
@@ -629,30 +713,99 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     }
 
-    private void collectAssociationEndsGuiManageableEntity(final Collection<AssociationEndFacade> manageableAssociationEnds, final GuiManageableEntity entity, final boolean filterRelevantAssoc) {
+    /**
+     * @param manageableAssociationEnds
+     * @param entity
+     */
+    private void collectAssociationEndsManageableEntity(final Collection<ManageableEntityAssociationEnd> manageableAssociationEnds, final/* Entity */ManageableEntity entity, final boolean filterRelevantAssoc)
+    {
 
         final List<AssociationEndFacade> associationEnds = entity.getAssociationEnds();
 
-        for (final AssociationEndFacade associationEnd : associationEnds) {
+        for (final AssociationEndFacade associationEnd : associationEnds)
+        {
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            if (otherEnd.isNavigable() && (otherEnd.getType() instanceof GuiManageableEntity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)
-                    && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE_REF) && (this.isRelevantAssociation(otherEnd) || (filterRelevantAssoc == false))) {
+            this.logger_.info("collectAssociationEndsManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
+                    + this.getFullyQualifiedName());
 
-                manageableAssociationEnds.add(otherEnd);
-
+            // if (otherEnd.isNavigable() && otherEnd.getType() instanceof Entity) {
+            if (otherEnd.isNavigable() && (otherEnd.getType() instanceof Entity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE_REF)
+                    && (this.isRelevantAssociation(otherEnd) || (filterRelevantAssoc == false)))
+            {
+                // if (otherEnd instanceof ManageableEntityAssociationEnd) {
+                manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
+            } else
+            {
+                this.logger_.info("collectAssociationEndsManageableEntity : " + otherEnd.getName() + " is not ManageableEntityAssociationEnd for : " + otherEnd.getFullyQualifiedName() + " - "
+                        + this.getFullyQualifiedName());
             }
 
         }
 
         final Collection<GeneralizableElementFacade> parentEntities = entity.getAllGeneralizations();
 
-        for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();) {
+        for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
+        {
 
             final Object parentEntityObject = parentEntityIterator.next();
 
-            if (parentEntityObject instanceof GuiManageableEntity) {
+            if (parentEntityObject instanceof ManageableEntity /* Entity */)
+            {
+
+                this.logger_.info("collectAssociationEndsManageableEntity : " + ((ManageableEntity /* Entity */) parentEntityObject).getName() + " parent found : "
+                        + ((ManageableEntity /* Entity */) parentEntityObject).getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
+
+                this.collectAssociationEndsManageableEntity(manageableAssociationEnds, (ManageableEntity /* Entity */) parentEntityObject, filterRelevantAssoc);
+
+            }
+
+        }
+
+    }
+
+    private void collectAssociationEndsGuiManageableEntity(final Collection<ManageableEntityAssociationEnd> manageableAssociationEnds, final GuiManageableEntity entity, final boolean filterRelevantAssoc)
+    {
+
+        final List<AssociationEndFacade> associationEnds = entity.getAssociationEnds();
+
+        for (final AssociationEndFacade associationEnd : associationEnds)
+        {
+
+            final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
+
+            this.logger_.info("collectAssociationEndsGuiManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
+                    + " - " + this.getFullyQualifiedName());
+
+            if (otherEnd.isNavigable() && (otherEnd.getType() instanceof GuiManageableEntity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)
+                    && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE_REF) && (this.isRelevantAssociation(otherEnd) || (filterRelevantAssoc == false)))
+            {
+
+                if (otherEnd instanceof ManageableEntityAssociationEnd)
+                {
+                    manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
+                } else
+                {
+                    this.logger_.info("collectAssociationEndsGuiManageableEntity : " + otherEnd.getName() + " is not ManageableEntityAssociationEnd for : " + otherEnd.getFullyQualifiedName() + " - "
+                            + this.getFullyQualifiedName());
+                }
+            }
+
+        }
+
+        final Collection<GeneralizableElementFacade> parentEntities = entity.getAllGeneralizations();
+
+        for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
+        {
+
+            final Object parentEntityObject = parentEntityIterator.next();
+
+            if (parentEntityObject instanceof GuiManageableEntity)
+            {
+
+                this.logger_.info("collectAssociationEndsGuiManageableEntity : " + ((Entity) parentEntityObject).getName() + " parent found : " + ((Entity) parentEntityObject).getFullyQualifiedName() + " - "
+                        + this.getFullyQualifiedName());
 
                 this.collectAssociationEndsGuiManageableEntity(manageableAssociationEnds, (GuiManageableEntity) parentEntityObject, filterRelevantAssoc);
 
@@ -662,7 +815,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     }
 
-    private boolean isRelevantAssociation(final AssociationEndFacade iEnd) {
+    private boolean isRelevantAssociation(final AssociationEndFacade iEnd)
+    {
 
         final Object filterTag = iEnd.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_ASSOCIATION_RELEVANT);
 
@@ -676,7 +830,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isSearchable(Object)
      */
     @Override
-    protected boolean handleIsSearchable(final Object element) {
+    protected boolean handleIsSearchable(final Object element)
+    {
         // if(element instanceof GuiManageableEntityAttribute)
         // return getManageableSearchAttributes().contains(element);
         // else
@@ -684,9 +839,11 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         // TODO
 
-        if (element instanceof GuiManageableEntityAttribute) {
+        if (element instanceof GuiManageableEntityAttribute)
+        {
             return !((GuiManageableEntityAttribute) element).isHidden();
-        } else {
+        } else
+        {
             return true;
         }
     }
@@ -694,15 +851,19 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     /**
      * @return the configured property denoting the character sequence to use for the separation of namespaces
      */
-    private String getNamespaceProperty() {
+    private String getNamespaceProperty()
+    {
         return (String) this.getConfiguredProperty(UMLMetafacadeProperties.NAMESPACE_SEPARATOR);
     }
 
-    private void addSerialUIDData(final StringBuilder buffer) {
-        for (final ManageableEntityAttribute attribute : this.getManageableAttributes()) {
+    private void addSerialUIDData(final StringBuilder buffer)
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
             buffer.append(attribute.getName());
         }
-        for (final ManageableEntityAssociationEnd end : this.getManageableAssociationEnds()) {
+        for (final ManageableEntityAssociationEnd end : this.getManageableAssociationEnds())
+        {
             buffer.append(end.getName());
         }
     }
@@ -712,27 +873,34 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getRoles()
      */
     @Override
-    protected Collection<Role> handleGetRoles() {
+    protected Collection<Role> handleGetRoles()
+    {
         // copied form the Service <<Metafacade>>
         final Collection roles = new ArrayList(this.getTargetDependencies());
-        CollectionUtils.filter(roles, new Predicate() {
+        CollectionUtils.filter(roles, new Predicate()
+        {
             @Override
-            public boolean evaluate(final Object object) {
+            public boolean evaluate(final Object object)
+            {
                 final DependencyFacade dependency = (DependencyFacade) object;
                 return (dependency != null) && (dependency.getSourceElement() instanceof Role);
             }
         });
-        CollectionUtils.transform(roles, new Transformer() {
+        CollectionUtils.transform(roles, new Transformer()
+        {
             @Override
-            public Object transform(final Object object) {
+            public Object transform(final Object object)
+            {
                 return ((DependencyFacade) object).getSourceElement();
             }
         });
         final Collection allRoles = new LinkedHashSet(roles);
         // add all roles which are generalizations of this one
-        CollectionUtils.forAllDo(roles, new Closure() {
+        CollectionUtils.forAllDo(roles, new Closure()
+        {
             @Override
-            public void execute(final Object object) {
+            public void execute(final Object object)
+            {
                 allRoles.addAll(((Role) object).getAllSpecializations());
             }
         });
@@ -744,14 +912,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getActionRoles()
      */
     @Override
-    protected String handleGetActionRoles() {
+    protected String handleGetActionRoles()
+    {
         // copied from GuiUseCaseLogicImpl
         final StringBuilder rolesBuffer = new StringBuilder();
         boolean first = true;
-        for (final Role role : this.getRoles()) {
-            if (first) {
+        for (final Role role : this.getRoles())
+        {
+            if (first)
+            {
                 first = false;
-            } else {
+            } else
+            {
                 rolesBuffer.append(',');
             }
             rolesBuffer.append(role.getName());
@@ -764,11 +936,15 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isNeedsFileUpload()
      */
     @Override
-    protected boolean handleIsNeedsFileUpload() {
-        for (final ManageableEntityAttribute attribute : this.getManageableAttributes()) {
-            if (attribute instanceof GuiManageableEntityAttribute) {
+    protected boolean handleIsNeedsFileUpload()
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            if (attribute instanceof GuiManageableEntityAttribute)
+            {
                 final GuiManageableEntityAttribute jsfAttribute = (GuiManageableEntityAttribute) attribute;
-                if (jsfAttribute.isNeedsFileUpload()) {
+                if (jsfAttribute.isNeedsFileUpload())
+                {
                     return true;
                 }
             }
@@ -781,19 +957,26 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#isNeedsUserInterface()
      */
     @Override
-    protected boolean handleIsNeedsUserInterface() {
-        for (final ManageableEntityAttribute attribute : this.getManageableAttributes()) {
-            if (attribute instanceof GuiManageableEntityAttribute) {
+    protected boolean handleIsNeedsUserInterface()
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            if (attribute instanceof GuiManageableEntityAttribute)
+            {
                 final GuiManageableEntityAttribute jsfAttribute = (GuiManageableEntityAttribute) attribute;
-                if (!jsfAttribute.isHidden()) {
+                if (!jsfAttribute.isHidden())
+                {
                     return true;
                 }
             }
         }
-        for (final ManageableEntityAssociationEnd associationEnd : this.getManageableAssociationEnds()) {
-            if (associationEnd instanceof GuiManageableEntityAssociationEnd) {
+        for (final ManageableEntityAssociationEnd associationEnd : this.getManageableAssociationEnds())
+        {
+            if (associationEnd instanceof GuiManageableEntityAssociationEnd)
+            {
                 final GuiManageableEntityAssociationEnd jsfAssociationEnd = (GuiManageableEntityAssociationEnd) associationEnd;
-                if (!jsfAssociationEnd.isDisplay()) {
+                if (!jsfAssociationEnd.isDisplay())
+                {
                     return true;
                 }
             }
@@ -806,7 +989,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getConverterClassName
      */
     @Override
-    public String handleGetConverterClassName() {
+    public String handleGetConverterClassName()
+    {
         return StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.CONVERTER_PATTERN)), "{0}", this.getName());
     }
 
@@ -815,7 +999,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getConverterType
      */
     @Override
-    public String handleGetConverterType() {
+    public String handleGetConverterType()
+    {
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getConverterClassName();
     }
 
@@ -824,53 +1009,62 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity#getConverterFullPath
      */
     @Override
-    public String handleGetConverterFullPath() {
+    public String handleGetConverterFullPath()
+    {
         return StringUtils.replace(this.getConverterType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
     }
 
     @Override
-    protected java.lang.String handleGetPageName() {
+    protected java.lang.String handleGetPageName()
+    {
         return this.getName().toLowerCase();
     }
 
     @Override
-    protected java.lang.String handleGetPageFullPath() {
+    protected java.lang.String handleGetPageFullPath()
+    {
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getPageName();
     }
 
     @Override
-    protected java.lang.String handleGetPageTitleKey() {
+    protected java.lang.String handleGetPageTitleKey()
+    {
 
         return StringUtilsHelper.toResourceMessageKey(this.getName()) + ".page.title";
 
     }
 
     @Override
-    protected java.lang.String handleGetPageTitleValue() {
+    protected java.lang.String handleGetPageTitleValue()
+    {
 
         return StringUtilsHelper.toPhrase(this.getName());
 
     }
 
     @Override
-    protected java.lang.String handleGetActionParameter() {
+    protected java.lang.String handleGetActionParameter()
+    {
 
         return "crud";
 
     }
 
     @Override
-    protected boolean handleIsMultipartFormData() {
+    protected boolean handleIsMultipartFormData()
+    {
 
         boolean multipartFormPost = false;
 
         final List<ManageableEntityAttribute> formFields = this.getManageableAttributes();
 
-        for (final Iterator<ManageableEntityAttribute> fieldIterator = formFields.iterator(); !multipartFormPost && fieldIterator.hasNext();) {
+        for (final Iterator<ManageableEntityAttribute> fieldIterator = formFields.iterator(); !multipartFormPost && fieldIterator.hasNext();)
+        {
 
             final AttributeFacade field = fieldIterator.next();
 
-            if (field.getType().isFileType()) {
+            if (field.getType().isFileType())
+            {
 
                 multipartFormPost = true;
 
@@ -883,21 +1077,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Collection handleGetPreconditions() {
+    protected Collection handleGetPreconditions()
+    {
 
         return this.getConstraints(ExpressionKinds.PRE);
 
     }
 
     @Override
-    protected Collection handleGetCreatePreconditions() {
+    protected Collection handleGetCreatePreconditions()
+    {
 
         final Collection preConditions = this.getPreconditions();
 
-        return new FilteredCollection(preConditions) {
+        return new FilteredCollection(preConditions)
+        {
 
             @Override
-            public boolean evaluate(final Object object) {
+            public boolean evaluate(final Object object)
+            {
 
                 final ConstraintFacade preCondition = (ConstraintFacade) object;
 
@@ -910,14 +1108,17 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Collection handleGetUpdatePreconditions() {
+    protected Collection handleGetUpdatePreconditions()
+    {
 
         final Collection preConditions = this.getPreconditions();
 
-        return new FilteredCollection(preConditions) {
+        return new FilteredCollection(preConditions)
+        {
 
             @Override
-            public boolean evaluate(final Object object) {
+            public boolean evaluate(final Object object)
+            {
 
                 final ConstraintFacade preCondition = (ConstraintFacade) object;
 
@@ -930,14 +1131,17 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Collection handleGetDeletePreconditions() {
+    protected Collection handleGetDeletePreconditions()
+    {
 
         final Collection preConditions = this.getPreconditions();
 
-        return new FilteredCollection(preConditions) {
+        return new FilteredCollection(preConditions)
+        {
 
             @Override
-            public boolean evaluate(final Object object) {
+            public boolean evaluate(final Object object)
+            {
 
                 final ConstraintFacade preCondition = (ConstraintFacade) object;
 
@@ -950,7 +1154,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsRegroupMandatoryFields() {
+    protected boolean handleIsRegroupMandatoryFields()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_VIEW_REGROUP_REQUIRED);
 
@@ -959,7 +1164,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetDisplayName() {
+    protected String handleGetDisplayName()
+    {
 
         final Object filterTag = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_DISPLAY_NAME);
 
@@ -968,22 +1174,26 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsVersionable() {
+    protected boolean handleIsVersionable()
+    {
 
         return this.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE);
 
     }
 
     @Override
-    protected boolean handleIsVersionableRefExists() {
+    protected boolean handleIsVersionableRefExists()
+    {
 
         final Collection<DependencyFacade> deps = this.getTargetDependencies();
 
-        for (final DependencyFacade dependencyFacade : deps) {
+        for (final DependencyFacade dependencyFacade : deps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF))
+            {
 
                 return true;
 
@@ -993,11 +1203,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         final Collection<DependencyFacade> sourceDeps = this.getSourceDependencies();
 
-        for (final DependencyFacade dependencyFacade : sourceDeps) {
+        for (final DependencyFacade dependencyFacade : sourceDeps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF))
+            {
 
                 return true;
 
@@ -1010,18 +1222,22 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Collection<AssociationEndFacade> handleGetRulesSearchData() {
+    protected Collection<AssociationEndFacade> handleGetRulesSearchData()
+    {
 
         final Collection<ManageableEntityAssociationEnd> associationEnds = this.getManageableAssociationEndsEntity();
         final Collection<AssociationEndFacade> rulesAssociations = new ArrayList<AssociationEndFacade>();
 
-        for (final ManageableEntityAssociationEnd associationEnd : associationEnds) {
+        for (final ManageableEntityAssociationEnd associationEnd : associationEnds)
+        {
 
-            if (this.logger_.isDebugEnabled()) {
+            if (this.logger_.isDebugEnabled())
+            {
                 this.logger_.debug("RulesSearchData : " + associationEnd.getName() + " - " + associationEnd.getType() + " for : " + this.getFullyQualifiedName());
             }
 
-            if (associationEnd.getType().hasExactStereotype(GuiProfile.STEREOTYPE_RULES_SEARCH_DATA)) {
+            if (associationEnd.getType().hasExactStereotype(GuiProfile.STEREOTYPE_RULES_SEARCH_DATA))
+            {
 
                 this.logger_.info("RulesSearchData found : " + associationEnd.getName() + " - " + associationEnd.getType() + " for : " + this.getFullyQualifiedName());
 
@@ -1036,20 +1252,24 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected ClassifierFacade handleGetRulesCriteriasSearchValueObject() {
+    protected ClassifierFacade handleGetRulesCriteriasSearchValueObject()
+    {
 
         final Collection rulesAssociations = this.getRulesSearchData();
 
-        if (!rulesAssociations.isEmpty()) {
+        if (!rulesAssociations.isEmpty())
+        {
 
             final AssociationEndFacade assoc = (AssociationEndFacade) ((ArrayList) rulesAssociations).get(0);
             final Collection<DependencyFacade> dependencies = assoc.getType().getSourceDependencies();
 
-            for (final DependencyFacade dependencyFacade : dependencies) {
+            for (final DependencyFacade dependencyFacade : dependencies)
+            {
 
                 final ClassifierFacade dep = (ClassifierFacade) dependencyFacade.getTargetElement();
 
-                if (dep.hasExactStereotype(GuiProfile.STEREOTYPE_RULES_CRITERIAS_SEARCH_DATA)) {
+                if (dep.hasExactStereotype(GuiProfile.STEREOTYPE_RULES_CRITERIAS_SEARCH_DATA))
+                {
 
                     return dep;
 
@@ -1064,7 +1284,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsInsertable() {
+    protected boolean handleIsInsertable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_INSERTABLE);
 
@@ -1075,7 +1296,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsUpdatable() {
+    protected boolean handleIsUpdatable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_UPDATABLE);
 
@@ -1086,7 +1308,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsRemovable() {
+    protected boolean handleIsRemovable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_REMOVABLE);
 
@@ -1097,33 +1320,40 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsFiltered() {
+    protected boolean handleIsFiltered()
+    {
 
-        for (final AttributeFacade attributeFacade : this.getAttributes()) {
+        for (final AttributeFacade attributeFacade : this.getAttributes())
+        {
 
             final AttributeFacade attribute = attributeFacade;
             final Object tag = attribute.findTaggedValue(GuiProfile.TAGGEDVALUE_VIEW_SIMPLE_FILTER_ELEMENT);
 
-            if ((tag != null) && GuiUtils.isTrue(String.valueOf(tag))) {
+            if ((tag != null) && GuiUtils.isTrue(String.valueOf(tag)))
+            {
 
                 return true;
             }
 
         }
 
-        for (final Object o : this.getManageableAssociationEnds()) {
+        for (final Object o : this.getManageableAssociationEnds())
+        {
 
-            if (o instanceof GuiManageableEntityAssociationEnd) { // AssociationEndFacade
+            if (o instanceof GuiManageableEntityAssociationEnd)
+            { // AssociationEndFacade
 
                 final Object tag = ((GuiManageableEntityAssociationEnd) o).findTaggedValue(GuiProfile.TAGGEDVALUE_VIEW_SIMPLE_FILTER_ELEMENT);
 
-                if ((tag != null) && GuiUtils.isTrue(String.valueOf(tag))) {
+                if ((tag != null) && GuiUtils.isTrue(String.valueOf(tag)))
+                {
 
                     return true;
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("IsFiltered The association end " + ((AssociationEndFacade) o).getName() + " can not be handle");
 
@@ -1136,7 +1366,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsPopEdition() {
+    protected boolean handleIsPopEdition()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_POPUP_EDITION);
 
@@ -1147,7 +1378,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsExportable() {
+    protected boolean handleIsExportable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_EXPORTABLE);
 
@@ -1158,7 +1390,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsClonable() {
+    protected boolean handleIsClonable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_CLONABLE);
 
@@ -1169,7 +1402,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsSortable() {
+    protected boolean handleIsSortable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_SORTABLE);
 
@@ -1180,7 +1414,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsHasHelp() {
+    protected boolean handleIsHasHelp()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_HASHELP);
 
@@ -1191,29 +1426,34 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsFilterable() {
+    protected boolean handleIsFilterable()
+    {
 
         return this.hasStereotype(GuiProfile.STEREOTYPE_FILTERABLE);
 
     }
 
     @Override
-    protected boolean handleIsHasCustom() {
+    protected boolean handleIsHasCustom()
+    {
 
         return this.getCustomEntityReferences().size() > 0;
 
     }
 
     @Override
-    protected boolean handleIsIsCustom() {
+    protected boolean handleIsIsCustom()
+    {
 
         final Collection<DependencyFacade> deps = this.getTargetDependencies();
 
-        for (final DependencyFacade dependencyFacade : deps) {
+        for (final DependencyFacade dependencyFacade : deps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_RULE)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_RULE))
+            {
 
                 return true;
 
@@ -1226,7 +1466,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsEditable() {
+    protected boolean handleIsEditable()
+    {
 
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_EDITABLE);
 
@@ -1237,7 +1478,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsHasMaximumListSize() {
+    protected boolean handleIsHasMaximumListSize()
+    {
 
         final Object maximumListSize = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_MAXIMUM_LIST_SIZE);
 
@@ -1246,7 +1488,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetSecurityName() {
+    protected String handleGetSecurityName()
+    {
 
         final Object tagValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_SECURITY_NAME);
 
@@ -1255,7 +1498,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsFilterLoadingShortcut() {
+    protected boolean handleIsFilterLoadingShortcut()
+    {
 
         final Object filterTag = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_FILTER_SHORTCUT);
 
@@ -1264,14 +1508,16 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetEjbInterfaceName() {
+    protected String handleGetEjbInterfaceName()
+    {
 
         return String.valueOf(this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_EJB_INTERFACE));
 
     }
 
     @Override
-    protected boolean handleIsHasCustomSorters() {
+    protected boolean handleIsHasCustomSorters()
+    {
 
         final Object filterTag = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_CUSTOM_SORTERS);
 
@@ -1280,28 +1526,32 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsReferencable() {
+    protected boolean handleIsReferencable()
+    {
 
         return this.hasStereotype(GuiProfile.STEREOTYPE_REFERENCABLE);
 
     }
 
     @Override
-    protected boolean handleIsRealTimeData() {
+    protected boolean handleIsRealTimeData()
+    {
 
         return this.hasStereotype(GuiProfile.STEREOTYPE_REALTIME_DATA);
 
     }
 
     @Override
-    protected boolean handleIsValidable() {
+    protected boolean handleIsValidable()
+    {
 
         return this.hasStereotype(GuiProfile.STEREOTYPE_VALIDABLE_OBJECT);
 
     }
 
     @Override
-    protected boolean handleIsExternalOrganizationExists() {
+    protected boolean handleIsExternalOrganizationExists()
+    {
 
         final String name = this.getName() + ".xml";
 
@@ -1317,15 +1567,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Object handleGetManageableExternalOrganization() {
+    protected Object handleGetManageableExternalOrganization()
+    {
 
-        if (!this.handleIsExternalOrganizationExists() || this.getName().equals("")) {
+        if (!this.handleIsExternalOrganizationExists() || this.getName().equals(""))
+        {
 
             return null;
 
         }
 
-        try {
+        try
+        {
 
             final String manual_mapping_location = String.valueOf(this.getConfiguredProperty(GuiGlobals.MANUAL_MAPPING_LOCATION));
             final File file = new File(manual_mapping_location + GuiGlobals.FILE_SEPARATOR + this.getName() + ".xml");
@@ -1333,13 +1586,16 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
             // File file = new File("configuration/generation/manualMapping/" + this.getName() + ".xml");
             final List<String> attributesAndAssociations = new ArrayList<String>();
 
-            for (final Object o : this.getManageableAttributes()) {
+            for (final Object o : this.getManageableAttributes())
+            {
 
-                if (o instanceof GuiManageableEntityAttribute) {
+                if (o instanceof GuiManageableEntityAttribute)
+                {
 
                     attributesAndAssociations.add(((GuiManageableEntityAttribute) o).getDisplayName());
 
-                } else {
+                } else
+                {
 
                     this.logger_.info("GetManageableExternalOrganization : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1347,13 +1603,16 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             }
 
-            for (final Object o : this.getManageableAssociationEnds()) {
+            for (final Object o : this.getManageableAssociationEnds())
+            {
 
-                if (o instanceof GuiManageableEntityAssociationEnd) {
+                if (o instanceof GuiManageableEntityAssociationEnd)
+                {
 
                     attributesAndAssociations.add(((GuiManageableEntityAssociationEnd) o).getDisplayName());
 
-                } else {
+                } else
+                {
 
                     this.logger_.info("GetManageableExternalOrganization : The association end " + ((AssociationEndFacade) o).getName() + " can not be handle");
 
@@ -1368,11 +1627,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             final List<String> exceptions = parser.getInvalidAttributes();
 
-            if (exceptions.size() > 0) {
+            if (exceptions.size() > 0)
+            {
 
                 final StringBuilder attributes = new StringBuilder();
 
-                for (final String name : exceptions) {
+                for (final String name : exceptions)
+                {
 
                     attributes.append(name + ", ");
 
@@ -1385,11 +1646,15 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             return viewContent;
 
-        } catch (final MalformedURLException e) {
+        }
+        catch (final MalformedURLException e)
+        {
 
             e.printStackTrace();
 
-        } catch (final DocumentException e) {
+        }
+        catch (final DocumentException e)
+        {
 
             e.printStackTrace();
 
@@ -1400,7 +1665,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsShowDeal() {
+    protected boolean handleIsShowDeal()
+    {
 
         final Object filterTag = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_SHOW_DEAL);
 
@@ -1409,7 +1675,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsUseTemplating() {
+    protected boolean handleIsUseTemplating()
+    {
 
         final Object filterTag = this.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_USE_TEMPLATING);
 
@@ -1418,29 +1685,34 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsRule() {
+    protected boolean handleIsRule()
+    {
 
         return !this.getRulesSearchData().isEmpty();
 
     }
 
     @Override
-    protected boolean handleIsInterceptable() {
+    protected boolean handleIsInterceptable()
+    {
 
         return this.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE);
 
     }
 
     @Override
-    protected boolean handleHasCustomUsecases() {
+    protected boolean handleHasCustomUsecases()
+    {
 
         final Collection<OperationFacade> members = this.getBusinessOperations();
 
-        for (final OperationFacade operationFacade : members) {
+        for (final OperationFacade operationFacade : members)
+        {
 
             final OperationFacade member = operationFacade;
 
-            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE)) {
+            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE))
+            {
 
                 return true;
 
@@ -1453,13 +1725,15 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected java.util.Collection<OperationFacade> handleGetCustomUseCases() {
+    protected java.util.Collection<OperationFacade> handleGetCustomUseCases()
+    {
 
         final Set<OperationFacade> customUseCases = new LinkedHashSet<OperationFacade>();
 
         // If rendering a validation screen, no need to render business object
         // custom use cases
-        if (this.isValidable()) {
+        if (this.isValidable())
+        {
 
             return customUseCases;
 
@@ -1467,11 +1741,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         final Collection<OperationFacade> members = this.getBusinessOperations();
 
-        for (final OperationFacade operationFacade : members) {
+        for (final OperationFacade operationFacade : members)
+        {
 
             final OperationFacade member = operationFacade;
 
-            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE)) {
+            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE))
+            {
 
                 customUseCases.add(member);
 
@@ -1484,14 +1760,16 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetIdentifierForBusinessObjectReference(final String businessObjectName) {
+    protected String handleGetIdentifierForBusinessObjectReference(final String businessObjectName)
+    {
 
         final Collection<DependencyFacade> sourceDeps = this.getSourceDependencies();
 
         String attributeName = this.getManageableIdentifier().getName();
 
         // Retrieve referenced Business Object, and the discrimator attribute name
-        for (final DependencyFacade dep : sourceDeps) {
+        for (final DependencyFacade dep : sourceDeps)
+        {
 
             String targetElementName = dep.getTargetElement().getName();
 
@@ -1501,19 +1779,22 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             // }
 
-            if (dep.getTargetElement() instanceof GuiValidableEntity) {
+            if (dep.getTargetElement() instanceof GuiValidableEntity)
+            {
 
                 targetElementName = targetElementName.replaceAll(((GuiValidableEntity) dep.getTargetElement()).getValidationNameSuffix(), "");
 
             }
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_BO_REF) && targetElementName.equals(businessObjectName)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_BO_REF) && targetElementName.equals(businessObjectName))
+            {
 
                 final Object filterTag = dep.findTaggedValue(GuiProfile.TAGGEDVALUE_MANAGEABLE_BOREF_DISCRIMINATOR);
 
                 this.logger_.info("Tagged value : " + filterTag + " for : " + GuiProfile.TAGGEDVALUE_MANAGEABLE_BOREF_DISCRIMINATOR + " - " + this.getFullyQualifiedName());
 
-                if (!"".equals(String.valueOf(filterTag))) {
+                if (!"".equals(String.valueOf(filterTag)))
+                {
                     attributeName = String.valueOf(filterTag);
                 }
 
@@ -1529,9 +1810,11 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         // Find the corresponding attribute or association
         // for (final Iterator<ManageableEntityAttribute> it = this.getManageableAttributes().iterator(); it.hasNext();) {
-        for (final Object o : this.getManageableAttributes()) {
+        for (final Object o : this.getManageableAttributes())
+        {
 
-            if (o instanceof GuiManageableEntityAttribute) {
+            if (o instanceof GuiManageableEntityAttribute)
+            {
 
                 // final AttributeFacade attribute = (AttributeFacade) it.next();
                 final AttributeFacade attribute = ((GuiManageableEntityAttribute) o);
@@ -1542,13 +1825,15 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
                 // }
 
-                if (attribute.getName().equals(attributeName)) {
+                if (attribute.getName().equals(attributeName))
+                {
 
                     return attribute.getName();
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("GetIdentifierForBusinessObjectReference : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1556,9 +1841,11 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         }
 
-        for (final Object o : this.getManageableAssociationEnds()) {
+        for (final Object o : this.getManageableAssociationEnds())
+        {
 
-            if (o instanceof AssociationEndFacade) {
+            if (o instanceof AssociationEndFacade)
+            {
 
                 // if (this.logger_.isDebugEnabled()) {
 
@@ -1566,7 +1853,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
                 // }
 
-                if (((AssociationEndFacade) o).getName().equals(attributeName)) {
+                if (((AssociationEndFacade) o).getName().equals(attributeName))
+                {
 
                     return StringUtilsHelper.upperCamelCaseName(((AssociationEndFacade) o).getName());
 
@@ -1583,15 +1871,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleEachBusinessObjectReferenceIsValid() {
+    protected boolean handleEachBusinessObjectReferenceIsValid()
+    {
 
         final List<Entity> boRefs = this.getBusinessObjectReferences();
 
-        for (final Entity entity : boRefs) {
+        for (final Entity entity : boRefs)
+        {
 
             final ClassifierFacade classifier = entity;
 
-            if (this.getIdentifierForBusinessObjectReference(classifier.getName()) == null) {
+            if (this.getIdentifierForBusinessObjectReference(classifier.getName()) == null)
+            {
 
                 this.logger_.error("Entity : " + classifier.getName() + " with no IdentifierForBusinessObjectReference found : " + this.getFullyQualifiedName());
 
@@ -1599,7 +1890,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             }
 
-            if (classifier.hasStereotype(UMLProfile.STEREOTYPE_ENTITY) && !this.hasValueObject((Entity) classifier)) {
+            if (classifier.hasStereotype(UMLProfile.STEREOTYPE_ENTITY) && !this.hasValueObject((Entity) classifier))
+            {
 
                 this.logger_.error("Entity : " + classifier.getName() + " with no VO found : " + this.getFullyQualifiedName());
 
@@ -1614,17 +1906,21 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetCustomUseCaseActionType(final String customUseCaseName) {
+    protected String handleGetCustomUseCaseActionType(final String customUseCaseName)
+    {
 
         final Collection<OperationFacade> members = this.getBusinessOperations();
 
-        for (final OperationFacade operationFacade : members) {
+        for (final OperationFacade operationFacade : members)
+        {
 
             final OperationFacade member = operationFacade;
 
-            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE)) {
+            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE))
+            {
 
-                if (customUseCaseName.compareTo(member.getName()) == 0) {
+                if (customUseCaseName.compareTo(member.getName()) == 0)
+                {
 
                     return String.valueOf(member.findTaggedValue(GuiProfile.TAGGEDVALUE_CUSTOMUSECASE_ACTION_TYPE));
 
@@ -1639,17 +1935,21 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetCustomUseCaseDisplayType(final String customUseCaseName) {
+    protected String handleGetCustomUseCaseDisplayType(final String customUseCaseName)
+    {
 
         final Collection<OperationFacade> members = this.getBusinessOperations();
 
-        for (final OperationFacade operationFacade : members) {
+        for (final OperationFacade operationFacade : members)
+        {
 
             final OperationFacade member = operationFacade;
 
-            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE)) {
+            if (member.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_USECASE))
+            {
 
-                if (customUseCaseName.compareTo(member.getName()) == 0) {
+                if (customUseCaseName.compareTo(member.getName()) == 0)
+                {
 
                     return String.valueOf(member.findTaggedValue(GuiProfile.TAGGEDVALUE_CUSTOMUSECASE_DISPLAY_TYPE));
 
@@ -1664,11 +1964,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    public boolean handleServiceNameExists(final String serviceName) {
+    public boolean handleServiceNameExists(final String serviceName)
+    {
 
         final Service service = this.getManageableService(serviceName);
 
-        if (service == null) {
+        if (service == null)
+        {
 
             this.logger_.error("ServiceNameExists TaggedValue : " + serviceName + " for : " + GuiProfile.TAGGEDVALUE_MANAGEABLE_SERVICE + " - " + this.getFullyQualifiedName() + "does not exist");
 
@@ -1679,17 +1981,20 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Collection<OperationFacade> handleGetExternalUseCases() {
+    protected Collection<OperationFacade> handleGetExternalUseCases()
+    {
 
         final Set<OperationFacade> externalUseCases = new LinkedHashSet<OperationFacade>();
 
         final Collection<OperationFacade> members = this.getBusinessOperations();
 
-        for (final OperationFacade operationFacade : members) {
+        for (final OperationFacade operationFacade : members)
+        {
 
             final OperationFacade member = operationFacade;
 
-            if (member.hasStereotype(GuiProfile.STEREOTYPE_EXTERNAL_USECASE)) {
+            if (member.hasStereotype(GuiProfile.STEREOTYPE_EXTERNAL_USECASE))
+            {
 
                 externalUseCases.add(member);
 
@@ -1703,21 +2008,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     @Override
     // TODO remove
-    protected AttributeFacade handleGetIdentifierToDelete() {
+    protected AttributeFacade handleGetIdentifierToDelete()
+    {
 
         // return super.getManageableIdentifier();
 
         final AttributeFacade attr = super.getManageableIdentifier();
 
-        if (attr == null) {
+        if (attr == null)
+        {
 
             final Collection<GeneralizableElementFacade> parentEntities = this.getAllGeneralizations();
 
-            for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();) {
+            for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
+            {
 
                 final Object parentEntityObject = parentEntityIterator.next();
 
-                if ((parentEntityObject instanceof Entity) && !((Entity) parentEntityObject).getIdentifiers().isEmpty()) {
+                if ((parentEntityObject instanceof Entity) && !((Entity) parentEntityObject).getIdentifiers().isEmpty())
+                {
 
                     final Object identifier = ((Entity) parentEntityObject).getIdentifiers().iterator().next();
 
@@ -1735,11 +2044,14 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     @Override
     // TODO remove
-    protected ManageableEntity handleGetManageableGeneralizationToDelete() {
+    protected ManageableEntity handleGetManageableGeneralizationToDelete()
+    {
 
-        for (GeneralizableElementFacade element = this.getGeneralization(); element != null; element = element.getGeneralization()) {
+        for (GeneralizableElementFacade element = this.getGeneralization(); element != null; element = element.getGeneralization())
+        {
 
-            if (element instanceof ManageableEntity) {
+            if (element instanceof ManageableEntity)
+            {
 
                 return (ManageableEntity) element;
 
@@ -1752,24 +2064,29 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleIsAttributeOrAssociation(final String name) {
+    protected boolean handleIsAttributeOrAssociation(final String name)
+    {
 
         // Find the corresponding attribute or association
         // for (final Iterator<ManageableEntityAttribute> it = this.getManageableAttributes().iterator(); it.hasNext();) {
-        for (final Object o : this.getManageableAttributes()) {
+        for (final Object o : this.getManageableAttributes())
+        {
 
-            if (o instanceof GuiManageableEntityAttribute) {
+            if (o instanceof GuiManageableEntityAttribute)
+            {
 
                 // final AttributeFacade attribute = (AttributeFacade) it.next();
                 final AttributeFacade attribute = ((AttributeFacade) o);
 
-                if (attribute.getName().equals(name)) {
+                if (attribute.getName().equals(name))
+                {
 
                     return true;
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("IsAttributeOrAssociation : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1777,17 +2094,21 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         }
 
-        for (final Object o : this.getManageableAssociationEnds()) {
+        for (final Object o : this.getManageableAssociationEnds())
+        {
 
-            if (o instanceof AssociationEndFacade) { // AssociationEndFacade
+            if (o instanceof AssociationEndFacade)
+            { // AssociationEndFacade
 
-                if (((AssociationEndFacade) o).getName().equals(name)) {
+                if (((AssociationEndFacade) o).getName().equals(name))
+                {
 
                     return true;
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("IsAttributeOrAssociation : The association end " + ((AssociationEndFacade) o).getName() + " can not be handle");
 
@@ -1800,23 +2121,28 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetAttributeNameByDisplayName(final String displayName) {
+    protected String handleGetAttributeNameByDisplayName(final String displayName)
+    {
 
         // for (final Iterator<ManageableEntityAttribute> it = this.getManageableAttributes().iterator(); it.hasNext();) {
-        for (final Object o : this.getManageableAttributes()) {
+        for (final Object o : this.getManageableAttributes())
+        {
 
             // final Object o = it.next();
-            if (o instanceof GuiManageableEntityAttribute) {
+            if (o instanceof GuiManageableEntityAttribute)
+            {
 
                 final GuiManageableEntityAttribute attribute = (GuiManageableEntityAttribute) o;
 
-                if (attribute.getDisplayName().equals(displayName)) {
+                if (attribute.getDisplayName().equals(displayName))
+                {
 
                     return attribute.getName();
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("GetAttributeNameByDisplayName : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1824,21 +2150,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         }
 
-        for (final Iterator<ManageableEntityAssociationEnd> it = this.getManageableAssociationEnds().iterator(); it.hasNext();) {
+        for (final Iterator<ManageableEntityAssociationEnd> it = this.getManageableAssociationEnds().iterator(); it.hasNext();)
+        {
 
             final Object o = it.next();
 
-            if (o instanceof GuiManageableEntityAssociationEnd) {
+            if (o instanceof GuiManageableEntityAssociationEnd)
+            {
 
                 final GuiManageableEntityAssociationEnd assoc = (GuiManageableEntityAssociationEnd) o;
 
-                if (assoc.getDisplayName().equals(displayName)) {
+                if (assoc.getDisplayName().equals(displayName))
+                {
 
                     return assoc.getName();
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("GetAttributeNameByDisplayName : The association end " + ((AssociationEndFacade) o).getName() + " can not be handle");
 
@@ -1851,23 +2181,28 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected String handleGetAttributeTypeByDisplayName(final String displayName) {
+    protected String handleGetAttributeTypeByDisplayName(final String displayName)
+    {
 
         // for (final Iterator<ManageableEntityAttribute> it = this.getManageableAttributes().iterator(); it.hasNext();) {
-        for (final Object o : this.getManageableAttributes()) {
+        for (final Object o : this.getManageableAttributes())
+        {
 
             // final Object o = it.next();
-            if (o instanceof GuiManageableEntityAttribute) {
+            if (o instanceof GuiManageableEntityAttribute)
+            {
 
                 final GuiManageableEntityAttribute attribute = (GuiManageableEntityAttribute) o;
 
-                if (attribute.getDisplayName().equals(displayName)) {
+                if (attribute.getDisplayName().equals(displayName))
+                {
 
                     return ((attribute.getFieldSize() >= 32) && !attribute.getWidgetType().equals(GuiGlobals.INPUT_SELECT) && attribute.getJdbcType().equals("VARCHAR")) ? "long" : "";
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("GetAttributeTypeByDisplayName : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1880,30 +2215,36 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected boolean handleHasCorrectShowDealInfo() {
+    protected boolean handleHasCorrectShowDealInfo()
+    {
 
         return !this.isShowDeal() || ((this.getShowDealDealId() != null) && (this.getShowDealDealType() != null));
 
     }
 
     @Override
-    protected AttributeFacade handleGetShowDealDealId() {
+    protected AttributeFacade handleGetShowDealDealId()
+    {
 
         // for (final Iterator<ManageableEntityAttribute> it = this.getManageableAttributes().iterator(); it.hasNext();) {
-        for (final Object o : this.getManageableAttributes()) {
+        for (final Object o : this.getManageableAttributes())
+        {
 
             // final Object o = it.next();
-            if (o instanceof GuiManageableEntityAttribute) {
+            if (o instanceof GuiManageableEntityAttribute)
+            {
 
                 final GuiManageableEntityAttribute attribute = (GuiManageableEntityAttribute) o;
 
-                if (attribute.isDealId()) {
+                if (attribute.isDealId())
+                {
 
                     return attribute;
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("GetShowDealDealId : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1916,23 +2257,28 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected AttributeFacade handleGetShowDealDealType() {
+    protected AttributeFacade handleGetShowDealDealType()
+    {
 
         // for (final Iterator<ManageableEntityAttribute> it = this.getManageableAttributes().iterator(); it.hasNext();) {
-        for (final Object o : this.getManageableAttributes()) {
+        for (final Object o : this.getManageableAttributes())
+        {
 
             // final Object o = it.next();
-            if (o instanceof GuiManageableEntityAttribute) {
+            if (o instanceof GuiManageableEntityAttribute)
+            {
 
                 final GuiManageableEntityAttribute attribute = (GuiManageableEntityAttribute) o;
 
-                if (attribute.isDealType()) {
+                if (attribute.isDealType())
+                {
 
                     return attribute;
 
                 }
 
-            } else {
+            } else
+            {
 
                 this.logger_.info("GetShowDealDealType : The attribute " + ((AttributeFacade) o).getName() + " can not be handle");
 
@@ -1945,32 +2291,39 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected AttributeFacade handleGetCorrespondingVOAttr(final GuiManageableEntityAttribute manageableAttribute) {
+    protected AttributeFacade handleGetCorrespondingVOAttr(final GuiManageableEntityAttribute manageableAttribute)
+    {
 
         this.logger_.info("GetCorrespondingVOAttr : Looking VO attribute for : " + manageableAttribute.getName() + " - " + this.getFullyQualifiedName());
 
         final ValueObject vo = this.getValueObject();
 
-        if (vo != null) {
+        if (vo != null)
+        {
 
             final Collection<AttributeFacade> voAttributes = vo.getAttributes();
 
             // voAttributes.addAll(((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters());
-            if (voAttributes != null) {
+            if (voAttributes != null)
+            {
 
-                try {
+                try
+                {
 
-                    for (final Iterator<ModelElementFacade> it = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters().iterator(); it.hasNext();) {
+                    for (final Iterator<ModelElementFacade> it = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters().iterator(); it.hasNext();)
+                    {
 
                         final Object o = it.next();
 
-                        if (o instanceof AttributeFacade) {
+                        if (o instanceof AttributeFacade)
+                        {
 
                             final AttributeFacade attribute = (AttributeFacade) o;
 
                             voAttributes.add(attribute);
 
-                        } else {
+                        } else
+                        {
 
                             this.logger_.info("GetCorrespondingVOAttr : The attribute " + ((ModelElementFacade) o).getName() + " can not be handle");
 
@@ -1986,21 +2339,26 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
                     //
                     // }
 
-                } catch (final Exception e) {
+                }
+                catch (final Exception e)
+                {
 
                     this.logger_.info("Exception is : " + e + " and the Manageable attribute is : " + manageableAttribute.getName() + " Generalization is : " + vo.getGeneralizationList());
 
                 }
 
-                for (final AttributeFacade voAttr : voAttributes) {
+                for (final AttributeFacade voAttr : voAttributes)
+                {
 
-                    if (this.logger_.isDebugEnabled()) {
+                    if (this.logger_.isDebugEnabled())
+                    {
 
                         this.logger_.debug("The ValueObject attribute is : " + voAttr.getName() + " and the Manageable attribute is : " + manageableAttribute.getName());
 
                     }
 
-                    if (voAttr.getName().equalsIgnoreCase(manageableAttribute.getName())) {
+                    if (voAttr.getName().equalsIgnoreCase(manageableAttribute.getName()))
+                    {
 
                         return voAttr;
 
@@ -2019,26 +2377,31 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected AttributeFacade handleGetCorrespondingRuleVOAttr(final GuiManageableEntityAssociationEnd manageableAssocEnd) {
+    protected AttributeFacade handleGetCorrespondingRuleVOAttr(final GuiManageableEntityAssociationEnd manageableAssocEnd)
+    {
 
         final ValueObject vo = this.getValueObject();
 
-        if (vo != null) {
+        if (vo != null)
+        {
 
             final Collection<AttributeFacade> voAttributes = vo.getAttributes();
 
             // voAttributes.addAll(((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters());
-            for (final Iterator<ModelElementFacade> it = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters().iterator(); it.hasNext();) {
+            for (final Iterator<ModelElementFacade> it = ((ValueObject) vo.getGeneralization()).getAllRequiredConstructorParameters().iterator(); it.hasNext();)
+            {
 
                 final Object o = it.next();
 
-                if (o instanceof AttributeFacade) {
+                if (o instanceof AttributeFacade)
+                {
 
                     final AttributeFacade attribute = (AttributeFacade) o;
 
                     voAttributes.add(attribute);
 
-                } else {
+                } else
+                {
 
                     this.logger_.info("GetCorrespondingVOAttr : The attribute " + ((ModelElementFacade) o).getName() + " can not be handle");
 
@@ -2048,11 +2411,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             final String dictDetailAssocName = manageableAssocEnd.getName().replaceAll("DictDetail_Id_", "");
 
-            for (final AttributeFacade voAttr : voAttributes) {
+            for (final AttributeFacade voAttr : voAttributes)
+            {
 
                 final String voAttrName = voAttr.getName().toLowerCase();
 
-                if ((voAttrName.indexOf("dictdetail") >= 0) && voAttrName.replaceAll("dictdetail", "").equals(dictDetailAssocName.toLowerCase())) {
+                if ((voAttrName.indexOf("dictdetail") >= 0) && voAttrName.replaceAll("dictdetail", "").equals(dictDetailAssocName.toLowerCase()))
+                {
 
                     this.logger_.info("GetCorrespondingRuleVOAttr : Looking VO attribute for : " + voAttrName + " - " + this.getFullyQualifiedName());
                     return voAttr;
@@ -2068,15 +2433,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Object handleGetVersionableEntityReference() {
+    protected Object handleGetVersionableEntityReference()
+    {
 
         final Collection<DependencyFacade> deps = this.getTargetDependencies();
 
-        for (final DependencyFacade dependencyFacade : deps) {
+        for (final DependencyFacade dependencyFacade : deps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF))
+            {
 
                 return dep.getSourceElement();
 
@@ -2086,11 +2454,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
         final Collection<DependencyFacade> sourceDeps = this.getSourceDependencies();
 
-        for (final DependencyFacade dependencyFacade : sourceDeps) {
+        for (final DependencyFacade dependencyFacade : sourceDeps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF))
+            {
 
                 return dep.getTargetElement();
 
@@ -2103,15 +2473,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected Object handleGetCustomOwner() {
+    protected Object handleGetCustomOwner()
+    {
 
         final Collection<DependencyFacade> deps = this.getTargetDependencies();
 
-        for (final DependencyFacade dependencyFacade : deps) {
+        for (final DependencyFacade dependencyFacade : deps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_RULE)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_RULE))
+            {
 
                 return dep.getSourceElement();
 
@@ -2124,14 +2497,17 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected List<ModelElementFacade> handleGetCustomEntityReferences() {
+    protected List<ModelElementFacade> handleGetCustomEntityReferences()
+    {
 
         final Collection<DependencyFacade> sourceDeps = this.getSourceDependencies();
         final List<ModelElementFacade> customReferences = new ArrayList<ModelElementFacade>();
 
-        for (final DependencyFacade dep : sourceDeps) {
+        for (final DependencyFacade dep : sourceDeps)
+        {
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_RULE)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_CUSTOM_RULE))
+            {
 
                 customReferences.add(dep.getTargetElement());
 
@@ -2144,15 +2520,18 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
     }
 
     @Override
-    protected List<ModelElementFacade> handleGetBusinessObjectReferences() {
+    protected List<ModelElementFacade> handleGetBusinessObjectReferences()
+    {
 
         final Collection<DependencyFacade> sourceDeps = this.getSourceDependencies();
 
         final List<ModelElementFacade> boRef = new ArrayList<ModelElementFacade>();
 
-        for (final DependencyFacade dep : sourceDeps) {
+        for (final DependencyFacade dep : sourceDeps)
+        {
 
-            if (dep.hasStereotype(GuiProfile.STEREOTYPE_BO_REF)) {
+            if (dep.hasStereotype(GuiProfile.STEREOTYPE_BO_REF))
+            {
 
                 boRef.add(dep.getTargetElement());
 
@@ -2173,35 +2552,42 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
      *         the service name
      * @return Service facade instance
      */
-    private Service getManageableService(final String serviceName) {
+    private Service getManageableService(final String serviceName)
+    {
 
         Service toFind = null;
         final Collection<DependencyFacade> dependencies = this.getTargetDependencies();
 
-        for (final DependencyFacade dependencyFacade : dependencies) {
+        for (final DependencyFacade dependencyFacade : dependencies)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
-            if (dep.getSourceElement().hasStereotype(UMLProfile.STEREOTYPE_SERVICE)) {
+            if (dep.getSourceElement().hasStereotype(UMLProfile.STEREOTYPE_SERVICE))
+            {
 
                 final Service service = (Service) dep.getSourceElement();
 
-                if (service.getName().equals(serviceName)) {
+                if (service.getName().equals(serviceName))
+                {
 
                     toFind = service;
 
-                } else {
+                } else
+                {
 
                     // Trying with other services
                     final Collection<GeneralizableElementFacade> otherServices = service.getAllGeneralizations();
 
                     otherServices.addAll(service.getAllSpecializations());
 
-                    for (final GeneralizableElementFacade generalizableElementFacade : otherServices) {
+                    for (final GeneralizableElementFacade generalizableElementFacade : otherServices)
+                    {
 
                         final Service otherService = (Service) generalizableElementFacade;
 
-                        if (otherService.getName().equals(serviceName)) {
+                        if (otherService.getName().equals(serviceName))
+                        {
 
                             toFind = service;
 
@@ -2219,14 +2605,17 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     }
 
-    private ValueObject getValueObject() {
+    private ValueObject getValueObject()
+    {
 
         final Collection<DependencyFacade> deps = this.getSourceDependencies();
         ValueObject vo = null;
 
-        for (final DependencyFacade dep : deps) {
+        for (final DependencyFacade dep : deps)
+        {
 
-            if (dep.getTargetElement().hasStereotype(UMLProfile.STEREOTYPE_VALUE_OBJECT)) {
+            if (dep.getTargetElement().hasStereotype(UMLProfile.STEREOTYPE_VALUE_OBJECT))
+            {
 
                 vo = (ValueObject) dep.getTargetElement();
 
@@ -2238,11 +2627,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
     }
 
-    protected boolean hasValueObject(final Entity entity) {
+    protected boolean hasValueObject(final Entity entity)
+    {
 
         final Collection<DependencyFacade> deps = entity.getSourceDependencies();
 
-        for (final DependencyFacade dependencyFacade : deps) {
+        for (final DependencyFacade dependencyFacade : deps)
+        {
 
             final DependencyFacade dep = dependencyFacade;
 
@@ -2252,7 +2643,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic {
 
             // }
 
-            if (dep.getTargetElement().hasStereotype(UMLProfile.STEREOTYPE_VALUE_OBJECT)) {
+            if (dep.getTargetElement().hasStereotype(UMLProfile.STEREOTYPE_VALUE_OBJECT))
+            {
 
                 return true;
 
