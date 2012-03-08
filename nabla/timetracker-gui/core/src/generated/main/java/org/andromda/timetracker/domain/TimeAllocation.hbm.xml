@@ -27,11 +27,11 @@
                 <type name="java.util.Date"/>
             </property>
         </component>
-        <many-to-one name="timecard" class="org.andromda.timetracker.domain.TimecardImpl" foreign-key="TIME_ALLOCATION_TIMECARD_FKC" not-null="true" lazy="proxy" fetch="select">
-            <column name="TIMECARD_FK" not-null="true" sql-type="BIGINT"/>
-        </many-to-one>
         <many-to-one name="task" class="org.andromda.timetracker.domain.TaskImpl" foreign-key="TIME_ALLOCATION_TASK_FKC" not-null="true" lazy="proxy" fetch="select">
             <column name="TASK_FK" not-null="true" sql-type="BIGINT"/>
+        </many-to-one>
+        <many-to-one name="timecard" class="org.andromda.timetracker.domain.TimecardImpl" foreign-key="TIME_ALLOCATION_TIMECARD_FKC" not-null="true" lazy="proxy" fetch="select">
+            <column name="TIMECARD_FK" not-null="true" sql-type="BIGINT"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

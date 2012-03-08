@@ -4,16 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.andromda.timetracker</groupId>
-        <artifactId>timetracker</artifactId>
-        <version>3.4-SNAPSHOT</version>
+        <artifactId>timetracker-gui</artifactId>
+        <version>3.4</version>
     </parent>
-    <artifactId>timetracker-core</artifactId>
+    <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker Core Business Tier</name>
-    <dependencies>
+    <dependencies>  
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -68,6 +68,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+        <!--
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-search</artifactId>
+	</dependency>        
+	-->
         <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
         <!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6>
         <dependency>
@@ -161,12 +167,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency-->
+        <!--
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>${testdb.version}</version>
-            <!--scope>test</scope-->
+            <version>${jdbc.version}</version>
         </dependency>
+        -->
     </dependencies>
     <build>
         <plugins>
@@ -191,7 +198,7 @@
                     <jdbcUsername>${jdbc.username}</jdbcUsername>
                     <jdbcPassword>${jdbc.password}</jdbcPassword>
                     <!-- set this to false if you don't want to execute
-                         the generated SQL scripts (creates and saves DDL under app/target/schema*.sql -->
+                         the generated SQL scripts (creates and saves DDL under app/src/main/sql/schema*.sql -->
                     <executeScripts>true</executeScripts>
                     <properties>
                         <property>
@@ -205,11 +212,11 @@
                         </property>
                         <property>
                             <name>createOutputPath</name>
-                            <value>${project.basedir}/../app/${target.dir}/schema-create.sql</value>
+                            <value>${project.basedir}/../app/src/main/sql/schema-create.sql</value>
                         </property>
                         <property>
                             <name>dropOutputPath</name>
-                            <value>${project.basedir}/../app/${target.dir}/schema-drop.sql</value>
+                            <value>${project.basedir}/../app/src/main/sql/schema-drop.sql</value>
                         </property>
                     </properties>
                     <!-- You might need to execute additional scripts, just uncomment and add
@@ -234,16 +241,38 @@
               <version>${hibernate3.maven.plugin.version}</version>
               <executions>
                 <execution>
+                  <id>hbm2ddl</id>
                   <phase>process-classes</phase>
                   <goals>
                     <goal>hbm2ddl</goal>
                   </goals>
                 </execution>
+		<execution>
+		  <id>hbm2doc</id>
+                  <phase>site</phase>
+                  <goals>
+                    <goal>hbm2doc</goal>
+		    <goal>hbm2cfgxml</goal>
+		    <!--<goal>hbm2java</goal>-->		    
+		    <!--<goal>hbm2hbmxml</goal>-->
+		    <!--<goal>hbmtemplate</goal>-->
+                  </goals>
+                </execution>                
               </executions>
               <configuration>
                 <components>
                   <component>
                     <name>hbm2ddl</name>
+                    <implementation>configuration</implementation>
+                  </component>
+                  <component>
+                    <name>hbm2doc</name>
+                    <outputDirectory>${target.dir}/site/hibernate3/javadoc</outputDirectory>
+                  </component>
+                  <component>
+                    <name>hbm2cfgxml</name>
+                    <outputDirectory>${target.dir}/site/hibernate3/generated-mappings</outputDirectory>
+                    <!--<implementation>annotationconfiguration</implementation>-->
                     <implementation>configuration</implementation>
                   </component>
                 </components>
@@ -256,14 +285,19 @@
                   <jdk5>true</jdk5>
                   <persistenceunit>${project.parent.artifactId}</persistenceunit>
                   <configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
+                  
                   <outputfilename>../../../../app/src/main/sql/schema.sql</outputfilename>
+                  <!--
+                  <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
+                  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
+                  -->
                 </componentProperties>
               </configuration>
               <dependencies>
                   <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                    <version>${testdb.version}</version>
+                    <groupId>${jdbc.groupId}</groupId>
+		    <artifactId>${jdbc.artifactId}</artifactId>
+		    <version>${jdbc.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
@@ -332,9 +366,9 @@
                 </configuration>
                 <dependencies>
                   <dependency>
-                    <groupId>${testdb.groupId}</groupId>
-                    <artifactId>${testdb.artifactId}</artifactId>
-                    <version>${testdb.version}</version>
+                    <groupId>${jdbc.groupId}</groupId>
+		    <artifactId>${jdbc.artifactId}</artifactId>
+		    <version>${jdbc.version}</version>
                   </dependency>
                 </dependencies>
             </plugin>
@@ -350,10 +384,10 @@
                 <artifactId>sql-maven-plugin</artifactId>
                 <version>${maven.sql.plugin.version}</version>
                 <configuration>
-                    <driver>${testdb.driver}</driver>
-                    <url>${testdb.url}</url>
-                    <username>${testdb.username}</username>
-                    <password>${testdb.password}</password>
+                    <driver>${jdbc.driver}</driver>
+                    <url>${jdbc.url}</url>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
                     <autocommit>true</autocommit>
                     <skip>${maven.test.skip}</skip>
                 </configuration>
@@ -381,9 +415,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>${testdb.groupId}</groupId>
-                        <artifactId>${testdb.artifactId}</artifactId>
-                        <version>${testdb.version}</version>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -402,16 +436,23 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!--plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-            </plugin-->
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
         </plugins>
+        <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+		<filtering>true</filtering>
+		<includes>
+			<include>**/*.xml</include>
+			<include>**/*.properties</include>
+		</includes>
+            </resource>
+            <resource>
+                <directory>${maven.build.generated}/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
             </resource>
             <resource>
                 <directory>${maven.build.generated}/main/java</directory>
@@ -419,54 +460,15 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-        </resources>
-        <!--
-        <pluginManagement>
-         <plugins>
-          <plugin>
-           <groupId>org.eclipse.m2e</groupId>
-           <artifactId>lifecycle-mapping</artifactId>
-           <version>1.0.0</version>
-           <configuration>
-            <lifecycleMappingMetadata>
-             <pluginExecutions>
-              <pluginExecution>
-               <pluginExecutionFilter>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>hibernate3-maven-plugin</artifactId>
-                <versionRange>[${hibernate3.maven.plugin.version},)</versionRange>
-                <goals>
-                 <goal>hbm2ddl</goal>
-                </goals>
-               </pluginExecutionFilter>
-               <action>
-                <ignore></ignore>
-               </action>
-              </pluginExecution>
-              <pluginExecution>
-               <pluginExecutionFilter>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <versionRange>[1.5,)</versionRange>
-                <goals>
-                 <goal>execute</goal>
-                </goals>
-               </pluginExecutionFilter>
-               <action>
-                <ignore></ignore>
-               </action>
-              </pluginExecution>
-             </pluginExecutions>
-            </lifecycleMappingMetadata>
-           </configuration>
-          </plugin>
-         </plugins>
-        </pluginManagement>
-        -->
+        </resources>      
     </build>
     <properties>
-        <!-- Need a running db instance. Changed to automatic maven configured H2 DB -->
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>
+        <!-- Need a running db instance. Changed to automatic maven configured H2 DB --> 
+        <!-- test not working with mvn site --> 
+        <!--
+        <maven.test.failure.ignore>true</maven.test.failure.ignore>        
         <testFailureIgnore>true</testFailureIgnore>
+        --> 
     </properties>
+    
 </project>

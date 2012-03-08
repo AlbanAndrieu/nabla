@@ -35,9 +35,9 @@ public class CriteriaSearchProperties
     static
     {
         initializeUser1();
-        initializeTimecard2();
+        initializeTask2();
         initializeTimeAllocation3();
-        initializeTask4();
+        initializeTimecard4();
         initializeUserRole5();
     }
 
@@ -60,25 +60,17 @@ public class CriteriaSearchProperties
         );
     }
 
-    private static final void initializeTimecard2()
+    private static final void initializeTask2()
     {
         embeddedValueNamesByType.put(
-            TimecardImpl.class,
+            TaskImpl.class,
             null);
         embeddedValuesByType.put(
-            TimecardImpl.class,
+            TaskImpl.class,
             null);
         navigableAssociationEndsByType.put(
-            TimecardImpl.class,
-            Arrays.asList(
-                new PropertyType[]
-                {
-                    new PropertyType("submitter", UserImpl.class),
-                    new PropertyType("approver", UserImpl.class),
-                    new PropertyType("allocations", TimeAllocationImpl.class)
-                }
-            )
-        );
+            TaskImpl.class,
+            null);
     }
 
     private static final void initializeTimeAllocation3()
@@ -101,24 +93,32 @@ public class CriteriaSearchProperties
             Arrays.asList(
                 new PropertyType[]
                 {
-                    new PropertyType("timecard", TimecardImpl.class),
-                    new PropertyType("task", TaskImpl.class)
+                    new PropertyType("task", TaskImpl.class),
+                    new PropertyType("timecard", TimecardImpl.class)
                 }
             )
         );
     }
 
-    private static final void initializeTask4()
+    private static final void initializeTimecard4()
     {
         embeddedValueNamesByType.put(
-            TaskImpl.class,
+            TimecardImpl.class,
             null);
         embeddedValuesByType.put(
-            TaskImpl.class,
+            TimecardImpl.class,
             null);
         navigableAssociationEndsByType.put(
-            TaskImpl.class,
-            null);
+            TimecardImpl.class,
+            Arrays.asList(
+                new PropertyType[]
+                {
+                    new PropertyType("approver", UserImpl.class),
+                    new PropertyType("submitter", UserImpl.class),
+                    new PropertyType("allocations", TimeAllocationImpl.class)
+                }
+            )
+        );
     }
 
     private static final void initializeUserRole5()

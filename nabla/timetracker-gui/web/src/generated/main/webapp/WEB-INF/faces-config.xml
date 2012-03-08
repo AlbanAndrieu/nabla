@@ -3,7 +3,12 @@
 
 
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
-
+<!--
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+-->
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -11,14 +16,14 @@
         version="1.2">
     <application>
         <variable-resolver>
-            org.andromda.presentation.jsf.JsfVariableResolver
+            org.andromda.presentation.gui.JsfVariableResolver
         </variable-resolver>
         <default-render-kit-id>
             org.apache.myfaces.trinidad.core
         </default-render-kit-id>
     </application>
     <lifecycle>
-        <phase-listener>org.andromda.presentation.jsf.MessagePhaseListener</phase-listener>
+        <phase-listener>org.andromda.presentation.gui.MessagePhaseListener</phase-listener>
     </lifecycle>
     <!-- forms -->
     <managed-bean>
@@ -48,13 +53,13 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>timecardController</managed-bean-name>
-        <managed-bean-class>org.andromda.timetracker.web.timecarddetails.TimecardControllerImpl</managed-bean-class>
+        <managed-bean-name>homeController</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.web.timetrackerhome.HomeControllerImpl</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>homeController</managed-bean-name>
-        <managed-bean-class>org.andromda.timetracker.web.timetrackerhome.HomeControllerImpl</managed-bean-class>
+        <managed-bean-name>timecardController</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.web.timecarddetails.TimecardControllerImpl</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 
@@ -70,17 +75,12 @@
         <managed-bean-class>org.andromda.timetracker.domain.crud.TaskControllerImpl</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-    <managed-bean>
-        <managed-bean-name>autocompleteHelper</managed-bean-name>
-        <managed-bean-class>org.andromda.presentation.jsf.AutocompleteHelper</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
 
     <!-- menuModel nodes -->
 
     <managed-bean>
        <managed-bean-name>navItem_search_timecards_usecase</managed-bean-name>
-       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
+       <managed-bean-class>org.andromda.presentation.gui.NavigationItem</managed-bean-class>
        <managed-bean-scope>request</managed-bean-scope>
        <managed-property>
           <property-name>label</property-name>
@@ -104,33 +104,8 @@
        </managed-property>
     </managed-bean>
     <managed-bean>
-       <managed-bean-name>navItem_timecard_details_usecase</managed-bean-name>
-       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
-       <managed-bean-scope>request</managed-bean-scope>
-       <managed-property>
-          <property-name>label</property-name>
-          <value>timecard.details.title</value>
-       </managed-property>
-       <managed-property>
-          <property-name>viewId</property-name>
-          <value>/org/andromda/timetracker/web/timecarddetails/timecard-details.xhtml</value>
-       </managed-property>
-       <managed-property>
-          <property-name>controllerBean</property-name>
-          <value>#{timecardController}</value>
-       </managed-property>
-       <managed-property>
-         <property-name>controllerAction</property-name>
-         <value>timecardDetails</value>
-       </managed-property>
-       <managed-property>
-          <property-name>outcome</property-name>
-          <value>timecard-details-usecase</value>
-       </managed-property>
-    </managed-bean>
-    <managed-bean>
        <managed-bean-name>navItem_time_tracker_home_usecase</managed-bean-name>
-       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
+       <managed-bean-class>org.andromda.presentation.gui.NavigationItem</managed-bean-class>
        <managed-bean-scope>request</managed-bean-scope>
        <managed-property>
           <property-name>label</property-name>
@@ -153,10 +128,35 @@
           <value>time-tracker-home-usecase</value>
        </managed-property>
     </managed-bean>
+    <managed-bean>
+       <managed-bean-name>navItem_timecard_details_usecase</managed-bean-name>
+       <managed-bean-class>org.andromda.presentation.gui.NavigationItem</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+          <property-name>label</property-name>
+          <value>timecard.details.title</value>
+       </managed-property>
+       <managed-property>
+          <property-name>viewId</property-name>
+          <value>/org/andromda/timetracker/web/timecarddetails/timecard-details.xhtml</value>
+       </managed-property>
+       <managed-property>
+          <property-name>controllerBean</property-name>
+          <value>#{timecardController}</value>
+       </managed-property>
+       <managed-property>
+         <property-name>controllerAction</property-name>
+         <value>timecardDetails</value>
+       </managed-property>
+       <managed-property>
+          <property-name>outcome</property-name>
+          <value>timecard-details-usecase</value>
+       </managed-property>
+    </managed-bean>
 
     <managed-bean>
        <managed-bean-name>navItem_ManageUser</managed-bean-name>
-       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
+       <managed-bean-class>org.andromda.presentation.gui.NavigationItem</managed-bean-class>
        <managed-bean-scope>request</managed-bean-scope>
        <managed-property>
           <property-name>label</property-name>
@@ -182,7 +182,7 @@
 
     <managed-bean>
        <managed-bean-name>navItem_ManageTask</managed-bean-name>
-       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
+       <managed-bean-class>org.andromda.presentation.gui.NavigationItem</managed-bean-class>
        <managed-bean-scope>request</managed-bean-scope>
        <managed-property>
           <property-name>label</property-name>
@@ -216,7 +216,7 @@
        </managed-bean-class>
        <managed-bean-scope>request</managed-bean-scope>
        <list-entries>
-          <value-class>org.andromda.presentation.jsf.NavigationItem</value-class>
+          <value-class>org.andromda.presentation.gui.NavigationItem</value-class>
           <value>#{navItem_time_tracker_home_usecase}</value>
           <value>#{navItem_search_timecards_usecase}</value>
           <value>#{navItem_timecard_details_usecase}</value>
@@ -257,7 +257,7 @@
 
     <managed-bean>
       <managed-bean-name>menuModel</managed-bean-name>
-      <managed-bean-class>org.andromda.presentation.jsf.MenuModelAdapter</managed-bean-class>
+      <managed-bean-class>org.andromda.presentation.gui.MenuModelAdapter</managed-bean-class>
       <managed-bean-scope>request</managed-bean-scope>
       <managed-property>
         <property-name>model</property-name>
@@ -272,12 +272,12 @@
           <!-- Search Timecards views -->
           <value>/org/andromda/timetracker/web/timecardsearch/search-timecards.xhtml</value>
           <value>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.xhtml</value>
-          <!-- Timecard Details views -->
-          <value>/org/andromda/timetracker/web/timecarddetails/timecard.xhtml</value>
-          <value>/org/andromda/timetracker/web/timecarddetails/timecard-details.xhtml</value>
           <!-- Time Tracker Home views -->
           <value>/org/andromda/timetracker/web/timetrackerhome/time-tracker-home.xhtml</value>
           <value>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.xhtml</value>
+          <!-- Timecard Details views -->
+          <value>/org/andromda/timetracker/web/timecarddetails/timecard.xhtml</value>
+          <value>/org/andromda/timetracker/web/timecarddetails/timecard-details.xhtml</value>
           <value>/org/andromda/timetracker/domain/crud/user-crud.xhtml</value>
           <value>/org/andromda/timetracker/domain/crud/ManageUser.xhtml</value>
           <value>/org/andromda/timetracker/domain/crud/task-crud.xhtml</value>
@@ -296,15 +296,15 @@
     </navigation-rule>
     <navigation-rule>
         <navigation-case>
-            <from-outcome>timecard-details-usecase</from-outcome>
-            <to-view-id>/org/andromda/timetracker/web/timecarddetails/timecard-details.xhtml</to-view-id>
+            <from-outcome>time-tracker-home-usecase</from-outcome>
+            <to-view-id>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <navigation-case>
-            <from-outcome>time-tracker-home-usecase</from-outcome>
-            <to-view-id>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.xhtml</to-view-id>
+            <from-outcome>timecard-details-usecase</from-outcome>
+            <to-view-id>/org/andromda/timetracker/web/timecarddetails/timecard-details.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -324,22 +324,8 @@
     </navigation-rule>
     <navigation-rule>
         <navigation-case>
-            <from-outcome>timecard-details-timecard</from-outcome>
-            <to-view-id>/org/andromda/timetracker/web/timecarddetails/timecard.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <navigation-case>
             <from-outcome>time-tracker-home-time-tracker-home</from-outcome>
             <to-view-id>/org/andromda/timetracker/web/timetrackerhome/time-tracker-home.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>time-tracker-home-latest-timecard</from-outcome>
-            <to-view-id>/org/andromda/timetracker/web/timetrackerhome/time-tracker-home-latest-timecard.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -361,6 +347,20 @@
         <navigation-case>
             <from-outcome>time-tracker-home-approve-timecards</from-outcome>
             <to-view-id>/org/andromda/timetracker/web/timetrackerhome/time-tracker-home-approve-timecards.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>time-tracker-home-latest-timecard</from-outcome>
+            <to-view-id>/org/andromda/timetracker/web/timetrackerhome/time-tracker-home-latest-timecard.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>timecard-details-timecard</from-outcome>
+            <to-view-id>/org/andromda/timetracker/web/timecarddetails/timecard.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -403,7 +403,7 @@
 
     <managed-bean>
         <managed-bean-name>preferences</managed-bean-name>
-        <managed-bean-class>org.andromda.presentation.jsf.Preferences</managed-bean-class>
+        <managed-bean-class>org.andromda.presentation.gui.Preferences</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
         <managed-property>
             <property-name>skin</property-name>
@@ -419,35 +419,43 @@
         <converter-id>org.andromda.timetracker.domain.TimecardStatus</converter-id>
         <converter-class>org.andromda.timetracker.domain.TimecardStatusJsfConverter</converter-class>
     </converter>
+    <!--
     <converter>
         <converter-for-class>org.andromda.timetracker.domain.TimecardStatus</converter-for-class>
         <converter-class>org.andromda.timetracker.domain.TimecardStatusJsfConverter</converter-class>
     </converter>
+    -->
     <converter>
         <converter-id>org.andromda.timetracker.domain.Role</converter-id>
         <converter-class>org.andromda.timetracker.domain.RoleJsfConverter</converter-class>
     </converter>
+    <!--
     <converter>
         <converter-for-class>org.andromda.timetracker.domain.Role</converter-for-class>
         <converter-class>org.andromda.timetracker.domain.RoleJsfConverter</converter-class>
     </converter>
+    -->
 
     <converter>
         <converter-id>org.andromda.timetracker.domain.crud.UserJsfConverter</converter-id>
         <converter-class>org.andromda.timetracker.domain.crud.UserJsfConverter</converter-class>
     </converter>
+    <!--
     <converter>
         <converter-for-class>org.andromda.timetracker.domain.crud.UserJsfConverter</converter-for-class>
         <converter-class>org.andromda.timetracker.domain.crud.UserJsfConverter</converter-class>
     </converter>
+    -->
     <converter>
         <converter-id>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-id>
         <converter-class>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-class>
     </converter>
+    <!--
     <converter>
         <converter-for-class>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-for-class>
         <converter-class>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-class>
     </converter>
+    -->
 
     <!-- faces-config merge-point -->
 </faces-config>

@@ -1,10 +1,10 @@
 // license-header java merge-point
 //
 /**
- * @author Generated on 02/29/2012 22:27:24+0100 Do not modify by hand!
+ * @author Generated on 03/08/2012 13:52:38+0100 Do not modify by hand!
  *
  * TEMPLATE:     ValueObject.vsl in andromda-java-cartridge.
- * MODEL CLASS:  Data::timetracker::org.andromda.timetracker::vo::TaskVO
+ * MODEL CLASS:  TimeTracker::TimeTracker::org.andromda.timetracker::vo::TaskVO
  * STEREOTYPE:   ValueObject
  */
 package org.andromda.timetracker.vo;

@@ -222,7 +222,7 @@
     <!-- ODS export filter -->
     <filter>
         <filter-name>ODSFilter</filter-name>
-        <filter-class>org.andromda.presentation.jsf.ODSFilter</filter-class>
+        <filter-class>org.andromda.presentation.gui.ODSFilter</filter-class>
     </filter>
     <!-- Trinidad Filter -->
     <filter>
@@ -232,7 +232,7 @@
     <!-- Trinidad patch filter -->
     <filter>
         <filter-name>TrinidadDialogFilter</filter-name>
-        <filter-class>org.andromda.presentation.jsf.TrinidadDialogFilter</filter-class>
+        <filter-class>org.andromda.presentation.gui.TrinidadDialogFilter</filter-class>
     </filter>
 
     <filter>
@@ -314,7 +314,7 @@
     </servlet>
     <servlet>
         <servlet-name>File Download Servlet</servlet-name>
-        <servlet-class>org.andromda.presentation.jsf.FileDownloadServlet</servlet-class>
+        <servlet-class>org.andromda.presentation.gui.FileDownloadServlet</servlet-class>
         <load-on-startup>3</load-on-startup>
     </servlet>
     <!-- resource loader servlet -->
@@ -327,12 +327,12 @@
         <servlet-class>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
         <servlet-class>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
+        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
@@ -368,12 +368,12 @@
         <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.jsf</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard-details.jsf</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
         <url-pattern>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
+        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard-details.jsf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>45</session-timeout>

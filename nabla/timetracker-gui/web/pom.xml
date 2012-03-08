@@ -4,21 +4,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.andromda.timetracker</groupId>
-        <artifactId>timetracker</artifactId>
-        <version>3.4-SNAPSHOT</version>
+        <artifactId>timetracker-gui</artifactId>
+        <version>3.4</version>
     </parent>
-    <artifactId>timetracker-web</artifactId>
+    <artifactId>web</artifactId>
     <packaging>war</packaging>
     <name>TimeTracker Web</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -62,9 +62,9 @@
             <groupId>oro</groupId>
             <artifactId>oro</artifactId>
         </dependency>
-        <dependency>
+	<dependency>
             <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-jsf-cartridge-components</artifactId>
+            <artifactId>andromda-gui-components</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.andromda</groupId>
@@ -78,8 +78,13 @@
                     <groupId>org.andromda.translationlibraries</groupId>
                     <artifactId>andromda-ocl-validation-library</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.andromda.translationlibraries</groupId>
+                    <artifactId>andromda-ocl-translation-core</artifactId>
+                </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>        
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -207,9 +212,16 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>el-api</artifactId>
+            <version>${el.api.version}</version>
+            <scope>provided</scope>
+        </dependency>                    
     </dependencies>
     <build>
         <finalName>timetracker</finalName>
+        <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
