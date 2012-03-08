@@ -678,7 +678,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            this.logger_.info("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
+            this.logger_.debug("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
                     + this.getFullyQualifiedName());
 
             // if (otherEnd instanceof ManageableEntityAssociationEnd)
@@ -687,7 +687,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
                 manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
             } else
             {
-                this.logger_.info("collectAssociationEndsEntity : " + otherEnd.getName() + " is not ManageableEntityAssociationEnd for : " + otherEnd.getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
+                this.logger_.info("collectAssociationEndsEntity : " + otherEnd.getName() + " is not Entity for : " + otherEnd.getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
             }
 
         }
@@ -702,7 +702,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             if (parentEntityObject instanceof /* ManageableEntity */Entity)
             {
 
-                this.logger_.info("collectAssociationEndsEntity : " + ((/* ManageableEntity */Entity) parentEntityObject).getName() + " parent found : "
+                this.logger_.debug("collectAssociationEndsEntity : " + ((/* ManageableEntity */Entity) parentEntityObject).getName() + " parent found : "
                         + ((/* ManageableEntity */Entity) parentEntityObject).getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
 
                 this.collectAssociationEndsEntity(manageableAssociationEnds, (/* ManageableEntity */Entity) parentEntityObject, filterRelevantAssoc);
@@ -727,8 +727,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            this.logger_.info("collectAssociationEndsManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
-                    + this.getFullyQualifiedName());
+            this.logger_.debug("collectAssociationEndsManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
+                    + " - " + this.getFullyQualifiedName());
 
             // if (otherEnd.isNavigable() && otherEnd.getType() instanceof Entity) {
             if (otherEnd.isNavigable() && (otherEnd.getType() instanceof Entity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE_REF)
@@ -738,8 +738,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
                 manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
             } else
             {
-                this.logger_.info("collectAssociationEndsManageableEntity : " + otherEnd.getName() + " is not ManageableEntityAssociationEnd for : " + otherEnd.getFullyQualifiedName() + " - "
-                        + this.getFullyQualifiedName());
+                this.logger_.info("collectAssociationEndsManageableEntity : " + otherEnd.getName() + " is not a valid association end for : " + otherEnd.getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
             }
 
         }
@@ -754,7 +753,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             if (parentEntityObject instanceof ManageableEntity /* Entity */)
             {
 
-                this.logger_.info("collectAssociationEndsManageableEntity : " + ((ManageableEntity /* Entity */) parentEntityObject).getName() + " parent found : "
+                this.logger_.debug("collectAssociationEndsManageableEntity : " + ((ManageableEntity /* Entity */) parentEntityObject).getName() + " parent found : "
                         + ((ManageableEntity /* Entity */) parentEntityObject).getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
 
                 this.collectAssociationEndsManageableEntity(manageableAssociationEnds, (ManageableEntity /* Entity */) parentEntityObject, filterRelevantAssoc);
@@ -775,7 +774,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            this.logger_.info("collectAssociationEndsGuiManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
+            this.logger_.debug("collectAssociationEndsGuiManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
                     + " - " + this.getFullyQualifiedName());
 
             if (otherEnd.isNavigable() && (otherEnd.getType() instanceof GuiManageableEntity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)
@@ -804,7 +803,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             if (parentEntityObject instanceof GuiManageableEntity)
             {
 
-                this.logger_.info("collectAssociationEndsGuiManageableEntity : " + ((Entity) parentEntityObject).getName() + " parent found : " + ((Entity) parentEntityObject).getFullyQualifiedName() + " - "
+                this.logger_.debug("collectAssociationEndsGuiManageableEntity : " + ((Entity) parentEntityObject).getName() + " parent found : " + ((Entity) parentEntityObject).getFullyQualifiedName() + " - "
                         + this.getFullyQualifiedName());
 
                 this.collectAssociationEndsGuiManageableEntity(manageableAssociationEnds, (GuiManageableEntity) parentEntityObject, filterRelevantAssoc);
