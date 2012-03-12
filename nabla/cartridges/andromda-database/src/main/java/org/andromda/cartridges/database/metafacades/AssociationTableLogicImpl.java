@@ -10,18 +10,14 @@ import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.database.metafacades.AssociationTable.
- * 
+ *
  * @see org.andromda.cartridges.database.metafacades.AssociationTable
- * @author Chad Brandon
- * @author Wouter Zoons
- * @author Juan Carlos Gastélum Rocha
  */
-public class AssociationTableLogicImpl extends AssociationTableLogic implements
-                org.andromda.cartridges.database.metafacades.AssociationTable
+public class AssociationTableLogicImpl extends AssociationTableLogic implements org.andromda.cartridges.database.metafacades.AssociationTable
 {
     // ---------------- constructor -------------------------------
 
-    public AssociationTableLogicImpl(Object metaObject, String context)
+    public AssociationTableLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
     }
@@ -29,6 +25,7 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements
     /**
      * @see org.andromda.cartridges.database.metafacades.AssociationTable#getForeignKeyColumns()
      */
+    @Override
     protected java.util.Collection handleGetForeignKeyColumns()
     {
         return this.getAssociationEnds();
@@ -37,12 +34,13 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements
     /**
      * @see org.andromda.cartridges.database.metafacades.AssociationTable#getPrimaryKeyColumns()
      */
+    @Override
     protected String handleGetPrimaryKeyColumns()
     {
         final StringBuffer columns = new StringBuffer();
-        for (Iterator endIterator = this.getAssociationEnds().iterator(); endIterator.hasNext();)
+        for (final Iterator endIterator = this.getAssociationEnds().iterator(); endIterator.hasNext();)
         {
-            Object object = endIterator.next();
+            final Object object = endIterator.next();
             if (EntityAssociationEnd.class.isAssignableFrom(object.getClass()))
             {
                 columns.append(((EntityAssociationEnd) object).getColumnName());
@@ -58,16 +56,16 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements
     /**
      * @see org.andromda.cartridges.database.metafacades.AssociationTable#getPrimaryKeyConstraintName()
      */
+    @Override
     protected String handleGetPrimaryKeyConstraintName()
     {
-        return DatabaseMetafacadeUtils.toSqlIdentifierName(this
-                        .getConfiguredProperty(DatabaseGlobals.PRIMARY_KEY_CONSTRAINT_PREFIX), this, this
-                        .getMaxSqlNameLength());
+        return DatabaseMetafacadeUtils.toSqlIdentifierName(this.getConfiguredProperty(DatabaseGlobals.PRIMARY_KEY_CONSTRAINT_PREFIX), this, this.getMaxSqlNameLength());
     }
 
     /**
      * @see org.andromda.cartridges.database.metafacades.AssociationTable#isForeignKeyColumnsPresent()
      */
+    @Override
     protected boolean handleIsForeignKeyColumnsPresent()
     {
         return !this.getForeignKeyColumns().isEmpty();
@@ -90,8 +88,7 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements
         int dummyLoadSize = -1;
 
         // Get the initial load size for this association table, the load size of one of the association ends
-        dummyLoadSize = ((ForeignKeyColumn) this.getForeignKeyColumns().toArray()[0]).getImportedTable()
-                        .getDummyLoadSize();
+        dummyLoadSize = ((ForeignKeyColumn) this.getForeignKeyColumns().toArray()[0]).getImportedTable().getDummyLoadSize();
 
         return dummyLoadSize;
     }

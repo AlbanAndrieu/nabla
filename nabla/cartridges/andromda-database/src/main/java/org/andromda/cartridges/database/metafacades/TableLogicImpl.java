@@ -19,15 +19,11 @@ import org.apache.commons.collections.Predicate;
  *
  * @see org.andromda.cartridges.database.metafacades.Table
  */
-public class TableLogicImpl
-    extends TableLogic
-    implements org.andromda.cartridges.database.metafacades.Table
+public class TableLogicImpl extends TableLogic implements org.andromda.cartridges.database.metafacades.Table
 {
     // ---------------- constructor -------------------------------
 
-    public TableLogicImpl(
-        Object metaObject,
-        String context)
+    public TableLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
     }
@@ -35,6 +31,7 @@ public class TableLogicImpl
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getInitialLoadSize()
      */
+    @Override
     protected int handleGetDummyLoadSize()
     {
         /*
@@ -49,13 +46,13 @@ public class TableLogicImpl
         // first get the initial load size for this table
         try
         {
-            final String dummyLoadSizeString = (String)this.findTaggedValue(DatabaseProfile.TAGGEDVALUE_DUMMYLOAD_SIZE);
+            final String dummyLoadSizeString = (String) this.findTaggedValue(DatabaseProfile.TAGGEDVALUE_DUMMYLOAD_SIZE);
             if (dummyLoadSizeString != null)
             {
                 dummyLoadSize = Integer.parseInt(dummyLoadSizeString);
             }
         }
-        catch (Exception e)
+        catch (final Exception e)
         {
             // do nothing, let the 'finally' clause handle it
         }
@@ -71,31 +68,31 @@ public class TableLogicImpl
         {
             try
             {
-                final String multiplierString = (String)getConfiguredProperty(DatabaseGlobals.DUMMYLOAD_MULTIPLIER);
+                final String multiplierString = (String) this.getConfiguredProperty(DatabaseGlobals.DUMMYLOAD_MULTIPLIER);
                 if (multiplierString != null)
                 {
                     dummyLoadMultiplier = Float.parseFloat(multiplierString);
                 }
             }
-            catch (MetafacadeFactoryException mfe)
+            catch (final MetafacadeFactoryException mfe)
             {
                 // this means the namespace property has not been registered
-                logger.info(
-                        "Namespace property \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER +
-                        "\' not specified, using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT );
+                // logger.info(
+                // "Namespace property \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER +
+                // "\' not specified, using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT );
                 dummyLoadMultiplier = DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT;
             }
-            catch (Exception e)
+            catch (final Exception e)
             {
                 // this means the property has been registered with an invalid value
-                logger.warn(
-                        "Invalid namespace property value for \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER +
-                        "\', using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT +
-                        " instead of "+getConfiguredProperty(DatabaseGlobals.DUMMYLOAD_MULTIPLIER));
+                // logger.warn(
+                // "Invalid namespace property value for \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER +
+                // "\', using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT +
+                // " instead of "+getConfiguredProperty(DatabaseGlobals.DUMMYLOAD_MULTIPLIER));
                 dummyLoadMultiplier = DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT;
             }
 
-            dummyLoadSize = (int)Math.ceil(dummyLoadSize * dummyLoadMultiplier);
+            dummyLoadSize = (int) Math.ceil(dummyLoadSize * dummyLoadMultiplier);
         }
 
         return dummyLoadSize;
@@ -104,36 +101,30 @@ public class TableLogicImpl
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getForeignKeyColumns()
      */
+    @Override
     protected java.util.Collection handleGetForeignKeyColumns()
     {
-        Collection foreignKeyColumns = new ArrayList();
+        final Collection foreignKeyColumns = new ArrayList();
 
-        Collection associationEnds = this.getAssociationEnds();
-        for (Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
+        final Collection associationEnds = this.getAssociationEnds();
+        for (final Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
         {
-            AssociationEndFacade end = (AssociationEndFacade)iterator.next();
+            final AssociationEndFacade end = (AssociationEndFacade) iterator.next();
             if (ForeignKeyColumn.class.isAssignableFrom(end.getClass()))
             {
-                ForeignKeyColumn column = (ForeignKeyColumn)end;
-                ForeignKeyColumn otherEnd = (ForeignKeyColumn)end.getOtherEnd();
-                boolean thisSideNavigable = column.isNavigable()
-                    && !otherEnd.isNavigable();
-                boolean aggregationPresent = end.isAggregation()
-                    || end.isComposition();
-                boolean otherEndAggregationPresent = otherEnd.isAggregation()
-                    || otherEnd.isComposition();
-                boolean one2One = end.isOne2One()
-                    && ((aggregationPresent && !otherEnd.isForeignIdentifier())
-                    || column.isForeignIdentifier()
-                    || (!otherEndAggregationPresent && thisSideNavigable));
+                final ForeignKeyColumn column = (ForeignKeyColumn) end;
+                final ForeignKeyColumn otherEnd = (ForeignKeyColumn) end.getOtherEnd();
+                final boolean thisSideNavigable = column.isNavigable() && !otherEnd.isNavigable();
+                final boolean aggregationPresent = end.isAggregation() || end.isComposition();
+                final boolean otherEndAggregationPresent = otherEnd.isAggregation() || otherEnd.isComposition();
+                final boolean one2One = end.isOne2One() && ((aggregationPresent && !otherEnd.isForeignIdentifier()) || column.isForeignIdentifier() || (!otherEndAggregationPresent && thisSideNavigable));
                 if (end.isMany2One() || one2One)
                 {
                     if (column.isForeignIdentifier())
                     {
-                        Column foreignColumn = (Column)this.getIdentifierForeignKeyColumns().iterator().next();
-                        foreignKeyColumns.add(foreignColumn );
-                    }
-                    else
+                        final Column foreignColumn = this.getIdentifierForeignKeyColumns().iterator().next();
+                        foreignKeyColumns.add(foreignColumn);
+                    } else
                     {
                         foreignKeyColumns.add(otherEnd);
                     }
@@ -147,24 +138,25 @@ public class TableLogicImpl
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getPrimaryKeyColumns()
      */
+    @Override
     protected Object handleGetPrimaryKeyColumn()
     {
-        Collection identifiers = this.getIdentifiers();
+        final Collection identifiers = this.getIdentifiers();
         return identifiers.isEmpty() ? null : identifiers.iterator().next();
     }
 
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getImportingTables()
      */
+    @Override
     protected java.util.Collection handleGetImportingTables()
     {
-        Collection importingTables = new HashSet();
+        final Collection importingTables = new HashSet();
 
-        Collection associationEnds = this.getAssociationEnds();
-        for (Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
+        final Collection associationEnds = this.getAssociationEnds();
+        for (final Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
         {
-            AssociationEndFacade associationEnd = (AssociationEndFacade)iterator
-                .next();
+            final AssociationEndFacade associationEnd = (AssociationEndFacade) iterator.next();
             if (associationEnd.isOne2Many())
             {
                 importingTables.add(associationEnd.getOtherEnd().getType());
@@ -176,16 +168,15 @@ public class TableLogicImpl
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getImportedTables()
      */
+    @Override
     protected java.util.Collection handleGetImportedTables()
     {
-        Collection importedTables = new HashSet();
+        final Collection importedTables = new HashSet();
 
-        Collection foreignKeyColumns = this.getForeignKeyColumns();
-        for (Iterator iterator = foreignKeyColumns.iterator(); iterator
-            .hasNext();)
+        final Collection foreignKeyColumns = this.getForeignKeyColumns();
+        for (final Iterator iterator = foreignKeyColumns.iterator(); iterator.hasNext();)
         {
-            ForeignKeyColumn foreignKeyColumn = (ForeignKeyColumn)iterator
-                .next();
+            final ForeignKeyColumn foreignKeyColumn = (ForeignKeyColumn) iterator.next();
             importedTables.add(foreignKeyColumn.getTable());
         }
 
@@ -195,6 +186,7 @@ public class TableLogicImpl
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#isForeignKeyColumnsPresent()
      */
+    @Override
     protected boolean handleIsForeignKeyColumnsPresent()
     {
         return !this.getForeignKeyColumns().isEmpty();
@@ -203,67 +195,61 @@ public class TableLogicImpl
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getPrimaryKeyConstraintName()
      */
+    @Override
     protected String handleGetPrimaryKeyConstraintName()
     {
-        return DatabaseMetafacadeUtils
-            .toSqlIdentifierName(
-                this
-                    .getConfiguredProperty(DatabaseGlobals.PRIMARY_KEY_CONSTRAINT_PREFIX),
-                this,
-                this.getMaxSqlNameLength());
+        return DatabaseMetafacadeUtils.toSqlIdentifierName(this.getConfiguredProperty(DatabaseGlobals.PRIMARY_KEY_CONSTRAINT_PREFIX), this, this.getMaxSqlNameLength());
     }
 
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getNonForeignKeyColumns()
      */
+    @Override
     protected Collection handleGetNonForeignKeyColumns()
     {
-        return getAttributes();
+        return this.getAttributes();
     }
 
     /**
      * @see org.andromda.cartridges.database.metafacades.Table#getIdentifierForeignKeyColumns()
      */
+    @Override
     protected Collection handleGetIdentifierForeignKeyColumns()
     {
         Collection columns = null;
-        EntityAssociationEnd end =
-            (EntityAssociationEnd)CollectionUtils.find(
-                this.getAssociationEnds(),
-                new Predicate()
-            {
-                public boolean evaluate(Object object)
-                {
-                    boolean valid = false;
-                    if (EntityAssociationEnd.class
-                        .isAssignableFrom(object.getClass()))
-                    {
-                        valid = ((EntityAssociationEnd)object)
-                            .isForeignIdentifier();
-                    }
-                    return valid;
-                }
-            });
-        if (end != null && EntityAssociationEnd.class.isAssignableFrom(end.getClass()))
+        final EntityAssociationEnd end = (EntityAssociationEnd) CollectionUtils.find(this.getAssociationEnds(), new Predicate()
         {
-            columns = ((Table)end.getType()).getIdentifiers();
+            @Override
+            public boolean evaluate(final Object object)
+            {
+                boolean valid = false;
+                if (EntityAssociationEnd.class.isAssignableFrom(object.getClass()))
+                {
+                    valid = ((EntityAssociationEnd) object).isForeignIdentifier();
+                }
+                return valid;
+            }
+        });
+        if ((end != null) && EntityAssociationEnd.class.isAssignableFrom(end.getClass()))
+        {
+            columns = ((Table) end.getType()).getIdentifiers();
         }
         return columns;
     }
 
+    @Override
     protected Collection handleGetColumns()
     {
         Collection columns = null;
 
-        if (isForeignKeyColumnsPresent())
+        if (this.isForeignKeyColumnsPresent())
         {
             columns = new ArrayList();
-            columns.addAll(getForeignKeyColumns());
-            columns.addAll(getNonForeignKeyColumns());
-        }
-        else
+            columns.addAll(this.getForeignKeyColumns());
+            columns.addAll(this.getNonForeignKeyColumns());
+        } else
         {
-            columns = getNonForeignKeyColumns();
+            columns = this.getNonForeignKeyColumns();
         }
 
         return columns;

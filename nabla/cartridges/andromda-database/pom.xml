@@ -10,10 +10,21 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>andromda-database-cartridge</artifactId>
-    <packaging>andromda-cartridge</packaging>
+    <!-- <packaging>andromda-cartridge</packaging> -->	
+    <packaging>jar</packaging>
     <version>3.4</version>
     <name>AndroMDA Database Cartridge</name>
     <description>Generates database DDL</description>
+    
+   <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>andromda-meta-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope> 
+        </dependency>                              
+    </dependencies>
+    
     <build> 
         <plugins>
             <plugin>
@@ -36,9 +47,9 @@
                         <configuration>
                             <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
                             <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
-                            <actualDirectory>${project.basedir}/../tmp/cartridge-test/actualUML2</actualDirectory>
-                            <expectedDirectory>${project.basedir}/../tmp/cartridge-test/expectedUML2</expectedDirectory>                            
-                            <reportDirectory>${project.basedir}/../tmp/cartridge-test/reportsUML2</reportDirectory>
+                            <actualDirectory>${project.basedir}/../tmp-database/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.basedir}/../tmp-database/cartridge-test/expectedUML2</expectedDirectory>                            
+                            <reportDirectory>${project.basedir}/../tmp-database/cartridge-test/reportsUML2</reportDirectory>
                         </configuration>
                     </execution>
                 </executions>          
@@ -54,6 +65,6 @@
     	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
         <test.model.uri>file:${test.src.dir}/${uml.type}/DatabaseCartridgeTestModel.uml</test.model.uri>
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
-        <test.output.dir>${project.basedir}/../tmp/cartridge-test/actualUML2</test.output.dir>        
+        <test.output.dir>${project.basedir}/../tmp-database/cartridge-test/actualUML2</test.output.dir>        
     </properties>
 </project>
