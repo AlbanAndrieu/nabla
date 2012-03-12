@@ -1154,7 +1154,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
             {
                 result.add(vt);
             }
-            if (GuiUtils.VT_REQUIRED.equals(vt))
+            if (GuiUtils.VT_REQUIRED.equals(vt) && this.isRequired())
             {
                 requiredAdded = true;
                 result.add(GuiParameterLogicImpl.AN_REQUIRED);
@@ -1260,7 +1260,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
                 result.add(GuiParameterLogicImpl.AN_EQUALS + "(\"" + GuiUtils.getEqual((ModelElementFacade) this.THIS()) + "\")");
             }
         }
-        if (!requiredAdded && (this.getLower() > 0))
+        if (!requiredAdded && (this.getLower() > 0) && this.isRequired())
         {
             result.add(GuiParameterLogicImpl.AN_REQUIRED);
         }

@@ -100,9 +100,9 @@ inv:manageableServiceName->notEmpty()
                         <configuration>
                             <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
                             <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
-                            <actualDirectory>${project.basedir}/../tmp/cartridge-test/actualUML2</actualDirectory>
-                            <expectedDirectory>${project.basedir}/../tmp/cartridge-test/expectedUML2</expectedDirectory>                            
-                            <reportDirectory>${project.basedir}/../tmp/cartridge-test/reportsUML2</reportDirectory>
+                            <actualDirectory>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.basedir}/../tmp-gui/cartridge-test/expectedUML2</expectedDirectory>                            
+                            <reportDirectory>${project.basedir}/../tmp-gui/cartridge-test/reportsUML2</reportDirectory>
                         </configuration>
                     </execution>
                 </executions>          
@@ -133,6 +133,6 @@ inv:manageableServiceName->notEmpty()
     	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
         <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
-        <test.output.dir>${project.basedir}/../tmp/cartridge-test/actualUML2</test.output.dir>
+        <test.output.dir>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</test.output.dir>
     </properties>
 </project>
