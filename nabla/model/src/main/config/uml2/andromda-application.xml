@@ -87,9 +87,9 @@
                 <property name="parameterNameMask">none</property -->
                 <property name="enumerationLiteralNameMask">upperunderscore</property>
                 <property name="hibernateVersion">3</property>
-                <property name="defaultIdentifierType">datatype::Integer</property>
+                <!--<property name="defaultIdentifierType">datatype::Integer</property>-->
                 <property name="persistenceContainerName">jboss</property>                
-                <property name="mergeLocation">${merge.templates.location}</property>  
+                <property name="mergeLocation">${merge.templates.location}</property>
                 <!-- Override default @todo to set to Eclipse default -->      	
         	<property name="toDoTag">TODO</property>  
                 <!-- Automatically makes English names plural (generally adds s if missing).
@@ -104,12 +104,12 @@
                 <property name="password">${jdbc.password}</property>
                 <property name="driver">${jdbc.driver}</property>
                 <property name="connectionUrl">${jdbc.url}</property>
-                <property name="testUsername">${testdb.username}</property>
-                <property name="testPassword">${testdb.password}</property>
-                <property name="testDriver">${testdb.driver}</property>
-                <property name="testConnectionUrl">${testdb.url}</property>
-                <property name="testDialect">${testdb.dialect}</property>
-                <property name="hibernateHbm2DDLAuto">update</property>        	
+                <property name="testUsername">${jdbc.username}</property>
+                <property name="testPassword">${jdbc.password}</property>
+                <property name="testDriver">${jdbc.driver}</property>
+                <property name="testConnectionUrl">${jdbc.url}</property>
+                <property name="testDialect">${hibernate.dialect}</property>
+                <property name="hibernateHbm2DDLAuto">update</property>     	
             </properties>
         </namespace>
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-meta-cartridge/namespace.html -->    
