@@ -17,6 +17,30 @@
     <description>Constains custom JSF components used by the JSF cartridge.</description>
 
     <dependencies>
+	<dependency>
+	    <groupId>org.andromda</groupId>
+	    <artifactId>andromda-utils</artifactId>
+	    <version>${andromda.version}</version>
+	    <scope>compile</scope>
+	    <exclusions>
+	        <exclusion>
+	            <groupId>xml-apis</groupId>
+	            <artifactId>xml-apis</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>xerces</groupId>
+	            <artifactId>xercesImpl</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>xalan</groupId>
+	            <artifactId>xalan</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>log4j</groupId>
+	            <artifactId>log4j</artifactId>
+	        </exclusion>
+	    </exclusions>
+	</dependency>    
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
@@ -28,7 +52,7 @@
             <artifactId>myfaces-api</artifactId>
             <version>${myfaces.version}</version>
             <scope>provided</scope>
-        </dependency-->
+        </dependency-->        
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
