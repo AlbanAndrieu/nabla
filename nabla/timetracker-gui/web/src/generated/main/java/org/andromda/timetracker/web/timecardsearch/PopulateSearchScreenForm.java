@@ -45,13 +45,13 @@ public interface PopulateSearchScreenForm
      * 
      * @return submitter
      */
-    public Long getSubmitter();
+    public String getSubmitter();
 
     /**
      * 
      * @param submitter
      */
-    public void setSubmitter(Long submitter);
+    public void setSubmitter(String submitter);
 
     /**
      * The <code>submitter</code> field can be selected from a list,
@@ -149,13 +149,13 @@ public interface PopulateSearchScreenForm
      * 
      * @return approver
      */
-    public Long getApprover();
+    public String getApprover();
 
     /**
      * 
      * @param approver
      */
-    public void setApprover(Long approver);
+    public void setApprover(String approver);
 
     /**
      * The <code>approver</code> field can be selected from a list,

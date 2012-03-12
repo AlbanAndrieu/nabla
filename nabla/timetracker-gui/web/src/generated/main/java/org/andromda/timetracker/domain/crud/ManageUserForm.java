@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
-import org.andromda.presentation.jsf.JsfUtils;
+import org.andromda.presentation.gui.JsfUtils;
 
 /**
  * 

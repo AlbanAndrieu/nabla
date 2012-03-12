@@ -13,9 +13,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.andromda.presentation.jsf.AdfFacesContextWrapper;
-import org.andromda.presentation.jsf.FacesContextUtils;
-import org.andromda.presentation.jsf.JsfUtils;
+import org.andromda.presentation.gui.AdfFacesContextWrapper;
+import org.andromda.presentation.gui.FacesContextUtils;
+import org.andromda.presentation.gui.JsfUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.myfaces.trinidad.context.RequestContext;
 

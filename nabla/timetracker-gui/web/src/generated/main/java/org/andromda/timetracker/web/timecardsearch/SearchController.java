@@ -19,11 +19,11 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.andromda.presentation.jsf.AdfFacesContextWrapper;
-import org.andromda.presentation.jsf.FormPopulator;
-import org.andromda.presentation.jsf.JsfUtils;
-import org.andromda.presentation.jsf.Messages;
-import org.andromda.presentation.jsf.PatternMatchingExceptionHandler;
+import org.andromda.presentation.gui.AdfFacesContextWrapper;
+import org.andromda.presentation.gui.FormPopulator;
+import org.andromda.presentation.gui.JsfUtils;
+import org.andromda.presentation.gui.Messages;
+import org.andromda.presentation.gui.PatternMatchingExceptionHandler;
 import org.andromda.timetracker.ServiceLocator;
 import org.andromda.timetracker.service.TimeTrackingService;
 import org.andromda.timetracker.service.UserService;
@@ -137,7 +137,7 @@ SearchTimecardsSearchFormImpl)
             form.setEvent(event);
             this.setForm("form", form, true);
             // - pass any properties from the previous form along
-            FormPopulator.populateForm(currentForm, form);
+            FormPopulator.populateForm(currentForm, form, false);
             // - populate the form with any event attributes that may match
             // IMPORTANT: it isn't possible to automatically populate any property named "id" since that
             // is a reserved name in JSF (the id of a component), therefore we have to unfortunately ignore any available "id" attribute
@@ -277,7 +277,7 @@ SearchTimecardsDetailsFormImpl)
             form.setEvent(event);
             this.setForm("form", form, true);
             // - pass any properties from the previous form along
-            FormPopulator.populateForm(currentForm, form);
+            FormPopulator.populateForm(currentForm, form, false);
             // - populate the form with any event attributes that may match
             // IMPORTANT: it isn't possible to automatically populate any property named "id" since that
             // is a reserved name in JSF (the id of a component), therefore we have to unfortunately ignore any available "id" attribute
@@ -416,7 +416,7 @@ SearchTimecardsFormImpl)
             form.setEvent(event);
             this.setForm("form", form, true);
             // - pass any properties from the previous form along
-            FormPopulator.populateForm(currentForm, form);
+            FormPopulator.populateForm(currentForm, form, false);
             // - populate the form with any event attributes that may match
             // IMPORTANT: it isn't possible to automatically populate any property named "id" since that
             // is a reserved name in JSF (the id of a component), therefore we have to unfortunately ignore any available "id" attribute

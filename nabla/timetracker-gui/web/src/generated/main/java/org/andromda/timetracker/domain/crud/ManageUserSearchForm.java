@@ -5,7 +5,7 @@ package org.andromda.timetracker.domain.crud;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import org.andromda.presentation.jsf.JsfUtils;
+import org.andromda.presentation.gui.JsfUtils;
 
 /**
  * This form holds the fields that are used in the search operation of User

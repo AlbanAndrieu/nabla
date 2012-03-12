@@ -12,11 +12,11 @@ import javax.faces.event.ValueChangeEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.andromda.presentation.jsf.AdfFacesContextWrapper;
-import org.andromda.presentation.jsf.FormPopulator;
-import org.andromda.presentation.jsf.JsfUtils;
-import org.andromda.presentation.jsf.Messages;
-import org.andromda.presentation.jsf.PatternMatchingExceptionHandler;
+import org.andromda.presentation.gui.AdfFacesContextWrapper;
+import org.andromda.presentation.gui.FormPopulator;
+import org.andromda.presentation.gui.JsfUtils;
+import org.andromda.presentation.gui.Messages;
+import org.andromda.presentation.gui.PatternMatchingExceptionHandler;
 import org.andromda.timetracker.web.timecarddetails.TimecardController;
 import org.andromda.timetracker.web.timecardsearch.SearchController;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -39,52 +39,6 @@ public abstract class HomeController
     protected void resetFormSetFlags()
     {
         // Resets all the "isSet" flags on the forms to false.
-    }
-
-    /**
-     * 
-     * This method is called when 'latestTimecard' is triggered in the view 'TimeTracker Home'.
-     * It can be safely overridden in descendant classes.
-     */
-    protected void _timeTrackerHome_latestTimecard()
-    {
-        //this method can be overridden
-    }
-
-    /**
-     * @return timeTrackerHomeLatestTimecard
-     */
-    public String timeTrackerHomeLatestTimecard()
-    {
-        return timeTrackerHomeLatestTimecard((FacesEvent)null);
-    }
-
-    /**
-     * @param event
-     */
-    public void timeTrackerHomeLatestTimecard(final ActionEvent event)
-    {
-        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
-    }
-
-    /**
-     * @param event
-     */
-    public void timeTrackerHomeLatestTimecard(final ValueChangeEvent event)
-    {
-        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
-    }
-
-    /**
-     * @param event
-     * @return timeTrackerHomeLatestTimecard
-     */
-    public String timeTrackerHomeLatestTimecard(final FacesEvent event)
-    {
-        TimecardController controller =
-            (TimecardController)this.resolveVariable(
-                "timecardController");
-        return controller.timecardDetails();
     }
 
     /**
@@ -223,6 +177,52 @@ public abstract class HomeController
             (HomeController)this.resolveVariable(
                 "homeController");
         return controller.timeTrackerHome();
+    }
+
+    /**
+     * 
+     * This method is called when 'latestTimecard' is triggered in the view 'TimeTracker Home'.
+     * It can be safely overridden in descendant classes.
+     */
+    protected void _timeTrackerHome_latestTimecard()
+    {
+        //this method can be overridden
+    }
+
+    /**
+     * @return timeTrackerHomeLatestTimecard
+     */
+    public String timeTrackerHomeLatestTimecard()
+    {
+        return timeTrackerHomeLatestTimecard((FacesEvent)null);
+    }
+
+    /**
+     * @param event
+     */
+    public void timeTrackerHomeLatestTimecard(final ActionEvent event)
+    {
+        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
+    }
+
+    /**
+     * @param event
+     */
+    public void timeTrackerHomeLatestTimecard(final ValueChangeEvent event)
+    {
+        this.timeTrackerHomeLatestTimecard((FacesEvent)event);
+    }
+
+    /**
+     * @param event
+     * @return timeTrackerHomeLatestTimecard
+     */
+    public String timeTrackerHomeLatestTimecard(final FacesEvent event)
+    {
+        TimecardController controller =
+            (TimecardController)this.resolveVariable(
+                "timecardController");
+        return controller.timecardDetails();
     }
 
     /**

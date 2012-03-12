@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.andromda.presentation.jsf.FacesContextUtils;
-import org.andromda.presentation.jsf.UseCaseForwards;
+import org.andromda.presentation.gui.FacesContextUtils;
+import org.andromda.presentation.gui.UseCaseForwards;
 
 /**
  * This servlet is used to allow controller operation execution through
