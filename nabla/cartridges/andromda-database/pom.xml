@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>org.andromda.cartridges</groupId>
+    		<artifactId>cartridges</artifactId>
+		<version>1.0</version>
+	</parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>andromda-database-cartridge</artifactId>
+    <packaging>andromda-cartridge</packaging>
+    <version>3.4</version>
+    <name>AndroMDA Database Cartridge</name>
+    <description>Generates database DDL</description>
+    <build> 
+        <plugins>
+            <plugin>
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-maven-plugin</artifactId>                
+            </plugin>
+            <plugin>
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-cartridge-plugin</artifactId>
+                <version>${andromda.version}</version>
+                <executions>
+                    <execution>
+                        <id>gui-uml2</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <!-- Use update goal when you want to validate your change (comment test goal) -->
+                            <goal>test</goal>
+                            <!--<goal>update</goal>-->
+                        </goals>
+                        <configuration>
+                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <actualDirectory>${project.basedir}/../tmp/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.basedir}/../tmp/cartridge-test/expectedUML2</expectedDirectory>                            
+                            <reportDirectory>${project.basedir}/../tmp/cartridge-test/reportsUML2</reportDirectory>
+                        </configuration>
+                    </execution>
+                </executions>          
+            </plugin>
+        </plugins> 
+    </build> 
+    <properties>
+        <!--
+        <model.uri>jar:file:${pom.basedir}/src/main/uml/DatabaseMetafacadeModel.xml.zip!/DatabaseMetafacadeModel.xml</model.uri>
+        <test.model.uri>jar:file:${pom.basedir}/src/test/uml/DatabaseCartridgeTestModel.xml.zip!/DatabaseCartridgeTestModel.xml</test.model.uri>
+        -->
+    	<model.name>DatabaseMetafacadeModel</model.name>
+    	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
+        <test.model.uri>file:${test.src.dir}/${uml.type}/DatabaseCartridgeTestModel.uml</test.model.uri>
+        <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
+        <test.output.dir>${project.basedir}/../tmp/cartridge-test/actualUML2</test.output.dir>        
+    </properties>
+</project>
