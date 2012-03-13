@@ -27,10 +27,12 @@
                 <f:selectItems value="#{statusBackingList}" />
             </c:if>
         </tr:selectOneChoice>
-        <tr:inputDate id="startDateMinimum" value="#{searchTimecardsSearchTimecardsSearchForm.startDateMinimum}" label="#{messages['start.date.minimum']}:" required="false">
+        <!-- org.andromda.cartridges.jsf.metafacades.JSFParameterLogicImpl[org.andromda.timetracker.web.timecardsearch.startDateMinimum] true -->
+        <tr:inputDate id="startDateMinimum" value="#{searchTimecardsSearchTimecardsSearchForm.startDateMinimum}" label="#{messages['start.date.minimum']}:" required="true">
             <f:convertDateTime pattern="MM/dd/yyyy"/>
         </tr:inputDate>
-        <tr:inputDate id="startDateMaximum" value="#{searchTimecardsSearchTimecardsSearchForm.startDateMaximum}" label="#{messages['start.date.maximum']}:" required="false">
+        <!-- org.andromda.cartridges.jsf.metafacades.JSFParameterLogicImpl[org.andromda.timetracker.web.timecardsearch.startDateMaximum] true -->
+        <tr:inputDate id="startDateMaximum" value="#{searchTimecardsSearchTimecardsSearchForm.startDateMaximum}" label="#{messages['start.date.maximum']}:" required="true">
             <f:convertDateTime pattern="MM/dd/yyyy"/>
         </tr:inputDate>
         <f:facet name="footer">

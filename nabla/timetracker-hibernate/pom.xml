@@ -18,14 +18,6 @@
         
     <dependencyManagement>
         <dependencies>
-             <!--
-	     <dependency>
-               <groupId>${project.groupId}</groupId>
-               <artifactId>timetracker-sar</artifactId>
-               <version>${project.version}</version>
-               <type>sar</type>
-             </dependency>        
-             -->
             <dependency>
                 <groupId>org.andromda.cartridges</groupId>
                 <artifactId>andromda-jsf-cartridge-components</artifactId>
@@ -183,52 +175,8 @@
             </dependency-->
         </dependencies>
     </dependencyManagement>
-    <build>
-        <!--<defaultGoal>install</defaultGoal>-->
-        <pluginManagement>
-            <plugins>         
-                <!--     
-		<plugin>
-                  <groupId>org.codehaus.mojo</groupId>
-                  <artifactId>jboss-packaging-maven-plugin</artifactId>
-                  <version>2.0-SNAPSHOT</version>
-                </plugin>     
-                -->                  
-            </plugins>
-        </pluginManagement>
-        <plugins>
-             <!--
-	     <plugin>
-               <groupId>org.codehaus.mojo</groupId>
-               <artifactId>jboss-packaging-maven-plugin</artifactId>
-               -->
-               <!-- Enable 'jboss-sar', etc., as a recoginized maven packaging type -->
-               <!--
-               <extensions>true</extensions>
-             </plugin>   
-             -->          
-        </plugins>
-    </build>
+    
     <modules>
-        <!-- Save the values used to generate this project from andromdapp
-        ejb3Persistence=$ejb3Persistence
-        ear=true
-        ejb=$ejb
-        ejb3=$ejb3
-        transactionPersistenceType=spring
-        jsr181Webservice=$jsr181Webservice
-        hibernate=$hibernate
-        spring=true
-        webservice=false
-        web=true
-        struts=$struts
-        jsf=true
-        cxf=$cxf
-        rest=$rest
-        ear=true
-        jbossSeam=$jbossSeam
-        soapStack=$soapStack
-        -->
         <module>mda</module>
         <module>common</module>
         <module>core</module>
@@ -247,6 +195,7 @@
         <hibernate.version>3.6.7.Final</hibernate.version>
         <spring.version>3.0.6.RELEASE</spring.version>
         -->
+        <database.name>timetracker</database.name>
     </properties>
     <profiles>
         <profile>

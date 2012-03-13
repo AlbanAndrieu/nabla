@@ -56,6 +56,24 @@
             <artifactId>andromda-ocl-query-library</artifactId>
             <scope>runtime</scope>
         </dependency>
+        
+        <!-- added for debug purpose -->
+        <!--
+        <dependency>
+            <groupId>org.andromda.metafacades</groupId>
+            <artifactId>andromda-metafacades-emf-uml2</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
+        </dependency>     
+        -->   
+       
+       <!-- added for debug purpose in eclipse -->
+        <dependency>
+            <groupId>org.andromda.metafacades</groupId>
+            <artifactId>andromda-metafacades-emf-uml22</artifactId>
+            <version>${andromda.version}</version>
+            <scope>compile</scope>
+        </dependency>                    
     </dependencies>
     <profiles>
         <profile>

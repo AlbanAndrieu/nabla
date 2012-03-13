@@ -160,6 +160,7 @@
         <tr:inputText id="email" value="#{manageUserForm.email}" label="#{messages['user.email']}:" required="true" readOnly="false">
         </tr:inputText>
         <tr:selectBooleanCheckbox id="isActive" value="#{manageUserForm.isActive}" label="#{messages['user.is.active']}:" required="true" readOnly="false"/>
+        <!-- org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttributeLogicImpl[org.andromda.timetracker.domain.User.creationDate] true -->
         <tr:inputDate id="creationDate" value="#{manageUserForm.creationDate}" label="#{messages['user.creation.date']}:" required="true">
             <f:convertDateTime pattern="MM/dd/yyyy"/>
         </tr:inputDate>

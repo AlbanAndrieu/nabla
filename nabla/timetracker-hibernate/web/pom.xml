@@ -209,12 +209,14 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
             <version>${el.api.version}</version>
             <scope>provided</scope>
-        </dependency>                    
+        </dependency>   
+        -->                 
     </dependencies>
     <build>
         <finalName>timetracker</finalName>
