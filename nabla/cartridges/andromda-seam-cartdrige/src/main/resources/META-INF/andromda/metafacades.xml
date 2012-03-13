@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<metafacades>
+    <property reference="normalizeMessages"/>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamViewLogicImpl">
+        <mapping>
+            <property name="frontEndView"/>
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+        <property reference="viewPopulatorPattern"/>
+        <property reference="actionFormKey"/>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamActionLogicImpl">
+        <mapping>
+            <property name="exitingInitialState"/>
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+        <property reference="formImplementationPattern"/>
+        <property reference="formBeanPattern"/>
+        <property reference="formScope"/> 
+        <property reference="actionFormKey"/>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamActionLogicImpl">
+        <mapping>
+            <property name="exitingView"/>
+        </mapping>
+        <property reference="formImplementationPattern"/>
+        <property reference="formBeanPattern"/>
+        <property reference="formScope"/> 
+        <property reference="actionFormKey"/>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamForwardLogicImpl">
+        <mapping>
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamUseCaseLogicImpl">
+        <mapping>
+            <stereotype>FRONT_END_APPLICATION</stereotype>
+        </mapping>
+        <property reference="actionFormKey"/>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamUseCaseLogicImpl">
+        <mapping>
+            <stereotype>FRONT_END_USE_CASE</stereotype>
+        </mapping>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamFinalStateLogicImpl">
+        <mapping>
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
+    <!-- mapping rule for uml14 support -->
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamEventLogicImpl">
+        <mapping class="org.omg.uml.behavioralelements.statemachines.SignalEvent$Impl">
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
+    <!-- mapping rule for uml14 support -->
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamEventLogicImpl">
+        <mapping class="org.omg.uml.behavioralelements.statemachines.CallEvent$Impl">
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
+    <!-- mapping rule for uml2-emf support -->
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamEventLogicImpl">
+        <mapping class="org.eclipse.uml2.impl.ActivityImpl">
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamParameterLogicImpl">
+        <mapping>
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+        <property reference="defaultDateFormat"/>
+        <property reference="defaultTimeFormat"/>
+        <property reference="backingListPattern"/>
+        <property reference="backingValuePattern"/>
+        <property reference="labelListPattern"/>
+        <property reference="valueListPattern"/>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamActivityGraphLogicImpl">
+        <mapping>
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamAttributeLogicImpl">
+        <mapping/>
+        <property reference="defaultDateFormat"/>
+        <property reference="defaultTimeFormat"/>
+        <property reference="backingListPattern"/>
+        <property reference="backingValuePattern"/>
+        <property reference="labelListPattern"/>
+        <property reference="valueListPattern"/>
+    </metafacade>
+</metafacades>

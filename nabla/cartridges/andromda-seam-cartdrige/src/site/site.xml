@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="EJB3 Cartridge Plugin">
+    <skin>
+        <groupId>org.andromda.maven.site</groupId>
+        <artifactId>andromda-site-skin</artifactId>
+        <version>3.3-SNAPSHOT</version>
+    </skin>
+    <bannerLeft>
+        <name></name>
+    </bannerLeft>
+    <publishDate format="dd MMM yyyy hh:mm zzz"/>
+    <body>
+    	<links>
+    		<item name="Seam" href="index.html"/>
+      		<item name="Cartridges" href="http://galaxy.andromda.org/docs/andromda-cartridges/index.html"/>
+      		<item name="AndroMDA" href="http://www.andromda.org"/>
+    	</links>
+    	<menu name="Overview">
+            <item name="Seam Cartridge" href="index.html"/>
+    		<item name="Getting Started Guide" href="startup.html"/>
+    	</menu>
+    	<menu name="Model">
+    		<item name="Profile" href="profile.html"/>
+    		<item name="Namespace" href="namespace.html"/>
+    	</menu>
+        ${reports}
+    </body>
+</project>
