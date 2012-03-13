@@ -151,7 +151,9 @@
         </pluginManagement>
     </build>
     <modules>
-        <module>andromda-gui-components</module>
-        <module>andromda-gui</module> <!-- Java heap space -->
+        <module>andromda-gui-cartdrige-components</module>
+        <module>andromda-gui-cartdrige</module> <!-- Java heap space -->
+        <module>andromda-database</module>
+        <!--<module>andromda-semweb</module>-->
     </modules>
 </project>

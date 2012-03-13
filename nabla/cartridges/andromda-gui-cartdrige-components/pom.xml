@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <!--<groupId>org.andromda.cartridges</groupId>-->
-    <artifactId>andromda-gui-components</artifactId>
+    <artifactId>andromda-gui-cartridge-components</artifactId>
     <version>3.4</version>
     <packaging>jar</packaging>
     <name>AndroMDA JSF Cartridge Components</name>
