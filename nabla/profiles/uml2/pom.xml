@@ -36,5 +36,6 @@
         <module>backend</module>
         <module>test</module>
         <module>shared</module>
+        <module>seam</module>
     </modules>
 </project>
