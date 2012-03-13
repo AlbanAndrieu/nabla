@@ -12,6 +12,7 @@ import org.andromda.metafacades.uml.AssociationEndFacade;
 import org.andromda.metafacades.uml.EntityAssociationEnd;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
+import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for
@@ -21,6 +22,12 @@ import org.apache.commons.collections.Predicate;
  */
 public class TableLogicImpl extends TableLogic implements org.andromda.cartridges.database.metafacades.Table
 {
+
+    /**
+     * The logger instance.
+     */
+    private final Logger logger_ = Logger.getLogger(TableLogicImpl.class);
+
     // ---------------- constructor -------------------------------
 
     public TableLogicImpl(final Object metaObject, final String context)
@@ -77,18 +84,14 @@ public class TableLogicImpl extends TableLogic implements org.andromda.cartridge
             catch (final MetafacadeFactoryException mfe)
             {
                 // this means the namespace property has not been registered
-                // logger.info(
-                // "Namespace property \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER +
-                // "\' not specified, using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT );
+                this.logger_.info("Namespace property \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER + "\' not specified, using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT);
                 dummyLoadMultiplier = DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT;
             }
             catch (final Exception e)
             {
                 // this means the property has been registered with an invalid value
-                // logger.warn(
-                // "Invalid namespace property value for \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER +
-                // "\', using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT +
-                // " instead of "+getConfiguredProperty(DatabaseGlobals.DUMMYLOAD_MULTIPLIER));
+                this.logger_.warn("Invalid namespace property value for \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER + "\', using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT + " instead of "
+                        + this.getConfiguredProperty(DatabaseGlobals.DUMMYLOAD_MULTIPLIER));
                 dummyLoadMultiplier = DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT;
             }
 
