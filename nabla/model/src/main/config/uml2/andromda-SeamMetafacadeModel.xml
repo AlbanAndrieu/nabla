@@ -1,0 +1,60 @@
+<andromda xmlns="http://andromda.org/core/configuration">
+    <properties>
+        <property name="modelValidation">${validation}</property>
+        <property name="xmlValidation">true</property>       
+        <property name="failOnModelValidationErrors">true</property>         
+        <!-- Comma separated list of cartridges to be processed by namespace name, such as java,webservice. Empty = true = process all -->
+        <property name="cartridgeFilter">${filter}</property>
+        <property name="loggingConfigurationUri">file:${project.basedir}/log4j.xml</property>
+        <!--property name="loggingConfigurationUri">file:./../mda/log4j.xml</property-->  
+    </properties>
+    <!-- Server will load and validate model in the background automatically when anything changes. 
+    To start server from mda directory: mvn andromda:start-server.
+    Leave commented, or else AndroMDA will try to connect each time.
+    <server>
+        <host>localhost</host>
+        <port>4447</port>
+    </server>
+    -->
+    <repositories>
+        <repository name="emf-uml22">
+            <models>
+                <model type="emf-uml22">
+                    <uri>${model.uri}</uri>
+          	    <moduleSearchLocations>
+          	        <!--<location patterns="*andromda*.uml,UML_*.uml">${project.basedir}/src/main/uml/uml2</location>-->
+          	        <!--
+          	    	<location patterns="**/*.xml.zip, **/*.uml2">${basedir}/src/main/uml/${uml.type}</location>          
+          	    	<location patterns="**/*.xml.zip, **/*.uml2">${settings.localRepository}/org/andromda/profiles</location>
+          	    	<location patterns="**/*.xml">jar:file:${settings.localRepository}/org/omg/profiles/${uml.type}/UML_Standard_Profile/1.0/UML_Standard_Profile-1.0.jar!/</location>      	
+          	    	-->
+          	    	<location patterns="**/*.xml.zip, **/*.uml">${nabla.mda.dir}/${nabla.mda.profiles.dir}/gui/src/main/uml/${uml.type}</location>
+          	    	<location patterns="**/*.xml.zip, **/*.uml">${nabla.mda.dir}/${nabla.mda.profiles.dir}/backend/src/main/uml/${uml.type}</location>
+          	    	<location patterns="**/*.xml.zip, **/*.uml">${nabla.mda.dir}/${nabla.mda.profiles.dir}/test/src/main/uml/${uml.type}</location>
+          	    </moduleSearchLocations>          
+                    <modelPackages>
+                        <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>
+                        <modelPackage process="false">org::andromda::cartridges::jsf2::metafacades</modelPackage>
+                    </modelPackages>
+                </model>
+            </models>            
+        </repository>
+    </repositories>
+    <namespace name="meta">
+            <properties>
+        	<property name="languageMappingsUri">Java</property>
+        	<property name="wrapperMappingsUri">JavaWrapper</property>
+                <property name="facades">${maven.build.src}/main/java</property>
+                <property name="facade-logics">${maven.build.src}/main/java</property>
+        	<property name="facade-logic-impls">${java.src.dir}</property>
+        	<property name="enableTemplating">true</property>
+        	<property name="enableAnnotations">true</property>
+        	<property name="typeSafeEnumsEnabled">true</property>
+        	<property name="enumerationLiteralNameMask">upperunderscore</property>
+        	<property name="pluralizeAssociationEndNames">true</property>
+        	<property name="pluralizeAttributeNames">true</property>
+        	<property name="pluralizeParameterNames">true</property>
+        	<property name="toDoTag">TODO</property>                
+            </properties>
+        </namespace>
+</andromda>
