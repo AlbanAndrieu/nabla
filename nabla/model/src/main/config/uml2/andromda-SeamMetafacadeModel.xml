@@ -1,16 +1,13 @@
 <andromda xmlns="http://andromda.org/core/configuration">
     <properties>
-        <property name="modelValidation">${validation}</property>
-        <property name="xmlValidation">true</property>       
-        <property name="failOnModelValidationErrors">true</property>         
-        <!-- Comma separated list of cartridges to be processed by namespace name, such as java,webservice. Empty = true = process all -->
-        <property name="cartridgeFilter">${filter}</property>
-        <property name="loggingConfigurationUri">file:${project.basedir}/log4j.xml</property>
-        <!--property name="loggingConfigurationUri">file:./../mda/log4j.xml</property-->  
+        <property name="cartridgeFilter">meta</property>
+        <property name="failOnValidationErrors">true</property>
+        <!--<property name="loggingConfigurationUri">file:${basedir}/../log4j.xml</property>-->
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes. 
     To start server from mda directory: mvn andromda:start-server.
-    Leave commented, or else AndroMDA will try to connect each time.
+    Leave commented, or else AndroMDA will try to connect each time.-->
+    <!-- do not activate for custom cartridge
     <server>
         <host>localhost</host>
         <port>4447</port>
@@ -34,13 +31,14 @@
           	    </moduleSearchLocations>          
                     <modelPackages>
                         <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>
-                        <modelPackage process="false">org::andromda::cartridges::jsf2::metafacades</modelPackage>
+                        <modelPackage process="false">org::andromda::cartridges::jsf::metafacades</modelPackage>
                     </modelPackages>
                 </model>
             </models>            
         </repository>
     </repositories>
-    <namespace name="meta">
+    <namespaces>    
+        <namespace name="meta">
             <properties>
         	<property name="languageMappingsUri">Java</property>
         	<property name="wrapperMappingsUri">JavaWrapper</property>
@@ -57,4 +55,5 @@
         	<property name="toDoTag">TODO</property>                
             </properties>
         </namespace>
+    </namespaces>
 </andromda>

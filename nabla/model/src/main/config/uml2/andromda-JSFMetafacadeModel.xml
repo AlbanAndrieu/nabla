@@ -13,8 +13,7 @@
         <port>4447</port>
     </server>
     -->
-    </properties>
-        <repositories>
+    <repositories>
         <repository name="emf-uml22">
             <models>
                 <model type="emf-uml22">
@@ -49,24 +48,6 @@
         	<property name="toDoTag">TODO</property>                
             </properties>
         </namespace>
-        <!--    
-        <namespace name="database">
-            <properties>
-                <property name="overwrite">true</property>
-                <property name="languageMappingsUri">Java</property>
-                <property name="wrapperMappingsUri">JavaWrapper</property>
-                <property name="jdbcMappingsUri">JDBC</property>
-                <property name="sqlMappingsUri">Oracle9i</property>
-                <property name="maxSqlNameLength">30</property>
-                <property name="foreignKeySuffix">_FK</property>
-                -->
-                <!--  Do not test dummy data because it generates random numbers
-                <property name="dummy-data-script">${test.output.dir}</property>
-                -->
-                <!--
-                <property name="scripts">${test.output.dir}</property>
-            </properties>
-        </namespace>
-        -->
     </namespaces>
 </andromda>
+
