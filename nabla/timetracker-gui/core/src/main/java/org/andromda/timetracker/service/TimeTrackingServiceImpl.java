@@ -25,7 +25,7 @@ public class TimeTrackingServiceImpl
     protected TimecardSummaryVO[] handleFindTimecards(TimecardSearchCriteriaVO criteria)
         throws Exception
     {
-        List timecards = getTimecardDao().findByCriteria(criteria);
+        List<TimecardSummaryVO> timecards = getTimecardDao().findByCriteria(criteria);
         getTimecardDao().toTimecardSummaryVOCollection(timecards);
         return (TimecardSummaryVO[]) timecards.toArray(new TimecardSummaryVO[timecards.size()]);
     }

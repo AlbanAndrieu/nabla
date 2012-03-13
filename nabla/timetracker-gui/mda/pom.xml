@@ -41,11 +41,24 @@
   
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-gui</artifactId>
+            <artifactId>andromda-gui-cartridge</artifactId>
             <version>${andromda.version}</version>
             <scope>runtime</scope>
         </dependency> 
-        
+
+        <dependency>
+            <groupId>org.andromda.cartridges</groupId>
+            <artifactId>andromda-deployment-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
+        </dependency>         
+        <dependency>
+            <groupId>org.andromda.cartridges</groupId>
+            <artifactId>andromda-database-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
+        </dependency>                  		
+                        		
         <dependency>
             <groupId>org.andromda.translationlibraries</groupId>
             <artifactId>andromda-ocl-validation-library</artifactId>
@@ -299,6 +312,7 @@
         
         <mda.generated.dir>${project.basedir}/../mda/${target.dir}/src/main/java</mda.generated.dir>
         <mda.manual.dir>${project.basedir}/../mda/src/main/java</mda.manual.dir>
+        <sql.generated.dir>${project.basedir}/../app/src/main/sql</sql.generated.dir>
         
         <common.generated.dir>${project.basedir}/../common/${maven.build.generated}/main/java</common.generated.dir>
         <common.manual.dir>${project.basedir}/../common/src/main/java</common.manual.dir>        
@@ -329,7 +343,7 @@
         <application.metainf.dir>${project.basedir}/../app/src/main/application/META-INF</application.metainf.dir>
         <application.generated.dir>${project.basedir}/../app/${target.dir}/src</application.generated.dir>        
                 
-	<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>
+	<!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
 	<merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
         <!--<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>-->
         <!-- hibernate configuration -->

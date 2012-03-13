@@ -34,7 +34,7 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
                 <prop key="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</prop>
-                <!-- applicationContext hibernateProperties merge-point -->
+                <!-- add specific (non-supported in the Spring cartridge) hibernate properties here -->
             </props>
         </property>
     </bean>

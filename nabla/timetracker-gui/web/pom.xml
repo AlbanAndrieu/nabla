@@ -189,6 +189,20 @@
         </dependency>
         <!--
         <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+        </dependency>        
+	<dependency>
+		<groupId>org.icefaces</groupId>
+		<artifactId>icefaces-comps</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.icefaces</groupId>
+		<artifactId>icefaces-facelets</artifactId>
+	</dependency>  
+	-->   
+        <!--
+        <dependency>
 	    <groupId>org.andromda</groupId>
 	    <artifactId>andromda-utils</artifactId>
 	    <scope>compile</scope>
