@@ -112,6 +112,7 @@
          		    <scope>runtime</scope>
          		    <optional>true</optional>
          		</dependency-->
+         		<!-- With do not have use UML14 only UML22
          		<dependency>
          		    <groupId>org.andromda.profiles.uml14</groupId>
          		    <artifactId>andromda-profile</artifactId>
@@ -120,6 +121,7 @@
          		    <scope>runtime</scope>
          		    <optional>true</optional>
          		</dependency>
+         		-->
 			<dependency>
         		    <groupId>org.andromda</groupId>
         		    <artifactId>andromda-utils</artifactId>
@@ -254,6 +256,16 @@
 						</locations>
 					</configuration>
 				</plugin>
+                                <plugin>
+                                    <groupId>org.andromda.maven.plugins.site</groupId>
+                                    <artifactId>andromda-site-plugin</artifactId>
+                                    <version>${andromda.version}</version>
+                                </plugin>                			
+                                <plugin>
+                                    <groupId>org.andromda.maven.plugins.site</groupId>
+                                    <artifactId>andromda-site-cartridge-plugin</artifactId>
+                                    <version>${andromda.version}</version>
+                                </plugin>                			
             			<!--The Model Archiver plugin allows to package model files (such as xml.zip files) as versioned model files files, i.e. andromda-profile.xml.zip will become andromda-profile-3.1.xml.zip if the current version is 3.1.-->
                 		<!-- it also says that <packaging>xml.zip</packaging> exists -->
                 		<plugin>                    
