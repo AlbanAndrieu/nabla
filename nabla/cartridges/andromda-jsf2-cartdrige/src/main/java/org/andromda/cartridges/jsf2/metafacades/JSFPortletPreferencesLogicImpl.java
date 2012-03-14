@@ -1,11 +1,9 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
 import java.util.Collection;
-import java.util.Iterator;
-
 import org.andromda.metafacades.uml.DependencyFacade;
+import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.UseCaseFacade;
-
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFPortletPreferences.
@@ -15,24 +13,28 @@ import org.andromda.metafacades.uml.UseCaseFacade;
 public class JSFPortletPreferencesLogicImpl
     extends JSFPortletPreferencesLogic
 {
-
-    public JSFPortletPreferencesLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFPortletPreferencesLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFPortletPreferences#getUseCase()
+     * @return useCase
+     * @see org.andromda.cartridges.jsf.metafacades.JSFPortletPreferences#getUseCase()
      */
-    protected java.lang.Object handleGetUseCase()
+    protected Object handleGetUseCase()
     {
         UseCaseFacade useCase = null;
-        final Collection dependencies = this.getTargetDependencies();
+        final Collection<DependencyFacade> dependencies = this.getTargetDependencies();
         if (dependencies != null && !dependencies.isEmpty())
         {
-            for (final Iterator iterator = dependencies.iterator(); iterator.hasNext();)
+            for (final DependencyFacade dependency : dependencies)
             {
-                final DependencyFacade dependency = (DependencyFacade)iterator.next();
-                final Object source = dependency.getSourceElement();
+                final ModelElementFacade source = dependency.getSourceElement();
                 if (source instanceof UseCaseFacade)
                 {
                     useCase = (UseCaseFacade)source;
@@ -42,5 +44,4 @@ public class JSFPortletPreferencesLogicImpl
         }
         return useCase;
     }
-
 }

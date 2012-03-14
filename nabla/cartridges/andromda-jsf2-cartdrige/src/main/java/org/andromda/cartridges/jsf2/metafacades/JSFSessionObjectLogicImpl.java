@@ -1,6 +1,5 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
-
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFSessionObject.
  *
@@ -9,16 +8,21 @@ package org.andromda.cartridges.jsf2.metafacades;
 public class JSFSessionObjectLogicImpl
     extends JSFSessionObjectLogic
 {
-
-    public JSFSessionObjectLogicImpl (Object metaObject, String context)
-    {
-        super (metaObject, context);
-    }
-    
+    private static final long serialVersionUID = 34L;
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFSessionObject#getFullPath()
+     * @param metaObject
+     * @param context
      */
-    protected java.lang.String handleGetFullPath()
+    public JSFSessionObjectLogicImpl(Object metaObject, String context)
+    {
+        super(metaObject, context);
+    }
+
+    /**
+     * @return '/' + getFullyQualifiedName().replace('.', '/')
+     * @see org.andromda.cartridges.jsf.metafacades.JSFSessionObject#getFullPath()
+     */
+    protected String handleGetFullPath()
     {
         return '/' + this.getFullyQualifiedName().replace('.', '/');
     }
