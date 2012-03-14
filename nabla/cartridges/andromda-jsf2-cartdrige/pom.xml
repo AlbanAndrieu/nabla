@@ -10,9 +10,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<!--<groupId>org.andromda.cartridges</groupId>-->
-    <artifactId>andromda-jsf2-cartridge</artifactId>
+        <artifactId>andromda-jsf2-cartridge</artifactId>
     <!--<version>1.1-SNAPSHOT</version>-->
-    <version>3.4</version>
+        <version>3.4</version>
 	<!-- <packaging>andromda-cartridge</packaging> -->
 	<packaging>jar</packaging>
     <name>AndroMDA JSF2 Cartridge</name>
@@ -150,6 +150,7 @@
             </plugin>
             -->
         </plugins>
+        <!--
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -168,6 +169,7 @@
                 </excludes>
             </resource>
         </resources>
+        -->
     </build>
     <properties>
         <!--
@@ -184,7 +186,7 @@
 
         <model.name>JSFMetafacadeModel</model.name>
     	<lastModifiedCheck>false</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
-        <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
+        <test.model.uri>file:${test.src.dir}/${uml.type}/JSFCartridgeTestModel.uml</test.model.uri>
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
         <test.output.dir>${project.basedir}/../tmp-jsf2/cartridge-test/actualUML2</test.output.dir>
     </properties>
