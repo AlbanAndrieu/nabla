@@ -1,16 +1,16 @@
 package org.andromda.cartridges.jsf2;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import org.andromda.cartridges.jsf2.metafacades.JSFAttribute;
 import org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute;
@@ -26,10 +26,10 @@ import org.andromda.metafacades.uml.UMLMetafacadeUtils;
 import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-
+import org.apache.commons.lang.time.FastDateFormat;
 
 /**
- * Utilties for use within the JSF cartridge.
+ * Utilities for use within the JSF cartridge.
  *
  * @author Chad Brandon
  */
@@ -45,17 +45,16 @@ public class JSFUtils
      */
     public static String toWebResourceName(final String string)
     {
-        return StringUtilsHelper.separate(
-            string,
-            "-").toLowerCase();
+        return StringUtilsHelper.separate(string, "-").toLowerCase();
     }
 
-    private static final Pattern VALIDATOR_TAGGEDVALUE_PATTERN =
-        Pattern.compile("\\w+(\\(\\w+=[^,)]*(,\\w+=[^,)]*)*\\))?");
+    private static final Pattern VALIDATOR_TAGGEDVALUE_PATTERN = Pattern.compile("\\w+(\\(\\w+=[^,)]*(,\\w+=[^,)]*)*\\))?");
+
+    private static final String  ANNOTATION_VALIDATOR_PREFIX   = "@";
 
     /**
      * Reads the validator arguments from the the given tagged value.
-     *
+     * @param validatorTaggedValue
      * @return returns a list of String instances or an empty list
      * @throws IllegalArgumentException when the input string does not match the required pattern
      */
@@ -66,40 +65,39 @@ public class JSFUtils
             throw new IllegalArgumentException("Validator tagged value cannot be null");
         }
 
-        // check if the input tagged value matches the required pattern
-        if (!VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
-        {
-            throw new IllegalArgumentException(
-                "Illegal validator tagged value (this tag is used to specify custom validators " +
-                "and might look like myValidator(myVar=myArg,myVar2=myArg2), perhaps you wanted to use " +
-                "@andromda.presentation.view.field.format?): " + validatorTaggedValue);
-        }
-
         final List<String> validatorArgs = new ArrayList<String>();
 
-        // only keep what is between parentheses (if any)
-        int left = validatorTaggedValue.indexOf('(');
-        if (left > -1)
+        // isn't it an annotation ?
+        if (!StringUtils.startsWith(validatorTaggedValue, JSFUtils.ANNOTATION_VALIDATOR_PREFIX))
         {
-            final int right = validatorTaggedValue.indexOf(')');
-            validatorTaggedValue = validatorTaggedValue.substring(
-                    left + 1,
-                    right);
 
-            final String[] pairs = validatorTaggedValue.split(",");
-            for (int i = 0; i < pairs.length; i++)
+            // check if the input tagged value matches the required pattern
+            if (!JSFUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
             {
-                final String pair = pairs[i];
-                final int equalsIndex = pair.indexOf('=');
+                throw new IllegalArgumentException("Illegal validator tagged value (this tag is used to specify custom validators "
+                        + "and might look like myValidator(myVar=myArg,myVar2=myArg2), perhaps you wanted to use " + "andromda_presentation_view_field_format?): " + validatorTaggedValue);
+            }
 
-                // it's possible the argument is the empty string
-                if (equalsIndex < pair.length() - 1)
+            // only keep what is between parentheses (if any)
+            final int left = validatorTaggedValue.indexOf('(');
+            if (left > -1)
+            {
+                final int right = validatorTaggedValue.indexOf(')');
+                validatorTaggedValue = validatorTaggedValue.substring(left + 1, right);
+
+                final String[] pairs = validatorTaggedValue.split(",");
+                for (final String pair : pairs)
                 {
-                    validatorArgs.add(pair.substring(equalsIndex + 1));
-                }
-                else
-                {
-                    validatorArgs.add("");
+                    final int equalsIndex = pair.indexOf('=');
+
+                    // it's possible the argument is the empty string
+                    if (equalsIndex < (pair.length() - 1))
+                    {
+                        validatorArgs.add(pair.substring(equalsIndex + 1));
+                    } else
+                    {
+                        validatorArgs.add("");
+                    }
                 }
             }
         }
@@ -108,42 +106,42 @@ public class JSFUtils
 
     /**
      * Reads the validator variable names from the the given tagged value.
-     *
+     * @param validatorTaggedValue
      * @return never null, returns a list of String instances
      * @throws IllegalArgumentException when the input string does not match the required pattern
      */
-    public static List parseValidatorVars(String validatorTaggedValue)
+    public static List<String> parseValidatorVars(String validatorTaggedValue)
     {
         if (validatorTaggedValue == null)
         {
             throw new IllegalArgumentException("Validator tagged value cannot be null");
         }
 
-        // check if the input tagged value matches the required pattern
-        if (!VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
-        {
-            throw new IllegalArgumentException("Illegal validator tagged value: " + validatorTaggedValue);
-        }
-
         final List<String> validatorVars = new ArrayList<String>();
 
-        // only keep what is between parentheses (if any)
-        int left = validatorTaggedValue.indexOf('(');
-        if (left > -1)
+        // isn't it an annotation ?
+        if (!StringUtils.startsWith(validatorTaggedValue, JSFUtils.ANNOTATION_VALIDATOR_PREFIX))
         {
-            int right = validatorTaggedValue.indexOf(')');
-            validatorTaggedValue = validatorTaggedValue.substring(
-                    left + 1,
-                    right);
 
-            final String[] pairs = validatorTaggedValue.split(",");
-            for (int i = 0; i < pairs.length; i++)
+            // check if the input tagged value matches the required pattern
+            if (!JSFUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
             {
-                final String pair = pairs[i];
-                final int equalsIndex = pair.indexOf('=');
-                validatorVars.add(pair.substring(
-                        0,
-                        equalsIndex));
+                throw new IllegalArgumentException("Illegal validator tagged value: " + validatorTaggedValue);
+            }
+
+            // only keep what is between parentheses (if any)
+            final int left = validatorTaggedValue.indexOf('(');
+            if (left > -1)
+            {
+                final int right = validatorTaggedValue.indexOf(')');
+                validatorTaggedValue = validatorTaggedValue.substring(left + 1, right);
+
+                final String[] pairs = validatorTaggedValue.split(",");
+                for (final String pair : pairs)
+                {
+                    final int equalsIndex = pair.indexOf('=');
+                    validatorVars.add(pair.substring(0, equalsIndex));
+                }
             }
         }
         return validatorVars;
@@ -151,7 +149,8 @@ public class JSFUtils
 
     /**
      * Parses the validator name for a tagged value.
-     *
+     * @param validatorTaggedValue
+     * @return validatorTaggedValue
      * @throws IllegalArgumentException when the input string does not match the required pattern
      */
     public static String parseValidatorName(final String validatorTaggedValue)
@@ -161,16 +160,20 @@ public class JSFUtils
             throw new IllegalArgumentException("Validator tagged value cannot be null");
         }
 
+        // isn't it an annotation ?
+        if (StringUtils.startsWith(validatorTaggedValue, JSFUtils.ANNOTATION_VALIDATOR_PREFIX))
+        {
+            return validatorTaggedValue;
+        }
+
         // check if the input tagged value matches the required pattern
-        if (!VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
+        if (!JSFUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
         {
             throw new IllegalArgumentException("Illegal validator tagged value: " + validatorTaggedValue);
         }
 
         final int leftParen = validatorTaggedValue.indexOf('(');
-        return (leftParen == -1) ? validatorTaggedValue : validatorTaggedValue.substring(
-            0,
-            leftParen);
+        return (leftParen == -1) ? validatorTaggedValue : validatorTaggedValue.substring(0, leftParen);
     }
 
     /**
@@ -180,11 +183,9 @@ public class JSFUtils
      * @param count the number of items to give the array.
      * @return A String representing Java code for the initialization of an array.
      */
-    public static String constructDummyArrayDeclaration(
-        final String name,
-        final int count)
+    public static String constructDummyArrayDeclaration(final String name, final int count)
     {
-        final StringBuffer array = new StringBuffer("new Object[] {");
+        final StringBuilder array = new StringBuilder("new Object[] {");
         for (int ctr = 1; ctr <= count; ctr++)
         {
             array.append("\"" + name + "-" + ctr + "\"");
@@ -198,127 +199,131 @@ public class JSFUtils
     }
 
     /**
+     * @param format
      * @return this field's date format
      */
     public static String getDateFormat(String format)
     {
         format = StringUtils.trimToEmpty(format);
-        return format.endsWith(STRICT) ? getToken(
-            format,
-            1,
-            2) : getToken(
-            format,
-            0,
-            1);
+        return format.endsWith(JSFUtils.STRICT) ? JSFUtils.getToken(format, 1, 2) : JSFUtils.getToken(format, 0, 1);
+    }
+
+    private static String         defaultDateFormat = "MM/dd/yyyy HH:mm:ssZ";
+    private static FastDateFormat df                = FastDateFormat.getInstance(JSFUtils.defaultDateFormat);
+
+    /**
+     * Returns the current Date in the specified format.
+     *
+     * @param format The format for the output date
+     * @return the current date in the specified format.
+     */
+    public static String getDate(final String format)
+    {
+        if ((JSFUtils.df == null) || !format.equals(JSFUtils.df.getPattern()))
+        {
+            JSFUtils.df = FastDateFormat.getInstance(format);
+        }
+        return JSFUtils.df.format(new Date());
+    }
+
+    /**
+     * Returns the current Date
+     *
+     * @return the current date in the default format.
+     */
+    public static String getDate()
+    {
+        return JSFUtils.getDate(JSFUtils.defaultDateFormat);
     }
 
     private static final String STRICT = "strict";
 
     /**
-     * @return <code>true</code> if this field's value needs to conform to a strict date format, <code>false</code> otherwise
+     * @param format
+     * @return <code>true</code> if this field's value needs to conform to a
+     * strict date format, <code>false</code> otherwise
      */
-    public static boolean isStrictDateFormat(String format)
+    public static boolean isStrictDateFormat(final String format)
     {
-        return strictDateTimeFormat ? strictDateTimeFormat : STRICT.equalsIgnoreCase(getToken(
-                format,
-                0,
-                2));
+        return JSFUtils.strictDateTimeFormat ? JSFUtils.strictDateTimeFormat : JSFUtils.STRICT.equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
      * Indicates if the given <code>format</code> is an email format.
-     *
-     * @return <code>true</code> if this field is to be formatted as an email address, <code>false</code> otherwise
+     * @param format
+     * @return <code>true</code> if this field is to be formatted as an email
+     * address, <code>false</code> otherwise
      */
-    public static boolean isEmailFormat(String format)
+    public static boolean isEmailFormat(final String format)
     {
-        return "email".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "email".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
      * Indicates if the given <code>format</code> is an equal format.
-     *
-     * @return <code>true</code> if this field is to be formatted as an email address, <code>false</code> otherwise
+     * @param format
+     * @return <code>true</code> if this field is to be formatted as an
+     * email address, <code>false</code> otherwise
      */
-    public static boolean isEqualFormat(String format)
+    public static boolean isEqualFormat(final String format)
     {
-        return "equal".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "equal".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
-     * Indicates if the given <code>format</code> is a creditcard format.
-     *
+     * Indicates if the given <code>format</code> is a credit card format.
+     * @param format
      * @return <code>true</code> if this field is to be formatted as a credit card, <code>false</code> otherwise
      */
     public static boolean isCreditCardFormat(final String format)
     {
-        return "creditcard".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "creditcard".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
      * Indicates if the given <code>format</code> is a pattern format.
-     *
+     * @param format
      * @return <code>true</code> if this field's value needs to respect a certain pattern, <code>false</code> otherwise
      */
     public static boolean isPatternFormat(final String format)
     {
-        return "pattern".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "pattern".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
      * Indicates if the given <code>format</code> is a minlength format.
-     *
+     * @param format
      * @return <code>true</code> if this field's value needs to consist of at least a certain
      *         number of characters, <code>false</code> otherwise
      */
     public static boolean isMinLengthFormat(final String format)
     {
-        return "minlength".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "minlength".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
      * Indicates if the given <code>format</code> is a maxlength format.
-     *
+     * @param format
      * @return <code>true</code> if this field's value needs to consist of at maximum a certain
      *         number of characters, <code>false</code> otherwise
      */
-    public static boolean isMaxLengthFormat(String format)
+    public static boolean isMaxLengthFormat(final String format)
     {
-        return "maxlength".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "maxlength".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
+     * @param string
+     * @param index
+     * @param limit
      * @return the i-th space delimited token read from the argument String, where i does not exceed the specified limit
      */
-    public static String getToken(
-        String string,
-        int index,
-        int limit)
+    public static String getToken(final String string, final int index, final int limit)
     {
         String token = null;
-        if (string != null && string.length() > 0)
+        if ((string != null) && (string.length() > 0))
         {
-            final String[] tokens = string.split(
-                    "[\\s]+",
-                    limit);
+            final String[] tokens = string.split("[\\s]+", limit);
             token = index >= tokens.length ? null : tokens[index];
         }
         return token;
@@ -339,112 +344,99 @@ public class JSFUtils
 
     /**
      * Indicates if the given <code>format</code> is a range format.
-     *
+     * @param format
      * @return <code>true</code> if this field's value needs to be in a specific range, <code>false</code> otherwise
      */
     public static boolean isRangeFormat(final String format)
     {
-        return "range".equalsIgnoreCase(JSFUtils.getToken(
-                format,
-                0,
-                2));
+        return "range".equalsIgnoreCase(JSFUtils.getToken(format, 0, 2));
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a byte, <code>false</code> otherwise
      */
     public static boolean isByte(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.BYTE_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.BYTE_TYPE_NAME);
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a short, <code>false</code> otherwise
      */
     public static boolean isShort(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.SHORT_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.SHORT_TYPE_NAME);
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is an integer, <code>false</code> otherwise
      */
     public static boolean isInteger(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.INTEGER_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.INTEGER_TYPE_NAME);
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a long integer, <code>false</code> otherwise
      */
     public static boolean isLong(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.LONG_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.LONG_TYPE_NAME);
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a floating point, <code>false</code> otherwise
      */
     public static boolean isFloat(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.FLOAT_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.FLOAT_TYPE_NAME);
     }
 
     /**
-     * @return <code>true</code> if the type of this field is a double precision floating point, <code>false</code> otherwise
+     * @param type
+     * @return <code>true</code> if the type of this field is a double precision floating point,
+     * <code>false</code> otherwise
      */
     public static boolean isDouble(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.DOUBLE_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.DOUBLE_TYPE_NAME);
     }
 
-
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a date, <code>false</code> otherwise
      */
     public static boolean isDate(final ClassifierFacade type)
     {
-        return type != null && type.isDateType();
+        return (type != null) && type.isDateType();
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a time, <code>false</code> otherwise
      */
     public static boolean isTime(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.TIME_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.TIME_TYPE_NAME);
     }
 
     /**
+     * @param type
      * @return <code>true</code> if the type of this field is a URL, <code>false</code> otherwise
      */
     public static boolean isUrl(final ClassifierFacade type)
     {
-        return isType(
-            type,
-            JSFProfile.URL_TYPE_NAME);
+        return JSFUtils.isType(type, JSFProfile.URL_TYPE_NAME);
     }
 
-
-    private static boolean isType(final ClassifierFacade type, String typeName)
+    private static boolean isType(final ClassifierFacade type, final String typeName)
     {
-        boolean isType = UMLMetafacadeUtils.isType(
-            type,
-            typeName);
+        boolean isType = UMLMetafacadeUtils.isType(type, typeName);
         if (!isType)
         {
             // - handle abstract types that are mapped to java types
@@ -461,11 +453,13 @@ public class JSFUtils
     }
 
     /**
-     * @return <code>true</code> if the type of this field is a String, <code>false</code> otherwise
+     * @param type
+     * @return <code>true</code> if the type of this field is a String,
+     * <code>false</code> otherwise
      */
     public static boolean isString(final ClassifierFacade type)
     {
-        return type != null && type.isStringType();
+        return (type != null) && type.isStringType();
     }
 
     /**
@@ -491,7 +485,7 @@ public class JSFUtils
      * @param element the element from which to retrieve the equal value.
      * @return the "equal" value.
      */
-    public static java.lang.String getEqual(final ModelElementFacade element)
+    public static String getEqual(final ModelElementFacade element)
     {
         String equal = null;
         if (element != null)
@@ -509,14 +503,14 @@ public class JSFUtils
      * @param ownerParameter the optional owner parameter (specified if the element is an attribute).
      * @return the "equal" value.
      */
-    public static java.lang.String getEqual(final ModelElementFacade element, final ParameterFacade ownerParameter)
+    public static String getEqual(final ModelElementFacade element, final ParameterFacade ownerParameter)
     {
         String equal = null;
         if (element != null)
         {
             final Object value = element.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_EQUAL);
             equal = value == null ? null : value.toString();
-            if (StringUtils.isNotBlank(equal) && ownerParameter != null)
+            if (StringUtils.isNotBlank(equal) && (ownerParameter != null))
             {
                 equal = ownerParameter.getName() + StringUtilsHelper.upperCamelCaseName(equal);
             }
@@ -530,7 +524,7 @@ public class JSFUtils
      * @param element the element from which to retrieve the validwhen value.
      * @return the "validwhen" value.
      */
-    public static java.lang.String getValidWhen(final ModelElementFacade element)
+    public static String getValidWhen(final ModelElementFacade element)
     {
         String validWhen = null;
         if (element != null)
@@ -542,59 +536,75 @@ public class JSFUtils
     }
 
     /**
+     * @param format
      * @return the lower limit for this field's value's range
      */
     public static String getRangeStart(final String format)
     {
-        return JSFUtils.getToken(
-            format,
-            1,
-            3);
+        return JSFUtils.getToken(format, 1, 3);
     }
 
     /**
+     * @param format
      * @return the upper limit for this field's value's range
      */
     public static String getRangeEnd(final String format)
     {
-        return JSFUtils.getToken(
-            format,
-            2,
-            3);
+        return JSFUtils.getToken(format, 2, 3);
     }
 
     /**
+     * @param format
      * @return the minimum number of characters this field's value must consist of
      */
     public static String getMinLengthValue(final String format)
     {
-        return JSFUtils.getToken(
-            format,
-            1,
-            2);
+        return JSFUtils.getToken(format, 1, 2);
     }
 
     /**
+     * @param format
      * @return the maximum number of characters this field's value must consist of
      */
     public static String getMaxLengthValue(final String format)
     {
-        return JSFUtils.getToken(
-            format,
-            1,
-            2);
+        return JSFUtils.getToken(format, 1, 2);
     }
 
     /**
+     * @param format
      * @return the pattern this field's value must respect
      */
     public static String getPatternValue(final String format)
     {
-        return '^' + JSFUtils.getToken(
-            format,
-            1,
-            2) + '$';
+        return '^' + JSFUtils.getToken(format, 1, 2) + '$';
     }
+
+    // validator strings
+    /** "required" */
+    public static final String VT_REQUIRED     = "required";
+    /** "url" */
+    public static final String VT_URL          = "url";
+    /** "intRange" */
+    public static final String VT_INT_RANGE    = "intRange";
+    /** "floatRange" */
+    public static final String VT_FLOAT_RANGE  = "floatRange";
+    /** "doubleRange" */
+    public static final String VT_DOUBLE_RANGE = "doubleRange";
+    /** "email" */
+    public static final String VT_EMAIL        = "email";
+    /** "creditCard" */
+    public static final String VT_CREDIT_CARD  = "creditCard";
+    /** "minlength" */
+    public static final String VT_MIN_LENGTH   = "minlength";
+    /** "maxlength" */
+    public static final String VT_MAX_LENGTH   = "maxlength";
+    /** "mask" */
+    public static final String VT_MASK         = "mask";
+    /** "validwhen" */
+    public static final String VT_VALID_WHEN   = "validwhen";
+    /** "equal" */
+    public static final String VT_EQUAL        = "equal";
 
     /**
      * Retrieves the validator types as a collection from the given
@@ -604,79 +614,68 @@ public class JSFUtils
      * @param type the type of the element.
      * @return the collection of validator types.
      */
-    public static java.util.Collection getValidatorTypes(
-        final ModelElementFacade element,
-        final ClassifierFacade type)
+    public static Collection<String> getValidatorTypes(final ModelElementFacade element, final ClassifierFacade type)
     {
         final Collection<String> validatorTypesList = new ArrayList<String>();
-        if (element != null && type != null)
+        if ((element != null) && (type != null))
         {
             final String format = JSFUtils.getInputFormat(element);
-            final boolean isRangeFormat = format != null && isRangeFormat(format);
+            final boolean isRangeFormat = (format != null) && JSFUtils.isRangeFormat(format);
             if (element instanceof AttributeFacade)
             {
-                if (((AttributeFacade)element).isRequired())
+                if (((AttributeFacade) element).isRequired())
                 {
-                    validatorTypesList.add("required");
+                    validatorTypesList.add(JSFUtils.VT_REQUIRED);
                 }
-            }
-            else if (element instanceof JSFParameter)
+            } else if (element instanceof JSFParameter)
             {
-                if (((JSFParameter)element).isRequired())
+                if (((JSFParameter) element).isRequired())
                 {
-                    validatorTypesList.add("required");
+                    validatorTypesList.add(JSFUtils.VT_REQUIRED);
                 }
             }
             if (JSFUtils.isByte(type))
             {
                 validatorTypesList.add("byte");
-            }
-            else if (JSFUtils.isShort(type))
+            } else if (JSFUtils.isShort(type))
             {
                 validatorTypesList.add("short");
-            }
-            else if (JSFUtils.isInteger(type))
+            } else if (JSFUtils.isInteger(type))
             {
                 validatorTypesList.add("integer");
-            }
-            else if (JSFUtils.isLong(type))
+            } else if (JSFUtils.isLong(type))
             {
                 validatorTypesList.add("long");
-            }
-            else if (JSFUtils.isFloat(type))
+            } else if (JSFUtils.isFloat(type))
             {
                 validatorTypesList.add("float");
-            }
-            else if (JSFUtils.isDouble(type))
+            } else if (JSFUtils.isDouble(type))
             {
                 validatorTypesList.add("double");
-            }
-            else if (JSFUtils.isDate(type))
+            } else if (JSFUtils.isDate(type))
             {
                 validatorTypesList.add("date");
-            }
-            else if (JSFUtils.isTime(type))
+            } else if (JSFUtils.isTime(type))
             {
                 validatorTypesList.add("time");
-            }
-            else if (JSFUtils.isUrl(type))
+            } else if (JSFUtils.isUrl(type))
             {
-                validatorTypesList.add("url");
+                validatorTypesList.add(JSFUtils.VT_URL);
             }
 
             if (isRangeFormat)
             {
                 if (JSFUtils.isInteger(type) || JSFUtils.isShort(type) || JSFUtils.isLong(type))
                 {
-                    validatorTypesList.add("intRange");
+                    validatorTypesList.add(JSFUtils.VT_INT_RANGE);
                 }
                 if (JSFUtils.isFloat(type))
                 {
-                    validatorTypesList.add("floatRange");
+                    validatorTypesList.add(JSFUtils.VT_FLOAT_RANGE);
                 }
                 if (JSFUtils.isDouble(type))
                 {
-                    validatorTypesList.add("doubleRange");
+                    validatorTypesList.add(JSFUtils.VT_DOUBLE_RANGE);
                 }
             }
 
@@ -684,50 +683,45 @@ public class JSFUtils
             {
                 if (JSFUtils.isString(type) && JSFUtils.isEmailFormat(format))
                 {
-                    validatorTypesList.add("email");
-                }
-                else if (JSFUtils.isString(type) && JSFUtils.isCreditCardFormat(format))
+                    validatorTypesList.add(JSFUtils.VT_EMAIL);
+                } else if (JSFUtils.isString(type) && JSFUtils.isCreditCardFormat(format))
                 {
-                    validatorTypesList.add("creditCard");
-                }
-                else
+                    validatorTypesList.add(JSFUtils.VT_CREDIT_CARD);
+                } else
                 {
-                    Collection formats = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_FORMAT);
+                    final Collection formats = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_FORMAT);
                     for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
                     {
-                        String additionalFormat = String.valueOf(formatIterator.next());
+                        final String additionalFormat = String.valueOf(formatIterator.next());
                         if (JSFUtils.isMinLengthFormat(additionalFormat))
                         {
-                            validatorTypesList.add("minlength");
-                        }
-                        else if (JSFUtils.isMaxLengthFormat(additionalFormat))
+                            validatorTypesList.add(JSFUtils.VT_MIN_LENGTH);
+                        } else if (JSFUtils.isMaxLengthFormat(additionalFormat))
                         {
-                            validatorTypesList.add("maxlength");
-                        }
-                        else if (JSFUtils.isPatternFormat(additionalFormat))
+                            validatorTypesList.add(JSFUtils.VT_MAX_LENGTH);
+                        } else if (JSFUtils.isPatternFormat(additionalFormat))
                         {
-                            validatorTypesList.add("mask");
+                            validatorTypesList.add(JSFUtils.VT_MASK);
                         }
                     }
                 }
             }
-
             if (JSFUtils.getValidWhen(element) != null)
             {
-                validatorTypesList.add("validwhen");
+                validatorTypesList.add(JSFUtils.VT_VALID_WHEN);
             }
             if (JSFUtils.getEqual(element) != null)
             {
-                validatorTypesList.add("equal");
+                validatorTypesList.add(JSFUtils.VT_EQUAL);
             }
-        }
 
-        // - custom (paramterized) validators are allowed here
-        final Collection taggedValues = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_VALIDATORS);
-        for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
-        {
-            String validator = String.valueOf(iterator.next());
-            validatorTypesList.add(JSFUtils.parseValidatorName(validator));
+            // - custom (paramterized) validators are allowed here
+            final Collection taggedValues = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_VALIDATORS);
+            for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
+            {
+                final String validator = String.valueOf(iterator.next());
+                validatorTypesList.add(JSFUtils.parseValidatorName(validator));
+            }
         }
         return validatorTypesList;
     }
@@ -741,13 +735,10 @@ public class JSFUtils
      * @param ownerParameter the optional owner parameter (if the element is an attribute for example).
      * @return the collection of validator variables.
      */
-    public static java.util.Collection getValidatorVars(
-        final ModelElementFacade element,
-        final ClassifierFacade type,
-        final ParameterFacade ownerParameter)
+    public static Collection<List<String>> getValidatorVars(final ModelElementFacade element, final ClassifierFacade type, final ParameterFacade ownerParameter)
     {
-        final Map<String, Object> vars = new LinkedHashMap<String, Object>();
-        if (element != null && type != null)
+        final Map<String, List<String>> vars = new LinkedHashMap<String, List<String>>();
+        if ((element != null) && (type != null))
         {
             final String format = JSFUtils.getInputFormat(element);
             if (format != null)
@@ -758,14 +749,9 @@ public class JSFUtils
                 {
                     final String min = "min";
                     final String max = "max";
-                    vars.put(
-                        min,
-                        Arrays.asList(new Object[] {min, JSFUtils.getRangeStart(format)}));
-                    vars.put(
-                        max,
-                        Arrays.asList(new Object[] {max, JSFUtils.getRangeEnd(format)}));
-                }
-                else
+                    vars.put(min, Arrays.asList(min, JSFUtils.getRangeStart(format)));
+                    vars.put(max, Arrays.asList(max, JSFUtils.getRangeEnd(format)));
+                } else
                 {
                     final Collection formats = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_FORMAT);
                     for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
@@ -776,21 +762,13 @@ public class JSFUtils
                         final String mask = "mask";
                         if (JSFUtils.isMinLengthFormat(additionalFormat))
                         {
-                            vars.put(
-                                minlength,
-                                Arrays.asList(new Object[] {minlength, JSFUtils.getMinLengthValue(additionalFormat)}));
-                        }
-                        else if (JSFUtils.isMaxLengthFormat(additionalFormat))
+                            vars.put(minlength, Arrays.asList(minlength, JSFUtils.getMinLengthValue(additionalFormat)));
+                        } else if (JSFUtils.isMaxLengthFormat(additionalFormat))
                         {
-                            vars.put(
-                                maxlength,
-                                Arrays.asList(new Object[] {maxlength, JSFUtils.getMaxLengthValue(additionalFormat)}));
-                        }
-                        else if (JSFUtils.isPatternFormat(additionalFormat))
+                            vars.put(maxlength, Arrays.asList(maxlength, JSFUtils.getMaxLengthValue(additionalFormat)));
+                        } else if (JSFUtils.isPatternFormat(additionalFormat))
                         {
-                            vars.put(
-                                mask,
-                                Arrays.asList(new Object[] {mask, JSFUtils.getPatternValue(additionalFormat)}));
+                            vars.put(mask, Arrays.asList(mask, JSFUtils.getPatternValue(additionalFormat)));
                         }
                     }
                 }
@@ -798,83 +776,64 @@ public class JSFUtils
             String inputFormat;
             if (element instanceof JSFAttribute)
             {
-                inputFormat = ((JSFAttribute)element).getFormat();
-            }
-            else if (element instanceof JSFParameter)
+                inputFormat = ((JSFAttribute) element).getFormat();
+            } else if (element instanceof JSFParameter)
             {
-                inputFormat = ((JSFParameter)element).getFormat();
-            }
-            else if (element instanceof JSFManageableEntityAttribute)
+                inputFormat = ((JSFParameter) element).getFormat();
+            } else if (element instanceof JSFManageableEntityAttribute)
             {
-                inputFormat = ((JSFManageableEntityAttribute)element).getFormat();
-            }
-            else
+                inputFormat = ((JSFManageableEntityAttribute) element).getFormat();
+            } else
             {
-                throw new RuntimeException("'element' is an invalid type, it must be either an instance of '" +
-                    JSFAttribute.class.getName() + "' or '" + JSFParameter.class.getName() + "'");
+                throw new RuntimeException("'element' is an invalid type, it must be either an instance of '" + JSFAttribute.class.getName() + "' or '" + JSFParameter.class.getName() + "'");
             }
             if (JSFUtils.isDate(type))
             {
                 final String datePatternStrict = "datePatternStrict";
-                if (format != null && JSFUtils.isStrictDateFormat(format))
+                if ((format != null) && JSFUtils.isStrictDateFormat(format))
                 {
-                    vars.put(
-                        datePatternStrict,
-                        Arrays.asList(new Object[] {datePatternStrict, inputFormat}));
-                }
-                else
+                    vars.put(datePatternStrict, Arrays.asList(datePatternStrict, inputFormat));
+                } else
                 {
                     final String datePattern = "datePattern";
-                    vars.put(
-                        datePattern,
-                        Arrays.asList(new Object[] {datePattern, inputFormat}));
+                    vars.put(datePattern, Arrays.asList(datePattern, inputFormat));
                 }
             }
             if (JSFUtils.isTime(type))
             {
                 final String timePattern = "timePattern";
-                vars.put(
-                    timePattern,
-                    Arrays.asList(new Object[] {timePattern, inputFormat}));
+                vars.put(timePattern, Arrays.asList(timePattern, inputFormat));
             }
 
             final String validWhen = JSFUtils.getValidWhen(element);
             if (validWhen != null)
             {
                 final String test = "test";
-                vars.put(
-                    test,
-                    Arrays.asList(new Object[] {test, validWhen}));
+                vars.put(test, Arrays.asList(test, validWhen));
             }
 
             final String equal = JSFUtils.getEqual(element, ownerParameter);
             if (equal != null)
             {
                 final String fieldName = "fieldName";
-                vars.put(
-                    fieldName,
-                    Arrays.asList(new Object[] {fieldName, equal}));
+                vars.put(fieldName, Arrays.asList(fieldName, equal));
             }
-        }
 
-        // - custom (parameterized) validators are allowed here
-        //   in this case we will reuse the validator arg values
-        final Collection taggedValues = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_VALIDATORS);
-        for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
-        {
-            final String validator = String.valueOf(iterator.next());
-
-            // - guaranteed to be of the same length
-            final List validatorVars = JSFUtils.parseValidatorVars(validator);
-            final List validatorArgs = JSFUtils.parseValidatorArgs(validator);
-
-            for (int ctr = 0; ctr < validatorVars.size(); ctr++)
+            // - custom (parameterized) validators are allowed here
+            // in this case we will reuse the validator arg values
+            final Collection taggedValues = element.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_VALIDATORS);
+            for (final Object value : taggedValues)
             {
-                final String validatorVar = (String)validatorVars.get(ctr);
-                final String validatorArg = (String)validatorArgs.get(ctr);
-                vars.put(
-                    validatorVar,
-                    Arrays.asList(new Object[] {validatorVar, validatorArg}));
+                final String validator = String.valueOf(value);
+
+                // - guaranteed to be of the same length
+                final List<String> validatorVars = JSFUtils.parseValidatorVars(validator);
+                final List<String> validatorArgs = JSFUtils.parseValidatorArgs(validator);
+
+                for (int ctr = 0; ctr < validatorVars.size(); ctr++)
+                {
+                    vars.put(validatorVars.get(ctr), Arrays.asList(validatorVars.get(ctr), validatorArgs.get(ctr)));
+                }
             }
         }
         return vars.values();
@@ -887,48 +846,39 @@ public class JSFUtils
      * @param validatorType the validator type name.
      * @return the validator args as a collection.
      */
-    public static java.util.Collection getValidatorArgs(
-        final ModelElementFacade element,
-        final java.lang.String validatorType)
+    public static java.util.Collection getValidatorArgs(final ModelElementFacade element, final String validatorType)
     {
         final Collection<Object> args = new ArrayList<Object>();
-        if ("intRange".equals(validatorType) || "floatRange".equals(validatorType) ||
-            "doubleRange".equals(validatorType))
+        if ("intRange".equals(validatorType) || "floatRange".equals(validatorType) || "doubleRange".equals(validatorType))
         {
             args.add("${var:min}");
             args.add("${var:max}");
-        }
-        else if ("minlength".equals(validatorType))
+        } else if ("minlength".equals(validatorType))
         {
             args.add("${var:minlength}");
-        }
-        else if ("maxlength".equals(validatorType))
+        } else if ("maxlength".equals(validatorType))
         {
             args.add("${var:maxlength}");
-        }
-        else if ("date".equals(validatorType))
+        } else if ("date".equals(validatorType))
         {
             final String validatorFormat = JSFUtils.getInputFormat(element);
             if (JSFUtils.isStrictDateFormat(validatorFormat))
             {
                 args.add("${var:datePatternStrict}");
-            }
-            else
+            } else
             {
                 args.add("${var:datePattern}");
             }
-        }
-        else if ("time".equals(validatorType))
+        } else if ("time".equals(validatorType))
         {
             args.add("${var:timePattern}");
-        }
-        else if ("equal".equals(validatorType))
+        } else if ("equal".equals(validatorType))
         {
             ModelElementFacade equalParameter = null;
             final String equal = JSFUtils.getEqual(element);
             if (element instanceof ParameterFacade)
             {
-                final FrontEndParameter parameter = (FrontEndParameter)element;
+                final FrontEndParameter parameter = (FrontEndParameter) element;
                 final OperationFacade operation = parameter.getOperation();
                 if (operation != null)
                 {
@@ -942,10 +892,9 @@ public class JSFUtils
                         equalParameter = action.findParameter(equal);
                     }
                 }
-            }
-            else if (element instanceof AttributeFacade)
+            } else if (element instanceof AttributeFacade)
             {
-                final AttributeFacade attribute = (AttributeFacade)element;
+                final AttributeFacade attribute = (AttributeFacade) element;
                 final ClassifierFacade owner = attribute.getOwner();
                 if (owner != null)
                 {
@@ -975,7 +924,7 @@ public class JSFUtils
     private static boolean strictDateTimeFormat;
 
     /**
-     * Sets whether or not the dattern patterns should be treated as strict.
+     * Sets whether or not the date patterns should be treated as strict.
      *
      * @param strictDateTimeFormat
      */
@@ -987,6 +936,7 @@ public class JSFUtils
     /**
      * Indicates whether or not the format for this element is a strict date
      * format.
+     * @param element
      * @return true/false
      */
     public static boolean isStrictDateFormat(final ModelElementFacade element)
@@ -1000,34 +950,29 @@ public class JSFUtils
      *
      * @param element the element for which to retrieve the format.
      * @param type the type of the element.
+     * @param defaultDateFormat
+     * @param defaultTimeFormat
      * @return the format string (if one is present otherwise null).
      */
-    public static String getFormat(
-        final ModelElementFacade element,
-        final ClassifierFacade type,
-        final String defaultDateFormat,
-        final String defaultTimeFormat)
+    public static String getFormat(final ModelElementFacade element, final ClassifierFacade type, final String defaultDateFormat, final String defaultTimeFormat)
     {
         String format = null;
-        if (element != null && type != null)
+        if ((element != null) && (type != null))
         {
             format = JSFUtils.getInputFormat(element);
             if (format == null)
             {
-                if(type.isDateType() && type.isTimeType())
+                if (type.isDateType() && type.isTimeType())
                 {
-                    format = defaultDateFormat+" "+defaultTimeFormat;
-                }
-                else if (type.isTimeType())
+                    format = defaultDateFormat + " " + defaultTimeFormat;
+                } else if (type.isTimeType())
                 {
                     format = defaultTimeFormat;
-                }
-                else if (type.isDateType())
+                } else if (type.isDateType())
                 {
                     format = defaultDateFormat;
                 }
-            }
-            else if (type.isDateType())
+            } else if (type.isDateType())
             {
                 format = JSFUtils.getDateFormat(format);
             }
@@ -1047,12 +992,15 @@ public class JSFUtils
      */
     public String getViewExtension()
     {
-        return EXTENSION_XHTML;
+        return JSFUtils.EXTENSION_XHTML;
     }
 
     private String portletContainer;
 
-    public void setPortletContainer(String portletContainer)
+    /**
+     * @param portletContainer
+     */
+    public void setPortletContainer(final String portletContainer)
     {
         this.portletContainer = portletContainer;
     }
@@ -1062,42 +1010,48 @@ public class JSFUtils
         return StringUtils.isNotBlank(this.portletContainer);
     }
 
+    /**
+     * @return className
+     */
     public String getRequestClassName()
     {
         final String className;
         if (this.isPortlet())
         {
             className = "javax.portlet.PortletRequest";
-        }
-        else
+        } else
         {
             className = "javax.servlet.http.HttpServletRequest";
         }
         return className;
     }
 
+    /**
+     * @return className
+     */
     public String getResponseClassName()
     {
         final String className;
         if (this.isPortlet())
         {
             className = "javax.portlet.PortletResponse";
-        }
-        else
+        } else
         {
             className = "javax.servlet.http.HttpServletResponse";
         }
         return className;
     }
 
+    /**
+     * @return className
+     */
     public String getSessionClassName()
     {
         final String className;
         if (this.isPortlet())
         {
             className = "javax.portlet.PortletSession";
-        }
-        else
+        } else
         {
             className = "javax.servlet.http.HttpSession";
         }
@@ -1105,20 +1059,20 @@ public class JSFUtils
     }
 
     /**
+     * @param buffer
      * @return the calculated SerialVersionUID
      */
-    public static String calcSerialVersionUID(StringBuffer buffer){
+    public static String calcSerialVersionUID(final StringBuilder buffer)
+    {
         final String signature = buffer.toString();
         String serialVersionUID = String.valueOf(0L);
         try
         {
-            MessageDigest md = MessageDigest.getInstance("SHA");
-            byte[] hashBytes = md.digest(signature.getBytes());
+            final MessageDigest md = MessageDigest.getInstance("SHA");
+            final byte[] hashBytes = md.digest(signature.getBytes());
 
             long hash = 0;
-            for (int ctr = Math.min(
-                        hashBytes.length,
-                        8) - 1; ctr >= 0; ctr--)
+            for (int ctr = Math.min(hashBytes.length, 8) - 1; ctr >= 0; ctr--)
             {
                 hash = (hash << 8) | (hashBytes[ctr] & 0xFF);
             }
@@ -1126,13 +1080,17 @@ public class JSFUtils
         }
         catch (final NoSuchAlgorithmException exception)
         {
-            throw new RuntimeException("Error performing JSFAction.getFormSerialVersionUID",exception);
+            throw new RuntimeException("Error performing JSFAction.getFormSerialVersionUID", exception);
         }
-        
+
         return serialVersionUID;
     }
-    
-    public int calculateIcefacesTimeout(String string)
+
+    /**
+     * @param string
+     * @return Integer.valueOf(string) * 6000
+     */
+    public int calculateIcefacesTimeout(final String string)
     {
         return string != null ? Integer.valueOf(string) * 6000 : 0;
     }

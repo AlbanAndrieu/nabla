@@ -1,11 +1,7 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
-import org.andromda.cartridges.jsf2.metafacades.JSFAction;
-import org.andromda.cartridges.jsf2.metafacades.JSFEventLogic;
-import org.andromda.cartridges.jsf2.metafacades.JSFView;
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.utils.StringUtilsHelper;
-
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFEvent.
@@ -15,16 +11,21 @@ import org.andromda.utils.StringUtilsHelper;
 public class JSFEventLogicImpl
     extends JSFEventLogic
 {
-
-    public JSFEventLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFEventLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEvent#getMessageKey()
+     * @return triggerKey
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEvent#getMessageKey()
      */
-    protected java.lang.String handleGetMessageKey()
+    protected String handleGetMessageKey()
     {
         String triggerKey = StringUtilsHelper.toResourceMessageKey(getName());
         if (!this.isNormalizeMessages())
@@ -43,38 +44,39 @@ public class JSFEventLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEvent#getMessageValue()
+     * @return StringUtilsHelper.toPhrase(this.getName())
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEvent#getMessageValue()
      */
-    protected java.lang.String handleGetMessageValue()
+    protected String handleGetMessageValue()
     {
         return StringUtilsHelper.toPhrase(this.getName());
     }
-    
+
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEvent#getResetMessageValue()
+     * @return "Reset"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEvent#getResetMessageValue()
      */
-    protected java.lang.String handleGetResetMessageValue()
+    protected String handleGetResetMessageValue()
     {
         return "Reset";
     }
-    
+
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEvent#getResetMessageKey()
+     * @return getMessageKey() + ".reset.message"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEvent#getResetMessageKey()
      */
-    protected java.lang.String handleGetResetMessageKey()
+    protected String handleGetResetMessageKey()
     {
         return this.getMessageKey() + ".reset.message";
     }
-    
+
     /**
      * Indicates whether or not we should normalize messages.
-     *
-     * @return true/false
+     * @return normalizeMessages true/false
      */
     private boolean isNormalizeMessages()
     {
         final String normalizeMessages = (String)getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
         return Boolean.valueOf(normalizeMessages).booleanValue();
     }
-
 }

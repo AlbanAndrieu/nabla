@@ -1,10 +1,9 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
 import org.andromda.cartridges.jsf2.JSFGlobals;
+import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-import org.andromda.utils.StringUtilsHelper;
-
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFEnumeration.
@@ -14,16 +13,21 @@ import org.andromda.utils.StringUtilsHelper;
 public class JSFEnumerationLogicImpl
     extends JSFEnumerationLogic
 {
-
-    public JSFEnumerationLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFEnumerationLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEnumeration#getConverterName()
+     * @return converterName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEnumeration#getConverterName()
      */
-    protected java.lang.String handleGetConverterName()
+    protected String handleGetConverterName()
     {
         return StringUtils.replace(
             ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONVERTER_PATTERN)),
@@ -32,15 +36,17 @@ public class JSFEnumerationLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEnumeration#getFullyQualifiedConverterName()
+     * @return getPackageName() + "." + getConverterName()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEnumeration#getFullyQualifiedConverterName()
      */
-    protected java.lang.String handleGetFullyQualifiedConverterName()
+    protected String handleGetFullyQualifiedConverterName()
     {
         return this.getPackageName() + "." + this.getConverterName();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEnumeration#getConverterPath()
+     * @return getFullyQualifiedConverterName().replace('.', '/')
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEnumeration#getConverterPath()
      */
     protected String handleGetConverterPath()
     {
@@ -48,11 +54,11 @@ public class JSFEnumerationLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFEnumeration#getMessageKey()
+     * @return StringUtilsHelper.toResourceMessageKey(getName())
+     * @see org.andromda.cartridges.jsf.metafacades.JSFEnumeration#getMessageKey()
      */
     protected String handleGetMessageKey()
     {
         return StringUtilsHelper.toResourceMessageKey(getName());
     }
-
 }

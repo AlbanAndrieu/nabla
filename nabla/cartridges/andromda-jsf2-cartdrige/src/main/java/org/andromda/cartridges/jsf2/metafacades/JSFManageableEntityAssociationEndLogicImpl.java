@@ -1,11 +1,10 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
-import org.andromda.utils.StringUtilsHelper;
+import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.Entity;
 import org.andromda.metafacades.uml.ManageableEntity;
-import org.andromda.cartridges.jsf2.JSFUtils;
-import org.andromda.cartridges.jsf2.JSFGlobals;
+import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -17,18 +16,23 @@ import org.apache.commons.lang.StringUtils;
 public class JSFManageableEntityAssociationEndLogicImpl
     extends JSFManageableEntityAssociationEndLogic
 {
-
-    public JSFManageableEntityAssociationEndLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFManageableEntityAssociationEndLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getMessageKey()
+     * @return messageKey
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getMessageKey()
      */
-    protected java.lang.String handleGetMessageKey()
+    protected String handleGetMessageKey()
     {
-        final StringBuffer messageKeyBuffer = new StringBuffer();
+        final StringBuilder messageKeyBuffer = new StringBuilder();
 
         final ClassifierFacade ownerType = this.getOtherEnd().getType();
         if (ownerType instanceof ManageableEntity)
@@ -47,9 +51,10 @@ public class JSFManageableEntityAssociationEndLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getMessageValue()
+     * @return messageValue
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getMessageValue()
      */
-    protected java.lang.String handleGetMessageValue()
+    protected String handleGetMessageValue()
     {
         String messageValue = null;
 
@@ -63,24 +68,27 @@ public class JSFManageableEntityAssociationEndLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getOnlineHelpKey()
+     * @return getMessageKey() + ".online.help"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getOnlineHelpKey()
      */
-    protected java.lang.String handleGetOnlineHelpKey()
+    protected String handleGetOnlineHelpKey()
     {
         return this.getMessageKey() + ".online.help";
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getOnlineHelpValue()
+     * @return onlineHelpValue
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getOnlineHelpValue()
      */
-    protected java.lang.String handleGetOnlineHelpValue()
+    protected String handleGetOnlineHelpValue()
     {
         final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation("", 64, false));
         return (value == null) ? "No field documentation has been specified" : value;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getBackingListName()
+     * @return backingListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getBackingListName()
      */
     protected String handleGetBackingListName()
     {
@@ -93,9 +101,10 @@ public class JSFManageableEntityAssociationEndLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getValueListName()
+     * @return valueListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getValueListName()
      */
-    protected java.lang.String handleGetValueListName()
+    protected String handleGetValueListName()
     {
         return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll(
             "\\{0\\}",
@@ -103,13 +112,13 @@ public class JSFManageableEntityAssociationEndLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd#getLabelListName()
+     * @return labelListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEnd#getLabelListName()
      */
-    protected java.lang.String handleGetLabelListName()
+    protected String handleGetLabelListName()
     {
         return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll(
             "\\{0\\}",
             this.getName());
     }
-
 }

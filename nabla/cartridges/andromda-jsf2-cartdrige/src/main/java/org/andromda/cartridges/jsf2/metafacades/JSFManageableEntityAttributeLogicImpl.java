@@ -1,15 +1,14 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
-import java.util.Iterator;
 import java.util.Collection;
-
+import java.util.Iterator;
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
-import org.andromda.utils.StringUtilsHelper;
 import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.ParameterFacade;
+import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -21,16 +20,21 @@ import org.apache.commons.lang.StringUtils;
 public class JSFManageableEntityAttributeLogicImpl
     extends JSFManageableEntityAttributeLogic
 {
-
-    public JSFManageableEntityAttributeLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFManageableEntityAttributeLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getMessageKey()
+     * @return messageKey
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getMessageKey()
      */
-    protected java.lang.String handleGetMessageKey()
+    protected String handleGetMessageKey()
     {
         String titleKey = "";
 
@@ -44,17 +48,19 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getMessageValue()
+     * @return StringUtilsHelper.toPhrase(getName())
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getMessageValue()
      */
-    protected java.lang.String handleGetMessageValue()
+    protected String handleGetMessageValue()
     {
         return StringUtilsHelper.toPhrase(getName());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getDateFormat()
+     * @return dateFormat
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getDateFormat()
      */
-    protected java.lang.String handleGetDateFormat()
+    protected String handleGetDateFormat()
     {
         String dateFormat = this.internalGetDateFormat();
 
@@ -62,7 +68,7 @@ public class JSFManageableEntityAttributeLogicImpl
         {
             final String[] tokens = dateFormat.split("[\\s]+");
             int tokenIndex = 0;
-            if (tokenIndex < tokens.length && tokens[tokenIndex].trim().equals("strict"))
+            if (tokenIndex < tokens.length && "strict".equals(tokens[tokenIndex].trim()))
             {
                 tokenIndex++;
             }
@@ -76,7 +82,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isNeedsFileUpload()
+     * @return getType().isBlobType()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isNeedsFileUpload()
      */
     protected boolean handleIsNeedsFileUpload()
     {
@@ -84,7 +91,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isHidden()
+     * @return isHidden
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isHidden()
      */
     protected boolean handleIsHidden()
     {
@@ -92,16 +100,18 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getWidgetType()
+     * @return widgetType
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getWidgetType()
      */
-    protected java.lang.String handleGetWidgetType()
+    protected String handleGetWidgetType()
     {
         final Object widgetTag = findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_TYPE);
         return (widgetTag == null) ? JSFProfile.TAGGEDVALUE_INPUT_TYPE_TEXT : widgetTag.toString();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isStrictDateFormat()
+     * @return isStrictDateFormat
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isStrictDateFormat()
      */
     protected boolean handleIsStrictDateFormat()
     {
@@ -110,26 +120,29 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getOnlineHelpKey()
+     * @return getMessageKey() + ".online.help"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getOnlineHelpKey()
      */
-    protected java.lang.String handleGetOnlineHelpKey()
+    protected String handleGetOnlineHelpKey()
     {
         return this.getMessageKey() + ".online.help";
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getOnlineHelpValue()
+     * @return getDocumentation
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getOnlineHelpValue()
      */
-    protected java.lang.String handleGetOnlineHelpValue()
+    protected String handleGetOnlineHelpValue()
     {
         final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation("", 64, false));
         return (value == null) ? "No field documentation has been specified" : value;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getFormat()
+     * @return format
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getFormat()
      */
-    protected java.lang.String handleGetFormat()
+    protected String handleGetFormat()
     {
         return JSFUtils.getFormat(
             (ModelElementFacade)this.THIS(),
@@ -139,43 +152,48 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getDefaultDateFormat()
+     * @return getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getDefaultDateFormat()
      */
-    protected java.lang.String handleGetDefaultDateFormat()
+    protected String handleGetDefaultDateFormat()
     {
         return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getDefaultTimeFormat()
+     * @return getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getDefaultTimeFormat()
      */
-    protected java.lang.String handleGetDefaultTimeFormat()
+    protected String handleGetDefaultTimeFormat()
     {
         return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getDateFormatter()
+     * @return dateFormatter
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getDateFormatter()
      */
-    protected java.lang.String handleGetDateFormatter()
+    protected String handleGetDateFormatter()
     {
         final ClassifierFacade type = this.getType();
         return type != null && type.isDateType() ? this.getName() + "DateFormatter" : null;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getTimeFormatter()
+     * @return timeFormatter
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getTimeFormatter()
      */
-    protected java.lang.String handleGetTimeFormatter()
+    protected String handleGetTimeFormatter()
     {
         final ClassifierFacade type = this.getType();
         return type != null && type.isTimeType() ? this.getName() + "TimeFormatter" : null;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getBackingListName()
+     * @return backingListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getBackingListName()
      */
-    protected java.lang.String handleGetBackingListName()
+    protected String handleGetBackingListName()
     {
         final String backingListName =
             StringUtils.replace(
@@ -186,9 +204,10 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getValueListName()
+     * @return valueListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getValueListName()
      */
-    protected java.lang.String handleGetValueListName()
+    protected String handleGetValueListName()
     {
         return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll(
             "\\{0\\}",
@@ -196,9 +215,10 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getLabelListName()
+     * @return labelListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getLabelListName()
      */
-    protected java.lang.String handleGetLabelListName()
+    protected String handleGetLabelListName()
     {
         return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll(
             "\\{0\\}",
@@ -206,9 +226,10 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getValidatorTypes()
+     * @return validatorTypes
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getValidatorTypes()
      */
-    protected java.util.Collection handleGetValidatorTypes()
+    protected Collection handleGetValidatorTypes()
     {
         return JSFUtils.getValidatorTypes(
             (ModelElementFacade)this.THIS(),
@@ -216,7 +237,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isValidationRequired()
+     * @return !getValidatorTypes().isEmpty()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isValidationRequired()
      */
     protected boolean handleIsValidationRequired()
     {
@@ -224,26 +246,29 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getValidatorVars()
+     * @return validatorVars
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getValidatorVars()
      */
-    protected java.util.Collection handleGetValidatorVars()
+    protected Collection handleGetValidatorVars()
     {
         return JSFUtils.getValidatorVars(
-            ((ModelElementFacade)this.THIS()),
+            (ModelElementFacade)this.THIS(),
             this.getType(),
             null);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getValidWhen()
+     * @return JSFUtils.getValidWhen(this)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getValidWhen()
      */
-    protected java.lang.String handleGetValidWhen()
+    protected String handleGetValidWhen()
     {
         return JSFUtils.getValidWhen(this);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputCheckbox()
+     * @return checkbox
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputCheckbox()
      */
     protected boolean handleIsInputCheckbox()
     {
@@ -257,7 +282,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputFile()
+     * @return file
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputFile()
      */
     protected boolean handleIsInputFile()
     {
@@ -271,7 +297,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputHidden()
+     * @return isInputType(JSFGlobals.INPUT_HIDDEN)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputHidden()
      */
     protected boolean handleIsInputHidden()
     {
@@ -279,7 +306,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputMultibox()
+     * @return isInputType(JSFGlobals.INPUT_MULTIBOX)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputMultibox()
      */
     protected boolean handleIsInputMultibox()
     {
@@ -287,7 +315,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputRadio()
+     * @return isInputType(JSFGlobals.INPUT_RADIO)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputRadio()
      */
     protected boolean handleIsInputRadio()
     {
@@ -295,7 +324,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputSecret()
+     * @return isInputType(JSFGlobals.INPUT_PASSWORD)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputSecret()
      */
     protected boolean handleIsInputSecret()
     {
@@ -303,7 +333,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputSelect()
+     * @return isInputType(JSFGlobals.INPUT_SELECT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputSelect()
      */
     protected boolean handleIsInputSelect()
     {
@@ -311,7 +342,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputTable()
+     * @return isInputTable
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputTable()
      */
     protected boolean handleIsInputTable()
     {
@@ -319,15 +351,17 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getInputTableIdentifierColumns()
+     * @return inputTableIdentifierColumns
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getInputTableIdentifierColumns()
      */
-    protected java.lang.String handleGetInputTableIdentifierColumns()
+    protected String handleGetInputTableIdentifierColumns()
     {
         return ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_TABLE_IDENTIFIER_COLUMNS)).trim();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputText()
+     * @return isInputText
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputText()
      */
     protected boolean handleIsInputText()
     {
@@ -335,7 +369,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputTextarea()
+     * @return isInputTextarea
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputTextarea()
      */
     protected boolean handleIsInputTextarea()
     {
@@ -343,7 +378,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isInputTypePresent()
+     * @return isInputTypePresent
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isInputTypePresent()
      */
     protected boolean handleIsInputTypePresent()
     {
@@ -359,16 +395,18 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getDummyValue()
+     * @return dummyValue
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getDummyValue()
      */
-    protected java.lang.String handleGetDummyValue()
+    // TODO duplicated
+    protected String handleGetDummyValue()
     {
         final ClassifierFacade type = this.getType();
         if (type != null)
         {
             final String typeName = type.getFullyQualifiedName();
             final String name = this.getName();
-            if ("java.lang.String".equals(typeName))
+            if ("java.lang.String".equals(typeName) || "String".equals(typeName))
             {
                 return "\"" + name + "-test" + "\"";
             }
@@ -420,35 +458,35 @@ public class JSFManageableEntityAttributeLogicImpl
             {
                 return "(byte)" + name.hashCode();
             }
-            if ("java.lang.Integer".equals(typeName))
+            if ("java.lang.Integer".equals(typeName) || "Integer".equals(typeName))
             {
                 return "new Integer((int)" + name.hashCode() + ")";
             }
-            if ("java.lang.Boolean".equals(typeName))
+            if ("java.lang.Boolean".equals(typeName) || "Boolean".equals(typeName))
             {
                 return "Boolean.FALSE";
             }
-            if ("java.lang.Long".equals(typeName))
+            if ("java.lang.Long".equals(typeName) || "Long".equals(typeName))
             {
                 return "new Long((long)" + name.hashCode() + ")";
             }
-            if ("java.lang.Character".equals(typeName))
+            if ("java.lang.Character".equals(typeName) || "Character".equals(typeName))
             {
                 return "new Character(char)" + name.hashCode() + ")";
             }
-            if ("java.lang.Float".equals(typeName))
+            if ("java.lang.Float".equals(typeName) || "Float".equals(typeName))
             {
                 return "new Float((float)" + name.hashCode() / hashCode() + ")";
             }
-            if ("java.lang.Double".equals(typeName))
+            if ("java.lang.Double".equals(typeName) || "Double".equals(typeName))
             {
                 return "new Double((double)" + name.hashCode() / hashCode() + ")";
             }
-            if ("java.lang.Short".equals(typeName))
+            if ("java.lang.Short".equals(typeName) || "Short".equals(typeName))
             {
                 return "new Short((short)" + name.hashCode() + ")";
             }
-            if ("java.lang.Byte".equals(typeName))
+            if ("java.lang.Byte".equals(typeName) || "Byte".equals(typeName))
             {
                 return "new Byte((byte)" + name.hashCode() + ")";
             }
@@ -469,7 +507,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isEqualValidator()
+     * @return isEqualValidator
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isEqualValidator()
      */
     protected boolean handleIsEqualValidator()
     {
@@ -478,7 +517,8 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#isPlaintext()
+     * @return isInputType(JSFGlobals.PLAIN_TEXT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#isPlaintext()
      */
     protected boolean handleIsPlaintext()
     {
@@ -486,17 +526,20 @@ public class JSFManageableEntityAttributeLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getValueListDummyValue()
+     * @return constructDummyArray()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getValueListDummyValue()
      */
-    protected java.lang.String handleGetValueListDummyValue()
+    protected String handleGetValueListDummyValue()
     {
         return this.constructDummyArray();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute#getValidatorArgs(java.lang.String)
+     * @param validatorType
+     * @return getValidatorArgs
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getValidatorArgs(String)
      */
-    protected java.util.Collection handleGetValidatorArgs(java.lang.String validatorType)
+    protected Collection handleGetValidatorArgs(String validatorType)
     {
         return JSFUtils.getValidatorArgs(
             (ModelElementFacade)this.THIS(),
@@ -509,7 +552,7 @@ public class JSFManageableEntityAttributeLogicImpl
      *
      * @return the input type name.
      */
-    private final String getInputType()
+    private String getInputType()
     {
         return ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_TYPE)).trim();
     }
@@ -520,7 +563,7 @@ public class JSFManageableEntityAttributeLogicImpl
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
-    private final boolean isInputType(final String inputType)
+    private boolean isInputType(final String inputType)
     {
         return inputType.equalsIgnoreCase(this.getInputType());
     }
@@ -540,7 +583,7 @@ public class JSFManageableEntityAttributeLogicImpl
      *
      * @return A String representing Java code for the initialization of an array.
      */
-    private final String constructDummyArray()
+    private String constructDummyArray()
     {
         return JSFUtils.constructDummyArrayDeclaration(
             this.getName(),
@@ -566,13 +609,15 @@ public class JSFManageableEntityAttributeLogicImpl
 
         return dateFormat;
     }
-    
+
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFAttribute#getFormPropertyName(org.andromda.metafacades.uml.ParameterFacade)
+     * @param ownerParameter
+     * @return propertyName
+     * @see JSFAttribute#getFormPropertyName(org.andromda.metafacades.uml.ParameterFacade)
      */
     protected String handleGetFormPropertyName(final ParameterFacade ownerParameter)
     {
-        final StringBuffer propertyName = new StringBuffer();
+        final StringBuilder propertyName = new StringBuilder();
         if (ownerParameter != null)
         {
             propertyName.append(ownerParameter.getName());
@@ -585,18 +630,21 @@ public class JSFManageableEntityAttributeLogicImpl
         }
         return propertyName.toString();
     }
-    
+
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFAttribute#getFormPropertyId(java.lang.String)
+     * @param ownerParameter
+     * @return StringUtilsHelper.lowerCamelCaseName(this.getFormPropertyName(ownerParameter))
+     * @see JSFAttribute#getFormPropertyId(ParameterFacade)
      */
     protected String handleGetFormPropertyId(final ParameterFacade ownerParameter)
     {
         return StringUtilsHelper.lowerCamelCaseName(this.getFormPropertyName(ownerParameter));
     }
-    
+
     //TODO remove after 3.4 release
     /**
      * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
+     * @return defaultValue
      */
     public String getDefaultValue()
     {
@@ -606,22 +654,26 @@ public class JSFManageableEntityAttributeLogicImpl
         if (defaultValue!=null && defaultValue.length()>0 && !super.isMany())
         {
             String typeName = getType().getName();
-            if (typeName.equals("String") && defaultValue.indexOf('"')<0)
+            if ("String".equals(typeName) && defaultValue.indexOf('"')<0)
             {
                 defaultValue = '"' + defaultValue + '"';
             }
-            else if ((typeName.equals("char") || typeName.equals("Character"))
-                && defaultValue.indexOf("'")<0)
+            else if (("char".equals(typeName) || "Character".equals(typeName))
+                && !defaultValue.contains("'"))
             {
                 defaultValue = "'" + defaultValue.charAt(0) + "'";
             }
         }
-        if (defaultValue==null) defaultValue="";
+        if (defaultValue==null)
+        {
+            defaultValue="";
+        }
         return defaultValue;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableAttribute#getMaxLength()
+     * @return getColumnLength()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttribute#getMaxLength()
      */
     protected String handleGetMaxLength()
     {
@@ -630,17 +682,14 @@ public class JSFManageableEntityAttributeLogicImpl
         {
             return getColumnLength();
         }
-        else
+        for(Iterator<Collection> it=vars.iterator(); it.hasNext(); )
         {
-            for(Iterator it=vars.iterator(); it.hasNext(); )
+            final Object[] values=(it.next()).toArray();
+            if("maxlength".equals(values[0]))
             {
-                final Object[] values=((Collection)it.next()).toArray();
-                if(values[0].equals("maxlength"))
-                {
-                    return values[1].toString();
-                }
+                return values[1].toString();
             }
-            return getColumnLength();
         }
+        return getColumnLength();
     }
 }

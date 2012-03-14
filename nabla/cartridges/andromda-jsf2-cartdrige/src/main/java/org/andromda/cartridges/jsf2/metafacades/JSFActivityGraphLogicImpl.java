@@ -1,8 +1,5 @@
 package org.andromda.cartridges.jsf2.metafacades;
 
-import org.andromda.cartridges.jsf2.metafacades.JSFActivityGraphLogic;
-
-
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFActivityGraph.
  *
@@ -11,9 +8,13 @@ import org.andromda.cartridges.jsf2.metafacades.JSFActivityGraphLogic;
 public class JSFActivityGraphLogicImpl
     extends JSFActivityGraphLogic
 {
-
-    public JSFActivityGraphLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFActivityGraphLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
 }

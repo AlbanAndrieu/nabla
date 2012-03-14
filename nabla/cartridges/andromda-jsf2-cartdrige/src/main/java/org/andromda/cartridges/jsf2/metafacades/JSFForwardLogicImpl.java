@@ -5,13 +5,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
 import org.andromda.metafacades.uml.StateVertexFacade;
 import org.andromda.utils.StringUtilsHelper;
-
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFForward.
@@ -21,10 +19,14 @@ import org.andromda.utils.StringUtilsHelper;
 public class JSFForwardLogicImpl
     extends JSFForwardLogic
 {
-
-    public JSFForwardLogicImpl (Object metaObject, String context)
+    private static final long serialVersionUID = 34L;
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFForwardLogicImpl(Object metaObject, String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
     }
 
     /**
@@ -32,7 +34,7 @@ public class JSFForwardLogicImpl
      */
     public String getName()
     {
-        StringBuffer name = new StringBuffer(super.getName());
+        StringBuilder name = new StringBuilder(super.getName());
         final Object target = this.getTarget();
         if (target instanceof JSFFinalState)
         {
@@ -46,7 +48,8 @@ public class JSFForwardLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFForward#getPath()
+     * @return forwardPath
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForward#getPath()
      */
     protected String handleGetPath()
     {
@@ -64,11 +67,17 @@ public class JSFForwardLogicImpl
         return forwardPath;
     }
 
+    /**
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleIsSuccessMessagesPresent()
+     */
     protected boolean handleIsSuccessMessagesPresent()
     {
         return !this.getSuccessMessages().isEmpty();
     }
 
+    /**
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleIsWarningMessagesPresent()
+     */
     protected boolean handleIsWarningMessagesPresent()
     {
         return !this.getWarningMessages().isEmpty();
@@ -105,18 +114,25 @@ public class JSFForwardLogicImpl
         return messages;
     }
 
+    /**
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleGetSuccessMessages()
+     */
     protected Map handleGetSuccessMessages()
     {
         return this.getMessages(JSFProfile.TAGGEDVALUE_ACTION_SUCCESS_MESSAGE);
     }
 
+    /**
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleGetWarningMessages()
+     */
     protected Map handleGetWarningMessages()
     {
         return this.getMessages(JSFProfile.TAGGEDVALUE_ACTION_WARNING_MESSAGE);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFForward#isFinalStateTarget()
+     * @return getTarget() instanceof JSFFinalState
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForward#isFinalStateTarget()
      */
     protected boolean handleIsFinalStateTarget()
     {
@@ -124,7 +140,8 @@ public class JSFForwardLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFForward#getFromOutcome()
+     * @return getName()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFForward#getFromOutcome()
      */
     protected String handleGetFromOutcome()
     {

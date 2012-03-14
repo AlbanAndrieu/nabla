@@ -3,15 +3,14 @@ package org.andromda.cartridges.jsf2.metafacades;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFUtils;
 import org.andromda.metafacades.uml.DependencyFacade;
+import org.andromda.metafacades.uml.FrontEndAction;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFController.
@@ -21,27 +20,34 @@ import org.apache.commons.lang.StringUtils;
 public class JSFControllerLogicImpl
     extends JSFControllerLogic
 {
-
-    public JSFControllerLogicImpl (Object metaObject, String context)
-    {
-        super (metaObject, context);
-    }
-    
+    private static final long serialVersionUID = 34L;
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFController#getImplementationName()
+     * @param metaObject
+     * @param context
      */
-    protected java.lang.String handleGetImplementationName()
+    public JSFControllerLogicImpl(Object metaObject, String context)
     {
-        final String pattern = ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONTROLLER_IMPLEMENTATION_PATTERN));
+        super(metaObject, context);
+    }
+
+    /**
+     * @return implementationName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFController#getImplementationName()
+     */
+    protected String handleGetImplementationName()
+    {
+        final String pattern = ObjectUtils.toString(
+            this.getConfiguredProperty(JSFGlobals.CONTROLLER_IMPLEMENTATION_PATTERN));
         return pattern.replaceFirst("\\{0\\}", StringUtils.capitalize(this.getName()));
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFController#getFullyQualifiedImplementationName()
+     * @return fullyQualifiedImplementationName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFController#getFullyQualifiedImplementationName()
      */
-    protected java.lang.String handleGetFullyQualifiedImplementationName()
+    protected String handleGetFullyQualifiedImplementationName()
     {
-        final StringBuffer fullyQualifiedName = new StringBuffer();
+        final StringBuilder fullyQualifiedName = new StringBuilder();
         final String packageName = this.getPackageName();
         if (StringUtils.isNotBlank(packageName))
         {
@@ -51,7 +57,8 @@ public class JSFControllerLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFController#getFullyQualifiedImplementationPath()
+     * @return getFullyQualifiedImplementationName().replace('.', '/')
+     * @see org.andromda.cartridges.jsf.metafacades.JSFController#getFullyQualifiedImplementationPath()
      */
     protected String handleGetFullyQualifiedImplementationPath()
     {
@@ -59,7 +66,8 @@ public class JSFControllerLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFController#getBeanName()
+     * @return StringUtilsHelper.lowerCamelCaseName(this.getName())
+     * @see org.andromda.cartridges.jsf.metafacades.JSFController#getBeanName()
      */
     protected String handleGetBeanName()
     {
@@ -67,40 +75,39 @@ public class JSFControllerLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFController#getSessionObjectReferences()
+     * @return references
+     * @see org.andromda.cartridges.jsf.metafacades.JSFController#getSessionObjectReferences()
      */
-    protected List handleGetSessionObjectReferences()
+    protected List<DependencyFacade> handleGetSessionObjectReferences()
     {
-        final List references = new ArrayList(this.getSourceDependencies());
-        for (final Iterator iterator = references.iterator(); iterator.hasNext();)
+        final List<DependencyFacade> references = new ArrayList<DependencyFacade>(this.getSourceDependencies());
+        for (final Iterator<DependencyFacade> iterator = references.iterator(); iterator.hasNext();)
         {
-            final ModelElementFacade targetElement = ((DependencyFacade)iterator.next()).getTargetElement();
+            final ModelElementFacade targetElement = (iterator.next()).getTargetElement();
             if (!(targetElement instanceof JSFSessionObject))
             {
-                iterator.remove();   
+                iterator.remove();
             }
         }
         return references;
     }
-    
+
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFController#getControllerSerialVersionUID()
+     * @return controllerSerialVersionUID
+     * @see org.andromda.cartridges.jsf.metafacades.JSFController#getControllerSerialVersionUID()
      */
-    protected java.lang.String handleGetControllerSerialVersionUID()
+    protected String handleGetControllerSerialVersionUID()
     {
-           final StringBuffer buffer = new StringBuffer();
-
-           buffer.append(this.getFullyQualifiedImplementationName());
-
-           addSerialUIDData(buffer);
-           
-           return JSFUtils.calcSerialVersionUID(buffer);
+       final StringBuilder buffer = new StringBuilder();
+       buffer.append(this.getFullyQualifiedImplementationName());
+       addSerialUIDData(buffer);
+       return JSFUtils.calcSerialVersionUID(buffer);
     }
 
-    private void addSerialUIDData(StringBuffer buffer){
-        for (final Iterator iterator = this.getUseCase().getActions().iterator(); iterator.hasNext();)
+    private void addSerialUIDData(StringBuilder buffer)
+    {
+        for (final FrontEndAction action : this.getUseCase().getActions())
         {
-            final ModelElementFacade action = (ModelElementFacade)iterator.next();
             buffer.append(action.getName());
         }
     }
