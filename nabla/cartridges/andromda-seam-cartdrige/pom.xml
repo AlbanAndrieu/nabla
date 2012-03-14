@@ -1,53 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.andromda.cartridges</groupId>
-        <artifactId>andromda-cartridge-plugins</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>andromda-seam-cartridge</artifactId>
-    <packaging>andromda-cartridge</packaging>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>org.andromda.cartridges</groupId>
+    		<artifactId>cartridges</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<!--<groupId>org.andromda.cartridges</groupId>-->
+        <artifactId>andromda-seam-cartridge</artifactId>
+        <version>3.4</version>
+	<!-- <packaging>andromda-cartridge</packaging> -->	
+	<packaging>jar</packaging>
     <name>AndroMDA Seam Cartridge</name>
     <description>
         The JBoss Seam cartridge is used to generate JSF/Facelet applications from UML models using both static and
         dynamic model elements. Generated applications have default security and internationalization
         implementations and can be deployed as they are.
     </description>
-    <inceptionYear>2006</inceptionYear>
-    <issueManagement>
-        <system>jira</system>
-        <url>http://galaxy.andromda.org/jira/BrowseProject.jspa?id=10011</url>
-    </issueManagement>
-    <scm>
-        <connection>scm:svn:https://andromdaplugins.svn.sourceforge.net/svnroot/andromdaplugins/trunk/cartridges/andromda-seam</connection>
-        <developerConnection>scm:svn:https://andromdaplugins.svn.sourceforge.net/svnroot/andromdaplugins/trunk/cartridges/andromda-seam</developerConnection>
-        <url>http://andromdaplugins.svn.sourceforge.net/andromdaplugins</url>
-    </scm>
-    <developers>
-        <developer>
-            <id>vancek</id>
-            <name>Vance Karimi</name>
-            <email>vance@andromda.org</email>
-            <organization>AndroMDA</organization>
-            <roles>
-                <role>Developer</role>
-            </roles>
-            <timezone>8</timezone>
-        </developer>
-        <developer>
-            <id>cwbrandon</id>
-            <name>Chad Brandon</name>
-            <email>chad@andromda.org</email>
-            <organization>AndroMDA</organization>
-            <roles>
-                <role>Project Admin</role>
-            </roles>
-            <timezone>-6</timezone>
-        </developer>
-    </developers>
+    
     <dependencies>
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-core</artifactId>
@@ -72,27 +47,42 @@
             <groupId>org.andromda.translationlibraries</groupId>
             <artifactId>andromda-ocl-validation-library</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-jsf-cartridge-components</artifactId>
+            <version>${andromda.version}</version>
         </dependency>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-jsf2-cartridge</artifactId>
-            <version>1.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <!--<artifactId>andromda-jsf2-cartridge</artifactId>-->
+            <artifactId>andromda-jsf-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <!--<version>1.1-SNAPSHOT</version>-->
+            <!--<scope>provided</scope>-->
+            <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>andromda-meta-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope> 
+        </dependency>         
+        <!--
         <dependency>
             <groupId>org.andromda.profiles.uml14</groupId>
             <artifactId>andromda-profile</artifactId>
             <type>xml.zip</type>
         </dependency>
+        -->
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-maven-plugin</artifactId>
+                <version>${andromda.version}</version>
+                <!--
                 <executions>
                     <execution>
                         <goals>
@@ -105,21 +95,46 @@
                         </configuration>
                     </execution>
                 </executions>
+                -->
             </plugin>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-cartridge-plugin</artifactId>
+                <version>${andromda.version}</version>
                 <executions>
                     <execution>
+                        <id>gui-uml2</id>
+                        <phase>generate-test-sources</phase>
                         <goals>
+                            <!-- Use update goal when you want to validate your change (comment test goal) -->
                             <goal>test</goal>
+                            <!--<goal>update</goal>-->
                         </goals>
                         <configuration>
-                            <configurationUri>file:${pom.basedir}/conf/test/andromda.xml</configurationUri>
+                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <actualDirectory>${project.basedir}/../tmp-seam/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.basedir}/../tmp-seam/cartridge-test/expectedUML2</expectedDirectory>                            
+                            <reportDirectory>${project.basedir}/../tmp-seam/cartridge-test/reportsUML2</reportDirectory>
                         </configuration>
                     </execution>
-                </executions>
+                </executions>          
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-source-plugin</artifactId>
+		<!-- <version>${maven.source.plugin.version}</version>-->
+		<executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+            </plugin> 
+            <!--
             <plugin>
                 <groupId>org.andromda.maven.plugins.site</groupId>
                 <artifactId>andromda-site-plugin</artifactId>
@@ -141,6 +156,7 @@
             <plugin>
                 <groupId>org.andromda.maven.plugins.site</groupId>
                 <artifactId>andromda-site-cartridge-plugin</artifactId>
+                -->
                 <!--
                 <executions>
                 <execution>
@@ -151,65 +167,17 @@
                 </execution>
                 </executions>
                 -->
+                <!--
                 <configuration>
-                    <howtoCartridgePicturesOutputDirectory>${pom.basedir}/target/site/images</howtoCartridgePicturesOutputDirectory>
+                    <howtoCartridgePicturesOutputDirectory>${pom.basedir}/${target.dir}/site/images</howtoCartridgePicturesOutputDirectory>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.andromda.maven.plugins.site</groupId>
-                        <artifactId>andromda-doxia-module-xdoc</artifactId>
-                        <version>3.3</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <locales>en</locales>
-                    <outputEncoding>UTF-8</outputEncoding>
-                </configuration>
-            </plugin>
+            -->
         </plugins>
     </build>
+    <!--
     <reporting>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <minmemory>128m</minmemory>
-                    <maxmemory>512</maxmemory>
-                    <sourcepath>${basedir}/src/main/java;${basedir}/target/src</sourcepath>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <configuration>
-                    <targetJdk>1.5</targetJdk>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jdepend-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
@@ -224,35 +192,21 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changelog-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <id>All Reports</id>
-                        <configuration>
-                            <type>range</type>
-                            <range>90</range>
-                        </configuration>
-                        <reports>
-                            <report>changelog</report>
-                            <report>file-activity</report>
-                            <report>dev-activity</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
+            </plugin>          
         </plugins>
     </reporting>
+    -->
     <properties>
+    <!--
         <andromda3.root>D:/java/development/andromda-all</andromda3.root>
         <maven.test.skip>true</maven.test.skip>
         <model.uri>jar:file:${pom.basedir}/src/main/uml/SeamMetafacadeModel.xml.zip!/SeamMetafacadeModel.xml</model.uri>
         <test.model.uri>jar:file:${pom.basedir}/src/test/uml/SeamCartridgeTestModel.xml.zip!/SeamCartridgeTestModel.xml</test.model.uri>
+        -->
+        <model.name>SeamMetafacadeModel</model.name>
+    	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
+        <test.model.uri>file:${test.src.dir}/${uml.type}/SeamCartridgeTestModel.uml</test.model.uri>
+        <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
+        <test.output.dir>${project.basedir}/../tmp-seam/cartridge-test/actualUML2</test.output.dir>
     </properties>
 </project>
