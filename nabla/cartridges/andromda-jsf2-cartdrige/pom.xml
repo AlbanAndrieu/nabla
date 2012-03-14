@@ -1,13 +1,20 @@
-<project>
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.andromda.cartridges</groupId>
-        <artifactId>andromda-cartridge-plugins</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>org.andromda.cartridges</groupId>
+    		<artifactId>cartridges</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<!--<groupId>org.andromda.cartridges</groupId>-->
     <artifactId>andromda-jsf2-cartridge</artifactId>
-    <version>1.1-SNAPSHOT</version>
-    <packaging>andromda-cartridge</packaging>
+    <!--<version>1.1-SNAPSHOT</version>-->
+    <version>3.4</version>
+	<!-- <packaging>andromda-cartridge</packaging> -->
+	<packaging>jar</packaging>
     <name>AndroMDA JSF2 Cartridge</name>
     <description>
         The JSF cartridge is used to generate JSF applications from UML models using both static and dynamic model elements.
@@ -16,12 +23,13 @@
     <dependencies>
         <dependency>
             <groupId>${pom.groupId}</groupId>
-            <artifactId>andromda-jsf2-cartridge-components</artifactId>
-            <version>${version}</version>
+            <artifactId>${project.artifactId}-components</artifactId>
+            <version>${project.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
-            <artifactId>andromda-core</artifactId>            
+            <artifactId>andromda-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.andromda</groupId>
@@ -33,55 +41,93 @@
         </dependency>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-meta-cartridge</artifactId>            
+            <artifactId>andromda-meta-cartridge</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.andromda.translationlibraries</groupId>
-            <artifactId>andromda-ocl-validation-library</artifactId>            
+            <artifactId>andromda-ocl-validation-library</artifactId>
         </dependency>
         <dependency>
             <groupId>org.andromda.profiles.uml14</groupId>
-            <artifactId>andromda-profile</artifactId>            
+            <artifactId>andromda-profile</artifactId>
             <type>xml.zip</type>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>            
+            <artifactId>commons-lang</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
-            <artifactId>junit</artifactId>            
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>            
+            <artifactId>log4j</artifactId>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>andromda-meta-cartridge</artifactId>
+            <version>${andromda.version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
     <build>
-        <plugins>            
+        <plugins>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-maven-plugin</artifactId>
+		<version>${andromda.version}</version>
+                <!--
+                <dependencies>
+                    <dependency>
+                        <groupId>org.andromda.cartridges</groupId>
+                        <artifactId>andromda-meta-cartridge</artifactId>
+                        <version>${andromda.version}</version>
+                    </dependency>
+                </dependencies>
+                -->
+            </plugin>
+            <plugin>
+                <groupId>org.andromda.maven.plugins</groupId>
+                <artifactId>andromda-cartridge-plugin</artifactId>
+                <version>${andromda.version}</version>
                 <executions>
                     <execution>
+                        <id>gui-uml2</id>
+                        <phase>generate-test-sources</phase>
                         <goals>
-                            <goal>run</goal>
+                            <!-- Use update goal when you want to validate your change (comment test goal) -->
+                            <goal>test</goal>
+                            <!--<goal>update</goal>-->
                         </goals>
                         <configuration>
-                            <buildSourceDirectory>${pom.basedir}/target/src</buildSourceDirectory>
-                            <configurationUri>file:${pom.basedir}/../conf/andromda.xml</configurationUri>
-                            <lastModifiedCheck>true</lastModifiedCheck>
+                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <actualDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/actualUML2</actualDirectory>
+                            <expectedDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/expectedUML2</expectedDirectory>
+                            <reportDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/reportsUML2</reportDirectory>
+                            <!--
+                            <artifacts>
+                                <artifact>
+                                    <groupId>${pom.groupId}</groupId>
+                                    <artifactId>${project.artifactId}-components</artifactId>
+                                    <path>resources/WEB-INF/lib</path>
+                                </artifact>
+                            </artifacts>                            
+                            -->
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+            <!--
             <plugin>
                 <extensions>true</extensions>
                 <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromda-cartridge-plugin</artifactId>                
+                <artifactId>andromda-cartridge-plugin</artifactId>
                 <executions>
                     <execution>
                         <goals>
@@ -101,7 +147,8 @@
                         </artifact>
                     </artifacts>
                 </configuration>
-            </plugin>                        
+            </plugin>
+            -->
         </plugins>
         <resources>
             <resource>
@@ -122,7 +169,8 @@
             </resource>
         </resources>
     </build>
-    <properties>        
+    <properties>
+        <!--
         <model.uri>jar:file:${pom.basedir}/src/main/uml/JSFMetafacadeModel.xml.zip!/JSFMetafacadeModel.xml</model.uri>
         <test.model.uri>jar:file:${pom.basedir}/src/test/uml/JSFCartridgeTestModel.xml.zip!/JSFCartridgeTestModel.xml</test.model.uri>
         <build.src>${pom.basedir}/target/src</build.src>
@@ -132,5 +180,12 @@
         <src.dir>${pom.basedir}/src</src.dir>
         <howto.output.dir>${pom.basedir}/target/site/howto</howto.output.dir>
         <andromda.cartridge.howto.model.uri>jar:file:${src.dir}/site/resources/howto/HowToModel.xml.zip!/HowToModel.xml</andromda.cartridge.howto.model.uri>
-    </properties>    
+        -->
+
+        <model.name>JSFMetafacadeModel</model.name>
+    	<lastModifiedCheck>false</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
+        <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
+        <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
+        <test.output.dir>${project.basedir}/../tmp-jsf2/cartridge-test/actualUML2</test.output.dir>
+    </properties>
 </project>
