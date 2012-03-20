@@ -5,26 +5,30 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
 import org.andromda.metafacades.uml.StateVertexFacade;
 import org.andromda.utils.StringUtilsHelper;
+import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFForward.
  *
  * @see org.andromda.cartridges.jsf2.metafacades.JSFForward
  */
-public class JSFForwardLogicImpl
-    extends JSFForwardLogic
+public class JSFForwardLogicImpl extends JSFForwardLogic
 {
     private static final long serialVersionUID = 34L;
+
+    private final Logger      logger_          = Logger.getLogger(JSFForwardLogicImpl.class);
+
     /**
      * @param metaObject
      * @param context
      */
-    public JSFForwardLogicImpl(Object metaObject, String context)
+    public JSFForwardLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
     }
@@ -32,15 +36,16 @@ public class JSFForwardLogicImpl
     /**
      * @see org.andromda.metafacades.uml.ModelElementFacade#getName()
      */
+    @Override
     public String getName()
     {
-        StringBuilder name = new StringBuilder(super.getName());
+        final StringBuilder name = new StringBuilder(super.getName());
         final Object target = this.getTarget();
+        this.logger_.debug("getName is : " + name + " - " + target + " for : " + this.getFullyQualifiedName());
         if (target instanceof JSFFinalState)
         {
             name.append(JSFGlobals.USECASE_FORWARD_NAME_SUFFIX);
-        }
-        else
+        } else
         {
             name.insert(0, this.getUseCase().getName() + "-");
         }
@@ -51,17 +56,17 @@ public class JSFForwardLogicImpl
      * @return forwardPath
      * @see org.andromda.cartridges.jsf.metafacades.JSFForward#getPath()
      */
+    @Override
     protected String handleGetPath()
     {
         String forwardPath = null;
-        final StateVertexFacade target = getTarget();
+        final StateVertexFacade target = this.getTarget();
         if (this.isEnteringView())
         {
-            forwardPath = ((JSFView)target).getPath();
-        }
-        else if (this.isEnteringFinalState())
+            forwardPath = ((JSFView) target).getPath();
+        } else if (this.isEnteringFinalState())
         {
-            forwardPath = ((JSFFinalState)target).getPath();
+            forwardPath = ((JSFFinalState) target).getPath();
         }
 
         return forwardPath;
@@ -70,6 +75,7 @@ public class JSFForwardLogicImpl
     /**
      * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleIsSuccessMessagesPresent()
      */
+    @Override
     protected boolean handleIsSuccessMessagesPresent()
     {
         return !this.getSuccessMessages().isEmpty();
@@ -78,6 +84,7 @@ public class JSFForwardLogicImpl
     /**
      * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleIsWarningMessagesPresent()
      */
+    @Override
     protected boolean handleIsWarningMessagesPresent()
     {
         return !this.getWarningMessages().isEmpty();
@@ -91,7 +98,7 @@ public class JSFForwardLogicImpl
      *         will have been recorded
      */
     @SuppressWarnings("unchecked")
-    private Map<String, String> getMessages(String taggedValue)
+    private Map<String, String> getMessages(final String taggedValue)
     {
         Map<String, String> messages;
 
@@ -99,14 +106,13 @@ public class JSFForwardLogicImpl
         if (taggedValues.isEmpty())
         {
             messages = Collections.EMPTY_MAP;
-        }
-        else
+        } else
         {
             messages = new LinkedHashMap<String, String>(); // we want to keep the order
 
             for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
             {
-                final String value = (String)iterator.next();
+                final String value = (String) iterator.next();
                 messages.put(StringUtilsHelper.toResourceMessageKey(value), value);
             }
         }
@@ -117,6 +123,7 @@ public class JSFForwardLogicImpl
     /**
      * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleGetSuccessMessages()
      */
+    @Override
     protected Map handleGetSuccessMessages()
     {
         return this.getMessages(JSFProfile.TAGGEDVALUE_ACTION_SUCCESS_MESSAGE);
@@ -125,6 +132,7 @@ public class JSFForwardLogicImpl
     /**
      * @see org.andromda.cartridges.jsf.metafacades.JSFForwardLogic#handleGetWarningMessages()
      */
+    @Override
     protected Map handleGetWarningMessages()
     {
         return this.getMessages(JSFProfile.TAGGEDVALUE_ACTION_WARNING_MESSAGE);
@@ -134,6 +142,7 @@ public class JSFForwardLogicImpl
      * @return getTarget() instanceof JSFFinalState
      * @see org.andromda.cartridges.jsf.metafacades.JSFForward#isFinalStateTarget()
      */
+    @Override
     protected boolean handleIsFinalStateTarget()
     {
         return this.getTarget() instanceof JSFFinalState;
@@ -143,6 +152,7 @@ public class JSFForwardLogicImpl
      * @return getName()
      * @see org.andromda.cartridges.jsf.metafacades.JSFForward#getFromOutcome()
      */
+    @Override
     protected String handleGetFromOutcome()
     {
         return this.getName();

@@ -769,7 +769,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
         {
             final JSFView view = (JSFView) feView;
             rules.put(view.getFromOutcome(), view);
-            for (final Object forward : view.getForwards())
+            for (final ModelElementFacade forward : view.getForwards())
             {
                 String name;
                 if (forward instanceof JSFForward)
@@ -779,6 +779,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
                 {
                     name = ((JSFAction) forward).getFromOutcome();
                 }
+                this.logger_.debug("handleGetNavigationRules is : " + name + " for : " + this.getFullyQualifiedName());
                 rules.put(name, forward);
             }
         }
