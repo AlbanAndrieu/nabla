@@ -83,8 +83,10 @@
         	<property name="distributable">true</property>
         	<property name="custom-resources">${test.output.dir}</property>
         	<property name="paginationResultClassName">org.andromda.spring.cartridge.PaginationResult</property>
-        	<property name="validationExtension">commons-validator</property>
+        	<!--<property name="validationExtension">commons-validator</property>-->
         	<property name="managedBeansPackage">org.andromda.presentation.jsf2</property>
+        	<property name="useAutocompleteLookup">true</property>        	
+        	<!--<property name="clientValidation">false</property>-->
             </properties>
         </namespace>
     </namespaces>

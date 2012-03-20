@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
@@ -24,17 +25,15 @@ import org.apache.commons.lang.StringUtils;
  *
  * @see org.andromda.cartridges.jsf2.metafacades.JSFView
  */
-public class JSFViewLogicImpl
-    extends JSFViewLogic
+public class JSFViewLogicImpl extends JSFViewLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
      */
-    public JSFViewLogicImpl(
-        Object metaObject,
-        String context)
+    public JSFViewLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
     }
@@ -43,15 +42,17 @@ public class JSFViewLogicImpl
      * @return getMessageKey() + '.' + JSFGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getDocumentationKey()
      */
+    @Override
     protected String handleGetDocumentationKey()
     {
-        return getMessageKey() + '.' + JSFGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX;
+        return this.getMessageKey() + '.' + JSFGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX;
     }
 
     /**
      * @return messageKey
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getMessageKey()
      */
+    @Override
     protected String handleGetMessageKey()
     {
         final StringBuilder messageKey = new StringBuilder();
@@ -66,7 +67,7 @@ public class JSFViewLogicImpl
             }
         }
 
-        messageKey.append(StringUtilsHelper.toResourceMessageKey(getName()));
+        messageKey.append(StringUtilsHelper.toResourceMessageKey(this.getName()));
         return messageKey.toString();
     }
 
@@ -77,25 +78,27 @@ public class JSFViewLogicImpl
      */
     private boolean isNormalizeMessages()
     {
-        final String normalizeMessages = (String)getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
+        final String normalizeMessages = (String) this.getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
         return Boolean.valueOf(normalizeMessages).booleanValue();
     }
 
     /**
      * @see org.andromda.cartridges.jsf.metafacades.JSFViewLogic#handleGetMessageValue()
      */
+    @Override
     protected String handleGetMessageValue()
     {
-        return StringUtilsHelper.toPhrase(getName());
+        return StringUtilsHelper.toPhrase(this.getName());
     }
 
     /**
      * @return documentationValue
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getDocumentationValue()
      */
+    @Override
     protected String handleGetDocumentationValue()
     {
-        final String value = StringUtilsHelper.toResourceMessage(getDocumentation(""));
+        final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation(""));
         return value == null ? "" : value;
     }
 
@@ -103,6 +106,7 @@ public class JSFViewLogicImpl
      * @return getMessageKey() + '.' + JSFGlobals.TITLE_MESSAGE_KEY_SUFFIX
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getTitleKey()
      */
+    @Override
     protected String handleGetTitleKey()
     {
         return this.getMessageKey() + '.' + JSFGlobals.TITLE_MESSAGE_KEY_SUFFIX;
@@ -112,15 +116,17 @@ public class JSFViewLogicImpl
      * @return toPhrase(getName())
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getTitleValue()
      */
+    @Override
     protected String handleGetTitleValue()
     {
-        return StringUtilsHelper.toPhrase(getName());
+        return StringUtilsHelper.toPhrase(this.getName());
     }
 
     /**
      * @return path
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getPath()
      */
+    @Override
     protected String handleGetPath()
     {
         final StringBuilder path = new StringBuilder();
@@ -129,34 +135,57 @@ public class JSFViewLogicImpl
         {
             path.append(packageName + '.');
         }
-        path.append(JSFUtils.toWebResourceName(StringUtils.trimToEmpty(this.getName())).replace(
-                '.',
-                '/'));
-        return '/' + path.toString().replace(
-            '.',
-            '/');
+        path.append(JSFUtils.toWebResourceName(StringUtils.trimToEmpty(this.getName())).replace('.', '/'));
+        return '/' + path.toString().replace('.', '/');
     }
 
     /**
      * @return forwards
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getForwards()
      */
+    @Override
     protected List<ModelElementFacade> handleGetForwards()
     {
         final Map<String, ModelElementFacade> forwards = new LinkedHashMap<String, ModelElementFacade>();
         for (final FrontEndAction action : this.getActions())
         {
-            if (action != null && !action.isUseCaseStart())
+            if ((action != null) && !action.isUseCaseStart())
             {
                 for (final FrontEndForward forward : action.getActionForwards())
                 {
                     if (forward instanceof JSFForward)
                     {
-                        forwards.put(((JSFForward)forward).getName(), forward);
-                    }
-                    else if (forward instanceof JSFAction)
+                        forwards.put(((JSFForward) forward).getName(), forward);
+                    } else if (forward instanceof JSFAction)
                     {
-                        forwards.put(((JSFAction)forward).getName(), forward);
+                        forwards.put(((JSFAction) forward).getName(), forward);
+                    }
+                }
+            }
+        }
+        return new ArrayList<ModelElementFacade>(forwards.values());
+    }
+
+    /**
+     * @return forwards
+     * @see org.andromda.cartridges.gui.metafacades.GuiView#getForwards()
+     */
+    @Override
+    protected List<ModelElementFacade> handleGetForwardstodeletes()
+    {
+        final Map<String, ModelElementFacade> forwards = new LinkedHashMap<String, ModelElementFacade>();
+        for (final FrontEndAction action : this.getActions())
+        {
+            if ((action != null) && !action.isUseCaseStart())
+            {
+                for (final FrontEndForward forward : action.getActionForwards())
+                {
+                    if (forward instanceof JSFForward)
+                    {
+                        forwards.put(((JSFForward) forward).getName(), forward);
+                    } else if (forward instanceof JSFAction)
+                    {
+                        forwards.put(((JSFAction) forward).getName(), forward);
                     }
                 }
             }
@@ -172,11 +201,11 @@ public class JSFViewLogicImpl
     {
         final List<JSFParameter> tables = new ArrayList<JSFParameter>();
         final List<FrontEndParameter> variables = this.getVariables();
-        for (FrontEndParameter parameter : variables)
+        for (final FrontEndParameter parameter : variables)
         {
             if (parameter instanceof JSFParameter)
             {
-                final JSFParameter variable = (JSFParameter)parameter;
+                final JSFParameter variable = (JSFParameter) parameter;
                 if (variable.isTable())
                 {
                     tables.add(variable);
@@ -190,23 +219,37 @@ public class JSFViewLogicImpl
      * @return actionForwards
      * @see org.andromda.cartridges.jsf.metafacades.JSFViewLogic#getActionForwards()
      */
+    @Override
     protected List<JSFForward> handleGetActionForwards()
     {
-        final List<JSFForward> actionForwards = new ArrayList<JSFForward>(this.getForwards());
-        for (final Iterator<JSFForward> iterator = actionForwards.iterator(); iterator.hasNext();)
+        final List<JSFForward> forward = new ArrayList<JSFForward>();
+        final List<ModelElementFacade> actionForwards = new ArrayList<ModelElementFacade>(this.getForwards());
+        for (final Iterator<ModelElementFacade> iterator = actionForwards.iterator(); iterator.hasNext();)
         {
-            if (!(iterator.next() instanceof JSFAction))
+            final Object actionForward = iterator.next();
+            if (!(actionForward instanceof JSFAction))
             {
                 iterator.remove();
+            } else
+            {
+                forward.add((JSFForward) actionForward);
             }
+            /*
+             * if (!(iterator.next() instanceof JSFAction))
+             * {
+             * iterator.remove();
+             * }
+             */
         }
-        return actionForwards;
+        return forward;
+        // return actionForward;
     }
 
     /**
      * @return populatorName
      * @see org.andromda.cartridges.jsf.metafacades.JSFViewLogic#getFullyQualifiedPopulator()
      */
+    @Override
     protected String handleGetFullyQualifiedPopulator()
     {
         final StringBuilder name = new StringBuilder();
@@ -224,16 +267,16 @@ public class JSFViewLogicImpl
      * @return populator
      * @see org.andromda.cartridges.jsf.metafacades.JSFViewLogic#getPopulator()
      */
+    @Override
     protected String handleGetPopulator()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VIEW_POPULATOR_PATTERN)).replaceAll(
-            "\\{0\\}",
-            StringUtilsHelper.upperCamelCaseName(this.getName()));
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VIEW_POPULATOR_PATTERN)).replaceAll("\\{0\\}", StringUtilsHelper.upperCamelCaseName(this.getName()));
     }
 
     /**
      * @see org.andromda.cartridges.jsf.metafacades.JSFViewLogic#handleGetFormActions()
      */
+    @Override
     protected List<FrontEndAction> handleGetFormActions()
     {
         final List<FrontEndAction> actions = new ArrayList<FrontEndAction>(this.getActions());
@@ -252,28 +295,28 @@ public class JSFViewLogicImpl
      * @return formKey
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getFormKey()
      */
+    @Override
     protected String handleGetFormKey()
     {
         final Object formKeyValue = this.findTaggedValue(JSFProfile.TAGGEDVALUE_ACTION_FORM_KEY);
-        return formKeyValue == null ? ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.ACTION_FORM_KEY))
-                                    : String.valueOf(formKeyValue);
+        return formKeyValue == null ? ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.ACTION_FORM_KEY)) : String.valueOf(formKeyValue);
     }
 
     /**
      * @return getFullyQualifiedPopulator().replace('.', '/')
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getPopulatorPath()
      */
+    @Override
     protected String handleGetPopulatorPath()
     {
-        return this.getFullyQualifiedPopulator().replace(
-            '.',
-            '/');
+        return this.getFullyQualifiedPopulator().replace('.', '/');
     }
 
     /**
      * @return !getFormActions().isEmpty() || !getVariables().isEmpty()
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#isPopulatorRequired()
      */
+    @Override
     protected boolean handleIsPopulatorRequired()
     {
         return !this.getFormActions().isEmpty() || !this.getVariables().isEmpty();
@@ -283,12 +326,13 @@ public class JSFViewLogicImpl
      * @return validationRequired
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#isPopulatorRequired()
      */
+    @Override
     protected boolean handleIsValidationRequired()
     {
         boolean required = false;
         for (final FrontEndAction action : this.getActions())
         {
-            if (((JSFAction)action).isValidationRequired())
+            if (((JSFAction) action).isValidationRequired())
             {
                 required = true;
                 break;
@@ -301,16 +345,17 @@ public class JSFViewLogicImpl
      * @return isPopup
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#isPopup()
      */
+    @Override
     protected boolean handleIsPopup()
     {
-        return ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_VIEW_TYPE)).equalsIgnoreCase(
-            JSFGlobals.VIEW_TYPE_POPUP);
+        return ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_VIEW_TYPE)).equalsIgnoreCase(JSFGlobals.VIEW_TYPE_POPUP);
     }
 
     /**
      * @return nonTableVariablesPresent
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#isNonTableVariablesPresent()
      */
+    @Override
     protected boolean handleIsNonTableVariablesPresent()
     {
         boolean present = false;
@@ -329,12 +374,13 @@ public class JSFViewLogicImpl
      * @return hasNameOfUseCase
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#isHasNameOfUseCase()
      */
+    @Override
     protected boolean handleIsHasNameOfUseCase()
     {
         boolean sameName = false;
         final ModelElementFacade useCase = this.getUseCase();
         final String useCaseName = useCase != null ? useCase.getName() : null;
-        if (useCaseName != null && useCaseName.equalsIgnoreCase(this.getName()))
+        if ((useCaseName != null) && useCaseName.equalsIgnoreCase(this.getName()))
         {
             sameName = true;
         }
@@ -345,6 +391,7 @@ public class JSFViewLogicImpl
      * @return backingValueVariables
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getBackingValueVariables()
      */
+    @Override
     protected List<JSFParameter> handleGetBackingValueVariables()
     {
         final Map<String, JSFParameter> variables = new LinkedHashMap<String, JSFParameter>();
@@ -352,7 +399,7 @@ public class JSFViewLogicImpl
         {
             if (frontEndParameter instanceof JSFParameter)
             {
-                final JSFParameter parameter = (JSFParameter)frontEndParameter;
+                final JSFParameter parameter = (JSFParameter) frontEndParameter;
                 final String parameterName = parameter.getName();
                 final Collection<AttributeFacade> attributes = parameter.getAttributes();
                 if (parameter.isBackingValueRequired() || parameter.isSelectable())
@@ -361,13 +408,12 @@ public class JSFViewLogicImpl
                     {
                         variables.put(parameterName, parameter);
                     }
-                }
-                else
+                } else
                 {
                     boolean hasBackingValue = false;
                     for (final AttributeFacade attribute : attributes)
                     {
-                        final JSFAttribute jsfAttribute = (JSFAttribute)attribute;
+                        final JSFAttribute jsfAttribute = (JSFAttribute) attribute;
                         if (jsfAttribute.isSelectable(parameter) || jsfAttribute.isBackingValueRequired(parameter))
                         {
                             hasBackingValue = true;
@@ -388,6 +434,7 @@ public class JSFViewLogicImpl
      * @return toWebResourceName(this.getUseCase().getName() + "-" + this.getName())
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#getFromOutcome()
      */
+    @Override
     protected String handleGetFromOutcome()
     {
         return JSFUtils.toWebResourceName(this.getUseCase().getName() + "-" + this.getName());
@@ -397,9 +444,10 @@ public class JSFViewLogicImpl
      * @return needsFileUpload
      * @see org.andromda.cartridges.jsf.metafacades.JSFView#isNeedsFileUpload()
      */
+    @Override
     protected boolean handleIsNeedsFileUpload()
     {
-        if(this.getAllActionParameters().size() == 0)
+        if (this.getAllActionParameters().size() == 0)
         {
             return false;
         }
@@ -408,16 +456,16 @@ public class JSFViewLogicImpl
         {
             if (feParameter instanceof JSFParameter)
             {
-                final JSFParameter parameter = (JSFParameter)feParameter;
-                if(parameter.isInputFile())
+                final JSFParameter parameter = (JSFParameter) feParameter;
+                if (parameter.isInputFile())
                 {
                     return true;
                 }
-                if(parameter.isComplex())
+                if (parameter.isComplex())
                 {
-                    for(final Iterator attributes = parameter.getAttributes().iterator(); attributes.hasNext();)
+                    for (final Iterator attributes = parameter.getAttributes().iterator(); attributes.hasNext();)
                     {
-                        if(((JSFAttribute)attributes.next()).isInputFile())
+                        if (((JSFAttribute) attributes.next()).isInputFile())
                         {
                             return true;
                         }

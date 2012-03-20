@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
@@ -18,6 +19,7 @@ import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.FrontEndAction;
 import org.andromda.metafacades.uml.FrontEndActivityGraph;
+import org.andromda.metafacades.uml.FrontEndController;
 import org.andromda.metafacades.uml.FrontEndFinalState;
 import org.andromda.metafacades.uml.FrontEndForward;
 import org.andromda.metafacades.uml.FrontEndParameter;
@@ -33,23 +35,24 @@ import org.apache.commons.collections.Predicate;
 import org.apache.commons.collections.Transformer;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFUseCase.
  *
  * @see org.andromda.cartridges.jsf2.metafacades.JSFUseCase
  */
-public class JSFUseCaseLogicImpl
-    extends JSFUseCaseLogic
+public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
 {
     private static final long serialVersionUID = 34L;
+
+    private final Logger      logger_          = Logger.getLogger(JSFUseCaseLogicImpl.class);
+
     /**
      * @param metaObject
      * @param context
      */
-    public JSFUseCaseLogicImpl(
-        Object metaObject,
-        String context)
+    public JSFUseCaseLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
     }
@@ -58,13 +61,14 @@ public class JSFUseCaseLogicImpl
      * @return actionPath
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getPath()
      */
+    @Override
     protected String handleGetPath()
     {
         String actionPath = null;
         final FrontEndActivityGraph graph = this.getActivityGraph();
         if (graph != null)
         {
-            final JSFAction action = (JSFAction)graph.getInitialAction();
+            final JSFAction action = (JSFAction) graph.getInitialAction();
             if (action != null)
             {
                 actionPath = action.getPath();
@@ -77,6 +81,7 @@ public class JSFUseCaseLogicImpl
      * @return pathRoot
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getPathRoot()
      */
+    @Override
     protected String handleGetPathRoot()
     {
         final StringBuilder pathRoot = new StringBuilder("/");
@@ -90,8 +95,11 @@ public class JSFUseCaseLogicImpl
      * @return forwardName
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getPathRoot()
      */
+    @Override
     protected String handleGetForwardName()
     {
+        this.logger_.debug("handleGetForwardName is : " + this.getName() + " for : " + this.getFullyQualifiedName());
+
         return JSFUtils.toWebResourceName(this.getName()) + JSFGlobals.USECASE_FORWARD_NAME_SUFFIX;
     }
 
@@ -99,20 +107,20 @@ public class JSFUseCaseLogicImpl
      * @return titleKey
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getTitleKey()
      */
+    @Override
     protected String handleGetTitleKey()
     {
-        return StringUtilsHelper.toResourceMessageKey(
-            this.isNormalizeMessages() ? this.getTitleValue() : this.getName()) + '.' +
-            JSFGlobals.TITLE_MESSAGE_KEY_SUFFIX;
+        return StringUtilsHelper.toResourceMessageKey(this.isNormalizeMessages() ? this.getTitleValue() : this.getName()) + '.' + JSFGlobals.TITLE_MESSAGE_KEY_SUFFIX;
     }
 
     /**
      * @return toPhrase(getName())
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getTitleValue()
      */
+    @Override
     protected String handleGetTitleValue()
     {
-        return StringUtilsHelper.toPhrase(getName());
+        return StringUtilsHelper.toPhrase(this.getName());
     }
 
     /**
@@ -122,7 +130,7 @@ public class JSFUseCaseLogicImpl
      */
     private boolean isNormalizeMessages()
     {
-        final String normalizeMessages = (String)getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
+        final String normalizeMessages = (String) this.getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
         return Boolean.valueOf(normalizeMessages).booleanValue();
     }
 
@@ -130,39 +138,31 @@ public class JSFUseCaseLogicImpl
      * @return allMessages
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getAllMessages()
      */
+    @Override
     protected Map handleGetAllMessages()
     {
         final boolean normalize = this.isNormalizeMessages();
-        final Map<String, String> messages = normalize ?
-            new TreeMap<String, String>() : new LinkedHashMap<String, String>();
+        final Map<String, String> messages = normalize ? new TreeMap<String, String>() : new LinkedHashMap<String, String>();
 
         // - only retrieve the messages for the entry use case (i.e. the use case
-        //   where the application begins)
+        // where the application begins)
         if (this.isEntryUseCase())
         {
             final List<FrontEndUseCase> useCases = this.getAllUseCases();
             for (int ctr = 0; ctr < useCases.size(); ctr++)
             {
                 // - usecase
-                final JSFUseCase useCase = (JSFUseCase)useCases.get(ctr);
-                messages.put(
-                    useCase.getTitleKey(),
-                    useCase.getTitleValue());
+                final JSFUseCase useCase = (JSFUseCase) useCases.get(ctr);
+                messages.put(useCase.getTitleKey(), useCase.getTitleValue());
 
                 final List<FrontEndView> views = useCase.getViews();
                 for (int ctr2 = 0; ctr2 < views.size(); ctr2++)
                 {
                     // - view
-                    final JSFView view = (JSFView)views.get(ctr2);
-                    messages.put(
-                        view.getTitleKey(),
-                        view.getTitleValue());
-                    messages.put(
-                        view.getMessageKey(),
-                        view.getMessageValue());
-                    messages.put(
-                        view.getDocumentationKey(),
-                        view.getDocumentationValue());
+                    final JSFView view = (JSFView) views.get(ctr2);
+                    messages.put(view.getTitleKey(), view.getTitleValue());
+                    messages.put(view.getMessageKey(), view.getMessageValue());
+                    messages.put(view.getDocumentationKey(), view.getDocumentationValue());
 
                     final List<FrontEndParameter> viewVariables = view.getVariables();
                     for (int ctr3 = 0; ctr3 < viewVariables.size(); ctr3++)
@@ -171,24 +171,19 @@ public class JSFUseCaseLogicImpl
                         final Object object = viewVariables.get(ctr3);
                         if (object instanceof JSFParameter)
                         {
-                            final JSFParameter parameter = (JSFParameter)object;
+                            final JSFParameter parameter = (JSFParameter) object;
 
                             final Collection<ClassifierFacade> resolvingTypes = new ArrayList<ClassifierFacade>();
                             this.collectAttributeMessages(messages, parameter.getAttributes(), resolvingTypes);
-                            this.collectAssociationEndMessages(messages,
-                                parameter.getNavigableAssociationEnds(), resolvingTypes);
-                            messages.put(
-                                parameter.getMessageKey(),
-                                parameter.getMessageValue());
+                            this.collectAssociationEndMessages(messages, parameter.getNavigableAssociationEnds(), resolvingTypes);
+                            messages.put(parameter.getMessageKey(), parameter.getMessageValue());
 
                             // - table
                             if (parameter.isTable())
                             {
-                                for (String columnName : parameter.getTableColumnNames())
+                                for (final String columnName : parameter.getTableColumnNames())
                                 {
-                                     messages.put(
-                                        parameter.getTableColumnMessageKey(columnName),
-                                        parameter.getTableColumnMessageValue(columnName));
+                                    messages.put(parameter.getTableColumnMessageKey(columnName), parameter.getTableColumnMessageValue(columnName));
                                 }
                             }
                         }
@@ -198,36 +193,32 @@ public class JSFUseCaseLogicImpl
                     for (int ctr3 = 0; ctr3 < actions.size(); ctr3++)
                     {
                         // - action
-                        final JSFAction action = (JSFAction)actions.get(ctr3);
+                        final JSFAction action = (JSFAction) actions.get(ctr3);
 
                         // - event/trigger
                         final Object trigger = action.getTrigger();
-                        if (trigger != null && trigger instanceof JSFEvent)
+                        if ((trigger != null) && (trigger instanceof JSFEvent))
                         {
-                            final JSFEvent event = (JSFEvent)trigger;
+                            final JSFEvent event = (JSFEvent) trigger;
                             // only add these when a trigger is present, otherwise it's no use having them
-                            messages.put(
-                                action.getDocumentationKey(),
-                                action.getDocumentationValue());
+                            messages.put(action.getDocumentationKey(), action.getDocumentationValue());
 
                             // the regular trigger messages
-                            messages.put(
-                                event.getResetMessageKey(),
-                                event.getResetMessageValue());
+                            messages.put(event.getResetMessageKey(), event.getResetMessageValue());
 
                             // this one is the same as doing: action.getMessageKey()
-                            messages.put(
-                                event.getMessageKey(),
-                                event.getMessageValue());
+                            messages.put(event.getMessageKey(), event.getMessageValue());
 
                             // - IMAGE LINK
 
-                            /*if (action.isImageLink())
-                            {
-                                messages.put(
-                                    action.getImageMessageKey(),
-                                    action.getImagePath());
-                            }*/
+                            /*
+                             * if (action.isImageLink())
+                             * {
+                             * messages.put(
+                             * action.getImageMessageKey(),
+                             * action.getImagePath());
+                             * }
+                             */
                         }
 
                         // - forwards
@@ -235,13 +226,12 @@ public class JSFUseCaseLogicImpl
                         {
                             if (forward instanceof JSFForward)
                             {
-                                final JSFForward forwardTransition = (JSFForward)forward;
+                                final JSFForward forwardTransition = (JSFForward) forward;
                                 messages.putAll(forwardTransition.getSuccessMessages());
                                 messages.putAll(forwardTransition.getWarningMessages());
-                            }
-                            else
+                            } else
                             {
-                                final JSFAction actionTransition = (JSFAction)forward;
+                                final JSFAction actionTransition = (JSFAction) forward;
                                 messages.putAll(actionTransition.getSuccessMessages());
                                 messages.putAll(actionTransition.getWarningMessages());
                             }
@@ -255,16 +245,14 @@ public class JSFUseCaseLogicImpl
                             final Object object = parameters.get(l);
                             if (object instanceof JSFParameter)
                             {
-                                final JSFParameter parameter = (JSFParameter)object;
+                                final JSFParameter parameter = (JSFParameter) object;
                                 final Collection attributes = parameter.getAttributes();
                                 if (!attributes.isEmpty())
                                 {
                                     for (final Iterator iterator = attributes.iterator(); iterator.hasNext();)
                                     {
-                                        final JSFAttribute attribute = (JSFAttribute)iterator.next();
-                                        messages.put(
-                                            attribute.getMessageKey(),
-                                            attribute.getMessageValue());
+                                        final JSFAttribute attribute = (JSFAttribute) iterator.next();
+                                        messages.put(attribute.getMessageKey(), attribute.getMessageValue());
                                     }
                                 }
                                 final Collection associationEnds = parameter.getNavigableAssociationEnds();
@@ -272,71 +260,63 @@ public class JSFUseCaseLogicImpl
                                 {
                                     for (final Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
                                     {
-                                        final AssociationEndFacade end = (AssociationEndFacade)iterator.next();
+                                        final AssociationEndFacade end = (AssociationEndFacade) iterator.next();
                                         final ClassifierFacade type = end.getType();
                                         if (type != null)
                                         {
                                             final Collection<AttributeFacade> typeAttributes = type.getAttributes();
                                             if (!attributes.isEmpty())
                                             {
-                                                for (final Iterator<AttributeFacade> attributeIterator
-                                                    = typeAttributes.iterator(); attributeIterator.hasNext(); )
+                                                for (final AttributeFacade attributeFacade : typeAttributes)
                                                 {
-                                                    final JSFAttribute attribute = (JSFAttribute)attributeIterator.next();
-                                                    messages.put(
-                                                        attribute.getMessageKey(),
-                                                        attribute.getMessageValue());
+                                                    final JSFAttribute attribute = (JSFAttribute) attributeFacade;
+                                                    messages.put(attribute.getMessageKey(), attribute.getMessageValue());
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                messages.put(
-                                    parameter.getMessageKey(),
-                                    parameter.getMessageValue());
-                                messages.put(
-                                    parameter.getDocumentationKey(),
-                                    parameter.getDocumentationValue());
+                                messages.put(parameter.getMessageKey(), parameter.getMessageValue());
+                                messages.put(parameter.getDocumentationKey(), parameter.getDocumentationValue());
 
                                 // - submittable input table
                                 if (parameter.isInputTable())
                                 {
                                     final Collection<String> columnNames = parameter.getTableColumnNames();
-                                    for (final Iterator<String> columnNameIterator = columnNames.iterator();
-                                        columnNameIterator.hasNext();)
+                                    for (final String columnName : columnNames)
                                     {
-                                        final String columnName = columnNameIterator.next();
-                                        messages.put(
-                                            parameter.getTableColumnMessageKey(columnName),
-                                            parameter.getTableColumnMessageValue(columnName));
+                                        messages.put(parameter.getTableColumnMessageKey(columnName), parameter.getTableColumnMessageValue(columnName));
                                     }
                                 }
-                                /*if (parameter.getValidWhen() != null)
-                                {
-                                    // this key needs to be fully qualified since the valid when value can be different
-                                    final String completeKeyPrefix =
-                                        (normalize)
-                                        ? useCase.getTitleKey() + '.' + view.getMessageKey() + '.' +
-                                        action.getMessageKey() + '.' + parameter.getMessageKey() : parameter.getMessageKey();
-                                    messages.put(
-                                        completeKeyPrefix + "_validwhen",
-                                        "{0} is only valid when " + parameter.getValidWhen());
-                                }*/
-                                /*if (parameter.getOptionCount() > 0)
-                                {
-                                    final List optionKeys = parameter.getOptionKeys();
-                                    final List optionValues = parameter.getOptionValues();
-
-                                    for (int m = 0; m < optionKeys.size(); m++)
-                                    {
-                                        messages.put(
-                                            optionKeys.get(m),
-                                            optionValues.get(m));
-                                        messages.put(
-                                            optionKeys.get(m) + ".title",
-                                            optionValues.get(m));
-                                    }
-                                }*/
+                                /*
+                                 * if (parameter.getValidWhen() != null)
+                                 * {
+                                 * // this key needs to be fully qualified since the valid when value can be different
+                                 * final String completeKeyPrefix =
+                                 * (normalize)
+                                 * ? useCase.getTitleKey() + '.' + view.getMessageKey() + '.' +
+                                 * action.getMessageKey() + '.' + parameter.getMessageKey() : parameter.getMessageKey();
+                                 * messages.put(
+                                 * completeKeyPrefix + "_validwhen",
+                                 * "{0} is only valid when " + parameter.getValidWhen());
+                                 * }
+                                 */
+                                /*
+                                 * if (parameter.getOptionCount() > 0)
+                                 * {
+                                 * final List optionKeys = parameter.getOptionKeys();
+                                 * final List optionValues = parameter.getOptionValues();
+                                 * for (int m = 0; m < optionKeys.size(); m++)
+                                 * {
+                                 * messages.put(
+                                 * optionKeys.get(m),
+                                 * optionValues.get(m));
+                                 * messages.put(
+                                 * optionKeys.get(m) + ".title",
+                                 * optionValues.get(m));
+                                 * }
+                                 * }
+                                 */
                             }
                         }
 
@@ -347,12 +327,10 @@ public class JSFUseCaseLogicImpl
                             final Collection<AttributeFacade> attributes = preferences.getAttributes(true);
                             if (!attributes.isEmpty())
                             {
-                                for (final Iterator iterator = attributes.iterator(); iterator.hasNext();)
+                                for (final Object element : attributes)
                                 {
-                                    final JSFAttribute attribute = (JSFAttribute)iterator.next();
-                                    messages.put(
-                                        attribute.getMessageKey(),
-                                        attribute.getMessageValue());
+                                    final JSFAttribute attribute = (JSFAttribute) element;
+                                    messages.put(attribute.getMessageKey(), attribute.getMessageValue());
                                 }
                             }
                         }
@@ -360,49 +338,48 @@ public class JSFUseCaseLogicImpl
                         // - exception forwards
 
                         /*
-                        final List exceptions = action.getActionExceptions();
-
-                        if (normalize)
-                        {
-                            if (exceptions.isEmpty())
-                            {
-                                messages.put("exception.occurred", "{0}");
-                            }
-                            else
-                            {
-                                for (int l = 0; l < exceptions.size(); l++)
-                                {
-                                    final FrontEndExceptionHandler exception =
-                                        (FrontEndExceptionHandler)exceptions.get(l);
-                                    messages.put(action.getMessageKey() + '.' + exception.getExceptionKey(), "{0}");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (exceptions.isEmpty())
-                            {
-                                if (!action.isUseCaseStart())
-                                {
-                                    messages.put(action.getMessageKey() + ".exception", "{0} (java.lang.Exception)");
-                                }
-                            }
-                            else
-                            {
-                                for (int l = 0; l < exceptions.size(); l++)
-                                {
-                                    final FrontEndExceptionHandler exception =
-                                        (FrontEndExceptionHandler)exceptions.get(l);
-
-                                    // we construct the key using the action message too because the exception can
-                                    // belong to more than one action (therefore it cannot return the correct value
-                                    // in .getExceptionKey())
-                                    messages.put(
-                                        action.getMessageKey() + '.' + exception.getExceptionKey(),
-                                        "{0} (" + exception.getExceptionType() + ")");
-                                }
-                            }
-                        }*/
+                         * final List exceptions = action.getActionExceptions();
+                         * if (normalize)
+                         * {
+                         * if (exceptions.isEmpty())
+                         * {
+                         * messages.put("exception.occurred", "{0}");
+                         * }
+                         * else
+                         * {
+                         * for (int l = 0; l < exceptions.size(); l++)
+                         * {
+                         * final FrontEndExceptionHandler exception =
+                         * (FrontEndExceptionHandler)exceptions.get(l);
+                         * messages.put(action.getMessageKey() + '.' + exception.getExceptionKey(), "{0}");
+                         * }
+                         * }
+                         * }
+                         * else
+                         * {
+                         * if (exceptions.isEmpty())
+                         * {
+                         * if (!action.isUseCaseStart())
+                         * {
+                         * messages.put(action.getMessageKey() + ".exception", "{0} (java.lang.Exception)");
+                         * }
+                         * }
+                         * else
+                         * {
+                         * for (int l = 0; l < exceptions.size(); l++)
+                         * {
+                         * final FrontEndExceptionHandler exception =
+                         * (FrontEndExceptionHandler)exceptions.get(l);
+                         * // we construct the key using the action message too because the exception can
+                         * // belong to more than one action (therefore it cannot return the correct value
+                         * // in .getExceptionKey())
+                         * messages.put(
+                         * action.getMessageKey() + '.' + exception.getExceptionKey(),
+                         * "{0} (" + exception.getExceptionType() + ")");
+                         * }
+                         * }
+                         * }
+                         */
                     }
                 }
             }
@@ -417,17 +394,14 @@ public class JSFUseCaseLogicImpl
      * @param attributes the attributes to collect the messages from.
      * @param resolvingTypes used to prevent endless recursion.
      */
-    private void collectAttributeMessages(Map<String,String> messages, Collection attributes,
-        final Collection<ClassifierFacade> resolvingTypes)
+    private void collectAttributeMessages(final Map<String, String> messages, final Collection attributes, final Collection<ClassifierFacade> resolvingTypes)
     {
-        if (attributes != null && !attributes.isEmpty())
+        if ((attributes != null) && !attributes.isEmpty())
         {
-            for (final Iterator iterator = attributes.iterator(); iterator.hasNext(); )
+            for (final Iterator iterator = attributes.iterator(); iterator.hasNext();)
             {
-                final JSFAttribute attribute = (JSFAttribute)iterator.next();
-                messages.put(
-                    attribute.getMessageKey(),
-                    attribute.getMessageValue());
+                final JSFAttribute attribute = (JSFAttribute) iterator.next();
+                messages.put(attribute.getMessageKey(), attribute.getMessageValue());
                 // - lets go another level for nested attributes
                 this.collectTypeMessages(messages, attribute.getType(), resolvingTypes);
             }
@@ -441,21 +415,19 @@ public class JSFUseCaseLogicImpl
      * @param associationEnds the association ends to collect the messages from.
      * @param resolvingTypes used to prevent endless recursion.
      */
-    private void collectAssociationEndMessages(Map<String,String> messages, Collection associationEnds,
-        final Collection<ClassifierFacade> resolvingTypes)
+    private void collectAssociationEndMessages(final Map<String, String> messages, final Collection associationEnds, final Collection<ClassifierFacade> resolvingTypes)
     {
-        if (associationEnds != null && !associationEnds.isEmpty())
+        if ((associationEnds != null) && !associationEnds.isEmpty())
         {
             for (final Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
             {
-                final AssociationEndFacade end = (AssociationEndFacade)iterator.next();
+                final AssociationEndFacade end = (AssociationEndFacade) iterator.next();
                 this.collectTypeMessages(messages, end.getType(), resolvingTypes);
             }
         }
     }
 
-    private void collectTypeMessages(Map<String,String> messages, ClassifierFacade type,
-         final Collection<ClassifierFacade> resolvingTypes)
+    private void collectTypeMessages(final Map<String, String> messages, ClassifierFacade type, final Collection<ClassifierFacade> resolvingTypes)
     {
         if (type != null)
         {
@@ -466,7 +438,7 @@ public class JSFUseCaseLogicImpl
                 {
                     type = type.getNonArray();
                 }
-                //check again, since the type can be changed
+                // check again, since the type can be changed
                 if (!resolvingTypes.contains(type))
                 {
                     this.collectAttributeMessages(messages, type.getAttributes(), resolvingTypes);
@@ -481,12 +453,13 @@ public class JSFUseCaseLogicImpl
      * @return actionForwards
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getActionForwards()
      */
+    @Override
     protected List<JSFAction> handleGetActionForwards()
     {
         final Set<JSFAction> actionForwards = new LinkedHashSet<JSFAction>();
         for (final FrontEndView view : this.getViews())
         {
-            actionForwards.addAll(((JSFView)view).getActionForwards());
+            actionForwards.addAll(((JSFView) view).getActionForwards());
         }
         return new ArrayList<JSFAction>(actionForwards);
     }
@@ -495,6 +468,7 @@ public class JSFUseCaseLogicImpl
      * @return forwards
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getForwards()
      */
+    @Override
     protected List<JSFForward> handleGetForwards()
     {
         final Map<String, JSFForward> forwards = new LinkedHashMap<String, JSFForward>();
@@ -515,6 +489,7 @@ public class JSFUseCaseLogicImpl
      * @return allForwards
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getAllForwards()
      */
+    @Override
     @SuppressWarnings("unchecked")
     protected List<ModelElementFacade> handleGetAllForwards()
     {
@@ -534,6 +509,7 @@ public class JSFUseCaseLogicImpl
      * @return upperCamelCaseName(this.getName())
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getActionClassName()
      */
+    @Override
     protected String handleGetActionClassName()
     {
         return StringUtilsHelper.upperCamelCaseName(this.getName());
@@ -543,26 +519,50 @@ public class JSFUseCaseLogicImpl
      * @return getFullyQualifiedActionClassName().replace('.', '/') + ".java"
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getFullyQualifiedActionClassPath()
      */
+    @Override
     protected String handleGetFullyQualifiedActionClassPath()
     {
-        return this.getFullyQualifiedActionClassName().replace(
-            '.',
-            '/') + ".java";
+        return this.getFullyQualifiedActionClassName().replace('.', '/') + ".java";
     }
 
     /**
      * @return lowerCamelCaseName(this.getName())
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getControllerAction()
      */
+    @Override
     protected String handleGetControllerAction()
     {
         return StringUtilsHelper.lowerCamelCaseName(this.getName());
     }
 
     /**
+     * Returns the controller for this use-case.
+     * @see FrontEndUseCase#getController()
+     */
+    @Override
+    public FrontEndController getController()
+    {
+        final FrontEndActivityGraph graph = this.getActivityGraph();
+        final FrontEndController controller = graph == null ? null : graph.getController();
+        if (graph != null)
+        {
+            this.logger_.debug("getController graph is : " + graph + " for : " + this.getFullyQualifiedName());
+        }
+
+        // final FrontEndController controller = super.getController();
+        // return this.getSuperFrontEndUseCase().getController();
+        if (controller != null)
+        {
+            this.logger_.debug("getController is : " + controller + " for : " + this.getFullyQualifiedName());
+        }
+        return controller;
+    }
+
+    /**
      * @return fullyQualifiedActionClassName
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getFullyQualifiedActionClassName()
      */
+    @Override
     protected String handleGetFullyQualifiedActionClassName()
     {
         final StringBuilder path = new StringBuilder();
@@ -580,28 +580,28 @@ public class JSFUseCaseLogicImpl
      * @return formKeyValue
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getFormKey()
      */
+    @Override
     protected String handleGetFormKey()
     {
         final Object formKeyValue = this.findTaggedValue(JSFProfile.TAGGEDVALUE_ACTION_FORM_KEY);
-        return formKeyValue == null ? ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.ACTION_FORM_KEY))
-                                    : String.valueOf(formKeyValue);
+        return formKeyValue == null ? ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.ACTION_FORM_KEY)) : String.valueOf(formKeyValue);
     }
 
     /**
      * @return initialTargetPath
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getInitialTargetPath()
      */
+    @Override
     protected String handleGetInitialTargetPath()
     {
         String path = null;
         final Object target = this.getInitialTarget();
         if (target instanceof JSFView)
         {
-            path = ((JSFView)target).getPath();
-        }
-        else if (target instanceof JSFUseCase)
+            path = ((JSFView) target).getPath();
+        } else if (target instanceof JSFUseCase)
         {
-            path = ((JSFUseCase)target).getPath();
+            path = ((JSFUseCase) target).getPath();
         }
         return path;
     }
@@ -617,18 +617,17 @@ public class JSFUseCaseLogicImpl
         final FrontEndActivityGraph graph = this.getActivityGraph();
         final FrontEndAction action = graph != null ? this.getActivityGraph().getInitialAction() : null;
         final Collection<FrontEndForward> forwards = action != null ? action.getActionForwards() : null;
-        if (forwards != null && !forwards.isEmpty())
+        if ((forwards != null) && !forwards.isEmpty())
         {
             final Object target = forwards.iterator().next().getTarget();
             if (target instanceof FrontEndView)
             {
                 initialTarget = target;
-            }
-            else if (target instanceof FrontEndFinalState)
+            } else if (target instanceof FrontEndFinalState)
             {
-                final FrontEndFinalState finalState = (FrontEndFinalState)target;
+                final FrontEndFinalState finalState = (FrontEndFinalState) target;
                 final FrontEndUseCase targetUseCase = finalState.getTargetUseCase();
-                if (targetUseCase != null && !targetUseCase.equals(this.THIS()))
+                if ((targetUseCase != null) && !targetUseCase.equals(this.THIS()))
                 {
                     initialTarget = targetUseCase;
                 }
@@ -641,12 +640,13 @@ public class JSFUseCaseLogicImpl
      * @return required
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#isValidationRequired()
      */
+    @Override
     protected boolean handleIsValidationRequired()
     {
         boolean required = false;
         for (final FrontEndView feView : this.getViews())
         {
-            final JSFView view = (JSFView)feView;
+            final JSFView view = (JSFView) feView;
             if (view.isValidationRequired())
             {
                 required = true;
@@ -660,6 +660,7 @@ public class JSFUseCaseLogicImpl
      * @return getInitialTarget() instanceof JSFView
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#isInitialTargetView()
      */
+    @Override
     protected boolean handleIsInitialTargetView()
     {
         return this.getInitialTarget() instanceof JSFView;
@@ -669,12 +670,13 @@ public class JSFUseCaseLogicImpl
      * @return required
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#isInitialTargetView()
      */
+    @Override
     protected boolean handleIsApplicationValidationRequired()
     {
         boolean required = false;
         for (final FrontEndUseCase feUseCase : this.getAllUseCases())
         {
-            final JSFUseCase useCase = (JSFUseCase)feUseCase;
+            final JSFUseCase useCase = (JSFUseCase) feUseCase;
             if (useCase.isValidationRequired())
             {
                 required = true;
@@ -688,12 +690,13 @@ public class JSFUseCaseLogicImpl
      * @return sameName
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#isViewHasNameOfUseCase()
      */
+    @Override
     protected boolean handleIsViewHasNameOfUseCase()
     {
         boolean sameName = false;
         for (final FrontEndView view : this.getViews())
         {
-            sameName = ((JSFView)view).isHasNameOfUseCase();
+            sameName = ((JSFView) view).isHasNameOfUseCase();
             if (sameName)
             {
                 break;
@@ -706,6 +709,7 @@ public class JSFUseCaseLogicImpl
      * @return hasStereotype(JSFProfile.STEREOTYPE_FRONT_END_REGISTRATION)
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#isRegistrationUseCase()
      */
+    @Override
     protected boolean handleIsRegistrationUseCase()
     {
         return this.hasStereotype(JSFProfile.STEREOTYPE_FRONT_END_REGISTRATION);
@@ -715,6 +719,7 @@ public class JSFUseCaseLogicImpl
      * @return useCases
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getRegistrationUseCases()
      */
+    @Override
     @SuppressWarnings("unchecked")
     protected List<FrontEndUseCase> handleGetRegistrationUseCases()
     {
@@ -724,12 +729,11 @@ public class JSFUseCaseLogicImpl
             final FrontEndUseCase useCase = iterator.next();
             if (useCase instanceof JSFUseCase)
             {
-                if (!((JSFUseCase)useCase).isRegistrationUseCase())
+                if (!((JSFUseCase) useCase).isRegistrationUseCase())
                 {
                     iterator.remove();
                 }
-            }
-            else
+            } else
             {
                 iterator.remove();
             }
@@ -746,34 +750,34 @@ public class JSFUseCaseLogicImpl
      * @return getName() + FORWARDS_CLASS_NAME_SUFFIX
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getForwardsClassName()
      */
+    @Override
     protected String handleGetForwardsClassName()
     {
-        return StringUtilsHelper.upperCamelCaseName(this.getName()) + FORWARDS_CLASS_NAME_SUFFIX;
+        return StringUtilsHelper.upperCamelCaseName(this.getName()) + JSFUseCaseLogicImpl.FORWARDS_CLASS_NAME_SUFFIX;
     }
 
     /**
      * @return navigationRules
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getNavigationRules()
      */
+    @Override
     @SuppressWarnings("unchecked")
     protected Collection<Object> handleGetNavigationRules()
     {
         final Map<String, Object> rules = new LinkedHashMap<String, Object>();
         for (final FrontEndView feView : this.getViews())
         {
-            final JSFView view = (JSFView)feView;
+            final JSFView view = (JSFView) feView;
             rules.put(view.getFromOutcome(), view);
-            for (final Iterator forwardIterator = view.getForwards().iterator(); forwardIterator.hasNext();)
+            for (final Object forward : view.getForwards())
             {
-                final Object forward = forwardIterator.next();
                 String name;
                 if (forward instanceof JSFForward)
                 {
-                    name = ((JSFForward)forward).getFromOutcome();
-                }
-                else
+                    name = ((JSFForward) forward).getFromOutcome();
+                } else
                 {
-                    name = ((JSFAction)forward).getFromOutcome();
+                    name = ((JSFAction) forward).getFromOutcome();
                 }
                 rules.put(name, forward);
             }
@@ -785,13 +789,15 @@ public class JSFUseCaseLogicImpl
      * @return navigationChildren
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getNavigationChildren()
      */
+    @Override
     protected Collection<UseCaseFacade> handleGetNavigationChildren()
     {
-        return CollectionUtils.collect(getIncludes(), new Transformer()
+        return CollectionUtils.collect(this.getIncludes(), new Transformer()
         {
-            public Object transform(Object object)
+            @Override
+            public Object transform(final Object object)
             {
-                final IncludeFacade include = (IncludeFacade)object;
+                final IncludeFacade include = (IncludeFacade) object;
                 return include.getAddition();
             }
         });
@@ -801,9 +807,10 @@ public class JSFUseCaseLogicImpl
     {
         return CollectionUtils.exists(useCase2.getIncludes(), new Predicate()
         {
-            public boolean evaluate(Object object)
+            @Override
+            public boolean evaluate(final Object object)
             {
-                final IncludeFacade include = (IncludeFacade)object;
+                final IncludeFacade include = (IncludeFacade) object;
                 return include.getAddition().equals(useCase1);
             }
         });
@@ -813,19 +820,22 @@ public class JSFUseCaseLogicImpl
      * @return navigationParents
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getNavigationParents()
      */
+    @Override
     protected Collection<FrontEndUseCase> handleGetNavigationParents()
     {
         final JSFUseCase theUseCase = this;
-        return CollectionUtils.select(getAllUseCases(),new Predicate() {
+        return CollectionUtils.select(this.getAllUseCases(), new Predicate()
+        {
+            @Override
             @SuppressWarnings("synthetic-access")
-            public boolean evaluate(Object o)
+            public boolean evaluate(final Object o)
             {
-                final JSFUseCase useCase = (JSFUseCase)o;
+                final JSFUseCase useCase = (JSFUseCase) o;
                 if (theUseCase.equals(useCase))
                 {
                     return false;
                 }
-                return isParent(theUseCase, useCase);
+                return JSFUseCaseLogicImpl.isParent(theUseCase, useCase);
             }
         });
     }
@@ -834,6 +844,7 @@ public class JSFUseCaseLogicImpl
      * @return actionRoles
      * @see org.andromda.cartridges.jsf.metafacades.JSFUseCase#getActionRoles()
      */
+    @Override
     protected String handleGetActionRoles()
     {
         final StringBuilder rolesBuffer = new StringBuilder();
@@ -843,8 +854,7 @@ public class JSFUseCaseLogicImpl
             if (first)
             {
                 first = false;
-            }
-            else
+            } else
             {
                 rolesBuffer.append(',');
             }
@@ -861,14 +871,14 @@ public class JSFUseCaseLogicImpl
     {
         JSFPortletPreferences preferences = null;
         final Collection<DependencyFacade> dependencies = this.getSourceDependencies();
-        if (dependencies != null && !dependencies.isEmpty())
+        if ((dependencies != null) && !dependencies.isEmpty())
         {
             for (final DependencyFacade dependency : dependencies)
             {
                 final Object target = dependency.getTargetElement();
                 if (dependency.getTargetElement() instanceof JSFPortletPreferences)
                 {
-                    preferences = (JSFPortletPreferences)target;
+                    preferences = (JSFPortletPreferences) target;
                     break;
                 }
             }

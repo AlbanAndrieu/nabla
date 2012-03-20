@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <namespace name="jsf2">
     <components>
@@ -104,10 +104,28 @@
                     The scope to given the forms.  This value can be overriddem by a tagged value.
                 </documentation>
             </property>
+            <property name="controllerScope">
+                <default>request</default>
+                <documentation>
+                    The scope to given the controllers.
+                </documentation>
+            </property>
+            <property name="navigationBeanScope">
+                <default>request</default>
+                <documentation>
+                    The scope to given the navigation items.
+                </documentation>
+            </property>
             <property name="facesServletExtension">
                 <default>jsf</default>
                 <documentation>
                     The extension used for the application's handling of JSF pages.
+                </documentation>
+            </property>
+            <property name="odsExportExtension">
+                <default>ods</default>
+                <documentation>
+                    The extension used for the ODS (Open Document Spreadsheet) export.
                 </documentation>
             </property>
             <property name="fileUploadMaxMemoryPerRequest">
@@ -120,6 +138,12 @@
                 <default>10240000</default>
                 <documentation>
                     Maximum memory per request (in bytes) for file uploads.
+                </documentation>
+            </property>
+            <property name="navigationUsesRedirect">
+                <default>true</default>
+                <documentation>
+                    Uses 'redirect' instead of 'forward' to navigate between views.
                 </documentation>
             </property>
         </propertyGroup>
@@ -145,6 +169,7 @@
                 <default>default</default>
                 <documentation>
                     The default skin to be applied (i.e look and feel of the application).
+                    If you use 'none', it will disable the skinning feature.
                 </documentation>
             </property>
             <property name="preferencesBeanName">
@@ -156,7 +181,7 @@
             <property name="maxTableRows">
                 <default>10</default>
                 <documentation>
-                    The dfault value to set for the maximum rows displayed in a table.
+                    The default value to set for the maximum rows displayed in a table.
                 </documentation>
             </property>
             <property name="navigationStyle">
@@ -232,7 +257,7 @@
             <property name="defaultDateFormat">
                 <default>MM/dd/yyyy</default>
                 <documentation>
-                    The default date format to use in case it has not been explicitely
+                    The default date format to use in case it has not been explicitly
                     specified, for event parameters.
                     Take a look
                     <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html">here</a>
@@ -246,13 +271,13 @@
                     This property takes either true or false as values. If set to true all dates and times
                     entered by the end-user will fail validation if they do not strictly adhere to their given format.
                     Note that this strictness can always be overriden locally
-                    using the @andromda.struts.view.field.format tagged value.
+                    using the andromda_struts_view_field_format tagged value.
                 </documentation>
             </property>
             <property name="defaultTimeFormat">
                 <default>HH:mm</default>
                 <documentation>
-                    The default time format to use when it has not been explicitely
+                    The default time format to use when it has not been explicitly
                     specified for event parameters. Take a look
                     <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html">here</a>
                     to see how to properly construct time formats.
@@ -270,7 +295,7 @@
             <property name="defaultInputRowCount" required="false">
                 <documentation>
                     If specified denotes the default number of rows of <code>textarea</code> elements.
-                    Not speciying any valid value will make the cartridge ignore it and resort
+                    Not specifying any valid value will make the cartridge ignore it and resort
                     to the default browser value by not rendering any <code>size</code> attribute.
                 </documentation>
             </property>
@@ -299,6 +324,18 @@
             <property name="defaultRole" required="false">
                 <documentation>
                     The default role of all secured elements.
+                </documentation>
+            </property>
+            <property name="validationExtension">
+                <default>annotations</default>
+                <documentation>
+                    Indicates whether to use a validation extension, beyond the default JSF.
+                    Valid values are:
+                    <ul>
+                        <li>none</li>
+                        <li>annotations</li>
+                        <li>commons-validator</li>
+                    </ul>
                 </documentation>
             </property>
             <property name="clientValidation">
@@ -424,7 +461,7 @@
                 <default>FormPopulator</default>
                 <documentation>
                     The name to give the form populator utility class. This utility class provides
-                    JSF's form population when transfering information from one form to another
+                    JSF's form population when transferring information from one form to another
                     during application flow.
                 </documentation>
             </property>
@@ -608,6 +645,20 @@
                 <documentation>
                     The maximum number of characters to allow in a managed entity's
                     table (remainder is truncated using an ellipsis).
+                </documentation>
+            </property>
+            <!--
+            <property name="crudValueObjectSuffix">
+                <default>ValueObject</default>
+                <documentation>
+                    The suffix to append to the names of generated value objects used in CRUD (manageable entities).
+                </documentation>
+            </property>
+            -->
+            <property name="crudConfirmationMessages">
+                <default>true</default>
+                <documentation>
+                    Show a confirmation message after each CRUD operation.
                 </documentation>
             </property>
         </propertyGroup>

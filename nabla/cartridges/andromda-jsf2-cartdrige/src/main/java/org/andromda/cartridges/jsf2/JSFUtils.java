@@ -1094,4 +1094,13 @@ public class JSFUtils
     {
         return string != null ? Integer.valueOf(string) * 6000 : 0;
     }
+
+    /**
+     * Convenient method to detect whether or not a String instance represents a boolean <code>true</code> value.
+     */
+    public static boolean isTrue(final String string)
+    {
+        return "yes".equalsIgnoreCase(string) || "true".equalsIgnoreCase(string) || "on".equalsIgnoreCase(string) || "1".equalsIgnoreCase(string);
+    }
+
 }

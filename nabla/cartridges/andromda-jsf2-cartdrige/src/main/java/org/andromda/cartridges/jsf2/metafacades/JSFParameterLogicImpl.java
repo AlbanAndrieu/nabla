@@ -2,7 +2,6 @@ package org.andromda.cartridges.jsf2.metafacades;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -14,53 +13,58 @@ import java.util.Set;
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
+import org.andromda.metafacades.uml.AttributeFacade;
+import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.EventFacade;
 import org.andromda.metafacades.uml.FrontEndAction;
-import org.andromda.metafacades.uml.FrontEndForward;
-import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.FrontEndActivityGraph;
+import org.andromda.metafacades.uml.FrontEndForward;
+import org.andromda.metafacades.uml.FrontEndParameter;
 import org.andromda.metafacades.uml.FrontEndView;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.TransitionFacade;
-import org.andromda.metafacades.uml.TypeMappings;
-import org.andromda.metafacades.uml.UMLMetafacadeProperties;
-import org.andromda.metafacades.uml.UMLProfile;
 import org.andromda.metafacades.uml.UseCaseFacade;
 import org.andromda.utils.StringUtilsHelper;
-import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-
+import org.apache.log4j.Logger;
 
 /**
- * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFParameter.
+ * MetafacadeLogic implementation for org.andromda.cartridges.jsf.metafacades.JSFParameter.
  *
- * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter
+ * @see org.andromda.cartridges.jsf.metafacades.JSFParameter
  */
-public class JSFParameterLogicImpl
-    extends JSFParameterLogic
+public class JSFParameterLogicImpl extends JSFParameterLogic
 {
-    public JSFParameterLogicImpl(
-        Object metaObject,
-        String context)
+    private static final long serialVersionUID = 34L;
+
+    private final Logger      logger_          = Logger.getLogger(JSFParameterLogicImpl.class);
+
+    /**
+     * @param metaObject
+     * @param context
+     */
+    public JSFParameterLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
     }
 
     /**
-     * Overrridden to make sure its not an inputTable.
+     * Overridden to make sure it's not an inputTable.
      *
      * @see org.andromda.metafacades.uml.FrontEndParameter#isTable()
      */
+    @Override
     public boolean isTable()
     {
-        return (super.isTable() || this.isPageableTable()) && !this.isSelectable()
-            && !this.isInputTable() && !this.isInputHidden();
+        return (super.isTable() || this.isPageableTable()) && !this.isSelectable() && !this.isInputTable() && !this.isInputHidden();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isPageableTable()
+     * @return isPageableTable
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isPageableTable()
      */
+    @Override
     protected boolean handleIsPageableTable()
     {
         final Object value = this.findTaggedValue(JSFProfile.TAGGEDVALUE_TABLE_PAGEABLE);
@@ -68,26 +72,27 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getMessageKey()
+     * @return messageKey
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getMessageKey()
      */
-    protected java.lang.String handleGetMessageKey()
+    @Override
+    protected String handleGetMessageKey()
     {
-        final StringBuffer messageKey = new StringBuffer();
+        final StringBuilder messageKey = new StringBuilder();
 
         if (!this.isNormalizeMessages())
         {
             if (this.isActionParameter())
             {
-                final JSFAction action = (JSFAction)this.getAction();
+                final JSFAction action = (JSFAction) this.getAction();
                 if (action != null)
                 {
                     messageKey.append(action.getMessageKey());
                     messageKey.append('.');
                 }
-            }
-            else
+            } else
             {
-                final JSFView view = (JSFView)this.getView();
+                final JSFView view = (JSFView) this.getView();
                 if (view != null)
                 {
                     messageKey.append(view.getMessageKey());
@@ -102,22 +107,23 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getDocumentationKey()
+     * @return getMessageKey() + '.' + JSFGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getDocumentationKey()
      */
+    @Override
     protected String handleGetDocumentationKey()
     {
-        return getMessageKey() + '.' + JSFGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX;
+        return this.getMessageKey() + '.' + JSFGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getDocumentationValue(()
+     * @return documentationValue
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getDocumentationValue()
      */
+    @Override
     protected String handleGetDocumentationValue()
     {
-        final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation(
-                    "",
-                    64,
-                    false));
+        final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation("", 64, false));
         return value == null ? "" : value;
     }
 
@@ -126,15 +132,17 @@ public class JSFParameterLogicImpl
      *
      * @see org.andromda.metafacades.uml.ParameterFacade#getDefaultValue()
      */
+    @Override
     public String getDefaultValue()
     {
-        String defaultValue = super.getDefaultValue();
+        final String defaultValue = super.getDefaultValue();
         if (StringUtils.isNotBlank(defaultValue))
         {
             final ClassifierFacade type = this.getType();
-            if (type != null && type.isStringType())
+            if ((type != null) && type.isStringType())
             {
-                defaultValue = "\"" + defaultValue + "\"";
+                this.logger_.debug("getDefaultValue is : " + defaultValue + " for : " + this.getFullyQualifiedName());
+                // defaultValue = "\"" + defaultValue + "\"";
             }
         }
         return defaultValue;
@@ -145,29 +153,34 @@ public class JSFParameterLogicImpl
      *
      * @return true/false
      */
-    private final boolean isNormalizeMessages()
+    private boolean isNormalizeMessages()
     {
-        final String normalizeMessages = (String)getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
+        final String normalizeMessages = (String) this.getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
         return Boolean.valueOf(normalizeMessages).booleanValue();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getMessageValue()
+     * @return messageValue
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getMessageValue()
      */
-    protected java.lang.String handleGetMessageValue()
+    @Override
+    protected String handleGetMessageValue()
     {
         return StringUtilsHelper.toPhrase(super.getName()); // the actual name is used for displaying
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableColumnMessageKey(String)
+     * @param columnName
+     * @return tableColumnMessageKey
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableColumnMessageKey(String)
      */
+    @Override
     protected String handleGetTableColumnMessageKey(final String columnName)
     {
-        StringBuffer messageKey = new StringBuffer();
+        final StringBuilder messageKey = new StringBuilder();
         if (!this.isNormalizeMessages())
         {
-            final JSFView view = (JSFView)this.getView();
+            final JSFView view = (JSFView) this.getView();
             if (view != null)
             {
                 messageKey.append(this.getMessageKey());
@@ -179,17 +192,22 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableColumnMessageValue(String)
+     * @param columnName
+     * @return StringUtilsHelper.toPhrase(columnName)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableColumnMessageValue(String)
      */
+    @Override
     protected String handleGetTableColumnMessageValue(final String columnName)
     {
         return StringUtilsHelper.toPhrase(columnName);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableHyperlinkActions()
+     * @return getTableActions(true)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableHyperlinkActions()
      */
-    protected List handleGetTableHyperlinkActions()
+    @Override
+    protected List<JSFAction> handleGetTableHyperlinkActions()
     {
         return this.getTableActions(true);
     }
@@ -200,30 +218,28 @@ public class JSFParameterLogicImpl
      *
      * @param hyperlink denotes on which type of actions to filter
      */
-    private final List getTableActions(boolean hyperlink)
+    private List<JSFAction> getTableActions(final boolean hyperlink)
     {
-        final Set actions = new LinkedHashSet();
-        final String name = StringUtils.trimToNull(getName());
-        if (name != null && isTable())
+        final Set<JSFAction> actions = new LinkedHashSet<JSFAction>();
+        final String name = StringUtils.trimToNull(this.getName());
+        if ((name != null) && this.isTable())
         {
-            final JSFView view = (JSFView)this.getView();
+            final JSFView view = (JSFView) this.getView();
 
-            final Collection allUseCases = getModel().getAllUseCases();
-            for (final Iterator useCaseIterator = allUseCases.iterator(); useCaseIterator.hasNext();)
+            final Collection<UseCaseFacade> allUseCases = this.getModel().getAllUseCases();
+            for (final UseCaseFacade useCase : allUseCases)
             {
-                final UseCaseFacade useCase = (UseCaseFacade)useCaseIterator.next();
                 if (useCase instanceof JSFUseCase)
                 {
-                    final FrontEndActivityGraph graph = ((JSFUseCase)useCase).getActivityGraph();
+                    final FrontEndActivityGraph graph = ((JSFUseCase) useCase).getActivityGraph();
                     if (graph != null)
                     {
-                        final Collection transitions = graph.getTransitions();
-                        for (final Iterator transitionIterator = transitions.iterator(); transitionIterator.hasNext();)
+                        final Collection<TransitionFacade> transitions = graph.getTransitions();
+                        for (final TransitionFacade transition : transitions)
                         {
-                            final TransitionFacade transition = (TransitionFacade)transitionIterator.next();
-                            if (transition.getSource().equals(view) && transition instanceof JSFAction)
+                            if (transition.getSource().equals(view) && (transition instanceof JSFAction))
                             {
-                                final JSFAction action = (JSFAction)transition;
+                                final JSFAction action = (JSFAction) transition;
                                 if (action.isTableLink() && name.equals(action.getTableLinkName()))
                                 {
                                     if (hyperlink == action.isHyperlink())
@@ -237,13 +253,15 @@ public class JSFParameterLogicImpl
                 }
             }
         }
-        return new ArrayList(actions);
+        return new ArrayList<JSFAction>(actions);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableFormActions()
+     * @return getTableActions(false)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableFormActions()
      */
-    protected List handleGetTableFormActions()
+    @Override
+    protected List<JSFAction> handleGetTableFormActions()
     {
         return this.getTableActions(false);
     }
@@ -251,16 +269,19 @@ public class JSFParameterLogicImpl
     /**
      * @see org.andromda.metafacades.uml.FrontEndParameter#getTableColumns()
      */
+    // TODO tableColumns can be either String or JSFParameter. Should use a single return type in Collection.
+    @Override
     public Collection getTableColumns()
     {
         final Collection tableColumns = super.getTableColumns();
         if (tableColumns.isEmpty())
         {
             // try to preserve the order of the elements encountered
+            // final Map<String, JSFParameter> tableColumnsMap = new LinkedHashMap<String, JSFParameter>();
             final Map tableColumnsMap = new LinkedHashMap();
 
             // order is important
-            final List actions = new ArrayList();
+            final List<JSFAction> actions = new ArrayList<JSFAction>();
 
             // all table actions need the exact same parameters, just not always all of them
             actions.addAll(this.getTableFormActions());
@@ -269,16 +290,13 @@ public class JSFParameterLogicImpl
             // the user should not have modeled it that way (constraints will warn him/her)
             actions.addAll(this.getTableHyperlinkActions());
 
-            for (final Iterator actionIterator = actions.iterator(); actionIterator.hasNext();)
+            for (final JSFAction action : actions)
             {
-                final JSFAction action = (JSFAction)actionIterator.next();
-                final Collection actionParameters = action.getParameters();
-                for (final Iterator parameterIterator = actionParameters.iterator(); parameterIterator.hasNext();)
+                for (final FrontEndParameter actionParameter : action.getParameters())
                 {
-                    final Object object = parameterIterator.next();
-                    if (object instanceof JSFParameter)
+                    if (actionParameter instanceof JSFParameter)
                     {
-                        final JSFParameter parameter = (JSFParameter)object;
+                        final JSFParameter parameter = (JSFParameter) actionParameter;
                         final String parameterName = parameter.getName();
                         if (parameterName != null)
                         {
@@ -287,13 +305,9 @@ public class JSFParameterLogicImpl
                             final Object existingObject = tableColumnsMap.get(parameterName);
                             if (existingObject instanceof JSFParameter)
                             {
-                                final JSFParameter existingParameter = (JSFParameter)existingObject;
-                                if (existingParameter == null ||
-                                    (action.isHyperlink() && parameterName.equals(action.getTableLinkColumnName())))
+                                if (action.isHyperlink() && parameterName.equals(action.getTableLinkColumnName()))
                                 {
-                                    tableColumnsMap.put(
-                                        parameterName,
-                                        parameter);
+                                    tableColumnsMap.put(parameterName, parameter);
                                 }
                             }
                         }
@@ -302,22 +316,17 @@ public class JSFParameterLogicImpl
             }
 
             // for any missing parameters we just add the name of the column
-            final Collection columnNames = this.getTableColumnNames();
-            for (final Iterator columnNameIterator = columnNames.iterator(); columnNameIterator.hasNext();)
+            for (final String columnName : this.getTableColumnNames())
             {
-                final String columnName = (String)columnNameIterator.next();
                 if (!tableColumnsMap.containsKey(columnName))
                 {
-                    tableColumnsMap.put(
-                        columnName,
-                        columnName);
+                    tableColumnsMap.put(columnName, columnName);
                 }
             }
 
             // return everything in the same order as it has been modeled (using the table tagged value)
-            for (final Iterator columnNameIterator = columnNames.iterator(); columnNameIterator.hasNext();)
+            for (final String columnObject : this.getTableColumnNames())
             {
-                final Object columnObject = columnNameIterator.next();
                 tableColumns.add(tableColumnsMap.get(columnObject));
             }
         }
@@ -329,19 +338,17 @@ public class JSFParameterLogicImpl
      */
     private String getDefaultDateFormat()
     {
-        return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
+        return (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getFormat()
+     * @return format
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getFormat()
      */
+    @Override
     protected String handleGetFormat()
     {
-        return JSFUtils.getFormat(
-            (ModelElementFacade)this.THIS(),
-            this.getType(),
-            this.getDefaultDateFormat(),
-            this.getDefaultTimeFormat());
+        return JSFUtils.getFormat((ModelElementFacade) this.THIS(), this.getType(), this.getDefaultDateFormat(), this.getDefaultTimeFormat());
     }
 
     /**
@@ -349,33 +356,39 @@ public class JSFParameterLogicImpl
      */
     private String getDefaultTimeFormat()
     {
-        return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
+        return (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isStrictDateFormat()
+     * @return JSFUtils.isStrictDateFormat((ModelElementFacade)this.THIS())
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isStrictDateFormat()
      */
+    @Override
     protected boolean handleIsStrictDateFormat()
     {
-        return JSFUtils.isStrictDateFormat((ModelElementFacade)this.THIS());
+        return JSFUtils.isStrictDateFormat((ModelElementFacade) this.THIS());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getDateFormatter()
+     * @return dateFormatter
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getDateFormatter()
      */
+    @Override
     protected String handleGetDateFormatter()
     {
         final ClassifierFacade type = this.getType();
-        return type != null && type.isDateType() ? this.getName() + "DateFormatter" : null;
+        return (type != null) && type.isDateType() ? this.getName() + "DateFormatter" : null;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTimeFormatter()
+     * @return timeFormatter
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTimeFormatter()
      */
+    @Override
     protected String handleGetTimeFormatter()
     {
         final ClassifierFacade type = this.getType();
-        return type != null && type.isTimeType() ? this.getName() + "TimeFormatter" : null;
+        return (type != null) && type.isTimeType() ? this.getName() + "TimeFormatter" : null;
     }
 
     /**
@@ -384,7 +397,7 @@ public class JSFParameterLogicImpl
      *
      * @return the input type name.
      */
-    private final String getInputType()
+    private String getInputType()
     {
         return ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_TYPE)).trim();
     }
@@ -395,90 +408,110 @@ public class JSFParameterLogicImpl
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
-    private final boolean isInputType(final String inputType)
+    private boolean isInputType(final String inputType)
     {
         return inputType.equalsIgnoreCase(this.getInputType());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputTextarea()
+     * @return isInputType(JSFGlobals.INPUT_TEXTAREA)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputTextarea()
      */
+    @Override
     protected boolean handleIsInputTextarea()
     {
         return this.isInputType(JSFGlobals.INPUT_TEXTAREA);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputSelect()
+     * @return isInputType(JSFGlobals.INPUT_SELECT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputSelect()
      */
+    @Override
     protected boolean handleIsInputSelect()
     {
         return this.isInputType(JSFGlobals.INPUT_SELECT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputSecret()
+     * @return isInputType(JSFGlobals.INPUT_PASSWORD)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputSecret()
      */
+    @Override
     protected boolean handleIsInputSecret()
     {
         return this.isInputType(JSFGlobals.INPUT_PASSWORD);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputHidden()
+     * @return isInputType(JSFGlobals.INPUT_HIDDEN)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputHidden()
      */
+    @Override
     protected boolean handleIsInputHidden()
     {
         return this.isInputType(JSFGlobals.INPUT_HIDDEN);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isPlaintext()
+     * @return isInputType(JSFGlobals.PLAIN_TEXT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isPlaintext()
      */
+    @Override
     protected boolean handleIsPlaintext()
     {
         return this.isInputType(JSFGlobals.PLAIN_TEXT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputTable()
+     * @return isInputTable
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputTable()
      */
+    @Override
     protected boolean handleIsInputTable()
     {
-        return this.getInputTableIdentifierColumns().length() > 0 || this.isInputType(JSFGlobals.INPUT_TABLE);
+        return (this.getInputTableIdentifierColumns().length() > 0) || this.isInputType(JSFGlobals.INPUT_TABLE);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputRadio()
+     * @return isInputType(JSFGlobals.INPUT_RADIO)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputRadio()
      */
+    @Override
     protected boolean handleIsInputRadio()
     {
         return this.isInputType(JSFGlobals.INPUT_RADIO);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputText()
+     * @return isInputType(JSFGlobals.INPUT_TEXT)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputText()
      */
+    @Override
     protected boolean handleIsInputText()
     {
         return this.isInputType(JSFGlobals.INPUT_TEXT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputMultibox()
+     * @return isInputType(JSFGlobals.INPUT_MULTIBOX)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputMultibox()
      */
+    @Override
     protected boolean handleIsInputMultibox()
     {
         return this.isInputType(JSFGlobals.INPUT_MULTIBOX);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputCheckbox()
+     * @return isInputCheckbox
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputCheckbox()
      */
+    @Override
     protected boolean handleIsInputCheckbox()
     {
         boolean checkbox = this.isInputType(JSFGlobals.INPUT_CHECKBOX);
-        if (!checkbox && this.getInputType().length() == 0)
+        if (!checkbox && (this.getInputType().length() == 0))
         {
             final ClassifierFacade type = this.getType();
             checkbox = type != null ? type.isBooleanType() : false;
@@ -487,12 +520,14 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isInputFile()
+     * @return isInputFile
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isInputFile()
      */
+    @Override
     protected boolean handleIsInputFile()
     {
         boolean file = false;
-        ClassifierFacade type = getType();
+        final ClassifierFacade type = this.getType();
         if (type != null)
         {
             file = type.isFileType();
@@ -501,48 +536,50 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getBackingListName()
+     * @return backingListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getBackingListName()
      */
+    @Override
     protected String handleGetBackingListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getBackingValueName()
+     * @return backingValueName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getBackingValueName()
      */
+    @Override
     protected String handleGetBackingValueName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_VALUE_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_VALUE_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getValueListName()
+     * @return valueListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getValueListName()
      */
+    @Override
     protected String handleGetValueListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getLabelListName()
+     * @return labelListName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getLabelListName()
      */
+    @Override
     protected String handleGetLabelListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isSelectable()
+     * @return isSelectable
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isSelectable()
      */
+    @Override
     protected boolean handleIsSelectable()
     {
         boolean selectable = false;
@@ -551,25 +588,23 @@ public class JSFParameterLogicImpl
             selectable = this.isInputMultibox() || this.isInputSelect() || this.isInputRadio();
             final ClassifierFacade type = this.getType();
 
-            if (!selectable && type != null)
+            if (!selectable && (type != null))
             {
                 final String name = this.getName();
                 final String typeName = type.getFullyQualifiedName();
 
                 // - if the parameter is not selectable but on a targetting page it IS selectable we must
-                //   allow the user to set the backing list too
-                final Collection views = this.getAction().getTargetViews();
-                for (final Iterator iterator = views.iterator(); iterator.hasNext() && !selectable;)
+                // allow the user to set the backing list too
+                final Collection<FrontEndView> views = this.getAction().getTargetViews();
+                for (final Iterator<FrontEndView> iterator = views.iterator(); iterator.hasNext() && !selectable;)
                 {
-                    final FrontEndView view = (FrontEndView)iterator.next();
-                    final Collection parameters = view.getAllActionParameters();
-                    for (final Iterator parameterIterator = parameters.iterator();
-                        parameterIterator.hasNext() && !selectable;)
+                    final Collection<FrontEndParameter> parameters = iterator.next().getAllActionParameters();
+                    for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator(); parameterIterator.hasNext() && !selectable;)
                     {
                         final Object object = parameterIterator.next();
                         if (object instanceof JSFParameter)
                         {
-                            final JSFParameter parameter = (JSFParameter)object;
+                            final JSFParameter parameter = (JSFParameter) object;
                             final String parameterName = parameter.getName();
                             final ClassifierFacade parameterType = parameter.getType();
                             if (parameterType != null)
@@ -577,30 +612,27 @@ public class JSFParameterLogicImpl
                                 final String parameterTypeName = parameterType.getFullyQualifiedName();
                                 if (name.equals(parameterName) && typeName.equals(parameterTypeName))
                                 {
-                                    selectable =
-                                        parameter.isInputMultibox() || parameter.isInputSelect() ||
-                                        parameter.isInputRadio();
+                                    selectable = parameter.isInputMultibox() || parameter.isInputSelect() || parameter.isInputRadio();
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-        else if (this.isControllerOperationArgument())
+        } else if (this.isControllerOperationArgument())
         {
             final String name = this.getName();
             final Collection actions = this.getControllerOperation().getDeferringActions();
             for (final Iterator actionIterator = actions.iterator(); actionIterator.hasNext();)
             {
-                final JSFAction action = (JSFAction)actionIterator.next();
-                final Collection formFields = action.getFormFields();
-                for (final Iterator fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !selectable;)
+                final JSFAction action = (JSFAction) actionIterator.next();
+                final Collection<FrontEndParameter> formFields = action.getFormFields();
+                for (final Iterator<FrontEndParameter> fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !selectable;)
                 {
                     final Object object = fieldIterator.next();
                     if (object instanceof JSFParameter)
                     {
-                        final JSFParameter parameter = (JSFParameter)object;
+                        final JSFParameter parameter = (JSFParameter) object;
                         if (!parameter.equals(this))
                         {
                             if (name.equals(parameter.getName()))
@@ -618,19 +650,23 @@ public class JSFParameterLogicImpl
     /**
      * Stores the initial value of each type.
      */
-    private final Map initialValues = new HashMap();
+    private final Map<String, String> initialValues = new HashMap<String, String>();
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getValueListDummyValue()
+     * @return constructDummyArray()
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getValueListDummyValue()
      */
+    @Override
     protected String handleGetValueListDummyValue()
     {
         return this.constructDummyArray();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getDummyValue()
+     * @return dummyValue
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getDummyValue()
      */
+    @Override
     protected String handleGetDummyValue()
     {
         final ClassifierFacade type = this.getType();
@@ -640,86 +676,43 @@ public class JSFParameterLogicImpl
         {
             if (type.isSetType())
             {
-                initialValue =
-                    "new java.util.LinkedHashSet(java.util.Arrays.asList(" + this.constructDummyArray() + "))";
-            }
-            else if (type.isCollectionType())
+                initialValue = "new java.util.LinkedHashSet(java.util.Arrays.asList(" + this.constructDummyArray() + "))";
+            } else if (type.isCollectionType())
             {
                 initialValue = "java.util.Arrays.asList(" + this.constructDummyArray() + ")";
-            }
-            else if (type.isArrayType())
+            } else if (type.isArrayType())
             {
                 initialValue = this.constructDummyArray();
             }
             final String name = this.getName() != null ? this.getName() : "";
             if (this.initialValues.isEmpty())
             {
-                initialValues.put(
-                    boolean.class.getName(),
-                    "false");
-                initialValues.put(
-                    int.class.getName(),
-                    "(int)" + name.hashCode());
-                initialValues.put(
-                    long.class.getName(),
-                    "(long)" + name.hashCode());
-                initialValues.put(
-                    short.class.getName(),
-                    "(short)" + name.hashCode());
-                initialValues.put(
-                    byte.class.getName(),
-                    "(byte)" + name.hashCode());
-                initialValues.put(
-                    float.class.getName(),
-                    "(float)" + name.hashCode());
-                initialValues.put(
-                    double.class.getName(),
-                    "(double)" + name.hashCode());
-                initialValues.put(
-                    char.class.getName(),
-                    "(char)" + name.hashCode());
+                this.initialValues.put(boolean.class.getName(), "false");
+                this.initialValues.put(int.class.getName(), "(int)" + name.hashCode());
+                this.initialValues.put(long.class.getName(), "(long)" + name.hashCode());
+                this.initialValues.put(short.class.getName(), "(short)" + name.hashCode());
+                this.initialValues.put(byte.class.getName(), "(byte)" + name.hashCode());
+                this.initialValues.put(float.class.getName(), "(float)" + name.hashCode());
+                this.initialValues.put(double.class.getName(), "(double)" + name.hashCode());
+                this.initialValues.put(char.class.getName(), "(char)" + name.hashCode());
 
-                initialValues.put(
-                    String.class.getName(),
-                    "\"" + name + "-test" + "\"");
-                initialValues.put(
-                    java.util.Date.class.getName(),
-                    "new java.util.Date()");
-                initialValues.put(
-                    java.sql.Date.class.getName(),
-                    "new java.util.Date()");
-                initialValues.put(
-                    java.sql.Timestamp.class.getName(),
-                    "new java.util.Date()");
+                this.initialValues.put(String.class.getName(), "\"" + name + "-test" + "\"");
+                this.initialValues.put(java.util.Date.class.getName(), "new java.util.Date()");
+                this.initialValues.put(java.sql.Date.class.getName(), "new java.util.Date()");
+                this.initialValues.put(java.sql.Timestamp.class.getName(), "new java.util.Date()");
 
-                initialValues.put(
-                    Integer.class.getName(),
-                    "new Integer((int)" + name.hashCode() + ")");
-                initialValues.put(
-                    Boolean.class.getName(),
-                    "Boolean.FALSE");
-                initialValues.put(
-                    Long.class.getName(),
-                    "new Long((long)" + name.hashCode() + ")");
-                initialValues.put(
-                    Character.class.getName(),
-                    "new Character(char)" + name.hashCode() + ")");
-                initialValues.put(
-                    Float.class.getName(),
-                    "new Float((float)" + name.hashCode() / hashCode() + ")");
-                initialValues.put(
-                    Double.class.getName(),
-                    "new Double((double)" + name.hashCode() / hashCode() + ")");
-                initialValues.put(
-                    Short.class.getName(),
-                    "new Short((short)" + name.hashCode() + ")");
-                initialValues.put(
-                    Byte.class.getName(),
-                    "new Byte((byte)" + name.hashCode() + ")");
+                this.initialValues.put(Integer.class.getName(), "new Integer((int)" + name.hashCode() + ")");
+                this.initialValues.put(Boolean.class.getName(), "Boolean.FALSE");
+                this.initialValues.put(Long.class.getName(), "new Long((long)" + name.hashCode() + ")");
+                this.initialValues.put(Character.class.getName(), "new Character(char)" + name.hashCode() + ")");
+                this.initialValues.put(Float.class.getName(), "new Float((float)" + (name.hashCode() / this.hashCode()) + ")");
+                this.initialValues.put(Double.class.getName(), "new Double((double)" + (name.hashCode() / this.hashCode()) + ")");
+                this.initialValues.put(Short.class.getName(), "new Short((short)" + name.hashCode() + ")");
+                this.initialValues.put(Byte.class.getName(), "new Byte((byte)" + name.hashCode() + ")");
             }
             if (initialValue == null)
             {
-                initialValue = (String)this.initialValues.get(typeName);
+                initialValue = this.initialValues.get(typeName);
             }
         }
         if (initialValue == null)
@@ -734,44 +727,49 @@ public class JSFParameterLogicImpl
      *
      * @return A String representing Java code for the initialization of an array.
      */
-    private final String constructDummyArray()
+    private String constructDummyArray()
     {
-        return JSFUtils.constructDummyArrayDeclaration(
-            this.getName(),
-            JSFGlobals.DUMMY_ARRAY_COUNT);
+        return JSFUtils.constructDummyArrayDeclaration(this.getName(), JSFGlobals.DUMMY_ARRAY_COUNT);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableSortColumnProperty()
+     * @return getName() + "SortColumn"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableSortColumnProperty()
      */
+    @Override
     protected String handleGetTableSortColumnProperty()
     {
         return this.getName() + "SortColumn";
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableSortAscendingProperty()
+     * @return getName() + "SortAscending"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableSortAscendingProperty()
      */
+    @Override
     protected String handleGetTableSortAscendingProperty()
     {
         return this.getName() + "SortAscending";
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getFormAttributeSetProperty()
+     * @return getName() + "Set"
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getFormAttributeSetProperty()
      */
+    @Override
     protected String handleGetFormAttributeSetProperty()
     {
         return this.getName() + "Set";
     }
 
-    //TODO remove after 3.4 release
+    // TODO remove after 3.4 release
     /**
      * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
      */
     /**
      * @see org.andromda.metafacades.uml.FrontEndParameter#getView()
      */
+    @Override
     public FrontEndView getView()
     {
         Object view = null;
@@ -781,35 +779,34 @@ public class JSFParameterLogicImpl
             final TransitionFacade transition = event.getTransition();
             if (transition instanceof JSFActionLogicImpl)
             {
-                final JSFActionLogicImpl action = (JSFActionLogicImpl)transition;
+                final JSFActionLogicImpl action = (JSFActionLogicImpl) transition;
                 view = action.getInput();
-            }
-            else if (transition instanceof FrontEndForward)
+            } else if (transition instanceof FrontEndForward)
             {
-                final FrontEndForward forward = (FrontEndForward)transition;
+                final FrontEndForward forward = (FrontEndForward) transition;
                 if (forward.isEnteringView())
                 {
                     view = forward.getTarget();
                 }
             }
         }
-        return (FrontEndView)view;
+        return (FrontEndView) view;
     }
 
-    
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isValidationRequired()
+     * @return validationRequired
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isValidationRequired()
      */
+    @Override
     protected boolean handleIsValidationRequired()
     {
         boolean required = !this.getValidatorTypes().isEmpty();
         if (!required)
         {
             // - look for any attributes
-            for (final Iterator iterator = this.getAttributes().iterator(); iterator.hasNext();)
+            for (final Iterator<JSFAttribute> iterator = this.getAttributes().iterator(); iterator.hasNext();)
             {
-                final JSFAttribute attribute = (JSFAttribute)iterator.next();
-                required = !attribute.getValidatorTypes().isEmpty();
+                required = !iterator.next().getValidatorTypes().isEmpty();
                 if (required)
                 {
                     break;
@@ -824,7 +821,7 @@ public class JSFParameterLogicImpl
                     final Object object = iterator.next();
                     if (object instanceof JSFAttribute)
                     {
-                        final JSFAttribute attribute = (JSFAttribute)object;
+                        final JSFAttribute attribute = (JSFAttribute) object;
                         required = !attribute.getValidatorTypes().isEmpty();
                         if (required)
                         {
@@ -838,19 +835,21 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getValidatorTypes()
+     * @return validatorTypes
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getValidatorTypes()
      */
-    protected java.util.Collection handleGetValidatorTypes()
+    @Override
+    protected Collection handleGetValidatorTypes()
     {
-        return JSFUtils.getValidatorTypes(
-            (ModelElementFacade)this.THIS(),
-            this.getType());
+        return JSFUtils.getValidatorTypes((ModelElementFacade) this.THIS(), this.getType());
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getValidWhen()
+     * @return JSFUtils.getValidWhen(this)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getValidWhen()
      */
-    protected java.lang.String handleGetValidWhen()
+    @Override
+    protected String handleGetValidWhen()
     {
         return JSFUtils.getValidWhen(this);
     }
@@ -860,60 +859,79 @@ public class JSFParameterLogicImpl
      *
      * @see org.andromda.metafacades.uml.ParameterFacade#isRequired()
      */
+    @Override
     public boolean isRequired()
     {
-        final Object value = this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_REQUIRED);
-        return Boolean.valueOf(ObjectUtils.toString(value)).booleanValue();
+        if ("org.omg.uml.foundation.core".equals(this.metaObject.getClass().getPackage().getName()))
+        {
+            // if uml 1.4, keep the old behavior (like bpm4struts)
+            final Object value = this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_REQUIRED);
+            return Boolean.valueOf(ObjectUtils.toString(value)).booleanValue();
+        } else
+        {
+            // if >= uml 2, default behavior
+            final Object filterTag = this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_REQUIRED);
+
+            return (filterTag == null) ? false /* super.isRequired() */: JSFUtils.isTrue(String.valueOf(filterTag));
+            // @see behavior in org.andromda.metafacades.emf.uml22.ParameterFacadeLogicImpl#handleIsRequired()
+            // in ..\\andromda\\trunk\\metafacades\\uml\\emf\\uml22\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml22
+            // !this.hasStereotype(UMLProfile.STEREOTYPE_NULLABLE)
+
+        }
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isReadOnly()
+     * @return JSFUtils.isReadOnly(this)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isReadOnly()
      */
+    @Override
     protected boolean handleIsReadOnly()
     {
         return JSFUtils.isReadOnly(this);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getValidatorArgs(java.lang.String)
+     * @param validatorType
+     * @return validatorArgs
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getValidatorArgs(String)
      */
-    protected java.util.Collection handleGetValidatorArgs(final java.lang.String validatorType)
+    @Override
+    protected Collection handleGetValidatorArgs(final String validatorType)
     {
-        return JSFUtils.getValidatorArgs(
-            (ModelElementFacade)this.THIS(),
-            validatorType);
+        return JSFUtils.getValidatorArgs((ModelElementFacade) this.THIS(), validatorType);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getValidatorVars()
+     * @return validatorVars
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getValidatorVars()
      */
-    protected java.util.Collection handleGetValidatorVars()
+    @Override
+    protected Collection handleGetValidatorVars()
     {
-        return JSFUtils.getValidatorVars(
-            ((ModelElementFacade)this.THIS()),
-            this.getType(),
-            null);
+        return JSFUtils.getValidatorVars((ModelElementFacade) this.THIS(), this.getType(), null);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isReset()
+     * @return reset
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isReset()
      */
+    @Override
     protected boolean handleIsReset()
     {
-        boolean reset =
-            Boolean.valueOf(ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_RESET)))
-                   .booleanValue();
+        boolean reset = Boolean.valueOf(ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_RESET))).booleanValue();
         if (!reset)
         {
-            final JSFAction action = (JSFAction)this.getAction();
-            reset = action != null && action.isFormReset();
+            final JSFAction action = (JSFAction) this.getAction();
+            reset = (action != null) && action.isFormReset();
         }
         return reset;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isComplex()
+     * @return complex
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isComplex()
      */
+    @Override
     protected boolean handleIsComplex()
     {
         boolean complex = false;
@@ -930,11 +948,13 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getAttributes()
+     * @return attributes
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getAttributes()
      */
-    protected Collection handleGetAttributes()
+    @Override
+    protected Collection<AttributeFacade> handleGetAttributes()
     {
-        Collection attributes = null;
+        Collection<AttributeFacade> attributes = null;
         ClassifierFacade type = this.getType();
         if (type != null)
         {
@@ -947,15 +967,17 @@ public class JSFParameterLogicImpl
                 attributes = type.getAttributes(true);
             }
         }
-        return attributes == null ? Collections.EMPTY_LIST : attributes;
+        return attributes == null ? new ArrayList<AttributeFacade>() : attributes;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getNavigableAssociationEnds()
+     * @return navigableAssociationEnds
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getNavigableAssociationEnds()
      */
-    protected Collection handleGetNavigableAssociationEnds()
+    @Override
+    protected Collection<ClassifierFacade> handleGetNavigableAssociationEnds()
     {
-        Collection associationEnds = null;
+        Collection<ClassifierFacade> associationEnds = null;
         ClassifierFacade type = this.getType();
         if (type != null)
         {
@@ -968,21 +990,25 @@ public class JSFParameterLogicImpl
                 associationEnds = type.getNavigableConnectingEnds();
             }
         }
-        return associationEnds == null ? Collections.EMPTY_LIST : associationEnds;
+        return associationEnds == null ? new ArrayList<ClassifierFacade>() : associationEnds;
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isEqualValidator()
+     * @return isEqualValidator
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isEqualValidator()
      */
+    @Override
     protected boolean handleIsEqualValidator()
     {
-        final String equal = JSFUtils.getEqual((ModelElementFacade)this.THIS());
-        return equal != null && equal.trim().length() > 0;
+        final String equal = JSFUtils.getEqual((ModelElementFacade) this.THIS());
+        return (equal != null) && (equal.trim().length() > 0);
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#isEqualValidator()
+     * @return isBackingValueRequired
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isEqualValidator()
      */
+    @Override
     protected boolean handleIsBackingValueRequired()
     {
         boolean required = false;
@@ -991,25 +1017,23 @@ public class JSFParameterLogicImpl
             required = this.isInputTable();
             final ClassifierFacade type = this.getType();
 
-            if (!required && type != null)
+            if (!required && (type != null))
             {
                 final String name = this.getName();
                 final String typeName = type.getFullyQualifiedName();
 
                 // - if the backing value is not required for this parameter but on
-                //   a targetting page it IS selectable we must allow the user to set the backing value as well
-                final Collection views = this.getAction().getTargetViews();
-                for (final Iterator iterator = views.iterator(); iterator.hasNext() && !required;)
+                // a targeting page it IS selectable we must allow the user to set the backing value as well
+                final Collection<FrontEndView> views = this.getAction().getTargetViews();
+                for (final Iterator<FrontEndView> iterator = views.iterator(); iterator.hasNext() && !required;)
                 {
-                    final FrontEndView view = (FrontEndView)iterator.next();
-                    final Collection parameters = view.getAllActionParameters();
-                    for (final Iterator parameterIterator = parameters.iterator();
-                        parameterIterator.hasNext() && !required;)
+                    final Collection<FrontEndParameter> parameters = iterator.next().getAllActionParameters();
+                    for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator(); parameterIterator.hasNext() && !required;)
                     {
-                        final Object object = parameterIterator.next();
+                        final FrontEndParameter object = parameterIterator.next();
                         if (object instanceof JSFParameter)
                         {
-                            final JSFParameter parameter = (JSFParameter)object;
+                            final JSFParameter parameter = (JSFParameter) object;
                             final String parameterName = parameter.getName();
                             final ClassifierFacade parameterType = parameter.getType();
                             if (parameterType != null)
@@ -1024,21 +1048,20 @@ public class JSFParameterLogicImpl
                     }
                 }
             }
-        }
-        else if (this.isControllerOperationArgument())
+        } else if (this.isControllerOperationArgument())
         {
             final String name = this.getName();
-            final Collection actions = this.getControllerOperation().getDeferringActions();
-            for (final Iterator actionIterator = actions.iterator(); actionIterator.hasNext();)
+            final Collection<FrontEndAction> actions = this.getControllerOperation().getDeferringActions();
+            for (final FrontEndAction frontEndAction : actions)
             {
-                final JSFAction action = (JSFAction)actionIterator.next();
-                final Collection formFields = action.getFormFields();
-                for (final Iterator fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !required;)
+                final JSFAction action = (JSFAction) frontEndAction;
+                final Collection<FrontEndParameter> formFields = action.getFormFields();
+                for (final Iterator<FrontEndParameter> fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !required;)
                 {
                     final Object object = fieldIterator.next();
                     if (object instanceof JSFParameter)
                     {
-                        final JSFParameter parameter = (JSFParameter)object;
+                        final JSFParameter parameter = (JSFParameter) object;
                         if (!parameter.equals(this))
                         {
                             if (name.equals(parameter.getName()))
@@ -1054,27 +1077,31 @@ public class JSFParameterLogicImpl
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getInputTableIdentifierColumns()
+     * @return findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_TABLE_IDENTIFIER_COLUMNS)
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getInputTableIdentifierColumns()
      */
+    @Override
     protected String handleGetInputTableIdentifierColumns()
     {
         return ObjectUtils.toString(this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_TABLE_IDENTIFIER_COLUMNS)).trim();
     }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getTableColumnActions(java.lang.String)
+     * @param columnName
+     * @return tableColumnActions
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getTableColumnActions(String)
      */
-    protected List handleGetTableColumnActions(final String columnName)
+    @Override
+    protected List<JSFAction> handleGetTableColumnActions(final String columnName)
     {
-        final List columnActions = new ArrayList();
+        final List<JSFAction> columnActions = new ArrayList<JSFAction>();
 
         if (columnName != null)
         {
-            final Set actions = new LinkedHashSet(this.getTableHyperlinkActions());
+            final Set<JSFAction> actions = new LinkedHashSet<JSFAction>(this.getTableHyperlinkActions());
             actions.addAll(this.getTableFormActions());
-            for (final Iterator iterator = actions.iterator(); iterator.hasNext();)
+            for (final JSFAction action : actions)
             {
-                final JSFAction action = (JSFAction)iterator.next();
                 if (columnName.equals(action.getTableLinkColumnName()))
                 {
                     columnActions.add(action);
@@ -1084,46 +1111,189 @@ public class JSFParameterLogicImpl
 
         return columnActions;
     }
-    
-    //TODO remove after 3.4 release
-    /**
-     * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
-     */
-    public String getGetterSetterTypeName()
-    {
-        final String getterSetterTypeName;
-        if (this.getType() == null)
-        {
-            getterSetterTypeName = null;
-        }
-        else
-        {
-            getterSetterTypeName = this.getType().getFullyQualifiedName();
-        }
-        return getterSetterTypeName;
-    }
 
     /**
-     * @see org.andromda.cartridges.jsf2.metafacades.JSFParameter#getMaxLength()
+     * @return maxLength
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getMaxLength()
      */
+    @Override
     protected String handleGetMaxLength()
     {
-        final Collection vars=getValidatorVars();
-        if(vars == null)
+        final Collection<Collection> vars = this.getValidatorVars();
+        if (vars == null)
         {
             return null;
         }
-        else
+        for (final Collection collection : vars)
         {
-            for(Iterator it=vars.iterator(); it.hasNext(); )
+            final Object[] values = (collection).toArray();
+            if ("maxlength".equals(values[0]))
             {
-                final Object[] values=((Collection)it.next()).toArray();
-                if(values[0].equals("maxlength"))
-                {
-                    return values[1].toString();
-                }
+                return values[1].toString();
             }
-            return null;
         }
+        return null;
     }
+
+    // to be used in the range validator: "range - 1000" or "range 20 -".
+    /** - */
+    static final String UNDEFINED_BOUND = "-";
+    /** javax.validation.constraints.NotNull */
+    static final String AN_REQUIRED     = "@javax.validation.constraints.NotNull";
+    /** org.hibernate.validator.constraints.URL */
+    static final String AN_URL          = "@org.hibernate.validator.constraints.URL";
+    /** org.apache.myfaces.extensions.validator.baseval.annotation.LongRange */
+    static final String AN_LONG_RANGE   = "@org.apache.myfaces.extensions.validator.baseval.annotation.LongRange";
+    /** org.apache.myfaces.extensions.validator.baseval.annotation.DoubleRange */
+    static final String AN_DOUBLE_RANGE = "@org.apache.myfaces.extensions.validator.baseval.annotation.DoubleRange";
+    /** org.hibernate.validator.constraints.Email */
+    static final String AN_EMAIL        = "@org.hibernate.validator.constraints.Email";
+    /** org.hibernate.validator.constraints.CreditCardNumber */
+    static final String AN_CREDIT_CARD  = "@org.hibernate.validator.constraints.CreditCardNumber";
+    /** javax.validation.constraints.Size */
+    static final String AN_LENGTH       = "@javax.validation.constraints.Size";
+    /** org.apache.myfaces.extensions.validator.baseval.annotation.Pattern */
+    static final String AN_PATTERN      = "@org.apache.myfaces.extensions.validator.baseval.annotation.Pattern";
+    /** org.apache.myfaces.extensions.validator.crossval.annotation.Equals */
+    static final String AN_EQUALS       = "@org.apache.myfaces.extensions.validator.crossval.annotation.Equals";
+
+    /**
+     * @return the annotations
+     * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getMaxLength()
+     */
+    /*
+     * @Override
+     * protected Collection<String> handleGetAnnotations()
+     * {
+     * final Collection<String> result=new HashSet<String>();
+     * boolean requiredAdded=false;
+     * for(String vt: (Collection<String>)getValidatorTypes())
+     * {
+     * if(vt.startsWith("@")) //add the annotation
+     * {
+     * result.add(vt);
+     * }
+     * if(JSFUtils.VT_REQUIRED.equals(vt))
+     * {
+     * requiredAdded=true;
+     * result.add(AN_REQUIRED);
+     * }
+     * else if(JSFUtils.VT_URL.equals(vt))
+     * {
+     * result.add(AN_URL);
+     * }
+     * else if(JSFUtils.VT_INT_RANGE.equals(vt))
+     * {
+     * final StringBuilder sb=new StringBuilder(AN_LONG_RANGE+"(");
+     * final String format = JSFUtils.getInputFormat((ModelElementFacade)this.THIS());
+     * final String rangeStart = JSFUtils.getRangeStart(format);
+     * boolean addComma=false;
+     * if(StringUtils.isNotBlank(rangeStart) && !rangeStart.equals(UNDEFINED_BOUND))
+     * {
+     * sb.append("minimum="+rangeStart);
+     * addComma=true;
+     * }
+     * final String rangeEnd = JSFUtils.getRangeEnd(format);
+     * if(StringUtils.isNotBlank(rangeEnd) && !rangeEnd.equals(UNDEFINED_BOUND))
+     * {
+     * if(addComma)
+     * {
+     * sb.append(",");
+     * }
+     * sb.append("maximum="+rangeEnd);
+     * }
+     * sb.append(")");
+     * result.add(sb.toString());
+     * }
+     * else if(JSFUtils.VT_FLOAT_RANGE.equals(vt) || JSFUtils.VT_DOUBLE_RANGE.equals(vt))
+     * {
+     * final StringBuilder sb=new StringBuilder(AN_DOUBLE_RANGE+"(");
+     * final String format = JSFUtils.getInputFormat(((ModelElementFacade)this.THIS()));
+     * final String rangeStart = JSFUtils.getRangeStart(format);
+     * boolean addComma=false;
+     * if(StringUtils.isNotBlank(rangeStart) && !rangeStart.equals(UNDEFINED_BOUND))
+     * {
+     * sb.append("minimum="+rangeStart);
+     * addComma=true;
+     * }
+     * final String rangeEnd = JSFUtils.getRangeEnd(format);
+     * if(StringUtils.isNotBlank(rangeEnd) && !rangeEnd.equals(UNDEFINED_BOUND))
+     * {
+     * if(addComma)
+     * {
+     * sb.append(",");
+     * }
+     * sb.append("maximum="+rangeEnd);
+     * }
+     * sb.append(")");
+     * result.add(sb.toString());
+     * }
+     * else if(JSFUtils.VT_EMAIL.equals(vt))
+     * {
+     * result.add(AN_EMAIL);
+     * }
+     * else if(JSFUtils.VT_CREDIT_CARD.equals(vt))
+     * {
+     * result.add(AN_CREDIT_CARD);
+     * }
+     * else if(JSFUtils.VT_MIN_LENGTH.equals(vt) || JSFUtils.VT_MAX_LENGTH.equals(vt))
+     * {
+     * final StringBuilder sb=new StringBuilder(AN_LENGTH+"(");
+     * final Collection formats = this.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_FORMAT);
+     * boolean addComma=false;
+     * for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
+     * {
+     * final String additionalFormat = String.valueOf(formatIterator.next());
+     * if (JSFUtils.isMinLengthFormat(additionalFormat))
+     * {
+     * if(addComma)
+     * {
+     * sb.append(",");
+     * }
+     * sb.append("min=");
+     * sb.append(JSFUtils.getMinLengthValue(additionalFormat));
+     * addComma=true;
+     * }
+     * else if (JSFUtils.isMaxLengthFormat(additionalFormat))
+     * {
+     * if(addComma)
+     * {
+     * sb.append(",");
+     * }
+     * sb.append("max=");
+     * sb.append(JSFUtils.getMinLengthValue(additionalFormat));
+     * addComma=true;
+     * }
+     * }
+     * sb.append(")");
+     * result.add(sb.toString());
+     * }
+     * else if(JSFUtils.VT_MASK.equals(vt))
+     * {
+     * final Collection formats = this.findTaggedValues(JSFProfile.TAGGEDVALUE_INPUT_FORMAT);
+     * for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
+     * {
+     * final String additionalFormat = String.valueOf(formatIterator.next());
+     * if (JSFUtils.isPatternFormat(additionalFormat))
+     * {
+     * result.add(AN_PATTERN+"(\""+JSFUtils.getPatternValue(additionalFormat)+"\")");
+     * }
+     * }
+     * }
+     * else if(JSFUtils.VT_VALID_WHEN.equals(vt))
+     * {
+     * result.add("");
+     * }
+     * else if(JSFUtils.VT_EQUAL.equals(vt))
+     * {
+     * result.add(AN_EQUALS+"(\""+JSFUtils.getEqual((ModelElementFacade)this.THIS())+"\")");
+     * }
+     * }
+     * if(!requiredAdded && getLower() > 0)
+     * {
+     * result.add(AN_REQUIRED);
+     * }
+     * return result;
+     * }
+     */
 }

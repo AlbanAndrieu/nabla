@@ -23,12 +23,15 @@
     </templateObject>
     <!-- cartridge-templateObject merge-point-->
 
+    <!--<templatePostProcessor className="org.andromda.core.common.ImportBeautifierPostProcessorImpl"/>-->
+
     <property reference="xmlEncoding"/>
     <property reference="facesConfig"/>
     <property reference="jspIncludes"/>
     <property reference="messageResources"/>
     <property reference="welcomeFileName"/>
     <property reference="facesServletExtension"/>
+    <property reference="odsExportExtension"/>
     <property reference="managedBeansPackage"/>
     <property reference="preferencesClassName"/>
     <property reference="preferencesBeanName"/>
@@ -42,6 +45,7 @@
     <property reference="defaultTimeFormat"/>
     <property reference="dummyData"/>
     <property reference="jsfComponentsPackage"/>
+    <property reference="validationExtension"/>
     <property reference="clientValidation"/>
     <property reference="fileTypeName"/>
     <property reference="securityRealm"/>
@@ -68,11 +72,13 @@
     <property reference="navigationStyle"/>
     <property reference="fileUploadMaxMemoryPerRequest"/>
     <property reference="fileUploadMaxDiskSpacePerRequest"/>
+    <property reference="navigationUsesRedirect"/>
     <property reference="defaultTableExportTypes"/>
     <property reference="manageableFieldMaxLength"/>
     <property reference="useAutocompleteLookup"/>
     <property reference="manageableReferenceParameterPrefix"/>
     <property reference="crudValueObjectSuffix"/>
+    <property reference="crudConfirmationMessages"/>
     <property reference="portletContainer"/>
     <property reference="portletClass"/>
     <property reference="paginationResultClassName"/>
@@ -80,6 +86,9 @@
     <property reference="defaultRole"/>
     <property reference="ajaxLibrary"/>
     <property reference="loginConfigAuthMethod"/>
+    <property reference="facesConfigFiles"/>
+    <property reference="controllerScope"/>
+    <property reference="navigationBeanScope"/>
 
     <!-- cartridge-property merge-point -->
 
@@ -92,6 +101,8 @@
     </condition>
     <condition name="outputLibraries">$stringUtils.isNotBlank($libraries)</condition>
     <condition name="enablePreferences">#if($enablePreferences.equalsIgnoreCase("true") &amp;&amp; $stringUtils.isBlank($portletContainer))true#end</condition>
+    <condition name="commonsValidator">$validationExtension.equalsIgnoreCase("commons-validator")</condition>
+    <condition name="annotationsValidator">$validationExtension.equalsIgnoreCase("annotations")</condition>
     <condition name="clientValidation">$clientValidation.equalsIgnoreCase("true")</condition>
     <condition name="formSerialization">$formSerialization.equalsIgnoreCase("true")</condition>
     <condition name="securityEnabled">$stringUtils.isNotBlank($securityRealm)</condition>
@@ -99,6 +110,7 @@
     <condition name="portlet">$stringUtils.isNotBlank($portletContainer)</condition>
     <condition name="liferayPortlet">$portletContainer.equals("liferay")</condition>
     <condition name="standalone">$stringUtils.isBlank($portletContainer)</condition>
+    <condition name="useSkin">#if (!$skin.equalsIgnoreCase("none") &amp;&amp; $stringUtils.isBlank($portletContainer))true#end</condition>
     <condition name="paginationSupportEnabled">$stringUtils.isNotBlank($paginationResultClassName)</condition>
     <condition name="standalonePaginationSupportEnabled">
         #if ($stringUtils.isNotBlank($paginationResultClassName) &amp;&amp; $stringUtils.isBlank($portletContainer))true#end
@@ -111,6 +123,7 @@
     <condition name="portletWithoutIcefaces">
         #if (!$ajaxLibrary.equals("icefaces") &amp;&amp; $stringUtils.isNotBlank($portletContainer))true#end
     </condition>
+    <condition name="navigationUsesRedirect">$navigationUsesRedirect.equalsIgnoreCase("true")</condition>
 
     <!-- condition merge-point-->
 
@@ -182,7 +195,7 @@
         overwrite="true"
         lastModifiedCheck="true"
         outputCondition="portlet"/>
-
+        
     <resource
         path="resources/views/css/icefaces/*"
         outputPattern="css/icefaces/{0}"
@@ -190,17 +203,28 @@
         overwrite="true"
         outputCondition="portlet"/>
 
+<!--
+    <resource
+        path="resources/views/css/autocomplete/*"
+        outputPattern="css/autocomplete/{0}"
+        outlet="views"
+        overwrite="true"
+        outputCondition="useAutocompleteLookup"/>
+-->
+
     <resource
         path="resources/facelets/components/autocomplete.xhtml"
         outputPattern="WEB-INF/facelets/components/autocomplete.xhtml"
         outlet="views"
-        overwrite="true"/>
+        overwrite="true"
+        outputCondition="useAutocompleteLookup"/>
 
     <resource
         path="resources/facelets/components/autocompleteMulti.xhtml"
         outputPattern="WEB-INF/facelets/components/autocompleteMulti.xhtml"
         outlet="views"
-        overwrite="true"/>
+        overwrite="true"
+        outputCondition="useAutocompleteLookup"/>
 
     <!-- process templates on model elements -->
     <template
@@ -257,6 +281,13 @@
             <modelElement variable="manageables">
                 <type name="org.andromda.cartridges.jsf2.metafacades.JSFManageableEntity"/>
             </modelElement>
+            <!--
+            <modelElement variable="applicationUseCases">
+                <type name="org.andromda.metafacades.uml.FrontEndUseCase">
+                    <property name="entryUseCase"/>
+                </type>
+            </modelElement>
+            -->
         </modelElements>
     </template>
 
@@ -299,6 +330,15 @@
             </modelElement>
         </modelElements>
     </template>
+
+    <!--
+    <template
+        path="templates/jsf2/configuration/log4j.xml.vsl"
+        outputPattern="WEB-INF/classes/log4j.xml"
+        outlet="configuration"
+        overwrite="false"
+        outputToSingleFile="true"/>
+    -->
 
     <template
         path="templates/jsf2/forms/Form.java.vsl"
@@ -562,6 +602,21 @@
         outlet="managed-beans"
         overwrite="true"/>
 
+    <!--
+    <template
+        path="templates/jsf/utils/ODSFilter.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/ODSFilter.java"
+        outlet="managed-beans"
+        overwrite="true"/>
+
+    <template
+        path="templates/jsf/utils/TrinidadDialogFilter.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/TrinidadDialogFilter.java"
+        outlet="managed-beans"
+        overwrite="true"
+        outputCondition="standalone"/>
+    -->
+
     <template
         path="templates/jsf2/utils/FacesContextUtils.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
@@ -806,6 +861,37 @@
     </template>
 
     <!-- manageable -->
+ 
+    <!--
+    <template
+        path="templates/jsf/utils/ControllerBase.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
+        outlet="managed-beans"
+        overwrite="true"/>
+        
+    <template
+        path="templates/jsf/utils/JsfVariableResolver.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
+        outlet="managed-beans"
+        overwrite="true"/>
+
+    <template
+        path="templates/jsf/configuration/crud-functions-taglib.xml.vsl"
+        outputPattern="WEB-INF/crud-functions-taglib.xml"
+        outlet="configuration"
+        overwrite="true"
+        outputToSingleFile="true"
+        outputOnEmptyElements="false"
+        outputCondition="standalone">
+        <modelElements>
+            <modelElement variable="manageables">
+                <type name="org.andromda.cartridges.jsf.metafacades.JSFManageableEntity">
+                    <property name="needsUserInterface"/>
+                </type>
+            </modelElement>
+        </modelElements>
+    </template>
+    -->
 
     <template
         path="templates/jsf2/converters/crud/EntityConverter.java.vsl"
@@ -905,6 +991,22 @@
             </modelElement>
         </modelElements>
     </template>
+
+    <!--
+    <template
+        path="templates/jsf/views/facelets/crud/export-ods.xhtml.vsl"
+        outputPattern="$generatedFile"
+        outlet="views"
+        overwrite="true">
+        <modelElements variable="manageable">
+            <modelElement>
+                <type name="org.andromda.cartridges.jsf.metafacades.JSFManageableEntity">
+                    <property name="needsUserInterface"/>
+                </type>
+            </modelElement>
+        </modelElements>
+    </template>
+    -->
 
     <!-- portlet specific support templates start here -->
 
