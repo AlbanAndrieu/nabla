@@ -48,7 +48,7 @@ inv:manageableServiceName->notEmpty()
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-maven-plugin</artifactId>
-		<version>${andromda.version}</version>
+		<!--<version>${andromda.version}</version>-->
                 <!--
                 <dependencies>
                     <dependency>
@@ -104,7 +104,16 @@ inv:manageableServiceName->notEmpty()
                             <expectedDirectory>${project.basedir}/../tmp-gui/cartridge-test/expectedUML2</expectedDirectory>                            
                             <reportDirectory>${project.basedir}/../tmp-gui/cartridge-test/reportsUML2</reportDirectory>
                         </configuration>
-                    </execution>
+                        <!--
+                        <artifacts>
+                                <artifact>
+                                    <groupId>${pom.groupId}</groupId>
+                                    <artifactId>${project.artifactId}-components</artifactId>
+                                    <path>resources/WEB-INF/lib</path>
+                                </artifact>
+                        </artifacts>    
+                        -->
+                    </execution>                    
                 </executions>          
             </plugin>
             <plugin>

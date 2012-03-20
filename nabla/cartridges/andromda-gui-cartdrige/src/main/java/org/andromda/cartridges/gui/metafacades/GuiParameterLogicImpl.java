@@ -31,6 +31,7 @@ import org.andromda.metafacades.uml.UseCaseFacade;
 import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiParameter.
@@ -40,6 +41,8 @@ import org.apache.commons.lang.StringUtils;
 public class GuiParameterLogicImpl extends GuiParameterLogic
 {
     private static final long serialVersionUID = 34L;
+
+    private final Logger      logger_          = Logger.getLogger(GuiParameterLogicImpl.class);
 
     /**
      * @param metaObject
@@ -3107,4 +3110,26 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     }
 
+    /**
+     * Overridden to provide quotes around string types.
+     *
+     * @see org.andromda.metafacades.uml.ParameterFacade#getDefaultValue()
+     */
+    /*
+     * @Override
+     * public String getDefaultValue()
+     * {
+     * final String defaultValue = super.getDefaultValue();
+     * if (StringUtils.isNotBlank(defaultValue))
+     * {
+     * final ClassifierFacade type = this.getType();
+     * if ((type != null) && type.isStringType())
+     * {
+     * this.logger_.debug("getDefaultValue is : " + defaultValue + " for : " + this.getFullyQualifiedName());
+     * // defaultValue = "\"" + defaultValue + "\"";
+     * }
+     * }
+     * return defaultValue;
+     * }
+     */
 }

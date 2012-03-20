@@ -3452,7 +3452,7 @@ public abstract class GuiActionLogic
      * <p><b>OCL:</b> context GuiAction inv: tableLinkName->notEmpty() implies tableLink</p>
      * <p><b>Constraint:</b> org::andromda::cartridges::gui::metafacades::GuiAction::hyperlink table actions need to indicate the column</p>
      * <p><b>Error:</b> This hyperlink table event is not specifying the target column name on the table link, you will need to do this in order to determine in which column to render the hyperlink.</p>
-     * <p><b>OCL:</b> context GuiAction inv: (hyperlink and tableLink) implies tableLinkColumnName->notEmpty()</p>
+     * <p><b>OCL:</b> -- context GuiAction inv: (hyperlink and tableLink) implies tableLinkColumnName->notEmpty()</p>
      * @param validationMessages Collection<ModelValidationMessage>
      * @see MetafacadeBase#validateInvariants(Collection validationMessages)
      */
@@ -3513,7 +3513,7 @@ public abstract class GuiActionLogic
         try
         {
             final Object contextElement = this.THIS();
-            boolean constraintValid = OCLResultEnsurer.ensure((Boolean.valueOf(String.valueOf((Boolean.valueOf(String.valueOf(OCLIntrospector.invoke(contextElement,"hyperlink"))).booleanValue()&&Boolean.valueOf(String.valueOf(OCLIntrospector.invoke(contextElement,"tableLink"))).booleanValue()))).booleanValue()?OCLCollections.notEmpty(OCLIntrospector.invoke(contextElement,"tableLinkColumnName")):true));
+            boolean constraintValid = OCLResultEnsurer.ensure();
             if (!constraintValid)
             {
                 validationMessages.add(
