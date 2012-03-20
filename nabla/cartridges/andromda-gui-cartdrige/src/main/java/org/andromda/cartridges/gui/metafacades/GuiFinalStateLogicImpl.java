@@ -88,7 +88,7 @@ public class GuiFinalStateLogicImpl extends GuiFinalStateLogic
 
         this.logger_.debug("getName is : " + name + " for : " + this.getFullyQualifiedName());
 
-        if (name == null)
+        if ((name == null) || name.isEmpty())
         {
 
             final UseCaseFacade useCase = this.getTargetUseCase();

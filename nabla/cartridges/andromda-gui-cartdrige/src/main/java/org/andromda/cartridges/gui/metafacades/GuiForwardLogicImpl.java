@@ -13,20 +13,25 @@ import org.andromda.metafacades.uml.EventFacade;
 import org.andromda.metafacades.uml.GuardFacade;
 import org.andromda.metafacades.uml.StateVertexFacade;
 import org.andromda.utils.StringUtilsHelper;
+import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiForward.
  *
  * @see org.andromda.cartridges.gui.metafacades.GuiForward
  */
-public class GuiForwardLogicImpl extends GuiForwardLogic {
+public class GuiForwardLogicImpl extends GuiForwardLogic
+{
     private static final long serialVersionUID = 34L;
+
+    private final Logger      logger_          = Logger.getLogger(GuiForwardLogicImpl.class);
 
     /**
      * @param metaObject
      * @param context
      */
-    public GuiForwardLogicImpl(final Object metaObject, final String context) {
+    public GuiForwardLogicImpl(final Object metaObject, final String context)
+    {
         super(metaObject, context);
     }
 
@@ -34,12 +39,16 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.metafacades.uml.ModelElementFacade#getName()
      */
     @Override
-    public String getName() {
+    public String getName()
+    {
         final StringBuilder name = new StringBuilder(super.getName());
         final Object target = this.getTarget();
-        if (target instanceof GuiFinalState) {
+        this.logger_.debug("getName is : " + name + " - " + target + " for : " + this.getFullyQualifiedName());
+        if (target instanceof GuiFinalState)
+        {
             name.append(GuiGlobals.USECASE_FORWARD_NAME_SUFFIX);
-        } else {
+        } else
+        {
             name.insert(0, this.getUseCase().getName() + "-");
         }
         return GuiUtils.toWebResourceName(name.toString());
@@ -50,12 +59,15 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForward#getPath()
      */
     @Override
-    protected String handleGetPath() {
+    protected String handleGetPath()
+    {
         String forwardPath = null;
         final StateVertexFacade target = this.getTarget();
-        if (this.isEnteringView()) {
+        if (this.isEnteringView())
+        {
             forwardPath = ((GuiView) target).getPath();
-        } else if (this.isEnteringFinalState()) {
+        } else if (this.isEnteringFinalState())
+        {
             forwardPath = ((GuiFinalState) target).getPath();
         }
 
@@ -66,7 +78,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleIsSuccessMessagesPresent()
      */
     @Override
-    protected boolean handleIsSuccessMessagesPresent() {
+    protected boolean handleIsSuccessMessagesPresent()
+    {
         return !this.getSuccessMessages().isEmpty();
     }
 
@@ -74,7 +87,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleIsWarningMessagesPresent()
      */
     @Override
-    protected boolean handleIsWarningMessagesPresent() {
+    protected boolean handleIsWarningMessagesPresent()
+    {
         return !this.getWarningMessages().isEmpty();
     }
 
@@ -82,7 +96,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleIsErrorMessagesPresent()
      */
     @Override
-    protected boolean handleIsErrorMessagesPresent() {
+    protected boolean handleIsErrorMessagesPresent()
+    {
         return !this.getErrorMessages().isEmpty();
     }
 
@@ -90,7 +105,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetSuccessMessages()
      */
     @Override
-    protected Map handleGetSuccessMessages() {
+    protected Map handleGetSuccessMessages()
+    {
         return this.getMessages(GuiProfile.TAGGEDVALUE_ACTION_SUCCESS_MESSAGE);
     }
 
@@ -98,7 +114,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetWarningMessages()
      */
     @Override
-    protected Map handleGetWarningMessages() {
+    protected Map handleGetWarningMessages()
+    {
         return this.getMessages(GuiProfile.TAGGEDVALUE_ACTION_WARNING_MESSAGE);
     }
 
@@ -106,7 +123,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetErrorMessages()
      */
     @Override
-    protected Map handleGetErrorMessages() {
+    protected Map handleGetErrorMessages()
+    {
         return this.getMessages(GuiProfile.TAGGEDVALUE_ACTION_ERROR_MESSAGE);
     }
 
@@ -115,7 +133,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForward#isFinalStateTarget()
      */
     @Override
-    protected boolean handleIsFinalStateTarget() {
+    protected boolean handleIsFinalStateTarget()
+    {
         return this.getTarget() instanceof GuiFinalState;
     }
 
@@ -124,7 +143,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForward#getFromOutcome()
      */
     @Override
-    protected String handleGetFromOutcome() {
+    protected String handleGetFromOutcome()
+    {
         return this.getName();
     }
 
@@ -136,16 +156,20 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      *         will have been recorded
      */
     @SuppressWarnings("unchecked")
-    private Map<String, String> getMessages(final String taggedValue) {
+    private Map<String, String> getMessages(final String taggedValue)
+    {
         Map<String, String> messages;
 
         final Collection taggedValues = this.findTaggedValues(taggedValue);
-        if (taggedValues.isEmpty()) {
+        if (taggedValues.isEmpty())
+        {
             messages = Collections.EMPTY_MAP;
-        } else {
+        } else
+        {
             messages = new LinkedHashMap<String, String>(); // we want to keep the order
 
-            for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();) {
+            for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
+            {
                 final String value = (String) iterator.next();
                 messages.put(StringUtilsHelper.toResourceMessageKey(value), value);
             }
@@ -159,35 +183,40 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * has a name this method returns that name, otherwise if this forward's target has a name this
      * method returns that name, otherwise simply returns <code>"unknown"</code>
      */
-    private String resolveName() {
+    private String resolveName()
+    {
 
         String forwardName = null;
 
         // trigger
         final EventFacade trigger = this.getTrigger();
 
-        if (trigger != null) {
+        if (trigger != null)
+        {
 
             forwardName = trigger.getName();
 
         }
 
         // name
-        if (forwardName == null) {
+        if (forwardName == null)
+        {
 
             forwardName = this.getName();
 
         }
 
         // target
-        if (forwardName == null) {
+        if (forwardName == null)
+        {
 
             forwardName = this.getTarget().getName();
 
         }
 
         // else
-        if (forwardName == null) {
+        if (forwardName == null)
+        {
 
             forwardName = "unknown";
 
@@ -202,7 +231,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetForwardName()
      */
     @Override
-    protected String handleGetForwardName() {
+    protected String handleGetForwardName()
+    {
         return StringUtilsHelper.toResourceMessageKey(this.resolveName());
     }
 
@@ -210,17 +240,20 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetForwardPath()
      */
     @Override
-    protected String handleGetForwardPath() {
+    protected String handleGetForwardPath()
+    {
 
         String forwardPath = null;
 
         final StateVertexFacade target = this.getTarget();
 
-        if (this.isEnteringPage()) {
+        if (this.isEnteringPage())
+        {
 
             forwardPath = ((GuiView) target).getFullPath() + ".jsp";
 
-        } else if (this.isEnteringFinalState()) {
+        } else if (this.isEnteringFinalState())
+        {
 
             forwardPath = ((GuiFinalState) target).getFullPath();
 
@@ -233,7 +266,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetGuardName()
      */
     @Override
-    protected String handleGetGuardName() {
+    protected String handleGetGuardName()
+    {
         final GuardFacade guard = this.getGuard();
         return (guard == null) ? null : guard.getName();
     }
@@ -242,7 +276,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleIsEnteringPage()
      */
     @Override
-    protected boolean handleIsEnteringPage() {
+    protected boolean handleIsEnteringPage()
+    {
         return this.isEnteringView();
     }
 
@@ -250,13 +285,16 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetTargetNameKey()
      */
     @Override
-    protected String handleGetTargetNameKey() {
+    protected String handleGetTargetNameKey()
+    {
 
-        if (this.isEnteringPage()) {
+        if (this.isEnteringPage())
+        {
 
             return ((GuiView) this.getTarget()).getTitleKey();
 
-        } else if (this.isEnteringFinalState()) {
+        } else if (this.isEnteringFinalState())
+        {
 
             return ((GuiUseCase) ((GuiFinalState) this.getTarget()).getTargetUseCase()).getTitleKey();
 
@@ -269,7 +307,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleIsExitingPage()
      */
     @Override
-    protected boolean handleIsExitingPage() {
+    protected boolean handleIsExitingPage()
+    {
         return this.isExitingView();
     }
 
@@ -277,7 +316,8 @@ public class GuiForwardLogicImpl extends GuiForwardLogic {
      * @see org.andromda.cartridges.gui.metafacades.GuiForwardLogic#handleGetGuiActivityGraph()
      */
     @Override
-    protected Object handleGetGuiActivityGraph() {
+    protected Object handleGetGuiActivityGraph()
+    {
         return this.getFrontEndActivityGraph();
     }
 
