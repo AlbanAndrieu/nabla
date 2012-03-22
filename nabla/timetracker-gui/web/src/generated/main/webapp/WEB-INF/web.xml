@@ -6,78 +6,17 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_3.xsd"
          version="3">
 
+    
+    <!-- ********************* Facelets Config ************************** -->
     <context-param>
-        <!-- Maximum memory per request (in bytes) -->
-        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_MEMORY</param-name>
-        <param-value>512000</param-value>
-    </context-param>
-    <context-param>
-        <!-- Maximum disk space per request (in bytes) -->
-        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_DISK_SPACE</param-name>
-        <param-value>10240000</param-value>
-    </context-param>
-    <context-param>
+        <description>Prevents HTML-Comments from beeing rendered</description>
         <param-name>facelets.SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-        <param-value>.xhtml</param-value>
     </context-param>
     <context-param>
         <param-name>facelets.VIEW_MAPPINGS</param-name>
         <param-value>*.xhtml</param-value>
     </context-param>
-
-    <!-- Trinidad has its own ViewHandler, which is a "decorating"
-         view handler - for example, it needs to wrap methods like renderView()
-         to perform some extra pre- and post-handling.  Facelets, on the other
-         hand, is more of a true ViewHandler - it actually implements
-         renderView() (yeah, it decorates too, but forget about that
-         for a second).  As a result, the world is a better place if
-         the Trinidad ViewHandler runs around the Facelets ViewHandler.
-         But since Facelets is registered in WEB-INF/faces-config.xml,
-         and Trinidad's is registered from META-INF/faces-config.xml in its
-         JAR, exactly the opposite happens as per the JSF spec.
-
-         Hence, the following config parameter, which Trinidad
-         exposes (as of EA19) to allow pushing a ViewHandler inside
-         of ours.  FWIW, you retain the entire delegation stack -
-         just flipped around a bit - so that Facelets still decorates
-         the standard ViewHandler, and therefore you've still got
-         JSP support.
-      -->
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
-        <param-value>com.sun.facelets.FaceletViewHandler</param-value>
-    </context-param>
-
-    <context-param>
-        <description>
-            Turn off the javascript obfuscation
-        </description>
-        <param-name>org.apache.myfaces.trinidad.DEBUG_JAVASCRIPT</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <context-param>
-        <description>
-            If this parameter is enabled by setting to "true", Apache Trinidad will turn off
-            automatic compression of style class names
-        </description>
-        <param-name>org.apache.myfaces.trinidad.DISABLE_CONTENT_COMPRESSION</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <context-param>
-        <description>
-            If this parameter is enabled by setting to "true", Apache Trinidad will automatically
-            check the modification date of your JSPs and skinning CSS files
-        </description>
-        <param-name>org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
     <context-param>
         <param-name>facelets.LIBRARIES</param-name>
         <param-value>
@@ -90,6 +29,10 @@
         </param-value>
     </context-param>
     <context-param>
+        <param-name>facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE</param-name>
+        <param-value>false</param-value>
+    </context-param>    
+    <context-param>
         <param-name>facelets.REFRESH_PERIOD</param-name>
         <param-value>2</param-value>
     </context-param>
@@ -100,17 +43,23 @@
     </context-param>
 
 
+    <!-- ************************ JSF Config **************************** -->
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
     <context-param>
         <description>
             State saving method: "client" or "server" (= default)
-            See JSF Specification 2.5.2. In Trinidad, it is an
+            See JSF Specification 2.5.2. In Trinidad and ADF Faces, it is an
             optimized, token-based mechanism that is almost always a
             better choice than the standard JSF server-side state saving.
         </description>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
     </context-param>
-
+    
+    <!-- ************************ MyFaces Config **************************** -->
     <context-param>
         <description>
             This parameter tells MyFaces if javascript code should be allowed in the
@@ -152,22 +101,36 @@
         <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
         <param-value>true</param-value>
     </context-param>
-
+    
+    <!-- upload -->
     <context-param>
         <param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
         <param-value>false</param-value>
     </context-param>
-
     <context-param>
         <param-name>org.apache.myfaces.DISABLE_TOMAHAWK_FACES_CONTEXT_WRAPPER</param-name>
         <param-value>true</param-value>
     </context-param>
 
+<!-- Options JSF avec utilisation de SUN RI
+	<context-param>
+		<param-name>com.sun.faces.validateXml</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.verifyObjects</param-name>
+		<param-value>true</param-value>
+	</context-param>
+-->
+
+    <!-- ************************ Manual Merged Config **************************** -->
     <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
     <context-param>
          <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
          <param-value>true</param-value>
     </context-param>
+
+    <!-- ************************ Manual Filters **************************** -->
     <!-- uncomment the following if you're using the open-session-in-view pattern
          note: that you'll need to update the filter-class value if you've changed
          the defaults for the package and/or filter name
@@ -183,7 +146,7 @@
     <!-- Extensions Filter -->
     <filter>
         <filter-name>MyFaces Extensions Filter</filter-name>
-        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class> <!-- use by tomahawk -->
         <init-param>
             <description>
                 Set the size limit for uploaded files.
@@ -304,9 +267,91 @@
         <url-pattern>/faces/*</url-pattern>
     </filter-mapping>
 
+    <!-- ************************ Trinidad Config **************************** -->
+
+    <!-- Trinidad has its own ViewHandler, which is a "decorating"
+         view handler - for example, it needs to wrap methods like renderView()
+         to perform some extra pre- and post-handling.  Facelets, on the other
+         hand, is more of a true ViewHandler - it actually implements
+         renderView() (yeah, it decorates too, but forget about that
+         for a second).  As a result, the world is a better place if
+         the Trinidad ViewHandler runs around the Facelets ViewHandler.
+         But since Facelets is registered in WEB-INF/faces-config.xml,
+         and Trinidad's is registered from META-INF/faces-config.xml in its
+         JAR, exactly the opposite happens as per the JSF spec.
+
+         Hence, the following config parameter, which Trinidad
+         exposes (as of EA19) to allow pushing a ViewHandler inside
+         of ours.  FWIW, you retain the entire delegation stack -
+         just flipped around a bit - so that Facelets still decorates
+         the standard ViewHandler, and therefore you've still got
+         JSP support.
+      -->
+    <context-param>
+        <!-- Maximum memory per request (in bytes) -->
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_MEMORY</param-name>
+        <param-value>512000</param-value>
+    </context-param>
+    <context-param>
+        <!-- Maximum disk space per request (in bytes) -->
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_DISK_SPACE</param-name>
+        <param-value>10240000</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+            Turn off the javascript obfuscation
+        </description>
+        <param-name>org.apache.myfaces.trinidad.DEBUG_JAVASCRIPT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+            If this parameter is enabled by setting to "true", Apache Trinidad will turn off
+            automatic compression of style class names
+        </description>
+        <param-name>org.apache.myfaces.trinidad.DISABLE_CONTENT_COMPRESSION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidadinternal.DISABLE_CONTENT_COMPRESSION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <description>
+            If this parameter is enabled by setting to "true", Apache Trinidad will automatically
+            check the modification date of your JSPs and skinning CSS files, and discard saved
+             state when they change;  this makes development easier,
+             but adds overhead that should be avoided when your application
+             is deployed
+        </description>
+        <param-name>org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+  
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.resource.DEBUG</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
+        <param-value>com.sun.facelets.FaceletViewHandler</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.CACHE_VIEW_ROOT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    
+    <!-- ************************ MyFaces Listener **************************** -->
+    <!-- Listener, that does all the startup work (configuration, init). -->
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
     
 
-    
+        
+    <!-- ************************ Faces Servlet Mapping **************************** -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -355,14 +400,18 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
+    
+    <!-- ************************ Trinidad Resources Servlet **************************** -->
+ 
     <servlet-mapping>
         <servlet-name>File Download Servlet</servlet-name>
         <url-pattern>/fileDownload/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Trinidad Resources Servlet</servlet-name>
-        <url-pattern>/adf/*</url-pattern>
+	<url-pattern>/adf/*</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-name>
         <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.jsf</url-pattern>
@@ -415,5 +464,4 @@
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-
 </web-app>
