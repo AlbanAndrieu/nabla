@@ -89,6 +89,7 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>        
+        <!-- myfaces-impl and myfaces-api JARs are the equivalent of Mojarra's jsf-impl and jsf-api -->
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
@@ -96,7 +97,7 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk12</artifactId>
@@ -128,12 +129,17 @@
             <artifactId>myfaces-extval-trinidad-support</artifactId>
         </dependency>
         <!-- JBoss7 requires overriding default classloader to support JSF 1.2 -->
+        <!-- For MyFaces removed the Sun Jars (jsf-impl and jsf-api) from the war. it will use the MyFaces jars bundled with JBoss.  -->
+        <!--
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
-            <!--<version>${jsf.api.version}</version>--> 
+            -->
+            <!--<version>${jsf.api.version}</version>-->
+            <!--
             <version>1.2_15</version>      
         </dependency>
+        -->
         <!--
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -191,14 +197,32 @@
         <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>javax.el</groupId>
+            		<artifactId>el-api</artifactId>
+            	</exclusion>
+            </exclusions>            
         </dependency>        
 	<dependency>
-		<groupId>org.icefaces</groupId>
-		<artifactId>icefaces-comps</artifactId>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-comps</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>javax.el</groupId>
+            		<artifactId>el-api</artifactId>
+            	</exclusion>
+            </exclusions> 		
 	</dependency>
 	<dependency>
-		<groupId>org.icefaces</groupId>
-		<artifactId>icefaces-facelets</artifactId>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-facelets</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>javax.el</groupId>
+            		<artifactId>el-api</artifactId>
+            	</exclusion>
+            </exclusions> 		
 	</dependency>  
 	-->   
         <!--
@@ -234,6 +258,14 @@
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
         </dependency>
+        <!-- work with and without jsp-api -->
+        <!--
+        <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>jsp-api</artifactId>
+	        <scope>provided</scope>
+    	</dependency>
+        -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
