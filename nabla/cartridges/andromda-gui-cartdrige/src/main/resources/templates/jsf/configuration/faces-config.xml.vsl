@@ -28,6 +28,7 @@
             http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
         version="1.2">
     <application>
+
         <variable-resolver>
             ${managedBeansPackage}.JsfVariableResolver
         </variable-resolver>
@@ -38,10 +39,16 @@
         <view-handler>com.sun.facelets.FaceletPortletViewHandler</view-handler>
 #end
 #else
-        <default-render-kit-id>
-            org.apache.myfaces.trinidad.core
-        </default-render-kit-id>
+        <default-render-kit-id>org.apache.myfaces.trinidad.core</default-render-kit-id>
 #end
+        <!--<message-bundle>messages</message-bundle>-->
+        <!--view-handler>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</view-handler-->
+        <!--variable-resolver>org.jboss.seam.jsf.SeamVariableResolver</variable-resolver-->
+        <!-- Disabled when using Ajax4JSF -->
+        <!--
+        <view-handler>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</view-handler>
+        <view-handler>org.ajax4jsf.framework.ajax.AjaxViewHandler</view-handler>
+        -->
     </application>
 #if ($liferayPortlet)
     <factory>
@@ -52,10 +59,19 @@
     <lifecycle>
         <phase-listener>${managedBeansPackage}.PortletPhaseListener</phase-listener>
     </lifecycle>
-#end
+#else
+#if ($useSeam)
+    <!-- Seam transaction management -->
+    <lifecycle>
+        <phase-listener>org.jboss.seam.jsf.TransactionalSeamPhaseListener</phase-listener>
+        <!--phase-listener>org.jboss.seam.jsf.SeamPhaseListener</phase-listener-->
+    </lifecycle>
+#else
     <lifecycle>
         <phase-listener>${managedBeansPackage}.MessagePhaseListener</phase-listener>
     </lifecycle>
+#end
+#end
 #if ($icefaces)
     <managed-bean>
         <managed-bean-name>renderManager</managed-bean-name>
@@ -63,6 +79,10 @@
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 #end
+#if(!$applicationUseCases.empty)
+#set($applicationUseCase = $applicationUseCases.iterator().next())
+#end
+#set ($useCases = $applicationUseCase.allUseCases)
     <!-- forms -->
 #foreach ($useCase in $useCases)
 #foreach ($action in $useCase.actions)
@@ -393,10 +413,12 @@
             <value>$skin</value>
         </managed-property>
 #end
+#if ($stringUtils.isNotBlank($maxTableRows))
         <managed-property>
             <property-name>maxTableRows</property-name>
             <value>${maxTableRows}</value>
         </managed-property>
+#end
     </managed-bean>
 #end
 

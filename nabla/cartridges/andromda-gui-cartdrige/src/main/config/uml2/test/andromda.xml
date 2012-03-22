@@ -85,6 +85,8 @@
         	<property name="paginationResultClassName">org.andromda.spring.cartridge.PaginationResult</property>
         	<property name="validationExtension">commons-validator</property>
         	<property name="managedBeansPackage">org.andromda.presentation.jsf</property>
+                <!--<property name="ajaxLibrary">trinidad</property>-->
+                <!--<property name="tomahawk">false</property>-->
                 
                 <!--    
                 <property name="overwrite">true</property>

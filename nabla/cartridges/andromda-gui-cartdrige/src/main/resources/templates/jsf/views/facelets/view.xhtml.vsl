@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core">
-
+    
 #if ($view.useCase.registrationUseCase)
 #set ($layout = "/layout/registration-layout.xhtml")
 #else
@@ -39,5 +39,5 @@
 #end
     </ui:define>
 </ui:composition>
-
+    
 </html>
