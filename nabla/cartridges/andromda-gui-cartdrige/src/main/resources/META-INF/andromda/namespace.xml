@@ -253,11 +253,17 @@
                 </documentation>
             </property>      
             <property name="tomahawk">
-                <default>true</default>
+                <default>false</default>
                 <documentation>
                     Use Tomahawk.
                 </documentation>
             </property>                      
+            <property name="extension">
+                <default>false</default>
+                <documentation>
+                    Use Tomahawk extension.
+                </documentation>
+            </property>             
             <property name="welcomeFileName">
                 <default>index.jsp</default>
                 <documentation>
@@ -387,7 +393,7 @@
                 </documentation>
             </property>
         </propertyGroup>
-<propertyGroup name="Portlet Support">
+        <propertyGroup name="Portlet Support">
             <documentation>
                 Properties available for portlet support configuration.
             </documentation>

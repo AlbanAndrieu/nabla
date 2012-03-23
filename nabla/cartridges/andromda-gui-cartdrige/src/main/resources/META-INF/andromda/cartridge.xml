@@ -64,7 +64,8 @@
     <property reference="enableMyFacesDevelopmentSupport"/>
     <property reference="viewType"/>
     <property reference="seam"/>
-    <property reference="tomahawk"/>    
+    <property reference="tomahawk"/>
+    <property reference="extension"/>    
     <property reference="strictDateTimeFormat"/>
     <property reference="libraries"/>
     <property reference="application-libraries"/>
@@ -129,7 +130,8 @@
     <condition name="icefaces">$ajaxLibrary.equals("icefaces")</condition>
     <condition name="trinidad">$ajaxLibrary.equals("trinidad")</condition> <!-- if not used might use tomahawk in view-table.xhtml.vsl -->
     <condition name="adf">$ajaxLibrary.equals("adf")</condition>
-    <condition name="tomahawk">$tomahawk.equalsIgnoreCase("true")</condition> <!-- must be to true if adf -->   
+    <condition name="tomahawk">$tomahawk.equalsIgnoreCase("true")</condition> <!-- must be to true if adf -->
+    <condition name="extension">$extension.equalsIgnoreCase("true")</condition>
     <condition name="portletWithoutIcefaces">
         #if (!$ajaxLibrary.equals("icefaces") &amp;&amp; $stringUtils.isNotBlank($portletContainer))true#end
     </condition>
