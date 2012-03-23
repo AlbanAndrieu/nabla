@@ -98,16 +98,20 @@
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
         </dependency>
+        
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk12</artifactId>
+            <version>${org.apache.myfaces.tomahawk.version}</version>
         </dependency>
+        
         <!--
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk20</artifactId>
         </dependency>
         -->
+        <!-- do not activate validator
         <dependency>
             <groupId>org.apache.myfaces.extensions.validator</groupId>
             <artifactId>myfaces-extval-core</artifactId>
@@ -128,6 +132,7 @@
             <groupId>org.apache.myfaces.extensions.validator.component-support-modules</groupId>
             <artifactId>myfaces-extval-trinidad-support</artifactId>
         </dependency>
+        -->
         <!-- JBoss7 requires overriding default classloader to support JSF 1.2 -->
         <!-- For MyFaces removed the Sun Jars (jsf-impl and jsf-api) from the war. it will use the MyFaces jars bundled with JBoss.  -->
         <!--
@@ -156,8 +161,8 @@
         <dependency>
 	    <groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-search</artifactId>
-	</dependency>        
-	-->
+	</dependency>   
+	--> 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -258,8 +263,7 @@
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
         </dependency>
-        <!-- work with and without jsp-api -->
-        <!--
+        <!-- already added with andromda-gui-cartridge-components
         <dependency>
 	        <groupId>javax.servlet</groupId>
 	        <artifactId>jsp-api</artifactId>
@@ -283,7 +287,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
-        <!--
+        <!-- already added with andromda-gui-cartridge-components
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
