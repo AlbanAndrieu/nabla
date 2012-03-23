@@ -5,6 +5,8 @@ package org.andromda.timetracker.web.timetrackerhome;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.FacesEvent;
@@ -22,7 +24,9 @@ import org.andromda.timetracker.web.timecardsearch.SearchController;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.myfaces.trinidad.component.UIXIterator;
 import org.apache.myfaces.trinidad.context.RequestContext;
+import org.apache.myfaces.trinidad.util.ComponentUtils;
 
 /**
  * 
@@ -626,4 +630,30 @@ public abstract class HomeController
         return JsfUtils.getAttribute(this.getContext().getExternalContext().getSession(false), name);
     }
 
+
+    /**
+     * Updates the component value in the view root.
+     */
+    @SuppressWarnings("unused")
+    private void updateComponentValue(RequestContext requestContext, UIComponent viewRoot, String id, Object value)
+    {
+        UIComponent component = ComponentUtils.findRelativeComponent(viewRoot, id);
+        if(component instanceof ValueHolder)//just in case the view was changed
+        {
+            ((ValueHolder) component).setValue(value);
+        }
+    }
+
+    /**
+     * Updates the table value in the view root.
+     */
+    @SuppressWarnings("unused")
+    private void updateTableValue(RequestContext requestContext, UIComponent viewRoot, String id, Object value)
+    {
+        UIComponent component = ComponentUtils.findRelativeComponent(viewRoot, id);
+        if(component instanceof UIXIterator)//just in case the view was changed
+        {
+            ((UIXIterator) component).setValue(value);
+        }
+    }
 }

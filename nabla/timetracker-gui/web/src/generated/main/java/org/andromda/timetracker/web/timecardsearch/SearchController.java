@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIInput;
+import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.FacesEvent;
@@ -32,7 +33,9 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.myfaces.trinidad.component.UIXIterator;
 import org.apache.myfaces.trinidad.context.RequestContext;
+import org.apache.myfaces.trinidad.util.ComponentUtils;
 
 /**
  * 
@@ -160,6 +163,10 @@ SearchTimecardsSearchFormImpl)
             _searchTimecards_search(form);
 
             forward = _populateSearchScreen(form);
+            if("search-timecards-search-timecards".equals(forward))
+            {
+                forward = null; //the destination form is the same, stay on the current view
+            }
             final FacesMessage.Severity messageSeverity = this.getMaximumMessageSeverity();
             if (messageSeverity != null && FacesMessage.SEVERITY_ERROR.getOrdinal() <= messageSeverity.getOrdinal())
             {
@@ -207,6 +214,12 @@ SearchTimecardsSearchFormImpl)
         String forward = null;
         populateSearchScreen(form);
         forward = "search-timecards-search-timecards";
+
+        //update the viewRoot
+        final UIComponent viewRoot = FacesContext.getCurrentInstance().getViewRoot();
+        final RequestContext requestContext = RequestContext.getCurrentInstance();
+        updateTableValue(requestContext, viewRoot, "timecardSummaries", form.getTimecardSummaries());
+
         return forward;
     }
 
@@ -300,6 +313,10 @@ SearchTimecardsDetailsFormImpl)
             _searchTimecards_details(form);
 
             forward = _initializeTimecardId(form);
+            if("search-timecards-search-timecards".equals(forward))
+            {
+                forward = null; //the destination form is the same, stay on the current view
+            }
             final FacesMessage.Severity messageSeverity = this.getMaximumMessageSeverity();
             if (messageSeverity != null && FacesMessage.SEVERITY_ERROR.getOrdinal() <= messageSeverity.getOrdinal())
             {
@@ -486,6 +503,12 @@ SearchTimecardsFormImpl)
         String forward = null;
         populateSearchScreen(form);
         forward = "search-timecards-search-timecards";
+
+        //update the viewRoot
+        final UIComponent viewRoot = FacesContext.getCurrentInstance().getViewRoot();
+        final RequestContext requestContext = RequestContext.getCurrentInstance();
+        updateTableValue(requestContext, viewRoot, "timecardSummaries", form.getTimecardSummaries());
+
         return forward;
     }
 
@@ -915,4 +938,30 @@ SearchTimecardsFormImpl)
         return JsfUtils.getAttribute(this.getContext().getExternalContext().getSession(false), name);
     }
 
+
+    /**
+     * Updates the component value in the view root.
+     */
+    @SuppressWarnings("unused")
+    private void updateComponentValue(RequestContext requestContext, UIComponent viewRoot, String id, Object value)
+    {
+        UIComponent component = ComponentUtils.findRelativeComponent(viewRoot, id);
+        if(component instanceof ValueHolder)//just in case the view was changed
+        {
+            ((ValueHolder) component).setValue(value);
+        }
+    }
+
+    /**
+     * Updates the table value in the view root.
+     */
+    @SuppressWarnings("unused")
+    private void updateTableValue(RequestContext requestContext, UIComponent viewRoot, String id, Object value)
+    {
+        UIComponent component = ComponentUtils.findRelativeComponent(viewRoot, id);
+        if(component instanceof UIXIterator)//just in case the view was changed
+        {
+            ((UIXIterator) component).setValue(value);
+        }
+    }
 }

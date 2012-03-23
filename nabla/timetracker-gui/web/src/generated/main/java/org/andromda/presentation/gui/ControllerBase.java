@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.myfaces.trinidad.component.UIXIterator;
 import org.apache.myfaces.trinidad.context.RequestContext;
+import org.apache.myfaces.trinidad.util.ComponentUtils;
 
 /**
  * Base class for all controllers
@@ -503,6 +505,18 @@ public abstract class ControllerBase
     protected Map<String,Object> getPageFlowScope()
     {
         return RequestContext.getCurrentInstance().getPageFlowScope();
+    }
+
+    /**
+     * Updates the table value in the view root.
+     */
+    protected void updateTableValue(RequestContext requestContext, UIComponent viewRoot, String id, Object value)
+    {
+        UIComponent component = ComponentUtils.findRelativeComponent(viewRoot, id);
+        if(component instanceof UIXIterator)//just in case the view was changed
+        {
+            ((UIXIterator) component).setValue(value);
+        }
     }
 
     // controller-base merge-point
