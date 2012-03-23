@@ -15,12 +15,19 @@
             http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
         version="1.2">
     <application>
+
         <variable-resolver>
             org.andromda.presentation.gui.JsfVariableResolver
         </variable-resolver>
-        <default-render-kit-id>
-            org.apache.myfaces.trinidad.core
-        </default-render-kit-id>
+        <default-render-kit-id>org.apache.myfaces.trinidad.core</default-render-kit-id>
+        <!--<message-bundle>messages</message-bundle>-->
+        <!--view-handler>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</view-handler-->
+        <!--variable-resolver>org.jboss.seam.jsf.SeamVariableResolver</variable-resolver-->
+        <!-- Disabled when using Ajax4JSF -->
+        <!--
+        <view-handler>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</view-handler>
+        <view-handler>org.ajax4jsf.framework.ajax.AjaxViewHandler</view-handler>
+        -->
     </application>
     <lifecycle>
         <phase-listener>org.andromda.presentation.gui.MessagePhaseListener</phase-listener>
@@ -267,8 +274,6 @@
         <property-name>aliasList</property-name>
         <list-entries>
           <value-class>java.lang.String</value-class>
-          <value>/preferences/preferences.xhtml</value>
-          <value>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.xhtml</value>
           <!-- Search Timecards views -->
           <value>/org/andromda/timetracker/web/timecardsearch/search-timecards.xhtml</value>
           <value>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.xhtml</value>
@@ -392,28 +397,6 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>preferences</from-outcome>
-            <to-view-id>/preferences/preferences.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-
-    <managed-bean>
-        <managed-bean-name>preferences</managed-bean-name>
-        <managed-bean-class>org.andromda.presentation.gui.Preferences</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-        <managed-property>
-            <property-name>skin</property-name>
-            <value>default</value>
-        </managed-property>
-        <managed-property>
-            <property-name>maxTableRows</property-name>
-            <value>10</value>
-        </managed-property>
-    </managed-bean>
 
     <converter>
         <converter-id>org.andromda.timetracker.domain.TimecardStatus</converter-id>
