@@ -10,44 +10,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * A servlet allowing us to load resources from a jar and make them available to
  * the web application.
  */
-public class JSFServlet
-    extends HttpServlet
+public class JSFServlet extends HttpServlet
 {
     private static final long serialVersionUID = 34L;
+
+    private final Logger      logger_          = Logger.getLogger(JSFServlet.class);
+
     /**
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse)
      */
-    public void doGet(
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws ServletException, IOException
+    @Override
+    public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException
     {
         final String uri = request.getRequestURI();
-        final String path =
-            '/' + uri.substring(uri.indexOf(Constants.RESOURCE_CONTEXT) + Constants.RESOURCE_CONTEXT.length() + 1);
+        final String path = '/' + uri.substring(uri.indexOf(Constants.RESOURCE_CONTEXT) + Constants.RESOURCE_CONTEXT.length() + 1);
         final InputStream resource = JSFServlet.class.getResourceAsStream(path);
         if (resource == null)
         {
             throw new ServletException("Could not load resource from path '" + path + '\'');
         }
 
+        this.logger_.info("JSFServlet : resource : " + resource.toString() + " - " + path);
+
         // - write resource to the output stream
         final OutputStream out = response.getOutputStream();
         final byte[] buffer = new byte[2048];
-        BufferedInputStream inputStream = new BufferedInputStream(resource);
+        final BufferedInputStream inputStream = new BufferedInputStream(resource);
         int read = 0;
         read = inputStream.read(buffer);
         while (read != -1)
         {
-            out.write(
-                buffer,
-                0,
-                read);
+            out.write(buffer, 0, read);
             read = inputStream.read(buffer);
         }
         inputStream.close();
