@@ -51,13 +51,6 @@
                 </h:panelGroup>
             </f:facet>
             <tr:column width="46px">
-                <f:facet name="header">
-                    <h:panelGroup>
-                        <tr:commandLink action="#{taskController.odsExport}" inlineStyle="display:#{empty manageTaskForm.manageableList?'none':''}">
-                            <tr:image source="/images/spreadsheet.png" shortDesc="#{messages['export.spreadsheet']}" inlineStyle="border-style:none" />
-                        </tr:commandLink>
-                    </h:panelGroup>
-                </f:facet>
                 <h:panelGroup>
                     <tr:commandLink id="loadAction" actionListener="#{taskController.load}" partialSubmit="true" immediate="true">
                        <tr:image source="/images/tableLoad.gif" shortDesc="#{messages['action.load']}" inlineStyle="border-style:none" />

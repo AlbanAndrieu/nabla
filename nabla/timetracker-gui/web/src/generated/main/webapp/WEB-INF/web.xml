@@ -7,41 +7,6 @@
          version="3">
 
         
-    <!-- ********************* Facelets Config ************************** -->
-    <context-param>
-        <description>Prevents HTML-Comments from beeing rendered</description>
-        <param-name>facelets.SKIP_COMMENTS</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>facelets.VIEW_MAPPINGS</param-name>
-        <param-value>*.xhtml</param-value>
-    </context-param>
-    <context-param>
-        <param-name>facelets.LIBRARIES</param-name>
-        <param-value>
-        <!-- uncomment if you want to add your own project specific facelet tags
-         (and of course make sure "/WEB-INF/custom.taglib.xml" is the actual path
-          to your facelet tag descriptor)
-            /WEB-INF/custom.taglib.xml;
-    -->
-            /WEB-INF/ajsfc.taglib.xml;
-        </param-value>
-    </context-param>
-    <context-param>
-        <param-name>facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE</param-name>
-        <param-value>false</param-value>
-    </context-param>    
-    <context-param>
-        <param-name>facelets.REFRESH_PERIOD</param-name>
-        <param-value>2</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>facelets.DEVELOPMENT</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
 
     <!-- ************************ JSF Config **************************** -->
     <context-param>
@@ -59,6 +24,14 @@
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
     </context-param>
+    
+    <!-- ************************ MyFaces Listener **************************** -->
+    <!-- Listener, that does all the startup work (configuration, init). -->
+    <!--
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
+    -->
     
     <!-- ************************ MyFaces Config **************************** -->
     <context-param>
@@ -85,7 +58,6 @@
         <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
         <param-value>true</param-value>
     </context-param>
-
     <context-param>
         <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
         <param-value>false</param-value>
@@ -102,7 +74,6 @@
         <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
         <param-value>true</param-value>
     </context-param>
-    
 
 <!-- Options JSF avec utilisation de SUN RI
 	<context-param>
@@ -115,107 +86,38 @@
 	</context-param>
 -->
 
-    <!-- ************************ Manual Merged Config **************************** -->
-    <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
-    <context-param>
-         <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
-         <param-value>true</param-value>
-    </context-param>
 
-    <!-- ************************ Manual Filters **************************** -->
-    <!-- uncomment the following if you're using the open-session-in-view pattern
-         note: that you'll need to update the filter-class value if you've changed
-         the defaults for the package and/or filter name
-    <filter>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <filter-class>org.andromda.spring.presentation.AndroMDAOpenSessionInViewFilter</filter-class>
-        <init-param>
-            <param-name>singleSession</param-name>
-            <param-value>false</param-value>
-        </init-param>
-    </filter>
-    -->
-
-    <!-- ODS export filter -->
-    <filter>
-        <filter-name>ODSFilter</filter-name>
-        <filter-class>org.andromda.presentation.gui.ODSFilter</filter-class>
-    </filter>
+    <!-- ************************ Trinidad Resources Servlet **************************** -->
+    <servlet>
+        <servlet-name>Trinidad Resources Servlet</servlet-name>
+        <servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Trinidad Resources Servlet</servlet-name>
+	<url-pattern>/adf/*</url-pattern>
+    </servlet-mapping>
+    
     <!-- Trinidad Filter -->
     <filter>
         <filter-name>Trinidad Filter</filter-name>
         <filter-class>org.apache.myfaces.trinidad.webapp.TrinidadFilter</filter-class>
     </filter>
-    <!-- Trinidad patch filter -->
-    <filter>
-        <filter-name>TrinidadDialogFilter</filter-name>
-        <filter-class>org.andromda.presentation.gui.TrinidadDialogFilter</filter-class>
-    </filter>
-
-    <filter>
-        <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-class>
-    </filter>
-    <filter>
-        <filter-name>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-class>
-    </filter>
-
-    <filter>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/domain/crud/user-crud.jsf</url-pattern>
-    </filter-mapping>
-    <filter>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/domain/crud/task-crud.jsf</url-pattern>
-    </filter-mapping>
-
-    <!-- uncomment the following if you're using the open-session-in-view pattern
-    <filter-mapping>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    -->
-
-    <filter-mapping>
-        <filter-name>ODSFilter</filter-name>
-        <url-pattern>*.ods</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>Trinidad Filter</filter-name>
-        <url-pattern>*.ods</url-pattern>
-    </filter-mapping>
     <filter-mapping>
         <filter-name>Trinidad Filter</filter-name>
         <url-pattern>*.jsf</url-pattern>
-    </filter-mapping>
+    </filter-mapping>       
+    <!-- Trinidad patch filter -->
+    <!-- for calendar bug https://issues.apache.org/jira/browse/TRINIDAD-119 -->
+    <filter>
+        <filter-name>TrinidadDialogFilter</filter-name>
+        <filter-class>org.andromda.presentation.gui.TrinidadDialogFilter</filter-class>
+    </filter>    
     <filter-mapping>
         <filter-name>TrinidadDialogFilter</filter-name>
         <url-pattern>/__ADFv__</url-pattern>
     </filter-mapping>
 
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecards.jsf</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard.jsf</url-pattern>
-    </filter-mapping>
-
-
     <!-- ************************ Trinidad Config **************************** -->
-
     <!-- Trinidad has its own ViewHandler, which is a "decorating"
          view handler - for example, it needs to wrap methods like renderView()
          to perform some extra pre- and post-handling.  Facelets, on the other
@@ -244,6 +146,7 @@
         <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_DISK_SPACE</param-name>
         <param-value>10240000</param-value>
     </context-param>
+
 
     <context-param>
         <description>
@@ -281,6 +184,7 @@
         <param-name>org.apache.myfaces.trinidad.resource.DEBUG</param-name>
         <param-value>true</param-value>
     </context-param>
+    
     <context-param>
         <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
         <param-value>com.sun.facelets.FaceletViewHandler</param-value>
@@ -289,31 +193,52 @@
         <param-name>org.apache.myfaces.trinidad.CACHE_VIEW_ROOT</param-name>
         <param-value>false</param-value>
     </context-param>
-    
-    <!-- ************************ MyFaces Listener **************************** -->
-    <!-- Listener, that does all the startup work (configuration, init). -->
-    <listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>
+
+
+    <!-- ************************ Manual Merged Config **************************** -->
+    <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
+    <context-param>
+         <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+         <param-value>true</param-value>
+    </context-param>
+
+    <!-- ************************ Manual Filters **************************** -->
+    <!-- uncomment the following if you're using the open-session-in-view pattern
+         note: that you'll need to update the filter-class value if you've changed
+         the defaults for the package and/or filter name
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>org.andromda.spring.presentation.AndroMDAOpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    -->
+    <!-- uncomment the following if you're using the open-session-in-view pattern
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    -->
     
 
-        
+
+    
+  
     <!-- ************************ Faces Servlet Mapping **************************** -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!-- precompilation merge-point -->
-    
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.ods</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
+    <!-- precompilation merge-point -->
+      
+    
         
     <!--
     <servlet>
@@ -321,24 +246,12 @@
         <servlet-class>org.andromda.presentation.gui.FileDownloadServlet</servlet-class>
         <load-on-startup>3</load-on-startup>
     </servlet>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>File Download Servlet</servlet-name>
         <url-pattern>/fileDownload/*</url-pattern>
     </servlet-mapping>
     -->
     <!-- resource loader servlet -->
-    <servlet>
-        <servlet-name>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
-    </servlet>
     <!-- 
     <servlet>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
@@ -351,18 +264,58 @@
     </servlet-mapping>  
     -->  
 
-    
-    <!-- ************************ Trinidad Resources Servlet **************************** -->
- 
-    <servlet-mapping>
-        <servlet-name>Trinidad Resources Servlet</servlet-name>
-	<url-pattern>/adf/*</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Trinidad Resources Servlet</servlet-name>
-        <servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
-    </servlet>
+
+
+
+    <filter>
+        <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
+        <filter-class>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-class>
+    </filter>
+    <filter>
+        <filter-name>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-name>
+        <filter-class>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-name>
+        <filter-class>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-name>
+        <url-pattern>/org/andromda/timetracker/domain/crud/user-crud.jsf</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
+        <filter-class>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
+        <url-pattern>/org/andromda/timetracker/domain/crud/task-crud.jsf</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
+        <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecards.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-name>
+        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard.jsf</url-pattern>
+    </filter-mapping>
         
+    <servlet>
+        <servlet-name>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-name>
+        <servlet-class>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
+        <servlet-class>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
+        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-name>
         <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.jsf</url-pattern>
