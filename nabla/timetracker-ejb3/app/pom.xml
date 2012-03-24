@@ -7,13 +7,13 @@
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
     </parent>
-    <artifactId>timetracker-ejb3-app</artifactId>
+    <artifactId>app</artifactId>
     <packaging>ear</packaging>
-    <name>TimeTracker Application</name>
+    <name>TimeTracker EJB3 Application</name>
     <dependencies>
-        <dependency>
+<dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-ejb3-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>
@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-ejb3-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
             <exclusions>
@@ -56,14 +56,13 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-ejb3-web</artifactId>
+            <artifactId>web</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
-            <version>2.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>xml-apis</groupId>
@@ -75,6 +74,19 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
         </dependency>
+        <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
+        <!--
+        <dependency>
+            <groupId>org.andromda</groupId>
+            <artifactId>andromda-script-wrappers</artifactId>
+            <scope>provided</scope>
+        </dependency>
+	<dependency>
+	   <groupId>xml-apis</groupId>
+	   <artifactId>xml-apis</artifactId>
+	   <scope>provided</scope>
+	</dependency>
+	-->
     </dependencies>
     <build>
         <finalName>${application.id}-${project.version}</finalName>
@@ -89,34 +101,73 @@
                 <targetPath>../${application.id}-${project.version}</targetPath>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+                <directory>src/main/sql</directory>
+                <targetPath>${target.dir}/sql</targetPath>
+                <filtering>true</filtering>
+            </resource>
         </resources>
         <plugins>
             <plugin>
-                <artifactId>maven-ear-plugin</artifactId>
-                <version>2.6</version>
+                <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-ear-plugin</artifactId>
+                <!--<version>${maven.ear.plugin.version}</version>-->
                 <configuration>
+                    <!--
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <includeJar>false</includeJar>
+                    <fileNameMapping>no-version</fileNameMapping>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    -->
+                    <!--
                     <includes>**/*.xml</includes>
                     <excludes>**/jboss-app.xml</excludes>
-                    <version>5</version>
+                    -->
+                    <version>6</version><!-- Java EE 6 -->
                     <ejbVersion>3.0</ejbVersion>
                     <modules>
                         <jarModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>timetracker-ejb3-common</artifactId>
+                            <artifactId>common</artifactId>
                             <includeInApplicationXml>true</includeInApplicationXml>
                         </jarModule>
                         <ejbModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>timetracker-ejb3-core</artifactId>
+                            <artifactId>core</artifactId>
                         </ejbModule>
                         <webModule>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>timetracker-ejb3-web</artifactId>
+                            <artifactId>web</artifactId>
                             <contextRoot>/${application.id}</contextRoot>
                         </webModule>
                     </modules>
+                    <jboss>
+                        <version>5</version>
+                        <loader-repository>org.andromda.timetracker:loader=${project.build.finalName}</loader-repository>
+                        <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
+                    </jboss>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <target>
+                        <copy todir="${project.basedir}/${target.dir}/site/sql" overwrite="true" failonerror="false">
+                            <fileset dir="${project.basedir}/src/main/sql">
+                                <include name="**/*"/>
+                            </fileset>
+                        </copy>
+                    </target>
+                </configuration>
+            </plugin>            
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
@@ -134,6 +185,20 @@
                         <include>*ds.xml</include>
                     </includes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-source-plugin</artifactId>
+         		<!-- <version>${maven.source.plugin.version}</version>-->
+		        <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
             </plugin>
         </plugins>
     </build>

@@ -13,14 +13,14 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-ejb3-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-        	<groupId>${project.groupId}</groupId>
-        	<artifactId>timetracker-ejb3-core</artifactId>
-        	<version>${project.version}</version>
-        	<type>ejb</type>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
@@ -91,6 +91,7 @@
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <!--
         <resources>
             <resource>
                 <directory>target/src</directory>
@@ -99,5 +100,6 @@
                 </excludes>
             </resource>
         </resources>
+        -->
     </build>
 </project>

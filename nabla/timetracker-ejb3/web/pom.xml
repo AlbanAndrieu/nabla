@@ -7,19 +7,19 @@
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
     </parent>
-    <artifactId>timetracker-ejb3-web</artifactId>
+    <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <name>TimeTracker Web</name>
+    <name>TimeTracker EJB3 Web</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-ejb3-common</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>timetracker-ejb3-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
             <scope>provided</scope>
@@ -67,14 +67,18 @@
             <groupId>oro</groupId>
             <artifactId>oro</artifactId>
         </dependency>
-        <dependency>
+        <!--
+	<dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-jsf-cartridge-components</artifactId>
+            -->
             <!-- 'unknown' because the version doesn't matter for system dependencies>
             <version>${andromda.version}</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/target/src/WEB-INF/lib/andromda-jsf-cartridge-components.jar</systemPath -->
+            <!--
         </dependency>
+        -->    
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
@@ -86,7 +90,7 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-        </dependency>
+        </dependency>        
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk12</artifactId>
@@ -98,7 +102,7 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-        </dependency>
+        </dependency>    
         <dependency>
             <groupId>org.apache.myfaces.extensions.validator</groupId>
             <artifactId>myfaces-extval-core</artifactId>
@@ -119,6 +123,25 @@
             <groupId>org.apache.myfaces.extensions.validator.component-support-modules</groupId>
             <artifactId>myfaces-extval-trinidad-support</artifactId>
         </dependency>
+        <!-- JBoss7 requires overriding default classloader to support JSF 1.2 -->
+        <!--
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            -->
+            <!--<version>${jsf.api.version}</version>--> 
+            <!--
+            <version>1.2_15</version>      
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.1.2</version>
+            <scope>compile</scope>
+        </dependency>   
+        -->     
         <dependency>
             <artifactId>hibernate-validator</artifactId>
             <groupId>org.hibernate</groupId>
@@ -126,10 +149,20 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <!-- for jboss 5.1.0-->
+            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+            <!-- for jboss 5.1.0-->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <!-- for jboss 5.1.0-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.facelets</groupId>
@@ -143,13 +176,29 @@
             <groupId>org.apache.myfaces.trinidad</groupId>
             <artifactId>trinidad-impl</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-utils</artifactId>
         </dependency>
+        -->
+        <!--
         <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>servlet-api</artifactId>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+        </dependency>        
+	<dependency>
+		<groupId>org.icefaces</groupId>
+		<artifactId>icefaces-comps</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.icefaces</groupId>
+		<artifactId>icefaces-facelets</artifactId>
+	</dependency>  
+	-->   
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lowagie</groupId>
@@ -200,22 +249,35 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency-->
+        <!--
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${testdb.version}</version>
-            <!--scope>test</scope-->
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
         </dependency>
+        -->
     </dependencies>
     <build>
+        <finalName>timetracker</finalName>
+        <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <targetPath>../${project.artifactId}-${project.version}</targetPath>
+                <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>true</filtering>
+            </resource>
+	    <resource>
+                <directory>${maven.build.generated}/main/webapp</directory>
+                <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
+                <filtering>false</filtering>
             </resource>
         </resources>
         <plugins>
+            <!--
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
@@ -227,43 +289,38 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <tasks>
-                        <copy todir="${project.basedir}/target/src/main/webapp" overwrite="true" failonerror="false">
+                    <target>
+                        <copy todir="${project.basedir}/${target.dir}/src/main/webapp" overwrite="true" failonerror="false">
                             <fileset dir="${project.basedir}/src/main/webapp">
                                 <include name="**/*"/>
                             </fileset>
-                            <fileset dir="${project.basedir}/src/main/webapp">
-                                <include name="css/**"/>
-                                <include name="images/**"/>
-                            </fileset>
-                            <fileset dir="${project.basedir}/src/main/webapp">
-                                <include name="skins/**"/>
-                            </fileset>
                         </copy>
-                        <!-- place any facelet tag files in ${project.basedir}/src/main/webapp/xml/tags -->
-                        <copy todir="${project.basedir}/target/src/WEB-INF" overwrite="true" failonerror="false">
-                            <fileset dir="${project.basedir}/src/main/webapp/xml/tags"/>
-                        </copy>
-                    </tasks>
+                    </target>
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+                <!-- <version>${maven.war.plugin.version}</version>-->
                 <configuration>
-                    <warSourceDirectory>target/src/main/webapp</warSourceDirectory>
+                    <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>
                     <!-- Needed for mvn 2.1 with war-plugin 2.1. See http://jira.codehaus.org/browse/MWAR-187 -->
                     <useCache>false</useCache>
                     <excludes>**/*.java</excludes>
+                    <!--packagingExcludes>**/aopa*.jar,**/cglib-*.jar,**/commons-codec*.jar,**/commons-fileu*.jar,**/commons-logging*.jar,**/hibernate-validator*.jar,**/spring-a*.jar,**/spring-bean*.jar,**/spring-co*.jar,**/spring-expr*.jar,**/spring-tx*.jar,**/spring-web*.jar</packagingExcludes-->
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
