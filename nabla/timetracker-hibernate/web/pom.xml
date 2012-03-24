@@ -9,7 +9,7 @@
     </parent>
     <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <name>TimeTracker Web</name>
+    <name>TimeTracker Hibernate Web</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -143,12 +143,6 @@
             <artifactId>hibernate-validator</artifactId>
             <groupId>org.hibernate</groupId>
         </dependency>
-        <!--
-        <dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-search</artifactId>
-	</dependency>        
-	-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -208,15 +202,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-        </dependency>
-        <!--
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <version>${el.api.version}</version>
-            <scope>provided</scope>
-        </dependency>   
-        -->                 
+        </dependency>             
     </dependencies>
     <build>
         <finalName>timetracker</finalName>
@@ -267,7 +253,7 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-war-plugin</artifactId>
+		        <artifactId>maven-war-plugin</artifactId>
                 <!-- <version>${maven.war.plugin.version}</version>-->
                 <configuration>
                     <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>

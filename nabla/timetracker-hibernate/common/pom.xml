@@ -9,7 +9,7 @@
     </parent>
     <artifactId>common</artifactId>
     <packaging>jar</packaging>
-    <name>TimeTracker Common</name>
+    <name>TimeTracker Hibernate Common</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -38,11 +38,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
-            <!--
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-            </plugin>
-            -->
         </plugins>
     </build>
 </project>

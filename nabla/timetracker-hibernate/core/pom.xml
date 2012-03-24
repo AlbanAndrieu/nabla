@@ -9,13 +9,14 @@
     </parent>
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
-    <name>TimeTracker Core Business Tier</name>
+    <name>TimeTracker Hibernate Core Business Tier</name>
     <dependencies>  
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-core</artifactId>
@@ -31,6 +32,7 @@
             <artifactId>andromda-ocl-validation-library</artifactId>
             <scope>provided</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -68,12 +70,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-        <!--
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-search</artifactId>
-	</dependency>        
-	-->
         <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
         <!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6>
         <dependency>
@@ -150,6 +146,11 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
+	    <dependency>
+	        <groupId>commons-io</groupId>
+	        <artifactId>commons-io</artifactId>
+	        <scope>test</scope>
+	   </dependency>    
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
@@ -163,17 +164,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency-->
-        <!--
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${jdbc.version}</version>
-        </dependency>
-        -->
     </dependencies>
     <build>
         <plugins>
@@ -441,11 +431,11 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-		<filtering>true</filtering>
-		<includes>
-			<include>**/*.xml</include>
-			<include>**/*.properties</include>
-		</includes>
+		        <filtering>true</filtering>
+		        <includes>
+			        <include>**/*.xml</include>
+			        <include>**/*.properties</include>
+		        </includes>
             </resource>
             <resource>
                 <directory>${maven.build.generated}/main/resources</directory>

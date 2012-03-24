@@ -9,7 +9,7 @@
     </parent>
     <artifactId>app</artifactId>
     <packaging>ear</packaging>
-    <name>TimeTracker Application</name>
+    <name>TimeTracker Hibernate Application</name>
     <dependencies>
         <!-- jar dependencies not needed if not using EJBs -->
         <!--dependency>

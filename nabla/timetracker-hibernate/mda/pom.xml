@@ -11,7 +11,7 @@
     </parent>
     <artifactId>mda</artifactId>
     <packaging>pom</packaging>
-    <name>TimeTracker MDA</name>
+    <name>TimeTracker Hibernate MDA</name>
     <dependencies>
         <dependency>
             <groupId>org.andromda.profiles.uml2</groupId>
