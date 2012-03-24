@@ -38,10 +38,10 @@
         <module>metafacades</module>
         <module>profiles</module>
         <module>cartridges</module>
-        <!--
-        <module>empty</module>
-        <module>timetracker</module>
-        -->
+        <!-- <module>empty</module> -->
+        <module>timetracker-hibernate</module>
+        <!--<module>timetracker-ejb3</module>-->
+        <module>timetracker-gui</module>
     </modules>
     
     <profiles>
