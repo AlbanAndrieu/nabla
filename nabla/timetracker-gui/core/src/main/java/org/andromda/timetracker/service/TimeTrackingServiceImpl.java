@@ -2,31 +2,32 @@
 /**
  * This is only generated once! It will never be overwritten.
  * You can (and have to!) safely modify it by hand.
+ * TEMPLATE:    SpringServiceImpl.vsl in andromda-spring cartridge
+ * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::TimeTrackingService
+ * STEREOTYPE:  Service
  */
 package org.andromda.timetracker.service;
 
 import java.util.List;
+
 import org.andromda.timetracker.vo.TimecardSearchCriteriaVO;
 import org.andromda.timetracker.vo.TimecardSummaryVO;
 
 /**
  * @see org.andromda.timetracker.service.TimeTrackingService
  */
-public class TimeTrackingServiceImpl
-    extends TimeTrackingServiceBase
+public class TimeTrackingServiceImpl extends TimeTrackingServiceBase
 {
+
     /**
-     * @param criteria
-     * @return timecards
-     * @throws Exception
      * @see org.andromda.timetracker.service.TimeTrackingService#findTimecards(TimecardSearchCriteriaVO)
      */
     @Override
-    protected TimecardSummaryVO[] handleFindTimecards(TimecardSearchCriteriaVO criteria)
-        throws Exception
+    protected TimecardSummaryVO[] handleFindTimecards(final TimecardSearchCriteriaVO criteria) throws Exception
     {
-        List<TimecardSummaryVO> timecards = getTimecardDao().findByCriteria(criteria);
-        getTimecardDao().toTimecardSummaryVOCollection(timecards);
-        return (TimecardSummaryVO[]) timecards.toArray(new TimecardSummaryVO[timecards.size()]);
+        final List<TimecardSummaryVO> timecards = this.getTimecardDao().findByCriteria(criteria);
+        this.getTimecardDao().toTimecardSummaryVOCollection(timecards);
+        return timecards.toArray(new TimecardSummaryVO[timecards.size()]);
     }
+
 }

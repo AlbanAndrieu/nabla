@@ -15,6 +15,7 @@ import java.util.Locale;
 import org.andromda.timetracker.BeanLocator;
 import org.andromda.timetracker.PrincipalStore;
 import org.andromda.timetracker.domain.UserDao;
+import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.springframework.context.MessageSource;
 
@@ -78,6 +79,167 @@ public abstract class UserServiceBase
      * @throws Exception
      */
     protected abstract UserVO[] handleGetAllUsers()
+        throws Exception;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UserVO getUser(final String username)
+        throws UserDoesNotExistException
+    {
+        if (username == null || username.trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.getUser(String username) - 'username' can not be null or empty");
+        }
+        try
+        {
+            return this.handleGetUser(username);
+        }
+        catch (UserDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        catch (Throwable th)
+        {
+            throw new UserServiceException(
+                "Error performing 'UserService.getUser(String username)' --> " + th,
+                th);
+        }
+    }
+
+    /**
+     * Performs the core logic for {@link #getUser(String)}
+     * @param username String 
+     * @return UserVO
+     * @throws Exception
+     */
+    protected abstract UserVO handleGetUser(String username)
+        throws Exception;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UserDetailsVO registerUser(final UserDetailsVO userDetailVO)
+        throws UserDoesNotExistException
+    {
+        if (userDetailVO == null)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO' can not be null");
+        }
+        if (userDetailVO.getPassword() == null || userDetailVO.getPassword().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.password' can not be null or empty");
+        }
+        if (userDetailVO.getEmail() == null || userDetailVO.getEmail().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.email' can not be null or empty");
+        }
+        if (userDetailVO.getCreationDate() == null)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.creationDate' can not be null");
+        }
+        if (userDetailVO.getRoles() == null)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.roles' can not be null");
+        }
+        if (userDetailVO.getUsername() == null || userDetailVO.getUsername().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.username' can not be null or empty");
+        }
+        if (userDetailVO.getFirstName() == null || userDetailVO.getFirstName().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.firstName' can not be null or empty");
+        }
+        if (userDetailVO.getLastName() == null || userDetailVO.getLastName().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.registerUser(UserDetailsVO userDetailVO) - 'userDetailVO.lastName' can not be null or empty");
+        }
+        try
+        {
+            return this.handleRegisterUser(userDetailVO);
+        }
+        catch (UserDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        catch (Throwable th)
+        {
+            throw new UserServiceException(
+                "Error performing 'UserService.registerUser(UserDetailsVO userDetailVO)' --> " + th,
+                th);
+        }
+    }
+
+    /**
+     * Performs the core logic for {@link #registerUser(UserDetailsVO)}
+     * @param userDetailVO UserDetailsVO 
+     * @return UserDetailsVO
+     * @throws Exception
+     */
+    protected abstract UserDetailsVO handleRegisterUser(UserDetailsVO userDetailVO)
+        throws Exception;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeUser(final UserVO userVO)
+        throws UserDoesNotExistException
+    {
+        if (userVO == null)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.removeUser(UserVO userVO) - 'userVO' can not be null");
+        }
+        if (userVO.getUsername() == null || userVO.getUsername().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.removeUser(UserVO userVO) - 'userVO.username' can not be null or empty");
+        }
+        if (userVO.getFirstName() == null || userVO.getFirstName().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.removeUser(UserVO userVO) - 'userVO.firstName' can not be null or empty");
+        }
+        if (userVO.getLastName() == null || userVO.getLastName().trim().length() == 0)
+        {
+            throw new IllegalArgumentException(
+                "org.andromda.timetracker.service.UserService.removeUser(UserVO userVO) - 'userVO.lastName' can not be null or empty");
+        }
+        try
+        {
+            this.handleRemoveUser(userVO);
+        }
+        catch (UserDoesNotExistException ex)
+        {
+            throw ex;
+        }
+        catch (Throwable th)
+        {
+            throw new UserServiceException(
+                "Error performing 'UserService.removeUser(UserVO userVO)' --> " + th,
+                th);
+        }
+    }
+
+    /**
+     * Performs the core logic for {@link #removeUser(UserVO)}
+     * @param userVO UserVO 
+     * @return void
+     * @throws Exception
+     */
+    protected abstract void handleRemoveUser(UserVO userVO)
         throws Exception;
 
     /**

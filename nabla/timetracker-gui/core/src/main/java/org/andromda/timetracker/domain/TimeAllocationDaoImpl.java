@@ -11,23 +11,20 @@ import org.andromda.timetracker.vo.TimeAllocationVO;
 /**
  * @see TimeAllocation
  */
-public class TimeAllocationDaoImpl
-    extends TimeAllocationDaoBase
+public class TimeAllocationDaoImpl extends TimeAllocationDaoBase
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void toTimeAllocationVO(
-        TimeAllocation source,
-        TimeAllocationVO target)
+    public void toTimeAllocationVO(final TimeAllocation source, final TimeAllocationVO target)
     {
         // TODO verify behavior of toTimeAllocationVO
         super.toTimeAllocationVO(source, target);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public TimeAllocationVO toTimeAllocationVO(final TimeAllocation entity)
@@ -41,40 +38,39 @@ public class TimeAllocationDaoImpl
      * from the object store. If no such entity object exists in the object store,
      * a new, blank entity is created
      */
-    private TimeAllocation loadTimeAllocationFromTimeAllocationVO(TimeAllocationVO timeAllocationVO)
+    private TimeAllocation loadTimeAllocationFromTimeAllocationVO(final TimeAllocationVO timeAllocationVO)
     {
         // TODO implement loadTimeAllocationFromTimeAllocationVO
         throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadTimeAllocationFromTimeAllocationVO(TimeAllocationVO) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        TimeAllocation timeAllocation = this.load(timeAllocationVO.getId());
-        if (timeAllocation == null)
-        {
-            timeAllocation = TimeAllocation.Factory.newInstance();
-        }
-        return timeAllocation;
-        */
+        /*
+         * A typical implementation looks like this:
+         * TimeAllocation timeAllocation = this.load(timeAllocationVO.getId());
+         * if (timeAllocation == null)
+         * {
+         * timeAllocation = TimeAllocation.Factory.newInstance();
+         * }
+         * return timeAllocation;
+         */
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    public TimeAllocation timeAllocationVOToEntity(TimeAllocationVO timeAllocationVO)
+    @Override
+    public TimeAllocation timeAllocationVOToEntity(final TimeAllocationVO timeAllocationVO)
     {
         // TODO verify behavior of timeAllocationVOToEntity
-        TimeAllocation entity = this.loadTimeAllocationFromTimeAllocationVO(timeAllocationVO);
+        final TimeAllocation entity = this.loadTimeAllocationFromTimeAllocationVO(timeAllocationVO);
         this.timeAllocationVOToEntity(timeAllocationVO, entity, true);
         return entity;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void timeAllocationVOToEntity(
-        TimeAllocationVO source,
-        TimeAllocation target,
-        boolean copyIfNull)
+    public void timeAllocationVOToEntity(final TimeAllocationVO source, final TimeAllocation target, final boolean copyIfNull)
     {
         // TODO verify behavior of timeAllocationVOToEntity
         super.timeAllocationVOToEntity(source, target, copyIfNull);

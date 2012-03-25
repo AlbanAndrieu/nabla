@@ -143,6 +143,9 @@
         <property name="transactionAttributeSource">
             <value>
                 org.andromda.timetracker.service.UserService.getAllUsers=PROPAGATION_REQUIRED
+                org.andromda.timetracker.service.UserService.getUser=PROPAGATION_REQUIRED
+                org.andromda.timetracker.service.UserService.registerUser=PROPAGATION_REQUIRED
+                org.andromda.timetracker.service.UserService.removeUser=PROPAGATION_REQUIRED
                 org.andromda.timetracker.service.TimeTrackingService.findTimecards=PROPAGATION_REQUIRED
                 org.andromda.timetracker.service.SecurityService.getUserDetails=PROPAGATION_REQUIRED
             </value>

@@ -17,7 +17,7 @@ public class UserServiceException
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -5823836944778157025L;
+    private static final long serialVersionUID = -761339306825747777L;
 
     /**
      * The default constructor for <code>UserServiceException</code>.
