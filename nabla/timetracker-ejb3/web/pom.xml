@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.timetracker</groupId>
+        <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
     </parent>
@@ -68,7 +68,7 @@
             <artifactId>oro</artifactId>
         </dependency>
         <!--
-	<dependency>
+        <dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-jsf-cartridge-components</artifactId>
             -->
@@ -90,7 +90,7 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk12</artifactId>
@@ -102,7 +102,7 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-        </dependency>    
+        </dependency>
         <dependency>
             <groupId>org.apache.myfaces.extensions.validator</groupId>
             <artifactId>myfaces-extval-core</artifactId>
@@ -149,7 +149,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <!-- for jboss 5.1.0-->
             <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
@@ -197,8 +196,8 @@
 	</dependency>  
 	-->   
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lowagie</groupId>
@@ -245,16 +244,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency-->
-        <!--
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-        </dependency>
-        -->
     </dependencies>
     <build>
         <finalName>timetracker</finalName>
@@ -265,7 +254,7 @@
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>true</filtering>
             </resource>
-	    <resource>
+	        <resource>
                 <directory>${maven.build.generated}/main/webapp</directory>
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>false</filtering>
@@ -277,36 +266,13 @@
             </resource>
         </resources>
         <plugins>
-            <!--
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <target>
-                        <copy todir="${project.basedir}/${target.dir}/src/main/webapp" overwrite="true" failonerror="false">
-                            <fileset dir="${project.basedir}/src/main/webapp">
-                                <include name="**/*"/>
-                            </fileset>
-                        </copy>
-                    </target>
-                </configuration>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-war-plugin</artifactId>
-                <!-- <version>${maven.war.plugin.version}</version>-->
+                <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>
                     <!-- Needed for mvn 2.1 with war-plugin 2.1. See http://jira.codehaus.org/browse/MWAR-187 -->
@@ -318,9 +284,6 @@
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>

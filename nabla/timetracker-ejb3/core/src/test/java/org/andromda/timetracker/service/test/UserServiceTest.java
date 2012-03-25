@@ -5,6 +5,7 @@
 package org.andromda.timetracker.service.test;
 
 import java.util.Date;
+
 import org.andromda.timetracker.domain.Role;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.UserDoesNotExistException;
@@ -32,19 +33,19 @@ public class UserServiceTest
     {
         try
         {
-            UserServiceRemote userService = (UserServiceRemote)EJB3Container.getInitialContext("user","password").lookup("UserServiceBean/remote");
+            final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
 
             // Remote testuser if it already exists
             UserVO userVO = null;
             try
             {
                 userVO = userService.getUser("testuser");
-                if (userVO != null && userVO.getId().longValue() > 0)
+                if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     userService.removeUser(userVO);
                 }
             }
-            catch (UserDoesNotExistException e)
+            catch (final UserDoesNotExistException e)
             {
                 // OK to avoid
             }
@@ -59,36 +60,36 @@ public class UserServiceTest
             udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
             udVO.setCreationDate(new Date());
 
-            UserRoleVO urVO = new UserRoleVO();
-            urVO.setRole(Role.USER);
+            final UserRoleVO urVO = new UserRoleVO();
+            urVO.setRole(Role.STANDARD_USER);
 
-            udVO.setRoles(new UserRoleVO[]{urVO});
+            udVO.setRoles(new UserRoleVO[] { urVO });
 
             udVO = userService.registerUser(udVO);
 
             assert udVO != null;
             assert udVO.getId().longValue() > 0;
 
-            logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
+            UserServiceTest.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
 
             // Remote testuser if it already exists
             try
             {
                 userVO = userService.getUser("testuser");
-                if (userVO != null && userVO.getId().longValue() > 0)
+                if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     userService.removeUser(userVO);
                 }
             }
-            catch (UserDoesNotExistException e)
+            catch (final UserDoesNotExistException e)
             {
                 // OK to avoid
             }
 
         }
-        catch (Exception ex)
+        catch (final Exception ex)
         {
-            logger.warn("Failed test testRegisterUser()", ex);
+            UserServiceTest.logger.warn("Failed test testRegisterUser()", ex);
         }
     }
 
@@ -100,18 +101,18 @@ public class UserServiceTest
     {
         try
         {
-            UserServiceRemote userService = (UserServiceRemote)EJB3Container.getInitialContext("user","password").lookup("UserServiceBean/remote");
-            UserVO[] users = userService.getAllUsers();
+            final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+            final UserVO[] users = userService.getAllUsers();
             assert users.length > 0;
 
-            for (UserVO userVO : users)
+            for (final UserVO userVO : users)
             {
-                logger.info("user : " + userVO.getFirstName());
+                UserServiceTest.logger.info("user : " + userVO.getFirstName());
             }
         }
-        catch (Exception ex)
+        catch (final Exception ex)
         {
-            logger.warn("Failed test testGetAllUsers()", ex);
+            UserServiceTest.logger.warn("Failed test testGetAllUsers()", ex);
         }
     }
 }

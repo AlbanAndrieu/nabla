@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.timetracker</groupId>
+        <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
     </parent>
@@ -11,7 +11,7 @@
     <packaging>ear</packaging>
     <name>TimeTracker EJB3 Application</name>
     <dependencies>
-<dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
@@ -110,8 +110,7 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-ear-plugin</artifactId>
-                <!--<version>${maven.ear.plugin.version}</version>-->
+                <artifactId>maven-ear-plugin</artifactId>
                 <configuration>
                     <!--
                     <generateApplicationXml>true</generateApplicationXml>
@@ -119,10 +118,9 @@
                     <fileNameMapping>no-version</fileNameMapping>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     -->
-                    <!--
                     <includes>**/*.xml</includes>
                     <excludes>**/jboss-app.xml</excludes>
-                    -->
+
                     <version>6</version><!-- Java EE 6 -->
                     <ejbVersion>3.0</ejbVersion>
                     <modules>
@@ -141,11 +139,13 @@
                             <contextRoot>/${application.id}</contextRoot>
                         </webModule>
                     </modules>
+                    <!--
                     <jboss>
                         <version>5</version>
                         <loader-repository>org.andromda.timetracker:loader=${project.build.finalName}</loader-repository>
                         <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
                     </jboss>
+                    -->
                 </configuration>
             </plugin>
             <plugin>
