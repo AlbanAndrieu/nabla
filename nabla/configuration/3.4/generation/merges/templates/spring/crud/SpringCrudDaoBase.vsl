@@ -428,7 +428,8 @@ public final class $manageable.manageableDaoBaseName
 #if($member.name == 'id')
         //TODO entity.${member.setterName}(${member.name});
 #else
-#if(!$member.identifier)
+#if (!$member.identifier)
+## the identifier is already present since we loaded the entity
         entity.${member.setterName}(${member.name});
 #end
 #end
@@ -437,20 +438,16 @@ public final class $manageable.manageableDaoBaseName
 #foreach ($member in $manageable.manageableAssociationEnds)
 #if ($member.many)
 #set ($memberEntityName = "${member.name}Entities")
-        //3 $manageable.compositeIdentifier $member.otherEnd.type $member.otherEnd.type.manageable
-        // $member.otherEnd.navigable $member.manageable
-#if ($member.manageable)
+##        //3 $manageable.compositeIdentifier $member.otherEnd.type $member.otherEnd.type.manageable
+##        // $member.otherEnd.navigable $member.manageable
         @SuppressWarnings("unchecked")
         final java.util.Set<${member.type.fullyQualifiedName}> $memberEntityName = ($member.name != null && ${member.name}.length > 0)
             ? this.find${member.type.name}ByIds($member.name)
             : java.util.Collections.EMPTY_SET;
 
-        //entity.${member.setterName}($memberEntityName);
+##        //entity.${member.setterName}($memberEntityName);
         entity.${member.getterName}().clear();
         entity.${member.getterName}().addAll($memberEntityName);
-#else
-        // ${member.type.name} must be manageable
-#end
 #else
 #set ($memberEntityName = "${member.name}Entity")
         //${member.type.fullyQualifiedName}Impl $memberEntityName = null;
