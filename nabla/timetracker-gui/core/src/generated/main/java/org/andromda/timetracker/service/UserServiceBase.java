@@ -54,10 +54,15 @@ public abstract class UserServiceBase
      */
     @Override
     public UserVO[] getAllUsers()
+        throws UserDoesNotExistException
     {
         try
         {
             return this.handleGetAllUsers();
+        }
+        catch (UserDoesNotExistException ex)
+        {
+            throw ex;
         }
         catch (Throwable th)
         {

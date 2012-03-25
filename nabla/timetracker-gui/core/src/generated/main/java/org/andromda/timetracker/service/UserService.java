@@ -20,7 +20,9 @@ public interface UserService
     /**
      * 
      * @return  UserVO[]
+     * @throws UserDoesNotExistException
      */
-    public UserVO[] getAllUsers();
+    public UserVO[] getAllUsers()
+        throws UserDoesNotExistException;
 
 }

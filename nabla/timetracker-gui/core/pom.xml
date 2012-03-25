@@ -3,19 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.timetracker</groupId>
+        <groupId>org.andromda.timetracker.gui</groupId>
         <artifactId>timetracker-gui</artifactId>
         <version>3.4</version>
     </parent>
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
-    <name>TimeTracker Core Business Tier</name>
+    <name>TimeTracker GUI Core Business Tier</name>
     <dependencies>  
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-core</artifactId>
@@ -31,6 +32,7 @@
             <artifactId>andromda-ocl-validation-library</artifactId>
             <scope>provided</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -150,15 +152,22 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <scope>test</scope>
+	</dependency>        
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-script-wrappers</artifactId>
             <scope>provided</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
