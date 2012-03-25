@@ -126,6 +126,11 @@ public final class $manageable.manageableDaoBaseName
         $primaryKeyName.${associationEnd.otherEnd.setterName}($memberEntityName);
 #end
 #end
+#else
+#foreach ($member in $manageable.manageableAttributes)
+        entity.${member.setterName}($member.name);
+#end
+#end
 #foreach ($member in $manageable.manageableAssociationEnds)
 #if ($member.many)
 #set ($memberEntityName = "${member.name}Entities")
@@ -137,16 +142,17 @@ public final class $manageable.manageableDaoBaseName
 #else
 ##// manageableAssociationEnds ($member.identifier) ($manageable.compositeIdentifier)
 #set ($memberEntityName = "${member.name}Entity")
-        ${member.type.fullyQualifiedName}Impl $memberEntityName = null;
+        //${member.type.fullyQualifiedName}Impl $memberEntityName = null;
+        $member.type.fullyQualifiedName $memberEntityName = null;
         if ($member.name != null)
         {
-            $memberEntityName = (${member.type.fullyQualifiedName}Impl)${member.daoGetterName}().load(#if($member.type.compositeIdentifier)(${member.type.fullyQualifiedName}PK)#end$member.name);
+            //$memberEntityName = (${member.type.fullyQualifiedName}Impl)${member.daoGetterName}().load(#if($member.type.compositeIdentifier)(${member.type.fullyQualifiedName}PK)#end$member.name);
+            $memberEntityName = ($member.type.fullyQualifiedName)${member.daoGetterName}().load(#if($member.type.compositeIdentifier)(${member.type.fullyQualifiedIdentifierTypeName})#end$member.name);
         }
 #end
 
         entity.${member.setterName}($memberEntityName);
         ##//$primaryKeyName.${member.setterName}($memberEntityName);
-#end
 
 #if ($member.many2many)
 #if ($member.otherEnd.navigable)
@@ -163,10 +169,6 @@ public final class $manageable.manageableDaoBaseName
         // the result is that only one end of this association will be set
 #end
 #end
-#else
-#foreach ($member in $manageable.manageableAttributes)
-        entity.${member.setterName}($member.name);
-#end
 #end
 
         return (${manageable.fullyQualifiedEntityName})this.getDao().create(entity);
@@ -181,7 +183,8 @@ public final class $manageable.manageableDaoBaseName
      */
     public $manageable.fullyQualifiedEntityName readById($manageable.fullyQualifiedIdentifierTypeName $manageable.identifierName)
     {
-        return ($manageable.fullyQualifiedEntityName) getDao().load($manageable.identifierName);
+        return getDao().load($manageable.identifierName);
+        //return ($manageable.fullyQualifiedEntityName) getDao().load($manageable.identifierName);
     }
 
 #if($manageableSearchMatchMode == 'anywhere')
@@ -450,11 +453,14 @@ public final class $manageable.manageableDaoBaseName
 #end
 #else
 #set ($memberEntityName = "${member.name}Entity")
-        ${member.type.fullyQualifiedName}Impl $memberEntityName = null;
+        //${member.type.fullyQualifiedName}Impl $memberEntityName = null;
+        $member.type.fullyQualifiedName $memberEntityName = null;
         if ($member.name != null)
         {
-            $memberEntityName = (${member.type.fullyQualifiedName}Impl)#if($member.type.fullyQualifiedName != $member.type.generalizationRoot.fullyQualifiedName) (${member.type.fullyQualifiedName})#end ${member.daoGetterName}().load(#if($member.type.compositeIdentifier)(${member.type.fullyQualifiedName}PK)#end$member.name);
+            //$memberEntityName = (${member.type.fullyQualifiedName}Impl)#if($member.type.fullyQualifiedName != $member.type.generalizationRoot.fullyQualifiedName) (${member.type.fullyQualifiedName})#end ${member.daoGetterName}().load(#if($member.type.compositeIdentifier)(${member.type.fullyQualifiedName}PK)#end$member.name);
+            $memberEntityName =#if($member.type.fullyQualifiedName != $member.type.generalizationRoot.fullyQualifiedName) (${member.type.fullyQualifiedName})#end ${member.daoGetterName}().load(#if($member.type.compositeIdentifier)(${member.type.fullyQualifiedIdentifierTypeName})#end$member.name);
         }
+
         entity.${member.setterName}($memberEntityName);
 #end
 
