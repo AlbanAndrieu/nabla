@@ -128,18 +128,16 @@ public class UserDaoImpl extends UserDaoBase
      */
     private User loadUserFromUserDetailsVO(final UserDetailsVO userDetailsVO)
     {
-        // TODO implement loadUserFromUserDetailsVO
-        throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadUserFromUserDetailsVO(UserDetailsVO) not yet implemented.");
-
-        /*
-         * A typical implementation looks like this:
-         * User user = this.load(userDetailsVO.getId());
-         * if (user == null)
-         * {
-         * user = User.Factory.newInstance();
-         * }
-         * return user;
-         */
+        org.andromda.timetracker.domain.User user = null;
+        if ((userDetailsVO != null) && (userDetailsVO.getId() != null))
+        {
+            user = this.load(userDetailsVO.getId());
+        }
+        if (user == null)
+        {
+            user = User.Factory.newInstance();
+        }
+        return user;
     }
 
     /**

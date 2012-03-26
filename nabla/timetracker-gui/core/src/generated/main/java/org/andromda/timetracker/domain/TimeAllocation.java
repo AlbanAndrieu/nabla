@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(propOrder = {"timePeriod"})
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class TimeAllocation implements Serializable, Comparable<TimeAllocation>{
+public abstract class TimeAllocation implements Serializable, Comparable<TimeAllocation>
+ {
     /**
      * The serial version UID of this class. Needed for serialization.
      */

@@ -47,7 +47,7 @@
             <column name="COMMENT" not-null="false" unique="false" sql-type="VARCHAR(256)"/>
             <type name="java.lang.String"/>
         </property>
-        <set name="roles" order-by="USER_FK" lazy="true" fetch="select" inverse="false" cascade="all-delete-orphan">
+        <set name="roles" order-by="USER_FK" lazy="true" fetch="select" inverse="false">
             <key foreign-key="USER_ROLE_USER_FKC">
                 <column name="USER_FK" sql-type="BIGINT"/>
             </key>

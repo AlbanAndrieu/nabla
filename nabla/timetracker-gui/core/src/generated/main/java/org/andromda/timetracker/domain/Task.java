@@ -16,7 +16,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(propOrder = {"name"})
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class Task implements Serializable, Comparable<Task>{
+public abstract class Task implements Serializable, Comparable<Task>
+ {
     /**
      * The serial version UID of this class. Needed for serialization.
      */

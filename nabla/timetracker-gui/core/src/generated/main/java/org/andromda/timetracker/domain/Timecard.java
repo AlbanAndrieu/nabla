@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(propOrder = {"status", "startDate", "comments"})
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class Timecard implements Serializable, Comparable<Timecard>{
+public abstract class Timecard implements Serializable, Comparable<Timecard>
+ {
     /**
      * The serial version UID of this class. Needed for serialization.
      */

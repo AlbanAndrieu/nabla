@@ -10,6 +10,7 @@
  */
 package org.andromda.timetracker.service;
 
+import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 
 /**
@@ -23,6 +24,33 @@ public interface UserService
      * @throws UserDoesNotExistException
      */
     public UserVO[] getAllUsers()
+        throws UserDoesNotExistException;
+
+    /**
+     * 
+     * @param username 
+     * @return  UserVO
+     * @throws UserDoesNotExistException
+     */
+    public UserVO getUser(String username)
+        throws UserDoesNotExistException;
+
+    /**
+     * 
+     * @param userDetailVO 
+     * @return  UserDetailsVO
+     * @throws UserDoesNotExistException
+     */
+    public UserDetailsVO registerUser(UserDetailsVO userDetailVO)
+        throws UserDoesNotExistException;
+
+    /**
+     * 
+     * @param userVO 
+     * @return  void
+     * @throws UserDoesNotExistException
+     */
+    public void removeUser(UserVO userVO)
         throws UserDoesNotExistException;
 
 }
