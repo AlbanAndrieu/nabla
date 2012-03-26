@@ -73,14 +73,14 @@ public abstract class $entity.entityName##no new line
 #set ($generalizationName = $entity.generalization.fullyQualifiedEntityImplementationName)#else
 #set ($generalizationName = $entity.generalization.fullyQualifiedName)
 #end 
- extends $generalizationName##no new line
+ extends $generalizationName
 #else 
- implements Serializable, Comparable<${entity.entityName}>##no new line
+ implements Serializable, Comparable<${entity.entityName}>
 #if (!$entity.interfaceAbstractions.empty)
-, $entity.implementedInterfaceList##no new line
+, $entity.implementedInterfaceList
 #end
 #end
-{
+ {
     /**
      * The serial version UID of this class. Needed for serialization.
      */

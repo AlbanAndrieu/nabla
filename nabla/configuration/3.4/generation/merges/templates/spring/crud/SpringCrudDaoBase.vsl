@@ -103,7 +103,7 @@ public final class $manageable.manageableDaoBaseName
 ##//$member.identifier $manageable.compositeIdentifier
 #if(($member.identifier) && ($manageable.compositeIdentifier))
 #if($member.name == 'id')
-        //TODO $primaryKeyName.${member.setterName}($member.name);
+        // $primaryKeyName.${member.setterName}($member.name);
 #else
         ##//entity.get${manageable.name}Pk().${member.setterName}($member.name);
         $primaryKeyName.${member.setterName}($member.name);
@@ -134,7 +134,7 @@ public final class $manageable.manageableDaoBaseName
 #foreach ($member in $manageable.manageableAssociationEnds)
 #if ($member.many)
 #set ($memberEntityName = "${member.name}Entities")
-        //1 $member.type.manageable
+##        //1 $member.type.manageable
         @SuppressWarnings("unchecked")
         final java.util.Set<${member.type.fullyQualifiedName}> $memberEntityName = ($member.name != null && ${member.name}.length > 0)
             ? this.find${member.type.name}ByIds($member.name)
@@ -184,7 +184,7 @@ public final class $manageable.manageableDaoBaseName
     public $manageable.fullyQualifiedEntityName readById($manageable.fullyQualifiedIdentifierTypeName $manageable.identifierName)
     {
         return getDao().load($manageable.identifierName);
-        //return ($manageable.fullyQualifiedEntityName) getDao().load($manageable.identifierName);
+##        //return ($manageable.fullyQualifiedEntityName) getDao().load($manageable.identifierName);
     }
 
 #if($manageableSearchMatchMode == 'anywhere')
@@ -374,7 +374,7 @@ public final class $manageable.manageableDaoBaseName
 ##//$member.identifier $manageable.compositeIdentifier
 #if(($member.identifier) && ($manageable.compositeIdentifier))
 #if($member.name == 'id')
-        //TODO $primaryKeyName.${member.setterName}($member.name);
+        // $primaryKeyName.${member.setterName}($member.name);
 #else
 ##//entity.get${manageable.name}Pk().${member.setterName}($member.name);
         $primaryKeyName.${member.setterName}($member.name);
@@ -400,7 +400,7 @@ public final class $manageable.manageableDaoBaseName
 #foreach ($member in $manageable.manageableAssociationEnds)
 #if ($member.many)
 #set ($memberEntityName = "${member.name}Entities")
-        //2 $manageable.compositeIdentifier $member.type.manageable
+##        //2 $manageable.compositeIdentifier $member.type.manageable
         final java.util.Set $memberEntityName = ($member.name != null && ${member.name}.length > 0)
             ? this.find${member.type.name}ByIds($member.name)
             : java.util.Collections.EMPTY_SET;
@@ -418,7 +418,7 @@ public final class $manageable.manageableDaoBaseName
 #end
 #end
         final $manageable.fullyQualifiedEntityName entity =#if($manageable.fullyQualifiedName != $manageable.generalizationRoot.fullyQualifiedName) (${manageable.fullyQualifiedName})#end this.getDao().load($primaryKeyName);
-        //TODO or final $manageable.fullyQualifiedEntityName entity = = this.readById(dealLeg, Event);
+        // or final $manageable.fullyQualifiedEntityName entity = = this.readById(dealLeg, Event);
 #else
         final $manageable.fullyQualifiedEntityName entity =#if($manageable.fullyQualifiedName != $manageable.generalizationRoot.fullyQualifiedName) (${manageable.fullyQualifiedName})#end this.getDao().load($identifier.name);
 #end
@@ -426,7 +426,7 @@ public final class $manageable.manageableDaoBaseName
 #foreach ($member in $manageable.manageableAttributes)
 #if (!$member.equals($identifier))## the identifier is already present since we loaded the entity
 #if($member.name == 'id')
-        //TODO entity.${member.setterName}(${member.name});
+        // entity.${member.setterName}(${member.name});
 #else
 #if (!$member.identifier)
 ## the identifier is already present since we loaded the entity
