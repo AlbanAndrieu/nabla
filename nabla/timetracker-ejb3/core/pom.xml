@@ -29,10 +29,6 @@
             <artifactId>commons-logging</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-        <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
@@ -40,66 +36,90 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>jboss</groupId>
-            <artifactId>jboss-ejb3-client</artifactId>
-        </dependency-->
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-ejb3x</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-        </dependency>
-        <!--dependency>
-            <groupId>hibernate-entitymanager</groupId>
-            <artifactId>ejb3-persistence</artifactId>
-        </dependency-->
-        <!--dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-            <scope>test</scope>
-        </dependency-->
-        <!--dependency>
-            <groupId>jboss</groupId>
-            <artifactId>ejb3-persistence</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jboss</groupId>
-            <artifactId>jboss-annotations-ejb3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jboss</groupId>
-            <artifactId>jboss-remoting</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jboss</groupId>
-            <artifactId>jboss-aop-jdk50-client</artifactId>
-        </dependency-->
-        <!--dependency>
-            <groupId>jboss</groupId>
-            <artifactId>jboss-aspect-jdk50-client</artifactId>
-        </dependency-->
-        <!--dependency>
-  	        <groupId>net.sf.ehcache</groupId>
-  	        <artifactId>ehcache</artifactId>
-            <type>pom</type>
-        </dependency-->
-        <dependency>
-       	    <groupId>jboss.jboss-embeddable-ejb3</groupId>
-       	    <artifactId>hibernate-all</artifactId>
-        </dependency>
+        -->
+	<!-- This is replaced by the hibernate dependencies below
+	<dependency>
+		<groupId>jboss.jboss-embeddable-ejb3</groupId>
+		<artifactId>hibernate-all</artifactId>
+		<version>1.0.0.Alpha9</version>
+		<scope>test</scope>
+	</dependency> -->        
+	<!-- START This is the hibernate dependencies that replace hibernate-all -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>3.0.0.ga</version>
+		<!--<version>${hibernate.validator.version}</version>-->
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>3.3.2.GA</version>
+		<!--<version>${hibernate.entitymanager.version}</version>-->
+		<scope>test</scope>
+	</dependency>
+	<!--
+	<dependency>
+		<groupId>hibernate-entitymanager</groupId>
+		<artifactId>ejb3-persistence</artifactId>
+		<version>3.3.2.GA</version>		
+		<scope>test</scope>
+	</dependency>
+	-->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-annotations</artifactId>
+		<version>3.4.0.GA</version>
+		<scope>test</scope>
+	</dependency>	
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>3.3.1.GA</version>
+		<!--<scope>test</scope>-->
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>1.5.6</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>dom4j</groupId>
+		<artifactId>dom4j</artifactId>
+		<version>1.6.1</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.5.6</version>
+		<scope>test</scope>
+	</dependency>		
+	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>2.3</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.persistence</groupId>
+		<artifactId>persistence-api</artifactId>
+		<version>1.0</version>
+		<!--<scope>test</scope>-->
+	</dependency>
+	<!-- END This is the hibernate dependencies that replace hibernate-all -->        
+        
         <dependency>
             <groupId>jboss.jboss-embeddable-ejb3</groupId>
             <artifactId>jboss-ejb3-all</artifactId>
@@ -108,24 +128,6 @@
       	    <groupId>jboss.jboss-embeddable-ejb3</groupId>
        	    <artifactId>thirdparty-all</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jboss.jboss-embeddable-ejb3</groupId>
-            <artifactId>jboss-ejb3-all</artifactId>
-            <version>1.0.0.Alpha9</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jboss.jboss-embeddable-ejb3</groupId>
-            <artifactId>thirdparty-all</artifactId>
-            <version>1.0.0.Alpha9</version>
-            <scope>test</scope>
-        </dependency-->
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-script-wrappers</artifactId>
@@ -134,16 +136,6 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
@@ -224,11 +216,11 @@
                   <goals>
                     <goal>hbm2doc</goal>
 		    <goal>hbm2cfgxml</goal>
-		    <!--<goal>hbm2java</goal>-->		    
+		    <!--<goal>hbm2java</goal>-->
 		    <!--<goal>hbm2hbmxml</goal>-->
 		    <!--<goal>hbmtemplate</goal>-->
                   </goals>
-                </execution>                
+                </execution>
               </executions>
               <configuration>
                 <components>
@@ -240,13 +232,29 @@
                   <component>
                     <name>hbm2doc</name>
                     <outputDirectory>${target.dir}/site/hibernate3/javadoc</outputDirectory>
+                    <!--<implementation>jpaconfiguration</implementation>-->
                   </component>
+                  <component>
+                    <name>hbm2hbmxml</name>
+                    <!--<outputDirectory>${target.dir}/hbm</outputDirectory>-->
+                    <implementation>jdbcconfiguration</implementation>
+                  </component>
+                  <component>
+                    <name>hbm2java</name>
+                    <!--<outputDirectory>${target.dir}/java</outputDirectory>-->
+                    <implementation>annotationconfiguration</implementation>
+                  </component>                  
                   <component>
                     <name>hbm2cfgxml</name>
                     <outputDirectory>${target.dir}/site/hibernate3/generated-mappings</outputDirectory>
                     <implementation>annotationconfiguration</implementation>
                     <!--<implementation>configuration</implementation>-->
                   </component>
+                  <component>
+                     <name>hbmtemplate</name>
+                     <!--<outputDirectory>${target.dir}/cfg</outputDirectory>-->
+                     <implementation>jpaconfiguration</implementation>
+                  </component>                  
                 </components>
                 <componentProperties>
                   <!--hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect-->
@@ -255,9 +263,12 @@
                   <create>true</create>
                   <format>true</format>
                   <jdk5>true</jdk5>
-                  <persistenceunit>${project.parent.artifactId}</persistenceunit>
-                  <configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
-                  
+                  <ejb3>true</ejb3>
+                  <!--<persistenceunit>${project.parent.artifactId}</persistenceunit>-->
+                  <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
+		  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
+                  <!--<configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>-->
+
                   <outputfilename>../../../../app/src/main/sql/schema.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
@@ -280,22 +291,19 @@
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
                     <version>${hibernate3.version}</version>
-                    <!--<version>${hibernate.entitymanager.version}</version>-->
                   </dependency>
-                  <!--dependency>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-annotations</artifactId>
-                    <version>3.5.6-Final</version>
-                    ${hibernate.annotations.version}
-                  </dependency-->
                   <dependency>
                       <groupId>org.hibernate</groupId>
                       <artifactId>hibernate-validator</artifactId>
-                      <!--<version>4.2.0.Final</version>-->
                       <version>${hibernate.validator.version}</version>
                   </dependency>
+	              <dependency>
+	                  <groupId>xerces</groupId>
+	                  <artifactId>xercesImpl</artifactId>
+	                  <version>${xerces.version}</version>			
+	              </dependency>     
                 </dependencies>
-            </plugin>
+            </plugin>           
             <!-- H2 chokes on 'ENGINE=InnoDB' in DDL, remove from generated SQL before running against H2 DB >
             <plugin>
               <artifactId>maven-antrun-plugin</artifactId>
@@ -409,19 +417,28 @@
                     </excludes>
                 </configuration>
             </plugin>
+            
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
             	<artifactId>maven-surefire-plugin</artifactId>
+            	<version>${maven.surefire.plugin.version}</version>
             	<configuration>
+            	    <!--
+                    <forkMode>pertest</forkMode>
+            	    <childDelegation>false</childDelegation>
+                    -->
             		<suiteXmlFiles>
             			<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
             		</suiteXmlFiles>
             		<!-- This trick allows the JBoss EJB3StandaloneBootstrap to find and deploy our compiled EJBs!! -->
+                    <!--
             		<systemProperties>
             			<property>
             				<name>java.class.path</name>
             				<value>${target.dir}/classes</value>
             			</property>
             		</systemProperties>
+                    -->
                 </configuration>
             </plugin>
         </plugins>
@@ -464,28 +481,29 @@
                 </excludes>
             </resource>
         </resources>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<includes>
-					<include>default.persistence.properties</include>
-					<include>jndi.properties</include>
-					<include>embedded-jboss-beans.xml</include>
-					<include>ejb3-interceptors-aop.xml</include>
-                    <include>jboss-jms-beans.xml</include>
-					<include>log4j.xml</include>
-					<include>security-beans.xml</include>
-					<include>login-config.xml</include>
-                    <include>users.properties</include>
-                    <include>roles.properties</include>
-				</includes>
-			</testResource>
-		</testResources>
-        -->
+                -->
+        <!--<testSourceDirectory>src/test/java</testSourceDirectory>-->
+	<testResources>
+		<testResource>
+			<directory>src/test/resources</directory>
+			<includes>
+				<include>default.persistence.properties</include>
+				<include>jndi.properties</include>
+				<include>embedded-jboss-beans.xml</include>
+				<include>ejb3-interceptors-aop.xml</include>
+                                <include>jboss-jms-beans.xml</include>
+				<include>log4j.xml</include>
+				<include>security-beans.xml</include>
+				<include>login-config.xml</include>
+                                <include>users.properties</include>
+                                <include>roles.properties</include>
+			</includes>
+		</testResource>
+	</testResources>
     </build>
     <properties>
         <!-- Until 'org.jboss.ejb3.embedded.UserTransactionImpl IllegalArgumentException: Null name' is fixed -->
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
+        <target.dir>target</target.dir>
     </properties>
 </project>
