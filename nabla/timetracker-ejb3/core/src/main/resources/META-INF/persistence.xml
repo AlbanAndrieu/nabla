@@ -2,9 +2,10 @@
 <persistence>
 	<persistence-unit name="timetracker-ejb3">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/DefaultDS</jta-data-source>
+		<jta-data-source>java:/timetracker-ejb3</jta-data-source>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 		</properties>
 		<!--
 		<class>com.jboss.embedded.persistence.MyFirstEntity</class>

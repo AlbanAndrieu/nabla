@@ -116,6 +116,8 @@ public class HelloWorldTest
              */
             this.deployer = EJB3StandaloneBootstrap.createDeployer();
             this.deployer.getArchivesByResource().add("META-INF/persistence.xml");
+            // Deploy everything we got
+            // this.deployer.setKernel(EJB3StandaloneBootstrap.getKernel());
             this.deployer.create();
             this.deployer.start();
 
