@@ -1204,7 +1204,7 @@
 		<jfreechart-demo.version>1.0.13</jfreechart-demo.version>
 		<junitperf.version>1.8</junitperf.version>
 		<dbunit.version>2.4.4</dbunit.version>
-		<testng.version>5.14.2</testng.version>
+		<testng.version>6.3</testng.version>
 		<htmlunit.version>1.11</htmlunit.version>
 		<oro.version>2.0.8</oro.version>
 
@@ -1248,7 +1248,7 @@
 		<aopalliance.version>1.0</aopalliance.version>
 		<activemq.core.version>4.1.1</activemq.core.version>
 
-		<taglibs.version>1.1.1</taglibs.version>
+		<taglibs.version>1.1.2</taglibs.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<antlr.version>2.7.7</antlr.version>
 		<org.antlr.version>3.1.3</org.antlr.version>
@@ -1260,7 +1260,6 @@
 		<jdbc.derby.version>10.3.1.4</jdbc.derby.version>
 		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
 		<jconn.version>6.0</jconn.version>
-		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
 		<cglib.version>2.2</cglib.version>
 		<!--<cglib.nodep.version>2.1_3</cglib.nodep.version>-->
 		<cglib.nodep.version>2.2.2</cglib.nodep.version>
@@ -1271,8 +1270,8 @@
 		<xml.apis.version>2.0.2</xml.apis.version>		
 
 		<jboss.version>4.2.2.GA</jboss.version>
+		<jboss.embeddable.version>1.0.0.Alpha9</jboss.embeddable.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
-		<!--<jboss-j2ee.version>3.2.3</jboss-j2ee.version>-->
 		<jboss.dist.path>${env.JBOSS_HOME}</jboss.dist.path>
 		<application.server>jboss</application.server>
 		<jboss.common.version>2.0.4.GA</jboss.common.version>
@@ -1280,7 +1279,6 @@
 		<jarjar.version>0.6</jarjar.version>
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
-		<jsf.facelets.version>1.1.15</jsf.facelets.version>
 		<!--<jsf.api.version>1.2_15</jsf.api.version>-->
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<asm.version>2.2.3</asm.version>
@@ -1297,16 +1295,17 @@
 		<toplink.essentials.version>2.0-40</toplink.essentials.version>
 		<openjpa.all.version>0.9.7-incubating-SNAPSHOT</openjpa.all.version>
 		<hibernate.version>3.2.6.ga</hibernate.version>
-		<hibernate3.version>3.6.7.Final</hibernate3.version>
-		<hibernate.annotations.version>3.3.1.GA</hibernate.annotations.version>
+		<hibernate3.version>3.6.8.Final</hibernate3.version> <!-- for hibernate-core and hibernate-entitymanager -->
 		<hibernate.entitymanager.version>3.3.2.GA</hibernate.entitymanager.version>
 		<hibernate.core.version>3.3.2.GA</hibernate.core.version>
+		<!--<hibernate.annotations.version>3.3.1.GA</hibernate.annotations.version>-->
+		<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
 		<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
-		<!--<hibernate.validator.version>3.0.0.ga</hibernate.validator.version>-->
 		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>	
 		<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
 		<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>	 
 		<hibernate.search.version>4.0.0.Final</hibernate.search.version>
+		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
 		<jbpm.version>3.3.1.GA</jbpm.version>
 		<ibatis.version>2.3.0</ibatis.version>
 		<javax.mail.version>1.4.3</javax.mail.version>
@@ -1337,10 +1336,10 @@
 		<jmock.version>2.5.1</jmock.version>
 		<easymock.version>2.2</easymock.version>
 		<mockito.version>1.8.0</mockito.version>
-		<jsp.version>2.1</jsp.version>
+		<jsp.version>2.0</jsp.version>
 		<jsp-api.version>2.2.1-b03</jsp-api.version>
 		<!--<junit.version>4.8.2</junit.version>-->
-		<junit.version>4.4</junit.version>
+		<junit.version>4.10</junit.version>
 		<httpunit.version>1.6.2</httpunit.version>
 		<xmlunit.version>1.2</xmlunit.version>
 		<wiser.version>1.2</wiser.version>
@@ -1355,9 +1354,11 @@
 		<org.apache.myfaces.tomahawk.version>1.1.11</org.apache.myfaces.tomahawk.version>
 		<org.apache.myfaces.trinidad.version>1.2.14</org.apache.myfaces.trinidad.version>
 		<!--<org.apache.myfaces.trinidad.version>2.0.0</org.apache.myfaces.trinidad.version>-->
+		<jsf.facelets.version>1.1.15</jsf.facelets.version>
 		<el.api.version>2.2.1-b04</el.api.version>
 		<portlet.api.version>1.0</portlet.api.version>
 		<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>		
+		<icefaces.version>1.8.2</icefaces.version>
 
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
@@ -1374,8 +1375,7 @@
 		<xerces.version>2.9.1</xerces.version>
 		<tomcat.version>6.0.29</tomcat.version>
 
-		<jconnect.version>6.0.5.26312</jconnect.version>	
-		<xmlunit.version>1.1</xmlunit.version>
+		<jconnect.version>6.0.5.26312</jconnect.version>
 		<logback.version>0.9.26</logback.version>
 		<slf4j.version>1.6.4</slf4j.version>
 		<derby.version>10.5.3.0_1</derby.version>
@@ -1447,7 +1447,7 @@
 		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
-		<maven.ejb.plugin.version>2.2.1</maven.ejb.plugin.version>
+		<maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
 		<maven.war.plugin.version>2.1.1</maven.war.plugin.version>
 		<maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
 		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
@@ -1467,7 +1467,7 @@
 		<maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
 		<maven.native2ascii.maven.plugin.version>1.0-alpha-1</maven.native2ascii.maven.plugin.version>
 		<maven.archetype.plugin.version>2.0</maven.archetype.plugin.version>
-		<maven.deploy.plugin.version>2.5</maven.deploy.plugin.version>
+		<maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
 		<maven.assembly.plugin.version>2.1</maven.assembly.plugin.version>
 		<maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
 		<maven.scm.plugin.version>1.2</maven.scm.plugin.version>
@@ -2690,6 +2690,11 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate.validator.version}</version>
 			</dependency>
+		        <dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.entitymanager.version}</version>
+			</dependency>			
 	                <dependency>
 	                	<groupId>org.hibernate</groupId>
 	                	<artifactId>hibernate-search</artifactId>
@@ -2706,6 +2711,11 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+		        <dependency>
+		        	<groupId>org.hibernate</groupId>
+		        	<artifactId>hibernate-core</artifactId>
+		        	<version>${hibernate.core.version}</version>
+		        </dependency>			
 			<dependency>
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
@@ -2915,6 +2925,12 @@
 				<version>${commons.digester.version}</version>
 				<!--<scope>runtime</scope>-->
 				<scope>compile</scope>
+                                <!--exclusions>
+                                    <exclusion>
+                                        <groupId>xml-apis</groupId>
+                                        <artifactId>xml-apis</artifactId>
+                                    </exclusion>
+                                </exclusions-->				
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
@@ -3032,7 +3048,28 @@
             		    	<groupId>javax.validation</groupId>
             		    	<artifactId>validation-api</artifactId>
             		    	<version>${validation.api.version}</version>
-            		</dependency>			
+            		</dependency>		
+                        <dependency>
+                            <groupId>org.icefaces</groupId>
+                            <artifactId>icefaces</artifactId>
+                            <version>${icefaces.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.icefaces</groupId>
+                            <artifactId>icefaces-comps</artifactId>
+                            <version>${icefaces.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.icefaces</groupId>
+                            <artifactId>icefaces-facelets</artifactId>
+                            <version>${icefaces.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                        </dependency>            			
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
@@ -3049,7 +3086,8 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>${jstl.version}</version>
-				<scope>runtime</scope>
+				<!--<scope>runtime</scope>-->
+				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -3075,6 +3113,18 @@
 				<version>${jboss.version}</version>
 				<scope>provided</scope>
 			</dependency>
+		        <dependency>
+		        	<groupId>jboss.jboss-embeddable-ejb3</groupId>
+		        	<artifactId>jboss-ejb3-all</artifactId>
+		        	<version>${jboss.embeddable.version}</version>
+		        	<scope>provided</scope>
+		        </dependency>
+		        <dependency>
+		        	<groupId>jboss.jboss-embeddable-ejb3</groupId>
+		        	<artifactId>thirdparty-all</artifactId>
+		        	<version>${jboss.embeddable.version}</version>
+		        	<scope>provided</scope>
+		        </dependency>			
 			<!-- Axis2 Dependencies -->
 			<!-- TODO Update to 1.3 or later breaks webservice template code -->
 			<dependency>
