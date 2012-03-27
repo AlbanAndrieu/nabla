@@ -195,36 +195,7 @@
     </context-param>
 
 
-    <!-- ************************ Manual Merged Config **************************** -->
-    <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
-    <context-param>
-         <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
-         <param-value>true</param-value>
-    </context-param>
 
-    <!-- ************************ Manual Filters **************************** -->
-    <!-- uncomment the following if you're using the open-session-in-view pattern
-         note: that you'll need to update the filter-class value if you've changed
-         the defaults for the package and/or filter name
-    <filter>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <filter-class>org.andromda.spring.presentation.AndroMDAOpenSessionInViewFilter</filter-class>
-        <init-param>
-            <param-name>singleSession</param-name>
-            <param-value>false</param-value>
-        </init-param>
-    </filter>
-    -->
-    <!-- uncomment the following if you're using the open-session-in-view pattern
-    <filter-mapping>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    -->
-    
-
-
-    
   
     <!-- ************************ Faces Servlet Mapping **************************** -->
     <servlet>
@@ -236,9 +207,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
-    <!-- precompilation merge-point -->
-      
-    
+        
         
     <!--
     <servlet>
@@ -265,6 +234,39 @@
     -->  
 
 
+    <!-- ************************ Manual Servlets **************************** -->
+    <!-- precompilation merge-point -->
+      
+    
+    
+    
+    <!-- ************************ Manual Filters **************************** -->
+    <!-- uncomment the following if you're using the open-session-in-view pattern
+         note: that you'll need to update the filter-class value if you've changed
+         the defaults for the package and/or filter name
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>org.andromda.spring.presentation.AndroMDAOpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    -->
+    <!-- uncomment the following if you're using the open-session-in-view pattern
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    -->
+    
+    <!-- ************************ Manual Merged Config **************************** -->
+    <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
+    <context-param>
+         <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+         <param-value>true</param-value>
+    </context-param>
+    
 
 
     <filter>
@@ -295,6 +297,7 @@
         <url-pattern>/org/andromda/timetracker/domain/crud/task-crud.jsf</url-pattern>
     </filter-mapping>
 
+        
     <filter-mapping>
         <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
         <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecards.jsf</url-pattern>
@@ -351,7 +354,6 @@
     
     <!-- taglib merge-point -->
     <!-- resource-ref merge-point -->
-    
 
     <security-constraint>
         <web-resource-collection>

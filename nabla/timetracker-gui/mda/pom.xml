@@ -5,13 +5,13 @@
     compiling or testing or packaging, run mvn install from /mda instead of from the root directory. -->
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.timetracker</groupId>
+        <groupId>org.andromda.timetracker.gui</groupId>
         <artifactId>timetracker-gui</artifactId>
         <version>3.4</version>
     </parent>
     <artifactId>mda</artifactId>
     <packaging>pom</packaging>
-    <name>TimeTracker MDA</name>
+    <name>TimeTracker GUI MDA</name>
     <dependencies>
         <dependency>
             <groupId>org.andromda.profiles.uml2</groupId>
@@ -256,24 +256,11 @@
 	</profile>        
     </profiles>
     <build>
-        <sourceDirectory>${project.basedir}/src/main/uml2</sourceDirectory>
+        <sourceDirectory>${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-maven-plugin</artifactId>
-                <!--
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <configurationUri>file:${conf.dir}/${uml.type}/andromda-${model.name}.xml</configurationUri>                    
-                    <lastModifiedCheck>true</lastModifiedCheck>
-                </configuration>
-                -->
             </plugin>
         </plugins>
     </build>
@@ -343,8 +330,8 @@
         <application.metainf.dir>${project.basedir}/../app/src/main/application/META-INF</application.metainf.dir>
         <application.generated.dir>${project.basedir}/../app/${target.dir}/src</application.generated.dir>        
                 
-	<!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
-	<merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
+	    <!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
+	    <merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
         <!--<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>-->
         <!-- hibernate configuration -->
         <!-- default strategy to use when using inheritance -->

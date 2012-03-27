@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.timetracker</groupId>
+        <groupId>org.andromda.timetracker.gui</groupId>
         <artifactId>timetracker-gui</artifactId>
         <version>3.4</version>
     </parent>
     <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <name>TimeTracker Web</name>
+    <name>TimeTracker GUI Web</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -93,7 +93,7 @@
         </dependency>  
         --> 
         <!--
-	<dependency>
+	    <dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-gui-components</artifactId>
             <exclusions>
@@ -198,12 +198,6 @@
             <artifactId>hibernate-validator</artifactId>
             <groupId>org.hibernate</groupId>
         </dependency>
-        <!--
-        <dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-search</artifactId>
-	</dependency>   
-	--> 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -237,7 +231,7 @@
             	</exclusion>
             </exclusions>            
         </dependency>        
-	<dependency>
+	    <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces-comps</artifactId>
             <exclusions>
@@ -246,8 +240,8 @@
             		<artifactId>el-api</artifactId>
             	</exclusion>
             </exclusions> 		
-	</dependency>
-	<dependency>
+	     </dependency>
+	     <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces-facelets</artifactId>
             <exclusions>
@@ -256,8 +250,8 @@
             		<artifactId>el-api</artifactId>
             	</exclusion>
             </exclusions> 		
-	</dependency>  
-	-->   
+	    </dependency>  
+	    -->   
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -266,7 +260,7 @@
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
         </dependency>
-        <!-- already added with andromda-gui-cartridge-components
+        <!-- 
         <dependency>
 	        <groupId>javax.servlet</groupId>
 	        <artifactId>jsp-api</artifactId>
@@ -292,7 +286,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
-        <!-- already added with andromda-gui-cartridge-components
+        <!-- 
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
@@ -310,7 +304,7 @@
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>true</filtering>
             </resource>
-	    <resource>
+	        <resource>
                 <directory>${maven.build.generated}/main/webapp</directory>
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>false</filtering>
@@ -322,36 +316,13 @@
             </resource>
         </resources>
         <plugins>
-            <!--
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <target>
-                        <copy todir="${project.basedir}/${target.dir}/src/main/webapp" overwrite="true" failonerror="false">
-                            <fileset dir="${project.basedir}/src/main/webapp">
-                                <include name="**/*"/>
-                            </fileset>
-                        </copy>
-                    </target>
-                </configuration>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-war-plugin</artifactId>
-                <!-- <version>${maven.war.plugin.version}</version>-->
+		        <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>
                     <!-- Needed for mvn 2.1 with war-plugin 2.1. See http://jira.codehaus.org/browse/MWAR-187 -->

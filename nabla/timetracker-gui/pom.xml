@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.andromda.timetracker</groupId>
+    <groupId>org.andromda.timetracker.gui</groupId>
     <artifactId>timetracker-gui</artifactId>
     <packaging>pom</packaging>
     <version>3.4</version>
-    <name>TimeTracker</name>
-    <description>The TimeTracker Project.</description>
+    <name>TimeTracker GUI</name>
+    <description>The TimeTracker GUI Project.</description>
     
     <parent>
 	<groupId>com.nabla.project.uml</groupId>
@@ -18,12 +18,13 @@
         
     <dependencyManagement>
         <dependencies>
+            <!--
             <dependency>
                 <groupId>org.andromda.cartridges</groupId>
                 <artifactId>andromda-gui-components</artifactId>
                 <version>${andromda.version}</version>
-                <scope>runtime</scope>
             </dependency>
+            -->
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-api</artifactId>
@@ -35,7 +36,8 @@
                 <artifactId>myfaces-impl</artifactId>
                 <!--<version>1.2.9</version>-->
                 <version>${myfaces.version}</version>
-            </dependency>            
+            </dependency>  
+            <!--          
             <dependency>
                 <groupId>org.apache.myfaces.tomahawk</groupId>
                 <artifactId>tomahawk12</artifactId>         
@@ -47,6 +49,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            -->
             <!--
             <dependency>
                 <groupId>org.apache.myfaces.tomahawk</groupId>
@@ -97,14 +100,6 @@
                 <version>${org.apache.myfaces.trinidad.version}</version>
             </dependency>
 
-	    <!--
-            <dependency>
-                <groupId>jboss</groupId>
-                <artifactId>jboss-j2ee</artifactId>
-                <version>${jboss.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
@@ -155,44 +150,18 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring3.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring3.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring3.version}</version>
             </dependency -->
-            
-            <!--dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.18</version>
-            </dependency-->
-            <!-- not used yet
-            <dependency>
-                <groupId>org.icefaces</groupId>
-                <artifactId>icefaces</artifactId>
-                <version>${icefaces.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.icefaces</groupId>
-                <artifactId>icefaces-comps</artifactId>
-                <version>${icefaces.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.icefaces</groupId>
-                <artifactId>icefaces-facelets</artifactId>
-                <version>${icefaces.version}</version>
-                <scope>compile</scope>
-            </dependency>            
-            -->
         </dependencies>
     </dependencyManagement>
  
@@ -220,20 +189,12 @@
         <module>common</module>
         <module>core</module>
         <module>web</module>
-        <!--<module>sar</module>-->
         <module>app</module>
     </modules>
     <properties>
-        <!--<andromda.version>3.4</andromda.version>-->           
         <application.id>timetracker</application.id>
         <application.package>org.andromda.timetracker</application.package>
         <application.name>TimeTracker</application.name>
-        <!--<application.version>${project.version}</application.version>-->
-        
-        <!--
-        <hibernate.version>3.6.7.Final</hibernate.version>
-        <spring.version>3.0.6.RELEASE</spring.version>
-        -->
     </properties>
     <profiles>
         <profile>

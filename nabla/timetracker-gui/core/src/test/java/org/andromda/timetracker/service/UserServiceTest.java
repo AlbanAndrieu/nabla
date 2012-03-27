@@ -14,9 +14,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-/**
- *
- */
 public class UserServiceTest
 {
     private final Log   logger = LogFactory.getLog(UserServiceTest.class);
