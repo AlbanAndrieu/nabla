@@ -57,7 +57,7 @@
         </menu>    
                 
         <menu name="Modules">
-             <item name="Databases DOA Business" href="sample/dao/business/index.html"/>
+             <item name="Databases Samples" href="sample/dao/business/index.html"/>
              <item name="Main" href="main/index.html"/>
         </menu>        
         

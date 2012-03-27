@@ -167,6 +167,21 @@
 					org.hibernate.dialect.DerbyDialect
 				-->
 				<hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
+                                <!--
+                                    Change this to the correct database type mappings (for Jboss)
+                                    For MySql use: mySQL
+                                    For Hypersonic use: Hypersonic SQL
+                                    For Oracle9i use: Oracle9i
+                                    For DB2 use: DB2
+                                    For Informix use: InformixDB
+                                    For MSSQL use: MS SQLSERVER2000
+                                    For Pointbase use: PointBase
+                                    For Postgres use: PostgreSQL 7.2
+                                    For Sybase use: Sybase
+                                    For SapDB use: SapDB
+                                    For Derby use: Derby
+                                -->
+                                <jboss.typeMappings>mySQL</jboss.typeMappings>				
 			</properties>
 			<dependencies>
 				<dependency>
@@ -232,6 +247,7 @@
 				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.SybaseExceptionSorter</jdbc.exception.sorter>
 
 				<hibernate.dialect>org.hibernate.dialect.SybaseDialect</hibernate.dialect>
+				<jboss.typeMappings>Sybase</jboss.typeMappings>				
 			</properties>
 			<dependencies>
 				<dependency>
@@ -257,8 +273,7 @@
 				<database.name>myDBGlobal</database.name>
 				<!-- Database settings -->
 				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>				
 				<dbunit.schema>APP</dbunit.schema>
 				<jdbc.driver.jar>
 				<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
@@ -299,6 +314,9 @@
 				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
 				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
 				<jdbc.url>${jdbc.embedded.url}</jdbc.url>
+				
+				<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+				<jboss.typeMappings>Derby</jboss.typeMappings>				
 			</properties>
 			<dependencies>
 				<!--
@@ -354,8 +372,7 @@
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 				<dbunit.schema></dbunit.schema>
 				<sql.mappings>H2Sql</sql.mappings>
-				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
-				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>				
 				<!-- H2 Database with No emulation mode and Hibernate dialect, for local in-memory testing -->
 				<jdbc.client.artifactId>h2</jdbc.client.artifactId>
 				<jdbc.groupId>com.h2database</jdbc.groupId>
@@ -374,6 +391,9 @@
 				
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password>sa</jdbc.password>
+				
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>			
 			</properties>
 			<dependencies>
 				<dependency>
@@ -394,8 +414,7 @@
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 				<dbunit.schema>NABLA</dbunit.schema>
 				<sql.mappings>HypersonicSql</sql.mappings>
-				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>				
-				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>								
 				<jdbc.groupId>hsqldb</jdbc.groupId>
 				<jdbc.artifactId>hsqldb</jdbc.artifactId>
 				<jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
@@ -412,7 +431,10 @@
                                 </jdbc.driver.jar>
 				
 				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>				
+				<jdbc.password></jdbc.password>			
+				
+				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+				<jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>	
 			</properties>
 		</profile>
 		<profile>
@@ -428,8 +450,7 @@
 				<!-- Make sure to capitalize the schema name -->
 				<!--<sql.mappings>Oracle10g</sql.mappings> -->
 				<sql.mappings>Oracle9i</sql.mappings>
-				<jdbc.exception.sorter>org.hibernate.dialect.Oracle10gDialect</jdbc.exception.sorter>
-				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<jdbc.exception.sorter>org.hibernate.dialect.Oracle10gDialect</jdbc.exception.sorter>				
 				<jdbc.groupId>com.oracle</jdbc.groupId>
 				<jdbc.artifactId>ojdbc14</jdbc.artifactId>
 				<jdbc.client.artifactId>ojdbc14</jdbc.client.artifactId>
@@ -455,6 +476,9 @@
 				-->
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
+				
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<jboss.typeMappings>Oracle10g</jboss.typeMappings>	
 			</properties>
 			<dependencies>
 				<dependency>
