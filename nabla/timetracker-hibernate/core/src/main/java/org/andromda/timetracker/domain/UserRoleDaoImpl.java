@@ -11,23 +11,20 @@ import org.andromda.timetracker.vo.UserRoleVO;
 /**
  * @see UserRole
  */
-public class UserRoleDaoImpl
-    extends UserRoleDaoBase
+public class UserRoleDaoImpl extends UserRoleDaoBase
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void toUserRoleVO(
-        UserRole source,
-        UserRoleVO target)
+    public void toUserRoleVO(final UserRole source, final UserRoleVO target)
     {
         // TODO verify behavior of toUserRoleVO
         super.toUserRoleVO(source, target);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UserRoleVO toUserRoleVO(final UserRole entity)
@@ -41,40 +38,39 @@ public class UserRoleDaoImpl
      * from the object store. If no such entity object exists in the object store,
      * a new, blank entity is created
      */
-    private UserRole loadUserRoleFromUserRoleVO(UserRoleVO userRoleVO)
+    private UserRole loadUserRoleFromUserRoleVO(final UserRoleVO userRoleVO)
     {
         // TODO implement loadUserRoleFromUserRoleVO
         throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadUserRoleFromUserRoleVO(UserRoleVO) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        UserRole userRole = this.load(userRoleVO.getId());
-        if (userRole == null)
-        {
-            userRole = UserRole.Factory.newInstance();
-        }
-        return userRole;
-        */
+        /*
+         * A typical implementation looks like this:
+         * UserRole userRole = this.load(userRoleVO.getId());
+         * if (userRole == null)
+         * {
+         * userRole = UserRole.Factory.newInstance();
+         * }
+         * return userRole;
+         */
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    public UserRole userRoleVOToEntity(UserRoleVO userRoleVO)
+    @Override
+    public UserRole userRoleVOToEntity(final UserRoleVO userRoleVO)
     {
         // TODO verify behavior of userRoleVOToEntity
-        UserRole entity = this.loadUserRoleFromUserRoleVO(userRoleVO);
+        final UserRole entity = this.loadUserRoleFromUserRoleVO(userRoleVO);
         this.userRoleVOToEntity(userRoleVO, entity, true);
         return entity;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void userRoleVOToEntity(
-        UserRoleVO source,
-        UserRole target,
-        boolean copyIfNull)
+    public void userRoleVOToEntity(final UserRoleVO source, final UserRole target, final boolean copyIfNull)
     {
         // TODO verify behavior of userRoleVOToEntity
         super.userRoleVOToEntity(source, target, copyIfNull);

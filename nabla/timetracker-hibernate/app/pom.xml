@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.timetracker</groupId>
+        <groupId>org.andromda.timetracker.hibernate</groupId>
         <artifactId>timetracker-hibernate</artifactId>
         <version>3.4</version>
     </parent>
@@ -45,12 +45,12 @@
             <artifactId>andromda-script-wrappers</artifactId>
             <scope>provided</scope>
         </dependency>
-	<dependency>
-	   <groupId>xml-apis</groupId>
-	   <artifactId>xml-apis</artifactId>
-	   <scope>provided</scope>
-	</dependency>
-	-->
+	    <dependency>
+	        <groupId>xml-apis</groupId>
+	        <artifactId>xml-apis</artifactId>
+	        <scope>provided</scope>
+	    </dependency>
+	    -->
     </dependencies>
     <build>
         <finalName>${application.id}-${project.version}</finalName>
@@ -74,8 +74,7 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-ear-plugin</artifactId>
-                <!--<version>${maven.ear.plugin.version}</version>-->
+		        <artifactId>maven-ear-plugin</artifactId>
                 <configuration>
                     <generateApplicationXml>true</generateApplicationXml>
                     <includeJar>false</includeJar>
@@ -149,9 +148,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-source-plugin</artifactId>
-		<!-- <version>${maven.source.plugin.version}</version>-->
-		<executions>
+		        <artifactId>maven-source-plugin</artifactId>
+		        <executions>
                         <execution>
                             <id>attach-sources</id>
                             <phase>verify</phase>

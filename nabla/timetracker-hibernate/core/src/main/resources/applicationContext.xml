@@ -18,9 +18,9 @@
             <list>
                 <!-- applicationContext hibernateMappingLocations merge-point -->
                 <value>classpath:org/andromda/timetracker/domain/User.hbm.xml</value>
-                <value>classpath:org/andromda/timetracker/domain/Task.hbm.xml</value>
-                <value>classpath:org/andromda/timetracker/domain/TimeAllocation.hbm.xml</value>
                 <value>classpath:org/andromda/timetracker/domain/Timecard.hbm.xml</value>
+                <value>classpath:org/andromda/timetracker/domain/TimeAllocation.hbm.xml</value>
+                <value>classpath:org/andromda/timetracker/domain/Task.hbm.xml</value>
                 <value>classpath:org/andromda/timetracker/domain/UserRole.hbm.xml</value>
             </list>
          </property>
@@ -70,15 +70,16 @@
         </property>
     </bean>
 
-    <bean id="org.andromda.timetracker.domain.TaskDaoImpl" class="org.andromda.timetracker.domain.TaskDaoImpl">
+    <bean id="org.andromda.timetracker.domain.TimecardDaoImpl" class="org.andromda.timetracker.domain.TimecardDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
-        <!-- Task entity property merge-point -->
+        <lookup-method name="getTimeAllocationDao" bean="timeAllocationDao"/>
+        <!-- Timecard entity property merge-point -->
     </bean>
 
-    <!-- Task Entity Proxy with inner Task Entity implementation -->
-    <bean id="taskDao" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="org.andromda.timetracker.domain.TaskDaoImpl"/>
-        <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TaskDao"/>
+    <!-- Timecard Entity Proxy with inner Timecard Entity implementation -->
+    <bean id="timecardDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="org.andromda.timetracker.domain.TimecardDaoImpl"/>
+        <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TimecardDao"/>
         <property name="interceptorNames">
             <list>
                 <value>hibernateInterceptor</value>
@@ -102,16 +103,15 @@
         </property>
     </bean>
 
-    <bean id="org.andromda.timetracker.domain.TimecardDaoImpl" class="org.andromda.timetracker.domain.TimecardDaoImpl">
+    <bean id="org.andromda.timetracker.domain.TaskDaoImpl" class="org.andromda.timetracker.domain.TaskDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
-        <lookup-method name="getTimeAllocationDao" bean="timeAllocationDao"/>
-        <!-- Timecard entity property merge-point -->
+        <!-- Task entity property merge-point -->
     </bean>
 
-    <!-- Timecard Entity Proxy with inner Timecard Entity implementation -->
-    <bean id="timecardDao" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="org.andromda.timetracker.domain.TimecardDaoImpl"/>
-        <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TimecardDao"/>
+    <!-- Task Entity Proxy with inner Task Entity implementation -->
+    <bean id="taskDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="org.andromda.timetracker.domain.TaskDaoImpl"/>
+        <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TaskDao"/>
         <property name="interceptorNames">
             <list>
                 <value>hibernateInterceptor</value>
@@ -143,9 +143,6 @@
         <property name="transactionAttributeSource">
             <value>
                 org.andromda.timetracker.service.UserService.getAllUsers=PROPAGATION_REQUIRED
-                org.andromda.timetracker.service.UserService.getUser=PROPAGATION_REQUIRED
-                org.andromda.timetracker.service.UserService.registerUser=PROPAGATION_REQUIRED
-                org.andromda.timetracker.service.UserService.removeUser=PROPAGATION_REQUIRED
                 org.andromda.timetracker.service.TimeTrackingService.findTimecards=PROPAGATION_REQUIRED
                 org.andromda.timetracker.service.SecurityService.getUserDetails=PROPAGATION_REQUIRED
             </value>

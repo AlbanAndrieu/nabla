@@ -2,6 +2,9 @@
 /**
  * This is only generated once! It will never be overwritten.
  * You can (and have to!) safely modify it by hand.
+ * TEMPLATE:    SpringServiceImpl.vsl in andromda-spring cartridge
+ * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::SecurityService
+ * STEREOTYPE:  Service
  */
 package org.andromda.timetracker.service;
 
@@ -11,21 +14,20 @@ import org.andromda.timetracker.vo.UserDetailsVO;
 /**
  * @see org.andromda.timetracker.service.SecurityService
  */
-public class SecurityServiceImpl
-    extends SecurityServiceBase
+public class SecurityServiceImpl extends SecurityServiceBase
 {
+
     /**
-     * @see org.andromda.timetracker.service.SecurityService#getUserDetails(java.lang.String)
+     * @see org.andromda.timetracker.service.SecurityService#getUserDetails(String)
      */
     @Override
-    protected UserDetailsVO handleGetUserDetails(String username)
-        throws Exception
+    protected UserDetailsVO handleGetUserDetails(final String username) throws Exception
     {
         UserDetailsVO userDetailsVO = null;
-        User user = getUserDao().getUserDetails(username);
+        final User user = this.getUserDao().getUserDetails(username);
         if (user != null)
         {
-            userDetailsVO = getUserDao().toUserDetailsVO(user);
+            userDetailsVO = this.getUserDao().toUserDetailsVO(user);
         }
         return userDetailsVO;
     }
