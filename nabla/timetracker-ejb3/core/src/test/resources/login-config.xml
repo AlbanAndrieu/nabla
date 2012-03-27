@@ -24,7 +24,7 @@ The outline of the application-policy is:
   </authentication>
 </application-policy>
 
-$Revision: 1.1 $
+$Revision: 42748 $
 -->
 
 <policy>
@@ -58,23 +58,6 @@ $Revision: 1.1 $
         flag="required"/>
     </authentication>
   </application-policy>
-  
-  <application-policy name="timetracker">
-    <!-- A simple server login module, which can be used when the number
-    of users is relatively small. It uses two properties files:
-    users.properties, which holds users (key) and their password (value).
-    roles.properties, which holds users (key) and a comma-separated list of
-    their roles (value).
-    The unauthenticatedIdentity property defines the name of the principal
-    that will be used when a null username and password are presented as is
-    the case for an unuathenticated web client or MDB. If you want to
-    allow such users to be authenticated add the property, e.g.,
-    unauthenticatedIdentity="nobody"
-    -->
-    <authentication>
-      <login-module code="org.jboss.security.auth.spi.UsersRolesLoginModule"
-        flag="required"/>
-    </authentication>
-  </application-policy>
+
 </policy>
 
