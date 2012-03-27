@@ -4,30 +4,32 @@
 //
 package org.andromda.timetracker.service;
 
+import java.util.Collection;
+
+import javax.ejb.Stateless;
+
+import org.andromda.timetracker.domain.User;
+import org.andromda.timetracker.domain.UserDao;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 
 /**
- * @see UserServiceBase
- *
- * Remember to manually configure the local business interface this bean implements if originally you only
- * defined the remote business interface.  However, this change is automatically reflected in the ejb-jar.xml.
- *
- * Do not specify the javax.ejb.Stateless annotation
- * Instead, the session bean is defined in the ejb-jar.xml descriptor.
+ * @see org.andromda.timetracker.service.UserServiceBean
  */
-// Uncomment to enable webservices for UserServiceBean
-// @javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.UserServiceWSInterface", serviceName = "UserService")
-public class UserServiceBean
-    extends UserServiceBase
-    implements UserServiceRemote
+/**
+ * Do not specify the javax.ejb.Stateless annotation
+ * Instead, define the session bean in the ejb-jar.xml descriptor
+ * @javax.ejb.Stateless
+ */
+/**
+ * Uncomment to enable webservices for UserServiceBean
+ *@javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.UserServiceWSInterface")
+ */
+@Stateless
+public class UserServiceBean extends org.andromda.timetracker.service.UserServiceBase implements UserServiceRemote
 {
-
     // --------------- Constructors ---------------
 
-    /**
-     * Default constructor extending base class default constructor
-     */
     public UserServiceBean()
     {
         super();
@@ -36,48 +38,51 @@ public class UserServiceBean
     // -------- Business Methods Impl --------------
 
     /**
-     * @see UserServiceBase#getAllUsers()
+     * @see org.andromda.timetracker.service.UserServiceBase#getAllUsers()
      */
-    protected UserVO[] handleGetAllUsers()
-        throws Exception
+    @Override
+    protected org.andromda.timetracker.vo.UserVO[] handleGetAllUsers() throws Exception
     {
-        //TODO: put your implementation here.
-        // Dummy return value, just that the file compiles
-        return null;
+        final Collection userVOs = this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
+        return (UserVO[]) userVOs.toArray(new UserVO[userVOs.size()]);
     }
 
     /**
-     * @see UserServiceBase#getUser(String)
+     * @see org.andromda.timetracker.service.UserServiceBase#handleRegisterUser(org.andromda.timetracker.vo.UserDetailsVO)
      */
-    protected UserVO handleGetUser(String username)
-        throws Exception
+    @Override
+    protected UserDetailsVO handleRegisterUser(final UserDetailsVO userDetailVO) throws Exception
     {
-        //TODO: put your implementation here.
-        // Dummy return value, just that the file compiles
-        return null;
+        User user = this.getUserDao().userDetailsVOToEntity(userDetailVO);
+        user = this.getUserDao().create(user);
+        return this.getUserDao().toUserDetailsVO(user);
     }
 
     /**
-     * @see UserServiceBase#registerUser(UserDetailsVO)
+     * @see org.andromda.timetracker.service.UserServiceBase#handleGetUser(java.lang.String)
      */
-    protected UserDetailsVO handleRegisterUser(UserDetailsVO userDetailVO)
-        throws Exception
+    @Override
+    protected UserVO handleGetUser(final String username) throws Exception
     {
-        //TODO: put your implementation here.
-        // Dummy return value, just that the file compiles
-        return null;
+        try
+        {
+            final User user = this.getUserDao().getUserDetails(username);
+            return this.getUserDao().toUserVO(user);
+        }
+        catch (final Exception ex)
+        {
+            throw new UserDoesNotExistException("User does not exist " + username);
+        }
     }
 
     /**
-     * @see UserServiceBase#removeUser(UserVO)
+     * @see org.andromda.timetracker.service.UserServiceBase#handleRemoveUser(org.andromda.timetracker.vo.UserVO)
      */
-    protected void handleRemoveUser(UserVO userVO)
-        throws Exception
+    @Override
+    protected void handleRemoveUser(final UserVO userVO) throws Exception
     {
-        //TODO: put your implementation here.
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.UserServiceBean.handleRemoveUser(UserVO userVO) Not implemented!");
+        this.getUserDao().remove(userVO.getId());
     }
-
 
     // -------- Lifecycle Callback Implementation --------------
 
