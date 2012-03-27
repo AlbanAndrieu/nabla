@@ -4,11 +4,10 @@ import javax.ejb.Remote;
 
 /**
  * This is the remote interface for the service HelloWorld
- * @author Hocine Grine
- *
  */
 @Remote
-public interface HelloWorldServiceRemote {
+public interface HelloWorldServiceRemote
+{
 
-	public void print();
+    public void print();
 }

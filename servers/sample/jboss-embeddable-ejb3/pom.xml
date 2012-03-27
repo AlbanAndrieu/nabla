@@ -2,7 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jboss.embedded</groupId>
-	<!--<artifactId>first-tutorial</artifactId>-->
 	<artifactId>jboss-embeddable-ejb3</artifactId>	
 	<version>0.0.1-SNAPSHOT</version>
 	<repositories>
@@ -64,12 +63,78 @@
 			<classifier>jdk15</classifier>
 			<scope>test</scope>
 		</dependency>
+		<!-- This is replaced by the hibernate dependencies below
 		<dependency>
 			<groupId>jboss.jboss-embeddable-ejb3</groupId>
 			<artifactId>hibernate-all</artifactId>
 			<version>1.0.0.Alpha9</version>
 			<scope>test</scope>
+		</dependency> -->
+		
+		<!-- START This is the hibernate dependencies that replace hibernate-all -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>3.0.0.ga</version>
+			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.3.2.GA</version>
+			<scope>test</scope>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>hibernate-entitymanager</groupId>
+			<artifactId>ejb3-persistence</artifactId>
+			<version>3.3.2.GA</version>		
+			<scope>test</scope>
+		</dependency>
+		-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.4.0.GA</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.3.1.GA</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.6</version>
+			<scope>test</scope>
+		</dependency>		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- END This is the hibernate dependencies that replace hibernate-all -->
 		<dependency>
 			<groupId>jboss.jboss-embeddable-ejb3</groupId>
 			<artifactId>jboss-ejb3-all</artifactId>
