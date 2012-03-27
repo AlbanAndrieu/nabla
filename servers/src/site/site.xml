@@ -56,6 +56,7 @@
         <!--<menu ref="modules"/>-->       
 
         <menu name="Modules">
+             <item name="Servers Samples" href="sample/index.html"/>
              <item name="Customs" href="customs/index.html"/>
         </menu>
         

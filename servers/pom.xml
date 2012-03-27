@@ -10,10 +10,10 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project</groupId>
+	<!--<groupId>com.nabla.project</groupId>-->
 	<artifactId>servers</artifactId>
 	<name>Servers</name>
-	<version>1.0</version>
+	<!--<version>1.0</version>-->
 	<packaging>pom</packaging>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
 
