@@ -30,12 +30,15 @@
         <mapping resource="org/andromda/timetracker/domain/Task.hbm.xml"/>
         <mapping resource="org/andromda/timetracker/domain/UserRole.hbm.xml"/>
         -->
-        <!-- mapping classes -->        
+        <!-- mapping classes -->
         <mapping class="org.andromda.timetracker.domain.User" />
 	    <mapping class="org.andromda.timetracker.domain.Timecard" />
 	    <mapping class="org.andromda.timetracker.domain.TimeAllocation" />
 	    <mapping class="org.andromda.timetracker.domain.Task" />
 	    <mapping class="org.andromda.timetracker.domain.UserRole" />
+		<mapping class="org.andromda.timetracker.domain.UserEmbeddable" />
+		<mapping class="org.andromda.timetracker.domain.TimecardEmbeddable" />
+		<mapping class="org.andromda.timetracker.domain.TimePeriod" />
 	</session-factory>
 
 </hibernate-configuration>
