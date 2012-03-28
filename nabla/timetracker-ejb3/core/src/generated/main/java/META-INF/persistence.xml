@@ -4,14 +4,17 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/timetracker-ejb3</jta-data-source>
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
 		</properties>
 		<class>org.andromda.timetracker.domain.User</class>
-		<class>org.andromda.timetracker.domain.Task</class>
 		<class>org.andromda.timetracker.domain.Timecard</class>
-		<class>org.andromda.timetracker.domain.TimeAllocation</class>
 		<class>org.andromda.timetracker.domain.UserRole</class>
+		<class>org.andromda.timetracker.domain.UserEmbeddable</class>
+		<class>org.andromda.timetracker.domain.TimecardEmbeddable</class>
+		<class>org.andromda.timetracker.domain.TimeAllocation</class>
+		<class>org.andromda.timetracker.domain.Task</class>
+		<class>org.andromda.timetracker.domain.TimePeriod</class>
 	</persistence-unit>
 </persistence>
