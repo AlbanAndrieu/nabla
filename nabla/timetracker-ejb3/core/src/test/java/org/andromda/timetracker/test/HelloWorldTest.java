@@ -4,10 +4,10 @@ import javax.naming.InitialContext;
 
 import org.andromda.timetracker.service.HelloWorldServiceLocal;
 import org.andromda.timetracker.service.HelloWorldServiceRemote;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.jboss.ejb3.embedded.EJB3StandaloneBootstrap;
 import org.jboss.ejb3.embedded.EJB3StandaloneDeployer;
+import org.junit.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 public class HelloWorldTest
 {
 
-    private static final Log        logger           = LogFactory.getLog(HelloWorldTest.class);
+    private static final Logger     logger           = Logger.getLogger(HelloWorldTest.class);
 
     // a boolean to test if the container is running or not
     private static boolean          containerRunning = false;
@@ -62,6 +62,7 @@ public class HelloWorldTest
     public void localTest()
     {
         HelloWorldTest.logger.debug("Service Local : " + this.myServiceLocal);
+        Assert.assertNotNull(this.myServiceLocal);
         this.myServiceLocal.print();
 
     }
@@ -73,6 +74,7 @@ public class HelloWorldTest
     public void remoteTest()
     {
         HelloWorldTest.logger.debug("Service Remote : " + this.myServiceRemote);
+        Assert.assertNotNull(this.myServiceRemote);
         this.myServiceRemote.print();
     }
 
@@ -85,6 +87,7 @@ public class HelloWorldTest
     public void terminate() throws Exception
     {
         // stop container
+        HelloWorldTest.logger.info("==>Invoking EJB3.shutdown...");
         this.deployer.stop();
         this.deployer.destroy();
 

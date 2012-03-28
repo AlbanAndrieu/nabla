@@ -33,15 +33,26 @@
  */
 package org.andromda.timetracker.test;
 
+import java.util.Date;
+import java.util.Hashtable;
+
+import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import junit.framework.TestCase;
-
+import org.andromda.timetracker.domain.Role;
+import org.andromda.timetracker.security.PasswordEncoder;
+import org.andromda.timetracker.service.UserDoesNotExistException;
 import org.andromda.timetracker.service.UserServiceRemote;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.andromda.timetracker.vo.UserDetailsVO;
+import org.andromda.timetracker.vo.UserRoleVO;
+import org.andromda.timetracker.vo.UserVO;
+import org.apache.log4j.Logger;
 import org.jboss.ejb3.embedded.EJB3StandaloneBootstrap;
 import org.jboss.ejb3.embedded.EJB3StandaloneDeployer;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * DOCUMENT ME! Alban.
@@ -52,95 +63,86 @@ import org.jboss.ejb3.embedded.EJB3StandaloneDeployer;
  * @since $Date$
  *
  */
-public class EmbeddedEjb3TestCase extends TestCase
+public class EmbeddedEjb3TestCase /* extends TestCase */
 {
 
-    private static final Log       logger           = LogFactory.getLog(EmbeddedEjb3TestCase.class);
+    private static final Logger           logger           = Logger.getLogger(EmbeddedEjb3TestCase.class);
 
     // a boolean to test if the container is running or not
-    private static boolean         containerRunning = false;
+    private static boolean                containerRunning = false;
 
     // the EJB3 deployer
-    private EJB3StandaloneDeployer deployer;
+    private static EJB3StandaloneDeployer deployer;
 
     // The remote interface
-    private UserServiceRemote      myServiceRemote;
+    private static UserServiceRemote      myServiceRemote;
 
-    // the local interface
-    // private UserServiceLocal myServiceLocal;
+    // private EntityManager em;
+    //
+    // private TransactionManager tm;
 
-    public EmbeddedEjb3TestCase()
-    {
-        super("EmbeddedEjb3TestCase");
-    }
-
-    /*
-     * public static Test suite() throws Exception
-     * {
-     * final TestSuite suite = new TestSuite();
-     * suite.addTestSuite(EmbeddedEjb3TestCase.class);
-     * // setup test so that embedded JBoss is started/stopped once for all tests here.
-     * final TestSetup wrapper = new TestSetup(suite)
-     * {
-     * @Override
-     * protected void setUp()
-     * {
-     * EmbeddedEjb3TestCase.startupEmbeddedJboss();
-     * }
-     * @Override
-     * protected void tearDown()
-     * {
-     * EmbeddedEjb3TestCase.shutdownEmbeddedJboss();
-     * }
-     * };
-     * return wrapper;
-     * }
-     * public static void startupEmbeddedJboss()
-     * {
-     * try
-     * {
-     * // EJB3StandaloneBootstrap.boot("target/classes");
-     * // EJB3StandaloneBootstrap.scanClasspath("target/test-classes");
-     * EJB3StandaloneBootstrap.boot(null);
-     * }
-     * catch (final java.lang.IllegalArgumentException e)
-     * {
-     * EmbeddedEjb3TestCase.logger.error("Error with EJB3StandaloneBootstrap.scanClasspath");
-     * }
-     * }
-     * public static void shutdownEmbeddedJboss()
-     * {
-     * EJB3StandaloneBootstrap.shutdown();
-     * }
-     */
+    // public EmbeddedEjb3TestCase()
+    // {
+    // super("EmbeddedEjb3TestCase");
+    // }
 
     /**
      * This method is executed before the test methods. It starts the JBoss
      * Embedded Container
      * @throws Exception
      */
-    @Override
-    protected void setUp()
+    @BeforeClass
+    public static void oneTimeSetUp()
     {
 
         try
         {
-            this.startupEmbeddedContainer();
+            EmbeddedEjb3TestCase.startupEmbeddedContainer();
 
             /**
              * Create proxies to call the User Service
              */
-            final InitialContext initialContext = new InitialContext();
+            // final InitialContext initialContext = new InitialContext();
+            final InitialContext initialContext = EmbeddedEjb3TestCase.getInitialContext();
 
-            // this.myServiceLocal = (UserServiceLocal) initialContext.lookup("UserServiceBean/local");
-            this.myServiceRemote = (UserServiceRemote) initialContext.lookup("UserServiceBean/remote");
+            EmbeddedEjb3TestCase.myServiceRemote = (UserServiceRemote) initialContext.lookup("UserServiceBean/remote");
+
+            // This is a transactionally aware EntityManager and must be accessed within a JTA transaction
+            // Why aren't we using javax.persistence.Persistence? Well, our persistence.xml file uses
+            // jta-datasource which means that it is created by the EJB container/embedded JBoss.
+            // using javax.persistence.Persistence will just cause us an error
+            // this.em = (EntityManager) initialContext.lookup("java:/EntityManagers/timetracker-ejb3");
+
+            // Obtain JBoss transaction
+            // this.tm = (TransactionManager) initialContext.lookup("java:/TransactionManager");
+
         }
         catch (final Exception ex)
         {
             EmbeddedEjb3TestCase.logger.error(ex.getMessage(), ex);
-            throw new RuntimeException(ex);
+            // throw new RuntimeException(ex);
         }
 
+    }
+
+    @AfterClass
+    public static void oneTimeTearDown()
+    {
+
+        try
+        {
+            EmbeddedEjb3TestCase.logger.info("==>Invoking EJB3.shutdown...");
+            EmbeddedEjb3TestCase.deployer.stop();
+            EmbeddedEjb3TestCase.deployer.destroy();
+
+            EJB3StandaloneBootstrap.shutdown();
+
+            EmbeddedEjb3TestCase.containerRunning = false;
+        }
+        catch (final Exception ex)
+        {
+            throw new RuntimeException(ex);
+        }
     }
 
     /**
@@ -149,7 +151,7 @@ public class EmbeddedEjb3TestCase extends TestCase
      *
      * @throws Exception
      */
-    private void startupEmbeddedContainer() throws Exception
+    private static void startupEmbeddedContainer() throws Exception
     {
         if (!EmbeddedEjb3TestCase.containerRunning)
         {
@@ -161,8 +163,6 @@ public class EmbeddedEjb3TestCase extends TestCase
             // embedded-jboss-beans.xml are used
             EJB3StandaloneBootstrap.boot(null);
 
-            // EJB3StandaloneBootstrap.deployXmlResource("login-config.xml");
-
             EmbeddedEjb3TestCase.logger.info("==>Deploying security-beans");
             EJB3StandaloneBootstrap.deployXmlResource("security-beans.xml");
             EmbeddedEjb3TestCase.logger.info("==>Deployed security-beans");
@@ -170,12 +170,12 @@ public class EmbeddedEjb3TestCase extends TestCase
             /*
              * Create a deployer based on the persistence.xml file
              */
-            this.deployer = EJB3StandaloneBootstrap.createDeployer();
-            this.deployer.getArchivesByResource().add("META-INF/persistence.xml");
+            EmbeddedEjb3TestCase.deployer = EJB3StandaloneBootstrap.createDeployer();
+            EmbeddedEjb3TestCase.deployer.getArchivesByResource().add("META-INF/persistence.xml");
             // Deploy everything we got
-            this.deployer.setKernel(EJB3StandaloneBootstrap.getKernel());
-            this.deployer.create();
-            this.deployer.start();
+            // this.deployer.setKernel(EJB3StandaloneBootstrap.getKernel());
+            EmbeddedEjb3TestCase.deployer.create();
+            EmbeddedEjb3TestCase.deployer.start();
 
             EmbeddedEjb3TestCase.containerRunning = true;
 
@@ -186,93 +186,103 @@ public class EmbeddedEjb3TestCase extends TestCase
     /**
      * call the remote interface
      */
+    @Test
     public void testRemote()
     {
-        System.out.println("Service Remote : " + this.myServiceRemote);
-        EmbeddedEjb3TestCase.logger.debug("Service Remote : " + this.myServiceRemote);
+        System.out.println("Service Remote : " + EmbeddedEjb3TestCase.myServiceRemote);
+        Assert.assertNotNull(EmbeddedEjb3TestCase.myServiceRemote);
+        EmbeddedEjb3TestCase.logger.debug("Service Remote : " + EmbeddedEjb3TestCase.myServiceRemote);
     }
 
-    /*
-     * public void testEJBs() throws Exception
-     * {
-     * // final InitialContext ctx = EmbeddedEjb3TestCase.getInitialContext();
-     * // final UserServiceLocal local = (UserServiceLocal) ctx.lookup("UserServiceBean/local");
-     * // final UserServiceRemote remote = (UserServiceRemote) ctx.lookup("UserServiceBean/remote");
-     * System.out.println("----------------------------------------------------------");
-     * System.out.println("This test scans the System Property java.class.path for all annotated EJB3 classes");
-     * System.out.print("    ");
-     * // int id = local.createCustomer("Gavin");
-     * // Customer cust = local.findCustomer(id);
-     * // Assert.assertNotNull(cust);
-     * // System.out.println("Successfully created and found Gavin from @Local interface");
-     * // Remote testuser if it already exists
-     * UserVO userVO = null;
-     * try
-     * {
-     * userVO = this.myServiceRemote.getUser("testuser");
-     * if ((userVO != null) && (userVO.getId().longValue() > 0))
-     * {
-     * this.myServiceRemote.removeUser(userVO);
-     * }
-     * }
-     * catch (final UserDoesNotExistException e)
-     * {
-     * // OK to avoid
-     * }
-     * // Add testuser
-     * UserDetailsVO udVO = new UserDetailsVO();
-     * udVO.setFirstName("testuser");
-     * udVO.setLastName("testuser");
-     * udVO.setEmail("test@test.com");
-     * udVO.setIsActive(false);
-     * udVO.setUsername("testuser");
-     * udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
-     * udVO.setCreationDate(new Date());
-     * final UserRoleVO urVO = new UserRoleVO();
-     * urVO.setRole(Role.STANDARD_USER);
-     * udVO.setRoles(new UserRoleVO[] { urVO });
-     * udVO.setRoles(new UserRoleVO[] { urVO });
-     * try
-     * {
-     * udVO = this.myServiceRemote.registerUser(udVO);
-     * assert udVO != null;
-     * assert udVO.getId().longValue() > 0;
-     * EmbeddedEjb3TestCase.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
-     * // Remote testuser if it already exists
-     * userVO = this.myServiceRemote.getUser("testuser");
-     * if ((userVO != null) && (userVO.getId().longValue() > 0))
-     * {
-     * this.myServiceRemote.removeUser(userVO);
-     * }
-     * }
-     * catch (final UserDoesNotExistException e)
-     * {
-     * // OK to avoid
-     * }
-     * // id = remote.createCustomer("Emmanuel");
-     * // cust = remote.findCustomer(id);
-     * // Assert.assertNotNull(cust);
-     * System.out.println("Successfully created and found testuser from @Remote interface");
-     * System.out.println("----------------------------------------------------------");
-     * }
-     */
+    @Test
+    public void testEJBs() throws Exception
+    {
+        System.out.println("----------------------------------------------------------");
+        System.out.println("This test scans the System Property java.class.path for all annotated EJB3 classes");
+        System.out.print("    ");
+        // int id = local.createCustomer("Gavin");
+        // Customer cust = local.findCustomer(id);
+        // Assert.assertNotNull(cust);
+        // System.out.println("Successfully created and found Gavin from @Local interface");
+        // Remote testuser if it already exists
+        UserVO userVO = null;
+        try
+        {
+            userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
+            if ((userVO != null) && (userVO.getId().longValue() > 0))
+            {
+                EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
+            }
+        }
+        catch (final UserDoesNotExistException e)
+        {
+            EmbeddedEjb3TestCase.logger.debug("UserDoesNotExistException : " + e);
+        }
+        catch (final Exception e)
+        {
+            EmbeddedEjb3TestCase.logger.debug("Exception : " + e);
+            Assert.fail();
+        }
+
+        // Add testuser
+        UserDetailsVO udVO = new UserDetailsVO();
+        udVO.setFirstName("testuser");
+        udVO.setLastName("testuser");
+        udVO.setEmail("test@test.com");
+        udVO.setIsActive(false);
+        udVO.setUsername("testuser");
+        udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
+        udVO.setCreationDate(new Date());
+        final UserRoleVO urVO = new UserRoleVO();
+        urVO.setRole(Role.STANDARD_USER);
+        udVO.setRoles(new UserRoleVO[] { urVO });
+        try
+        {
+            udVO = EmbeddedEjb3TestCase.myServiceRemote.registerUser(udVO);
+            Assert.assertNotNull(udVO);
+            Assert.assertTrue(udVO.getId().longValue() > 0);
+            EmbeddedEjb3TestCase.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
+            // Remote testuser if it already exists
+            userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
+            if ((userVO != null) && (userVO.getId().longValue() > 0))
+            {
+                EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
+            }
+        }
+        catch (final UserDoesNotExistException e)
+        {
+            EmbeddedEjb3TestCase.logger.debug("UserDoesNotExistException : " + e);
+            Assert.fail();
+        }
+        catch (final Exception e)
+        {
+            EmbeddedEjb3TestCase.logger.debug("Exception : " + e);
+            Assert.fail();
+        }
+
+        // id = remote.createCustomer("Emmanuel");
+        // cust = remote.findCustomer(id);
+        // Assert.assertNotNull(cust);
+        System.out.println("Successfully created and found testuser from @Remote interface");
+        System.out.println("----------------------------------------------------------");
+    }
 
     // public void testEntityManager() throws Exception
     // {
-    // // This is a transactionally aware EntityManager and must be accessed within a JTA transaction
-    // // Why aren't we using javax.persistence.Persistence? Well, our persistence.xml file uses
-    // // jta-datasource which means that it is created by the EJB container/embedded JBoss.
-    // // using javax.persistence.Persistence will just cause us an error
-    // final EntityManager em = (EntityManager) EmbeddedEjb3TestCase.getInitialContext().lookup("java:/EntityManagers/timetracker-ejb3");
     //
-    // // Obtain JBoss transaction
-    // final TransactionManager tm = (TransactionManager) EmbeddedEjb3TestCase.getInitialContext().lookup("java:/TransactionManager");
+    // final EntityManagerFactory emf = Persistence.createEntityManagerFactory("MaBaseDeTestPU");
     //
-    // tm.begin();
+    // final EntityManager em = emf.createEntityManager();
+    //
+    // final EntityTransaction transac = em.getTransaction();
+    //
+    // transac.begin();
+    //
+    // this.tm.begin();
     //
     // UserDao cust = new UserDao();
     // cust.setName("Bill");
-    // em.persist(cust);
+    // this.em.persist(cust);
     //
     // Assert.assertTrue(cust.getId() > 0);
     //
@@ -280,26 +290,99 @@ public class EmbeddedEjb3TestCase extends TestCase
     //
     // System.out.println("created bill in DB with id: " + id);
     //
-    // tm.commit();
+    // this.tm.commit();
     //
-    // tm.begin();
-    // cust = em.find(Customer.class, id);
+    // this.tm.begin();
+    // cust = this.em.find(Customer.class, id);
     // Assert.assertNotNull(cust);
-    // tm.commit();
+    // this.tm.commit();
     // }
 
-    /*
-     * public static InitialContext getInitialContext() throws Exception
-     * {
-     * final Hashtable props = EmbeddedEjb3TestCase.getInitialContextProperties();
-     * return new InitialContext(props);
-     * }
-     * private static Hashtable getInitialContextProperties()
-     * {
-     * final Hashtable props = new Hashtable();
-     * props.put("java.naming.factory.initial", "org.jnp.interfaces.LocalOnlyContextFactory");
-     * props.put("java.naming.factory.url.pkgs", "org.jboss.naming:org.jnp.interfaces");
-     * return props;
-     * }
+    private static InitialContext initialContext        = null;
+    private static InitialContext securedInitialContext = null;
+
+    /**
+     * Return a new InitialContext based on org.jnp.interfaces.LocalOnlyContextFactory,
+     * setting the the default context.
+     *
+     * @return InitialContext
+     * @throws Exception
      */
+    public static InitialContext newInitialContext() throws Exception
+    {
+        final Hashtable<String, String> props = EmbeddedEjb3TestCase.getInitialContextProperties();
+        EmbeddedEjb3TestCase.initialContext = new InitialContext(props);
+        return EmbeddedEjb3TestCase.initialContext;
+    }
+
+    /**
+     * Return a new InitialContext based on org.jboss.security.jndi.JndiLoginInitialContextFactory,
+     * setting the default context. Use the specified username and password to set the security context.
+     *
+     * @param principal
+     * @param credential
+     * @return InitialContext
+     * @throws Exception
+     */
+    public static InitialContext newInitialContext(final String principal, final String credential) throws Exception
+    {
+        final Hashtable<String, String> props = EmbeddedEjb3TestCase.getInitialContextProperties(principal, credential);
+        EmbeddedEjb3TestCase.securedInitialContext = new InitialContext(props);
+        return EmbeddedEjb3TestCase.securedInitialContext;
+    }
+
+    /**
+     * Return the default InitialContext based on org.jnp.interfaces.LocalOnlyContextFactory
+     * if one is already instantiated, otherwise create a new InitialContext and set as the default.
+     *
+     * @return InitialContext
+     * @throws Exception
+     */
+    public static InitialContext getInitialContext() throws Exception
+    {
+        if (EmbeddedEjb3TestCase.initialContext == null)
+        {
+            final Hashtable<String, String> props = EmbeddedEjb3TestCase.getInitialContextProperties();
+            EmbeddedEjb3TestCase.initialContext = new InitialContext(props);
+        }
+        return EmbeddedEjb3TestCase.initialContext;
+    }
+
+    /**
+     * Return the default InitialContext based on org.jboss.security.jndi.JndiLoginInitialContextFactory
+     * if one is already instantiated, otherwise create a new InitialContext and set as the default.
+     * Use the specified username and password to set the security context.
+     *
+     * @param principal
+     * @param credential
+     * @return InitialContext
+     * @throws Exception
+     */
+    public static InitialContext getInitialContext(final String principal, final String credential) throws Exception
+    {
+        if (EmbeddedEjb3TestCase.securedInitialContext == null)
+        {
+            final Hashtable<String, String> props = EmbeddedEjb3TestCase.getInitialContextProperties(principal, credential);
+            EmbeddedEjb3TestCase.securedInitialContext = new InitialContext(props);
+        }
+        return EmbeddedEjb3TestCase.securedInitialContext;
+    }
+
+    private static Hashtable<String, String> getInitialContextProperties()
+    {
+        final Hashtable<String, String> props = new Hashtable<String, String>();
+        props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.LocalOnlyContextFactory");
+        props.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
+        return props;
+    }
+
+    private static Hashtable<String, String> getInitialContextProperties(final String principal, final String credential)
+    {
+        final Hashtable<String, String> props = new Hashtable<String, String>();
+        props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.security.jndi.JndiLoginInitialContextFactory");
+        props.put(Context.SECURITY_PRINCIPAL, principal);
+        props.put(Context.SECURITY_CREDENTIALS, credential);
+        return props;
+    }
+
 }

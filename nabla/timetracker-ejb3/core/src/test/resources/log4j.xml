@@ -18,7 +18,7 @@
   <!-- ConsoleAppender                                                     -->
   <!-- ******************************************************************* -->
   <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
-    <param name="Threshold" value="warn"/>
+    <param name="Threshold" value="debug"/>
 
     <layout class="org.apache.log4j.PatternLayout">
       <!-- Conversion pattern: Message\n -->
@@ -35,12 +35,11 @@
 
     <layout class="org.apache.log4j.PatternLayout">
       <!-- Conversion pattern: Time Priority - Message\n -->
-      <param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p - %m%n"/>
+      <!--<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p - %m%n"/>-->
 
-      <!-- Alternate Conversion pattern: Time Priority - Class[Line] - Message\n -->
-      <!--
+      <!-- Alternate Conversion pattern: Time Priority - Class[Line] - Message\n -->      
       <param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p %50C[%4L] - %m%n"/>
-      -->
+      
     </layout>
   </appender>
 
@@ -107,6 +106,17 @@
     <level value="debug"/>
   </logger>
 
+  <!-- http://www.developpez.net/forums/d776471/java/serveurs-conteneurs-java-ee/java-ee/loadcontexts-fail-safe-cleanup/ -->
+  <!-- Hibernate got a bit too verbose in JBoss -->
+  <category name="org.hibernate.engine.loading.LoadContexts">
+     <priority value="ERROR"/>
+  </category>
+ 
+  <!-- JBoss Cache likes to talk a lot -->
+  <category name="org.jboss.cache.interceptors.CacheLoaderInterceptor">
+     <priority value="ERROR"/>
+  </category>
+   
   <!-- ******************************************************************* -->
   <!-- Root Logger                                                         -->
   <!-- ******************************************************************* -->
