@@ -198,12 +198,9 @@ public class EmbeddedEjb3TestCase /* extends TestCase */
     public void testEJBs() throws Exception
     {
         System.out.println("----------------------------------------------------------");
-        System.out.println("This test scans the System Property java.class.path for all annotated EJB3 classes");
+        System.out.println("This test create delete and find a user called testuser");
         System.out.print("    ");
-        // int id = local.createCustomer("Gavin");
-        // Customer cust = local.findCustomer(id);
-        // Assert.assertNotNull(cust);
-        // System.out.println("Successfully created and found Gavin from @Local interface");
+
         // Remote testuser if it already exists
         UserVO userVO = null;
         try
@@ -260,9 +257,6 @@ public class EmbeddedEjb3TestCase /* extends TestCase */
             Assert.fail();
         }
 
-        // id = remote.createCustomer("Emmanuel");
-        // cust = remote.findCustomer(id);
-        // Assert.assertNotNull(cust);
         System.out.println("Successfully created and found testuser from @Remote interface");
         System.out.println("----------------------------------------------------------");
     }

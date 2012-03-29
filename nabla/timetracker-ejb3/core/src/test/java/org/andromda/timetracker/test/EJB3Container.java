@@ -5,10 +5,11 @@
 package org.andromda.timetracker.test;
 
 import java.util.Hashtable;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.apache.log4j.Logger;
 import org.jboss.ejb3.embedded.EJB3StandaloneBootstrap;
 import org.jboss.ejb3.embedded.EJB3StandaloneDeployer;
 import org.testng.annotations.AfterTest;
@@ -20,7 +21,6 @@ import org.testng.annotations.Test;
  *
  * You can also use this class to lookup managed beans from JNDI.
  *
- * @author vancek
  * <p><b>Note</b>. code was copied from christian.bauer@jboss.com
  * example on Hibernate's CaveatEmptor application
  * </p>
@@ -28,61 +28,63 @@ import org.testng.annotations.Test;
 @Test
 public class EJB3Container
 {
-    private static final Log logger = LogFactory.getLog(EJB3Container.class);
+    private static final Logger    logger = Logger.getLogger(EJB3Container.class);
 
     private EJB3StandaloneDeployer deployer;
 
-    /**
-     *
-     */
     @BeforeTest
     public void startup()
     {
         try
         {
-            logger.info("==>Bootstrapping EJB3 container...");
+            EJB3Container.logger.info("==>Bootstrapping EJB3 container...");
 
             // Boot the JBoss Microcontainer with EJB3 settings, loads ejb3-interceptors-aop.xml
             EJB3StandaloneBootstrap.boot(null);
+            // EJB3StandaloneBootstrap.boot("target/test-classes");
 
-            logger.info("==>Deploying security-beans");
+            EJB3Container.logger.info("==>Deploying security-beans");
             EJB3StandaloneBootstrap.deployXmlResource("security-beans.xml");
-            logger.info("==>Deployed security-beans");
+            EJB3Container.logger.info("==>Deployed security-beans");
 
-//            logger.info("==>Deploying jboss-jms-beans - init JBoss MQ core services");
-//            EJB3StandaloneBootstrap.deployXmlResource("jboss-jms-beans.xml");
-//            logger.info("==>Deployed jboss-jms-beans");
+            // logger.info("==>Deploying jboss-jms-beans - init JBoss MQ core services");
+            // EJB3StandaloneBootstrap.deployXmlResource("jboss-jms-beans.xml");
+            // logger.info("==>Deployed jboss-jms-beans");
 
-//            logger.info("==>Configure test queue and topic");
-//            EJB3StandaloneBootstrap.deployXmlResource("testjms.xml");
-//            logger.info("==>Configured test queues and topics");
+            // logger.info("==>Configure test queue and topic");
+            // EJB3StandaloneBootstrap.deployXmlResource("testjms.xml");
+            // logger.info("==>Configured test queues and topics");
 
-            logger.info("==>Deploying ejb3");
+            EJB3Container.logger.info("==>Deploying ejb3");
             try
             {
                 // Still works after java.lang.IllegalArgumentException: Null name
-                EJB3StandaloneBootstrap.scanClasspath();
+                // EJB3StandaloneBootstrap.scanClasspath();
+                // EJB3StandaloneBootstrap.scanClasspath("target/test-classes");
+                EJB3StandaloneBootstrap.scanClasspath("target/classes");
             }
-            catch (Exception e)
+            catch (final Exception e)
             {
                 e.printStackTrace();
-                logger.error(e);
+                EJB3Container.logger.error(e);
             }
 
             // Add all EJBs found in the archive that has this file
             this.deployer = new EJB3StandaloneDeployer();
+            // this.deployer = EJB3StandaloneBootstrap.createDeployer();
+            // this.deployer.getArchivesByResource().add("META-INF/persistence.xml");
 
             // Deploy everything we got
             this.deployer.setKernel(EJB3StandaloneBootstrap.getKernel());
             this.deployer.create();
-            logger.info("==>Deployer created");
+            EJB3Container.logger.info("==>Deployer created");
             this.deployer.start();
-            logger.info("==>Deployer started");
-            logger.info("==>End of bootstrapping EJB3 container");
+            EJB3Container.logger.info("==>Deployer started");
+            EJB3Container.logger.info("==>End of bootstrapping EJB3 container");
         }
-        catch (Exception ex)
+        catch (final Exception ex)
         {
-            logger.error(ex.getMessage(), ex);
+            EJB3Container.logger.error(ex.getMessage(), ex);
             throw new RuntimeException(ex);
         }
     }
@@ -95,18 +97,18 @@ public class EJB3Container
     {
         try
         {
-            logger.info("==>Invoking EJB3.shutdown...");
+            EJB3Container.logger.info("==>Invoking EJB3.shutdown...");
             this.deployer.stop();
             this.deployer.destroy();
             EJB3StandaloneBootstrap.shutdown();
         }
-        catch (Exception ex)
+        catch (final Exception ex)
         {
             throw new RuntimeException(ex);
         }
     }
 
-    private static InitialContext initialContext = null;
+    private static InitialContext initialContext        = null;
     private static InitialContext securedInitialContext = null;
 
     /**
@@ -116,12 +118,11 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext newInitialContext()
-        throws Exception
+    public static InitialContext newInitialContext() throws Exception
     {
-        Hashtable<String, String> props = getInitialContextProperties();
-        initialContext = new InitialContext(props);
-        return initialContext;
+        final Hashtable<String, String> props = EJB3Container.getInitialContextProperties();
+        EJB3Container.initialContext = new InitialContext(props);
+        return EJB3Container.initialContext;
     }
 
     /**
@@ -133,12 +134,11 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext newInitialContext(String principal, String credential)
-        throws Exception
+    public static InitialContext newInitialContext(final String principal, final String credential) throws Exception
     {
-        Hashtable<String, String> props = getInitialContextProperties(principal, credential);
-        securedInitialContext = new InitialContext(props);
-        return securedInitialContext;
+        final Hashtable<String, String> props = EJB3Container.getInitialContextProperties(principal, credential);
+        EJB3Container.securedInitialContext = new InitialContext(props);
+        return EJB3Container.securedInitialContext;
     }
 
     /**
@@ -148,15 +148,14 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext getInitialContext()
-        throws Exception
+    public static InitialContext getInitialContext() throws Exception
     {
-        if (initialContext == null)
+        if (EJB3Container.initialContext == null)
         {
-           Hashtable<String, String> props = getInitialContextProperties();
-           initialContext = new InitialContext(props);
+            final Hashtable<String, String> props = EJB3Container.getInitialContextProperties();
+            EJB3Container.initialContext = new InitialContext(props);
         }
-        return initialContext;
+        return EJB3Container.initialContext;
     }
 
     /**
@@ -169,28 +168,27 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext getInitialContext(String principal, String credential)
-        throws Exception
+    public static InitialContext getInitialContext(final String principal, final String credential) throws Exception
     {
-        if (securedInitialContext == null)
+        if (EJB3Container.securedInitialContext == null)
         {
-           Hashtable<String, String> props = getInitialContextProperties(principal, credential);
-           securedInitialContext = new InitialContext(props);
+            final Hashtable<String, String> props = EJB3Container.getInitialContextProperties(principal, credential);
+            EJB3Container.securedInitialContext = new InitialContext(props);
         }
-        return securedInitialContext;
+        return EJB3Container.securedInitialContext;
     }
 
     private static Hashtable<String, String> getInitialContextProperties()
     {
-        Hashtable<String, String> props = new Hashtable<String, String>();
+        final Hashtable<String, String> props = new Hashtable<String, String>();
         props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.LocalOnlyContextFactory");
         props.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
         return props;
     }
 
-    private static Hashtable<String, String> getInitialContextProperties(String principal, String credential)
+    private static Hashtable<String, String> getInitialContextProperties(final String principal, final String credential)
     {
-        Hashtable<String, String> props = new Hashtable<String, String>();
+        final Hashtable<String, String> props = new Hashtable<String, String>();
         props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.security.jndi.JndiLoginInitialContextFactory");
         props.put(Context.SECURITY_PRINCIPAL, principal);
         props.put(Context.SECURITY_CREDENTIALS, credential);

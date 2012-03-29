@@ -6,6 +6,8 @@ package org.andromda.timetracker.service.test;
 
 import java.util.Date;
 
+import javax.naming.NamingException;
+
 import org.andromda.timetracker.domain.Role;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.UserDoesNotExistException;
@@ -14,8 +16,10 @@ import org.andromda.timetracker.test.EJB3Container;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * Service test class UserServiceTest for testing with TestNG
@@ -23,17 +27,38 @@ import org.apache.commons.logging.LogFactory;
  */
 public class UserServiceTest
 {
-    private static final Log logger = LogFactory.getLog(UserServiceTest.class);
+    private static final Logger logger = Logger.getLogger(UserServiceTest.class);
 
-    /**
-     *
-     */
-    @org.testng.annotations.Test
+    @BeforeClass
+    public static void startDeployer()
+    {
+        // Note, we could stop the deployer when we are done but we do not since
+        // the JVM will shut down and stop the deployer for us.
+        // JBossUtil.startDeployer();
+    }
+
+    // @Before
+    // public void lookupService()
+    // {
+    // this.service = JBossUtil.lookup(UserServiceRemote.class, "UserServiceBean/remote");
+    // }
+
+    // @Test
+    // public void testService()
+    // {
+    // UserServiceTest.logger.debug("Service : " + this.service.toString());
+    //
+    // }
+
+    // @Test
     public void testRegisterUser()
     {
+
         try
         {
-            final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+
+            // final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+            final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext().lookup("timetracker-ejb3/UserServiceBean/remote");
 
             // Remote testuser if it already exists
             UserVO userVO = null;
@@ -64,17 +89,17 @@ public class UserServiceTest
             urVO.setRole(Role.STANDARD_USER);
 
             udVO.setRoles(new UserRoleVO[] { urVO });
-
-            udVO = userService.registerUser(udVO);
-
-            assert udVO != null;
-            assert udVO.getId().longValue() > 0;
-
-            UserServiceTest.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
-
-            // Remote testuser if it already exists
             try
             {
+                udVO = userService.registerUser(udVO);
+
+                assert udVO != null;
+                assert udVO.getId().longValue() > 0;
+
+                UserServiceTest.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
+
+                // Remote testuser if it already exists
+
                 userVO = userService.getUser("testuser");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
@@ -85,23 +110,27 @@ public class UserServiceTest
             {
                 // OK to avoid
             }
-
         }
         catch (final Exception ex)
         {
             UserServiceTest.logger.warn("Failed test testRegisterUser()", ex);
+            Assert.fail();
         }
     }
 
     /**
+     * @throws Exception
+     * @throws NamingException
      *
      */
-    @org.testng.annotations.Test
-    public void testGetAllUsers()
+    @Test
+    public void testGetAllUsers() throws NamingException, Exception
     {
+
+        final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+
         try
         {
-            final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
             final UserVO[] users = userService.getAllUsers();
             assert users.length > 0;
 
@@ -113,6 +142,7 @@ public class UserServiceTest
         catch (final Exception ex)
         {
             UserServiceTest.logger.warn("Failed test testGetAllUsers()", ex);
+            Assert.fail();
         }
     }
 }
