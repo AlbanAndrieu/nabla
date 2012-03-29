@@ -115,8 +115,9 @@
                 <property name="enumerationLiteralNameMask">upperunderscore</property>
                 <property name="hibernateVersion">3</property>
                 <property name="persistenceContainerName">jboss</property>
-                <!-- Override default @todo to set to Eclipse default>
-                <property name="toDoTag">TODO</property -->
+                <property name="mergeLocation">${merge.templates.location}</property>
+                <!-- Override default @todo to set to Eclipse default -->      	
+        	    <property name="toDoTag">TODO</property>  
                 <!-- Automatically makes English names plural (generally adds s if missing).
                 default=true, set to false if using non-English models or Jaxb/CXF 2.0 or JAXB simpleBindingMode=false.>
                 <property name="pluralizeAssociationEndNames">true</property>
@@ -133,7 +134,8 @@
                 <property name="testDriver">${testdb.driver}</property>
                 <property name="testConnectionUrl">${testdb.url}</property>
                 <property name="testDialect">${testdb.dialect}</property>
-                <property name="hibernateHbm2DDLAuto">update</property>
+                <property name="hibernateHbm2DDLAuto">create</property>
+                <!--<property name="hibernateHbm2DDLAuto">update create-drop</property>-->                
             </properties>
         </namespace>
         <!-- See http://docs.andromda.org/andromda-cartridges/andromda-ejb3-cartridge/namespace.html -->
@@ -170,7 +172,7 @@
                 <property name="mergeMappingsUri">file:${conf.dir}/mappings/EJB3MergeMappings.xml</property>
                 -->
                 <!-- uncomment to enable EJB security -->
-                <property name="securityRealm">${application.id}</property>
+                <!--<property name="securityRealm">${application.id}</property>-->
                 <property name="jndiNamePrefix">${application.id}-${project.version}</property>
                 <property name="hibernateEnableCache">false</property>
                 <property name="hibernateEnableAssociationsCache">false</property>
@@ -178,6 +180,7 @@
                 <property name="useDefaultCacheRegion">false</property>
                 <property name="hibernateCacheProvider">org.jboss.ejb3.entity.TreeCacheProviderHook</property>
                 <property name="hibernateTreecacheMbeanObject">jboss.cache:service=EJB3EntityTreeCache</property>
+                <property name="hibernateShowSql">true</property>                
                 <!-- uncomment to enable default entity cache settings
                 <property name="hibernateEntityCache">TRANSACTIONAL</property>
                 -->
