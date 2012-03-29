@@ -71,7 +71,7 @@ public class UserServiceBean extends org.andromda.timetracker.service.UserServic
         }
         catch (final Exception ex)
         {
-            throw new UserDoesNotExistException("User does not exist " + username);
+            throw new UserDoesNotExistException("User : " + username + "does not exist");
         }
     }
 

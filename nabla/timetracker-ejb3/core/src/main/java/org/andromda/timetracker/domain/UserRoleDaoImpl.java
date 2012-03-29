@@ -6,79 +6,81 @@
  */
 package org.andromda.timetracker.domain;
 
-import org.andromda.timetracker.vo.UserRoleVO;
+import org.apache.log4j.Logger;
 
 /**
- * @see UserRole
+ * @see org.andromda.timetracker.domain.UserRole
  */
-public class UserRoleDaoImpl
-    extends UserRoleDaoBase
+public class UserRoleDaoImpl extends org.andromda.timetracker.domain.UserRoleDaoBase
 {
+
+    private static final Logger logger = Logger.getLogger(UserRoleDaoImpl.class);
+
     /**
-     * @see org.andromda.timetracker.domain.UserRoleDao#toUserRoleVO(UserRole, UserRoleVO)
+     * @see org.andromda.timetracker.domain.UserRoleDao#toUserRoleVO(org.andromda.timetracker.domain.UserRole, org.andromda.timetracker.vo.UserRoleVO)
      */
-    public void toUserRoleVO(
-        UserRole sourceEntity,
-        UserRoleVO targetVO)
+    @Override
+    public void toUserRoleVO(final org.andromda.timetracker.domain.UserRole sourceEntity, final org.andromda.timetracker.vo.UserRoleVO targetVO)
     {
         // TODO verify behavior of toUserRoleVO
         super.toUserRoleVO(sourceEntity, targetVO);
     }
 
-
     /**
-     * @see org.andromda.timetracker.domain.UserRoleDao#toUserRoleVO(UserRole)
+     * @see org.andromda.timetracker.domain.UserRoleDao#toUserRoleVO(org.andromda.timetracker.domain.UserRole)
      */
-    public UserRoleVO toUserRoleVO(final UserRole entity)
+    @Override
+    public org.andromda.timetracker.vo.UserRoleVO toUserRoleVO(final org.andromda.timetracker.domain.UserRole entity)
     {
         // TODO verify behavior of toUserRoleVO
         return super.toUserRoleVO(entity);
     }
-
 
     /**
      * Retrieves the entity object that is associated with the specified value object
      * from the object store. If no such entity object exists in the object store,
      * a new, blank entity is created
      */
-    private UserRole loadUserRoleFromUserRoleVO(UserRoleVO userRoleVO)
+    private org.andromda.timetracker.domain.UserRole loadUserRoleFromUserRoleVO(final org.andromda.timetracker.vo.UserRoleVO userRoleVO)
     {
-        // TODO implement loadUserRoleFromUserRoleVO
-        throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadUserRoleFromUserRoleVO(UserRoleVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
-        UserRole userRole = this.load(userRoleVO.getId());
+        org.andromda.timetracker.domain.UserRole userRole = null;
+        if ((userRoleVO != null) && (userRoleVO.getId() != null))
+        {
+            try
+            {
+                userRole = this.load(userRoleVO.getId());
+            }
+            catch (final UserRoleDaoException e)
+            {
+                UserRoleDaoImpl.logger.debug("UserRoleDaoException" + e);
+            }
+        }
         if (userRole == null)
         {
-            userRole = UserRole.Factory.newInstance();
+            userRole = new UserRole();
         }
         return userRole;
-        */
     }
 
-
     /**
-     * @see org.andromda.timetracker.domain.UserRoleDao#userRoleVOToEntity(UserRoleVO)
+     * @see org.andromda.timetracker.domain.UserRoleDao#userRoleVOToEntity(org.andromda.timetracker.vo.UserRoleVO)
      */
-    public UserRole userRoleVOToEntity(UserRoleVO userRoleVO)
+    @Override
+    public org.andromda.timetracker.domain.UserRole userRoleVOToEntity(final org.andromda.timetracker.vo.UserRoleVO userRoleVO)
     {
         // TODO verify behavior of userRoleVOToEntity
-        UserRole entity = this.loadUserRoleFromUserRoleVO(userRoleVO);
+        final org.andromda.timetracker.domain.UserRole entity = this.loadUserRoleFromUserRoleVO(userRoleVO);
         this.userRoleVOToEntity(userRoleVO, entity, true);
         return entity;
     }
 
-
     /**
-     * @see org.andromda.timetracker.domain.UserRoleDao#userRoleVOToEntity(UserRoleVO, UserRole)
+     * @see org.andromda.timetracker.domain.UserRoleDao#userRoleVOToEntity(org.andromda.timetracker.vo.UserRoleVO, org.andromda.timetracker.domain.UserRole)
      */
-    public void userRoleVOToEntity(
-        UserRoleVO sourceVO,
-        UserRole targetEntity,
-        boolean copyIfNull)
+    @Override
+    public void userRoleVOToEntity(final org.andromda.timetracker.vo.UserRoleVO sourceVO, final org.andromda.timetracker.domain.UserRole targetEntity, final boolean copyIfNull)
     {
         // TODO verify behavior of userRoleVOToEntity
         super.userRoleVOToEntity(sourceVO, targetEntity, copyIfNull);
     }
-
 }

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
  *
  */
 @Stateless
+// @SecurityDomain("timetracker-ejb3")
 public class HelloWorldServiceBean implements HelloWorldServiceLocal, HelloWorldServiceRemote
 {
     /**
