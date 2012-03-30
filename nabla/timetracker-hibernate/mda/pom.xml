@@ -315,14 +315,9 @@
         <application.metainf.dir>${project.basedir}/../app/src/main/application/META-INF</application.metainf.dir>
         <application.generated.dir>${project.basedir}/../app/${target.dir}/src</application.generated.dir>        
                 
-	    <merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>
-	    <merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
+	<!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
+	<merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
         <!--<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>-->
-        <!-- hibernate configuration -->
-        <!-- default strategy to use when using inheritance -->
-        <hibernate.inheritance.strategy>subclass</hibernate.inheritance.strategy>
-        <!-- hibernate generator class to use for identifiers -->
-        <hibernate.generatorClass>native</hibernate.generatorClass>
     </properties>
             
 </project>

@@ -10,7 +10,7 @@
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker Hibernate Core Business Tier</name>
-    <dependencies>  
+    <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
@@ -146,11 +146,11 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
-	    <dependency>
-	        <groupId>commons-io</groupId>
-	        <artifactId>commons-io</artifactId>
-	        <scope>test</scope>
-	   </dependency>    
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <scope>test</scope>
+	</dependency>
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
@@ -243,11 +243,11 @@
                   <goals>
                     <goal>hbm2doc</goal>
 		    <goal>hbm2cfgxml</goal>
-		    <!--<goal>hbm2java</goal>-->		    
+		    <!--<goal>hbm2java</goal>-->
 		    <!--<goal>hbm2hbmxml</goal>-->
 		    <!--<goal>hbmtemplate</goal>-->
                   </goals>
-                </execution>                
+                </execution>
               </executions>
               <configuration>
                 <components>
@@ -274,9 +274,9 @@
                   <format>true</format>
                   <jdk5>true</jdk5>
                   <persistenceunit>${project.parent.artifactId}</persistenceunit>
-                  <configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
-                  
-                  <outputfilename>../../../../app/src/main/sql/schema.sql</outputfilename>
+                  <!--<configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>-->
+
+                  <outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
                   <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
@@ -286,8 +286,8 @@
               <dependencies>
                   <dependency>
                     <groupId>${jdbc.groupId}</groupId>
-		            <artifactId>${jdbc.artifactId}</artifactId>
-		            <version>${jdbc.version}</version>
+		    <artifactId>${jdbc.artifactId}</artifactId>
+		    <version>${jdbc.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
@@ -390,15 +390,17 @@
                         </goals>
                         <configuration>
                             <autocommit>true</autocommit>
-                            <orderFile>ascending</orderFile><!-- Ascending alphabetical order, not the order of files in includes -->
+                            <!-- Ascending alphabetical order, not the order of files in includes -->
+                            <!--<orderFile>ascending</orderFile>-->
                             <fileset>
                                 <basedir>${basedir}/../app/src/main/sql</basedir>
                                 <includes>
-                                    <include>schema.sql</include>
+                                    <!--<include>schema.sql</include>-->
                                     <include>static-data-insert.sql</include>
                                     <include>test-data-insert.sql</include>
                                 </includes>
                             </fileset>
+                            <!-- We continue because database can be already created and data already inserted -->
                             <onError>continue</onError>
                         </configuration>
                     </execution>
@@ -412,8 +414,8 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <artifactId>maven-ejb-plugin</artifactId>
-                <!--version>2.3</version-->
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-ejb-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
@@ -426,16 +428,26 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                        <suiteXmlFiles>
+                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                </configuration>
+            </plugin>              
         </plugins>
         <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-		        <filtering>true</filtering>
-		        <includes>
-			        <include>**/*.xml</include>
-			        <include>**/*.properties</include>
-		        </includes>
+		<filtering>true</filtering>
+		<includes>
+		        <include>**/*.xml</include>
+		        <include>**/*.properties</include>
+		</includes>
             </resource>
             <resource>
                 <directory>${maven.build.generated}/main/resources</directory>
@@ -450,14 +462,14 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-        </resources>       
+        </resources>
     </build>
     <properties>
         <!-- Need a running db instance. Changed to automatic maven configured H2 DB -->
         <!--
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>        
+        <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <testFailureIgnore>true</testFailureIgnore>
         -->
     </properties>
-    
+
 </project>

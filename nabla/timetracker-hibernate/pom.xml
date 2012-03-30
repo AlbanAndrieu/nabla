@@ -178,10 +178,10 @@
         <module>app</module>
     </modules>
     <properties>
-        <application.id>timetracker</application.id>
         <application.package>org.andromda.timetracker</application.package>
-        <application.name>TimeTracker</application.name>
-        <database.name>timetracker</database.name>
+        <application.id>timetracker-hibernate</application.id>
+        <application.name>TimeTracker</application.name> 
+        <database.name>${application.id}</database.name>
     </properties>
     <profiles>
         <profile>
