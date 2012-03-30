@@ -129,20 +129,82 @@
                 <property name="username">${jdbc.username}</property>
                 <property name="password">${jdbc.password}</property>
                 <property name="driver">${jdbc.driver}</property>
-                <property name="testUsername">${testdb.username}</property>
-                <property name="testPassword">${testdb.password}</property>
-                <property name="testDriver">${testdb.driver}</property>
-                <property name="testConnectionUrl">${testdb.url}</property>
-                <property name="testDialect">${testdb.dialect}</property>
+                <property name="connectionUrl">${jdbc.url}</property>
+                <property name="testUsername">${jdbc.username}</property>
+                <property name="testPassword">${jdbc.password}</property>
+                <property name="testDriver">${jdbc.driver}</property>
+                <property name="testConnectionUrl">${jdbc.url}</property>
+                <property name="testDialect">${hibernate.dialect}</property>
                 <property name="hibernateHbm2DDLAuto">create</property>
                 <!--<property name="hibernateHbm2DDLAuto">update create-drop</property>-->                
+            </properties>
+        </namespace>
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
+        <namespace name="spring">
+            <properties>
+                <property name="hibernateQueryUseNamedParameters">true</property>
+                <property name="hibernateEnableCache">false</property>
+                <property name="sessionFactory">org.springframework.orm.hibernate3.LocalSessionFactoryBean</property>
+                <property name="localTransactionManager">org.springframework.orm.hibernate3.HibernateTransactionManager</property>
+                <property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>
+                <property name="hibernateQueryCacheFactory">org.hibernate.cache.StandardQueryCacheFactory</property>
+                <!--<property name="mergeMappingsUri">file:${conf.dir}/mappings/SpringMergeMappings.xml</property>-->
+                <property name="mergeMappingsUri">${merge.mappings.spring}</property>
+                <property name="hibernateInheritanceStrategy">${hibernate.inheritance.strategy}</property>
+                <property name="springTypesPackage">${application.package}</property>
+                <property name="daos">${database.generated.dir}</property>
+                <property name="dao-impls">${database.manual.java.dir}</property>
+                <property name="spring-configuration">${database.generated.java.resources}</property>
+                <property name="server-test-config">${database.manual.test.resources}</property>
+                <property name="server-test">${database.manual.test.dir}</property>
+                <property name="services">${database.generated.dir}</property>
+                <property name="service-impls">${database.manual.java.dir}</property>
+                <property name="service-interfaces">${database.generated.dir}</property>
+                <property name="criteria">${common.generated.dir}</property>
+                <property name="value-objects">${common.generated.dir}</property>
+                <property name="enableSpringTransactionsWhenEjbsEnabled">true</property>
+                <!-- to remove any dependency on EJB, comment the following property>
+                <property name="session-ejbs">${database.generated.dir}</property -->
+                <!-- uncomment to enable EJB security
+                <property name="securityRealm">${application.id}</property>
+                 -->
+            </properties>
+        </namespace>
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-hibernate-cartridge/namespace.html -->
+        <namespace name="hibernate">
+            <properties>
+                <property name="jndiNamePrefix">${application.id}-${project.version}</property>
+                <property name="persistenceContextUnitName">${application.id}</property>
+                <property name="entityManagerName">${application.id}</property>
+                <property name="hibernateEnableCache">false</property>
+                <property name="hibernateEnableAssociationsCache">false</property>
+                <property name="hibernateTypeMappingsUri">Hibernate</property>
+                <!--property name="hibernateEntityAnnotations">false</property-->
+                <property name="hibernateInheritanceStrategy">${hibernate.inheritance.strategy}</property>
+                <property name="hibernateJdbcBatchSize">0</property>
+                <property name="hibernateQueryUseNamedParameters">true</property>
+                <property name="compositionDefinesEagerLoading">true</property>
+                <property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>
+                <property name="hibernateQueryCacheFactory">org.hibernate.cache.StandardQueryCacheFactory</property>
+                <property name="hibernateTransactionFactoryClass">org.hibernate.transaction.JTATransactionFactory</property>
+                <property name="defaultHibernateGeneratorClass">${hibernate.generatorClass}</property>
+                <property name="hibernateAggregationCascade">delete</property>
+                <property name="hibernateDefaultCascade">none</property>
+                <property name="configuration">${database.generated.java.resources}</property>
+                <property name="test-configuration">${database.manual.test.resources}</property>
+                <property name="entities">${database.generated.dir}</property>
+                <property name="entity-impls">${database.manual.java.dir}</property>
+                <property name="entity-mappings">${database.generated.dir}</property>
+                <property name="user-types">${database.generated.dir}</property>
+                <property name="customTypesPackage">${application.package}</property>
+                <property name="cache">${database.generated.dir}</property>
+                <property name="persistenceProviderExtensions">hibernate</property>
             </properties>
         </namespace>
         <!-- See http://docs.andromda.org/andromda-cartridges/andromda-ejb3-cartridge/namespace.html -->
         <namespace name="ejb3">
             <properties>
                 <property name="dataSourceName">${dataSource.name}</property>
-                <property name="connectionUrl">${jdbc.url}</property>
                 <property name="entity-beans">${core.generated.dir}</property>
                 <property name="entity-impls">${core.manual.java.dir}</property>
                 <property name="entity-config">${core.generated.dir}</property>

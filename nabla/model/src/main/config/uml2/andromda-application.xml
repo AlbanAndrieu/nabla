@@ -196,11 +196,7 @@
                 <property name="entity-mappings">${core.generated.dir}</property>
                 <property name="user-types">${core.generated.dir}</property>
                 <property name="customTypesPackage">${application.package}</property>
-                <property name="compositionDefinesEagerLoading">true</property>
                 <property name="cache">${core.generated.dir}</property>
-                <property name="defaultHibernateGeneratorClass">${hibernate.generatorClass}</property>
-                <property name="hibernateAggregationCascade">delete</property>
-                <property name="hibernateDefaultCascade">none</property>
                 <property name="persistenceProviderExtensions">hibernate</property>
             </properties>            
         </namespace>
