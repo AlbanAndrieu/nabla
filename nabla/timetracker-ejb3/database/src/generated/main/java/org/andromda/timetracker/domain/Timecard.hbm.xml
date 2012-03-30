@@ -13,7 +13,7 @@
         <comment>This class represents a timecard submitted by a person.</comment>
         <id name="id" type="java.lang.Long" unsaved-value="null">
             <column name="ID" sql-type="BIGINT"/>
-            <generator class="assigned">
+            <generator class="native">
                 <!-- id-generator merge-point -->
             </generator>
         </id>

@@ -36,7 +36,7 @@ public class UserServiceTest
         this.userService = locator.getUserService();
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testRegisterUser()
     {
         try
@@ -54,7 +54,12 @@ public class UserServiceTest
             }
             catch (final UserDoesNotExistException e)
             {
-                // OK to avoid
+                this.logger.debug("UserDoesNotExistException : " + e);
+            }
+            catch (final Exception e)
+            {
+                this.logger.debug("Exception : " + e);
+                Assert.fail();
             }
 
             // Add testuser
@@ -90,9 +95,9 @@ public class UserServiceTest
             }
             catch (final UserDoesNotExistException e)
             {
-                this.logger.info("OK to avoid");
+                this.logger.debug("UserDoesNotExistException : " + e);
+                Assert.fail();
             }
-
         }
         catch (final Exception ex)
         {
@@ -118,6 +123,7 @@ public class UserServiceTest
         catch (final Exception ex)
         {
             this.logger.warn("Failed test testGetAllUsers()", ex);
+            // if reached that means that database is empty and default values have not been inserted
             Assert.fail();
         }
     }

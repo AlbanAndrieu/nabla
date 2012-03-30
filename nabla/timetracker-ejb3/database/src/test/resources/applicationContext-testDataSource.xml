@@ -11,10 +11,10 @@
 
     <!-- Local DataSource that works in any environment -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${testdb.driver}"/>
-        <property name="username" value="${testdb.username}"/>
-        <property name="password" value="${testdb.password}"/>
-        <property name="url" value="http://maven.nabla.mobi/databases/main/servers/customs/project/uml/nabla/timetracker-ejb3/mda"/>
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="username" value="sa"/>
+        <property name="password" value="sa"/>
+        <property name="url" value="jdbc:h2:~/timetracker-ejb3;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1"/>
     </bean>
 
     <!-- ====================== End of DATASOURCE DEFINITION ====================== -->

@@ -156,64 +156,11 @@
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromdapp-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>schema</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jdbcDriver>${jdbc.driver}</jdbcDriver>
-                    <jdbcDriverJar>${jdbc.driver.jar}</jdbcDriverJar>
-                    <jdbcConnectionUrl>${jdbc.url}</jdbcConnectionUrl>
-                    <jdbcUsername>${jdbc.username}</jdbcUsername>
-                    <jdbcPassword>${jdbc.password}</jdbcPassword>
-                    <!-- set this to false if you don't want to execute
-                         the generated SQL scripts (creates and saves DDL under app/src/main/sql/schema*.sql -->
-                    <executeScripts>true</executeScripts>
-                    <properties>
-                        <property>
-                            <name>mappingsLocation</name>
-                            <!--<value>${project.basedir}/${maven.build.generated}/main/java</value>-->
-                            <value>${project.basedir}/${target.dir}/classes</value>
-                        </property>
-                        <property>
-                            <name>mappingFileExtension</name>
-                            <value>hbm.xml</value>
-                        </property>
-                        <property>
-                            <name>createOutputPath</name>
-                            <value>${project.basedir}/../app/src/main/sql/schema-create.sql</value>
-                        </property>
-                        <property>
-                            <name>dropOutputPath</name>
-                            <value>${project.basedir}/../app/src/main/sql/schema-drop.sql</value>
-                        </property>
-                    </properties>
-                    <!-- You might need to execute additional scripts, just uncomment and add
-                         them here:
-                    <scripts>
-                        <script>${project.basedir}/path/to/scripts/script1.sql</script>
-                        <script>${project.basedir}/path/to/scripts/script2.sql</script>
-                    </scripts>
-                    -->
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.hibernate</groupId>
-                        <artifactId>hibernate-entitymanager</artifactId>
-                        <version>${hibernate.entitymanager.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>hibernate3-maven-plugin</artifactId>
               <version>${hibernate3.maven.plugin.version}</version>
               <executions>
+                <!--
                 <execution>
                   <id>hbm2ddl</id>
                   <phase>process-classes</phase>
@@ -221,6 +168,7 @@
                     <goal>hbm2ddl</goal>
                   </goals>
                 </execution>
+                -->
                 <execution>
                   <id>hbm2doc</id>
                   <phase>site</phase>
@@ -247,8 +195,8 @@
                   </component>
                   <component>
                     <name>hbm2hbmxml</name>
-                    <!--<outputDirectory>${target.dir}/hbm</outputDirectory>-->
-                    <implementation>jdbcconfiguration</implementation>
+                    <outputDirectory>${target.dir}/hbm</outputDirectory>
+                    <implementation>jpaconfiguration</implementation>
                   </component>
                   <component>
                     <name>hbm2java</name>
@@ -277,13 +225,11 @@
                   <ejb3>true</ejb3>
                   <!--<persistenceunit>${project.parent.artifactId}</persistenceunit>-->
                   <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
-                          <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
-                  <!--<configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>-->
+                  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 
-                  <outputfilename>../../../../app/src/main/sql/schema.sql</outputfilename>
+                  <outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
-                  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
                   -->
                 </componentProperties>
               </configuration>
@@ -315,108 +261,9 @@
                       </dependency>
                 </dependencies>
             </plugin>
-            <!-- H2 chokes on 'ENGINE=InnoDB' in DDL, remove from generated SQL before running against H2 DB >
             <plugin>
-              <artifactId>maven-antrun-plugin</artifactId>
-              <executions>
-                <execution>
-                  <phase>generate-test-sources</phase>
-                  <configuration>
-                    <target>
-                      <replace dir="${basedir}/../app/src/main/sql" value="">
-                        <include name="schema.sql"/>
-                        <replacetoken> ENGINE=InnoDB</replacetoken>
-                      </replace>
-                    </target>
-                  </configuration>
-                  <goals>
-                    <goal>run</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin-->
-            <!-- Run h2 tcp server manually by 'mvn exec:java sql:execute' for local unit testing, this is configuration only, not run during build -->
-            <!--
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>${maven.exec.plugin.version}</version>
-                <executions>
-                  <execution>
-                      <!--phase>test-compile</phase-->
-                      <goals>
-                          <goal>java</goal>
-                      </goals>
-                  </execution>
-                </executions>
-                <configuration>
-                    <mainClass>org.andromda.dbtest.H2</mainClass>
-                    <classpathScope>test</classpathScope>
-                    <workingDirectory>${project.basedir}/${target.dir}</workingDirectory>
-                    <arguments>
-                    </arguments>
-                </configuration>
-                <dependencies>
-                  <dependency>
-                    <groupId>${jdbc.groupId}</groupId>
-                            <artifactId>${jdbc.artifactId}</artifactId>
-                            <version>${jdbc.version}</version>
-                  </dependency>
-                </dependencies>
-            </plugin>
-            -->
-            <!-- See http://mojo.codehaus.org/sql-maven-plugin/examples/execute.html -->
-            <!-- Can't connect to the h2 process outside of the mvn JVM because it locks the DB -->
-            <!-- See http://www.h2database.com/html/cheatSheet.html -->
-            <!-- Can't use in-memory DB for tomcat/jetty initialization - goes away on exit -->
-            <!-- Use for in-memory DB jdbc:h2:timetracker;MODE=MySQL for in-JVM connections only, but it must be started within maven -->
-            <!-- Use for server DB jdbc:h2:tcp://localhost/timetracker;MODE=MySQL for external connections, but it must be started outside maven -->
-            <!-- default-cli execution id allows us to run the same configuration from the mvn command line -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>${maven.sql.plugin.version}</version>
-                <configuration>
-                    <driver>${jdbc.driver}</driver>
-                    <url>${jdbc.url}</url>
-                    <username>${jdbc.username}</username>
-                    <password>${jdbc.password}</password>
-                    <autocommit>true</autocommit>
-                    <skip>${maven.test.skip}</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-cli</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <autocommit>true</autocommit>
-                            <orderFile>ascending</orderFile><!-- Ascending alphabetical order, not the order of files in includes -->
-                            <fileset>
-                                <basedir>${basedir}/../app/src/main/sql</basedir>
-                                <includes>
-                                    <include>schema.sql</include>
-                                    <include>static-data-insert.sql</include>
-                                    <include>test-data-insert.sql</include>
-                                </includes>
-                            </fileset>
-                            <onError>continue</onError>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>${jdbc.groupId}</groupId>
-                        <artifactId>${jdbc.artifactId}</artifactId>
-                        <version>${jdbc.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <artifactId>maven-ejb-plugin</artifactId>
-                <version>${maven.ejb.plugin.version}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-ejb-plugin</artifactId>
                 <configuration>
                     <ejbVersion>3.0</ejbVersion>
                     <archive>
@@ -436,22 +283,18 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
-                    <!--
-                    <forkMode>pertest</forkMode>
-                    <childDelegation>false</childDelegation>
-                    -->
                         <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <!-- This trick allows the JBoss EJB3StandaloneBootstrap to find and deploy our compiled EJBs!! -->
-                    <!--
+                        <!--
                         <systemProperties>
                                 <property>
                                         <name>java.class.path</name>
                                         <value>${target.dir}/classes</value>
                                 </property>
                         </systemProperties>
-                    -->
+                        -->
                 </configuration>
             </plugin>
         </plugins>
@@ -528,9 +371,4 @@
                 </testResource>
         </testResources>
     </build>
-    <properties>
-        <!-- Until 'org.jboss.ejb3.embedded.UserTransactionImpl IllegalArgumentException: Null name' is fixed -->
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>
-        <target.dir>target</target.dir>
-    </properties>
 </project>

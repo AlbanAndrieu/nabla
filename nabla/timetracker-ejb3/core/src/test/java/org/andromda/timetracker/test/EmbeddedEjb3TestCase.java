@@ -63,7 +63,7 @@ import org.junit.Test;
  * @since $Date$
  *
  */
-public class EmbeddedEjb3TestCase /* extends TestCase */
+public class EmbeddedEjb3TestCase
 {
 
     private static final Logger           logger           = Logger.getLogger(EmbeddedEjb3TestCase.class);
@@ -201,55 +201,54 @@ public class EmbeddedEjb3TestCase /* extends TestCase */
         System.out.println("This test create delete and find a user called testuser");
         System.out.print("    ");
 
-        // Remote testuser if it already exists
-        UserVO userVO = null;
         try
         {
-            userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
-            if ((userVO != null) && (userVO.getId().longValue() > 0))
+            // Remote testuser if it already exists
+            UserVO userVO = null;
+            try
             {
-                EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
+                userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
+                if ((userVO != null) && (userVO.getId().longValue() > 0))
+                {
+                    EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
+                }
             }
-        }
-        catch (final UserDoesNotExistException e)
-        {
-            EmbeddedEjb3TestCase.logger.debug("UserDoesNotExistException : " + e);
-        }
-        catch (final Exception e)
-        {
-            EmbeddedEjb3TestCase.logger.debug("Exception : " + e);
-            Assert.fail();
-        }
+            catch (final UserDoesNotExistException e)
+            {
+                EmbeddedEjb3TestCase.logger.debug("UserDoesNotExistException : " + e);
+            }
 
-        // Add testuser
-        UserDetailsVO udVO = new UserDetailsVO();
-        udVO.setFirstName("testuser");
-        udVO.setLastName("testuser");
-        udVO.setEmail("test@test.com");
-        udVO.setIsActive(false);
-        udVO.setUsername("testuser");
-        udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
-        udVO.setCreationDate(new Date());
-        final UserRoleVO urVO = new UserRoleVO();
-        urVO.setRole(Role.STANDARD_USER);
-        udVO.setRoles(new UserRoleVO[] { urVO });
-        try
-        {
+            // Add testuser
+            UserDetailsVO udVO = new UserDetailsVO();
+            udVO.setFirstName("testuser");
+            udVO.setLastName("testuser");
+            udVO.setEmail("test@test.com");
+            udVO.setIsActive(false);
+            udVO.setUsername("testuser");
+            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
+            udVO.setCreationDate(new Date());
+            final UserRoleVO urVO = new UserRoleVO();
+            urVO.setRole(Role.STANDARD_USER);
+            udVO.setRoles(new UserRoleVO[] { urVO });
+
             udVO = EmbeddedEjb3TestCase.myServiceRemote.registerUser(udVO);
             Assert.assertNotNull(udVO);
             Assert.assertTrue(udVO.getId().longValue() > 0);
             EmbeddedEjb3TestCase.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
-            // Remote testuser if it already exists
-            userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
-            if ((userVO != null) && (userVO.getId().longValue() > 0))
+            try
             {
-                EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
+                // Remote testuser if it already exists
+                userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
+                if ((userVO != null) && (userVO.getId().longValue() > 0))
+                {
+                    EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
+                }
             }
-        }
-        catch (final UserDoesNotExistException e)
-        {
-            EmbeddedEjb3TestCase.logger.debug("UserDoesNotExistException : " + e);
-            Assert.fail();
+            catch (final UserDoesNotExistException e)
+            {
+                EmbeddedEjb3TestCase.logger.debug("UserDoesNotExistException : " + e);
+                Assert.fail();
+            }
         }
         catch (final Exception e)
         {

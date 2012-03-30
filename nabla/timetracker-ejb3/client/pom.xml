@@ -7,7 +7,7 @@
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
     </parent>
-    <artifactId>timetracker-ejb3-client</artifactId>
+    <artifactId>client</artifactId>
     <packaging>jar</packaging>
     <name>Timetracker EJB3 Client</name>
     <dependencies>
@@ -17,10 +17,10 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-        	<groupId>${project.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>core</artifactId>
-        	<version>${project.version}</version>
-        	<type>ejb</type>
+            <version>${project.version}</version>
+            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
@@ -91,15 +91,5 @@
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <!--
-        <resources>
-            <resource>
-                <directory>target/src</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
-        -->
     </build>
 </project>

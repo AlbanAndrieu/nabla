@@ -44,7 +44,7 @@ public class H2
     public static void main(String[] args)
     {
         // Using Embedded H2 database with multiple connections, starting a TCP instance
-        initDb("http://maven.nabla.mobi/databases/main/servers/customs/project/uml/nabla/timetracker-ejb3/mda", null);
+        initDb("jdbc:h2:~/timetracker-ejb3;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1", null);
             // "C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB drop script.sql;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB create script.sql");
             // ;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB insert script.sql");
     }
@@ -58,7 +58,7 @@ public class H2
         long now = System.currentTimeMillis();
         try
         {
-            Class.forName("${testdb.driver}");
+            Class.forName("org.h2.Driver");
             // IF there are any errors in SQL Files, the connection throws an Exception
             List<String> sqls = new ArrayList<String>();
             if (StringUtils.isNotBlank(sqlFile))
@@ -87,7 +87,7 @@ public class H2
             }
             // Starts H2, allowing TCP connections also, to jdbc:h2:tcp://localhost/${sql.database}
             // Must use id/password with embedded persisted mode
-            Connection conn = DriverManager.getConnection(url, "${testdb.username}", "${testdb.password}");
+            Connection conn = DriverManager.getConnection(url, "sa", "sa");
             LOGGER.info("Connected to DB " + url + "\r in " + (System.currentTimeMillis() - now) + " ms");
             long now1 = System.currentTimeMillis();
             Statement stat = conn.createStatement();

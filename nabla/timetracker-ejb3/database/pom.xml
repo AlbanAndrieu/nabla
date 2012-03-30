@@ -10,7 +10,7 @@
     <artifactId>database</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker GUI Database Business Tier</name>
-    <dependencies>  
+    <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
@@ -150,7 +150,7 @@
 	    <groupId>commons-io</groupId>
 	    <artifactId>commons-io</artifactId>
 	    <scope>test</scope>
-	</dependency>        
+	</dependency>
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
@@ -190,7 +190,7 @@
                 <artifactId>andromdapp-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <goals>                        
+                        <goals>
                             <goal>schema</goal>
                         </goals>
                     </execution>
@@ -257,11 +257,11 @@
                   <goals>
                     <goal>hbm2doc</goal>
 		    <goal>hbm2cfgxml</goal>
-		    <!--<goal>hbm2java</goal>-->		    
+		    <!--<goal>hbm2java</goal>-->
 		    <!--<goal>hbm2hbmxml</goal>-->
 		    <!--<goal>hbmtemplate</goal>-->
                   </goals>
-                </execution>                
+                </execution>
               </executions>
               <configuration>
                 <components>
@@ -289,7 +289,7 @@
                   <jdk5>true</jdk5>
                   <persistenceunit>${project.parent.artifactId}</persistenceunit>
                   <!--<configurationfile>src/main/resources/hibernate.cfg.xml</configurationfile>-->
-                  
+
                   <outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
@@ -402,13 +402,14 @@
                                 <basedir>${basedir}/../app/src/main/sql</basedir>
                                 <includes>
                                     <!--<include>schema.sql</include>-->
-                                    <include>schema-drop.sql</include>
-                                    <include>schema-create.sql</include>                                    
+                                    <!--<include>schema-drop.sql</include>-->
+                                    <!--<include>schema-create.sql</include>-->
                                     <include>static-data-insert.sql</include>
                                     <include>test-data-insert.sql</include>
                                 </includes>
                             </fileset>
-                            <!--<onError>continue</onError>-->
+                            <!-- We continue because database can be already created and data already inserted -->
+                            <onError>continue</onError>
                         </configuration>
                     </execution>
                 </executions>
@@ -435,6 +436,16 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                        <suiteXmlFiles>
+                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                </configuration>
+            </plugin>            
         </plugins>
         <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
@@ -459,15 +470,16 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-        </resources>    
+        </resources>
     </build>
     <properties>
-        <!-- Need a running db instance. Changed to automatic maven configured H2 DB --> 
-        <!-- test not working with mvn site --> 
+        <!-- Need a running db instance. Changed to automatic maven configured H2 DB -->
+        <!-- test not working with mvn site -->
         <!--
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>        
+        <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <testFailureIgnore>true</testFailureIgnore>
-        --> 
+        <maven.test.skip>true</maven.test.skip>        
+        -->
     </properties>
-    
+
 </project>
