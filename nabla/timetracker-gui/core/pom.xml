@@ -10,7 +10,7 @@
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker GUI Core Business Tier</name>
-    <dependencies>  
+    <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
@@ -70,12 +70,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-        <!--
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-search</artifactId>
-	</dependency>        
-	-->
         <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
         <!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6>
         <dependency>
@@ -156,7 +150,7 @@
 	    <groupId>commons-io</groupId>
 	    <artifactId>commons-io</artifactId>
 	    <scope>test</scope>
-	</dependency>        
+	</dependency>
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
@@ -190,6 +184,7 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
+            <!-- not needed because already provided by the database cartdrige -->
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
@@ -262,11 +257,11 @@
                   <goals>
                     <goal>hbm2doc</goal>
 		    <goal>hbm2cfgxml</goal>
-		    <!--<goal>hbm2java</goal>-->		    
+		    <!--<goal>hbm2java</goal>-->
 		    <!--<goal>hbm2hbmxml</goal>-->
 		    <!--<goal>hbmtemplate</goal>-->
                   </goals>
-                </execution>                
+                </execution>
               </executions>
               <configuration>
                 <components>
@@ -293,9 +288,9 @@
                   <format>true</format>
                   <jdk5>true</jdk5>
                   <persistenceunit>${project.parent.artifactId}</persistenceunit>
-                  <configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
-                  
-                  <outputfilename>../../../../app/src/main/sql/schema.sql</outputfilename>
+                  <!--<configurationfile>src/main/resources/hibernate.cfg.xml</configurationfile>-->
+
+                  <outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
                   <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
@@ -317,18 +312,10 @@
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
                     <version>${hibernate3.version}</version>
-                    <!--<version>${hibernate.entitymanager.version}</version>-->
                   </dependency>
-                  <!--dependency>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-annotations</artifactId>
-                    <version>3.5.6-Final</version>
-                    ${hibernate.annotations.version}
-                  </dependency-->
                   <dependency>
                       <groupId>org.hibernate</groupId>
                       <artifactId>hibernate-validator</artifactId>
-                      <!--<version>4.2.0.Final</version>-->
                       <version>${hibernate.validator.version}</version>
                   </dependency>
                 </dependencies>
@@ -409,15 +396,17 @@
                         </goals>
                         <configuration>
                             <autocommit>true</autocommit>
-                            <orderFile>ascending</orderFile><!-- Ascending alphabetical order, not the order of files in includes -->
+                            <!-- Ascending alphabetical order, not the order of files in includes -->
+                            <!--<orderFile>ascending</orderFile>-->
                             <fileset>
                                 <basedir>${basedir}/../app/src/main/sql</basedir>
                                 <includes>
-                                    <include>schema.sql</include>
+                                    <!--<include>schema.sql</include>-->
                                     <include>static-data-insert.sql</include>
                                     <include>test-data-insert.sql</include>
                                 </includes>
                             </fileset>
+                            <!-- We continue because database can be already created and data already inserted -->
                             <onError>continue</onError>
                         </configuration>
                     </execution>
@@ -431,8 +420,8 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <artifactId>maven-ejb-plugin</artifactId>
-                <!--version>2.3</version-->
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-ejb-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
@@ -445,6 +434,16 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                        <suiteXmlFiles>
+                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                </configuration>
+            </plugin>              
         </plugins>
         <!-- comment resources for mvn eclipse:eclipse -->
         <resources>
@@ -469,15 +468,6 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
-        </resources>      
+        </resources>
     </build>
-    <properties>
-        <!-- Need a running db instance. Changed to automatic maven configured H2 DB --> 
-        <!-- test not working with mvn site --> 
-        <!--
-        <maven.test.failure.ignore>true</maven.test.failure.ignore>        
-        <testFailureIgnore>true</testFailureIgnore>
-        --> 
-    </properties>
-    
 </project>

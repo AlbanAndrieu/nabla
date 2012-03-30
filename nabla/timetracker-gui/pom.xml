@@ -102,6 +102,23 @@
 
             <dependency>
                 <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate3.version}</version>
+                <!--<version>${hibernate.core.version}</version>-->            
+                <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.transaction</groupId>
+                        <artifactId>jta</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate3.version}</version>
                 <!--<version>${hibernate.entitymanager.version}</version>-->
@@ -192,9 +209,10 @@
         <module>app</module>
     </modules>
     <properties>
-        <application.id>timetracker</application.id>
         <application.package>org.andromda.timetracker</application.package>
-        <application.name>TimeTracker</application.name>
+        <application.id>timetracker-gui</application.id>
+        <application.name>TimeTracker</application.name> 
+        <database.name>${application.id}</database.name>     
     </properties>
     <profiles>
         <profile>
