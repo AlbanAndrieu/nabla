@@ -8,54 +8,70 @@
  */
 package org.andromda.timetracker.service;
 
+import java.util.Collection;
+
+import org.andromda.timetracker.domain.User;
+import org.andromda.timetracker.domain.UserDao;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 
 /**
  * @see org.andromda.timetracker.service.UserService
  */
-public class UserServiceImpl
-    extends UserServiceBase
+public class UserServiceImpl extends UserServiceBase
 {
+
+    // /**
+    // * @return userVOs
+    // * @throws Exception
+    // * @see org.andromda.timetracker.service.UserService#getAllUsers()
+    // */
+    // @Override
+    // Use this implementation for UML2 model with returnParameter * multiplicity
+    // @SuppressWarnings("unchecked")
+    // protected Collection<UserVO> handleGetAllUsers() throws Exception
+    // {
+    // return (Collection<UserVO>) this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
+    // }
 
     /**
      * @see org.andromda.timetracker.service.UserService#getAllUsers()
      */
-    protected  UserVO[] handleGetAllUsers()
-        throws Exception
+    @Override
+    protected UserVO[] handleGetAllUsers() throws Exception
     {
-        // TODO implement protected  UserVO[] handleGetAllUsers()
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.UserService.handleGetAllUsers() Not implemented!");
+        final Collection userVOs = this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
+        return (UserVO[]) userVOs.toArray(new UserVO[userVOs.size()]);
     }
 
     /**
      * @see org.andromda.timetracker.service.UserService#getUser(String)
      */
-    protected  UserVO handleGetUser(String username)
-        throws Exception
+    @Override
+    protected UserVO handleGetUser(final String username) throws Exception
     {
-        // TODO implement protected  UserVO handleGetUser(String username)
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.UserService.handleGetUser(String username) Not implemented!");
+        final User user = this.getUserDao().getUserDetails(username);
+        return this.getUserDao().toUserVO(user);
     }
 
     /**
      * @see org.andromda.timetracker.service.UserService#registerUser(UserDetailsVO)
      */
-    protected  UserDetailsVO handleRegisterUser(UserDetailsVO userDetailVO)
-        throws Exception
+    @Override
+    protected UserDetailsVO handleRegisterUser(final UserDetailsVO userDetailVO) throws Exception
     {
-        // TODO implement protected  UserDetailsVO handleRegisterUser(UserDetailsVO userDetailVO)
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.UserService.handleRegisterUser(UserDetailsVO userDetailVO) Not implemented!");
+        User user = this.getUserDao().userDetailsVOToEntity(userDetailVO);
+        user = this.getUserDao().create(user);
+        return this.getUserDao().toUserDetailsVO(user);
     }
 
     /**
      * @see org.andromda.timetracker.service.UserService#removeUser(UserVO)
      */
-    protected  void handleRemoveUser(UserVO userVO)
-        throws Exception
+    @Override
+    protected void handleRemoveUser(final UserVO userVO) throws Exception
     {
-        // TODO implement protected  void handleRemoveUser(UserVO userVO)
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.UserService.handleRemoveUser(UserVO userVO) Not implemented!");
+        this.getUserDao().remove(userVO.getId());
     }
 
 }

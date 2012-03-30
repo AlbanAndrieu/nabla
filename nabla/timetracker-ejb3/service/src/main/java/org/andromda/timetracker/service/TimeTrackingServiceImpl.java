@@ -8,24 +8,26 @@
  */
 package org.andromda.timetracker.service;
 
+import java.util.List;
+
 import org.andromda.timetracker.vo.TimecardSearchCriteriaVO;
 import org.andromda.timetracker.vo.TimecardSummaryVO;
 
 /**
  * @see org.andromda.timetracker.service.TimeTrackingService
  */
-public class TimeTrackingServiceImpl
-    extends TimeTrackingServiceBase
+public class TimeTrackingServiceImpl extends TimeTrackingServiceBase
 {
 
     /**
      * @see org.andromda.timetracker.service.TimeTrackingService#findTimecards(TimecardSearchCriteriaVO)
      */
-    protected  TimecardSummaryVO[] handleFindTimecards(TimecardSearchCriteriaVO criteria)
-        throws Exception
+    @Override
+    protected TimecardSummaryVO[] handleFindTimecards(final TimecardSearchCriteriaVO criteria) throws Exception
     {
-        // TODO implement protected  TimecardSummaryVO[] handleFindTimecards(TimecardSearchCriteriaVO criteria)
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.TimeTrackingService.handleFindTimecards(TimecardSearchCriteriaVO criteria) Not implemented!");
+        final List<TimecardSummaryVO> timecards = this.getTimecardDao().findByCriteria(criteria);
+        this.getTimecardDao().toTimecardSummaryVOCollection(timecards);
+        return timecards.toArray(new TimecardSummaryVO[timecards.size()]);
     }
 
 }

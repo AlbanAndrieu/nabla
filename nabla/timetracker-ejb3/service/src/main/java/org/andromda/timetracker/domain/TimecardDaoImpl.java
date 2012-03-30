@@ -7,39 +7,87 @@
 package org.andromda.timetracker.domain;
 
 import java.util.List;
+
 import org.andromda.timetracker.vo.TimecardSearchCriteriaVO;
 import org.andromda.timetracker.vo.TimecardSummaryVO;
 import org.andromda.timetracker.vo.TimecardVO;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * @see Timecard
  */
-public class TimecardDaoImpl
-    extends TimecardDaoBase
+public class TimecardDaoImpl extends TimecardDaoBase
 {
     /**
      * {@inheritDoc}
      */
-    protected List handleFindByCriteria(TimecardSearchCriteriaVO criteria)
+    @Override
+    protected List<Timecard> handleFindByCriteria(final TimecardSearchCriteriaVO criteria)
     {
-        // TODO implement public List handleFindByCriteria(TimecardSearchCriteriaVO criteria)
-        return null;
-}
+        // Create the timecard criteria
+        final Criteria timecardCriteria = this.getSession().createCriteria(Timecard.class).setFetchMode("submitter", FetchMode.JOIN).setFetchMode("approver", FetchMode.JOIN);
 
-    /**
-     * {@inheritDoc}
-     */
-    public void toTimecardSummaryVO(
-        Timecard source,
-        TimecardSummaryVO target)
-    {
-        // TODO verify behavior of toTimecardSummaryVO
-        super.toTimecardSummaryVO(source, target);
+        // Add submitter criteria
+        if ((criteria.getSubmitterId() != null) && (criteria.getSubmitterId() > 0))
+        {
+            timecardCriteria.createCriteria("submitter").add(Restrictions.idEq(criteria.getSubmitterId()));
+        }
+
+        // Add approver criteria
+        if ((criteria.getApproverId() != null) && (criteria.getApproverId() > 0))
+        {
+            timecardCriteria.createCriteria("approver").add(Restrictions.idEq(criteria.getApproverId()));
+        }
+
+        // Add status criteria
+        if (criteria.getStatus() != null)
+        {
+            timecardCriteria.add(Restrictions.eq("status", criteria.getStatus()));
+        }
+
+        // Add startDateMin criteria
+        if (criteria.getStartDateMin() != null)
+        {
+            timecardCriteria.add(Restrictions.ge("startDate", criteria.getStartDateMin()));
+        }
+
+        // Add startDateMax criteria
+        if (criteria.getStartDateMax() != null)
+        {
+            timecardCriteria.add(Restrictions.le("startDate", criteria.getStartDateMax()));
+        }
+
+        final List<Timecard> timecards = timecardCriteria.list();
+        if (this.logger.isDebugEnabled())
+        {
+            this.logger.debug(timecards.size() + " timecards found");
+        }
+        return timecards;
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
+    public void toTimecardSummaryVO(final Timecard source, final TimecardSummaryVO target)
+    {
+        super.toTimecardSummaryVO(source, target);
+        if (source.getSubmitter() != null)
+        {
+            target.setSubmitterName(source.getSubmitter().getUsername());
+        }
+        if (source.getApprover() != null)
+        {
+            target.setApproverName(source.getApprover().getUsername());
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public TimecardSummaryVO toTimecardSummaryVO(final Timecard entity)
     {
         // TODO verify behavior of toTimecardSummaryVO
@@ -51,28 +99,30 @@ public class TimecardDaoImpl
      * from the object store. If no such entity object exists in the object store,
      * a new, blank entity is created
      */
-    private Timecard loadTimecardFromTimecardSummaryVO(TimecardSummaryVO timecardSummaryVO)
+    private Timecard loadTimecardFromTimecardSummaryVO(final TimecardSummaryVO timecardSummaryVO)
     {
         // TODO implement loadTimecardFromTimecardSummaryVO
         throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadTimecardFromTimecardSummaryVO(TimecardSummaryVO) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Timecard timecard = this.load(timecardSummaryVO.getId());
-        if (timecard == null)
-        {
-            timecard = Timecard.Factory.newInstance();
-        }
-        return timecard;
-        */
+        /*
+         * A typical implementation looks like this:
+         * Timecard timecard = this.load(timecardSummaryVO.getId());
+         * if (timecard == null)
+         * {
+         * timecard = Timecard.Factory.newInstance();
+         * }
+         * return timecard;
+         */
     }
 
     /**
      * {@inheritDoc}
      */
-    public Timecard timecardSummaryVOToEntity(TimecardSummaryVO timecardSummaryVO)
+    @Override
+    public Timecard timecardSummaryVOToEntity(final TimecardSummaryVO timecardSummaryVO)
     {
         // TODO verify behavior of timecardSummaryVOToEntity
-        Timecard entity = this.loadTimecardFromTimecardSummaryVO(timecardSummaryVO);
+        final Timecard entity = this.loadTimecardFromTimecardSummaryVO(timecardSummaryVO);
         this.timecardSummaryVOToEntity(timecardSummaryVO, entity, true);
         return entity;
     }
@@ -81,20 +131,17 @@ public class TimecardDaoImpl
      * {@inheritDoc}
      */
     @Override
-    public void timecardSummaryVOToEntity(
-        TimecardSummaryVO source,
-        Timecard target,
-        boolean copyIfNull)
+    public void timecardSummaryVOToEntity(final TimecardSummaryVO source, final Timecard target, final boolean copyIfNull)
     {
         // TODO verify behavior of timecardSummaryVOToEntity
         super.timecardSummaryVOToEntity(source, target, copyIfNull);
     }
+
     /**
      * {@inheritDoc}
      */
-    public void toTimecardVO(
-        Timecard source,
-        TimecardVO target)
+    @Override
+    public void toTimecardVO(final Timecard source, final TimecardVO target)
     {
         // TODO verify behavior of toTimecardVO
         super.toTimecardVO(source, target);
@@ -104,6 +151,7 @@ public class TimecardDaoImpl
     /**
      * {@inheritDoc}
      */
+    @Override
     public TimecardVO toTimecardVO(final Timecard entity)
     {
         // TODO verify behavior of toTimecardVO
@@ -115,28 +163,30 @@ public class TimecardDaoImpl
      * from the object store. If no such entity object exists in the object store,
      * a new, blank entity is created
      */
-    private Timecard loadTimecardFromTimecardVO(TimecardVO timecardVO)
+    private Timecard loadTimecardFromTimecardVO(final TimecardVO timecardVO)
     {
         // TODO implement loadTimecardFromTimecardVO
         throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadTimecardFromTimecardVO(TimecardVO) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Timecard timecard = this.load(timecardVO.getId());
-        if (timecard == null)
-        {
-            timecard = Timecard.Factory.newInstance();
-        }
-        return timecard;
-        */
+        /*
+         * A typical implementation looks like this:
+         * Timecard timecard = this.load(timecardVO.getId());
+         * if (timecard == null)
+         * {
+         * timecard = Timecard.Factory.newInstance();
+         * }
+         * return timecard;
+         */
     }
 
     /**
      * {@inheritDoc}
      */
-    public Timecard timecardVOToEntity(TimecardVO timecardVO)
+    @Override
+    public Timecard timecardVOToEntity(final TimecardVO timecardVO)
     {
         // TODO verify behavior of timecardVOToEntity
-        Timecard entity = this.loadTimecardFromTimecardVO(timecardVO);
+        final Timecard entity = this.loadTimecardFromTimecardVO(timecardVO);
         this.timecardVOToEntity(timecardVO, entity, true);
         return entity;
     }
@@ -145,10 +195,7 @@ public class TimecardDaoImpl
      * {@inheritDoc}
      */
     @Override
-    public void timecardVOToEntity(
-        TimecardVO source,
-        Timecard target,
-        boolean copyIfNull)
+    public void timecardVOToEntity(final TimecardVO source, final Timecard target, final boolean copyIfNull)
     {
         // TODO verify behavior of timecardVOToEntity
         super.timecardVOToEntity(source, target, copyIfNull);

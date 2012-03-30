@@ -11,15 +11,13 @@ import org.andromda.timetracker.vo.TaskVO;
 /**
  * @see Task
  */
-public class TaskDaoImpl
-    extends TaskDaoBase
+public class TaskDaoImpl extends TaskDaoBase
 {
     /**
      * {@inheritDoc}
      */
-    public void toTaskVO(
-        Task source,
-        TaskVO target)
+    @Override
+    public void toTaskVO(final Task source, final TaskVO target)
     {
         // TODO verify behavior of toTaskVO
         super.toTaskVO(source, target);
@@ -28,6 +26,7 @@ public class TaskDaoImpl
     /**
      * {@inheritDoc}
      */
+    @Override
     public TaskVO toTaskVO(final Task entity)
     {
         // TODO verify behavior of toTaskVO
@@ -39,28 +38,30 @@ public class TaskDaoImpl
      * from the object store. If no such entity object exists in the object store,
      * a new, blank entity is created
      */
-    private Task loadTaskFromTaskVO(TaskVO taskVO)
+    private Task loadTaskFromTaskVO(final TaskVO taskVO)
     {
         // TODO implement loadTaskFromTaskVO
         throw new UnsupportedOperationException("org.andromda.timetracker.domain.loadTaskFromTaskVO(TaskVO) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Task task = this.load(taskVO.getId());
-        if (task == null)
-        {
-            task = Task.Factory.newInstance();
-        }
-        return task;
-        */
+        /*
+         * A typical implementation looks like this:
+         * Task task = this.load(taskVO.getId());
+         * if (task == null)
+         * {
+         * task = Task.Factory.newInstance();
+         * }
+         * return task;
+         */
     }
 
     /**
      * {@inheritDoc}
      */
-    public Task taskVOToEntity(TaskVO taskVO)
+    @Override
+    public Task taskVOToEntity(final TaskVO taskVO)
     {
         // TODO verify behavior of taskVOToEntity
-        Task entity = this.loadTaskFromTaskVO(taskVO);
+        final Task entity = this.loadTaskFromTaskVO(taskVO);
         this.taskVOToEntity(taskVO, entity, true);
         return entity;
     }
@@ -69,10 +70,7 @@ public class TaskDaoImpl
      * {@inheritDoc}
      */
     @Override
-    public void taskVOToEntity(
-        TaskVO source,
-        Task target,
-        boolean copyIfNull)
+    public void taskVOToEntity(final TaskVO source, final Task target, final boolean copyIfNull)
     {
         // TODO verify behavior of taskVOToEntity
         super.taskVOToEntity(source, target, copyIfNull);

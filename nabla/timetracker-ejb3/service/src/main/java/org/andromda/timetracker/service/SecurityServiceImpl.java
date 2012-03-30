@@ -8,23 +8,27 @@
  */
 package org.andromda.timetracker.service;
 
+import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.vo.UserDetailsVO;
 
 /**
  * @see org.andromda.timetracker.service.SecurityService
  */
-public class SecurityServiceImpl
-    extends SecurityServiceBase
+public class SecurityServiceImpl extends SecurityServiceBase
 {
 
     /**
      * @see org.andromda.timetracker.service.SecurityService#getUserDetails(String)
      */
-    protected  UserDetailsVO handleGetUserDetails(String username)
-        throws Exception
+    @Override
+    protected UserDetailsVO handleGetUserDetails(final String username) throws Exception
     {
-        // TODO implement protected  UserDetailsVO handleGetUserDetails(String username)
-        throw new UnsupportedOperationException("org.andromda.timetracker.service.SecurityService.handleGetUserDetails(String username) Not implemented!");
+        UserDetailsVO userDetailsVO = null;
+        final User user = this.getUserDao().getUserDetails(username);
+        if (user != null)
+        {
+            userDetailsVO = this.getUserDao().toUserDetailsVO(user);
+        }
+        return userDetailsVO;
     }
-
 }
