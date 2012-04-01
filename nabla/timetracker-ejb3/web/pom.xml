@@ -54,6 +54,7 @@
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
+            <version>${commons.digester.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -187,14 +188,40 @@
             <artifactId>icefaces</artifactId>
         </dependency>        
 	<dependency>
-		<groupId>org.icefaces</groupId>
-		<artifactId>icefaces-comps</artifactId>
+	    <groupId>org.icefaces</groupId>
+	    <artifactId>icefaces-comps</artifactId>
 	</dependency>
 	<dependency>
-		<groupId>org.icefaces</groupId>
-		<artifactId>icefaces-facelets</artifactId>
-	</dependency>  
-	-->   
+	    <groupId>org.icefaces</groupId>
+	    <artifactId>icefaces-facelets</artifactId>
+	</dependency> 
+--> 
+<!--
+        <dependency>
+            <groupId>org.jboss.seam</groupId>
+            <artifactId>jboss-seam-debug</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.seam</groupId>
+            <artifactId>jboss-seam-ui</artifactId>
+        </dependency>
+-->
+<!--
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jboss-seam-debug</artifactId>
+            <version>unknown</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/target/src/WEB-INF/lib/jboss-seam-debug.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jboss-seam-ui</artifactId>
+            <version>unknown</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/target/src/WEB-INF/lib/jboss-seam-ui.jar</systemPath>
+        </dependency>
+-->        	
         <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>servlet-api</artifactId>

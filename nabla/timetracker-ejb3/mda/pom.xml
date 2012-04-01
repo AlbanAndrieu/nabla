@@ -350,7 +350,16 @@
         <database.generated.java.resources>${project.basedir}/../database/${maven.build.generated}/main/resources</database.generated.java.resources>
         <database.manual.test.dir>${project.basedir}/../database/src/test/java</database.manual.test.dir>
         <database.manual.test.resources>${project.basedir}/../database/src/test/resources</database.manual.test.resources>  
-           
+
+        <service.generated.dir>${project.basedir}/../service/${maven.build.generated}/main/java</service.generated.dir>
+        <service.generated.test.dir>${project.basedir}/../service/${maven.build.generated}/main/java</service.generated.test.dir>        
+        <service.manual.dir>${project.basedir}/../service/src/main/java</service.manual.dir>
+        <service.manual.java.dir>${project.basedir}/../service/src/main/java</service.manual.java.dir>
+        <!--<service.manual.java.resources>${project.basedir}/../service/src/main/resources</service.manual.java.resources>-->
+        <service.generated.java.resources>${project.basedir}/../service/${maven.build.generated}/main/resources</service.generated.java.resources>
+        <service.manual.test.dir>${project.basedir}/../service/src/test/java</service.manual.test.dir>
+        <service.manual.test.resources>${project.basedir}/../service/src/test/resources</service.manual.test.resources> 
+                   
         <web.generated.java.dir>${project.basedir}/../web/${maven.build.generated}/main/java</web.generated.java.dir>
         <web.generated.web.dir>${project.basedir}/../web/${maven.build.generated}/main/webapp</web.generated.web.dir>
         <web.manual.dir>${project.basedir}/../web/src/main</web.manual.dir>
@@ -368,8 +377,8 @@
         <application.metainf.dir>${project.basedir}/../app/src/main/application/META-INF</application.metainf.dir>
         <application.generated.dir>${project.basedir}/../app/${target.dir}/src</application.generated.dir>        
                 
-	<!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
-	<merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
+	    <!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
+	    <merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
         <!--<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>-->
     </properties>
 </project>

@@ -9,13 +9,13 @@
     <version>3.4</version>
     <name>TimeTracker EJB3</name>
     <description>The TimeTracker EJB3 Project.</description>
-    
+
     <parent>
 	<groupId>com.nabla.project.uml</groupId>
 	<artifactId>nabla</artifactId>
 	<version>1.0</version>
     </parent>
-        
+
     <dependencyManagement>
         <dependencies>
             <!--
@@ -97,6 +97,16 @@
                 <groupId>org.hibernate</groupId>
                 <version>4.2.0.Final</version>
             </dependency>
+            <!-- TODO check in core -->
+            <!-- replace this by slf4j-api and slf4j-simple
+            http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
+            <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <version>1.6.3</version>
+                <scope>provided</scope>
+            </dependency>
+            -->            
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -105,10 +115,10 @@
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
+                <artifactId>slf4j-simple</artifactId>
                 <version>1.6.3</version>
                 <scope>provided</scope>
-            </dependency>
+            </dependency>            
             <dependency>
                 <groupId>org.apache.myfaces.trinidad</groupId>
                 <artifactId>trinidad-api</artifactId>
@@ -247,12 +257,32 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate3.version}</version>
+                <!--<version>${hibernate.entitymanager.version}</version>-->
                 <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>cglib</groupId>
+                        <artifactId>cglib</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.transaction</groupId>
+                        <artifactId>jta</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate3.version}</version>
+                <!--<version>${hibernate.entitymanager.version}</version>-->
                 <scope>provided</scope>
                 <exclusions>
                     <exclusion>
@@ -264,7 +294,7 @@
                         <artifactId>xml-apis</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>            
+            </dependency>
             <!--dependency>
                 <groupId>org.jboss</groupId>
                 <artifactId>ejb3-persistence</artifactId>
@@ -479,31 +509,51 @@
         -->
         <module>mda</module>
         <module>common</module>
+        <module>database</module>
         <module>core</module>
+        <module>service</module>
         <module>web</module>
         <module>app</module>
         <module>client</module>
     </modules>
     <properties>      
-        <!--
-        <testdb.version>1.3.160</testdb.version>
-        <jboss.typeMappings>Hypersonic</jboss.typeMappings>
-        -->
-        <application.id>timetracker</application.id>
+        <andromda.version>3.4</andromda.version>
+        <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
+        <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
+        <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
+        <maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
+        <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
+        <maven.default.skin.version>1.0</maven.default.skin.version>
+        <doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
+        <maven.build.helper.plugin.version>1.5</maven.build.helper.plugin.version>
+        <lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>       
+        <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+        <antlr.version>2.7.7</antlr.version>
+        <log4j.version>1.2.16</log4j.version>	
+        <junit.version>4.10</junit.version>
+        <testng.version>6.3</testng.version>
+        <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>	
+        <servlet.api.version>2.5</servlet.api.version>
+        <commons.digester.version>2.1</commons.digester.version>
+        <maven.build.generated>src/generated</maven.build.generated>
         <application.package>org.andromda.timetracker</application.package>
+        <application.id>timetracker-ejb3</application.id>
         <application.name>TimeTracker</application.name>
+        <database.name>${application.id}</database.name>
+	    <!--<dataSource>java:/${dataSource.name}</dataSource>-->
         <!--<application.version>${project.version}</application.version>-->
-        <!--
-        <hibernate.version>3.6.8.Final</hibernate.version>
-        <spring.version>3.0.6.RELEASE</spring.version>
-        -->
+        <!--<hibernate3.version>3.6.8.Final</hibernate3.version>-->
+        <!--<spring.version>2.5.6</spring.version>-->
+        <!--<spring3.version>3.0.6.RELEASE</spring3.version>-->	
     </properties>
     <profiles>
         <profile>
             <id>instrument</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+	    	<property>
+	    		<name>!profile.activation</name>
+	    	</property>
+	    </activation>	
             <build>
                 <pluginManagement>
                     <plugins>
@@ -543,6 +593,6 @@
                     </plugins>
                 </pluginManagement>
             </build>
-        </profile>       
+        </profile>
     </profiles>
 </project>

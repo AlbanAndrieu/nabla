@@ -81,7 +81,10 @@ public class UserServiceTest
         UserServiceRemote userService;
         try
         {
-            userService = (UserServiceRemote) EJB3Container.getInitialContext().lookup("timetracker-ejb3/UserServiceBean/remote");
+            userService = ServiceLocator.getInstance().getUserService();
+            UserServiceTest.logger.debug("Service : " + userService.toString());
+            Assert.assertNotNull(userService);
+            userService = ServiceLocator.getInstance().get_org_andromda_timetracker_service_UserServiceBean_Remote(null);
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -98,7 +101,7 @@ public class UserServiceTest
 
     }
 
-    // @Test
+    @Test
     public void testServicelocatorLookupPathService()
     {
         UserServiceRemote userService;
