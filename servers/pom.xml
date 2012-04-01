@@ -10,10 +10,10 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<!--<groupId>com.nabla.project</groupId>-->
+	<!--<groupId>com.nabla.project</groupId> -->
 	<artifactId>servers</artifactId>
 	<name>Servers</name>
-	<!--<version>1.0</version>-->
+	<!--<version>1.0</version> -->
 	<packaging>pom</packaging>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
 
@@ -26,8 +26,8 @@
 
 	<modules>
 		<module>sample</module>
-	</modules>	
-	
+	</modules>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -158,13 +158,13 @@
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
-				<dataSource.name>jdbc/${application.id}</dataSource.name>
-				<dataSource>java:/${dataSource.name}</dataSource>
 
 				<!-- Change this to the host on which your webservice will be deployed -->
 				<webservice.host>localhost</webservice.host>
 				<!-- Change this the port on which your webservice will be deploy -->
 				<webservice.port>8180</webservice.port>
+				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
+				<dataSource>java:/${dataSource.name}</dataSource>
 
 				<!-- END INFO USE BY MDA -->
 				<cargo.container>jboss4x</cargo.container>
@@ -208,6 +208,8 @@
 				<server.home></server.home>
 				<server.name>${product.name}</server.name>
 				<server.port></server.port>
+				<dataSource>${dataSource.name}</dataSource>
+
 				<cargo.container>jetty6x</cargo.container>
 				<cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
 			</properties>
@@ -215,10 +217,12 @@
 		<profile>
 			<id>tomcat7x</id>
 			<properties>
-			        <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
+				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
 				<server.name>${product.name}</server.name>
-				<server.port>${tomcat.port}</server.port>			
+				<server.port>${tomcat.port}</server.port>
+				<dataSource>${dataSource.name}</dataSource>
+
 				<cargo.container>tomcat7x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
 				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.16/bin/apache-tomcat-7.0.16.zip</cargo.container.url>
@@ -230,10 +234,12 @@
 		<profile>
 			<id>tomcat6x</id>
 			<properties>
-			        <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
+				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${tomcat.port}</server.port>
+				<dataSource>${dataSource.name}</dataSource>
+
 				<cargo.container>tomcat6x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
 				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.20/bin/apache-tomcat-6.0.20.zip</cargo.container.url>
@@ -250,6 +256,8 @@
 				<server.home>${glassfish.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${glassfish.port}</server.port>
+				<dataSource>${dataSource.name}</dataSource>
+
 				<cargo.container>glassfish3x</cargo.container>
 				<cargo.container.home>${server.home}</cargo.container.home>
 				<cargo.container.url>http://download.java.net/glassfish/3.1.1/release/glassfish-3.1.1.zip</cargo.container.url>
