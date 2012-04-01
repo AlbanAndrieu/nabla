@@ -66,6 +66,17 @@
         <param-name>org.jboss.seam.core.init.debug</param-name>
         <param-value>true</param-value>
     </context-param>
+    
+    <!-- ************************ Seam Servlet Mapping ************************ -->
+    <servlet>
+        <servlet-name>Seam Resource Servlet</servlet-name>
+        <servlet-class>org.jboss.seam.servlet.ResourceServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Seam Resource Servlet</servlet-name>
+        <url-pattern>/seam/resource/*</url-pattern>
+    </servlet-mapping>    
         
     <!-- ************************ Trinidad Filter **************************** -->
     <filter>
@@ -80,7 +91,7 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
+    </filter-mapping>    
 #end
         
 #if ($viewTypeIsFacelets)
@@ -165,7 +176,20 @@
         <param-value>server</param-value>
 #end
     </context-param>
-#end   
+#end       
+    
+    <!-- ************************ MyFaces Listener **************************** -->
+    <!-- Listener, that does all the startup work (configuration, init). -->
+    <!--
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
+    -->
+#if ($liferayPortlet)
+    <listener>
+        <listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
+    </listener>
+#end
     
     <!-- ************************ MyFaces Config **************************** -->
 #if ($portlet)
@@ -192,6 +216,7 @@
         <param-value>true</param-value>
     </context-param>
 
+#if($enableMyFacesDevelopmentSupport)
     <context-param>
         <description>
             If true, rendered HTML code will be formatted, so that it is "human readable".
@@ -202,7 +227,7 @@
         <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
         <param-value>${enableMyFacesDevelopmentSupport}</param-value>
     </context-param>
-
+#end
 #if(!$enableMyFacesDevelopmentSupport)
     <context-param>
         <description>
@@ -212,7 +237,6 @@
         <param-name>org.apache.myfaces.CONFIG_REFRESH_PERIOD</param-name>
         <param-value>0</param-value>
     </context-param>
-
 #end
     <context-param>
         <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
@@ -230,18 +254,6 @@
         <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
         <param-value>true</param-value>
     </context-param>
-    
-#if ($extension)    
-    <!-- upload -->
-    <context-param>
-        <param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.DISABLE_TOMAHAWK_FACES_CONTEXT_WRAPPER</param-name>
-        <param-value>true</param-value>
-    </context-param>
-#end    
 
 <!-- Options JSF avec utilisation de SUN RI
 	<context-param>
@@ -253,6 +265,144 @@
 		<param-value>true</param-value>
 	</context-param>
 -->
+
+#if ($standalone)
+
+    <!-- ************************ Trinidad Resources Servlet **************************** -->
+    <servlet>
+        <servlet-name>Trinidad Resources Servlet</servlet-name>
+        <servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Trinidad Resources Servlet</servlet-name>
+	<url-pattern>/adf/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Trinidad Filter -->
+    <filter>
+        <filter-name>Trinidad Filter</filter-name>
+        <filter-class>org.apache.myfaces.trinidad.webapp.TrinidadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Trinidad Filter</filter-name>
+        <url-pattern>*.${facesServletExtension}</url-pattern>
+    </filter-mapping>       
+#if ($enableOds)    
+    <filter-mapping>
+        <filter-name>Trinidad Filter</filter-name>
+        <url-pattern>*.${odsExportExtension}</url-pattern>
+    </filter-mapping>
+#end     
+    <!-- Trinidad patch filter -->
+    <!-- for calendar bug https://issues.apache.org/jira/browse/TRINIDAD-119 -->
+    <filter>
+        <filter-name>TrinidadDialogFilter</filter-name>
+        <filter-class>${managedBeansPackage}.TrinidadDialogFilter</filter-class>
+    </filter>    
+    <filter-mapping>
+        <filter-name>TrinidadDialogFilter</filter-name>
+        <url-pattern>/__ADFv__</url-pattern>
+    </filter-mapping>
+
+    <!-- ************************ Trinidad Config **************************** -->
+    <!-- Trinidad has its own ViewHandler, which is a "decorating"
+         view handler - for example, it needs to wrap methods like renderView()
+         to perform some extra pre- and post-handling.  Facelets, on the other
+         hand, is more of a true ViewHandler - it actually implements
+         renderView() (yeah, it decorates too, but forget about that
+         for a second).  As a result, the world is a better place if
+         the Trinidad ViewHandler runs around the Facelets ViewHandler.
+         But since Facelets is registered in WEB-INF/faces-config.xml,
+         and Trinidad's is registered from META-INF/faces-config.xml in its
+         JAR, exactly the opposite happens as per the JSF spec.
+
+         Hence, the following config parameter, which Trinidad
+         exposes (as of EA19) to allow pushing a ViewHandler inside
+         of ours.  FWIW, you retain the entire delegation stack -
+         just flipped around a bit - so that Facelets still decorates
+         the standard ViewHandler, and therefore you've still got
+         JSP support.
+      -->
+    <context-param>
+        <!-- Maximum memory per request (in bytes) -->
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_MEMORY</param-name>
+        <param-value>$fileUploadMaxMemoryPerRequest</param-value>
+    </context-param>
+    <context-param>
+        <!-- Maximum disk space per request (in bytes) -->
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_DISK_SPACE</param-name>
+        <param-value>$fileUploadMaxDiskSpacePerRequest</param-value>
+    </context-param>
+
+#if($enableMyFacesDevelopmentSupport)
+## to be reviewed, see https://issues.apache.org/jira/browse/TRINIDAD-1487
+##    <context-param>
+##        <description>
+##            Enables an optimized strategy for caching some view state at an application level
+##        </description>
+##       <param-name>org.apache.myfaces.trinidad.USE_APPLICATION_VIEW_CACHE</param-name>
+##        <param-value>#if($enableMyFacesDevelopmentSupport) false#else true#end</param-value>
+##    </context-param>
+##
+#end
+
+#if($enableMyFacesDevelopmentSupport)
+    <context-param>
+        <description>
+            Turn off the javascript obfuscation
+        </description>
+        <param-name>org.apache.myfaces.trinidad.DEBUG_JAVASCRIPT</param-name>
+        <param-value>${enableMyFacesDevelopmentSupport}</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+            If this parameter is enabled by setting to "true", Apache Trinidad will turn off
+            automatic compression of style class names
+        </description>
+        <param-name>org.apache.myfaces.trinidad.DISABLE_CONTENT_COMPRESSION</param-name>
+        <param-value>${enableMyFacesDevelopmentSupport}</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidadinternal.DISABLE_CONTENT_COMPRESSION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <description>
+            If this parameter is enabled by setting to "true", Apache Trinidad will automatically
+            check the modification date of your JSPs and skinning CSS files, and discard saved
+             state when they change;  this makes development easier,
+             but adds overhead that should be avoided when your application
+             is deployed
+        </description>
+        <param-name>org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION</param-name>
+        <param-value>${enableMyFacesDevelopmentSupport}</param-value>
+    </context-param>
+  
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.resource.DEBUG</param-name>
+        <param-value>true</param-value>
+    </context-param>
+#end
+    
+#if ($useSeam)
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
+        <param-value>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</param-value>
+        <!--param-value>com.sun.facelets.FaceletViewHandler</param-value-->
+    </context-param>
+#else
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
+        <param-value>com.sun.facelets.FaceletViewHandler</param-value>
+    </context-param>
+#end
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.CACHE_VIEW_ROOT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+#end
+
 #if ($icefaces)
 
     <!-- ************************ ICEFaces Config **************************** -->
@@ -301,284 +451,36 @@
     </context-param>
 
 #end  
-    <!-- ************************ Manual Merged Config **************************** -->
-    <!-- context-param merge-point -->
 
-    <!-- ************************ Manual Filters **************************** -->
-    <!-- filter merge-point -->
-#if ($securityEnabled && !$roles.empty)
-    <filter>
-        <filter-name>User Role Filter</filter-name>
-        <filter-class>${managedBeansPackage}.UserRoleFilter</filter-class>
-    </filter>
-#end
-#if ($extension)
-    <!-- Extensions Filter -->
-    <filter>
-        <filter-name>MyFaces Extensions Filter</filter-name>
-        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class> <!-- use by tomahawk -->
-        <init-param>
-            <description>
-                Set the size limit for uploaded files.
-
-                Format: 10 - 10 bytes
-                        10k - 10 KB
-                        10m - 10 MB
-                        1g - 1 GB
-            </description>
-            <param-name>uploadMaxFileSize</param-name>
-            <param-value>100m</param-value>
-        </init-param>
-        <init-param>
-            <description>
-                Set the threshold size - files
-                below this limit are stored in memory, files above
-                this limit are stored on disk.
-
-                Format: 10 - 10 bytes
-                        10k - 10 KB
-                        10m - 10 MB
-                        1g - 1 GB
-            </description>
-            <param-name>uploadThresholdSize</param-name>
-            <param-value>100k</param-value>
-        </init-param>
-        <!--
-        <init-param>
-            <param-name>uploadRepositoryPath</param-name>
-            <param-value>/temp</param-value>
-            <description>Set the path where the intermediary files will be stored.</description>
-        </init-param>
-        -->
-    </filter>
-#end    
-
+#if ($enableOds)
     <!-- ODS export filter -->
     <filter>
         <filter-name>ODSFilter</filter-name>
         <filter-class>${managedBeansPackage}.ODSFilter</filter-class>
-    </filter>
-#if ($standalone)
-    <!-- Trinidad Filter -->
-    <filter>
-        <filter-name>Trinidad Filter</filter-name>
-        <filter-class>org.apache.myfaces.trinidad.webapp.TrinidadFilter</filter-class>
-    </filter>
-    <!-- Trinidad patch filter -->
-    <filter>
-        <filter-name>TrinidadDialogFilter</filter-name>
-        <filter-class>${managedBeansPackage}.TrinidadDialogFilter</filter-class>
-    </filter>
-
-#foreach ($useCase in $useCases)
-#foreach ($view in $useCase.views)
-#if ($view.populatorRequired)
-    <filter>
-        <filter-name>$view.fullyQualifiedPopulator</filter-name>
-        <filter-class>$view.fullyQualifiedPopulator</filter-class>
-    </filter>
-#end
-#end
-#end
-
-#foreach ($manageable in $manageables)
-    <filter>
-        <filter-name>$manageable.populatorType</filter-name>
-        <filter-class>$manageable.populatorType</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>$manageable.populatorType</filter-name>
-        <url-pattern>${manageable.viewFullPath}.${facesServletExtension}</url-pattern>
-    </filter-mapping>
-#end
-#end
-
-    <!-- filter-mapping merge-point -->
-
+    </filter>    
     <filter-mapping>
         <filter-name>ODSFilter</filter-name>
         <url-pattern>*.${odsExportExtension}</url-pattern>
-    </filter-mapping>
-#if ($standalone)
-    <filter-mapping>
-        <filter-name>Trinidad Filter</filter-name>
-        <url-pattern>*.${odsExportExtension}</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>Trinidad Filter</filter-name>
-        <url-pattern>*.${facesServletExtension}</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>TrinidadDialogFilter</filter-name>
-        <url-pattern>/__ADFv__</url-pattern>
-    </filter-mapping>
-
-#if ($securityEnabled && !$roles.empty)
-    <filter-mapping>
-        <filter-name>User Role Filter</filter-name>
-        <url-pattern>*.${facesServletExtension}</url-pattern>
-    </filter-mapping>
+    </filter-mapping>    
 #end
-#foreach ($useCase in $useCases)
-#foreach ($view in $useCase.views)
-#if ($view.populatorRequired)
-    <filter-mapping>
-        <filter-name>$view.fullyQualifiedPopulator</filter-name>
-        <url-pattern>${view.path}.${facesServletExtension}</url-pattern>
-    </filter-mapping>
-#end
-#end
-#end
-#end
-
-#if ($extension)
-    <filter-mapping>
-        <filter-name>MyFaces Extensions Filter</filter-name>
-        <url-pattern>*.${facesServletExtension}</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>MyFaces Extensions Filter</filter-name>
-        <url-pattern>/faces/*</url-pattern>
-    </filter-mapping>
-#end
-
-    <!-- ************************ Trinidad Config **************************** -->
-#if ($standalone)
-
-    <!-- Trinidad has its own ViewHandler, which is a "decorating"
-         view handler - for example, it needs to wrap methods like renderView()
-         to perform some extra pre- and post-handling.  Facelets, on the other
-         hand, is more of a true ViewHandler - it actually implements
-         renderView() (yeah, it decorates too, but forget about that
-         for a second).  As a result, the world is a better place if
-         the Trinidad ViewHandler runs around the Facelets ViewHandler.
-         But since Facelets is registered in WEB-INF/faces-config.xml,
-         and Trinidad's is registered from META-INF/faces-config.xml in its
-         JAR, exactly the opposite happens as per the JSF spec.
-
-         Hence, the following config parameter, which Trinidad
-         exposes (as of EA19) to allow pushing a ViewHandler inside
-         of ours.  FWIW, you retain the entire delegation stack -
-         just flipped around a bit - so that Facelets still decorates
-         the standard ViewHandler, and therefore you've still got
-         JSP support.
-      -->
-    <context-param>
-        <!-- Maximum memory per request (in bytes) -->
-        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_MEMORY</param-name>
-        <param-value>$fileUploadMaxMemoryPerRequest</param-value>
-    </context-param>
-    <context-param>
-        <!-- Maximum disk space per request (in bytes) -->
-        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_DISK_SPACE</param-name>
-        <param-value>$fileUploadMaxDiskSpacePerRequest</param-value>
-    </context-param>
-
-## to be reviewed, see https://issues.apache.org/jira/browse/TRINIDAD-1487
-##    <context-param>
-##        <description>
-##            Enables an optimized strategy for caching some view state at an application level
-##        </description>
-##       <param-name>org.apache.myfaces.trinidad.USE_APPLICATION_VIEW_CACHE</param-name>
-##        <param-value>#if($enableMyFacesDevelopmentSupport) false#else true#end</param-value>
-##    </context-param>
-##
-    <context-param>
-        <description>
-            Turn off the javascript obfuscation
-        </description>
-        <param-name>org.apache.myfaces.trinidad.DEBUG_JAVASCRIPT</param-name>
-        <param-value>${enableMyFacesDevelopmentSupport}</param-value>
-    </context-param>
-
-    <context-param>
-        <description>
-            If this parameter is enabled by setting to "true", Apache Trinidad will turn off
-            automatic compression of style class names
-        </description>
-        <param-name>org.apache.myfaces.trinidad.DISABLE_CONTENT_COMPRESSION</param-name>
-        <param-value>${enableMyFacesDevelopmentSupport}</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.trinidadinternal.DISABLE_CONTENT_COMPRESSION</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <description>
-            If this parameter is enabled by setting to "true", Apache Trinidad will automatically
-            check the modification date of your JSPs and skinning CSS files, and discard saved
-             state when they change;  this makes development easier,
-             but adds overhead that should be avoided when your application
-             is deployed
-        </description>
-        <param-name>org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION</param-name>
-        <param-value>${enableMyFacesDevelopmentSupport}</param-value>
-    </context-param>
   
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.resource.DEBUG</param-name>
-        <param-value>true</param-value>
-    </context-param>
-#if ($useSeam)
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
-        <param-value>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</param-value>
-        <!--param-value>com.sun.facelets.FaceletViewHandler</param-value-->
-    </context-param>
-#else
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
-        <param-value>com.sun.facelets.FaceletViewHandler</param-value>
-    </context-param>
-#end
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.CACHE_VIEW_ROOT</param-name>
-        <param-value>false</param-value>
-    </context-param>
-#end
-    
-    <!-- ************************ MyFaces Listener **************************** -->
-    <!-- Listener, that does all the startup work (configuration, init). -->
-    <listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>
-#if ($liferayPortlet)
-    <listener>
-        <listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
-    </listener>
-#end
-    <!-- listener merge-point -->
-
-    <!-- servlet merge-point -->    
-#if ($useSeam)
-    <!-- ************************ Seam Servlet Mapping ************************ -->
-    <servlet>
-        <servlet-name>Seam Resource Servlet</servlet-name>
-        <servlet-class>org.jboss.seam.servlet.ResourceServlet</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>Seam Resource Servlet</servlet-name>
-        <url-pattern>/seam/resource/*</url-pattern>
-    </servlet-mapping>
-#end    
     <!-- ************************ Faces Servlet Mapping **************************** -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!-- precompilation merge-point -->
-    <!-- servlet-mapping merge-point -->
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.${odsExportExtension}</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.${facesServletExtension}</url-pattern>
     </servlet-mapping>
+        
+#if ($enableOds)
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.${odsExportExtension}</url-pattern>
+    </servlet-mapping>
+#end    
         
     <!--
     <servlet>
@@ -586,27 +488,13 @@
         <servlet-class>${managedBeansPackage}.FileDownloadServlet</servlet-class>
         <load-on-startup>3</load-on-startup>
     </servlet>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>File Download Servlet</servlet-name>
         <url-pattern>/fileDownload/*</url-pattern>
     </servlet-mapping>
     -->
 #if ($standalone)
     <!-- resource loader servlet -->
-#if ($securityEnabled)
-#set ($logOutServlet = "${managedBeansPackage}.LogOutServlet")
-    <servlet>
-        <servlet-name>$logOutServlet</servlet-name>
-        <servlet-class>$logOutServlet</servlet-class>
-    </servlet>
-#end
-#foreach ($useCase in $useCases)
-    <servlet>
-        <servlet-name>$useCase.fullyQualifiedActionClassName</servlet-name>
-        <servlet-class>$useCase.fullyQualifiedActionClassName</servlet-class>
-    </servlet>
-#end
-#end
     <!-- 
     <servlet>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
@@ -667,25 +555,144 @@
     </servlet-mapping>
     -->
 #end
+
+    <!-- ************************ Manual Servlets **************************** -->
+    <!-- precompilation merge-point -->
+    <!-- servlet merge-point -->  
+    <!-- servlet-mapping merge-point -->
+    <!-- listener merge-point -->
     
-    <!-- ************************ Trinidad Resources Servlet **************************** -->
- 
+    <!-- ************************ Manual Filters **************************** -->
+    <!-- filter merge-point -->
+    <!-- filter-mapping merge-point -->
+    
+    <!-- ************************ Manual Merged Config **************************** -->
+    <!-- context-param merge-point -->
+    
+#if ($extension) 
+    <!-- Extensions Filter -->
+    <filter>
+        <filter-name>MyFaces Extensions Filter</filter-name>
+        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class> <!-- use by tomahawk -->
+        <init-param>
+            <description>
+                Set the size limit for uploaded files.
+
+                Format: 10 - 10 bytes
+                        10k - 10 KB
+                        10m - 10 MB
+                        1g - 1 GB
+            </description>
+            <param-name>uploadMaxFileSize</param-name>
+            <param-value>100m</param-value>
+        </init-param>
+        <init-param>
+            <description>
+                Set the threshold size - files
+                below this limit are stored in memory, files above
+                this limit are stored on disk.
+
+                Format: 10 - 10 bytes
+                        10k - 10 KB
+                        10m - 10 MB
+                        1g - 1 GB
+            </description>
+            <param-name>uploadThresholdSize</param-name>
+            <param-value>100k</param-value>
+        </init-param>
+        <!--
+        <init-param>
+            <param-name>uploadRepositoryPath</param-name>
+            <param-value>/temp</param-value>
+            <description>Set the path where the intermediary files will be stored.</description>
+        </init-param>
+        -->
+    </filter>
+
+    <filter-mapping>
+        <filter-name>MyFaces Extensions Filter</filter-name>
+        <url-pattern>*.${facesServletExtension}</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>MyFaces Extensions Filter</filter-name>
+        <url-pattern>/faces/*</url-pattern>
+    </filter-mapping>
+        
+    <!-- upload -->
+    <context-param>
+        <param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.DISABLE_TOMAHAWK_FACES_CONTEXT_WRAPPER</param-name>
+        <param-value>true</param-value>
+    </context-param>    
+#end
+
+
 #if ($standalone)
-    <servlet-mapping>
-        <servlet-name>Trinidad Resources Servlet</servlet-name>
-	<url-pattern>/adf/*</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Trinidad Resources Servlet</servlet-name>
-        <servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
-    </servlet>
+#foreach ($useCase in $useCases)
+#foreach ($view in $useCase.views)
+#if ($view.populatorRequired)
+    <filter>
+        <filter-name>$view.fullyQualifiedPopulator</filter-name>
+        <filter-class>$view.fullyQualifiedPopulator</filter-class>
+    </filter>
+#end
+#end
+#end
+
+#foreach ($manageable in $manageables)
+    <filter>
+        <filter-name>$manageable.populatorType</filter-name>
+        <filter-class>$manageable.populatorType</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>$manageable.populatorType</filter-name>
+        <url-pattern>${manageable.viewFullPath}.${facesServletExtension}</url-pattern>
+    </filter-mapping>
+#end
+
+        
+#if ($securityEnabled && !$roles.empty)
+    <filter>
+        <filter-name>User Role Filter</filter-name>
+        <filter-class>${managedBeansPackage}.UserRoleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>User Role Filter</filter-name>
+        <url-pattern>*.${facesServletExtension}</url-pattern>
+    </filter-mapping>
+#end
+#foreach ($useCase in $useCases)
+#foreach ($view in $useCase.views)
+#if ($view.populatorRequired)
+    <filter-mapping>
+        <filter-name>$view.fullyQualifiedPopulator</filter-name>
+        <url-pattern>${view.path}.${facesServletExtension}</url-pattern>
+    </filter-mapping>
+#end
+#end
+#end
         
 #if ($securityEnabled)
 #set ($logOutServlet = "${managedBeansPackage}.LogOutServlet")
+    <servlet>
+        <servlet-name>$logOutServlet</servlet-name>
+        <servlet-class>$logOutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>$logOutServlet</servlet-name>
         <url-pattern>/${logoutFileName}.${facesServletExtension}</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>    
+#end
+#foreach ($useCase in $useCases)
+    <servlet>
+        <servlet-name>$useCase.fullyQualifiedActionClassName</servlet-name>
+        <servlet-class>$useCase.fullyQualifiedActionClassName</servlet-class>
+    </servlet>
+#end
 #end
 #foreach ($useCase in $useCases)
     <servlet-mapping>
@@ -716,7 +723,6 @@
     <!-- error-page merge-point -->
     <!-- taglib merge-point -->
     <!-- resource-ref merge-point -->
-    <!-- security-constraint merge-point -->
 
 #if ($standalone && !$applicationUseCases.empty)
 #set($applicationUseCase = $applicationUseCases.iterator().next())
@@ -823,6 +829,7 @@
     </security-role>
 #end
 
+    <!-- security-constraint merge-point -->
     <!-- security-role merge-point -->
 
 #end

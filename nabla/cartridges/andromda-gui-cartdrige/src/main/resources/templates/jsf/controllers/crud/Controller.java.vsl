@@ -572,6 +572,7 @@ public abstract class ${manageable.controllerName}
     }
 
 #end
+#if ($enableOds)
     /**
      * Export as ODS spreadsheet
      * @return ${manageable.odsExportFullPath}
@@ -580,7 +581,8 @@ public abstract class ${manageable.controllerName}
     {
         return "${manageable.odsExportFullPath}";
     }
-
+#end
+#if ($useAutocompleteLookup)
     /**
      * Helper method to fill the autocomplete component list.
      * @param event
@@ -622,7 +624,7 @@ public abstract class ${manageable.controllerName}
             this.addExceptionMessage(throwable);
         }
     }
-
+#end
     /**
      * Loads an instance of ${manageable.Name}.
      *

@@ -160,6 +160,12 @@
                     menu item allows you to control skinning, etc).
                 </documentation>
             </property>
+            <property name="enableOds">
+                <default>true</default>
+                <documentation>
+                    Whether or not a ods should be included in the table.
+                </documentation>
+            </property>                        
             <property name="preferencesClassName">
                 <default>Preferences</default>
                 <documentation>
@@ -302,6 +308,12 @@
                     useful to enable when developing with MyFaces, however should be disabled when going to production.
                 </documentation>
             </property>
+            <property name="standalone">
+                <default>true</default>
+                <documentation>
+                    Whether or not the generate project as standalone.
+                </documentation>
+            </property>                        
             <property name="defaultDateFormat">
                 <default>MM/dd/yyyy</default>
                 <documentation>

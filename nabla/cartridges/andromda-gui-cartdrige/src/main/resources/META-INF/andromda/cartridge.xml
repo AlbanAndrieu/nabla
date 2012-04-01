@@ -56,6 +56,7 @@
     <property reference="virtualHost"/>
     <property reference="defaultMultiSelectSize"/>
     <property reference="enablePreferences"/>
+    <property reference="enableOds"/>    
     <property reference="distributable"/>
     <property reference="stateSavingMethod"/>
     <property reference="sessionTimeout"/>
@@ -65,7 +66,8 @@
     <property reference="viewType"/>
     <property reference="seam"/>
     <property reference="tomahawk"/>
-    <property reference="extension"/>    
+    <property reference="extension"/>
+    <property reference="standalone"/> 
     <property reference="strictDateTimeFormat"/>
     <property reference="libraries"/>
     <property reference="application-libraries"/>
@@ -87,7 +89,7 @@
     <property reference="manageableReferenceParameterPrefix"/>
     <property reference="crudValueObjectSuffix"/>
     <property reference="crudConfirmationMessages"/>
-    <property reference="portletContainer"/>
+    <property reference="portletContainer"/>   
     <property reference="portletClass"/>
     <property reference="paginationResultClassName"/>
     <property reference="defaultPortletClassName"/>
@@ -99,17 +101,16 @@
     <property reference="navigationBeanScope"/>
     <!-- cartridge-property merge-point -->
     
-    <condition name="viewTypeIsJsp">$viewType.equalsIgnoreCase("jsp")</condition>
+    <!--<condition name="viewTypeIsJsp">$viewType.equalsIgnoreCase("jsp")</condition>-->
     <condition name="viewTypeIsFacelets">$viewType.equalsIgnoreCase("facelets")</condition>
     <condition name="outputCustomResources">$stringUtils.isNotBlank($custom-resources)</condition>
     <condition name="faceletsDevelopmentSupportEnabled">
         #if ($viewType.equalsIgnoreCase("facelets") &amp;&amp; $enableFaceletsDevelopmentSupport.equalsIgnoreCase("true"))true#end
     </condition>
-    <condition name="enableMyFacesDevelopmentSupport">
-        #if ($viewType.equalsIgnoreCase("facelets") &amp;&amp; $enableMyFacesDevelopmentSupport.equalsIgnoreCase("true"))true#end
-    </condition>
+    <condition name="enableMyFacesDevelopmentSupport">$enableMyFacesDevelopmentSupport.equalsIgnoreCase("true")</condition>
     <condition name="outputLibraries">$stringUtils.isNotBlank($libraries)</condition>
     <condition name="enablePreferences">#if($enablePreferences.equalsIgnoreCase("true") &amp;&amp; $stringUtils.isBlank($portletContainer))true#end</condition>
+    <condition name="enableOds">#$enableOds.equalsIgnoreCase("true")</condition>    
     <condition name="commonsValidator">$validationExtension.equalsIgnoreCase("commons-validator")</condition>
     <condition name="annotationsValidator">$validationExtension.equalsIgnoreCase("annotations")</condition>
     <condition name="clientValidation">$clientValidation.equalsIgnoreCase("true")</condition>
@@ -118,7 +119,8 @@
     <condition name="useAutocompleteLookup">$useAutocompleteLookup.equalsIgnoreCase("true")</condition>
     <condition name="portlet">$stringUtils.isNotBlank($portletContainer)</condition>
     <condition name="liferayPortlet">$portletContainer.equals("liferay")</condition>
-    <condition name="standalone">$stringUtils.isBlank($portletContainer)</condition>
+    <condition name="standalone">#if ($standalone.equalsIgnoreCase("true") &amp;&amp; $stringUtils.isBlank($portletContainer))true#end</condition>
+    <!--<condition name="standalone">$stringUtils.isBlank($portletContainer)</condition>-->
     <condition name="useSkin">#if (!$skin.equalsIgnoreCase("none") &amp;&amp; $stringUtils.isBlank($portletContainer))true#end</condition>
     <condition name="paginationSupportEnabled">$stringUtils.isNotBlank($paginationResultClassName)</condition>
     <condition name="standalonePaginationSupportEnabled">
@@ -128,9 +130,9 @@
         #if ($stringUtils.isNotBlank($paginationResultClassName) &amp;&amp; $stringUtils.isNotBlank($portletContainer))true#end
     </condition>
     <condition name="icefaces">$ajaxLibrary.equals("icefaces")</condition>
-    <condition name="trinidad">$ajaxLibrary.equals("trinidad")</condition> <!-- if not used might use tomahawk in view-table.xhtml.vsl -->
+    <condition name="trinidad">$ajaxLibrary.equals("trinidad")</condition>
     <condition name="adf">$ajaxLibrary.equals("adf")</condition>
-    <condition name="tomahawk">$tomahawk.equalsIgnoreCase("true")</condition> <!-- must be to true if adf -->
+    <condition name="tomahawk">$tomahawk.equalsIgnoreCase("true")</condition>
     <condition name="extension">$extension.equalsIgnoreCase("true")</condition>
     <condition name="portletWithoutIcefaces">
         #if (!$ajaxLibrary.equals("icefaces") &amp;&amp; $stringUtils.isNotBlank($portletContainer))true#end
@@ -454,24 +456,7 @@
             </modelElement>
         </modelElements>
     </template>
-
-<!--
-    <template
-        path="templates/jsf/controllers/ControllerImpl.java.vsl"
-        outputPattern="$generatedFile"
-        outlet="controller-impls"
-        overwrite="false">
-        <modelElements variable="controller">
-            <modelElement>
-                <type name="org.andromda.metafacades.uml.FrontEndController">
-                    <property name="useCase"/>
-                    <property name="operations"/>
-                </type>
-            </modelElement>
-        </modelElements>
-    </template>
--->
-
+    
     <template
         path="templates/jsf/controllers/Controller.java.vsl"
         outputPattern="$generatedFile"
@@ -577,8 +562,7 @@
         path="templates/jsf/flow/ViewPopulator.java.vsl"
         outputPattern="${view.populatorPath}.java"
         outlet="controllers"
-        overwrite="true"
-        >
+        overwrite="true">
         <modelElements variable="view">
             <modelElement>
                 <type name="org.andromda.metafacades.uml.FrontEndView">
@@ -706,8 +690,10 @@
         path="templates/jsf/utils/ODSFilter.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/ODSFilter.java"
         outlet="managed-beans"
-        overwrite="true"/>
+        overwrite="true"
+        outputCondition="enableOds"/>
 
+    <!-- fix a bug with calendar -->
     <template
         path="templates/jsf/utils/TrinidadDialogFilter.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/TrinidadDialogFilter.java"
@@ -1125,7 +1111,8 @@
         path="templates/jsf/views/facelets/crud/export-ods.xhtml.vsl"
         outputPattern="$generatedFile"
         outlet="views"
-        overwrite="true">
+        overwrite="true"
+        outputCondition="enableOds">
         <modelElements variable="manageable">
             <modelElement>
                 <type name="org.andromda.cartridges.gui.metafacades.GuiManageableEntity">

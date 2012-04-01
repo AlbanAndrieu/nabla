@@ -4,15 +4,15 @@
 
 	<parent>
 		<groupId>org.andromda.cartridges</groupId>
-    		<artifactId>cartridges</artifactId>
+		<artifactId>cartridges</artifactId>
 		<version>1.0</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<!--<groupId>org.andromda.cartridges</groupId>-->
+	<!--<groupId>org.andromda.cartridges</groupId> -->
 	<artifactId>andromda-gui-cartridge</artifactId>
 	<version>3.4</version>
-	<!-- <packaging>andromda-cartridge</packaging> -->	
+	<!-- <packaging>andromda-cartridge</packaging> -->
 	<packaging>jar</packaging>
 	<name>Gui Cartridge</name>
 	<description>
@@ -24,7 +24,7 @@ A manageable entity service defined must have a valid name
 context GuiManageableEntity
 inv:manageableServiceName->notEmpty()
 -->
-    <dependencies>
+	<dependencies>
         <!--
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -34,78 +34,70 @@ inv:manageableServiceName->notEmpty()
         -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>andromda-meta-cartridge</artifactId>
-            <version>${andromda.version}</version>
-            <scope>runtime</scope> 
-        </dependency>         
-	<dependency>
-	    <groupId>dom4j</groupId>
-	    <artifactId>dom4j</artifactId>
-	    <!--<version>${dom4j.version}</version>-->
-	</dependency>
-                     
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromda-maven-plugin</artifactId>
-		<!--<version>${andromda.version}</version>-->
-                <!--
-                <dependencies>
-                    <dependency>
-                        <groupId>org.andromda.cartridges</groupId>
-                        <artifactId>andromda-meta-cartridge</artifactId>
-                        <version>${andromda.version}</version>
-                    </dependency>
-                </dependencies>
-                -->
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven.dependency.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>${project.artifactId}-components</artifactId>
-                                    <version>${project.version}</version>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${project.build.outputDirectory}/resources/WEB-INF/lib</outputDirectory>
-                            <stripVersion>true</stripVersion>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromda-cartridge-plugin</artifactId>
-                <version>${andromda.version}</version>
-                <executions>
-                    <execution>
-                        <id>gui-uml2</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <!-- Use update goal when you want to validate your change (comment test goal) -->
-                            <goal>test</goal>
-                            <!--<goal>update</goal>-->
-                        </goals>
-                        <configuration>
-                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
-                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
-                            <actualDirectory>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</actualDirectory>
-                            <expectedDirectory>${project.basedir}/../tmp-gui/cartridge-test/expectedUML2</expectedDirectory>                            
-                            <reportDirectory>${project.basedir}/../tmp-gui/cartridge-test/reportsUML2</reportDirectory>
-                        </configuration>
+			<artifactId>andromda-meta-cartridge</artifactId>
+			<version>${andromda.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<!--<version>${dom4j.version}</version> -->
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.andromda.maven.plugins</groupId>
+				<artifactId>andromda-maven-plugin</artifactId>
+				<!--<version>${andromda.version}</version> -->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven.dependency.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}-components</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${project.build.outputDirectory}/resources/WEB-INF/lib</outputDirectory>
+							<stripVersion>true</stripVersion>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.andromda.maven.plugins</groupId>
+				<artifactId>andromda-cartridge-plugin</artifactId>
+				<version>${andromda.version}</version>
+				<executions>
+					<execution>
+						<id>gui-uml2</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<!-- Use update goal when you want to validate your change (comment test goal) -->
+							<goal>test</goal>
+							<!--<goal>update</goal> -->
+						</goals>
+						<configuration>
+							<expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+							<configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+
+							<actualDirectory>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</actualDirectory>
+							<expectedDirectory>${project.basedir}/../tmp-gui/cartridge-test/expectedUML2</expectedDirectory>
+							<reportDirectory>${project.basedir}/../tmp-gui/cartridge-test/reportsUML2</reportDirectory>
+						</configuration>
                         <!--
                         <artifacts>
                                 <artifact>
@@ -117,33 +109,33 @@ inv:manageableServiceName->notEmpty()
                         -->
                     </execution>                    
                 </executions>          
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-source-plugin</artifactId>
-		<!-- <version>${maven.source.plugin.version}</version>-->
-		<executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-            </plugin>  
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>xml-maven-plugin</artifactId>
-                <version>${maven.xml.plugin.version}</version>
-            </plugin>
-        </plugins>
-    </build>
-    <properties>
-    	<model.name>GuiMetafacadeModel</model.name>
-    	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
-        <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
-        <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
-        <test.output.dir>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</test.output.dir>
-    </properties>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<!-- <version>${maven.source.plugin.version}</version> -->
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xml-maven-plugin</artifactId>
+				<version>${maven.xml.plugin.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<model.name>GuiMetafacadeModel</model.name>
+		<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
+		<test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
+		<!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir> -->
+		<test.output.dir>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</test.output.dir>
+	</properties>
 </project>
