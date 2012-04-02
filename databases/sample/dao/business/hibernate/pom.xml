@@ -294,7 +294,7 @@
 				</plugins>
 			</build>
 		</profile>
-<profile>
+                <profile>
 			<id>hibernate-resource</id>
 			<activation>
 				<property>

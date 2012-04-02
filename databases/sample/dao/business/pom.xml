@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-        <parent>
-                <groupId>com.nabla.project.databases.sample.dao</groupId>
-                <artifactId>dao</artifactId>
-                <version>1.0</version>
-        </parent>
-        <modelVersion>4.0.0</modelVersion>
-        <name>Databases DOA Business</name>
-        <groupId>com.nabla.project.databases.sample.dao.business</groupId>
-        <artifactId>business</artifactId>
-        <version>1.0</version>
-        <packaging>pom</packaging>
-        <modules>
-                <!-- <module>appfuse</module> -->
-                <module>test</module>
-                <module>global</module>
-                <module>hibernate</module>
-                <module>jpa</module>
-                <module>dbunit</module>
-                <!-- <module>local</module> WORKING BUT DO NOT ERASE ECLIPSE SETTINGS -->
-        </modules>
-        
-	<profiles>        
+	<parent>
+		<groupId>com.nabla.project.databases.sample.dao</groupId>
+		<artifactId>dao</artifactId>
+		<version>1.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<name>Databases DOA Business</name>
+	<groupId>com.nabla.project.databases.sample.dao.business</groupId>
+	<artifactId>business</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<modules>
+		<!-- <module>appfuse</module> -->
+		<module>test</module>
+		<module>global</module>
+		<module>hibernate</module>
+		<module>jpa</module>
+		<module>dbunit</module>
+		<!-- <module>local</module> WORKING BUT DO NOT ERASE ECLIPSE SETTINGS -->
+	</modules>
+
+	<profiles>
 		<!-- ================= START Persistence Profiles ================= -->
 		<profile>
 			<id>hibernate</id>
@@ -31,7 +32,13 @@
 					<name>!profile.activation</name>
 				</property>
 			</activation>
-
+			<properties>
+				<!-- specific settings for hibernate that override the dependency pom -->
+				<hibernate.version>3.2.6.ga</hibernate.version>
+				<hibernate.entitymanager.version>3.3.2.GA</hibernate.entitymanager.version>
+				<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
+				<hibernate.annotations.version>3.3.1.GA</hibernate.annotations.version>
+			</properties>
 			<!-- see file pom_persistence-SAV.txt -->
 			<dependencies>
 				<dependency>
@@ -61,9 +68,16 @@
 						<exclusion>
 							<groupId>cglib</groupId>
 							<artifactId>cglib</artifactId>
-						</exclusion>						
+						</exclusion>
 					</exclusions>
 				</dependency>
+				<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-entitymanager</artifactId>
+					<!-- <version>3.3.2.GA</version> -->
+					<version>${hibernate.entitymanager.version}</version>
+				</dependency>
+
 				<dependency>
 					<groupId>asm</groupId>
 					<artifactId>asm</artifactId>
@@ -78,25 +92,21 @@
 					<groupId>javax.transaction</groupId>
 					<artifactId>jta</artifactId>
 					<version>${javax.transaction.version}</version>
-				</dependency>		
+				</dependency>
 
-                		<dependency>
-                			<groupId>commons-dbcp</groupId>
-                			<artifactId>commons-dbcp</artifactId>
-                			<version>${commons.dbcp.version}</version>
-                		</dependency>				
-						
+				<dependency>
+					<groupId>commons-dbcp</groupId>
+					<artifactId>commons-dbcp</artifactId>
+					<version>${commons.dbcp.version}</version>
+				</dependency>
+
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-annotations</artifactId>
 					<version>${hibernate.annotations.version}</version>
 				</dependency>
-				<!--
-					<dependency> <groupId>org.hibernate</groupId>
-					<artifactId>hibernate-search</artifactId>
-					<version>${hibernate.search.version}</version> </dependency>
-				-->
 			</dependencies>
+
 		</profile>
 		<profile>
 			<id>toplink</id>
@@ -131,6 +141,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		<!-- ================= END Persistence Profiles ================= -->	  
-	</profiles>        		      
+		<!-- ================= END Persistence Profiles ================= -->
+	</profiles>
 </project>

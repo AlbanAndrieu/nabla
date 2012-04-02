@@ -115,8 +115,9 @@
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate</artifactId>
+			<artifactId>hibernate</artifactId> 
 			<!-- <version>3.2.6.GA</version> -->
+			<version>${hibernate.version}</version> 
 			<exclusions>
 				<exclusion>
 					<groupId>asm</groupId>
@@ -153,6 +154,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<!-- <version>3.3.1.GA</version> -->
+			<version>${hibernate.annotations.version}</version
 		</dependency>
 
 		<dependency>
