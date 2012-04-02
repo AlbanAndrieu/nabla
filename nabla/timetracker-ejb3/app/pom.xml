@@ -63,13 +63,14 @@
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
-            <version>${commons.digester.version}</version>
+            <!--<version>${commons.digester.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>xml-apis</groupId>
                     <artifactId>xml-apis</artifactId>
                 </exclusion>
             </exclusions>
+            -->
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
@@ -83,9 +84,9 @@
             <scope>provided</scope>
         </dependency>
 	<dependency>
-	   <groupId>xml-apis</groupId>
-	   <artifactId>xml-apis</artifactId>
-	   <scope>provided</scope>
+	    <groupId>xml-apis</groupId>
+	    <artifactId>xml-apis</artifactId>
+	    <scope>provided</scope>
 	</dependency>
 	-->
     </dependencies>
@@ -189,17 +190,17 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-source-plugin</artifactId>
-         		<!-- <version>${maven.source.plugin.version}</version>-->
-		        <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+		<artifactId>maven-source-plugin</artifactId>
+         	<!-- <version>${maven.source.plugin.version}</version>-->
+		<executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

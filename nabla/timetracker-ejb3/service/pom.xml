@@ -50,7 +50,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
-        <dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+            </dependency>           
+        <dependency>                     
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
@@ -66,7 +70,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-legacy</artifactId>
-            <version>${hibernate.validator.legacy.version}</version>
+            <!--<version>${hibernate.validator.legacy.version}</version>-->
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate</groupId>
@@ -82,10 +86,10 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-            <version>${hibernate.commons.annotations.version}</version>
+            <!--<version>${hibernate.commons.annotations.version}</version>-->
             <scope>provided</scope>
-        </dependency>
-        <dependency>
+        </dependency>            
+        <dependency>             
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <type>pom</type>
@@ -132,21 +136,18 @@
         <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>1.6.3</version>
                 <scope>test</scope>
         </dependency>
         -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <!--<version>1.6.3</version>-->
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <!--<version>1.6.3</version>-->
             <scope>test</scope>
         </dependency>
                 

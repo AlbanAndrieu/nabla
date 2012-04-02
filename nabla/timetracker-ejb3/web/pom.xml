@@ -54,7 +54,7 @@
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
-            <version>${commons.digester.version}</version>
+            <!--<version>${commons.digester.version}</version>-->
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>

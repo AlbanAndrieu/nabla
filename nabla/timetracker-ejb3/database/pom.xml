@@ -21,10 +21,18 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+            </dependency>          
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>           
         <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
         <!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6>
         <dependency>
@@ -37,7 +45,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-legacy</artifactId>
-            <version>${hibernate.validator.legacy.version}</version>
+            <!--<version>${hibernate.validator.legacy.version}</version>-->
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate</groupId>
@@ -53,7 +61,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-            <version>${hibernate.commons.annotations.version}</version>
+            <!--<version>${hibernate.commons.annotations.version}</version>-->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -74,21 +82,18 @@
         <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>1.6.3</version>
                 <scope>test</scope>
         </dependency>
         -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <!--<version>1.6.3</version>-->
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <!--<version>1.6.3</version>-->
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -151,6 +156,21 @@
                         <artifactId>hibernate-entitymanager</artifactId>
                         <version>${hibernate.entitymanager.version}</version>
                     </dependency>
+                  <dependency>
+                      <groupId>javax.validation</groupId>
+                      <artifactId>validation-api</artifactId>
+                      <version>${validation.api.version}</version>
+                  </dependency>    
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-api</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-simple</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>                         
                 </dependencies>
             </plugin>
             <plugin>
@@ -220,13 +240,30 @@
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-core</artifactId>
-                    <version>${hibernate3.version}</version>
+                    <!--<version>${hibernate3.version}</version>-->
+                    <version>${hibernate.core.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
-                    <version>${hibernate3.version}</version>
+                    <!--<version>${hibernate3.version}</version>-->
+                    <version>${hibernate.entitymanager.version}</version>
                   </dependency>
+                  <dependency>
+                      <groupId>javax.validation</groupId>
+                      <artifactId>validation-api</artifactId>
+                      <version>${validation.api.version}</version>
+                  </dependency>    
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-api</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-simple</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>                       
                   <dependency>
                       <groupId>org.hibernate</groupId>
                       <artifactId>hibernate-validator</artifactId>
