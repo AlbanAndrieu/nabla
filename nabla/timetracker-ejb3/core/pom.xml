@@ -68,17 +68,17 @@
         <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <scope>test</scope>                                
+                <!--<scope>test</scope>-->                     
         </dependency>
         <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>   
-                <scope>test</scope>                                 
+                <!--<scope>test</scope>-->                         
         </dependency>      
         <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-annotations</artifactId>
-                <scope>test</scope>                                
+                <!--<scope>test</scope>-->                                
         </dependency>
 
         <!--        
@@ -128,14 +128,69 @@
             <scope>test</scope>
         </dependency>            
         
-      <!-- so Seam annotations can be used in the entities -->
-      <!--
-      <dependency>
-         <groupId>jboss</groupId>
-         <artifactId>jboss-seam</artifactId>
-         <version>${seam.version}</version>
-      </dependency>
-      -->        
+        <!-- JBoss Seam -->
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam</artifactId>
+          <!--<scope>provided</scope>-->
+          <exclusions>
+            <exclusion>
+              <groupId>javassist</groupId>
+              <artifactId>javassist</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+        <!--
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-ui</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-remoting</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>org.jboss.seam</groupId>
+            <artifactId>jboss-seam</artifactId>
+            <version>2.1.1.GA</version>
+            <version>unknown</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/../app/target/src/resources/lib/jboss-seam.jar</systemPath>
+        </dependency>      
+        -->
+        <!--
+        <dependency>
+            <groupId>org.jboss.seam.faces</groupId>
+            <artifactId>seam-faces</artifactId>
+            <version>3.0.0.Alpha3</version>
+            -->
+            <!--<scope>compile</scope>--><!-- Temporary workaround for GLASSFISH-17184 -->
+            <!--
+        </dependency>
+        -->
+        
+        <!--
+        <dependency>
+            <groupId>org.jboss.seam.international</groupId>
+            <artifactId>seam-international</artifactId>
+        </dependency>
+        
+        <dependency>
+           <groupId>org.jboss.seam.security</groupId>
+           <artifactId>seam-security</artifactId>
+           <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+           <groupId>org.jboss.seam.transaction</groupId>
+           <artifactId>seam-transaction</artifactId>
+           <scope>compile</scope>
+        </dependency>        
+        -->
         <!-- replace this by slf4j-api and slf4j-simple
         http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
         <dependency>
@@ -288,11 +343,11 @@
                       <artifactId>hibernate-validator</artifactId>
                       <version>${hibernate.validator.version}</version>
                   </dependency>
-                      <dependency>
-                          <groupId>xerces</groupId>
-                          <artifactId>xercesImpl</artifactId>
-                          <version>${xerces.version}</version>
-                      </dependency>
+                  <dependency>
+                      <groupId>xerces</groupId>
+                      <artifactId>xercesImpl</artifactId>
+                      <version>${xerces.version}</version>
+                  </dependency>
                 </dependencies>
             </plugin>
             <plugin>
