@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+    <local-tx-datasource>
+        <jndi-name>core-testDatasource</jndi-name>
+        <use-java-context>true</use-java-context>
+        <connection-url>${db.unit.connection.url}</connection-url>
+        <driver-class>${db.unit.driver.class}</driver-class>
+        <user-name>${db.unit.user.name}</user-name>
+        <password>${db.unit.password}</password>
+    </local-tx-datasource>
+</datasources>
