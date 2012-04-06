@@ -37,21 +37,16 @@
                           entity-manager-factory="@seamEmfRef@"
                       persistence-unit-jndi-name="@puJndiName@"/>
 
-<!--  
    <drools:rule-base name="securityRules">
-      <drools:rule-files><value>/security.drl</value></drools:rule-files>
+     <drools:rule-files>
+       <value>/META-INF/security.drl</value>
+     </drools:rule-files>
    </drools:rule-base>
--->  
-  <drools:rule-base name="securityRules">
-    <drools:rule-files>
-      <value>/META-INF/security.drl</value>
-    </drools:rule-files>
-  </drools:rule-base>
 
    <!--<security:rule-based-permission-resolver security-rules="#securityRules"/>-->
 
-   <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/>
    <!--<security:identity security-rules="#{securityRules}" authenticate-method="#{authenticator.authenticate}"/>-->
+   <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/>
 
    <event type="org.jboss.seam.security.notLoggedIn">
       <action execute="#{redirect.captureCurrentView}"/>

@@ -9,7 +9,7 @@
       <provider>org.hibernate.ejb.HibernatePersistence</provider>
       <jta-data-source>java:/core-testDatasource</jta-data-source>
       <properties>
-         <property name="hibernate.dialect" value="org.hibernate.dialect.${hibernate.dialect}Dialect"/>
+         <property name="hibernate.dialect" value="${hibernate.dialect}"/>
          <property name="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl}"/>
          <property name="hibernate.show_sql" value="${hibernate.showsql}"/>
          <property name="hibernate.format_sql" value="true"/>
