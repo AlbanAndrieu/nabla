@@ -26,12 +26,14 @@
                 <scope>runtime</scope>
             </dependency>
             -->
+            <!--
             <dependency>
                 <groupId>org.andromda.cartridges</groupId>
                 <artifactId>andromda-gui-cartridge</artifactId>
                 <version>${andromda.version}</version>
                 <scope>runtime</scope>
             </dependency>
+            -->
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-api</artifactId>
@@ -134,7 +136,7 @@
                 <artifactId>jsf-facelets</artifactId>
                 <!--<version>1.1.15</version>-->
                 <version>${jsf.facelets.version}</version>
-                <scope>runtime</scope>
+                <!--<scope>runtime</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.andromda</groupId>
@@ -175,12 +177,101 @@
             <!-- This dependency provides the ability to implement your
                  business logic in an interpreted manner during development on
                  your local machine -->
+            <!--
             <dependency>
                 <groupId>org.andromda</groupId>
                 <artifactId>andromda-script-wrappers</artifactId>
                 <version>${andromda.version}</version>
                 <scope>runtime</scope>
             </dependency>
+            -->
+            <!-- JBoss Seam -->
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam</artifactId>
+              <version>${seam.version}</version>
+              <exclusions>
+               <exclusion>
+                  <groupId>javax.el</groupId>
+                  <artifactId>el-api</artifactId>
+               </exclusion>
+               <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+               </exclusion>
+               <exclusion>
+                  <groupId>jboss</groupId>
+                  <artifactId>javassist</artifactId>
+               </exclusion>
+            </exclusions>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam-debug</artifactId>
+            <version>${seam.version}</version>
+            <exclusions>
+               <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+               </exclusion>
+            </exclusions>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam-ui</artifactId>
+            <version>${seam.version}</version>
+            <exclusions>
+               <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+               </exclusion>
+            </exclusions>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam-pdf</artifactId>
+              <version>2.1.1.GA</version>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam-mail</artifactId>
+              <version>2.1.1.GA</version>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam-remoting</artifactId>
+              <version>2.1.1.GA</version>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.seam</groupId>
+              <artifactId>jboss-seam-ioc</artifactId>
+            <version>${seam.version}</version>
+            <exclusions>
+               <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+               </exclusion>
+            </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.seam.international</groupId>
+                <artifactId>seam-international</artifactId>
+                <version>3.0.0.Alpha1</version>
+            </dependency>            
+            <dependency>
+              <groupId>org.jboss.el</groupId>
+              <artifactId>jboss-el</artifactId>
+              <version>1.0_02.CR2</version>
+            </dependency>
+	    <dependency>
+              <!--<groupId>javassist</groupId>-->
+              <groupId>org.javassist</groupId>
+              <artifactId>javassist</artifactId>
+              <!--<version>3.3.GA</version>-->
+              <version>${javassist.version}</version>
+              <scope>provided</scope>
+            </dependency>
+                  
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
@@ -193,14 +284,6 @@
                 <!--<version>1.5</version>-->
                 <version>${commons.codec.version}</version>
                 <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <!--<version>3.2.1</version>-->
-                <version>${commons.collections.version}</version>
-                <!-- JBoss contains a version which causes a classloader conflict unless not bundled -->
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>commons-fileupload</groupId>
@@ -222,11 +305,19 @@
                 <version>${commons.lang.version}</version>
             </dependency>
             <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <!--<version>3.2.1</version>-->
+                <version>${commons.collections.version}</version>
+                <!-- JBoss contains a version which causes a classloader conflict unless not bundled -->
+                <!--<scope>provided</scope>-->
+            </dependency>            
+            <dependency>
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
                 <!--<version>1.1.1</version>-->
                 <version>${commons.logging.version}</version>
-                <scope>provided</scope>
+                <!--<scope>provided</scope>-->
             </dependency>
             <dependency>
                 <groupId>commons-validator</groupId>
@@ -484,7 +575,7 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
                 <version>${jstl.version}</version>
-                <scope>runtime</scope>
+                <!--<scope>runtime</scope>-->
             </dependency>
             <!--dependency>
                 <groupId>taglibs</groupId>
@@ -541,6 +632,18 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>com.ctp.seam.maven</groupId>
+                <artifactId>maven-hotdeploy-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <!-- run with 'mvn cli:execute-phase' -->
+                <groupId>org.twdata.maven</groupId>
+                <artifactId>maven-cli-plugin</artifactId>
+            </plugin>
+        </plugins>        
     </build>
     <modules>
         <!-- Save the values used to generate this project from andromdapp
@@ -566,6 +669,7 @@
         <module>common</module>
         <module>database</module>
         <module>core</module>
+        <module>core-test</module>
         <module>service</module>
         <module>web</module>
         <module>app</module>
@@ -591,8 +695,7 @@
         <servlet.api.version>2.5</servlet.api.version>
         <hibernate.core.version>3.6.8.Final</hibernate.core.version>
         <hibernate.entitymanager.version>3.6.8.Final</hibernate.entitymanager.version>        
-        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
-        <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>	        
+        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>               
         <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>        
         <commons.digester.version>2.1</commons.digester.version>
         <maven.build.generated>src/generated</maven.build.generated>
@@ -609,6 +712,28 @@
         <hibernate.core.version>4.0.1.Final</hibernate.core.version>
         <hibernate.entitymanager.version>4.0.1.Final</hibernate.entitymanager.version> 
         -->
+        <!--<seam.version>2.1.1.GA</seam.version>-->
+        <!--<seam.version>2.2.0.GA</seam.version>  --> 
+        <jsf.version>1.2_10</jsf.version>
+        <!--<javax.faces.version>1.2_12</javax.faces.version>-->
+        <!--<richfaces.version>3.1.2.GA</richfaces.version>-->
+        <richfaces.version>3.3.2.SR1</richfaces.version>   
+        <!--<drools.version>3.0.4</drools.version>-->
+        <!--<drools.version>4.0.3</drools.version>-->
+        <drools.version>5.0.1</drools.version>
+        <!--<drools.version>5.3.0.Final</drools.version>-->            
+                         
+        <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version> 
+        <mvel.version>2.0.10-SNAPSHOT</mvel.version>   
+        
+        <!--<el.api.version>1.0</el.api.version>-->
+        <el.api.version>2.2.1-b04</el.api.version>
+        <jboss.el.version>1.0_02.CR4</jboss.el.version>
+        <!--<jboss.el.version>2.0.1.GA</jboss.el.version>-->
+        <gwt.user.version>1.5.2</gwt.user.version> 
+        <!--<hibernate.validator.version>3.1.0.GA</hibernate.validator.version>-->
+        <!--error in test <hibernate.annotations.version>3.2.0.ga</hibernate.annotations.version>-->
+        <hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>
         <application.package>org.andromda.timetracker</application.package>
         <application.id>timetracker-ejb3</application.id>
         <application.name>TimeTracker</application.name>
@@ -617,8 +742,11 @@
         <!--<application.version>${project.version}</application.version>-->
         <!--<hibernate3.version>3.6.8.Final</hibernate3.version>-->
 
-        <myfaces.version>2.0.2</myfaces.version>
-        
+        <!--<myfaces.version>2.0.2</myfaces.version>-->
+        <jboss.server>default</jboss.server>
+        <jboss.server.directory>C:\jboss-5.1.0.GA</jboss.server.directory>
+        <jboss.servers.directory>${jboss.server.directory}/server</jboss.servers.directory>
+        <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deploy</jboss.deploy.directory>        
     </properties>
     <profiles>
         <profile>
