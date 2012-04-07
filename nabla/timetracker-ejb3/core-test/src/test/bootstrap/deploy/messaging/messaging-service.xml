@@ -3,7 +3,6 @@
 <!--
      The JBoss Messaging service deployment descriptor.
 
-     $Id: messaging-service.xml 7115 2008-01-10 23:23:32Z pmuir $
  -->
 
 <server>

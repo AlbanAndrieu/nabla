@@ -1,15 +1,13 @@
 package jar;
 
-import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
-import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
 
-@Scope(ScopeType.SESSION)
+//@Scope(ScopeType.SESSION)
 @Name("authenticator")
 public class Authenticator
 {

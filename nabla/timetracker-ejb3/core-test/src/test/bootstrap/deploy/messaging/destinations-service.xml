@@ -2,8 +2,6 @@
 
 <!--
      Messaging Destinations deployment descriptor.
-
-     $Id: destinations-service.xml 6916 2007-12-05 17:53:00Z pmuir $
  -->
 
 <server>

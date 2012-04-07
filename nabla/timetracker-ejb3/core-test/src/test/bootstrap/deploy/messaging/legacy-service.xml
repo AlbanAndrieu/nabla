@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     Messaging Destinations deployment descriptor.
-    
-    $Id: legacy-service.xml 6916 2007-12-05 17:53:00Z pmuir $
+
 -->
 
 <server>

@@ -2,8 +2,6 @@
 
 <!-- The Hypersonic embedded database JCA connection factory config -->
 
-<!-- $Id: hsqldb-ds.xml 6916 2007-12-05 17:53:00Z pmuir $ -->
-
 <datasources>
    <local-tx-datasource>
 

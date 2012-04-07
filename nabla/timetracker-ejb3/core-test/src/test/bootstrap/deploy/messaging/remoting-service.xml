@@ -3,7 +3,6 @@
 <!--
      Standard bisocket-based Remoting service deployment descriptor.
 
-     $Id: remoting-service.xml 8448 2008-07-13 12:40:54Z pete.muir@jboss.org $
  -->
 
 <server>
