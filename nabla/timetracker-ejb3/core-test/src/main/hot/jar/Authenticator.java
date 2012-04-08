@@ -22,7 +22,7 @@ public class Authenticator
 
     public boolean authenticate()
     {
-        this.log.info("authenticating {0}", this.credentials.getUsername());
+        this.log.info("Authenticating : {0}", this.credentials.getUsername());
         // write your authentication logic here,
         // return true if the authentication was
         // successful, false otherwise
