@@ -11,8 +11,8 @@
 #if (!$services.isEmpty() || !$mdbs.isEmpty())
             <!-- Always start the EJB3 embeddable container before running the tests -->
             <!--<class name="${testPackage}EJB3Container"/>-->
-            <!--<class name="org.andromda.timetracker.test.HelloWorldTest" /> Run it in eclipse -->
-            <!-- Junit Test must be run manually 
+            <!--<class name="org.andromda.timetracker.test.HelloWorldTest" /> Run it independently only in eclipse -->
+            <!-- Junit Test must be run manually in eclipse
             <class name="org.andromda.timetracker.test.EmbeddedEjb3TestCase"/>
             -->
 #end
