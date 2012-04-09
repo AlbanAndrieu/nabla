@@ -13,6 +13,7 @@ import org.andromda.timetracker.ServiceLocator;
 import org.andromda.timetracker.domain.Role;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.UserDoesNotExistException;
+import org.andromda.timetracker.service.UserServiceLocal;
 import org.andromda.timetracker.service.UserServiceRemote;
 import org.andromda.timetracker.test.EJB3Container;
 import org.andromda.timetracker.vo.UserDetailsVO;
@@ -54,10 +55,10 @@ public class UserServiceTest
     @Test
     public void testSimpleLookupService()
     {
-        UserServiceRemote userService;
+        UserServiceLocal userService;
         try
         {
-            userService = (UserServiceRemote) EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
+            userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -76,7 +77,7 @@ public class UserServiceTest
     }
 
     // @Test
-    public void testOtherLookupPathService()
+    public void testOtherLookupPathRemoteService()
     {
         UserServiceRemote userService;
         try
@@ -102,7 +103,7 @@ public class UserServiceTest
     }
 
     @Test
-    public void testServicelocatorLookupPathService()
+    public void testServiceLocatorLookupPathRemoteService()
     {
         UserServiceRemote userService;
         try
@@ -129,10 +130,10 @@ public class UserServiceTest
     @Test
     public void testSecureService()
     {
-        UserServiceRemote userService;
+        UserServiceLocal userService;
         try
         {
-            userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+            userService = (UserServiceLocal) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -175,7 +176,7 @@ public class UserServiceTest
         {
 
             // final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
-            final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
+            final UserServiceLocal userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
 
             // Remote testuser if it already exists
             UserVO userVO = null;
@@ -220,7 +221,7 @@ public class UserServiceTest
             UserServiceTest.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
             try
             {
-                // Remote testuser if it already exists
+                // Remove testuser if it already exists
 
                 userVO = userService.getUser("testuser");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
