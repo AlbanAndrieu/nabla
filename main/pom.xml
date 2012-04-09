@@ -683,6 +683,7 @@
 			</activation>
 			<properties> 
 				<target.dir>target-eclipse</target.dir>
+				<environment>development</environment>
 				<!--
 				<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
 				<jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
@@ -738,9 +739,10 @@
 					</plugin>
 				</plugins>
 			</build>			
-			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
-				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
-				/> </properties> -->
+			<properties>
+				<environment>integration</environment>
+				<!--<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port/> -->
+			</properties> 
 		</profile>
 		<profile>
 			<id>validation</id>
@@ -750,9 +752,10 @@
 					<value>val</value>
 				</property>
 			</activation>
-			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
-				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
-				/> </properties> -->
+			<properties>
+				<environment>validation</environment>
+				<!--<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port/> -->
+			</properties> 
 		</profile>
 		<profile>
 			<id>homologation</id>
@@ -762,9 +765,10 @@
 					<value>hom</value>
 				</property>
 			</activation>
-			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
-				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
-				/> </properties> -->
+			<properties>
+				<environment>homologation</environment>
+				<!--<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port/> -->
+			</properties>
 		</profile>
 		<profile>
 			<id>production</id>
@@ -774,9 +778,10 @@
 					<value>prod</value>
 				</property>
 			</activation>
-			<!-- <properties> <jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username
-				/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port
-				/> </properties> -->
+			<properties>
+				<environment>production</environment>
+				<!--<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port/> -->
+			</properties>
 		</profile>
 		<profile>
 			<id>release</id>
