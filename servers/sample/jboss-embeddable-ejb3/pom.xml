@@ -11,6 +11,8 @@
 	<!--<groupId>com.jboss.embedded</groupId>-->
 	<artifactId>jboss-embeddable-ejb3</artifactId>	
 	<!--<version>1.0</version>-->
+	<name>Jboss Embeddable EJB3</name>
+	
 	<build>
 		<plugins>
 			<plugin>

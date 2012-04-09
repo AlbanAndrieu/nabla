@@ -154,7 +154,9 @@
 			</activation>
 			<properties>
 				<!-- START INFO USE BY MDA -->
-				<jboss.home>${env.JBOSS_HOME}</jboss.home>
+				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
+				<!--<jboss.home>C:\jboss-5.1.0.GA</jboss.home>-->
+				<jboss.home>C:\jboss-7.0.2.GA</jboss.home>
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
@@ -173,14 +175,25 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<!--<jboss.bind.address>localhost</jboss.bind.address>-->
+				<!-- for jboss < 6
+                                <jboss.server>default</jboss.server>
+                                <jboss.servers.directory>${jboss.home}/server</jboss.servers.directory>
+                                <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deploy</jboss.deploy.directory>    	
+                                -->		
+                                <jboss.server>standalone</jboss.server>
+                                <jboss.servers.directory>${jboss.home}</jboss.servers.directory>
+                                <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>                                  	
 			</properties>
 
 			<dependencies>
+			        <!--
 				<dependency>
 					<groupId>httpunit</groupId>
 					<artifactId>httpunit</artifactId>
 					<scope>test</scope>
 				</dependency>
+				-->
 
 				<dependency>
 					<groupId>jboss</groupId>

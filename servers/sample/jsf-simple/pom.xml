@@ -9,8 +9,7 @@
 	    	<version>1.0</version>
         </parent>
                 	
-	<modelVersion>4.0.0</modelVersion>
-	
+	<modelVersion>4.0.0</modelVersion>	
   <!--<groupId>com.nabla.project.servers.sample</groupId>-->
   <artifactId>jsf-simple</artifactId>
   <packaging>war</packaging>
