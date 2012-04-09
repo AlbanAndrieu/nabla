@@ -16,8 +16,13 @@
 	<name>[${project.parent.artifactId} :: Web Application]</name>
 
 	<dependencies>
-		<!-- <dependency> <groupId>${project.groupId}</groupId> <artifactId>core</artifactId> <version>${project.version}</version>
-			</dependency> -->
+		<!-- remove components.xml from core -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.seam.embedded</groupId>
 			<artifactId>hibernate-all</artifactId>
@@ -249,7 +254,6 @@
 			<version>${jboss.el.version}</version>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>
@@ -280,7 +284,6 @@
 			<plugin>
 				<groupId>com.ctp.seam.maven</groupId>
 				<artifactId>maven-hotdeploy-plugin</artifactId>
-				<!--<version>${hotdeploy.version}</version> -->
 				<extensions>true</extensions>
 				<configuration>
 					<source>${jdkLevel}</source>
@@ -291,8 +294,7 @@
 					</deployDirectory>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> <configuration>
-				<source>${jdkLevel}</source> <target>${jdkLevel}</target> </configuration> </plugin> -->
+			<!--
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -311,6 +313,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -348,7 +351,6 @@
 			<plugin>
 				<groupId>org.twdata.maven</groupId>
 				<artifactId>maven-cli-plugin</artifactId>
-				<!--<version>${cli.version}</version> -->
 				<configuration>
 					<userAliases>
 						<hot>hotdeploy:exploded -o</hot>
@@ -391,7 +393,6 @@
 					<plugin>
 						<groupId>com.ctp.seam.maven</groupId>
 						<artifactId>maven-hotdeploy-plugin</artifactId>
-						<!--<version>${hotdeploy.version}</version> -->
 						<extensions>true</extensions>
 						<configuration>
 							<source>${jdkLevel}</source>

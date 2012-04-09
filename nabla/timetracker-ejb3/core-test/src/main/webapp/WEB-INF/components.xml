@@ -18,8 +18,17 @@
                  http://jboss.com/products/seam/web http://jboss.com/products/seam/web-2.2.xsd
                  http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.2.xsd">
 
-   <core:init debug="@debug@" jndi-pattern="@jndiPattern@"/>
+   <!--
+   <core:init jndi-pattern="@jndiPattern@" debug="@debug@" distributable="false"/>
+   
+   <core:manager conversation-timeout="120000"
+                 concurrent-request-timeout="500"
+                 conversation-id-parameter="cid"/>
+   
+   <transaction:ejb-transaction/>
+   -->
 
+   <core:init debug="@debug@" jndi-pattern="@jndiPattern@"/>
 
    <core:manager concurrent-request-timeout="500"
                  conversation-timeout="120000"
@@ -29,6 +38,7 @@
    <!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
    <web:hot-deploy-filter url-pattern="*.seam"/>
 
+   <!--
    <persistence:entity-manager-factory name="entityManagerFactory"
                       persistence-unit-name="core-test"
                                   installed="@seamBootstrapsPu@"/>
@@ -36,7 +46,16 @@
    <persistence:managed-persistence-context name="entityManager" auto-create="true"
                           entity-manager-factory="@seamEmfRef@"
                       persistence-unit-jndi-name="@puJndiName@"/>
-
+   -->          
+   <!--
+   <persistence:managed-persistence-context auto-create="true" name="entityManager">
+        <persistence:persistence-unit-jndi-name>java:/core-test</persistence:persistence-unit-jndi-name>
+   </persistence:managed-persistence-context>
+   -->
+   <persistence:managed-persistence-context auto-create="true" name="entityManager">
+        <persistence:persistence-unit-jndi-name>java:/EntityManagerFactories/core-test</persistence:persistence-unit-jndi-name>
+   </persistence:managed-persistence-context>
+            
    <drools:rule-base name="securityRules">
      <drools:rule-files>
        <value>/META-INF/security.drl</value>
