@@ -84,65 +84,6 @@
 			<version>4.0.5-GA</version>
 		</dependency> -->
 
-		<!-- This is replaced by the hibernate dependencies below -->
-        	<!--
-        	<dependency>
-        	        <groupId>jboss.jboss-embeddable-ejb3</groupId>
-        	        <artifactId>hibernate-all</artifactId>
-        	</dependency>
-        	-->
-		<!-- START This is the hibernate dependencies that replace hibernate-all -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-                <!--<scope>test</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-                <!--<scope>test</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-                <!--<scope>test</scope> -->
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<!--<scope>test</scope> -->
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<optional>true</optional>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<optional>true</optional>
-			<scope>provided</scope>
-		</dependency>
-
-        	<!-- 
-        	<dependency> 
-        		<groupId>dom4j</groupId> 
-        		<artifactId>dom4j</artifactId> 
-        		</dependency> 
-        	<dependency> 
-        		<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId> 
-		</dependency> -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
-			<scope>provided</scope>
-			<optional>true</optional>
-		</dependency>
-		<!-- END This is the hibernate dependencies that replace hibernate-all -->
-
         	<!-- <dependency> 
         		<groupId>org.jboss.seam.embedded</groupId> 
         		<artifactId>hibernate-all</artifactId> 
@@ -254,7 +195,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<plugins>
+		<plugins>	
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -446,17 +387,30 @@
 				</excludes>
 			</resource>
 		</resources>
-		<!--
-		<testResources>
-			<testResource>
-				<directory>${basedir}/src/test/bootstrap-microcontainer</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-		-->
 	</build>
 	<profiles>
 		<profile>
+			<id>microcontainer-seam</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>
+			<dependencies>
+				
+			</dependencies>
+			<build>
+				<testResources>
+					<testResource>
+						<directory>${basedir}/src/test/bootstrap-microcontainer-seam</directory>
+						<filtering>true</filtering>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>	
+		<profile>
+		        <!-- does not work well with seam annotation exemple in UserServiceBean
+		        seam annotation must be commented @Scope and @Name -->
 			<id>microcontainer</id>
 			<activation>
 				<property>
@@ -475,7 +429,63 @@
 					<scope>test</scope> 
 				</dependency> 
 				-->
-				<!-- this work -->
+				<!-- this work below -->
+				
+                                <!-- This is replaced by the hibernate dependencies below -->
+        	                <!--
+        	                <dependency>
+        	                        <groupId>jboss.jboss-embeddable-ejb3</groupId>
+        	                        <artifactId>hibernate-all</artifactId>
+        	                </dependency>
+        	                -->
+		                <!-- START This is the hibernate dependencies that replace hibernate-all -->
+		                <dependency>
+		                	<groupId>org.hibernate</groupId>
+		                	<artifactId>hibernate-core</artifactId>
+		                </dependency>
+		                <dependency>
+		                	<groupId>org.hibernate</groupId>
+		                	<artifactId>hibernate-entitymanager</artifactId>
+		                </dependency>
+		                <dependency>
+		                	<groupId>org.hibernate</groupId>
+		                	<artifactId>hibernate-validator</artifactId>
+		                </dependency>
+		                <dependency>
+		                	<groupId>javax.validation</groupId>
+		                	<artifactId>validation-api</artifactId>
+		                </dependency>
+                                
+		                <dependency>
+		                	<groupId>org.hibernate</groupId>
+		                	<artifactId>hibernate-annotations</artifactId>
+		                	<optional>true</optional>
+		                	<scope>provided</scope>
+		                </dependency>
+		                <dependency>
+		                	<groupId>org.hibernate</groupId>
+		                	<artifactId>hibernate-commons-annotations</artifactId>
+		                	<optional>true</optional>
+		                	<scope>provided</scope>
+		                </dependency>
+                                
+        	                <!-- 
+        	                <dependency> 
+        	                	<groupId>dom4j</groupId> 
+        	                	<artifactId>dom4j</artifactId> 
+        	                	</dependency> 
+        	                <dependency> 
+        	                	<groupId>commons-lang</groupId>
+		                	<artifactId>commons-lang</artifactId> 
+		                </dependency> -->
+		                <dependency>
+		                	<groupId>javax.persistence</groupId>
+		                	<artifactId>persistence-api</artifactId>
+		                	<scope>provided</scope>
+		                	<optional>true</optional>
+		                </dependency>
+		                <!-- END This is the hibernate dependencies that replace hibernate-all -->
+						
 				<dependency>
 					<groupId>org.jboss.microcontainer</groupId>
 					<artifactId>jboss-ejb3-all</artifactId>

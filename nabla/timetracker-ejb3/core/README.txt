@@ -15,11 +15,11 @@ embedded-jboss-beans
 jndi
 (log4j)
 
-See : 
+See :  TODO
 /cygdrive/c/workspace/users/divers/ctpjava-read-only/core-test/core-test-webapp
 http://localhost:8180/
 http://code.google.com/p/ctpjava/wiki/MavenSeamHotdeployPluginUsage
 
 Remove components.xml from core project because it does not work in core-test project
 
-TestNG does not work in eclipse because it must be compile in java 1.5
+TestNG does not work in eclipse without add -Dsun.lang.ClassLoader.allowArraySyntax=true in the VM args
