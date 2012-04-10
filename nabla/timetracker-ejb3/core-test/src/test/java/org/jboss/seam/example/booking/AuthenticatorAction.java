@@ -7,8 +7,6 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 
-import org.andromda.timetracker.domain.User;
-import org.andromda.timetracker.domain.UserRole;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
@@ -40,6 +38,7 @@ public class AuthenticatorAction implements Authenticator
     @Out(required = false, scope = SESSION)
     private User                                 user;
 
+    @Override
     public boolean authenticate()
     {
         AuthenticatorAction.logger.debug("Authenticating username : " + this.credentials.getUsername());
@@ -50,6 +49,7 @@ public class AuthenticatorAction implements Authenticator
 
     }
 
+    @Override
     public boolean authenticate(final String username, final String password, final Set<String> roles)
     {
         AuthenticatorAction.logger.info("Authenticating username : " + username);
@@ -68,6 +68,8 @@ public class AuthenticatorAction implements Authenticator
 
         if (results.size() == 0)
         {
+            AuthenticatorAction.logger.debug("Authenticating no result found for : " + username);
+
             // write your authentication logic here,
             // return true if the authentication was
             // successful, false otherwise
@@ -83,16 +85,16 @@ public class AuthenticatorAction implements Authenticator
             this.user = (User) results.get(0);
             if (this.user.getPassword().equals(this.credentials.getPassword()))
             {
-
-                if ((roles != null) && (this.user.getRoles() != null))
-                {
-                    for (final UserRole mr : this.user.getRoles())
-                    {
-                        this.identity.addRole(mr.getRole().getValue());
-                        roles.add(mr.getRole().getValue());
-                    }
-                }
-
+                /*
+                 * if ((roles != null) && (this.user.getRoles() != null))
+                 * {
+                 * for (final UserRole mr : this.user.getRoles())
+                 * {
+                 * this.identity.addRole(mr.getRole().getValue());
+                 * roles.add(mr.getRole().getValue());
+                 * }
+                 * }
+                 */
                 return true;
             } else
             {

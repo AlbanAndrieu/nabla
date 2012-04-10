@@ -40,7 +40,7 @@ public class ChangePasswordTest extends SeamTest
             {
                 final boolean validate = this.validateValue("#{user.password}", "xxx");
                 ChangePasswordTest.logger.info("User password : " + validate + " - " + this.getValue("#{user.username}") + " + " + this.getValue("#{user.password}") + " - " + this.isValidationFailure());
-                assert this.isValidationFailure();
+                assert this.isValidationFailure(); // because xxx is too small
             }
 
             @Override

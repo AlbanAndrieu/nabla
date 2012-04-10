@@ -17,7 +17,7 @@
 
 	<dependencies>
 		<!-- remove components.xml from core -->
-		<!--
+		<!--		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
@@ -29,7 +29,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>common</artifactId>
 			<version>${project.version}</version>
-		</dependency>		
+		</dependency>	
 
 		<!-- This is replaced by the hibernate dependencies below -->
 		<dependency>

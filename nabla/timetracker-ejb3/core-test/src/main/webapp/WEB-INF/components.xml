@@ -67,6 +67,8 @@
    <!--<security:identity security-rules="#{securityRules}" authenticate-method="#{authenticator.authenticate}"/>-->
    <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/>
 
+  <!-- <security:jpa-identity-store  user-class="org.andromda.timetracker.domain.User" role-class="org.andromda.timetracker.domain.Role"/>-->
+
    <event type="org.jboss.seam.security.notLoggedIn">
       <action execute="#{redirect.captureCurrentView}"/>
    </event>
