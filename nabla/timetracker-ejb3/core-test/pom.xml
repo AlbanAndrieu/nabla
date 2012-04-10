@@ -17,22 +17,75 @@
 
 	<dependencies>
 		<!-- remove components.xml from core -->
+		<!--
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
+		-->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+
+		<!-- This is replaced by the hibernate dependencies below -->
 		<dependency>
 			<groupId>org.jboss.seam.embedded</groupId>
 			<artifactId>hibernate-all</artifactId>
-			<version>beta3.SP4</version>
+			<version>beta3.SP15</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- START This is the hibernate dependencies that replace hibernate-all -->
+		<!--
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<optional>true</optional>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<optional>true</optional>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		-->
+		<!-- END This is the hibernate dependencies that replace hibernate-all -->
+				
+		<dependency>
 			<groupId>org.jboss.seam.embedded</groupId>
 			<artifactId>jboss-embedded-all</artifactId>
-			<version>beta3.SP4</version>
+			<version>beta3.SP15</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -45,13 +98,13 @@
 		<dependency>
 			<groupId>org.jboss.seam.embedded</groupId>
 			<artifactId>jboss-embedded-api</artifactId>
-			<version>beta3.SP4</version>
+			<version>beta3.SP15</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.seam.embedded</groupId>
 			<artifactId>thirdparty-all</artifactId>
-			<version>beta3.SP4</version>
+			<version>beta3.SP15</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -78,6 +131,13 @@
 			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency> 
+			<groupId>org.slf4j</groupId> 
+			<artifactId>slf4j-log4j12</artifactId> 
+			<version>${slf4j.version}</version> 
+			<scope>test</scope>
+		</dependency>
+		<!--		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -90,7 +150,14 @@
 			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
+		-->
 
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${ehcache.version}</version>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>el-api</artifactId>
