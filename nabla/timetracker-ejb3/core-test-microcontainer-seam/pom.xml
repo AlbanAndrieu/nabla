@@ -9,11 +9,10 @@
 	</parent>
 
 	<groupId>org.andromda.timetracker.ejb3</groupId>
-	<artifactId>core-test</artifactId>
+	<artifactId>core-test-microcontainer-seam</artifactId>
 	<version>3.4</version>
-	<!--<packaging>seam-war</packaging> -->
-	<packaging>war</packaging>
-	<name>[${project.parent.artifactId} :: Web Application]</name>
+	<packaging>seam-war</packaging>
+	<name>[${project.parent.artifactId} :: Web Application] - ${project.artifactId} : ${project.version}</name>
 
 	<dependencies>
 		<!-- remove components.xml from core -->
@@ -170,7 +169,7 @@
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>${javassist.version}</version>
+			<version>${org.javassist.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -338,7 +337,7 @@
 				<filtering>true</filtering>
 			</testResource>
 			<testResource>
-				<directory>${basedir}/src/test/bootstrap</directory>
+				<directory>${basedir}/src/test/bootstrap-microcontainer-seam</directory>
 			</testResource>
 			<testResource>
 				<directory>${basedir}/src/main/webapp</directory>
