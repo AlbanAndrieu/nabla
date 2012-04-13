@@ -444,11 +444,9 @@
 						<filtering>true</filtering>
 					</testResource>
 				</testResources>
-				<!--
 				<filters>
-					<filter>${pom.basedir}/../../../filters/project-${environment}.properties</filter>
-				</filters>
-				-->		   				
+					<filter>${home.dir}/filters/project-${environment}.properties</filter>
+				</filters>   				
 			</build>
 		</profile>			
 		<!-- old profile Test have changed using extends SeamOpenEjbTest instead of extends SeamTest -->
@@ -579,7 +577,7 @@
 					</testResource>			
 				</testResources>
 				<filters>
-					<filter>${pom.basedir}/../../../filters/${project.parent.artifactId}-${environment}.properties</filter>
+					<filter>${home.dir}/filters/${project.parent.artifactId}-${environment}.properties</filter>
 				</filters>				
 			</build>
 		</profile>
