@@ -1,11 +1,12 @@
 package org.jboss.seam.example.booking.test;
 
+import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
+
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.apache.log4j.Logger;
-import org.jboss.seam.mock.SeamTest;
 import org.testng.annotations.Test;
 
-public class BookingTest extends SeamTest
+public class BookingTest extends SeamOpenEjbTest // extends SeamTest
 {
     private static final Logger logger = Logger.getLogger(BookingTest.class);
 
