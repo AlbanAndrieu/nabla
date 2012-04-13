@@ -154,7 +154,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<!-- <version>3.3.1.GA</version> -->
-			<version>${hibernate.annotations.version}</version
+			<version>${hibernate.annotations.version}</version>
 		</dependency>
 
 		<dependency>
