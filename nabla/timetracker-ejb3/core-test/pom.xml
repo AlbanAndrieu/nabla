@@ -566,7 +566,7 @@
 						<filtering>true</filtering>
 					</testResource>		
 					<testResource>
-						<directory>${basedir}/src/test/bootstrap</directory>
+						<directory>${basedir}/src/test/bootstrap-microcontainer-seam</directory>
 						<filtering>true</filtering>
 					</testResource>
 					<testResource>
