@@ -86,7 +86,7 @@
                 <property name="entityPropertyNameMask">none</property>
                 <property name="parameterNameMask">none</property -->
                 <property name="enumerationLiteralNameMask">upperunderscore</property>
-                <property name="persistenceContainerName">jboss</property>
+                <property name="persistenceContainerName">weblogic</property>
                 <!-- Override default @todo to set to Eclipse default>
                 <property name="toDoTag">TODO</property -->
                 <!-- Automatically makes English names plural (generally adds s if missing).
@@ -98,6 +98,35 @@
                 <property name="mergeLocation">${merge.templates.location}</property>
             </properties>
         </namespace>
+        <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
+        <namespace name="spring">
+            <properties>
+                <property name="sessionFactory">org.springframework.orm.hibernate3.LocalSessionFactoryBean</property>
+                <property name="localTransactionManager">org.springframework.orm.hibernate3.HibernateTransactionManager</property>
+                <property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>
+                <!--<property name="mergeMappingsUri">file:${conf.dir}/mappings/SpringMergeMappings.xml</property>-->
+                <!--<property name="mergeMappingsUri">${merge.mappings.spring}</property>-->
+                <property name="springTypesPackage">${application.package}</property>
+                <!--
+                <property name="daos">${service.generated.dir}</property>
+                <property name="dao-impls">${service.manual.java.dir}</property>
+                <property name="spring-configuration">${service.generated.java.resources}</property>
+                <property name="server-test-config">${service.manual.test.resources}</property>
+                <property name="server-test">${service.manual.test.dir}</property>
+                <property name="services">${service.generated.dir}</property>
+                <property name="service-impls">${service.manual.java.dir}</property>
+                <property name="service-interfaces">${service.generated.dir}</property>
+                -->
+                <property name="criteria">${common.generated.dir}</property>
+                <property name="value-objects">${common.generated.dir}</property>
+                <property name="enableSpringTransactionsWhenEjbsEnabled">true</property>
+                <!-- to remove any dependency on EJB, comment the following property>
+                <property name="session-ejbs">${service.generated.dir}</property -->
+                <!-- uncomment to enable EJB security
+                <property name="securityRealm">${application.id}</property>
+                 -->
+            </properties>
+        </namespace>        
         <!-- See http://web.aanet.com.au/persabi/andromda/namespace.html -->
         <namespace name="ejb3">
             <properties>

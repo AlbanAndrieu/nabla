@@ -88,8 +88,8 @@
             <artifactId>ejb3-persistence</artifactId>
         </dependency-->
         <dependency>
-            <groupId>jboss</groupId>
-			<artifactId>jboss-annotations-ejb3</artifactId>
+                <groupId>jboss</groupId>
+		<artifactId>jboss-annotations-ejb3</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>jboss</groupId>
@@ -111,6 +111,7 @@
 			<version>2.0.1.SP2</version>
 			<scope>provided</scope>
 		</dependency>
+    		
 		<dependency>
 			<groupId>org.jboss.microcontainer</groupId>
 			<artifactId>hibernate-all</artifactId>
@@ -149,11 +150,19 @@
             <version>1.0.0.Alpha9</version>
             <scope>test</scope>
         </dependency-->
-        <!--
+                
+                <!--
+      		<dependency>
+      		  <groupId>jboss.jbossws14</groupId>
+      		  <artifactId>jbossws14-client</artifactId>
+      		  <version>1.0RC2</version>
+      		</dependency>
+      		-->
+      		<!--    
 		<dependency>
 			<groupId>org.jboss.ws.native</groupId>
 			<artifactId>jbossws-native-client</artifactId>
-            <version>3.2.0.GA</version>
+            		<version>3.2.0.GA</version>
 			<exclusions>
 				<exclusion>
 					<groupId>woodstox</groupId>
@@ -161,12 +170,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		 -->
+		-->
+		<!--
 		<dependency>
 			<groupId>org.andromda</groupId>
 			<artifactId>andromda-script-wrappers</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
