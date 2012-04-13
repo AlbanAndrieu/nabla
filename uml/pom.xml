@@ -157,20 +157,25 @@
 		</dependencies>
 	</dependencyManagement>
 
+        <!--
 	<dependencies>
 		<dependency>
 			<groupId>org.andromda</groupId>
 			<artifactId>andromda-script-wrappers</artifactId>
 			<version>${andromda.version}</version>
+			-->
 			<!--<scope>runtime</scope> -->
+			<!--
 			<scope>provided</scope>
 			<exclusions>
+			-->
 				<!--
 				<exclusion>
 					<groupId>groovy</groupId>
 					<artifactId>groovy-all-1.0-jsr</artifactId>
 				</exclusion>
 				-->
+				<!--
 				<exclusion>
 					<groupId>org.codehaus.groovy</groupId>
 					<artifactId>groovy-all</artifactId>
@@ -178,6 +183,7 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+	-->
 
 	<build>
 		<pluginManagement>
@@ -357,8 +363,8 @@
 		<validation>true</validation>
 		<cartridge.filter></cartridge.filter>
 		<!--<conf.dir>${pom.basedir}/src/main/config/${uml.type}</conf.dir> -->
+		<nabla.mda.dir>${pom.basedir}/../..</nabla.mda.dir>		
 		<conf.dir>${nabla.mda.dir}/model/src/main/config</conf.dir>
-		<nabla.mda.dir>${pom.basedir}/../..</nabla.mda.dir>
 		<!--<model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules/${model.name}.uml</model.uri> -->
 		<configuration.mda.dir>${nabla.mda.dir}/configuration/${andromda.version}</configuration.mda.dir>
 		<manual.mappings.location>${configuration.mda.dir}/generation/manualMapping</manual.mappings.location>
@@ -425,7 +431,7 @@
 		<unittest.datasource.user>${jdbc.nabla.username}</unittest.datasource.user>
 		<unittest.datasource.password>${jdbc.nabla.password}</unittest.datasource.password>
 		<unittest.datasource.url>${jdbc.url}</unittest.datasource.url>
-		--
+		-->
 
                 <!-- Items related to schema2xmi -->
 		<maven.andromda.schema2xmi.user>${jdbc.username}</maven.andromda.schema2xmi.user>
