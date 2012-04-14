@@ -553,9 +553,11 @@
 						</excludes>	
 						-->
 					</resource>	
+					<!--
 					<resource>
 						<directory>${basedir}/src/main/webapp</directory>
-					</resource>												
+					</resource>	
+					-->											
 				</resources>
 				
 				<testResources>
