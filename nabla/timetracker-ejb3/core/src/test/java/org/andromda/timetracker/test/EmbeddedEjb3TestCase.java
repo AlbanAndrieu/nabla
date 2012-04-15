@@ -220,12 +220,12 @@ public class EmbeddedEjb3TestCase
 
             // Add testuser
             UserDetailsVO udVO = new UserDetailsVO();
-            udVO.setFirstName("testuser");
-            udVO.setLastName("testuser");
-            udVO.setEmail("test@test.com");
+            udVO.setFirstName("testusertmp");
+            udVO.setLastName("testusertmp");
+            udVO.setEmail("testtmp@test.com");
             udVO.setIsActive(false);
-            udVO.setUsername("testuser");
-            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
+            udVO.setUsername("testusertmp");
+            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
             udVO.setCreationDate(new Date());
             final UserRoleVO urVO = new UserRoleVO();
             urVO.setRole(Role.STANDARD_USER);
@@ -238,7 +238,7 @@ public class EmbeddedEjb3TestCase
             try
             {
                 // Remote testuser if it already exists
-                userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testuser");
+                userVO = EmbeddedEjb3TestCase.myServiceRemote.getUser("testusertmp");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     EmbeddedEjb3TestCase.myServiceRemote.removeUser(userVO);
