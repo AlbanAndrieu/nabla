@@ -48,6 +48,32 @@
   <!-- ******************************************************************* -->
   <!-- Low Level Loggers                                                   -->
   <!-- ******************************************************************* -->
+  <!-- ############### Embedded JBoss AS #################  -->
+  <!-- Log Jboss messages -->
+  <category name="org.jboss">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="com.arjuna">
+      <priority value="ERROR"/>
+  </category>
+ 
+  <!-- JBoss Cache likes to talk a lot -->
+  <category name="org.jboss.cache.interceptors.CacheLoaderInterceptor">
+     <priority value="ERROR"/>
+  </category>
+      
+  <!-- EMB-6, JMS activation throws an error due to deployment ordering, but as there is a timeout
+  and retry the tests pass. Hide the error message -->
+  <category name="jboss.resource.adapter.jms.inflow.JmsActivation">
+      <priority value="ERROR"/>
+  </category>
+
+  <!-- ############### Hibernate logging ################# -->
+
+  <category name="org.hibernate">
+      <priority value="ERROR"/>
+  </category>
+
   <!-- Log hibernate messages -->
   <logger name="org.hibernate">
     <level value="warn"/>
@@ -97,27 +123,80 @@
   <logger name="org.hibernate.connection.DriverManagerConnectionProvider">
     <level value="warn"/>
   </logger>
+    
+  <!-- http://www.developpez.net/forums/d776471/java/serveurs-conteneurs-java-ee/java-ee/loadcontexts-fail-safe-cleanup/ -->
+  <!-- Hibernate got a bit too verbose in JBoss -->
+  <category name="org.hibernate.engine.loading.LoadContexts">
+     <priority value="DEBUG"/>
+  </category>
+  
+  <!--
+  <category name="org.hibernate.loader">
+      <priority value="TRACE"/>
+  </category>
+  -->
+
+  <!-- Ajax4jsf is too noisy -->
+  <category name="org.ajax4jsf.cache">
+      <priority value="WARN"/>
+  </category>
+
+  <!-- ############### Seam logging ################### -->  
+  <category name="org.jboss.seam">
+      <priority value="DEBUG"/>
+  </category>
+
+  <!-- These things are too noisy
+  <category name="org.jboss.seam.jsf.SeamVariableResolver">
+      <priority value="INFO"/>
+  </category>
+  <category name="org.jboss.seam.contexts.Contexts">
+      <priority value="INFO"/>
+  </category>
+  <category name="org.jboss.seam.Component">
+      <priority value="INFO"/>
+  </category>
+  <category name="org.jboss.seam.deployment.Scanner">
+      <priority value="INFO"/>
+  </category>
+  <category name="org.jboss.seam.util.Naming">
+      <priority value="INFO"/>
+  </category>
+  <category name="org.jboss.seam.debug.hot">
+      <priority value="INFO"/>
+  </category>
+  <category name="org.jboss.seam.core.Events">
+      <priority value="INFO"/>
+  </category>
+  -->
+
+  <!-- Debugging conversations and persistence contexts -->
+  <category name="org.jboss.seam.core.Manager">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="org.jboss.seam.core.ManagedPersistenceContext">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="org.jboss.seam.jsf.AbstractSeamPhaseListener">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="org.jboss.seam.interceptors.ConversationInterceptor">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="org.jboss.seam.contexts.Lifecycle">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="org.hibernate.impl.SessionImpl">
+      <priority value="DEBUG"/>
+  </category>
+  <category name="org.hibernate.event.def.AbstractFlushingEventListener">
+      <priority value="DEBUG"/>
+  </category>
 
   <!-- Log TimeTracker messages -->
   <logger name="org.andromda.timetracker">
     <level value="debug"/>
   </logger>
-  
-  <!-- Log Jboss messages -->
-  <logger name="org.jboss">
-    <level value="debug"/>
-  </logger>
-
-  <!-- http://www.developpez.net/forums/d776471/java/serveurs-conteneurs-java-ee/java-ee/loadcontexts-fail-safe-cleanup/ -->
-  <!-- Hibernate got a bit too verbose in JBoss -->
-  <category name="org.hibernate.engine.loading.LoadContexts">
-     <priority value="ERROR"/>
-  </category>
- 
-  <!-- JBoss Cache likes to talk a lot -->
-  <category name="org.jboss.cache.interceptors.CacheLoaderInterceptor">
-     <priority value="ERROR"/>
-  </category>
    
   <!-- ******************************************************************* -->
   <!-- Root Logger                                                         -->

@@ -9,10 +9,13 @@ import java.util.Properties;
 
 import javax.naming.NamingException;
 
+import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
+
 import org.andromda.timetracker.ServiceLocator;
 import org.andromda.timetracker.domain.Role;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.UserDoesNotExistException;
+import org.andromda.timetracker.service.UserServiceBean;
 import org.andromda.timetracker.service.UserServiceLocal;
 import org.andromda.timetracker.service.UserServiceRemote;
 import org.andromda.timetracker.test.EJB3Container;
@@ -21,36 +24,35 @@ import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jboss.seam.Component;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
  * Service test class UserServiceTest for testing with TestNG
  * Check the testng.xml for initialisation of the EJB3Container before running any tests.
  */
-public class UserServiceTest
+public class UserServiceTest extends SeamOpenEjbTest
 {
     private static final Log logger = LogFactory.getLog(UserServiceTest.class);
 
-    @BeforeTest
-    public void startup() throws Exception
-    {
-        EJB3Container.startupEmbeddedContainer();
-
-    }
+    // @BeforeTest
+    // public void startup() throws Exception
+    // {
+    // EJB3Container.startupEmbeddedContainer();
+    //
+    // }
 
     /**
      * The method is executed after lunching all tests methods.
      * It stops and destroys the EJB3 deployer and shuts down the container
      * @throws Exception
      */
-    @AfterClass
-    public void terminate() throws Exception
-    {
-        EJB3Container.stopEmbeddedContainer();
-    }
+    // @AfterClass
+    // public void terminate() throws Exception
+    // {
+    // EJB3Container.stopEmbeddedContainer();
+    // }
 
     @Test
     public void testSimpleLookupService()
@@ -58,16 +60,17 @@ public class UserServiceTest
         UserServiceLocal userService;
         try
         {
-            userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
+            userService = (UserServiceLocal) Component.getInstance(UserServiceBean.class, true);
+            // userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
-        catch (final NamingException e)
-        {
-            UserServiceTest.logger.debug("NamingException : " + e);
-            // Warning : Receive timed out error within eclipse because embedded Jboss container not started
-            Assert.fail();
-        }
+        // catch (final NamingException e)
+        // {
+        // UserServiceTest.logger.debug("NamingException : " + e);
+        // // Warning : Receive timed out error within eclipse because embedded Jboss container not started
+        // Assert.fail();
+        // }
         catch (final Exception e)
         {
             UserServiceTest.logger.debug("Exception : " + e);
@@ -182,7 +185,7 @@ public class UserServiceTest
             UserVO userVO = null;
             try
             {
-                userVO = userService.getUser("testuser");
+                userVO = userService.getUser("testusertmp");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     userService.removeUser(userVO);
@@ -200,12 +203,12 @@ public class UserServiceTest
 
             // Add testuser
             UserDetailsVO udVO = new UserDetailsVO();
-            udVO.setFirstName("testuser");
-            udVO.setLastName("testuser");
-            udVO.setEmail("test@test.com");
+            udVO.setFirstName("testusertmp");
+            udVO.setLastName("testusertmp");
+            udVO.setEmail("testtmp@test.com");
             udVO.setIsActive(false);
-            udVO.setUsername("testuser");
-            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
+            udVO.setUsername("testusertmp");
+            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
             udVO.setCreationDate(new Date());
 
             final UserRoleVO urVO = new UserRoleVO();
@@ -223,7 +226,7 @@ public class UserServiceTest
             {
                 // Remove testuser if it already exists
 
-                userVO = userService.getUser("testuser");
+                userVO = userService.getUser("testusertmp");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     userService.removeUser(userVO);

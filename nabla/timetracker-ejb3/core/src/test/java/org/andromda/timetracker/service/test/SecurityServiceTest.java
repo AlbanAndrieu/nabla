@@ -4,7 +4,6 @@
 //
 package org.andromda.timetracker.service.test;
 
-import org.andromda.timetracker.test.EJB3Container;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.testng.annotations.Test;
@@ -20,15 +19,15 @@ public class SecurityServiceTest
     @Test
     public void testGetUserDetails()
     {
-//        try
-//        {
-//            org.andromda.timetracker.service.SecurityServiceRemote securityService = (org.andromda.timetracker.service.SecurityServiceRemote)EJB3Container.getInitialContext().lookup("SecurityServiceBean/remote");
-//            test implementation
-//        }
-//        catch (Exception ex)
-//        {
-//            logger.warn("Failed test testGetUserDetails()", ex);
-//        }
+        // try
+        // {
+        // org.andromda.timetracker.service.SecurityServiceRemote securityService = (org.andromda.timetracker.service.SecurityServiceRemote)EJB3Container.getInitialContext().lookup("SecurityServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testGetUserDetails()", ex);
+        // }
     }
 
 }

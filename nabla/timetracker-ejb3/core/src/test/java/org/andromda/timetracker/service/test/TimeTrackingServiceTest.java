@@ -4,7 +4,6 @@
 //
 package org.andromda.timetracker.service.test;
 
-import org.andromda.timetracker.test.EJB3Container;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.testng.annotations.Test;
@@ -20,15 +19,16 @@ public class TimeTrackingServiceTest
     @Test
     public void testFindTimecards()
     {
-//        try
-//        {
-//            org.andromda.timetracker.service.TimeTrackingServiceRemote timeTrackingService = (org.andromda.timetracker.service.TimeTrackingServiceRemote)EJB3Container.getInitialContext().lookup("TimeTrackingServiceBean/remote");
-//            test implementation
-//        }
-//        catch (Exception ex)
-//        {
-//            logger.warn("Failed test testFindTimecards()", ex);
-//        }
+        // try
+        // {
+        // org.andromda.timetracker.service.TimeTrackingServiceRemote timeTrackingService =
+        // (org.andromda.timetracker.service.TimeTrackingServiceRemote)EJB3Container.getInitialContext().lookup("TimeTrackingServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testFindTimecards()", ex);
+        // }
     }
 
 }

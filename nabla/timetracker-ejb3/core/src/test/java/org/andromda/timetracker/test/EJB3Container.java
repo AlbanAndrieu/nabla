@@ -11,8 +11,8 @@ import javax.naming.InitialContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jboss.ejb3.embedded.EJB3StandaloneBootstrap;
-import org.jboss.ejb3.embedded.EJB3StandaloneDeployer;
+//import org.jboss.ejb3.embedded.EJB3StandaloneBootstrap;
+//import org.jboss.ejb3.embedded.EJB3StandaloneDeployer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -32,13 +32,13 @@ public class EJB3Container
     // a boolean to test if the container is running or not
     private static boolean                containerRunning = false;
 
-    private static EJB3StandaloneDeployer deployer;
+//    private static EJB3StandaloneDeployer deployer;
 
-    @BeforeTest
-    public void startup() throws Exception
-    {
-        EJB3Container.startupEmbeddedContainer();
-    }
+//    @BeforeTest
+//    public void startup() throws Exception
+//    {
+//        EJB3Container.startupEmbeddedContainer();
+//    }
 
     /**
      * The method starts the container and creates a deployer
@@ -46,6 +46,7 @@ public class EJB3Container
      *
      * @throws Exception
      */
+    /*
     public static void startupEmbeddedContainer() throws Exception
     {
         if (!EJB3Container.containerRunning)
@@ -105,39 +106,40 @@ public class EJB3Container
             }
         }
     }
+    */
 
-    @AfterTest
-    public void shutdown() throws Exception
-    {
-        EJB3Container.stopEmbeddedContainer();
-    }
+//    @AfterTest
+//    public void shutdown() throws Exception
+//    {
+//        EJB3Container.stopEmbeddedContainer();
+//    }
 
     /**
      * The method stop the container
      *
      * @throws Exception
      */
-    public static void stopEmbeddedContainer() throws Exception
-    {
-        if (EJB3Container.containerRunning)
-        {
-            try
-            {
-                EJB3Container.logger.info("==>Invoking EJB3.shutdown...");
-                EJB3Container.deployer.stop();
-                EJB3Container.deployer.destroy();
-                EJB3StandaloneBootstrap.shutdown();
-            }
-            catch (final Exception ex)
-            {
-                throw new RuntimeException(ex);
-            }
-            finally
-            {
-                EJB3Container.containerRunning = false;
-            }
-        }
-    }
+//    public static void stopEmbeddedContainer() throws Exception
+//    {
+//        if (EJB3Container.containerRunning)
+//        {
+//            try
+//            {
+//                EJB3Container.logger.info("==>Invoking EJB3.shutdown...");
+//                EJB3Container.deployer.stop();
+//                EJB3Container.deployer.destroy();
+//                EJB3StandaloneBootstrap.shutdown();
+//            }
+//            catch (final Exception ex)
+//            {
+//                throw new RuntimeException(ex);
+//            }
+//            finally
+//            {
+//                EJB3Container.containerRunning = false;
+//            }
+//        }
+//    }
 
     private static InitialContext initialContext        = null;
     private static InitialContext securedInitialContext = null;
