@@ -5,6 +5,8 @@
 //
 package org.andromda.timetracker.service;
 
+import javax.ejb.Remote;
+
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 
@@ -13,30 +15,31 @@ import org.andromda.timetracker.vo.UserVO;
  * The service that implement this business interface is a Seam component.  The cartridge
  * will not expose this interface as a Remote business interface for the bean
  * component.  Seam components will only have a Local business interface.
- * 
+ *
  */
+@Remote
 public interface UserServiceRemote extends UserService
 {
 
-    // ------------ Business Methods  -----------------
+    // ------------ Business Methods -----------------
 
     /**
-     * 
+     *
      */
     public UserVO[] getAllUsers() throws UserDoesNotExistException;
 
     /**
-     * 
+     *
      */
     public UserVO getUser(String username) throws UserDoesNotExistException;
 
     /**
-     * 
+     *
      */
     public UserDetailsVO registerUser(UserDetailsVO userDetailVO) throws UserDoesNotExistException;
 
     /**
-     * 
+     *
      */
     public void removeUser(UserVO userVO) throws UserDoesNotExistException;
 

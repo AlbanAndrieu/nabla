@@ -11,7 +11,6 @@
  
 	<groupId>org.andromda.timetracker.ejb3</groupId>
 	<artifactId>core-test</artifactId>
-	<version>3.4</version>
 	<packaging>ejb</packaging>
 	<name>[${project.parent.artifactId} :: EJB3 Core Business Tier Test] - ${project.artifactId} : ${project.version}</name>
 

@@ -33,7 +33,7 @@ import org.jboss.seam.faces.FacesMessages;
 // @Scope(ScopeType.EVENT)
 @Name("userService")
 // @Interceptors(SeamInterceptor.class)
-public class UserServiceBean extends UserServiceBase implements UserServiceLocal/* , UserServiceRemote */
+public class UserServiceBean extends UserServiceBase implements UserServiceLocal, UserServiceRemote
 {
 
     // --------------- Constructors ---------------
