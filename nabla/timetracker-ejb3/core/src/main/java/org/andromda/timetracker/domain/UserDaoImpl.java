@@ -6,25 +6,36 @@
  */
 package org.andromda.timetracker.domain;
 
-import java.util.Collection;
-import java.util.Set;
-import java.util.TreeSet;
+import javax.ejb.Stateless;
 
 import org.andromda.timetracker.vo.UserDetailsVO;
-import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 
 /**
  * @see User
  */
+@Stateless
+// @Stateful if stateful uncomment the destroy method
+@Name("userDao")
+@Scope(ScopeType.EVENT)
+@AutoCreate
 public class UserDaoImpl extends UserDaoBase
 {
+
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(UserDaoImpl.class);
+
     /**
      * @see org.andromda.timetracker.domain.UserDao#getUserDetails(String)
      */
     @Override
     protected User handleGetUserDetails(final String username)
     {
+        UserDaoImpl.logger.debug("Search user : " + username);
+
         // final User user = (User) this.getHibernateSession().createQuery("from User user left join fetch user.roles where user.username = :username").setParameter("username", username).uniqueResult();
         final User user = (User) this.getHibernateSession().createQuery("select User from User user where user.username = :username").setParameter("username", username).uniqueResult();
         return user;
@@ -104,15 +115,15 @@ public class UserDaoImpl extends UserDaoBase
         // WARNING! No conversion for targetVO.roles (can't convert sourceEntity.getRoles():org.andromda.timetracker.domain.UserRole to org.andromda.timetracker.vo.UserRoleVO[]
 
         // Convert roles
-        final Collection srcRoles = sourceEntity.getRoles();
-        final UserRoleVO[] targetRoles = new UserRoleVO[srcRoles.size()];
-        int i = 0;
-        for (final Object srcRole : srcRoles)
-        {
-            targetRoles[i] = this.getUserRoleDao().toUserRoleVO((UserRole) srcRole);
-            i++;
-        }
-        targetVO.setRoles(targetRoles);
+        // final Collection srcRoles = sourceEntity.getRoles();
+        // final UserRoleVO[] targetRoles = new UserRoleVO[srcRoles.size()];
+        // int i = 0;
+        // for (final Object srcRole : srcRoles)
+        // {
+        // targetRoles[i] = this.getUserRoleDao().toUserRoleVO((UserRole) srcRole);
+        // i++;
+        // }
+        // targetVO.setRoles(targetRoles);
     }
 
     /**
@@ -172,17 +183,17 @@ public class UserDaoImpl extends UserDaoBase
         // TODO verify behavior of userDetailsVOToEntity
         super.userDetailsVOToEntity(sourceVO, targetEntity, copyIfNull);
 
-        if (sourceVO.getRoles().length > 0)
-        {
-            final Set<UserRole> roles = new TreeSet<UserRole>();
-
-            for (final UserRoleVO userRoleVO : sourceVO.getRoles())
-            {
-                System.out.println(" user role : " + userRoleVO.getRole());
-                roles.add(this.getUserRoleDao().userRoleVOToEntity(userRoleVO));
-            }
-            targetEntity.setRoles(roles);
-        }
+        // if (sourceVO.getRoles().length > 0)
+        // {
+        // final Set<UserRole> roles = new TreeSet<UserRole>();
+        //
+        // for (final UserRoleVO userRoleVO : sourceVO.getRoles())
+        // {
+        // System.out.println(" user role : " + userRoleVO.getRole());
+        // roles.add(this.getUserRoleDao().userRoleVOToEntity(userRoleVO));
+        // }
+        // targetEntity.setRoles(roles);
+        // }
     }
 
 }

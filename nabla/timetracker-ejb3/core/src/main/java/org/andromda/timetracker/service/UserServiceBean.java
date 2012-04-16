@@ -6,10 +6,15 @@ package org.andromda.timetracker.service;
 
 import java.util.Collection;
 
+import javax.ejb.Stateful;
+
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserDao;
+import org.andromda.timetracker.domain.UserDaoException;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.faces.FacesMessages;
 
 /**
  * @see UserServiceBase
@@ -22,7 +27,12 @@ import org.andromda.timetracker.vo.UserVO;
  */
 // Uncomment to enable webservices for UserServiceBean
 // @javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.UserServiceWSInterface", serviceName = "UserService")
-public class UserServiceBean extends UserServiceBase implements UserServiceRemote
+// Comment to enable jboss embedded tests for UserServiceBean
+@Stateful
+// @Scope(ScopeType.CONVERSATION)
+@Name("userService")
+// @Interceptors(SeamInterceptor.class)
+public class UserServiceBean extends UserServiceBase implements UserServiceLocal, UserServiceRemote
 {
 
     // --------------- Constructors ---------------
@@ -43,8 +53,19 @@ public class UserServiceBean extends UserServiceBase implements UserServiceRemot
     @Override
     protected UserVO[] handleGetAllUsers() throws Exception
     {
-        final Collection userVOs = this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
-        return (UserVO[]) userVOs.toArray(new UserVO[userVOs.size()]);
+        Collection<UserVO> userVOs = null;
+        try
+        {
+            userVOs = this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
+            // this.userList = (List<User>) this.getUserDao().loadAll(UserDao.TRANSFORM_NONE);
+        }
+        catch (final UserDaoException ex)
+        {
+            // FacesMessages.instance().addToControl("user", StatusMessage.Severity.ERROR, "User not found on database.", (Object[]) null);
+            FacesMessages.instance().addToControl("user", "User not found on database.", (Object[]) null);
+            this.logger.debug("Empty person list");
+        }
+        return userVOs.toArray(new UserVO[userVOs.size()]);
     }
 
     /**
@@ -60,7 +81,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceRemot
         }
         catch (final Exception ex)
         {
-            throw new UserDoesNotExistException("User : " + username + "does not exist");
+            throw new UserDoesNotExistException("User : " + username + " does not exist");
         }
     }
 
