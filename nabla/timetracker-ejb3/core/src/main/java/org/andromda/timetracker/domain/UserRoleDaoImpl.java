@@ -6,12 +6,23 @@
  */
 package org.andromda.timetracker.domain;
 
+import javax.ejb.Stateless;
+
 import org.andromda.timetracker.vo.UserRoleVO;
 import org.apache.log4j.Logger;
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 
 /**
  * @see UserRole
  */
+@Stateless
+// @Stateful if stateful uncomment the destroy method
+@Name("userRoleDao")
+@Scope(ScopeType.EVENT)
+@AutoCreate
 public class UserRoleDaoImpl extends UserRoleDaoBase
 {
     private static final Logger logger = Logger.getLogger(UserRoleDaoImpl.class);

@@ -7,13 +7,17 @@ package org.andromda.timetracker.service;
 import java.util.Collection;
 
 import javax.ejb.Stateful;
+import javax.interceptor.Interceptors;
 
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserDao;
 import org.andromda.timetracker.domain.UserDaoException;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
+import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.ejb.SeamInterceptor;
 import org.jboss.seam.faces.FacesMessages;
 
 /**
@@ -29,9 +33,9 @@ import org.jboss.seam.faces.FacesMessages;
 // @javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.UserServiceWSInterface", serviceName = "UserService")
 // Comment to enable jboss embedded tests for UserServiceBean
 @Stateful
-// @Scope(ScopeType.CONVERSATION)
+@Scope(ScopeType.CONVERSATION)
 @Name("userService")
-// @Interceptors(SeamInterceptor.class)
+@Interceptors(SeamInterceptor.class)
 public class UserServiceBean extends UserServiceBase implements UserServiceLocal, UserServiceRemote
 {
 

@@ -6,9 +6,12 @@
  */
 package org.andromda.timetracker.domain;
 
+import java.util.Collection;
+
 import javax.ejb.Stateless;
 
 import org.andromda.timetracker.vo.UserDetailsVO;
+import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
@@ -37,8 +40,10 @@ public class UserDaoImpl extends UserDaoBase
         UserDaoImpl.logger.debug("Search user : " + username);
 
         // final User user = (User) this.getHibernateSession().createQuery("from User user left join fetch user.roles where user.username = :username").setParameter("username", username).uniqueResult();
-        final User user = (User) this.getHibernateSession().createQuery("select User from User user where user.username = :username").setParameter("username", username).uniqueResult();
+        // final User user = (User) this.getHibernateSession().createQuery("select User from User user where user.username = :username").setParameter("username", username).uniqueResult();
+        final User user = (User) this.getEntityManager().createQuery("select User from User user where user.username = :username").setParameter("username", username).getSingleResult();
         return user;
+
     }
 
     /**
@@ -115,15 +120,15 @@ public class UserDaoImpl extends UserDaoBase
         // WARNING! No conversion for targetVO.roles (can't convert sourceEntity.getRoles():org.andromda.timetracker.domain.UserRole to org.andromda.timetracker.vo.UserRoleVO[]
 
         // Convert roles
-        // final Collection srcRoles = sourceEntity.getRoles();
-        // final UserRoleVO[] targetRoles = new UserRoleVO[srcRoles.size()];
-        // int i = 0;
-        // for (final Object srcRole : srcRoles)
-        // {
-        // targetRoles[i] = this.getUserRoleDao().toUserRoleVO((UserRole) srcRole);
-        // i++;
-        // }
-        // targetVO.setRoles(targetRoles);
+        final Collection srcRoles = sourceEntity.getRoles();
+        final UserRoleVO[] targetRoles = new UserRoleVO[srcRoles.size()];
+        int i = 0;
+        for (final Object srcRole : srcRoles)
+        {
+            targetRoles[i] = this.getUserRoleDao().toUserRoleVO((UserRole) srcRole);
+            i++;
+        }
+        targetVO.setRoles(targetRoles);
     }
 
     /**

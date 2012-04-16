@@ -5,8 +5,8 @@
 package org.andromda.timetracker.service.test;
 
 import java.util.Date;
-import java.util.Properties;
 
+import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
@@ -18,7 +18,6 @@ import org.andromda.timetracker.service.UserDoesNotExistException;
 import org.andromda.timetracker.service.UserServiceBean;
 import org.andromda.timetracker.service.UserServiceLocal;
 import org.andromda.timetracker.service.UserServiceRemote;
-import org.andromda.timetracker.test.EJB3Container;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
@@ -55,12 +54,30 @@ public class UserServiceTest extends SeamOpenEjbTest
     // }
 
     @Test
+    public void testSimpleComponentService() throws Exception
+    {
+        new ComponentTest()
+        {
+
+            @Override
+            protected void testComponents() throws Exception
+            {
+                final UserServiceLocal userService = (UserServiceLocal) Component.getInstance(UserServiceBean.class, true);
+                UserServiceTest.logger.debug("Service : " + userService.toString());
+                Assert.assertNotNull(userService);
+            }
+
+        }.run();
+
+    }
+
+    @Test
     public void testSimpleLookupService()
     {
         UserServiceLocal userService;
         try
         {
-            userService = (UserServiceLocal) Component.getInstance(UserServiceBean.class, true);
+            userService = this.doJndiLookup("UserServiceBean");
             // userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
@@ -79,16 +96,14 @@ public class UserServiceTest extends SeamOpenEjbTest
 
     }
 
-    // @Test
-    public void testOtherLookupPathRemoteService()
+    @Test
+    public void testLookupPathLocalService()
     {
-        UserServiceRemote userService;
+        UserServiceLocal userService;
         try
         {
-            userService = ServiceLocator.getInstance().getUserService();
-            UserServiceTest.logger.debug("Service : " + userService.toString());
-            Assert.assertNotNull(userService);
-            userService = ServiceLocator.getInstance().get_org_andromda_timetracker_service_UserServiceBean_Remote(null);
+            final InitialContext initialContext = this.getInitialContext();
+            userService = (UserServiceLocal) initialContext.lookup("UserServiceBean/Local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -105,15 +120,62 @@ public class UserServiceTest extends SeamOpenEjbTest
 
     }
 
-    @Test
+    // @Test
+    public void testLookupPathRemoteService()
+    {
+        UserServiceRemote userService;
+        try
+        {
+            final InitialContext initialContext = this.getInitialContext();
+            userService = (UserServiceRemote) initialContext.lookup("UserServiceBean/Remote");
+            UserServiceTest.logger.debug("Service : " + userService.toString());
+            Assert.assertNotNull(userService);
+        }
+        catch (final NamingException e)
+        {
+            UserServiceTest.logger.debug("NamingException : " + e);
+            Assert.fail();
+        }
+        catch (final Exception e)
+        {
+            UserServiceTest.logger.debug("Exception : " + e);
+            Assert.fail();
+        }
+
+    }
+
+    // @Test
+    // public void testOtherLookupPathRemoteService()
+    // {
+    // UserServiceRemote userService;
+    // try
+    // {
+    // userService = ServiceLocator.getInstance().getUserService();
+    // UserServiceTest.logger.debug("Service : " + userService.toString());
+    // Assert.assertNotNull(userService);
+    // }
+    // catch (final NamingException e)
+    // {
+    // UserServiceTest.logger.debug("NamingException : " + e);
+    // Assert.fail();
+    // }
+    // catch (final Exception e)
+    // {
+    // UserServiceTest.logger.debug("Exception : " + e);
+    // Assert.fail();
+    // }
+    //
+    // }
+
+    // @Test
     public void testServiceLocatorLookupPathRemoteService()
     {
         UserServiceRemote userService;
         try
         {
-            final Properties prop = new Properties();
-            prop.putAll(EJB3Container.getInitialContextProperties());
-            userService = ServiceLocator.getInstance().get_org_andromda_timetracker_service_UserServiceBean_Remote(prop);
+            // final Properties prop = new Properties();
+            // prop.putAll(EJB3Container.getInitialContextProperties());
+            userService = ServiceLocator.getInstance().get_org_andromda_timetracker_service_UserServiceBean_Remote(null/* prop */);
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -136,14 +198,10 @@ public class UserServiceTest extends SeamOpenEjbTest
         UserServiceLocal userService;
         try
         {
-            userService = (UserServiceLocal) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/local");
+            // userService = (UserServiceLocal) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/local");
+            userService = this.doJndiLookup("UserServiceBean");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
-        }
-        catch (final NamingException e)
-        {
-            UserServiceTest.logger.debug("NamingException : " + e);
-            Assert.fail();
         }
         catch (final Exception e)
         {
@@ -173,114 +231,125 @@ public class UserServiceTest extends SeamOpenEjbTest
      *
      */
     @Test
-    public void testRegisterUser()
+    public void testRegisterUser() throws Exception
     {
-        try
+
+        new ComponentTest()
         {
 
-            // final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
-            final UserServiceLocal userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
-
-            // Remote testuser if it already exists
-            UserVO userVO = null;
-            try
+            @Override
+            protected void testComponents() throws Exception
             {
-                userVO = userService.getUser("testusertmp");
-                if ((userVO != null) && (userVO.getId().longValue() > 0))
+
+                try
                 {
-                    userService.removeUser(userVO);
+
+                    // final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+                    // final UserServiceLocal userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
+                    // final UserServiceLocal userService = this.doJndiLookup("UserServiceBean");
+                    final UserServiceLocal userService = (UserServiceLocal) Component.getInstance(UserServiceBean.class, true);
+
+                    // Remote testuser if it already exists
+                    UserVO userVO = null;
+                    try
+                    {
+                        userVO = userService.getUser("testusertmp");
+                        if ((userVO != null) && (userVO.getId().longValue() > 0))
+                        {
+                            userService.removeUser(userVO);
+                        }
+                    }
+                    catch (final UserDoesNotExistException e)
+                    {
+                        UserServiceTest.logger.debug("UserDoesNotExistException : " + e);
+                    }
+                    catch (final Exception e)
+                    {
+                        UserServiceTest.logger.debug("Exception : " + e);
+                        Assert.fail();
+                    }
+
+                    // Add testuser
+                    UserDetailsVO udVO = new UserDetailsVO();
+                    udVO.setFirstName("testusertmp");
+                    udVO.setLastName("testusertmp");
+                    udVO.setEmail("testtmp@test.com");
+                    udVO.setIsActive(false);
+                    udVO.setUsername("testusertmp");
+                    udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                    udVO.setCreationDate(new Date());
+
+                    final UserRoleVO urVO = new UserRoleVO();
+                    urVO.setRole(Role.STANDARD_USER);
+
+                    udVO.setRoles(new UserRoleVO[] { urVO });
+
+                    udVO = userService.registerUser(udVO);
+
+                    Assert.assertNotNull(udVO);
+                    Assert.assertTrue(udVO.getId().longValue() > 0);
+
+                    UserServiceTest.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
+                    try
+                    {
+                        // Remove testuser if it already exists
+
+                        userVO = userService.getUser("testusertmp");
+                        if ((userVO != null) && (userVO.getId().longValue() > 0))
+                        {
+                            userService.removeUser(userVO);
+                        }
+                    }
+                    catch (final UserDoesNotExistException e)
+                    {
+                        UserServiceTest.logger.debug("UserDoesNotExistException : " + e);
+                        Assert.fail();
+                    }
+                }
+                catch (final Exception ex)
+                {
+                    UserServiceTest.logger.warn("Failed test testRegisterUser()", ex);
+                    Assert.fail();
                 }
             }
-            catch (final UserDoesNotExistException e)
-            {
-                UserServiceTest.logger.debug("UserDoesNotExistException : " + e);
-            }
-            catch (final Exception e)
-            {
-                UserServiceTest.logger.debug("Exception : " + e);
-                Assert.fail();
-            }
 
-            // Add testuser
-            UserDetailsVO udVO = new UserDetailsVO();
-            udVO.setFirstName("testusertmp");
-            udVO.setLastName("testusertmp");
-            udVO.setEmail("testtmp@test.com");
-            udVO.setIsActive(false);
-            udVO.setUsername("testusertmp");
-            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
-            udVO.setCreationDate(new Date());
+        }.run();
 
-            final UserRoleVO urVO = new UserRoleVO();
-            urVO.setRole(Role.STANDARD_USER);
-
-            udVO.setRoles(new UserRoleVO[] { urVO });
-
-            udVO = userService.registerUser(udVO);
-
-            Assert.assertNotNull(udVO);
-            Assert.assertTrue(udVO.getId().longValue() > 0);
-
-            UserServiceTest.logger.info("Registered new user: " + udVO.getFirstName() + ", " + udVO.getId());
-            try
-            {
-                // Remove testuser if it already exists
-
-                userVO = userService.getUser("testusertmp");
-                if ((userVO != null) && (userVO.getId().longValue() > 0))
-                {
-                    userService.removeUser(userVO);
-                }
-            }
-            catch (final UserDoesNotExistException e)
-            {
-                UserServiceTest.logger.debug("UserDoesNotExistException : " + e);
-                Assert.fail();
-            }
-        }
-        catch (final Exception ex)
-        {
-            UserServiceTest.logger.warn("Failed test testRegisterUser()", ex);
-            Assert.fail();
-        }
-    }
-
-    // @Test
-    public void testRemoveUser()
-    {
-        // try
-        // {
-        // org.andromda.timetracker.service.UserServiceRemote userService = (org.andromda.timetracker.service.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
-        // test implementation
-        // }
-        // catch (Exception ex)
-        // {
-        // logger.warn("Failed test testRemoveUser()", ex);
-        // }
     }
 
     @Test
-    public void testGetAllUsers() throws NamingException, Exception
+    public void testGetAllUsers() throws Exception
     {
 
-        final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
-
-        try
+        new ComponentTest()
         {
-            final UserVO[] users = userService.getAllUsers();
-            Assert.assertTrue(users.length > 0);
 
-            for (final UserVO userVO : users)
+            @Override
+            protected void testComponents() throws Exception
             {
-                UserServiceTest.logger.info("user : " + userVO.getFirstName());
+                // final UserServiceRemote userService = (UserServiceRemote) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/remote");
+                final UserServiceLocal userService = (UserServiceLocal) Component.getInstance(UserServiceBean.class, true);
+
+                try
+                {
+                    final UserVO[] users = userService.getAllUsers();
+                    Assert.assertTrue(users.length > 0);
+
+                    for (final UserVO userVO : users)
+                    {
+                        UserServiceTest.logger.info("user : " + userVO.getFirstName());
+                    }
+                }
+                catch (final Exception ex)
+                {
+                    UserServiceTest.logger.warn("Failed test testGetAllUsers()", ex);
+                    // if reached that means that database is empty and default values have not been inserted
+                    Assert.fail();
+                }
             }
-        }
-        catch (final Exception ex)
-        {
-            UserServiceTest.logger.warn("Failed test testGetAllUsers()", ex);
-            // if reached that means that database is empty and default values have not been inserted
-            Assert.fail();
-        }
+
+        }.run();
+
     }
 
 }

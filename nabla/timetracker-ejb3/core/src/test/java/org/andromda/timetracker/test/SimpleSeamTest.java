@@ -1,24 +1,3 @@
-/*
- * JBoss, Home of Professional Open Source
- * Copyright 2006, JBoss Inc., and individual contributors as indicated
- * by the @authors tag. See the copyright.txt in the distribution for a
- * full listing of individual contributors.
- *
- * This is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 2.1 of
- * the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this software; if not, write to the Free
- * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
- * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- */
 package org.andromda.timetracker.test;
 
 import java.text.SimpleDateFormat;
@@ -28,21 +7,23 @@ import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.transaction.TransactionManager;
 
+import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
+
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.ChangePassword;
 import org.andromda.timetracker.service.ChangePasswordAction;
 import org.andromda.timetracker.service.UserService;
 import org.andromda.timetracker.service.UserServiceBean;
+import org.andromda.timetracker.service.UserServiceLocal;
 import org.apache.log4j.Logger;
 import org.jboss.seam.Component;
 import org.jboss.seam.contexts.Contexts;
-import org.jboss.seam.mock.SeamTest;
 import org.jboss.seam.security.Identity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SimpleSeamTest extends SeamTest
+public class SimpleSeamTest extends SeamOpenEjbTest
 {
     private static final Logger logger = Logger.getLogger(SimpleSeamTest.class);
 
@@ -132,22 +113,27 @@ public class SimpleSeamTest extends SeamTest
         }.run();
     }
 
+    @Test
     public void testEJBs() throws Exception
     {
 
-        // final InitialContext ctx = new InitialContext();
-        // final UserServiceLocal local = (UserServiceLocal) ctx.lookup("UserServiceBean/local");
-        // final UserServiceRemote remote = (UserServiceRemote) ctx.lookup("UserServiceBean/remote");
+        final InitialContext initialContext = this.getInitialContext();
+        final UserServiceLocal local = (UserServiceLocal) initialContext.lookup("UserServiceBean/Local");
+        Assert.assertNotNull(local);
 
         // final UserVO userVOLocal = local.getUser("testuser");
         // Assert.assertNotNull(userVOLocal);
-        // System.out.println("Successfully created and found TestUser from @Local interface");
-        //
+        // System.out.println("Successfully found TestUser from @Local interface");
+
+        // initialContext.lookup("UserServiceBean/Remote");
+        // Assert.assertNotNull(local);
+
         // final UserVO userVORemote = remote.getUser("admin");
         // Assert.assertNotNull(userVORemote);
-        // System.out.println("Successfully created and found Admin from @Remote interface");
+        // System.out.println("Successfully found Admin from @Remote interface");
     }
 
+    // @Test
     public void testEntityManager() throws Exception
     {
         // This is a transactionally aware EntityManager and must be accessed within a JTA transaction
@@ -155,6 +141,9 @@ public class SimpleSeamTest extends SeamTest
         // jta-datasource which means that it is created by the EJB container/embedded JBoss.
         // using javax.persistence.Persistence will just cause us an error
         final EntityManager em = (EntityManager) new InitialContext().lookup("java:/EntityManagerFactories/timetracker-ejb3");
+
+        // final SeamManagedEntityManagerFactory bean = (SeamManagedEntityManagerFactory) Component.getInstance(SeamManagedEntityManagerFactoryBean.class, true);
+        // final EntityManager em = bean.getEntityMangagerFactory().createEntityManager();
 
         // Obtain JBoss transaction
         final TransactionManager tm = (TransactionManager) new InitialContext().lookup("java:/TransactionManager");
