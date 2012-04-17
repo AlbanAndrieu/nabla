@@ -606,17 +606,11 @@
                                 -->   				            			
 			</dependencies>
 			<build>        
-				<resources>	
+				<resources>				
 					<resource>
 						<directory>${maven.build.generated}/main/resources</directory>
 						<filtering>true</filtering>
-					</resource>
-				        <!--					
-					<resource>
-						<directory>${maven.build.generated}/main/java</directory>
-						<filtering>true</filtering>
-					</resource>
-					-->					
+					</resource>		
 					<resource>
 						<directory>${basedir}/src/main/resources</directory>
 						<filtering>true</filtering>
