@@ -7,9 +7,9 @@ import java.util.List;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.andromda.timetracker.domain.User;
+import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -18,6 +18,7 @@ import org.jboss.seam.faces.FacesMessages;
 @Stateful
 @Scope(EVENT)
 @Name("register")
+// @Restrict("#{identity.loggedIn}")
 // @Interceptors(SeamInterceptor.class)
 public class RegisterAction implements Register
 {
@@ -38,14 +39,14 @@ public class RegisterAction implements Register
     private boolean                              registered;
 
     @Override
-    @In
+    // @In
     public void setUser(final User user)
     {
         this.user = user;
     }
 
     @Override
-    @PersistenceContext
+    @In
     public void setEntityManager(final EntityManager em)
     {
         this.entityManager = em;
@@ -61,7 +62,10 @@ public class RegisterAction implements Register
 
         if (this.user.getPassword().equals(this.verify))
         {
-            final List existing = this.entityManager.createQuery("select u.username from User u where u.username=#{user.username}").getResultList();
+            RegisterAction.logger.debug("revertUser Username : " + this.user.getUsername());
+
+            // final List existing = this.entityManager.createQuery("select u.username from User u where u.username=#{user.username}").getResultList();
+            final List existing = this.entityManager.createQuery("select u.username from User u where u.username=:username").setParameter("username", this.user.getUsername()).getResultList();
             if (existing.size() == 0)
             {
                 this.entityManager.persist(this.user);
@@ -72,7 +76,7 @@ public class RegisterAction implements Register
             } else
             {
                 RegisterAction.logger.debug("revertUser Username : " + this.user.getUsername() + "already exists");
-                this.facesMessages.addToControl("username", "Username #{user.username} already exists");
+                // this.facesMessages.addToControl("username", "Username #{user.username} already exists");
             }
         } else
         {
@@ -108,6 +112,7 @@ public class RegisterAction implements Register
 
     @Override
     @Remove
+    @Destroy
     public void destroy()
     {
     }

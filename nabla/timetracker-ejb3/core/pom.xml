@@ -607,11 +607,11 @@
 			</dependencies>
 			<build>        
 				<resources>	
-				        <!--
 					<resource>
 						<directory>${maven.build.generated}/main/resources</directory>
 						<filtering>true</filtering>
 					</resource>
+				        <!--					
 					<resource>
 						<directory>${maven.build.generated}/main/java</directory>
 						<filtering>true</filtering>
