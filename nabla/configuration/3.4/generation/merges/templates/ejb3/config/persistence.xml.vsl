@@ -13,11 +13,14 @@ Modify as necessary for JPA unit testing
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                         http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
     version="1.0">
-    
-    <persistence-unit name="${entityManagerName}">
+
+    <persistence-unit name="${entityManagerName}" transaction-type="${entityManagerTransactionType}">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 #if ($stringUtils.isNotBlank(${dataSource}))
+        <!-- use jta-data-source only when transaction-type is JTA -->
         <jta-data-source>${dataSource}</jta-data-source>
+        <!-- use non-jta-data-source only when transaction-type is RESOURCE_LOCAL -->
+        <non-jta-data-source>${dataSource}Unmanaged</non-jta-data-source>
 #end
 #if ($stringUtils.isNotBlank($jarFiles))
 #**##set ($jars = $stringUtils.split($jarFiles,','))
@@ -36,7 +39,7 @@ Modify as necessary for JPA unit testing
 #if ($umlUtils.shouldOutput($entity))
 #if ($entity.entityImplementationRequired)
         <class>${entity.fullyQualifiedEntityEmbeddableName}</class>
-#end        
+#end
         <class>${entity.fullyQualifiedEntityName}</class>
 #if ($entity.embeddableSuperclass && $entity.dynamicIdentifiersPresent)
 #**##set ($attributes = $entity.getInstanceAttributes(false, false))
@@ -44,12 +47,12 @@ Modify as necessary for JPA unit testing
 #**##set ($attributes = $entity.getInstanceAttributes(false, true))
 #end
 #if (!$attributes.empty)
-#foreach ($attribute in $attributes)    
+#foreach ($attribute in $attributes)
 #if ($attribute.containsEmbeddedObject)
         <class>${attribute.getterSetterTypeName}</class>
 #end
 #end
-#end        
+#end
 #end
 #end
         <properties>
@@ -58,7 +61,9 @@ Modify as necessary for JPA unit testing
 #end
 #if ($stringUtils.isNotBlank($hibernateShowSql))
             <property name="hibernate.show_sql" value="${hibernateShowSql}"/>
-            <property name="hibernate.format_sql" value="true"/>
+#end
+#if ($stringUtils.isNotBlank($hibernateFormatSql))
+            <property name="hibernate.format_sql" value="${hibernateFormatSql}"/>
 #end
 #if ($stringUtils.isNotBlank($hibernateDialect))
             <property name="hibernate.dialect" value="${hibernateDialect}"/>
@@ -74,6 +79,9 @@ Modify as necessary for JPA unit testing
 #if ($stringUtils.isNotBlank($hibernateJdbcBatchSize))
             <property name="hibernate.jdbc.batch_size" value="$hibernateJdbcBatchSize"/>
 #end
+#if ($stringUtils.isNotBlank($hibernateJdbcBatchFetchSize))
+            <property name="hibernate.jdbc.default_batch_fetch_size" value="$hibernateJdbcBatchFetchSize"/>
+#end
 #if ($stringUtils.isNotBlank($hibernateJdbcUseScrollableResultSet))
             <property name="hibernate.jdbc.use_scrollable_resultset" value="$hibernateJdbcUseScrollableResultSet"/>
 #end
@@ -88,9 +96,17 @@ Modify as necessary for JPA unit testing
             <property name="hibernate.treecache.mbean.object_name" value="${hibernateTreecacheMbeanObject}"/>
 #**##end
 #end
+            <!-- Encoding -->
+            <property name="hibernate.connection.useUnicode" value="true" />
+            <property name="hibernate.connection.characterEncoding" value="UTF-8" />
+
             <!-- Must add hibernate3 module: http://planet.jboss.org/post/using_a_different_persistence_provider_with_as_7_0_1
             <property name="hibernate.ejb.resource_scanner" value="org.jboss.as.jpa.hibernate3.HibernateAnnotationScanner"/>-->
             <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/>
+
+            <property name="jboss.entity.manager.factory.jndi.name" value="${entityManagerFactoryJndiName}"/>
+            <property name="hibernate.archive.autodetection" value="class, hbm" />
+
 #if ($hibernateEnableCache.equalsIgnoreCase("true"))
 #**##foreach ($entity in $entities)
 #*  *##foreach ($finder in $entity.getQueryOperations(true))
@@ -132,19 +148,19 @@ Modify as necessary for JPA unit testing
 ## Use the new Identifier generator for Hibernate 3.x, if using annotation mappings
             <property name="hibernate.id.new_generator_mappings" value="true"/>
 #if ($stringUtils.isNotBlank($hibernateMaxFetchDepth))
-            <property name="hibernate.max_fetch_depth" value="$hibernateMaxFetchDepth"/>
+            <property name="hibernate.max_fetch_depth" value="${hibernateMaxFetchDepth}"/>
 #end
 #if ($stringUtils.isNotBlank($hibernateJdbcFetchSize))
-            <property name="hibernate.jdbc.fetch_size" value="$hibernateJdbcFetchSize"/>
+            <property name="hibernate.jdbc.fetch_size" value="${hibernateJdbcFetchSize}"/>
 #end
 #if ($stringUtils.isNotBlank($hibernateJdbcBatchSize))
-            <property name="hibernate.jdbc.batch_size" value="$hibernateJdbcBatchSize"/>
+            <property name="hibernate.jdbc.batch_size" value="${hibernateJdbcBatchSize}"/>
 #end
 #if ($stringUtils.isNotBlank($hibernateJdbcUseScrollableResultSet))
-            <property name="hibernate.jdbc.use_scrollable_resultset" value="$hibernateJdbcUseScrollableResultSet"/>
+            <property name="hibernate.jdbc.use_scrollable_resultset" value="${hibernateJdbcUseScrollableResultSet}"/>
 #end
 #if ($stringUtils.isNotBlank($hibernateJdbcUseStreamsForBinary))
-            <property name="hibernate.jdbc.use_streams_for_binary" value="$hibernateJdbcUseStreamsForBinary"/>
+            <property name="hibernate.jdbc.use_streams_for_binary" value="${hibernateJdbcUseStreamsForBinary}"/>
 #end
 #if ($hibernateEnableCache.equalsIgnoreCase("true"))
 #*  *##if ($stringUtils.isNotBlank($hibernateCacheProvider))
@@ -155,6 +171,9 @@ Modify as necessary for JPA unit testing
 #*  *##end
 #**##if ($hibernateEnableQueryCache.equalsIgnoreCase("true"))
             <property name="hibernate.cache.use_query_cache" value="${hibernateEnableQueryCache}"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false" />
+            <property name="hibernate.cache.use_structured_cache" value="true" />
+            <property name="hibernate.cache.use_minimal_puts" value="true" />
 #**##end
 #end
 #**##if ($stringUtils.isNotBlank($hibernateTransactionManagerLookupClass))
@@ -166,7 +185,7 @@ Modify as necessary for JPA unit testing
 #**##if ($stringUtils.isNotBlank($hibernateTransactionAutoCloseSession))
             <property name="hibernate.transaction.auto_close_session" value="${hibernateTransactionAutoCloseSession}"/>
 #**##end
-        </properties>            
+        </properties>
     </persistence-unit>
 #end
 </persistence>
