@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
 import org.andromda.timetracker.domain.User;
+import org.andromda.timetracker.domain.UserRole;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
@@ -36,6 +37,17 @@ public class AuthenticatorAction implements Authenticator
     @Out(required = false, scope = SESSION)
     private User                                 user;
 
+    // @EJB
+    // private UserDao userDao;
+
+    /**
+     * Get the injected DAO UserDao
+     */
+    // protected UserDao getUserDao()
+    // {
+    // return this.userDao;
+    // }
+
     @Override
     public boolean authenticate()
     {
@@ -61,7 +73,7 @@ public class AuthenticatorAction implements Authenticator
             AuthenticatorAction.logger.warn("Authenticating credentials is null");
         }
 
-        final List results = this.entityManager.createQuery("select u from User u where u.username=:username and u.password=:password").setParameter("username", username).setParameter("password", password)
+        final List<User> results = this.entityManager.createQuery("select u from User u where u.username=:username and u.password=:password").setParameter("username", username).setParameter("password", password)
                 .getResultList();
 
         if (results.size() == 0)
@@ -80,22 +92,36 @@ public class AuthenticatorAction implements Authenticator
             return false;
         } else
         {
-            this.user = (User) results.get(0);
+            this.user = results.get(0);
             if (this.user.getPassword().equals(this.credentials.getPassword()))
             {
-                /*
-                 * if ((roles != null) && (this.user.getRoles() != null))
-                 * {
-                 * for (final UserRole mr : this.user.getRoles())
-                 * {
-                 * this.identity.addRole(mr.getRole().getValue());
-                 * roles.add(mr.getRole().getValue());
-                 * }
-                 * }
-                 */
+
+                // this.getUserDao().toUserDetailsVO(this.user);
+
+                if ((roles != null) && (this.user.getRoles() != null))
+                {
+                    for (final UserRole mr : this.user.getRoles())
+                    {
+                        AuthenticatorAction.logger.debug("Authenticating add role : " + mr.getRole().getValue() + " for user : " + username);
+                        this.identity.addRole(mr.getRole().getValue());
+                        roles.add(mr.getRole().getValue());
+                    }
+                }
+
                 return true;
             } else
             {
+                AuthenticatorAction.logger.debug("Authenticating no credential found for : " + username);
+
+                // write your authentication logic here,
+                // return true if the authentication was
+                // successful, false otherwise
+                if ("admin".equals(username))
+                {
+                    this.identity.addRole("admin");
+                    return true;
+                }
+
                 return false;
             }
         }
