@@ -104,6 +104,7 @@ Modify as necessary for JPA unit testing
             <property name="hibernate.ejb.resource_scanner" value="org.jboss.as.jpa.hibernate3.HibernateAnnotationScanner"/>-->
             <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/>
 
+            <property name="hibernate.transaction.manager_lookup_class" value="${pu.hibernate.transaction.manager_lookup_class}"/>
             <property name="jboss.entity.manager.factory.jndi.name" value="${entityManagerFactoryJndiName}"/>
             <property name="hibernate.archive.autodetection" value="class, hbm" />
 
