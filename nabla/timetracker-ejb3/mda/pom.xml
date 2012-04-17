@@ -8,10 +8,11 @@
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>mda</artifactId>
     <packaging>pom</packaging>
-    <name>TimeTracker EJB3 MDA</name>
+    <name>[${project.parent.artifactId} :: EJB3 MDA] - ${project.artifactId} : ${project.version}</name>
     <dependencies>
         <dependency>
             <groupId>org.andromda.profiles.uml2</groupId>
@@ -317,7 +318,7 @@
         <core.manual.java.dir>${project.basedir}/../core/src/main/java</core.manual.java.dir>
         <core.manual.java.resources>${project.basedir}/../core/src/main/resources</core.manual.java.resources>
         <core.manual.test.dir>${project.basedir}/../core/src/test/java</core.manual.test.dir>
-        <core.manual.test.resources>${project.basedir}/../core/src/test/resources</core.manual.test.resources>
+        <core.manual.test.resources.dir>${project.basedir}/../core/src/test/resources</core.manual.test.resources.dir>
         <web.generated.dir>${project.basedir}/../web/target</web.generated.dir>
         <web.generated.java.dir>${web.generated.dir}/src/main/java</web.generated.java.dir>
         <web.generated.web.dir>${web.generated.dir}/src/main/webapp</web.generated.web.dir>
@@ -338,27 +339,27 @@
         <core.manual.dir>${project.basedir}/../core/src/main/java</core.manual.dir>
         <core.manual.java.dir>${project.basedir}/../core/src/main/java</core.manual.java.dir>
         <!--<core.manual.java.resources>${project.basedir}/../core/src/main/resources</core.manual.java.resources>-->
-        <core.generated.java.resources>${project.basedir}/../core/${maven.build.generated}/main/resources</core.generated.java.resources>
+        <core.generated.resources.dir>${project.basedir}/../core/${maven.build.generated}/main/resources</core.generated.resources.dir>
         <core.manual.test.dir>${project.basedir}/../core/src/test/java</core.manual.test.dir>
-        <core.manual.test.resources>${project.basedir}/../core/src/test/resources</core.manual.test.resources>        
+        <core.manual.test.resources.dir>${project.basedir}/../core/src/test/resources</core.manual.test.resources.dir>        
      
         <database.generated.dir>${project.basedir}/../database/${maven.build.generated}/main/java</database.generated.dir>
         <database.generated.test.dir>${project.basedir}/../database/${maven.build.generated}/main/java</database.generated.test.dir>        
         <database.manual.dir>${project.basedir}/../database/src/main/java</database.manual.dir>
         <database.manual.java.dir>${project.basedir}/../database/src/main/java</database.manual.java.dir>
         <!--<database.manual.java.resources>${project.basedir}/../database/src/main/resources</database.manual.java.resources>-->
-        <database.generated.java.resources>${project.basedir}/../database/${maven.build.generated}/main/resources</database.generated.java.resources>
+        <database.generated.resources.dir>${project.basedir}/../database/${maven.build.generated}/main/resources</database.generated.resources.dir>
         <database.manual.test.dir>${project.basedir}/../database/src/test/java</database.manual.test.dir>
-        <database.manual.test.resources>${project.basedir}/../database/src/test/resources</database.manual.test.resources>  
+        <database.manual.test.resources.dir>${project.basedir}/../database/src/test/resources</database.manual.test.resources.dir>  
 
         <service.generated.dir>${project.basedir}/../service/${maven.build.generated}/main/java</service.generated.dir>
         <service.generated.test.dir>${project.basedir}/../service/${maven.build.generated}/main/java</service.generated.test.dir>        
         <service.manual.dir>${project.basedir}/../service/src/main/java</service.manual.dir>
         <service.manual.java.dir>${project.basedir}/../service/src/main/java</service.manual.java.dir>
         <!--<service.manual.java.resources>${project.basedir}/../service/src/main/resources</service.manual.java.resources>-->
-        <service.generated.java.resources>${project.basedir}/../service/${maven.build.generated}/main/resources</service.generated.java.resources>
+        <service.generated.resources.dir>${project.basedir}/../service/${maven.build.generated}/main/resources</service.generated.resources.dir>
         <service.manual.test.dir>${project.basedir}/../service/src/test/java</service.manual.test.dir>
-        <service.manual.test.resources>${project.basedir}/../service/src/test/resources</service.manual.test.resources> 
+        <service.manual.test.resources.dir>${project.basedir}/../service/src/test/resources</service.manual.test.resources.dir> 
                    
         <web.generated.java.dir>${project.basedir}/../web/${maven.build.generated}/main/java</web.generated.java.dir>
         <web.generated.web.dir>${project.basedir}/../web/${maven.build.generated}/main/webapp</web.generated.web.dir>
@@ -377,8 +378,8 @@
         <application.metainf.dir>${project.basedir}/../app/src/main/application/META-INF</application.metainf.dir>
         <application.generated.dir>${project.basedir}/../app/${target.dir}/src</application.generated.dir>        
                 
-	    <!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
-	    <merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
+	<!--<merge.templates.location>file:${project.basedir}/src/main/config/mappings</merge.templates.location>-->
+	<merge.mappings.web>file:${project.basedir}/src/main/config/mappings/WebMergeMappings.xml</merge.mappings.web>
         <!--<merge.mappings.web>file:${merge.templates.location}/WebMergeMappings.xml</merge.mappings.web>-->
     </properties>
 </project>
