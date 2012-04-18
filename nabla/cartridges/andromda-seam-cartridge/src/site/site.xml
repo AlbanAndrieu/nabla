@@ -1,20 +1,62 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="EJB3 Cartridge Plugin">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
+  name="AndroMDA GUI Cartridge">
+  
     <skin>
-        <groupId>org.andromda.maven.site</groupId>
-        <artifactId>andromda-site-skin</artifactId>
-        <version>3.3-SNAPSHOT</version>
+      <groupId>com.nabla.project</groupId>
+      <artifactId>skin</artifactId>
+      <version>1.0</version>
     </skin>
+    
+    <custom>
+      <fluidoSkin>
+	<topBarEnabled>true</topBarEnabled>
+        <!--<sideBarEnabled>false</sideBarEnabled>-->     
+        <googleSearch>
+          <sitesearch/>
+        </googleSearch>
+        <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+        <profile>(pre-release|sandbox|retired)</profile>
+        <twitter>
+          <user>AlbanAndrieu</user>
+          <showUser>true</showUser>
+          <showFollowers>true</showFollowers>
+        </twitter>        
+      </fluidoSkin>
+    </custom>
+    
     <bannerLeft>
-        <name></name>
+      <name>${project.name}</name>
     </bannerLeft>
-    <publishDate format="dd MMM yyyy hh:mm zzz"/>
-    <body>
+    <bannerRight>
+      <href>http://www.maven.nabla.mobi/project</href> 
+      <border>1</border> 
+      <width>48</width> 
+      <height>48</height> 
+      <src>images/home.png</src>       
+    </bannerRight>
+    
+    <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
+
+    <body>    	
+    	<!--
+    	<breadcrumbs>
+    	  <item name="Nabla" href="http://www.maven.nabla.mobi" />
+    	</breadcrumbs>
+    	-->
+    	
     	<links>
     		<item name="Seam" href="index.html"/>
       		<item name="Cartridges" href="http://galaxy.andromda.org/docs/andromda-cartridges/index.html"/>
       		<item name="AndroMDA" href="http://www.andromda.org"/>
+            <item name="Nabla" href="http://www.maven.nabla.mobi/project" />
+            <item name="Nabla Code" href="http://code.google.com/p/alban" />
+     	    <!--<item name="FR" href="/fr/index.html" />-->
     	</links>
+        
+        <menu ref="parent"/>
+        
     	<menu name="Overview">
             <item name="Seam Cartridge" href="index.html"/>
     		<item name="Getting Started Guide" href="startup.html"/>
@@ -23,6 +65,7 @@
     		<item name="Profile" href="profile.html"/>
     		<item name="Namespace" href="namespace.html"/>
     	</menu>
-        ${reports}
+
+        <menu ref="reports"/>
     </body>
 </project>
