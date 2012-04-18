@@ -68,6 +68,12 @@
             <property name="containedInFrontEndUseCase"/>
         </mapping>
     </metafacade>
+    <!-- mapping rule for emf-uml22 support -->
+    <metafacade class="org.andromda.cartridges.seam.metafacades.SeamEventLogicImpl">
+        <mapping class="org.eclipse.uml2.uml.internal.impl.ActivityImpl">
+            <property name="containedInFrontEndUseCase"/>
+        </mapping>
+    </metafacade>
     <metafacade class="org.andromda.cartridges.seam.metafacades.SeamParameterLogicImpl">
         <mapping>
             <property name="containedInFrontEndUseCase"/>
