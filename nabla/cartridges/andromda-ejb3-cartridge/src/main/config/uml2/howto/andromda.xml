@@ -72,6 +72,7 @@
                 <property name="session-beans">${howto.output.dir}</property>
                 <property name="session-impls">${howto.output.dir}</property>
                 <property name="session-config">${howto.output.dir}</property>
+                <property name="seam-config">${howto.output.dir}</property>
                 <property name="message-driven-beans">${howto.output.dir}</property>
                 <property name="message-driven-impls">${howto.output.dir}</property>
                 <property name="daos">${howto.output.dir}</property>

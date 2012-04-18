@@ -82,6 +82,7 @@
                 <property name="session-beans">${test.output.dir}</property>
                 <property name="session-impls">${test.output.dir}</property>
                 <property name="session-config">${test.output.dir}</property>
+                <property name="seam-config">${test.output.dir}</property>
                 <property name="message-driven-beans">${test.output.dir}</property>
                 <property name="message-driven-impls">${test.output.dir}</property>
                 <property name="daos">${test.output.dir}</property>
