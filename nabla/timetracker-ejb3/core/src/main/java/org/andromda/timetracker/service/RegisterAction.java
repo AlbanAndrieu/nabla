@@ -39,7 +39,7 @@ public class RegisterAction implements Register
     private boolean                              registered;
 
     @Override
-    // @In
+    @In
     public void setUser(final User user)
     {
         this.user = user;
@@ -55,14 +55,14 @@ public class RegisterAction implements Register
     @Override
     public String register()
     {
-        RegisterAction.logger.debug("changePassword verify : " + this.verify);
+        RegisterAction.logger.debug("register verify : " + this.verify);
         // RegisterAction.logger.debug("changePassword Username : " + Identity.instance().getUsername());
 
-        RegisterAction.logger.debug("changePassword password : " + this.user.getPassword());
+        RegisterAction.logger.debug("register password : " + this.user.getPassword());
 
         if (this.user.getPassword().equals(this.verify))
         {
-            RegisterAction.logger.debug("revertUser Username : " + this.user.getUsername());
+            RegisterAction.logger.debug("register Username : " + this.user.getUsername());
 
             // final List existing = this.entityManager.createQuery("select u.username from User u where u.username=#{user.username}").getResultList();
             final List existing = this.entityManager.createQuery("select u.username from User u where u.username=:username").setParameter("username", this.user.getUsername()).getResultList();
@@ -75,7 +75,7 @@ public class RegisterAction implements Register
                 return "success";
             } else
             {
-                RegisterAction.logger.debug("revertUser Username : " + this.user.getUsername() + "already exists");
+                RegisterAction.logger.debug("revertUser Username : " + this.user.getUsername() + " already exists");
                 // this.facesMessages.addToControl("username", "Username #{user.username} already exists");
             }
         } else
