@@ -18,6 +18,7 @@
     <!-- define the template objects that are made available to the template -->
     <templateObject name="stringUtils" className="org.andromda.utils.StringUtilsHelper"/>
     <templateObject name="jsfUtils" className="org.andromda.cartridges.gui.GuiUtils">
+        <!--<property reference="viewType"/>-->
         <property reference="strictDateTimeFormat"/>
         <property reference="portletContainer"/>
     </templateObject>
@@ -372,6 +373,7 @@
         outputToSingleFile="true"
         outputCondition="standalone"/>
 
+    <!--
     <template
         path="templates/jsf/configuration/trinidad-skins.xml.vsl"
         outputPattern="WEB-INF/trinidad-skins.xml"
@@ -482,6 +484,7 @@
             </modelElement>
         </modelElements>
     </template>
+    -->
 
     <template
         path="templates/jsf/configuration/navigation.xml.vsl"
@@ -531,6 +534,7 @@
         </modelElements>
     </template>
 
+    <!--
     <template
         path="templates/jsf/flow/ActionForward.java.vsl"
         outputPattern="$action.fullyQualifiedActionClassPath"
@@ -693,7 +697,9 @@
         overwrite="true"
         outputCondition="enableOds"/>
 
+    -->
     <!-- fix a bug with calendar -->
+    <!--
     <template
         path="templates/jsf/utils/TrinidadDialogFilter.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/TrinidadDialogFilter.java"
@@ -719,6 +725,7 @@
         outlet="managed-beans"
         outputCondition="standalonePaginationSupportEnabled"
         overwrite="true"/>
+    -->
 
     <template
         path="templates/jsf/views/jsp/index.jsp.vsl"
@@ -831,6 +838,7 @@
         generateEmptyFiles="true"
         outputCondition="standalone"/>
 
+    <!--
     <template
         path="templates/jsf/views/facelets/layout/return.xhtml.vsl"
         outputPattern="layout/return.xhtml"
@@ -845,6 +853,7 @@
         outlet="views"
         overwrite="true"
         generateEmptyFiles="true"/>
+    -->
     
     <template
         path="templates/jsf/views/facelets/view.xhtml.vsl"
@@ -962,7 +971,7 @@
     </template>
 
     <!-- manageable -->
- 
+    <!--
     <template
         path="templates/jsf/utils/ControllerBase.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
@@ -1121,9 +1130,11 @@
             </modelElement>
         </modelElements>
     </template>
+    -->
 
     <!-- portlet specific support templates start here -->
 
+    <!--
     <template
         path="templates/jsf/utils/portlet/GenericFaceletsPortlet.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
@@ -1351,6 +1362,7 @@
         outlet="managed-beans"
         outputCondition="portletPaginationSupportEnabled"
         overwrite="true"/>
+    -->
 
     <!-- cartridge-template merge-point -->
 

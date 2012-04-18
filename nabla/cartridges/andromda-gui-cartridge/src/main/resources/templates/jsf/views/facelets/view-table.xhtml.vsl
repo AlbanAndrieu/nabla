@@ -5,7 +5,7 @@
       xmlns:t="http://myfaces.apache.org/tomahawk"
 #end
 ##      xmlns:a="http://www.andromda.org/cartridges/jsf"
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
       xmlns:tr="http://myfaces.apache.org/trinidad"
 #elseif ($adf)
       xmlns:af="http://xmlns.oracle.com/adf/faces"

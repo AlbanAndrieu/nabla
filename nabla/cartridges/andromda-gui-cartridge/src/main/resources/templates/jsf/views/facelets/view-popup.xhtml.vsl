@@ -4,7 +4,7 @@
 #if ($tomahawk)
       xmlns:t="http://myfaces.apache.org/tomahawk"
 #end
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
       xmlns:tr="http://myfaces.apache.org/trinidad"
 #end
       xmlns:h="http://java.sun.com/jsf/html"

@@ -46,19 +46,26 @@
     	</breadcrumbs>
     	-->
     	
-        <links>
+    	<links>
+    		<item name="Gui" href="index.html"/>
+      		<item name="Cartridges" href="http://galaxy.andromda.org/docs/andromda-cartridges/index.html"/>
+      		<item name="AndroMDA" href="http://www.andromda.org"/>
             <item name="Nabla" href="http://www.maven.nabla.mobi/project" />
             <item name="Nabla Code" href="http://code.google.com/p/alban" />
-	    <!--<item name="FR" href="/fr/index.html" />-->
-        </links>
+     	    <!--<item name="FR" href="/fr/index.html" />-->
+    	</links>
         
         <menu ref="parent"/>
         
-        <menu name="Overview">
-            <item name="Profile" href="/profile.html"/>
-            <item name="Namespace" href="/namespace.html"/>
-        </menu>
-        
+    	<menu name="Overview">
+            <item name="Gui Cartridge" href="index.html"/>
+    		<item name="Getting Started Guide" href="startup.html"/>
+    	</menu>
+    	<menu name="Model">
+    		<item name="Profile" href="profile.html"/>
+    		<item name="Namespace" href="namespace.html"/>
+    	</menu>
+
         <menu ref="reports"/>
     </body>
 </project>

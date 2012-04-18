@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core"
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
       xmlns:tr="http://myfaces.apache.org/trinidad">
 #elseif ($adf)
       xmlns:af="http://xmlns.oracle.com/adf/faces">
@@ -22,7 +22,7 @@
 #else
         <h:form id="$preferencesBeanName">
 #end
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
             <tr:panelFormLayout>
 #if ($useSkin)
                 <tr:selectOneChoice id="skin" value="#{${preferencesBeanName}.skin}" label="#{messages['preferences.skin']}:">
@@ -63,7 +63,7 @@
                 </f:facet>
             </af:panelForm>
 #end
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
         </tr:subform>
 #else
         </h:form>

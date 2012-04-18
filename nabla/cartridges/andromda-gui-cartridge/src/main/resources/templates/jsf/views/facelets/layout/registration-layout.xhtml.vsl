@@ -4,10 +4,10 @@
 #if ($tomahawk)
       xmlns:t="http://myfaces.apache.org/tomahawk"
 #end
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
       xmlns:tr="http://myfaces.apache.org/trinidad"
       xmlns:trh="http://myfaces.apache.org/trinidad/html"
-#else
+#elseif ($adf)
       xmlns:af="http://xmlns.oracle.com/adf/faces"
       xmlns:afh="http://xmlns.oracle.com/adf/faces/html"
 #end
@@ -21,7 +21,7 @@
         <ui:include src="head.xhtml"/>
     </ui:insert>
 
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
     <trh:body>
       <tr:form usesUpload="#{usesUpload}" partialTriggers="#{partialTriggers}">
 #elseif ($adf)
@@ -30,7 +30,7 @@
     <h:body>
 #end
         <ui:insert name="title"/>
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
         <tr:panelPage>
 #elseif ($adf)
         <af:panelPage title="#{title}">
@@ -59,7 +59,7 @@
                 </ui:insert>
             </f:facet>
             <div id="pageContent">
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
                 <tr:panelHeader text="#{title}">
                     <ui:insert name="content"/>
                 </tr:panelHeader>
@@ -71,7 +71,7 @@
 #end
 
             </div>
-#if ($trinidad)
+#if (($trinidad) || ($icefaces))
           </tr:panelPage>
         </tr:form>
     </trh:body>

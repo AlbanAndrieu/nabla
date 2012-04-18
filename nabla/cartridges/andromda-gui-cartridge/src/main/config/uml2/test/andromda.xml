@@ -32,11 +32,6 @@
                         <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/profiles/${uml.type}/**/${andromda.version}/**</location>
                         <!--<location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-${uml.type}</location>-->
                     </moduleSearchLocations>
-                    <!--
-                    <modelPackages>
-                        <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>
-                    </modelPackages>
-                    -->
                     <!-- constraints from BPM4Struts removed deactivated but might be removed later -->
                     <!--
                     <constraints>
@@ -88,7 +83,10 @@
                 <!--<property name="ajaxLibrary">trinidad</property>-->
                 <!--<property name="tomahawk">false</property>-->
                 <property name="extension">true</property>
-                
+                <!--
+                <property name="enablePreferences">false</property>
+                <property name="enableOds">false</property>
+                -->
                 <!--    
                 <property name="overwrite">true</property>
                 <property name="renderPageVariables">true</property>

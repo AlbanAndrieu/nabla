@@ -4,12 +4,12 @@
 #if ($tomahawk)
       xmlns:t="http://myfaces.apache.org/tomahawk"
 #end
-#if ($adf)
-      xmlns:afh="http://xmlns.oracle.com/adf/faces/html"
-      xmlns:af="http://xmlns.oracle.com/adf/faces"
-#elseif ($trinidad)
+#if (($trinidad) || ($icefaces))
       xmlns:trh="http://myfaces.apache.org/trinidad/html"
       xmlns:tr="http://myfaces.apache.org/trinidad"
+#elseif ($adf)
+      xmlns:afh="http://xmlns.oracle.com/adf/faces/html"
+      xmlns:af="http://xmlns.oracle.com/adf/faces"
 #end
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"

@@ -1,6 +1,6 @@
 <andromda xmlns="http://andromda.org/core/configuration">
     <properties>
-        <property name="cartridgeFilter">gui</property>
+        <!--<property name="cartridgeFilter">gui</property>-->
         <property name="failOnValidationErrors">false</property>
     </properties>
     <!--

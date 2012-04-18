@@ -40,6 +40,10 @@
     </script>
     <script type="text/javascript" language="Javascript1.1" src="${facesContext.externalContext.request.contextPath}/js/shortlinks.js">
     </script>
+#end
+#if ($trinidad)
+</trh:head>
+#elseif ($adf)
 </afh:head>
 #elseif ($icefaces)
 </head>
