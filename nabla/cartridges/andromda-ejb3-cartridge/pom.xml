@@ -34,6 +34,12 @@
             <version>${andromda.version}</version>
             <scope>test</scope>
         </dependency>
+	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+		<version>${commons.lang.version}</version>
+		<scope>compile</scope>
+	</dependency>        
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -90,13 +96,30 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!--
             <plugin>
-                <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromda-cartridge-plugin</artifactId>
-                <version>${andromda.version}</version>
+                    <groupId>org.andromda.maven.plugins</groupId>
+                    <artifactId>andromda-cartridge-plugin</artifactId>
+                    <version>${andromda.version}</version>
+                    <executions>
+                            <execution>
+                                    <id>ejb3-uml2</id>
+                                    <phase>generate-test-sources</phase>
+                                    <goals>
+                                            <!-- Use update goal when you want to validate your change (comment test goal) -->
+                                            <goal>test</goal>
+                                            <!--<goal>update</goal>-->
+                                    </goals>
+                                    <configuration>
+                                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+                                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+
+                                            <actualDirectory>${project.basedir}/../tmp-ejb3/cartridge-test/actualUML2</actualDirectory>
+                                            <expectedDirectory>${project.basedir}/../tmp-ejb3/cartridge-test/expectedUML2</expectedDirectory>
+                                            <reportDirectory>${project.basedir}/../tmp-ejb3/cartridge-test/reportsUML2</reportDirectory>
+                                    </configuration>
+            		</execution>
+                    </executions>
             </plugin>
-            -->
             <plugin>
                        <groupId>org.apache.maven.plugins</groupId>
                        <artifactId>maven-source-plugin</artifactId>
@@ -127,16 +150,18 @@
                         </goals>
                     </execution>
                 </executions>
+                <!-- http://www.andromda.org/docs/andromda-maven-plugins/andromda-site-plugins/andromda-site-cartridge-plugin/generate-cartridge-howto-artifacts-mojo.html -->
                 <configuration>
-                    <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/howto/andromda.xml</configurationUri>            		    	
+                	<configurationUri>file:${project.basedir}/src/main/config/${uml.type}/howto/andromda.xml</configurationUri>            		    	
                     <howtoCartridgePicturesOutputDirectory>${project.basedir}/${target.dir}/site/images</howtoCartridgePicturesOutputDirectory>
+                    <modelOutputHistory>${project.basedir}/../tmp-ejb3/history</modelOutputHistory>
                 </configuration>
-            </plugin>
+            </plugin>   
         </plugins>
     </build>
     <properties>
         <model.name>EJB3MetafacadeModel</model.name>
-	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->    
+	    <lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->    
         <!--
         <model.uri>jar:file:${src.dir}/main/uml/EJB3MetafacadeModel.xml.zip!/EJB3MetafacadeModel.xml</model.uri>
         <test.model.uri>jar:file:${test.src.dir}/uml/EJB3CartridgeTestModel.xml.zip!/EJB3CartridgeTestModel.xml</test.model.uri>
@@ -148,6 +173,6 @@
         -->
         <test.model.uri>file:${test.src.dir}/${uml.type}/EJB3CartridgeTestModel.uml</test.model.uri>
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir> -->
-        <test.output.dir>${project.basedir}/../tmp-gui/cartridge-test/actualUML2</test.output.dir>        
+        <test.output.dir>${project.basedir}/../tmp-ejb3/cartridge-test/actualUML2</test.output.dir>        
     </properties>
 </project>
