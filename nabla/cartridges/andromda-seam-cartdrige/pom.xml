@@ -20,34 +20,10 @@
         dynamic model elements. Generated applications have default security and internationalization
         implementations and can be deployed as they are.
     </description>
+    <!-- TODO it is a copy of andromda-gui-cartridge with a few change in cartridge.xml -->
     
     <dependencies>
         <!--
-        <dependency>
-            <groupId>org.andromda</groupId>
-            <artifactId>andromda-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda</groupId>
-            <artifactId>andromda-utils</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.metafacades</groupId>
-            <artifactId>andromda-metafacades-uml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.metafacades</groupId>
-            <artifactId>andromda-metafacades-uml14</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-meta-cartridge</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.andromda.translationlibraries</groupId>
-            <artifactId>andromda-ocl-validation-library</artifactId>
-        </dependency>
-        -->
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
             <artifactId>andromda-jsf-cartridge-components</artifactId>
@@ -55,19 +31,21 @@
         </dependency>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
-            <!--<artifactId>andromda-jsf2-cartridge</artifactId>-->
             <artifactId>andromda-jsf-cartridge</artifactId>
             <version>${andromda.version}</version>
-            <!--<version>1.1-SNAPSHOT</version>-->
-            <!--<scope>provided</scope>-->
             <scope>compile</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>andromda-meta-cartridge</artifactId>
             <version>${andromda.version}</version>
             <scope>runtime</scope> 
-        </dependency>         
+        </dependency>  
+        <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+        </dependency>        
         <!--
         <dependency>
             <groupId>org.andromda.profiles.uml14</groupId>
@@ -82,20 +60,6 @@
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-maven-plugin</artifactId>
                 <version>${andromda.version}</version>
-                <!--
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <buildSourceDirectory>${pom.basedir}/target/src</buildSourceDirectory>
-                            <configurationUri>file:${pom.basedir}/conf/main/andromda.xml</configurationUri>
-                            <lastModifiedCheck>true</lastModifiedCheck>
-                        </configuration>
-                    </execution>
-                </executions>
-                -->
             </plugin>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
@@ -112,7 +76,8 @@
                         </goals>
                         <configuration>
                             <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
-                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+
                             <actualDirectory>${project.basedir}/../tmp-seam/cartridge-test/actualUML2</actualDirectory>
                             <expectedDirectory>${project.basedir}/../tmp-seam/cartridge-test/expectedUML2</expectedDirectory>                            
                             <reportDirectory>${project.basedir}/../tmp-seam/cartridge-test/reportsUML2</reportDirectory>
@@ -134,6 +99,11 @@
                         </execution>
                     </executions>
             </plugin> 
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>xml-maven-plugin</artifactId>
+                                <version>${maven.xml.plugin.version}</version>
+                        </plugin>            
             <!--
             <plugin>
                 <groupId>org.andromda.maven.plugins.site</groupId>
@@ -175,7 +145,6 @@
             -->
         </plugins>
     </build>
-    <!--
     <reporting>
         <plugins>
             <plugin>
@@ -195,17 +164,12 @@
             </plugin>          
         </plugins>
     </reporting>
-    -->
     <properties>
-    <!--
-        <andromda3.root>D:/java/development/andromda-all</andromda3.root>
-        <maven.test.skip>true</maven.test.skip>
-        <model.uri>jar:file:${pom.basedir}/src/main/uml/SeamMetafacadeModel.xml.zip!/SeamMetafacadeModel.xml</model.uri>
-        <test.model.uri>jar:file:${pom.basedir}/src/test/uml/SeamCartridgeTestModel.xml.zip!/SeamCartridgeTestModel.xml</test.model.uri>
-        -->
-        <model.name>SeamMetafacadeModel</model.name>
+        <!--<model.name>SeamMetafacadeModel</model.name>-->
+        <model.name>GuiMetafacadeModel</model.name>
     	<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin must be to true -->
-        <test.model.uri>file:${test.src.dir}/${uml.type}/SeamCartridgeTestModel.uml</test.model.uri>
+        <!--<test.model.uri>file:${test.src.dir}/${uml.type}/SeamCartridgeTestModel.uml</test.model.uri>-->
+        <test.model.uri>file:${test.src.dir}/${uml.type}/GuiCartridgeTestModel.uml</test.model.uri>
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
         <test.output.dir>${project.basedir}/../tmp-seam/cartridge-test/actualUML2</test.output.dir>
     </properties>
