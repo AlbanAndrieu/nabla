@@ -18,20 +18,19 @@
             <models>
                 <model type="emf-uml22">
                     <uri>${model.uri}</uri>
-          	    <moduleSearchLocations>
-          	        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}</location>
+                    <moduleSearchLocations>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}</location>
                         <!--<location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-${uml.type}</location>-->
                         <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-uml</location>
-          	    </moduleSearchLocations>          
+                    </moduleSearchLocations>                    
                     <modelPackages>
                         <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>
-                        <!--<modelPackage process="false">org::andromda::cartridges::jsf::metafacades</modelPackage>-->
                     </modelPackages>
                 </model>
-            </models>            
+            </models>
         </repository>
     </repositories>
-    <namespaces>    
+    <namespaces>
         <namespace name="meta">
             <properties>
         	<property name="languageMappingsUri">Java</property>
@@ -51,3 +50,4 @@
         </namespace>
     </namespaces>
 </andromda>
+
