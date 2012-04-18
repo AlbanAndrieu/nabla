@@ -154,7 +154,7 @@
 		<module>andromda-gui-cartdrige</module>
 		<module>andromda-jsf2-cartdrige-components</module>
 		<module>andromda-jsf2-cartdrige</module>
-		<!--<module>andromda-seam-cartdrige</module> -->
+		<module>andromda-seam-cartdrige</module>
 		<module>andromda-database-cartridge</module>
 		<!--<module>andromda-semweb</module> -->
 	</modules>
