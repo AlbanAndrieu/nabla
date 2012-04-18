@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <document>
     <properties>
-        <author email="leandro.hermida@fmi.ch">Leandro Hermida</author>
+        <author email="alban.andrieu@free.fr">Alban Andrieu</author>
         <title>AndroMDA + EJB3 + Seam Step-by-Step Getting Started Guide</title>
     </properties>
     <body>
