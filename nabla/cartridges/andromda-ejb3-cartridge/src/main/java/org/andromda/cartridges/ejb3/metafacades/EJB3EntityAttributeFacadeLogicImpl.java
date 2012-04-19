@@ -549,7 +549,16 @@ public class EJB3EntityAttributeFacadeLogicImpl
     {
     	return (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_PATTERNABLE);
     }
-        
+      
+    /**
+     * @see EJB3EntityAttributeFacadeLogic#handleGetColumnMinLength()
+     */
+    @Override
+    protected String handleGetColumnMinLength()
+    {
+    	return (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_MINLENGTH);
+    }
+            
     /**
      * @see EJB3EntityAttributeFacadeLogic#handleGetTemporalType()
      */

@@ -412,8 +412,8 @@ $attribute.getDocumentation("     * ")
 #*            *##end    
 #*          *##end
 #*        *##end
-#*        *##if ($attribute.columnLength)
-    @org.hibernate.validator.Length(max = $attribute.columnLength)
+#*        *##if (($attribute.columnMinLength) || ($attribute.columnLength))
+    @org.hibernate.validator.Length(#if ($stringUtils.isNotBlank($attribute.columnMinLength))min = $attribute.columnMinLength#else min = 0#end#if ($stringUtils.isNotBlank($attribute.columnLength)), max = $attribute.columnLength#end)
 ##    @org.hibernate.validator.constraints.Length(max = $attribute.columnLength)
 #*        *##end
 #*        *##if ($attribute.columnEmailable)

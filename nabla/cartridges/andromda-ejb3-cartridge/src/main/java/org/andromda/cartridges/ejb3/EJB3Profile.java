@@ -628,7 +628,13 @@ public class EJB3Profile
      */
     public static final String TAGGEDVALUE_PERSISTENCE_COLUMN_PATTERNABLE =
         profile.get("COLUMN_PATTERNABLE");                       
-        
+    
+    /**
+     * 'andromda_validation_minLength' The tagged value to represent the minimum length for a column.
+     */
+    public static final String TAGGEDVALUE_PERSISTENCE_COLUMN_MINLENGTH =
+        profile.get("COLUMN_MINLENGTH");      
+                
     /**
      * 'andromda_persistence_column_insert' The tagged value that specifies whether a mapped column should be
      * included in SQL INSERT statements.

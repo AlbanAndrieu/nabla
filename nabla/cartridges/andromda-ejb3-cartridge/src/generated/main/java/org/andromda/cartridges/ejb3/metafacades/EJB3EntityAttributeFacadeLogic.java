@@ -1067,6 +1067,37 @@ public abstract class EJB3EntityAttributeFacadeLogic
         return columnPatternable31a;
     }
 
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#getColumnMinLength()
+    * @return String
+    */
+    protected abstract String handleGetColumnMinLength();
+
+    private String __columnMinLength32a;
+    private boolean __columnMinLength32aSet = false;
+
+    /**
+     * Whether the column can have a validation on minimum length. If andromda_validation_minLength
+     * tag is set, the tagged value is used.
+     * @return (String)handleGetColumnMinLength()
+     */
+    public final String getColumnMinLength()
+    {
+        String columnMinLength32a = this.__columnMinLength32a;
+        if (!this.__columnMinLength32aSet)
+        {
+            // columnMinLength has no pre constraints
+            columnMinLength32a = handleGetColumnMinLength();
+            // columnMinLength has no post constraints
+            this.__columnMinLength32a = columnMinLength32a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.__columnMinLength32aSet = true;
+            }
+        }
+        return columnMinLength32a;
+    }
+
     // ------------- associations ------------------
 
     /**

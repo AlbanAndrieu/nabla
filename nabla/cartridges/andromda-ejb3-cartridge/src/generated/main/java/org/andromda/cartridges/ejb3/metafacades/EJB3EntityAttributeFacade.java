@@ -29,6 +29,13 @@ public interface EJB3EntityAttributeFacade
     public String getColumnDefinition();
 
     /**
+     * Whether the column can have a validation on minimum length. If andromda_validation_minLength
+     * tag is set, the tagged value is used.
+     * @return String
+     */
+    public String getColumnMinLength();
+
+    /**
      * Whether the column can have a validation pattern. If andromda_validation_pattern tag is set,
      * the tagged value is used.
      * @return String
