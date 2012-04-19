@@ -351,8 +351,9 @@
 			file:${test.src.dir}/mappings/MergeMappings.xml in
 			gui-cardtridge\conf\test\andromda.xml
 		-->
-		<!--<howto.output.dir>${project.basedir}/${target.dir}/site/howto</howto.output.dir>-->
-		<andromda.cartridge.howto.model.uri>jar:file:.${pom.basedir}/sample/howtomodel/mda/src/main/uml/${uml.type}/HowToModel.xml.zip!/HowToModel.xml</andromda.cartridge.howto.model.uri>
+		<!--<andromda.cartridge.howto.model.uri>jar:file:${home.dir}/uml/sample/model/src/main/uml/${uml.type}/modules/HowToModel.xml.zip!/HowToModel.xml</andromda.cartridge.howto.model.uri>-->
+		<andromda.cartridge.howto.model.uri>file:${home.dir}/uml/sample/model/src/main/uml/${uml.type}/modules/HowToModel.uml</andromda.cartridge.howto.model.uri>
+		<howto.output.dir>${project.basedir}/${target.dir}/site/howto</howto.output.dir>
 
 		<nabla.mda.profiles.dir>/profiles/${uml.type}</nabla.mda.profiles.dir>
 		<!--
