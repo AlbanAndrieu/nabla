@@ -303,6 +303,13 @@
                                 <td>Specifies in which range the value of this attribute must fall, '-' means no limit so 'range - 10' means any number less than or equal 10</td>
                             </tr>
                             <tr>
+                                <td>java.util.Date, java.sql.Date</td>
+                                <td>N/A</td>
+                                <td>[strict] (format)</td>
+                                <td>strict dd/MM/yyyy </td>
+                                <td>The format in which dates need to be specified (optionally strict) (*)</td>
+                            </tr>
+                            <tr>
                                 <td>java.lang.String</td>
                                 <td>minlength</td>
                                 <td>an integer value</td>
