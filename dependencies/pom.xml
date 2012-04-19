@@ -1253,13 +1253,13 @@
 		<home.dir>${env.WORKSPACE}</home.dir>
 		-->
 		<home.dir>C:\workspace\users\albandri10</home.dir>
-		<settings.localRepository>${env.M2_REPO}</settings.localRepository>
+		<!--<settings.localRepository>${env.M2_REPO}</settings.localRepository>-->
 		<deploy.dir>${home.dir}/fullsite</deploy.dir>		
 
 		<!-- TODO overrided in filter -->
 		<jdkLevel>1.6</jdkLevel>
 		<jdkDebug>true</jdkDebug>
-		<jdkOptimize>true</jdkOptimize> 
+		<jdkOptimize>false</jdkOptimize> 
 		
 		<maven.test.skip>false</maven.test.skip>
 		<maven.test.failure.skip>false</maven.test.failure.skip>
