@@ -113,8 +113,6 @@
 
 		<apache-continuum.version>1.2.3</apache-continuum.version>
 
-		<home.dir>${env.HOME}</home.dir>
-		<!-- <home.dir>${env.WORKSPACE}</home.dir> -->
 		<project.target>C:\target</project.target>
 		<project.includeidl>${project.target}</project.includeidl>
 		<project.includexml>${project.target}</project.includexml>
