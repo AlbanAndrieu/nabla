@@ -6,10 +6,12 @@
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>web</artifactId>
+    <!--<packaging>seam-war</packaging>-->
     <packaging>war</packaging>
-    <name>TimeTracker EJB3 Web</name>
+    <name>[${project.parent.artifactId} :: EJB3 Web] - ${project.artifactId} : ${project.version}</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -27,46 +29,67 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+            <!--scope>provided</scope-->
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
+            <!--scope>provided</scope-->
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
+            <!--scope>provided</scope-->
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
             <!--<version>${commons.digester.version}</version>-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-validator</groupId>
             <artifactId>commons-validator</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>oro</groupId>
             <artifactId>oro</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <artifactId>hibernate-validator</artifactId>
+            <groupId>org.hibernate</groupId>
+            <scope>provided</scope>
+        </dependency>        
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!--
         <dependency>
@@ -79,31 +102,79 @@
             <systemPath>${project.basedir}/target/src/WEB-INF/lib/andromda-jsf-cartridge-components.jar</systemPath -->
             <!--
         </dependency>
-        -->    
+        -->
+        
+        <dependency>
+            <groupId>com.sun.facelets</groupId>
+            <artifactId>jsf-facelets</artifactId>
+        </dependency>   
+             
+        <!-- icefaces 
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+        </dependency>
+	<dependency>
+	    <groupId>org.icefaces</groupId>
+	    <artifactId>icefaces-comps</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.icefaces</groupId>
+	    <artifactId>icefaces-facelets</artifactId>
+	</dependency>
+	-->
+        
+    	<!-- richfaces -->
+    	<dependency>
+    	  <groupId>org.richfaces.framework</groupId>
+    	  <artifactId>richfaces-impl</artifactId>
+    	</dependency>
+    	
+    	<dependency>
+    	  <groupId>org.richfaces.ui</groupId>
+    	  <artifactId>richfaces-ui</artifactId>
+    	</dependency>
+	
+    	<dependency>
+    	  <groupId>org.richfaces.samples</groupId>
+    	  <artifactId>glassX</artifactId>
+    	</dependency>
+    	  
+    	<dependency>
+    	  <groupId>org.richfaces.samples</groupId>
+    	  <artifactId>darkX</artifactId>
+    	</dependency>   
+        
+        <!-- myfaces -->
+        <!--
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
-            <!-- 'unknown' because the version doesn't matter for system dependencies>
-            <version>2.0.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/target/src/WEB-INF/lib/myfaces-api.jar</systemPath -->
         </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
         </dependency>
+        -->
+        
+        <!--
+
+        <dependency>
+            <groupId>org.apache.myfaces.trinidad</groupId>
+            <artifactId>trinidad-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.trinidad</groupId>
+            <artifactId>trinidad-impl</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.myfaces.tomahawk</groupId>
             <artifactId>tomahawk12</artifactId>
-            <!-- 'unknown' because the version doesn't matter for system dependencies>
-            <version>1.1.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/target/src/WEB-INF/lib/tomahawk.jar</systemPath -->
         </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
+        -->
+
+        <!-- do not activate validator
         <dependency>
             <groupId>org.apache.myfaces.extensions.validator</groupId>
             <artifactId>myfaces-extval-core</artifactId>
@@ -124,38 +195,44 @@
             <groupId>org.apache.myfaces.extensions.validator.component-support-modules</groupId>
             <artifactId>myfaces-extval-trinidad-support</artifactId>
         </dependency>
+        -->
         <!-- JBoss7 requires overriding default classloader to support JSF 1.2 -->
+        <!-- For MyFaces removed the Sun Jars (jsf-impl and jsf-api) from the war. it will use the MyFaces jars bundled with JBoss.  -->
         <!--
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
             -->
-            <!--<version>${jsf.api.version}</version>--> 
+            <!--<version>${jsf.api.version}</version>-->
             <!--
-            <version>1.2_15</version>      
+            <version>1.2_15</version>
         </dependency>
-        -->
-        <!--
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
             <version>2.1.2</version>
             <scope>compile</scope>
-        </dependency>   
-        -->     
-        <dependency>
-            <artifactId>hibernate-validator</artifactId>
-            <groupId>org.hibernate</groupId>
         </dependency>
+        -->
+        
+        <!-- replace this by slf4j-api and slf4j-simple
+        http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
+        <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <scope>test</scope>
+        </dependency>
+        -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <!--<scope>provided</scope>-->
+            <!-- for jboss 5.1.0-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <!-- for jboss 5.1.0-->
+            <artifactId>slf4j-simple</artifactId>
+           <!-- for jboss 5.1.0-->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -164,124 +241,156 @@
             <!-- for jboss 5.1.0-->
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.sun.facelets</groupId>
-            <artifactId>jsf-facelets</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.myfaces.trinidad</groupId>
-            <artifactId>trinidad-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.myfaces.trinidad</groupId>
-            <artifactId>trinidad-impl</artifactId>
-        </dependency>
+
         <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-utils</artifactId>
         </dependency>
         -->
-        <!--
+
+        <!-- JBoss Seam -->
         <dependency>
-            <groupId>org.icefaces</groupId>
-            <artifactId>icefaces</artifactId>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-ui</artifactId>
+        </dependency>
+        
+        <!-- optional, but a reasonable requirement for a newly created project -->
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-debug</artifactId>
+        </dependency>
+                
+        <!-- add more Seam modules as needed 
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-ioc</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-mail</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-pdf</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-remoting</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-excel</artifactId>
         </dependency>        
-	<dependency>
-	    <groupId>org.icefaces</groupId>
-	    <artifactId>icefaces-comps</artifactId>
-	</dependency>
-	<dependency>
-	    <groupId>org.icefaces</groupId>
-	    <artifactId>icefaces-facelets</artifactId>
-	</dependency> 
---> 
-<!--
-        <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>jboss-seam-debug</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>jboss-seam-ui</artifactId>
-        </dependency>
--->
-<!--
-        <dependency>
-            <groupId>org.jboss</groupId>
-            <artifactId>jboss-seam-debug</artifactId>
-            <version>unknown</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/target/src/WEB-INF/lib/jboss-seam-debug.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss</groupId>
-            <artifactId>jboss-seam-ui</artifactId>
-            <version>unknown</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/target/src/WEB-INF/lib/jboss-seam-ui.jar</systemPath>
-        </dependency>
--->        	
+        -->
+
         <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>servlet-api</artifactId>
         </dependency>
+        
+        <!--
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
         </dependency>
+        -->
+        
         <!--dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
         </dependency-->
+        
+        <!--
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        -->
+        
+        <!--
         <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-script-wrappers</artifactId>
             <scope>provided</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
-        <!--dependency>
+        <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-ejb3-client</artifactId>
-        </dependency-->
+        </dependency>
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-ejb3x</artifactId>
         </dependency>
-        <!--dependency>
+        <dependency>
             <groupId>org.jboss</groupId>
             <artifactId>ejb3-persistence</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>hibernate-entitymanager</groupId>
             <artifactId>ejb3-persistence</artifactId>
-        </dependency-->
+        </dependency>
+        -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate</groupId> 
             <artifactId>hibernate-core</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.6.2</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!--
+        <dependency>
+            <groupId>org.ajax4jsf</groupId>
+            <artifactId>ajax4jsf</artifactId>
+            <version>1.0.5</version>
+        </dependency>    
+        -->    
+        
+        <!--
+	<dependency>
+	    <groupId>javax.persistence</groupId>
+	    <artifactId>persistence-api</artifactId>
+	    <scope>provided</scope>
+	    <optional>true</optional>
+	</dependency>        
+	-->	
+		
     </dependencies>
     <build>
-        <finalName>timetracker</finalName>
+        <finalName>${project.parent.artifactId}</finalName>
+        <!--<defaultGoal>hotdeploy:exploded</defaultGoal>-->
         <!-- comment resources for mvn eclipse:eclipse -->
+        <!--
         <resources>
+        -->
+            <!--
+            <resource>
+            	<directory>${maven.build.generated}/main/java</directory>
+            	<filtering>true</filtering>
+            </resource>	
+            -->	        
+            <!--
             <resource>
                 <directory>src/main/resources</directory>
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>true</filtering>
             </resource>
-	        <resource>
+	    <resource>
                 <directory>${maven.build.generated}/main/webapp</directory>
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>false</filtering>
@@ -291,21 +400,70 @@
                 <targetPath>${project.basedir}/${target.dir}/src/main/webapp</targetPath>
                 <filtering>false</filtering>
             </resource>
+            -->            
+        <!--
         </resources>
-        <plugins>
+        -->
+        <!--
+	<filters>
+		<filter>${home.dir}/filters/${project.parent.artifactId}-${environment}.properties</filter>
+	</filters>   
+	-->     	
+        <plugins> 
+<!--        
+	    <plugin>
+	    	<groupId>com.ctp.seam.maven</groupId>
+	    	<artifactId>maven-hotdeploy-plugin</artifactId>
+	    	<extensions>true</extensions>
+	    	<configuration>
+	    		<source>${jdkLevel}</source>
+	    		<target>${jdkLevel}</target>
+	    		<sourceDirectory>${basedir}/src/main/hot</sourceDirectory>
+	    		<deployDirectory>${jboss.deploy.directory}/${build.finalName}.war</deployDirectory>
+	    	</configuration>
+	    </plugin>   
+	    -->    
+	    <!-- run with 'mvn cli:execute-phase' and use 'hot' -->
+	    <plugin>
+	    	<groupId>org.twdata.maven</groupId>
+	    	<artifactId>maven-cli-plugin</artifactId>
+	    	<configuration>
+	    		<userAliases>
+	    			<hot>hotdeploy:exploded -o</hot>
+	    			<cln>clean -o -Pclean</cln>
+	    		</userAliases>
+	    	</configuration>
+	    </plugin>	    
+	    <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>
+                    <!-- the default value is the filter list under build -->
+          	    <!-- specifying a filter will override the filter list under build -->
+          	    <filters>
+          	      <filter>${home.dir}/filters/${project.parent.artifactId}-${environment}.properties</filter>
+          	    </filters>
+          	    <webResources>
+          	      <webResource>
+          	        <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+          	        <targetPath>WEB-INF</targetPath>
+          	        <filtering>true</filtering>
+          	      </webResource>
+          	    </webResources>                
+                    <!--<warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>-->
                     <!-- Needed for mvn 2.1 with war-plugin 2.1. See http://jira.codehaus.org/browse/MWAR-187 -->
+                    <!--
                     <useCache>false</useCache>
                     <excludes>**/*.java</excludes>
-                    <!--packagingExcludes>**/aopa*.jar,**/cglib-*.jar,**/commons-codec*.jar,**/commons-fileu*.jar,**/commons-logging*.jar,**/hibernate-validator*.jar,**/spring-a*.jar,**/spring-bean*.jar,**/spring-co*.jar,**/spring-expr*.jar,**/spring-tx*.jar,**/spring-web*.jar</packagingExcludes-->
+                    -->
+                    <!--packagingExcludes>**/aopa*.jar,**/cglib-*.jar,**/commons-codec*.jar,**/commons-fileu*.jar,**/commons-logging*.jar,**/hibernate-validator*.jar,**/spring-a*.jar,**/spring-bean*.jar,**/spring-co*.jar,**/spring-expr*.jar,**/spring-tx*.jar,**/spring-web*.jar</packagingExcludes-->            
+                    <!--<webappDirectory>${jboss.deploy.directory}/${project.parent.artifactId}</webappDirectory>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -314,18 +472,119 @@
             </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
+                <!--<artifactId>jetty-maven-plugin</artifactId>-->
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.14</version>
                 <configuration>
-                    <webAppSourceDirectory>${project.basedir}/target/src/main/java</webAppSourceDirectory>
+			<scanIntervalSeconds>10</scanIntervalSeconds>
+          		<connectors>
+          		  <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+          		    <port>8050</port>
+          		    <maxIdleTime>60000</maxIdleTime>
+          		  </connector>
+          		</connectors>                
+          		<!--
+                    <webAppSourceDirectory>${project.basedir}/${target.dir}/src/main/java</webAppSourceDirectory>
                     <webAppConfig>
                         <contextPath>/</contextPath>
                         <baseResource implementation="org.mortbay.resource.ResourceCollection">
-                            <resourcesAsCSV>${project.basedir}/src/main/webapp, ${project.basedir}/target/src/main/webapp</resourcesAsCSV>
+                            <resourcesAsCSV>${project.basedir}/src/main/webapp, ${project.basedir}/${target.dir}/src/main/webapp</resourcesAsCSV>
                         </baseResource>
                         <contextPath>/${application.id}-${project.version}</contextPath>
                     </webAppConfig>
+                    -->
                 </configuration>
+                <!-- jsp 2
+		<dependencies>
+                    <dependency>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jsp-api-2.0</artifactId>
+                        <version>6.1.14</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tomcat</groupId>
+                        <artifactId>jasper-compiler-jdt</artifactId>
+                        <version>5.5.15</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tomcat</groupId>
+                        <artifactId>jasper-compiler</artifactId>
+                        <version>5.5.15</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tomcat</groupId>
+                        <artifactId>jasper-runtime</artifactId>
+                        <version>5.5.15</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jsp-2.1</artifactId>
+                        <version>6.1.14</version>
+                        <scope>provided</scope>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>org.mortbay.jetty</groupId>
+                                <artifactId>jsp-api-2.1</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>org.mortbay.jetty</groupId>
+                                <artifactId>start</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>org.mortbay.jetty</groupId>
+                                <artifactId>jetty-annotations</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+		</dependencies>                
+		-->
             </plugin>
         </plugins>
     </build>
+    <!--
+	<profiles>
+		<profile>
+			<id>clean</id>
+			<build>
+				<defaultGoal>clean</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>${maven.clean.plugin.version}</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>${jboss.deploy.directory}/${build.finalName}.war/</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>package-war</id>
+			<build>
+				<defaultGoal>clean</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>com.ctp.seam.maven</groupId>
+						<artifactId>maven-hotdeploy-plugin</artifactId>
+						<extensions>true</extensions>
+						<configuration>
+							<source>${jdkLevel}</source>
+							<target>${jdkLevel}</target>
+							<sourceDirectory>${basedir}/src/main/hot</sourceDirectory>
+							<useWarPackaging>true</useWarPackaging>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>    
+		-->	
 </project>
