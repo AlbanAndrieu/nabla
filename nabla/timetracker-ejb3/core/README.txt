@@ -6,7 +6,12 @@ Persistence provider caller does not implement the EJB3 spec correctly. Persiste
 You can ignore that log message.
 http://stackoverflow.com/questions/2328720/persistence-provider-caller-does-not-implement-the-ejb3-spec-correctly-warnin
 
-You can add JPA facet to project but hibernate config does not work in eclipse???
+You can add JPA facet to project but hibernate config does not work in eclipse without core.launch and hibernate-console.properties at the project base
+In order to hibernate configuration to work, first connect JPA in project properties
+add an hibernate config called timetracker-ejb3-core
+Project : core-3.4
+Database connection : JPA
+Property file : \core-3.4\hibernate-console.properties
 
 For jboss embedded files required are :
 default.persistence
@@ -23,3 +28,5 @@ http://code.google.com/p/ctpjava/wiki/MavenSeamHotdeployPluginUsage
 Remove components.xml from core project because it does not work in core-test project
 
 TestNG does not work in eclipse without add -Dsun.lang.ClassLoader.allowArraySyntax=true in the VM args
+
+In order to enable seam facet : add Seam 2 Runtime with C:\jboss-seam-2.2.1.Final
