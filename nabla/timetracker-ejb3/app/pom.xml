@@ -6,10 +6,11 @@
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>app</artifactId>
     <packaging>ear</packaging>
-    <name>TimeTracker EJB3 Application</name>
+    <name>[${project.parent.artifactId} :: EJB3 Application] - ${project.artifactId} : ${project.version}</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -18,7 +19,7 @@
             <exclusions>
                 <exclusion>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>timetracker-ejb3-mda</artifactId>
+                    <artifactId>mda</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.andromda.profiles.uml14</groupId>
@@ -36,10 +37,12 @@
             <version>${project.version}</version>
             <type>ejb</type>
             <exclusions>
+            	<!--
                 <exclusion>
                     <groupId>net.sf.ehcache</groupId>
                     <artifactId>ehcache</artifactId>
                 </exclusion>
+                -->
                 <exclusion>
                     <groupId>jboss.jboss-embeddable-ejb3</groupId>
                     <artifactId>hibernate-all</artifactId>
@@ -59,10 +62,20 @@
             <artifactId>web</artifactId>
             <version>${project.version}</version>
             <type>war</type>
+            <!--<type>seam-war</type>-->
         </dependency>
+        
+        <!-- commons -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils-core</artifactId>
+            <type>jar</type>
+        </dependency>        
+        
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
+            <type>jar</type>            
             <!--<version>${commons.digester.version}</version>
             <exclusions>
                 <exclusion>
@@ -72,10 +85,134 @@
             </exclusions>
             -->
         </dependency>
+        
+        <!--
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
         </dependency>
+        -->
+        
+        <!-- Jboss Seam -->
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam</artifactId>
+          <type>ejb</type>
+          <!--<scope>provided</scope>-->
+        </dependency>
+        
+        <!--
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>jboss-seam-ui</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        -->
+        <dependency>
+          <groupId>org.jboss.el</groupId>
+          <artifactId>jboss-el</artifactId>
+          <type>jar</type>
+          <!--<scope>provided</scope>-->
+        </dependency>
+        
+        <!-- richfaces -->
+        <dependency>
+          <groupId>org.richfaces.framework</groupId>
+          <artifactId>richfaces-api</artifactId>
+          <type>jar</type>
+        </dependency>
+            
+        <!--
+	<dependency> 
+	  <groupId>net.sf.ehcache</groupId> 
+	  <artifactId>ehcache</artifactId> 
+	  <version>${ehcache.jar.version}</version>
+          <type>jar</type>
+	</dependency>
+	-->
+	
+        <!-- hibernate -->
+        <!--
+        <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-commons-annotations</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        -->
+                
+        <!-- 
+          JBoss Rules. Needed if you implement drools functionality, e.g. Seam Idendity 
+          see: samples/jboss-seam/examlpes/seamspace 
+        -->
+        <!-- 
+        <dependency>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-core</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-compiler</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-api</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-decisiontables</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-templates</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>com.thoughtworks.xstream</groupId>
+          <artifactId>xstream</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>xpp3</groupId>
+          <artifactId>xpp3_min</artifactId>
+        </dependency>
+        -->
+        
+        <!-- rules + groovy -->
+        <!-- 
+        <dependency>
+          <groupId>org.antlr</groupId>
+          <artifactId>antlr-runtime</artifactId>
+        </dependency>
+        --> 
+        
+        <!-- Added transient by JBoss Rules 
+        <dependency>
+          <groupId>org.mvel</groupId>
+          <artifactId>mvel2</artifactId>
+        </dependency> 
+       
+        <dependency>
+          <groupId>janino</groupId>
+          <artifactId>janino</artifactId>
+        </dependency>
+       
+        <dependency>
+          <groupId>org.eclipse.jdt</groupId>
+          <artifactId>core</artifactId>
+        </dependency>
+        -->
+       
+        <!-- JBoss jBPM -->
+        <!-- 
+        <dependency>
+          <groupId>org.jbpm</groupId>
+          <artifactId>jbpm-jpdl</artifactId>
+        </dependency>
+        -->            
         <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
         <!--
         <dependency>
@@ -93,6 +230,7 @@
     <build>
         <finalName>${application.id}-${project.version}</finalName>
         <resources>
+            <!--
             <resource>
                 <directory>src/main/config</directory>
                 <targetPath>../</targetPath>
@@ -103,29 +241,143 @@
                 <targetPath>../${application.id}-${project.version}</targetPath>
                 <filtering>true</filtering>
             </resource>
+            -->
             <resource>
                 <directory>src/main/sql</directory>
                 <targetPath>${target.dir}/sql</targetPath>
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <plugins>
+        
+        <plugins>        
+      <!--
+        Maven resources plugin The default resources folder for ear is the
+        src/main/application folder. Stuff in this folder will go into the
+        target ear folder. The projects *-ds.xml file is placed in the
+        src/main/resources folder, so we'll have to use the
+        maven-resources-plugin to copy the *-ds.xml file. The reason for
+        this is that we need to control where to copy the *-ds.xml is in
+        the target build. If we want to deploy the *-ds.xml file embedded
+        into the ear project then the file is located in the target/ear root
+        folder. If the *-ds.xml file should be deployed as a separate service,
+        then the file is located the target folder. The explode profile
+        will then copy the *-ds.xml file to the application server's deploy
+        folder.
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-app-ds-xml</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+
+              <!--
+                Comment out this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
+              -->
+              <outputDirectory>${project.build.directory}/${project.build.finalName}/META-INF/ds</outputDirectory>
+
+              <!--
+                Uncomment this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
+                <outputDirectory>${project.build.directory}</outputDirectory>
+              -->
+              <resources>
+                <resource>
+                  <directory>src/main/config</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <include>${application.id}-ds.xml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+              
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
                 <configuration>
+                    <finalName>${application.id}-ear</finalName>
                     <!--
                     <generateApplicationXml>true</generateApplicationXml>
                     <includeJar>false</includeJar>
-                    <fileNameMapping>no-version</fileNameMapping>
-                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <fileNameMapping>no-version</fileNameMapping>                    
                     -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <!--
                     <includes>**/*.xml</includes>
                     <excludes>**/jboss-app.xml</excludes>
+                    -->
+                    <!--
+                    <artifactTypeMappings>
+        	        <artifactTypeMapping type="seam-war" mapping="war"/>
+        	    </artifactTypeMappings>
+        	    <unpackTypes>war</unpackTypes>
+        	    -->                    
+        	                          <!--<ejbVersion>3.0</ejbVersion>-->
+                    <jboss>
+                      <version>5</version><!-- JBosse version -->
+         
+                      <!--
+                      <loader-repository>org.andromda.timetracker:loader=${project.build.finalName}</loader-repository>
+                      <loader-repository-config>java2ParentDelegation=false</loader-repository-config>                      
+                      -->
+                      <loader-repository>
+                        <!--
+                          seam.jboss.org is a Seam-specific scoped classloader. It acts as
+                          a way for Seam to disassociate artifacts bundled with the
+                          application from those that exist within the JBoss application
+                          server's shared artifacts or JARs (for example, those that
+                          reside in the default server's lib directory or in JBoss's
+                          general lib directory). 
+                          The classloader is referenced in jboss-app.xml for EAR deployment and and in 
+                          jboss-web.xml for WAR deployment (SiA-2.5.3-p63).
+                          see: http://www.jboss.org/community/wiki/classloadingconfiguration
+                          see: http://www.mastertheboss.com/en/jboss-application-server/141-jboss-classloader.html
+                        -->
+                        seam.jboss.org:loader=${application.id}-ear
+                      </loader-repository>
+                     
+                      <!--
+                        Comment out this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
+                      -->
+                      <data-sources>
+                        <data-source>META-INF/ds/${application.id}-ds.xml</data-source>
+                      </data-sources>                    
+                    </jboss>
 
-                    <version>6</version><!-- Java EE 6 -->
-                    <ejbVersion>3.0</ejbVersion>
                     <modules>
+                        <!--
+                        <jarModule>
+                            <groupId>com.sun.el</groupId>
+                            <artifactId>el-ri</artifactId>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>javax.el</groupId>
+                            <artifactId>el-api</artifactId>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                        </jarModule>
+                        -->              
+                        <!--                    
+                        <jarModule>
+                            <groupId>org.jboss.seam</groupId>
+                            <artifactId>jboss-seam</artifactId>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                        </jarModule>  
+                        -->                  
+                        
+                        <ejbModule>
+                            <groupId>org.jboss.seam</groupId>
+                            <artifactId>jboss-seam</artifactId>
+                        </ejbModule>
+                                    
                         <jarModule>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>common</artifactId>
@@ -141,13 +393,14 @@
                             <contextRoot>/${application.id}</contextRoot>
                         </webModule>
                     </modules>
-                    <!--
-                    <jboss>
-                        <version>5</version>
-                        <loader-repository>org.andromda.timetracker:loader=${project.build.finalName}</loader-repository>
-                        <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
-                    </jboss>
-                    -->
+
+                    <archive>
+                      <manifestEntries>
+                        <Build-Date>${timestamp}</Build-Date>
+                        <Build-Revision>${buildNumber}</Build-Revision>
+                        <Mode>${environment}</Mode>
+                      </manifestEntries>
+                    </archive>                    
                 </configuration>
             </plugin>
             <plugin>
@@ -181,7 +434,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <deployLocation>${jboss.home}/server/default/deploy</deployLocation>
+                    <deployLocation>${jboss.deploy.directory}</deployLocation>
                     <!-- include the generated data source file -->
                     <includes>
                         <include>*ds.xml</include>
@@ -229,7 +482,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <deployLocation>${jboss.home}/server/default/deploy</deployLocation>
+                            <deployLocation>${jboss.deploy.directory}</deployLocation>
                         </configuration>
                     </plugin>
                 </plugins>
