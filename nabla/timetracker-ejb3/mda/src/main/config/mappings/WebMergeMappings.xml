@@ -11,10 +11,12 @@
         <to>
             <![CDATA[
     <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
+    <!-- uncomment if you want to myfaces
     <context-param>
          <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
          <param-value>true</param-value>
     </context-param> 
+    -->
             ]]>
         </to>
     </mapping>
