@@ -165,6 +165,7 @@
    	</bpm:jbpm>
    	-->
    
+   	<!--
    	<drools:rule-base name="securityRules">
    	  <drools:rule-files>
    	    <value>/META-INF/security.drl</value>
@@ -172,6 +173,7 @@
    	</drools:rule-base>
    	
    	<security:rule-based-permission-resolver security-rules="#{securityRules}" />	
+   	-->
    
    <!--
 #foreach ($service in $services)
