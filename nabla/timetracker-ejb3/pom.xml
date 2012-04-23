@@ -1331,7 +1331,6 @@
     	<!-- OpenEJB JNDI Pattern -->
     	<application.jndi.pattern.test>/#{ejbName}/Local</application.jndi.pattern.test>
     	<application.unpack.modules>false</application.unpack.modules>
-    	<as.version>4.2</as.version>
     </properties>
     <profiles>
         <profile>
@@ -1382,3 +1381,5 @@
             </build>
         </profile>
     </profiles>
+
+</project>
