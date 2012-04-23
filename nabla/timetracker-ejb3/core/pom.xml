@@ -170,11 +170,13 @@
 			<version>${ehcache.version}</version>
 			<type>pom</type>
 		</dependency>
+		-->
 		
                 <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-search</artifactId>
                     <version>${hibernate.search.version}</version>
+                    <scope>provided</scope>
 		    <exclusions>
 		    	<exclusion>
 		    		<groupId>org.hibernate</groupId>
@@ -185,8 +187,8 @@
 		<dependency>
 		   <groupId>org.apache.lucene</groupId>
 		   <artifactId>lucene-core</artifactId>
+		   <scope>provided</scope>
 		</dependency>   
-		-->
 		
 		<dependency>
 			<groupId>javax.el</groupId>
@@ -369,6 +371,7 @@
 		</dependency>
 		-->
 		<!-- use myfaces or those -->
+		<!-- use majorra for richFaces -->
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -388,11 +391,13 @@
 			<groupId>org.drools</groupId>
 			<artifactId>drools-core</artifactId>
 			<version>${drools.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-compiler</artifactId>
 			<version>${drools.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mvel</groupId>
@@ -404,6 +409,7 @@
 			<groupId>org.jbpm</groupId>
 			<artifactId>jbpm-jpdl</artifactId>
 			<version>${jbpm.jpdl.version}</version>
+			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -436,6 +442,7 @@
 			<groupId>org.jboss.el</groupId>
 			<artifactId>jboss-el</artifactId>
 			<version>${jboss.el.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		
                 <dependency>
@@ -454,8 +461,69 @@
 	        </dependency> 
             -->       
 	</dependencies>
+	
+	<!--
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+		<maven.test.failure.skip>true</maven.test.failure.skip>
+	</properties>
+	-->
+	
 	<build>
-		<plugins>	
+		<plugins>			
+                        <!-- See http://mojo.codehaus.org/sql-maven-plugin/examples/execute.html -->
+                        <!-- Can't connect to the h2 process outside of the mvn JVM because it locks the DB -->
+                        <!-- See http://www.h2database.com/html/cheatSheet.html -->
+                        <!-- Can't use in-memory DB for tomcat/jetty initialization - goes away on exit -->
+                        <!-- Use for in-memory DB jdbc:h2:timetracker;MODE=MySQL for in-JVM connections only, but it must be started within maven -->
+                        <!-- Use for server DB jdbc:h2:tcp://localhost/timetracker;MODE=MySQL for external connections, but it must be started outside maven -->
+                        <!-- default-cli execution id allows us to run the same configuration from the mvn command line -->                        
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>sql-maven-plugin</artifactId>
+                            <version>${maven.sql.plugin.version}</version>
+                            <configuration>
+                                <driver>${jdbc.driver}</driver>
+                                <url>${jdbc.url}</url>
+                                <username>${jdbc.username}</username>
+                                <password>${jdbc.password}</password>
+                                <autocommit>true</autocommit>
+                                <skip>${maven.test.skip}</skip>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>default-cli</id>
+                                    <phase>process-test-resources</phase>
+                                    <goals>
+                                        <goal>execute</goal>
+                                    </goals>
+                                    <configuration>
+                                        <autocommit>true</autocommit>
+                                        <!-- Ascending alphabetical order, not the order of files in includes -->
+                                        <!--<orderFile>ascending</orderFile>-->
+                                        <fileset>
+                                            <basedir>${basedir}/../app/src/main/sql</basedir>
+                                            <includes>
+                                                <!--<include>schema.sql</include>-->
+                                                <!--<include>schema-drop.sql</include>-->
+                                                <!--<include>schema-create.sql</include>-->
+                                                <include>static-data-insert.sql</include>
+                                                <include>test-data-insert.sql</include>
+                                            </includes>
+                                        </fileset>
+                                        <!-- We continue because database can be already created and data already inserted -->
+                                        <onError>continue</onError>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>${jdbc.groupId}</groupId>
+                                    <artifactId>${jdbc.artifactId}</artifactId>
+                                    <version>${jdbc.version}</version>
+                                </dependency>
+                            </dependencies>
+                        </plugin>		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
@@ -696,7 +764,35 @@
 				<filters>
 					<filter>${home.dir}/filters/project-${environment}.properties</filter>
 				</filters>	   				
-			</build>
+				<!--
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<inherited>true</inherited>
+						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<linkXRef>true</linkXRef>
+							<argLine>-Xms64m -Xmx256m</argLine>
+							<excludes>
+								<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
+							</excludes>
+							<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+							<forkMode>once</forkMode>
+							<printSummary>true</printSummary>
+							<reportFormat>xml</reportFormat>
+							<systemPropertyVariables>
+							<property>
+                        				    	<name>net.sourceforge.cobertura.datafile</name>
+                        				        <value>~/cobertura.ser</value>
+                        				</property>
+						</systemPropertyVariables>							
+						</configuration>
+					</plugin>						
+				</plugins>
+				-->
+			</build>				
 		</profile>		
 		<!-- old profile Test have changed using extends SeamOpenEjbTest instead of extends SeamTest -->
 		<profile>

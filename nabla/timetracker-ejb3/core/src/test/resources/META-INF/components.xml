@@ -24,8 +24,7 @@
 		http://jboss.com/products/seam/transaction http://jboss.com/products/seam/transaction-2.2.xsd
 		http://jboss.com/products/seam/transaction http://jboss.com/products/seam/jms-2.2.xsd">
 
-	<!--<core:init debug="${app.debug}" jndi-pattern="${app.jndi.pattern.test}" transaction-management-enabled="true" />-->
-	<core:init debug="true" jndi-pattern="${app.jndi.pattern.test}" transaction-management-enabled="true" />
+	<core:init debug="true" jndi-pattern="${application.jndi.pattern.test}" transaction-management-enabled="true" distributable="false"/>
 
 	<!-- JPA -->
         <transaction:ejb-transaction />
@@ -37,7 +36,7 @@
 
         <!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
         <web:hot-deploy-filter url-pattern="*.seam"/>
-   
+    
 	<!-- TODO: How do we define OpenEjb entity manager factory here??? 
 	<persistence:entity-manager-factory
 		name="entityManagerFactory"
@@ -78,7 +77,7 @@
    	   <bpm:pageflow-definitions></bpm:pageflow-definitions>
    	</bpm:jbpm>
    	-->
-   
+
    	<drools:rule-base name="securityRules">
    	  <drools:rule-files>
    	    <value>/META-INF/security.drl</value>
