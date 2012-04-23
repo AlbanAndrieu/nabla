@@ -166,6 +166,7 @@
 		user-permission-class="no.knowit.example.security.model.UserPermission" />
 	-->
 
+	<!--
         <drools:rule-base name="securityRules">
           <drools:rule-files>
              <value>/META-INF/security.drl</value>
@@ -173,6 +174,7 @@
         </drools:rule-base>
         
         <security:rule-based-permission-resolver security-rules="#{securityRules}" />
+        -->
 
         <event type="org.jboss.seam.security.notLoggedIn">
           <action execute="#{redirect.captureCurrentView}" />
