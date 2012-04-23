@@ -5,18 +5,23 @@ insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTI
 insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (4, 'rbrooke',  '756slLjeNViurJBGI5JeqA==', 'Rachael',  'Brooke',   'rachael.brooke@yahoo.com', 1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Rachael Brooke');
 commit;
 
-insert into USER_ROLE (ID, ROLE, USER_FK) values (1, 'STANDARD_USER', 1);
-insert into USER_ROLE (ID, ROLE, USER_FK) values (2, 'ADMINISTRATOR', 1);
-insert into USER_ROLE (ID, ROLE, USER_FK) values (3, 'STANDARD_USER', 2);
-insert into USER_ROLE (ID, ROLE, USER_FK) values (4, 'STANDARD_USER', 3);
-insert into USER_ROLE (ID, ROLE, USER_FK) values (5, 'STANDARD_USER', 4);
+--insert into USER_ROLE (ID, ROLE, USER_FK) values (1, 'STANDARD_USER', 1);
+--insert into USER_ROLE (ID, ROLE, USER_FK) values (2, 'ADMINISTRATOR', 1);
+--insert into USER_ROLE (ID, ROLE, USER_FK) values (3, 'STANDARD_USER', 2);
+--insert into USER_ROLE (ID, ROLE, USER_FK) values (4, 'STANDARD_USER', 3);
+--insert into USER_ROLE (ID, ROLE, USER_FK) values (5, 'STANDARD_USER', 4);
+insert into USER_ROLE (ID, ROLE) values (1, 'STANDARD_USER');
+insert into USER_ROLE (ID, ROLE) values (2, 'ADMINISTRATOR');
+insert into USER_ROLE (ID, ROLE) values (3, 'STANDARD_USER');
+insert into USER_ROLE (ID, ROLE) values (4, 'STANDARD_USER');
+insert into USER_ROLE (ID, ROLE) values (5, 'STANDARD_USER');
 commit;
 
-insert into USER2ROLES (USER_ID_FK, ROLE_ID_FK) values (1, 1);
-insert into USER2ROLES (USER_ID_FK, ROLE_ID_FK) values (2, 2);
-insert into USER2ROLES (USER_ID_FK, ROLE_ID_FK) values (2, 3);
-insert into USER2ROLES (USER_ID_FK, ROLE_ID_FK) values (3, 4);
-insert into USER2ROLES (USER_ID_FK, ROLE_ID_FK) values (4, 5);
+insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (1, 1);
+insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (2, 2);
+insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (2, 3);
+insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (3, 4);
+insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (4, 5);
 commit;
 
 insert into TASK (ID, NAME) values (1, 'Research');
