@@ -1,408 +1,173 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <web-app version="2.5"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    
-    <context-param>
-          <param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
-          <param-value>com.sun.facelets.FaceletViewHandler</param-value>
-    </context-param>
-     
-    <!-- ************************ Seam Listener **************************** -->
-    <listener>
-        <listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
-    </listener>
-
-    <!-- ************************ Seam Filter **************************** -->
-    <!--
-    <filter>
-        <filter-name>Seam Filter</filter-name>
-        <filter-class>org.jboss.seam.web.SeamFilter</filter-class>
-    </filter>
-    -->
-    
-    <!--
-    <filter-mapping>
-        <filter-name>Seam Filter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
-    </filter-mapping>
-    -->     
-    <filter>
-    	<filter-name>Seam Filter</filter-name>
-    	<filter-class>org.jboss.seam.servlet.SeamFilter</filter-class>
-    </filter>  
-    
-    <filter-mapping>
-    	<filter-name>Seam Filter</filter-name>
-    	<url-pattern>/*</url-pattern>
-    </filter-mapping>       
-
-    <!-- ************************ SEAM Config **************************** -->
-    <!-- 300 second conversation timeout -->
-    <!--
-    <context-param>
-        <param-name>org.jboss.seam.core.manager.conversationTimeout</param-name>
-        <param-value>300000</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.jboss.seam.core.init.debug</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    -->
-    
-    <!-- ************************ Seam Servlet Mapping ************************ -->
-    <servlet>
-    	<servlet-name>Seam Resource Servlet</servlet-name>
-    	<servlet-class>org.jboss.seam.servlet.SeamResourceServlet</servlet-class>
-    </servlet> 
-    <!--    
-    <servlet>
-        <servlet-name>Seam Resource Servlet</servlet-name>
-        <servlet-class>org.jboss.seam.servlet.ResourceServlet</servlet-class>
-    </servlet>
-    -->
-    
-    <servlet-mapping>
-        <servlet-name>Seam Resource Servlet</servlet-name>
-        <url-pattern>/seam/resource/*</url-pattern>
-    </servlet-mapping>
-        	    
-    <!-- ************************ Ajax4jsf Filter **************************** -->
-    <!--
-    <filter>
-        <display-name>Ajax4jsf Filter</display-name>
-        <filter-name>ajax4jsf</filter-name>
-        <filter-class>org.ajax4jsf.FastFilter</filter-class>
-        <init-param>
-            <param-name>enable-cache</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>forceparser</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>ajax4jsf</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
-    -->
-    
-    <!-- ************************ Ajax4JSF Config **************************** -->
-    <!--
-    <context-param>
-        <param-name>org.ajax4jsf.SKIN</param-name>
-        <param-value>DEFAULT</param-value>
-    </context-param>
-    -->
-        
-    <!-- ************************ Trinidad Filter **************************** -->
-    <!--
-    <filter>
-        <display-name>Trinidad Filter</display-name>
-        <filter-name>trinidad</filter-name>
-        <filter-class>org.apache.myfaces.trinidad.webapp.TrinidadFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>trinidad</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
-    -->
-    
-    <!-- ************************ Trinidad Resources Servlet **************************** -->
-    <!--
-    <servlet>
-    	<servlet-name>Trinidad Resources</servlet-name>
-    	<servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-    	<servlet-name>Trinidad Resources</servlet-name>
-    	<url-pattern>/adf/*</url-pattern>
-    </servlet-mapping>
-    -->
-
-    <!-- ************************ Trinidad Config **************************** -->
-    <!--
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.DEBUG_JAVASCRIPT</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-    -->
-        <!-- 
-             If this parameter is enabled, Trinidad will automatically
-             check the modification date of your JSPs, and discard saved
-             state when they change;  this makes development easier,
-             but adds overhead that should be avoided when your application
-             is deployed
-        -->
-        <!--
-        <param-name>org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.resource.DEBUG</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
-        <param-value>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</param-value>
-        -->
-        <!--param-value>com.sun.facelets.FaceletViewHandler</param-value-->
-        <!--
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.trinidad.CACHE_VIEW_ROOT</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.trinidadinternal.DISABLE_CONTENT_COMPRESSION</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    -->
-    	    
-    <!-- ************************ Manual Filters **************************** -->
-    <!-- uncomment the following if you're using the open-session-in-view pattern
-         note: that you'll need to update the filter-class value if you've changed
-         the defaults for the package and/or filter name
-    <filter>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <filter-class>org.andromda.spring.presentation.AndroMDAOpenSessionInViewFilter</filter-class>
-        <init-param>
-            <param-name>singleSession</param-name>
-            <param-value>false</param-value>
-        </init-param>
-    </filter>
-    -->
-    <!-- uncomment the following if you're using the open-session-in-view pattern
-    <filter-mapping>
-        <filter-name>OpenSessionInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    -->   
-    
-    <!-- ********************* Facelets Config ************************** -->
-    <!--
-    <context-param>
-        <param-name>facelets.VIEW_MAPPINGS</param-name>
-        <param-value>*.xhtml</param-value>
-    </context-param>
-    <context-param>
-        <description>Prevents HTML-Comments from beeing rendered</description>
-        <param-name>facelets.SKIP_COMMENTS</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>facelets.REFRESH_PERIOD</param-name>
-        <param-value>2</param-value>
-    </context-param>
-    -->
-    <context-param>
-        <param-name>facelets.DEVELOPMENT</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    
-    <!-- ************************ Faces Servlet Mapping **************************** -->
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.seam</url-pattern>
-    </servlet-mapping>
-        
-    <!-- ************************ JSF Config **************************** -->
-    <context-param>
-        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-        <param-value>.xhtml</param-value>
-    </context-param>
-    <!--
-    <context-param>
-        <description>
-            State saving method: "client" or "server" (= default)
-            See JSF Specification 2.5.2. In ADF Faces, it is an
-            optimized, token-based mechanism that is almost always a
-            better choice than the standard JSF server-side state saving.
-        </description>
-        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-        <param-value>client</param-value>
-    </context-param>
-    -->
-
-    <context-param>
-    	<description>
-    		Strip html comments from the page before it is rendred - meaning that you will 
-    		no longer be bugged down by EL evaluating expressions inside a comment tag  
-    	</description>
-    	<param-name>javax.faces.SKIP_COMMENTS</param-name>
-    	<param-value>true</param-value>
-    </context-param>
-
-    <!-- ************************ RichFaces Config **************************** -->
-    <context-param>
-    	<param-name>org.richfaces.SKIN</param-name>
-    	<param-value>glassX</param-value>
-    </context-param>
-    
-    <!-- Suppress spurious stylesheets -->
-    <context-param>
-    	<param-name>org.richfaces.CONTROL_SKINNING</param-name>
-    	<param-value>disable</param-value>
-    </context-param>
-    
-    <context-param>
-    	<param-name>org.richfaces.CONTROL_SKINNING_CLASSES</param-name>
-    	<param-value>disable</param-value>
-    </context-param>
-    
-    <!-- Change load strategy to DEFAULT to disable sending scripts/styles as packs -->
-    <context-param>
-    	<param-name>org.richfaces.LoadStyleStrategy</param-name>
-    	<param-value>ALL</param-value>
-    </context-param>
-    
-    <context-param>
-    	<param-name>org.richfaces.LoadScriptStrategy</param-name>
-    	<param-value>ALL</param-value>
-    </context-param>		    
-    
-    <!-- ************************ MyFaces Listener **************************** -->
-    <!--
-    <listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>
-    -->
-    		    
-    <!-- ************************ MyFaces Config **************************** -->
-    <!--
-    <context-param>
-        <description>
-            This parameter tells MyFaces if javascript code should be allowed in the
-            rendered HTML output.
-            If javascript is allowed, command_link anchors will have javascript code
-            that submits the corresponding form.
-            If javascript is not allowed, the state saving info and nested parameters
-            will be added as url parameters.
-            Default: "true"
-        </description>
-        <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <description>
-            If true, rendered HTML code will be formatted, so that it is "human readable".
-            i.e. additional line separators and whitespace will be written, that do not
-            influence the HTML code.
-            Default: "true"
-        </description>
-        <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <description>
-            If true, a javascript function will be rendered that is able to restore the
-            former vertical scroll on every request. Convenient feature if you have pages
-            with long lists and you do not want the browser page to always jump to the top
-            if you trigger a link or button action that stays on the same page.
-            Default: "false"
-        </description>
-        <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
-        <param-value>true</param-value>
-    </context-param>
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+>
+  
+	<!-- For cluster, add distributable as the first child element, seam_reference-35.1.2 -->
+	<!-- <distributable /> -->
+	
+	<display-name>${app.display.name}</display-name>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.xhtml</location>
+	</error-page>
+	
+  <!-- RichFaces  -->
 	<context-param>
-		<param-name>com.sun.faces.validateXml</param-name>
+		<param-name>org.richfaces.SKIN</param-name>
+		<param-value>glassX</param-value>
+	</context-param>
+
+	<!-- Suppress spurious stylesheets -->
+	<context-param>
+		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
+		<param-value>disable</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>org.richfaces.CONTROL_SKINNING_CLASSES</param-name>
+		<param-value>disable</param-value>
+	</context-param>
+
+	<!-- Change load strategy to DEFAULT to disable sending scripts/styles as packs -->
+	<context-param>
+		<param-name>org.richfaces.LoadStyleStrategy</param-name>
+		<param-value>ALL</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>org.richfaces.LoadScriptStrategy</param-name>
+		<param-value>ALL</param-value>
+	</context-param>
+
+  <!-- Seam -->
+	<listener>
+		<listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
+	</listener>
+	
+	<filter>
+		<filter-name>Seam Filter</filter-name>
+		<filter-class>org.jboss.seam.servlet.SeamFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>Seam Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>Seam Resource Servlet</servlet-name>
+		<servlet-class>org.jboss.seam.servlet.SeamResourceServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Seam Resource Servlet</servlet-name>
+		<url-pattern>/seam/resource/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Facelets -->
+	
+	<!-- Facelets development mode (disable in production) --> 
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>${app.debug}</param-value>
+	</context-param>
+
+	<context-param>
+		<description>
+			Strip html comments from the page before it is rendred - meaning that you will 
+			no longer be bugged down by EL evaluating expressions inside a comment tag  
+		</description>
+		<param-name>javax.faces.SKIP_COMMENTS</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	 
+	<!-- SiA source code, ch11 -->
+	<!--
 	<context-param>
-		<param-name>com.sun.faces.verifyObjects</param-name>
-		<param-value>true</param-value>
-	</context-param>	
-    -->
-    
-    <!-- ************************ Manual Merged Config **************************** -->
-    <!-- Instruct JBoss to not use Mojarra libs with this application - avoids Myfaces conflict -->
-    <!-- use this with myfaces
-    <context-param>
-         <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
-         <param-value>true</param-value>
-    </context-param>
-    -->
-        
-    <!-- precompilation merge-point -->
-    
-    <session-config>
-        <session-timeout>45</session-timeout>
-        <!-- session-config merge-point -->
-    </session-config>
-    
-
-    <!-- Welcome files -->
-    <welcome-file-list>
-        
-        <welcome-file>index.jsp</welcome-file>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-
-    <error-page>
-        <error-code>408</error-code>
-        <location>/index.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>403</error-code>
-        <location>/403.jsp</location>
-    </error-page>
-    <error-page>
-    	<error-code>404</error-code>
-    	<location>/404.xhtml</location>
-    </error-page>
-	    
-    <!-- taglib merge-point -->
-    <!-- resource-ref merge-point -->
-    
-    <security-constraint>
-    	<display-name>Restrict raw XHTML Documents</display-name>
-    	<web-resource-collection>
-    		<web-resource-name>XHTML</web-resource-name>
-    		<url-pattern>*.xhtml</url-pattern>
-    	</web-resource-collection>
-    	<auth-constraint/>
-    </security-constraint>
+		<description>
+			If the view cannot be found in the session on a JSF postback, rebuild
+			the view again before executing the Restore View phase. This step
+			prevents "stale" public form pages. Enable this feature if you need it.
+		</description>
+		<param-name>facelets.BUILD_BEFORE_RESTORE</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	-->
 	
-    <!--
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Raw-JSF-Pages</web-resource-name>
-            <description>
-                Prevent access to raw pages that are for JSF pages.
-                (No roles, so no direct access)
-            </description>
-            <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecards.xhtml</url-pattern>
-            <url-pattern>/org/andromda/timetracker/web/timetrackerhome/time-tracker-home.xhtml</url-pattern>
-            <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard.xhtml</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-        </auth-constraint>
-        <user-data-constraint>
-            <transport-guarantee>NONE</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    -->
+	<!-- JSF --> 
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.seam</url-pattern>
+	</servlet-mapping>
+
+	<!-- Not shure if this is needed
+	<context-param>
+		<description>
+			JSF 1.2 detects the ViewHandler/StateManager version from the
+			faces-config.xml DTD/XML schema name. The faces-config.xml files in
+			the RichFaces JARs use the JSF 1.1 DTDs, causing JSF to use 1.1
+			behavior. Setting this flag to false ignores the version of the DTD
+			used in these files, thus ensuring that JSF uses 1.2 behavior.
+			
+			One of the critical improvements in JSF 1.2 is that it throws a
+			ViewExpiredException on a session timeout.
+			
+			See http://jira.jboss.com/jira/browse/RF-2294 and
+			http://lists.jboss.org/pipermail/seam-dev/2008-February/000024.html.
+		</description>
+		<param-name>com.sun.faces.disableVersionTracking</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	-->
+	
+	<!-- URL Rewrite Filter - declare after seam filter -->
+	<!--
+		There are two rewrite options in Seam, you can choose to either use the org.tuckey 
+		UrlRewriteFilter or the native Seam rewriting. You should not attempt to use both. 
+		The native Seam rewriting does not use the org.tuckey rewrite engine at all. 
+		If you are going to use Seam's native rewriting, then remove the org.tuckey
+		UrlRewriteFilter from web.xml and nuke the urlrewrite.xml file. 
+		With Seam 2.1 or newer it is recommend to use Seam's native rewrite engine.
+	 -->
+	<!--	
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
+	
+	<session-config>
+		<session-timeout>10</session-timeout> 
+	</session-config>
+  
+	<!-- -->
+	<security-constraint>
+		<display-name>Restrict raw XHTML Documents</display-name>
+		<web-resource-collection>
+			<web-resource-name>XHTML</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint/>
+	</security-constraint>
+
 </web-app>

@@ -13,43 +13,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 			http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
-    <!-- Trinidad and Ajax4JSF support -->
-    <application>
-        <!--
-        <message-bundle>messages</message-bundle>
-        -->
-        <!--view-handler>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</view-handler-->
-        <!--variable-resolver>org.jboss.seam.jsf.SeamVariableResolver</variable-resolver-->
-        <!--
-        <default-render-kit-id>org.apache.myfaces.trinidad.core</default-render-kit-id>
-        -->
-        <!-- Disabled when using Ajax4JSF -->
-        <!--
-        <view-handler>org.jboss.seam.ui.facelet.SeamFaceletViewHandler</view-handler>
-        <view-handler>org.ajax4jsf.framework.ajax.AjaxViewHandler</view-handler>
-        -->
-
-    	<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-	<!--    	
-    	<locale-config>
-    		<default-locale>en</default-locale>
-    		<supported-locale>bg</supported-locale>
-    		<supported-locale>de</supported-locale>
-    		<supported-locale>en</supported-locale>
-    		<supported-locale>fr</supported-locale>
-    		<supported-locale>it</supported-locale>
-    		<supported-locale>no</supported-locale>
-    		<supported-locale>tr</supported-locale>
-    	</locale-config>
-	-->    	
-    </application>
-    
-        
-    <!-- Seam transaction management -->
-    <lifecycle>
-        <!--<phase-listener>org.jboss.seam.jsf.TransactionalSeamPhaseListener</phase-listener>-->
-        <phase-listener>org.jboss.seam.jsf.SeamPhaseListener</phase-listener>
-    </lifecycle>
-
-    <!-- faces-config merge-point -->
+			
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>bg</supported-locale>
+			<supported-locale>de</supported-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>fr</supported-locale>
+			<supported-locale>it</supported-locale>
+			<supported-locale>no</supported-locale>
+			<supported-locale>tr</supported-locale>
+		</locale-config>
+	</application>
 </faces-config>
