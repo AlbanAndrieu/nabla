@@ -8,7 +8,7 @@
 	<!-- For cluster, add distributable as the first child element, seam_reference-35.1.2 -->
 	<!-- <distributable /> -->
 	
-	<display-name>${app.display.name}</display-name>
+	<display-name>${application.display.name}</display-name>
 	
 	<error-page>
 		<error-code>404</error-code>
