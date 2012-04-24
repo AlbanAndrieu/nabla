@@ -358,7 +358,7 @@
 				<property>
 					<name>!profile.activation</name>
 				</property>
-			</activation>
+			</activation>					
 			<properties>
 				<database>h2</database>
 				<database.name>myDBGlobal</database.name>
@@ -366,7 +366,7 @@
 				<!-- Database settings -->
 				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<dbunit.schema></dbunit.schema>
+				<dbunit.schema>PUBLIC</dbunit.schema>
 				<sql.mappings>H2Sql</sql.mappings>
 				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
 				<!-- H2 Database with No emulation mode and Hibernate dialect, for local in-memory testing -->
@@ -397,13 +397,12 @@
 					<groupId>${jdbc.groupId}</groupId>
 					<artifactId>${jdbc.client.artifactId}</artifactId>
 					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
 		</profile>
 		<profile>
-			<id>hsqldb</id>
+			<id>hsqldb</id>	
 			<properties>
 				<database>hsqldb</database>
 				<database.name>myDBGlobal</database.name>
@@ -412,20 +411,20 @@
 				<dbunit.schema>NABLA</dbunit.schema>
 				<sql.mappings>HypersonicSql</sql.mappings>
 				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
+				<jdbc.client.artifactId>hsqldb</jdbc.client.artifactId>
 				<jdbc.groupId>hsqldb</jdbc.groupId>
-				<jdbc.artifactId>hsqldb</jdbc.artifactId>
+				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
 				<jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
 				<jdbc.driver>org.hsqldb.jdbcDriver</jdbc.driver>
 
 				<database.host>localhost</database.host>
 				<database.port>1701</database.port>
 				<!--<jdbc.url><![CDATA[jdbc:hsqldb:tutorial-service;shutdown=true]]></jdbc.url> -->
-				<jdbc.url>jdbc:hsqldb:hsql://${database.host}:${database.port}</jdbc.url>
+				<!--<jdbc.url>jdbc:hsqldb:hsql://${database.host}:${database.port}</jdbc.url>-->
+				<jdbc.url>jdbc:hsqldb:mem:${database.name}</jdbc.url>
 				<!--<jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar> -->
-				<jdbc.driver.jar>
-					<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
-                                TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
-				</jdbc.driver.jar>
+				<jdbc.driver.lib>${settings.localRepository}/com/hsqldb/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
+				<jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
 
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
@@ -434,6 +433,14 @@
 				<jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>
 				<dataSource.name>${application.id}</dataSource.name>
 			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>${jdbc.groupId}</groupId>
+					<artifactId>${jdbc.client.artifactId}</artifactId>
+					<version>${jdbc.version}</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>			
 		</profile>
 		<profile>
 			<id>oracle</id>
