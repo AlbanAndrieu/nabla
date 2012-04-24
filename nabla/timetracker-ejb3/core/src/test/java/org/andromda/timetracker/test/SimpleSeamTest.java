@@ -41,7 +41,7 @@ public class SimpleSeamTest extends SeamOpenEjbTest
                 SimpleSeamTest.logger.debug("User : " + user);
 
                 final Date date = (new SimpleDateFormat("yyyy-MM-dd hh:mm")).parse("2011-01-01 09:00");
-                Contexts.getSessionContext().set("user", new User("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
+                Contexts.getSessionContext().set("user", new User("admin", "cooldude", "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
 
                 user = (User) Component.getInstance("user", true);
 
@@ -70,7 +70,7 @@ public class SimpleSeamTest extends SeamOpenEjbTest
                 Assert.assertNotNull(bean);
 
                 final Date date = (new SimpleDateFormat("yyyy-MM-dd hh:mm")).parse("2011-01-01 09:00");
-                Contexts.getSessionContext().set("user", new User("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
+                Contexts.getSessionContext().set("user", new User("admin", "cooldude", "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
 
                 bean = (ChangePassword) Component.getInstance(ChangePasswordAction.class, true);
                 Assert.assertNotNull(bean);
@@ -100,7 +100,7 @@ public class SimpleSeamTest extends SeamOpenEjbTest
             protected void testComponents() throws Exception
             {
                 final Date date = (new SimpleDateFormat("yyyy-MM-dd hh:mm")).parse("2011-01-01 09:00");
-                Contexts.getSessionContext().set("user", new User("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
+                Contexts.getSessionContext().set("user", new User("admin", "cooldude", "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
 
                 final UserService bean = (UserService) Component.getInstance(UserServiceBean.class, true);
                 Assert.assertNotNull(bean);
@@ -151,7 +151,7 @@ public class SimpleSeamTest extends SeamOpenEjbTest
         tm.begin();
 
         final Date date = (new SimpleDateFormat("yyyy-MM-dd hh:mm")).parse("2011-01-01 09:00");
-        User user = new User("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu");
+        User user = new User("admin", "cooldude", "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu");
         em.persist(user);
 
         Assert.assertTrue(user.getId() > 0);

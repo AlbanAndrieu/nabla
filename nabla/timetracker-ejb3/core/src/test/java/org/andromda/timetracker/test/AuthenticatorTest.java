@@ -51,14 +51,14 @@ public class AuthenticatorTest extends SeamOpenEjbTest
 
                 // when
                 cred.setUsername("admin");
-                cred.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                cred.setPassword("cooldude");
                 final boolean success1 = auth.authenticate();
 
                 // then
                 Assert.assertTrue(success1);
 
                 final Set<String> roles = new TreeSet<String>();
-                final boolean success2 = auth.authenticate("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), roles);
+                final boolean success2 = auth.authenticate("admin", "cooldude", roles);
                 // then
                 Assert.assertTrue(success2);
 

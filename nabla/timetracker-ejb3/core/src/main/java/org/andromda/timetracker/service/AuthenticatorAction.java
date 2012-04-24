@@ -54,6 +54,7 @@ public class AuthenticatorAction implements Authenticator
         AuthenticatorAction.logger.debug("Authenticating username : " + this.credentials.getUsername());
 
         this.log.info("Authenticating : {0}", this.credentials.getUsername());
+        logger.debug("Authenticating password : " + this.credentials.getPassword());
 
         return this.authenticate(this.credentials.getUsername(), this.credentials.getPassword(), null);
 
@@ -93,7 +94,7 @@ public class AuthenticatorAction implements Authenticator
         } else
         {
             this.user = results.get(0);
-            if (this.user.getPassword().equals(this.credentials.getPassword()))
+            if (this.user.getPassword().equals(password))
             {
 
                 // this.getUserDao().toUserDetailsVO(this.user);

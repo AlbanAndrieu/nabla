@@ -29,13 +29,13 @@ public class LoginTest extends SeamOpenEjbTest
                 // this.setValue("#{user.firstName}", "Alban");
                 // this.setValue("#{user.lastName}", "Andrieu");
                 this.setValue("#{identity.username}", "admin");
-                this.setValue("#{identity.password}", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                this.setValue("#{identity.password}", "cooldude");
                 this.invokeMethod("#{identity.login}");
                 LoginTest.logger.info("testComponents - User password : " + this.getValue("#{user.username}") + " + " + this.getValue("#{user.password}"));
                 assert this.getValue("#{user.firstName}").equals("Alban");
                 assert this.getValue("#{user.lastName}").equals("Andrieu");
                 assert this.getValue("#{user.username}").equals("admin");
-                assert this.getValue("#{user.password}").equals(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                assert this.getValue("#{user.password}").equals("cooldude");
                 assert this.getValue("#{identity.loggedIn}").equals(true);
                 this.invokeMethod("#{identity.logout}");
                 assert this.getValue("#{identity.loggedIn}").equals(false);
@@ -73,7 +73,7 @@ public class LoginTest extends SeamOpenEjbTest
             {
                 assert !LoginTest.this.isSessionInvalid();
                 this.setValue("#{identity.username}", "admin");
-                this.setValue("#{identity.password}", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                this.setValue("#{identity.password}", "cooldude");
             }
 
             @Override
@@ -89,7 +89,7 @@ public class LoginTest extends SeamOpenEjbTest
                 // assert this.getValue("#{user.firstName}").equals("Alban");
                 // assert this.getValue("#{user.lastName}").equals("Andrieu");
                 assert this.getValue("#{user.username}").equals("admin");
-                assert this.getValue("#{user.password}").equals(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                assert this.getValue("#{user.password}").equals("cooldude");
                 assert !Manager.instance().isLongRunningConversation();
                 assert this.getValue("#{identity.loggedIn}").equals(true);
             }

@@ -471,59 +471,6 @@
 	
 	<build>
 		<plugins>			
-                        <!-- See http://mojo.codehaus.org/sql-maven-plugin/examples/execute.html -->
-                        <!-- Can't connect to the h2 process outside of the mvn JVM because it locks the DB -->
-                        <!-- See http://www.h2database.com/html/cheatSheet.html -->
-                        <!-- Can't use in-memory DB for tomcat/jetty initialization - goes away on exit -->
-                        <!-- Use for in-memory DB jdbc:h2:timetracker;MODE=MySQL for in-JVM connections only, but it must be started within maven -->
-                        <!-- Use for server DB jdbc:h2:tcp://localhost/timetracker;MODE=MySQL for external connections, but it must be started outside maven -->
-                        <!-- default-cli execution id allows us to run the same configuration from the mvn command line -->                        
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>sql-maven-plugin</artifactId>
-                            <version>${maven.sql.plugin.version}</version>
-                            <configuration>
-                                <driver>${jdbc.driver}</driver>
-                                <url>${jdbc.url}</url>
-                                <username>${jdbc.username}</username>
-                                <password>${jdbc.password}</password>
-                                <autocommit>true</autocommit>
-                                <skip>${maven.test.skip}</skip>
-                            </configuration>
-                            <executions>
-                                <execution>
-                                    <id>default-cli</id>
-                                    <phase>process-test-resources</phase>
-                                    <goals>
-                                        <goal>execute</goal>
-                                    </goals>
-                                    <configuration>
-                                        <autocommit>true</autocommit>
-                                        <!-- Ascending alphabetical order, not the order of files in includes -->
-                                        <!--<orderFile>ascending</orderFile>-->
-                                        <fileset>
-                                            <basedir>${basedir}/../app/src/main/sql</basedir>
-                                            <includes>
-                                                <!--<include>schema.sql</include>-->
-                                                <!--<include>schema-drop.sql</include>-->
-                                                <!--<include>schema-create.sql</include>-->
-                                                <include>static-data-insert.sql</include>
-                                                <include>test-data-insert.sql</include>
-                                            </includes>
-                                        </fileset>
-                                        <!-- We continue because database can be already created and data already inserted -->
-                                        <onError>continue</onError>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                            <dependencies>
-                                <dependency>
-                                    <groupId>${jdbc.groupId}</groupId>
-                                    <artifactId>${jdbc.artifactId}</artifactId>
-                                    <version>${jdbc.version}</version>
-                                </dependency>
-                            </dependencies>
-                        </plugin>		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
@@ -560,7 +507,6 @@
 				<artifactId>hibernate3-maven-plugin</artifactId>
 				<version>${hibernate3.maven.plugin.version}</version>
 				<executions>
-                			<!--
                 			<execution>
                 			  <id>hbm2ddl</id>
                 			  <phase>process-classes</phase>
@@ -568,7 +514,6 @@
                 			    <goal>hbm2ddl</goal>
                 			  </goals>
                 			</execution>
-                			-->
                 			<execution>
 						<id>hbm2doc</id>
 						<phase>site</phase>
@@ -624,10 +569,8 @@
 						<jdk5>true</jdk5>
 						<ejb3>true</ejb3>
 						<!--<persistenceunit>${project.parent.artifactId}</persistenceunit> -->
-						<!--
-						<implementation>jpaconfiguration</implementation>
+						<!--<implementation>jpaconfiguration</implementation>-->
 						<persistenceunit>${pu.name}</persistenceunit>
-						-->
 						<configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
 						<propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 
@@ -679,6 +622,57 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+                        <!-- See http://mojo.codehaus.org/sql-maven-plugin/examples/execute.html -->
+                        <!-- Can't connect to the h2 process outside of the mvn JVM because it locks the DB -->
+                        <!-- See http://www.h2database.com/html/cheatSheet.html -->
+                        <!-- Can't use in-memory DB for tomcat/jetty initialization - goes away on exit -->
+                        <!-- Use for in-memory DB jdbc:h2:timetracker;MODE=MySQL for in-JVM connections only, but it must be started within maven -->
+                        <!-- Use for server DB jdbc:h2:tcp://localhost/timetracker;MODE=MySQL for external connections, but it must be started outside maven -->
+                        <!-- default-cli execution id allows us to run the same configuration from the mvn command line -->                        
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>sql-maven-plugin</artifactId>
+                            <version>${maven.sql.plugin.version}</version>
+                            <configuration>
+                                <driver>${jdbc.driver}</driver>
+                                <url>${jdbc.url}</url>
+                                <username>${jdbc.username}</username>
+                                <password>${jdbc.password}</password>
+                                <autocommit>true</autocommit>
+                                <skip>${maven.test.skip}</skip>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>default-cli</id>
+                                    <phase>process-test-resources</phase>
+                                    <goals>
+                                        <goal>execute</goal>
+                                    </goals>
+                                    <configuration>
+                                        <autocommit>true</autocommit>
+                                        <!-- Ascending alphabetical order, not the order of files in includes -->
+                                        <!--<orderFile>ascending</orderFile>-->
+                                        <fileset>
+                                            <basedir>${basedir}/../app/src/main/sql</basedir>
+                                            <includes>
+                                                <include>schema-hibernate.sql</include>
+                                                <include>static-data-insert.sql</include>
+                                                <include>test-data-insert.sql</include>
+                                            </includes>
+                                        </fileset>
+                                        <!-- We continue because database can be already created and data already inserted -->
+                                        <onError>continue</onError>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>${jdbc.groupId}</groupId>
+                                    <artifactId>${jdbc.artifactId}</artifactId>
+                                    <version>${jdbc.version}</version>
+                                </dependency>
+                            </dependencies>
+                        </plugin>					
 		</plugins>
 	</build>
 	<profiles>
@@ -784,9 +778,9 @@
 							<reportFormat>xml</reportFormat>
 							<systemPropertyVariables>
 							<property>
-                        				    	<name>net.sourceforge.cobertura.datafile</name>
-                        				        <value>~/cobertura.ser</value>
-                        				</property>
+								<name>net.sourceforge.cobertura.datafile</name>
+								<value>~/cobertura.ser</value>
+							</property>
 						</systemPropertyVariables>							
 						</configuration>
 					</plugin>						

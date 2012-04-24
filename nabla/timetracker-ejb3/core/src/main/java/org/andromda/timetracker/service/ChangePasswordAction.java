@@ -50,13 +50,14 @@ public class ChangePasswordAction implements ChangePassword
     @Override
     public void changePassword()
     {
-        ChangePasswordAction.logger.debug("changePassword verify : " + this.verify);
+
+        ChangePasswordAction.logger.debug("changePassword verify : " + verify);
         ChangePasswordAction.logger.debug("changePassword Username : " + Identity.instance().getUsername());
         // ChangePasswordAction.logger.debug("changePassword Password : " + Identity.instance().getPassword());
 
         ChangePasswordAction.logger.debug("changePassword password : " + this.user.getPassword());
 
-        if (this.user.getPassword().equals(this.verify))
+        if (this.user.getPassword().equals(verify))
         {
             this.user = this.entityManager.merge(this.user);
             ChangePasswordAction.logger.debug("changePassword password updated to : " + this.user.getPassword());
@@ -94,7 +95,7 @@ public class ChangePasswordAction implements ChangePassword
     @Override
     public void setVerify(final String verify)
     {
-        this.verify = verify;
+		this.verify = verify;
     }
 
     /**
