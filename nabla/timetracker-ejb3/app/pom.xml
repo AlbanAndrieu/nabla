@@ -263,11 +263,6 @@
         <resources>
             <!--
             <resource>
-                <directory>src/main/config</directory>
-                <targetPath>../</targetPath>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
                 <directory>src/main/application</directory>
                 <targetPath>../${application.id}-${project.version}</targetPath>
                 <filtering>true</filtering>
@@ -278,58 +273,69 @@
                 <targetPath>${target.dir}/sql</targetPath>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+              <directory>src/main/config</directory>
+              <targetPath>../${project.build.finalName}/META-INF/ds</targetPath>
+              <filtering>true</filtering>
+              <includes>
+                <include>${application.id}-ds.xml</include>
+              </includes>
+            </resource>
         </resources>
         
         <plugins>        
-      <!--
-        Maven resources plugin The default resources folder for ear is the
-        src/main/application folder. Stuff in this folder will go into the
-        target ear folder. The projects *-ds.xml file is placed in the
-        src/main/resources folder, so we'll have to use the
-        maven-resources-plugin to copy the *-ds.xml file. The reason for
-        this is that we need to control where to copy the *-ds.xml is in
-        the target build. If we want to deploy the *-ds.xml file embedded
-        into the ear project then the file is located in the target/ear root
-        folder. If the *-ds.xml file should be deployed as a separate service,
-        then the file is located the target folder. The explode profile
-        will then copy the *-ds.xml file to the application server's deploy
-        folder.
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-app-ds-xml</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-
-              <!--
-                Comment out this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
-              -->
-              <outputDirectory>${project.build.directory}/${project.build.finalName}/META-INF/ds</outputDirectory>
-
-              <!--
-                Uncomment this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
-                <outputDirectory>${project.build.directory}</outputDirectory>
-              -->
-              <resources>
-                <resource>
-                  <directory>src/main/config</directory>
-                  <filtering>true</filtering>
-                  <includes>
-                    <include>${application.id}-ds.xml</include>
-                  </includes>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-              
+            <!--
+              Maven resources plugin The default resources folder for ear is the
+              src/main/application folder. Stuff in this folder will go into the
+              target ear folder. The projects *-ds.xml file is placed in the
+              src/main/resources folder, so we'll have to use the
+              maven-resources-plugin to copy the *-ds.xml file. The reason for
+              this is that we need to control where to copy the *-ds.xml is in
+              the target build. If we want to deploy the *-ds.xml file embedded
+              into the ear project then the file is located in the target/ear root
+              folder. If the *-ds.xml file should be deployed as a separate service,
+              then the file is located the target folder. The explode profile
+              will then copy the *-ds.xml file to the application server's deploy
+              folder.
+            -->
+            <!--
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-resources-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>copy-app-ds-xml</id>
+                  <phase>initialize</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                  -->
+                    <!--
+                      Comment out this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
+                    -->
+                    <!--
+                    <outputDirectory>${project.build.directory}/${project.build.finalName}/META-INF/ds</outputDirectory>
+                    -->
+                    <!--
+                      Uncomment this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
+                      <outputDirectory>${project.build.directory}</outputDirectory>
+                    -->
+                    <!--
+                    <resources>
+                      <resource>
+                        <directory>src/main/config</directory>
+                        <filtering>true</filtering>
+                        <includes>
+                          <include>${application.id}-ds.xml</include>
+                        </includes>
+                      </resource>
+                    </resources>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
@@ -388,7 +394,7 @@
                       -->
                       <data-sources>
                         <!--<data-source>META-INF/${application.id}-login-service.xml</data-source>--> 
-                        <data-source>META-INF/ds/${application.id}-ds.xml</data-source>                        
+                        <data-source>META-INF/ds/${application.id}-ds.xml</data-source>
                       </data-sources>    
                     </jboss>
 
