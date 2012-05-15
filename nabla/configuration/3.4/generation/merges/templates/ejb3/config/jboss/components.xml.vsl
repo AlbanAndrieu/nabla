@@ -39,8 +39,8 @@
                  
         	 For cluster: distributable="true". Also uncomment the distributable tag in web.xml
           -->
-	<!--<core:init debug="${app.debug}" jndi-pattern="${app.jndi.pattern.test}" transaction-management-enabled="true" distributable="false"/>-->
-	<core:init debug="true" jndi-pattern="${app.jndi.pattern.test}" transaction-management-enabled="true" distributable="false"/>
+	<!--<core:init debug="${app.debug}" jndi-pattern="${application.jndi.pattern}" transaction-management-enabled="true" distributable="false"/>-->
+	<core:init debug="true" jndi-pattern="${application.jndi.pattern}" transaction-management-enabled="true" distributable="false"/>
 
 	<!--
 		In an EJB3 environment, it is recommend to use a special built-in  component  for  transaction  
