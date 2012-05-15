@@ -26,7 +26,7 @@ public class ChangePasswordTest extends SeamOpenEjbTest // extends SeamTest
                 // Contexts.getSessionContext().set("user", new User("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu"));
                 this.setValue("#{identity.username}", "admin");
                 ChangePasswordTest.logger.info("Identity username : " + this.getValue("#{identity.username}"));
-                this.setValue("#{identity.password}", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                this.setValue("#{identity.password}", "cooldude");
                 ChangePasswordTest.logger.info("Identity password : " + this.getValue("#{identity.password}"));
                 this.invokeMethod("#{identity.login}");
             }
@@ -50,7 +50,7 @@ public class ChangePasswordTest extends SeamOpenEjbTest // extends SeamTest
                 // assert this.getValue("#{user.firstName}").equals("Alban");
                 // assert this.getValue("#{user.lastName}").equals("Andrieu");
                 assert this.getValue("#{user.username}").equals("admin");
-                assert this.getValue("#{user.password}").equals(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                assert this.getValue("#{user.password}").equals("cooldude");
                 assert !Manager.instance().isLongRunningConversation();
                 assert this.getValue("#{identity.loggedIn}").equals(true);
 
@@ -108,7 +108,7 @@ public class ChangePasswordTest extends SeamOpenEjbTest // extends SeamTest
                 assert this.getValue("#{user.firstName}").equals("Alban");
                 assert this.getValue("#{user.lastName}").equals("Andrieu");
                 assert this.getValue("#{user.username}").equals("admin");
-                assert this.getValue("#{user.password}").equals(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                assert this.getValue("#{user.password}").equals("cooldude");
                 assert !Manager.instance().isLongRunningConversation();
                 assert this.getValue("#{identity.loggedIn}").equals(true);
             }
@@ -154,8 +154,8 @@ public class ChangePasswordTest extends SeamOpenEjbTest // extends SeamTest
             protected void updateModelValues() throws Exception
             {
                 assert this.getValue("#{user.password}").equals("xxxyyy");
-                this.setValue("#{user.password}", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
-                this.setValue("#{changePassword.verify}", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                this.setValue("#{user.password}", "cooldude");
+                this.setValue("#{changePassword.verify}", "cooldude");
             }
 
             @Override
@@ -171,7 +171,7 @@ public class ChangePasswordTest extends SeamOpenEjbTest // extends SeamTest
                 assert this.getValue("#{user.firstName}").equals("Alban");
                 assert this.getValue("#{user.lastName}").equals("Andrieu");
                 assert this.getValue("#{user.username}").equals("admin");
-                assert this.getValue("#{user.password}").equals(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+                assert this.getValue("#{user.password}").equals("cooldude");
                 assert !Manager.instance().isLongRunningConversation();
                 assert this.getValue("#{identity.loggedIn}").equals(true);
 

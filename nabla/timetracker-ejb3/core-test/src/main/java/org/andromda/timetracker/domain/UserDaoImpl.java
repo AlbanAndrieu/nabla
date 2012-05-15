@@ -36,7 +36,7 @@ public class UserDaoImpl extends UserDaoBase
         UserDaoImpl.logger.debug("Search user : " + username);
         // final User user = (User) this.getHibernateSession().createQuery("from User user left join fetch user.roles where user.username = :username").setParameter("username", username).uniqueResult();
         final User user = (User) this.getHibernateSession().createQuery("select User from User user where user.username = :username").setParameter("username", username).uniqueResult();
-        // final User user = (User) this.getEmanager().createQuery("select User from User user where user.username = :username").setParameter("username", username).getSingleResult();
+        // final User user = (User) this.getEntityManager().createQuery("select User from User user where user.username = :username").setParameter("username", username).getSingleResult();
         return user;
     }
 

@@ -82,7 +82,13 @@
     		  <artifactId>commons-logging</artifactId>
     		  <scope>compile</scope>
     		</dependency>
-
+        				    	        					
+                <dependency>
+                  <groupId>javax.persistence</groupId>
+                  <artifactId>persistence-api</artifactId>
+                  <scope>compile</scope>
+                </dependency>
+                                
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -398,14 +404,8 @@
     				  <type>ejb</type>
     				  <scope>test</scope>
     				</dependency>
-        				    	
-        			<!--			
-                                <dependency>
-                                  <groupId>javax.persistence</groupId>
-                                  <artifactId>persistence-api</artifactId>
-                                  <scope>compile</scope>
-                                </dependency>
                                 
+                                <!--	
                                 <dependency>
                                   <groupId>javax.servlet</groupId>
                                   <artifactId>servlet-api</artifactId>
