@@ -441,11 +441,23 @@
                     Valid values are:
                     <ul>
                         <li>icefaces</li>
+                        <li>richfaces</li>
                         <li>trinidad</li>
                         <li>adf</li>
                     </ul>
                 </documentation>
             </property>
+            <property name="mojarra" required="false">
+                <default>mojarra</default>
+                <documentation>
+                    The Mojarra library to use jsf-api jsf-impl.
+                    Valid values are:
+                    <ul>
+                        <li>mojarra</li>
+                        <li>myfaces</li>
+                    </ul>
+                </documentation>
+            </property>            
         </propertyGroup>
         <propertyGroup name="Table Paging (DB paging)">
             <documentation>

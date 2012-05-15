@@ -95,6 +95,7 @@
     <property reference="defaultPortletClassName"/>
     <property reference="defaultRole"/>
     <property reference="ajaxLibrary"/>
+    <property reference="mojarra"/>
     <property reference="loginConfigAuthMethod"/>
     <property reference="facesConfigFiles"/>
     <property reference="controllerScope"/>
@@ -130,8 +131,11 @@
         #if ($stringUtils.isNotBlank($paginationResultClassName) &amp;&amp; $stringUtils.isNotBlank($portletContainer))true#end
     </condition>
     <condition name="icefaces">$ajaxLibrary.equals("icefaces")</condition>
+    <condition name="richfaces">$ajaxLibrary.equals("richfaces")</condition>
     <condition name="trinidad">$ajaxLibrary.equals("trinidad")</condition>
     <condition name="adf">$ajaxLibrary.equals("adf")</condition>
+    <condition name="mojarra">$mojarra.equals("mojarra")</condition> <!-- richfaces must use mojarra not myfaces -->
+    <condition name="myfaces">$mojarra.equals("myfaces")</condition> <!-- trinidad must use myfaces -->
     <condition name="tomahawk">$tomahawk.equalsIgnoreCase("true")</condition>
     <condition name="extension">$extension.equalsIgnoreCase("true")</condition>
     <condition name="portletWithoutIcefaces">
@@ -511,7 +515,7 @@
     
     <template
         path="templates/jsf/messages/messages.properties.vsl"
-        outputPattern="WEB-INF/classes/${messageResources}.properties"
+        outputPattern="WEB-INF/../../resources/${messageResources}.properties"
         outlet="messages"
         overwrite="true"
         outputToSingleFile="true">
