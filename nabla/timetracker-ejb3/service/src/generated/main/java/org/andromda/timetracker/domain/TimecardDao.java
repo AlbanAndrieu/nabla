@@ -324,19 +324,19 @@ public interface TimecardDao
      * instance from <strong>all</strong> attributes and adds it to
      * the persistent store.
      * </p>
-     * @param status 
-     * @param startDate 
      * @param comments 
+     * @param startDate 
+     * @param status 
      * @return Timecard
      */
     public Timecard create(
-        TimecardStatus status,
+        String comments,
         Date startDate,
-        String comments);
+        TimecardStatus status);
 
     /**
      * <p>
-     * Does the same thing as {@link #create(TimecardStatus, Date, String)} with an
+     * Does the same thing as {@link #create(String, Date, TimecardStatus)} with an
      * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
      * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
      * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
@@ -344,16 +344,16 @@ public interface TimecardDao
      * not occur.
      * </p>
      * @param transform
-     * @param status 
-     * @param startDate 
      * @param comments 
+     * @param startDate 
+     * @param status 
      * @return Timecard
      */
     public Object create(
         int transform,
-        TimecardStatus status,
+        String comments,
         Date startDate,
-        String comments);
+        TimecardStatus status);
 
     /**
      * <p>
@@ -375,7 +375,7 @@ public interface TimecardDao
 
     /**
      * <p>
-     * Does the same thing as {@link #create(TimecardStatus, Date, String)} with an
+     * Does the same thing as {@link #create(String, Date, TimecardStatus)} with an
      * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
      * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
      * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally

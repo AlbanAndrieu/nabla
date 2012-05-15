@@ -46,7 +46,7 @@ public class UserServiceTest
             UserVO userVO = null;
             try
             {
-                userVO = this.userService.getUser("testuser");
+                userVO = this.userService.getUser("testusertmp");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     this.userService.removeUser(userVO);
@@ -64,12 +64,12 @@ public class UserServiceTest
 
             // Add testuser
             UserDetailsVO udVO = new UserDetailsVO();
-            udVO.setFirstName("testuser");
-            udVO.setLastName("testuser");
-            udVO.setEmail("test@test.com");
+            udVO.setFirstName("testusertmp");
+            udVO.setLastName("testusertmp");
+            udVO.setEmail("testtmp@test.com");
             udVO.setIsActive(false);
-            udVO.setUsername("testuser");
-            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("testuser"));
+            udVO.setUsername("testusertmp");
+            udVO.setPassword(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
             udVO.setCreationDate(new Date());
 
             final UserRoleVO urVO = new UserRoleVO();
@@ -87,7 +87,7 @@ public class UserServiceTest
             // Remote testuser if it already exists
             try
             {
-                userVO = this.userService.getUser("testuser");
+                userVO = this.userService.getUser("testusertmp");
                 if ((userVO != null) && (userVO.getId().longValue() > 0))
                 {
                     this.userService.removeUser(userVO);

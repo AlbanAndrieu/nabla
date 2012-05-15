@@ -35,11 +35,11 @@ public final class TaskManageableServiceBase
     /**
      * @param name 
      * @param id 
-     * @return TaskValueObject
+     * @return TaskVO
      * @throws Exception
      * @see org.andromda.timetracker.domain.TaskDao#create
      */
-    public TaskValueObject create(String name, Long id)
+    public TaskVO create(String name, Long id)
         throws Exception
     {
         if (name == null)
@@ -53,11 +53,11 @@ public final class TaskManageableServiceBase
 
     /**
      * @param id
-     * @return TaskValueObject
+     * @return TaskVO
      * @throws Exception
      * @see TaskManageableService#readById(Long)
      */
-    public TaskValueObject readById(Long id)
+    public TaskVO readById(Long id)
         throws Exception
     {
         return toValueObject(this.dao.readById(id));
@@ -70,7 +70,7 @@ public final class TaskManageableServiceBase
      * @throws Exception
      * @see TaskManageableService#read
      */
-    public List<TaskValueObject> read(String name, Long id)
+    public List<TaskVO> read(String name, Long id)
         throws Exception
     {
         return toValueObjects(this.dao.read(name, id));
@@ -80,7 +80,7 @@ public final class TaskManageableServiceBase
      * @return toValueObjects(dao.readAll())
      * @throws Exception
      */
-    public List<TaskValueObject> readAll()
+    public List<TaskVO> readAll()
         throws Exception
     {
         return toValueObjects(this.dao.readAll());
@@ -93,7 +93,7 @@ public final class TaskManageableServiceBase
      * @throws Exception
      * @see TaskManageableDao#update
      */
-    public TaskValueObject update(String name, Long id)
+    public TaskVO update(String name, Long id)
         throws Exception
     {
         if (name == null)
@@ -122,9 +122,9 @@ public final class TaskManageableServiceBase
         this.dao.delete(ids);
     }
 
-    private static List<TaskValueObject> toValueObjects(Collection<Task> entities)
+    private static List<TaskVO> toValueObjects(Collection<Task> entities)
     {
-        final List<TaskValueObject> list = new ArrayList<TaskValueObject>();
+        final List<TaskVO> list = new ArrayList<TaskVO>();
 
         for (Iterator<Task> iterator = entities.iterator(); iterator.hasNext();)
         {
@@ -134,9 +134,9 @@ public final class TaskManageableServiceBase
         return list;
     }
 
-    private static TaskValueObject toValueObject(Task entity)
+    private static TaskVO toValueObject(Task entity)
     {
-        final TaskValueObject valueObject = new TaskValueObject();
+        final TaskVO valueObject = new TaskVO();
 
         valueObject.setName(entity.getName());
         valueObject.setId(entity.getId());

@@ -6,10 +6,11 @@
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>service</artifactId>
     <packaging>jar</packaging>
-    <name>TimeTracker GUI Service Business Tier</name>
+    <name>[${project.parent.artifactId} :: GUI Service Business Tier] - ${project.artifactId} : ${project.version}</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -94,10 +95,24 @@
             <artifactId>ehcache</artifactId>
             <type>pom</type>
         </dependency>
+        <!-- make sure when using cglib-nodep that for org.hibernate hibernate asm cglib are excluded -->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
+            <!--<version>2.1_3</version>-->
+        </dependency>        
+        <!-- works with asm 1.5.1
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.1</version>
         </dependency>
+	<dependency>
+	    <groupId>asm</groupId>
+	    <artifactId>asm</artifactId>
+	    <version>2.2.3</version>
+	</dependency>
+        -->	
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>

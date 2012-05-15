@@ -7,9 +7,12 @@
  * TEMPLATE:    SpringService.vsl in andromda-spring cartridge
  * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::UserService
  * STEREOTYPE:  Service
+ * STEREOTYPE:  Seam
  */
 package org.andromda.timetracker.service;
 
+import java.util.List;
+import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 
@@ -18,6 +21,34 @@ import org.andromda.timetracker.vo.UserVO;
  */
 public interface UserService
 {
+    /**
+     * 
+     * Getter for user
+     * @return Value of user
+     */
+    public User getUser();
+
+    /**
+     * 
+     * Setter for user
+     * @param userIn New value for user
+     */
+    public void setUser(User userIn);
+
+    /**
+     * 
+     * Getter for userList
+     * @return Value of userList
+     */
+    public List<User> getUserList();
+
+    /**
+     * 
+     * Setter for userList
+     * @param userListIn New value for userList
+     */
+    public void setUserList(List<User> userListIn);
+
     /**
      * 
      * @return  UserVO[]

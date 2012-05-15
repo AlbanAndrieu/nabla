@@ -15,7 +15,7 @@ public interface TaskManageableService
      * @return create
      * @throws Exception
      */
-    public TaskValueObject create(String name, Long id)
+    public TaskVO create(String name, Long id)
         throws Exception;
 
     /**
@@ -23,7 +23,7 @@ public interface TaskManageableService
      * @return manageable
      * @throws Exception
      */
-    public TaskValueObject readById(Long id)
+    public TaskVO readById(Long id)
         throws Exception;
 
     /**
@@ -32,14 +32,14 @@ public interface TaskManageableService
      * @return manageable
      * @throws Exception
      */
-    public List<TaskValueObject> read(String name, Long id)
+    public List<TaskVO> read(String name, Long id)
         throws Exception;
 
     /**
      * @return all manageable
      * @throws Exception
      */
-    public List<TaskValueObject> readAll()
+    public List<TaskVO> readAll()
         throws Exception;
 
     /**
@@ -48,7 +48,7 @@ public interface TaskManageableService
      * @return update
      * @throws Exception
      */
-    public TaskValueObject update(String name, Long id)
+    public TaskVO update(String name, Long id)
         throws Exception;
 
     /**

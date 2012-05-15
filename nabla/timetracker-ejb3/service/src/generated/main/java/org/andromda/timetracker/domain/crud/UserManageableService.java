@@ -25,7 +25,7 @@ public interface UserManageableService
      * @return create
      * @throws Exception
      */
-    public UserValueObject create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception;
 
     /**
@@ -33,7 +33,7 @@ public interface UserManageableService
      * @return manageable
      * @throws Exception
      */
-    public UserValueObject readById(Long id)
+    public UserVO readById(Long id)
         throws Exception;
 
     /**
@@ -50,14 +50,14 @@ public interface UserManageableService
      * @return manageable
      * @throws Exception
      */
-    public List<UserValueObject> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public List<UserVO> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception;
 
     /**
      * @return all manageable
      * @throws Exception
      */
-    public List<UserValueObject> readAll()
+    public List<UserVO> readAll()
         throws Exception;
 
     /**
@@ -81,7 +81,7 @@ public interface UserManageableService
      * @return update
      * @throws Exception
      */
-    public UserValueObject update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception;
 
     /**

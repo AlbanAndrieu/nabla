@@ -46,11 +46,11 @@ public final class UserManageableServiceBase
      * @param comment 
      * @param id 
      * @param roles 
-     * @return UserValueObject
+     * @return UserVO
      * @throws Exception
      * @see org.andromda.timetracker.domain.UserDao#create
      */
-    public UserValueObject create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception
     {
         if (username == null)
@@ -94,11 +94,11 @@ public final class UserManageableServiceBase
 
     /**
      * @param id
-     * @return UserValueObject
+     * @return UserVO
      * @throws Exception
      * @see UserManageableService#readById(Long)
      */
-    public UserValueObject readById(Long id)
+    public UserVO readById(Long id)
         throws Exception
     {
         return toValueObject(this.dao.readById(id));
@@ -119,7 +119,7 @@ public final class UserManageableServiceBase
      * @throws Exception
      * @see UserManageableService#read
      */
-    public List<UserValueObject> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public List<UserVO> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception
     {
         return toValueObjects(this.dao.read(username, password, firstName, lastName, email, isActive, creationDate, comment, id, roles));
@@ -129,7 +129,7 @@ public final class UserManageableServiceBase
      * @return toValueObjects(dao.readAll())
      * @throws Exception
      */
-    public List<UserValueObject> readAll()
+    public List<UserVO> readAll()
         throws Exception
     {
         return toValueObjects(this.dao.readAll());
@@ -161,7 +161,7 @@ public final class UserManageableServiceBase
      * @throws Exception
      * @see UserManageableDao#update
      */
-    public UserValueObject update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception
     {
         if (username == null)
@@ -220,9 +220,9 @@ public final class UserManageableServiceBase
         this.dao.delete(ids);
     }
 
-    private static List<UserValueObject> toValueObjects(Collection<User> entities)
+    private static List<UserVO> toValueObjects(Collection<User> entities)
     {
-        final List<UserValueObject> list = new ArrayList<UserValueObject>();
+        final List<UserVO> list = new ArrayList<UserVO>();
 
         for (Iterator<User> iterator = entities.iterator(); iterator.hasNext();)
         {
@@ -232,9 +232,9 @@ public final class UserManageableServiceBase
         return list;
     }
 
-    private static UserValueObject toValueObject(User entity)
+    private static UserVO toValueObject(User entity)
     {
-        final UserValueObject valueObject = new UserValueObject();
+        final UserVO valueObject = new UserVO();
 
         valueObject.setUsername(entity.getUsername());
         valueObject.setPassword(entity.getPassword());

@@ -243,11 +243,11 @@ public abstract class TimecardDaoBase
      */
     @Override
     public Timecard create(
-        TimecardStatus status,
+        String comments,
         Date startDate,
-        String comments)
+        TimecardStatus status)
     {
-        return (Timecard)this.create(TimecardDao.TRANSFORM_NONE, status, startDate, comments);
+        return (Timecard)this.create(TimecardDao.TRANSFORM_NONE, comments, startDate, status);
     }
 
     /**
@@ -256,14 +256,14 @@ public abstract class TimecardDaoBase
     @Override
     public Object create(
         final int transform,
-        TimecardStatus status,
+        String comments,
         Date startDate,
-        String comments)
+        TimecardStatus status)
     {
         Timecard createEntity = new TimecardImpl();
-        createEntity.setStatus(status);
-        createEntity.setStartDate(startDate);
         createEntity.setComments(comments);
+        createEntity.setStartDate(startDate);
+        createEntity.setStatus(status);
         return this.create(transform, createEntity);
     }
 
@@ -672,17 +672,17 @@ public abstract class TimecardDaoBase
         Timecard target,
         boolean copyIfNull)
     {
-        if (copyIfNull || source.getStatus() != null)
+        if (copyIfNull || source.getComments() != null)
         {
-            target.setStatus(source.getStatus());
+            target.setComments(source.getComments());
         }
         if (copyIfNull || source.getStartDate() != null)
         {
             target.setStartDate(source.getStartDate());
         }
-        if (copyIfNull || source.getComments() != null)
+        if (copyIfNull || source.getStatus() != null)
         {
-            target.setComments(source.getComments());
+            target.setStatus(source.getStatus());
         }
         // Do nothing for org.andromda.metafacades.emf.uml22.EntityAttributeLogicImpl[Timecard.id]
     }
@@ -825,17 +825,17 @@ public abstract class TimecardDaoBase
         Timecard target,
         boolean copyIfNull)
     {
-        if (copyIfNull || source.getStatus() != null)
+        if (copyIfNull || source.getComments() != null)
         {
-            target.setStatus(source.getStatus());
+            target.setComments(source.getComments());
         }
         if (copyIfNull || source.getStartDate() != null)
         {
             target.setStartDate(source.getStartDate());
         }
-        if (copyIfNull || source.getComments() != null)
+        if (copyIfNull || source.getStatus() != null)
         {
-            target.setComments(source.getComments());
+            target.setStatus(source.getStatus());
         }
         // Do nothing for org.andromda.metafacades.emf.uml22.EntityAttributeLogicImpl[Timecard.id]
         // No conversion for target.allocations (can't convert source.getAllocations():org.andromda.timetracker.vo.TimeAllocationVO[] to Collection<org.andromda.timetracker.domain.TimeAllocation>)
