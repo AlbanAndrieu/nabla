@@ -144,7 +144,6 @@
           JBoss Rules. Needed if you implement drools functionality, e.g. Seam Idendity 
           see: samples/jboss-seam/examlpes/seamspace 
         -->
-        <!--
         <dependency>
           <groupId>org.drools</groupId>
           <artifactId>drools-core</artifactId>
@@ -156,7 +155,7 @@
           <artifactId>drools-compiler</artifactId>
           <version>${drools.version}</version>
         </dependency>
-        -->
+        
         <!-- 
         <dependency>
           <groupId>org.drools</groupId>
