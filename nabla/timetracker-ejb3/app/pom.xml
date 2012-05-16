@@ -260,13 +260,6 @@
     <build>
         <finalName>${application.id}-${project.version}</finalName>
         <resources>
-            <!--
-            <resource>
-                <directory>src/main/application</directory>
-                <targetPath>../${application.id}-${project.version}</targetPath>
-                <filtering>true</filtering>
-            </resource>
-            -->
             <resource>
                 <directory>src/main/sql</directory>
                 <targetPath>${target.dir}/sql</targetPath>
