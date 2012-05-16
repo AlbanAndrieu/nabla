@@ -55,47 +55,47 @@ public class ChangePasswordAction implements ChangePassword
         ChangePasswordAction.logger.debug("changePassword Username : " + Identity.instance().getUsername());
         // ChangePasswordAction.logger.debug("changePassword Password : " + Identity.instance().getPassword());
 
-        ChangePasswordAction.logger.debug("changePassword password : " + this.user.getPassword());
+        ChangePasswordAction.logger.debug("changePassword password : " + user.getPassword());
 
-        if (this.user.getPassword().equals(verify))
+        if (user.getPassword().equals(verify))
         {
-            this.user = this.entityManager.merge(this.user);
-            ChangePasswordAction.logger.debug("changePassword password updated to : " + this.user.getPassword());
-            this.facesMessages.add("Password updated");
-            this.changed = true;
+            user = entityManager.merge(user);
+            ChangePasswordAction.logger.debug("changePassword password updated to : " + user.getPassword());
+            facesMessages.add("Password updated");
+            changed = true;
         } else
         {
-            this.facesMessages.addToControl("verify", "Re-enter new password");
+            facesMessages.addToControl("verify", "Re-enter new password");
             this.revertUser();
-            this.verify = null;
-            this.changed = false;
+            verify = null;
+            changed = false;
         }
     }
 
     @Override
     public boolean isChanged()
     {
-        return this.changed;
+        return changed;
     }
 
     private void revertUser()
     {
-        ChangePasswordAction.logger.debug("revertUser Username : " + this.user.getUsername());
+        ChangePasswordAction.logger.debug("revertUser Username : " + user.getUsername());
 
-        this.user = (User) this.entityManager.createQuery("select u from User u where u.username=:username").setParameter("username", this.user.getUsername()).getSingleResult();
+        user = (User) entityManager.createQuery("select u from User u where u.username=:username").setParameter("username", user.getUsername()).getSingleResult();
         // this.user = this.entityManager.find(User.class, this.user.getUsername());
     }
 
     @Override
     public String getVerify()
     {
-        return this.verify;
+        return verify;
     }
 
     @Override
     public void setVerify(final String verify)
     {
-		this.verify = verify;
+        this.verify = verify;
     }
 
     /**
@@ -106,7 +106,7 @@ public class ChangePasswordAction implements ChangePassword
     @Override
     public User getUser()
     {
-        return this.user;
+        return user;
     }
 
     /**

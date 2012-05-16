@@ -65,7 +65,6 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
         }
         catch (final UserDaoException ex)
         {
-            // FacesMessages.instance().addToControl("user", StatusMessage.Severity.ERROR, "User not found on database.", (Object[]) null);
             FacesMessages.instance().addToControl("user", "User not found on database.", (Object[]) null);
             this.logger.debug("Empty person list");
         }
