@@ -161,7 +161,8 @@
     <!-- ************************ RichFaces Config **************************** -->
     <context-param>
     	<param-name>org.richfaces.SKIN</param-name>
-    	<param-value>glassX</param-value>
+    	<!--<param-value>glassX</param-value>-->
+    	<param-value>ruby</param-value>
     </context-param>
     
     <!-- Suppress spurious stylesheets -->

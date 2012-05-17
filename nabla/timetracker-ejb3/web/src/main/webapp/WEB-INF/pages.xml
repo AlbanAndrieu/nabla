@@ -80,15 +80,15 @@
       <message severity="warn">Your session has timed out, please try again</message>
     </redirect>
   </exception>
-
-  <exception class="org.jboss.seam.ConcurrentRequestTimeoutException">
-    <http-error error-code="503" />
-  </exception>
-
-  <exception>
-    <redirect view-id="/error.xhtml">
-      <message severity="error">Unexpected error, please try again</message>
-    </redirect>
-  </exception>
+    
+    <exception class="org.jboss.seam.ConcurrentRequestTimeoutException" log-level="trace">
+      <http-error error-code="503" />
+    </exception>
+     
+    <exception>
+        <redirect view-id="/error.xhtml">
+            <message severity="error">Unexpected error, please try again</message>
+        </redirect>
+    </exception>
     
 </pages>
