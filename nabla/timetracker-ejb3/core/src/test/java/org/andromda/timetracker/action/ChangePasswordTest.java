@@ -1,8 +1,7 @@
-package org.andromda.timetracker.test;
+package org.andromda.timetracker.action;
 
 import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
 
-import org.andromda.timetracker.security.PasswordEncoder;
 import org.apache.log4j.Logger;
 import org.jboss.seam.contexts.Contexts;
 import org.jboss.seam.core.Manager;

@@ -1,4 +1,4 @@
-package org.andromda.timetracker.test;
+package org.andromda.timetracker.action;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,9 +10,6 @@ import javax.transaction.TransactionManager;
 import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
 
 import org.andromda.timetracker.domain.User;
-import org.andromda.timetracker.security.PasswordEncoder;
-import org.andromda.timetracker.service.ChangePassword;
-import org.andromda.timetracker.service.ChangePasswordAction;
 import org.andromda.timetracker.service.UserService;
 import org.andromda.timetracker.service.UserServiceBean;
 import org.andromda.timetracker.service.UserServiceLocal;
@@ -49,7 +46,7 @@ public class SimpleSeamTest extends SeamOpenEjbTest
 
                 Assert.assertEquals(user.getUsername(), "admin");
 
-                System.out.println("Successfully found User from ChangePasswordAction");
+                System.out.println("Successfully found User from SimpleSeamTest");
             }
         }.run();
     }

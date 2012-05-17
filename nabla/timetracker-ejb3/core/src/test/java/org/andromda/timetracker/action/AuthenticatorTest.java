@@ -1,4 +1,4 @@
-package org.andromda.timetracker.test;
+package org.andromda.timetracker.action;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -6,8 +6,6 @@ import java.util.TreeSet;
 import no.knowit.seam.openejb.mock.AbstractSeamOpenEjbTest;
 import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
 
-import org.andromda.timetracker.security.PasswordEncoder;
-import org.andromda.timetracker.service.Authenticator;
 import org.apache.log4j.Logger;
 import org.jboss.seam.security.Credentials;
 import org.testng.Assert;

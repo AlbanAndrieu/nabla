@@ -219,46 +219,22 @@
 			<artifactId>javassist</artifactId>
 			<version>${javassist.version}</version>
 			<scope>provided</scope>
-		</dependency>     		
+		</dependency>		
 
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam</artifactId>
 			<version>${seam.version}</version>
 			<type>ejb</type>
-			<!--
-			<exclusions>
-				<exclusion>
-					<groupId>jboss</groupId>
-					<artifactId>javassist</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>javax.el</groupId>
-					<artifactId>el-api</artifactId>
-				</exclusion>
-			</exclusions>
-			-->
 		</dependency>
-		
+
+		<!--		
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam-ui</artifactId>
 			<version>${seam.version}</version>
-			<!--
-			<exclusions>
-				<exclusion>
-					<groupId>javax.el</groupId>
-					<artifactId>el-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.jboss.seam</groupId>
-					<artifactId>jboss-seam-jul</artifactId>
-				</exclusion>
-			</exclusions>
-			-->
 		</dependency>
-		<!--
+
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam-ioc</artifactId>
@@ -275,17 +251,6 @@
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam-mail</artifactId>
 			<version>${seam.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.seam</groupId>
-			<artifactId>jboss-seam-remoting</artifactId>
-			<version>${seam.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>dom4j</groupId>
-					<artifactId>dom4j</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
              	<dependency> 
         		<groupId>dom4j</groupId> 
@@ -421,7 +386,7 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>${gwt.user.version}</version>
+			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -448,7 +413,7 @@
                 <dependency>
                         <groupId>org.hibernate.javax.persistence</groupId>
                         <artifactId>hibernate-jpa-2.0-api</artifactId>
-                        <version>1.0.0.Final</version>
+                        <version>${hibernate.jpa.api.version}</version>
                         <scope>provided</scope>
                 </dependency>		
         

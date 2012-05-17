@@ -1,5 +1,4 @@
-// license-header java merge-point
-package org.andromda.timetracker.service;
+package org.andromda.timetracker.action;
 
 import org.jboss.seam.contexts.Contexts;
 

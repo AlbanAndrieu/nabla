@@ -1,4 +1,4 @@
-package org.andromda.timetracker.service.test;
+package org.andromda.timetracker.action;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +12,6 @@ import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
 
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.security.PasswordEncoder;
-import org.andromda.timetracker.service.RegisterAction;
 import org.andromda.timetracker.service.UserDoesNotExistException;
 import org.andromda.timetracker.service.UserServiceBean;
 import org.andromda.timetracker.service.UserServiceLocal;
@@ -182,7 +181,7 @@ public class RegisterActionTest extends SeamOpenEjbTest
 
             public EntityManagerFactory getEntityManagerFactory()
             {
-                return this.emf;
+                return emf;
             }
 
             @Override
@@ -191,9 +190,9 @@ public class RegisterActionTest extends SeamOpenEjbTest
                 try
                 {
                     // this.emf = Persistence.createEntityManagerFactory("timetracker-ejb3");
-                    this.emf = (EntityManagerFactory) Component.getInstance(SeamManagedEntityManagerFactoryBean.class, true);
-                    Assert.assertNotNull(this.emf);
-                    RegisterActionTest.logger.debug("SeamManagedEntityManagerFactory bean : " + this.emf);
+                    emf = (EntityManagerFactory) Component.getInstance(SeamManagedEntityManagerFactoryBean.class, true);
+                    Assert.assertNotNull(emf);
+                    RegisterActionTest.logger.debug("SeamManagedEntityManagerFactory bean : " + emf);
 
                     Date date;
 
@@ -229,7 +228,7 @@ public class RegisterActionTest extends SeamOpenEjbTest
                 }
                 finally
                 {
-                    this.emf.close();
+                    emf.close();
                 }
             }
         }.run();

@@ -1,4 +1,4 @@
-package org.andromda.timetracker.service;
+package org.andromda.timetracker.action;
 
 import static org.jboss.seam.ScopeType.EVENT;
 

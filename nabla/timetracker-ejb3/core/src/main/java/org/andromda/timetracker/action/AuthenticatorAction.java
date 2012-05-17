@@ -1,4 +1,4 @@
-package org.andromda.timetracker.service;
+package org.andromda.timetracker.action;
 
 import static org.jboss.seam.ScopeType.SESSION;
 
@@ -51,12 +51,12 @@ public class AuthenticatorAction implements Authenticator
     @Override
     public boolean authenticate()
     {
-        AuthenticatorAction.logger.debug("Authenticating username : " + this.credentials.getUsername());
+        AuthenticatorAction.logger.debug("Authenticating username : " + credentials.getUsername());
 
-        this.log.info("Authenticating : {0}", this.credentials.getUsername());
-        logger.debug("Authenticating password : " + this.credentials.getPassword());
+        log.info("Authenticating : {0}", credentials.getUsername());
+        logger.debug("Authenticating password : " + credentials.getPassword());
 
-        return this.authenticate(this.credentials.getUsername(), this.credentials.getPassword(), null);
+        return this.authenticate(credentials.getUsername(), credentials.getPassword(), null);
 
     }
 
@@ -66,15 +66,15 @@ public class AuthenticatorAction implements Authenticator
         AuthenticatorAction.logger.info("Authenticating username : " + username);
         AuthenticatorAction.logger.debug("Authenticating password : " + password);
 
-        if (this.credentials != null)
+        if (credentials != null)
         {
-            AuthenticatorAction.logger.debug("Authenticating credentials : " + this.credentials);
+            AuthenticatorAction.logger.debug("Authenticating credentials : " + credentials);
         } else
         {
             AuthenticatorAction.logger.warn("Authenticating credentials is null");
         }
 
-        final List<User> results = this.entityManager.createQuery("select u from User u where u.username=:username and u.password=:password").setParameter("username", username).setParameter("password", password)
+        final List<User> results = entityManager.createQuery("select u from User u where u.username=:username and u.password=:password").setParameter("username", username).setParameter("password", password)
                 .getResultList();
 
         if (results.size() == 0)
@@ -86,25 +86,25 @@ public class AuthenticatorAction implements Authenticator
             // successful, false otherwise
             if ("admin".equals(username))
             {
-                this.identity.addRole("admin");
+                identity.addRole("admin");
                 return true;
             }
 
             return false;
         } else
         {
-            this.user = results.get(0);
-            if (this.user.getPassword().equals(password))
+            user = results.get(0);
+            if (user.getPassword().equals(password))
             {
 
                 // this.getUserDao().toUserDetailsVO(this.user);
 
-                if ((roles != null) && (this.user.getRoles() != null))
+                if ((roles != null) && (user.getRoles() != null))
                 {
-                    for (final UserRole mr : this.user.getRoles())
+                    for (final UserRole mr : user.getRoles())
                     {
                         AuthenticatorAction.logger.debug("Authenticating add role : " + mr.getRole().getValue() + " for user : " + username);
-                        this.identity.addRole(mr.getRole().getValue());
+                        identity.addRole(mr.getRole().getValue());
                         roles.add(mr.getRole().getValue());
                     }
                 }
@@ -119,7 +119,7 @@ public class AuthenticatorAction implements Authenticator
                 // successful, false otherwise
                 if ("admin".equals(username))
                 {
-                    this.identity.addRole("admin");
+                    identity.addRole("admin");
                     return true;
                 }
 

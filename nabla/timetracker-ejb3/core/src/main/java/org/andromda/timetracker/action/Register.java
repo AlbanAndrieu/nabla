@@ -1,4 +1,4 @@
-package org.andromda.timetracker.service;
+package org.andromda.timetracker.action;
 
 import javax.ejb.Local;
 import javax.persistence.EntityManager;
