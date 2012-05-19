@@ -1041,7 +1041,11 @@
 						<version>${maven.dashboard.plugin.version}</version>
 						<inherited>true</inherited>
 					</plugin>
-
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>gwt-maven-plugin</artifactId>
+                                                <version>${maven.gwt.plugin.version}</version>
+                                        </plugin>
 				</plugins>
 			</reporting>
 		</profile>
@@ -1355,6 +1359,7 @@
 		<jdbc.derby.version>10.3.1.4</jdbc.derby.version>
 		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
 		<jconn.version>6.0</jconn.version>
+		<asm.version>2.2.3</asm.version> <!-- works with cglib -->
 		<cglib.version>2.2</cglib.version>
 		<!--<cglib.nodep.version>2.1_3</cglib.nodep.version>-->
 		<cglib.nodep.version>2.2.2</cglib.nodep.version>
@@ -1382,21 +1387,20 @@
 		<acegijsf.version>1.1.2</acegijsf.version>
 		<!--<jsf.api.version>1.2_15</jsf.api.version>-->
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
-		<asm.version>2.2.3</asm.version>
 		<aspectj.version>1.6.6</aspectj.version>
 		<clickstream.version>1.0.2</clickstream.version>
 		<corejsf.validator.version>1.0</corejsf.validator.version>
 		<displaytag.version>1.2</displaytag.version>
 		<dwr.version>2.0.1</dwr.version>
-		<!--<ehcache.version>1.5.0</ehcache.version>-->
 		<ehcache.version>2.4.6</ehcache.version>
+		<ehcache.jar.version>1.5.0</ehcache.jar.version>
 		<org.javassist.version>3.15.0-GA</org.javassist.version>
 		<javassist.version>3.12.1.GA</javassist.version>
 		<el.version>1.2</el.version>
 		<facelets.version>1.1.13</facelets.version>
 		<toplink.essentials.version>2.0-40</toplink.essentials.version>
 		<openjpa.all.version>0.9.7-incubating-SNAPSHOT</openjpa.all.version>
-		<!--<hibernate.version>3.2.6.ga</hibernate.version>-->
+		<hibernate.version>3.2.6.ga</hibernate.version>
 		<!--<hibernate3.version>3.6.8.Final</hibernate3.version>--> <!-- for hibernate-core and hibernate-entitymanager -->
 		<hibernate.entitymanager.version>3.3.2.GA</hibernate.entitymanager.version>
 		<!--<hibernate.entitymanager.version>3.6.8.Final</hibernate.entitymanager.version>-->
@@ -1409,6 +1413,7 @@
 		<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>
 		<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
 		<hibernate.search.version>3.0.1.GA</hibernate.search.version>
+		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
 		<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
 		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
 		<jbpm.version>3.3.1.GA</jbpm.version>
@@ -1450,7 +1455,10 @@
 		<xmlunit.version>1.2</xmlunit.version>
 		<wiser.version>1.2</wiser.version>
 
-		<google.api.client>1.0.10-alpha</google.api.client>
+		<google.api.client.version>1.0.10-alpha</google.api.client.version>
+		<gwt.version>2.4.0</gwt.version>
+		<!--<gwt.version>2.2.0</gwt.version>-->
+		
 		<selenium.version>0.8.1</selenium.version>
 		<myfaces.version>1.2.9</myfaces.version>
 		<!--<myfaces.version>1.2.11</myfaces.version> does not work-->
@@ -1460,7 +1468,7 @@
 		<org.apache.myfaces.tomahawk.version>1.1.11</org.apache.myfaces.tomahawk.version>
 		<org.apache.myfaces.trinidad.version>1.2.14</org.apache.myfaces.trinidad.version>
 		<!--<org.apache.myfaces.trinidad.version>2.0.0</org.apache.myfaces.trinidad.version>-->
-		<jsf.facelets.version>1.1.15</jsf.facelets.version>
+		<jsf.facelets.version>1.1.15.B1</jsf.facelets.version>
 		<el.api.version>2.2.1-b04</el.api.version>
 		<portlet.api.version>1.0</portlet.api.version>
 		<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>
@@ -1500,8 +1508,7 @@
 		<geronimo.stax.api.spec.version>1.0.1</geronimo.stax.api.spec.version>
 		<geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
 
-		<!--<seam.version>2.1.1.GA</seam.version>-->
-		<seam.version>2.2.1.CR3</seam.version>
+		<seam.version>2.2.1.Final</seam.version>
 
 		<jaxb.api.version>2.1</jaxb.api.version>
 		<jaxb.impl.version>2.1.13</jaxb.impl.version>
@@ -1558,7 +1565,7 @@
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
 		<maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
-		<maven.war.plugin.version>2.1.1</maven.war.plugin.version>
+		<maven.war.plugin.version>2.2</maven.war.plugin.version>
 		<maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
 		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
 		<maven.archiver.plugin.version>2.2</maven.archiver.plugin.version>
@@ -1625,7 +1632,7 @@
 		<maven.doap.plugin.version>1.1</maven.doap.plugin.version>
 		<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>
 		<maven.help.plugin.version>2.0.2</maven.help.plugin.version>
-		<maven.build.helper.plugin.version>1.5</maven.build.helper.plugin.version>
+		<maven.build.helper.plugin.version>1.7</maven.build.helper.plugin.version>
 		<maven.repository.plugin.version>2.0</maven.repository.plugin.version>
 		<maven.remote.resources.plugin.version>1.0</maven.remote.resources.plugin.version>
 		<maven.default.skin.version>1.0</maven.default.skin.version>
@@ -1634,7 +1641,8 @@
 		<maven.sql.plugin.version>1.5</maven.sql.plugin.version>
 		<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
 		<maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
-		<hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
+		<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
+		<hibernate3.maven.plugin.version>2.2-SNAPSHOT</hibernate3.maven.plugin.version>
 		<dbunit.maven.plugin.version>1.0-beta-3</dbunit.maven.plugin.version>
 
 		<package.tomcat.zip.version>${tomcat.version}</package.tomcat.zip.version>
@@ -1856,7 +1864,33 @@
             					 	 	 	<action>
             					 	 	 	 	<ignore></ignore>
             					 	 	 	</action>
-            					 	 	</pluginExecution>            					 	 	            					 	 	            					 	 	
+            					 	 	</pluginExecution>        
+            					 	 	<pluginExecution>
+            					 	 	 	<pluginExecutionFilter>
+            					 	 	 	 	<groupId>org.codehaus.mojo</groupId>
+            					 	 	 	 	<artifactId>build-helper-maven-plugin</artifactId>
+            					 	 	 	 	<versionRange>[${maven.build.helper.plugin.version},)</versionRange>
+            					 	 	 	 	<goals>
+            					 	 	 	 	 	<goal>add-source</goal>
+            					 	 	 	 	</goals>
+            					 	 	 	</pluginExecutionFilter>
+            					 	 	 	<action>
+            					 	 	 	 	<ignore></ignore>
+            					 	 	 	</action>
+            					 	 	</pluginExecution>  
+                                                                <pluginExecution>
+                                                                        <pluginExecutionFilter>
+                                                                          <groupId>org.codehaus.mojo</groupId>
+                                                                          <artifactId>gwt-maven-plugin</artifactId>
+                                                                          <versionRange>[${maven.gwt.plugin.version},)</versionRange>
+                                                                          <goals>
+                                                                            <goal>resources</goal>
+                                                                          </goals>
+                                                                        </pluginExecutionFilter>
+                                                                        <action>
+                                                                          <execute />
+                                                                        </action>
+                                                                </pluginExecution>            					 	 	               					 	 	    				 	 	            					 	 	            					 	 	
             					 	</pluginExecutions>
             					</lifecycleMappingMetadata>
 					</configuration>
@@ -2474,6 +2508,7 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>${maven.war.plugin.version}</version>
         				<configuration>
+        				  <encoding>${project.build.sourceEncoding}</encoding>
         				  <webResources>
         				    <webResource>
         				      <directory>${basedir}/src/main/webapp/WEB-INF</directory>
@@ -2481,8 +2516,14 @@
         				      <filtering>true</filtering>
         				    </webResource>
         				  </webResources>
-        				  <archive>
+        				  <archive>		  
+                                            <manifest>
+                                              <addClasspath>true</addClasspath>
+                                              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                            </manifest>        				  
         				    <manifestEntries>
+                		              <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                		              <Url>${project.url}</Url>        				    
         				      <Build-Date>${timestamp}</Build-Date>
         				      <Build-Revision>${buildNumber}</Build-Revision>
         				      <Mode>${environment}</Mode>
@@ -2741,6 +2782,11 @@
 					<artifactId>tomcat-maven-plugin</artifactId>
 					<version>${maven.tomcat.plugin.version}</version>
 				</plugin>
+                                <plugin>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>gwt-maven-plugin</artifactId>
+                                        <version>${maven.gwt.plugin.version}</version>
+                                </plugin>				
 			</plugins>
 		</pluginManagement>
 		
@@ -2950,11 +2996,10 @@
 			<dependency>
 				<groupId>com.google.api.client</groupId>
 				<artifactId>google-api-client</artifactId>
-				<version>${google.api.client}</version>
+				<version>${google.api.client.version}</version>
 				<scope>compile</scope>
 			</dependency>
 			<!-- see pom in database -->
-			<!--
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate</artifactId>
@@ -2979,7 +3024,6 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			-->
                         <!-- For JBoss AS6 and earlier: Avoid NoSuchMethodException: org.hibernate.validator.ClassValidator.<init> -->
                         <dependency>
                             <groupId>org.hibernate</groupId>
@@ -3074,6 +3118,12 @@
 				<version>${ehcache.version}</version>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.jar.version}</version>
+				<type>jar</type>
+			</dependency>			
 			<dependency>
 				<groupId>org.javassist</groupId>
 				<artifactId>javassist</artifactId>
