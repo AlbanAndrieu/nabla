@@ -228,6 +228,19 @@
 			<type>ejb</type>
 		</dependency>
 
+	        <dependency>
+	        	<groupId>org.jboss.seam</groupId>
+	        	<artifactId>jboss-seam-remoting</artifactId>
+	        	<version>${seam.version}</version>
+	        	<scope>provided</scope>
+	        	<exclusions>
+	        		<exclusion>
+	        			<groupId>dom4j</groupId>
+	        			<artifactId>dom4j</artifactId>
+	        		</exclusion>
+	        	</exclusions>
+	        </dependency>
+	
 		<!--		
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
