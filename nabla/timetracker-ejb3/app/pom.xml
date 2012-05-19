@@ -100,7 +100,19 @@
           <type>ejb</type>
           <!--<scope>provided</scope>-->
         </dependency>
-        
+
+	<dependency>
+	  <groupId>org.jboss.seam</groupId>
+	  <artifactId>jboss-seam-remoting</artifactId>
+	  <version>${seam.version}</version>
+	  <exclusions>
+	  	<exclusion>
+	  		<groupId>dom4j</groupId>
+	  		<artifactId>dom4j</artifactId>
+	  	</exclusion>
+	  </exclusions>
+	</dependency>
+               
         <!--
         <dependency>
           <groupId>org.jboss.seam</groupId>
@@ -235,13 +247,18 @@
 	   <artifactId>lucene-core</artifactId>
 	   <scope>provided</scope>
 	</dependency>  
-	
+
 	<dependency>
 	   <groupId>com.google.gwt</groupId>
 	   <artifactId>gwt-user</artifactId>
-	   <version>${gwt.user.version}</version>
+	   <version>${gwt.version}</version>
 	</dependency>
-	-->
+        -->
+        <dependency>
+             <groupId>com.google.gwt</groupId>
+             <artifactId>gwt-servlet</artifactId>
+             <version>${gwt.version}</version>
+        </dependency>
 		
         <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
         <!--
