@@ -354,6 +354,7 @@
 		<groupId>org.jboss.seam</groupId>
 		<artifactId>jboss-seam-remoting</artifactId>
 		<version>${seam.version}</version>
+		<scope>provided</scope>
 		<exclusions>
 			<exclusion>
 				<groupId>dom4j</groupId>
@@ -496,21 +497,21 @@
             <!--<scope>compile</scope> error in deployment -->
             <scope>provided</scope> <!-- prevents from including this in war -->
         </dependency>
+        <!--
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
             <version>${gwt.version}</version>
-            <scope>provided</scope> <!-- prevents from including this in war -->
+            <scope>provided</scope> --><!-- prevents from including this in war --><!--
         </dependency>
-        <!--
-       <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}</version>
-            <scope>compile</scope>
-       </dependency>
-       -->
 
+        <dependency>
+             <groupId>com.google.gwt</groupId>
+             <artifactId>gwt-servlet</artifactId>
+             <version>${gwt.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        -->
 	<dependency>
 		<groupId>xerces</groupId>
 		<artifactId>xercesImpl</artifactId>
@@ -572,6 +573,11 @@
 	-->	
                                 		
     </dependencies>
+    
+    <properties>    
+    	<target.dir>target</target.dir>
+    </properties>
+	    
     <build>
         <finalName>${project.parent.artifactId}</finalName>
         <!--<defaultGoal>hotdeploy:exploded</defaultGoal>-->
@@ -693,7 +699,7 @@
                   mode) to not start the default server (embedded jetty), but to download the 
                   HTML host page from the configured runTarget. -->
                 <noServer>true</noServer>
-                <runTarget>http://localhost:8180/timetracker-ejb3/</runTarget>
+                <runTarget>http://localhost:8180/timetracker-ejb3/HelloWorldGWT.html</runTarget>
              
               </configuration>
               <executions>
@@ -857,6 +863,7 @@
     
     <profiles>
                 <!-- important in order to openejb to work components.xml and ejb-jar.xml (can be empty) must be in src\main\resources\META-INF if source are in src/main/java -->
+                <!-- in order to seam to see the name add seam.properties to src\main\resources -->
 		<profile>		        
 			<id>microcontainer-openejb</id>
 			<activation>
