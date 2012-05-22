@@ -21,8 +21,7 @@ if ( $?prompt ) then
     bindkey -v          ; # use vi key bindings
 
     # display
-    set DISPLAY         = localhost:0
-    #setenv DISPLAY ktppxsolw02:0.0
+    set DISPLAY         = localhost:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
@@ -46,11 +45,6 @@ endif
 setenv MACHINE x86Linux
 setenv ARCH cygwin
 
-# ---------- Arguments des applis Kplus -----------
-setenv KPLUS_ARGS       "-Ualbandri -Palbandri12"
-setenv KPLUS_ARGS_KPLUS "-Ukplus    -Pkplus11"
-
-
 # ----------
 if ( "${ARCH}" == sun4sol ) then
     coreadm -p core.%f.%n.%p $$
@@ -60,13 +54,13 @@ endif
 # BACKEND
 ##
 
-setenv KPLUSTP_USER albandri
-setenv KPLUSTP_VERSION 30
-setenv KPLUSTP_EXTRACTION ktpplus
-setenv DEV_HOME /cygdrive/c/workspace/users
+setenv PROJECT_USER albandri
+setenv PROJECT_VERSION 10
+setenv PROJECT_EXTRACTION ktpplus
+setenv DRIVE_PATH /cygdrive/c
+setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 
-setenv WORKSPACE_ENV ${DEV_HOME}/${KPLUSTP_USER}${KPLUSTP_VERSION}/env/${ARCH}
+setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
 
-alias 27 'source ${DEV_HOME}/${KPLUSTP_USER}27/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 28 'source ${DEV_HOME}/${KPLUSTP_USER}28/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 30 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'

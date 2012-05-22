@@ -82,19 +82,20 @@ export ARCH=cygwin
 
 echo ${ARCH} ${MACHINE}
 
-export KPLUSTP_USER=albandri
-export KPLUSTP_VERSION=30
-export KPLUSTP_EXTRACTION=ktpplus
-export DEV_HOME=/cygdrive/c/workspace/users
+export PROJECT_USER=albandri
+export PROJECT_VERSION=10
+export PROJECT_EXTRACTION=ktpplus
+export DRIVE_PATH=/cygdrive/c
+export DEV_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
-#export WORKSPACE=${DEV_HOME}/${KPLUSTP_USER}${KPLUSTP_VERSION}
-export WORKSPACE_ENV=${DEV_HOME}/${KPLUSTP_USER}${KPLUSTP_VERSION}/env/${ARCH}
+#export WORKSPACE=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
+export WORKSPACE_ENV=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
 
-export THIRDPARTY_ROOT=/cygdrive/c/thirdparty
+export THIRDPARTY_ROOT=${DRIVE_PATH}/thirdparty
 echo THIRDPARTY_ROOT ${THIRDPARTY_ROOT}
 export CORBA_ROOT=${THIRDPARTY_ROOT}/tao
 export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
-#export ACE_ROOT=/cygdrive/c/thirdparty/tao/ACE_wrappers
+#export ACE_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
 
 echo ${ACE_ROOT}
 
@@ -116,11 +117,11 @@ export DANCE_ROOT
 DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
 export DDS_ROOT
 
-#export PATH=/cygdrive/c/cygwin/bin:/cygdrive/c/cygwin/usr/include:/cygdrive/c/cygwin/usr/lib:/cygdrive/c/cygwin/lib
+#export PATH=${DRIVE_PATH}/cygwin/bin:${DRIVE_PATH}/cygwin/usr/include:${DRIVE_PATH}/cygwin/usr/lib:${DRIVE_PATH}/cygwin/lib
 #If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
 #:/sbin:/usr/local/sbin:
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:/cygdrive/c/cygwin/bin
-#export ACE_ROOT=/cygdrive/c/thirdparty/tao/ACE_wrappers
+export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:${DRIVE_PATH}/cygwin/bin
+#export ACE_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
 export LD_LIBRARY_PATH=$ACE_ROOT/lib:$LD_LIBRARY_PATH
 #export ARCH=
 
