@@ -56,8 +56,8 @@ endif
 
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
-setenv PROJECT_EXTRACTION ktpplus
-setenv DRIVE_PATH /cygdrive/c
+setenv PROJECT_EXTRACTION nabla
+setenv DRIVE_PATH ${DRIVE_PATH}
 setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 
 setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}

@@ -1,77 +1,132 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# base-files version 3.9-2
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+# To pick up the latest recommended .bashrc content,
+# look in /etc/defaults/etc/skel/.bashrc
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+# Modifying /etc/skel/.bashrc directly will prevent
+# setup from updating it.
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# The copy in your home directory (~/.bashrc) is yours, please
+# feel free to customise it to create a shell
+# environment to your liking.  If you feel a change
+# would be benificial to all, please feel free to send
+# a patch to the cygwin mailing list.
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+# User dependent .bashrc file
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+# Environment Variables
+# #####################
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    ;;
-*)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    ;;
-esac
+# TMP and TEMP are defined in the Windows environment.  Leaving
+# them set to the default Windows temporary directory can have
+# unexpected consequences.
+unset TMP
+unset TEMP
 
-# Comment in the above and uncomment this below for a color prompt
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# Alternatively, set them to the Cygwin temporary directory
+# or to any other tmp directory of your choice
+# export TMP=/tmp
+# export TEMP=/tmp
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    ;;
-*)
-    ;;
-esac
+# Or use TMPDIR instead
+# export TMPDIR=/tmp
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# Shell Options
+# #############
 
-#if [ -f ~/.bash_aliases ]; then
-#    . ~/.bash_aliases
-#fi
+# See man bash for more options...
 
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-fi
+# Don't wait for job termination notification
+# set -o notify
 
-# some more ls aliases
-alias ll='ls -lrta'
-#alias la='ls -A'
-#alias l='ls -CF'
+# Don't use ^D to exit
+# set -o ignoreeof
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+# Use case-insensitive filename globbing
+# shopt -s nocaseglob
+
+# Make bash append rather than overwrite the history on disk
+# shopt -s histappend
+
+# When changing directory small typos can be ignored by bash
+# for example, cd /vr/lgo/apaache would find /var/log/apache
+# shopt -s cdspell
+
+
+# Completion options
+# ##################
+
+# These completion tuning parameters change the default behavior of bash_completion:
+
+# Define to access remotely checked-out files over passwordless ssh for CVS
+# COMP_CVS_REMOTE=1
+
+# Define to avoid stripping description in --option=description of './configure --help'
+# COMP_CONFIGURE_HINTS=1
+
+# Define to avoid flattening internal contents of tar files
+# COMP_TAR_INTERNAL_PATHS=1
+
+# If this shell is interactive, turn on programmable completion enhancements.
+# Any completions you add in ~/.bash_completion are sourced last.
+# case $- in
+#   *i*) [[ -f /etc/bash_completion ]] && . /etc/bash_completion ;;
+# esac
+
+
+# History Options
+# ###############
+
+# Don't put duplicate lines in the history.
+# export HISTCONTROL="ignoredups"
+
+# Ignore some controlling instructions
+# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
+# The '&' is a special pattern which suppresses duplicate entries.
+# export HISTIGNORE="[ \t]*:&:[fb]g:exit"
+# export HISTIGNORE="[ \t]*:&:[fb]g:exit:ls" # Ignore the ls command as well
+
+# Whenever displaying the prompt, write the previous line to disk
+# export PROMPT_COMMAND="history -a"
+
+
+# Aliases
+# #######
+
+# Some example alias instructions
+# If these are enabled they will be used instead of any instructions
+# they may mask.  For example, alias rm='rm -i' will mask the rm
+# application.  To override the alias instruction use a \ before, ie
+# \rm will call the real rm not the alias.
+
+# Interactive operation...
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+
+# Default to human readable figures
+# alias df='df -h'
+# alias du='du -h'
+
+# Misc :)
+# alias less='less -r'                          # raw control characters
+# alias whence='type -a'                        # where, of a sort
+# alias grep='grep --color'                     # show differences in colour
+
+# Some shortcuts for different directory listings
+# alias ls='ls -hF --color=tty'                 # classify files in colour
+# alias dir='ls --color=auto --format=vertical'
+# alias vdir='ls --color=auto --format=long'
+# alias ll='ls -l'                              # long list
+# alias la='ls -A'                              # all but . and ..
+# alias l='ls -CF'                              #
+
+
+# Functions
+# #########
+
+# Some example functions
+# function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
 ##
 # BACKEND
@@ -84,16 +139,15 @@ echo ${ARCH} ${MACHINE}
 
 export PROJECT_USER=albandri
 export PROJECT_VERSION=10
-export PROJECT_EXTRACTION=ktpplus
 export DRIVE_PATH=/cygdrive/c
 export DEV_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #export WORKSPACE=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
 export WORKSPACE_ENV=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
 
-export THIRDPARTY_ROOT=${DRIVE_PATH}/thirdparty
-echo THIRDPARTY_ROOT ${THIRDPARTY_ROOT}
-export CORBA_ROOT=${THIRDPARTY_ROOT}/tao
+export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
+echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
+export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
 export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 #export ACE_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
 
@@ -132,7 +186,10 @@ echo "cd ${TAO_ROOT}/tao"
 echo "cd ${TAO_ROOT}/TAO_IDL"
 echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
 
-echo ${SHELL}
+echo SHELL : ${SHELL}
+
+alias 00='source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.sh'
+alias 10='source ${WORKSPACE_ENV}/dev.env.sh'
 
 if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
     echo ${WORKSPACE_ENV}/dev.env.sh

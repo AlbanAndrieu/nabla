@@ -84,16 +84,15 @@ echo ${ARCH} ${MACHINE}
 
 export PROJECT_USER=albandri
 export PROJECT_VERSION=10
-export PROJECT_EXTRACTION=ktpplus
-export DRIVE_PATH=/cygdrive/c
+export DRIVE_PATH=${DRIVE_PATH}
 export DEV_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #export WORKSPACE=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
 export WORKSPACE_ENV=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
 
-export THIRDPARTY_ROOT=${DRIVE_PATH}/thirdparty
-echo THIRDPARTY_ROOT ${THIRDPARTY_ROOT}
-export CORBA_ROOT=${THIRDPARTY_ROOT}/tao
+export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
+echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
+export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
 export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 #export ACE_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
 

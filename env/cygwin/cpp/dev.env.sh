@@ -19,10 +19,6 @@ case ${MACHINE} in
   
   rs6000)
     export CORE_NAMING=true
-      if [ ${HOSTNAME} = "ptxskplus19" ] 
-      then
-       export PATH=${PATH}:/opt/cpp-v6-vacpp/6.0.0.14/usr/vac/bin:/opt/cpp-v6-vacpp/6.0.0.14/usr/vacpp/bin
-      fi
   ;;
 
   *)
@@ -31,9 +27,8 @@ case ${MACHINE} in
 esac
 
 # CMAKE_ROOT
-#export CMAKE_ROOT=/cygdrive/c/users/cmake/cmake-2.6.3-Linux-i386/bin
-#export CMAKE_HOME=/cygdrive/c/CMake-[[CMAKE_MAJOR_VERSION]]
-export CMAKE_HOME=/cygdrive/c/cygwin/usr/share/cmake-2.6.4
+#export CMAKE_HOME=${DRIVE_PATH}/CMake-[[CMAKE_MAJOR_VERSION]]
+export CMAKE_HOME=${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
 # GMAKE
@@ -44,7 +39,7 @@ export CMAKE_ROOT=${CMAKE_HOME}
 export IMAKEINCLUDE="-I${TMPLDIR}"
 echo " TMPL is : ${IMAKEINCLUDE}/tools/perl/${ARCH}.pl"
 
-alias gencmake="${KPLUSTP_DEV}/${KPLUSTP_EXTRACTION}/cmake/gencmake"
+alias gencmake="${PROJECT_DEV}/${PROJECT_EXTRACTION}/gencmake"
 alias gm='gmake -f Makefile.${ARCH}.opt'
 alias gmw='gm where'
 alias run='`gmw`'

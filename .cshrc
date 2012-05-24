@@ -56,10 +56,12 @@ endif
 
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
-setenv PROJECT_EXTRACTION ktpplus
-setenv DEV_HOME /cygdrive/c/workspace/users
+setenv DRIVE_PATH /cygdrive/c
+setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 
 setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
+
+echo SHELL : ${SHELL}
 
 alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'

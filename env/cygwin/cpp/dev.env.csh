@@ -14,9 +14,8 @@ set lpath = (${path})
 #*---------------------------------------------------------------------*/
 
 # CMAKE_ROOT
-#setenv CMAKE_HOME /cygdrive/c/CMake-2.8
-setenv CMAKE_HOME /cygdrive/c/cygwin/usr/share/cmake-2.6.4
-setenv CMAKE_ROOT /cygdrive/c/cygwin/usr/share/cmake-2.6.4
+setenv CMAKE_HOME ${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
+setenv CMAKE_ROOT ${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
 
 # compiler selection
 switch ( ${MACHINE} )
@@ -34,7 +33,6 @@ switch ( ${MACHINE} )
   
   case rs6000:
     setenv CORE_NAMING  true
-#    set lpath=(/opt/cpp-v7-xlccpp/2008-10.ptf/usr/vacpp/bin ${lpath})
     set lpath=(/opt/cpp-v10-xlccpp/2009-08.ptf/usr/vacpp/bin ${lpath})
   breaksw
 endsw
@@ -67,6 +65,4 @@ alias rebuildd '( ( ( test ! -f "Makefile.${ARCH}.debug" || gmdc \!* ) && gmdm \
 
 alias build '( ( gmin \!* && gmil \!* && gmi \!* ) || echoFailed )'
 alias rebuild '( ( ( test ! -f "Makefile.${ARCH}.opt" || gmc \!* ) && gmm \!* && build \!* ) || echoFailed )'
-
-
 
