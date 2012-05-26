@@ -6,10 +6,8 @@
 ### READ ARGUMENTS
 ####################
 TOOLS_OPTION_PURIFY=""
-DATABASE_CONFIG=fa_ktp30
-#export PERLGEN_OPTION ""
+export PERLGEN_OPTION ""
 typeset PURIFY=$1
-#echo $PURIFY
 if [ "$1" != "" ]
 then
 
@@ -60,7 +58,10 @@ export PROJECT_OBJ=${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
 export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
 export PROJECT_RELEASE=${PROJECT_DEV}/${PROJECT_EXTRACTION}/release/${PROJECT_MAJOR_VERSION}
 export PROJECT_PKG=${PROJECT_DEV}/${PROJECT_EXTRACTION}/pkg/${PROJECT_MAJOR_VERSION}
+
 export TMPLDIR=${PROJECT_DEV}/config/tmpl
+export IMAKEINCLUDE="-I${TMPLDIR}"
+echo " TMPL is : ${IMAKEINCLUDE}/tools/perl/${ARCH}.pl"
 
 export TIBCO_HOME=${DRIVE_PATH}/Tibco/Tibrv
 export GRAPHVIZ_HOME=${DRIVE_PATH}/Graphviz2.26.3
@@ -128,30 +129,9 @@ echo "find . -name 'pom.xml' | xargs grep SNAPSHOT"
 ###
 # THIRDPARTIES
 ###
-export BOOST_VERSION=1.41.0
-export GETTEXT_VERSION=0.14.5
-export XERCES_VERSION=2_5_0
 
-case ${MACHINE} in
-    sun4sol)
-      export ORB_VERSION=1_3
-      export ORB=tao
-    ;;
-    x86Linux)
-      export ORB_VERSION=1_3
-      export ORB=tao
-    ;;
-    rs6000)
-      export ORB_VERSION=4.0.7
-      export ORB=omniOrb
-    ;;
-    *)
-      echo "Unknown machine: ${MACHINE}"
-      exit 1
-    ;;
-esac
-
-#export MINGW_ROOT=${DRIVE_PATH}/MinGW
+export ORB_VERSION=1_3
+export ORB=tao
 
 export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
 export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
@@ -176,8 +156,20 @@ export DANCE_ROOT
 DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
 export DDS_ROOT
 
+export BOOST_VERSION=1.41.0
+export GETTEXT_VERSION=0.14.5
+export XERCES_VERSION=2_5_0
+export XML2_VERSION=2.7.4
+export TIBRV_VERSION=7.2.x
+
+#export MINGW_ROOT=${DRIVE_PATH}/MinGW
+
 export BOOST_ROOT=${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
 export BOOST=$BOOST_ROOT
+
+#export CMAKE_HOME=${DRIVE_PATH}/CMake-[[CMAKE_MAJOR_VERSION]]
+export CMAKE_HOME=${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
+export CMAKE_ROOT=${CMAKE_HOME}
 
 #CORBA TAO
 #export PATH=${ACE_ROOT}/ace:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${TAO_ROOT}/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:$PATH
@@ -200,22 +192,10 @@ test ! -d ${LIB_LINK_DIR} && mkdir -p ${LIB_LINK_DIR}
 #ln -s ${PROJECT_THIRDPARTY_PATH}/cppunit/${CPPUNIT_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/cppunit
 #ln -s ${PROJECT_THIRDPARTY_PATH}/gnu/gettext/${GETTEXT_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/gettext
 #ln -s ${PROJECT_THIRDPARTY_PATH}/xml/xerces/c++/${XERCES_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/xerces
+#ln -s ${PROJECT_THIRDPARTY_PATH}/libxml2/${XML2_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/xml2
+#ln -s ${PROJECT_THIRDPARTY_PATH}/tibco/tibrv/${TIBRV_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/tibrv
 
-#ln -s ${PROJECT_THIRDPARTY_PATH}/tibco/tibrv/7.2.x/${ARCH}/lib ${LIB_LINK_DIR}/tibrv
-
-#ln -s ${PROJECT_THIRDPARTY_PATH}/database/products/kondor/3.0/UPGRADE_55/src/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/kondordb
-#ln -s ${PROJECT_THIRDPARTY_PATH}/database/products/backend/${PROJECT_MAJOR_VERSION_WD}/V20/package/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/nabladb
-#ln -s ${PROJECT_THIRDPARTY_PATH}/database/ida/package/V4/v4r29b/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/ida
-
-#ln -s /srv/dist/kplus/30/30.3.03050/common/machine/${ARCH} ${LIB_LINK_DIR}/kplus
-
-#ln -s /database/sybase/openclient/12.51/ESD_17/${ARCH}/lib ${LIB_LINK_DIR}/sybase
-#ln -s /database/oracle/openclient/12.51/ESD_17/${ARCH}/lib ${LIB_LINK_DIR}/oracle
-
-#ln -s ${PROJECT_THIRDPARTY_PATH}/infra/common/P104L1_p3/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/infra
-#ln -s ${PROJECT_THIRDPARTY_PATH}/infrafa/infra11/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/infrafa
-#ln -s ${PROJECT_THIRDPARTY_PATH}/infrafa/faketat/12002/P104/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/infrafa_ketat
-#ln -s ${PROJECT_THIRDPARTY_PATH}/infrafa/fareport/30001/P104/lib/${ARCH}/opt/shared ${LIB_LINK_DIR}/infrafa_report
+#ln -s ${PROJECT_THIRDPARTY_PATH}/database/sybase/openclient/12.51/ESD_17/${ARCH}/lib ${LIB_LINK_DIR}/sybase
 
 #################################################################################
 
@@ -231,13 +211,9 @@ case ${MACHINE} in
     ;;
 esac
 
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/tibrv
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/ida
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/nabladb
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/kondordb
+#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/tibrv
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/sybase
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/oracle
-#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/kplus
 
 #if [ "$ORB" = "tao" ]
 #then
@@ -251,36 +227,29 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/kondordb
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/gettext
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/xerces
 
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/infra
-#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/infrafa
-#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/infrafa_ketat
-
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/lib:/usr/lib
-
-# Set in launch.sh report / openreport
-#export LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/infrafa_report
-
-#Keep it after source .cshrc.tools
-#export TMPLDIR ${PROJECT_DEV}/config/tmpl
-
-# settings  for interactive shells
-# environment variable used have to be defined before
-#set    prompt="%{\033]0;%n@%M:${DSQUERY} %C2\007%}%B%n@%M:${DSQUERY} %C2 [%?]%#%b "
 
 ##
 # Alias
 ##
 alias cde="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}"
 alias cdr="cd ${PROJECT_DEV}"
-alias cdc="cd ${PROJECT_DEV}/config"
-alias cdsh="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}/setup"
-alias cdweb="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}/setup/web/${CLIENT_SERVER_TYPE}/bin"
+alias cdc="cd ${PROJECT_DEV}/env/config"
+alias cdinc="cd ${PROJECT_OBJ}/include/${ARCH}"
+alias cdobj="cd ${PROJECT_OBJ}"
+alias cdbin="cd ${PROJECT_OBJ}/bin"
 
-#alias cdrl="cd /${PROJECT_RELEASE}/latest"
-#alias cdri="cd /${PROJECT_RELEASE}/installed"
-#alias cdcu="cd /${PROJECT_RELEASE}/current"
+alias cdrl="cd ${PROJECT_RELEASE}/latest"
+alias cdri="cd ${PROJECT_RELEASE}/installed"
+alias cdcu="cd ${PROJECT_RELEASE}/current"
 
-if [ "${ARCH}" = sun4sol ]
+alias cdcore="cd ${PROJECT_OBJ}/corefiles"
+alias ..="cd .."
+alias cls="clear"
+
+alias ls='/bin/ls -F'
+
+if [ "${ARCH}" = sun4sol || "${ARCH}" = x86sol ]
 then
   alias l='/bin/ls -Fl'
   alias pp='/usr/ucb/ps -auxwww'
@@ -302,7 +271,7 @@ else
         alias l='/bin/ls -Fl'
         alias pp='/bin/ps -edf'
       else
-        if [ "${ARCH}" = x86Linux ]
+        if [ "${ARCH}" = x86Linux || "${ARCH}" = cygwin ]
         then
           alias l='/bin/ls -Fl --color'
           alias pp='/bin/ps -auxwww'
@@ -344,14 +313,12 @@ case ${MACHINE} in
   ;;
 
   x86Linux)
-    #export PATH=${PATH}:/usr/X11R6/bin
     test "$TERM" = "xterm" && export TERM=xterm-color
   ;;
 
   rs6000)
     export PATH=${PATH}:/usr/X11R6/bin
     export LIBPATH=${LD_LIBRARY_PATH}
-    #unexport LD_LIBRARY_PATH
   ;;
 
   *)

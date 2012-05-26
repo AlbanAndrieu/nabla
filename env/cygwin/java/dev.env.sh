@@ -1,6 +1,5 @@
 #!/bin/sh -f
 
-#setenv PATH ${MAVEN_DIR}/bin:${PATH}
 # User specific aliases and functions
 # The following are the environment variables for Java, ANT and JBoss
 

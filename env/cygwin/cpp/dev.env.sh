@@ -26,19 +26,6 @@ case ${MACHINE} in
 
 esac
 
-# CMAKE_ROOT
-#export CMAKE_HOME=${DRIVE_PATH}/CMake-[[CMAKE_MAJOR_VERSION]]
-export CMAKE_HOME=${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
-export CMAKE_ROOT=${CMAKE_HOME}
-
-# GMAKE
-#export GMAKE_HOME="${TMPLDIR}/tools/${ARCH}"
-#export PATH=$PATH:$GMAKE_HOME
-
-#export IMAKEINCLUDE="-I${TMPLDIR}/tools/perl/${ARCH}.pl"
-export IMAKEINCLUDE="-I${TMPLDIR}"
-echo " TMPL is : ${IMAKEINCLUDE}/tools/perl/${ARCH}.pl"
-
 alias gencmake="${PROJECT_DEV}/${PROJECT_EXTRACTION}/gencmake"
 alias gm='gmake -f Makefile.${ARCH}.opt'
 alias gmw='gm where'

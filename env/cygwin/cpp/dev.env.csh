@@ -2,7 +2,7 @@
 
 #*
 #*
-#*    rtpplus central tools definition file.
+#*    Central tools definition file.
 #*
 #*---------------------------------------------------------------------*/
 #*    Initial path variables                                           */
@@ -12,10 +12,6 @@ set lpath = (${path})
 #*---------------------------------------------------------------------*/
 #*    Record current tcsh settings if needed                           */
 #*---------------------------------------------------------------------*/
-
-# CMAKE_ROOT
-setenv CMAKE_HOME ${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
-setenv CMAKE_ROOT ${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
 
 # compiler selection
 switch ( ${MACHINE} )
@@ -37,10 +33,8 @@ switch ( ${MACHINE} )
   breaksw
 endsw
 
-
 set path = ( ${lpath}  )
 unset lpath 
-
 
 alias gm 'gmake -f Makefile.${ARCH}.opt'
 alias gmw 'gm where'
@@ -65,4 +59,3 @@ alias rebuildd '( ( ( test ! -f "Makefile.${ARCH}.debug" || gmdc \!* ) && gmdm \
 
 alias build '( ( gmin \!* && gmil \!* && gmi \!* ) || echoFailed )'
 alias rebuild '( ( ( test ! -f "Makefile.${ARCH}.opt" || gmc \!* ) && gmm \!* && build \!* ) || echoFailed )'
-
