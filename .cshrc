@@ -8,20 +8,15 @@ if ( $?prompt ) then
     # yes, we're in an interactive shell
 
     # prompt
-    set prompt = "%{\033[1;36m%}peter %{\033[1;35m%}[%~] %{\033[1;36m%}%n \%%{\033[1;33m%} "
+    set prompt = "%{\033[1;36m%}%m@%{\033[1;36m%}%n %{\033[1;35m%}%~ %{\033[1;33m%} "
 
     # history
     set history         = 1000
     set savehist        = 1000
-    #set EDITOR          = vim
-    set EDITOR          = nedit
     set filec fignore = (.o)
 
     # cmd-line bindings
     bindkey -v          ; # use vi key bindings
-
-    # display
-    set DISPLAY         = localhost:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
@@ -42,6 +37,10 @@ if ( $status == 0 ) then
         bindkey "\e[6~" history-search-forward
 endif
 
+##
+# XXXXXXXXXXXXXXXXXXXXX
+##
+
 setenv MACHINE x86Linux
 setenv ARCH cygwin
 
@@ -49,10 +48,6 @@ setenv ARCH cygwin
 if ( "${ARCH}" == sun4sol ) then
     coreadm -p core.%f.%n.%p $$
 endif
-
-##
-# BACKEND
-##
 
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
@@ -64,4 +59,10 @@ setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
 echo SHELL : ${SHELL}
 
 alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+#alias 30 'source ${DEV_HOME}/${PROJECT_USER}30/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+
+if ( -f ${WORKSPACE_ENV}/dev.env.csh ) then
+    echo ${WORKSPACE_ENV}/dev.env.csh
+    source ${WORKSPACE_ENV}/dev.env.csh
+endif

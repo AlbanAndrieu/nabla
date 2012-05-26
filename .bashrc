@@ -129,7 +129,7 @@ unset TEMP
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
 ##
-# BACKEND
+# XXXXXXXXXXXXXXXXXXXXX
 ##
 
 export MACHINE=x86Linux
@@ -189,6 +189,7 @@ echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
 echo SHELL : ${SHELL}
 
 alias 00='source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.sh'
+#alias 30='source ${DEV_HOME}/${PROJECT_USER}30/env/${ARCH}/dev.env.sh'
 alias 10='source ${WORKSPACE_ENV}/dev.env.sh'
 
 if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
