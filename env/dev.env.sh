@@ -368,8 +368,8 @@ alias ll~='ll ~'
 alias psg="pp | egrep -i \!* |& grep -v 'egrep -i \!*'"
 alias psuser="pp | cut -d' ' -f1 | sort | grep -v USER | uniq -c | sort -r"
 
-alias setEnvFiles="${PROJECT_DEV}/env/config/setEnvFiles.sh ${PROJECT_USER_PROFILE} \!* --userdev"
-alias setEnvFilesAll="${PROJECT_DEV}/env/config/setEnvFiles.allUserDev.sh ${PROJECT_USER_PROFILE}"
+alias setEnvFiles="${WORKSPACE_ENV}/config/setEnvFiles.sh ${PROJECT_USER_PROFILE} \!* --userdev"
+alias setEnvFilesAll="${WORKSPACE_ENV}/config/setEnvFiles.allUserDev.sh ${PROJECT_USER_PROFILE}"
 
 alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 

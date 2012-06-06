@@ -13,7 +13,6 @@ if ( $?prompt ) then
     # history
     set history         = 1000
     set savehist        = 1000
-    #set EDITOR          = vim
     set EDITOR          = nedit
     set filec fignore = (.o)
 
@@ -63,7 +62,7 @@ setenv DRIVE_PATH ${DRIVE_PATH}
 setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #setenv WORKSPACE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
+setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 
 setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
 echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
@@ -107,15 +106,13 @@ echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
 
 echo ${SHELL}
 
+alias 00 'source ${DEV_HOME}/${KPLUSTP_USER}00/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+
 if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
     echo ${WORKSPACE_ENV}/dev.env.sh
     . ${WORKSPACE_ENV}/dev.env.sh
 fi
-
-setenv WORKSPACE_ENV ${DEV_HOME}/${KPLUSTP_USER}${KPLUSTP_VERSION}/env/${ARCH}
-
-alias 00 'source ${DEV_HOME}/${KPLUSTP_USER}00/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 # Set current development branche environment
 # 10

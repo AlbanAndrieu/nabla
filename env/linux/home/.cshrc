@@ -13,7 +13,6 @@ if ( $?prompt ) then
     # history
     set history         = 1000
     set savehist        = 1000
-    #set EDITOR          = vim
     set EDITOR          = nedit
     set filec fignore = (.o)
 
@@ -21,8 +20,7 @@ if ( $?prompt ) then
     bindkey -v          ; # use vi key bindings
 
     # display
-    set DISPLAY         = localhost:0
-    #setenv DISPLAY ktppxsolw02:0.0
+    set DISPLAY         = localhost:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
@@ -43,30 +41,42 @@ if ( $status == 0 ) then
         bindkey "\e[6~" history-search-forward
 endif
 
+##
+# XXXXXXXXXXXXXXXXXXXXX
+##
+
 setenv MACHINE x86Linux
-setenv ARCH cygwin
+setenv ARCH x86Linux
 
-# ---------- Arguments des applis Kplus -----------
-setenv KPLUS_ARGS       "-Ualbandri -Palbandri12"
-setenv KPLUS_ARGS_KPLUS "-Ukplus    -Pkplus11"
-
+echo ${ARCH} ${MACHINE}
 
 # ----------
 if ( "${ARCH}" == sun4sol ) then
     coreadm -p core.%f.%n.%p $$
 endif
 
-##
-# BACKEND
-##
+setenv PROJECT_USER albandri
+setenv PROJECT_VERSION 10
+setenv DRIVE_PATH ${DRIVE_PATH}
+# ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
+setenv DEV_HOME ${DRIVE_PATH}/workspace/users
+# Do not use hudson workspace
+#setenv WORKSPACE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
+setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 
-setenv KPLUSTP_USER albandri
-setenv KPLUSTP_VERSION 30
-setenv KPLUSTP_EXTRACTION ktpplus
-setenv DEV_HOME /cygdrive/c/workspace/users
+setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
+echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
 
-setenv WORKSPACE_ENV ${DEV_HOME}/${KPLUSTP_USER}${KPLUSTP_VERSION}/env/${ARCH}
+echo ${SHELL}
 
-alias 27 'source ${DEV_HOME}/${KPLUSTP_USER}27/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 28 'source ${DEV_HOME}/${KPLUSTP_USER}28/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 30 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 00 'source ${DEV_HOME}/${KPLUSTP_USER}00/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+
+if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
+    echo ${WORKSPACE_ENV}/dev.env.sh
+    . ${WORKSPACE_ENV}/dev.env.sh
+fi
+
+# Set current development branche environment
+# 10
+echo "Set your environment with 10 alias."
