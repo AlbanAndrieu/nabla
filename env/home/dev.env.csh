@@ -43,7 +43,7 @@ if (! $?WORKSPACE_ENV) then
 endif
 
 if (! $?PROJECT_EXTRACTION) then
-  setenv PROJECT_EXTRACTION cpp/sample
+  setenv PROJECT_EXTRACTION cpp
 endif
 
 if (! $?TERM ) then
@@ -92,7 +92,7 @@ setenv PROJECT_VERSION 10
 setenv PROJECT_MAJOR_VERSION ${PROJECT_VERSION}
 
 setenv PROJECT_DEV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-setenv PROJECT_SRC ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/cpp/sample
+setenv PROJECT_SRC ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/cpp
 setenv PROJECT_TARGET ${DRIVE_PATH}/target
 setenv PROJECT_USER_PROFILE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/config/profiles/albandri.dev.properties
 
@@ -364,7 +364,7 @@ else
 endif
 
 #### Core path definition
-if ( "${ARCH}" == "rms" ) then
+if ( "${ARCH}" == "sun4sol" ) then
   # Create corefiles directory if not exist
   if (! -d ${PROJECT_TARGET}/corefiles) then
     mkdir -p ${PROJECT_TARGET}/corefiles
