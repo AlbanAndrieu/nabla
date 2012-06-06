@@ -54,15 +54,15 @@ setenv PROJECT_VERSION 10
 setenv DRIVE_PATH /cygdrive/c
 setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 
-setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
+setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 
 #If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
 setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin
 
 echo SHELL : ${SHELL}
 
-alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-#alias 30 'source ${DEV_HOME}/${PROJECT_USER}30/env/${ARCH}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+#alias 30 'source ${DEV_HOME}/${PROJECT_USER}30/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 #echo $PATH wrong after

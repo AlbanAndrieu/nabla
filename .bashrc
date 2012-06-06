@@ -143,7 +143,7 @@ export DRIVE_PATH=/cygdrive/c
 export DEV_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #export WORKSPACE=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-export WORKSPACE_ENV=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/${ARCH}
+export WORKSPACE_ENV=${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 
 export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
 echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
@@ -193,8 +193,8 @@ echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
 
 echo SHELL : ${SHELL}
 
-alias 00='source ${DEV_HOME}/${PROJECT_USER}00/env/${ARCH}/dev.env.sh'
-#alias 30='source ${DEV_HOME}/${PROJECT_USER}30/env/${ARCH}/dev.env.sh'
+alias 00='source ${DEV_HOME}/${PROJECT_USER}00/env/dev.env.sh'
+#alias 30='source ${DEV_HOME}/${PROJECT_USER}30/env/dev.env.sh'
 alias 10='source ${WORKSPACE_ENV}/dev.env.sh'
 
 if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
