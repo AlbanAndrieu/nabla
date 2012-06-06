@@ -34,10 +34,11 @@
 			</activation>
 			<properties>
 				<!-- specific settings for hibernate that override the dependency pom -->
-				<hibernate.version>3.2.6.ga</hibernate.version>
-				<hibernate.entitymanager.version>3.3.2.GA</hibernate.entitymanager.version>
+				<!--<hibernate.version>3.2.6.ga</hibernate.version>
+				<hibernate.entitymanager.version>3.3.2.GA</hibernate.entitymanager.version>				
 				<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
 				<hibernate.annotations.version>3.3.1.GA</hibernate.annotations.version>
+				-->
 			</properties>
 			<!-- see file pom_persistence-SAV.txt -->
 			<dependencies>
@@ -46,12 +47,12 @@
 					<artifactId>persistence-api</artifactId>
 					<version>${javax.persistence.version}</version>
 				</dependency>
-
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate</artifactId>
 					<version>${hibernate.version}</version>
 					<scope>compile</scope>
+<!--					
 					<exclusions>
 						<exclusion>
 							<groupId>javax.transaction</groupId>
@@ -70,11 +71,11 @@
 							<artifactId>cglib</artifactId>
 						</exclusion>
 					</exclusions>
-				</dependency>
+-->					
+				</dependency>				
 				<dependency>
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-entitymanager</artifactId>
-					<!-- <version>3.3.2.GA</version> -->
 					<version>${hibernate.entitymanager.version}</version>
 				</dependency>
 
@@ -104,7 +105,7 @@
 					<groupId>org.hibernate</groupId>
 					<artifactId>hibernate-annotations</artifactId>
 					<version>${hibernate.annotations.version}</version>
-				</dependency>
+				</dependency>				
 			</dependencies>
 
 		</profile>
