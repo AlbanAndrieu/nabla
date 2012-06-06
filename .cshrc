@@ -61,12 +61,14 @@ setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin
 
 echo SHELL : ${SHELL}
 
-alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-#alias 30 'source ${DEV_HOME}/${PROJECT_USER}30/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 00 'source ${DEV_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+#alias 30 'source ${DEV_HOME}/${PROJECT_USER}30/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 #echo $PATH wrong after
-#if ( -f ${WORKSPACE_ENV}/dev.env.csh ) then
-#    echo ${WORKSPACE_ENV}/dev.env.csh
-#    source ${WORKSPACE_ENV}/dev.env.csh
+#if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
+#    echo ${WORKSPACE_ENV}/home/dev.env.csh
+#    source ${WORKSPACE_ENV}/home/dev.env.csh
 #endif
+
+echo "Set your environment with 10 alias."

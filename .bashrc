@@ -193,11 +193,11 @@ echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
 
 echo SHELL : ${SHELL}
 
-alias 00='source ${DEV_HOME}/${PROJECT_USER}00/env/dev.env.sh'
-#alias 30='source ${DEV_HOME}/${PROJECT_USER}30/env/dev.env.sh'
-alias 10='source ${WORKSPACE_ENV}/dev.env.sh'
+alias 00='source ${DEV_HOME}/${PROJECT_USER}00/env/home/dev.env.sh'
+#alias 30='source ${DEV_HOME}/${PROJECT_USER}30/env/home/dev.env.sh'
+alias 10='source ${WORKSPACE_ENV}/home/dev.env.sh'
 
-if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
-    echo ${WORKSPACE_ENV}/dev.env.sh
-    . ${WORKSPACE_ENV}/dev.env.sh
+if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
+    echo ${WORKSPACE_ENV}/home/dev.env.sh
+    . ${WORKSPACE_ENV}/home/dev.env.sh
 fi
