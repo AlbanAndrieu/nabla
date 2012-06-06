@@ -165,19 +165,24 @@ echo ${MPC_ROOT}
 
 CIAO_ROOT=${TAO_ROOT}/CIAO
 export CIAO_ROOT
+
+echo ${CIAO_ROOT}
+
 DANCE_ROOT=${CIAO_ROOT}/DANCE
 export DANCE_ROOT
+
+echo ${DANCE_ROOT}
 
 DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
 export DDS_ROOT
 
-#export PATH=${DRIVE_PATH}/cygwin/bin:${DRIVE_PATH}/cygwin/usr/include:${DRIVE_PATH}/cygwin/usr/lib:${DRIVE_PATH}/cygwin/lib
+echo ${DDS_ROOT}
+
 #If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
-#:/sbin:/usr/local/sbin:
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:${DRIVE_PATH}/cygwin/bin
+export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
+
 #export ACE_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
-export LD_LIBRARY_PATH=$ACE_ROOT/lib:$LD_LIBRARY_PATH
-#export ARCH=
+export LD_LIBRARY_PATH=${ACE_ROOT}/lib:${LD_LIBRARY_PATH}
 
 echo "make and make static_libs=1 in"
 echo "cd ${ACE_ROOT}/ace"
