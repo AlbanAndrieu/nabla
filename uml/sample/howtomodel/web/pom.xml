@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>org.apache.myfaces.trinidad</groupId>
 			<artifactId>trinidad-api</artifactId>
-			<version>${myfaces.version}</version>
+			<version>${org.apache.myfaces.trinidad.version}</version>
             <!--version>unknown</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/target/src/WEB-INF/lib/trinidad-api-1.0.1-incubating-SNAPSHOT.jar</systemPath-->
