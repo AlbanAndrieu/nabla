@@ -53,11 +53,11 @@ endif
 if (! $?EDITOR) then
   setenv EDITOR nedit
 endif
+setenv SVN_EDITOR ${EDITOR}
 
 #If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
 #:/sbin:/usr/local/sbin
 setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:${DRIVE_PATH}/cygwin/bin
-#setenv LD_LIBRARY_PATH /usr/local/lib
 #cd /usr/bin
 #lrwxrwxrwx 1 Alban None      21 2010-03-02 00:50 gcc.exe -> /etc/alternatives/gcc
 #lrwxrwxrwx 1 Alban None      21 2010-03-02 00:50 g++.exe -> /etc/alternatives/g++
@@ -66,20 +66,39 @@ setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:${DRIVE_PATH}/cygw
 #ln -s /usr/bin/gcc-3.exe gcc.exe
 #ln -s /usr/bin/g++-3.exe g++.exe
 
-setenv PROJECT_MAJOR_VERSION 10
+# construct path
+setenv PATH ""
+#setenv PATH "~/bin"
+foreach i (\
+    /usr/local/bin      \
+    /usr/bin            \
+    /bin                \
+    /usr/sbin           \
+    /sbin               \
+    /usr/X11R6/bin      \
+)
+    if ( -d "$i" ) then
+        if ( -z "$path" ) then
+            setenv PATH $i
+        else
+            setenv PATH ${PATH}:$i
+        endif
+    else
+        echo "-- Warning: can't append $i to PATH because it doesn't exist."
+    endif
+end
 
-setenv PROJECT_DEV ${DEV_HOME}/albandri10
-setenv PROJECT_SRC ${DEV_HOME}/albandri10/nabla
+setenv PROJECT_VERSION 10
+setenv PROJECT_MAJOR_VERSION ${PROJECT_VERSION}
+
+setenv PROJECT_DEV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
+setenv PROJECT_SRC ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/nabla
 setenv PROJECT_OBJ ${DRIVE_PATH}/target
-setenv PROJECT_USER_PROFILE ${DEV_HOME}/albandri10/env/config/profiles/albandri.dev.properties
+setenv PROJECT_USER_PROFILE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/config/profiles/albandri.dev.properties
 
 setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
-setenv PROJECT_RELEASE ${DEV_HOME}/albandri10/nabla/deploy/${PROJECT_MAJOR_VERSION}
-setenv PROJECT_PKG ${DEV_HOME}/albandri10/nabla/pkg/${PROJECT_MAJOR_VERSION}
-
-setenv TMPLDIR ${DEV_HOME}/albandri10/env/config/tmpl
-setenv IMAKEINCLUDE "-I${TMPLDIR}"
-echo " TMPL is : ${IMAKEINCLUDE}/tools/perl/${ARCH}.pl"
+setenv PROJECT_RELEASE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/nabla/deploy/${PROJECT_MAJOR_VERSION}
+setenv PROJECT_PKG ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/nabla/pkg/${PROJECT_MAJOR_VERSION}
 
 if (! -d $PROJECT_DEV) then
   echo "ERROR: Directory ${PROJECT_DEV} doesn't exist!"
@@ -151,9 +170,15 @@ setenv TIBRV_VERSION 8.2.2
 setenv BOOST_ROOT ${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
 setenv BOOST $BOOST_ROOT
 
-setenv TIBCO_HOME ${DRIVE_PATH}/Tibco/Tibrv
-setenv GRAPHVIZ_HOME ${DRIVE_PATH}/Graphviz2.26.3
 setenv QTDIR /lib/qt3
+
+# TIBCO
+setenv TIBCO_HOME ${DRIVE_PATH}/Tibco/Tibrv
+setenv PATH ${PATH}:${TIBCO_HOME}/bin
+
+# GRAPHVIZ
+setenv GRAPHVIZ_HOME ${DRIVE_PATH}/Graphviz2.26.3
+setenv PATH ${PATH}:${GRAPHVIZ_HOME}/bin
 
 setenv HUDSON_HOME ${DRIVE_PATH}/hudson
 setenv SVN_HOME ${DRIVE_PATH}/cygwin/bin
@@ -163,6 +188,35 @@ setenv CYGWIN_HOME ${DRIVE_PATH}/cygwin
 #setenv CMAKE_HOME ${DRIVE_PATH}/CMake-2.8
 setenv CMAKE_HOME ${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
 setenv CMAKE_ROOT ${CMAKE_HOME}
+
+# JAVA
+#setenv JAVA_HOME ${KPLUSTP_THIRDPARTY}/j2se/${ARCH}/jdk1.5
+#setenv JAVA_HOME "C:\\Program\ Files\ \(x86\)\\Java\\jdk1.5.0_22"
+ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
+#setenv JAVA_HOME /ProgramFilesx86/Java/jdk1.5.0_22
+setenv JAVA_HOME "${DRIVE_PATH}/Sun/SDK/jdk"
+
+setenv JRE_HOME ${JAVA_HOME}/jre
+setenv PATH ${PATH}:${JAVA_HOME}/bin
+
+# ANT 
+setenv ANT_HOME ${DRIVE_PATH}/apache-ant-1.7.1
+setenv ANT_OPTS "-Xmx512m"
+setenv PATH ${PATH}:${ANT_HOME}/bin
+
+# MAVEN
+setenv M2_HOME ${DRIVE_PATH}/apache-maven-2.2.1
+setenv M2 ${M2_HOME}/bin
+setenv MAVEN_DIR ${M2_HOME}
+#setenv MAVEN_OPTS "-Xmx1548m"
+#setenv MAVEN_OPTS "-Xmx512M -XX:MaxPermSize=1024M"
+setenv MAVEN_OPTS "-Xms512m -Xmx1024m"
+setenv PATH ${PATH}:${M2}
+
+# LUMBERMILL
+setenv LUMBERMILL_HOME ${DRIVE_PATH}/lumbermill-2.0-b3
+setenv PATH ${PATH}:${LUMBERMILL_HOME}/bin
+echo "Lumbermill port is 4430"
 
 # Make a directory with link to several libraries for LIBPATH length restriction
 #################################################################################
@@ -208,9 +262,6 @@ if ( "$ORB" == "tao" ) then
   setenv DDS_ROOT ${DRIVE_PATH}/thirdparty/tao/ACE_wrappers/TAO/CIAO/connectors/dds4ccm
   setenv PATH ${PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
   setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}::${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
-#else
-#  setenv PATH ${PATH}:${CORBA_ROOT}/lib/${ARCH}.mt/opt/shared
-#  setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${CORBA_ROOT}/lib
 endif
 
 #setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/boost
@@ -232,7 +283,8 @@ setenv LD_LIBRARY_PATH ${PROJECT_OBJ}/lib/${ARCH}/opt:${PROJECT_OBJ}/lib/${ARCH}
 ##
 # Alias
 ##
-alias cdr 'cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}'
+alias cde 'cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}'
+alias cdr 'cd ${PROJECT_DEV}'
 alias cdc 'cd ${PROJECT_DEV}/env/config'
 alias cdinc 'cd ${PROJECT_OBJ}/include/${ARCH}'
 alias cdobj 'cd ${PROJECT_OBJ}'
@@ -281,7 +333,6 @@ alias llrt              ll -rt
 alias ll~               ll ~
 
 alias psg               "pp | egrep -i \!* |& grep -v 'egrep -i \!*'"
-alias tibrvlisten       'tibrvlisten -service 7924 -daemon "tcp:7924" -network ";230.232.51.124;"'
 alias psuser            "pp | cut -d' ' -f1 | sort | grep -v USER | uniq -c | sort -r"
 
 alias setEnvFiles       '${PROJECT_DEV}/config/setEnvFiles.sh ${PROJECT_USER_PROFILE} \!* --userdev'
@@ -293,26 +344,24 @@ alias svnCommit         "${WORKSPACE_ENV}/scripts/svnCommit.sh"
 
 alias setVersionFiles   '${WORKSPACE_ENV}/scripts/setVersions.sh ${PROJECT_DEV}/${PROJECT_EXTRACTION}/'
 
-#alias mvn               'mvn -s ${WORKSPACE_ENV}/home/.m2/settings.xml'
-
-alias echoFailed 'test $status != 123 && ( echo && echo ================== && echo BUILD FAILED && echo ================== && echo && exit 123 )'
+setenv M2_SETTINGS ${WORKSPACE_ENV}/home/.m2/settings.xml
+#alias mvn               'mvn -s ${M2_SETTINGS}'
 
 # PATH Setting
-source ${WORKSPACE_ENV}/java/dev.env.csh
-source ${WORKSPACE_ENV}/cpp/dev.env.csh
+#source ${WORKSPACE_ENV}/java/dev.env.csh
+#source ${WORKSPACE_ENV}/cpp/dev.env.csh
 
-alias cppDepend "${WORKSPACE_ENV}/scripts/cppDepend.sh"
 alias replace "${WORKSPACE_ENV}/scripts/replace.pl"
 alias svndi "svn di --diff-cmd=svndiff"
 
 ####### TRY TO CHANGE PATH TO BE IN THE CURRENT ENVIRONMENT DEVELOPMENT PATH
 
 set OLD_PATH=`pwd`
-set CURRENT_PATH=`echo ${PROJECT_DEV} | sed -e 's:/*$::' | sed -e 's:^.*/::'`
-set NEW_PATH=`echo ${OLD_PATH} | sed -e "s/users\/[^\/]*\//users\/${CURRENT_PATH}\//"`
+set CURRENT_USER=`echo ${PROJECT_DEV} | sed -e 's:/*$::' | sed -e 's:^.*/::'`
+set NEW_PATH=`echo ${OLD_PATH} | sed -e "s/\/${CURRENT_USER}/\/${PROJECT_USER}${PROJECT_VERSION}/"`
 
 if ( "${OLD_PATH}" != "${NEW_PATH}" && -d "${NEW_PATH}" ) then
-        cd ${NEW_PATH}
+        echo cd ${NEW_PATH}
 #        echo "Current path UPDATED : `pwd`"
 else
 #        echo "Current path : `pwd`"

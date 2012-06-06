@@ -6,7 +6,7 @@
 ### READ ARGUMENTS
 ####################
 TOOLS_OPTION_PURIFY=""
-export PERLGEN_OPTION ""
+export PERLGEN_OPTION=""
 typeset PURIFY=$1
 if [ "$1" != "" ]
 then
@@ -32,25 +32,48 @@ then
   exit 1
 fi
 
-#If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
-#:/sbin:/usr/local/sbin
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:${DRIVE_PATH}/cygwin/bin
-#export LD_LIBRARY_PATH=/usr/local/lib
-#cd /usr/bin
-#lrwxrwxrwx 1 Alban None      21 2010-03-02 00:50 gcc.exe -> /etc/alternatives/gcc
-#lrwxrwxrwx 1 Alban None      21 2010-03-02 00:50 g++.exe -> /etc/alternatives/g++
-#ln -s /etc/alternatives/gcc gcc-SAV.exe
-#ln -s /etc/alternatives/g++ g++-SAV.exe
-#ln -s /usr/bin/gcc-3.exe gcc.exe
-#ln -s /usr/bin/g++-3.exe g++.exe
+if [ -z "$PROJECT_VERSION" ]
+then
+  echo "ERROR: Set PROJECT_VERSION environment variable!"
+  exit 1
+fi
 
+if [ -z "$DEV_HOME" ]
+then
+  echo "ERROR: Set DEV_HOME environment variable!"
+  exit 1
+fi
+
+if [ -z "$WORKSPACE_ENV" ]
+then
+  echo "ERROR: Set WORKSPACE_ENV environment variable!"
+  exit 1
+fi
+
+if [ -z "$PROJECT_EXTRACTION" ]
+then
+  export PROJECT_EXTRACTION=nabla
+fi
+
+if [ -z "$TERM" ]
+then
+  export TERM=xterm
+fi
+
+if [ -z "$EDITOR" ]
+then
+  export EDITOR=[[EDITOR]]
+fi
+export SVN_EDITOR=${EDITOR}
+
+export PROJECT_VERSION=10
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
 
 export PROJECT_BUILD_TYPE=target
 #export CLIENT_SERVER_TYPE=weblogic
 export CLIENT_SERVER_TYPE=jboss
 
-export PROJECT_USER_PROFILE="${PROJECT_DEV}/config/profiles/${UNIX_USERNAME}.dev.properties"
+export PROJECT_USER_PROFILE="${PROJECT_DEV}/env/config/profiles/${UNIX_USERNAME}.dev.properties"
 
 export PROJECT_DEV=${DEV_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
@@ -59,12 +82,6 @@ export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
 export PROJECT_RELEASE=${PROJECT_DEV}/${PROJECT_EXTRACTION}/release/${PROJECT_MAJOR_VERSION}
 export PROJECT_PKG=${PROJECT_DEV}/${PROJECT_EXTRACTION}/pkg/${PROJECT_MAJOR_VERSION}
 
-export TMPLDIR=${PROJECT_DEV}/config/tmpl
-export IMAKEINCLUDE="-I${TMPLDIR}"
-echo " TMPL is : ${IMAKEINCLUDE}/tools/perl/${ARCH}.pl"
-
-export TIBCO_HOME=${DRIVE_PATH}/Tibco/Tibrv
-export GRAPHVIZ_HOME=${DRIVE_PATH}/Graphviz2.26.3
 export QTDIR=/lib/qt3
 
 export HUDSON_HOME=${DRIVE_PATH}/hudson
@@ -75,9 +92,6 @@ export CYGWIN_HOME=${DRIVE_PATH}/cygwin
 
 export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
 echo "Lumbermill port is 4430"
-
-export EDITOR=nedit
-export SVN_EDITOR=${EDITOR}
 
 if [ ! -d $PROJECT_DEV ]
 then
@@ -172,9 +186,70 @@ export CMAKE_HOME=${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
 #CORBA TAO
-#export PATH=${ACE_ROOT}/ace:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${TAO_ROOT}/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:$PATH
+export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 export PATH=${PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}::${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
+
+# JAVA
+#JDK_HOME=/usr/lib/jvm/ia32-java-6-sun-1.6.0.06/
+#JDK_HOME=${DRIVE_PATH}/Sun/SDK/jdk
+ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
+#export JAVA_HOME="${DRIVE_PATH}/Program Files (x86)/Java/jdk1.5.0_22"
+##export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
+export JAVA_HOME="${DRIVE_PATH}/Sun/SDK/jdk"
+export JRE_HOME=${JAVA_HOME}/jre
+#export JDK_HOME JRE_HOME JAVA_HOME
+#export JAVA=$JAVA_HOME/bin/java
+#PATH=${JDK_HOME}/bin:${JRE_HOME}/bin:${PATH}
+PATH=${JAVA_HOME}/bin:${PATH}
+export PATH
+
+export JAVA_OPTS="-Xms256m -Xmx1548m"
+
+# MAVEN
+#export M2_HOME="${DRIVE_PATH}/apache-maven-3.0.2"
+export M2_HOME="${DRIVE_PATH}/apache-maven-2.2.1"
+export M2=${M2_HOME}/bin
+export MAVEN_OPTS="-Xms512m -Xmx1024m"
+#export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M"
+export PATH=${M2}:$PATH
+export M2_REPO=${DRIVE_PATH}/repo
+echo "Maven repo are in : ${M2_REPO}"
+
+# ANT 
+export ANT_HOME="${DRIVE_PATH}/apache-ant-1.8.0"
+export ANT_OPTS="-Xmx512m"
+export PATH=${ANT_HOME}/bin:${ANT_HOME}/lib:$PATH
+
+# JBOSS
+export JBOSS_HOME="${DRIVE_PATH}/jboss-4.2.2.GA"
+export PATH=${JBOSS_HOME}/bin:$PATH
+
+export CATALINA_HOME=${JBOSS_HOME}/server/default
+#export CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME"
+alias jboss='${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
+
+# ECLIPSE
+export ECLIPSE_HOME=${DRIVE_PATH}/eclipse-3.7
+export PATH=${ECLIPSE_HOME}:$PATH
+alias eclipse='${ECLIPSE_HOME}/eclipse'
+
+# LUMBERMILL
+export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
+export PATH=${LUMBERMILL_HOME}/bin:${PATH}
+alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
+echo "Lumbermill port is 4430"
+
+# GRAPHVIZ
+export GRAPHVIZ_HOME=${DRIVE_PATH}/Graphviz2.26.3
+export PATH=${GRAPHVIZ_HOME}/bin:${PATH}
+
+# TIBCO
+export TIBCO_HOME=${DRIVE_PATH}/Tibco/Tibrv
+export PATH=${TIBCO_HOME}/bin:${PATH}
+
+# WINDOWS
+export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -249,7 +324,7 @@ alias cls="clear"
 
 alias ls='/bin/ls -F'
 
-if [ "${ARCH}" = sun4sol || "${ARCH}" = x86sol ]
+if [ "${ARCH}" = sun4sol -o "${ARCH}" = x86sol ]
 then
   alias l='/bin/ls -Fl'
   alias pp='/usr/ucb/ps -auxwww'
@@ -271,7 +346,7 @@ else
         alias l='/bin/ls -Fl'
         alias pp='/bin/ps -edf'
       else
-        if [ "${ARCH}" = x86Linux || "${ARCH}" = cygwin ]
+        if [ "${ARCH}" = x86Linux -o "${ARCH}" = cygwin ]
         then
           alias l='/bin/ls -Fl --color'
           alias pp='/bin/ps -auxwww'
@@ -291,20 +366,23 @@ alias llrt='ll -rt'
 alias ll~='ll ~'
 
 alias psg="pp | egrep -i \!* |& grep -v 'egrep -i \!*'"
-alias tibrvlisten='tibrvlisten -service 7924 -daemon "tcp:7924" -network ";230.232.51.124;"'
+alias psuser="pp | cut -d' ' -f1 | sort | grep -v USER | uniq -c | sort -r"
 
-alias setEnvFiles="${PROJECT_DEV}/config/setEnvFiles.sh ${PROJECT_DEV}/config/profiles/${PROJECT_USER}.dev.properties \!* --userdev"
-alias setEnvFilesAll="${PROJECT_DEV}/config/setEnvFiles.allUserDev.sh ${PROJECT_DEV}/config/profiles/${PROJECT_USER}.dev.properties"
+alias setEnvFiles="${PROJECT_DEV}/env/config/setEnvFiles.sh ${PROJECT_USER_PROFILE} \!* --userdev"
+alias setEnvFilesAll="${PROJECT_DEV}/env/config/setEnvFiles.allUserDev.sh ${PROJECT_USER_PROFILE}"
 
-alias chgWorkspace='export USER \!* && export PROJECT_USER \!* && eval ${PROJECT_MAJOR_VERSION}'
+alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 
 export M2_SETTINGS=${WORKSPACE_ENV}/home/.m2/settings.xml
 #alias mvn="mvn -s ${M2_SETTINGS}"
 #echo "Maven settings are in : ${M2_SETTINGS}"
 
 # PATH Setting
-source ${WORKSPACE_ENV}/java/dev.env.sh
-source ${WORKSPACE_ENV}/cpp/dev.env.sh
+#source ${WORKSPACE_ENV}/java/dev.env.sh
+#source ${WORKSPACE_ENV}/cpp/dev.env.sh
+
+alias replace="${WORKSPACE_ENV}/scripts/replace.pl"
+alias svndi="svn di --diff-cmd=svndiff"
 
 case ${MACHINE} in
   sun4sol)
@@ -329,15 +407,14 @@ esac
 ####### TRY TO CHANGE PATH TO BE IN THE CURRENT ENVIRONMENT DEVELOPMENT PATH
 
 OLD_PATH=`pwd`
-#set NEW_PATH=`echo ${OLD_PATH} | sed -e "s/alban\/[^\/]*\//alban\/${PROJECT_USER}\/30\//"`
-NEW_PATH=`echo ${OLD_PATH} | sed -e "s/alban/alban\/${PROJECT_USER}\/30\//"`
-
+NEW_PATH=`echo ${OLD_PATH} | sed -e "s/\/${PROJECT_USER}[^\/]*/\/${PROJECT_USER}${PROJECT_VERSION}/"`
+        
 if [ "${OLD_PATH}" != "${NEW_PATH}" ]
 then
   if [ -d "${NEW_PATH}" ]
   then
         cd ${NEW_PATH}
-        echo "Current path UPDATED : cd `pwd`"
+        echo Current path UPDATED : cd `pwd`
   else
         echo "Current path : `pwd`"
   fi

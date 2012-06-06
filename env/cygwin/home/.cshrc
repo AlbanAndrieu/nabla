@@ -13,6 +13,7 @@ if ( $?prompt ) then
     # history
     set history         = 1000
     set savehist        = 1000
+    #set EDITOR          = vim
     set EDITOR          = nedit
     set filec fignore = (.o)
 
@@ -58,7 +59,7 @@ endif
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
 setenv DRIVE_PATH ${DRIVE_PATH}
-# ${DEV_HOME}/albandri10
+# ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
 setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #setenv WORKSPACE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
