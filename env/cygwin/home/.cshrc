@@ -20,7 +20,7 @@ if ( $?prompt ) then
     bindkey -v          ; # use vi key bindings
 
     # display
-    set DISPLAY         = localhost:0.0
+    set DISPLAY         = Alban-PC:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
