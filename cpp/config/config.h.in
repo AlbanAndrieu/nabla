@@ -1,7 +1,6 @@
 #ifndef config_h
 #define config_h
 
-
 #cmakedefine BUILD_SHARED_LIBS
 
 // Under Windows, for shared libraries (DLL) we need to define export on
