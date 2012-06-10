@@ -32,7 +32,9 @@
     <properties>    
     	<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
       	<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
-	<wagon.ftp.plugin.version>1.0-beta-6</wagon.ftp.plugin.version>
+	<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>	
     </properties>
     
     <build>
@@ -69,12 +71,12 @@
 			<repository>
 				<id>local-releases</id>
 				<name>Internal Release Repository</name>
-				<url>${distributionManagement.repository.url}/releases/</url>
+				<url>${project.distributionManagement.repository.url}/releases/</url>
 			</repository>
 			<snapshotRepository>
 				<id>local-snapshots</id>
 				<name>Internal Snapshot Repository</name>
-				<url>${distributionManagement.repository.url}/snapshots/</url>
+				<url>${project.distributionManagement.repository.url}/snapshots/</url>
 			</snapshotRepository>
 			<site>
 				<id>website</id>
