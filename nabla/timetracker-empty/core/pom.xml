@@ -302,13 +302,12 @@
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-core</artifactId>
-                    <version>${hibernate3.version}</version>
+                    <version>${hibernate.core.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
-                    <version>${hibernate3.version}</version>
-                    <!--<version>${hibernate.entitymanager.version}</version>-->
+                    <version>${hibernate.entitymanager.version}</version>
                   </dependency>
                   <!--dependency>
                     <groupId>org.hibernate</groupId>
