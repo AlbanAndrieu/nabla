@@ -94,9 +94,6 @@ export SYBASE_HOME=${DRIVE_PATH}/Sybase/${SYBASE_OCS}/
 export ORACLE_VERSION=10.2.0
 export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/server
 
-export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
-echo "Lumbermill port is 4430"
-
 if [ ! -d $PROJECT_DEV ]
 then
   echo "ERROR: Directory ${PROJECT_DEV} doesn't exist!"
@@ -185,7 +182,7 @@ export TIBRV_VERSION=7.2.x
 export BOOST_ROOT=${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
 export BOOST=$BOOST_ROOT
 
-#export CMAKE_HOME=${DRIVE_PATH}/CMake-2.8
+#export CMAKE_HOME=${DRIVE_PATH}/CMake-2.6.4
 export CMAKE_HOME=${CYGWIN_HOME}/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
@@ -211,8 +208,7 @@ export PATH
 export JAVA_OPTS="-Xms256m -Xmx1548m"
 
 # MAVEN
-#export M2_HOME="${DRIVE_PATH}/apache-maven-3.0.2"
-export M2_HOME="${DRIVE_PATH}/apache-maven-2.2.1"
+export M2_HOME="${DRIVE_PATH}/apache-maven-3.0.4"
 export M2=${M2_HOME}/bin
 export MAVEN_OPTS="-Xms512m -Xmx1024m"
 #export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M"

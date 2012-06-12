@@ -91,14 +91,17 @@ end
 setenv PROJECT_VERSION 10
 setenv PROJECT_MAJOR_VERSION ${PROJECT_VERSION}
 
+setenv PROJECT_BUILD_TYPE target
+setenv CLIENT_SERVER_TYPE jboss
+
 setenv PROJECT_DEV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
 setenv PROJECT_SRC ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/cpp
-setenv PROJECT_TARGET ${DRIVE_PATH}/target
+setenv PROJECT_TARGET_PATH ${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
 setenv PROJECT_USER_PROFILE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/config/profiles/albandri.dev.properties
 
 setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
-setenv PROJECT_RELEASE ${PROJECT_TARGET}/deploy/${PROJECT_MAJOR_VERSION}
-setenv PROJECT_PKG ${PROJECT_TARGET}/pkg/${PROJECT_MAJOR_VERSION}
+setenv PROJECT_RELEASE ${PROJECT_TARGET_PATH}/deploy/${PROJECT_MAJOR_VERSION}
+setenv PROJECT_PKG ${PROJECT_TARGET_PATH}/pkg/${PROJECT_MAJOR_VERSION}
 
 if (! -d $PROJECT_DEV) then
   echo "ERROR: Directory ${PROJECT_DEV} doesn't exist!"
@@ -144,8 +147,16 @@ alias hGrep "find . -type d -name '.svn' -prune -o -type f -name '*.h' -exec gre
 
 setenv ORB_VERSION 1_5a
 setenv ORB tao
-setenv SYBASE ${PROJECT_THIRDPARTY_PATH}/database/sybase/15.0.2/${MACHINE}
+
+setenv SYBASE_VERSION 12.5
+setenv SYBASE_HOME ${DRIVE_PATH}/Sybase/${SYBASE_OCS}/
+#setenv SYBASE_HOME ${PROJECT_THIRDPARTY_PATH}/database/sybase
+setenv SYBASE ${SYBASE_HOME}/${SYBASE_VERSION}/${MACHINE}
 setenv SYBASE_OCS OCS-15_0
+
+setenv ORACLE_VERSION 10.2.0
+#setenv ORACLE_HOME ${DRIVE_PATH}/oraclexe
+setenv ORACLE_HOME ${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/server
       
 setenv CPPUNIT_VERSION 1.12.0
 
@@ -164,8 +175,8 @@ setenv MPC_ROOT ${ACE_ROOT}/MPC
 setenv BOOST_VERSION 1.41.0
 setenv GETTEXT_VERSION 0.17
 setenv XERCES_VERSION 2.8.0
-setenv XML2_VERSION 2.7.4
-setenv TIBRV_VERSION 8.2.2
+setenv XML2_VERSION 2.7.2
+setenv TIBRV_VERSION 7.2.x
 
 setenv BOOST_ROOT ${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
 setenv BOOST $BOOST_ROOT
@@ -181,12 +192,11 @@ setenv GRAPHVIZ_HOME ${DRIVE_PATH}/Graphviz2.26.3
 setenv PATH ${PATH}:${GRAPHVIZ_HOME}/bin
 
 setenv HUDSON_HOME ${DRIVE_PATH}/hudson
-setenv SVN_HOME ${DRIVE_PATH}/cygwin/bin
-setenv ORACLE_HOME ${DRIVE_PATH}/oraclexe/app/oracle/product/10.2.0/server
-setenv SYBASE_HOME ${DRIVE_PATH}/Sybase/OCS-15_0/
 setenv CYGWIN_HOME ${DRIVE_PATH}/cygwin
-#setenv CMAKE_HOME ${DRIVE_PATH}/CMake-2.8
-setenv CMAKE_HOME ${DRIVE_PATH}/cygwin/usr/share/cmake-2.6.4
+setenv SVN_HOME ${CYGWIN_HOME}/bin
+
+#setenv CMAKE_HOME ${DRIVE_PATH}/CMake-2.6.4
+setenv CMAKE_HOME ${CYGWIN_HOME}/usr/share/cmake-2.6.4
 setenv CMAKE_ROOT ${CMAKE_HOME}
 
 # JAVA
@@ -199,13 +209,8 @@ setenv JAVA_HOME "${DRIVE_PATH}/Sun/SDK/jdk"
 setenv JRE_HOME ${JAVA_HOME}/jre
 setenv PATH ${PATH}:${JAVA_HOME}/bin
 
-# ANT 
-setenv ANT_HOME ${DRIVE_PATH}/apache-ant-1.7.1
-setenv ANT_OPTS "-Xmx512m"
-setenv PATH ${PATH}:${ANT_HOME}/bin
-
 # MAVEN
-setenv M2_HOME ${DRIVE_PATH}/apache-maven-2.2.1
+setenv M2_HOME ${DRIVE_PATH}/apache-maven-3.0.4
 setenv M2 ${M2_HOME}/bin
 setenv MAVEN_DIR ${M2_HOME}
 #setenv MAVEN_OPTS "-Xmx1548m"
@@ -213,9 +218,28 @@ setenv MAVEN_DIR ${M2_HOME}
 setenv MAVEN_OPTS "-Xms512m -Xmx1024m"
 setenv PATH ${PATH}:${M2}
 
+# ANT 
+setenv ANT_HOME ${DRIVE_PATH}/apache-ant-1.8.0
+setenv ANT_OPTS "-Xmx512m"
+setenv PATH ${PATH}:${ANT_HOME}/bin
+
+# JBOSS
+setenv JBOSS_HOME "${DRIVE_PATH}/jboss-4.2.2.GA"
+setenv PATH ${JBOSS_HOME}/bin:$PATH
+
+setenv CATALINA_HOME ${JBOSS_HOME}/server/default
+#setenv CATALINA_OPTS "-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME"
+alias jboss '${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
+
+# ECLIPSE
+setenv ECLIPSE_HOME ${DRIVE_PATH}/eclipse-3.7
+setenv PATH ${ECLIPSE_HOME}:$PATH
+alias eclipse '${ECLIPSE_HOME}/eclipse'
+
 # LUMBERMILL
 setenv LUMBERMILL_HOME ${DRIVE_PATH}/lumbermill-2.0-b3
 setenv PATH ${PATH}:${LUMBERMILL_HOME}/bin
+alias lumbermill 'java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 echo "Lumbermill port is 4430"
 
 # Make a directory with link to several libraries for LIBPATH length restriction
@@ -234,7 +258,7 @@ set LIB_LINK_DIR="${PROJECT_DEV}/lib/${ARCH}"
 #ln -s ${PROJECT_THIRDPARTY_PATH}/libxml2/${XML2_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/xml2
 #ln -s ${PROJECT_THIRDPARTY_PATH}/tibco/tibrv/${TIBRV_VERSION}/${ARCH}/lib ${LIB_LINK_DIR}/tibrv
 
-#ln -s ${PROJECT_THIRDPARTY_PATH}/database/sybase/openclient/15.0/ESD_19/${ARCH}/lib ${LIB_LINK_DIR}/sybase
+#ln -s ${SYBASE_HOME}/openclient/12.51/ESD_17/${ARCH}/lib ${LIB_LINK_DIR}/sybase
 
 #################################################################################
 
@@ -244,7 +268,7 @@ switch( ${MACHINE} )
       setenv LD_LIBRARY_PATH /usr/lib/lwp
     breaksw
     case rs6000:
-      setenv LD_LIBRARY_PATH ${PROJECT_TARGET}/lib/${ARCH}/opt/shared:${PROJECT_TARGET}/lib/${ARCH}/opt
+      setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt
     breaksw
     default:
       setenv LD_LIBRARY_PATH ""
@@ -273,8 +297,8 @@ endif
 setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:/lib:/usr/lib
 
 # Development library path, opt first, then debug
-setenv LD_LIBRARY_PATH ${PROJECT_TARGET}/lib/${ARCH}/debug:${PROJECT_TARGET}/lib/${ARCH}/debug/shared:${LD_LIBRARY_PATH}
-setenv LD_LIBRARY_PATH ${PROJECT_TARGET}/lib/${ARCH}/opt:${PROJECT_TARGET}/lib/${ARCH}/opt/shared:${LD_LIBRARY_PATH}
+setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/debug:${PROJECT_TARGET_PATH}/lib/${ARCH}/debug/shared:${LD_LIBRARY_PATH}
+setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${LD_LIBRARY_PATH}
 
 # settings  for interactive shells
 # environment variable used have to be defined before
@@ -286,15 +310,15 @@ setenv LD_LIBRARY_PATH ${PROJECT_TARGET}/lib/${ARCH}/opt:${PROJECT_TARGET}/lib/$
 alias cde 'cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}'
 alias cdr 'cd ${PROJECT_DEV}'
 alias cdc 'cd ${PROJECT_DEV}/env/config'
-alias cdinc 'cd ${PROJECT_TARGET}/include/${ARCH}'
-alias cdobj 'cd ${PROJECT_TARGET}'
-alias cdbin 'cd ${PROJECT_TARGET}/bin'
+alias cdinc 'cd ${PROJECT_TARGET_PATH}/include/${ARCH}'
+alias cdobj 'cd ${PROJECT_TARGET_PATH}'
+alias cdbin 'cd ${PROJECT_TARGET_PATH}/bin'
 
 alias cdrl 'cd ${PROJECT_RELEASE}/latest'
 alias cdri 'cd ${PROJECT_RELEASE}/installed'
 alias cdcu 'cd ${PROJECT_RELEASE}/current'
 
-alias cdcore 'cd ${PROJECT_TARGET}/corefiles'
+alias cdcore 'cd ${PROJECT_TARGET_PATH}/corefiles'
 alias .. 'cd ..'
 alias cls 'clear'
 
@@ -366,15 +390,15 @@ endif
 #### Core path definition
 if ( "${ARCH}" == "sun4sol" ) then
   # Create corefiles directory if not exist
-  if (! -d ${PROJECT_TARGET}/corefiles) then
-    mkdir -p ${PROJECT_TARGET}/corefiles
+  if (! -d ${PROJECT_TARGET_PATH}/corefiles) then
+    mkdir -p ${PROJECT_TARGET_PATH}/corefiles
   endif
 
   # Set core to be generated in corefiles directory
-  coreadm -p ${PROJECT_TARGET}/corefiles/core.%f.$PROJECT_MAJOR_VERSION.%n.%p $$
+  coreadm -p ${PROJECT_TARGET_PATH}/corefiles/core.%f.$PROJECT_MAJOR_VERSION.%n.%p $$
 
   # remove existing core files
-  find ${PROJECT_TARGET}/corefiles/ -type f -name "core*" -atime +4 -exec rm {} \;
+  find ${PROJECT_TARGET_PATH}/corefiles/ -type f -name "core*" -atime +4 -exec rm {} \;
 endif
 
 setenv DISPLAY Alban-PC:0.0

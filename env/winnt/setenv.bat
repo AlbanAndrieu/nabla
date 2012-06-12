@@ -21,7 +21,7 @@ set JAVA=%JAVA_HOME%\bin
 set JAVA_OPTS=-Xms256m -Xmx1024m
 set ANT_HOME=C:\apache-ant-1.8.0
 set ANT=%ANT_HOME%\bin
-set M2_HOME=C:\apache-maven-2.2.1
+set M2_HOME=C:\apache-maven-3.0.4
 set M2=%M2_HOME%\bin
 set M2_REPO=C:\repos
 
@@ -33,7 +33,7 @@ set ANDROMDA_HOME=C:\repo\org\andromda
 set JBOSS_HOME=C:\jboss-4.2.2.GA
 set JBOSS=%JBOSS_HOME%\bin
 
-set CMAKE_HOME=C:\CMake-2.8
+set CMAKE_HOME=C:\CMake-2.6.4
 set CMAKE=%CMAKE_HOME%\bin
 set GRAPHVIZ_HOME=C:\Graphviz2.26.3
 set GRAPHVIZ=%GRAPHVIZ_HOME%\bin
