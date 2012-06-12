@@ -123,7 +123,7 @@
     		  <id>show-properties</id>
 		  <activation>
 		  	<property>
-		  		<name>!profile.activation</name> 
+		  		<name>profile.activation</name> 
 		  	</property>
 		  </activation>    		  
     		  <build>
@@ -201,13 +201,13 @@
 				<repository>
 					<id>local-releases</id>
 					<name>Internal Release Repository</name>
-					<url>${distributionManagement.repository.url}/releases/</url>
+					<url>${project.project.distributionManagement.repository.url}/releases/</url>
 					<!--<uniqueVersion>false</uniqueVersion> -->
 				</repository>
 				<snapshotRepository>
 					<id>local-snapshots</id>
 					<name>Internal Snapshot Repository</name>
-					<url>${distributionManagement.repository.url}/snapshots/</url>
+					<url>${project.project.distributionManagement.repository.url}/snapshots/</url>
 					<!--<uniqueVersion>false</uniqueVersion> -->
 				</snapshotRepository>
 				<site>
@@ -1251,7 +1251,7 @@
 		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base> -->
 		<scm.base>svn:http://alban.googlecode.com/svn/</scm.base>
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
-		<distributionManagement.repository.url>file://localhost/${archiva.dir}</distributionManagement.repository.url>
+		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
 		<!-- TODO fix env setting for overrided home.dir -->
 		<!--<home.dir>${env.HOME}</home.dir>
 		<home.dir>${env.WORKSPACE}</home.dir>
@@ -1514,6 +1514,7 @@
 		<geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
 
 		<seam.version>2.2.1.Final</seam.version>
+		<seam.international.version>3.0.0.Alpha1</seam.international.version>
 
 		<jaxb.api.version>2.1</jaxb.api.version>
 		<jaxb.impl.version>2.1.13</jaxb.impl.version>
@@ -1538,10 +1539,6 @@
 			French Encoding in some files: can't use UTF-8, TODO update source
 			files
 		-->
-		<!--
-			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-			<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
-		-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -1552,7 +1549,7 @@
 
 		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
 		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
-		<wagon.ftp.plugin.version>1.0-beta-6</wagon.ftp.plugin.version>
+		<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
 
 		<maven.docbkx.plugin.version>2.0.8</maven.docbkx.plugin.version>
 		<doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
@@ -1615,12 +1612,12 @@
 		<maven.jxr.plugin.version>2.3</maven.jxr.plugin.version>
 		<maven.pmd.plugin.version>2.6</maven.pmd.plugin.version>
 		<maven.project.info.reports.plugin.version>2.4</maven.project.info.reports.plugin.version>
-		<maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
+		<maven.resources.plugin.version>2.5</maven.resources.plugin.version>
 		<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
 		<maven.site.plugin.version>3.1</maven.site.plugin.version>
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.buildnumber.plugin.version>1.0</maven.buildnumber.plugin.version>
-		<maven.gmaven.plugin.version>1.3</maven.gmaven.plugin.version>		
+		<maven.gmaven.plugin.version>1.4</maven.gmaven.plugin.version>		
 		<maven.verifier.plugin.version>1.0-beta-1</maven.verifier.plugin.version>
 		<maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
 		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
@@ -1630,7 +1627,8 @@
 		<maven.xml.plugin.version>1.0-beta-3</maven.xml.plugin.version>
 		<maven.idea.plugin.version>2.1</maven.idea.plugin.version>
 		<maven.cargo.maven2.plugin.version>1.0.3</maven.cargo.maven2.plugin.version>
-		<maven.jetty.plugin.version>6.1.21</maven.jetty.plugin.version>
+		<!--<maven.jetty.plugin.version>6.1.21</maven.jetty.plugin.version>-->
+		<maven.jetty.plugin.version>8.0.3.v20111011</maven.jetty.plugin.version>
 		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>
 		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
 		<maven.axistools.plugin.version>1.3</maven.axistools.plugin.version>
@@ -2317,7 +2315,9 @@
 					<artifactId>maven-ejb-plugin</artifactId>
 					<version>${maven.ejb.plugin.version}</version>
 					<configuration>
-						<ejbVersion>2.1</ejbVersion>
+						<!--<ejbVersion>2.1</ejbVersion>-->
+						<ejbVersion>3.0</ejbVersion>
+						<encoding>${project.build.sourceEncoding}</encoding>
 						<!--<generateClient>true</generateClient> -->
 						<generateClient>false</generateClient>
 						<!--
@@ -2337,6 +2337,8 @@
 								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 							</manifest>
 							<manifestEntries>
+                                                                <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                                                <Url>${project.url}</Url>							
 								<Implementation-Title>${product.title}</Implementation-Title>
 								<Implementation-Version>${product.version}</Implementation-Version>
      			        				<Build-Date>${timestamp}</Build-Date>
@@ -2357,13 +2359,39 @@
 					<artifactId>maven-ear-plugin</artifactId>
 					<version>${maven.ear.plugin.version}</version>
 					<configuration>
-          					<archive>
-          					  <manifestEntries>
-          					    <Build-Date>${timestamp}</Build-Date>
-          					    <Build-Revision>${buildNumber}</Build-Revision>
-          					    <Mode>${environment}</Mode>
-          					  </manifestEntries>
-          					</archive>
+                                          <!-- 
+                                            MNGECLIPSE-1541:
+                                            During the import of a mavenized ear project (File > Import... > General > Maven Projects) 
+                                            an application.xml file is generated in src/main/application/META-INF/application.xml.
+                                            https://issues.sonatype.org/browse/MNGECLIPSE-1541
+                                            
+                                            MNGECLIPSE-2145: 
+                                            Generated application.xml doesn't contain final names
+                                            https://issues.sonatype.org/browse/MNGECLIPSE-2145
+                                            
+                                            To fix this we excludes the eclipse generated application.xml during mvn package
+                                          -->
+                                          <earSourceExcludes>**/application.xml</earSourceExcludes>
+                                          
+                                          <!-- Use maven generated application.xml -->
+                                          <generateApplicationXml>true</generateApplicationXml>
+                                          
+                                          <version>5</version>
+                                          <defaultLibBundleDir>lib</defaultLibBundleDir>
+                                          <encoding>${project.build.sourceEncoding}</encoding>					
+          				  <archive>
+                                            <manifest>
+                                              <addClasspath>true</addClasspath>
+                                              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                            </manifest>          				  
+          				    <manifestEntries>
+                                              <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                              <Url>${project.url}</Url>          				    
+          				      <Build-Date>${timestamp}</Build-Date>
+          				      <Build-Revision>${buildNumber}</Build-Revision>
+          				      <Mode>${environment}</Mode>
+          				    </manifestEntries>
+          				  </archive>
           				</configuration>					        				      								
 				</plugin>
 				<plugin>
@@ -2374,6 +2402,7 @@
 						<excludes>
 							<exclude>**/*.ref</exclude>
 						</excludes>
+						<encoding>${project.build.sourceEncoding}</encoding>
 						<archive>
 							<!--
 
@@ -2416,6 +2445,8 @@
 
 							<!-- Custom Entries -->
 							<manifestEntries>
+                                                                <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                                                <Url>${project.url}</Url>							
 								<Specification-Title>${project.name}</Specification-Title>
 								<Specification-Version>${project.version}</Specification-Version>
 								<Specification-Vendor>${project.organization.name}</Specification-Vendor>
@@ -2470,7 +2501,7 @@
 					<artifactId>antlr3-maven-plugin</artifactId>
 					<version>${maven.antlr3.plugin.version}</version>
 				</plugin>
-				<plugin>
+				<plugin>				
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>native2ascii-maven-plugin</artifactId>
 					<version>${maven.native2ascii.maven.plugin.version}</version>
@@ -2525,7 +2556,7 @@
                                               <addClasspath>true</addClasspath>
                                               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                             </manifest>        				  
-        				    <manifestEntries>
+        				    <manifestEntries>        				    
                 		              <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
                 		              <Url>${project.url}</Url>        				    
         				      <Build-Date>${timestamp}</Build-Date>
@@ -2781,6 +2812,11 @@
 						</asfExtOptions>
 					</configuration>
 				</plugin>
+                                <plugin>
+                                    <groupId>org.mortbay.jetty</groupId>
+                                    <artifactId>jetty-maven-plugin</artifactId>
+                                    <version>${maven.jetty.plugin.version}</version>
+                                </plugin>				
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>tomcat-maven-plugin</artifactId>
