@@ -10,7 +10,13 @@
 <f:view>
     <h:panelGrid id="popupView" columns="1" styleClass="popup">
         <h:panelGrid id="popupViewHeader" columns="1" styleClass="popupHeader">
-            <h:commandLink action="closePopup"><tr:image source="/images/x.gif"/></h:commandLink>
+            <h:commandLink action="closePopup">
+#if ($trinidad)
+            <tr:image source="/images/x.gif"/>
+#else
+            <t:graphicImage url="/images/x.gif" border="0" />
+#end
+            </h:commandLink>
         </h:panelGrid>
 #foreach ($action in $view.actions)
 #if (!$action.tableLink)

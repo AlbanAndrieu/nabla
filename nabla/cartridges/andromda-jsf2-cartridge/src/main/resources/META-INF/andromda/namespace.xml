@@ -36,8 +36,15 @@
             </property>
             <property name="libraries" required="false">
                 <documentation>
-                    The location to which JSF libraries will be generated (these are the libraries required for JSF support,
+                    The location to which JSF libraries will be generated (these are the libraries required for JSF support, 
                     myfaces libraries, etc).  If this isn't defined, its expected that the libraries will be provided by another means.
+                </documentation>
+            </property>
+            <property name="application-libraries" required="false">
+                <documentation>
+                    The location to which JSF/Seam libraries will be generated in the app folder
+                    (these are the libraries required for JSF/Seam support which is most importantly jboss-seam.jar).  
+                    If this isn't defined, its expected that the libraries will be provided by another means.
                 </documentation>
             </property>
             <property name="controllers">
@@ -92,7 +99,8 @@
                     form information and navigation rules).
                 </documentation>
             </property>
-            <property name="facesConfigFiles" required="false">
+            <property name="facesConfigFiles">
+                <default>/WEB-INF/navigation.xml</default>
                 <documentation>
                     Comma separated list of URIs of (additional) faces config files.
                     (e.g. /WEB-INF/jsf-config.xml).  See JSF 1.0 PRD2, 10.3.2
@@ -178,10 +186,32 @@
                     Defines the bean name under which the preferences class will be stored.
                 </documentation>
             </property>
+            <property name="menuLayout">
+                <default>vbr</default>
+                <documentation>
+                    The menu layout.
+                    Valid values are:
+                    <ul>
+                        <li>hbr</li>
+                        <li>hur</li>
+                        <li>hul</li>
+                        <li>vbr</li>
+                        <li>vur</li>
+                        <li>vur</li>
+                    </ul>
+                </documentation>
+            </property>
             <property name="maxTableRows">
                 <default>10</default>
                 <documentation>
                     The default value to set for the maximum rows displayed in a table.
+                </documentation>
+            </property>            
+            <property name="menuTheme">
+                <default>ThemePanel</default>
+                <documentation>
+                    The navigation theme to use (the possible choices are:
+                    ThemeOffice, ThemeMiniBlack, ThemeIE, ThemePanel).
                 </documentation>
             </property>
             <property name="navigationStyle">
@@ -216,6 +246,24 @@
             <documentation>
                 Properties that configure view information.
             </documentation>
+            <property name="viewType">
+                <default>facelets</default>
+                <documentation>
+                    Defines the type of view to render, currently the options are: 'jsp' or 'facelets'.
+                </documentation>
+            </property>
+            <property name="seam">
+                <default>false</default>
+                <documentation>
+                    Use Seam.
+                </documentation>
+            </property>      
+            <property name="extension">
+                <default>false</default>
+                <documentation>
+                    Use Tomahawk extension.
+                </documentation>
+            </property>                      
             <property name="welcomeFileName">
                 <default>index.jsp</default>
                 <documentation>
@@ -345,7 +393,7 @@
                 </documentation>
             </property>
         </propertyGroup>
-        <propertyGroup name="Portlet Support">
+<propertyGroup name="Portlet Support">
             <documentation>
                 Properties available for portlet support configuration.
             </documentation>
@@ -377,6 +425,7 @@
                     <ul>
                         <li>icefaces</li>
                         <li>trinidad</li>
+                        <li>adf</li>
                     </ul>
                 </documentation>
             </property>
@@ -398,6 +447,11 @@
             <documentation>
                 Other various properties that couldn't be classified into another category.
             </documentation>
+            <property name="ejbJndiNamePrefix" required="false">
+                <documentation>
+                    The JNDI name prefix used to construct the JNDI name pattern.
+                </documentation>
+            </property>
             <property name="virtualHost" required="false">
                 <documentation>
                     The name to use for the virtual host (if one is required).  For example application.myserver.com.
@@ -440,12 +494,13 @@
             <property name="stateSavingMethod">
                 <default>client</default>
                 <documentation>
-                    The JSF state saving method to use within the application (can be
+                    The JSF state saving method to use within the application (can be 
                     either <em>client</em> or <em>server</em>).
                 </documentation>
             </property>
             <property name="fileTypeName">
-                <default>org.apache.myfaces.trinidad.model.UploadedFile</default>
+                <!--<default>oracle.adf.view.faces.model.UploadedFile</default>-->
+				<default>org.apache.myfaces.trinidad.model.UploadedFile</default>
                 <documentation>
                     The fully qualified type name to use when file types are modeled for parameters (used for
                     for file uploads).

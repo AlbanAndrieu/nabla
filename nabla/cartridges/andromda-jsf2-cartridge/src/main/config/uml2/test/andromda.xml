@@ -85,8 +85,12 @@
         	<property name="paginationResultClassName">org.andromda.spring.cartridge.PaginationResult</property>
         	<!--<property name="validationExtension">commons-validator</property>-->
         	<property name="managedBeansPackage">org.andromda.presentation.jsf2</property>
-        	<property name="useAutocompleteLookup">true</property>        	
+        	<property name="useAutocompleteLookup">true</property>      	
         	<!--<property name="clientValidation">false</property>-->
+        	<!--<property name="ajaxLibrary">trinidad</property>-->
+        	<!--<property name="ajaxLibrary">icefaces</property>-->
+        	<property name="seam">false</property>
+        	<!--<property name="tomahawk">false</property>-->
             </properties>
         </namespace>
     </namespaces>

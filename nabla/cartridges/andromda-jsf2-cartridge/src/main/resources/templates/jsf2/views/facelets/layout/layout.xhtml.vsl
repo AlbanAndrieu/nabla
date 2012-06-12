@@ -5,25 +5,53 @@
       xmlns:c="http://java.sun.com/jstl/core"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:t="http://myfaces.apache.org/tomahawk"
+#if ($trinidad)
       xmlns:trh="http://myfaces.apache.org/trinidad/html"
       xmlns:tr="http://myfaces.apache.org/trinidad">
-
+#elseif ($adf)
+      xmlns:af="http://xmlns.oracle.com/adf/faces"
+      xmlns:afh="http://xmlns.oracle.com/adf/faces/html"> 
+#end   
+       
     <ui:insert name="head">
         <ui:include src="head.xhtml"/>
     </ui:insert>
     <c:set var="remoteUser" value="${facesContext.externalContext.request.userPrincipal.name}" scope="request"/>
+#if ($trinidad)
     <trh:body>
         <tr:form usesUpload="#{usesUpload}" partialTriggers="#{partialTriggers}">
+#elseif ($adf)
+    <afh:body>
+#else
+    <body>
+#end
         <ui:insert name="title"/>
+#if ($trinidad)
         <tr:panelPage>
+#elseif ($adf)
+        <af:panelPage title="#{title}">
+#end
             <f:facet name="branding">
                 <ui:insert name="header">
                     <ui:include src="header.xhtml"/>
                 </ui:insert>
             </f:facet>
+#if ($adf)
+            <f:facet name="menu2">
+                <af:menuBar>
+                    <t:graphicImage url="/images/space.gif"/>
+                </af:menuBar>
+            </f:facet>
+            <f:facet name="menu3">
+                <ui:insert name="menu">
+                    <ui:include src="menu.xhtml"/>
+                </ui:insert> 
+            </f:facet>
+#end
             <f:facet name="infoStatus">
                 <ui:include src="messages.xhtml"/>
             </f:facet>
+#if ($trinidad)
 #if ($stringUtils.isNotBlank($securityRealm))
             <f:facet name="infoUser">
                 <tr:panelGroupLayout>
@@ -80,6 +108,7 @@
 ##                    </f:facet>
 ##                </tr:breadCrumbs>
 ##            </f:facet>
+#end
             <f:facet name="appCopyright">
                 <ui:insert name="footer">
                     <ui:include src="footer.xhtml"/>
@@ -92,11 +121,25 @@
 ##                    </ui:insert>
 ##            </f:facet>
             <div id="pageContent">
+#if ($trinidad)
                 <tr:panelHeader text="#{title}" partialTriggers="#{partialTriggers}">
                     <ui:insert name="content"/>
                 </tr:panelHeader>
+#elseif ($adf)
+                <ui:insert name="messages">
+                    <ui:include src="messages.xhtml"/>
+                </ui:insert>
+                <ui:insert name="content"/>
+#end
             </div>
+#if ($trinidad)
         </tr:panelPage>
         </tr:form>
     </trh:body>
+#elseif ($adf)
+        </af:panelPage>        
+    </body>
+#else
+    </body>
+#end
 </html>
