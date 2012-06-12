@@ -14,7 +14,7 @@
         <version>3.4</version>
         <!-- <packaging>andromda-cartridge</packaging> -->
         <packaging>jar</packaging>
-        <name>Gui Cartridge</name>
+        <name>AndroMDA Gui Cartridge</name>
         <description>
             The Gui cartridge provides meta-model and templates for Gui components generation.
         </description>
@@ -100,7 +100,7 @@ inv:manageableServiceName->notEmpty()
                         		    <!--
                         		    <artifacts>
                         		            <artifact>
-                        		                <groupId>${pom.groupId}</groupId>
+                        		                <groupId>${project.groupId}</groupId>
                         		                <artifactId>${project.artifactId}-components</artifactId>
                         		                <path>resources/WEB-INF/lib</path>
                         		            </artifact>
@@ -153,6 +153,7 @@ inv:manageableServiceName->notEmpty()
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-changes-plugin</artifactId>
+                    <version>${maven.changes.plugin.version}</version>
                     <configuration>
                         <xmlPath>${basedir}/src/site/changes.xml</xmlPath>
                     </configuration>

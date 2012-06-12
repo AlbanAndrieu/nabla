@@ -121,8 +121,12 @@
             <property name="facesServletExtension">
                 <default>jsf</default>
                 <documentation>
-                    The extension used for the application's handling of JSF pages.
-                </documentation>
+                    The extension used for the application's handling of JSF/Seam pages :
+                    <ul>
+                        <li>jsf</li>
+                        <li>seam</li>
+                    </ul>
+                </documentation>                
             </property>
             <property name="odsExportExtension">
                 <default>ods</default>
