@@ -45,12 +45,13 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-site-plugin</artifactId>
-							<version>3.0</version>
+							<version>${maven.site.plugin.version}</version>
 						</plugin>
 					</plugins>
 				</pluginManagement>
 				<plugins>
 					<plugin>
+					        <groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-site-plugin</artifactId>
 						<executions>
 							<execution>
@@ -156,8 +157,8 @@
 												<testWindowtitle>Nabla Test API for ${project.name} ${project.version}</testWindowtitle>
 											</configuration>
 											<reports>
-												<report>javadoc</report>
-												<report>test-javadoc</report>
+												<report>javadoc:javadoc</report>
+												<report>javadoc:test-javadoc</report>
 											</reports>
 										</reportSet>
 
@@ -214,8 +215,8 @@
 												-->
 											</configuration>
 											<reports>
-												<report>aggregate</report>
-												<report>test-aggregate</report>
+												<report>javadoc:aggregate</report>
+												<report>javadoc:test-aggregate</report>
 											</reports>
 										</reportSet>
 									</reportSets>
