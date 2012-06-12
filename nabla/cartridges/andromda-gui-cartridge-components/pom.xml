@@ -13,7 +13,7 @@
     <artifactId>andromda-gui-cartridge-components</artifactId>
     <version>3.4</version>
     <packaging>jar</packaging>
-    <name>AndroMDA JSF Cartridge Components</name>
+    <name>AndroMDA Gui Cartridge Components</name>
     <description>Constains custom JSF components used by the JSF cartridge.</description>
 
     <dependencies>
