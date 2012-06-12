@@ -452,6 +452,7 @@
         </modelElements>
     </template>
     
+    <!--
     <template
         path="templates/ejb3/config/jboss/jboss.xml.vsl"
         outputPattern="META-INF/jboss.xml"
@@ -474,10 +475,11 @@
             </modelElement>
         </modelElements>
     </template>
+    -->
 
     <template
         path="templates/ejb3/config/jboss/components.xml.vsl"
-        outputPattern="META-INF/components.xml"
+        outputPattern="WEB-INF/components.xml"
         outlet="seam-config"
         overwrite="true"
         outputToSingleFile="true"
@@ -527,6 +529,7 @@
         </modelElements>
     </template>
 
+    <!--
     <template
         path="templates/ejb3/config/jboss/jboss-app.xml.vsl"
         outputPattern="jboss-app.xml"
@@ -542,6 +545,7 @@
             </modelElement>
         </modelElements>
     </template>
+    -->
     
     <template
         path="templates/ejb3/config/jboss/auth.conf.vsl"
