@@ -7,7 +7,7 @@
         <version>1.0</version>
     </parent>
     <artifactId>andromda-metafacades-uml</artifactId>
-    <version>${andromda.version}</version>
+    <version>3.4</version>
     <packaging>jar</packaging>
     <name>AndroMDA UML Common Metafacades</name>
     <description>
