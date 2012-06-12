@@ -18,6 +18,8 @@
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-model-archiver-plugin</artifactId>
+                <version>${andromda.version}</version>
+                <extensions>true</extensions>
             </plugin>
         </plugins>
     </build>
