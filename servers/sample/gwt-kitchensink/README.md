@@ -1,3 +1,13 @@
+With Eclipse :
+Sur ton projet :
+- click droit > build path > Configure Build Path
+- Dans le tab source, expand src/main/resources
+- double click sur Excluded
+- Enlève les patterns d'exclusion qui empeche l'acces a ton module (*.gwt.xml) 
+
+Deployment Assembly > Add > Folder
+target/gwt-kitchensink-1.0
+
 kitchensink: Example Using Errai with Multiple Java EE 6 Technologies
 =====================================================================
 Author: Christian Sadilek and Jonathan Fuerth, based on Pete Muir's JSF Kitchen Sink demo
