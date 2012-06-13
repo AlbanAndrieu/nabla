@@ -7,12 +7,10 @@
         <version>3.4</version>
     </parent>
     <groupId>org.andromda.profiles.uml2</groupId>
-    <artifactId>uml2</artifactId>
+    <artifactId>uml2</artifactId> <!-- replace the andromda-profiles-uml2 -->
     <name>AndroMDA UML 2.0 Profile</name>
     <packaging>pom</packaging>
-    <description>
-        Contains the AndroMDA UML 2.0 profiles.
-    </description>
+    <description>Contains the AndroMDA UML 2.0 profiles.</description>
     <build>
         <plugins>
             <plugin>
