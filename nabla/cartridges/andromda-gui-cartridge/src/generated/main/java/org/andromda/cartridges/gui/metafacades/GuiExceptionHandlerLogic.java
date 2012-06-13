@@ -416,7 +416,7 @@ public abstract class GuiExceptionHandlerLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperFrontEndExceptionHandler().findTaggedValues(tagName);
     }
@@ -446,7 +446,7 @@ public abstract class GuiExceptionHandlerLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperFrontEndExceptionHandler().getConstraints(kind);
     }

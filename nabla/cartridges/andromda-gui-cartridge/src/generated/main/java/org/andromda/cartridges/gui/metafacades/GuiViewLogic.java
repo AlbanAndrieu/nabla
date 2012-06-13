@@ -1612,6 +1612,15 @@ public abstract class GuiViewLogic
     }
 
     /**
+     * 
+     * @see org.andromda.metafacades.uml.FrontEndActionState#getServiceCalls()
+     */
+    public List<OperationFacade> getServiceCalls()
+    {
+        return this.getSuperFrontEndView().getServiceCalls();
+    }
+
+    /**
      * True if this element is contained in a FrontEndUseCase.
      * @see org.andromda.metafacades.uml.FrontEndActionState#isContainedInFrontEndUseCase()
      */
@@ -1718,7 +1727,7 @@ public abstract class GuiViewLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperFrontEndView().findTaggedValues(tagName);
     }
@@ -1748,7 +1757,7 @@ public abstract class GuiViewLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperFrontEndView().getConstraints(kind);
     }

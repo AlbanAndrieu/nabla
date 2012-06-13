@@ -475,7 +475,7 @@ public abstract class GuiControllerLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperFrontEndController().getAllProperties();
     }
@@ -485,7 +485,7 @@ public abstract class GuiControllerLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperFrontEndController().getAllRequiredConstructorParameters();
     }
@@ -542,7 +542,7 @@ public abstract class GuiControllerLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperFrontEndController().getAttributes(follow);
     }
@@ -639,7 +639,7 @@ public abstract class GuiControllerLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperFrontEndController().getNavigableConnectingEnds(follow);
     }
@@ -680,7 +680,7 @@ public abstract class GuiControllerLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperFrontEndController().getProperties();
     }
@@ -701,7 +701,7 @@ public abstract class GuiControllerLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperFrontEndController().getRequiredConstructorParameters();
     }
@@ -1127,7 +1127,7 @@ public abstract class GuiControllerLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperFrontEndController().findTaggedValues(tagName);
     }
@@ -1157,7 +1157,7 @@ public abstract class GuiControllerLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperFrontEndController().getConstraints(kind);
     }
