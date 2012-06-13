@@ -54,6 +54,12 @@ public interface FrontEndActionState
     public FrontEndForward getForward();
 
     /**
+     * 
+     * @return List<OperationFacade>
+     */
+    public List<OperationFacade> getServiceCalls();
+
+    /**
      * True if this element is contained in a FrontEndUseCase.
      * @return boolean
      */
