@@ -299,7 +299,7 @@ public abstract class GuiActivityGraphLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperFrontEndActivityGraph().findTaggedValues(tagName);
     }
@@ -329,7 +329,7 @@ public abstract class GuiActivityGraphLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperFrontEndActivityGraph().getConstraints(kind);
     }

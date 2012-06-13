@@ -679,7 +679,7 @@ public abstract class GuiControllerOperationLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperFrontEndControllerOperation().findTaggedValues(tagName);
     }
@@ -709,7 +709,7 @@ public abstract class GuiControllerOperationLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperFrontEndControllerOperation().getConstraints(kind);
     }
@@ -1179,7 +1179,7 @@ public abstract class GuiControllerOperationLogic
      * A collection of all exceptions thrown by this operation.
      * @see OperationFacade#getExceptions()
      */
-    public Collection getExceptions()
+    public Collection<ModelElementFacade> getExceptions()
     {
         return this.getSuperFrontEndControllerOperation().getExceptions();
     }

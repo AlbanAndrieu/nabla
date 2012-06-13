@@ -38,6 +38,7 @@
         <namespace name="seam">
             <properties>
                 <property name="overwrite">true</property>
+                <property name="facesServletExtension">seam</property> 
                 <property name="xhtml">false</property>
                 <property name="dummyData">true</property>
                 <property name="breadCrumbs">true</property>
@@ -59,7 +60,7 @@
                 <property name="serviceAccessorPattern">{0}.ServiceLocator.instance().get{1}()</property>
                 <property name="servicePackageNamePattern">{0}.ws</property>
                 <property name="roleNameMask">uppercamelcase</property>
-            </properties>
-        </namespace>
+            </properties>            
+        </namespace>        
     </namespaces>
 </andromda>

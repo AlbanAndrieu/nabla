@@ -130,6 +130,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
+                <version>${maven.changes.plugin.version}</version>
                 <configuration>
                     <xmlPath>${basedir}/src/site/changes.xml</xmlPath>
                 </configuration>

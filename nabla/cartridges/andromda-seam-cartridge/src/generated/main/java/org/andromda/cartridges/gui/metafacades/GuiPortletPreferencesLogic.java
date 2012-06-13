@@ -216,7 +216,7 @@ public abstract class GuiPortletPreferencesLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperClassifierFacade().getAllProperties();
     }
@@ -226,7 +226,7 @@ public abstract class GuiPortletPreferencesLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperClassifierFacade().getAllRequiredConstructorParameters();
     }
@@ -283,7 +283,7 @@ public abstract class GuiPortletPreferencesLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperClassifierFacade().getAttributes(follow);
     }
@@ -380,7 +380,7 @@ public abstract class GuiPortletPreferencesLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperClassifierFacade().getNavigableConnectingEnds(follow);
     }
@@ -421,7 +421,7 @@ public abstract class GuiPortletPreferencesLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperClassifierFacade().getProperties();
     }
@@ -442,7 +442,7 @@ public abstract class GuiPortletPreferencesLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperClassifierFacade().getRequiredConstructorParameters();
     }
@@ -841,7 +841,7 @@ public abstract class GuiPortletPreferencesLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperClassifierFacade().findTaggedValues(tagName);
     }
@@ -871,7 +871,7 @@ public abstract class GuiPortletPreferencesLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperClassifierFacade().getConstraints(kind);
     }

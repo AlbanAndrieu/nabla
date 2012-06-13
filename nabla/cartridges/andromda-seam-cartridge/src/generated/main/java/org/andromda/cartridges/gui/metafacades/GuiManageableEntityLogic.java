@@ -3599,7 +3599,7 @@ public abstract class GuiManageableEntityLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperManageableEntity().getAllProperties();
     }
@@ -3609,7 +3609,7 @@ public abstract class GuiManageableEntityLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperManageableEntity().getAllRequiredConstructorParameters();
     }
@@ -3666,7 +3666,7 @@ public abstract class GuiManageableEntityLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperManageableEntity().getAttributes(follow);
     }
@@ -3763,7 +3763,7 @@ public abstract class GuiManageableEntityLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperManageableEntity().getNavigableConnectingEnds(follow);
     }
@@ -3804,7 +3804,7 @@ public abstract class GuiManageableEntityLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperManageableEntity().getProperties();
     }
@@ -3825,7 +3825,7 @@ public abstract class GuiManageableEntityLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperManageableEntity().getRequiredConstructorParameters();
     }
@@ -4164,7 +4164,7 @@ public abstract class GuiManageableEntityLogic
      * well as excludes the entity's identifiers if 'withIdentifiers' is set to false.
      * @see Entity#getAttributes(boolean follow, boolean withIdentifiers)
      */
-    public Collection getAttributes(boolean follow, boolean withIdentifiers)
+    public Collection<AttributeFacade> getAttributes(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperManageableEntity().getAttributes(follow, withIdentifiers);
     }
@@ -4175,7 +4175,7 @@ public abstract class GuiManageableEntityLogic
      * derived attributes if 'withDerived' is set to false.
      * @see Entity#getAttributes(boolean follow, boolean withIdentifiers, boolean withDerived)
      */
-    public Collection getAttributes(boolean follow, boolean withIdentifiers, boolean withDerived)
+    public Collection<AttributeFacade> getAttributes(boolean follow, boolean withIdentifiers, boolean withDerived)
     {
         return this.getSuperManageableEntity().getAttributes(follow, withIdentifiers, withDerived);
     }
@@ -4204,7 +4204,7 @@ public abstract class GuiManageableEntityLogic
      * The embedded values belonging to this entity.
      * @see Entity#getEmbeddedValues()
      */
-    public Collection getEmbeddedValues()
+    public Collection<AttributeFacade> getEmbeddedValues()
     {
         return this.getSuperManageableEntity().getEmbeddedValues();
     }
@@ -4232,7 +4232,7 @@ public abstract class GuiManageableEntityLogic
      * Gets all the associationEnds of this entity marked with the identifiers stereotype.
      * @see Entity#getIdentifierAssociationEnds()
      */
-    public Collection getIdentifierAssociationEnds()
+    public Collection<AssociationEndFacade> getIdentifierAssociationEnds()
     {
         return this.getSuperManageableEntity().getIdentifierAssociationEnds();
     }
@@ -4247,8 +4247,8 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * The name of the identifier. If composite identifier add the Pk sufix. If not composite
-     * returns the atribute name of the identifier.
+     * The name of the identifier. If composite identifier add the Pk suffix. If not composite
+     * returns the attribute name of the identifier.
      * @see Entity#getIdentifierName()
      */
     public String getIdentifierName()
@@ -4266,8 +4266,8 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * The name of the type of the identifier. If composite identifier add the PK sufix to the class
-     * name. If not, retorns the name of the identifier.
+     * The name of the type of the identifier. If composite identifier add the PK suffix to the
+     * class name. If not, returns the name of the identifier.
      * @see Entity#getIdentifierTypeName()
      */
     public String getIdentifierTypeName()
@@ -4293,7 +4293,7 @@ public abstract class GuiManageableEntityLogic
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
      * @see Entity#getIdentifiers(boolean follow)
      */
-    public Collection getIdentifiers(boolean follow)
+    public Collection<EntityAttribute> getIdentifiers(boolean follow)
     {
         return this.getSuperManageableEntity().getIdentifiers(follow);
     }
@@ -4347,7 +4347,7 @@ public abstract class GuiManageableEntityLogic
      * whether or not identifiers should be included in the collection of properties.
      * @see Entity#getProperties(boolean follow, boolean withIdentifiers)
      */
-    public Collection getProperties(boolean follow, boolean withIdentifiers)
+    public Collection<ModelElementFacade> getProperties(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperManageableEntity().getProperties(follow, withIdentifiers);
     }
@@ -4368,7 +4368,7 @@ public abstract class GuiManageableEntityLogic
      * default identifier will be created if the allowDefaultIdentifiers property is set to true.
      * @see Entity#getQueryOperations(boolean follow)
      */
-    public Collection getQueryOperations(boolean follow)
+    public Collection<OperationFacade> getQueryOperations(boolean follow)
     {
         return this.getSuperManageableEntity().getQueryOperations(follow);
     }
@@ -4402,7 +4402,7 @@ public abstract class GuiManageableEntityLogic
      * be include, if false, no identifiers will be included.
      * @see Entity#getRequiredAttributes(boolean follow, boolean withIdentifiers)
      */
-    public Collection getRequiredAttributes(boolean follow, boolean withIdentifiers)
+    public Collection<AttributeFacade> getRequiredAttributes(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperManageableEntity().getRequiredAttributes(follow, withIdentifiers);
     }
@@ -4416,7 +4416,7 @@ public abstract class GuiManageableEntityLogic
      * be included.
      * @see Entity#getRequiredProperties(boolean follow, boolean withIdentifiers)
      */
-    public Collection getRequiredProperties(boolean follow, boolean withIdentifiers)
+    public Collection<ModelElementFacade> getRequiredProperties(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperManageableEntity().getRequiredProperties(follow, withIdentifiers);
     }
@@ -4657,10 +4657,10 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * ManageableAttributes and ManageableAssociationEnds
      * @see ManageableEntity#getManageableMembers()
      */
-    public List getManageableMembers()
+    public List<ModelElementFacade> getManageableMembers()
     {
         return this.getSuperManageableEntity().getManageableMembers();
     }
@@ -4842,7 +4842,7 @@ public abstract class GuiManageableEntityLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperManageableEntity().findTaggedValues(tagName);
     }
@@ -4872,7 +4872,7 @@ public abstract class GuiManageableEntityLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperManageableEntity().getConstraints(kind);
     }
