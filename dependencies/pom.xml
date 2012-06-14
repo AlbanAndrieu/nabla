@@ -1384,7 +1384,7 @@
 		<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
     		<openejb.core.version>3.1.4</openejb.core.version>    		
     		<seam.embedded.version>beta3.SP15</seam.embedded.version>
-    		<seam.utils.version>1.0-SNAPSHOT</seam.utils.version>
+    		<seam.utils.version>1.0</seam.utils.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
 		<jboss.dist.path>${env.JBOSS_HOME}</jboss.dist.path>
 		<application.server>jboss</application.server>
