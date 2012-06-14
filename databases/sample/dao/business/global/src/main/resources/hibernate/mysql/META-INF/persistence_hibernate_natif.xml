@@ -43,7 +43,7 @@
 		<property name="hibernate.connection.username" value="APP" />
 		<property name="hibernate.connection.password" value="APP" />
 		<property name="hibernate.connection.url"
-		value="jdbc:derby:C:\workspace\project\application\database\business\global\myDBGlobal;create=true;" />
+		value="jdbc:derby:~/myDBGlobal;create=true;" />
 		
 	-->
 	<!--

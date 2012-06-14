@@ -231,7 +231,7 @@
 				<jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
 				<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
 				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
+				<jdbc.client.url><![CDATA[jdbc:derby:~/${database.name};create=true]]></jdbc.client.url>
 				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
 				<jdbc.url>${jdbc.embedded.url}</jdbc.url>
 			</properties>

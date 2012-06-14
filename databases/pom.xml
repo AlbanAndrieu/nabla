@@ -30,7 +30,8 @@
 			<properties>
 
 				<database>mysql</database>
-				<database.name>myDBGlobal</database.name>
+				<!--<database.name>myDBGlobal</database.name>-->
+				<database.name>nabla</database.name>
 				<!-- Database settings -->
 				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
 				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
@@ -71,9 +72,11 @@
 				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 
 				<!-- Change this to the host on which your database will be deployed -->
-				<database.host>localhost</database.host>
+				<!--<database.host>localhost</database.host>-->
+				<database.host>cloudbees</database.host>				
 				<!-- Change this the port on which your database will be deploy -->
-				<database.port>3406</database.port>
+				<!--<database.port>3406</database.port>-->
+				<database.port>3306</database.port>				
 				<!--
 					Change connection url for appropriate database For MySQL use:
 					jdbc:mysql://localhost:3306/timetracker For Hypersonic use:
@@ -91,9 +94,13 @@
 					SapDB use: jdbc:sapdb://127.0.0.1/timetracker For Progress use:
 					jdbc:JdbcProgress:T:localhost:3305:timetracker
 				-->
-
+                                
+                                <!--
 				<jdbc.username>sa</jdbc.username>
 				<jdbc.password></jdbc.password>
+				-->
+				<jdbc.username>nabla</jdbc.username>
+				<jdbc.password>nabla</jdbc.password>
 
 				<!-- jdbc:mysql://localhost:3306/myDB -->
 				<jdbc.client.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.client.url>

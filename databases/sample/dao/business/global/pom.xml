@@ -516,7 +516,7 @@
                 <profile>
                         <id>sql</id>
                         <properties>
-				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name}]]></jdbc.client.url>
+				<jdbc.client.url><![CDATA[jdbc:derby:~/${database.name}]]></jdbc.client.url>
 			</properties>
                         <build>
                                 <plugins>

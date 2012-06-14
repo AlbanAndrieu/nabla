@@ -41,7 +41,7 @@
 	<!-- la source de donnéees DBCP -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
-		<property name="url" value="jdbc:derby:C:/tmp/myDBGlobal;create=true" />
+		<property name="url" value="jdbc:derby:~/myDBGlobal;create=true" />
 		<property name="username" value="user" />
 		<property name="password" value="user" />
         <property name="maxActive" value="100"/>
