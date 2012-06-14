@@ -12,11 +12,10 @@
     	<artifactId>sample</artifactId>
 	<packaging>pom</packaging>
 	<name>Server Samples</name>
-	<!--<version>1.0</version>-->
     	<description>Server Samples</description>
 	<modules>
 		<module>jsf-simple</module>
-		<module>jboss-embeddable-ejb3</module>
-    <module>gwt-kitchensink</module>
+		<!--<module>jboss-embeddable-ejb3</module>-->
+                <module>gwt-kitchensink</module>
   </modules>
 </project>
