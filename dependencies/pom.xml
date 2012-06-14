@@ -1179,7 +1179,13 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>nabla-plugins</id>
-			<url>http://alban.googlecode.com/svn/mavenrepo</url>
+			<url>http://alban.googlecode.com/svn/mavenrepo/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>			
 		</pluginRepository>
 		<pluginRepository>
 			<id>Mobilvox JS Plugin Snapshots</id>
