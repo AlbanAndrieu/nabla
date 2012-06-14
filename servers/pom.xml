@@ -24,10 +24,6 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<modules>
-		<module>sample</module>
-	</modules>
-
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -285,6 +281,17 @@
 		</profile>
 		<!-- ================= END Container Profiles ================= -->
 
+                <profile>
+                    <id>sample</id>
+                    <activation>
+	            	<property>
+	            		<name>profile.activation</name>
+	            	</property>
+	            </activation>
+			<modules>
+				<module>sample</module>
+			</modules>
+		</profile>
 	</profiles>
 
 </project>
