@@ -264,9 +264,6 @@
 						<wtpapplicationxml>true</wtpapplicationxml>
 						<wtpversion>2.0</wtpversion>
 						<ajdtVersion>1.5</ajdtVersion>
-						<sourceExcludes>
-							<sourceExclude>**/.svn/**</sourceExclude>
-						</sourceExcludes>
 						<manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>
 						<useProjectReferences>true</useProjectReferences>
 						<!-- by default download all sources when generating project files -->
@@ -420,6 +417,37 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 			</plugin>
 
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>maven-replacer-plugin</artifactId>
+				<version>${maven.replacer.plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<ignoreMissingFile>true</ignoreMissingFile>
+					<file>.classpath</file>
+					<regex>false</regex>
+					<replacements>
+						<replacement>
+							<xpath>/classpath/classpathentry[@path='src/generated/main/java' and @kind='src' and @excluding='**']/@excluding</xpath>
+							<token>**</token>
+							<value></value>
+						</replacement>		
+						<replacement>
+							<xpath>/classpath/classpathentry[@path='src/main/resources' and @kind='src' and @excluding='**']/@excluding</xpath>
+							<token>**</token>
+							<value></value>
+						</replacement>
+					</replacements>
+				</configuration>
+			</plugin>
+
 			<!--
 				Below you find a plugin that performs formatting after each compile
 				run finished successfully, disables logging of Javadoc related
@@ -570,10 +598,12 @@
 								<source>${basedir}/src/generated/main/resources</source>
 								<source>${basedir}/src/main/java</source>
 								<source>${basedir}/src/main/resources</source>
+								<!--
 								<source>${basedir}/${target.dir}/generated-sources/antlr</source>
 								<source>${basedir}/${target.dir}/generated-sources/main/java</source>
-								<!--<source>${basedir}/${target.dir}/generated-sources/test/java</source> -->
 								<source>${basedir}/${target.dir}/generated-sources/main/resources</source>
+								-->
+								<!--<source>${basedir}/${target.dir}/generated-sources/test/java</source> -->
 								<!-- <source>${basedir}/${target.dir}/generated-sources/test/resources</source> -->
 							</sources>
 						</configuration>
