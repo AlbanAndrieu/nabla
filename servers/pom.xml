@@ -280,7 +280,7 @@
 			</properties>
 		</profile>
 		<!-- ================= END Container Profiles ================= -->
-
+                <!--
                 <profile>
                     <id>sample</id>
                     <activation>
@@ -292,6 +292,7 @@
 				<module>sample</module>
 			</modules>
 		</profile>
+		-->
 	</profiles>
 
 </project>
