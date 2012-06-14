@@ -598,8 +598,8 @@
 									<testWindowtitle>Nabla Test API for ${project.name} ${project.version}</testWindowtitle>
 								</configuration>
 								<reports>
-									<report>javadoc:javadoc</report>
-									<report>javadoc:test-javadoc</report>
+									<report>javadoc</report>
+									<report>test-javadoc</report>
 								</reports>
 							</reportSet>
 
@@ -644,8 +644,8 @@
 									</tags>
 								</configuration>
 								<reports>
-									<report>javadoc:aggregate</report>
-									<report>javadoc:test-aggregate</report>
+									<report>aggregate</report>
+									<report>test-aggregate</report>
 								</reports>
 							</reportSet>
 							-->
