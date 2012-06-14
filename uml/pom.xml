@@ -24,10 +24,6 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<modules>
-		<module>sample</module>
-	</modules>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -190,84 +186,25 @@
 			<plugins>
 				<plugin>
 					<groupId>org.andromda.maven.plugins</groupId>
-					<artifactId>andromda-multi-source-plugin</artifactId>
-					<version>${andromda.version}</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>add-source</goal>
-							</goals>
-							<configuration>
-								<sourceDirectories>
-									<directory>${maven.build.src}/main/java</directory>
-									<directory>${maven.build.src}/main/resources</directory>
-									<directory>${maven.build.src}/main/dictionaries</directory>
-									<directory>${maven.build.src}/main/xml</directory>
-								</sourceDirectories>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.andromda.maven.plugins</groupId>
 					<artifactId>andromda-maven-plugin</artifactId>
 					<version>${andromda.version}</version>
 					<executions>
 						<execution>
+						        <phase>generate-sources</phase>
 							<goals>
-								<!--<goal>export2emf</goal> -->
+								<!--<goal>export2emf</goal>-->
 								<goal>run</goal>
 							</goals>
 							<configuration>
 								<configurationUri>file:${conf.dir}/${uml.type}/andromda-${model.name}.xml</configurationUri>
 								<!--<allowMultipleRuns>true</allowMultipleRuns> --> <!-- Yes for AndroMDA server -->
-								<magicDrawHome>/cygdrive/c/MagicDraw</magicDrawHome>
+								<!--<magicDrawHome>/MagicDrawUML16.5</magicDrawHome>-->
                                 <!-- Check model dates vs output file dates from previous gen, skip if files are later -->
 								<lastModifiedCheck>${lastModifiedCheck}</lastModifiedCheck>
 							</configuration>
 						</execution>
 					</executions>
 				</plugin>
-				<!--
-				<plugin>
-					<groupId>org.andromda.maven.plugins</groupId>
-					<artifactId>andromdapp-maven-plugin</artifactId>
-					<version>${andromda.version}</version>
-					-->
-                            		<!-- provides the injection of the script wrapper support into the class files (this should only
-                            		     be done when developing locally), uncomment this executions element to enable -->    
-                            		<!--                     		
-                            		<executions>
-                            		    <execution>
-                            		        <id>instrument-scripts</id>
-                            		        <goals>
-                            		            <goal>instrument-scripts</goal>
-                            		        </goals>
-                            		    </execution>
-                            		</executions> 
-                            		-->                  
-                            		<!--         		
-					<configuration>
-						<scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
-						<locations>
-							<location>
-								<rootPath>${project.basedir}/src/main/java</rootPath>
-								-->
-                                        			<!-- adjust these to include or exclude specific files, by default
-                                        			     all files found in the rootPath are considered
-                                        			<includes>
-                                        			    <include>relative/path/to/file/to/include/SomeClass.java</include>
-                                        			</includes>
-                                        			<excludes>
-                                        			    <exclude>relative/path/to/file/to/include/SomeClass.java</exclude>
-                                        			</excludes>
-                                        			-->
-                                        			<!--
-							</location>
-						</locations>
-					</configuration>
-				</plugin>
-				-->
                                 <plugin>
 					<groupId>org.andromda.maven.plugins.site</groupId>
 					<artifactId>andromda-site-plugin</artifactId>
@@ -364,7 +301,7 @@
 		<validation>true</validation>
 		<cartridge.filter></cartridge.filter>
 		<!--<conf.dir>${pom.basedir}/src/main/config/${uml.type}</conf.dir> -->
-		<nabla.mda.dir>${pom.basedir}/../..</nabla.mda.dir>		
+		<nabla.mda.dir>${pom.basedir}/../..</nabla.mda.dir>
 		<conf.dir>${nabla.mda.dir}/model/src/main/config</conf.dir>
 		<!--<model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules/${model.name}.uml</model.uri> -->
 		<configuration.mda.dir>${nabla.mda.dir}/configuration/${andromda.version}</configuration.mda.dir>
@@ -411,7 +348,8 @@
 		<hibernate.query.cache.factory>org.hibernate.cache.StandardQueryCacheFactory</hibernate.query.cache.factory>
 		<hibernate.enable.assoc.cache>false</hibernate.enable.assoc.cache>
 		<dao.enable.inheritance>true</dao.enable.inheritance>
-		<cache.provider>org.hibernate.cache.EhCacheProvider</cache.provider>
+		<!--<cache.provider>org.hibernate.cache.EhCacheProvider</cache.provider>-->
+		<cache.provider>org.hibernate.cache.HashtableCacheProvider</cache.provider>
 		<!-- Remoting configuration : by default, remoting is deactivated. -->
 		<!--
 		<remoting.type>none</remoting.type>
@@ -476,6 +414,53 @@
 				</plugins>
 			</build>
 		</profile>
+                <profile>
+                    <id>instrument</id>
+                    <activation>
+	            	<property>
+	            		<name>!profile.activation</name>
+	            	</property>
+	            </activation>
+                    <build>
+                        <pluginManagement>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.andromda.maven.plugins</groupId>
+                                    <artifactId>andromdapp-maven-plugin</artifactId>
+                                    <version>${andromda.version}</version>
+                                    <!-- provides the injection of the script wrapper support into the class files (this should only
+                                         be done when developing locally), uncomment this executions element to enable
+                                    <executions>
+                                        <execution>
+                                            <id>instrument-scripts</id>
+                                            <goals>
+                                                <goal>instrument-scripts</goal>
+                                            </goals>
+                                        </execution>
+                                    </executions>
+                                    -->
+                                    <configuration>
+                                        <scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
+                                        <locations>
+                                            <location>
+                                                <rootPath>${project.basedir}/src/main/java</rootPath>
+                                                <!-- adjust these to include or exclude specific files, by default
+                                                     all files found in the rootPath are considered
+                                                <includes>
+                                                    <include>relative/path/to/file/to/include/SomeClass.java</include>
+                                                </includes>
+                                                <excludes>
+                                                    <exclude>relative/path/to/file/to/include/SomeClass.java</exclude>
+                                                </excludes>
+                                                -->
+                                            </location>
+                                        </locations>
+                                    </configuration>
+                                </plugin>
+                            </plugins>
+                        </pluginManagement>
+                    </build>
+                </profile>
 		<profile>
 			<id>eclipse</id>
 			<build>
@@ -502,6 +487,17 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+                <profile>
+                    <id>sample</id>
+                    <activation>
+	            	<property>
+	            		<name>profile.activation</name>
+	            	</property>
+	            </activation>
+			<modules>
+				<module>sample</module>
+			</modules>
 		</profile>
 	</profiles>
 </project>
