@@ -67,9 +67,17 @@
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
         <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+        </dependency>         
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+        <dependency> 
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>        
         <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
         <!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6>
         <dependency>
@@ -101,11 +109,13 @@
             <version>${hibernate.commons.annotations.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <type>pom</type>
         </dependency>
+        -->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
@@ -237,6 +247,21 @@
                         <artifactId>hibernate-entitymanager</artifactId>
                         <version>${hibernate.entitymanager.version}</version>
                     </dependency>
+                  <dependency>
+                      <groupId>javax.validation</groupId>
+                      <artifactId>validation-api</artifactId>
+                      <version>${validation.api.version}</version>
+                  </dependency>    
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-api</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-simple</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>                           
                 </dependencies>
             </plugin>
             <plugin>
@@ -306,13 +331,30 @@
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-core</artifactId>
-                    <version>${hibernate3.version}</version>
+                    <!--<version>${hibernate3.version}</version>-->
+                    <version>${hibernate.core.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
-                    <version>${hibernate3.version}</version>
+                    <!--<version>${hibernate3.version}</version>-->
+                    <version>${hibernate.entitymanager.version}</version>
                   </dependency>
+                  <dependency>
+                      <groupId>javax.validation</groupId>
+                      <artifactId>validation-api</artifactId>
+                      <version>${validation.api.version}</version>
+                  </dependency>    
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-api</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-simple</artifactId>
+                      <version>${slf4j.version}</version>
+                  </dependency>                                        
                   <dependency>
                       <groupId>org.hibernate</groupId>
                       <artifactId>hibernate-validator</artifactId>
