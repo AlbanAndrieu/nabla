@@ -23,10 +23,6 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<modules>
-		<module>sample</module>
-	</modules>
-
 	<profiles>
 		<!-- ================= START Database Profiles ================= -->
 		<profile>
@@ -531,6 +527,17 @@
 		</profile>
 		<!-- ================= END Database Profiles ================= -->
 
+                <profile>
+                    <id>sample</id>
+                    <activation>
+	            	<property>
+	            		<name>profile.activation</name>
+	            	</property>
+	            </activation>
+			<modules>
+				<module>sample</module>
+			</modules>
+		</profile>
 	</profiles>
 
 </project>
