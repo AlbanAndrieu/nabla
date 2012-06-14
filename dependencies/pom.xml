@@ -1548,7 +1548,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Plugin version definitions -->
-		<maven.version>2.2.1</maven.version>
+		<maven.project.version>2.2.1</maven.project.version>
 		<plexus.util.version>2.0.7</plexus.util.version>
 		<plexus.container.default.version>1.5.5</plexus.container.default.version>
 
@@ -3368,12 +3368,14 @@
 				<version>${lucene.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			<!--
 			<dependency>
 				<groupId>org.apache.lucene</groupId>
 				<artifactId>lucene-similarity</artifactId>
 				<version>${lucene.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			-->
       			<!-- 
       			  groovy-all-1.5.4 provided by Seam-2.1.2, seam-2.2.0 and seam-2.2.1 root POM 
       			  does not work with the gmaven-1.2 and 1.3 plugin, must use groovy-1.7.x.
@@ -3918,12 +3920,14 @@
 				<version>${cxf.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			<!--
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-common-schemas</artifactId>
 				<version>${cxf.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			-->
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-common-utilities</artifactId>
@@ -3960,12 +3964,14 @@
 				<version>${cxf.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			<!--
 			<dependency>
 				<groupId>httpcomponents-httpcore</groupId>
 				<artifactId>jakarta-httpcore</artifactId>
 				<version>${jakarta.httpcore.version}</version>
 				<scope>runtime</scope>
 			</dependency>
+			-->
 			<dependency>
 				<groupId>org.apache.geronimo.specs</groupId>
 				<artifactId>geronimo-jms_1.1_spec</artifactId>
@@ -4093,11 +4099,13 @@
 				<version>${wss4j.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			<!--
 			<dependency>
 				<groupId>com.adobe.flex.compiler</groupId>
 				<artifactId>flex-messaging-common</artifactId>
 				<version>${flex.messaging.common.version}</version>
 			</dependency>
+			-->
 			<dependency>
 				<groupId>com.adobe.blazeds</groupId>
 				<artifactId>blazeds-remoting</artifactId>
@@ -4129,8 +4137,8 @@
 				<artifactId>ezmorph</artifactId>
 				<version>${ezmorph.version}</version>
 			</dependency>
+			<!--
 			<dependency>
-
 				<groupId>com.tibco</groupId>
 				<artifactId>tibrv</artifactId>
 				<version>${tibrv.version}</version>
@@ -4148,6 +4156,7 @@
 				<version>${jconnect.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			-->
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
@@ -4248,7 +4257,7 @@
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-project</artifactId>
-				<version>${maven.version}</version>
+				<version>${maven.project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>    	
