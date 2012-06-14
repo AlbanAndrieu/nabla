@@ -40,11 +40,13 @@
             <!--scope>provided</scope-->
         </dependency>
         <!-- Required by spring security.providers.encoding password decoder -->
+        <!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring3.version}</version>
         </dependency>
+        -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -282,10 +284,12 @@
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
+        -->
         <!-- 
         <dependency>
             <groupId>javax.el</groupId>
@@ -335,9 +339,11 @@
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
             </plugin>
+            <!--
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
             </plugin>
+            -->
         </plugins>
     </build>
 </project>
