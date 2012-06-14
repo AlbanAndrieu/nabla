@@ -43,13 +43,12 @@
 	</mailingLists>
 
 	<ciManagement>
-
+                <!--
 		<system>hudson</system>
 		<url>http://localhost:8070/hudson/</url>
-		<!--
+		-->
 		<system>jenkins</system>
-		<url>http://ec2-50-16-122-165.compute-1.amazonaws.com/hudson/job/alban/</url>
-        -->
+		<url>https://nabla.ci.cloudbees.com/</url>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
@@ -1978,7 +1977,7 @@
 						<optimize>${jdkOptimize}</optimize>
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
-						<encoding>${project.build.sourceEncodin}</encoding>
+						<encoding>${project.build.sourceEncoding}</encoding>
 						<compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
 						<!--
 							<verbose>true</verbose> <excludes>
@@ -2240,7 +2239,7 @@
         			    <stacktrace>${jdkDebug}</stacktrace>
         			    <targetBytecode>1.5</targetBytecode> <!-- is the value to compile for a JDK 1.5 or later JVM. -->
         			    <verbose>true</verbose> 
-        			    <sourceEncoding>${project.build.sourceEncodin}</sourceEncoding>
+        			    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
         			  </configuration>
         			
         			  <!--
