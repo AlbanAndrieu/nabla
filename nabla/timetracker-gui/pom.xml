@@ -103,8 +103,8 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>${hibernate3.version}</version>
-                <!--<version>${hibernate.core.version}</version>-->            
+                <!--<version>${hibernate3.version}</version>-->
+                <version>${hibernate.core.version}</version>        
                 <scope>provided</scope>
                 <exclusions>
                     <exclusion>
@@ -120,8 +120,8 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
-                <version>${hibernate3.version}</version>
-                <!--<version>${hibernate.entitymanager.version}</version>-->
+                <!--<version>${hibernate3.version}</version>-->
+                <version>${hibernate.entitymanager.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>cglib</groupId>
