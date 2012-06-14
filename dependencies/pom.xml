@@ -1258,12 +1258,12 @@
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
 		<!-- TODO fix env setting for overrided home.dir -->
-		<!--<home.dir>${env.HOME}</home.dir>
-		<home.dir>${env.WORKSPACE}</home.dir>
-		-->
+		<!--<home.dir>${env.HOME}</home.dir>		
 		<home.dir>C:\workspace\users\albandri10</home.dir>
+		-->
+		<home.dir>${env.WORKSPACE}</home.dir>
 		<!--<settings.localRepository>${env.M2_REPO}</settings.localRepository>-->
-		<deploy.dir>${home.dir}/fullsite</deploy.dir>		
+		<!--<deploy.dir>${home.dir}/fullsite</deploy.dir>-->		
 
 		<!-- TODO overrided in filter -->
 		<jdkLevel>1.6</jdkLevel>
@@ -1274,7 +1274,7 @@
 		<maven.test.failure.skip>false</maven.test.failure.skip>
 		<!-- TODO overrided in filter -->		
 
-		<copyright.year>2011</copyright.year>
+		<copyright.year>2012</copyright.year>
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
 		<!--<andromda.version>3.4-SNAPSHOT</andromda.version>-->
