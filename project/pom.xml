@@ -24,11 +24,6 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<modules>
-		<module>sample</module>
-		<!--<module>nabla</module>-->
-	</modules>
-
 	<profiles>
 		<profile>
 			<id>maven-3-site</id>
@@ -729,6 +724,17 @@
 				</plugins>
 			</build>
 		</profile>
+                <profile>
+                    <id>sample</id>
+                    <activation>
+	            	<property>
+	            		<name>profile.activation</name>
+	            	</property>
+	            </activation>
+			<modules>
+				<module>sample</module>
+			</modules>
+		</profile>		
 	</profiles>
 
 </project>
