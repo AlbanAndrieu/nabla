@@ -33,6 +33,9 @@ set ANDROMDA_HOME=C:\repo\org\andromda
 set JBOSS_HOME=C:\jboss-[[JBOSS_VERSION]]
 set JBOSS=%JBOSS_HOME%\bin
 
+set BEES_HOME=C:\cloudbees-sdk-[[BEES_VERSION]]
+set BEES=%BEES_HOME%
+
 set CMAKE_HOME=C:\CMake-[[CMAKE_MAJOR_VERSION]]
 set CMAKE=%CMAKE_HOME%\bin
 set GRAPHVIZ_HOME=C:\Graphviz[[GRAPHVIZ_MAJOR_VERSION]]
