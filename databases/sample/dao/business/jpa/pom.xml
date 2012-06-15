@@ -386,7 +386,7 @@
 		<!-- <jdbc.driver> org.apache.derby.jdbc.ClientDriver org.apache.derby.jdbc.EmbeddedDriver org.apache.derby.jdbc.AutoloadedDriver
 			</jdbc.driver> -->
 		<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
-		<jdbc.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.url>
+		<jdbc.url><![CDATA[jdbc:derby:~/${database.name};create=true]]></jdbc.url>
 		<!-- -->
 		<jdbc.username>user</jdbc.username>
 		<jdbc.password>user</jdbc.password>
