@@ -24,20 +24,10 @@
     	<tag>HEAD</tag>
     </scm>
 
-    <!--
-    <dependencies>
-        <dependency>
-            <groupId>org.andromda</groupId>
-            <artifactId>andromda-script-wrappers</artifactId>
-            <version>${andromda.version}</version>
-        </dependency>
-    </dependencies>
-    -->
-    
     <modules>
         <module>metafacades</module>
         <module>profiles</module>
-        <!--<module>cartridges</module>-->
+        <module>cartridges</module>
         <!--<module>empty</module>-->
         <!--
         <module>timetracker-hibernate</module>
