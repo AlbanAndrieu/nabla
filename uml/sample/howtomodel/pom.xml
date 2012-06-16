@@ -6,7 +6,7 @@
     <groupId>org.andromda.test</groupId>
     <artifactId>howtomodel</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>AndroMDA HowToModel Sample</name>
     <description>The howtomodel Project.</description>
     
@@ -763,7 +763,7 @@
         <application.id>howtomodel</application.id>
         <application.package>org.andromda.test</application.package>
         <application.name>howtomodel</application.name>
-        <application.version>1.0-SNAPSHOT</application.version>
+        <application.version>1.0</application.version>
         <dataSource.name>jdbc/${application.id}</dataSource.name>
         <dataSource>java:/${dataSource.name}</dataSource>
         <!-- SCM user ID and Password here, or in user specific settings.xml file -->
