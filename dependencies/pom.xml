@@ -1076,10 +1076,37 @@
 	<!-- http://mvnrepository.com/search.html -->
 	<repositories>
 		<repository>
+			<id>forge-releases</id>
+			<name>External Staging Repository</name>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>				
+		<repository>
+			<id>forge-snapshots</id>
+			<name>External Snapshot Repository</name>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+			<layout>default</layout>			
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>		
+	
+	        <!--
+		<repository>
 			<id>nabla-releases</id>
 			<name>Nabla Release Repository</name>
 			<url>http://alban.googlecode.com/svn/mavenrepo/releases</url>
-			<layout>default</layout>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -1091,7 +1118,6 @@
 			<id>nabla-snapshots</id>
 			<name>Nabla Snapshot Repository</name>
 			<url>http://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-			<layout>default</layout>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>daily</updatePolicy>
@@ -1101,11 +1127,11 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+		-->
 		<repository>
 			<id>openqa-releases</id>
 			<name>Openqa Release Repository</name>
 			<url>http://nexus.openqa.org/content/repositories/releases</url>
-			<layout>default</layout>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -1117,7 +1143,6 @@
 			<id>openqa-snapshots</id>
 			<name>Openqa Snapshot Repository</name>
 			<url>http://nexus.openqa.org/content/repositories/snapshots</url>
-			<layout>default</layout>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>daily</updatePolicy>
@@ -1201,6 +1226,17 @@
 
 	<pluginRepositories>
 		<pluginRepository>
+			<id>forge-plugins</id>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>	
+		<!--
+		<pluginRepository>
 			<id>nabla-plugins</id>
 			<url>http://alban.googlecode.com/svn/mavenrepo/releases</url>
 			<snapshots>
@@ -1210,6 +1246,7 @@
 				<enabled>true</enabled>
 			</releases>			
 		</pluginRepository>
+		-->
                 <pluginRepository>
                         <id>cloudbees-public-release</id>
                         <url>http://repository-cloudbees.forge.cloudbees.com/public-release</url>
