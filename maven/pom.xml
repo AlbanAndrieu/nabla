@@ -95,28 +95,51 @@
 		<build>
 		</build>
 		<distributionManagement>
+			<!--
 			<repository>
 				<id>server-releases</id>
 				<name>External Staging Repository</name>
 				<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
 				<uniqueVersion>false</uniqueVersion>
 			</repository>
+			-->
+			<repository>
+				<id>server-forge-releases</id>
+				<name>External Staging Repository</name>
+				<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+				<uniqueVersion>true</uniqueVersion>
+			</repository>				
+			    
+			<!--
 			<snapshotRepository>
 				<id>server-snapshots</id>
 				<name>External Snapshot Repository</name>
 				<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
 				<uniqueVersion>false</uniqueVersion>
 			</snapshotRepository>
+			-->
+			<snapshotRepository>
+				<id>server-forge-snapshots</id>
+				<name>External Snapshot Repository</name>
+				<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+				<uniqueVersion>true</uniqueVersion>
+			</snapshotRepository>	
 			<site>
 				<id>website</id>
 				<name>Project Website</name>
 				<url>ftp://www.nabla.mobi/maven</url>
 			</site>
 		</distributionManagement>
-        	<properties>
-        	    <repositoryId>server-snapshots</repositoryId>
-        	    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-        	</properties>    			
+            	<!--
+            	<properties>
+            	    <repositoryId>server-snapshots</repositoryId>
+            	    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+            	</properties>     
+            	--> 
+            	<properties>
+            	    <repositoryId>server-forge-snapshots</repositoryId>
+            	    <url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+            	</properties>  		
 	</profile>   
     </profiles>		
 
