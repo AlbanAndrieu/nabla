@@ -251,7 +251,7 @@
 				<repository>
 					<id>server-forge-releases</id>
 					<name>External Staging Repository</name>
-					<url>https://repository-nabla.forge.cloudbees.com/release</url>
+					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 					<uniqueVersion>true</uniqueVersion>
 				</repository>				
 				    
@@ -266,7 +266,7 @@
 				<snapshotRepository>
 					<id>server-forge-snapshots</id>
 					<name>External Snapshot Repository</name>
-					<url>https://repository-nabla.forge.cloudbees.com/snapshot</url>
+					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 					<uniqueVersion>true</uniqueVersion>
 				</snapshotRepository>				
 				<site>
@@ -282,8 +282,8 @@
             		</properties>     
             		--> 
             		<properties>
-            		    <repositoryId>server-forge-snapshots</repositoryId>
-            		    <url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+            		    <repositoryId>server-forge-releases</repositoryId>
+            		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             		</properties> 
 		</profile>
 		<!-- ================= END Environment Profiles ================= -->
