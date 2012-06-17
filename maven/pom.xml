@@ -61,31 +61,6 @@
 	
     <profiles>
 	<profile>
-		<id>local</id>
-        	<activation>            			
-		    <property>
-		    	<name>profile.activation</name>
-		    </property>
-        	</activation>
-		<distributionManagement>
-			<repository>
-				<id>local-releases</id>
-				<name>Internal Release Repository</name>
-				<url>${project.distributionManagement.repository.url}/releases/</url>
-			</repository>
-			<snapshotRepository>
-				<id>local-snapshots</id>
-				<name>Internal Snapshot Repository</name>
-				<url>${project.distributionManagement.repository.url}/snapshots/</url>
-			</snapshotRepository>
-			<site>
-				<id>website</id>
-				<name>Project Website</name>
-				<url>file:/tmp</url>
-			</site>
-		</distributionManagement>
-	</profile>
-	<profile>
 		<id>server</id>
 		<activation>
 			<property>
@@ -137,8 +112,8 @@
             	</properties>     
             	--> 
             	<properties>
-            	    <repositoryId>server-forge-snapshots</repositoryId>
-            	    <url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+            	    <repositoryId>server-forge-releases</repositoryId>
+            	    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             	</properties>  		
 	</profile>   
     </profiles>		
