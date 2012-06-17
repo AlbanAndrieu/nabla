@@ -240,18 +240,35 @@
 				-->
 			</build>
 			<distributionManagement>
+			        <!--
 				<repository>
 					<id>server-releases</id>
 					<name>External Staging Repository</name>
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
 					<uniqueVersion>false</uniqueVersion>
 				</repository>
+				-->
+				<repository>
+					<id>server-forge-releases</id>
+					<name>External Staging Repository</name>
+					<url>https://repository-nabla.forge.cloudbees.com/release</url>
+					<uniqueVersion>true</uniqueVersion>
+				</repository>				
+				    
+				<!--
 				<snapshotRepository>
 					<id>server-snapshots</id>
 					<name>External Snapshot Repository</name>
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
 					<uniqueVersion>false</uniqueVersion>
 				</snapshotRepository>
+				-->
+				<snapshotRepository>
+					<id>server-forge-snapshots</id>
+					<name>External Snapshot Repository</name>
+					<url>https://repository-nabla.forge.cloudbees.com/snapshot</url>
+					<uniqueVersion>true</uniqueVersion>
+				</snapshotRepository>				
 				<site>
 					<id>website</id>
 					<name>Project Website</name>
@@ -1187,6 +1204,16 @@
 				<enabled>true</enabled>
 			</releases>			
 		</pluginRepository>
+                <pluginRepository>
+                        <id>cloudbees-public-release</id>
+                        <url>http://repository-cloudbees.forge.cloudbees.com/public-release</url>
+                        <releases>
+                        	<enabled>true</enabled>
+                        </releases>
+                        <snapshots>
+                        	<enabled>false</enabled>
+                        </snapshots>
+                </pluginRepository>		
 		<pluginRepository>
 			<id>Mobilvox JS Plugin Snapshots</id>
 			<url>http://maven-js-plugin.sourceforge.net/m2snapshotrepo/</url>
@@ -1637,7 +1664,8 @@
 		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>
 		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
 		<maven.axistools.plugin.version>1.3</maven.axistools.plugin.version>
-		<maven.enforcer.plugin.version>1.1</maven.enforcer.plugin.version>
+		<maven.enforcer.plugin.version>1.1</maven.enforcer.plugin.version>        
+		<maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
 		<maven.doap.plugin.version>1.1</maven.doap.plugin.version>
 		<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>
 		<maven.help.plugin.version>2.0.2</maven.help.plugin.version>
@@ -2878,7 +2906,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven.enforcer.plugin.version}</version>                   
-                  </plugin>    		  	
+                  </plugin>    	
+    		  <plugin>
+    		    <groupId>com.cloudbees</groupId>
+    		    <artifactId>bees-maven-plugin</artifactId>
+    		    <version>${maven.bees.plugin.version}</version>
+    		  </plugin>                  	  	
     		</plugins>		
 	</build>
 	<dependencyManagement>
