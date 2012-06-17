@@ -154,8 +154,8 @@
             		</properties>     
             		--> 
             		<properties>
-            		    <repositoryId>server-forge-snapshots</repositoryId>
-            		    <url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+            		    <repositoryId>server-forge-releases</repositoryId>
+            		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             		</properties>  			
 		</profile>	
         </profiles>		
