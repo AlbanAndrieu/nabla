@@ -1536,8 +1536,9 @@
 		<wiser.version>1.2</wiser.version>
 
 		<google.api.client.version>1.0.10-alpha</google.api.client.version>
-		<gwt.version>2.4.0</gwt.version>
-		<!--<gwt.version>2.2.0</gwt.version>-->
+		<gwt.version>2.4.0</gwt.version>   
+		<gwtp.all.version>0.7</gwtp.all.version>
+		<gwt.seam.version>1.0</gwt.seam.version>
 		
 		<selenium.version>0.8.1</selenium.version>
 		<myfaces.version>1.2.9</myfaces.version>
@@ -3892,6 +3893,296 @@
     			  <type>ejb</type>
     			  <scope>test</scope>
     			</dependency>
+    			
+                        <!-- 
+                          Fix transitive dependencies in Seam root pom.
+                          Exclusions defined in seam root pom DO NOT inherit so we have to duplicate them :-(
+                          
+                          Sections marked with ** are additional exclusions not found in the seam root pom
+                          
+                          The following sites has helped figuring out the transitive dependencies:
+                          http://www.reverttoconsole.com/blog/java/maven-transitive-dependencies-with-jboss-seam-richfaces-in-ear-deployement/
+                          https://www.jboss.org/community/wiki/RichFacesPhotositedemoapplication/
+                          http://www.jboss.org/portletbridge/
+                          http://ctpjava.blogspot.com/2009/03/jboss-seam-hot-deploy-with-maven-update.html
+                          http://blogs.steeplesoft.com/seam-and-jpa-hibernate-on-oc4j-1013/
+                          http://docs.jboss.com/seam/2.1.2.CR2/reference/en-US/html/dependencies.html
+                          http://kasper.eobjects.dk/2009/04/seam-ejbs-and-ear-packaging-in-maven.html
+                          
+                          * To find and list transitive dependencies: 
+                            mvn install dependency:tree 
+                          
+                          * To write the dependency content into a file, type e.g:
+                            mvn install dependency:tree > dependency.txt			 
+                        -->            
+                        <!-- JBoss Seam -->
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam</artifactId>
+                          <version>${seam.version}</version>
+                          <type>ejb</type>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>javax.el</groupId>
+                              <artifactId>el-api</artifactId>
+                            </exclusion>
+                            <exclusion>
+                               <groupId>javax.servlet</groupId>
+                               <artifactId>servlet-api</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>jboss</groupId>
+                              <artifactId>javassist</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>dom4j</groupId>
+                              <artifactId>dom4j</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javassist</groupId>
+                              <artifactId>javassist</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>commons-collections</groupId>
+                              <artifactId>commons-collections</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam-pdf</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>com.sun.facelets</groupId>
+                              <artifactId>jsf-facelets</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>com.thoughtworks.xstream</groupId>
+                              <artifactId>xstream</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>xpp3</groupId>
+                              <artifactId>xpp3_min</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-debug</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam-pdf</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.servlet</groupId>
+                              <artifactId>servlet-api</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.el</groupId>
+                              <artifactId>el-api</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>com.sun.facelets</groupId>
+                              <artifactId>jsf-facelets</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>commons-collections</groupId>
+                              <artifactId>commons-collections</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-ui</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>commons-logging</groupId>
+                              <artifactId>commons-logging</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam-jul</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.servlet</groupId>
+                              <artifactId>servlet-api</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>commons-beanutils</groupId>
+                              <artifactId>commons-beanutils</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <artifactId>commons-digester</artifactId>
+                              <groupId>commons-digester</groupId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-pdf</artifactId>
+                          <version>${seam.version}</version>
+  	                  <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>com.lowagie</groupId>
+                              <artifactId>itext</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>com.lowagie</groupId>
+                              <artifactId>itext-rtf</artifactId>
+                            </exclusion>
+                          </exclusions>                            
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-mail</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                          </exclusions>              
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-remoting</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>jboss</groupId>
+                              <artifactId>javassist</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.el</groupId>
+                              <artifactId>el-api</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <artifactId>dom4j</artifactId>
+                              <groupId>dom4j</groupId>
+                            </exclusion>
+                          </exclusions>              
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-ioc</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.servlet</groupId>
+                              <artifactId>servlet-api</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-resteasy</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <!-- ** -->
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                              
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-excel</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.seam</groupId>
+                          <artifactId>jboss-seam-jul</artifactId>
+                          <version>${seam.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>org.jboss.seam</groupId>
+                              <artifactId>jboss-seam</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>org.jboss.el</groupId>
+                              <artifactId>jboss-el</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                                    
+                        <dependency>
+                            <groupId>org.jboss.seam.international</groupId>
+                            <artifactId>seam-international</artifactId>
+                            <version>${seam.international.version}</version>
+                        </dependency>       
+                			
 			<!-- Axis2 Dependencies -->
 			<!-- TODO Update to 1.3 or later breaks webservice template code -->
 			<dependency>
