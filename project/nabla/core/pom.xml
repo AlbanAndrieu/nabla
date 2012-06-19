@@ -18,6 +18,7 @@
 	<!-- This element provides a basic description of your project -->
 	<description>Core project</description>
 	<modules>
-		<module>etl</module>
+		<!--<module>etl</module>-->
+		<module>gwt-seam</module>
 	</modules>
 </project>
