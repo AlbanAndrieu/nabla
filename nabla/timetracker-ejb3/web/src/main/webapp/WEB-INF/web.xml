@@ -161,8 +161,8 @@
     <!-- ************************ RichFaces Config **************************** -->
     <context-param>
     	<param-name>org.richfaces.SKIN</param-name>
-    	<!--<param-value>glassX</param-value>-->
-    	<param-value>ruby</param-value>
+    	<param-value>glassX</param-value>
+    	<!--<param-value>ruby</param-value>-->
     </context-param>
     
     <!-- Suppress spurious stylesheets -->
@@ -283,72 +283,8 @@
 
 
     <!--
-    <filter>
-        <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-class>
-    </filter>
-    <filter>
-        <filter-name>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-class>
-    </filter>
 
-    <filter>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-class>
-    </filter>
 
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageUserFormPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/domain/crud/user-crud.seam</url-pattern>
-    </filter-mapping>
-    <filter>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
-        <filter-class>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/domain/crud/task-crud.seam</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.web.timecardsearch.SearchTimecardsPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecards.seam</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>org.andromda.timetracker.web.timecarddetails.TimecardPopulator</filter-name>
-        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard.seam</url-pattern>
-    </filter-mapping>
-    -->
-    <!--
-    <servlet>
-        <servlet-name>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>org.andromda.timetracker.web.timecardsearch.SearchTimecards</servlet-name>
-        <url-pattern>/org/andromda/timetracker/web/timecardsearch/search-timecardsuc.seam</url-pattern>
-    </servlet-mapping>    
-    -->
-    <!--
-    <servlet>
-        <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>org.andromda.timetracker.web.timetrackerhome.TimeTrackerHome</servlet-name>
-        <url-pattern>/org/andromda/timetracker/web/timetrackerhome/time-tracker-homeuc.seam</url-pattern>
-    </servlet-mapping>    
-    -->
-    <!--
-    <servlet>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <servlet-class>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>org.andromda.timetracker.web.timecarddetails.TimecardDetails</servlet-name>
-        <url-pattern>/org/andromda/timetracker/web/timecarddetails/timecard-details.seam</url-pattern>
-    </servlet-mapping>    
     -->
     <session-config>
         <session-timeout>45</session-timeout>
