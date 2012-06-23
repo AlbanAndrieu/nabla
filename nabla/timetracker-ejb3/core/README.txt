@@ -30,3 +30,8 @@ Remove components.xml from core project because it does not work in core-test pr
 TestNG does not work in eclipse without add -Dsun.lang.ClassLoader.allowArraySyntax=true in the VM args
 
 In order to enable seam facet : add Seam 2 Runtime with C:\jboss-seam-2.2.1.Final
+
+for GWT access to Seam see :
+http://virgo47.wordpress.com/2010/02/09/jboss-seam-gwt-2-support/
+http://code.google.com/p/gwt-seam/wiki/GettingStartedGWTRPC
+based on : http://docs.jboss.com/seam/2.1.1.GA/reference/en-US/html/gwt.html and http://unrealities.com/seamgwt/ http://unrealities.com/seamgwt/article_0.2.html
