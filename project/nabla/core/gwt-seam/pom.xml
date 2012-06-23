@@ -26,6 +26,7 @@
 			<groupId>com.gwtplatform</groupId>
 			<artifactId>gwtp-all</artifactId>
 			<version>${gwtp.all.version}</version>
+			<scope>provided</scope>			
 		</dependency>		            				
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
