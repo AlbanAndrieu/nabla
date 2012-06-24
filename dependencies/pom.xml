@@ -122,9 +122,9 @@
     		  <id>show-properties</id>
 		  <activation>
 		  	<property>
-		  		<name>profile.activation</name> 
+		  		<name>profile.activation</name>
 		  	</property>
-		  </activation>    		  
+		  </activation>
     		  <build>
     		    <plugins>
     		      <plugin>
@@ -152,9 +152,9 @@
     		                else {
     		                  log.info "No active profiles"
     		                }
-    		                
+
     		                // Pattern to match ${property} placeholders
-    		                def placeholderPattern = ~/\$\{(.*?)\}/;  
+    		                def placeholderPattern = ~/\$\{(.*?)\}/;
     		                log.info ""
     		                log.info "========================================================================"
     		                log.info "Maven project.properties:"
@@ -164,7 +164,7 @@
     		                log.info "project.artifactId      = $project.artifactId";
     		                log.info "project.build.directory = $project.build.directory";
     		                log.info "project.build.finalName = $project.build.finalName";
-    		                
+
     		                project.properties.sort{it.key}.each { key, value ->
     		                  def matcher = placeholderPattern.matcher(value);
     		                  if(matcher)
@@ -175,13 +175,13 @@
     		                log.info "========================================================================"
     		              ]]>
     		              </source>
-    		            </configuration>                
+    		            </configuration>
     		          </execution>
     		        </executions>
-    		      </plugin>      
+    		      </plugin>
     		    </plugins>
     		  </build>
-    		</profile>	 		
+    		</profile>
 		<!--Profile configuration for local builds -->
 		<profile>
 			<id>local</id>
@@ -253,8 +253,8 @@
 					<name>External Staging Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 					<uniqueVersion>true</uniqueVersion>
-				</repository>				
-				    
+				</repository>
+
 				<!--
 				<snapshotRepository>
 					<id>server-snapshots</id>
@@ -268,7 +268,7 @@
 					<name>External Snapshot Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 					<uniqueVersion>true</uniqueVersion>
-				</snapshotRepository>				
+				</snapshotRepository>
 				<site>
 					<id>website</id>
 					<name>Project Website</name>
@@ -279,12 +279,12 @@
             		<properties>
             		    <repositoryId>server-snapshots</repositoryId>
             		    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-            		</properties>     
-            		--> 
+            		</properties>
+            		-->
             		<properties>
             		    <repositoryId>server-forge-releases</repositoryId>
             		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
-            		</properties> 
+            		</properties>
 		</profile>
 		<!-- ================= END Environment Profiles ================= -->
 
@@ -1075,6 +1075,7 @@
 
 	<!-- http://mvnrepository.com/search.html -->
 	<repositories>
+	        <!--
 		<repository>
 			<id>forge-releases</id>
 			<name>External Staging Repository</name>
@@ -1086,12 +1087,12 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>				
+		</repository>
 		<repository>
 			<id>forge-snapshots</id>
 			<name>External Snapshot Repository</name>
 			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
-			<layout>default</layout>			
+			<layout>default</layout>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>daily</updatePolicy>
@@ -1100,8 +1101,8 @@
 			<releases>
 				<enabled>false</enabled>
 			</releases>
-		</repository>		
-	
+		</repository>
+	        -->
 	        <!--
 		<repository>
 			<id>nabla-releases</id>
@@ -1234,7 +1235,7 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</pluginRepository>	
+		</pluginRepository>
 		<!--
 		<pluginRepository>
 			<id>nabla-plugins</id>
@@ -1244,7 +1245,7 @@
 			</snapshots>
 			<releases>
 				<enabled>true</enabled>
-			</releases>			
+			</releases>
 		</pluginRepository>
 		-->
                 <pluginRepository>
@@ -1256,7 +1257,7 @@
                         <snapshots>
                         	<enabled>false</enabled>
                         </snapshots>
-                </pluginRepository>		
+                </pluginRepository>
 		<pluginRepository>
 			<id>Mobilvox JS Plugin Snapshots</id>
 			<url>http://maven-js-plugin.sourceforge.net/m2snapshotrepo/</url>
@@ -1328,21 +1329,21 @@
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
 		<!-- TODO fix env setting for overrided home.dir -->
-		<!--<home.dir>${env.HOME}</home.dir>		
+		<!--<home.dir>${env.HOME}</home.dir>
 		<home.dir>C:\workspace\users\albandri10</home.dir>
 		-->
 		<home.dir>${env.WORKSPACE}</home.dir>
 		<!--<settings.localRepository>${env.M2_REPO}</settings.localRepository>-->
-		<!--<deploy.dir>${home.dir}/fullsite</deploy.dir>-->		
+		<!--<deploy.dir>${home.dir}/fullsite</deploy.dir>-->
 
 		<!-- TODO overrided in filter -->
 		<jdkLevel>1.6</jdkLevel>
 		<jdkDebug>true</jdkDebug>
-		<jdkOptimize>false</jdkOptimize> 
-		
+		<jdkOptimize>false</jdkOptimize>
+
 		<maven.test.skip>false</maven.test.skip>
 		<maven.test.failure.skip>false</maven.test.failure.skip>
-		<!-- TODO overrided in filter -->		
+		<!-- TODO overrided in filter -->
 
 		<copyright.year>2012</copyright.year>
 
@@ -1435,7 +1436,8 @@
 		<jdbc.derby.version>10.3.1.4</jdbc.derby.version>
 		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
 		<jconn.version>6.0</jconn.version>
-		<asm.version>2.2.3</asm.version> <!-- works with cglib -->
+		<!--<asm.version>2.2.3</asm.version>--> <!-- error running openejb -->
+		<asm.version>3.3.1</asm.version> <!-- works with cglib -->
 		<cglib.version>2.2</cglib.version>
 		<!--<cglib.nodep.version>2.1_3</cglib.nodep.version>-->
 		<cglib.nodep.version>2.2.2</cglib.nodep.version>
@@ -1452,7 +1454,7 @@
 		<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
 		<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
 		<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
-    		<openejb.core.version>3.1.4</openejb.core.version>    		
+    		<openejb.core.version>3.1.4</openejb.core.version>
     		<seam.embedded.version>beta3.SP15</seam.embedded.version>
     		<seam.utils.version>1.0</seam.utils.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
@@ -1536,10 +1538,12 @@
 		<wiser.version>1.2</wiser.version>
 
 		<google.api.client.version>1.0.10-alpha</google.api.client.version>
-		<gwt.version>2.4.0</gwt.version>   
+		<!--<gwt.version>2.5.0-rc1</gwt.version>-->
+		<gwt.version>2.4.0</gwt.version>
+		<gae.version>1.5.3</gae.version>
 		<gwtp.all.version>0.7</gwtp.all.version>
 		<gwt.seam.version>1.0</gwt.seam.version>
-		
+
 		<selenium.version>0.8.1</selenium.version>
 		<myfaces.version>1.2.9</myfaces.version>
 		<!--<myfaces.version>1.2.11</myfaces.version> does not work-->
@@ -1606,7 +1610,7 @@
 
 		<xml.resolver>1.2</xml.resolver>
 		<xmlschema.version>1.4.6</xmlschema.version>
-		<xmlsec.version>1.4.3</xmlsec.version> 
+		<xmlsec.version>1.4.3</xmlsec.version>
 		<wss4j.version>1.5.8</wss4j.version>
 		<wsdl4j.version>1.6.2</wsdl4j.version>
 		<groovy.version>1.7.2</groovy.version>
@@ -1668,7 +1672,7 @@
 		<maven.scm.plugin.version>1.2</maven.scm.plugin.version>
 		<maven.checkstyle.plugin.version>2.7</maven.checkstyle.plugin.version>
 		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
-		<maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
 		<maven.dependency.plugin.version>2.2</maven.dependency.plugin.version>
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 		<maven.replacer.plugin.version>1.4.0</maven.replacer.plugin.version>
@@ -1693,7 +1697,7 @@
 		<maven.site.plugin.version>3.1</maven.site.plugin.version>
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.buildnumber.plugin.version>1.0</maven.buildnumber.plugin.version>
-		<maven.gmaven.plugin.version>1.4</maven.gmaven.plugin.version>		
+		<maven.gmaven.plugin.version>1.4</maven.gmaven.plugin.version>
 		<maven.verifier.plugin.version>1.0-beta-1</maven.verifier.plugin.version>
 		<maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
 		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
@@ -1708,7 +1712,7 @@
 		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>
 		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
 		<maven.axistools.plugin.version>1.3</maven.axistools.plugin.version>
-		<maven.enforcer.plugin.version>1.1</maven.enforcer.plugin.version>        
+		<maven.enforcer.plugin.version>1.1</maven.enforcer.plugin.version>
 		<maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
 		<maven.doap.plugin.version>1.1</maven.doap.plugin.version>
 		<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>
@@ -1913,7 +1917,7 @@
             					 	 	 	 	<versionRange>[${maven.properties.maven.plugin.version},)</versionRange>
             					 	 	 	 	<goals>
             					 	 	 	 	 	<goal>read-project-properties</goal>
-            					 	 	 	 	 	<goal>write-active-profile-properties</goal>            					 	 	 	 	 	
+            					 	 	 	 	 	<goal>write-active-profile-properties</goal>
             					 	 	 	 	</goals>
             					 	 	 	</pluginExecutionFilter>
             					 	 	 	<action>
@@ -1923,7 +1927,7 @@
             					 	 	<pluginExecution>
             					 	 	 	<pluginExecutionFilter>
 										<groupId>org.codehaus.gmaven</groupId>
-        			  						<artifactId>gmaven-plugin</artifactId>  					 	 	 	 	
+        			  						<artifactId>gmaven-plugin</artifactId>
             					 	 	 	 	<versionRange>[${maven.gmaven.plugin.version},)</versionRange>
             					 	 	 	 	<goals>
             					 	 	 	 	 	<goal>execute</goal>
@@ -1945,7 +1949,7 @@
             					 	 	 	<action>
             					 	 	 	 	<ignore></ignore>
             					 	 	 	</action>
-            					 	 	</pluginExecution>        
+            					 	 	</pluginExecution>
             					 	 	<pluginExecution>
             					 	 	 	<pluginExecutionFilter>
             					 	 	 	 	<groupId>org.codehaus.mojo</groupId>
@@ -1958,7 +1962,8 @@
             					 	 	 	<action>
             					 	 	 	 	<ignore></ignore>
             					 	 	 	</action>
-            					 	 	</pluginExecution>  
+            					 	 	</pluginExecution>
+            					 	 	<!--
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                           <groupId>org.codehaus.mojo</groupId>
@@ -1971,7 +1976,35 @@
                                                                         <action>
                                                                           <execute />
                                                                         </action>
-                                                                </pluginExecution>            					 	 	               					 	 	    				 	 	            					 	 	            					 	 	
+                                                                </pluginExecution>
+                                                                -->
+                                                                <pluginExecution>
+                                                                  <pluginExecutionFilter>
+                                                                    <groupId>net.kindleit</groupId>
+                                                                    <artifactId>maven-gae-plugin</artifactId>
+                                                                    <versionRange>[0.7.3,)</versionRange>
+                                                                    <goals>
+                                                                      <goal>unpack</goal>
+                                                                    </goals>
+                                                                  </pluginExecutionFilter>
+                                                                  <action>
+                                                                    <execute />
+                                                                  </action>
+                                                                </pluginExecution>
+                                                                
+                                                                <pluginExecution>
+                                                                  <pluginExecutionFilter>
+                                                                    <groupId>org.bsc.maven</groupId>
+                                                                    <artifactId>maven-processor-plugin</artifactId>
+                                                                    <versionRange>[2.0.5,)</versionRange>
+                                                                    <goals>
+                                                                      <goal>process</goal>
+                                                                    </goals>
+                                                                  </pluginExecutionFilter>
+                                                                  <action>
+                                                                    <execute />
+                                                                  </action>
+                                                                </pluginExecution>
             					 	</pluginExecutions>
             					</lifecycleMappingMetadata>
 					</configuration>
@@ -1990,7 +2023,7 @@
         			    </execution>
         			  </executions>
         			</plugin>
-        			
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
@@ -2040,7 +2073,7 @@
 						<groupId>ant</groupId> <artifactId>ant-trax</artifactId>
 						<version>1.6.5</version> </dependency> </dependencies>
 					-->
-				</plugin> 
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -2134,7 +2167,7 @@
 										<version>[${jdkLevel},)</version>
 										<!-- <version>[1.6.0,]</version> -->
 									</requireJavaVersion>
-                            						<DependencyConvergence/>                            
+                            						<DependencyConvergence/>
 									<requirePluginVersions>
 										<message>Best Practice is to always define plugin versions!</message>
 										<banLatest>true</banLatest>
@@ -2234,12 +2267,10 @@
 						<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 						<!-- when forked, debugging in Eclipse won't work -->
 						<!--<forkMode>never</forkMode>-->
-						<!--
-							pertest forkMode is broken in version 2.2. use version 2.1.3
-							instead. RT 6/30/06 <forkMode>pertest</forkMode>
-						-->
 						<forkMode>once</forkMode>
-						<!--<forkMode>pertest</forkMode> -->
+						<!--<forkMode>pertest</forkMode>-->
+                        <!--<forkMode>always</forkMode>-->
+						<useManifestOnlyJar>false</useManifestOnlyJar>
 						<!-- shows total/fail/error summaries on stdout: -->
 						<printSummary>true</printSummary>
 						<!-- this gives test class name & time elapsed in report files: -->
@@ -2263,11 +2294,18 @@
                         				        <value>~/cobertura.ser</value>
                         				</property>
 						</systemPropertyVariables>
-						<!--
-						<includes>
-							<include>**/*Test.java</include>
-						</includes>
-						-->
+						 <!-- Add source folders to test classpath in order to run gwt-tests as normal junit-tests -->
+          					<additionalClasspathElements>
+          					  <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
+          					  <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
+          					</additionalClasspathElements>
+          					<!-- Folder for generated testing stuff -->
+          					<systemProperties>
+          					  <property>
+          					    <name>gwt.args</name>
+          					    <value>-out ${project.build.directory}/${project.build.finalName}</value>
+          					  </property>
+          					</systemProperties>						
 					</configuration>
 
 					<!--
@@ -2303,7 +2341,7 @@
       				  	  	  </goals>
       				  	  	</execution>
       				  	</executions>
-      				</plugin>      				
+      				</plugin>
        				<!--
         			  see: http://docs.codehaus.org/display/GMAVEN/Home
         			-->
@@ -2316,22 +2354,22 @@
         			    <debug>${jdkDebug}</debug>
         			    <stacktrace>${jdkDebug}</stacktrace>
         			    <targetBytecode>1.5</targetBytecode> <!-- is the value to compile for a JDK 1.5 or later JVM. -->
-        			    <verbose>true</verbose> 
+        			    <verbose>true</verbose>
         			    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
         			  </configuration>
-        			
+
         			  <!--
-        			    By default, GMaven 1.3 will always use Groovy 1.7.0 for compilation, no matter which 
+        			    By default, GMaven 1.3 will always use Groovy 1.7.0 for compilation, no matter which
         			    Groovy version you have on the class path. This is here to to configure GMaven to use a
-        			    different Groovy version, see e.g. 
+        			    different Groovy version, see e.g.
         			      http://code.google.com/p/spock/source/browse/branches/groovy-1.7/spock-example/pom.xml
-        			   -->          
+        			   -->
         			  <dependencies>
         			    <dependency>
         			      <groupId>org.codehaus.gmaven.runtime</groupId>
         			      <artifactId>gmaven-runtime-1.7</artifactId>
         			      <version>${maven.gmaven.plugin.version}</version>
-        			      
+
         			      <exclusions>
         			        <exclusion>
         			          <groupId>org.codehaus.groovy</groupId>
@@ -2339,20 +2377,20 @@
         			        </exclusion>
         			      </exclusions>
         			    </dependency>
-        			    
+
         			    <dependency>
         			      <groupId>org.codehaus.groovy</groupId>
         			      <artifactId>groovy-all</artifactId>
         			      <version>${groovy.version}</version>
         			    </dependency>
         			  </dependencies>
-        			
-        			  <!-- 
+
+        			  <!--
         			    Add this to pom where plugin is actually used. see e.g. groovybooking-jee project
-        			    see: http://communitymapbuilder.org/pages/viewpage.action?pageId=110166073 
+        			    see: http://communitymapbuilder.org/pages/viewpage.action?pageId=110166073
         			    see: http://btilford.blogspot.com/2010_02_01_archive.html
         			  -->
-        			  <!--           
+        			  <!--
         			  <executions>
         			    <execution>
         			      <goals>
@@ -2364,7 +2402,7 @@
         			    </execution>
         			  </executions>
         			  -->
-        			</plugin>      				
+        			</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>xdoclet-maven-plugin</artifactId>
@@ -2415,12 +2453,12 @@
 							</manifest>
 							<manifestEntries>
                                                                 <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
-                                                                <Url>${project.url}</Url>							
+                                                                <Url>${project.url}</Url>
 								<Implementation-Title>${product.title}</Implementation-Title>
 								<Implementation-Version>${product.version}</Implementation-Version>
      			        				<Build-Date>${timestamp}</Build-Date>
       			        				<Build-Revision>${buildNumber}</Build-Revision>
-      			        				<Mode>${environment}</Mode>								
+      			        				<Mode>${environment}</Mode>
 							</manifestEntries>
 						</archive>
 						<includeJar>false</includeJar>
@@ -2436,40 +2474,40 @@
 					<artifactId>maven-ear-plugin</artifactId>
 					<version>${maven.ear.plugin.version}</version>
 					<configuration>
-                                          <!-- 
+                                          <!--
                                             MNGECLIPSE-1541:
-                                            During the import of a mavenized ear project (File > Import... > General > Maven Projects) 
+                                            During the import of a mavenized ear project (File > Import... > General > Maven Projects)
                                             an application.xml file is generated in src/main/application/META-INF/application.xml.
                                             https://issues.sonatype.org/browse/MNGECLIPSE-1541
-                                            
-                                            MNGECLIPSE-2145: 
+
+                                            MNGECLIPSE-2145:
                                             Generated application.xml doesn't contain final names
                                             https://issues.sonatype.org/browse/MNGECLIPSE-2145
-                                            
+
                                             To fix this we excludes the eclipse generated application.xml during mvn package
                                           -->
                                           <earSourceExcludes>**/application.xml</earSourceExcludes>
-                                          
+
                                           <!-- Use maven generated application.xml -->
                                           <generateApplicationXml>true</generateApplicationXml>
-                                          
+
                                           <version>5</version>
                                           <defaultLibBundleDir>lib</defaultLibBundleDir>
-                                          <encoding>${project.build.sourceEncoding}</encoding>					
+                                          <encoding>${project.build.sourceEncoding}</encoding>
           				  <archive>
                                             <manifest>
                                               <addClasspath>true</addClasspath>
                                               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                            </manifest>          				  
+                                            </manifest>
           				    <manifestEntries>
                                               <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
-                                              <Url>${project.url}</Url>          				    
+                                              <Url>${project.url}</Url>
           				      <Build-Date>${timestamp}</Build-Date>
           				      <Build-Revision>${buildNumber}</Build-Revision>
           				      <Mode>${environment}</Mode>
           				    </manifestEntries>
           				  </archive>
-          				</configuration>					        				      								
+          				</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -2523,7 +2561,7 @@
 							<!-- Custom Entries -->
 							<manifestEntries>
                                                                 <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
-                                                                <Url>${project.url}</Url>							
+                                                                <Url>${project.url}</Url>
 								<Specification-Title>${project.name}</Specification-Title>
 								<Specification-Version>${project.version}</Specification-Version>
 								<Specification-Vendor>${project.organization.name}</Specification-Vendor>
@@ -2536,7 +2574,7 @@
 								<X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>
 								<Build-Date>${timestamp}</Build-Date>
         				      			<Build-Revision>${buildNumber}</Build-Revision>
-        				      			<Mode>${environment}</Mode>								
+        				      			<Mode>${environment}</Mode>
 							</manifestEntries>
 
 							<!--
@@ -2578,7 +2616,7 @@
 					<artifactId>antlr3-maven-plugin</artifactId>
 					<version>${maven.antlr3.plugin.version}</version>
 				</plugin>
-				<plugin>				
+				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>native2ascii-maven-plugin</artifactId>
 					<version>${maven.native2ascii.maven.plugin.version}</version>
@@ -2628,20 +2666,20 @@
         				      <filtering>true</filtering>
         				    </webResource>
         				  </webResources>
-        				  <archive>		  
+        				  <archive>
                                             <manifest>
                                               <addClasspath>true</addClasspath>
                                               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                            </manifest>        				  
-        				    <manifestEntries>        				    
+                                            </manifest>
+        				    <manifestEntries>
                 		              <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
-                		              <Url>${project.url}</Url>        				    
+                		              <Url>${project.url}</Url>
         				      <Build-Date>${timestamp}</Build-Date>
         				      <Build-Revision>${buildNumber}</Build-Revision>
         				      <Mode>${environment}</Mode>
         				    </manifestEntries>
         				  </archive>
-        				</configuration>					
+        				</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -2893,7 +2931,7 @@
                                     <groupId>org.mortbay.jetty</groupId>
                                     <artifactId>jetty-maven-plugin</artifactId>
                                     <version>${maven.jetty.plugin.version}</version>
-                                </plugin>				
+                                </plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>tomcat-maven-plugin</artifactId>
@@ -2903,23 +2941,23 @@
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>gwt-maven-plugin</artifactId>
                                         <version>${maven.gwt.plugin.version}</version>
-                                </plugin>				
+                                </plugin>
 			</plugins>
 		</pluginManagement>
-		
-    		<plugins>  
-    		  <!--     
-    		    Maven filter properties are ony visible to resources and can not be 
+
+    		<plugins>
+    		  <!--
+    		    Maven filter properties are ony visible to resources and can not be
     		    accessed from the POM. This is where the Properties Maven Plugin makes
-    		    our life a little easier when dealing with properties that we need to 
-    		    access inside our POM. It provides goals to read and write properties 
-    		    from and to files, and also to set system properties. It's main use-case 
-    		    is loading properties from files instead of declaring them in pom.xml, 
-    		    something that comes in handy when dealing with different environments. 
-    		    The plugin is configured to read properties during the "validate" phase 
+    		    our life a little easier when dealing with properties that we need to
+    		    access inside our POM. It provides goals to read and write properties
+    		    from and to files, and also to set system properties. It's main use-case
+    		    is loading properties from files instead of declaring them in pom.xml,
+    		    something that comes in handy when dealing with different environments.
+    		    The plugin is configured to read properties during the "validate" phase
     		    and the properties are then accessible from the pom.
-    		  -->      
-    		  <plugin> 
+    		  -->
+    		  <plugin>
     		    <groupId>org.codehaus.mojo</groupId>
     		    <artifactId>properties-maven-plugin</artifactId>
         	    <executions>
@@ -2945,18 +2983,18 @@
     		        </configuration>
     		      </execution>
     		    </executions>
-    		  </plugin>	
+    		  </plugin>
                   <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${maven.enforcer.plugin.version}</version>                   
-                  </plugin>    	
+                    <version>${maven.enforcer.plugin.version}</version>
+                  </plugin>
     		  <plugin>
     		    <groupId>com.cloudbees</groupId>
     		    <artifactId>bees-maven-plugin</artifactId>
     		    <version>${maven.bees.plugin.version}</version>
-    		  </plugin>                  	  	
-    		</plugins>		
+    		  </plugin>
+    		</plugins>
 	</build>
 	<dependencyManagement>
 		<dependencies>
@@ -3025,8 +3063,8 @@
 				<groupId>org.beanshell</groupId>
 				<artifactId>bsh</artifactId>
 				<version>${org.beanshell.bsh.version}</version>
-			</dependency>		
-			
+			</dependency>
+
 			<dependency>
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
@@ -3132,12 +3170,13 @@
 				<version>${google.api.client.version}</version>
 				<scope>compile</scope>
 			</dependency>
-			<!-- see pom in database -->
+			<!-- see pom in database -->			
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate</artifactId>
 				<version>${hibernate.version}</version>
-				<scope>compile</scope>
+				<!--<scope>compile</scope> error when deployed in jboss -->
+				<scope>provided</scope>
 				<exclusions>
 					<exclusion>
 						<groupId>javax.transaction</groupId>
@@ -3156,7 +3195,7 @@
 						<artifactId>cglib</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
+			</dependency>			
                         <!-- For JBoss AS6 and earlier: Avoid NoSuchMethodException: org.hibernate.validator.ClassValidator.<init> -->
                         <dependency>
                             <groupId>org.hibernate</groupId>
@@ -3215,8 +3254,8 @@
 		        <dependency>
 		        	<groupId>org.hibernate</groupId>
 		        	<artifactId>ejb3-persistence</artifactId>
-		        	<version>${ejb3.persistence.version}</version>		
-		        </dependency>			
+		        	<version>${ejb3.persistence.version}</version>
+		        </dependency>
 	                <dependency>
 	                	<groupId>org.hibernate</groupId>
 	                	<artifactId>hibernate-search</artifactId>
@@ -3261,7 +3300,7 @@
 				<artifactId>ehcache</artifactId>
 				<version>${ehcache.jar.version}</version>
 				<type>jar</type>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>org.javassist</groupId>
 				<artifactId>javassist</artifactId>
@@ -3453,8 +3492,8 @@
 				<scope>compile</scope>
 			</dependency>
 			-->
-      			<!-- 
-      			  groovy-all-1.5.4 provided by Seam-2.1.2, seam-2.2.0 and seam-2.2.1 root POM 
+      			<!--
+      			  groovy-all-1.5.4 provided by Seam-2.1.2, seam-2.2.0 and seam-2.2.1 root POM
       			  does not work with the gmaven-1.2 and 1.3 plugin, must use groovy-1.7.x.
       			-->
       			<dependency>
@@ -3540,7 +3579,7 @@
       			      <artifactId>jline</artifactId>
       			    </exclusion>
       			  </exclusions>
-      			</dependency>			
+      			</dependency>
 			<dependency>
 				<groupId>commons-validator</groupId>
 				<artifactId>commons-validator</artifactId>
@@ -3741,20 +3780,20 @@
             		    	<groupId>javax.faces</groupId>
             		    	<artifactId>jsf-api</artifactId>
             		    	<version>${jsf.version}</version>
-				<scope>provided</scope>            		    	
-            		</dependency>       
+				<scope>provided</scope>
+            		</dependency>
 			<dependency>
 				<groupId>javax.faces</groupId>
 				<artifactId>jsf-impl</artifactId>
 				<version>${jsf.version}</version>
 				<scope>provided</scope>
-			</dependency>	            		     		
+			</dependency>
             		<dependency>
             		    	<groupId>javax.el</groupId>
             		    	<artifactId>el-api</artifactId>
             		    	<version>${el.api.version}</version>
-            		</dependency>                   		
-            		
+            		</dependency>
+
 			<dependency>
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
@@ -3807,12 +3846,12 @@
 		        	<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
 		        	<version>${jboss.interceptors.api.spec.version}</version>
 		        	<scope>provided</scope>
-		        </dependency>	
+		        </dependency>
 		        <dependency>
 		        	<groupId>org.mvel</groupId>
 		        	<artifactId>mvel2</artifactId>
 		        	<version>${org.mvel.mvel2.version}</version>
-		        </dependency>		     		        	      
+		        </dependency>
       			<!-- spec apis such as javax.persistence, needed to run OpenEjb in tests -->
       			<dependency>
       			  <groupId>org.apache.openejb</groupId>
@@ -3820,14 +3859,14 @@
       			  <version>${openejb.javaee.api.version}</version>
       			</dependency>
 
-			<!-- seam embedded container --> 
+			<!-- seam embedded container -->
                		<dependency>
 				<groupId>org.jboss.seam.embedded</groupId>
 				<artifactId>hibernate-all</artifactId>
 				<version>${seam.embedded.version}</version>
 				<scope>provided</scope>
-			</dependency>		
-					
+			</dependency>
+
 			<dependency>
 				<groupId>org.jboss.seam.embedded</groupId>
 				<artifactId>jboss-embedded-all</artifactId>
@@ -3838,7 +3877,7 @@
 						<groupId>org.jboss.microcontainer</groupId>
 						<artifactId>jboss-deployers-client-spi</artifactId>
 					</exclusion>
-				</exclusions>              		
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.seam.embedded</groupId>
@@ -3852,8 +3891,8 @@
 				<version>${seam.embedded.version}</version>
 				<scope>test</scope>
 			</dependency>
-				
-      			<!-- openejb embedded container --> 
+
+      			<!-- openejb embedded container -->
       			<dependency>
       			  <groupId>org.apache.openejb</groupId>
       			  <artifactId>openejb-core</artifactId>
@@ -3893,13 +3932,13 @@
     			  <type>ejb</type>
     			  <scope>test</scope>
     			</dependency>
-    			
-                        <!-- 
+
+                        <!--
                           Fix transitive dependencies in Seam root pom.
                           Exclusions defined in seam root pom DO NOT inherit so we have to duplicate them :-(
-                          
+
                           Sections marked with ** are additional exclusions not found in the seam root pom
-                          
+
                           The following sites has helped figuring out the transitive dependencies:
                           http://www.reverttoconsole.com/blog/java/maven-transitive-dependencies-with-jboss-seam-richfaces-in-ear-deployement/
                           https://www.jboss.org/community/wiki/RichFacesPhotositedemoapplication/
@@ -3908,13 +3947,13 @@
                           http://blogs.steeplesoft.com/seam-and-jpa-hibernate-on-oc4j-1013/
                           http://docs.jboss.com/seam/2.1.2.CR2/reference/en-US/html/dependencies.html
                           http://kasper.eobjects.dk/2009/04/seam-ejbs-and-ear-packaging-in-maven.html
-                          
-                          * To find and list transitive dependencies: 
-                            mvn install dependency:tree 
-                          
+
+                          * To find and list transitive dependencies:
+                            mvn install dependency:tree
+
                           * To write the dependency content into a file, type e.g:
-                            mvn install dependency:tree > dependency.txt			 
-                        -->            
+                            mvn install dependency:tree > dependency.txt
+                        -->
                         <!-- JBoss Seam -->
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
@@ -3968,7 +4007,7 @@
                             </exclusion>
                           </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-debug</artifactId>
@@ -4039,7 +4078,7 @@
                             </exclusion>
                           </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-pdf</artifactId>
@@ -4061,9 +4100,9 @@
                               <groupId>com.lowagie</groupId>
                               <artifactId>itext-rtf</artifactId>
                             </exclusion>
-                          </exclusions>                            
+                          </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-mail</artifactId>
@@ -4077,9 +4116,9 @@
                               <groupId>org.jboss.el</groupId>
                               <artifactId>jboss-el</artifactId>
                             </exclusion>
-                          </exclusions>              
+                          </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-remoting</artifactId>
@@ -4105,9 +4144,9 @@
                               <artifactId>dom4j</artifactId>
                               <groupId>dom4j</groupId>
                             </exclusion>
-                          </exclusions>              
+                          </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-ioc</artifactId>
@@ -4127,7 +4166,7 @@
                             </exclusion>
                           </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-resteasy</artifactId>
@@ -4144,7 +4183,7 @@
                             </exclusion>
                           </exclusions>
                         </dependency>
-                              
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-excel</artifactId>
@@ -4160,7 +4199,7 @@
                             </exclusion>
                           </exclusions>
                         </dependency>
-                        
+
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-jul</artifactId>
@@ -4176,13 +4215,13 @@
                             </exclusion>
                           </exclusions>
                         </dependency>
-                                    
+
                         <dependency>
                             <groupId>org.jboss.seam.international</groupId>
                             <artifactId>seam-international</artifactId>
                             <version>${seam.international.version}</version>
-                        </dependency>       
-                			
+                        </dependency>
+
 			<!-- Axis2 Dependencies -->
 			<!-- TODO Update to 1.3 or later breaks webservice template code -->
 			<dependency>
@@ -4627,5 +4666,5 @@
 				<version>${maven.project.version}</version>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>    	
+	</dependencyManagement>
 </project>
