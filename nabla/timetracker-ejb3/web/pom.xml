@@ -95,7 +95,19 @@
               </exclusion>
             </exclusions>            
         </dependency>    
-        
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-search</artifactId>
+		<version>${hibernate.search.version}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+               
         <!-- GWT validation uses Hibernate Validator, and requires the sources 
           at compile time. -->
         <dependency>
