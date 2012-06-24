@@ -405,9 +405,16 @@
 					<groupId>com.gwtplatform</groupId>
 					<artifactId>gwtp-all</artifactId>
 				</exclusion>
-			</exclusions>			
+			</exclusions>	
 		</dependency>
 		
+		<dependency>
+			<groupId>com.gwtplatform</groupId>
+			<artifactId>gwtp-all</artifactId>
+			<version>${gwtp.all.version}</version>
+			<scope>provided</scope>			
+		</dependency>	
+
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
