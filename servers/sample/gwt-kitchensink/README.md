@@ -143,3 +143,19 @@ them.
 
     mvn dependency:sources
     mvn dependency:resolve -Dclassifier=javadoc
+
+Cloudbees
+====================================
+
+Some links :
+www.cloudbees.com
+https://run.cloudbees.com/a/nabla#app-manage/development:nabla/nabla
+http://nabla.nabla.cloudbees.net/
+
+How to deploy :
+http://wiki.cloudbees.com/bin/view/RUN/JavaEE
+
+mvn bees:run
+bees deploy -a nabla/nabla
+bees app:deploy -t jboss -a nabla/nabla target-eclipse/gwt-kitchensink.war
+bees app:bind -db nabla -a nabla -as ExampleDS

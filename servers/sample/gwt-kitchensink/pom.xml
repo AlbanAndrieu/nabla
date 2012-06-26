@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!--
+
   <parent>
         <artifactId>sample</artifactId>
         <groupId>com.nabla.project.servers.sample</groupId>
         <version>1.0</version>
   </parent>
-  -->
+
   <groupId>org.jboss.tools.gwt.kitchensink</groupId>
   <artifactId>gwt-kitchensink</artifactId>
   <version>1.0</version>
@@ -36,7 +36,7 @@
     <gwt.version>2.4.0</gwt.version>
     <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
     <junit.version>4.10</junit.version>
-    <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+    <hibernate.validator.version>4.2.0.Final</hibernate.validator.version> <!-- TODO check because version is better than main pom -->
     <validation.api.version>1.0.0.GA</validation.api.version>
     <hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
     <maven.war.plugin.version>2.2</maven.war.plugin.version>
@@ -44,6 +44,7 @@
     <maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
     <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
     <maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version>
+    <org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version> <!-- TODO check because version is better than main pom -->
   </properties>
 
   <dependencyManagement>
@@ -355,6 +356,26 @@
       <artifactId>hibernate-jpamodelgen</artifactId>
       <version>${hibernate.jpamodelgen.version}</version>
       <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+           <groupId>dom4j</groupId>
+           <artifactId>dom4j</artifactId>
+           <version>${dom4j.version}</version>
+           <scope>provided</scope>
+           <exclusions>
+    		<exclusion>
+    			<groupId>xml-apis</groupId>
+    			<artifactId>xml-apis</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency>
+
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>${log4j.version}</version>
+    	<scope>compile</scope>
     </dependency>
 
     <!-- Needed for running tests (you may also use TestNG) -->
