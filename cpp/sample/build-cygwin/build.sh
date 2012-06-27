@@ -8,7 +8,7 @@ export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
 
 echo "PROJECT_SRC $PROJECT_SRC"
 
-cd $PROJECT_SRC/sample/build-cygwin
+cd $PROJECT_SRC/build-cygwin
 
 rm CMakeCache.txt
 
