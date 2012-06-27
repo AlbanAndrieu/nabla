@@ -14,5 +14,4 @@ cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=debug -DCMAKE_C_COMPI
 
 make -B clean install package
 
-#make DoxygenDoc
-
+make DoxygenDoc
