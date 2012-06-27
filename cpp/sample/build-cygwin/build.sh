@@ -1,7 +1,9 @@
 
-echo "WORKSPACE $WORKSPACE"
+echo "WORKSPACE ${WORKSPACE}"
+export WORKSPACE=/cygdrive/c/hudson/jobs/Nabla-CMake-Bat/workspace/
 
-export PROJECT_DEV=$WORKSPACE
+export PROJECT_DEV=${WORKSPACE}
+export PROJECT_EXTRACTION=sample
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
 
 echo "PROJECT_SRC $PROJECT_SRC"
