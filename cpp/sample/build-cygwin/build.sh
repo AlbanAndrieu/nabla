@@ -3,12 +3,12 @@ echo "WORKSPACE ${WORKSPACE}"
 export WORKSPACE=/cygdrive/c/hudson/jobs/Nabla-CMake-Bat/workspace/
 
 export PROJECT_DEV=${WORKSPACE}
-export PROJECT_EXTRACTION=sample
+export PROJECT_EXTRACTION=
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
 
 echo "PROJECT_SRC $PROJECT_SRC"
 
-cd $PROJECT_SRC/build-cygwin
+cd $PROJECT_SRC/sample/build-cygwin
 
 rm CMakeCache.txt
 
