@@ -6,10 +6,11 @@
         <groupId>com.nabla.project.uml.application</groupId>
         <artifactId>application</artifactId>
         <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>common</artifactId>
     <packaging>jar</packaging>
-    <name>AndroMDA Nabla Sample Common</name>
+    <name>[${project.parent.artifactId} :: EJB3 Common] - ${project.artifactId} : ${project.version}</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -22,34 +23,32 @@
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
-        <!-- To change from default src/main/java and src/test/java - doesn't work for Cobertura>
-        <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>src-test</testSourceDirectory -->
+		<resources>
+			<resource>
+				<directory>${maven.build.generated}/main/java</directory>
+                		<includes>
+                			<include>*/.*</include>
+				</includes>		
+				<filtering>false</filtering>				
+			</resource>																		
+		</resources>
+	<!--    
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                  <excludes>
-                    <exclude>**/*.ref</exclude>
-                  </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
         </plugins>
+        -->
     </build>
 </project>

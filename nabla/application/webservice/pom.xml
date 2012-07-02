@@ -6,10 +6,11 @@
         <groupId>com.nabla.project.uml.application</groupId>
         <artifactId>application</artifactId>
         <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>webservice</artifactId>
     <packaging>war</packaging>
-    <name>AndroMDA Nabla Sample Web Services</name>
+    <name>[${project.parent.artifactId} :: EJB3 Web Services] - ${project.artifactId} : ${project.version}</name>
     <build>
         <!-- Change from default src/main/java and src/test/java>
         <sourceDirectory>src</sourceDirectory>
