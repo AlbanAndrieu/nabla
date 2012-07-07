@@ -117,6 +117,17 @@
 
 	<profiles>
 		<!-- ================= START Environment Profiles ================= -->
+    <profile>
+      <id>env.WORKSPACE.default</id>
+      <activation>
+        <property>
+          <name>!env.WORKSPACE</name>
+        </property>
+      </activation>
+      <properties>
+        <env.WORKSPACE>${env.HOME}</env.WORKSPACE>
+      </properties>
+    </profile>
   		<profile>
     		  <!-- e.g: mvn initialize -Pshow-properties -->
     		  <id>show-properties</id>
@@ -249,7 +260,7 @@
 				</repository>
 				-->
 				<repository>
-					<id>server-forge-releases</id>
+					<id>server-forge-release</id>
 					<name>External Staging Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 					<uniqueVersion>true</uniqueVersion>
@@ -264,7 +275,7 @@
 				</snapshotRepository>
 				-->
 				<snapshotRepository>
-					<id>server-forge-snapshots</id>
+					<id>server-forge-snapshot</id>
 					<name>External Snapshot Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 					<uniqueVersion>true</uniqueVersion>
@@ -282,7 +293,7 @@
             		</properties>
             		-->
             		<properties>
-            		    <repositoryId>server-forge-releases</repositoryId>
+            		    <repositoryId>server-forge-release</repositoryId>
             		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             		</properties>
 		</profile>
@@ -1075,9 +1086,8 @@
 
 	<!-- http://mvnrepository.com/search.html -->
 	<repositories>
-	        <!--
 		<repository>
-			<id>forge-releases</id>
+			<id>server-forge-release</id>
 			<name>External Staging Repository</name>
 			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 			<layout>default</layout>
@@ -1089,7 +1099,7 @@
 			</releases>
 		</repository>
 		<repository>
-			<id>forge-snapshots</id>
+			<id>server-forge-snapshot</id>
 			<name>External Snapshot Repository</name>
 			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 			<layout>default</layout>
@@ -1102,7 +1112,6 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
-	        -->
 	        <!--
 		<repository>
 			<id>nabla-releases</id>
@@ -1227,7 +1236,7 @@
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>forge-plugins</id>
+			<id>server-forge-release</id>
 			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 			<snapshots>
 				<enabled>false</enabled>
@@ -2290,9 +2299,9 @@
 							-->
 							<!-- How to prevent tests from running twice -->
 							<property>
-                        				    	<name>net.sourceforge.cobertura.datafile</name>
-                        				        <value>~/cobertura.ser</value>
-                        				</property>
+								<name>net.sourceforge.cobertura.datafile</name>
+								<value>~/cobertura.ser</value>
+							</property>
 						</systemPropertyVariables>
 						 <!-- Add source folders to test classpath in order to run gwt-tests as normal junit-tests -->
           					<additionalClasspathElements>
