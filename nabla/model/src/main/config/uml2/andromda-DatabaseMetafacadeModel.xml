@@ -13,8 +13,7 @@
         <port>4447</port>
     </server>
     -->
-    </properties>
-        <repositories>
+    <repositories>
         <repository name="emf-uml22">
             <models>
                 <model type="emf-uml22">
