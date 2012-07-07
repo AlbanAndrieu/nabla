@@ -2,7 +2,7 @@
 #include "circular_queueThread.h"
 
 #include "boost/date_time/posix_time/posix_time.hpp"
-#include <Windows.h>
+//TODO Win32 #include <windows.h>
 
 #include <circular_queue.h>
 
@@ -372,7 +372,8 @@ void circular_queueTest::testEnqueueDequeueThread() {
 	dequeueThread.go();
 
 	std::cout << printTime() << " Sleeping for 2 seconds." << std::endl;
-	Sleep(4000);
+	//Sleep(4000);
+	sleep(4000);
 
 	//CPPUNIT_ASSERT(a->enqueue(1) == true);
 
@@ -383,7 +384,8 @@ void circular_queueTest::testEnqueueDequeueThread() {
 	enqueueThread.stop();
 
 	std::cout << printTime() << " Sleeping for 2 seconds to stop." << std::endl;
-	Sleep(2000);
+	//Sleep(2000);
+	sleep(2000);
 
 	std::cout << "Result is : " << a->values() << std::endl;
 

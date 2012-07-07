@@ -171,7 +171,7 @@ INCLUDE(${PROJECT_SOURCE_DIR}/config/ProjectMacro.cmake)
 OPTION(ENABLE_TESTS "Enable building of tests" ON)
 
 IF( ENABLE_TESTS )
-  INCLUDE(FindCppUnit)
+  INCLUDE(${PROJECT_SOURCE_DIR}/config/FindCppUnit.cmake)
 ENDIF(ENABLE_TESTS )
 
 #Inclusion
@@ -238,11 +238,12 @@ IF(UNIX)
           
     #z boost_thread-gcc-mt intl ncurses
     SET(Boost_LIBRARIES boost_thread-mt)
+
     SET(ZLIB_LIBRARY_DIRS z)
     SET(Gettext_LIBRARY_DIRS intl ncurses)
     SET(LIBXML_LIBRARY_DIRS xml2)
 
-    LINK_DIRECTORIES(${Gettext_LIBRARY_DIRS})
+    #LINK_DIRECTORIES(${Gettext_LIBRARY_DIRS})
   
     #Inclusion de CORBA
     #INCLUDE_DIRECTORIES(${PROJECT_THIRDPARTY_PATH_LOCAL}/tao/ACE_wrappers)
@@ -600,7 +601,7 @@ FIND_PACKAGE(ZLIB REQUIRED)
 IF(ZLIB_FOUND)
   MESSAGE(STATUS "ZLIB available")
   INCLUDE_DIRECTORIES(${ZLIB_INCLUDE_DIR})
-  LINK_DIRECTORIES(${ZLIB_LIBRARY_DIRS})
+  #LINK_DIRECTORIES(${ZLIB_LIBRARY_DIRS})
 ELSE(ZLIB_FOUND)
   MESSAGE(STATUS "ZLIB not found")
 ENDIF(ZLIB_FOUND)
