@@ -571,7 +571,7 @@ public abstract class TableLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperEntity().getAllProperties();
     }
@@ -581,7 +581,7 @@ public abstract class TableLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperEntity().getAllRequiredConstructorParameters();
     }
@@ -638,7 +638,7 @@ public abstract class TableLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperEntity().getAttributes(follow);
     }
@@ -735,7 +735,7 @@ public abstract class TableLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperEntity().getNavigableConnectingEnds(follow);
     }
@@ -776,7 +776,7 @@ public abstract class TableLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperEntity().getProperties();
     }
@@ -797,7 +797,7 @@ public abstract class TableLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperEntity().getRequiredConstructorParameters();
     }
@@ -1136,7 +1136,7 @@ public abstract class TableLogic
      * well as excludes the entity's identifiers if 'withIdentifiers' is set to false.
      * @see Entity#getAttributes(boolean follow, boolean withIdentifiers)
      */
-    public Collection getAttributes(boolean follow, boolean withIdentifiers)
+    public Collection<AttributeFacade> getAttributes(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperEntity().getAttributes(follow, withIdentifiers);
     }
@@ -1147,7 +1147,7 @@ public abstract class TableLogic
      * derived attributes if 'withDerived' is set to false.
      * @see Entity#getAttributes(boolean follow, boolean withIdentifiers, boolean withDerived)
      */
-    public Collection getAttributes(boolean follow, boolean withIdentifiers, boolean withDerived)
+    public Collection<AttributeFacade> getAttributes(boolean follow, boolean withIdentifiers, boolean withDerived)
     {
         return this.getSuperEntity().getAttributes(follow, withIdentifiers, withDerived);
     }
@@ -1176,7 +1176,7 @@ public abstract class TableLogic
      * The embedded values belonging to this entity.
      * @see Entity#getEmbeddedValues()
      */
-    public Collection getEmbeddedValues()
+    public Collection<AttributeFacade> getEmbeddedValues()
     {
         return this.getSuperEntity().getEmbeddedValues();
     }
@@ -1204,7 +1204,7 @@ public abstract class TableLogic
      * Gets all the associationEnds of this entity marked with the identifiers stereotype.
      * @see Entity#getIdentifierAssociationEnds()
      */
-    public Collection getIdentifierAssociationEnds()
+    public Collection<AssociationEndFacade> getIdentifierAssociationEnds()
     {
         return this.getSuperEntity().getIdentifierAssociationEnds();
     }
@@ -1219,8 +1219,8 @@ public abstract class TableLogic
     }
 
     /**
-     * The name of the identifier. If composite identifier add the Pk sufix. If not composite
-     * returns the atribute name of the identifier.
+     * The name of the identifier. If composite identifier add the Pk suffix. If not composite
+     * returns the attribute name of the identifier.
      * @see Entity#getIdentifierName()
      */
     public String getIdentifierName()
@@ -1238,8 +1238,8 @@ public abstract class TableLogic
     }
 
     /**
-     * The name of the type of the identifier. If composite identifier add the PK sufix to the class
-     * name. If not, retorns the name of the identifier.
+     * The name of the type of the identifier. If composite identifier add the PK suffix to the
+     * class name. If not, returns the name of the identifier.
      * @see Entity#getIdentifierTypeName()
      */
     public String getIdentifierTypeName()
@@ -1265,7 +1265,7 @@ public abstract class TableLogic
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
      * @see Entity#getIdentifiers(boolean follow)
      */
-    public Collection getIdentifiers(boolean follow)
+    public Collection<EntityAttribute> getIdentifiers(boolean follow)
     {
         return this.getSuperEntity().getIdentifiers(follow);
     }
@@ -1319,7 +1319,7 @@ public abstract class TableLogic
      * whether or not identifiers should be included in the collection of properties.
      * @see Entity#getProperties(boolean follow, boolean withIdentifiers)
      */
-    public Collection getProperties(boolean follow, boolean withIdentifiers)
+    public Collection<ModelElementFacade> getProperties(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperEntity().getProperties(follow, withIdentifiers);
     }
@@ -1340,7 +1340,7 @@ public abstract class TableLogic
      * default identifier will be created if the allowDefaultIdentifiers property is set to true.
      * @see Entity#getQueryOperations(boolean follow)
      */
-    public Collection getQueryOperations(boolean follow)
+    public Collection<OperationFacade> getQueryOperations(boolean follow)
     {
         return this.getSuperEntity().getQueryOperations(follow);
     }
@@ -1374,7 +1374,7 @@ public abstract class TableLogic
      * be include, if false, no identifiers will be included.
      * @see Entity#getRequiredAttributes(boolean follow, boolean withIdentifiers)
      */
-    public Collection getRequiredAttributes(boolean follow, boolean withIdentifiers)
+    public Collection<AttributeFacade> getRequiredAttributes(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperEntity().getRequiredAttributes(follow, withIdentifiers);
     }
@@ -1388,7 +1388,7 @@ public abstract class TableLogic
      * be included.
      * @see Entity#getRequiredProperties(boolean follow, boolean withIdentifiers)
      */
-    public Collection getRequiredProperties(boolean follow, boolean withIdentifiers)
+    public Collection<ModelElementFacade> getRequiredProperties(boolean follow, boolean withIdentifiers)
     {
         return this.getSuperEntity().getRequiredProperties(follow, withIdentifiers);
     }
@@ -1595,7 +1595,7 @@ public abstract class TableLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperEntity().findTaggedValues(tagName);
     }
@@ -1625,7 +1625,7 @@ public abstract class TableLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperEntity().getConstraints(kind);
     }
