@@ -373,7 +373,7 @@ void circular_queueTest::testEnqueueDequeueThread() {
 
 	std::cout << printTime() << " Sleeping for 2 seconds." << std::endl;
 	//Sleep(4000);
-	sleep(4000);
+	sleep(2);
 
 	//CPPUNIT_ASSERT(a->enqueue(1) == true);
 
@@ -385,7 +385,7 @@ void circular_queueTest::testEnqueueDequeueThread() {
 
 	std::cout << printTime() << " Sleeping for 2 seconds to stop." << std::endl;
 	//Sleep(2000);
-	sleep(2000);
+	sleep(2);
 
 	std::cout << "Result is : " << a->values() << std::endl;
 
