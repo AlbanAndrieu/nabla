@@ -130,7 +130,7 @@
 											</configuration>
 											<reports>
 												<report>changelog</report>
-												<report>file-activity</report>
+ 												<report>file-activity</report>
 												<report>dev-activity</report>
 											</reports>
 										</reportSet>
@@ -158,6 +158,8 @@
 											</reports>
 										</reportSet>
 
+                                                                                <!-- TODO deactivate if mvn site is too slow -->
+                                                                                <!--
 										<reportSet>
 											<id>aggregate</id>
 											<configuration>
@@ -165,7 +167,6 @@
 												<windowtitle>Nabla Aggregate API for ${project.name} ${project.version}</windowtitle>
 												<testDoctitle>Nabla Aggregate Test API for ${project.name} ${project.version}</testDoctitle>
 												<testWindowtitle>Nabla Aggregate Test API for ${project.name} ${project.version}</testWindowtitle>
-												<!-- Specific configuration for the aggregate report -->
 												<tags>
 													<tag>
 														<name>date</name>
@@ -193,28 +194,13 @@
 														<head>opt:</head>
 													</tag>										
 												</tags>
-
-												<!-- Link to the external online JavaDoc -->
-												<!--
-												<links>
-													<link>http://jakarta.apache.org/commons/beanutils/commons-beanutils-1.7.0/docs/api/</link>
-													<link>http://jakarta.apache.org/commons/collections/api-3.2/</link>
-													<link>http://jakarta.apache.org/commons/io/api-1.2/</link>
-													<link>http://jakarta.apache.org/commons/lang/api-2.1/</link>
-													<link>http://jakarta.apache.org/commons/pool/apidocs/</link>
-													<link>http://logging.apache.org/log4j/docs/api/</link>
-													<link>http://jakarta.apache.org/commons/dbcp/apidocs/</link>
-													<link>http://jakarta.apache.org/commons/fileupload/apidocs/</link>
-													<link>http://jakarta.apache.org/commons/logging/apidocs/</link>
-													<link>http://jakarta.apache.org/commons/pool/apidocs/</link>
-												</links>
-												-->
 											</configuration>
 											<reports>
 												<report>aggregate</report>
 												<report>test-aggregate</report>
 											</reports>
 										</reportSet>
+                                                                                -->
 									</reportSets>
 									<configuration>
 										<!-- Default configuration for all reports -->
@@ -657,6 +643,7 @@
 								</regexes>
 							</check>
 						</configuration>
+<!--
 						<executions>
 							<execution>
 								<goals>
@@ -665,6 +652,24 @@
 								</goals>
 							</execution>
 						</executions>
+-->
+<executions>
+<execution>
+<id>site</id>
+<phase>pre-site</phase>
+<goals>
+<goal>clean</goal>
+</goals>
+</execution>
+<execution>
+<id>instrument</id>
+<phase>site</phase>
+<goals>
+<goal>instrument</goal>
+<goal>cobertura</goal>
+</goals>
+</execution>
+</executions>
 					</plugin>
 					<!--
 					<plugin>

@@ -153,7 +153,7 @@ inv:manageableServiceName->notEmpty()
                 <configuration>
                    <filesets>
                        <fileset>
-                           <directory>${project.basedir}/../tmp-ejb3</directory>
+                           <directory>${project.basedir}/../tmp-gui</directory>
                            <includes>
                                <include>**/*</include>
                            </includes>

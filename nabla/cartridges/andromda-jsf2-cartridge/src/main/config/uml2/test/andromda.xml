@@ -38,11 +38,9 @@
                     </modelPackages>
                     -->
                     <!-- constraints from BPM4Struts removed deactivated but might be removed later -->
-                    <!--
                     <constraints>
                         <constraint enforce="false">**::each action coming out of a page must carry a trigger</constraint>
                     </constraints>
-                    -->
                 </model>
             </models>
         </repository>
