@@ -457,6 +457,7 @@
 								</regexes>
 							</check>
 						</configuration>
+<!--
 						<executions>
 							<execution>
 								<goals>
@@ -465,6 +466,23 @@
 								</goals>
 							</execution>
 						</executions>
+-->
+<executions>  
+      <execution>  
+        <id>clean</id>  
+        <phase>clean</phase>  
+        <goals>  
+          <goal>clean</goal>  
+        </goals>  
+      </execution>  
+      <execution>  
+        <id>package</id>  
+        <phase>package</phase>  
+        <goals>  
+          <goal>check</goal>  
+        </goals>  
+      </execution>  
+    </executions>  
 					</plugin>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -1176,6 +1194,7 @@
 			<name>JBoss Repository</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
 		</repository>
+                <!--
                 <repository>
                    <id>jboss</id>
                    <name>JBoss Repository</name>
@@ -1184,6 +1203,7 @@
                       <enabled>false</enabled>
                    </snapshots>
                 </repository>
+                -->
                 <repository>
                    <id>jboss-snapshots</id>
                    <name>JBoss Snapshot Repository</name>
