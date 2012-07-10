@@ -11,6 +11,7 @@
 <module name="Checker">
   <property name="severity" value="info"/>
   <module name="TreeWalker">
+    <property name="cacheFile" value="target/cachefile"/>
     <property name="tabWidth" value="4"/>
     <module name="JavadocMethod">
       <property name="logLoadErrors" value="true"/>

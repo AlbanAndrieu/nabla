@@ -58,7 +58,8 @@
 	<module name="TreeWalker">
         <!-- Default is error, which is stupid for formatting and documentation problems, when mixed with true code bugs -->
         <property name="severity" value="info"/>
-        <property name="cacheFile" value="null"/>
+        <!--<property name="cacheFile" value="null"/>-->
+        <property name="cacheFile" value="target/cachefile"/>
         <property name="tabWidth" value="4"/>
 	
 		<!-- needed for suppression filter -->
