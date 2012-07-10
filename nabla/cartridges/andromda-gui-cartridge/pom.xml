@@ -145,7 +145,28 @@ inv:manageableServiceName->notEmpty()
             		        <howtoCartridgePicturesOutputDirectory>${project.basedir}/${target.dir}/site/images</howtoCartridgePicturesOutputDirectory>
             		        <modelOutputHistory>${project.basedir}/../tmp-gui/history</modelOutputHistory>
             		    </configuration>
-            		</plugin>                        
+            		</plugin>             
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven.clean.plugin.version}</version>
+                <configuration>
+                   <filesets>
+                       <fileset>
+                           <directory>${project.basedir}/../tmp-ejb3</directory>
+                           <includes>
+                               <include>**/*</include>
+                           </includes>
+                       </fileset>
+                       <fileset>
+                           <directory>${project.basedir}/null</directory>
+                           <includes>
+                               <include>**/*</include>
+                           </includes>
+                       </fileset>
+                   </filesets>
+                </configuration>
+            </plugin>             
                 </plugins>
         </build>
         <reporting>

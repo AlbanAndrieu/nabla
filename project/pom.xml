@@ -622,7 +622,7 @@
 						<dependencies>
 							<!-- The file defined in the location is stored in this dependency -->
 							<dependency>
-								<groupId>com.nabla.project.build-tools</groupId>
+								<groupId>com.nabla.project</groupId>
 								<artifactId>build-tools</artifactId>
 								<version>1.0</version>
 							</dependency>
@@ -710,7 +710,7 @@
 								<version>${commons.logging.version}</version>
 							</dependency>
 							<dependency>
-								<groupId>com.nabla.project.build-tools</groupId>
+								<groupId>com.nabla.project</groupId>
 								<artifactId>build-tools</artifactId>
 								<version>1.0</version>
 							</dependency>

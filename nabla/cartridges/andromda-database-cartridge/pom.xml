@@ -46,7 +46,8 @@
                         </goals>
                         <configuration>
                             <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
-                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+
                             <actualDirectory>${project.basedir}/../tmp-database/cartridge-test/actualUML2</actualDirectory>
                             <expectedDirectory>${project.basedir}/../tmp-database/cartridge-test/expectedUML2</expectedDirectory>                            
                             <reportDirectory>${project.basedir}/../tmp-database/cartridge-test/reportsUML2</reportDirectory>
@@ -54,6 +55,27 @@
                     </execution>
                 </executions>          
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven.clean.plugin.version}</version>
+                <configuration>
+                   <filesets>
+                       <fileset>
+                           <directory>${project.basedir}/../tmp-ejb3</directory>
+                           <includes>
+                               <include>**/*</include>
+                           </includes>
+                       </fileset>
+                       <fileset>
+                           <directory>${project.basedir}/null</directory>
+                           <includes>
+                               <include>**/*</include>
+                           </includes>
+                       </fileset>
+                   </filesets>
+                </configuration>
+            </plugin>  
         </plugins> 
     </build> 
     <properties>
