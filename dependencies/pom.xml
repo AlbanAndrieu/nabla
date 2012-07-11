@@ -457,7 +457,6 @@
 								</regexes>
 							</check>
 						</configuration>
-<!--
 						<executions>
 							<execution>
 								<goals>
@@ -466,23 +465,6 @@
 								</goals>
 							</execution>
 						</executions>
--->
-<executions>  
-      <execution>  
-        <id>clean</id>  
-        <phase>clean</phase>  
-        <goals>  
-          <goal>clean</goal>  
-        </goals>  
-      </execution>  
-      <execution>  
-        <id>package</id>  
-        <phase>package</phase>  
-        <goals>  
-          <goal>check</goal>  
-        </goals>  
-      </execution>  
-    </executions>  
 					</plugin>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>

@@ -410,7 +410,8 @@
 										<docencoding>${project.build.sourceEncoding}</docencoding>
 										<encoding>${project.build.sourceEncoding}</encoding>
 										<includeTestSourceDirectory>true</includeTestSourceDirectory>
-										<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>
+										<!--<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>-->
+										<configLocation>project/checkstyle_checks.xml</configLocation>
 										<headerLocation>project/LICENSE-1.0.txt</headerLocation>
 										<propertyExpansion>projectname=nabla</propertyExpansion>
 										<!-- 
@@ -545,13 +546,13 @@
 								</plugin>
 
 								<!-- dashboard must be done at the end in order to have a complete report -->
-								<!--
+<!--
 								<plugin>
 									<groupId>org.codehaus.mojo</groupId>
 									<artifactId>dashboard-maven-plugin</artifactId>
 									<version>${maven.dashboard.plugin.version}</version>
 								</plugin>
-                                        			-->
+-->
 							</reportPlugins>
 						</configuration>
 						<dependencies>
@@ -643,16 +644,6 @@
 								</regexes>
 							</check>
 						</configuration>
-<!--
-						<executions>
-							<execution>
-								<goals>
-									<goal>clean</goal>
-									<goal>check</goal>
-								</goals>
-							</execution>
-						</executions>
--->
 <executions>  
       <execution>  
         <id>clean</id>  
@@ -689,7 +680,7 @@
 </executions>
 -->
 					</plugin>
-					<!--
+                                        <!--
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dashboard-maven-plugin</artifactId>
@@ -709,6 +700,8 @@
 								<artifactId>derbyclient</artifactId>
 								<version>${jdbc.derby.version}</version>
 							</dependency>
+                                                        -->
+                                                        <!--
 							<dependency>
 								<groupId>org.apache.derby</groupId>
 								<artifactId>derby</artifactId>
@@ -728,18 +721,20 @@
 								<scope>compile</scope>
 							</dependency>
 							<dependency>
-								<groupId>commons-logging</groupId>
-								<artifactId>commons-logging</artifactId>
-								<version>${commons.logging.version}</version>
-							</dependency>
-							<dependency>
 								<groupId>com.nabla.project</groupId>
 								<artifactId>build-tools</artifactId>
 								<version>1.0</version>
 							</dependency>
+                                                        -->
+                                                        <!--
+							<dependency>
+								<groupId>commons-logging</groupId>
+								<artifactId>commons-logging</artifactId>
+								<version>${commons.logging.version}</version>
+							</dependency>
 						</dependencies>
 					</plugin>	
-					-->		
+                                        -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>taglist-maven-plugin</artifactId>
