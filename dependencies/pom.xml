@@ -3369,12 +3369,14 @@
 				<artifactId>aopalliance</artifactId>
 				<version>${aopalliance.version}</version>
 			</dependency>
+                        <!--
 			<dependency>
 				<groupId>com.tibco.jms</groupId>
 				<artifactId>tibjms</artifactId>
 				<version>${tibjms.version}</version>
 				<scope>provided</scope>
 			</dependency>
+                        -->
         		<dependency>
         		  	<groupId>javax.ejb</groupId>
         		  	<artifactId>ejb-api</artifactId>
