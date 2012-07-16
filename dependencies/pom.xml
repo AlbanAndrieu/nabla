@@ -528,11 +528,15 @@
 
 			<reporting>
 				<plugins>
-					<!--
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-project-info-reports-plugin</artifactId>
 						<version>${maven.project.info.reports.plugin.version}</version>
+						<configuration>
+							<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+							<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+						</configuration>
+         					<!--
                 				<reportSets>
                 				  <reportSet>
                 				    <reports>
@@ -554,8 +558,8 @@
                 				    </reports>
                 				  </reportSet>
                 				</reportSets>
-					</plugin>
 					-->
+					</plugin>
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
