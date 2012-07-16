@@ -710,7 +710,7 @@
 				</property>
 			</activation>
 			<properties> 
-				<target.dir>target-eclipse</target.dir>
+				<!--<target.dir>target-eclipse</target.dir>-->
 				<environment>development</environment>
 				<!--
 				<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url />
