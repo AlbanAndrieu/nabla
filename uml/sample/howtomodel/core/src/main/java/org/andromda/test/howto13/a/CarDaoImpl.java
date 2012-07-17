@@ -8,8 +8,7 @@ package org.andromda.test.howto13.a;
 /**
  * @see org.andromda.test.howto13.a.Car
  */
-public class CarDaoImpl
-    extends CarDaoBase
+public class CarDaoImpl extends CarDaoBase
 {
     /**
      * @see org.andromda.test.howto13.a.CarDao#allCarsAreRented()

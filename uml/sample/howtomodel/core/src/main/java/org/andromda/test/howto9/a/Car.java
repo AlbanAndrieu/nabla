@@ -28,14 +28,8 @@ import javax.persistence.Transient;
 // @javax.persistence.EntityListeners({org.andromda.test.howto9.a.CarListener.class})
 // Uncomment to enable caching for Car
 // @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries
-({
-    @NamedQuery(name = "Car.findAll", query = "select car from Car AS car"),
-    @NamedQuery(name = "Car.findByType", query = "from Car as car where car.type = :type")
-})
-public class Car
-    extends CarEmbeddable
-    implements Serializable, Comparable<Car>
+@NamedQueries( { @NamedQuery(name = "Car.findAll", query = "select car from Car AS car"), @NamedQuery(name = "Car.findByType", query = "from Car as car where car.type = :type") })
+public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
 {
 
     /**
@@ -80,7 +74,6 @@ public class Car
         super(make, model, age, serial, name, type, owner);
     }
 
-
     // -------------- Entity Methods -----------------
 
     /**
@@ -107,7 +100,6 @@ public class Car
         return false;
     }
 
-
     // --------------- Lifecycle callbacks -----------------
 
     /**
@@ -119,8 +111,7 @@ public class Car
         if (this.getId() != null)
         {
             cmp = this.getId().compareTo(o.getId());
-        }
-        else
+        } else
         {
             if (this.getSerial() != null)
             {

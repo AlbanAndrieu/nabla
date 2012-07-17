@@ -6,10 +6,8 @@ import javax.jms.Message;
 /**
  * @see PaymentProcessorMDBBean
  */
-public class PaymentProcessorMDBBeanImpl
-    extends PaymentProcessorMDBBean
+public class PaymentProcessorMDBBeanImpl extends PaymentProcessorMDBBean
 {
-
 
     // --------- Default Constructor ----------
 

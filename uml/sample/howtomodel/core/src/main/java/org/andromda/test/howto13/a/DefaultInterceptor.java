@@ -16,8 +16,7 @@ public class DefaultInterceptor
      * @return
      */
     @AroundInvoke
-    public Object execute(InvocationContext ctx)
-        throws Exception
+    public Object execute(InvocationContext ctx) throws Exception
     {
         // Add implementation
 

@@ -10,9 +10,7 @@ import java.io.Serializable;
 /**
  * @see PersonName
  */
-public class PersonNameImpl
-    extends PersonName
-    implements Serializable
+public class PersonNameImpl extends PersonName implements Serializable
 {
 
     /**

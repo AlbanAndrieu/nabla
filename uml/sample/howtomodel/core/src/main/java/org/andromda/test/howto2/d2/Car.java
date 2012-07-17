@@ -28,9 +28,7 @@ import javax.persistence.Transient;
 // Uncomment to enable caching for Car
 // @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL)
 @NamedQuery(name = "Car.findAll", query = "select car from Car AS car")
-public class Car
-    extends CarEmbeddable
-    implements Serializable, Comparable<Car>
+public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
 {
 
     /**
@@ -72,7 +70,6 @@ public class Car
         super(serial, name, type, owner);
     }
 
-
     // -------------- Entity Methods -----------------
 
     /**
@@ -95,7 +92,6 @@ public class Car
         return false;
     }
 
-
     // --------------- Lifecycle callbacks -----------------
 
     /**
@@ -107,8 +103,7 @@ public class Car
         if (this.getSerial() != null)
         {
             cmp = this.getSerial().compareTo(o.getSerial());
-        }
-        else
+        } else
         {
             if (this.getName() != null)
             {

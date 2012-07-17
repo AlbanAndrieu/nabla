@@ -29,14 +29,8 @@ import javax.persistence.Transient;
 // @javax.persistence.EntityListeners({org.andromda.test.howto9.b.CarListener.class})
 // Uncomment to enable caching for Car
 // @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries
-({
-    @NamedQuery(name = "Car.findAll", query = "select car from Car AS car"),
-    @NamedQuery(name = "Car.findByType", query = "from Car as car where car.type = :type")
-})
-public class Car
-    extends CarEmbeddable
-    implements Serializable, Comparable<Vehicle>
+@NamedQueries( { @NamedQuery(name = "Car.findAll", query = "select car from Car AS car"), @NamedQuery(name = "Car.findByType", query = "from Car as car where car.type = :type") })
+public class Car extends CarEmbeddable implements Serializable, Comparable<Vehicle>
 {
 
     /**

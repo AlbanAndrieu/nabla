@@ -25,7 +25,7 @@ import org.testng.annotations.Configuration;
  */
 public class EJB3Container
 {
-    private final static Log logger = LogFactory.getLog(EJB3Container.class);
+    private final static Log       logger = LogFactory.getLog(EJB3Container.class);
 
     private EJB3StandaloneDeployer deployer;
 
@@ -39,10 +39,10 @@ public class EJB3Container
             // Boot the JBoss Microcontainer with EJB3 settings, loads ejb3-interceptors-aop.xml
             EJB3StandaloneBootstrap.boot(null);
 
-//            Uncomment the following to enable security
-//            logger.info("==>Deploying security-beans");
-//            EJB3StandaloneBootstrap.deployXmlResource("security-beans.xml");
-//            logger.info("==>Deployed security-beans");
+            //            Uncomment the following to enable security
+            //            logger.info("==>Deploying security-beans");
+            //            EJB3StandaloneBootstrap.deployXmlResource("security-beans.xml");
+            //            logger.info("==>Deployed security-beans");
 
             logger.info("==>Deploying jboss-jms-beans - init JBoss MQ core services");
             EJB3StandaloneBootstrap.deployXmlResource("jboss-jms-beans.xml");
@@ -89,7 +89,7 @@ public class EJB3Container
         }
     }
 
-    private static InitialContext initialContext = null;
+    private static InitialContext initialContext        = null;
     private static InitialContext securedInitialContext = null;
 
     /**
@@ -99,8 +99,7 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext newInitialContext()
-        throws Exception
+    public static InitialContext newInitialContext() throws Exception
     {
         Hashtable props = getInitialContextProperties();
         initialContext = new InitialContext(props);
@@ -116,8 +115,7 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext newInitialContext(String principal, String credential)
-        throws Exception
+    public static InitialContext newInitialContext(String principal, String credential) throws Exception
     {
         Hashtable props = getInitialContextProperties(principal, credential);
         securedInitialContext = new InitialContext(props);
@@ -131,13 +129,12 @@ public class EJB3Container
      * @return InitialContext
      * @throws Exception
      */
-    public static InitialContext getInitialContext()
-        throws Exception
+    public static InitialContext getInitialContext() throws Exception
     {
         if (initialContext == null)
         {
-           Hashtable props = getInitialContextProperties();
-           initialContext = new InitialContext(props);
+            Hashtable props = getInitialContextProperties();
+            initialContext = new InitialContext(props);
         }
         return initialContext;
     }
@@ -152,13 +149,12 @@ public class EJB3Container
      * @return
      * @throws Exception
      */
-    public static InitialContext getInitialContext(String principal, String credential)
-        throws Exception
+    public static InitialContext getInitialContext(String principal, String credential) throws Exception
     {
         if (securedInitialContext == null)
         {
-           Hashtable props = getInitialContextProperties(principal, credential);
-           securedInitialContext = new InitialContext(props);
+            Hashtable props = getInitialContextProperties(principal, credential);
+            securedInitialContext = new InitialContext(props);
         }
         return securedInitialContext;
     }

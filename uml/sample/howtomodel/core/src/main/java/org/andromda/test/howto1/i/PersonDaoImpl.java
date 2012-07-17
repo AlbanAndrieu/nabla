@@ -5,11 +5,11 @@
  */
 package org.andromda.test.howto1.i;
 
-
 /**
  * @see org.andromda.test.howto1.i.Person
  */
-public class PersonDaoImpl extends PersonDaoBase {
+public class PersonDaoImpl extends PersonDaoBase
+{
 
     // @Override
     // public List findByNameOrBirthDate(final int transform, final String name, final Date birthDate) throws PersonDaoException {

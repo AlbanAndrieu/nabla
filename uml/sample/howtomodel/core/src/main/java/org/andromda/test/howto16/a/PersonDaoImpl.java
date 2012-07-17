@@ -8,20 +8,16 @@ package org.andromda.test.howto16.a;
 /**
  * @see Person
  */
-public class PersonDaoImpl
-    extends PersonDaoBase
+public class PersonDaoImpl extends PersonDaoBase
 {
     /**
      * @see org.andromda.test.howto16.a.PersonDao#toPersonValueObject(Person, PersonValueObject)
      */
-    public void toPersonValueObject(
-        Person sourceEntity,
-        PersonValueObject targetVO)
+    public void toPersonValueObject(Person sourceEntity, PersonValueObject targetVO)
     {
         // TODO verify behavior of toPersonValueObject
         super.toPersonValueObject(sourceEntity, targetVO);
     }
-
 
     /**
      * @see org.andromda.test.howto16.a.PersonDao#toPersonValueObject(Person)
@@ -31,7 +27,6 @@ public class PersonDaoImpl
         // TODO verify behavior of toPersonValueObject
         return super.toPersonValueObject(entity);
     }
-
 
     /**
      * Retrieves the entity object that is associated with the specified value object
@@ -50,9 +45,8 @@ public class PersonDaoImpl
             person = Person.Factory.newInstance();
         }
         return person;
-        */
+         */
     }
-
 
     /**
      * @see org.andromda.test.howto16.a.PersonDao#personValueObjectToEntity(PersonValueObject)
@@ -65,14 +59,10 @@ public class PersonDaoImpl
         return entity;
     }
 
-
     /**
      * @see org.andromda.test.howto16.a.PersonDao#personValueObjectToEntity(PersonValueObject, Person)
      */
-    public void personValueObjectToEntity(
-        PersonValueObject sourceVO,
-        Person targetEntity,
-        boolean copyIfNull)
+    public void personValueObjectToEntity(PersonValueObject sourceVO, Person targetEntity, boolean copyIfNull)
     {
         // TODO verify behavior of personValueObjectToEntity
         super.personValueObjectToEntity(sourceVO, targetEntity, copyIfNull);

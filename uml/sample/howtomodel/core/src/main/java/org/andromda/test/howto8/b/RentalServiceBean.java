@@ -17,9 +17,7 @@ import java.util.List;
  */
 // Uncomment to enable webservices for RentalServiceBean
 // @javax.jws.WebService(endpointInterface = "org.andromda.test.howto8.b.RentalServiceWSInterface", serviceName = "RentalService")
-public class RentalServiceBean
-    extends RentalServiceBase
-    implements RentalServiceRemote
+public class RentalServiceBean extends RentalServiceBase implements RentalServiceRemote
 {
 
     // --------------- Constructors ---------------
@@ -37,8 +35,7 @@ public class RentalServiceBean
     /**
      * @see RentalServiceBase#getAllCars()
      */
-    protected List handleGetAllCars()
-        throws Exception
+    protected List handleGetAllCars() throws Exception
     {
         //TODO: put your implementation here.
         // Dummy return value, just that the file compiles
@@ -48,14 +45,12 @@ public class RentalServiceBean
     /**
      * @see RentalServiceBase#getCustomersByName(String)
      */
-    protected List handleGetCustomersByName(String name)
-        throws Exception
+    protected List handleGetCustomersByName(String name) throws Exception
     {
         //TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }
-
 
     // -------- Lifecycle Callback Implementation --------------
 

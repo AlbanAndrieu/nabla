@@ -8,8 +8,7 @@ package org.andromda.test.howto6.a;
 /**
  * @see Car
  */
-public class CarDaoImpl
-    extends CarDaoBase
+public class CarDaoImpl extends CarDaoBase
 {
     /**
      * @see org.andromda.test.howto6.a.CarDao#allCarsAreRented()
@@ -23,14 +22,11 @@ public class CarDaoImpl
     /**
      * @see org.andromda.test.howto6.a.CarDao#toCarDetails(Car, CarDetails)
      */
-    public void toCarDetails(
-        Car sourceEntity,
-        CarDetails targetVO)
+    public void toCarDetails(Car sourceEntity, CarDetails targetVO)
     {
         // TODO verify behavior of toCarDetails
         super.toCarDetails(sourceEntity, targetVO);
     }
-
 
     /**
      * @see org.andromda.test.howto6.a.CarDao#toCarDetails(Car)
@@ -40,7 +36,6 @@ public class CarDaoImpl
         // TODO verify behavior of toCarDetails
         return super.toCarDetails(entity);
     }
-
 
     /**
      * Retrieves the entity object that is associated with the specified value object
@@ -59,9 +54,8 @@ public class CarDaoImpl
             car = Car.Factory.newInstance();
         }
         return car;
-        */
+         */
     }
-
 
     /**
      * @see org.andromda.test.howto6.a.CarDao#carDetailsToEntity(CarDetails)
@@ -74,14 +68,10 @@ public class CarDaoImpl
         return entity;
     }
 
-
     /**
      * @see org.andromda.test.howto6.a.CarDao#carDetailsToEntity(CarDetails, Car)
      */
-    public void carDetailsToEntity(
-        CarDetails sourceVO,
-        Car targetEntity,
-        boolean copyIfNull)
+    public void carDetailsToEntity(CarDetails sourceVO, Car targetEntity, boolean copyIfNull)
     {
         // TODO verify behavior of carDetailsToEntity
         super.carDetailsToEntity(sourceVO, targetEntity, copyIfNull);
@@ -90,14 +80,11 @@ public class CarDaoImpl
     /**
      * @see org.andromda.test.howto6.a.CarDao#toCarListItem(Car, CarListItem)
      */
-    public void toCarListItem(
-        Car sourceEntity,
-        CarListItem targetVO)
+    public void toCarListItem(Car sourceEntity, CarListItem targetVO)
     {
         // TODO verify behavior of toCarListItem
         super.toCarListItem(sourceEntity, targetVO);
     }
-
 
     /**
      * @see org.andromda.test.howto6.a.CarDao#toCarListItem(Car)
@@ -107,7 +94,6 @@ public class CarDaoImpl
         // TODO verify behavior of toCarListItem
         return super.toCarListItem(entity);
     }
-
 
     /**
      * Retrieves the entity object that is associated with the specified value object
@@ -126,9 +112,8 @@ public class CarDaoImpl
             car = Car.Factory.newInstance();
         }
         return car;
-        */
+         */
     }
-
 
     /**
      * @see org.andromda.test.howto6.a.CarDao#carListItemToEntity(CarListItem)
@@ -141,14 +126,10 @@ public class CarDaoImpl
         return entity;
     }
 
-
     /**
      * @see org.andromda.test.howto6.a.CarDao#carListItemToEntity(CarListItem, Car)
      */
-    public void carListItemToEntity(
-        CarListItem sourceVO,
-        Car targetEntity,
-        boolean copyIfNull)
+    public void carListItemToEntity(CarListItem sourceVO, Car targetEntity, boolean copyIfNull)
     {
         // TODO verify behavior of carListItemToEntity
         super.carListItemToEntity(sourceVO, targetEntity, copyIfNull);

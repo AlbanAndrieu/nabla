@@ -7,14 +7,11 @@ import java.io.Serializable;
 /**
  * @see org.andromda.test.howto16.a.crud.PersonController
  */
-public class PersonControllerImpl
-    extends PersonController
-    implements Serializable
+public class PersonControllerImpl extends PersonController implements Serializable
 {
     /**
      * The serial version UID of this class. Needed for serialization.
      */
     private static final long serialVersionUID = 8757839922152792047L;
-
 
 }

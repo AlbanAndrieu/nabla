@@ -8,7 +8,6 @@ package org.andromda.test.howto9.a;
 /**
  * @see org.andromda.test.howto9.a.Person
  */
-public class PersonDaoImpl
-    extends PersonDaoBase
+public class PersonDaoImpl extends PersonDaoBase
 {
 }

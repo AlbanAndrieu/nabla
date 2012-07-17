@@ -7,14 +7,11 @@ import java.io.Serializable;
 /**
  * @see org.andromda.test.howto16.a.crud.CarController
  */
-public class CarControllerImpl
-    extends CarController
-    implements Serializable
+public class CarControllerImpl extends CarController implements Serializable
 {
     /**
      * The serial version UID of this class. Needed for serialization.
      */
     private static final long serialVersionUID = 8981610972593002909L;
-
 
 }

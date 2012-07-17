@@ -15,9 +15,7 @@ package org.andromda.test.howto10.a;
  */
 // Uncomment to enable webservices for PaymentServiceBean
 // @javax.jws.WebService(endpointInterface = "org.andromda.test.howto10.a.PaymentServiceWSInterface", serviceName = "PaymentService")
-public class PaymentServiceBean
-    extends PaymentServiceBase
-    implements PaymentServiceRemote
+public class PaymentServiceBean extends PaymentServiceBase implements PaymentServiceRemote
 {
 
     // --------------- Constructors ---------------
@@ -35,13 +33,11 @@ public class PaymentServiceBean
     /**
      * @see PaymentServiceBase#register(Person, Car, int)
      */
-    protected void handleRegister(Person owner, Car car, int leasePeriod)
-        throws Exception
+    protected void handleRegister(Person owner, Car car, int leasePeriod) throws Exception
     {
         //TODO: put your implementation here.
         throw new UnsupportedOperationException("org.andromda.test.howto10.a.PaymentServiceBean.handleRegister(Person owner, Car car, int leasePeriod) Not implemented!");
     }
-
 
     // -------- Lifecycle Callback Implementation --------------
 

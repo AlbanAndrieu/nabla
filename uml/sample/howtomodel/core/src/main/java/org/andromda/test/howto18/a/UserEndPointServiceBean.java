@@ -16,9 +16,7 @@ import javax.jws.WebService;
  * Instead, the session bean is defined in the ejb-jar.xml descriptor.
  */
 @WebService(endpointInterface = "org.andromda.test.howto18.a.UserEndPointServiceWSInterface", serviceName = "UserEndPointService")
-public class UserEndPointServiceBean
-    extends UserEndPointServiceBase
-    implements UserEndPointServiceRemote
+public class UserEndPointServiceBean extends UserEndPointServiceBase implements UserEndPointServiceRemote
 {
 
     // --------------- Constructors ---------------
@@ -36,8 +34,7 @@ public class UserEndPointServiceBean
     /**
      * @see UserEndPointServiceBase#addUser(String)
      */
-    protected void handleAddUser(String name)
-        throws Exception
+    protected void handleAddUser(String name) throws Exception
     {
         //TODO: put your implementation here.
         throw new UnsupportedOperationException("org.andromda.test.howto18.a.UserEndPointServiceBean.handleAddUser(String name) Not implemented!");
@@ -46,14 +43,12 @@ public class UserEndPointServiceBean
     /**
      * @see UserEndPointServiceBase#getUser(Long)
      */
-    protected User handleGetUser(Long id)
-        throws Exception
+    protected User handleGetUser(Long id) throws Exception
     {
         //TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }
-
 
     // -------- Lifecycle Callback Implementation --------------
 
