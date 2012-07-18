@@ -94,7 +94,11 @@
 					<artifactId>jta</artifactId>
 					<version>${javax.transaction.version}</version>
 				</dependency>
-
+				<dependency>
+		        		<groupId>javassist</groupId>
+					<artifactId>javassist</artifactId>
+		        		<version>${javassist.version}</version>
+		        	</dependency>
 				<dependency>
 					<groupId>commons-dbcp</groupId>
 					<artifactId>commons-dbcp</artifactId>
