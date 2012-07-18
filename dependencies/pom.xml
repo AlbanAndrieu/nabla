@@ -304,9 +304,18 @@
 			<properties>
 				<maven.test.skip>false</maven.test.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
-				<application.package>com.nabla.project</application.package>
+				<!--<application.package>com.nabla.project</application.package>-->
 			</properties>
 			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-site-plugin</artifactId>
+							<version>${maven.site.old.plugin.version}</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>			
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -319,24 +328,23 @@
 							<locales>en</locales>
 							<!--<locales>en,fr</locales> -->
 							<excludeModules>build-tools</excludeModules>
-							<excludeModules>maven-gui-plugin</excludeModules>
+							<!--<excludeModules>maven-gui-plugin</excludeModules>-->
 							<!--<siteDirectory>${basedir}/site/src/site</siteDirectory>-->
 							<port>8070</port>
 						</configuration>
 						<dependencies>
-
+							<!--
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-default-skin</artifactId>
 								<version>${maven.default.skin.version}</version>
 							</dependency>
-							<!--
-							<dependency>
-								<groupId>org.andromda.maven.plugins.site</groupId>
-								<artifactId>nabla-site-skin</artifactId>
-								<version>3.4</version>
-							</dependency>
 							-->
+							<dependency>
+								<groupId>com.nabla.project</groupId>
+								<artifactId>skin</artifactId>
+								<version>1.0</version>
+							</dependency>
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
@@ -818,7 +826,7 @@
     							<additionalparam>-collpackages</additionalparam>
 							<show>private</show>
 
-						</configuration>
+						</configuration>					
 					</plugin>
 
 					<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
@@ -1331,6 +1339,16 @@
 				<enabled>false</enabled>
 			</releases>
 		</pluginRepository>
+                <pluginRepository>
+                  <id>jboss-public-repository</id>
+                  <name>JBoss Repository</name>
+                  <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                  <releases>
+                  </releases>
+                  <snapshots>
+                    <enabled>false</enabled>
+                  </snapshots>
+                </pluginRepository>		
 	</pluginRepositories>
 
 	<!-- Keep Alphabetical Order. Capital Letter goes first -->
@@ -1450,6 +1468,7 @@
 
 		<jdbc.derby.version>10.3.1.4</jdbc.derby.version>
 		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
+
 		<jconn.version>6.0</jconn.version>
 		<!--<asm.version>2.2.3</asm.version>--> <!-- error running openejb -->
 		<asm.version>3.3.1</asm.version> <!-- works with cglib -->
@@ -1459,20 +1478,24 @@
 		<javax.transaction.version>1.1</javax.transaction.version>
 		<acegi.security.version>1.0.1</acegi.security.version>
 		<xml.security.version>1.3.0</xml.security.version>
-		<!--<xml.apis.version>1.0.b2</xml.apis.version>-->
-		<xml.apis.version>2.0.2</xml.apis.version>
+		<xml.apis.version>1.0.b2</xml.apis.version>
+		<!--<xml.apis.version>2.0.2</xml.apis.version>-->
 
 		<jboss.version>4.2.2.GA</jboss.version>
 		<jbossall.client.version>4.2.3.GA</jbossall.client.version>
 		<jboss.annotations.ejb3.version>4.2.3.GA</jboss.annotations.ejb3.version>
 		<jboss.embeddable.version>1.0.0.Alpha9</jboss.embeddable.version>
 		<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
+                <jboss.cache.version>1.4.1.SP9</jboss.cache.version>
+                <jboss.el.version>1.0_02.CR5</jboss.el.version>	
+                <el.api.version>2.2.1-b04</el.api.version>	
 		<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
 		<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
     		<openejb.core.version>3.1.4</openejb.core.version>
     		<seam.embedded.version>beta3.SP15</seam.embedded.version>
     		<seam.utils.version>1.0</seam.utils.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
+
 		<jboss.dist.path>${env.JBOSS_HOME}</jboss.dist.path>
 		<application.server>jboss</application.server>
 		<jboss.common.version>2.0.4.GA</jboss.common.version>
@@ -1480,8 +1503,7 @@
 		<jarjar.version>0.6</jarjar.version>
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
-		<jsf.version>1.2_12</jsf.version>
-		<el.api.version>2.2.1-b04</el.api.version>
+		<jsf.version>1.2_12</jsf.version>		
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<aspectj.version>1.6.6</aspectj.version>
 		<clickstream.version>1.0.2</clickstream.version>
@@ -1509,9 +1531,11 @@
 		<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>
 		<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
 		<hibernate.search.version>3.0.1.GA</hibernate.search.version>
-		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
-		<ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>
 		<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
+		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
+		<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
+		<ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>		
+		<jboss.ejb3.persistence.version>4.0.5-GA</jboss.ejb3.persistence.version>
 		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
 		<jbpm.version>3.3.1.GA</jbpm.version>
 		<ibatis.version>2.3.0</ibatis.version>
@@ -1558,8 +1582,13 @@
 		<gae.version>1.5.3</gae.version>
 		<gwtp.all.version>0.7</gwtp.all.version>
 		<gwt.seam.version>1.0</gwt.seam.version>
+		<errai.version>2.0.Beta3</errai.version>
 
 		<selenium.version>0.8.1</selenium.version>
+                <drools.version>5.0.1</drools.version> 		
+                <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version> 
+                        
+                <richfaces.version>3.3.3.Final</richfaces.version>  		
 		<myfaces.version>1.2.9</myfaces.version>
 		<!--<myfaces.version>1.2.11</myfaces.version> does not work-->
 		<!--<myfaces.version>2.1.6</myfaces.version>-->
@@ -1581,7 +1610,6 @@
 		<dao.framework>jpa</dao.framework>
 		<web.framework>struts</web.framework>
 		<appfuse.version>2.1.0-M1</appfuse.version>
-
 		<javax.persistence.version>1.0.2</javax.persistence.version>
 
 		<cxf.version>2.2.10</cxf.version>
@@ -1634,6 +1662,10 @@
 			French Encoding in some files: can't use UTF-8, TODO update source
 			files
 		-->
+    		<!-- Explicitly declaring the source encoding eliminates the following 
+    		  message: -->
+    		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+    		  resources, i.e. build is platform dependent! -->		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -1672,7 +1704,7 @@
 		<maven.gui.plugin.version>1.0</maven.gui.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.1</maven.plugin.plugin.plugin.version>
 		<!--<maven.plugin.plugin.plugin.version>2.5.1</maven.plugin.plugin.plugin.version>-->
-		<maven.clirr.plugin.version>2.3</maven.clirr.plugin.version>
+		<maven.clirr.plugin.version>2.4</maven.clirr.plugin.version>
 		<maven.patch.plugin.version>1.0</maven.patch.plugin.version>
 		<maven.one.plugin.version>1.2</maven.one.plugin.version>
 		<maven.findbugs.plugin.version>2.3.2</maven.findbugs.plugin.version>
@@ -1694,6 +1726,7 @@
 		<maven.replacer.plugin.version>1.4.0</maven.replacer.plugin.version>
 		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
 		<maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
+		<maven.sonar.maven.plugin.version>2.0</maven.sonar.maven.plugin.version>
 		<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>0.7</maven.cli.plugin.version>
 		<maven.shade.plugin.version>1.0.1</maven.shade.plugin.version>
@@ -1704,12 +1737,13 @@
 		<maven.jboss.packaging.plugin.version>2.1.1</maven.jboss.packaging.plugin.version>
 		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
 		<maven.minify.plugin.version>1.3.5</maven.minify.plugin.version>
-		<maven.javadoc.plugin.version>2.8</maven.javadoc.plugin.version>
+		<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>
 		<maven.jxr.plugin.version>2.3</maven.jxr.plugin.version>
 		<maven.pmd.plugin.version>2.6</maven.pmd.plugin.version>
 		<maven.project.info.reports.plugin.version>2.4</maven.project.info.reports.plugin.version>
 		<maven.resources.plugin.version>2.5</maven.resources.plugin.version>
 		<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
+		<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>
 		<maven.site.plugin.version>3.1</maven.site.plugin.version>
 		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
 		<maven.buildnumber.plugin.version>1.0</maven.buildnumber.plugin.version>
@@ -1743,10 +1777,21 @@
 		<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
 		<maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
 		<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
+		<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version>
 		<hibernate3.maven.plugin.version>2.2-SNAPSHOT</hibernate3.maven.plugin.version>
 		<dbunit.maven.plugin.version>1.0-beta-3</dbunit.maven.plugin.version>
 
 		<package.tomcat.zip.version>${tomcat.version}</package.tomcat.zip.version>
+		
+    		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
+    		  dependencies from org.jboss.spec will have their version defined by this
+    		  BOM -->
+    		<version.org.jboss.spec.jboss.javaee6>2.0.0.Final</version.org.jboss.spec.jboss.javaee6>
+    		<!-- Alternatively, comment out the above line, and un-comment the line
+    		  below to use version 3.0.0.Beta1-redhat-1 which is a release certified to
+    		  work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven
+    		  repository. -->
+    		<!-- <version.org.jboss.spec.jboss.javaee6>3.0.0.Beta1-redhat-1</version.org.jboss.spec.jboss.javaee6> -->		
 	</properties>
 
 	<build>
@@ -1986,7 +2031,20 @@
             					 	 	 	 	<ignore></ignore>
             					 	 	 	</action>
             					 	 	</pluginExecution>
-            					 	 	<!--
+                                                                <pluginExecution>
+                                                                        <pluginExecutionFilter>
+                                                                          <groupId>org.codehaus.mojo</groupId>
+                                                                          <artifactId>gwt-maven-plugin</artifactId>
+                                                                          <versionRange>[${maven.gwt.plugin.version},)</versionRange>
+                                                                          <goals>
+                                                                            <goal>resources</goal>
+                                                                          </goals>
+                                                                        </pluginExecutionFilter>
+                                                                        <action>
+                                                                          <execute />
+                                                                        </action>
+                                                                </pluginExecution>
+                                                                <!--
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                           <groupId>org.codehaus.mojo</groupId>
@@ -2047,6 +2105,12 @@
         			  </executions>
         			</plugin>
 
+        			<plugin>
+        			  <groupId>org.codehaus.mojo</groupId>
+        			  <artifactId>sonar-maven-plugin</artifactId>
+        			  <version>${maven.sonar.maven.plugin.version}</version>
+        			</plugin>
+        
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
@@ -2228,13 +2292,11 @@
 						</execution>
 					</executions>
 				</plugin>
-                                <!--
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>${maven.site.old.plugin.version}</version>
+					<version>${maven.site.plugin.version}</version>
 				</plugin>
-                                -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -2487,6 +2549,9 @@
 							</manifestEntries>
 						</archive>
 						<includeJar>false</includeJar>
+					        <excludes>
+					        	<exclude>**/*.ref</exclude>
+					        </excludes>						
 					</configuration>
 				</plugin>
 				<plugin>
@@ -2769,6 +2834,13 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven.javadoc.plugin.version}</version>
+        					<dependencies>
+        					  <dependency>
+        					    <groupId>org.codehaus.mojo</groupId>
+        					    <artifactId>clirr-maven-plugin</artifactId>
+        					    <version>${maven.clirr.plugin.version}</version>
+        					  </dependency>
+        					</dependencies>						
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -2951,6 +3023,15 @@
 							<included>false</included>
 						</asfExtOptions>
 					</configuration>
+        				<executions>
+        				  <execution>
+        				    <id>site</id>
+        				    <phase>site</phase>
+        				    <goals>
+        				      <goal>generate</goal>
+        				    </goals>
+        				  </execution>
+        				</executions>					
 				</plugin>
                                 <plugin>
                                     <groupId>org.mortbay.jetty</groupId>
@@ -3023,10 +3104,25 @@
 	</build>
 	<dependencyManagement>
 		<dependencies>
+                        <!-- JBoss distributes a complete set of Java EE 6 APIs including a
+                          Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or a
+                          collection) of artifacts. We use this here so that we always get the correct
+                          versions of artifacts. Here we use the jboss-javaee-6.0 stack (you can read
+                          this as the JBoss stack of the Java EE 6 APIs). You can actually use this
+                          stack with any version of JBoss AS that implements Java EE 6, not just JBoss
+                          AS 7! -->
+                        <dependency>
+                          <groupId>org.jboss.spec</groupId>
+                          <artifactId>jboss-javaee-6.0</artifactId>
+                          <version>${version.org.jboss.spec.jboss.javaee6}</version>
+                          <type>pom</type>
+                          <scope>import</scope>
+                        </dependency>		
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
+				        <type>jar</type>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -3248,6 +3344,220 @@
 				<groupId>asm</groupId>
 				<artifactId>asm</artifactId>
 				<version>${asm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>${cglib.nodep.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>jta</artifactId>
+				<version>${javax.transaction.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
+			</dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.entitymanager.version}</version>
+                <scope>provided</scope>
+                <exclusions>
+                  <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>ejb3-persistence</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>jboss</groupId>
+                    <artifactId>javassist</artifactId>
+                  </exclusion>    
+                  <exclusion>
+                    <groupId>javax.persistence</groupId>
+                    <artifactId>persistence-api</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>javax.transaction</groupId>
+                    <artifactId>jta</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                  </exclusion>                  
+                </exclusions>                               
+            </dependency>			
+		        <dependency>
+		        	<groupId>org.hibernate</groupId>
+		        	<artifactId>ejb3-persistence</artifactId>
+		        	<version>${ejb3.persistence.version}</version>
+		        </dependency>
+		        <dependency>
+    			  	<groupId>org.hibernate</groupId>
+    			  	<artifactId>hibernate-jpamodelgen</artifactId>
+    			  	<version>${hibernate.jpamodelgen.version}</version>
+    			  	<scope>provided</scope>
+    			</dependency>
+	                <dependency>
+	                	<groupId>org.hibernate</groupId>
+	                	<artifactId>hibernate-search</artifactId>
+	                	<version>${hibernate.search.version}</version>
+		    		<exclusions>
+		    			<exclusion>
+		    				<groupId>org.hibernate</groupId>
+		    				<artifactId>hibernate</artifactId>
+		    			</exclusion>
+		    		</exclusions>
+	                </dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-annotations</artifactId>
+				<version>${hibernate.annotations.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.transaction</groupId>
+						<artifactId>jta</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.core.version}</version>
+                <scope>provided</scope>
+                <exclusions>
+                  <exclusion>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>net.sf.ehcache</groupId>
+                    <artifactId>ehcache</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>javax.transaction</groupId>
+                    <artifactId>jta</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>asm</groupId>
+                    <artifactId>asm</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>asm</groupId>
+                    <artifactId>asm-attrs</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>dom4j</groupId>
+                    <artifactId>dom4j</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>antlr</groupId>
+                    <artifactId>antlr</artifactId>
+                  </exclusion>
+                  <exclusion>
+                    <groupId>cglib</groupId>
+                    <artifactId>cglib</artifactId>
+                  </exclusion>     
+                  <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                  </exclusion>
+                </exclusions>
+            </dependency>
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>${javax.persistence.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.jar.version}</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${org.javassist.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		        <dependency>
+		        	<groupId>javassist</groupId>
+		        	<artifactId>javassist</artifactId>
+		        	<version>${javassist.version}</version>
+		        </dependency>
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-core</artifactId>
+				<version>${activemq.core.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>backport-util-concurrent</groupId>
+				<artifactId>backport-util-concurrent</artifactId>
+				<version>${backport.util.concurrent.version}</version>
+				<scope>runtime</scope>
+				<!--<scope>compile</scope>-->
+			</dependency>
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons.httpclient.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+                	        <groupId>commons-dbcp</groupId>
+                	        <artifactId>commons-dbcp</artifactId>
+                	        <version>${commons.dbcp.version}</version>
+                	        <scope>runtime</scope>
+                	</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${commons.pool.version}</version>
+				<scope>runtime</scope>
+				<!--<scope>compile</scope>-->
+			</dependency>
+			<dependency>
+				<groupId>aopalliance</groupId>
+				<artifactId>aopalliance</artifactId>
+				<version>${aopalliance.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>cglib</groupId>
@@ -3632,19 +3942,27 @@
 				<version>${commons.digester.version}</version>
 				<!--<scope>runtime</scope>-->
 				<scope>compile</scope>
-                                <exclusions>
-                                    <exclusion>
-                                        <groupId>xml-apis</groupId>
-                                        <artifactId>xml-apis</artifactId>
-                                    </exclusion>
-                                </exclusions>
+                  <exclusions>
+                    <exclusion>
+                        <groupId>xml-apis</groupId>
+                        <artifactId>xml-apis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                      <groupId>commons-logging</groupId>
+                      <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                    <exclusion>
+                      <groupId>commons-beanutils</groupId>
+                      <artifactId>commons-beanutils</artifactId>
+                    </exclusion>                    
+                </exclusions>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
 				<version>${commons.fileupload.version}</version>
-				<!--<scope>runtime</scope>-->
-				<scope>compile</scope>
+				<scope>runtime</scope>
+				<!--<scope>compile</scope>-->
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -3692,6 +4010,13 @@
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
 				<version>${commons.codec.version}</version>
+				<!--<scope>compile</scope>-->
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons.codec.version}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
@@ -3700,11 +4025,17 @@
 				<version>${commons.discovery.version}</version>
 				<scope>compile</scope>
 			</dependency>
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils-core</artifactId>
-				<version>${commons.beanutils.version}</version>
-			</dependency>
+            <dependency>
+              <groupId>commons-beanutils</groupId>
+              <artifactId>commons-beanutils-core</artifactId>
+              <version>${commons.beanutils.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
 			<dependency>
 				<groupId>concurrent</groupId>
 				<artifactId>concurrent</artifactId>
@@ -3751,14 +4082,232 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<!-- validation dependencies for hibernate-entitymanager -->
             		<dependency>
             		    	<groupId>javax.validation</groupId>
             		    	<artifactId>validation-api</artifactId>
             		    	<version>${validation.api.version}</version>
             		</dependency>
+            		
+            <!-- richfaces -->
+            <dependency>
+              <groupId>org.richfaces.framework</groupId>
+              <artifactId>richfaces-api</artifactId>
+              <version>${richfaces.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>junit</groupId>
+                  <artifactId>junit</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>javax.faces</groupId>
+                  <artifactId>jsf-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>commons-beanutils</groupId>
+                  <artifactId>commons-beanutils</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>commons-collections</groupId>
+                  <artifactId>commons-collections</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+
+            <dependency>
+              <groupId>org.richfaces.framework</groupId>
+              <artifactId>richfaces-impl</artifactId>
+              <version>${richfaces.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>junit</groupId>
+                  <artifactId>junit</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>xml-apis</groupId>
+                  <artifactId>xml-apis</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>org.richfaces.framework</groupId>
+                  <artifactId>richfaces-api</artifactId>
+                </exclusion>       
+                <exclusion>
+                  <groupId>javax.faces</groupId>
+                  <artifactId>jsf-api</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>javax.faces</groupId>
+                  <artifactId>jsf-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>commons-digester</groupId>
+                  <artifactId>commons-digester</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>commons-beanutils</groupId>
+                  <artifactId>commons-beanutils</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency> 
+      
+            <dependency>
+              <groupId>org.richfaces.ui</groupId>
+              <artifactId>richfaces-ui</artifactId>
+              <version>${richfaces.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>javax.faces</groupId>
+                  <artifactId>jsf-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>org.richfaces.framework</groupId>
+                  <artifactId>richfaces-api</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>jstl</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>commons-digester</groupId>
+                  <artifactId>commons-digester</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>commons-beanutils</groupId>
+                  <artifactId>commons-beanutils</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>            
+            
+            <dependency>
+              <groupId>org.richfaces.samples</groupId>
+              <artifactId>glassX</artifactId>
+              <version>${richfaces.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>jstl</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>nekohtml</groupId>
+                  <artifactId>nekohtml</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+
+            <dependency>
+              <groupId>org.richfaces.samples</groupId>
+              <artifactId>darkX</artifactId>
+              <version>${richfaces.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>jstl</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>nekohtml</groupId>
+                  <artifactId>nekohtml</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+                  
+            <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-api</artifactId>
+                <version>${myfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-impl</artifactId>
+                <version>${myfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.tomahawk</groupId>
+                <artifactId>tomahawk12</artifactId>
+                <version>${org.apache.myfaces.tomahawk.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.myfaces.extensions.validator</groupId>
+                <artifactId>myfaces-extval-core</artifactId>
+                <version>${myfaces.extval.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.extensions.validator.validation-modules</groupId>
+                <artifactId>myfaces-extval-property-validation</artifactId>
+                <version>${myfaces.extval.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.extensions.validator.validation-modules</groupId>
+                <artifactId>myfaces-extval-bean-validation</artifactId>
+                <version>${myfaces.extval.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.extensions.validator.component-support-modules</groupId>
+                <artifactId>myfaces-extval-generic-support</artifactId>
+                <version>${myfaces.extval.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>cglib</groupId>
+                        <artifactId>cglib</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.extensions.validator.component-support-modules</groupId>
+                <artifactId>myfaces-extval-trinidad-support</artifactId>
+                <version>${myfaces.extval.version}</version>
+            </dependency>
+                        	
+            <dependency>
+                <groupId>org.apache.myfaces.trinidad</groupId>
+                <artifactId>trinidad-api</artifactId>
+                <version>${org.apache.myfaces.trinidad.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.trinidad</groupId>
+                <artifactId>trinidad-impl</artifactId>
+                <version>${org.apache.myfaces.trinidad.version}</version>
+            </dependency> 
+                                    	
+            <dependency>
+                <groupId>com.sun.facelets</groupId>
+                <artifactId>jsf-facelets</artifactId>
+                <version>${jsf.facelets.version}</version>
+            </dependency>
+                                                		
                         <dependency>
                             <groupId>org.icefaces</groupId>
                             <artifactId>icefaces</artifactId>
+                            <version>${icefaces.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.icefaces</groupId>
+                            <artifactId>icefaces-comps</artifactId>
+                            <version>${icefaces.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.icefaces</groupId>
+                            <artifactId>icefaces-facelets</artifactId>
                             <version>${icefaces.version}</version>
                             <!--<scope>runtime</scope>-->
                             <scope>compile</scope>
@@ -3832,12 +4381,149 @@
 				<artifactId>standard</artifactId>
 				<version>${taglibs.version}</version>
 			</dependency>
+                        <!-- Errai Core and ErraiBus -->
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-bus</artifactId>
+                          <version>${errai.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>javax.inject</groupId>
+                              <artifactId>javax.inject</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.annotation</groupId>
+                              <artifactId>jsr250-api</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-ioc</artifactId>
+                          <version>${errai.version}</version>
+                          <exclusions>
+                            <exclusion>
+                              <groupId>javax.inject</groupId>
+                              <artifactId>javax.inject</artifactId>
+                            </exclusion>
+                            <exclusion>
+                              <groupId>javax.annotation</groupId>
+                              <artifactId>jsr250-api</artifactId>
+                            </exclusion>
+                          </exclusions>
+                        </dependency>
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-tools</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <!-- Errai JAX-RS -->
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-jaxrs-client</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-jaxrs-provider</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <!-- Errai CDI Integration Modules -->
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-cdi-client</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-javax-enterprise</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>errai-weld-integration</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>org.jboss.errai</groupId>
+                          <artifactId>jboss7-support</artifactId>
+                          <version>${errai.version}</version>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>com.google.gwt</groupId>
+                          <artifactId>gwt-user</artifactId>
+                          <version>${gwt.version}</version>
+                        </dependency>
+                        
+                        <dependency>
+                          <groupId>com.google.gwt</groupId>
+                          <artifactId>gwt-dev</artifactId>
+                          <version>${gwt.version}</version>
+                        </dependency>			
+                        
+           <dependency>
+              <groupId>org.jboss.el</groupId>
+              <artifactId>jboss-el</artifactId>
+              <version>${jboss.el.version}</version>
+              <exclusions>
+              <exclusion>
+                <groupId>javax.el</groupId>
+                <artifactId>el-api</artifactId>
+              </exclusion>
+              </exclusions>              
+            </dependency>
+            
+            <dependency>
+              <groupId>org.jbpm</groupId>
+              <artifactId>jbpm-jpdl</artifactId>
+              <version>${jbpm.jpdl.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>servlet-api</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+            
+            <dependency>
+              <groupId>jboss</groupId>
+              <artifactId>jboss-cache</artifactId>
+              <version>${jboss.cache.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>jboss</groupId>
+                  <artifactId>jboss-system</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>jboss</groupId>
+                  <artifactId>jboss-jmx</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>                               
+                        
 			<dependency>
 				<groupId>jboss</groupId>
 				<artifactId>jboss-j2ee</artifactId>
 				<version>${jboss.version}</version>
 				<scope>provided</scope>
 			</dependency>
+           <dependency>
+                <groupId>jboss</groupId>
+                <artifactId>jboss-ejb3-client</artifactId>
+                <version>${jboss.version}</version>
+                <scope>provided</scope>
+            </dependency>			
                         <dependency>
                             <groupId>jboss</groupId>
                             <artifactId>jboss-ejb3x</artifactId>
@@ -3850,13 +4536,88 @@
                             <version>${jbossall.client.version}</version>
                             <scope>runtime</scope>
                         </dependency>
+           <dependency>
+                <groupId>org.jboss</groupId>
+                <artifactId>ejb3-persistence</artifactId>
+                <version>${jboss.ejb3.persistence.version}</version>
+                <scope>provided</scope>
+            </dependency>                        
                         <dependency>
                             <groupId>jboss</groupId>
                             <artifactId>jboss-annotations-ejb3</artifactId>
                             <version>${jboss.annotations.ejb3.version}</version>
                             <scope>provided</scope>
-                        </dependency>
-                        <dependency>
+                        </dependency>      
+		        <dependency>
+		        	<groupId>org.jboss.spec.javax.interceptor</groupId>
+		        	<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+		        	<version>${jboss.interceptors.api.spec.version}</version>
+		        	<scope>provided</scope>
+		        </dependency>
+
+            <dependency>
+                <groupId>jboss</groupId>
+                <artifactId>jboss-serialization</artifactId>
+                <version>${jboss.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jboss</groupId>
+                <artifactId>jboss-remoting</artifactId>
+                <version>${jboss.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jboss</groupId>
+                <artifactId>jboss-aop-jdk50-client</artifactId>
+                <version>${jboss.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--dependency>
+                <groupId>org.jboss</groupId>
+                <artifactId>jboss-aspect-jdk50-client</artifactId>
+                <version>4.0.5-GA</version>
+                <scope>provided</scope>
+            </dependency-->
+            <dependency>
+                <groupId>jboss</groupId>
+                <artifactId>jnp-client</artifactId>
+                <version>${jboss.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!--dependency>
+                <groupId>org.jboss.microcontainer</groupId>
+                <artifactId>jboss-ejb3-all</artifactId>
+                <version>alpha_9</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.microcontainer</groupId>
+                <artifactId>jms-ra</artifactId>
+                <version>alpha_9</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.microcontainer</groupId>
+                <artifactId>jcainflow</artifactId>
+                <version>alpha_9</version>
+                <scope>provided</scope>
+            </dependency-->
+            
+		        <dependency>
+		        	<groupId>org.mvel</groupId>
+		        	<artifactId>mvel2</artifactId>
+		        	<version>${org.mvel.mvel2.version}</version>
+		        </dependency>
+      			<!-- spec apis such as javax.persistence, needed to run OpenEjb in tests -->
+      			<dependency>
+      			  <groupId>org.apache.openejb</groupId>
+      			  <artifactId>javaee-api</artifactId>
+      			  <version>${openejb.javaee.api.version}</version>
+      			</dependency>
+
+  			<dependency>
            	            <groupId>jboss.jboss-embeddable-ejb3</groupId>
            	            <artifactId>hibernate-all</artifactId>
            	            <version>${jboss.embeddable.version}</version>
@@ -3874,25 +4635,8 @@
 		        	<version>${jboss.embeddable.version}</version>
 		        	<scope>provided</scope>
 		        </dependency>
-		        <dependency>
-		        	<groupId>org.jboss.spec.javax.interceptor</groupId>
-		        	<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
-		        	<version>${jboss.interceptors.api.spec.version}</version>
-		        	<scope>provided</scope>
-		        </dependency>
-		        <dependency>
-		        	<groupId>org.mvel</groupId>
-		        	<artifactId>mvel2</artifactId>
-		        	<version>${org.mvel.mvel2.version}</version>
-		        </dependency>
-      			<!-- spec apis such as javax.persistence, needed to run OpenEjb in tests -->
-      			<dependency>
-      			  <groupId>org.apache.openejb</groupId>
-      			  <artifactId>javaee-api</artifactId>
-      			  <version>${openejb.javaee.api.version}</version>
-      			</dependency>
-
-			<!-- seam embedded container -->
+		        
+			<!-- seam embedded container -->            			
                		<dependency>
 				<groupId>org.jboss.seam.embedded</groupId>
 				<artifactId>hibernate-all</artifactId>
