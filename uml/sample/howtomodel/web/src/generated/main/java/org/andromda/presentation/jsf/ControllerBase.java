@@ -28,21 +28,26 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class ControllerBase
 {
-
     private static final Log logger = LogFactory.getLog(ControllerBase.class);
-    
+
+    /** org.andromda.cartridges.jsf.USE_CASE_FORMS */
     public static final String USE_CASE_FORMS_KEY="org.andromda.cartridges.jsf.USE_CASE_FORMS";
+    /** org.andromda.cartridges.jsf.PAGE_VARIABLES */
     public static final String USE_CASE_PAGE_VARIABLES_KEY="org.andromda.cartridges.jsf.PAGE_VARIABLES";
+    /** org.andromda.cartridges.jsf.USE_CASE_PARAMETERS */
     public static final String USE_CASE_PARAMETERS_KEY="org.andromda.cartridges.jsf.USE_CASE_PARAMETERS";
+    /** form */
     public static final String FORM_KEY="form";
 
-    /*
-     * Returns the forms associated with this controller in the  session.
+    /**
+     * Returns the forms associated with this controller in the pageFlowScope.
+     * @param session
+     * @return Forms Map<String,Object>
      */
     @SuppressWarnings("unchecked")
-    public static Map<String,Object> getForms( PortletSession session)
+    public static Map<String,Object> getForms(PortletSession session)
     {
-        Map<String,Object> result=(Map<String,Object>)session.getAttribute(USE_CASE_FORMS_KEY);
+        Map<String,Object> result = (Map<String,Object>)session.getAttribute(USE_CASE_FORMS_KEY);
         if(result == null){
             result=new HashMap<String, Object>();
             session.setAttribute(USE_CASE_FORMS_KEY, result);
@@ -50,15 +55,19 @@ public abstract class ControllerBase
         return result;
     }
 
-    /*
+    /**
      * Returns the forms associated with this controller.
+     * @return ControllerBase.getForms(getPageFlowScope())
      */
-    @SuppressWarnings("unchecked")
     public Map<String,Object> getForms()
     {
         return ControllerBase.getForms(getSession(false));
     }
 
+    /**
+     * @param formName
+     * @return getProperty(formName)
+     */
     public Object getForm(final String formName)
     {
         try
@@ -70,46 +79,50 @@ public abstract class ControllerBase
         }
     }
 
-    /*
-     * Returns the page variables associated with this controller, in the session.
+    /**
+     * Returns the page variables associated with this controller, in the pageFlowScope.
+     * @param session
+     * @return PageVariables
      */
-    @SuppressWarnings("unchecked")
     public static Map<String,Object> getPageVariables( PortletSession session)
     {
-        Map<String,Object> result=(Map<String,Object>)session.getAttribute(USE_CASE_PAGE_VARIABLES_KEY);
+        @SuppressWarnings("unchecked")
+        Map<String,Object> result = (Map<String,Object>)session.getAttribute(USE_CASE_PAGE_VARIABLES_KEY);
         if(result == null){
-            result=new HashMap<String, Object>();
+            result = new HashMap<String, Object>();
             session.setAttribute(USE_CASE_PAGE_VARIABLES_KEY, result);
         }
         return result;
     }
 
-    /*
-     * Returns the page variables associated with this controller, in the session.
+    /**
+     * Returns the page variables associated with this controller, in the pageFlowScope.
+     * @return PageVariables
      */
-    @SuppressWarnings("unchecked")
     public Map<String,Object> getPageVariables()
     {
         return ControllerBase.getPageVariables(getSession(false));
     }
 
-    /*
+    /**
      * Returns true if there is at least one use case parameter.
+     * @return hasUseCaseParameters
      */
     @SuppressWarnings("unchecked")
     public boolean hasUseCaseParameters()
     {
-        Map<String,Object> parameters=(Map<String,Object>)getSession(false).getAttribute(USE_CASE_PARAMETERS_KEY);
+        Map<String,Object> parameters = (Map<String,Object>)getSession(false).getAttribute(USE_CASE_PARAMETERS_KEY);
         return parameters != null && !parameters.isEmpty();
     }
 
-    /*
+    /**
      * Returns the use case parameters associated with this controller, in the current session.
+     * @return useCaseParameters
      */
     @SuppressWarnings("unchecked")
     public Map<String,Object> getUseCaseParameters()
     {
-        Map<String,Object> result=(Map<String,Object>)getSession(false).getAttribute(USE_CASE_PARAMETERS_KEY);
+        Map<String,Object> result = (Map<String,Object>)getSession(false).getAttribute(USE_CASE_PARAMETERS_KEY);
         if(result == null){
             result=new HashMap<String, Object>();
             getSession(false).setAttribute(USE_CASE_PARAMETERS_KEY, result);
@@ -117,7 +130,7 @@ public abstract class ControllerBase
         return result;
     }
 
-    /*
+    /**
      * Removes all the forms and page variables from the current session.
      */
     protected void resetUseCaseFormsAndPageVariables()
@@ -127,7 +140,7 @@ public abstract class ControllerBase
         session.removeAttribute(USE_CASE_PAGE_VARIABLES_KEY);
     }
 
-    /*
+    /**
      * Removes all the forms and page variables from the current session.
      */
     protected void resetUseCaseParameters()
@@ -187,7 +200,7 @@ public abstract class ControllerBase
     /**
      * Attempts to resolve the variable, given, the <code>name</code> of
      * the variable using the faces context variable resolver instance.
-     *
+     * @param name
      * @return the resolved variable or null if not found.
      */
     protected Object resolveVariable(final String name)
@@ -196,6 +209,11 @@ public abstract class ControllerBase
         return context != null ? context.getApplication().getVariableResolver().resolveVariable(context, name) : null;
     }
 
+    /**
+     * @param formKey
+     * @param form
+     * @param includeInSession
+     */
     protected void setForm(final String formKey, final Object form, boolean includeInSession)
     {
         getForms().put(formKey,form);
@@ -352,8 +370,7 @@ public abstract class ControllerBase
      * @param type the type of form to retrieve.
      * @return the found form.
      */
-    @SuppressWarnings("unchecked")
-    protected Object getCurrentActionForm(final Class type)
+    protected Object getCurrentActionForm(final Class<?> type)
     {
         Object form = this.getCurrentActionForm();
         if (!type.isInstance(form))
@@ -389,21 +406,37 @@ public abstract class ControllerBase
         this.setRequestAttribute(ACTION_EVENT_ATTRIBUTES, event.getComponent().getAttributes());
     }
 
+    /**
+     * @param name
+     * @param object
+     */
     protected void setRequestAttribute(final String name, final Object object)
     {
-        JsfUtils.setAttribute(this.getContext().getExternalContext().getRequest(), name, object);
+        this.getRequest().setAttribute(name, object);
     }
 
+    /**
+     * @param name
+     * @return RequestAttribute
+     */
     protected Object getRequestAttribute(final String name)
     {
-        return JsfUtils.getAttribute(this.getContext().getExternalContext().getRequest(), name);
+        return this.getRequest().getAttribute(name);
     }
 
+    /**
+     * @param name
+     * @param object
+     */
     protected void setSessionAttribute(final String name, final Object object)
     {
         JsfUtils.setAttribute(this.getContext().getExternalContext().getSession(false), name, object);
     }
 
+    /**
+     * @param name
+     * @return SessionAttribute
+     */
     protected Object getSessionAttribute(final String name)
     {
         return JsfUtils.getAttribute(this.getContext().getExternalContext().getSession(false), name);
@@ -414,6 +447,7 @@ public abstract class ControllerBase
      *
      * @param parameterName the name of the parameter.
      * @param event the FacesEvent holding the parameter.
+     * @return ParameterValue
      */
     protected Object getParameterValue(String parameterName, FacesEvent event)
     {
@@ -430,7 +464,7 @@ public abstract class ControllerBase
 
     /**
      * Sets the current action form instance.
-     *
+     * @param form
      */
     protected void setCurrentActionForm(Object form)
     {
@@ -495,6 +529,10 @@ public abstract class ControllerBase
         return actionResponse;
     }
 
+    /**
+     * @param mode
+     * @throws PortletModeException 
+     */
     protected void setPortletMode(final PortletMode mode)
         throws PortletModeException
     {
@@ -546,7 +584,7 @@ public abstract class ControllerBase
         String transactionTokenName = null;
         try
         {
-            final Class transactionTokenClass = Thread.currentThread().getContextClassLoader().loadClass(
+            final Class<?> transactionTokenClass = Thread.currentThread().getContextClassLoader().loadClass(
                 "org.andromda.cartridges.jsf.component.TransactionToken");
             transactionTokenName = (String)transactionTokenClass.getField("TRANSACTION_TOKEN").get(null);
         }
@@ -589,5 +627,4 @@ public abstract class ControllerBase
     }
 
     // controller-base merge-point
-
 }

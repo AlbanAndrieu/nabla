@@ -7,7 +7,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,16 +14,14 @@ import javax.faces.application.FacesMessage;
 import org.andromda.test.howto16.a.CarType;
 
 /**
+ * 
  * This form encapsulates the fields that are used in the execution of the CRUD operations in Car
- *
  */
 public class ManageCarForm
     implements Serializable
 {
-
     /**
-     * Default constructor. Initializes the attributes formatters.
-     *
+     * Default constructor. Initializes the attribute formatters.
      */
     public ManageCarForm(){
         // - setup the default java.util.Date.toString() formatter
@@ -32,9 +29,9 @@ public class ManageCarForm
         dateFormatter.setLenient(true);
         this.dateTimeFormatters.put(null, dateFormatter);
 
-        searchForm = new ManageCarSearchForm();
+        this.searchForm = new ManageCarSearchForm();
 
-        editState=false;
+        this.editState=false;
     }
 
     /**
@@ -42,52 +39,77 @@ public class ManageCarForm
      */
     private boolean editState;
 
+    /**
+     * @return editState
+     */
     public boolean getEditState(){
-        return editState;
+        return this.editState;
     }
 
-    public void setEditState(boolean editState){
-        this.editState = editState;
+    /**
+     * @param editStateIn
+     */
+    public void setEditState(boolean editStateIn){
+        this.editState = editStateIn;
     }
 
     private ManageCarSearchForm searchForm;
 
+    /**
+     * @return searchForm
+     */
     public ManageCarSearchForm getSearchForm(){
-        return searchForm;
+        return this.searchForm;
     }
 
-    public void setSearchForm(ManageCarSearchForm searchForm){
-        this.searchForm = searchForm;
+    /**
+     * @param searchFormIn
+     */
+    public void setSearchForm(ManageCarSearchForm searchFormIn){
+        this.searchForm = searchFormIn;
     }
 
     private List manageableList = null;
 
+    /**
+     * @return manageableList
+     */
     public List getManageableList()
     {
         return this.manageableList;
     }
 
-    public void setManageableList(List manageableList)
+    /**
+     * @param manageableListIn
+     */
+    public void setManageableList(List manageableListIn)
     {
-        this.manageableList = manageableList;
+        this.manageableList = manageableListIn;
     }
 
     private String[] selectedRows = null;
 
+    /**
+     * @return selectedRows
+     */
     public String[] getSelectedRows()
     {
         return this.selectedRows;
     }
 
-    public void setSelectedRows(String[] selectedRows)
+    /**
+     * @param selectedRowsIn
+     */
+    public void setSelectedRows(String[] selectedRowsIn)
     {
-        this.selectedRows = selectedRows;
+        this.selectedRows = selectedRowsIn;
     }
 
     private String serial;
 
     /**
      * 
+     * @return serial
      */
     public String getSerial()
     {
@@ -96,26 +118,34 @@ public class ManageCarForm
 
     /**
      * 
+     * @param serialIn
      */
-    public void setSerial(String serial)
+    public void setSerial(String serialIn)
     {
-        this.serial = serial;
+        this.serial = serialIn;
     }
 
     private Collection<?> serialBackingList;
 
+    /**
+     * @return serialBackingList
+     */
     public Collection<?> getSerialBackingList(){
-        return serialBackingList;
+        return this.serialBackingList;
     }
 
-    public void setSerialBackingList(Collection<?> serialBackingList){
-        this.serialBackingList = serialBackingList;
+    /**
+     * @param serialBackingListIn
+     */
+    public void setSerialBackingList(Collection<?> serialBackingListIn){
+        this.serialBackingList = serialBackingListIn;
     }
 
     private String name;
 
     /**
      * 
+     * @return name
      */
     public String getName()
     {
@@ -124,26 +154,34 @@ public class ManageCarForm
 
     /**
      * 
+     * @param nameIn
      */
-    public void setName(String name)
+    public void setName(String nameIn)
     {
-        this.name = name;
+        this.name = nameIn;
     }
 
     private Collection<?> nameBackingList;
 
+    /**
+     * @return nameBackingList
+     */
     public Collection<?> getNameBackingList(){
-        return nameBackingList;
+        return this.nameBackingList;
     }
 
-    public void setNameBackingList(Collection<?> nameBackingList){
-        this.nameBackingList = nameBackingList;
+    /**
+     * @param nameBackingListIn
+     */
+    public void setNameBackingList(Collection<?> nameBackingListIn){
+        this.nameBackingList = nameBackingListIn;
     }
 
     private CarType type;
 
     /**
      * 
+     * @return type
      */
     public CarType getType()
     {
@@ -152,26 +190,36 @@ public class ManageCarForm
 
     /**
      * 
+     * @param typeIn
      */
-    public void setType(CarType type)
+    public void setType(CarType typeIn)
     {
-        this.type = type;
+        this.type = typeIn;
     }
 
     private Collection<?> typeBackingList;
 
+    /**
+     * @return typeBackingList
+     */
     public Collection<?> getTypeBackingList(){
-        return typeBackingList;
+        return this.typeBackingList;
     }
 
-    public void setTypeBackingList(Collection<?> typeBackingList){
-        this.typeBackingList = typeBackingList;
+    /**
+     * @param typeBackingListIn
+     */
+    public void setTypeBackingList(Collection<?> typeBackingListIn){
+        this.typeBackingList = typeBackingListIn;
     }
 
+
+    // Manageable associationEnds in Car
     private String owner;
 
     /**
      * 
+     * @return owner
      */
     public String getOwner()
     {
@@ -180,26 +228,29 @@ public class ManageCarForm
 
     /**
      * 
+     * @param ownerIn
      */
-    public void setOwner(String owner)
+    public void setOwner(String ownerIn)
     {
-        this.owner = owner;
+        this.owner = ownerIn;
     }
 
     private Collection ownerBackingList;
 
     /**
      * The current collection of possible values of owner.
+     * @return ownerBackingList
      */
     public Collection getOwnerBackingList(){
-        return ownerBackingList;
+        return this.ownerBackingList;
     }
 
     /**
      * The current collection of possible values of owner.
+     * @param ownerBackingListIn
      */
-    public void setOwnerBackingList(Collection ownerBackingList){
-        this.ownerBackingList = ownerBackingList;
+    public void setOwnerBackingList(Collection ownerBackingListIn){
+        this.ownerBackingList = ownerBackingListIn;
     }
 
     /**
@@ -218,13 +269,11 @@ public class ManageCarForm
         return this.dateTimeFormatters;
     }
 
-
     /**
      * The current collection of messages stored within this form.
      */
     private Map<String, FacesMessage> jsfMessages =
         new LinkedHashMap<String, FacesMessage>();
-
 
     /**
      * Adds a {@link FacesMessage} message to the current messages
@@ -261,9 +310,8 @@ public class ManageCarForm
     {
         if (messages != null)
         {
-            for (final Iterator iterator = messages.iterator(); iterator.hasNext();)
+            for (final FacesMessage jsfMessage : messages)
             {
-                FacesMessage jsfMessage = (FacesMessage)iterator.next();
                 this.jsfMessages.put(jsfMessage.getDetail(), jsfMessage);
             }
         }
@@ -272,7 +320,6 @@ public class ManageCarForm
     /**
      * Clear the current {@link FacesMessage} message
      * instances stored within this form.
-     *
      */
     public void clearJsfMessages()
     {
@@ -288,11 +335,11 @@ public class ManageCarForm
      * The optional faces message title to set (used on a view).  If not set, the default title
      * will be used.
      *
-     * @param jsfMessagesTitle the title to use for the messages on the view.
+     * @param jsfMessagesTitleIn the title to use for the messages on the view.
      */
-    public void setJsfMessagesTitle(final String jsfMessagesTitle)
+    public void setJsfMessagesTitle(final String jsfMessagesTitleIn)
     {
-        this.jsfMessagesTitle = jsfMessagesTitle;
+        this.jsfMessagesTitle = jsfMessagesTitleIn;
     }
 
     /**

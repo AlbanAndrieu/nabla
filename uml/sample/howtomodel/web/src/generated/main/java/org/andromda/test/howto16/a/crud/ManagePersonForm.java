@@ -8,23 +8,20 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 
 /**
+ * 
  * This form encapsulates the fields that are used in the execution of the CRUD operations in Person
- *
  */
 public class ManagePersonForm
     implements Serializable
 {
-
     /**
-     * Default constructor. Initializes the attributes formatters.
-     *
+     * Default constructor. Initializes the attribute formatters.
      */
     public ManagePersonForm(){
         DateFormat birthDateDateFormatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -36,9 +33,9 @@ public class ManagePersonForm
         dateFormatter.setLenient(true);
         this.dateTimeFormatters.put(null, dateFormatter);
 
-        searchForm = new ManagePersonSearchForm();
+        this.searchForm = new ManagePersonSearchForm();
 
-        editState=false;
+        this.editState=false;
     }
 
     /**
@@ -46,52 +43,77 @@ public class ManagePersonForm
      */
     private boolean editState;
 
+    /**
+     * @return editState
+     */
     public boolean getEditState(){
-        return editState;
+        return this.editState;
     }
 
-    public void setEditState(boolean editState){
-        this.editState = editState;
+    /**
+     * @param editStateIn
+     */
+    public void setEditState(boolean editStateIn){
+        this.editState = editStateIn;
     }
 
     private ManagePersonSearchForm searchForm;
 
+    /**
+     * @return searchForm
+     */
     public ManagePersonSearchForm getSearchForm(){
-        return searchForm;
+        return this.searchForm;
     }
 
-    public void setSearchForm(ManagePersonSearchForm searchForm){
-        this.searchForm = searchForm;
+    /**
+     * @param searchFormIn
+     */
+    public void setSearchForm(ManagePersonSearchForm searchFormIn){
+        this.searchForm = searchFormIn;
     }
 
     private List manageableList = null;
 
+    /**
+     * @return manageableList
+     */
     public List getManageableList()
     {
         return this.manageableList;
     }
 
-    public void setManageableList(List manageableList)
+    /**
+     * @param manageableListIn
+     */
+    public void setManageableList(List manageableListIn)
     {
-        this.manageableList = manageableList;
+        this.manageableList = manageableListIn;
     }
 
     private String[] selectedRows = null;
 
+    /**
+     * @return selectedRows
+     */
     public String[] getSelectedRows()
     {
         return this.selectedRows;
     }
 
-    public void setSelectedRows(String[] selectedRows)
+    /**
+     * @param selectedRowsIn
+     */
+    public void setSelectedRows(String[] selectedRowsIn)
     {
-        this.selectedRows = selectedRows;
+        this.selectedRows = selectedRowsIn;
     }
 
     private String name;
 
     /**
      * 
+     * @return name
      */
     public String getName()
     {
@@ -100,26 +122,34 @@ public class ManagePersonForm
 
     /**
      * 
+     * @param nameIn
      */
-    public void setName(String name)
+    public void setName(String nameIn)
     {
-        this.name = name;
+        this.name = nameIn;
     }
 
     private Collection<?> nameBackingList;
 
+    /**
+     * @return nameBackingList
+     */
     public Collection<?> getNameBackingList(){
-        return nameBackingList;
+        return this.nameBackingList;
     }
 
-    public void setNameBackingList(Collection<?> nameBackingList){
-        this.nameBackingList = nameBackingList;
+    /**
+     * @param nameBackingListIn
+     */
+    public void setNameBackingList(Collection<?> nameBackingListIn){
+        this.nameBackingList = nameBackingListIn;
     }
 
     private Date birthDate;
 
     /**
      * 
+     * @return birthDate
      */
     public Date getBirthDate()
     {
@@ -128,26 +158,34 @@ public class ManagePersonForm
 
     /**
      * 
+     * @param birthDateIn
      */
-    public void setBirthDate(Date birthDate)
+    public void setBirthDate(Date birthDateIn)
     {
-        this.birthDate = birthDate;
+        this.birthDate = birthDateIn;
     }
 
     private Collection<?> birthDateBackingList;
 
+    /**
+     * @return birthDateBackingList
+     */
     public Collection<?> getBirthDateBackingList(){
-        return birthDateBackingList;
+        return this.birthDateBackingList;
     }
 
-    public void setBirthDateBackingList(Collection<?> birthDateBackingList){
-        this.birthDateBackingList = birthDateBackingList;
+    /**
+     * @param birthDateBackingListIn
+     */
+    public void setBirthDateBackingList(Collection<?> birthDateBackingListIn){
+        this.birthDateBackingList = birthDateBackingListIn;
     }
 
     private String serial;
 
     /**
      * 
+     * @return serial
      */
     public String getSerial()
     {
@@ -156,26 +194,36 @@ public class ManagePersonForm
 
     /**
      * 
+     * @param serialIn
      */
-    public void setSerial(String serial)
+    public void setSerial(String serialIn)
     {
-        this.serial = serial;
+        this.serial = serialIn;
     }
 
     private Collection<?> serialBackingList;
 
+    /**
+     * @return serialBackingList
+     */
     public Collection<?> getSerialBackingList(){
-        return serialBackingList;
+        return this.serialBackingList;
     }
 
-    public void setSerialBackingList(Collection<?> serialBackingList){
-        this.serialBackingList = serialBackingList;
+    /**
+     * @param serialBackingListIn
+     */
+    public void setSerialBackingList(Collection<?> serialBackingListIn){
+        this.serialBackingList = serialBackingListIn;
     }
 
+
+    // Manageable associationEnds in Person
     private String[] cars;
 
     /**
      * 
+     * @return cars
      */
     public String[] getCars()
     {
@@ -184,26 +232,29 @@ public class ManagePersonForm
 
     /**
      * 
+     * @param carsIn
      */
-    public void setCars(String[] cars)
+    public void setCars(String[] carsIn)
     {
-        this.cars = cars;
+        this.cars = carsIn;
     }
 
     private Collection carsBackingList;
 
     /**
      * The current collection of possible values of cars.
+     * @return carsBackingList
      */
     public Collection getCarsBackingList(){
-        return carsBackingList;
+        return this.carsBackingList;
     }
 
     /**
      * The current collection of possible values of cars.
+     * @param carsBackingListIn
      */
-    public void setCarsBackingList(Collection carsBackingList){
-        this.carsBackingList = carsBackingList;
+    public void setCarsBackingList(Collection carsBackingListIn){
+        this.carsBackingList = carsBackingListIn;
     }
 
     /**
@@ -222,13 +273,11 @@ public class ManagePersonForm
         return this.dateTimeFormatters;
     }
 
-
     /**
      * The current collection of messages stored within this form.
      */
     private Map<String, FacesMessage> jsfMessages =
         new LinkedHashMap<String, FacesMessage>();
-
 
     /**
      * Adds a {@link FacesMessage} message to the current messages
@@ -265,9 +314,8 @@ public class ManagePersonForm
     {
         if (messages != null)
         {
-            for (final Iterator iterator = messages.iterator(); iterator.hasNext();)
+            for (final FacesMessage jsfMessage : messages)
             {
-                FacesMessage jsfMessage = (FacesMessage)iterator.next();
                 this.jsfMessages.put(jsfMessage.getDetail(), jsfMessage);
             }
         }
@@ -276,7 +324,6 @@ public class ManagePersonForm
     /**
      * Clear the current {@link FacesMessage} message
      * instances stored within this form.
-     *
      */
     public void clearJsfMessages()
     {
@@ -292,11 +339,11 @@ public class ManagePersonForm
      * The optional faces message title to set (used on a view).  If not set, the default title
      * will be used.
      *
-     * @param jsfMessagesTitle the title to use for the messages on the view.
+     * @param jsfMessagesTitleIn the title to use for the messages on the view.
      */
-    public void setJsfMessagesTitle(final String jsfMessagesTitle)
+    public void setJsfMessagesTitle(final String jsfMessagesTitleIn)
     {
-        this.jsfMessagesTitle = jsfMessagesTitle;
+        this.jsfMessagesTitle = jsfMessagesTitleIn;
     }
 
     /**

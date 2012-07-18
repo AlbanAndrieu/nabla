@@ -13,11 +13,11 @@ import org.andromda.test.howto16.a.CarType;
 public final class ManageCarSearchForm
     implements Serializable
 {
-
     private String serial;
 
     /**
      * 
+     * @return serial
      */
     public String getSerial()
     {
@@ -26,16 +26,18 @@ public final class ManageCarSearchForm
 
     /**
      * 
+     * @param serialIn
      */
-    public void setSerial(String serial)
+    public void setSerial(String serialIn)
     {
-        this.serial = serial;
+        this.serial = serialIn;
     }
 
     private String name;
 
     /**
      * 
+     * @return name
      */
     public String getName()
     {
@@ -44,16 +46,18 @@ public final class ManageCarSearchForm
 
     /**
      * 
+     * @param nameIn
      */
-    public void setName(String name)
+    public void setName(String nameIn)
     {
-        this.name = name;
+        this.name = nameIn;
     }
 
     private CarType type;
 
     /**
      * 
+     * @return type
      */
     public CarType getType()
     {
@@ -62,16 +66,18 @@ public final class ManageCarSearchForm
 
     /**
      * 
+     * @param typeIn
      */
-    public void setType(CarType type)
+    public void setType(CarType typeIn)
     {
-        this.type = type;
+        this.type = typeIn;
     }
 
     private String owner;
 
     /**
      * 
+     * @return owner
      */
     public String getOwner()
     {
@@ -80,16 +86,18 @@ public final class ManageCarSearchForm
 
     /**
      * 
+     * @param ownerIn
      */
-    public void setOwner(String owner)
+    public void setOwner(String ownerIn)
     {
-        this.owner = owner;
+        this.owner = ownerIn;
     }
 
     private Collection ownerBackingList;
 
     /**
      * The current collection of possible values of owner.
+     * @return ownerBackingList
      */
     public Collection getOwnerBackingList(){
         return ownerBackingList;
@@ -97,9 +105,10 @@ public final class ManageCarSearchForm
 
     /**
      * The current collection of possible values of owner.
+     * @return ownerBackingListIn
      */
-    public void setOwnerBackingList(Collection ownerBackingList){
-        this.ownerBackingList = ownerBackingList;
+    public void setOwnerBackingList(Collection ownerBackingListIn){
+        this.ownerBackingList = ownerBackingListIn;
     }
 
     /**

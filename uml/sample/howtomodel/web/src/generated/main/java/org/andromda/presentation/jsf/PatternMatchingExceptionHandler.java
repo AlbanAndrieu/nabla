@@ -42,8 +42,9 @@ public class PatternMatchingExceptionHandler
      * the specified pattern defined within this class. If a string can not be
      * found matching the pattern, the exception is re-thrown
      *
-     * @param exception the Exception containing the message to retrieve
+     * @param throwable the Exception containing the message to retrieve
      * @return the retrieved string matching the pattern.
+     * @throws Throwable
      */
     public String handleException(final Throwable throwable) throws Throwable
     {
@@ -80,8 +81,9 @@ public class PatternMatchingExceptionHandler
      * Attempts to retrieve any arguments from the exception from a property named "messageArguments"
      * on the exception.
      *
-     * @param exception the Exception containing the message to retrieve
+     * @param throwable the Exception containing the message to retrieve
      * @return the retrieved message arguments (if any) from the exception.
+     * @throws Throwable
      */
     public Object[] getMessageArguments(final Throwable throwable) throws Throwable
     {
@@ -100,8 +102,10 @@ public class PatternMatchingExceptionHandler
     /**
      * Finds the root cause of the parent exception
      * by traveling up the exception hierachy.
+     * @param throwable the Exception containing the message to retrieve
+     * @throws Throwable
      */
-    private final Throwable findRootCause(Throwable throwable)
+    private Throwable findRootCause(Throwable throwable)
     {
         final Throwable rootCause = ExceptionUtils.getRootCause(throwable);
         if (rootCause != null)

@@ -29,21 +29,24 @@ public class MessagePhaseListener
 
     private static final String ARGUMENT_PREFIX = "arg:";
 
+    /**
+     * @see org.andromda.presentation.jsf.AbstractPhaseListener#handleBeforePhase(PhaseEvent)
+     */
     @Override
     protected void handleBeforePhase(PhaseEvent event)
     {
         final FacesContext context = event.getFacesContext();
         final UIViewRoot root = context.getViewRoot();
-        for (final Iterator iterator = context.getClientIdsWithMessages(); iterator.hasNext();)
+        for (final Iterator<String> iterator = context.getClientIdsWithMessages(); iterator.hasNext();)
         {
-            final String clientId = (String)iterator.next();
+            final String clientId = iterator.next();
             if (clientId != null)
             {
                 final UIComponent component = root.findComponent(clientId);
                 final Collection<Object> arguments = new ArrayList<Object>();
                 if (component != null)
                 {
-                    for (final Iterator iterator2 = component.getChildren().iterator(); iterator2.hasNext();)
+                    for (final Iterator<UIComponent> iterator2 = component.getChildren().iterator(); iterator2.hasNext();)
                     {
                         final Object child = iterator2.next();
                         if (child instanceof UIParameter)
@@ -59,9 +62,9 @@ public class MessagePhaseListener
                        }
                    }
                }
-               for (final Iterator iterator2 = context.getMessages(clientId); iterator2.hasNext();)
+               for (final Iterator<FacesMessage> iterator2 = context.getMessages(clientId); iterator2.hasNext();)
                {
-                   final FacesMessage facesMessage = (FacesMessage)iterator2.next();
+                   final FacesMessage facesMessage = iterator2.next();
                    final String messageKey = this.getMessageKey(facesMessage.getDetail());
                    final String newMessage = Messages.get(messageKey, null);
                    if (!newMessage.equals(messageKey))
@@ -76,12 +79,12 @@ public class MessagePhaseListener
         {
             try
             {
-                final Collection messages = (Collection)PropertyUtils.getProperty(form, "jsfMessages");
+                final Collection<FacesMessage> messages = (Collection<FacesMessage>)PropertyUtils.getProperty(form, "jsfMessages");
                 if (messages != null)
                 {
-                    for (final Iterator iterator = messages.iterator(); iterator.hasNext();)
+                    for (final Iterator<FacesMessage> iterator = messages.iterator(); iterator.hasNext();)
                     {
-                        FacesContext.getCurrentInstance().addMessage(null, (FacesMessage)iterator.next());
+                        FacesContext.getCurrentInstance().addMessage(null, iterator.next());
                     }
                     // - set the messages title to use (if we have a severity of error or higher)
                     final FacesMessage.Severity severity = context.getMaximumSeverity();
@@ -115,11 +118,19 @@ public class MessagePhaseListener
      */
     protected static final String MESSAGES_TITLE = "jsfMessagesTitle";
 
+    /**
+     * Empty method
+     * @see org.andromda.presentation.jsf.AbstractPhaseListener#handleAfterPhase(PhaseEvent)
+     */
     @Override
     protected void handleAfterPhase(PhaseEvent event)
     {
+        // Empty method
     }
 
+    /**
+     * @see org.andromda.presentation.jsf.AbstractPhaseListener#getPhaseId()
+     */
     @Override
     public PhaseId getPhaseId()
     {

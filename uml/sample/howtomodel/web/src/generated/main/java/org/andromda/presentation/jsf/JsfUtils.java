@@ -115,7 +115,6 @@ public class JsfUtils
      * Retrieves the current serialized form for the given session.
      * @param context the FacesContext
      * @return the serialized form.
-     * @throws Exception
      */
     public static Object getSerializedForm(final FacesContext context)
     {
@@ -155,7 +154,7 @@ public class JsfUtils
     /**
      * Removes the serialized form (if present) for the given <code>session</code>
      *
-     * @param session the session for which to remove the serialized form.
+     * @param context the session context for which to remove the serialized form.
      */
     public static void deleteSerializedForm(final FacesContext context)
     {
@@ -210,7 +209,7 @@ public class JsfUtils
      *
      * @param object the object from which to retrieve the attribute.
      * @param attributeName the attribute name.
-     * @return the value of the attribute if one is present.
+     * @return the value of the attribute if one is present, null otherwise.
      */
     public static Object getAttribute(final Object object, final String attributeName)
     {
@@ -226,6 +225,7 @@ public class JsfUtils
                 }
                 catch (NoSuchMethodException exception)
                 {
+                    // Ignore exception, return null
                 }
             }
             return attribute;
@@ -238,12 +238,11 @@ public class JsfUtils
 
     /**
      * Sets the attribute on the given object.  The object can be either a context, request
-     * or resposne (HttpServletContext/PortletContext, HttpServletRequest/PortletRequest, etc).
+     * or response (HttpServletContext/PortletContext, HttpServletRequest/PortletRequest, etc).
      *
      * @param object the object on which to set the attribute.
      * @param attributeName the attribute name.
      * @param attributeValue the value of the attribute to set.
-     * @return the value of the attribute if one is present.
      */
     public static void setAttribute(final Object object, final String attributeName, final Object attributeValue)
     {
@@ -258,6 +257,7 @@ public class JsfUtils
                 }
                 catch (NoSuchMethodException exception)
                 {
+                    // Ignore exception, return null
                 }
             }
         }
@@ -273,7 +273,6 @@ public class JsfUtils
      * @param object the object on which to get all attribute names.
      * @return an array of all attribute names.
      */
-    @SuppressWarnings("rawtypes")
     public static String[] getAttributeNames(final Object object)
     {
         final Collection<String> names = new ArrayList<String>();
@@ -284,7 +283,7 @@ public class JsfUtils
                 try
                 {
                     final Method method = object.getClass().getMethod("getAttributeNames", new Class[]{});
-                    final Enumeration enumeration = (Enumeration)method.invoke(object, (Object[])null);
+                    final Enumeration<?> enumeration = (Enumeration<?>)method.invoke(object, (Object[])null);
                     if (enumeration != null)
                     {
                         while (enumeration.hasMoreElements())
@@ -295,6 +294,7 @@ public class JsfUtils
                 }
                 catch (NoSuchMethodException exception)
                 {
+                    // Ignore exception, return null
                 }
             }
         }
@@ -362,7 +362,6 @@ public class JsfUtils
      * @param actionMethod the action method (i.e. controller.myMethod)
      * @return the component or null of not found.
      */
-    @SuppressWarnings({ "deprecation", "rawtypes" })
     public static UICommand findCommand(final UIComponent component, final String actionMethod)
     {
         UICommand found = null;
@@ -380,10 +379,9 @@ public class JsfUtils
         }
         if (found == null && component != null)
         {
-            for (final Iterator iterator = component.getFacetsAndChildren(); iterator.hasNext();)
+            for (final Iterator<UIComponent> iterator = component.getFacetsAndChildren(); iterator.hasNext();)
             {
-                final UIComponent childComponent = (UIComponent)iterator.next();
-                found = findCommand(childComponent, actionMethod);
+                found = findCommand(iterator.next(), actionMethod);
                 if (found != null)
                 {
                     break;
@@ -395,7 +393,7 @@ public class JsfUtils
 
     /**
      * Returns the converter identified by converterId
-     * @converterId the id of the converter to be used
+     * @param converterId the id of the converter to be used
      * @return the Converter instance
      */
     public static Converter getConverter(
@@ -405,18 +403,15 @@ public class JsfUtils
         {
             return null;
         }
-        else
-        {
-            final FacesContext facesContext=FacesContext.getCurrentInstance();
-            return facesContext.getApplication().createConverter(converterId);
-        }
+        final FacesContext facesContext=FacesContext.getCurrentInstance();
+        return facesContext.getApplication().createConverter(converterId);
     }
 
     /**
      * Uses the converter identified by converterId to convert the value to a String.
-     * @value the value to be converted
-     * @converterId the id of the converter to be used
-     * @componentId the id of the component being rendered
+     * @param value the value to be converted
+     * @param converterId the id of the converter to be used
+     * @param componentId the id of the component being rendered
      * @return the String representation of the value.
      */
     public static String valueFromConverter(
@@ -433,8 +428,8 @@ public class JsfUtils
 
     /**
      * Uses the converter identified by converterId to convert the value to a String.
-     * @value the value to be converted
-     * @converterId the id of the converter to be used
+     * @param value the value to be converted
+     * @param converterId the id of the converter to be used
      * @return the String representation of the value.
      */
     public static String valueFromConverter(
@@ -459,25 +454,19 @@ public class JsfUtils
             if(thePartialTriggers.length() > 0){
                 return thePartialTriggers.split(" ");
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
         else if(partialTriggers instanceof String[])
         {
             return (String[])partialTriggers;
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 
     /**
      * Returns an ActionEvent parameter value, from its name
-     * @parameterName the parameter name
-     * @event ActionEvent containing the parameter
+     * @param parameterName the parameter name
+     * @param event ActionEvent containing the parameter
      * @return the parameter value.
      */
     public static Object getParameterValue(String parameterName, ActionEvent event)
@@ -498,8 +487,8 @@ public class JsfUtils
 
     /**
      * Returns an array of SelectItem from the values/names of the enumeration
-     * @prefix a String prefix to be used to load the name from the messages
-     * @enumClassName the enumeration class name
+     * @param prefix a String prefix to be used to load the name from the messages
+     * @param enumClassName the enumeration class name
      * @return the array of SelectItem
      */
     @SuppressWarnings("rawtypes")
@@ -542,8 +531,8 @@ public class JsfUtils
 
     /**
      * Returns the messages.properties message of the enumeration value
-     * @prefix a String prefix to be used to load the name from the messages
-     * @enumValue the value
+     * @param prefix a String prefix to be used to load the name from the messages
+     * @param enumValue the value
      * @return the String from the messages.properties
      */
     @SuppressWarnings("rawtypes")
@@ -553,40 +542,34 @@ public class JsfUtils
         {
             return StringUtils.EMPTY;
         }
-        else
+        final Class<?> enumClass=enumValue.getClass();
+        if(enumClass.isEnum())
         {
-            final Class<?> enumClass=enumValue.getClass();
-            if(enumClass.isEnum())
-            {
-                return Messages.get(prefix+((Enum)enumValue).name());
-            }
-            else
-            {
-                try
-                {
-                    final List values=(List)enumClass.getMethod("values", (Class<?>[])null).invoke(null, (Object[])null);
-                    final int sz=values.size();
-                    final List names=(List)enumClass.getMethod("names", (Class<?>[])null).invoke(null, (Object[])null);
-                    for(int i=0; i<sz; i++)
-                    {
-                        if(values.get(i).equals(enumValue))
-                        {
-                            return Messages.get(prefix+names.get(i));
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    throw new RuntimeException(enumValue.getClass().getCanonicalName()+" is not an Andromda generated enumeration.",e);
-                }
-            }
-            return null;
+            return Messages.get(prefix+((Enum)enumValue).name());
         }
+        try
+        {
+            final List values=(List)enumClass.getMethod("values", (Class<?>[])null).invoke(null, (Object[])null);
+            final int sz=values.size();
+            final List names=(List)enumClass.getMethod("names", (Class<?>[])null).invoke(null, (Object[])null);
+            for(int i=0; i<sz; i++)
+            {
+                if(values.get(i).equals(enumValue))
+                {
+                    return Messages.get(prefix+names.get(i));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(enumValue.getClass().getCanonicalName()+" is not an Andromda generated enumeration.",e);
+        }
+        return null;
     }
 
     /**
      * Returns the array without the entries with zero (using to avoid the null to zero issue of EL)
-     * @intArray an array filled with Integer
+     * @param intArray an array filled with Integer
      * @return the array with the entries with zero and null removed
      */
     public static Integer[] removeZeros(Integer[] intArray)
@@ -595,23 +578,20 @@ public class JsfUtils
         {
             return null;
         }
-        else
+        final Collection<Integer> result=new ArrayList<Integer>(intArray.length);
+        for(Integer intValue: intArray)
         {
-            final Collection<Integer> result=new ArrayList<Integer>(intArray.length);
-            for(Integer intValue: intArray)
+            if(intValue != null && intValue.intValue() != 0)
             {
-                if(intValue != null && intValue != 0)
-                {
-                    result.add(intValue);
-                }
+                result.add(intValue);
             }
-            return result.toArray(new Integer[0]);
         }
+        return result.toArray(new Integer[0]);
     }
 
     /**
      * Returns the array without the entries with zero (using to avoid the null to zero issue of EL)
-     * @longArray an array filled with Integer
+     * @param longArray an array filled with Integer
      * @return the array with the entries with zero and null removed
      */
     public static Long[] removeZeros(Long[] longArray)
@@ -620,17 +600,14 @@ public class JsfUtils
         {
             return null;
         }
-        else
+        final Collection<Long> result=new ArrayList<Long>(longArray.length);
+        for(Long longValue: longArray)
         {
-            final Collection<Long> result=new ArrayList<Long>(longArray.length);
-            for(Long longValue: longArray)
+            if(longValue != null && longValue.longValue() != 0)
             {
-                if(longValue != null && longValue != 0)
-                {
-                    result.add(longValue);
-                }
+                result.add(longValue);
             }
-            return result.toArray(new Long[0]);
         }
+        return result.toArray(new Long[0]);
     }
 }

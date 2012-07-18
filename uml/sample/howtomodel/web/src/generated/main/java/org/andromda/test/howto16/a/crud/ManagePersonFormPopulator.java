@@ -32,18 +32,20 @@ public class ManagePersonFormPopulator
     /**
      * Initialize the filter
      *
-     * @param config the configuration
-     * @see javax.servlet.Filter#setFilterConfig(FilterConfig)
+     * @param configIn the configuration
+     * @see javax.servlet.Filter#init(FilterConfig)
      */
-    public void init(FilterConfig config)
+    @Override
+    public void init(FilterConfig configIn)
     {
-        this.config = config;
+        this.config = configIn;
     }
 
     /**
      * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
      *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
      */
+    @Override
     public void doFilter(
         ServletRequest request,
         ServletResponse response,
@@ -75,6 +77,7 @@ public class ManagePersonFormPopulator
 
         form = adfContext.getPageFlowScope().get("form");
 
+        @SuppressWarnings("unused")
         final HttpSession session = ((HttpServletRequest)request).getSession();
 
         // - if the form is still null, see if we can get it from a serialized state
@@ -84,13 +87,15 @@ public class ManagePersonFormPopulator
         }
         try
         {
+            //Keep this code out of the 'if' below to force the form creation in case it does not exist.
+            //This way the direct URL access works fine.
+            ManagePersonForm managePersonForm =
+                            ((PersonController)variableResolver.resolveVariable(
+                            facesContext,
+                            "personController")).getForm();
             // - populate the forms
             if (form != null && form instanceof ManagePersonForm)
             {
-                ManagePersonForm managePersonForm =
-                    (ManagePersonForm)variableResolver.resolveVariable(
-                    facesContext,
-                    "managePersonForm");
                 // - populate the managePersonForm with any parameters from the previous form
                 managePersonForm.copyFrom((ManagePersonForm)form);
             }
@@ -109,6 +114,7 @@ public class ManagePersonFormPopulator
     /**
      * @see javax.servlet.Filter#destroy()
      */
+    @Override
     public void destroy()
     {
         this.config = null;

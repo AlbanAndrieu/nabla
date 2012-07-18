@@ -4,11 +4,8 @@ package org.andromda.test.howto16.a.crud;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
@@ -18,15 +15,13 @@ import org.andromda.presentation.jsf.ControllerBase;
 import org.andromda.presentation.jsf.Messages;
 import org.andromda.presentation.jsf.PatternMatchingExceptionHandler;
 import org.andromda.test.ManageableServiceLocator;
-import org.andromda.test.howto16.a.Car;
-import org.andromda.test.howto16.a.Person;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Javaserver Faces Controller of the Person CRUD management.
+ * Java Server Faces Controller of the Person CRUD management.
  */
 public abstract class PersonController
     extends ControllerBase
@@ -34,10 +29,10 @@ public abstract class PersonController
     private static final Log logger = LogFactory.getLog(PersonController.class);
 
     /**
-    * Initializes the controller, calling the doInit method
-    *
-    * @return the controller view path.
-    */
+     * Initializes the controller, calling the doInit method
+     *
+     * @return the controller view path.
+     */
     public String init()
     {
         this.resetUseCaseFormsAndPageVariables();
@@ -61,15 +56,17 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
         return "/org/andromda/test/howto16/a/crud/person-crud";
     }
 
     /**
-    * Initializes the controller. This method can be overriden.
-    */
+     * Initializes the controller. This method can be overridden.
+     * @param form
+     * @throws Exception
+     */
     public void doInit(ManagePersonForm form)
         throws Exception
     {
@@ -87,8 +84,9 @@ public abstract class PersonController
     }
 
     /**
-    * The instance load action.
-    */
+     * The instance load action.
+     * @param event
+     */
     public void load(ActionEvent event)
     {
         try
@@ -111,46 +109,36 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
     }
 
     /**
-    * Loads the selected instance.
-    */
+     * Loads the selected instance.
+     * @param id
+     * @param form
+     * @throws Exception
+     */
     public void doLoad(String serial, ManagePersonForm form)
         throws Exception
     {
-        //final PersonValueObject vo= ManageableServiceLocator.instance().getPersonManageableService().readById(serial);
-        final Person vo= ManageableServiceLocator.instance().getPersonManageableService().readById(serial);
+        final PersonValueObject vo=
+            ManageableServiceLocator.instance().getPersonManageableService().readById(serial);
 
         form.setName(vo.getName());
         form.setBirthDate(vo.getBirthDate());
         form.setSerial(vo.getSerial());
-        //org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEndLogicImpl[Person.cars]
-        //org.andromda.cartridges.jsf.metafacades.JSFManageableEntityLogicImpl[Car]
-        //String        
-        //org.andromda.metafacades.emf.uml22.ClassifierFacadeLogicImpl[String]
-        //getSerial
-        //String
-        //String[]
-        Set<String> dataset = new HashSet<String>();
-        for (Iterator iterator = vo.getCars().iterator(); iterator.hasNext();)
-        {
-            Car data = (Car) iterator.next();
-            dataset.add(data.getSerial());
-        }
-        form.setCars((String[]) dataset.toArray());
+        form.setCars(vo.getCars());
 
         form.setEditState(true);
     }
 
     /**
-    * The cancel edit action
-    *
-    * @return the controller view path.
-    */
+     * The cancel edit action
+     *
+     * @return the controller view path.
+     */
     public String cancel()
     {
         try
@@ -172,7 +160,7 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -181,8 +169,10 @@ public abstract class PersonController
     }
 
     /**
-    * Executes the edit cancel.
-    */
+     * Executes the edit cancel.
+     * @param form
+     * @throws Exception
+     */
     public void doCancel(ManagePersonForm form)
         throws Exception
     {
@@ -190,10 +180,10 @@ public abstract class PersonController
     }
 
     /**
-    * The new instance action.
-    *
-    * @return the controller view path.
-    */
+     * The new instance action.
+     *
+     * @return the controller view path.
+     */
     public String startNew()
     {
         try
@@ -215,7 +205,7 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -224,12 +214,13 @@ public abstract class PersonController
     }
 
     /**
-    * Executes the new instance action.
-    */
+     * Executes the new instance action.
+     * @param form
+     * @throws Exception
+     */
     public void doStartNew(ManagePersonForm form)
         throws Exception
     {
-
         form.setName(null);
         form.setBirthDate(null);
         form.setSerial(null);
@@ -241,11 +232,12 @@ public abstract class PersonController
 
         form.setEditState(true);
     }
+
     /**
-    * The save instance action.
-    *
-    * @return the controller view path.
-    */
+     * The save instance action.
+     *
+     * @return the controller view path.
+     */
     public String save()
     {
         try
@@ -267,7 +259,7 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -276,12 +268,13 @@ public abstract class PersonController
     }
 
     /**
-    * Saves instance action.
-    */
+     * Saves instance action.
+     * @param form
+     * @throws Exception
+     */
     public void doSave(ManagePersonForm form)
         throws Exception
     {
-
         if(form.getSerial() == null){
             form.setSerial(
                 ManageableServiceLocator.instance().getPersonManageableService().create(
@@ -309,10 +302,10 @@ public abstract class PersonController
     }
 
     /**
-    * The save and new instance action.
-    *
-    * @return the controller view path.
-    */
+     * The save and new instance action.
+     *
+     * @return the controller view path.
+     */
     public String saveAndNew()
     {
         try
@@ -335,7 +328,7 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -344,10 +337,10 @@ public abstract class PersonController
     }
 
     /**
-    * The search action.
-    *
-    * @return the controller view path.
-    */
+     * The search action.
+     *
+     * @return the controller view path.
+     */
     public String search()
     {
         try
@@ -369,7 +362,7 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -378,27 +371,29 @@ public abstract class PersonController
     }
 
     /**
-    * Executes the search action.
-    */
+     * Executes the search action.
+     * @param form
+     * @throws Exception
+     */
     public void doSearch(ManagePersonForm form)
         throws Exception
     {
         @SuppressWarnings("rawtypes")
         final List list;
         //if all search fields are null, call readAll()
-        if(
+        if (
              StringUtils.isBlank(form.getSearchForm().getName())
             && form.getSearchForm().getBirthDate() == null
             && form.getSearchForm().getCars() == null
             )
-        list=ManageableServiceLocator.instance().getPersonManageableService().readAll();
-    else
-        list = ManageableServiceLocator.instance().getPersonManageableService().read(
-            form.getSearchForm().getName()
-            , form.getSearchForm().getBirthDate()
-            , null
-            , form.getSearchForm().getCars()
-        );
+            list=ManageableServiceLocator.instance().getPersonManageableService().readAll();
+        else
+            list = ManageableServiceLocator.instance().getPersonManageableService().read(
+                form.getSearchForm().getName()
+                , form.getSearchForm().getBirthDate()
+                , null
+                , form.getSearchForm().getCars()
+            );
 
         form.setManageableList(list);
         if (list.size() >= 250)
@@ -411,8 +406,9 @@ public abstract class PersonController
     }
 
     /**
-    * The delete event.
-    */
+     * The delete event.
+     * @param event
+     */
     public void delete(ActionEvent event)
     {
         try
@@ -435,14 +431,17 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
     }
 
     /**
-    * Deletes the selected instance.
-    */
+     * Deletes the selected instance.
+     * @param id
+     * @param form
+     * @throws Exception
+     */
     public void doDelete(String serial, ManagePersonForm form)
         throws Exception
     {
@@ -453,24 +452,26 @@ public abstract class PersonController
     }
 
     /**
-    * Shows a message warning the user can exists more records available.
-    */
+     * Shows a message warning the user can exists more records available.
+     */
     private void saveMaxResultsWarning()
     {
         addWarningMessage(Messages.get("maximum.results.fetched.warning", new Object[]{String.valueOf("250")}));
     }
 
     /**
-    * Export as ODS spreadsheed
-    */
+     * Export as ODS spreadsheet
+     * @return /org/andromda/test/howto16/a/crud/person-ods-export
+     */
     public String odsExport()
     {
         return "/org/andromda/test/howto16/a/crud/person-ods-export";
     }
 
     /**
-    * Helper method to fill the autocomplete component list.
-    */
+     * Helper method to fill the autocomplete component list.
+     * @param event
+     */
     public void fillAutocomplete(ActionEvent event)
     {
         final FacesContext facesContext = this.getContext();
@@ -489,62 +490,55 @@ public abstract class PersonController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
     }
 
     /**
-    * Loads an instance of Person.
-    *
-    * @return PersonValueObject from the loaded entity.
-    */
-    //static public PersonValueObject load(String serial)
-    static public Person load(String serial)
+     * Loads an instance of Person.
+     *
+     * @return PersonValueObject from the loaded entity.
+     */
+    static public PersonValueObject load(String serial)
     {
         if(serial == null || StringUtils.isBlank(serial))
         {
             return null;
         }
-        else
+        try
         {
-            try
-            {
-                return ManageableServiceLocator.instance().getPersonManageableService().readById(serial);
-            }
-            catch(Exception e)
-            {
-                throw new RuntimeException(e);
-            }
+            return ManageableServiceLocator.instance().getPersonManageableService().readById(serial);
+        }
+        catch(Exception e)
+        {
+            throw new RuntimeException(e);
         }
     }
 
     /**
-    * Helper method to fill the select component list.
-    *
-    * @return a collection with the filtered list.
-    */
+     * Helper method to fill the select component list.
+     *
+     * @return a collection with the filtered list.
+     */
     public Collection<SelectItem> getAsSelectItems()
     {
-        //final Collection<PersonValueObject> vos;
-        //final Collection<org.andromda.test.howto16.a.PersonValueObject> vos;
-        final Collection<Person> vos;   
+        final Collection<PersonValueObject> vos;
         try {
-            //vos = (Collection<PersonValueObject>)ManageableServiceLocator.instance().getPersonManageableService().readAll();
-            vos = (Collection<Person>)ManageableServiceLocator.instance().getPersonManageableService().readAll();
+            vos = ManageableServiceLocator.instance().getPersonManageableService().readAll();
         } catch (final Throwable throwable) {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
             return null;
         }
         final Collection<SelectItem> result=new ArrayList<SelectItem>(vos.size());
-        //for(PersonValueObject vo: vos){
-        for(Person vo: vos){
+        for(PersonValueObject vo: vos){
             result.add(new SelectItem(vo.getSerial(),ObjectUtils.toString(vo.getName())));
         }
         return result;
     }
 
+    /** manageTaskForm */
     public static final String FORM_BEAN_NAME="managePersonForm";
 
     /**
@@ -564,5 +558,4 @@ public abstract class PersonController
     }
 
     // crud-controller merge-point
-
 }

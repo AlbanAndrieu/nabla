@@ -17,6 +17,7 @@ public class CarTypeJsfConverter
     /**
      * @see Converter#getAsString(FacesContext, UIComponent, Object)
      */
+    @Override
     public String getAsString(
         FacesContext context,
         UIComponent component,
@@ -29,12 +30,13 @@ public class CarTypeJsfConverter
     /**
      * @see Converter#getAsObject(FacesContext, UIComponent, String)
      */
+    @Override
     public Object getAsObject(
         FacesContext context,
         UIComponent component,
         String value)
         throws ConverterException
     {
-        return value != null && value.trim().length() > 0 ? CarType.fromValue(new String(value)) : null;
+        return value != null && value.trim().length() > 0 ? CarType.fromValue(value) : null;
     }
 }

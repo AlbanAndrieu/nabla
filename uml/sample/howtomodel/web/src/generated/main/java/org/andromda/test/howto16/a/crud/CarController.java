@@ -15,14 +15,13 @@ import org.andromda.presentation.jsf.ControllerBase;
 import org.andromda.presentation.jsf.Messages;
 import org.andromda.presentation.jsf.PatternMatchingExceptionHandler;
 import org.andromda.test.ManageableServiceLocator;
-import org.andromda.test.howto16.a.Car;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Javaserver Faces Controller of the Car CRUD management.
+ * Java Server Faces Controller of the Car CRUD management.
  */
 public abstract class CarController
     extends ControllerBase
@@ -30,10 +29,10 @@ public abstract class CarController
     private static final Log logger = LogFactory.getLog(CarController.class);
 
     /**
-    * Initializes the controller, calling the doInit method
-    *
-    * @return the controller view path.
-    */
+     * Initializes the controller, calling the doInit method
+     *
+     * @return the controller view path.
+     */
     public String init()
     {
         this.resetUseCaseFormsAndPageVariables();
@@ -57,15 +56,17 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
         return "/org/andromda/test/howto16/a/crud/car-crud";
     }
 
     /**
-    * Initializes the controller. This method can be overriden.
-    */
+     * Initializes the controller. This method can be overridden.
+     * @param form
+     * @throws Exception
+     */
     public void doInit(ManageCarForm form)
         throws Exception
     {
@@ -83,8 +84,9 @@ public abstract class CarController
     }
 
     /**
-    * The instance load action.
-    */
+     * The instance load action.
+     * @param event
+     */
     public void load(ActionEvent event)
     {
         try
@@ -107,38 +109,36 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
     }
 
     /**
-    * Loads the selected instance.
-    */
+     * Loads the selected instance.
+     * @param id
+     * @param form
+     * @throws Exception
+     */
     public void doLoad(String serial, ManageCarForm form)
         throws Exception
     {
-        //final CarValueObject vo= ManageableServiceLocator.instance().getCarManageableService().readById(serial);
-        final Car vo= ManageableServiceLocator.instance().getCarManageableService().readById(serial);
+        final CarValueObject vo=
+            ManageableServiceLocator.instance().getCarManageableService().readById(serial);
 
         form.setSerial(vo.getSerial());
         form.setName(vo.getName());
         form.setType(vo.getType());
-        //org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAssociationEndLogicImpl[Car.owner]
-        //org.andromda.cartridges.jsf.metafacades.JSFManageableEntityLogicImpl[org.andromda.test.howto16.a.Person]
-        //String        
-        //org.andromda.metafacades.emf.uml22.ClassifierFacadeLogicImpl[String]
-        //getSerial
-        form.setOwner(vo.getOwner().getSerial());
+        form.setOwner(vo.getOwner());
 
         form.setEditState(true);
     }
 
     /**
-    * The cancel edit action
-    *
-    * @return the controller view path.
-    */
+     * The cancel edit action
+     *
+     * @return the controller view path.
+     */
     public String cancel()
     {
         try
@@ -160,7 +160,7 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -169,8 +169,10 @@ public abstract class CarController
     }
 
     /**
-    * Executes the edit cancel.
-    */
+     * Executes the edit cancel.
+     * @param form
+     * @throws Exception
+     */
     public void doCancel(ManageCarForm form)
         throws Exception
     {
@@ -178,10 +180,10 @@ public abstract class CarController
     }
 
     /**
-    * The new instance action.
-    *
-    * @return the controller view path.
-    */
+     * The new instance action.
+     *
+     * @return the controller view path.
+     */
     public String startNew()
     {
         try
@@ -203,7 +205,7 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -212,12 +214,13 @@ public abstract class CarController
     }
 
     /**
-    * Executes the new instance action.
-    */
+     * Executes the new instance action.
+     * @param form
+     * @throws Exception
+     */
     public void doStartNew(ManageCarForm form)
         throws Exception
     {
-
         form.setSerial(null);
         form.setName(null);
         form.setType(null);
@@ -229,11 +232,12 @@ public abstract class CarController
 
         form.setEditState(true);
     }
+
     /**
-    * The save instance action.
-    *
-    * @return the controller view path.
-    */
+     * The save instance action.
+     *
+     * @return the controller view path.
+     */
     public String save()
     {
         try
@@ -255,7 +259,7 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -264,12 +268,13 @@ public abstract class CarController
     }
 
     /**
-    * Saves instance action.
-    */
+     * Saves instance action.
+     * @param form
+     * @throws Exception
+     */
     public void doSave(ManageCarForm form)
         throws Exception
     {
-
         if(form.getSerial() == null){
             form.setSerial(
                 ManageableServiceLocator.instance().getCarManageableService().create(
@@ -297,10 +302,10 @@ public abstract class CarController
     }
 
     /**
-    * The save and new instance action.
-    *
-    * @return the controller view path.
-    */
+     * The save and new instance action.
+     *
+     * @return the controller view path.
+     */
     public String saveAndNew()
     {
         try
@@ -323,7 +328,7 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -332,10 +337,10 @@ public abstract class CarController
     }
 
     /**
-    * The search action.
-    *
-    * @return the controller view path.
-    */
+     * The search action.
+     *
+     * @return the controller view path.
+     */
     public String search()
     {
         try
@@ -357,7 +362,7 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
 
@@ -366,27 +371,29 @@ public abstract class CarController
     }
 
     /**
-    * Executes the search action.
-    */
+     * Executes the search action.
+     * @param form
+     * @throws Exception
+     */
     public void doSearch(ManageCarForm form)
         throws Exception
     {
         @SuppressWarnings("rawtypes")
         final List list;
         //if all search fields are null, call readAll()
-        if(
+        if (
              StringUtils.isBlank(form.getSearchForm().getName())
             && form.getSearchForm().getType() == null
             && form.getSearchForm().getOwner() == null
             )
-        list=ManageableServiceLocator.instance().getCarManageableService().readAll();
-    else
-        list = ManageableServiceLocator.instance().getCarManageableService().read(
-            null
-            , form.getSearchForm().getName()
-            , form.getSearchForm().getType()
-            , form.getSearchForm().getOwner()
-        );
+            list=ManageableServiceLocator.instance().getCarManageableService().readAll();
+        else
+            list = ManageableServiceLocator.instance().getCarManageableService().read(
+                null
+                , form.getSearchForm().getName()
+                , form.getSearchForm().getType()
+                , form.getSearchForm().getOwner()
+            );
 
         form.setManageableList(list);
         if (list.size() >= 250)
@@ -399,8 +406,9 @@ public abstract class CarController
     }
 
     /**
-    * The delete event.
-    */
+     * The delete event.
+     * @param event
+     */
     public void delete(ActionEvent event)
     {
         try
@@ -423,14 +431,17 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
     }
 
     /**
-    * Deletes the selected instance.
-    */
+     * Deletes the selected instance.
+     * @param id
+     * @param form
+     * @throws Exception
+     */
     public void doDelete(String serial, ManageCarForm form)
         throws Exception
     {
@@ -441,24 +452,26 @@ public abstract class CarController
     }
 
     /**
-    * Shows a message warning the user can exists more records available.
-    */
+     * Shows a message warning the user can exists more records available.
+     */
     private void saveMaxResultsWarning()
     {
         addWarningMessage(Messages.get("maximum.results.fetched.warning", new Object[]{String.valueOf("250")}));
     }
 
     /**
-    * Export as ODS spreadsheed
-    */
+     * Export as ODS spreadsheet
+     * @return /org/andromda/test/howto16/a/crud/car-ods-export
+     */
     public String odsExport()
     {
         return "/org/andromda/test/howto16/a/crud/car-ods-export";
     }
 
     /**
-    * Helper method to fill the autocomplete component list.
-    */
+     * Helper method to fill the autocomplete component list.
+     * @param event
+     */
     public void fillAutocomplete(ActionEvent event)
     {
         final FacesContext facesContext = this.getContext();
@@ -477,62 +490,55 @@ public abstract class CarController
         }
         catch (final Throwable throwable)
         {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
         }
     }
 
     /**
-    * Loads an instance of Car.
-    *
-    * @return CarValueObject from the loaded entity.
-    */
-    //static public CarValueObject load(String serial)
-    static public Car load(String serial)
+     * Loads an instance of Car.
+     *
+     * @return CarValueObject from the loaded entity.
+     */
+    static public CarValueObject load(String serial)
     {
         if(serial == null || StringUtils.isBlank(serial))
         {
             return null;
         }
-        else
+        try
         {
-            try
-            {
-                return ManageableServiceLocator.instance().getCarManageableService().readById(serial);
-            }
-            catch(Exception e)
-            {
-                throw new RuntimeException(e);
-            }
+            return ManageableServiceLocator.instance().getCarManageableService().readById(serial);
+        }
+        catch(Exception e)
+        {
+            throw new RuntimeException(e);
         }
     }
 
     /**
-    * Helper method to fill the select component list.
-    *
-    * @return a collection with the filtered list.
-    */
+     * Helper method to fill the select component list.
+     *
+     * @return a collection with the filtered list.
+     */
     public Collection<SelectItem> getAsSelectItems()
     {
-        //final Collection<CarValueObject> vos;
-        //final Collection<org.andromda.test.howto16.a.CareValueObject> vos;
-        final Collection<Car> vos;   
+        final Collection<CarValueObject> vos;
         try {
-            //vos = (Collection<CarValueObject>)ManageableServiceLocator.instance().getCarManageableService().readAll();
-            vos = (Collection<Car>)ManageableServiceLocator.instance().getCarManageableService().readAll();
+            vos = ManageableServiceLocator.instance().getCarManageableService().readAll();
         } catch (final Throwable throwable) {
-            logger.error(throwable);
+            logger.error(throwable.getMessage(),throwable);
             this.addExceptionMessage(throwable);
             return null;
         }
         final Collection<SelectItem> result=new ArrayList<SelectItem>(vos.size());
-        //for(CarValueObject vo: vos){
-        for(Car vo: vos){
+        for(CarValueObject vo: vos){
             result.add(new SelectItem(vo.getSerial(),ObjectUtils.toString(vo.getSerial())));
         }
         return result;
     }
 
+    /** manageTaskForm */
     public static final String FORM_BEAN_NAME="manageCarForm";
 
     /**
@@ -552,5 +558,4 @@ public abstract class CarController
     }
 
     // crud-controller merge-point
-
 }

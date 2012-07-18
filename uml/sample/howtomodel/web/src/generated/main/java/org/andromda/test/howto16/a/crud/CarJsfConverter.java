@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import org.andromda.test.ManageableServiceLocator;
-import org.andromda.test.howto16.a.Car;
 
 /**
  * Handles conversion of the entity id to a String.
@@ -27,8 +26,7 @@ public class CarJsfConverter
         if(value == null)
             return "";
 
-        //final CarValueObject vo;
-        final Car vo;
+        final CarValueObject vo;
         try {
             final String id;
             if(value instanceof String)

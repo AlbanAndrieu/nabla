@@ -6,9 +6,9 @@ import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -45,16 +45,17 @@ public class FormPopulator
      * @param toForm the form to which we're populating
      * @param override whether or not properties that have already been copied, should be overridden.
      */
+    @SuppressWarnings("unchecked") // apache commons-beanutils PropertyUtils has no generics
     public static final void populateForm(final Object fromForm, final Object toForm, boolean override)
     {
         if (fromForm != null && toForm != null)
         {
             try
             {
-                final Map parameters = PropertyUtils.describe(fromForm);
-                for (final Iterator iterator = parameters.keySet().iterator(); iterator.hasNext();)
+                final Map<String, Object> parameters = PropertyUtils.describe(fromForm);
+                for (final Iterator<String> iterator = parameters.keySet().iterator(); iterator.hasNext();)
                 {
-                    final String name = (String)iterator.next();
+                    final String name = iterator.next();
                     if (PropertyUtils.isWriteable(toForm, name))
                     {
                         // - the property name used for checking whether or not the property value has been set
@@ -115,11 +116,10 @@ public class FormPopulator
      *
      * @param form the form to populate.
      * @param formatters any date or time formatters.
-     * @param request the request object from which to populate attributes.
      * @param override whether or not to override properties already set on the given form.
      * @param assignableTypesOnly whether or not copying should be attempted only if the property types are assignable.
      */
-    public static final void populateFormFromRequestAttributes(final Object form, final Map formatters, boolean override, boolean assignableTypesOnly)
+    public static final void populateFormFromRequestAttributes(final Object form, final Map<String, DateFormat> formatters, boolean override, boolean assignableTypesOnly)
     {
         final FacesContext context = FacesContext.getCurrentInstance();
         final String[] names = JsfUtils.getAttributeNames(context.getExternalContext().getRequest());
@@ -139,10 +139,9 @@ public class FormPopulator
      *
      * @param form the form to populate.
      * @param formatters any date or time formatters.
-     * @param request the request object from which to populate attributes.
      * @param override whether or not to override properties already set on the given form.
      */
-    public static final void populateFormFromRequestAttributes(final Object form, final Map formatters, boolean override)
+    public static final void populateFormFromRequestAttributes(final Object form, final Map<String, DateFormat> formatters, boolean override)
     {
         populateFormFromRequestAttributes(form, formatters, override, false);
     }
@@ -156,7 +155,7 @@ public class FormPopulator
      * @param properties the properties to populate from.
      * @param override whether or not to override properties already set on the given form.
      */
-    public static final void populateFormFromPropertyMap(final Object form, final Map formatters, final Map properties, boolean override)
+    public static final void populateFormFromPropertyMap(final Object form, final Map<String, DateFormat> formatters, final Map<String, ?> properties, boolean override)
     {
         populateFormFromPropertyMap(form, formatters, properties, null, override, false);
     }
@@ -169,7 +168,7 @@ public class FormPopulator
      * @param formatters any date or time formatters.
      * @param properties the properties to populate from.
      */
-    public static final void populateFormFromPropertyMap(final Object form, final Map formatters, final Map properties)
+    public static final void populateFormFromPropertyMap(final Object form, final Map<String, DateFormat> formatters, final Map<String, ?> properties)
     {
         populateFormFromPropertyMap(form, formatters, properties, null, true, false);
     }
@@ -183,7 +182,7 @@ public class FormPopulator
      * @param formatters any date or time formatters.
      * @param properties the properties to populate from.
      */
-    public static final void populateFormFromPropertyMapAssignableTypesOnly(final Object form, final Map formatters, final Map properties)
+    public static final void populateFormFromPropertyMapAssignableTypesOnly(final Object form, final Map<String, DateFormat> formatters, final Map<String, ?> properties)
     {
         populateFormFromPropertyMap(form, formatters, properties, null, true, true);
     }
@@ -197,8 +196,8 @@ public class FormPopulator
      * @param properties the properties to populate from.
      * @param ignoreProperties names of any properties to ignore when it comes to populating on the form.
      */
-    public static final void populateFormFromPropertyMap(final Object form, final Map formatters,
-        final Map properties, final String[] ignoreProperties)
+    public static final void populateFormFromPropertyMap(final Object form, final Map<String, DateFormat> formatters,
+        final Map<String, ?> properties, final String[] ignoreProperties)
     {
         populateFormFromPropertyMap(form, formatters, properties, ignoreProperties, true, false);
     }
@@ -214,18 +213,19 @@ public class FormPopulator
      * @param override whether or not to override properties already set on the given form.
      * @param assignableTypesOnly whether or not copying should be attempted only if the property types are assignable.
      */
-    public static final void populateFormFromPropertyMap(final Object form, final Map formatters,
-        final Map properties, final String[] ignoreProperties, boolean override, boolean assignableTypesOnly)
+    @SuppressWarnings("unchecked") // apache commons-beanutils PropertyUtils has no generics
+    public static final void populateFormFromPropertyMap(final Object form, final Map<String, DateFormat> formatters,
+        final Map<String, ?> properties, final String[] ignoreProperties, boolean override, boolean assignableTypesOnly)
     {
         if (properties != null)
         {
             try
             {
-                final Collection ignoredProperties = ignoreProperties != null ? Arrays.asList(ignoreProperties) : Collections.EMPTY_LIST;
-                final Map formProperties = PropertyUtils.describe(form);
-                for (final Iterator iterator = formProperties.keySet().iterator(); iterator.hasNext();)
+                final Collection<String> ignoredProperties = ignoreProperties != null ? Arrays.asList(ignoreProperties) : new ArrayList<String>();
+                final Map<String, Object> formProperties = PropertyUtils.describe(form);
+                for (final Iterator<String> iterator = formProperties.keySet().iterator(); iterator.hasNext();)
                 {
-                    final String name = (String)iterator.next();
+                    final String name = iterator.next();
                     if (PropertyUtils.isWriteable(form, name) && !ignoredProperties.contains(name))
                     {
                         final PropertyDescriptor descriptor =
@@ -238,8 +238,8 @@ public class FormPopulator
                                 final String isSetPropertyName = name + "Set";
                                 if (PropertyUtils.isReadable(form, isSetPropertyName))
                                 {
-                                    final boolean isPropertySet = (Boolean)PropertyUtils.getProperty(form, isSetPropertyName);
-                                    if (isPropertySet)
+                                    final Boolean isPropertySet = (Boolean)PropertyUtils.getProperty(form, isSetPropertyName);
+                                    if (isPropertySet.booleanValue())
                                     {
                                         populateProperty = false;
                                     }
@@ -258,7 +258,7 @@ public class FormPopulator
                                         final String propertyAsString = (String)property;
                                         if (propertyAsString.trim().length() > 0)
                                         {
-                                            DateFormat formatter = formatters != null ? (DateFormat)formatters.get(name) : null;
+                                            DateFormat formatter = formatters != null ? formatters.get(name) : null;
                                             // - if the formatter is available we use that, otherwise we attempt to convert
                                             if (formatter != null)
                                             {
@@ -269,7 +269,7 @@ public class FormPopulator
                                                 catch (ParseException parseException)
                                                 {
                                                     // - try the default formatter (handles the default java.util.Date.toString() format)
-                                                    formatter = formatters != null ? (DateFormat)formatters.get(null) : null;
+                                                    formatter = formatters != null ? formatters.get(null) : null;
                                                     value = formatter.parse(propertyAsString);
                                                 }
                                             }
@@ -287,28 +287,25 @@ public class FormPopulator
                                     else
                                     {
                                         value = property;
-                                        if (value != null)
+                                        try
                                         {
-                                            try
+                                            if (!assignableTypesOnly || descriptor.getPropertyType().isAssignableFrom(value.getClass()))
                                             {
-                                                if (!assignableTypesOnly || descriptor.getPropertyType().isAssignableFrom(value.getClass()))
-                                                {
-                                                    PropertyUtils.setProperty(form, name, value);
-                                                }
+                                                PropertyUtils.setProperty(form, name, value);
                                             }
-                                            catch (Exception exception)
+                                        }
+                                        catch (Exception exception)
+                                        {
+                                            final String valueTypeName = value.getClass().getName();
+                                            final String propertyTypeName = descriptor.getPropertyType().getName();
+                                            final StringBuilder message = new StringBuilder("Can not set form property '"
+                                                + name + "' of type: " + propertyTypeName + " with value: "
+                                                + value);
+                                            if (!descriptor.getPropertyType().isAssignableFrom(value.getClass()))
                                             {
-                                                final String valueTypeName = value.getClass().getName();
-                                                final String propertyTypeName = descriptor.getPropertyType().getName();
-                                                final StringBuilder message = new StringBuilder("Can not set form property '"
-                                                    + name + "' of type: " + propertyTypeName + " with value: "
-                                                    + value);
-                                                if (!descriptor.getPropertyType().isAssignableFrom(value.getClass()))
-                                                {
-                                                    message.append("; " + valueTypeName + " is not assignable to " + propertyTypeName);
-                                                }
-                                                throw new IllegalArgumentException(message + ": " + exception.toString());
+                                                message.append("; " + valueTypeName + " is not assignable to " + propertyTypeName);
                                             }
+                                            throw new IllegalArgumentException(message + ": " + exception.toString());
                                         }
                                     }
                                 }

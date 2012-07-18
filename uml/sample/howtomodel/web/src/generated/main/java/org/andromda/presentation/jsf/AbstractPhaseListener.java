@@ -20,14 +20,17 @@ public abstract class AbstractPhaseListener
 {
     private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("rawtypes")
-    private static Map<Class, Object> firstInstances = new HashMap<Class, Object>();
+    private static Map<Class<? extends AbstractPhaseListener>, Object> firstInstances
+        = new HashMap<Class<? extends AbstractPhaseListener>, Object>();
 
     private boolean isFirstInstance()
     {
         return firstInstances.get(this.getClass()).equals(this);
     }
 
+    /**
+     *
+     */
     public AbstractPhaseListener()
     {
         if (!firstInstances.containsKey(this.getClass()))
@@ -39,6 +42,7 @@ public abstract class AbstractPhaseListener
     /**
      * @see PhaseListener#beforePhase(PhaseEvent)
      */
+    @Override
     public void beforePhase(PhaseEvent event)
     {
         if (this.isFirstInstance())
@@ -47,11 +51,15 @@ public abstract class AbstractPhaseListener
         }
     }
 
+    /**
+     * @param event
+     */
     protected abstract void handleBeforePhase(PhaseEvent event);
 
     /**
      * @see PhaseListener#afterPhase(PhaseEvent)
      */
+    @Override
     public void afterPhase(PhaseEvent event)
     {
         if (this.isFirstInstance())
@@ -60,11 +68,15 @@ public abstract class AbstractPhaseListener
         }
     }
 
+    /**
+     * @param event
+     */
     protected abstract void handleAfterPhase(PhaseEvent event);
 
     /**
      * @see PhaseListener#getPhaseId()
      */
+    @Override
     public PhaseId getPhaseId()
     {
         return PhaseId.ANY_PHASE;

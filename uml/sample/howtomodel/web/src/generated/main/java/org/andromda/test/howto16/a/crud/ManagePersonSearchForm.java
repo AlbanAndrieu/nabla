@@ -13,11 +13,11 @@ import java.util.Date;
 public final class ManagePersonSearchForm
     implements Serializable
 {
-
     private String name;
 
     /**
      * 
+     * @return name
      */
     public String getName()
     {
@@ -26,16 +26,18 @@ public final class ManagePersonSearchForm
 
     /**
      * 
+     * @param nameIn
      */
-    public void setName(String name)
+    public void setName(String nameIn)
     {
-        this.name = name;
+        this.name = nameIn;
     }
 
     private Date birthDate;
 
     /**
      * 
+     * @return birthDate
      */
     public Date getBirthDate()
     {
@@ -44,16 +46,18 @@ public final class ManagePersonSearchForm
 
     /**
      * 
+     * @param birthDateIn
      */
-    public void setBirthDate(Date birthDate)
+    public void setBirthDate(Date birthDateIn)
     {
-        this.birthDate = birthDate;
+        this.birthDate = birthDateIn;
     }
 
     private String serial;
 
     /**
      * 
+     * @return serial
      */
     public String getSerial()
     {
@@ -62,16 +66,18 @@ public final class ManagePersonSearchForm
 
     /**
      * 
+     * @param serialIn
      */
-    public void setSerial(String serial)
+    public void setSerial(String serialIn)
     {
-        this.serial = serial;
+        this.serial = serialIn;
     }
 
     private String[] cars;
 
     /**
      * 
+     * @return cars
      */
     public String[] getCars()
     {
@@ -80,16 +86,18 @@ public final class ManagePersonSearchForm
 
     /**
      * 
+     * @param carsIn
      */
-    public void setCars(String[] cars)
+    public void setCars(String[] carsIn)
     {
-        this.cars = cars;
+        this.cars = carsIn;
     }
 
     private Collection carsBackingList;
 
     /**
      * The current collection of possible values of cars.
+     * @return carsBackingList
      */
     public Collection getCarsBackingList(){
         return carsBackingList;
@@ -97,9 +105,10 @@ public final class ManagePersonSearchForm
 
     /**
      * The current collection of possible values of cars.
+     * @return carsBackingListIn
      */
-    public void setCarsBackingList(Collection carsBackingList){
-        this.carsBackingList = carsBackingList;
+    public void setCarsBackingList(Collection carsBackingListIn){
+        this.carsBackingList = carsBackingListIn;
     }
 
     /**

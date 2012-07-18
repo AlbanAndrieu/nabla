@@ -65,7 +65,7 @@ public class FacesContextUtils
      * @param request the ServletRequest instance.
      * @param response the ServletResponse instance
      * @param name the name of the variable to resolve.
-     * @return
+     * @return resolvedVariable
      */
     public static Object resolveVariable(
         final ServletRequest request,
