@@ -3451,17 +3451,6 @@
 		    			</exclusion>
 		    		</exclusions>
 	                </dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-annotations</artifactId>
-				<version>${hibernate.annotations.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.transaction</groupId>
-						<artifactId>jta</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
@@ -3518,11 +3507,6 @@
                   </exclusion>
                 </exclusions>
             </dependency>
-			<dependency>
-				<groupId>javax.persistence</groupId>
-				<artifactId>persistence-api</artifactId>
-				<version>${javax.persistence.version}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
@@ -3584,50 +3568,7 @@
 				<groupId>aopalliance</groupId>
 				<artifactId>aopalliance</artifactId>
 				<version>${aopalliance.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>cglib</groupId>
-				<artifactId>cglib-nodep</artifactId>
-				<version>${cglib.nodep.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>cglib</groupId>
-				<artifactId>cglib</artifactId>
-				<version>${cglib.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.transaction</groupId>
-				<artifactId>jta</artifactId>
-				<version>${javax.transaction.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${hibernate.validator.version}</version>
-			</dependency>
-		        <dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${hibernate.entitymanager.version}</version>
-			</dependency>
-		        <dependency>
-		        	<groupId>org.hibernate</groupId>
-		        	<artifactId>ejb3-persistence</artifactId>
-		        	<version>${ejb3.persistence.version}</version>
-		        </dependency>
-	                <dependency>
-	                	<groupId>org.hibernate</groupId>
-	                	<artifactId>hibernate-search</artifactId>
-	                	<version>${hibernate.search.version}</version>
-		    		<exclusions>
-		    			<exclusion>
-		    				<groupId>org.hibernate</groupId>
-		    				<artifactId>hibernate</artifactId>
-		    			</exclusion>
-		    		</exclusions>
-	                </dependency>
+			</dependency>	
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-annotations</artifactId>
@@ -3639,76 +3580,11 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-		        <dependency>
-		        	<groupId>org.hibernate</groupId>
-		        	<artifactId>hibernate-core</artifactId>
-		        	<version>${hibernate.core.version}</version>
-		        </dependency>
 			<dependency>
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
 				<version>${javax.persistence.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>${ehcache.version}</version>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>${ehcache.jar.version}</version>
-				<type>jar</type>
-			</dependency>
-			<dependency>
-				<groupId>org.javassist</groupId>
-				<artifactId>javassist</artifactId>
-				<version>${org.javassist.version}</version>
-			</dependency>
-		        <dependency>
-		        	<groupId>javassist</groupId>
-		        	<artifactId>javassist</artifactId>
-		        	<version>${javassist.version}</version>
-		        </dependency>
-			<dependency>
-				<groupId>org.apache.activemq</groupId>
-				<artifactId>activemq-core</artifactId>
-				<version>${activemq.core.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>backport-util-concurrent</groupId>
-				<artifactId>backport-util-concurrent</artifactId>
-				<version>${backport.util.concurrent.version}</version>
-				<scope>runtime</scope>
-				<!--<scope>compile</scope>-->
-			</dependency>
-			<dependency>
-				<groupId>commons-httpclient</groupId>
-				<artifactId>commons-httpclient</artifactId>
-				<version>${commons.httpclient.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-                	        <groupId>commons-dbcp</groupId>
-                	        <artifactId>commons-dbcp</artifactId>
-                	        <version>${commons.dbcp.version}</version>
-                	        <scope>runtime</scope>
-                	</dependency>
-			<dependency>
-				<groupId>commons-pool</groupId>
-				<artifactId>commons-pool</artifactId>
-				<version>${commons.pool.version}</version>
-				<scope>runtime</scope>
-				<!--<scope>compile</scope>-->
-			</dependency>
-			<dependency>
-				<groupId>aopalliance</groupId>
-				<artifactId>aopalliance</artifactId>
-				<version>${aopalliance.version}</version>
-			</dependency>
+			</dependency>			
                         <!--
 			<dependency>
 				<groupId>com.tibco.jms</groupId>
@@ -4040,12 +3916,6 @@
 				<scope>runtime</scope>
 			</dependency>
 			<dependency>
-				<groupId>commons-codec</groupId>
-				<artifactId>commons-codec</artifactId>
-				<version>${commons.codec.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
 				<groupId>commons-discovery</groupId>
 				<artifactId>commons-discovery</artifactId>
 				<version>${commons.discovery.version}</version>
@@ -4316,28 +4186,14 @@
                 <artifactId>jsf-facelets</artifactId>
                 <version>${jsf.facelets.version}</version>
             </dependency>
-                                                		
+                        <!--
                         <dependency>
-                            <groupId>org.icefaces</groupId>
-                            <artifactId>icefaces</artifactId>
-                            <version>${icefaces.version}</version>
-                            <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
+                                <groupId>com.sun.facelets</groupId>
+                                <artifactId>jsf-facelets</artifactId>
+                                <version>${jsf.facelets.version}</version>
+                                <scope>runtime</scope>
                         </dependency>
-                        <dependency>
-                            <groupId>org.icefaces</groupId>
-                            <artifactId>icefaces-comps</artifactId>
-                            <version>${icefaces.version}</version>
-                            <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.icefaces</groupId>
-                            <artifactId>icefaces-facelets</artifactId>
-                            <version>${icefaces.version}</version>
-                            <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
-                        </dependency>
+                        -->
                         <dependency>
                             <groupId>org.icefaces</groupId>
                             <artifactId>icefaces-comps</artifactId>
@@ -4358,12 +4214,6 @@
 				<version>${servlet.api.version}</version>
 				<scope>provided</scope>
 			</dependency>
-                        <dependency>
-                                <groupId>com.sun.facelets</groupId>
-                                <artifactId>jsf-facelets</artifactId>
-                                <version>${jsf.facelets.version}</version>
-                                <scope>runtime</scope>
-                        </dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
