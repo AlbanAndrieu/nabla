@@ -1,24 +1,38 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import javax.portlet.ActionRequest;
-import javax.portlet.PortalContext;
-import javax.portlet.PortletMode;
-import javax.portlet.PortletPreferences;
-import javax.portlet.PortletSession;
-import javax.portlet.WindowState;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.FileUploadException;
@@ -26,7 +40,31 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.portlet.PortletFileUpload;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.apache.myfaces.webapp.filter.MultipartRequestWrapper;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+
+import java.security.Principal;
+
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.PortalContext;
+import javax.portlet.PortletMode;
+import javax.portlet.PortletPreferences;
+import javax.portlet.PortletSession;
+import javax.portlet.WindowState;
 
 /**
  * This class handles multipart/form-date request for Portlet. It will be called
@@ -35,24 +73,17 @@ import org.apache.myfaces.webapp.filter.MultipartRequestWrapper;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Sylvain Vieujot
  */
-public class MultipartPortletRequestWrapper
-implements ActionRequest, MultipartRequest
+public class MultipartPortletRequestWrapper implements ActionRequest, MultipartRequest
 {
-    private static Log log = LogFactory.getLog(MultipartPortletRequestWrapper.class);
 
-    private ActionRequest request = null;
-
-    private Map parametersMap = null;
-
-    private PortletFileUpload fileUpload = null;
-
-    private Map fileItems = null;
-
-    private final int maxSize;
-
-    private final int thresholdSize;
-
-    private final String repositoryPath;
+    private static Log        log           = LogFactory.getLog(MultipartPortletRequestWrapper.class);
+    private ActionRequest     request       = null;
+    private Map               parametersMap = null;
+    private PortletFileUpload fileUpload    = null;
+    private Map               fileItems     = null;
+    private final int         maxSize;
+    private final int         thresholdSize;
+    private final String      repositoryPath;
 
     /**
      * @param request
@@ -60,27 +91,28 @@ implements ActionRequest, MultipartRequest
      * @param thresholdSize
      * @param repositoryPath
      */
-    public MultipartPortletRequestWrapper(
-        final ActionRequest request,
-        final int maxSize,
-        final int thresholdSize,
-        final String repositoryPath)
+    public MultipartPortletRequestWrapper(final ActionRequest request, final int maxSize, final int thresholdSize, final String repositoryPath)
     {
+
         this.request = request;
         this.maxSize = maxSize;
         this.thresholdSize = thresholdSize;
         this.repositoryPath = repositoryPath;
+
     }
 
     private void parseRequest()
     {
+
         final DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
 
         diskFileItemFactory.setSizeThreshold(thresholdSize);
 
-        if (repositoryPath != null && repositoryPath.trim().length() > 0)
+        if ((repositoryPath != null) && (repositoryPath.trim().length() > 0))
         {
+
             diskFileItemFactory.setRepository(new File(repositoryPath));
+
         }
 
         fileUpload = new PortletFileUpload();
@@ -88,21 +120,27 @@ implements ActionRequest, MultipartRequest
         fileUpload.setSizeMax(maxSize);
 
         final String charset = request.getCharacterEncoding();
+
         fileUpload.setHeaderEncoding(charset);
 
         List requestParameters = null;
+
         try
         {
+
             requestParameters = fileUpload.parseRequest(request);
+
         }
         catch (final FileUploadBase.SizeLimitExceededException e)
         {
+
             // TODO: find a way to notify the user about the fact that the
             // uploaded file exceeded size limit
-
             if (MultipartPortletRequestWrapper.log.isInfoEnabled())
             {
+
                 MultipartPortletRequestWrapper.log.info("user tried to upload a file that exceeded file-size limitations.", e);
+
             }
 
             requestParameters = Collections.EMPTY_LIST;
@@ -110,8 +148,10 @@ implements ActionRequest, MultipartRequest
         }
         catch (final FileUploadException fue)
         {
+
             MultipartPortletRequestWrapper.log.error("Exception while uploading file.", fue);
             requestParameters = Collections.EMPTY_LIST;
+
         }
 
         parametersMap = new HashMap(requestParameters.size());
@@ -119,10 +159,12 @@ implements ActionRequest, MultipartRequest
 
         for (final Iterator iter = requestParameters.iterator(); iter.hasNext();)
         {
-            final FileItem fileItem = (FileItem)iter.next();
+
+            final FileItem fileItem = (FileItem) iter.next();
 
             if (fileItem.isFormField())
             {
+
                 final String name = fileItem.getFieldName();
 
                 // The following code avoids commons-fileupload charset problem.
@@ -131,64 +173,87 @@ implements ActionRequest, MultipartRequest
                 // String value = fileItem.getString();
                 //
                 String value = null;
+
                 if (charset == null)
                 {
+
                     value = fileItem.getString();
-                }
-                else
+
+                } else
                 {
+
                     try
                     {
+
                         value = new String(fileItem.get(), charset);
+
                     }
                     catch (final UnsupportedEncodingException e)
                     {
+
                         value = fileItem.getString();
+
                     }
+
                 }
 
                 addTextParameter(name, value);
-            }
-            else
+
+            } else
             { // fileItem is a File
+
                 if (fileItem.getName() != null)
                 {
+
                     fileItems.put(fileItem.getFieldName(), fileItem);
+
                 }
+
             }
+
         }
 
         // Add the query string paramters
         for (final Iterator it = request.getParameterMap().entrySet().iterator(); it.hasNext();)
         {
-            final Map.Entry entry = (Map.Entry)it.next();
-            final String[] valuesArray = (String[])entry.getValue();
+
+            final Map.Entry entry = (Map.Entry) it.next();
+            final String[] valuesArray = (String[]) entry.getValue();
+
             for (final String element : valuesArray)
             {
-                addTextParameter((String)entry.getKey(), element);
+
+                addTextParameter((String) entry.getKey(), element);
+
             }
+
         }
+
     }
 
     private void addTextParameter(final String name, final String value)
     {
+
         if (!parametersMap.containsKey(name))
         {
-            final String[] valuesArray =
-            {
-                value
-            };
+
+            final String[] valuesArray = { value };
+
             parametersMap.put(name, valuesArray);
-        }
-        else
+
+        } else
         {
-            final String[] storedValues = (String[])parametersMap.get(name);
+
+            final String[] storedValues = (String[]) parametersMap.get(name);
             final int lengthSrc = storedValues.length;
             final String[] valuesArray = new String[lengthSrc + 1];
+
             System.arraycopy(storedValues, 0, valuesArray, 0, lengthSrc);
             valuesArray[lengthSrc] = value;
             parametersMap.put(name, valuesArray);
+
         }
+
     }
 
     /**
@@ -196,12 +261,16 @@ implements ActionRequest, MultipartRequest
      */
     public Enumeration getParameterNames()
     {
+
         if (parametersMap == null)
         {
+
             parseRequest();
+
         }
 
         return Collections.enumeration(parametersMap.keySet());
+
     }
 
     /**
@@ -209,17 +278,25 @@ implements ActionRequest, MultipartRequest
      */
     public String getParameter(final String name)
     {
+
         if (parametersMap == null)
         {
+
             parseRequest();
+
         }
 
-        final String[] values = (String[])parametersMap.get(name);
+        final String[] values = (String[]) parametersMap.get(name);
+
         if (values == null)
         {
+
             return null;
+
         }
+
         return values[0];
+
     }
 
     /**
@@ -227,12 +304,16 @@ implements ActionRequest, MultipartRequest
      */
     public String[] getParameterValues(final String name)
     {
+
         if (parametersMap == null)
         {
+
             parseRequest();
+
         }
 
-        return (String[])parametersMap.get(name);
+        return (String[]) parametersMap.get(name);
+
     }
 
     /**
@@ -240,12 +321,16 @@ implements ActionRequest, MultipartRequest
      */
     public Map getParameterMap()
     {
+
         if (parametersMap == null)
         {
+
             parseRequest();
+
         }
 
         return parametersMap;
+
     }
 
     // Hook for the x:inputFileUpload tag.
@@ -254,12 +339,16 @@ implements ActionRequest, MultipartRequest
      */
     public FileItem getFileItem(final String fieldName)
     {
+
         if (fileItems == null)
         {
+
             parseRequest();
+
         }
 
-        return (FileItem)fileItems.get(fieldName);
+        return (FileItem) fileItems.get(fieldName);
+
     }
 
     /**
@@ -269,12 +358,16 @@ implements ActionRequest, MultipartRequest
      */
     public Map getFileItems()
     {
+
         if (fileItems == null)
         {
+
             parseRequest();
+
         }
 
         return fileItems;
+
     }
 
     /**
@@ -282,11 +375,16 @@ implements ActionRequest, MultipartRequest
      */
     public Object getAttribute(final String arg0)
     {
+
         if (arg0.equals(MultipartRequestWrapper.UPLOADED_FILES_ATTRIBUTE))
         {
+
             return getFileItems();
+
         }
+
         return request.getAttribute(arg0);
+
     }
 
     /**
@@ -294,7 +392,9 @@ implements ActionRequest, MultipartRequest
      */
     public Enumeration getAttributeNames()
     {
+
         return request.getAttributeNames();
+
     }
 
     /**
@@ -302,7 +402,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getAuthType()
     {
+
         return request.getAuthType();
+
     }
 
     /**
@@ -310,7 +412,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getContextPath()
     {
+
         return request.getContextPath();
+
     }
 
     /**
@@ -318,7 +422,9 @@ implements ActionRequest, MultipartRequest
      */
     public Locale getLocale()
     {
+
         return request.getLocale();
+
     }
 
     /**
@@ -326,7 +432,9 @@ implements ActionRequest, MultipartRequest
      */
     public Enumeration getLocales()
     {
+
         return request.getLocales();
+
     }
 
     /**
@@ -334,7 +442,9 @@ implements ActionRequest, MultipartRequest
      */
     public PortalContext getPortalContext()
     {
+
         return request.getPortalContext();
+
     }
 
     /**
@@ -342,7 +452,9 @@ implements ActionRequest, MultipartRequest
      */
     public PortletMode getPortletMode()
     {
+
         return request.getPortletMode();
+
     }
 
     /**
@@ -350,7 +462,9 @@ implements ActionRequest, MultipartRequest
      */
     public PortletSession getPortletSession()
     {
+
         return request.getPortletSession();
+
     }
 
     /**
@@ -358,7 +472,9 @@ implements ActionRequest, MultipartRequest
      */
     public PortletSession getPortletSession(final boolean arg0)
     {
+
         return request.getPortletSession(arg0);
+
     }
 
     /**
@@ -366,7 +482,9 @@ implements ActionRequest, MultipartRequest
      */
     public PortletPreferences getPreferences()
     {
+
         return request.getPreferences();
+
     }
 
     /**
@@ -374,7 +492,9 @@ implements ActionRequest, MultipartRequest
      */
     public Enumeration getProperties(final String arg0)
     {
+
         return request.getProperties(arg0);
+
     }
 
     /**
@@ -382,7 +502,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getProperty(final String arg0)
     {
+
         return request.getProperty(arg0);
+
     }
 
     /**
@@ -390,7 +512,9 @@ implements ActionRequest, MultipartRequest
      */
     public Enumeration getPropertyNames()
     {
+
         return request.getPropertyNames();
+
     }
 
     /**
@@ -398,7 +522,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getRemoteUser()
     {
+
         return request.getRemoteUser();
+
     }
 
     /**
@@ -406,7 +532,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getRequestedSessionId()
     {
+
         return request.getRequestedSessionId();
+
     }
 
     /**
@@ -414,7 +542,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getResponseContentType()
     {
+
         return request.getResponseContentType();
+
     }
 
     /**
@@ -422,7 +552,9 @@ implements ActionRequest, MultipartRequest
      */
     public Enumeration getResponseContentTypes()
     {
+
         return request.getResponseContentTypes();
+
     }
 
     /**
@@ -430,7 +562,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getScheme()
     {
+
         return request.getScheme();
+
     }
 
     /**
@@ -438,7 +572,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getServerName()
     {
+
         return request.getServerName();
+
     }
 
     /**
@@ -446,7 +582,9 @@ implements ActionRequest, MultipartRequest
      */
     public int getServerPort()
     {
+
         return request.getServerPort();
+
     }
 
     /**
@@ -454,7 +592,9 @@ implements ActionRequest, MultipartRequest
      */
     public Principal getUserPrincipal()
     {
+
         return request.getUserPrincipal();
+
     }
 
     /**
@@ -462,7 +602,9 @@ implements ActionRequest, MultipartRequest
      */
     public WindowState getWindowState()
     {
+
         return request.getWindowState();
+
     }
 
     /**
@@ -470,7 +612,9 @@ implements ActionRequest, MultipartRequest
      */
     public boolean isPortletModeAllowed(final PortletMode arg0)
     {
+
         return request.isPortletModeAllowed(arg0);
+
     }
 
     /**
@@ -478,7 +622,9 @@ implements ActionRequest, MultipartRequest
      */
     public boolean isRequestedSessionIdValid()
     {
+
         return request.isRequestedSessionIdValid();
+
     }
 
     /**
@@ -486,7 +632,9 @@ implements ActionRequest, MultipartRequest
      */
     public boolean isSecure()
     {
+
         return request.isSecure();
+
     }
 
     /**
@@ -494,7 +642,9 @@ implements ActionRequest, MultipartRequest
      */
     public boolean isUserInRole(final String arg0)
     {
+
         return request.isUserInRole(arg0);
+
     }
 
     /**
@@ -502,7 +652,9 @@ implements ActionRequest, MultipartRequest
      */
     public boolean isWindowStateAllowed(final WindowState arg0)
     {
+
         return request.isWindowStateAllowed(arg0);
+
     }
 
     /**
@@ -510,7 +662,9 @@ implements ActionRequest, MultipartRequest
      */
     public void removeAttribute(final String arg0)
     {
+
         request.removeAttribute(arg0);
+
     }
 
     /**
@@ -519,7 +673,9 @@ implements ActionRequest, MultipartRequest
      */
     public void setAttribute(final String arg0, final Object arg1)
     {
+
         request.setAttribute(arg0, arg1);
+
     }
 
     /**
@@ -527,7 +683,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getCharacterEncoding()
     {
+
         return request.getCharacterEncoding();
+
     }
 
     /**
@@ -535,7 +693,9 @@ implements ActionRequest, MultipartRequest
      */
     public int getContentLength()
     {
+
         return request.getContentLength();
+
     }
 
     /**
@@ -543,7 +703,9 @@ implements ActionRequest, MultipartRequest
      */
     public String getContentType()
     {
+
         return request.getContentType();
+
     }
 
     /**
@@ -551,7 +713,9 @@ implements ActionRequest, MultipartRequest
      */
     public InputStream getPortletInputStream() throws IOException
     {
+
         return request.getPortletInputStream();
+
     }
 
     /**
@@ -559,7 +723,9 @@ implements ActionRequest, MultipartRequest
      */
     public BufferedReader getReader() throws UnsupportedEncodingException, IOException
     {
+
         return request.getReader();
+
     }
 
     /**
@@ -567,6 +733,9 @@ implements ActionRequest, MultipartRequest
      */
     public void setCharacterEncoding(final String arg0) throws UnsupportedEncodingException
     {
+
         request.setCharacterEncoding(arg0);
+
     }
+
 }

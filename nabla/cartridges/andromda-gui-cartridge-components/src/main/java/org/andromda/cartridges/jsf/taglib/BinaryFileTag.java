@@ -1,17 +1,51 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.taglib;
+
+import org.andromda.cartridges.jsf.component.BinaryFile;
+import org.andromda.cartridges.jsf.utils.ComponentUtils;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.webapp.UIComponentTag;
-import org.andromda.cartridges.jsf.component.BinaryFile;
-import org.andromda.cartridges.jsf.utils.ComponentUtils;
 
 /**
  * The tag class for the <code>s:validatorScript</code> tag.
  */
-public class BinaryFileTag
-    extends UIComponentTag
+public class BinaryFileTag extends UIComponentTag
 {
+
     /**
      * Sets properties for the component.
      *
@@ -20,12 +54,15 @@ public class BinaryFileTag
     @Override
     public void setProperties(final UIComponent component)
     {
+
         final FacesContext context = this.getFacesContext();
+
         ComponentUtils.setValueProperty(context, component, this.getValue());
         ComponentUtils.setStringProperty(BinaryFile.FILE_NAME_ATTRIBUTE, context, component, this.getFileName());
         ComponentUtils.setStringProperty(BinaryFile.CONTENT_TYPE_ATTRIBUTE, context, component, this.getContentType());
         ComponentUtils.setBooleanProperty(BinaryFile.PROMPT_ATTRIBUTE, context, component, this.getPrompt());
         super.setProperties(component);
+
     }
 
     /**
@@ -34,7 +71,9 @@ public class BinaryFileTag
     @Override
     public String getRendererType()
     {
+
         return BinaryFile.RENDERER_TYPE;
+
     }
 
     /**
@@ -48,7 +87,9 @@ public class BinaryFileTag
     @Override
     public String getComponentType()
     {
+
         return COMPONENT_TYPE;
+
     }
 
     private String value;
@@ -60,7 +101,9 @@ public class BinaryFileTag
      */
     public String getValue()
     {
+
         return this.value;
+
     }
 
     /**
@@ -70,7 +113,9 @@ public class BinaryFileTag
      */
     public void setValue(String value)
     {
+
         this.value = value;
+
     }
 
     private String fileName;
@@ -80,7 +125,9 @@ public class BinaryFileTag
      */
     public String getFileName()
     {
+
         return this.fileName;
+
     }
 
     /**
@@ -88,7 +135,9 @@ public class BinaryFileTag
      */
     public void setFileName(String fileName)
     {
+
         this.fileName = fileName;
+
     }
 
     private String contentType;
@@ -98,7 +147,9 @@ public class BinaryFileTag
      */
     public String getContentType()
     {
+
         return this.contentType;
+
     }
 
     /**
@@ -106,7 +157,9 @@ public class BinaryFileTag
      */
     public void setContentType(String contentType)
     {
+
         this.contentType = contentType;
+
     }
 
     private String encoding;
@@ -116,7 +169,9 @@ public class BinaryFileTag
      */
     public String getEncoding()
     {
+
         return this.encoding;
+
     }
 
     /**
@@ -124,7 +179,9 @@ public class BinaryFileTag
      */
     public void setEncoding(String encoding)
     {
+
         this.encoding = encoding;
+
     }
 
     private String prompt;
@@ -134,7 +191,9 @@ public class BinaryFileTag
      */
     public String getPrompt()
     {
+
         return this.prompt;
+
     }
 
     /**
@@ -142,6 +201,9 @@ public class BinaryFileTag
      */
     public void setPrompt(String prompt)
     {
+
         this.prompt = prompt;
+
     }
+
 }

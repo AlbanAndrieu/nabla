@@ -1,22 +1,42 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.gui.metafacades;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
 
 import org.andromda.cartridges.gui.GuiGlobals;
 import org.andromda.cartridges.gui.GuiProfile;
 import org.andromda.cartridges.gui.GuiUtils;
+
 import org.andromda.metafacades.uml.ActionStateFacade;
 import org.andromda.metafacades.uml.ActivityGraphFacade;
 import org.andromda.metafacades.uml.AssociationEndFacade;
@@ -36,13 +56,30 @@ import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.OperationFacade;
 import org.andromda.metafacades.uml.Role;
 import org.andromda.metafacades.uml.UseCaseFacade;
+
 import org.andromda.utils.StringUtilsHelper;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.collections.Transformer;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiUseCase.
@@ -51,8 +88,8 @@ import org.apache.log4j.Logger;
  */
 public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 {
-    private static final long serialVersionUID = 34L;
 
+    private static final long serialVersionUID = 34L;
     private final Logger      logger_          = Logger.getLogger(GuiUseCaseLogicImpl.class);
 
     /**
@@ -62,6 +99,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     public GuiUseCaseLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
+
     }
 
     /**
@@ -71,17 +109,26 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPath()
     {
+
         String actionPath = null;
         final FrontEndActivityGraph graph = this.getActivityGraph();
+
         if (graph != null)
         {
+
             final GuiAction action = (GuiAction) graph.getInitialAction();
+
             if (action != null)
             {
+
                 actionPath = action.getPath();
+
             }
+
         }
+
         return actionPath;
+
     }
 
     /**
@@ -91,11 +138,15 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPathRoot()
     {
+
         final StringBuilder pathRoot = new StringBuilder(GuiGlobals.SEPARATOR);
         final String packagePath = this.getPackagePath();
-        final String prefix = packagePath != null ? packagePath.trim() : "";
+        final String prefix = (packagePath != null) ? packagePath.trim() : "";
+
         pathRoot.append(prefix);
+
         return pathRoot.toString();
+
     }
 
     /**
@@ -105,7 +156,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetForwardName()
     {
+
         return GuiUtils.toWebResourceName(this.getName()) + GuiGlobals.USECASE_FORWARD_NAME_SUFFIX;
+
     }
 
     /**
@@ -115,7 +168,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetTitleKey()
     {
+
         return StringUtilsHelper.toResourceMessageKey(this.isNormalizeMessages() ? this.getTitleValue() : this.getName()) + "." + GuiGlobals.TITLE_MESSAGE_KEY_SUFFIX;
+
     }
 
     /**
@@ -125,7 +180,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetTitleValue()
     {
+
         return StringUtilsHelper.toPhrase(this.getName());
+
     }
 
     /**
@@ -135,8 +192,11 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      */
     private boolean isNormalizeMessages()
     {
+
         final String normalizeMessages = (String) this.getConfiguredProperty(GuiGlobals.NORMALIZE_MESSAGES);
+
         return Boolean.valueOf(normalizeMessages).booleanValue();
+
     }
 
     /**
@@ -146,6 +206,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected Map handleGetAllMessages()
     {
+
         final boolean normalize = this.isNormalizeMessages();
         final Map<String, String> messages = normalize ? new TreeMap<String, String>() : new LinkedHashMap<String, String>();
 
@@ -153,32 +214,44 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
         // where the application begins)
         if (this.isEntryUseCase())
         {
+
             final List<FrontEndUseCase> useCases = this.getAllUseCases();
+
             for (int ctr = 0; ctr < useCases.size(); ctr++)
             {
+
                 // - usecase
                 final GuiUseCase useCase = (GuiUseCase) useCases.get(ctr);
+
                 messages.put(useCase.getTitleKey(), useCase.getTitleValue());
 
                 final List<FrontEndView> views = useCase.getViews();
+
                 for (int ctr2 = 0; ctr2 < views.size(); ctr2++)
                 {
+
                     // - view
                     final GuiView view = (GuiView) views.get(ctr2);
+
                     messages.put(view.getTitleKey(), view.getTitleValue());
                     messages.put(view.getMessageKey(), view.getMessageValue());
                     messages.put(view.getDocumentationKey(), view.getDocumentationValue());
 
                     final List<FrontEndParameter> viewVariables = view.getVariables();
+
                     for (int ctr3 = 0; ctr3 < viewVariables.size(); ctr3++)
                     {
+
                         // - page variables
                         final Object object = viewVariables.get(ctr3);
+
                         if (object instanceof GuiParameter)
                         {
+
                             final GuiParameter parameter = (GuiParameter) object;
 
                             final Collection<ClassifierFacade> resolvingTypes = new ArrayList<ClassifierFacade>();
+
                             this.collectAttributeMessages(messages, parameter.getAttributes(), resolvingTypes);
                             this.collectAssociationEndMessages(messages, parameter.getNavigableAssociationEnds(), resolvingTypes);
                             messages.put(parameter.getMessageKey(), parameter.getMessageValue());
@@ -186,25 +259,36 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
                             // - table
                             if (parameter.isTable())
                             {
+
                                 for (final String columnName : parameter.getTableColumnNames())
                                 {
+
                                     messages.put(parameter.getTableColumnMessageKey(columnName), parameter.getTableColumnMessageValue(columnName));
+
                                 }
+
                             }
+
                         }
+
                     }
 
                     final List<FrontEndAction> actions = useCase.getActions();
+
                     for (int ctr3 = 0; ctr3 < actions.size(); ctr3++)
                     {
+
                         // - action
                         final GuiAction action = (GuiAction) actions.get(ctr3);
 
                         // - event/trigger
                         final Object trigger = action.getTrigger();
+
                         if ((trigger != null) && (trigger instanceof GuiEvent))
                         {
+
                             final GuiEvent event = (GuiEvent) trigger;
+
                             // only add these when a trigger is present, otherwise it's no use having them
                             messages.put(action.getDocumentationKey(), action.getDocumentationValue());
 
@@ -229,72 +313,111 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
                         // - forwards
                         for (final FrontEndForward forward : action.getTransitions())
                         {
+
                             if (forward instanceof GuiForward)
                             {
+
                                 final GuiForward forwardTransition = (GuiForward) forward;
+
                                 messages.putAll(forwardTransition.getSuccessMessages());
                                 messages.putAll(forwardTransition.getWarningMessages());
                                 messages.putAll(forwardTransition.getErrorMessages());
+
                             } else
                             {
+
                                 final GuiAction actionTransition = (GuiAction) forward;
+
                                 messages.putAll(actionTransition.getSuccessMessages());
                                 messages.putAll(actionTransition.getWarningMessages());
                                 messages.putAll(actionTransition.getErrorMessages());
+
                             }
 
                         }
 
                         // - action parameters
                         final List<FrontEndParameter> parameters = action.getParameters();
+
                         for (int l = 0; l < parameters.size(); l++)
                         {
+
                             final Object object = parameters.get(l);
+
                             if (object instanceof GuiParameter)
                             {
+
                                 final GuiParameter parameter = (GuiParameter) object;
                                 final Collection attributes = parameter.getAttributes();
+
                                 if (!attributes.isEmpty())
                                 {
+
                                     for (final Iterator iterator = attributes.iterator(); iterator.hasNext();)
                                     {
+
                                         final GuiAttribute attribute = (GuiAttribute) iterator.next();
+
                                         messages.put(attribute.getMessageKey(), attribute.getMessageValue());
+
                                     }
+
                                 }
+
                                 final Collection associationEnds = parameter.getNavigableAssociationEnds();
+
                                 if (!associationEnds.isEmpty())
                                 {
+
                                     for (final Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
                                     {
+
                                         final AssociationEndFacade end = (AssociationEndFacade) iterator.next();
                                         final ClassifierFacade type = end.getType();
+
                                         if (type != null)
                                         {
+
                                             final Collection<AttributeFacade> typeAttributes = type.getAttributes();
+
                                             if (!attributes.isEmpty())
                                             {
+
                                                 for (final AttributeFacade attributeFacade : typeAttributes)
                                                 {
+
                                                     final GuiAttribute attribute = (GuiAttribute) attributeFacade;
+
                                                     messages.put(attribute.getMessageKey(), attribute.getMessageValue());
+
                                                 }
+
                                             }
+
                                         }
+
                                     }
+
                                 }
+
                                 messages.put(parameter.getMessageKey(), parameter.getMessageValue());
                                 messages.put(parameter.getDocumentationKey(), parameter.getDocumentationValue());
 
                                 // - submittable input table
                                 if (parameter.isInputTable())
                                 {
+
                                     final Collection<String> columnNames = parameter.getTableColumnNames();
+
                                     for (final String columnName : columnNames)
                                     {
+
                                         messages.put(parameter.getTableColumnMessageKey(columnName), parameter.getTableColumnMessageValue(columnName));
+
                                     }
+
                                 }
+
                                 /*
                                  * if (parameter.getValidWhen() != null)
                                  * {
@@ -308,6 +431,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
                                  * "{0} is only valid when " + parameter.getValidWhen());
                                  * }
                                  */
+
                                 /*
                                  * if (parameter.getOptionCount() > 0)
                                  * {
@@ -325,21 +449,31 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
                                  * }
                                  */
                             }
+
                         }
 
                         // - portlet preferences
                         final GuiPortletPreferences preferences = useCase.getPreferences();
+
                         if (preferences != null)
                         {
+
                             final Collection<AttributeFacade> attributes = preferences.getAttributes(true);
+
                             if (!attributes.isEmpty())
                             {
+
                                 for (final Object element : attributes)
                                 {
+
                                     final GuiAttribute attribute = (GuiAttribute) element;
+
                                     messages.put(attribute.getMessageKey(), attribute.getMessageValue());
+
                                 }
+
                             }
+
                         }
 
                         // - exception forwards
@@ -388,10 +522,15 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
                          * }
                          */
                     }
+
                 }
+
             }
+
         }
+
         return messages;
+
     }
 
     /*
@@ -478,6 +617,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      * final GuiParameter parameter = (GuiParameter) pageVariables.get(k);
      * messages.put(parameter.getMessageKey(), parameter.getMessageValue());
      */
+
     /*
      * if (normalize)
      * {
@@ -493,6 +633,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      * parameter.getMessageValue());
      * }
      */
+
     /*
      * // TABLE
      * if (parameter.isTable()) {
@@ -546,16 +687,23 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      */
     private void collectAttributeMessages(final Map<String, String> messages, final Collection attributes, final Collection<ClassifierFacade> resolvingTypes)
     {
+
         if ((attributes != null) && !attributes.isEmpty())
         {
+
             for (final Iterator iterator = attributes.iterator(); iterator.hasNext();)
             {
+
                 final GuiAttribute attribute = (GuiAttribute) iterator.next();
+
                 messages.put(attribute.getMessageKey(), attribute.getMessageValue());
                 // - lets go another level for nested attributes
                 this.collectTypeMessages(messages, attribute.getType(), resolvingTypes);
+
             }
+
         }
+
     }
 
     /**
@@ -567,36 +715,56 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      */
     private void collectAssociationEndMessages(final Map<String, String> messages, final Collection associationEnds, final Collection<ClassifierFacade> resolvingTypes)
     {
+
         if ((associationEnds != null) && !associationEnds.isEmpty())
         {
+
             for (final Iterator iterator = associationEnds.iterator(); iterator.hasNext();)
             {
+
                 final AssociationEndFacade end = (AssociationEndFacade) iterator.next();
+
                 this.collectTypeMessages(messages, end.getType(), resolvingTypes);
+
             }
+
         }
+
     }
 
     private void collectTypeMessages(final Map<String, String> messages, ClassifierFacade type, final Collection<ClassifierFacade> resolvingTypes)
     {
+
         if (type != null)
         {
+
             if (!resolvingTypes.contains(type))
             {
+
                 resolvingTypes.add(type);
+
                 if (type.isArrayType())
                 {
+
                     type = type.getNonArray();
+
                 }
+
                 // check again, since the type can be changed
                 if (!resolvingTypes.contains(type))
                 {
+
                     this.collectAttributeMessages(messages, type.getAttributes(), resolvingTypes);
                     this.collectAssociationEndMessages(messages, type.getNavigableConnectingEnds(), resolvingTypes);
+
                 }
+
             }
+
             resolvingTypes.remove(type);
+
         }
+
     }
 
     /**
@@ -606,12 +774,18 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected List<GuiAction> handleGetActionForwards()
     {
+
         final Set<GuiAction> actionForwards = new LinkedHashSet<GuiAction>();
+
         for (final FrontEndView view : this.getViews())
         {
+
             actionForwards.addAll(((GuiView) view).getActionForwards());
+
         }
+
         return new ArrayList<GuiAction>(actionForwards);
+
     }
 
     /**
@@ -621,18 +795,28 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected List<GuiForward> handleGetForwards()
     {
+
         final Map<String, GuiForward> forwards = new LinkedHashMap<String, GuiForward>();
+
         for (final FrontEndAction action : this.getActions())
         {
+
             for (final FrontEndForward forward : action.getActionForwards())
             {
+
                 if (forward instanceof GuiForward)
                 {
+
                     forwards.put(forward.getName(), (GuiForward) forward);
+
                 }
+
             }
+
         }
+
         return new ArrayList(forwards.values());
+
     }
 
     /**
@@ -643,16 +827,25 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @SuppressWarnings("unchecked")
     protected List<ModelElementFacade> handleGetAllForwards()
     {
+
         final Map<String, ModelElementFacade> forwards = new LinkedHashMap<String, ModelElementFacade>();
+
         for (final GuiAction forward : this.getActionForwards())
         {
+
             forwards.put(forward.getName(), forward);
+
         }
+
         for (final GuiForward forward : this.getForwards())
         {
+
             forwards.put(forward.getName(), forward);
+
         }
+
         return new ArrayList<ModelElementFacade>(forwards.values());
+
     }
 
     /**
@@ -662,7 +855,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetActionClassName()
     {
+
         return StringUtilsHelper.upperCamelCaseName(this.getName());
+
     }
 
     /**
@@ -672,7 +867,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetFullyQualifiedActionClassPath()
     {
+
         return this.getFullyQualifiedActionClassName().replace(".", GuiGlobals.SEPARATOR) + ".java";
+
     }
 
     /**
@@ -682,7 +879,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetControllerAction()
     {
+
         return StringUtilsHelper.lowerCamelCaseName(this.getName());
+
     }
 
     /**
@@ -692,15 +891,22 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetFullyQualifiedActionClassName()
     {
+
         final StringBuilder path = new StringBuilder();
         final String packageName = this.getPackageName();
+
         if (StringUtils.isNotBlank(packageName))
         {
+
             path.append(packageName);
             path.append(".");
+
         }
+
         path.append(this.getActionClassName());
+
         return path.toString();
+
     }
 
     /**
@@ -710,8 +916,11 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetFormKey()
     {
+
         final Object formKeyValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_ACTION_FORM_KEY);
-        return formKeyValue == null ? ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.ACTION_FORM_KEY)) : String.valueOf(formKeyValue);
+
+        return (formKeyValue == null) ? ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.ACTION_FORM_KEY)) : String.valueOf(formKeyValue);
+
     }
 
     /**
@@ -721,16 +930,24 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetInitialTargetPath()
     {
+
         String path = null;
         final Object target = this.getInitialTarget();
+
         if (target instanceof GuiView)
         {
+
             path = ((GuiView) target).getPath();
+
         } else if (target instanceof GuiUseCase)
         {
+
             path = ((GuiUseCase) target).getPath();
+
         }
+
         return path;
+
     }
 
     /**
@@ -740,27 +957,41 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      */
     private Object getInitialTarget()
     {
+
         Object initialTarget = null;
         final FrontEndActivityGraph graph = this.getActivityGraph();
-        final FrontEndAction action = graph != null ? this.getActivityGraph().getInitialAction() : null;
-        final Collection<FrontEndForward> forwards = action != null ? action.getActionForwards() : null;
+        final FrontEndAction action = (graph != null) ? this.getActivityGraph().getInitialAction() : null;
+        final Collection<FrontEndForward> forwards = (action != null) ? action.getActionForwards() : null;
+
         if ((forwards != null) && !forwards.isEmpty())
         {
+
             final Object target = forwards.iterator().next().getTarget();
+
             if (target instanceof FrontEndView)
             {
+
                 initialTarget = target;
+
             } else if (target instanceof FrontEndFinalState)
             {
+
                 final FrontEndFinalState finalState = (FrontEndFinalState) target;
                 final FrontEndUseCase targetUseCase = finalState.getTargetUseCase();
+
                 if ((targetUseCase != null) && !targetUseCase.equals(this.THIS()))
                 {
+
                     initialTarget = targetUseCase;
+
                 }
+
             }
+
         }
+
         return initialTarget;
+
     }
 
     /**
@@ -770,17 +1001,27 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected boolean handleIsValidationRequired()
     {
+
         boolean required = false;
+
         for (final FrontEndView feView : this.getViews())
         {
+
             final GuiView view = (GuiView) feView;
+
             if (view.isValidationRequired())
             {
+
                 required = true;
+
                 break;
+
             }
+
         }
+
         return required;
+
     }
 
     /**
@@ -790,7 +1031,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected boolean handleIsInitialTargetView()
     {
+
         return this.getInitialTarget() instanceof GuiView;
+
     }
 
     /**
@@ -800,17 +1043,27 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected boolean handleIsApplicationValidationRequired()
     {
+
         boolean required = false;
+
         for (final FrontEndUseCase feUseCase : this.getAllUseCases())
         {
+
             final GuiUseCase useCase = (GuiUseCase) feUseCase;
+
             if (useCase.isValidationRequired())
             {
+
                 required = true;
+
                 break;
+
             }
+
         }
+
         return required;
+
     }
 
     /**
@@ -820,16 +1073,25 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected boolean handleIsViewHasNameOfUseCase()
     {
+
         boolean sameName = false;
+
         for (final FrontEndView view : this.getViews())
         {
+
             sameName = ((GuiView) view).isHasNameOfUseCase();
+
             if (sameName)
             {
+
                 break;
+
             }
+
         }
+
         return sameName;
+
     }
 
     /**
@@ -839,7 +1101,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected boolean handleIsRegistrationUseCase()
     {
+
         return this.hasStereotype(GuiProfile.STEREOTYPE_FRONT_END_REGISTRATION);
+
     }
 
     /**
@@ -850,24 +1114,37 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @SuppressWarnings("unchecked")
     protected List<GuiUseCase> handleGetRegistrationUseCases()
     {
+
         final List<FrontEndUseCase> useCases = new ArrayList<FrontEndUseCase>(this.getAllUseCases());
+
         for (final Iterator<FrontEndUseCase> iterator = useCases.iterator(); iterator.hasNext();)
         {
+
             final FrontEndUseCase useCase = iterator.next();
+
             if (useCase instanceof GuiUseCase)
             {
+
                 if (!((GuiUseCase) useCase).isRegistrationUseCase())
                 {
+
                     iterator.remove();
+
                 }
+
             } else
             {
+
                 iterator.remove();
+
             }
+
         }
 
         final List<GuiUseCase> registrationUseCases = new ArrayList<GuiUseCase>();
+
         registrationUseCases.add((GuiUseCase) useCases);
+
         return registrationUseCases;
 
         // return useCases;
@@ -885,7 +1162,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetForwardsClassName()
     {
+
         return StringUtilsHelper.upperCamelCaseName(this.getName()) + GuiUseCaseLogicImpl.FORWARDS_CLASS_NAME_SUFFIX;
+
     }
 
     /**
@@ -896,26 +1175,46 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @SuppressWarnings("unchecked")
     protected Collection<Object> handleGetNavigationRules()
     {
+
         final Map<String, Object> rules = new LinkedHashMap<String, Object>();
+
         for (final FrontEndView feView : this.getViews())
         {
+
             final GuiView view = (GuiView) feView;
+
             rules.put(view.getFromOutcome(), view);
+
             for (final ModelElementFacade forward : view.getForwards())
             {
+
                 String name;
+
                 if (forward instanceof GuiForward)
                 {
+
                     name = ((GuiForward) forward).getFromOutcome();
+
                 } else
                 {
+
                     name = ((GuiAction) forward).getFromOutcome();
+
                 }
-                this.logger_.debug("handleGetNavigationRules is : " + name + " for : " + this.getFullyQualifiedName());
+
+                if (this.logger_.isDebugEnabled())
+                {
+                    this.logger_.debug("handleGetNavigationRules is : " + name + " for : " + this.getFullyQualifiedName());
+                }
+
                 rules.put(name, forward);
+
             }
+
         }
+
         return rules.values();
+
     }
 
     /**
@@ -925,28 +1224,42 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected Collection<UseCaseFacade> handleGetNavigationChildren()
     {
+
         return CollectionUtils.collect(this.getIncludes(), new Transformer()
         {
+
             @Override
             public Object transform(final Object object)
             {
+
                 final IncludeFacade include = (IncludeFacade) object;
+
                 return include.getAddition();
+
             }
+
         });
+
     }
 
     private static boolean isParent(final GuiUseCase useCase1, final GuiUseCase useCase2)
     {
+
         return CollectionUtils.exists(useCase2.getIncludes(), new Predicate()
         {
+
             @Override
             public boolean evaluate(final Object object)
             {
+
                 final IncludeFacade include = (IncludeFacade) object;
+
                 return include.getAddition().equals(useCase1);
+
             }
+
         });
+
     }
 
     /**
@@ -956,21 +1269,32 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected Collection<FrontEndUseCase> handleGetNavigationParents()
     {
+
         final GuiUseCase theUseCase = this;
+
         return CollectionUtils.select(this.getAllUseCases(), new Predicate()
         {
+
             @Override
             @SuppressWarnings("synthetic-access")
             public boolean evaluate(final Object o)
             {
+
                 final GuiUseCase useCase = (GuiUseCase) o;
+
                 if (theUseCase.equals(useCase))
                 {
+
                     return false;
+
                 }
+
                 return GuiUseCaseLogicImpl.isParent(theUseCase, useCase);
+
             }
+
         });
+
     }
 
     /**
@@ -980,20 +1304,31 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetActionRoles()
     {
+
         final StringBuilder rolesBuffer = new StringBuilder();
         boolean first = true;
+
         for (final Role role : this.getRoles())
         {
+
             if (first)
             {
+
                 first = false;
+
             } else
             {
+
                 rolesBuffer.append(',');
+
             }
+
             rolesBuffer.append(role.getName());
+
         }
+
         return rolesBuffer.toString();
+
     }
 
     /**
@@ -1002,21 +1337,33 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected Object handleGetPreferences()
     {
+
         GuiPortletPreferences preferences = null;
         final Collection<DependencyFacade> dependencies = this.getSourceDependencies();
+
         if ((dependencies != null) && !dependencies.isEmpty())
         {
+
             for (final DependencyFacade dependency : dependencies)
             {
+
                 final Object target = dependency.getTargetElement();
+
                 if (dependency.getTargetElement() instanceof GuiPortletPreferences)
                 {
+
                     preferences = (GuiPortletPreferences) target;
+
                     break;
+
                 }
+
             }
+
         }
+
         return preferences;
+
     }
 
     /**
@@ -1025,7 +1372,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPortletEditForwardName()
     {
+
         return this.getWebResourceName() + "-portlet-edit";
+
     }
 
     /**
@@ -1034,7 +1383,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPortletEditPath()
     {
+
         return this.getPathRoot() + GuiGlobals.SEPARATOR + this.getPortletEditForwardName();
+
     }
 
     /**
@@ -1043,7 +1394,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPortletHelpForwardName()
     {
+
         return this.getWebResourceName() + "-portlet-help";
+
     }
 
     /**
@@ -1052,7 +1405,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPortletHelpPath()
     {
+
         return this.getPathRoot() + GuiGlobals.SEPARATOR + this.getPortletHelpForwardName();
+
     }
 
     /**
@@ -1061,12 +1416,16 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPortletViewForwardName()
     {
+
         return this.getWebResourceName() + "-portlet-view";
+
     }
 
     private String getWebResourceName()
     {
+
         return GuiUtils.toWebResourceName(this.getName());
+
     }
 
     /**
@@ -1075,7 +1434,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected String handleGetPortletViewPath()
     {
+
         return this.getPath();
+
     }
 
     /**
@@ -1085,21 +1446,29 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
     @Override
     protected Collection<GuiView> handleGetAllViews()
     {
+
         final Set<GuiView> allViews = new LinkedHashSet<GuiView>();
+
         for (final FrontEndUseCase useCase : this.getAllUseCases())
         {
+
             for (final FrontEndView view : useCase.getViews())
             {
+
                 allViews.add((GuiView) view);
+
             }
+
             // allViews.addAll(useCase.getViews());
         }
+
         // TODO
         return allViews;
+
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected String handleGetOnlineHelpKey()
     {
 
@@ -1327,6 +1696,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      *
      * @see org.andromda.metafacades.uml.FrontEndUseCase#getActions()
      */
+
     /*
      * @Override
      * public List<FrontEndAction> getActions() {
@@ -1350,7 +1720,6 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
      * return new ArrayList (actions);
      * }
      */
-
     @Override
     protected List handleGetPageVariables()
     {
@@ -1556,8 +1925,8 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected String handleGetOnlineHelpPagePath()
     {
 
@@ -1579,8 +1948,8 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected String handleGetOnlineHelpActionPath()
     {
 

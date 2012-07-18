@@ -29,11 +29,6 @@
         <module>profiles</module>
         <module>cartridges</module>
         <!--<module>empty</module>-->
-        <!--
-        <module>timetracker-hibernate</module>
-        <module>timetracker-ejb3</module>
-        <module>timetracker-gui</module>
-        -->
     </modules>
     
     <profiles>
@@ -131,6 +126,21 @@
     	            </plugin>
     	        </plugins>	
     	    </build>
-        </profile>    	    
+        </profile>  
+        <!--
+        <profile>
+            <id>sample</id>
+            <activation>
+	        <property>
+	            <name>profile.activation</name>
+	        </property>
+	        </activation>
+		<modules>		    
+       		    <module>timetracker-hibernate</module>
+                    <module>timetracker-ejb3</module>
+                    <module>timetracker-gui</module>
+		</modules>
+	</profile>  	   
+       --> 
      </profiles>
 </project>

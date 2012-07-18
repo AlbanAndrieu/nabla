@@ -42,7 +42,8 @@ import java.util.List;
  * @version $Revision$
  * @since $Date$
  */
-public class ViewContent {
+public class ViewContent
+{
 
     private List<Cell>  cells;
     private List<Field> fields;
@@ -52,7 +53,8 @@ public class ViewContent {
     /**
      * Creates a new ViewContent object.
      */
-    public ViewContent() {
+    public ViewContent()
+    {
 
         // this.isCells = false;
         // this.isFields = false;
@@ -63,7 +65,8 @@ public class ViewContent {
      *
      * @return DOCUMENT ME!
      */
-    public Header getHeader() {
+    public Header getHeader()
+    {
 
         return this.header;
 
@@ -74,7 +77,8 @@ public class ViewContent {
      *
      * @return DOCUMENT ME!
      */
-    public List<Cell> getCells() {
+    public List<Cell> getCells()
+    {
 
         return this.cells;
 
@@ -85,7 +89,8 @@ public class ViewContent {
      *
      * @return DOCUMENT ME!
      */
-    public List<Field> getFields() {
+    public List<Field> getFields()
+    {
 
         return this.fields;
 
@@ -96,7 +101,8 @@ public class ViewContent {
      *
      * @param cells DOCUMENT ME!
      */
-    public void setCells(final List<Cell> cells) {
+    public void setCells(final List<Cell> cells)
+    {
 
         this.cells = cells;
 
@@ -110,7 +116,8 @@ public class ViewContent {
      *
      * @param fields DOCUMENT ME!
      */
-    public void setFields(final List<Field> fields) {
+    public void setFields(final List<Field> fields)
+    {
 
         this.fields = fields;
 
@@ -124,7 +131,8 @@ public class ViewContent {
      *
      * @param header DOCUMENT ME!
      */
-    public void setHeader(final Header header) {
+    public void setHeader(final Header header)
+    {
 
         this.header = header;
 
@@ -135,7 +143,8 @@ public class ViewContent {
      *
      * @return DOCUMENT ME!
      */
-    public boolean getIsCells() {
+    public boolean getIsCells()
+    {
 
         return ((this.cells != null) && (this.cells.size() > 0));
 
@@ -146,7 +155,8 @@ public class ViewContent {
      *
      * @return DOCUMENT ME!
      */
-    public boolean getIsFields() {
+    public boolean getIsFields()
+    {
 
         return ((this.fields != null) && (this.fields.size() > 0));
 
@@ -157,7 +167,8 @@ public class ViewContent {
      *
      * @return DOCUMENT ME!
      */
-    public boolean getIsHeader() {
+    public boolean getIsHeader()
+    {
 
         return this.header != null;
 

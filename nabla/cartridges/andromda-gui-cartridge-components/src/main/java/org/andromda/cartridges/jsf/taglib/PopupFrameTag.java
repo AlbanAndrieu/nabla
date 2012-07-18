@@ -1,18 +1,52 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.taglib;
+
+import org.andromda.cartridges.jsf.component.html.HtmlPopupFrame;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
 import javax.faces.el.ValueBinding;
 import javax.faces.webapp.UIComponentBodyTag;
-import org.andromda.cartridges.jsf.component.html.HtmlPopupFrame;
 
 /**
  *
  */
-public class PopupFrameTag
-    extends UIComponentBodyTag
+public class PopupFrameTag extends UIComponentBodyTag
 {
+
     private String value;
     private String accesskey;
     private String dir;
@@ -39,7 +73,9 @@ public class PopupFrameTag
      */
     public void setValue(String valueIn)
     {
+
         this.value = valueIn;
+
     }
 
     /**
@@ -47,7 +83,9 @@ public class PopupFrameTag
      */
     public void setAccesskey(String accesskeyIn)
     {
+
         this.accesskey = accesskeyIn;
+
     }
 
     /**
@@ -55,7 +93,9 @@ public class PopupFrameTag
      */
     public void setDir(String dirIn)
     {
+
         this.dir = dirIn;
+
     }
 
     /**
@@ -63,7 +103,9 @@ public class PopupFrameTag
      */
     public void setLang(String langIn)
     {
+
         this.lang = langIn;
+
     }
 
     /**
@@ -71,7 +113,9 @@ public class PopupFrameTag
      */
     public void setTabindex(String tabindexIn)
     {
+
         this.tabindex = tabindexIn;
+
     }
 
     /**
@@ -79,7 +123,9 @@ public class PopupFrameTag
      */
     public void setTitle(String titleIn)
     {
+
         this.title = titleIn;
+
     }
 
     /**
@@ -88,7 +134,9 @@ public class PopupFrameTag
     @Override
     public String getRendererType()
     {
+
         return HtmlPopupFrame.RENDERER_TYPE;
+
     }
 
     /**
@@ -97,7 +145,9 @@ public class PopupFrameTag
     @Override
     public String getComponentType()
     {
+
         return HtmlPopupFrame.COMPONENT_TYPE;
+
     }
 
     /**
@@ -105,7 +155,9 @@ public class PopupFrameTag
      */
     public void setStyle(String styleIn)
     {
+
         this.style = styleIn;
+
     }
 
     /**
@@ -113,7 +165,9 @@ public class PopupFrameTag
      */
     public void setStyleClass(String styleClassIn)
     {
+
         this.styleClass = styleClassIn;
+
     }
 
     /**
@@ -121,7 +175,9 @@ public class PopupFrameTag
      */
     public void setAbsolute(String absoluteIn)
     {
+
         this.absolute = absoluteIn;
+
     }
 
     /**
@@ -129,7 +185,9 @@ public class PopupFrameTag
      */
     public void setActionClose(String actionCloseIn)
     {
+
         this.actionClose = actionCloseIn;
+
     }
 
     /**
@@ -137,7 +195,9 @@ public class PopupFrameTag
      */
     public void setActionOpen(String actionOpenIn)
     {
+
         this.actionOpen = actionOpenIn;
+
     }
 
     /**
@@ -145,7 +205,9 @@ public class PopupFrameTag
      */
     public void setCenter(String centerIn)
     {
+
         this.center = centerIn;
+
     }
 
     /**
@@ -153,7 +215,9 @@ public class PopupFrameTag
      */
     public void setImmediate(String immediateIn)
     {
+
         this.immediate = immediateIn;
+
     }
 
     /**
@@ -161,7 +225,9 @@ public class PopupFrameTag
      */
     public void setMouseVertPos(String mouseVertPosIn)
     {
+
         this.mouseVertPos = mouseVertPosIn;
+
     }
 
     /**
@@ -169,7 +235,9 @@ public class PopupFrameTag
      */
     public void setMouseHorizPos(String mouseHorizPosIn)
     {
+
         this.mouseHorizPos = mouseHorizPosIn;
+
     }
 
     /**
@@ -177,7 +245,9 @@ public class PopupFrameTag
      */
     public void setStyleClassFrame(String styleClassFrameIn)
     {
+
         this.styleClassFrame = styleClassFrameIn;
+
     }
 
     /**
@@ -185,7 +255,9 @@ public class PopupFrameTag
      */
     public void setStyleFrame(String styleFrameIn)
     {
+
         this.styleFrame = styleFrameIn;
+
     }
 
     /**
@@ -193,7 +265,9 @@ public class PopupFrameTag
      */
     public void setHeight(String heightIn)
     {
+
         this.height = heightIn;
+
     }
 
     /**
@@ -201,7 +275,9 @@ public class PopupFrameTag
      */
     public void setWidth(String widthIn)
     {
+
         this.width = widthIn;
+
     }
 
     /**
@@ -209,21 +285,23 @@ public class PopupFrameTag
      */
     public void setScrolling(String scrollingIn)
     {
+
         this.scrolling = scrollingIn;
+
     }
 
     private ValueBinding createValueBinding(final String valueIn)
     {
+
         return FacesContext.getCurrentInstance().getApplication().createValueBinding(valueIn);
+
     }
 
-    private MethodBinding createMethodBinding(
-        final String valueIn,
-        Class[] args)
+    private MethodBinding createMethodBinding(final String valueIn, Class[] args)
     {
-        return FacesContext.getCurrentInstance().getApplication().createMethodBinding(
-            valueIn,
-            args);
+
+        return FacesContext.getCurrentInstance().getApplication().createMethodBinding(valueIn, args);
+
     }
 
     /**
@@ -232,331 +310,404 @@ public class PopupFrameTag
     @Override
     protected void setProperties(UIComponent component)
     {
+
         super.setProperties(component);
+
         HtmlPopupFrame command = null;
+
         try
         {
-            command = (HtmlPopupFrame)component;
+
+            command = (HtmlPopupFrame) component;
+
         }
         catch (ClassCastException cce)
         {
-            throw new IllegalStateException("Component " + component.toString() +
-                " not expected type.  Expected: UICommand.  Perhaps you're missing a tag?");
+
+            throw new IllegalStateException("Component " + component.toString() + " not expected type.  Expected: UICommand.  Perhaps you're missing a tag?");
+
         }
 
         if (this.value != null)
         {
+
             if (isValueReference(this.value))
             {
+
                 ValueBinding binding = createValueBinding(this.value);
-                command.setValueBinding(
-                    "value",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("value", binding);
+
+            } else
             {
+
                 command.setValue(this.value);
+
             }
+
         }
+
         if (this.accesskey != null)
         {
+
             if (isValueReference(this.accesskey))
             {
+
                 ValueBinding binding = createValueBinding(this.accesskey);
-                command.setValueBinding(
-                    "accesskey",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("accesskey", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "accesskey",
-                    this.accesskey);
+
+                command.getAttributes().put("accesskey", this.accesskey);
+
             }
+
         }
+
         if (this.dir != null)
         {
+
             if (isValueReference(this.dir))
             {
+
                 ValueBinding binding = createValueBinding(this.dir);
-                command.setValueBinding(
-                    "dir",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("dir", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "dir",
-                    this.dir);
+
+                command.getAttributes().put("dir", this.dir);
+
             }
+
         }
+
         if (this.lang != null)
         {
+
             if (isValueReference(this.lang))
             {
+
                 ValueBinding binding = createValueBinding(this.lang);
-                command.setValueBinding(
-                    "lang",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("lang", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "lang",
-                    this.lang);
+
+                command.getAttributes().put("lang", this.lang);
+
             }
+
         }
+
         if (this.tabindex != null)
         {
+
             if (isValueReference(this.tabindex))
             {
+
                 ValueBinding binding = createValueBinding(this.tabindex);
-                command.setValueBinding(
-                    "tabindex",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("tabindex", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "tabindex",
-                    this.tabindex);
+
+                command.getAttributes().put("tabindex", this.tabindex);
+
             }
+
         }
+
         if (this.title != null)
         {
+
             if (isValueReference(this.title))
             {
+
                 ValueBinding binding = createValueBinding(this.title);
-                command.setValueBinding(
-                    "title",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("title", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "title",
-                    this.title);
+
+                command.getAttributes().put("title", this.title);
+
             }
+
         }
+
         if (this.style != null)
         {
+
             if (isValueReference(this.style))
             {
+
                 ValueBinding binding = createValueBinding(this.style);
-                command.setValueBinding(
-                    "style",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("style", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "style",
-                    this.style);
+
+                command.getAttributes().put("style", this.style);
+
             }
+
         }
+
         if (this.styleClass != null)
         {
+
             if (isValueReference(this.styleClass))
             {
+
                 ValueBinding binding = createValueBinding(this.styleClass);
-                command.setValueBinding(
-                    "styleClass",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("styleClass", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "styleClass",
-                    this.styleClass);
+
+                command.getAttributes().put("styleClass", this.styleClass);
+
             }
+
         }
+
         if (this.absolute != null)
         {
+
             if (isValueReference(this.absolute))
             {
+
                 ValueBinding binding = createValueBinding(this.absolute);
-                command.setValueBinding(
-                    "absolute",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("absolute", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "absolute",
-                    this.absolute);
+
+                command.getAttributes().put("absolute", this.absolute);
+
             }
+
         }
+
         if (this.actionClose != null)
         {
+
             if (isValueReference(this.actionClose))
             {
-                final MethodBinding binding = this.createMethodBinding(
-                        this.actionClose,
-                        new Class[0]);
+
+                final MethodBinding binding = this.createMethodBinding(this.actionClose, new Class[0]);
+
                 command.setActionClose(binding);
-            }
-            else
+
+            } else
             {
+
                 throw new IllegalStateException("Invalid actionClose." + this.actionClose);
+
             }
+
         }
+
         if (this.actionOpen != null)
         {
+
             if (isValueReference(this.actionOpen))
             {
-                final MethodBinding binding = this.createMethodBinding(
-                        this.actionOpen,
-                        new Class[0]);
+
+                final MethodBinding binding = this.createMethodBinding(this.actionOpen, new Class[0]);
+
                 command.setActionOpen(binding);
-            }
-            else
+
+            } else
             {
+
                 throw new IllegalStateException("Invalid actionOpen." + this.actionOpen);
+
             }
+
         }
+
         if (this.center != null)
         {
+
             if (isValueReference(this.center))
             {
+
                 ValueBinding binding = createValueBinding(this.center);
-                command.setValueBinding(
-                    "center",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("center", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "center",
-                    this.center);
+
+                command.getAttributes().put("center", this.center);
+
             }
+
         }
+
         if (this.immediate != null)
         {
+
             if (isValueReference(this.immediate))
             {
+
                 ValueBinding binding = createValueBinding(this.immediate);
-                command.setValueBinding(
-                    "immediate",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("immediate", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "immediate",
-                    this.immediate);
+
+                command.getAttributes().put("immediate", this.immediate);
+
             }
+
         }
+
         if (this.height != null)
         {
+
             if (isValueReference(this.height))
             {
+
                 ValueBinding binding = createValueBinding(this.height);
-                command.setValueBinding(
-                    "height",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("height", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "height",
-                    this.height);
+
+                command.getAttributes().put("height", this.height);
+
             }
+
         }
+
         if (this.width != null)
         {
+
             if (isValueReference(this.width))
             {
+
                 ValueBinding binding = createValueBinding(this.width);
-                command.setValueBinding(
-                    "width",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("width", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "width",
-                    this.width);
+
+                command.getAttributes().put("width", this.width);
+
             }
+
         }
+
         if (this.mouseHorizPos != null)
         {
+
             if (isValueReference(this.mouseHorizPos))
             {
+
                 ValueBinding binding = createValueBinding(this.mouseHorizPos);
-                command.setValueBinding(
-                    "mouseHorizPos",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("mouseHorizPos", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "mouseHorizPos",
-                    this.mouseHorizPos);
+
+                command.getAttributes().put("mouseHorizPos", this.mouseHorizPos);
+
             }
+
         }
+
         if (this.mouseVertPos != null)
         {
+
             if (isValueReference(this.mouseVertPos))
             {
+
                 ValueBinding binding = createValueBinding(this.mouseVertPos);
-                command.setValueBinding(
-                    "mouseVertPos",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("mouseVertPos", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "mouseVertPos",
-                    this.mouseVertPos);
+
+                command.getAttributes().put("mouseVertPos", this.mouseVertPos);
+
             }
+
         }
+
         if (this.styleClassFrame != null)
         {
+
             if (isValueReference(this.styleClassFrame))
             {
+
                 ValueBinding binding = createValueBinding(this.styleClassFrame);
-                command.setValueBinding(
-                    "styleClassFrame",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("styleClassFrame", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "styleClassFrame",
-                    this.styleClassFrame);
+
+                command.getAttributes().put("styleClassFrame", this.styleClassFrame);
+
             }
+
         }
+
         if (this.styleFrame != null)
         {
+
             if (isValueReference(this.styleFrame))
             {
+
                 ValueBinding binding = createValueBinding(this.styleFrame);
-                command.setValueBinding(
-                    "styleFrame",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("styleFrame", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "styleFrame",
-                    this.styleFrame);
+
+                command.getAttributes().put("styleFrame", this.styleFrame);
+
             }
+
         }
+
         if (this.scrolling != null)
         {
+
             if (isValueReference(this.scrolling))
             {
+
                 ValueBinding binding = createValueBinding(this.scrolling);
-                command.setValueBinding(
-                    "scrolling",
-                    binding);
-            }
-            else
+
+                command.setValueBinding("scrolling", binding);
+
+            } else
             {
-                command.getAttributes().put(
-                    "scrolling",
-                    this.scrolling);
+
+                command.getAttributes().put("scrolling", this.scrolling);
+
             }
+
         }
+
     }
+
 }

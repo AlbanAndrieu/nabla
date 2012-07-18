@@ -40,7 +40,8 @@ package org.andromda.cartridges.gui.util.exception;
  * @version $Revision$
  * @since $Date$
  */
-public class ParsingException extends Exception {
+public class ParsingException extends Exception
+{
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +50,8 @@ public class ParsingException extends Exception {
      *
      * @param message DOCUMENT ME!
      */
-    public ParsingException(final String message) {
+    public ParsingException(final String message)
+    {
         super(message);
 
     }
@@ -57,7 +59,8 @@ public class ParsingException extends Exception {
     /**
      * Creates a new ParsingException object.
      */
-    public ParsingException() {
+    public ParsingException()
+    {
         super("le nombre de cellules de la table ne doit pas etre superieur a 2");
 
     }

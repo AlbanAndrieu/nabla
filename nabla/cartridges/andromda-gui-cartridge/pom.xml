@@ -33,6 +33,11 @@ inv:manageableServiceName->notEmpty()
                 </dependency>
                 -->
                 <dependency>
+                        <groupId>org.andromda.metafacades</groupId>
+                        <artifactId>andromda-metafacades-uml</artifactId>
+                        <version>${andromda.version}</version>
+                </dependency>                
+                <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>andromda-meta-cartridge</artifactId>
                         <version>${andromda.version}</version>

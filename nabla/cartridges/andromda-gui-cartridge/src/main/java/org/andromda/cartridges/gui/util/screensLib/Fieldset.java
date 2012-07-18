@@ -43,7 +43,8 @@ import java.util.List;
  * @version $Revision$
  * @since $Date$
  */
-public class Fieldset extends Field {
+public class Fieldset extends Field
+{
 
     private List<Field> fields;
     private String      legend;
@@ -51,7 +52,8 @@ public class Fieldset extends Field {
     /**
      * Creates a new Fieldset object.
      */
-    public Fieldset() {
+    public Fieldset()
+    {
         super("fieldset");
         this.fields = new ArrayList<Field>();
 
@@ -63,7 +65,8 @@ public class Fieldset extends Field {
      * @param noborder DOCUMENT ME!
      * @param legend DOCUMENT ME!
      */
-    public Fieldset(final boolean noborder, final String legend) {
+    public Fieldset(final boolean noborder, final String legend)
+    {
         super("fieldset");
         this.legend = legend;
         this.fields = new ArrayList<Field>();
@@ -75,7 +78,8 @@ public class Fieldset extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public String getLegend() {
+    public String getLegend()
+    {
 
         return this.legend;
 
@@ -86,7 +90,8 @@ public class Fieldset extends Field {
      *
      * @param legend DOCUMENT ME!
      */
-    public void setLegend(final String legend) {
+    public void setLegend(final String legend)
+    {
 
         this.legend = legend;
 
@@ -97,7 +102,8 @@ public class Fieldset extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public List<Field> getFields() {
+    public List<Field> getFields()
+    {
 
         return this.fields;
 
@@ -108,7 +114,8 @@ public class Fieldset extends Field {
      *
      * @param fields DOCUMENT ME!
      */
-    public void setFields(final List<Field> fields) {
+    public void setFields(final List<Field> fields)
+    {
 
         this.fields = fields;
 

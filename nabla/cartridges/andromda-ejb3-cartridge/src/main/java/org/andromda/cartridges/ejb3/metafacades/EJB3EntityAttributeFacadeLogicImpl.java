@@ -1,10 +1,45 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.ejb3.metafacades;
 
 import org.andromda.cartridges.ejb3.EJB3Globals;
 import org.andromda.cartridges.ejb3.EJB3Profile;
+
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.UMLProfile;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -13,19 +48,20 @@ import org.apache.commons.lang.math.NumberUtils;
  *
  * @see EJB3EntityAttributeFacade
  */
-public class EJB3EntityAttributeFacadeLogicImpl
-    extends EJB3EntityAttributeFacadeLogic
+public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacadeLogic
 {
-    private static final long serialVersionUID = 34L;
+
+    private static final long  serialVersionUID                         = 34L;
+
     /**
      * The property that stores the default entity ID generator type
      */
-    public static final String ENTITY_DEFAULT_GENERATOR_TYPE = "entityDefaultGeneratorType";
+    public static final String ENTITY_DEFAULT_GENERATOR_TYPE            = "entityDefaultGeneratorType";
 
     /**
      * The property that stores the default generator initial value
      */
-    public static final String ENTITY_DEFAULT_GENERATOR_INITIAL_VALUE = "entityDefaultGeneratorInitialValue";
+    public static final String ENTITY_DEFAULT_GENERATOR_INITIAL_VALUE   = "entityDefaultGeneratorInitialValue";
 
     /**
      * The property that stores the default generator allocation size for incrementing ids
@@ -35,12 +71,12 @@ public class EJB3EntityAttributeFacadeLogicImpl
     /**
      * The property that stores the default enumeration string literal column length.
      */
-    public static final String DEFAULT_ENUM_LITERAL_COLUMN_LENGTH = "entityDefaultEnumLiteralColumnLength";
+    public static final String DEFAULT_ENUM_LITERAL_COLUMN_LENGTH       = "entityDefaultEnumLiteralColumnLength";
 
     /**
      * The property that stores the default temporal type for date based attributes
      */
-    public static final String ENTITY_DEFAULT_TEMPORAL_TYPE = "entityDefaultTemporalType";
+    public static final String ENTITY_DEFAULT_TEMPORAL_TYPE             = "entityDefaultTemporalType";
 
     // ---------------- constructor -------------------------------
 
@@ -50,7 +86,8 @@ public class EJB3EntityAttributeFacadeLogicImpl
      */
     public EJB3EntityAttributeFacadeLogicImpl(final Object metaObject, final String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
+
     }
 
     // --------------- methods ---------------------
@@ -63,21 +100,28 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     public boolean isRequired()
     {
+
         boolean required = super.isRequired();
+
         if (this.getOwner() instanceof EJB3EntityFacade)
         {
-            EJB3EntityFacade entity = (EJB3EntityFacade)this.getOwner();
+
+            EJB3EntityFacade entity = (EJB3EntityFacade) this.getOwner();
 
             /**
              * Exclude ONLY if single table inheritance exists
              */
-            if (entity.isRequiresGeneralizationMapping() && entity.isInheritanceSingleTable()
-                    && !entity.isEmbeddableSuperclassGeneralizationExists())
+            if (entity.isRequiresGeneralizationMapping() && entity.isInheritanceSingleTable() && !entity.isEmbeddableSuperclassGeneralizationExists())
             {
+
                 required = false;
+
             }
+
         }
+
         return required;
+
     }
 
     /**
@@ -88,21 +132,31 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     public String getDefaultValue()
     {
+
         String defaultValue = super.getDefaultValue();
         final ClassifierFacade type = this.getType();
+
         if (type != null)
         {
+
             final String fullyQualifiedName = StringUtils.trimToEmpty(type.getFullyQualifiedName());
+
             if (type.isStringType())
             {
+
                 defaultValue = '\"' + defaultValue + '\"';
-            }
-            else if (fullyQualifiedName.startsWith("java.lang"))
+
+            } else if (fullyQualifiedName.startsWith("java.lang"))
             {
+
                 defaultValue = fullyQualifiedName + ".valueOf(" + defaultValue + ')';
+
             }
+
         }
+
         return defaultValue;
+
     }
 
     /**
@@ -111,7 +165,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetFetchType()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_FETCH_TYPE);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_FETCH_TYPE);
+
     }
 
     /**
@@ -120,15 +176,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsEager()
     {
+
         boolean isEager = false;
+
         if (StringUtils.isNotBlank(this.getFetchType()))
         {
+
             if (EJB3Globals.FETCH_TYPE_EAGER.equalsIgnoreCase(this.getFetchType()))
             {
+
                 isEager = true;
+
             }
+
         }
+
         return isEager;
+
     }
 
     /**
@@ -137,15 +201,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsLazy()
     {
+
         boolean isLazy = false;
+
         if (StringUtils.isNotBlank(this.getFetchType()))
         {
+
             if (EJB3Globals.FETCH_TYPE_LAZY.equalsIgnoreCase(this.getFetchType()))
             {
+
                 isLazy = true;
+
             }
+
         }
+
         return isLazy;
+
     }
 
     /**
@@ -154,12 +226,18 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsVersion()
     {
+
         boolean isVersion = false;
+
         if (this.hasStereotype(EJB3Profile.STEREOTYPE_VERSION))
         {
+
             isVersion = true;
+
         }
+
         return isVersion;
+
     }
 
     /**
@@ -168,7 +246,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsLob()
     {
+
         return this.getType().isBlobType() || this.getType().isClobType();
+
     }
 
     /**
@@ -177,7 +257,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetLobType()
     {
-        return StringUtils.trimToEmpty((String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_LOB_TYPE));
+
+        return StringUtils.trimToEmpty((String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_LOB_TYPE));
+
     }
 
     /**
@@ -186,23 +268,35 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetGeneratorType()
     {
-        String genType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_TYPE);
+
+        String genType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_TYPE);
+
         if (StringUtils.isBlank(genType))
         {
+
             if (this.getType().isStringType() || this.getType().isDateType() || this.getType().isTimeType())
             {
+
                 genType = EJB3Globals.GENERATOR_TYPE_NONE;
-            }
-            else
+
+            } else
             {
+
                 genType = String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_GENERATOR_TYPE));
+
                 if (StringUtils.isBlank(genType))
                 {
+
                     genType = EJB3Globals.GENERATOR_TYPE_AUTO;
+
                 }
+
             }
+
         }
+
         return genType;
+
     }
 
     /**
@@ -211,15 +305,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsGeneratorTypeSequence()
     {
+
         boolean isSequence = false;
+
         if (StringUtils.isNotBlank(this.getGeneratorType()))
         {
+
             if (EJB3Globals.GENERATOR_TYPE_SEQUENCE.equalsIgnoreCase(this.getGeneratorType()))
             {
+
                 isSequence = true;
+
             }
+
         }
+
         return isSequence;
+
     }
 
     /**
@@ -228,15 +330,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsGeneratorTypeTable()
     {
+
         boolean isTable = false;
+
         if (StringUtils.isNotBlank(this.getGeneratorType()))
         {
+
             if (EJB3Globals.GENERATOR_TYPE_TABLE.equalsIgnoreCase(this.getGeneratorType()))
             {
+
                 isTable = true;
+
             }
+
         }
+
         return isTable;
+
     }
 
     /**
@@ -245,15 +355,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsGeneratorTypeAuto()
     {
+
         boolean isAuto = false;
+
         if (StringUtils.isNotBlank(this.getGeneratorType()))
         {
+
             if (EJB3Globals.GENERATOR_TYPE_AUTO.equalsIgnoreCase(this.getGeneratorType()))
             {
+
                 isAuto = true;
+
             }
+
         }
+
         return isAuto;
+
     }
 
     /**
@@ -262,15 +380,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsGeneratorTypeGeneric()
     {
+
         boolean isGeneric = false;
+
         if (StringUtils.isNotBlank(this.getGeneratorType()))
         {
+
             if (EJB3Globals.GENERATOR_TYPE_GENERIC.equalsIgnoreCase(this.getGeneratorType()))
             {
+
                 isGeneric = true;
+
             }
+
         }
+
         return isGeneric;
+
     }
 
     /**
@@ -279,15 +405,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsGeneratorTypeNone()
     {
+
         boolean isNone = false;
+
         if (StringUtils.isNotBlank(this.getGeneratorType()))
         {
+
             if (EJB3Globals.GENERATOR_TYPE_NONE.equalsIgnoreCase(this.getGeneratorType()))
             {
+
                 isNone = true;
+
             }
+
         }
+
         return isNone;
+
     }
 
     /**
@@ -296,15 +430,23 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsGeneratorTypeIdentity()
     {
+
         boolean isIdentity = false;
+
         if (StringUtils.isNotBlank(this.getGeneratorType()))
         {
+
             if (EJB3Globals.GENERATOR_TYPE_IDENTITY.equalsIgnoreCase(this.getGeneratorType()))
             {
+
                 isIdentity = true;
+
             }
+
         }
+
         return isIdentity;
+
     }
 
     /**
@@ -313,7 +455,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetGeneratorName()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_NAME);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_NAME);
+
     }
 
     /**
@@ -322,7 +466,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetGeneratorGenericStrategy()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_GENERIC_STRATEGY);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_GENERIC_STRATEGY);
+
     }
 
     /**
@@ -331,7 +477,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetGeneratorSourceName()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_SOURCE_NAME);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_SOURCE_NAME);
+
     }
 
     /**
@@ -340,14 +488,18 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetGeneratorPkColumnValue()
     {
-        String pkColumnValue = (String)this.findTaggedValue(
-                EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_PKCOLUMN_VALUE);
+
+        String pkColumnValue = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_PKCOLUMN_VALUE);
 
         if (StringUtils.isBlank(pkColumnValue))
         {
+
             pkColumnValue = this.getOwner().getName() + '_' + this.getColumnName();
+
         }
+
         return pkColumnValue;
+
     }
 
     /**
@@ -356,24 +508,31 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected int handleGetGeneratorInitialValue()
     {
+
         int initialValue = 1;
-        String initialValueStr =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_INITIAL_VALUE);
+        String initialValueStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_INITIAL_VALUE);
+
         if (StringUtils.isNotBlank(initialValueStr))
         {
+
             initialValue = NumberUtils.toInt(initialValueStr);
-        }
-        else
+
+        } else
         {
-            initialValueStr =
-                String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_GENERATOR_INITIAL_VALUE));
+
+            initialValueStr = String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_GENERATOR_INITIAL_VALUE));
+
             if (StringUtils.isNotBlank(initialValueStr))
             {
+
                 initialValue = NumberUtils.toInt(initialValueStr);
+
             }
+
         }
 
         return initialValue;
+
     }
 
     /**
@@ -382,24 +541,31 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected int handleGetGeneratorAllocationSize()
     {
+
         int allocationSize = 1;
-        String allocationSizeStr =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_ALLOCATION_SIZE);
+        String allocationSizeStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_GENERATOR_ALLOCATION_SIZE);
+
         if (StringUtils.isNotBlank(allocationSizeStr))
         {
+
             allocationSize = NumberUtils.toInt(allocationSizeStr);
-        }
-        else
+
+        } else
         {
-            allocationSizeStr =
-                String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_GENERATOR_ALLOCATION_SIZE));
+
+            allocationSizeStr = String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_GENERATOR_ALLOCATION_SIZE));
+
             if (StringUtils.isNotBlank(allocationSizeStr))
             {
+
                 allocationSize = NumberUtils.toInt(allocationSizeStr);
+
             }
+
         }
 
         return allocationSize;
+
     }
 
     /**
@@ -411,12 +577,18 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     public String getColumnLength()
     {
-        String columnLength = (String)this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN_LENGTH);
+
+        String columnLength = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN_LENGTH);
+
         if (StringUtils.isEmpty(columnLength))
         {
+
             columnLength = super.getColumnLength();
+
         }
+
         return columnLength;
+
     }
 
     /**
@@ -428,12 +600,18 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     public String getColumnName()
     {
-        String columnName = (String)this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN);
+
+        String columnName = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN);
+
         if (StringUtils.isEmpty(columnName))
         {
+
             columnName = super.getColumnName();
+
         }
+
         return columnName;
+
     }
 
     /**
@@ -447,30 +625,47 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetColumnDefinition()
     {
-        String definition = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_DEFINITION);
+
+        String definition = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_DEFINITION);
+
         if (StringUtils.isBlank(definition) && this.getType().isEnumeration())
         {
+
             boolean isOrdinal = false;
-            int length = NumberUtils.toInt(
-                    String.valueOf(this.getConfiguredProperty(DEFAULT_ENUM_LITERAL_COLUMN_LENGTH)));
+            int length = NumberUtils.toInt(String.valueOf(this.getConfiguredProperty(DEFAULT_ENUM_LITERAL_COLUMN_LENGTH)));
+
             for (AttributeFacade attribute : this.getType().getAttributes())
             {
+
                 if (!attribute.getType().isStringType())
                 {
+
                     isOrdinal = true;
+
                     break;
+
                 }
+
                 if (attribute.getName().length() > length)
                 {
+
                     length = attribute.getName().length();
+
                 }
+
             }
+
             if (!isOrdinal)
             {
+
                 definition = "VARCHAR(" + length + ')';
+
             }
+
         }
+
         return definition;
+
     }
 
     /**
@@ -479,7 +674,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetColumnPrecision()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_PRECISION);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_PRECISION);
+
     }
 
     /**
@@ -488,7 +685,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetColumnScale()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_SCALE);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_SCALE);
+
     }
 
     /**
@@ -497,18 +696,24 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsColumnNullable()
     {
+
         boolean nullable = true;
-        String nullableString = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_NULLABLE);
+        String nullableString = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_NULLABLE);
 
         if (StringUtils.isBlank(nullableString))
         {
-            nullable = (this.isIdentifier() || this.isUnique() ? false : !this.isRequired());
-        }
-        else
+
+            nullable = ((this.isIdentifier() || this.isUnique()) ? false : (!this.isRequired()));
+
+        } else
         {
+
             nullable = Boolean.valueOf(nullableString).booleanValue();
+
         }
+
         return nullable;
+
     }
 
     /**
@@ -517,64 +722,86 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsColumnEmptyable()
     {
+
         boolean emptyable = true;
-        String emptyableString = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_EMPTYABLE);
+        String emptyableString = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_EMPTYABLE);
 
         if (StringUtils.isBlank(emptyableString))
         {
-            emptyable = (this.isIdentifier() || this.isUnique() ? false : !this.isRequired());
-        }
-        else
+
+            emptyable = ((this.isIdentifier() || this.isUnique()) ? false : (!this.isRequired()));
+
+        } else
         {
+
             emptyable = Boolean.valueOf(emptyableString).booleanValue();
+
         }
+
         return emptyable;
+
     }
-    
+
     /**
      * @see EJB3EntityAttributeFacadeLogic#handleIsColumnEmailable()
      */
     @Override
     protected boolean handleIsColumnEmailable()
     {
-    	final String value = (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_EMAILABLE);
+
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_EMAILABLE);
+
         return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+
     }
-    
+
     /**
      * @see EJB3EntityAttributeFacadeLogic#handleGetColumnPatternable()
      */
     @Override
     protected String handleGetColumnPatternable()
     {
-    	return (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_PATTERNABLE);
+
+        return (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_PATTERNABLE);
+
     }
-      
+
     /**
      * @see EJB3EntityAttributeFacadeLogic#handleGetColumnMinLength()
      */
     @Override
     protected String handleGetColumnMinLength()
     {
-    	return (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_MINLENGTH);
+
+        return (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_MINLENGTH);
+
     }
-            
+
     /**
      * @see EJB3EntityAttributeFacadeLogic#handleGetTemporalType()
      */
     @Override
     protected String handleGetTemporalType()
     {
+
         String temporalType = null;
+
         if (this.getType().isDateType())
         {
-            temporalType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_TEMPORAL_TYPE);
+
+            temporalType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_TEMPORAL_TYPE);
+
             if (StringUtils.isBlank(temporalType))
             {
+
                 temporalType = String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_TEMPORAL_TYPE));
+
             }
+
         }
+
         return temporalType;
+
     }
 
     /**
@@ -583,7 +810,9 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected String handleGetEnumerationType()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_ENUMERATION_TYPE);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_ENUMERATION_TYPE);
+
     }
 
     /**
@@ -592,8 +821,11 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsInsertEnabled()
     {
-        final String value = (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_INSERT);
+
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_INSERT);
+
         return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : true;
+
     }
 
     /**
@@ -602,8 +834,11 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsUpdateEnabled()
     {
-        final String value = (String)super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_UPDATE);
+
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_UPDATE);
+
         return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : true;
+
     }
 
     /**
@@ -612,20 +847,30 @@ public class EJB3EntityAttributeFacadeLogicImpl
     @Override
     protected boolean handleIsContainsEmbeddedObject()
     {
+
         boolean returnValue = false;
+
         if (this.getType() instanceof EJB3EmbeddedValueFacade)
         {
+
             returnValue = true;
+
         }
+
         return returnValue;
+
     }
 
     /**
      * @return findTaggedValue 'andromda_hibernate_type'
      */
+
     //@Override
     protected String getOverrideType()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_OVERRIDE_TYPE);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_OVERRIDE_TYPE);
+
     }
+
 }

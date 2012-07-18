@@ -1,20 +1,42 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.gui.metafacades;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.andromda.cartridges.gui.GuiGlobals;
 import org.andromda.cartridges.gui.GuiProfile;
 import org.andromda.cartridges.gui.GuiUtils;
+
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.EventFacade;
@@ -28,10 +50,25 @@ import org.andromda.metafacades.uml.TransitionFacade;
 import org.andromda.metafacades.uml.UMLMetafacadeUtils;
 import org.andromda.metafacades.uml.UMLProfile;
 import org.andromda.metafacades.uml.UseCaseFacade;
+
 import org.andromda.utils.StringUtilsHelper;
+
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiParameter.
@@ -40,8 +77,8 @@ import org.apache.log4j.Logger;
  */
 public class GuiParameterLogicImpl extends GuiParameterLogic
 {
-    private static final long serialVersionUID = 34L;
 
+    private static final long serialVersionUID = 34L;
     private final Logger      logger_          = Logger.getLogger(GuiParameterLogicImpl.class);
 
     /**
@@ -51,6 +88,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     public GuiParameterLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
+
     }
 
     /**
@@ -61,7 +99,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     public boolean isTable()
     {
+
         return (super.isTable() || this.isPageableTable()) && !this.isSelectable() && !this.isInputTable() && !this.isInputHidden();
+
     }
 
     /**
@@ -71,8 +111,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsPageableTable()
     {
+
         final Object value = this.findTaggedValue(GuiProfile.TAGGEDVALUE_TABLE_PAGEABLE);
+
         return Boolean.valueOf(ObjectUtils.toString(value)).booleanValue();
+
     }
 
     /**
@@ -82,32 +125,48 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetMessageKey()
     {
+
         final StringBuilder messageKey = new StringBuilder();
 
         if (!this.isNormalizeMessages())
         {
+
             if (this.isActionParameter())
             {
+
                 final GuiAction action = (GuiAction) this.getAction();
+
                 if (action != null)
                 {
+
                     messageKey.append(action.getMessageKey());
                     messageKey.append(".");
+
                 }
+
             } else
             {
+
                 final GuiView view = (GuiView) this.getView();
+
                 if (view != null)
                 {
+
                     messageKey.append(view.getMessageKey());
                     messageKey.append(".");
+
                 }
+
             }
+
             messageKey.append("param.");
+
         }
 
         messageKey.append(StringUtilsHelper.toResourceMessageKey(super.getName()));
+
         return messageKey.toString();
+
     }
 
     /**
@@ -117,7 +176,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetDocumentationKey()
     {
+
         return this.getMessageKey() + "." + GuiGlobals.DOCUMENTATION_MESSAGE_KEY_SUFFIX;
+
     }
 
     /**
@@ -127,8 +188,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetDocumentationValue()
     {
+
         final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation("", 64, false));
-        return value == null ? "" : value;
+
+        return (value == null) ? "" : value;
+
     }
 
     /**
@@ -138,8 +202,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private boolean isNormalizeMessages()
     {
+
         final String normalizeMessages = (String) this.getConfiguredProperty(GuiGlobals.NORMALIZE_MESSAGES);
+
         return Boolean.valueOf(normalizeMessages).booleanValue();
+
     }
 
     /**
@@ -149,7 +216,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetMessageValue()
     {
+
         return StringUtilsHelper.toPhrase(super.getName()); // the actual name is used for displaying
+
     }
 
     /**
@@ -160,18 +229,28 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableColumnMessageKey(final String columnName)
     {
+
         final StringBuilder messageKey = new StringBuilder();
+
         if (!this.isNormalizeMessages())
         {
+
             final GuiView view = (GuiView) this.getView();
+
             if (view != null)
             {
+
                 messageKey.append(this.getMessageKey());
                 messageKey.append(".");
+
             }
+
         }
+
         messageKey.append(StringUtilsHelper.toResourceMessageKey(columnName));
+
         return messageKey.toString();
+
     }
 
     /**
@@ -182,7 +261,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableColumnMessageValue(final String columnName)
     {
+
         return StringUtilsHelper.toPhrase(columnName);
+
     }
 
     /**
@@ -192,7 +273,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected List<GuiAction> handleGetTableHyperlinkActions()
     {
+
         return this.getTableActions(true);
+
         // return this.internalGetTableActions(true, false, false);
     }
 
@@ -204,40 +287,64 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private List<GuiAction> getTableActions(final boolean hyperlink)
     {
+
         final Set<GuiAction> actions = new LinkedHashSet<GuiAction>();
         final String name = StringUtils.trimToNull(this.getName());
+
         if ((name != null) && this.isTable())
         {
+
             final GuiView view = (GuiView) this.getView();
 
             final Collection<UseCaseFacade> allUseCases = this.getModel().getAllUseCases();
+
             for (final UseCaseFacade useCase : allUseCases)
             {
+
                 if (useCase instanceof GuiUseCase)
                 {
+
                     final FrontEndActivityGraph graph = ((GuiUseCase) useCase).getActivityGraph();
+
                     if (graph != null)
                     {
+
                         final Collection<TransitionFacade> transitions = graph.getTransitions();
+
                         for (final TransitionFacade transition : transitions)
                         {
+
                             if (transition.getSource().equals(view) && (transition instanceof GuiAction))
                             {
+
                                 final GuiAction action = (GuiAction) transition;
+
                                 if (action.isTableLink() && name.equals(action.getTableLinkName()))
                                 {
+
                                     if (hyperlink == action.isHyperlink())
                                     {
+
                                         actions.add(action);
+
                                     }
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         return new ArrayList<GuiAction>(actions);
+
     }
 
     /**
@@ -247,20 +354,26 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected List<GuiAction> handleGetTableFormActions()
     {
+
         return this.getTableActions(false);
+
         // return this.internalGetTableActions(false, true, false);
     }
 
     /**
      * @see org.andromda.metafacades.uml.FrontEndParameter#getTableColumns()
      */
+
     // TODO tableColumns can be either String or GuiParameter. Should use a single return type in Collection.
     @Override
     public Collection getTableColumns()
     {
+
         final Collection tableColumns = super.getTableColumns();
+
         if (tableColumns.isEmpty())
         {
+
             // try to preserve the order of the elements encountered
             // final Map<String, GuiParameter> tableColumnsMap = new LinkedHashMap<String, GuiParameter>();
             final Map tableColumnsMap = new LinkedHashMap();
@@ -277,45 +390,68 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
             for (final GuiAction action : actions)
             {
+
                 for (final FrontEndParameter actionParameter : action.getParameters())
                 {
+
                     if (actionParameter instanceof GuiParameter)
                     {
+
                         final GuiParameter parameter = (GuiParameter) actionParameter;
                         final String parameterName = parameter.getName();
+
                         if (parameterName != null)
                         {
+
                             // never overwrite column specific table links
                             // the hyperlink table links working on a real column get priority
                             final Object existingObject = tableColumnsMap.get(parameterName);
+
                             if (existingObject instanceof GuiParameter)
                             {
+
                                 if (action.isHyperlink() && parameterName.equals(action.getTableLinkColumnName()))
                                 {
+
                                     tableColumnsMap.put(parameterName, parameter);
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
 
             // for any missing parameters we just add the name of the column
             for (final String columnName : this.getTableColumnNames())
             {
+
                 if (!tableColumnsMap.containsKey(columnName))
                 {
+
                     tableColumnsMap.put(columnName, columnName);
+
                 }
+
             }
 
             // return everything in the same order as it has been modeled (using the table tagged value)
             for (final String columnObject : this.getTableColumnNames())
             {
+
                 tableColumns.add(tableColumnsMap.get(columnObject));
+
             }
+
         }
+
         return tableColumns;
+
     }
 
     /**
@@ -323,7 +459,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private String getDefaultDateFormat()
     {
+
         return (String) this.getConfiguredProperty(GuiGlobals.PROPERTY_DEFAULT_DATEFORMAT);
+
     }
 
     /**
@@ -333,7 +471,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetFormat()
     {
+
         return GuiUtils.getFormat((ModelElementFacade) this.THIS(), this.getType(), this.getDefaultDateFormat(), this.getDefaultTimeFormat());
+
     }
 
     /**
@@ -341,7 +481,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private String getDefaultTimeFormat()
     {
+
         return (String) this.getConfiguredProperty(GuiGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
+
     }
 
     /**
@@ -351,7 +493,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsStrictDateFormat()
     {
+
         return GuiUtils.isStrictDateFormat((ModelElementFacade) this.THIS());
+
     }
 
     /**
@@ -361,8 +505,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetDateFormatter()
     {
+
         final ClassifierFacade type = this.getType();
-        return (type != null) && type.isDateType() ? this.getName() + "DateFormatter" : null;
+
+        return ((type != null) && type.isDateType()) ? (this.getName() + "DateFormatter") : null;
+
     }
 
     /**
@@ -372,8 +519,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTimeFormatter()
     {
+
         final ClassifierFacade type = this.getType();
-        return (type != null) && type.isTimeType() ? this.getName() + "TimeFormatter" : null;
+
+        return ((type != null) && type.isTimeType()) ? (this.getName() + "TimeFormatter") : null;
+
     }
 
     /**
@@ -384,7 +534,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private String getInputType()
     {
+
         return ObjectUtils.toString(this.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_TYPE)).trim();
+
     }
 
     /**
@@ -395,7 +547,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private boolean isInputType(final String inputType)
     {
+
         return inputType.equalsIgnoreCase(this.getInputType());
+
     }
 
     /**
@@ -405,7 +559,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputTextarea()
     {
+
         return this.isInputType(GuiGlobals.INPUT_TEXTAREA);
+
     }
 
     /**
@@ -415,7 +571,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputSelect()
     {
+
         return this.isInputType(GuiGlobals.INPUT_SELECT);
+
     }
 
     /**
@@ -425,7 +583,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputSecret()
     {
+
         return this.isInputType(GuiGlobals.INPUT_PASSWORD);
+
     }
 
     /**
@@ -435,7 +595,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputHidden()
     {
+
         return this.isInputType(GuiGlobals.INPUT_HIDDEN);
+
     }
 
     /**
@@ -445,7 +607,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsPlaintext()
     {
+
         return this.isInputType(GuiGlobals.PLAIN_TEXT);
+
     }
 
     /**
@@ -455,7 +619,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputTable()
     {
+
         return (this.getInputTableIdentifierColumns().length() > 0) || this.isInputType(GuiGlobals.INPUT_TABLE);
+
     }
 
     /**
@@ -465,7 +631,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputRadio()
     {
+
         return this.isInputType(GuiGlobals.INPUT_RADIO);
+
     }
 
     /**
@@ -475,7 +643,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputText()
     {
+
         return this.isInputType(GuiGlobals.INPUT_TEXT);
+
     }
 
     /**
@@ -485,7 +655,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputMultibox()
     {
+
         return this.isInputType(GuiGlobals.INPUT_MULTIBOX);
+
     }
 
     /**
@@ -495,13 +667,20 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputCheckbox()
     {
+
         boolean checkbox = this.isInputType(GuiGlobals.INPUT_CHECKBOX);
+
         if (!checkbox && (this.getInputType().length() == 0))
         {
+
             final ClassifierFacade type = this.getType();
-            checkbox = type != null ? type.isBooleanType() : false;
+
+            checkbox = (type != null) ? type.isBooleanType() : false;
+
         }
+
         return checkbox;
+
     }
 
     /**
@@ -511,13 +690,19 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsInputFile()
     {
+
         boolean file = false;
         final ClassifierFacade type = this.getType();
+
         if (type != null)
         {
+
             file = type.isFileType();
+
         }
+
         return file;
+
     }
 
     /**
@@ -527,7 +712,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetBackingListName()
     {
+
         return ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.BACKING_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
+
     }
 
     /**
@@ -537,7 +724,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetBackingValueName()
     {
+
         return ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.BACKING_VALUE_PATTERN)).replaceAll("\\{0\\}", this.getName());
+
     }
 
     /**
@@ -547,7 +736,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetValueListName()
     {
+
         return ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.VALUE_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
+
     }
 
     /**
@@ -557,7 +748,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetLabelListName()
     {
+
         return ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.LABEL_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
+
     }
 
     /**
@@ -567,69 +760,109 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsSelectable()
     {
+
         boolean selectable = false;
+
         if (this.isActionParameter())
         {
+
             selectable = this.isInputMultibox() || this.isInputSelect() || this.isInputRadio();
+
             final ClassifierFacade type = this.getType();
 
             if (!selectable && (type != null))
             {
+
                 final String name = this.getName();
                 final String typeName = type.getFullyQualifiedName();
 
                 // - if the parameter is not selectable but on a targetting page it IS selectable we must
                 // allow the user to set the backing list too
                 final Collection<FrontEndView> views = this.getAction().getTargetViews();
+
                 for (final Iterator<FrontEndView> iterator = views.iterator(); iterator.hasNext() && !selectable;)
                 {
+
                     final Collection<FrontEndParameter> parameters = iterator.next().getAllActionParameters();
+
                     for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator(); parameterIterator.hasNext() && !selectable;)
                     {
+
                         final Object object = parameterIterator.next();
+
                         if (object instanceof GuiParameter)
                         {
+
                             final GuiParameter parameter = (GuiParameter) object;
                             final String parameterName = parameter.getName();
                             final ClassifierFacade parameterType = parameter.getType();
+
                             if (parameterType != null)
                             {
+
                                 final String parameterTypeName = parameterType.getFullyQualifiedName();
+
                                 if (name.equals(parameterName) && typeName.equals(parameterTypeName))
                                 {
+
                                     selectable = parameter.isInputMultibox() || parameter.isInputSelect() || parameter.isInputRadio();
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         } else if (this.isControllerOperationArgument())
         {
+
             final String name = this.getName();
             final Collection actions = this.getControllerOperation().getDeferringActions();
+
             for (final Iterator actionIterator = actions.iterator(); actionIterator.hasNext();)
             {
+
                 final GuiAction action = (GuiAction) actionIterator.next();
                 final Collection<FrontEndParameter> formFields = action.getFormFields();
+
                 for (final Iterator<FrontEndParameter> fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !selectable;)
                 {
+
                     final Object object = fieldIterator.next();
+
                     if (object instanceof GuiParameter)
                     {
+
                         final GuiParameter parameter = (GuiParameter) object;
+
                         if (!parameter.equals(this))
                         {
+
                             if (name.equals(parameter.getName()))
                             {
+
                                 selectable = parameter.isSelectable();
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         return selectable;
+
     }
 
     /**
@@ -644,7 +877,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetValueListDummyValue()
     {
+
         return this.constructDummyArray();
+
     }
 
     /**
@@ -654,24 +889,36 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetDummyValue()
     {
+
         final ClassifierFacade type = this.getType();
-        final String typeName = type != null ? type.getFullyQualifiedName() : "";
+        final String typeName = (type != null) ? type.getFullyQualifiedName() : "";
         String initialValue = null;
+
         if (type != null)
         {
+
             if (type.isSetType())
             {
+
                 initialValue = "new java.util.LinkedHashSet(java.util.Arrays.asList(" + this.constructDummyArray() + "))";
+
             } else if (type.isCollectionType())
             {
+
                 initialValue = "java.util.Arrays.asList(" + this.constructDummyArray() + ")";
+
             } else if (type.isArrayType())
             {
+
                 initialValue = this.constructDummyArray();
+
             }
-            final String name = this.getName() != null ? this.getName() : "";
+
+            final String name = (this.getName() != null) ? this.getName() : "";
+
             if (this.initialValues.isEmpty())
             {
+
                 this.initialValues.put(boolean.class.getName(), "false");
                 this.initialValues.put(int.class.getName(), "(int)" + name.hashCode());
                 this.initialValues.put(long.class.getName(), "(long)" + name.hashCode());
@@ -694,17 +941,27 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
                 this.initialValues.put(Double.class.getName(), "new Double((double)" + (name.hashCode() / this.hashCode()) + ")");
                 this.initialValues.put(Short.class.getName(), "new Short((short)" + name.hashCode() + ")");
                 this.initialValues.put(Byte.class.getName(), "new Byte((byte)" + name.hashCode() + ")");
+
             }
+
             if (initialValue == null)
             {
+
                 initialValue = this.initialValues.get(typeName);
+
             }
+
         }
+
         if (initialValue == null)
         {
+
             initialValue = "null";
+
         }
+
         return initialValue;
+
     }
 
     /**
@@ -714,7 +971,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      */
     private String constructDummyArray()
     {
+
         return GuiUtils.constructDummyArrayDeclaration(this.getName(), GuiGlobals.DUMMY_ARRAY_COUNT);
+
     }
 
     /**
@@ -724,7 +983,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableSortColumnProperty()
     {
+
         return this.getName() + "SortColumn";
+
     }
 
     /**
@@ -734,7 +995,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableSortAscendingProperty()
     {
+
         return this.getName() + "SortAscending";
+
     }
 
     /**
@@ -744,38 +1007,56 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetFormAttributeSetProperty()
     {
+
         return this.getName() + "Set";
+
     }
 
     // TODO remove after 3.4 release
     /**
      * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
      */
+
     /**
      * @see org.andromda.metafacades.uml.FrontEndParameter#getView()
      */
     @Override
     public FrontEndView getView()
     {
+
         Object view = null;
         final EventFacade event = this.getEvent();
+
         if (event != null)
         {
+
             final TransitionFacade transition = event.getTransition();
+
             if (transition instanceof GuiActionLogicImpl)
             {
+
                 final GuiActionLogicImpl action = (GuiActionLogicImpl) transition;
+
                 view = action.getInput();
+
             } else if (transition instanceof FrontEndForward)
             {
+
                 final FrontEndForward forward = (FrontEndForward) transition;
+
                 if (forward.isEnteringView())
                 {
+
                     view = forward.getTarget();
+
                 }
+
             }
+
         }
+
         return (FrontEndView) view;
+
     }
 
     /**
@@ -785,38 +1066,60 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsValidationRequired()
     {
+
         boolean required = !this.getValidatorTypes().isEmpty();
+
         if (!required)
         {
+
             // - look for any attributes
             for (final Iterator<GuiAttribute> iterator = this.getAttributes().iterator(); iterator.hasNext();)
             {
+
                 required = !iterator.next().getValidatorTypes().isEmpty();
+
                 if (required)
                 {
+
                     break;
+
                 }
+
             }
 
             // - look for any table columns
             if (!required)
             {
+
                 for (final Iterator iterator = this.getTableColumns().iterator(); iterator.hasNext();)
                 {
+
                     final Object object = iterator.next();
+
                     if (object instanceof GuiAttribute)
                     {
+
                         final GuiAttribute attribute = (GuiAttribute) object;
+
                         required = !attribute.getValidatorTypes().isEmpty();
+
                         if (required)
                         {
+
                             break;
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         return required;
+
     }
 
     /**
@@ -826,7 +1129,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected Collection handleGetValidatorTypes()
     {
+
         return GuiUtils.getValidatorTypes((ModelElementFacade) this.THIS(), this.getType());
+
     }
 
     /**
@@ -836,7 +1141,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetValidWhen()
     {
+
         return GuiUtils.getValidWhen(this);
+
     }
 
     /**
@@ -847,22 +1154,28 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     public boolean isRequired()
     {
+
         if ("org.omg.uml.foundation.core".equals(this.metaObject.getClass().getPackage().getName()))
         {
+
             // if uml 1.4, keep the old behavior (like bpm4struts)
             final Object value = this.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_REQUIRED);
+
             return Boolean.valueOf(ObjectUtils.toString(value)).booleanValue();
+
         } else
         {
+
             // if >= uml 2, default behavior
             final Object filterTag = this.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_REQUIRED);
 
             return (filterTag == null) ? super.isRequired() : GuiUtils.isTrue(String.valueOf(filterTag));
+
             // @see behavior in org.andromda.metafacades.emf.uml22.ParameterFacadeLogicImpl#handleIsRequired()
             // in ..\\andromda\\trunk\\metafacades\\uml\\emf\\uml22\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml22
-            // !this.hasStereotype(UMLProfile.STEREOTYPE_NULLABLE)
-
+// !this.hasStereotype(UMLProfile.STEREOTYPE_NULLABLE)
         }
+
     }
 
     /**
@@ -872,7 +1185,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsReadOnly()
     {
+
         return GuiUtils.isReadOnly(this);
+
     }
 
     /**
@@ -883,7 +1198,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected Collection handleGetValidatorArgs(final String validatorType)
     {
+
         return GuiUtils.getValidatorArgs((ModelElementFacade) this.THIS(), validatorType);
+
     }
 
     /**
@@ -893,7 +1210,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected Collection handleGetValidatorVars()
     {
+
         return GuiUtils.getValidatorVars((ModelElementFacade) this.THIS(), this.getType(), null);
+
     }
 
     /**
@@ -903,13 +1222,20 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsReset()
     {
+
         boolean reset = Boolean.valueOf(ObjectUtils.toString(this.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_RESET))).booleanValue();
+
         if (!reset)
         {
+
             final GuiAction action = (GuiAction) this.getAction();
+
             reset = (action != null) && action.isFormReset();
+
         }
+
         return reset;
+
     }
 
     /**
@@ -919,17 +1245,26 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsComplex()
     {
+
         boolean complex = false;
         final ClassifierFacade type = this.getType();
+
         if (type != null)
         {
+
             complex = !type.getAttributes().isEmpty();
+
             if (!complex)
             {
+
                 complex = !type.getAssociationEnds().isEmpty();
+
             }
+
         }
+
         return complex;
+
     }
 
     /**
@@ -939,20 +1274,31 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected Collection<AttributeFacade> handleGetAttributes()
     {
+
         Collection<AttributeFacade> attributes = null;
         ClassifierFacade type = this.getType();
+
         if (type != null)
         {
+
             if (type.isArrayType())
             {
+
                 type = type.getNonArray();
+
             }
+
             if (type != null)
             {
+
                 attributes = type.getAttributes(true);
+
             }
+
         }
-        return attributes == null ? new ArrayList<AttributeFacade>() : attributes;
+
+        return (attributes == null) ? new ArrayList<AttributeFacade>() : attributes;
+
     }
 
     /**
@@ -962,20 +1308,31 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected Collection<ClassifierFacade> handleGetNavigableAssociationEnds()
     {
+
         Collection<ClassifierFacade> associationEnds = null;
         ClassifierFacade type = this.getType();
+
         if (type != null)
         {
+
             if (type.isArrayType())
             {
+
                 type = type.getNonArray();
+
             }
+
             if (type != null)
             {
+
                 associationEnds = type.getNavigableConnectingEnds();
+
             }
+
         }
-        return associationEnds == null ? new ArrayList<ClassifierFacade>() : associationEnds;
+
+        return (associationEnds == null) ? new ArrayList<ClassifierFacade>() : associationEnds;
+
     }
 
     /**
@@ -985,8 +1342,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsEqualValidator()
     {
+
         final String equal = GuiUtils.getEqual((ModelElementFacade) this.THIS());
+
         return (equal != null) && (equal.trim().length() > 0);
+
     }
 
     /**
@@ -996,69 +1356,109 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsBackingValueRequired()
     {
+
         boolean required = false;
+
         if (this.isActionParameter())
         {
+
             required = this.isInputTable();
+
             final ClassifierFacade type = this.getType();
 
             if (!required && (type != null))
             {
+
                 final String name = this.getName();
                 final String typeName = type.getFullyQualifiedName();
 
                 // - if the backing value is not required for this parameter but on
                 // a targeting page it IS selectable we must allow the user to set the backing value as well
                 final Collection<FrontEndView> views = this.getAction().getTargetViews();
+
                 for (final Iterator<FrontEndView> iterator = views.iterator(); iterator.hasNext() && !required;)
                 {
+
                     final Collection<FrontEndParameter> parameters = iterator.next().getAllActionParameters();
+
                     for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator(); parameterIterator.hasNext() && !required;)
                     {
+
                         final FrontEndParameter object = parameterIterator.next();
+
                         if (object instanceof GuiParameter)
                         {
+
                             final GuiParameter parameter = (GuiParameter) object;
                             final String parameterName = parameter.getName();
                             final ClassifierFacade parameterType = parameter.getType();
+
                             if (parameterType != null)
                             {
+
                                 final String parameterTypeName = parameterType.getFullyQualifiedName();
+
                                 if (name.equals(parameterName) && typeName.equals(parameterTypeName))
                                 {
+
                                     required = parameter.isInputTable();
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         } else if (this.isControllerOperationArgument())
         {
+
             final String name = this.getName();
             final Collection<FrontEndAction> actions = this.getControllerOperation().getDeferringActions();
+
             for (final FrontEndAction frontEndAction : actions)
             {
+
                 final GuiAction action = (GuiAction) frontEndAction;
                 final Collection<FrontEndParameter> formFields = action.getFormFields();
+
                 for (final Iterator<FrontEndParameter> fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !required;)
                 {
+
                     final Object object = fieldIterator.next();
+
                     if (object instanceof GuiParameter)
                     {
+
                         final GuiParameter parameter = (GuiParameter) object;
+
                         if (!parameter.equals(this))
                         {
+
                             if (name.equals(parameter.getName()))
                             {
+
                                 required = parameter.isBackingValueRequired();
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         return required;
+
     }
 
     /**
@@ -1068,7 +1468,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetInputTableIdentifierColumns()
     {
+
         return ObjectUtils.toString(this.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_TABLE_IDENTIFIER_COLUMNS)).trim();
+
     }
 
     /**
@@ -1079,22 +1481,32 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected List<GuiAction> handleGetTableColumnActions(final String columnName)
     {
+
         final List<GuiAction> columnActions = new ArrayList<GuiAction>();
 
         if (columnName != null)
         {
+
             final Set<GuiAction> actions = new LinkedHashSet<GuiAction>(this.getTableHyperlinkActions());
+
             actions.addAll(this.getTableFormActions());
+
             for (final GuiAction action : actions)
             {
+
                 if (columnName.equals(action.getTableLinkColumnName()))
                 {
+
                     columnActions.add(action);
+
                 }
+
             }
+
         }
 
         return columnActions;
+
     }
 
     /**
@@ -1104,41 +1516,62 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetMaxLength()
     {
+
         final Collection<Collection> vars = this.getValidatorVars();
+
         if (vars == null)
         {
+
             return null;
+
         }
+
         for (final Collection collection : vars)
         {
+
             final Object[] values = (collection).toArray();
+
             if ("maxlength".equals(values[0]))
             {
+
                 return values[1].toString();
+
             }
+
         }
+
         return null;
+
     }
 
     // to be used in the range validator: "range - 1000" or "range 20 -".
     /** - */
     static final String UNDEFINED_BOUND = "-";
+
     /** javax.validation.constraints.NotNull */
     static final String AN_REQUIRED     = "@javax.validation.constraints.NotNull";
+
     /** org.hibernate.validator.constraints.URL */
     static final String AN_URL          = "@org.hibernate.validator.constraints.URL";
+
     /** org.apache.myfaces.extensions.validator.baseval.annotation.LongRange */
     static final String AN_LONG_RANGE   = "@org.apache.myfaces.extensions.validator.baseval.annotation.LongRange";
+
     /** org.apache.myfaces.extensions.validator.baseval.annotation.DoubleRange */
     static final String AN_DOUBLE_RANGE = "@org.apache.myfaces.extensions.validator.baseval.annotation.DoubleRange";
+
     /** org.hibernate.validator.constraints.Email */
     static final String AN_EMAIL        = "@org.hibernate.validator.constraints.Email";
+
     /** org.hibernate.validator.constraints.CreditCardNumber */
     static final String AN_CREDIT_CARD  = "@org.hibernate.validator.constraints.CreditCardNumber";
+
     /** javax.validation.constraints.Size */
     static final String AN_LENGTH       = "@javax.validation.constraints.Size";
+
     /** org.apache.myfaces.extensions.validator.baseval.annotation.Pattern */
     static final String AN_PATTERN      = "@org.apache.myfaces.extensions.validator.baseval.annotation.Pattern";
+
     /** org.apache.myfaces.extensions.validator.crossval.annotation.Equals */
     static final String AN_EQUALS       = "@org.apache.myfaces.extensions.validator.crossval.annotation.Equals";
 
@@ -1149,125 +1582,200 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected Collection<String> handleGetAnnotations()
     {
+
         final Collection<String> result = new HashSet<String>();
         boolean requiredAdded = false;
+
         for (final String vt : (Collection<String>) this.getValidatorTypes())
         {
+
             if (vt.startsWith("@")) // add the annotation
             {
+
                 result.add(vt);
+
             }
+
             if (GuiUtils.VT_REQUIRED.equals(vt) && this.isRequired())
             {
+
                 requiredAdded = true;
                 result.add(GuiParameterLogicImpl.AN_REQUIRED);
+
             } else if (GuiUtils.VT_URL.equals(vt))
             {
+
                 result.add(GuiParameterLogicImpl.AN_URL);
+
             } else if (GuiUtils.VT_INT_RANGE.equals(vt))
             {
+
                 final StringBuilder sb = new StringBuilder(GuiParameterLogicImpl.AN_LONG_RANGE + "(");
                 final String format = GuiUtils.getInputFormat((ModelElementFacade) this.THIS());
                 final String rangeStart = GuiUtils.getRangeStart(format);
                 boolean addComma = false;
+
                 if (StringUtils.isNotBlank(rangeStart) && !rangeStart.equals(GuiParameterLogicImpl.UNDEFINED_BOUND))
                 {
+
                     sb.append("minimum=" + rangeStart);
                     addComma = true;
+
                 }
+
                 final String rangeEnd = GuiUtils.getRangeEnd(format);
+
                 if (StringUtils.isNotBlank(rangeEnd) && !rangeEnd.equals(GuiParameterLogicImpl.UNDEFINED_BOUND))
                 {
+
                     if (addComma)
                     {
+
                         sb.append(",");
+
                     }
+
                     sb.append("maximum=" + rangeEnd);
+
                 }
+
                 sb.append(")");
                 result.add(sb.toString());
+
             } else if (GuiUtils.VT_FLOAT_RANGE.equals(vt) || GuiUtils.VT_DOUBLE_RANGE.equals(vt))
             {
+
                 final StringBuilder sb = new StringBuilder(GuiParameterLogicImpl.AN_DOUBLE_RANGE + "(");
                 final String format = GuiUtils.getInputFormat(((ModelElementFacade) this.THIS()));
                 final String rangeStart = GuiUtils.getRangeStart(format);
                 boolean addComma = false;
+
                 if (StringUtils.isNotBlank(rangeStart) && !rangeStart.equals(GuiParameterLogicImpl.UNDEFINED_BOUND))
                 {
+
                     sb.append("minimum=" + rangeStart);
                     addComma = true;
+
                 }
+
                 final String rangeEnd = GuiUtils.getRangeEnd(format);
+
                 if (StringUtils.isNotBlank(rangeEnd) && !rangeEnd.equals(GuiParameterLogicImpl.UNDEFINED_BOUND))
                 {
+
                     if (addComma)
                     {
+
                         sb.append(",");
+
                     }
+
                     sb.append("maximum=" + rangeEnd);
+
                 }
+
                 sb.append(")");
                 result.add(sb.toString());
+
             } else if (GuiUtils.VT_EMAIL.equals(vt))
             {
+
                 result.add(GuiParameterLogicImpl.AN_EMAIL);
+
             } else if (GuiUtils.VT_CREDIT_CARD.equals(vt))
             {
+
                 result.add(GuiParameterLogicImpl.AN_CREDIT_CARD);
+
             } else if (GuiUtils.VT_MIN_LENGTH.equals(vt) || GuiUtils.VT_MAX_LENGTH.equals(vt))
             {
+
                 final StringBuilder sb = new StringBuilder(GuiParameterLogicImpl.AN_LENGTH + "(");
                 final Collection formats = this.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_FORMAT);
                 boolean addComma = false;
+
                 for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
                 {
+
                     final String additionalFormat = String.valueOf(formatIterator.next());
+
                     if (GuiUtils.isMinLengthFormat(additionalFormat))
                     {
+
                         if (addComma)
                         {
+
                             sb.append(",");
+
                         }
+
                         sb.append("min=");
                         sb.append(GuiUtils.getMinLengthValue(additionalFormat));
                         addComma = true;
+
                     } else if (GuiUtils.isMaxLengthFormat(additionalFormat))
                     {
+
                         if (addComma)
                         {
+
                             sb.append(",");
+
                         }
+
                         sb.append("max=");
                         sb.append(GuiUtils.getMinLengthValue(additionalFormat));
                         addComma = true;
+
                     }
+
                 }
+
                 sb.append(")");
                 result.add(sb.toString());
+
             } else if (GuiUtils.VT_MASK.equals(vt))
             {
+
                 final Collection formats = this.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_FORMAT);
+
                 for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
                 {
+
                     final String additionalFormat = String.valueOf(formatIterator.next());
+
                     if (GuiUtils.isPatternFormat(additionalFormat))
                     {
+
                         result.add(GuiParameterLogicImpl.AN_PATTERN + "(\"" + GuiUtils.getPatternValue(additionalFormat) + "\")");
+
                     }
+
                 }
+
             } else if (GuiUtils.VT_VALID_WHEN.equals(vt))
             {
+
                 result.add("");
+
             } else if (GuiUtils.VT_EQUAL.equals(vt))
             {
+
                 result.add(GuiParameterLogicImpl.AN_EQUALS + "(\"" + GuiUtils.getEqual((ModelElementFacade) this.THIS()) + "\")");
+
             }
+
         }
+
         if (!requiredAdded && (this.getLower() > 0) && this.isRequired())
         {
+
             result.add(GuiParameterLogicImpl.AN_REQUIRED);
+
         }
+
         return result;
+
     }
 
     @Override
@@ -1797,8 +2305,11 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableDecoratorPackageName()
     {
+
         final GuiView jsp = this.getGuiView();
+
         return (jsp == null) ? null : jsp.getPackageName();
+
     }
 
     /**
@@ -1807,16 +2318,22 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableDecoratorClassName()
     {
+
         String tableDecoratorClassName = null;
 
         final GuiView jsp = this.getGuiView();
+
         if (jsp != null)
         {
+
             final String suffix = String.valueOf(this.getConfiguredProperty(GuiGlobals.PROPERTY_TABLE_DECORATOR_SUFFIX));
+
             tableDecoratorClassName = StringUtilsHelper.upperCamelCaseName(this.getName()) + suffix;
+
         }
 
         return tableDecoratorClassName;
+
     }
 
     /**
@@ -1825,7 +2342,9 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableDecoratorFullPath()
     {
+
         return this.getTableDecoratorFullyQualifiedName().replace(".", GuiGlobals.SEPARATOR);
+
     }
 
     @Override
@@ -1868,7 +2387,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
                 // this means the value wasn't a valid integer, we'll interpret it is a comma-separated
                 // list of option-values
-                final String options[] = taggedValue.split("[,]");
+                final String[] options = taggedValue.split("[,]");
 
                 for (final String option : options)
                 {
@@ -1893,8 +2412,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected java.lang.String handleGetOnlineHelpKey()
     {
 
@@ -1902,8 +2421,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected java.lang.String handleGetOnlineHelpValue()
     {
 
@@ -1941,8 +2460,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
             final String dateFormat = this.getDateFormat();
 
-            buffer.append("This field represents a date and should be formatted in the matter described here").append("<a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html\" ")
-                    .append("target=\"_jdk\">");
+            buffer.append("This field represents a date and should be formatted in the matter described here").append("<a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html\" ").append(
+                    "target=\"_jdk\">");
             buffer.append(dateFormat).append("</a> ");
 
             if (this.isStrictDateFormat())
@@ -2063,8 +2582,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
         } else if (this.isValidatorDouble())
         {
 
-            buffer.append("The value of this field should reflect a ").append("<a href=\"http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html\" ")
-                    .append("target=\"_jdk\">double precision integer</a> value");
+            buffer.append("The value of this field should reflect a ").append("<a href=\"http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html\" ").append(
+                    "target=\"_jdk\">double precision integer</a> value");
             buffer.append(crlf);
 
         } else if (this.isValidatorFloat())
@@ -2211,24 +2730,35 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsTableDecoratorRequired()
     {
+
         boolean required = false;
 
         if (this.isTable())
         {
+
             final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_TABLE_DECORATOR);
+
             if (taggedValue != null)
             {
+
                 final String taggedValueString = String.valueOf(taggedValue);
+
                 required = Boolean.valueOf(taggedValueString).booleanValue();
+
             } else
             {
+
                 final Object property = this.getConfiguredProperty(GuiGlobals.PROPERTY_GENERATE_TABLE_DECORATORS);
                 final String propertyString = String.valueOf(property);
+
                 required = Boolean.valueOf(propertyString).booleanValue();
+
             }
+
         }
 
         return required;
+
     }
 
     /**
@@ -2237,9 +2767,13 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected String handleGetTableDecoratorFullyQualifiedName()
     {
+
         String name = this.getTableDecoratorPackageName();
-        name = (StringUtils.trimToEmpty(name) == null) ? "" : name + '.';
+
+        name = (StringUtils.trimToEmpty(name) == null) ? "" : (name + '.');
+
         return name + this.getTableDecoratorClassName();
+
     }
 
     @Override
@@ -2285,8 +2819,10 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     @Override
     protected boolean handleIsTableFormActionSharingWidgets()
     {
+
         // TODO
         return true;
+
     }
 
     @Override
@@ -2367,8 +2903,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected boolean handleIsAllGlobalTableActionsHaveSameParameter()
     {
 
@@ -2621,8 +3157,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected java.util.List<ModelElementFacade> handleGetFormFields()
     {
 
@@ -2751,8 +3287,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     }
 
-    @Override
     // TODO REMOVE
+    @Override
     protected java.lang.Object handleGetTableGlobalActionParameter()
     {
 
@@ -3115,6 +3651,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      *
      * @see org.andromda.metafacades.uml.ParameterFacade#getDefaultValue()
      */
+
     /*
      * @Override
      * public String getDefaultValue()

@@ -1,7 +1,60 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.gui;
+
+import org.andromda.cartridges.gui.metafacades.GuiAttribute;
+import org.andromda.cartridges.gui.metafacades.GuiManageableEntityAttribute;
+import org.andromda.cartridges.gui.metafacades.GuiParameter;
+
+import org.andromda.metafacades.uml.AttributeFacade;
+import org.andromda.metafacades.uml.ClassifierFacade;
+import org.andromda.metafacades.uml.FrontEndAction;
+import org.andromda.metafacades.uml.FrontEndParameter;
+import org.andromda.metafacades.uml.ModelElementFacade;
+import org.andromda.metafacades.uml.OperationFacade;
+import org.andromda.metafacades.uml.ParameterFacade;
+import org.andromda.metafacades.uml.UMLMetafacadeUtils;
+
+import org.andromda.utils.StringUtilsHelper;
+
+import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.FastDateFormat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,33 +65,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.andromda.cartridges.gui.metafacades.GuiAttribute;
-import org.andromda.cartridges.gui.metafacades.GuiManageableEntityAttribute;
-import org.andromda.cartridges.gui.metafacades.GuiParameter;
-import org.andromda.metafacades.uml.AttributeFacade;
-import org.andromda.metafacades.uml.ClassifierFacade;
-import org.andromda.metafacades.uml.FrontEndAction;
-import org.andromda.metafacades.uml.FrontEndParameter;
-import org.andromda.metafacades.uml.ModelElementFacade;
-import org.andromda.metafacades.uml.OperationFacade;
-import org.andromda.metafacades.uml.ParameterFacade;
-import org.andromda.metafacades.uml.UMLMetafacadeUtils;
-import org.andromda.utils.StringUtilsHelper;
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.FastDateFormat;
-
 /**
  * Utilities for use within the Gui cartridge.
  *
  * @author Chad Brandon
  */
-public class GuiUtils {
+public class GuiUtils
+{
 
     private static final Pattern VALIDATOR_TAGGEDVALUE_PATTERN = Pattern.compile("\\w+(\\(\\w+=[^,)]*(,\\w+=[^,)]*)*\\))?");
-
     private static final String  ANNOTATION_VALIDATOR_PREFIX   = "@";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static String         DEFAULT_NUMERIC_FORMAT        = "###,###,###,##0.000000000;-###,###,###,##0.000000000";
 
     /**
@@ -49,8 +89,11 @@ public class GuiUtils {
      * @return the string converted to a value that would be well-suited for a
      *         web file name
      */
-    public static String toWebResourceName(final String string) {
+    public static String toWebResourceName(final String string)
+    {
+
         return StringUtilsHelper.separate(string, "-").toLowerCase();
+
     }
 
     /**
@@ -61,9 +104,12 @@ public class GuiUtils {
      * @return the string converted to a value that would be well-suited for a
      *         web file name
      */
-    public static String toWebFileName(final String string) {
+    public static String toWebFileName(final String string)
+    {
+
         // return StringUtilsHelper.toPhrase(string).replace(' ', '-').toLowerCase();
         return GuiUtils.toWebResourceName(string);
+
     }
 
     /**
@@ -72,42 +118,69 @@ public class GuiUtils {
      * @return returns a list of String instances or an empty list
      * @throws IllegalArgumentException when the input string does not match the required pattern
      */
-    public static List<String> parseValidatorArgs(String validatorTaggedValue) {
-        if (validatorTaggedValue == null) {
+    public static List<String> parseValidatorArgs(String validatorTaggedValue)
+    {
+
+        if (validatorTaggedValue == null)
+        {
+
             throw new IllegalArgumentException("Validator tagged value cannot be null");
+
         }
 
         final List<String> validatorArgs = new ArrayList<String>();
 
         // isn't it an annotation ?
-        if (!StringUtils.startsWith(validatorTaggedValue, GuiUtils.ANNOTATION_VALIDATOR_PREFIX)) {
+        if (!StringUtils.startsWith(validatorTaggedValue, GuiUtils.ANNOTATION_VALIDATOR_PREFIX))
+        {
 
             // check if the input tagged value matches the required pattern
-            if (!GuiUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches()) {
+            if (!GuiUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
+            {
+
                 throw new IllegalArgumentException("Illegal validator tagged value (this tag is used to specify custom validators "
                         + "and might look like myValidator(myVar=myArg,myVar2=myArg2), perhaps you wanted to use " + "andromda_presentation_view_field_format?): " + validatorTaggedValue);
+
             }
 
             // only keep what is between parentheses (if any)
             final int left = validatorTaggedValue.indexOf('(');
-            if (left > -1) {
+
+            if (left > -1)
+            {
+
                 final int right = validatorTaggedValue.indexOf(')');
+
                 validatorTaggedValue = validatorTaggedValue.substring(left + 1, right);
 
                 final String[] pairs = validatorTaggedValue.split(",");
-                for (final String pair : pairs) {
+
+                for (final String pair : pairs)
+                {
+
                     final int equalsIndex = pair.indexOf('=');
 
                     // it's possible the argument is the empty string
-                    if (equalsIndex < (pair.length() - 1)) {
+                    if (equalsIndex < (pair.length() - 1))
+                    {
+
                         validatorArgs.add(pair.substring(equalsIndex + 1));
-                    } else {
+
+                    } else
+                    {
+
                         validatorArgs.add("");
+
                     }
+
                 }
+
             }
+
         }
+
         return validatorArgs;
+
     }
 
     /**
@@ -116,35 +189,57 @@ public class GuiUtils {
      * @return never null, returns a list of String instances
      * @throws IllegalArgumentException when the input string does not match the required pattern
      */
-    public static List<String> parseValidatorVars(String validatorTaggedValue) {
-        if (validatorTaggedValue == null) {
+    public static List<String> parseValidatorVars(String validatorTaggedValue)
+    {
+
+        if (validatorTaggedValue == null)
+        {
+
             throw new IllegalArgumentException("Validator tagged value cannot be null");
+
         }
 
         final List<String> validatorVars = new ArrayList<String>();
 
         // isn't it an annotation ?
-        if (!StringUtils.startsWith(validatorTaggedValue, GuiUtils.ANNOTATION_VALIDATOR_PREFIX)) {
+        if (!StringUtils.startsWith(validatorTaggedValue, GuiUtils.ANNOTATION_VALIDATOR_PREFIX))
+        {
 
             // check if the input tagged value matches the required pattern
-            if (!GuiUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches()) {
+            if (!GuiUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
+            {
+
                 throw new IllegalArgumentException("Illegal validator tagged value: " + validatorTaggedValue);
+
             }
 
             // only keep what is between parentheses (if any)
             final int left = validatorTaggedValue.indexOf('(');
-            if (left > -1) {
+
+            if (left > -1)
+            {
+
                 final int right = validatorTaggedValue.indexOf(')');
+
                 validatorTaggedValue = validatorTaggedValue.substring(left + 1, right);
 
                 final String[] pairs = validatorTaggedValue.split(",");
-                for (final String pair : pairs) {
+
+                for (final String pair : pairs)
+                {
+
                     final int equalsIndex = pair.indexOf('=');
+
                     validatorVars.add(pair.substring(0, equalsIndex));
+
                 }
+
             }
+
         }
+
         return validatorVars;
+
     }
 
     /**
@@ -153,23 +248,36 @@ public class GuiUtils {
      * @return validatorTaggedValue
      * @throws IllegalArgumentException when the input string does not match the required pattern
      */
-    public static String parseValidatorName(final String validatorTaggedValue) {
-        if (validatorTaggedValue == null) {
+    public static String parseValidatorName(final String validatorTaggedValue)
+    {
+
+        if (validatorTaggedValue == null)
+        {
+
             throw new IllegalArgumentException("Validator tagged value cannot be null");
+
         }
 
         // isn't it an annotation ?
-        if (StringUtils.startsWith(validatorTaggedValue, GuiUtils.ANNOTATION_VALIDATOR_PREFIX)) {
+        if (StringUtils.startsWith(validatorTaggedValue, GuiUtils.ANNOTATION_VALIDATOR_PREFIX))
+        {
+
             return validatorTaggedValue;
+
         }
 
         // check if the input tagged value matches the required pattern
-        if (!GuiUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches()) {
+        if (!GuiUtils.VALIDATOR_TAGGEDVALUE_PATTERN.matcher(validatorTaggedValue).matches())
+        {
+
             throw new IllegalArgumentException("Illegal validator tagged value: " + validatorTaggedValue);
+
         }
 
         final int leftParen = validatorTaggedValue.indexOf('(');
+
         return (leftParen == -1) ? validatorTaggedValue : validatorTaggedValue.substring(0, leftParen);
+
     }
 
     /**
@@ -179,25 +287,42 @@ public class GuiUtils {
      * @param count the number of items to give the array.
      * @return A String representing Java code for the initialization of an array.
      */
-    public static String constructDummyArrayDeclaration(final String name, final int count) {
+    public static String constructDummyArrayDeclaration(final String name, final int count)
+    {
+
         final StringBuilder array = new StringBuilder("new Object[] {");
-        for (int ctr = 1; ctr <= count; ctr++) {
+
+        for (int ctr = 1; ctr <= count; ctr++)
+        {
+
             array.append("\"" + name + "-" + ctr + "\"");
-            if (ctr != count) {
+
+            if (ctr != count)
+            {
+
                 array.append(", ");
+
             }
+
         }
+
         array.append("}");
+
         return array.toString();
+
     }
 
     /**
      * @param format
      * @return this field's date format
      */
-    public static String getDateFormat(String format) {
+    public static String getDateFormat(String format)
+    {
+
         format = StringUtils.trimToEmpty(format);
+
         return format.endsWith(GuiUtils.STRICT) ? GuiUtils.getToken(format, 1, 2) : GuiUtils.getToken(format, 0, 1);
+
     }
 
     private static String         defaultDateFormat = "MM/dd/yyyy HH:mm:ssZ";
@@ -209,11 +334,18 @@ public class GuiUtils {
      * @param format The format for the output date
      * @return the current date in the specified format.
      */
-    public static String getDate(final String format) {
-        if ((GuiUtils.df == null) || !format.equals(GuiUtils.df.getPattern())) {
+    public static String getDate(final String format)
+    {
+
+        if ((GuiUtils.df == null) || !format.equals(GuiUtils.df.getPattern()))
+        {
+
             GuiUtils.df = FastDateFormat.getInstance(format);
+
         }
+
         return GuiUtils.df.format(new Date());
+
     }
 
     /**
@@ -221,8 +353,11 @@ public class GuiUtils {
      *
      * @return the current date in the default format.
      */
-    public static String getDate() {
+    public static String getDate()
+    {
+
         return GuiUtils.getDate(GuiUtils.defaultDateFormat);
+
     }
 
     private static final String STRICT = "strict";
@@ -232,8 +367,11 @@ public class GuiUtils {
      * @return <code>true</code> if this field's value needs to conform to a
      * strict date format, <code>false</code> otherwise
      */
-    public static boolean isStrictDateFormat(final String format) {
+    public static boolean isStrictDateFormat(final String format)
+    {
+
         return GuiUtils.strictDateTimeFormat ? GuiUtils.strictDateTimeFormat : GuiUtils.STRICT.equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -242,8 +380,11 @@ public class GuiUtils {
      * @return <code>true</code> if this field is to be formatted as an email
      * address, <code>false</code> otherwise
      */
-    public static boolean isEmailFormat(final String format) {
+    public static boolean isEmailFormat(final String format)
+    {
+
         return "email".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -252,8 +393,11 @@ public class GuiUtils {
      * @return <code>true</code> if this field is to be formatted as an
      * email address, <code>false</code> otherwise
      */
-    public static boolean isEqualFormat(final String format) {
+    public static boolean isEqualFormat(final String format)
+    {
+
         return "equal".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -261,8 +405,11 @@ public class GuiUtils {
      * @param format
      * @return <code>true</code> if this field is to be formatted as a credit card, <code>false</code> otherwise
      */
-    public static boolean isCreditCardFormat(final String format) {
+    public static boolean isCreditCardFormat(final String format)
+    {
+
         return "creditcard".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -270,8 +417,11 @@ public class GuiUtils {
      * @param format
      * @return <code>true</code> if this field's value needs to respect a certain pattern, <code>false</code> otherwise
      */
-    public static boolean isPatternFormat(final String format) {
+    public static boolean isPatternFormat(final String format)
+    {
+
         return "pattern".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -280,8 +430,11 @@ public class GuiUtils {
      * @return <code>true</code> if this field's value needs to consist of at least a certain
      *         number of characters, <code>false</code> otherwise
      */
-    public static boolean isMinLengthFormat(final String format) {
+    public static boolean isMinLengthFormat(final String format)
+    {
+
         return "minlength".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -290,8 +443,11 @@ public class GuiUtils {
      * @return <code>true</code> if this field's value needs to consist of at maximum a certain
      *         number of characters, <code>false</code> otherwise
      */
-    public static boolean isMaxLengthFormat(final String format) {
+    public static boolean isMaxLengthFormat(final String format)
+    {
+
         return "maxlength".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
@@ -300,13 +456,22 @@ public class GuiUtils {
      * @param limit
      * @return the i-th space delimited token read from the argument String, where i does not exceed the specified limit
      */
-    public static String getToken(final String string, final int index, final int limit) {
+    public static String getToken(final String string, final int index, final int limit)
+    {
+
         String token = null;
-        if ((string != null) && (string.length() > 0)) {
+
+        if ((string != null) && (string.length() > 0))
+        {
+
             final String[] tokens = string.split("[\\s]+", limit);
-            token = index >= tokens.length ? null : tokens[index];
+
+            token = (index >= tokens.length) ? null : tokens[index];
+
         }
+
         return token;
+
     }
 
     /**
@@ -315,10 +480,14 @@ public class GuiUtils {
      * @param element the model element for which to retrieve the input format.
      * @return the input format.
      */
-    public static String getInputFormat(final ModelElementFacade element) {
+    public static String getInputFormat(final ModelElementFacade element)
+    {
+
         final Object value = element.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_FORMAT);
-        final String format = value == null ? null : String.valueOf(value);
-        return format == null ? null : format.trim();
+        final String format = (value == null) ? null : String.valueOf(value);
+
+        return (format == null) ? null : format.trim();
+
     }
 
     /**
@@ -326,48 +495,66 @@ public class GuiUtils {
      * @param format
      * @return <code>true</code> if this field's value needs to be in a specific range, <code>false</code> otherwise
      */
-    public static boolean isRangeFormat(final String format) {
+    public static boolean isRangeFormat(final String format)
+    {
+
         return "range".equalsIgnoreCase(GuiUtils.getToken(format, 0, 2));
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a byte, <code>false</code> otherwise
      */
-    public static boolean isByte(final ClassifierFacade type) {
+    public static boolean isByte(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.BYTE_TYPE_NAME);
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a short, <code>false</code> otherwise
      */
-    public static boolean isShort(final ClassifierFacade type) {
+    public static boolean isShort(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.SHORT_TYPE_NAME);
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is an integer, <code>false</code> otherwise
      */
-    public static boolean isInteger(final ClassifierFacade type) {
+    public static boolean isInteger(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.INTEGER_TYPE_NAME);
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a long integer, <code>false</code> otherwise
      */
-    public static boolean isLong(final ClassifierFacade type) {
+    public static boolean isLong(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.LONG_TYPE_NAME);
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a floating point, <code>false</code> otherwise
      */
-    public static boolean isFloat(final ClassifierFacade type) {
+    public static boolean isFloat(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.FLOAT_TYPE_NAME);
+
     }
 
     /**
@@ -375,46 +562,73 @@ public class GuiUtils {
      * @return <code>true</code> if the type of this field is a double precision floating point,
      * <code>false</code> otherwise
      */
-    public static boolean isDouble(final ClassifierFacade type) {
+    public static boolean isDouble(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.DOUBLE_TYPE_NAME);
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a date, <code>false</code> otherwise
      */
-    public static boolean isDate(final ClassifierFacade type) {
+    public static boolean isDate(final ClassifierFacade type)
+    {
+
         return (type != null) && type.isDateType();
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a time, <code>false</code> otherwise
      */
-    public static boolean isTime(final ClassifierFacade type) {
+    public static boolean isTime(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.TIME_TYPE_NAME);
+
     }
 
     /**
      * @param type
      * @return <code>true</code> if the type of this field is a URL, <code>false</code> otherwise
      */
-    public static boolean isUrl(final ClassifierFacade type) {
+    public static boolean isUrl(final ClassifierFacade type)
+    {
+
         return GuiUtils.isType(type, GuiProfile.URL_TYPE_NAME);
+
     }
 
-    private static boolean isType(final ClassifierFacade type, final String typeName) {
+    private static boolean isType(final ClassifierFacade type, final String typeName)
+    {
+
         boolean isType = UMLMetafacadeUtils.isType(type, typeName);
-        if (!isType) {
+
+        if (!isType)
+        {
+
             // - handle abstract types that are mapped to java types
-            if (type.getLanguageMappings() != null) {
+            if (type.getLanguageMappings() != null)
+            {
+
                 final String javaTypeName = type.getLanguageMappings().getTo(type.getFullyQualifiedName(true));
-                if (javaTypeName != null) {
+
+                if (javaTypeName != null)
+                {
+
                     isType = javaTypeName.replaceAll(".*\\.", "").equalsIgnoreCase(type.getLanguageMappings().getTo(typeName));
+
                 }
+
             }
+
         }
+
         return isType;
+
     }
 
     /**
@@ -422,8 +636,11 @@ public class GuiUtils {
      * @return <code>true</code> if the type of this field is a String,
      * <code>false</code> otherwise
      */
-    public static boolean isString(final ClassifierFacade type) {
+    public static boolean isString(final ClassifierFacade type)
+    {
+
         return (type != null) && type.isStringType();
+
     }
 
     /**
@@ -432,13 +649,22 @@ public class GuiUtils {
      * @param element the element to check.
      * @return true/false
      */
-    public static boolean isReadOnly(final ModelElementFacade element) {
+    public static boolean isReadOnly(final ModelElementFacade element)
+    {
+
         boolean readOnly = false;
-        if (element != null) {
+
+        if (element != null)
+        {
+
             final Object value = element.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_READONLY);
+
             readOnly = Boolean.valueOf(ObjectUtils.toString(value)).booleanValue();
+
         }
+
         return readOnly;
+
     }
 
     /**
@@ -447,13 +673,22 @@ public class GuiUtils {
      * @param element the element from which to retrieve the equal value.
      * @return the "equal" value.
      */
-    public static String getEqual(final ModelElementFacade element) {
+    public static String getEqual(final ModelElementFacade element)
+    {
+
         String equal = null;
-        if (element != null) {
+
+        if (element != null)
+        {
+
             final Object value = element.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_EQUAL);
-            equal = value == null ? null : value.toString();
+
+            equal = (value == null) ? null : value.toString();
+
         }
+
         return equal;
+
     }
 
     /**
@@ -463,16 +698,29 @@ public class GuiUtils {
      * @param ownerParameter the optional owner parameter (specified if the element is an attribute).
      * @return the "equal" value.
      */
-    public static String getEqual(final ModelElementFacade element, final ParameterFacade ownerParameter) {
+    public static String getEqual(final ModelElementFacade element, final ParameterFacade ownerParameter)
+    {
+
         String equal = null;
-        if (element != null) {
+
+        if (element != null)
+        {
+
             final Object value = element.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_EQUAL);
-            equal = value == null ? null : value.toString();
-            if (StringUtils.isNotBlank(equal) && (ownerParameter != null)) {
+
+            equal = (value == null) ? null : value.toString();
+
+            if (StringUtils.isNotBlank(equal) && (ownerParameter != null))
+            {
+
                 equal = ownerParameter.getName() + StringUtilsHelper.upperCamelCaseName(equal);
+
             }
+
         }
+
         return equal;
+
     }
 
     /**
@@ -481,78 +729,113 @@ public class GuiUtils {
      * @param element the element from which to retrieve the validwhen value.
      * @return the "validwhen" value.
      */
-    public static String getValidWhen(final ModelElementFacade element) {
+    public static String getValidWhen(final ModelElementFacade element)
+    {
+
         String validWhen = null;
-        if (element != null) {
+
+        if (element != null)
+        {
+
             final Object value = element.findTaggedValue(GuiProfile.TAGGEDVALUE_INPUT_VALIDWHEN);
-            validWhen = value == null ? null : '(' + value.toString() + ')';
+
+            validWhen = (value == null) ? null : ('(' + value.toString() + ')');
+
         }
+
         return validWhen;
+
     }
 
     /**
      * @param format
      * @return the lower limit for this field's value's range
      */
-    public static String getRangeStart(final String format) {
+    public static String getRangeStart(final String format)
+    {
+
         return GuiUtils.getToken(format, 1, 3);
+
     }
 
     /**
      * @param format
      * @return the upper limit for this field's value's range
      */
-    public static String getRangeEnd(final String format) {
+    public static String getRangeEnd(final String format)
+    {
+
         return GuiUtils.getToken(format, 2, 3);
+
     }
 
     /**
      * @param format
      * @return the minimum number of characters this field's value must consist of
      */
-    public static String getMinLengthValue(final String format) {
+    public static String getMinLengthValue(final String format)
+    {
+
         return GuiUtils.getToken(format, 1, 2);
+
     }
 
     /**
      * @param format
      * @return the maximum number of characters this field's value must consist of
      */
-    public static String getMaxLengthValue(final String format) {
+    public static String getMaxLengthValue(final String format)
+    {
+
         return GuiUtils.getToken(format, 1, 2);
+
     }
 
     /**
      * @param format
      * @return the pattern this field's value must respect
      */
-    public static String getPatternValue(final String format) {
+    public static String getPatternValue(final String format)
+    {
+
         return '^' + GuiUtils.getToken(format, 1, 2) + '$';
+
     }
 
     // validator strings
     /** "required" */
     public static final String VT_REQUIRED     = "required";
+
     /** "url" */
     public static final String VT_URL          = "url";
+
     /** "intRange" */
     public static final String VT_INT_RANGE    = "intRange";
+
     /** "floatRange" */
     public static final String VT_FLOAT_RANGE  = "floatRange";
+
     /** "doubleRange" */
     public static final String VT_DOUBLE_RANGE = "doubleRange";
+
     /** "email" */
     public static final String VT_EMAIL        = "email";
+
     /** "creditCard" */
     public static final String VT_CREDIT_CARD  = "creditCard";
+
     /** "minlength" */
     public static final String VT_MIN_LENGTH   = "minlength";
+
     /** "maxlength" */
     public static final String VT_MAX_LENGTH   = "maxlength";
+
     /** "mask" */
     public static final String VT_MASK         = "mask";
+
     /** "validwhen" */
     public static final String VT_VALID_WHEN   = "validwhen";
+
     /** "equal" */
     public static final String VT_EQUAL        = "equal";
 
@@ -564,86 +847,188 @@ public class GuiUtils {
      * @param type the type of the element.
      * @return the collection of validator types.
      */
-    public static Collection<String> getValidatorTypes(final ModelElementFacade element, final ClassifierFacade type) {
+    public static Collection<String> getValidatorTypes(final ModelElementFacade element, final ClassifierFacade type)
+    {
+
         final Collection<String> validatorTypesList = new ArrayList<String>();
-        if ((element != null) && (type != null)) {
+
+        if ((element != null) && (type != null))
+        {
+
             final String format = GuiUtils.getInputFormat(element);
             final boolean isRangeFormat = (format != null) && GuiUtils.isRangeFormat(format);
-            if (element instanceof AttributeFacade) {
-                if (((AttributeFacade) element).isRequired()) {
+
+            if (element instanceof AttributeFacade)
+            {
+
+                if (((AttributeFacade) element).isRequired())
+                {
+
                     validatorTypesList.add(GuiUtils.VT_REQUIRED);
+
                 }
-            } else if (element instanceof GuiParameter) {
-                if (((GuiParameter) element).isRequired()) {
+
+            } else if (element instanceof GuiParameter)
+            {
+
+                if (((GuiParameter) element).isRequired())
+                {
+
                     validatorTypesList.add(GuiUtils.VT_REQUIRED);
+
                 }
+
             }
-            if (GuiUtils.isByte(type)) {
+
+            if (GuiUtils.isByte(type))
+            {
+
                 validatorTypesList.add("byte");
-            } else if (GuiUtils.isShort(type)) {
+
+            } else if (GuiUtils.isShort(type))
+            {
+
                 validatorTypesList.add("short");
-            } else if (GuiUtils.isInteger(type)) {
+
+            } else if (GuiUtils.isInteger(type))
+            {
+
                 validatorTypesList.add("integer");
-            } else if (GuiUtils.isLong(type)) {
+
+            } else if (GuiUtils.isLong(type))
+            {
+
                 validatorTypesList.add("long");
-            } else if (GuiUtils.isFloat(type)) {
+
+            } else if (GuiUtils.isFloat(type))
+            {
+
                 validatorTypesList.add("float");
-            } else if (GuiUtils.isDouble(type)) {
+
+            } else if (GuiUtils.isDouble(type))
+            {
+
                 validatorTypesList.add("double");
-            } else if (GuiUtils.isDate(type)) {
+
+            } else if (GuiUtils.isDate(type))
+            {
+
                 validatorTypesList.add("date");
-            } else if (GuiUtils.isTime(type)) {
+
+            } else if (GuiUtils.isTime(type))
+            {
+
                 validatorTypesList.add("time");
-            } else if (GuiUtils.isUrl(type)) {
+
+            } else if (GuiUtils.isUrl(type))
+            {
+
                 validatorTypesList.add(GuiUtils.VT_URL);
+
             }
 
-            if (isRangeFormat) {
-                if (GuiUtils.isInteger(type) || GuiUtils.isShort(type) || GuiUtils.isLong(type)) {
+            if (isRangeFormat)
+            {
+
+                if (GuiUtils.isInteger(type) || GuiUtils.isShort(type) || GuiUtils.isLong(type))
+                {
+
                     validatorTypesList.add(GuiUtils.VT_INT_RANGE);
+
                 }
-                if (GuiUtils.isFloat(type)) {
+
+                if (GuiUtils.isFloat(type))
+                {
+
                     validatorTypesList.add(GuiUtils.VT_FLOAT_RANGE);
+
                 }
-                if (GuiUtils.isDouble(type)) {
+
+                if (GuiUtils.isDouble(type))
+                {
+
                     validatorTypesList.add(GuiUtils.VT_DOUBLE_RANGE);
+
                 }
+
             }
 
-            if (format != null) {
-                if (GuiUtils.isString(type) && GuiUtils.isEmailFormat(format)) {
+            if (format != null)
+            {
+
+                if (GuiUtils.isString(type) && GuiUtils.isEmailFormat(format))
+                {
+
                     validatorTypesList.add(GuiUtils.VT_EMAIL);
-                } else if (GuiUtils.isString(type) && GuiUtils.isCreditCardFormat(format)) {
+
+                } else if (GuiUtils.isString(type) && GuiUtils.isCreditCardFormat(format))
+                {
+
                     validatorTypesList.add(GuiUtils.VT_CREDIT_CARD);
-                } else {
+
+                } else
+                {
+
                     final Collection formats = element.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_FORMAT);
-                    for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();) {
+
+                    for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
+                    {
+
                         final String additionalFormat = String.valueOf(formatIterator.next());
-                        if (GuiUtils.isMinLengthFormat(additionalFormat)) {
+
+                        if (GuiUtils.isMinLengthFormat(additionalFormat))
+                        {
+
                             validatorTypesList.add(GuiUtils.VT_MIN_LENGTH);
-                        } else if (GuiUtils.isMaxLengthFormat(additionalFormat)) {
+
+                        } else if (GuiUtils.isMaxLengthFormat(additionalFormat))
+                        {
+
                             validatorTypesList.add(GuiUtils.VT_MAX_LENGTH);
-                        } else if (GuiUtils.isPatternFormat(additionalFormat)) {
+
+                        } else if (GuiUtils.isPatternFormat(additionalFormat))
+                        {
+
                             validatorTypesList.add(GuiUtils.VT_MASK);
+
                         }
+
                     }
+
                 }
+
             }
-            if (GuiUtils.getValidWhen(element) != null) {
+
+            if (GuiUtils.getValidWhen(element) != null)
+            {
+
                 validatorTypesList.add(GuiUtils.VT_VALID_WHEN);
+
             }
-            if (GuiUtils.getEqual(element) != null) {
+
+            if (GuiUtils.getEqual(element) != null)
+            {
+
                 validatorTypesList.add(GuiUtils.VT_EQUAL);
+
             }
 
             // - custom (paramterized) validators are allowed here
             final Collection taggedValues = element.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_VALIDATORS);
-            for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();) {
+
+            for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
+            {
+
                 final String validator = String.valueOf(iterator.next());
+
                 validatorTypesList.add(GuiUtils.parseValidatorName(validator));
+
             }
+
         }
+
         return validatorTypesList;
+
     }
 
     /**
@@ -655,87 +1040,168 @@ public class GuiUtils {
      * @param ownerParameter the optional owner parameter (if the element is an attribute for example).
      * @return the collection of validator variables.
      */
-    public static Collection<List<String>> getValidatorVars(final ModelElementFacade element, final ClassifierFacade type, final ParameterFacade ownerParameter) {
+    public static Collection<List<String>> getValidatorVars(final ModelElementFacade element, final ClassifierFacade type, final ParameterFacade ownerParameter)
+    {
+
         final Map<String, List<String>> vars = new LinkedHashMap<String, List<String>>();
-        if ((element != null) && (type != null)) {
+
+        if ((element != null) && (type != null))
+        {
+
             final String format = GuiUtils.getInputFormat(element);
-            if (format != null) {
+
+            if (format != null)
+            {
+
                 final boolean isRangeFormat = GuiUtils.isRangeFormat(format);
 
-                if (isRangeFormat) {
+                if (isRangeFormat)
+                {
+
                     final String min = "min";
                     final String max = "max";
+
                     vars.put(min, Arrays.asList(min, GuiUtils.getRangeStart(format)));
                     vars.put(max, Arrays.asList(max, GuiUtils.getRangeEnd(format)));
-                } else {
+
+                } else
+                {
+
                     final Collection formats = element.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_FORMAT);
-                    for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();) {
+
+                    for (final Iterator formatIterator = formats.iterator(); formatIterator.hasNext();)
+                    {
+
                         final String additionalFormat = String.valueOf(formatIterator.next());
                         final String minlength = "minlength";
                         final String maxlength = "maxlength";
                         final String mask = "mask";
-                        if (GuiUtils.isMinLengthFormat(additionalFormat)) {
+
+                        if (GuiUtils.isMinLengthFormat(additionalFormat))
+                        {
+
                             vars.put(minlength, Arrays.asList(minlength, GuiUtils.getMinLengthValue(additionalFormat)));
-                        } else if (GuiUtils.isMaxLengthFormat(additionalFormat)) {
+
+                        } else if (GuiUtils.isMaxLengthFormat(additionalFormat))
+                        {
+
                             vars.put(maxlength, Arrays.asList(maxlength, GuiUtils.getMaxLengthValue(additionalFormat)));
-                        } else if (GuiUtils.isPatternFormat(additionalFormat)) {
+
+                        } else if (GuiUtils.isPatternFormat(additionalFormat))
+                        {
+
                             vars.put(mask, Arrays.asList(mask, GuiUtils.getPatternValue(additionalFormat)));
+
                         }
+
                     }
+
                 }
+
             }
+
             String inputFormat;
-            if (element instanceof GuiAttribute) {
+
+            if (element instanceof GuiAttribute)
+            {
+
                 inputFormat = ((GuiAttribute) element).getFormat();
-            } else if (element instanceof GuiParameter) {
+
+            } else if (element instanceof GuiParameter)
+            {
+
                 inputFormat = ((GuiParameter) element).getFormat();
-            } else if (element instanceof GuiManageableEntityAttribute) {
+
+            } else if (element instanceof GuiManageableEntityAttribute)
+            {
+
                 inputFormat = ((GuiManageableEntityAttribute) element).getFormat();
-            } else {
+
+            } else
+            {
+
                 throw new RuntimeException("'element' is an invalid type, it must be either an instance of '" + GuiAttribute.class.getName() + "' or '" + GuiParameter.class.getName() + "'");
+
             }
-            if (GuiUtils.isDate(type)) {
+
+            if (GuiUtils.isDate(type))
+            {
+
                 final String datePatternStrict = "datePatternStrict";
-                if ((format != null) && GuiUtils.isStrictDateFormat(format)) {
+
+                if ((format != null) && GuiUtils.isStrictDateFormat(format))
+                {
+
                     vars.put(datePatternStrict, Arrays.asList(datePatternStrict, inputFormat));
-                } else {
+
+                } else
+                {
+
                     final String datePattern = "datePattern";
+
                     vars.put(datePattern, Arrays.asList(datePattern, inputFormat));
+
                 }
+
             }
-            if (GuiUtils.isTime(type)) {
+
+            if (GuiUtils.isTime(type))
+            {
+
                 final String timePattern = "timePattern";
+
                 vars.put(timePattern, Arrays.asList(timePattern, inputFormat));
+
             }
 
             final String validWhen = GuiUtils.getValidWhen(element);
-            if (validWhen != null) {
+
+            if (validWhen != null)
+            {
+
                 final String test = "test";
+
                 vars.put(test, Arrays.asList(test, validWhen));
+
             }
 
             final String equal = GuiUtils.getEqual(element, ownerParameter);
-            if (equal != null) {
+
+            if (equal != null)
+            {
+
                 final String fieldName = "fieldName";
+
                 vars.put(fieldName, Arrays.asList(fieldName, equal));
+
             }
 
             // - custom (parameterized) validators are allowed here
             // in this case we will reuse the validator arg values
             final Collection taggedValues = element.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_VALIDATORS);
-            for (final Object value : taggedValues) {
+
+            for (final Object value : taggedValues)
+            {
+
                 final String validator = String.valueOf(value);
 
                 // - guaranteed to be of the same length
                 final List<String> validatorVars = GuiUtils.parseValidatorVars(validator);
                 final List<String> validatorArgs = GuiUtils.parseValidatorArgs(validator);
 
-                for (int ctr = 0; ctr < validatorVars.size(); ctr++) {
+                for (int ctr = 0; ctr < validatorVars.size(); ctr++)
+                {
+
                     vars.put(validatorVars.get(ctr), Arrays.asList(validatorVars.get(ctr), validatorArgs.get(ctr)));
+
                 }
+
             }
+
         }
+
         return vars.values();
+
     }
 
     /**
@@ -745,59 +1211,121 @@ public class GuiUtils {
      * @param validatorType the validator type name.
      * @return the validator args as a collection.
      */
-    public static java.util.Collection getValidatorArgs(final ModelElementFacade element, final String validatorType) {
+    public static java.util.Collection getValidatorArgs(final ModelElementFacade element, final String validatorType)
+    {
+
         final Collection<Object> args = new ArrayList<Object>();
-        if ("intRange".equals(validatorType) || "floatRange".equals(validatorType) || "doubleRange".equals(validatorType)) {
+
+        if ("intRange".equals(validatorType) || "floatRange".equals(validatorType) || "doubleRange".equals(validatorType))
+        {
+
             args.add("${var:min}");
             args.add("${var:max}");
-        } else if ("minlength".equals(validatorType)) {
+
+        } else if ("minlength".equals(validatorType))
+        {
+
             args.add("${var:minlength}");
-        } else if ("maxlength".equals(validatorType)) {
+
+        } else if ("maxlength".equals(validatorType))
+        {
+
             args.add("${var:maxlength}");
-        } else if ("date".equals(validatorType)) {
+
+        } else if ("date".equals(validatorType))
+        {
+
             final String validatorFormat = GuiUtils.getInputFormat(element);
-            if (GuiUtils.isStrictDateFormat(validatorFormat)) {
+
+            if (GuiUtils.isStrictDateFormat(validatorFormat))
+            {
+
                 args.add("${var:datePatternStrict}");
-            } else {
+
+            } else
+            {
+
                 args.add("${var:datePattern}");
+
             }
-        } else if ("time".equals(validatorType)) {
+
+        } else if ("time".equals(validatorType))
+        {
+
             args.add("${var:timePattern}");
-        } else if ("equal".equals(validatorType)) {
+
+        } else if ("equal".equals(validatorType))
+        {
+
             ModelElementFacade equalParameter = null;
             final String equal = GuiUtils.getEqual(element);
-            if (element instanceof ParameterFacade) {
+
+            if (element instanceof ParameterFacade)
+            {
+
                 final FrontEndParameter parameter = (FrontEndParameter) element;
                 final OperationFacade operation = parameter.getOperation();
-                if (operation != null) {
+
+                if (operation != null)
+                {
+
                     equalParameter = operation.findParameter(equal);
+
                 }
-                if (equalParameter == null) {
+
+                if (equalParameter == null)
+                {
+
                     final FrontEndAction action = parameter.getAction();
-                    if (action != null) {
+
+                    if (action != null)
+                    {
+
                         equalParameter = action.findParameter(equal);
+
                     }
+
                 }
-            } else if (element instanceof AttributeFacade) {
+
+            } else if (element instanceof AttributeFacade)
+            {
+
                 final AttributeFacade attribute = (AttributeFacade) element;
                 final ClassifierFacade owner = attribute.getOwner();
-                if (owner != null) {
+
+                if (owner != null)
+                {
+
                     equalParameter = owner.findAttribute(equal);
+
                 }
+
             }
+
             args.add(equalParameter);
             args.add("${var:fieldName}");
+
         }
 
         // custom (paramterized) validators are allowed here
         final Collection taggedValues = element.findTaggedValues(GuiProfile.TAGGEDVALUE_INPUT_VALIDATORS);
-        for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();) {
+
+        for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
+        {
+
             final String validator = String.valueOf(iterator.next());
-            if (validatorType.equals(GuiUtils.parseValidatorName(validator))) {
+
+            if (validatorType.equals(GuiUtils.parseValidatorName(validator)))
+            {
+
                 args.addAll(GuiUtils.parseValidatorArgs(validator));
+
             }
+
         }
+
         return args;
+
     }
 
     /**
@@ -810,8 +1338,11 @@ public class GuiUtils {
      *
      * @param strictDateTimeFormat
      */
-    public void setStrictDateTimeFormat(final boolean strictDateTimeFormat) {
+    public void setStrictDateTimeFormat(final boolean strictDateTimeFormat)
+    {
+
         GuiUtils.strictDateTimeFormat = strictDateTimeFormat;
+
     }
 
     /**
@@ -820,9 +1351,13 @@ public class GuiUtils {
      * @param element
      * @return true/false
      */
-    public static boolean isStrictDateFormat(final ModelElementFacade element) {
+    public static boolean isStrictDateFormat(final ModelElementFacade element)
+    {
+
         final String format = GuiUtils.getInputFormat(element);
+
         return GuiUtils.isStrictDateFormat(format);
+
     }
 
     /**
@@ -834,23 +1369,47 @@ public class GuiUtils {
      * @param defaultTimeFormat
      * @return the format string (if one is present otherwise null).
      */
-    public static String getFormat(final ModelElementFacade element, final ClassifierFacade type, final String defaultDateFormat, final String defaultTimeFormat) {
+    public static String getFormat(final ModelElementFacade element, final ClassifierFacade type, final String defaultDateFormat, final String defaultTimeFormat)
+    {
+
         String format = null;
-        if ((element != null) && (type != null)) {
+
+        if ((element != null) && (type != null))
+        {
+
             format = GuiUtils.getInputFormat(element);
-            if (format == null) {
-                if (type.isDateType() && type.isTimeType()) {
+
+            if (format == null)
+            {
+
+                if (type.isDateType() && type.isTimeType())
+                {
+
                     format = defaultDateFormat + " " + defaultTimeFormat;
-                } else if (type.isTimeType()) {
+
+                } else if (type.isTimeType())
+                {
+
                     format = defaultTimeFormat;
-                } else if (type.isDateType()) {
+
+                } else if (type.isDateType())
+                {
+
                     format = defaultDateFormat;
+
                 }
-            } else if (type.isDateType()) {
+
+            } else if (type.isDateType())
+            {
+
                 format = GuiUtils.getDateFormat(format);
+
             }
+
         }
+
         return format;
+
     }
 
     /**
@@ -863,8 +1422,11 @@ public class GuiUtils {
      *
      * @return the view type extension.
      */
-    public String getViewExtension() {
+    public String getViewExtension()
+    {
+
         return GuiUtils.EXTENSION_XHTML;
+
     }
 
     private String portletContainer;
@@ -872,82 +1434,140 @@ public class GuiUtils {
     /**
      * @param portletContainer
      */
-    public void setPortletContainer(final String portletContainer) {
+    public void setPortletContainer(final String portletContainer)
+    {
+
         this.portletContainer = portletContainer;
+
     }
 
-    private boolean isPortlet() {
+    private boolean isPortlet()
+    {
+
         return StringUtils.isNotBlank(this.portletContainer);
+
     }
 
     /**
      * @return className
      */
-    public String getRequestClassName() {
+    public String getRequestClassName()
+    {
+
         final String className;
-        if (this.isPortlet()) {
+
+        if (this.isPortlet())
+        {
+
             className = "javax.portlet.PortletRequest";
-        } else {
+
+        } else
+        {
+
             className = "javax.servlet.http.HttpServletRequest";
+
         }
+
         return className;
+
     }
 
     /**
      * @return className
      */
-    public String getResponseClassName() {
+    public String getResponseClassName()
+    {
+
         final String className;
-        if (this.isPortlet()) {
+
+        if (this.isPortlet())
+        {
+
             className = "javax.portlet.PortletResponse";
-        } else {
+
+        } else
+        {
+
             className = "javax.servlet.http.HttpServletResponse";
+
         }
+
         return className;
+
     }
 
     /**
      * @return className
      */
-    public String getSessionClassName() {
+    public String getSessionClassName()
+    {
+
         final String className;
-        if (this.isPortlet()) {
+
+        if (this.isPortlet())
+        {
+
             className = "javax.portlet.PortletSession";
-        } else {
+
+        } else
+        {
+
             className = "javax.servlet.http.HttpSession";
+
         }
+
         return className;
+
     }
 
     /**
      * @param buffer
      * @return the calculated SerialVersionUID
      */
-    public static String calcSerialVersionUID(final StringBuilder buffer) {
+    public static String calcSerialVersionUID(final StringBuilder buffer)
+    {
+
         final String signature = buffer.toString();
         String serialVersionUID = String.valueOf(0L);
-        try {
+
+        try
+        {
+
             final MessageDigest md = MessageDigest.getInstance("SHA");
             final byte[] hashBytes = md.digest(signature.getBytes());
 
             long hash = 0;
-            for (int ctr = Math.min(hashBytes.length, 8) - 1; ctr >= 0; ctr--) {
+
+            for (int ctr = Math.min(hashBytes.length, 8) - 1; ctr >= 0; ctr--)
+            {
+
                 hash = (hash << 8) | (hashBytes[ctr] & 0xFF);
+
             }
+
             serialVersionUID = String.valueOf(hash);
-        } catch (final NoSuchAlgorithmException exception) {
+
+        }
+        catch (final NoSuchAlgorithmException exception)
+        {
+
             throw new RuntimeException("Error performing GuiAction.getFormSerialVersionUID", exception);
+
         }
 
         return serialVersionUID;
+
     }
 
     /**
      * @param string
      * @return Integer.valueOf(string) * 6000
      */
-    public int calculateIcefacesTimeout(final String string) {
-        return string != null ? Integer.valueOf(string) * 6000 : 0;
+    public int calculateIcefacesTimeout(final String string)
+    {
+
+        return (string != null) ? (Integer.valueOf(string) * 6000) : 0;
+
     }
 
     /**
@@ -959,35 +1579,62 @@ public class GuiUtils {
      * @param defaultValue the default value to use in case the tagged values are empty
      * @return a space separated list of formats, never <code>null</code>
      */
-    public static String getDisplayTagExportTypes(final Collection taggedValues, final String defaultValue) {
+    public static String getDisplayTagExportTypes(final Collection taggedValues, final String defaultValue)
+    {
+
         String exportTypes;
 
-        if (taggedValues.isEmpty()) {
+        if (taggedValues.isEmpty())
+        {
+
             exportTypes = defaultValue;
-        } else {
-            if (taggedValues.contains("none")) {
+
+        } else
+        {
+
+            if (taggedValues.contains("none"))
+            {
+
                 exportTypes = "none";
-            } else {
+
+            } else
+            {
+
                 final StringBuilder buffer = new StringBuilder();
-                for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();) {
+
+                for (final Iterator iterator = taggedValues.iterator(); iterator.hasNext();)
+                {
+
                     final String exportType = StringUtils.trimToNull(String.valueOf(iterator.next()));
-                    if ("csv".equalsIgnoreCase(exportType) || "pdf".equalsIgnoreCase(exportType) || "xml".equalsIgnoreCase(exportType) || "excel".equalsIgnoreCase(exportType)) {
+
+                    if ("csv".equalsIgnoreCase(exportType) || "pdf".equalsIgnoreCase(exportType) || "xml".equalsIgnoreCase(exportType) || "excel".equalsIgnoreCase(exportType))
+                    {
+
                         buffer.append(exportType);
                         buffer.append(' ');
+
                     }
+
                 }
+
                 exportTypes = buffer.toString().trim();
+
             }
+
         }
 
         return exportTypes;
+
     }
 
     /**
      * Convenient method to detect whether or not a String instance represents a boolean <code>true</code> value.
      */
-    public static boolean isTrue(final String string) {
+    public static boolean isTrue(final String string)
+    {
+
         return "yes".equalsIgnoreCase(string) || "true".equalsIgnoreCase(string) || "on".equalsIgnoreCase(string) || "1".equalsIgnoreCase(string);
+
     }
 
     /**
@@ -999,38 +1646,58 @@ public class GuiUtils {
      * @param name the name to test, may be <code>null</code>
      * @return <code>true</code> if the name is safe to use with the Jakarta libraries, <code>false</code> otherwise
      */
-    public static boolean isSafeName(final String name) {
+    public static boolean isSafeName(final String name)
+    {
+
         boolean safe = true;
-        if ((name != null) && (name.length() > 1)) {
+
+        if ((name != null) && (name.length() > 1))
+        {
+
             safe = !(Character.isLowerCase(name.charAt(0)) && Character.isUpperCase(name.charAt(1)));
+
         }
+
         return safe;
 
     }
 
-    public static String getNumberFormat(final String format) {
+    /**
+     * DOCUMENT ME!
+     *
+     * @param format DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public static String getNumberFormat(final String format)
+    {
 
         String displayFormat = "";
 
-        if (format == null) {
+        if (format == null)
+        {
 
             return GuiUtils.getDefaultDoubleFormat();
 
         }
 
-        if (format.equals(GuiProfile.TAGGEDVALUE_NUMERIC_TYPE_DEFAULT)) {
+        if (format.equals(GuiProfile.TAGGEDVALUE_NUMERIC_TYPE_DEFAULT))
+        {
 
             displayFormat = "###,###,##0.0000;-###,###,##0.0000";
 
-        } else if (format.equals("QUANTITY_FORMAT")) {
+        } else if (format.equals("QUANTITY_FORMAT"))
+        {
 
             displayFormat = "###,###,##0.0000000;-###,###,##0.0000000";
 
-        } else if (format.equals("PRICE_FORMAT")) {
+        } else if (format.equals("PRICE_FORMAT"))
+        {
 
             displayFormat = "###,###,##0.00000000";
 
-        } else {
+        } else
+        {
 
             displayFormat = GuiUtils.getDefaultDoubleFormat();
 
@@ -1040,9 +1707,16 @@ public class GuiUtils {
 
     }
 
-    public static String getDefaultDoubleFormat() {
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public static String getDefaultDoubleFormat()
+    {
 
         return GuiUtils.DEFAULT_NUMERIC_FORMAT;
 
     }
+
 }

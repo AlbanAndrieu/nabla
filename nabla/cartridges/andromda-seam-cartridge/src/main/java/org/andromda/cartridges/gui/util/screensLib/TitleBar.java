@@ -40,7 +40,8 @@ package org.andromda.cartridges.gui.util.screensLib;
  * @version $Revision$
  * @since $Date$
  */
-public class TitleBar extends Field {
+public class TitleBar extends Field
+{
 
     private String title;
 
@@ -49,7 +50,8 @@ public class TitleBar extends Field {
      *
      * @param title DOCUMENT ME!
      */
-    public TitleBar(final String title) {
+    public TitleBar(final String title)
+    {
         super("titleBar");
         this.title = title;
 
@@ -60,7 +62,8 @@ public class TitleBar extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public String getTitle() {
+    public String getTitle()
+    {
 
         return this.title;
 
@@ -71,7 +74,8 @@ public class TitleBar extends Field {
      *
      * @param title DOCUMENT ME!
      */
-    public void setTitle(final String title) {
+    public void setTitle(final String title)
+    {
 
         this.title = title;
 

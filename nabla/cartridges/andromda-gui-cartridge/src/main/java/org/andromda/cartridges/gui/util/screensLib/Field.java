@@ -40,7 +40,8 @@ package org.andromda.cartridges.gui.util.screensLib;
  * @version $Revision$
  * @since $Date$
  */
-public class Field {
+public class Field
+{
 
     protected String name;
 
@@ -49,7 +50,8 @@ public class Field {
      *
      * @param name DOCUMENT ME!
      */
-    public Field(final String name) {
+    public Field(final String name)
+    {
 
         this.name = name;
 
@@ -60,7 +62,8 @@ public class Field {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return this.name;
 

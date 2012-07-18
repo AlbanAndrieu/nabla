@@ -1,4 +1,46 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.metafacades.uml;
+
+import org.andromda.core.metafacade.MetafacadeConstants;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.FastDateFormat;
+
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,12 +51,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.andromda.core.metafacade.MetafacadeConstants;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.FastDateFormat;
-import org.apache.log4j.Logger;
 
 /**
  * Contains utilities that are common to the UML metafacades.
@@ -24,6 +60,7 @@ import org.apache.log4j.Logger;
  */
 public class UMLMetafacadeUtils
 {
+
     /**
      * The logger instance.
      */
@@ -38,52 +75,76 @@ public class UMLMetafacadeUtils
      */
     public static boolean isType(ClassifierFacade classifier, String typeName)
     {
+
         boolean isType = false;
-        if (classifier != null && typeName != null)
+
+        if ((classifier != null) && (typeName != null))
         {
+
             final String type = StringUtils.trimToEmpty(typeName);
             String name = StringUtils.trimToEmpty(classifier.getFullyQualifiedName(true));
+
             isType = name.equals(type);
+
             // if this isn't a type defined by typeName, see if we can find any
             // types that inherit from the type.
             if (!isType)
             {
+
                 isType = CollectionUtils.find(classifier.getAllGeneralizations(), new Predicate()
                 {
+
                     public boolean evaluate(Object object)
                     {
-                        String name = StringUtils.trimToEmpty(
-                                ((ModelElementFacade)object).getFullyQualifiedName(true));
+
+                        String name = StringUtils.trimToEmpty(((ModelElementFacade) object).getFullyQualifiedName(true));
+
                         return name.equals(type);
+
                     }
+
                 }) != null;
+
             }
+
             if (!isType)
             {
+
                 // Match=true if the classifier name is in a different package than datatype::, i.e. PrimitiveTypes::
                 // or the name is the same. Allows using Java, UML Standard types instead of AndroMDA types
                 final String lastType = StringUtils.substringAfterLast(typeName, ":");
+
                 // If FQN class name is the same as the mapped implementation Class Name
                 name = StringUtils.trimToEmpty(classifier.getFullyQualifiedName(true));
+
                 // IgnoreCase allows primitive and wrapped types to both return true
-                if (lastType.equalsIgnoreCase(StringUtils.substringAfterLast(classifier.getFullyQualifiedName(), ":"))
-                    || lastType.equalsIgnoreCase(name) || lastType.equalsIgnoreCase(classifier.getFullyQualifiedName()))
+                if (lastType.equalsIgnoreCase(StringUtils.substringAfterLast(classifier.getFullyQualifiedName(), ":")) || lastType.equalsIgnoreCase(name) || lastType.equalsIgnoreCase(classifier.getFullyQualifiedName()))
                 {
+
                     isType = true;
+
                 }
+
             }
+
         }
+
         return isType;
+
     }
 
     // TODO: Move this to an external configuration. Distinguish between Java, C# reserved words.
     private static List<String> reservedWords = new ArrayList<String>();
+
     private static void populateReservedWords()
     {
+
         synchronized (reservedWords)
         {
+
             if (reservedWords.isEmpty())
             {
+
                 reservedWords.add("abstract");
                 reservedWords.add("as");
                 reservedWords.add("assert");
@@ -190,8 +251,11 @@ public class UMLMetafacadeUtils
                 reservedWords.add("void");
                 reservedWords.add("volatile");
                 reservedWords.add("while");
+
             }
+
         }
+
     }
 
     /**
@@ -201,13 +265,20 @@ public class UMLMetafacadeUtils
      */
     public static boolean isReservedWord(String name)
     {
+
         boolean reserved = false;
+
         populateReservedWords();
+
         if (StringUtils.isNotBlank(name) && reservedWords.contains(name.toLowerCase()))
         {
+
             reserved = true;
+
         }
+
         return reserved;
+
     }
 
     /**
@@ -218,7 +289,9 @@ public class UMLMetafacadeUtils
      */
     public static String getGetterPrefix(final ClassifierFacade type)
     {
-        return type != null && type.isBooleanType() && type.isPrimitive() ? "is" : "get";
+
+        return ((type != null) && type.isBooleanType() && type.isPrimitive()) ? "is" : "get";
+
     }
 
     /**
@@ -231,8 +304,10 @@ public class UMLMetafacadeUtils
      */
     public static String getGetterPrefix(final ClassifierFacade type, int lowerBound)
     {
+
         // Automatically converted to primitive type or wrapped type based on lowerBound
-        return type != null && type.isBooleanType() && (lowerBound > 0 || type.isPrimitive()) ? "is" : "get";
+        return ((type != null) && type.isBooleanType() && ((lowerBound > 0) || type.isPrimitive())) ? "is" : "get";
+
     }
 
     /**
@@ -244,13 +319,17 @@ public class UMLMetafacadeUtils
      */
     public static boolean isConstraintKind(String expression, String kind)
     {
+
         Pattern pattern = Pattern.compile(".*\\s*" + StringUtils.trimToEmpty(kind) + "\\s*\\w*\\s*:.*", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(StringUtils.trimToEmpty(expression));
+
         return matcher.matches();
+
     }
 
     // TODO extract the mappings into the configurable metafacade namespace in UMLProfile
     private static Map<String, String> implCollection = new HashMap<String, String>();
+
     /**
      * Transforms the declared type to implementation type for a declared Collection.
      * Default: Collection=LinkedList, List=ArrayList, Set=HashSet, SortedSet=TreeSet.
@@ -261,89 +340,101 @@ public class UMLMetafacadeUtils
      */
     public static String getImplCollection(final String input)
     {
+
         synchronized (implCollection)
         {
+
             // Populate collection map based on profile.xml settings
             // TODO Use mapped implementation type instead of model types
             if (implCollection.isEmpty())
             {
+
                 // Put all mappings into Map, removing the initial 'datatype::'
                 //implCollection.put("List", "ArrayList");
                 //implCollection.put("Set", "HashSet");
                 //implCollection.put("SortedSet", "TreeSet");
                 //implCollection.put("Map", "HashMap");
                 //implCollection.put("SortedMap", "TreeMap");
-                implCollection.put(UMLProfile.COLLECTION_TYPE_NAME.substring(
-                        UMLProfile.COLLECTION_TYPE_NAME.lastIndexOf(':')+1),
-                    UMLProfile.COLLECTION_IMPL_TYPE_NAME.substring(
-                        UMLProfile.COLLECTION_IMPL_TYPE_NAME.lastIndexOf(':')+1));
-                implCollection.put(UMLProfile.LIST_TYPE_NAME.substring(
-                        UMLProfile.LIST_TYPE_NAME.lastIndexOf(':')+1),
-                    UMLProfile.LIST_IMPL_TYPE_NAME.substring(
-                        UMLProfile.LIST_IMPL_TYPE_NAME.lastIndexOf(':')+1));
-                implCollection.put(UMLProfile.MAP_TYPE_NAME.substring(
-                        UMLProfile.MAP_TYPE_NAME.lastIndexOf(':')+1),
-                    UMLProfile.MAP_IMPL_TYPE_NAME.substring(
-                        UMLProfile.MAP_IMPL_TYPE_NAME.lastIndexOf(':')+1));
-                implCollection.put(UMLProfile.ORDERED_MAP_TYPE_NAME.substring(
-                        UMLProfile.ORDERED_MAP_TYPE_NAME.lastIndexOf(':')+1),
-                    UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME.substring(
-                        UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME.lastIndexOf(':')+1));
-                implCollection.put(UMLProfile.ORDERED_SET_TYPE_NAME.substring(
-                        UMLProfile.ORDERED_SET_TYPE_NAME.lastIndexOf(':')+1),
-                    UMLProfile.ORDERED_SET_IMPL_TYPE_NAME.substring(
-                        UMLProfile.ORDERED_SET_IMPL_TYPE_NAME.lastIndexOf(':')+1));
-                implCollection.put(UMLProfile.SET_TYPE_NAME.substring(
-                        UMLProfile.SET_TYPE_NAME.lastIndexOf(':')+1),
-                    UMLProfile.SET_IMPL_TYPE_NAME.substring(
-                        UMLProfile.SET_IMPL_TYPE_NAME.lastIndexOf(':')+1));
+                implCollection.put(UMLProfile.COLLECTION_TYPE_NAME.substring(UMLProfile.COLLECTION_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.COLLECTION_IMPL_TYPE_NAME.substring(UMLProfile.COLLECTION_IMPL_TYPE_NAME
+                        .lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.LIST_TYPE_NAME.substring(UMLProfile.LIST_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.LIST_IMPL_TYPE_NAME.substring(UMLProfile.LIST_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.MAP_TYPE_NAME.substring(UMLProfile.MAP_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.MAP_IMPL_TYPE_NAME.substring(UMLProfile.MAP_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.ORDERED_MAP_TYPE_NAME.substring(UMLProfile.ORDERED_MAP_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME.substring(UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME
+                        .lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.ORDERED_SET_TYPE_NAME.substring(UMLProfile.ORDERED_SET_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.ORDERED_SET_IMPL_TYPE_NAME.substring(UMLProfile.ORDERED_SET_IMPL_TYPE_NAME
+                        .lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.SET_TYPE_NAME.substring(UMLProfile.SET_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.SET_IMPL_TYPE_NAME.substring(UMLProfile.SET_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
+
             }
+
         }
+
         String collectionImpl = input;
+
         // No transformation if no package on fullyQualifiedName
         if (input.indexOf('.') > 0)
         {
+
             String collectionType = null;
             String genericType = null;
             String pkg = null;
+
             if (input.indexOf('<') > 0)
             {
+
                 collectionType = input.substring(0, input.indexOf('<'));
                 genericType = input.substring(input.indexOf('<'));
+
                 if (genericType.startsWith("<? extends "))
                 {
+
                     // Implementation collection type cannot declare 'extends'
                     genericType = '<' + genericType.substring(11);
+
                 }
-            }
-            else
+
+            } else
             {
+
                 collectionType = input;
                 genericType = "";
+
             }
+
             if (collectionType.indexOf('.') > 0)
             {
-                pkg = collectionType.substring(0, collectionType.lastIndexOf('.')+1);
-                collectionType = collectionType.substring(collectionType.lastIndexOf('.')+1);
-            }
-            else
+
+                pkg = collectionType.substring(0, collectionType.lastIndexOf('.') + 1);
+                collectionType = collectionType.substring(collectionType.lastIndexOf('.') + 1);
+
+            } else
             {
+
                 pkg = "java.util.";
                 logger.warn("UMLMetafacadeUtils pkg not found for " + collectionType);
+
             }
+
             String implType = implCollection.get(collectionType);
+
             if (implType == null)
             {
+
                 logger.warn("UMLMetafacadeUtils colectionImpl not found for " + collectionType);
                 collectionImpl = pkg + "ArrayList" + genericType;
-            }
-            else
+
+            } else
             {
+
                 //logger.info("UMLMetafacadeUtils translated from " + collectionType + " to " + implType);
                 collectionImpl = pkg + implType + genericType;
+
             }
+
         }
+
         return collectionImpl;
+
     }
 
     /**
@@ -355,44 +446,56 @@ public class UMLMetafacadeUtils
      */
     public static boolean shouldOutput(ModelElementFacade mef)
     {
+
         boolean rtn = true;
-        if (mef!=null)
+
+        if (mef != null)
         {
+
             try
             {
+
                 PackageFacade pkg = (PackageFacade) mef.getPackage();
+
                 if (mef instanceof PackageFacade)
                 {
+
                     pkg = (PackageFacade) mef;
+
                 }
-                if (mef.hasStereotype(UMLProfile.STEREOTYPE_DOC_ONLY) ||
-                    mef.hasStereotype(UMLProfile.STEREOTYPE_FUTURE) ||
-                    mef.hasStereotype(UMLProfile.STEREOTYPE_IGNORE))
+
+                if (mef.hasStereotype(UMLProfile.STEREOTYPE_DOC_ONLY) || mef.hasStereotype(UMLProfile.STEREOTYPE_FUTURE) || mef.hasStereotype(UMLProfile.STEREOTYPE_IGNORE))
                 {
+
                     rtn = false;
+
                 }
-                if (pkg != null &&
-                    ( pkg.hasStereotype(UMLProfile.STEREOTYPE_DOC_ONLY) ||
-                    pkg.hasStereotype(UMLProfile.STEREOTYPE_FUTURE) ||
-                    pkg.hasStereotype(UMLProfile.STEREOTYPE_IGNORE) ||
-                    pkg.hasStereotype("analysis") ||
-                    pkg.hasStereotype("perspective") ||
-                    // Verify package does not have any Java disallowed characters
-                    StringUtils.containsAny(pkg.getName(), " `~!@#%^&*()-+={}[]:;<>,?/|") ||
-                            "PrimitiveTypes".equals(pkg.getName()) ||
-                            "datatype".equals(pkg.getName())))
+
+                if ((pkg != null)
+                        && (pkg.hasStereotype(UMLProfile.STEREOTYPE_DOC_ONLY) || pkg.hasStereotype(UMLProfile.STEREOTYPE_FUTURE) || pkg.hasStereotype(UMLProfile.STEREOTYPE_IGNORE) || pkg.hasStereotype("analysis")
+                                || pkg.hasStereotype("perspective") || // Verify package does not have any Java disallowed characters
+                                StringUtils.containsAny(pkg.getName(), " `~!@#%^&*()-+={}[]:;<>,?/|") || "PrimitiveTypes".equals(pkg.getName()) || "datatype".equals(pkg.getName())))
                 {
+
                     rtn = false;
+
                 }
+
             }
             catch (Exception ex)
             {
+
                 // Output=true anyway just in case we want this output
-                logger.error("UMLMetafacadeUtils.shouldOutput for " + mef.toString() + ' ' + ex.getClass().getName() + ": "+ ex.getMessage());
+                logger.error("UMLMetafacadeUtils.shouldOutput for " + mef.toString() + ' ' + ex.getClass().getName() + ": " + ex.getMessage());
+
             }
+
         }
+
         return rtn;
+
     }
+
     /**
      * Get the classname without the package name and without additional template<> parameters.
      *
@@ -400,16 +503,20 @@ public class UMLMetafacadeUtils
      * @param enableTemplating
      * @return getNameWithoutPackage
      */
+
     // TODO This should really be a method on ModelElementFacade
     public static String getClassDeclaration(ModelElementFacade facade, boolean enableTemplating)
     {
+
         return UMLMetafacadeUtils.getClassDeclaration(facade, facade.getName(), enableTemplating);
+
     }
 
     private static final String namespaceScopeOperator = ".";
-    private static final String COMMA = ", ";
-    private static final String LT = "<";
-    private static final String GT = ">";
+    private static final String COMMA                  = ", ";
+    private static final String LT                     = "<";
+    private static final String GT                     = ">";
+
     /**
      * Get the classname without the package name and without additional template<> parameters.
      *
@@ -418,40 +525,53 @@ public class UMLMetafacadeUtils
      * @param enableTemplating Whether template declaration should be created.
      * @return getNameWithoutPackage
      */
+
     // TODO This should really be a method on ModelElementFacade
     public static String getClassDeclaration(ModelElementFacade facade, String className, boolean enableTemplating)
     {
+
         if (StringUtils.isBlank(className))
-    {
+        {
+
             className = facade.getName();
+
         }
+
         String fullName = StringUtils.trimToEmpty(className);
         final String packageName = facade.getPackageName(true);
         final String metafacadeNamespaceScopeOperator = MetafacadeConstants.NAMESPACE_SCOPE_OPERATOR;
+
         if (StringUtils.isNotBlank(packageName))
         {
-            fullName = packageName + metafacadeNamespaceScopeOperator + fullName;
-        }
-            final TypeMappings languageMappings = facade.getLanguageMappings();
-            if (languageMappings != null)
-            {
-                fullName = StringUtils.trimToEmpty(languageMappings.getTo(fullName));
 
-                // now replace the metafacade scope operators
-                // with the mapped scope operators
-                fullName = StringUtils.replace(
-                        fullName,
-                        metafacadeNamespaceScopeOperator,
-                        namespaceScopeOperator);
-            }
-        // remove the package qualifier
-        if (fullName.indexOf('.')>-1)
+            fullName = packageName + metafacadeNamespaceScopeOperator + fullName;
+
+        }
+
+        final TypeMappings languageMappings = facade.getLanguageMappings();
+
+        if (languageMappings != null)
         {
-            fullName = fullName.substring(fullName.lastIndexOf('.')+1);
+
+            fullName = StringUtils.trimToEmpty(languageMappings.getTo(fullName));
+
+            // now replace the metafacade scope operators
+            // with the mapped scope operators
+            fullName = StringUtils.replace(fullName, metafacadeNamespaceScopeOperator, namespaceScopeOperator);
+
+        }
+
+        // remove the package qualifier
+        if (fullName.indexOf('.') > -1)
+        {
+
+            fullName = fullName.substring(fullName.lastIndexOf('.') + 1);
+
         }
 
         if (facade.isTemplateParametersPresent() && enableTemplating)
         {
+
             // we'll be constructing the parameter list in this buffer
             final StringBuilder buffer = new StringBuilder();
 
@@ -465,22 +585,34 @@ public class UMLMetafacadeUtils
             // outer condition)
             int size = facade.getTemplateParameters().size();
             int i = 1;
+
             for (TemplateParameterFacade parameter : facade.getTemplateParameters())
             {
+
                 if (parameter != null)
                 {
+
                     String name = parameter.getValidationName();
-                    if (name==null && parameter.getParameter() != null)
+
+                    if ((name == null) && (parameter.getParameter() != null))
                     {
+
                         name = parameter.getParameter().getName();
+
                     }
+
                     buffer.append(name);
+
                     if (i < size)
                     {
+
                         buffer.append(COMMA);
                         i++;
+
                     }
+
                 }
+
             }
 
             // we're finished listing the parameters
@@ -488,12 +620,15 @@ public class UMLMetafacadeUtils
 
             // we have constructed the full name in the buffer
             fullName = buffer.toString();
+
         }
 
         return fullName;
+
     }
 
     private static final String QUESTION = "?";
+
     /**
      * Get the generic template<?, ?> declaration.
      *
@@ -501,12 +636,16 @@ public class UMLMetafacadeUtils
      * @param enableTemplating
      * @return getGenericTemplate
      */
+
     // TODO This should really be a method on ModelElementFacade
     public static String getGenericTemplate(ModelElementFacade facade, boolean enableTemplating)
     {
+
         String fullName = "";
-        if (facade != null && facade.isTemplateParametersPresent() && enableTemplating)
+
+        if ((facade != null) && facade.isTemplateParametersPresent() && enableTemplating)
         {
+
             // we'll be constructing the parameter list in this buffer
             final StringBuilder buffer = new StringBuilder();
 
@@ -515,15 +654,19 @@ public class UMLMetafacadeUtils
 
             // loop over the parameters, we are so to have at least one (see
             // outer condition)
-           for (Iterator<TemplateParameterFacade> parameterIterator =
-               facade.getTemplateParameters().iterator(); parameterIterator.hasNext();)
-           {
+            for (Iterator<TemplateParameterFacade> parameterIterator = facade.getTemplateParameters().iterator(); parameterIterator.hasNext();)
+            {
+
                 parameterIterator.next();
                 buffer.append(QUESTION);
+
                 if (parameterIterator.hasNext())
                 {
+
                     buffer.append(COMMA);
+
                 }
+
             }
 
             // we're finished listing the parameters
@@ -531,9 +674,11 @@ public class UMLMetafacadeUtils
 
             // we have constructed the full name in the buffer
             fullName = buffer.toString();
+
         }
 
         return fullName;
+
     }
 
     /**
@@ -542,26 +687,34 @@ public class UMLMetafacadeUtils
      * @param facade
      * @return getFQNameWithoutTemplate
      */
+
     // TODO This should really be a method on ModelElementFacade
     public static String getFQNameWithoutTemplate(ModelElementFacade facade)
     {
+
         String fullName = StringUtils.trimToEmpty(facade.getName());
         final String packageName = facade.getPackageName(true);
         final String metafacadeNamespaceScopeOperator = MetafacadeConstants.NAMESPACE_SCOPE_OPERATOR;
+
         if (StringUtils.isNotBlank(packageName))
         {
+
             fullName = packageName + metafacadeNamespaceScopeOperator + fullName;
+
         }
+
         final TypeMappings languageMappings = facade.getLanguageMappings();
+
         if (languageMappings != null)
         {
+
             fullName = StringUtils.trimToEmpty(languageMappings.getTo(fullName));
-            fullName = StringUtils.replace(
-                fullName,
-                metafacadeNamespaceScopeOperator,
-                namespaceScopeOperator);
+            fullName = StringUtils.replace(fullName, metafacadeNamespaceScopeOperator, namespaceScopeOperator);
+
         }
+
         return fullName;
+
     }
 
     /**
@@ -573,20 +726,30 @@ public class UMLMetafacadeUtils
      */
     public static boolean shouldOutput(ModelElementFacade mef, String outletFile, boolean refOutput)
     {
+
         boolean rtn = true;
-        if (outletFile==null)
+
+        if (outletFile == null)
         {
+
             return rtn;
+
         }
+
         if (outletFile.endsWith(".ref") && !refOutput)
         {
+
             rtn = false;
-        }
-        else
+
+        } else
         {
+
             rtn = shouldOutput(mef);
+
         }
+
         return rtn;
+
     }
 
     /**
@@ -596,7 +759,9 @@ public class UMLMetafacadeUtils
      */
     public String createConstructor(ModelElementFacade facade)
     {
+
         return createConstructor(facade, false);
+
     }
 
     /**
@@ -607,7 +772,9 @@ public class UMLMetafacadeUtils
      */
     public String createConstructor(ModelElementFacade facade, boolean useMany)
     {
+
         return createConstructor(facade, useMany, null);
+
     }
 
     /**
@@ -620,399 +787,579 @@ public class UMLMetafacadeUtils
     @SuppressWarnings("null")
     public String createConstructor(ModelElementFacade facade, boolean useMany, ModelElementFacade parent)
     {
-        if (facade==null)
+
+        if (facade == null)
         {
+
             return "facade was null";
+
         }
+
         String rtn = "";
         String toString = "";
         ClassifierFacade type = null;
         String typeName = facade.getFullyQualifiedName();
         String name = facade.getName();
         String defaultValue = "";
+
         // TODO: Default collection type from properties
         String collectionType = "java.util.ArrayList";
         Boolean isMany = null;
         boolean isEnumeration = false;
         int maxLength = 9999;
+
         /*if (parent != null)
+           {
+               // See if a named dependency exists with the same facadeName
+               for (final DependencyFacade dependency : parent.getSourceDependencies())
+               {
+                   if (dependency.getName().equals(facade.getName()) && dependency instanceof DependencyFacade)
+                   {
+                       facade = ((DependencyFacade)dependency).getTargetElement();
+                       toString = ".toString()";
+                       break;
+                   }
+               }
+           }*/
+        try
         {
-            // See if a named dependency exists with the same facadeName
-            for (final DependencyFacade dependency : parent.getSourceDependencies())
-            {
-                if (dependency.getName().equals(facade.getName()) && dependency instanceof DependencyFacade)
-                {
-                    facade = ((DependencyFacade)dependency).getTargetElement();
-                    toString = ".toString()";
-                    break;
-                }
-            }
-        }*/
-        try {
+
             if (logger.isDebugEnabled())
             {
+
                 logger.debug("name=" + name + " typeName=" + typeName + " useMany=" + useMany + " facade=" + facade + " parent=" + parent);
+
             }
+
             // Use persistence or validation annotations to limit the created value length
-            String length = (String)facade.findTaggedValue("andromda_persistence_column_length");
-            if (length != null && length.length()>0 && StringUtils.isNumeric(length))
+            String length = (String) facade.findTaggedValue("andromda_persistence_column_length");
+
+            if ((length != null) && (length.length() > 0) && StringUtils.isNumeric(length))
             {
+
                 maxLength = Integer.parseInt(length);
-            }
-            else
+
+            } else
             {
-                length = (String)facade.findTaggedValue("andromda_persistence_column_precision");
-                if (length != null && length.length()>0 && StringUtils.isNumeric(length))
+
+                length = (String) facade.findTaggedValue("andromda_persistence_column_precision");
+
+                if ((length != null) && (length.length() > 0) && StringUtils.isNumeric(length))
                 {
+
                     maxLength = Integer.parseInt(length);
-                }
-                else
+
+                } else
                 {
-                    length = (String)facade.findTaggedValue("andromda_validation_length");
-                    if (length != null && length.length()>0 && StringUtils.isNumeric(length))
+
+                    length = (String) facade.findTaggedValue("andromda_validation_length");
+
+                    if ((length != null) && (length.length() > 0) && StringUtils.isNumeric(length))
                     {
+
                         maxLength = Integer.parseInt(length);
-                    }
-                    else
+
+                    } else
                     {
-                        length = (String)facade.findTaggedValue("andromda_validation_precision");
-                        if (length != null && length.length()>0 && StringUtils.isNumeric(length))
+
+                        length = (String) facade.findTaggedValue("andromda_validation_precision");
+
+                        if ((length != null) && (length.length() > 0) && StringUtils.isNumeric(length))
                         {
+
                             maxLength = Integer.parseInt(length);
+
                         }
+
                     }
+
                 }
+
             }
+
             if (facade instanceof ClassifierFacade)
             {
+
                 ClassifierFacade classifier = (ClassifierFacade) facade;
+
                 type = classifier;
                 typeName = classifier.getFullyQualifiedName();
+
             }
+
             if (facade instanceof AttributeFacade)
             {
+
                 AttributeFacade attr = (AttributeFacade) facade;
+
                 defaultValue = attr.getDefaultValue();
                 type = attr.getType();
+
                 if (useMany)
                 {
+
                     typeName = attr.getGetterSetterTypeName();
-                }
-                else
+
+                } else
                 {
+
                     typeName = type.getFullyQualifiedName();
+
                 }
-                if (attr.getUpper()>1 || attr.getUpper()==-1)
+
+                if ((attr.getUpper() > 1) || (attr.getUpper() == -1))
                 {
+
                     isMany = true;
+
                 }
-            }
-            else if (facade instanceof ParameterFacade)
+
+            } else if (facade instanceof ParameterFacade)
             {
+
                 ParameterFacade attr = (ParameterFacade) facade;
+
                 defaultValue = attr.getDefaultValue();
                 type = attr.getType();
                 typeName = type.getFullyQualifiedName();
+
                 if (type.isEnumeration())
                 {
+
                     facade = type;
-                }
-                else if (useMany)
+
+                } else if (useMany)
                 {
+
                     typeName = collectionType + '<' + type.getFullyQualifiedName() + '>';
-                }
-                else
+
+                } else
                 {
+
                     typeName = type.getFullyQualifiedName();
+
                 }
-                if (attr.getUpper()>1 || attr.getUpper()==-1)
+
+                if ((attr.getUpper() > 1) || (attr.getUpper() == -1))
                 {
+
                     isMany = true;
+
                 }
+
             }
+
             if (facade instanceof AssociationEndFacade)
             {
+
                 AssociationEndFacade attr = (AssociationEndFacade) facade;
+
                 type = attr.getType();
+
                 if (useMany)
                 {
+
                     typeName = attr.getGetterSetterTypeName();
-                }
-                else
+
+                } else
                 {
+
                     typeName = type.getFullyQualifiedName();
+
                 }
-                if (attr.getUpper()>1 || attr.getUpper()==-1)
+
+                if ((attr.getUpper() > 1) || (attr.getUpper() == -1))
                 {
+
                     isMany = true;
+
                 }
+
                 facade = attr.getType();
+
             }
+
             // TODO: Make this work for attribute types other than String.
-            if (parent != null && StringUtils.isEmpty(defaultValue) && ("String".equals(typeName) || "java.lang.String".equals(typeName)))
+            if ((parent != null) && StringUtils.isEmpty(defaultValue) && ("String".equals(typeName) || "java.lang.String".equals(typeName)))
             {
+
                 // See if a named dependency exists with the same facadeName
                 for (final DependencyFacade dependency : parent.getSourceDependencies())
                 {
+
                     if (dependency.getName().equals(facade.getName()))
                     {
+
                         facade = dependency.getTargetElement();
+
                         // DependencyFacade type comes back empty for UML2::Integer
                         // Need to get metaObject Name property and verify it is not null.
                         if (facade instanceof ClassifierFacade)
                         {
+
                             type = (ClassifierFacade) facade;
+
                         }
+
                         typeName = facade.getFullyQualifiedName();
                         toString = ".toString()";
+
                         if (logger.isDebugEnabled())
                         {
-                            logger.debug(parent + " " + facade + " = "
-                                    + dependency + " type=" + type + " typeName="
-                                    + typeName);
+
+                            logger.debug(parent + " " + facade + " = " + dependency + " type=" + type + " typeName=" + typeName);
+
                         }
+
                         break;
+
                     }
+
                 }
+
             }
+
             if (type instanceof EnumerationFacade)
             {
+
                 EnumerationFacade enumer = (EnumerationFacade) type;
+
                 //type = enumer.getLiteralType().getFullyQualifiedName();
                 Collection<AttributeFacade> literals = enumer.getLiterals();
+
                 if (StringUtils.isEmpty(defaultValue) && !literals.isEmpty())
                 {
+
                     // Just get the first enumeration literal
                     Object literal = literals.iterator().next();
+
                     if (literal instanceof EnumerationLiteralFacade)
                     {
+
                         EnumerationLiteralFacade enumLiteral = (EnumerationLiteralFacade) literal;
+
                         defaultValue = enumLiteral.getValue();
-                    }
-                    else if (literal instanceof AttributeFacade)
+
+                    } else if (literal instanceof AttributeFacade)
                     {
+
                         AttributeFacade attrib = (AttributeFacade) literal;
+
                         defaultValue = attrib.getEnumerationValue();
-                        if (defaultValue==null)
+
+                        if (defaultValue == null)
                         {
+
                             defaultValue = attrib.getDefaultValue();
+
                         }
+
                     }
+
                     // Literal value is always a String. Remove quotes if part of default (i.e. class attribute).
                     defaultValue = StringUtils.remove(defaultValue, "\"");
                     defaultValue = enumer.getFullyQualifiedName() + ".fromValue(\"" + defaultValue + "\")";
-                }
-                else
+
+                } else
                 {
+
                     defaultValue = enumer.getName() + '.' + defaultValue;
+
                 }
+
                 isEnumeration = true;
+
                 if (logger.isDebugEnabled())
                 {
+
                     logger.debug("EnumerationFacade=" + facade + " type=" + type + " literals=" + literals.size() + " default=" + defaultValue);
+
                 }
+
             }
-            if (type != null && type.findTaggedValue("andromda_persistence_lob_type")!=null)
+
+            if ((type != null) && (type.findTaggedValue("andromda_persistence_lob_type") != null))
             {
+
                 typeName = String.valueOf(type.findTaggedValue("andromda_persistence_lob_type"));
+
                 // LOB Types have a different datatype than the underlying declared type
             }
-            if (useMany && (isMany==null || isMany ) && !typeName.endsWith("[]"))
+
+            if (useMany && ((isMany == null) || isMany) && !typeName.endsWith("[]"))
             {
+
                 typeName = UMLMetafacadeUtils.getImplCollection(typeName);
+
                 if (!typeName.startsWith("java.util"))
                 {
+
                     if (type.equals("java.util.Collection") || typeName.equals("java.util.List"))
                     {
+
                         rtn = "new " + collectionType + "<" + typeName + ">()";
-                    }
-                    else if (typeName.equals("java.util.Set"))
+
+                    } else if (typeName.equals("java.util.Set"))
                     {
+
                         rtn = "new java.util.HashSet<" + typeName + ">()";
-                    }
-                    else if (typeName.equals("java.util.Map"))
+
+                    } else if (typeName.equals("java.util.Map"))
                     {
+
                         rtn = "new java.util.HashMap<" + typeName + ">()";
-                    }
-                    else
+
+                    } else
                     {
+
                         rtn = "new " + collectionType + '<' + typeName + ">()";
+
                     }
-                }
-                else
+
+                } else
                 {
+
                     // Assume array or type Collection<type>
                     rtn = "new " + typeName + "()";
+
                 }
-            }
-            else if ("String".equals(typeName) || "java.lang.String".equals(typeName))
+
+            } else if ("String".equals(typeName) || "java.lang.String".equals(typeName))
             {
-                if (defaultValue != null && defaultValue.trim().length() > 0)
+
+                if ((defaultValue != null) && (defaultValue.trim().length() > 0))
                 {
+
                     if (defaultValue.startsWith("\"") || defaultValue.startsWith("'"))
                     {
-                        defaultValue = defaultValue.substring(1, defaultValue.length()-1);
+
+                        defaultValue = defaultValue.substring(1, defaultValue.length() - 1);
+
                     }
+
                     if (defaultValue.endsWith("\"") || defaultValue.endsWith("'"))
                     {
-                        defaultValue = defaultValue.substring(0, defaultValue.length()-2);
+
+                        defaultValue = defaultValue.substring(0, defaultValue.length() - 2);
+
                     }
+
                     if (defaultValue.trim().length() > maxLength)
                     {
+
                         logger.warn("Attribute default for " + facade.getFullyQualifiedName() + " is longer than max column length " + maxLength);
-                        defaultValue = defaultValue.substring(0, maxLength-1);
+                        defaultValue = defaultValue.substring(0, maxLength - 1);
+
                     }
+
                 }
+
                 rtn = '\"' + (StringUtils.isNotBlank(defaultValue) ? defaultValue : name) + '\"';
-            }
-            else if ("Boolean".equals(typeName) || "java.lang.Boolean".equals(typeName))
+
+            } else if ("Boolean".equals(typeName) || "java.lang.Boolean".equals(typeName))
             {
-                rtn = (StringUtils.isNotEmpty(defaultValue) ? "Boolean." + defaultValue.toUpperCase() : "Boolean.TRUE");
-            }
-            else if ("boolean".equals(typeName))
+
+                rtn = (StringUtils.isNotEmpty(defaultValue) ? ("Boolean." + defaultValue.toUpperCase()) : "Boolean.TRUE");
+
+            } else if ("boolean".equals(typeName))
             {
+
                 rtn = (StringUtils.isNotEmpty(defaultValue) ? defaultValue : "true");
-            }
-            else if ("int".equals(typeName) || "short".equals(typeName) || "long".equals(typeName)
-                    || "byte".equals(typeName) || "float".equals(typeName) || "double".equals(typeName))
+
+            } else if ("int".equals(typeName) || "short".equals(typeName) || "long".equals(typeName) || "byte".equals(typeName) || "float".equals(typeName) || "double".equals(typeName))
             {
+
                 rtn = (StringUtils.isNotEmpty(defaultValue) ? defaultValue : "1");
-            }
-            else if ("java.util.Date".equals(typeName))
+
+            } else if ("java.util.Date".equals(typeName))
             {
+
                 rtn = "new " + typeName + "()";
-            }
-            else if ("java.sql.Timestamp".equals(typeName))
+
+            } else if ("java.sql.Timestamp".equals(typeName))
             {
+
                 rtn = "new java.sql.Timestamp(System.currentTimeMillis())";
-            }
-            else if ("java.util.Calendar".equals(typeName))
+
+            } else if ("java.util.Calendar".equals(typeName))
             {
+
                 rtn = "java.util.Calendar.getInstance()";
-            }
-            else if ("char".equals(typeName))
+
+            } else if ("char".equals(typeName))
             {
+
                 rtn = "'" + (StringUtils.isNotEmpty(defaultValue) ? defaultValue : name.substring(0, 1)) + "'";
-            }
-            else if ("Character".equals(typeName))
+
+            } else if ("Character".equals(typeName))
             {
-                rtn = "new Character('" + (StringUtils.isNotEmpty(defaultValue) ? "new Character(" + defaultValue : name.substring(0, 1)) + "')";
-            }
-            else if ("Byte".equals(typeName) || "java.lang.Byte".equals(typeName))
+
+                rtn = "new Character('" + (StringUtils.isNotEmpty(defaultValue) ? ("new Character(" + defaultValue) : name.substring(0, 1)) + "')";
+
+            } else if ("Byte".equals(typeName) || "java.lang.Byte".equals(typeName))
             {
+
                 rtn = "new Byte(\"" + facade.getName() + "\")";
-            }
-            else if ("Short".equals(typeName) || "java.lang.Short".equals(typeName)
-                    || "Integer".equals(typeName) || "java.lang.Integer".equals(typeName)
-                    || "Long".equals(typeName) || "java.lang.Long".equals(typeName)
-                    || "Float".equals(typeName) || "java.lang.Float".equals(typeName)
-                    || "Double".equals(typeName) || "java.lang.Double".equals(typeName)
-                    || "java.math.BigDecimal".equals(typeName))
+
+            } else if ("Short".equals(typeName) || "java.lang.Short".equals(typeName) || "Integer".equals(typeName) || "java.lang.Integer".equals(typeName) || "Long".equals(typeName) || "java.lang.Long".equals(typeName)
+                    || "Float".equals(typeName) || "java.lang.Float".equals(typeName) || "Double".equals(typeName) || "java.lang.Double".equals(typeName) || "java.math.BigDecimal".equals(typeName))
             {
-                rtn = (!StringUtils.isEmpty(defaultValue) ? typeName + ".valueOf(" + defaultValue + ")" : typeName + ".valueOf(1)");
-            }
-            else if ("java.math.BigInteger".equals(typeName))
+
+                rtn = ((!StringUtils.isEmpty(defaultValue)) ? (typeName + ".valueOf(" + defaultValue + ")") : (typeName + ".valueOf(1)"));
+
+            } else if ("java.math.BigInteger".equals(typeName))
             {
-                rtn = (!StringUtils.isEmpty(defaultValue) ? "java.math.BigInteger.valueOf(" + defaultValue + ')' : "java.math.BigInteger.valueOf(1)");
-            }
-            else if ("byte[]".equals(typeName))
+
+                rtn = ((!StringUtils.isEmpty(defaultValue)) ? ("java.math.BigInteger.valueOf(" + defaultValue + ')') : "java.math.BigInteger.valueOf(1)");
+
+            } else if ("byte[]".equals(typeName))
             {
-                rtn = (StringUtils.isNotBlank(defaultValue) ? defaultValue : '\"' + name + '\"') + ".getBytes()";
-            }
-            else if ("char[]".equals(typeName))
+
+                rtn = (StringUtils.isNotBlank(defaultValue) ? defaultValue : ('\"' + name + '\"')) + ".getBytes()";
+
+            } else if ("char[]".equals(typeName))
             {
+
                 String value = StringUtils.isNotBlank(defaultValue) ? defaultValue : name;
+
                 if (!value.startsWith("\""))
                 {
+
                     value = "\"" + value;
+
                 }
+
                 if (!value.endsWith("\""))
                 {
+
                     value = value + "\"";
+
                 }
+
                 rtn = value + ".toCharArray()";
-            }
-            else if ("String[]".equals(typeName))
+
+            } else if ("String[]".equals(typeName))
             {
-                rtn = "new String[] { " + (StringUtils.isNotBlank(defaultValue) ? defaultValue : '\"' + name + '\"') + " }";
-            }
-            else if (isEnumeration)
+
+                rtn = "new String[] { " + (StringUtils.isNotBlank(defaultValue) ? defaultValue : ('\"' + name + '\"')) + " }";
+
+            } else if (isEnumeration)
             {
+
                 if (useMany)
                 {
+
                     rtn = collectionType + '<' + defaultValue + '>';
-                }
-                else
+
+                } else
                 {
+
                     rtn = defaultValue;
+
                 }
-            }
-            else if (!StringUtils.isEmpty(defaultValue))
+
+            } else if (!StringUtils.isEmpty(defaultValue))
             {
+
                 rtn = "new " + typeName + '(' + defaultValue + ')';
-            }
-            else if (type != null && type.hasStereotype("EmbeddedValue"))
+
+            } else if ((type != null) && type.hasStereotype("EmbeddedValue"))
             {
+
                 // EmbeddedValue classes will always be abstract with Impl generated classes.
                 rtn = "new " + typeName + "Impl()";
-            }
-            else if (type instanceof GeneralizableElementFacade)
+
+            } else if (type instanceof GeneralizableElementFacade)
             {
+
                 // If type has a descendant with name <typeName>Impl, assume typeNameImpl must be instantiated instead of typeName
                 if (typeName.endsWith("[]"))
                 {
-                    rtn = "{ new " + typeName.substring(0, typeName.length()-2) + "() }";
-                }
-                else
+
+                    rtn = "{ new " + typeName.substring(0, typeName.length() - 2) + "() }";
+
+                } else
                 {
+
                     rtn = "new " + typeName + "()";
+
                 }
+
                 //if (facade instanceof ClassifierFacade)
                 //{
-                    //ClassifierFacade classifier = (ClassifierFacade)facade;
-                    // If type is abstract, choose Impl descendant if exists, or the last descendant
-                    if (type.isAbstract())
+                //ClassifierFacade classifier = (ClassifierFacade)facade;
+                // If type is abstract, choose Impl descendant if exists, or the last descendant
+                if (type.isAbstract())
+                {
+
+                    // Can't instantiate abstract class - pick some descendant
+                    for (GeneralizableElementFacade spec : type.getSpecializations())
                     {
-                        // Can't instantiate abstract class - pick some descendant
-                        for (GeneralizableElementFacade spec : type.getSpecializations())
+
+                        if (spec.getName().equals(type.getName() + "Impl"))
                         {
-                            if (spec.getName().equals(type.getName() + "Impl"))
-                            {
-                                rtn = '(' + type.getName() + ")new " + typeName + "Impl()";
-                                break;
-                            }
-                            rtn = '(' + type.getName() + ")new " + spec.getFullyQualifiedName() + "()";
+
+                            rtn = '(' + type.getName() + ")new " + typeName + "Impl()";
+
+                            break;
+
                         }
+
+                        rtn = '(' + type.getName() + ")new " + spec.getFullyQualifiedName() + "()";
+
                     }
+
+                }
+
                 //}
-                GeneralizableElementFacade generalization = (GeneralizableElementFacade)type;
+                GeneralizableElementFacade generalization = (GeneralizableElementFacade) type;
+
                 for (GeneralizableElementFacade spec : generalization.getSpecializations())
                 {
+
                     if (spec.getName().equals(type.getName() + "Impl"))
                     {
+
                         rtn = '(' + type.getName() + ")new " + spec.getFullyQualifiedName() + "Impl()";
+
                     }
+
                 }
-            }
-            else if (typeName.endsWith("[]"))
+
+            } else if (typeName.endsWith("[]"))
             {
-                rtn = "new " + typeName + " { new " + typeName.substring(0, typeName.length()-2) + "() }";
-            }
-            else
+
+                rtn = "new " + typeName + " { new " + typeName.substring(0, typeName.length() - 2) + "() }";
+
+            } else
             {
+
                 rtn = "new " + typeName + "()";
+
             }
+
             rtn = StringUtils.replace(rtn, "java.util.Collection", "java.util.ArrayList") + toString;
             rtn = StringUtils.replace(rtn, "java.util.Set", "java.util.HashSet") + toString;
+
             if (logger.isDebugEnabled())
             {
+
                 logger.debug("facade=" + facade + " facadeName=" + facade.getName() + " type=" + type + " typeName=" + typeName + " name=" + name + " isMany=" + isMany + " defaultValue=" + defaultValue + " rtn=" + rtn);
+
             }
-        } catch (RuntimeException e) {
-            logger.error(e + " facade=" + facade + " facadeName=" + facade.getName() + " parent=" + parent + " type=" + type + " typeName=" + typeName + " name=" + name + " isMany=" + isMany + " defaultValue=" + defaultValue);
-            e.printStackTrace();
+
         }
+        catch (RuntimeException e)
+        {
+
+            logger.error(e + " facade=" + facade + " facadeName=" + facade.getName() + " parent=" + parent + " type=" + type + " typeName=" + typeName + " name=" + name + " isMany=" + isMany + " defaultValue="
+                    + defaultValue);
+            e.printStackTrace();
+
+        }
+
         return rtn;
+
     }
 
     private static FastDateFormat df = FastDateFormat.getInstance("MM/dd/yyyy HH:mm:ss");
@@ -1025,11 +1372,16 @@ public class UMLMetafacadeUtils
      */
     public static String getDate(String format)
     {
-        if (df == null || !format.equals(df.getPattern()))
+
+        if ((df == null) || !format.equals(df.getPattern()))
         {
+
             df = FastDateFormat.getInstance(format);
+
         }
+
         return df.format(new Date());
+
     }
 
     /**
@@ -1039,6 +1391,9 @@ public class UMLMetafacadeUtils
      */
     public static String getDate()
     {
+
         return df.format(new Date());
+
     }
+
 }

@@ -43,7 +43,8 @@ import java.util.List;
  * @version $Revision$
  * @since $Date$
  */
-public class Cell {
+public class Cell
+{
 
     /**
      * left or right
@@ -56,7 +57,8 @@ public class Cell {
      *
      * @param align DOCUMENT ME!
      */
-    public Cell(final String align) {
+    public Cell(final String align)
+    {
 
         this.align = align;
         this.fields = new ArrayList<Field>();
@@ -68,7 +70,8 @@ public class Cell {
      *
      * @return DOCUMENT ME!
      */
-    public String getAlign() {
+    public String getAlign()
+    {
 
         return this.align;
 
@@ -79,7 +82,8 @@ public class Cell {
      *
      * @param align DOCUMENT ME!
      */
-    public void setAlign(final String align) {
+    public void setAlign(final String align)
+    {
 
         this.align = align;
 
@@ -90,7 +94,8 @@ public class Cell {
      *
      * @return DOCUMENT ME!
      */
-    public List<Field> getFields() {
+    public List<Field> getFields()
+    {
 
         return this.fields;
 
@@ -101,7 +106,8 @@ public class Cell {
      *
      * @param fields DOCUMENT ME!
      */
-    public void setFields(final List<Field> fields) {
+    public void setFields(final List<Field> fields)
+    {
 
         this.fields = fields;
 

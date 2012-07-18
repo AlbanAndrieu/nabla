@@ -1,4 +1,42 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.database;
+
+import org.andromda.cartridges.database.metafacades.AssociationTable;
+import org.andromda.cartridges.database.metafacades.Column;
+import org.andromda.cartridges.database.metafacades.ForeignKeyColumn;
+import org.andromda.cartridges.database.metafacades.Table;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,17 +46,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.andromda.cartridges.database.metafacades.AssociationTable;
-import org.andromda.cartridges.database.metafacades.Column;
-import org.andromda.cartridges.database.metafacades.ForeignKeyColumn;
-import org.andromda.cartridges.database.metafacades.Table;
-
 /**
  * Contains services to use in the generation of the dummy data creation and table creation scripts.
  *
  */
 public class DatabaseUtils
 {
+
     /**
      * Returns the table's columns that are not present in the collection.
      *
@@ -27,22 +61,30 @@ public class DatabaseUtils
      */
     public static Collection getOtherColumns(final Object table, final Collection columns)
     {
+
         final Collection otherColumns;
 
         if (table instanceof Table)
         {
+
             otherColumns = new ArrayList(((Table) table).getColumns());
+
         } else
         {
+
             otherColumns = new ArrayList(((AssociationTable) table).getForeignKeyColumns());
+
         }
 
         if (columns.isEmpty() == false)
         {
+
             otherColumns.removeAll(columns);
+
         }
 
         return otherColumns;
+
     }
 
     /**
@@ -70,35 +112,50 @@ public class DatabaseUtils
      */
     public static Map resolveOrderedTableMap(Collection tables)
     {
+
         final Map orderedTableMap = new LinkedHashMap();
 
         // we will be removing element from this collection, and don't want to affect the argument
         tables = new HashSet(tables);
+
         boolean tableProcessed = true; // initialization in order to enter the while-loop
+
         while (tables.isEmpty() == false)
         {
+
             // if no table has been processed in the previous cycle it means we won't in this cycle either
             if (tableProcessed == false)
             {
+
                 // we're in an unresolvable situation, list the problematic tables
                 final Set tableNames = new HashSet();
+
                 for (final Iterator tableIterator = tables.iterator(); tableIterator.hasNext();)
                 {
+
                     final Table table = (Table) tableIterator.next();
+
                     tableNames.add(table.getName());
+
                 }
 
                 throw new RuntimeException("Cyclic table relationships detected between: " + tableNames);
+
             }
 
             tableProcessed = DatabaseUtils.collectInsertableTables(tables, orderedTableMap);
+
             if (tableProcessed == false)
             {
+
                 tableProcessed = DatabaseUtils.resolveUpdateableTables(tables, orderedTableMap);
+
             }
+
         }
 
         return orderedTableMap;
+
     }
 
     /**
@@ -124,28 +181,39 @@ public class DatabaseUtils
      */
     private static boolean collectInsertableTables(final Collection tablesToProcess, final Map processedTableMap)
     {
+
         boolean inserted = false;
 
         for (final Iterator tableIterator = tablesToProcess.iterator(); tableIterator.hasNext();)
         {
+
             final Object table = tableIterator.next();
+
             if (DatabaseUtils.isInsertable(table, processedTableMap))
             {
+
                 tableIterator.remove();
 
                 if (table instanceof Table)
                 {
+
                     processedTableMap.put(table, new ArrayList());
+
                 } else
                 {
+
                     processedTableMap.put(table, new ArrayList());
+
                 }
 
                 inserted = true;
+
             }
+
         }
 
         return inserted;
+
     }
 
     /**
@@ -158,37 +226,51 @@ public class DatabaseUtils
      */
     private static boolean isInsertable(final Object table, final Map processedTableMap)
     {
+
         boolean insertable = true;
         Object importedTable;
         Collection foreignKeyColumns;
 
         if (table instanceof Table)
         {
+
             foreignKeyColumns = ((Table) table).getForeignKeyColumns();
+
         } else
         {
+
             foreignKeyColumns = ((AssociationTable) table).getForeignKeyColumns();
+
         }
 
         for (final Iterator foreignKeyIterator = foreignKeyColumns.iterator(); foreignKeyIterator.hasNext() && insertable;)
         {
+
             final Object foreignKeyColumn = foreignKeyIterator.next();
 
             if (foreignKeyColumn instanceof ForeignKeyColumn)
             {
+
                 importedTable = ((ForeignKeyColumn) foreignKeyColumn).getImportedTable();
+
             } else
             {
+
                 importedTable = ((Column) foreignKeyColumn).getImportedTable();
+
             }
 
             if (!processedTableMap.containsKey(importedTable))
             {
+
                 insertable = false;
+
             }
+
         }
 
         return insertable;
+
     }
 
     /**
@@ -212,29 +294,40 @@ public class DatabaseUtils
      */
     private static boolean resolveUpdateableTables(final Collection tablesToProcess, final Map processedTableMap)
     {
+
         boolean resolved = false;
 
         for (final Iterator tableIterator = tablesToProcess.iterator(); tableIterator.hasNext() && !resolved;)
         {
+
             final Object table = tableIterator.next();
             final Collection updateableColumns = DatabaseUtils.getUpdateableColumns(table, processedTableMap);
+
             if (updateableColumns.isEmpty() == false)
             {
+
                 tableIterator.remove();
 
                 if (table instanceof Table)
                 {
+
                     processedTableMap.put(table, updateableColumns);
+
                 } else
                 {
+
                     processedTableMap.put(table, updateableColumns);
+
                 }
 
                 resolved = true;
+
             }
+
         }
 
         return resolved;
+
     }
 
     /**
@@ -252,6 +345,7 @@ public class DatabaseUtils
      */
     private static Collection getUpdateableColumns(final Object table, final Map processedTableMap)
     {
+
         final Collection updateableColumns = new ArrayList();
         Collection foreignKeyColumns;
         boolean isRequired;
@@ -259,40 +353,58 @@ public class DatabaseUtils
 
         if (table instanceof Table)
         {
+
             foreignKeyColumns = ((Table) table).getForeignKeyColumns();
+
         } else
         {
+
             foreignKeyColumns = ((AssociationTable) table).getForeignKeyColumns();
+
         }
 
         for (final Iterator foreignKeyIterator = foreignKeyColumns.iterator(); foreignKeyIterator.hasNext();)
         {
+
             final Object foreignKeyColumn = foreignKeyIterator.next();
 
             if (foreignKeyColumn instanceof ForeignKeyColumn)
             {
+
                 importedTable = ((ForeignKeyColumn) foreignKeyColumn).getImportedTable();
                 isRequired = ((ForeignKeyColumn) foreignKeyColumn).isRequired();
+
             } else
             {
+
                 importedTable = ((Column) foreignKeyColumn).getImportedTable();
                 isRequired = ((Column) foreignKeyColumn).isRequired();
+
             }
 
             // only update those ones that really can't be inserted the first time
             // (nullable foreign key columns that import a table not present in the map)
             if (!isRequired && !processedTableMap.containsKey(importedTable))
             {
+
                 if (foreignKeyColumn instanceof ForeignKeyColumn)
                 {
+
                     updateableColumns.add(foreignKeyColumn);
+
                 } else
                 {
+
                     updateableColumns.add(foreignKeyColumn);
+
                 }
+
             }
+
         }
+
         return updateableColumns;
+
     }
 
     /**
@@ -302,6 +414,9 @@ public class DatabaseUtils
      */
     public static boolean isTable(final Object instance)
     {
+
         return (instance instanceof Table);
+
     }
+
 }

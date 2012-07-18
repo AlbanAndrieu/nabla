@@ -1,13 +1,49 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.ejb3;
+
+import org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade;
+
+import org.andromda.metafacades.uml.ModelElementFacade;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.StringTokenizer;
-import org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade;
-import org.andromda.metafacades.uml.ModelElementFacade;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Transform class for the EJB3 cartridge.
@@ -19,6 +55,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class EJB3ScriptHelper
 {
+
     /**
      * Create a collection of String objects representing the argument names.
      *
@@ -27,13 +64,19 @@ public class EJB3ScriptHelper
      */
     public Collection<String> getArgumentsAsList(final String args)
     {
+
         StringTokenizer st = new StringTokenizer(args, ",");
         Collection<String> retval = new ArrayList<String>(st.countTokens());
+
         while (st.hasMoreTokens())
         {
+
             retval.add(st.nextToken().trim());
+
         }
+
         return retval;
+
     }
 
     /**
@@ -45,14 +88,21 @@ public class EJB3ScriptHelper
      */
     public Collection<ModelElementFacade> filterByVisibility(final Collection<ModelElementFacade> list, final String visibility)
     {
+
         return CollectionUtils.select(list, new Predicate()
         {
+
             public boolean evaluate(final Object pObj)
             {
-                ModelElementFacade elem = (ModelElementFacade )pObj;
+
+                ModelElementFacade elem = (ModelElementFacade) pObj;
+
                 return visibility.equals(elem.getVisibility());
+
             }
+
         });
+
     }
 
     /**
@@ -67,17 +117,21 @@ public class EJB3ScriptHelper
      */
     public Collection<EJB3EntityAttributeFacade> filterUpdatableAttributes(final Collection<EJB3EntityAttributeFacade> list, final boolean isCompositePKPresent)
     {
+
         return CollectionUtils.select(list, new Predicate()
         {
+
             public boolean evaluate(final Object pObj)
             {
-                EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade )pObj;
-                return !attr.isVersion() &&
-                        ((isCompositePKPresent && !attr.isIdentifier()) ||
-                        (!isCompositePKPresent && (attr.isIdentifier() && attr.isGeneratorTypeNone()) ||
-                         !attr.isIdentifier()));
+
+                EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
+
+                return !attr.isVersion() && ((isCompositePKPresent && !attr.isIdentifier()) || ((!isCompositePKPresent && (attr.isIdentifier() && attr.isGeneratorTypeNone())) || !attr.isIdentifier()));
+
             }
+
         });
+
     }
 
     /**
@@ -92,18 +146,22 @@ public class EJB3ScriptHelper
      */
     public Collection<EJB3EntityAttributeFacade> filterRequiredAttributes(final Collection<EJB3EntityAttributeFacade> list, final boolean isCompositePKPresent)
     {
+
         return CollectionUtils.select(list, new Predicate()
         {
+
             public boolean evaluate(final Object pObj)
             {
-                EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade )pObj;
-                return !attr.isVersion() && attr.isRequired() &&
-                    ((isCompositePKPresent && !attr.isIdentifier()) ||
-                    (!isCompositePKPresent && (!attr.isIdentifier() ||
-                        (attr.isIdentifier() && attr.isGeneratorTypeNone()))
-                    ));
+
+                EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
+
+                return !attr.isVersion() && attr.isRequired()
+                        && ((isCompositePKPresent && !attr.isIdentifier()) || (!isCompositePKPresent && (!attr.isIdentifier() || (attr.isIdentifier() && attr.isGeneratorTypeNone()))));
+
             }
+
         });
+
     }
 
     /**
@@ -115,11 +173,14 @@ public class EJB3ScriptHelper
      */
     public String toUnderscoreName(final String name)
     {
+
         return StringUtils.replaceChars(name, '.', '_');
+
     }
 
     private static final String BACKSLASH = "\"";
-    private static final String QUOTE = "'";
+    private static final String QUOTE     = "'";
+
     /**
      * Removes instances of the quotation marks (" and ') at the beginning and end of the value argument
      *
@@ -128,13 +189,18 @@ public class EJB3ScriptHelper
      */
     public String removeQuotationmarks(final String pValue)
     {
+
         String result = StringUtils.removeStart(pValue, BACKSLASH);
+
         result = StringUtils.removeEnd(result, BACKSLASH);
         result = StringUtils.removeStart(result, QUOTE);
+
         return StringUtils.removeEnd(result, QUOTE);
+
     }
 
     private static final String COMMA = ", ";
+
     /**
      * Returns the comma separated list of interceptor classes.
      *
@@ -144,22 +210,29 @@ public class EJB3ScriptHelper
      */
     public String getInterceptorsAsList(final Collection<ModelElementFacade> interceptors, final String prepend)
     {
+
         StringBuilder sb = new StringBuilder();
         String separator = "";
 
         if (StringUtils.isNotBlank(prepend))
         {
+
             sb.append(prepend);
             separator = COMMA;
+
         }
 
         for (ModelElementFacade interceptor : interceptors)
         {
+
             sb.append(separator);
             separator = COMMA;
             sb.append(interceptor.getFullyQualifiedName()).append(".class");
+
         }
+
         return sb.toString();
+
     }
 
     /**
@@ -170,6 +243,9 @@ public class EJB3ScriptHelper
      */
     public static String reversePackage(final String packageName)
     {
+
         return StringUtils.reverseDelimited(packageName, EJB3Globals.NAMESPACE_DELIMITER);
+
     }
+
 }

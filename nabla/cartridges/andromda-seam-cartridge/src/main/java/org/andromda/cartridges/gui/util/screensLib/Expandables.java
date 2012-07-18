@@ -42,7 +42,8 @@ import java.util.List;
  * @version $Revision$
  * @since $Date$
  */
-public class Expandables extends Field {
+public class Expandables extends Field
+{
 
     private String      title;
     private List<Field> fields;
@@ -52,7 +53,8 @@ public class Expandables extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public List<Field> getFields() {
+    public List<Field> getFields()
+    {
 
         return this.fields;
 
@@ -63,7 +65,8 @@ public class Expandables extends Field {
      *
      * @param fields DOCUMENT ME!
      */
-    public void setFields(final List<Field> fields) {
+    public void setFields(final List<Field> fields)
+    {
 
         this.fields = fields;
 
@@ -72,7 +75,8 @@ public class Expandables extends Field {
     /**
      * Creates a new Expandables object.
      */
-    public Expandables() {
+    public Expandables()
+    {
         super("expandables");
 
     }
@@ -82,7 +86,8 @@ public class Expandables extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public String getTitle() {
+    public String getTitle()
+    {
 
         return this.title;
 
@@ -93,7 +98,8 @@ public class Expandables extends Field {
      *
      * @param title DOCUMENT ME!
      */
-    public void setTitle(final String title) {
+    public void setTitle(final String title)
+    {
 
         this.title = title;
 

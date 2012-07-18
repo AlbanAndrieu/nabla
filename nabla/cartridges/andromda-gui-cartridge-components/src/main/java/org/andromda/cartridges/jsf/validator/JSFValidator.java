@@ -1,19 +1,38 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.validator;
 
-import java.io.InputStream;
-import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.Validator;
-import javax.faces.validator.ValidatorException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.Field;
@@ -21,14 +40,31 @@ import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 
+import java.io.InputStream;
+import java.io.Serializable;
+
+import java.lang.reflect.Method;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
+
 /**
  * A JSF validator that uses the apache commons-validator to perform either
  * client or server side validation.
  */
-public class JSFValidator
-    implements Validator,
-        Serializable
+public class JSFValidator implements Validator, Serializable
 {
+
     private static final Log logger = LogFactory.getLog(JSFValidator.class);
 
     /**
@@ -40,8 +76,10 @@ public class JSFValidator
      */
     public JSFValidator(final String formIdIn, final ValidatorAction validatorActionIn)
     {
+
         this.formId = formIdIn;
         this.validatorAction = validatorActionIn;
+
     }
 
     private String formId;
@@ -51,6 +89,7 @@ public class JSFValidator
      */
     public JSFValidator()
     {
+
         // - default constructor for faces-config.xml
     }
 
@@ -67,7 +106,9 @@ public class JSFValidator
      */
     public void setType(final String typeIn)
     {
+
         this.type = typeIn;
+
     }
 
     /**
@@ -77,7 +118,9 @@ public class JSFValidator
      */
     public String getType()
     {
+
         return this.type;
+
     }
 
     /**
@@ -94,7 +137,9 @@ public class JSFValidator
      */
     public void setArgs(final String[] argsIn)
     {
+
         this.args = argsIn;
+
     }
 
     /**
@@ -109,7 +154,9 @@ public class JSFValidator
      */
     public Map getParameters()
     {
+
         return this.parameters;
+
     }
 
     /**
@@ -119,13 +166,11 @@ public class JSFValidator
      * @param name the name of the parameter.
      * @param value the parameter's value
      */
-    public void addParameter(
-        final String name,
-        final Object value)
+    public void addParameter(final String name, final Object value)
     {
-        this.parameters.put(
-            name,
-            value);
+
+        this.parameters.put(name, value);
+
     }
 
     /**
@@ -139,18 +184,20 @@ public class JSFValidator
      */
     public static ValidatorAction getValidatorAction(final String name)
     {
+
         return getValidatorResources().getValidatorAction(name);
+
     }
 
     /**
      * The commons-validator action, that carries out the actual validation.
      */
-    private ValidatorAction validatorAction;
+    private ValidatorAction     validatorAction;
 
     /**
      * The location of the validator rules.
      */
-    public static final String RULES_LOCATION = "/WEB-INF/validator-rules.xml";
+    public static final String  RULES_LOCATION          = "/WEB-INF/validator-rules.xml";
 
     /**
      * The key that stores the validator resources
@@ -166,43 +213,58 @@ public class JSFValidator
      */
     public static ValidatorResources getValidatorResources()
     {
+
         final FacesContext context = FacesContext.getCurrentInstance();
         final ExternalContext external = context.getExternalContext();
         final Map applicationMap = external.getApplicationMap();
-        ValidatorResources validatorResources = (ValidatorResources)applicationMap.get(VALIDATOR_RESOURCES_KEY);
+        ValidatorResources validatorResources = (ValidatorResources) applicationMap.get(VALIDATOR_RESOURCES_KEY);
+
         if (validatorResources == null)
         {
+
             final String rulesResource = RULES_LOCATION;
             final String validationResource = "/WEB-INF/validation.xml";
             final InputStream rulesInput = external.getResourceAsStream(rulesResource);
+
             if (rulesInput == null)
             {
+
                 throw new JSFValidatorException("Could not find rules file '" + rulesResource + '\'');
+
             }
+
             final InputStream validationInput = external.getResourceAsStream(validationResource);
+
             if (validationInput != null)
             {
-                final InputStream[] inputs = new InputStream[] {rulesInput, validationInput};
+
+                final InputStream[] inputs = new InputStream[] { rulesInput, validationInput };
+
                 try
                 {
+
                     validatorResources = new ValidatorResources(inputs);
-                    applicationMap.put(
-                        VALIDATOR_RESOURCES_KEY,
-                        validatorResources);
+                    applicationMap.put(VALIDATOR_RESOURCES_KEY, validatorResources);
+
                 }
                 catch (final Throwable throwable)
                 {
+
                     throw new JSFValidatorException(throwable);
+
                 }
-            }
-            else
+
+            } else
             {
-                logger.info(
-                    "No validation rules could be loaded from --> '" + validationResource +
-                    ", validation not configured");
+
+                logger.info("No validation rules could be loaded from --> '" + validationResource + ", validation not configured");
+
             }
+
         }
+
         return validatorResources;
+
     }
 
     /**
@@ -211,57 +273,66 @@ public class JSFValidator
      *
      * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, Object)
      */
-    public void validate(
-        final FacesContext context,
-        final UIComponent component,
-        final Object value)
+    public void validate(final FacesContext context, final UIComponent component, final Object value)
     {
+
         if (this.formId != null)
         {
+
             try
             {
-                final Form validatorForm = getValidatorResources().getForm(
-                    Locale.getDefault(),
-                    this.formId);
+
+                final Form validatorForm = getValidatorResources().getForm(Locale.getDefault(), this.formId);
+
                 if (validatorForm != null)
                 {
+
                     final Field field = this.getFormField(validatorForm, component.getId());
+
                     if (field != null)
                     {
+
                         final Collection errors = new ArrayList();
-                        this.getValidatorMethod().invoke(
-                            this.getValidatorClass(),
-                                context, value, this.getParameters(), errors, this.validatorAction,
-                                field);
+
+                        this.getValidatorMethod().invoke(this.getValidatorClass(), context, value, this.getParameters(), errors, this.validatorAction, field);
+
                         if (!errors.isEmpty())
                         {
-                            throw new ValidatorException(new FacesMessage(
-                                    FacesMessage.SEVERITY_ERROR,
-                                    (String)errors.iterator().next(),
-                                    null));
+
+                            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, (String) errors.iterator().next(), null));
+
                         }
-                    }
-                    else
+
+                    } else
                     {
+
                         logger.error("No field with id '" + component.getId() + "' found on form '" + this.formId + '\'');
+
                     }
-                }
-                else
+
+                } else
                 {
+
                     logger.error("No validator form could be found with id '" + this.formId + '\'');
+
                 }
+
             }
             catch (final ValidatorException exception)
             {
+
                 throw exception;
+
             }
             catch (final Exception exception)
             {
-                logger.error(
-                    exception.getMessage(),
-                    exception);
+
+                logger.error(exception.getMessage(), exception);
+
             }
+
         }
+
     }
 
     /**
@@ -269,27 +340,34 @@ public class JSFValidator
      * @return the validator class
      * @throws ClassNotFoundException
      */
-    private Class getValidatorClass()
-        throws ClassNotFoundException
+    private Class getValidatorClass() throws ClassNotFoundException
     {
+
         final FacesContext context = FacesContext.getCurrentInstance();
         final ExternalContext external = context.getExternalContext();
         final Map applicationMap = external.getApplicationMap();
         final String validatorClassName = this.validatorAction.getClassname();
-        Class validatorClass = (Class)applicationMap.get(validatorClassName);
+        Class validatorClass = (Class) applicationMap.get(validatorClassName);
+
         if (validatorClass == null)
         {
+
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
             if (classLoader == null)
             {
+
                 classLoader = getClass().getClassLoader();
+
             }
+
             validatorClass = classLoader.loadClass(validatorClassName);
-            applicationMap.put(
-                validatorClassName,
-                validatorClass);
+            applicationMap.put(validatorClassName, validatorClass);
+
         }
+
         return validatorClass;
+
     }
 
     /**
@@ -299,19 +377,14 @@ public class JSFValidator
      * @throws ClassNotFoundException
      * @throws NoSuchMethodException
      */
-    private Method getValidatorMethod()
-        throws ClassNotFoundException, NoSuchMethodException
+    private Method getValidatorMethod() throws ClassNotFoundException, NoSuchMethodException
     {
-        Class[] parameterTypes =
-            new Class[]
-            {
-                javax.faces.context.FacesContext.class, Object.class, java.util.Map.class,
-                java.util.Collection.class, org.apache.commons.validator.ValidatorAction.class,
-                org.apache.commons.validator.Field.class
-            };
-        return this.getValidatorClass().getMethod(
-            this.validatorAction.getMethod(),
-            parameterTypes);
+
+        Class[] parameterTypes = new Class[] { javax.faces.context.FacesContext.class, Object.class, java.util.Map.class, java.util.Collection.class, org.apache.commons.validator.ValidatorAction.class,
+                org.apache.commons.validator.Field.class };
+
+        return this.getValidatorClass().getMethod(this.validatorAction.getMethod(), parameterTypes);
+
     }
 
     /**
@@ -322,16 +395,20 @@ public class JSFValidator
      * @param fieldName the name of the field.
      * @return the found field or null if it could not be found.
      */
-    private Field getFormField(
-        final Form form,
-        final String fieldName)
+    private Field getFormField(final Form form, final String fieldName)
     {
+
         Field field = null;
+
         if (form != null)
         {
+
             field = form.getField(fieldName);
+
         }
+
         return field;
+
     }
 
     /**
@@ -342,10 +419,9 @@ public class JSFValidator
      */
     public String getErrorMessage(final FacesContext context)
     {
-        return ValidatorMessages.getMessage(
-            this.validatorAction,
-            this.args,
-            context);
+
+        return ValidatorMessages.getMessage(this.validatorAction, this.args, context);
+
     }
 
     /**
@@ -354,9 +430,11 @@ public class JSFValidator
     @Override
     public String toString()
     {
-        return super.toString() + ":formId=" + this.formId + ", validatorAction="
-            + (this.validatorAction != null ? this.validatorAction.getName() : null);
+
+        return super.toString() + ":formId=" + this.formId + ", validatorAction=" + ((this.validatorAction != null) ? this.validatorAction.getName() : null);
+
     }
 
     private static final long serialVersionUID = 1;
+
 }

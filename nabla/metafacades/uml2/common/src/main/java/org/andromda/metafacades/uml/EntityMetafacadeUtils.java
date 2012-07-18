@@ -1,17 +1,53 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.metafacades.uml;
+
+import org.andromda.core.common.ExceptionUtils;
+
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import org.andromda.core.common.ExceptionUtils;
-import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Utilities for dealing with entity metafacades
@@ -21,6 +57,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class EntityMetafacadeUtils
 {
+
     /**
      * <p/> Converts a string following the Java naming conventions to a
      * database attribute name. For example convert customerName to
@@ -31,27 +68,31 @@ public class EntityMetafacadeUtils
      * @param separator character used to separate words
      * @return string converted to database attribute format
      */
-    public static String toSqlName(
-        String modelElementName,
-        Object separator)
+    public static String toSqlName(String modelElementName, Object separator)
     {
-        ExceptionUtils.checkEmpty(
-            "modelElementName",
-            modelElementName);
+
+        ExceptionUtils.checkEmpty("modelElementName", modelElementName);
 
         StringBuilder sqlName = new StringBuilder();
         StringCharacterIterator iterator = new StringCharacterIterator(StringUtils.uncapitalize(modelElementName));
 
         for (char character = iterator.first(); character != CharacterIterator.DONE; character = iterator.next())
         {
+
             if (Character.isUpperCase(character))
             {
+
                 sqlName.append(separator);
+
             }
+
             character = Character.toUpperCase(character);
             sqlName.append(character);
+
         }
+
         return StringEscapeUtils.escapeSql(sqlName.toString());
+
     }
 
     /**
@@ -68,20 +109,11 @@ public class EntityMetafacadeUtils
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
-    public static String getSqlNameFromTaggedValue(
-        String prefix,
-        ModelElementFacade element,
-        String name,
-        Short nameMaxLength,
-        Object separator)
+    public static String getSqlNameFromTaggedValue(String prefix, ModelElementFacade element, String name, Short nameMaxLength, Object separator)
     {
-        return getSqlNameFromTaggedValue(
-            prefix,
-            element,
-            name,
-            nameMaxLength,
-            null,
-            separator);
+
+        return getSqlNameFromTaggedValue(prefix, element, name, nameMaxLength, null, separator);
+
     }
 
     /**
@@ -98,20 +130,11 @@ public class EntityMetafacadeUtils
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
-    public static String getSqlNameFromTaggedValue(
-        ModelElementFacade element,
-        String name,
-        Short nameMaxLength,
-        String suffix,
-        Object separator)
+    public static String getSqlNameFromTaggedValue(ModelElementFacade element, String name, Short nameMaxLength, String suffix, Object separator)
     {
-        return getSqlNameFromTaggedValue(
-            null,
-            element,
-            name,
-            nameMaxLength,
-            suffix,
-            separator);
+
+        return getSqlNameFromTaggedValue(null, element, name, nameMaxLength, suffix, separator);
+
     }
 
     /**
@@ -126,19 +149,11 @@ public class EntityMetafacadeUtils
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
-    public static String getSqlNameFromTaggedValue(
-        ModelElementFacade element,
-        String name,
-        Short nameMaxLength,
-        Object separator)
+    public static String getSqlNameFromTaggedValue(ModelElementFacade element, String name, Short nameMaxLength, Object separator)
     {
-        return getSqlNameFromTaggedValue(
-            null,
-            element,
-            name,
-            nameMaxLength,
-            null,
-            separator);
+
+        return getSqlNameFromTaggedValue(null, element, name, nameMaxLength, null, separator);
+
     }
 
     /**
@@ -157,50 +172,55 @@ public class EntityMetafacadeUtils
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
-    public static String getSqlNameFromTaggedValue(
-        String prefix,
-        final ModelElementFacade element,
-        String name,
-        final Short nameMaxLength,
-        String suffix,
-        final Object separator)
+    public static String getSqlNameFromTaggedValue(String prefix, final ModelElementFacade element, String name, final Short nameMaxLength, String suffix, final Object separator)
     {
+
         if (element != null)
         {
+
             Object value = element.findTaggedValue(name);
-            StringBuilder buffer = new StringBuilder(StringUtils.trimToEmpty((String)value));
+            StringBuilder buffer = new StringBuilder(StringUtils.trimToEmpty((String) value));
+
             if (StringUtils.isEmpty(buffer.toString()))
             {
+
                 // if we can't find the tagValue then use the
                 // element name for the name
-                buffer = new StringBuilder(toSqlName(
-                            element.getName(),
-                            separator));
+                buffer = new StringBuilder(toSqlName(element.getName(), separator));
                 suffix = StringUtils.trimToEmpty(suffix);
                 prefix = StringUtils.trimToEmpty(prefix);
+
                 if (nameMaxLength != null)
                 {
-                    final short maxLength = (short)(nameMaxLength.shortValue() - suffix.length() - prefix.length());
-                    buffer =
-                        new StringBuilder(
-                            EntityMetafacadeUtils.ensureMaximumNameLength(
-                                buffer.toString(),
-                                Short.valueOf(maxLength)));
+
+                    final short maxLength = (short) (nameMaxLength.shortValue() - suffix.length() - prefix.length());
+
+                    buffer = new StringBuilder(EntityMetafacadeUtils.ensureMaximumNameLength(buffer.toString(), Short.valueOf(maxLength)));
+
                 }
+
                 if (StringUtils.isNotBlank(prefix))
                 {
-                    buffer.insert(
-                        0,
-                        prefix);
+
+                    buffer.insert(0, prefix);
+
                 }
+
                 if (StringUtils.isNotBlank(suffix))
                 {
+
                     buffer.append(suffix);
+
                 }
+
             }
+
             name = buffer.toString();
+
         }
+
         return name;
+
     }
 
     /**
@@ -212,83 +232,118 @@ public class EntityMetafacadeUtils
      * @param ascending true for entities with no associations first.
      * @return the sorted entity list.
      */
-    public static List<Entity> sortEntities(
-        final Collection<Entity> entities,
-        boolean ascending)
+    public static List<Entity> sortEntities(final Collection<Entity> entities, boolean ascending)
     {
+
         // Initially holds entities with no outgoing relations. Add related entities to the end
         List<Entity> sorted = new ArrayList<Entity>();
+
         // Holds entities with relations after first pass. Second pass sorts the entities
         List<Entity> unsorted = new ArrayList<Entity>();
+
         if (entities != null)
         {
+
             for (Entity entity : entities)
             {
+
                 // We won't be testing or creating abstract entities
                 if (!entity.isAbstract())
                 {
+
                     Collection<ClassifierFacade> ends = entity.getNavigableConnectingEnds();
+
                     // Put the entities with no associations first in the sorted list
-                    if (ends.size()==0)
+                    if (ends.size() == 0)
                     {
+
                         sorted.add(entity);
+
                         //System.out.println(entity.getName() + " No associations");
-                    }
-                    else
+                    } else
                     {
+
                         unsorted.add(entity);
+
                     }
+
                 }
+
             }
+
             for (Entity entity : unsorted)
             {
+
                 if (!entity.isAbstract())
                 {
+
                     Collection<AssociationEndFacade> ends = entity.getAssociationEnds();
+
                     // Test each association to see if incoming or outgoing. sort outgoing before incoming.
                     //for (AssociationEndFacade end : ends)
                     for (AssociationEndFacade end : ends)
                     {
+
                         AssociationEndFacade otherEnd = end.getOtherEnd();
+
                         if (end.isNavigable() && end.getType() instanceof Entity)
                         {
+
                             // otherEnd is actually the association/type on this entity
-                            Entity entityEnd = (Entity)end.getType();
+                            Entity entityEnd = (Entity) end.getType();
+
                             // Incoming relations are sorted after other entities
                             // Aggregation and Composition always owns the end
                             // One to Many association many end comes last
                             int thisPosition = unsorted.lastIndexOf(entity);
                             int referencedPosition = unsorted.lastIndexOf(entityEnd);
+
                             // Special case: 1to1 with one end marked as primary. Hibernate cartridge specific.
-                            boolean primary = BooleanUtils.toBoolean(
-                                ObjectUtils.toString(end.findTaggedValue("andromda_persistence_associationEnd_primary")));
+                            boolean primary = BooleanUtils.toBoolean(ObjectUtils.toString(end.findTaggedValue("andromda_persistence_associationEnd_primary")));
+
                             //System.out.println(entity.getName() + "=" + thisPosition + " " + entityEnd.getName() + "=" + referencedPosition + " prop=" + end.getName() + " primary=" + primary + " Many=" + end.isMany() + " One2One=" + end.isOne2One() + " end=" + end + " other=" + otherEnd);
                             //System.out.println(entity.getName() + "=" + thisPosition + " " + entityEnd.getName() + "=" + referencedPosition + " prop=" + end.getName() + " AggE=" + end.isAggregation() + " CompE=" + end.isComposition() + " Agg=" + otherEnd.isAggregation() + " Comp=" + otherEnd.isComposition() + " Many=" + end.isMany() + " One2One=" + end.isOne2One() + " end=" + end + " other=" + otherEnd);
-                            if (!otherEnd.isAggregation() && !otherEnd.isComposition() &&
-                                (!end.isMany() || end.isOne2One()))
+                            if (!otherEnd.isAggregation() && !otherEnd.isComposition() && (!end.isMany() || end.isOne2One()))
                             {
+
                                 if (!end.isOne2One() || !primary)
                                 {
-                                    if (thisPosition > -1 && referencedPosition > -1 && referencedPosition > thisPosition)
+
+                                    if ((thisPosition > -1) && (referencedPosition > -1) && (referencedPosition > thisPosition))
                                     {
+
                                         // Swap the locations of the two List entries if referenced entity is higher in the list
                                         unsorted.set(referencedPosition, entity);
                                         unsorted.set(thisPosition, entityEnd);
+
                                         //System.out.println(entity.getName() + " swapped with " + entityEnd.getName());
                                     }
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
             sorted.addAll(unsorted);
+
         }
+
         if (!ascending)
         {
+
             Collections.reverse(sorted);
+
         }
+
         return sorted;
+
     }
 
     /**
@@ -301,21 +356,25 @@ public class EntityMetafacadeUtils
      *        trimmed to this length (if it happens to be longer).
      * @return String the string to be used as SQL type
      */
-    public static String ensureMaximumNameLength(
-        String name,
-        Short nameMaxLength)
+    public static String ensureMaximumNameLength(String name, Short nameMaxLength)
     {
-        if (StringUtils.isNotBlank(name) && nameMaxLength != null)
+
+        if (StringUtils.isNotBlank(name) && (nameMaxLength != null))
         {
+
             short max = nameMaxLength.shortValue();
+
             if (name.length() > max)
             {
-                name = name.substring(
-                        0,
-                        max);
+
+                name = name.substring(0, max);
+
             }
+
         }
+
         return name;
+
     }
 
     /**
@@ -331,28 +390,32 @@ public class EntityMetafacadeUtils
      *        should be followed
      * @return the collection of entity identifier attributes.
      */
-    public static Collection<EntityAttribute> getIdentifiers(
-        final Entity entity,
-        final boolean follow)
+    public static Collection<EntityAttribute> getIdentifiers(final Entity entity, final boolean follow)
     {
+
         // TODO Entity.getAttributes returns List<? extends AttributeFacade>, currently unchecked conversion
         final Collection attributes = new ArrayList(entity.getAttributes());
-        MetafacadeUtils.filterByStereotype(
-            attributes,
-            UMLProfile.STEREOTYPE_IDENTIFIER);
-        final Collection<EntityAttribute> identifiers = new ArrayList<EntityAttribute>();
-        identifiers.addAll(attributes);
-        /*final Collection<AssociationEndFacade> associations = new ArrayList<AssociationEndFacade>(entity.getNavigableConnectingEnds(follow));
-        MetafacadeUtils.filterByStereotype(
-                associations,
-                UMLProfile.STEREOTYPE_IDENTIFIER);
-        identifiers.addAll(associations);*/
 
+        MetafacadeUtils.filterByStereotype(attributes, UMLProfile.STEREOTYPE_IDENTIFIER);
+
+        final Collection<EntityAttribute> identifiers = new ArrayList<EntityAttribute>();
+
+        identifiers.addAll(attributes);
+
+        /*final Collection<AssociationEndFacade> associations = new ArrayList<AssociationEndFacade>(entity.getNavigableConnectingEnds(follow));
+           MetafacadeUtils.filterByStereotype(
+                   associations,
+                   UMLProfile.STEREOTYPE_IDENTIFIER);
+           identifiers.addAll(associations);*/
         if (identifiers.isEmpty() && follow && entity.getGeneralization() instanceof Entity)
         {
-            identifiers.addAll(getIdentifiers((Entity)entity.getGeneralization(), follow));
+
+            identifiers.addAll(getIdentifiers((Entity) entity.getGeneralization(), follow));
+
         }
+
         return identifiers;
+
     }
 
     /**
@@ -364,33 +427,37 @@ public class EntityMetafacadeUtils
      * @param columnLength the length of the column.
      * @return the new name construct
      */
-    public static String constructSqlTypeName(
-        final String typeName,
-        final String columnLength)
+    public static String constructSqlTypeName(final String typeName, final String columnLength)
     {
+
         String value = typeName;
+
         if (StringUtils.isNotBlank(typeName))
         {
+
             final char beginChar = '(';
             final char endChar = ')';
             final int beginIndex = value.indexOf(beginChar);
             final int endIndex = value.indexOf(endChar);
-            if (beginIndex != -1 && endIndex != -1 && endIndex > beginIndex)
+
+            if ((beginIndex != -1) && (endIndex != -1) && (endIndex > beginIndex))
             {
-                String replacement = value.substring(
-                        beginIndex,
-                        endIndex) + endChar;
-                value = StringUtils.replace(
-                        value,
-                        replacement,
-                        beginChar + columnLength + endChar);
-            }
-            else
+
+                String replacement = value.substring(beginIndex, endIndex) + endChar;
+
+                value = StringUtils.replace(value, replacement, beginChar + columnLength + endChar);
+
+            } else
             {
+
                 value = value + beginChar + columnLength + endChar;
+
             }
+
         }
+
         return value;
+
     }
 
     /**
@@ -405,25 +472,32 @@ public class EntityMetafacadeUtils
      */
     public static String getForeignKeyConstraintName(EntityAssociationEnd associationEnd, String suffix, String sqlNameSeparator, String maxLengthProperty)
     {
+
         String constraintName;
 
-        final Object taggedValueObject = associationEnd.findTaggedValue(
-                UMLProfile.TAGGEDVALUE_PERSISTENCE_FOREIGN_KEY_CONSTRAINT_NAME);
+        final Object taggedValueObject = associationEnd.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_FOREIGN_KEY_CONSTRAINT_NAME);
+
         if (taggedValueObject == null)
         {
+
             // we construct our own foreign key constraint name here
             StringBuilder buffer = new StringBuilder();
 
             final ClassifierFacade type = associationEnd.getOtherEnd().getType();
+
             if (type instanceof Entity)
             {
-                Entity entity = (Entity)type;
+
+                Entity entity = (Entity) type;
+
                 buffer.append(entity.getTableName());
-            }
-            else
+
+            } else
             {
+
                 // should not happen
                 buffer.append(type.getName().toUpperCase());
+
             }
 
             buffer.append(sqlNameSeparator);
@@ -431,17 +505,22 @@ public class EntityMetafacadeUtils
             constraintName = buffer.toString();
 
             // we take into consideration the maximum length allowed
-            final short maxLength = (short)(Short.valueOf(maxLengthProperty).shortValue() - suffix.length());
+            final short maxLength = (short) (Short.valueOf(maxLengthProperty).shortValue() - suffix.length());
+
             buffer = new StringBuilder(EntityMetafacadeUtils.ensureMaximumNameLength(constraintName, Short.valueOf(maxLength)));
             buffer.append(suffix);
             constraintName = EntityMetafacadeUtils.getUniqueForeignKeyConstraintName(buffer.toString());
-        }
-        else
+
+        } else
         {
+
             // use the tagged value
             constraintName = taggedValueObject.toString();
+
         }
+
         return constraintName;
+
     }
 
     /**
@@ -460,13 +539,19 @@ public class EntityMetafacadeUtils
      */
     private static String getUniqueForeignKeyConstraintName(String proposedName)
     {
+
         final char[] characters = proposedName.toCharArray();
         int numericValue = 0;
+
         for (int ctr = 0; ctr < characters.length; ctr++)
         {
+
             numericValue = numericValue + Character.getNumericValue(characters[0]);
+
         }
+
         return getUniqueForeignKeyConstraintName(proposedName, new Random(numericValue));
+
     }
 
     /**
@@ -479,21 +564,29 @@ public class EntityMetafacadeUtils
      */
     private static String getUniqueForeignKeyConstraintName(String proposedName, final Random random)
     {
+
         String name;
+
         if (foreignKeyConstraintNameCache.contains(proposedName))
         {
+
             final char[] characters = proposedName.toCharArray();
             int randomInt = random.nextInt(characters.length);
             char randomChar = Character.toUpperCase(characters[randomInt]);
+
             proposedName = proposedName.substring(0, proposedName.length() - 1) + randomChar;
             name = getUniqueForeignKeyConstraintName(proposedName, random);
-        }
-        else
+
+        } else
         {
+
             name = proposedName;
             foreignKeyConstraintNameCache.add(name);
+
         }
+
         return name;
+
     }
 
     /**
@@ -501,6 +594,9 @@ public class EntityMetafacadeUtils
      */
     public static void clearForeignKeyConstraintNameCache()
     {
+
         foreignKeyConstraintNameCache.clear();
+
     }
+
 }

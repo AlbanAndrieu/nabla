@@ -1,18 +1,43 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.gui.metafacades;
-
-import java.io.File;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.andromda.cartridges.gui.GuiGlobals;
 import org.andromda.cartridges.gui.GuiProfile;
 import org.andromda.cartridges.gui.GuiUtils;
 import org.andromda.cartridges.gui.util.screensLib.ViewContent;
+
 import org.andromda.metafacades.uml.AssociationEndFacade;
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.ClassifierFacade;
@@ -32,16 +57,32 @@ import org.andromda.metafacades.uml.Service;
 import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 import org.andromda.metafacades.uml.UMLProfile;
 import org.andromda.metafacades.uml.ValueObject;
+
 import org.andromda.translation.ocl.ExpressionKinds;
+
 import org.andromda.utils.StringUtilsHelper;
+
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.collections.Transformer;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+
 import org.apache.log4j.Logger;
+
 import org.dom4j.DocumentException;
+
+import java.io.File;
+
+import java.net.MalformedURLException;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiManageableEntity.
@@ -50,8 +91,8 @@ import org.dom4j.DocumentException;
  */
 public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 {
-    private static final long serialVersionUID = 34L;
 
+    private static final long serialVersionUID = 34L;
     private final Logger      logger_          = Logger.getLogger(GuiManageableEntityLogicImpl.class);
 
     /**
@@ -61,6 +102,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     public GuiManageableEntityLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
+
     }
 
     /**
@@ -70,7 +112,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetViewName()
     {
+
         return this.getName().toLowerCase() + "-crud";
+
     }
 
     /**
@@ -80,7 +124,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetViewTitleKey()
     {
+
         return StringUtilsHelper.toResourceMessageKey(this.getName()) + ".view.title";
+
     }
 
     /**
@@ -90,7 +136,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetViewTitleValue()
     {
+
         return StringUtilsHelper.toPhrase(this.getName());
+
     }
 
     /**
@@ -100,7 +148,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetListName()
     {
+
         return "manageableList";
+
     }
 
     /**
@@ -110,7 +160,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetFormBeanType()
     {
+
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getFormBeanClassName();
+
     }
 
     /**
@@ -120,9 +172,12 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetFormBeanName()
     {
+
         final String pattern = ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.FORM_BEAN_PATTERN));
         final String formBeanName = pattern.replaceFirst("\\{0\\}", "manage");
+
         return formBeanName.replaceFirst("\\{1\\}", this.getName());
+
     }
 
     /**
@@ -132,7 +187,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetExceptionKey()
     {
+
         return StringUtilsHelper.toResourceMessageKey(this.getName()) + ".exception";
+
     }
 
     /**
@@ -142,7 +199,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetActionType()
     {
+
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getActionClassName();
+
     }
 
     /**
@@ -152,7 +211,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetActionFullPath()
     {
+
         return GuiGlobals.SEPARATOR + StringUtils.replace(this.getActionType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
+
     }
 
     /**
@@ -162,7 +223,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetActionPath()
     {
+
         return GuiGlobals.SEPARATOR + this.getName() + GuiGlobals.SEPARATOR + "Manage";
+
     }
 
     /**
@@ -172,7 +235,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetActionClassName()
     {
+
         return "Manage" + this.getName();
+
     }
 
     /**
@@ -182,7 +247,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetExceptionPath()
     {
+
         return this.getViewFullPath();
+
     }
 
     /**
@@ -192,8 +259,10 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsPreload()
     {
+
         return false; // TODO think about...
         // return this.isCreate() || this.isRead() || this.isUpdate() || this.isDelete();
+
     }
 
     /**
@@ -202,7 +271,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     public org.andromda.metafacades.uml.ManageableEntityAttribute getManageableIdentifier()
     {
+
         return super.getManageableIdentifier();
+
     }
 
     /**
@@ -212,7 +283,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetFormBeanClassName()
     {
+
         return StringUtils.capitalize(this.getFormBeanName());
+
     }
 
     /**
@@ -222,7 +295,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetFormBeanFullPath()
     {
+
         return StringUtils.replace(this.getFormBeanType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
+
     }
 
     /**
@@ -232,7 +307,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetListGetterName()
     {
+
         return "getManageableList";
+
     }
 
     /**
@@ -242,7 +319,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetListSetterName()
     {
+
         return "setManageableList";
+
     }
 
     /**
@@ -252,7 +331,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetMessageKey()
     {
+
         return StringUtilsHelper.toResourceMessageKey(this.getName());
+
     }
 
     /**
@@ -262,7 +343,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetMessageValue()
     {
+
         return StringUtilsHelper.toPhrase(this.getName());
+
     }
 
     /**
@@ -273,7 +356,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     // TODO REMOVE
     protected String handleGetOnlineHelpKey()
     {
+
         return this.getMessageKey() + ".online.help";
+
     }
 
     /**
@@ -284,8 +369,11 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     // TODO REMOVE
     protected String handleGetOnlineHelpValue()
     {
+
         final String value = StringUtilsHelper.toResourceMessage(this.getDocumentation("", 64, false));
+
         return (value == null) ? "No entity documentation has been specified" : value;
+
     }
 
     /**
@@ -296,7 +384,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     // TODO REMOVE
     protected String handleGetOnlineHelpActionPath()
     {
+
         return this.getActionPath() + "Help";
+
     }
 
     /**
@@ -307,7 +397,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     // TODO REMOVE
     protected String handleGetOnlineHelpPagePath()
     {
+
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getName().toLowerCase() + "_help";
+
     }
 
     /**
@@ -317,7 +409,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsTableExportable()
     {
+
         return this.getTableExportTypes().indexOf("none") == -1;
+
     }
 
     /**
@@ -327,7 +421,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetTableExportTypes()
     {
+
         return null;
+
         // TODO a resolver
         // return GuiUtils.getDisplayTagExportTypes(
         // this.findTaggedValues(GuiProfile.TAGGEDVALUE_TABLE_EXPORT),
@@ -341,19 +437,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected int handleGetTableMaxRows()
     {
+
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_TABLE_MAXROWS);
         int pageSize;
 
         try
         {
+
             pageSize = Integer.parseInt(String.valueOf(taggedValue));
+
         }
         catch (final Exception e)
         {
+
             pageSize = GuiProfile.TAGGEDVALUE_TABLE_MAXROWS_DEFAULT_COUNT;
+
         }
 
         return pageSize;
+
     }
 
     /**
@@ -363,8 +465,11 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsTableSortable()
     {
+
         final Object taggedValue = this.findTaggedValue(GuiProfile.TAGGEDVALUE_TABLE_SORTABLE);
+
         return (taggedValue == null) ? GuiProfile.TAGGEDVALUE_TABLE_SORTABLE_DEFAULT_VALUE : Boolean.valueOf(String.valueOf(taggedValue)).booleanValue();
+
     }
 
     /**
@@ -374,7 +479,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetControllerType()
     {
+
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getControllerName();
+
     }
 
     /**
@@ -384,7 +491,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetControllerBeanName()
     {
+
         return StringUtils.uncapitalize(this.getName()) + "Controller";
+
     }
 
     /**
@@ -394,7 +503,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetControllerFullPath()
     {
+
         return GuiGlobals.SEPARATOR + StringUtils.replace(this.getControllerType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
+
     }
 
     /**
@@ -404,7 +515,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetControllerName()
     {
+
         return this.getName() + "Controller";
+
     }
 
     /**
@@ -414,7 +527,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetValueObjectClassName()
     {
+
         return this.getName() + this.getConfiguredProperty(GuiGlobals.CRUD_VALUE_OBJECT_SUFFIX);
+
     }
 
     /**
@@ -424,10 +539,14 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetFormSerialVersionUID()
     {
+
         final StringBuilder buffer = new StringBuilder();
+
         buffer.append(this.getFormBeanType());
         this.addSerialUIDData(buffer);
+
         return GuiUtils.calcSerialVersionUID(buffer);
+
     }
 
     /**
@@ -437,10 +556,14 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetActionSerialVersionUID()
     {
+
         final StringBuilder buffer = new StringBuilder();
+
         buffer.append(this.getActionFullPath());
         this.addSerialUIDData(buffer);
+
         return GuiUtils.calcSerialVersionUID(buffer);
+
     }
 
     /**
@@ -450,7 +573,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetPopulatorName()
     {
+
         return ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.VIEW_POPULATOR_PATTERN)).replaceAll("\\{0\\}", StringUtilsHelper.upperCamelCaseName(this.getFormBeanClassName()));
+
     }
 
     /**
@@ -460,7 +585,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetPopulatorFullPath()
     {
+
         return GuiGlobals.SEPARATOR + StringUtils.replace(this.getPopulatorType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
+
     }
 
     /**
@@ -470,7 +597,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetPopulatorType()
     {
+
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getPopulatorName();
+
     }
 
     /**
@@ -480,7 +609,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetViewFullPath()
     {
+
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getViewName();
+
     }
 
     /**
@@ -490,7 +621,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetOdsExportFullPath()
     {
+
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getName().toLowerCase() + "-ods-export";
+
     }
 
     /**
@@ -500,18 +633,28 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsValidationRequired()
     {
+
         for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
         {
+
             if (attribute instanceof GuiManageableEntityAttribute)
             {
+
                 final GuiManageableEntityAttribute jsfAttribute = (GuiManageableEntityAttribute) attribute;
+
                 if (jsfAttribute.isValidationRequired())
                 {
+
                     return true;
+
                 }
+
             }
+
         }
+
         return false;
+
     }
 
     /**
@@ -521,9 +664,12 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetSearchFormBeanName()
     {
+
         final String pattern = ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.FORM_BEAN_PATTERN));
         final String formBeanName = pattern.replaceFirst("\\{0\\}", "manage");
+
         return formBeanName.replaceFirst("\\{1\\}", this.getName() + "Search");
+
     }
 
     /**
@@ -533,7 +679,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetSearchFormBeanType()
     {
+
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getSearchFormBeanClassName();
+
     }
 
     /**
@@ -543,7 +691,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetSearchFormBeanFullPath()
     {
+
         return StringUtils.replace(this.getSearchFormBeanType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
+
     }
 
     /**
@@ -553,7 +703,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetSearchFormBeanClassName()
     {
+
         return StringUtils.capitalize(this.getSearchFormBeanName());
+
     }
 
     /**
@@ -563,19 +715,30 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected Collection<GuiManageableEntityAttribute> handleGetManageableSearchAttributes()
     {
+
         final Collection<GuiManageableEntityAttribute> coll = new ArrayList<GuiManageableEntityAttribute>();
+
         for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
         {
+
             if (attribute instanceof GuiManageableEntityAttribute)
             {
+
                 final GuiManageableEntityAttribute attr = (GuiManageableEntityAttribute) attribute;
+
                 if (!attr.isHidden())
                 {
+
                     coll.add(attr);
+
                 }
+
             }
+
         }
+
         return coll;
+
     }
 
     /**
@@ -585,9 +748,16 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected Collection<ManageableEntityAssociationEnd> handleGetManageableSearchAssociationEnds()
     {
+
         return this.getManageableAssociationEnds();
+
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     @Override
     public List<ManageableEntityAttribute> getManageableAttributes()
     {
@@ -604,9 +774,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
          * });
          * return new ArrayList<AttributeFacade>(all);
          */
-
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     @Override
     public List<ManageableEntityAssociationEnd> getManageableAssociationEnds()
     {
@@ -617,19 +791,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEndsManageableEntity()
     {
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
         this.collectAssociationEndsManageableEntity(manageableAssociationEnds, this, true);
 
         return new ArrayList<ManageableEntityAssociationEnd>(manageableAssociationEnds);
-        // return manageableAssociationEnds;
 
+        // return manageableAssociationEnds;
     }
 
     private List<ManageableEntityAssociationEnd> getManageableAssociationEndsEntity()
@@ -637,36 +817,44 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
         this.collectAssociationEndsEntity(manageableAssociationEnds, this, true);
 
         return new ArrayList<ManageableEntityAssociationEnd>(manageableAssociationEnds);
-        // return manageableAssociationEnds;
 
+        // return manageableAssociationEnds;
     }
 
     // TODO remove never used
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEndsGuiManageableEntity()
     {
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
         this.collectAssociationEndsGuiManageableEntity(manageableAssociationEnds, this, true);
 
         return new ArrayList<ManageableEntityAssociationEnd>(manageableAssociationEnds);
-        // return manageableAssociationEnds;
 
+        // return manageableAssociationEnds;
     }
 
     /**
      * @param manageableAssociationEnds
      * @param entity
      */
+
     // TODO remove same as super.getManageableAssociationEnds();
     private void collectAssociationEndsEntity(final Collection<ManageableEntityAssociationEnd> manageableAssociationEnds, final Entity entity, final boolean filterRelevantAssoc)
     {
@@ -678,16 +866,23 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            this.logger_.debug("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
-                    + this.getFullyQualifiedName());
+            if (this.logger_.isDebugEnabled())
+            {
+                this.logger_.debug("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
+                        + this.getFullyQualifiedName());
+            }
 
             // if (otherEnd instanceof ManageableEntityAssociationEnd)
             if (otherEnd.isNavigable() && (otherEnd.getType() instanceof Entity))
             {
+
                 manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
+
             } else
             {
+
                 this.logger_.info("collectAssociationEndsEntity : " + otherEnd.getName() + " is not Entity for : " + otherEnd.getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
+
             }
 
         }
@@ -699,13 +894,14 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final Object parentEntityObject = parentEntityIterator.next();
 
-            if (parentEntityObject instanceof /* ManageableEntity */Entity)
+            if (parentEntityObject instanceof /* ManageableEntity */
+            Entity)
             {
 
-                this.logger_.debug("collectAssociationEndsEntity : " + ((/* ManageableEntity */Entity) parentEntityObject).getName() + " parent found : "
-                        + ((/* ManageableEntity */Entity) parentEntityObject).getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
+                this.logger_.debug("collectAssociationEndsEntity : " + ((Entity) parentEntityObject).getName() + " parent found : " + ((Entity) parentEntityObject).getFullyQualifiedName() + " - "
+                        + this.getFullyQualifiedName());
 
-                this.collectAssociationEndsEntity(manageableAssociationEnds, (/* ManageableEntity */Entity) parentEntityObject, filterRelevantAssoc);
+                this.collectAssociationEndsEntity(manageableAssociationEnds, (Entity) parentEntityObject, filterRelevantAssoc);
 
             }
 
@@ -727,18 +923,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            this.logger_.debug("collectAssociationEndsManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
-                    + " - " + this.getFullyQualifiedName());
+            if (this.logger_.isDebugEnabled())
+            {
+                this.logger_.debug("collectAssociationEndsManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
+                        + " - " + this.getFullyQualifiedName());
+            }
 
             // if (otherEnd.isNavigable() && otherEnd.getType() instanceof Entity) {
             if (otherEnd.isNavigable() && (otherEnd.getType() instanceof Entity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE_REF)
                     && (this.isRelevantAssociation(otherEnd) || (filterRelevantAssoc == false)))
             {
+
                 // if (otherEnd instanceof ManageableEntityAssociationEnd) {
                 manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
+
             } else
             {
+
                 this.logger_.info("collectAssociationEndsManageableEntity : " + otherEnd.getName() + " is not a valid association end for : " + otherEnd.getFullyQualifiedName() + " - " + this.getFullyQualifiedName());
+
             }
 
         }
@@ -774,8 +977,11 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             final AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
 
-            this.logger_.debug("collectAssociationEndsGuiManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
-                    + " - " + this.getFullyQualifiedName());
+            if (this.logger_.isDebugEnabled())
+            {
+                this.logger_.debug("collectAssociationEndsGuiManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
+                        + " - " + this.getFullyQualifiedName());
+            }
 
             if (otherEnd.isNavigable() && (otherEnd.getType() instanceof GuiManageableEntity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)
                     && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_INTERCEPTABLE_REF) && (this.isRelevantAssociation(otherEnd) || (filterRelevantAssoc == false)))
@@ -783,12 +989,17 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
                 if (otherEnd instanceof ManageableEntityAssociationEnd)
                 {
+
                     manageableAssociationEnds.add((ManageableEntityAssociationEnd) otherEnd);
+
                 } else
                 {
+
                     this.logger_.info("collectAssociationEndsGuiManageableEntity : " + otherEnd.getName() + " is not ManageableEntityAssociationEnd for : " + otherEnd.getFullyQualifiedName() + " - "
                             + this.getFullyQualifiedName());
+
                 }
+
             }
 
         }
@@ -831,20 +1042,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsSearchable(final Object element)
     {
+
         // if(element instanceof GuiManageableEntityAttribute)
         // return getManageableSearchAttributes().contains(element);
         // else
         // return getManageableSearchAssociationEnds().contains(element);
 
         // TODO
-
         if (element instanceof GuiManageableEntityAttribute)
         {
+
             return !((GuiManageableEntityAttribute) element).isHidden();
+
         } else
         {
+
             return true;
+
         }
+
     }
 
     /**
@@ -852,19 +1068,28 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
      */
     private String getNamespaceProperty()
     {
+
         return (String) this.getConfiguredProperty(UMLMetafacadeProperties.NAMESPACE_SEPARATOR);
+
     }
 
     private void addSerialUIDData(final StringBuilder buffer)
     {
+
         for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
         {
+
             buffer.append(attribute.getName());
+
         }
+
         for (final ManageableEntityAssociationEnd end : this.getManageableAssociationEnds())
         {
+
             buffer.append(end.getName());
+
         }
+
     }
 
     /**
@@ -874,36 +1099,55 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected Collection<Role> handleGetRoles()
     {
+
         // copied form the Service <<Metafacade>>
         final Collection roles = new ArrayList(this.getTargetDependencies());
+
         CollectionUtils.filter(roles, new Predicate()
         {
+
             @Override
             public boolean evaluate(final Object object)
             {
+
                 final DependencyFacade dependency = (DependencyFacade) object;
+
                 return (dependency != null) && (dependency.getSourceElement() instanceof Role);
+
             }
+
         });
         CollectionUtils.transform(roles, new Transformer()
         {
+
             @Override
             public Object transform(final Object object)
             {
+
                 return ((DependencyFacade) object).getSourceElement();
+
             }
+
         });
+
         final Collection allRoles = new LinkedHashSet(roles);
+
         // add all roles which are generalizations of this one
         CollectionUtils.forAllDo(roles, new Closure()
         {
+
             @Override
             public void execute(final Object object)
             {
+
                 allRoles.addAll(((Role) object).getAllSpecializations());
+
             }
+
         });
+
         return allRoles;
+
     }
 
     /**
@@ -913,21 +1157,32 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected String handleGetActionRoles()
     {
+
         // copied from GuiUseCaseLogicImpl
         final StringBuilder rolesBuffer = new StringBuilder();
         boolean first = true;
+
         for (final Role role : this.getRoles())
         {
+
             if (first)
             {
+
                 first = false;
+
             } else
             {
+
                 rolesBuffer.append(',');
+
             }
+
             rolesBuffer.append(role.getName());
+
         }
+
         return rolesBuffer.toString();
+
     }
 
     /**
@@ -937,18 +1192,28 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsNeedsFileUpload()
     {
+
         for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
         {
+
             if (attribute instanceof GuiManageableEntityAttribute)
             {
+
                 final GuiManageableEntityAttribute jsfAttribute = (GuiManageableEntityAttribute) attribute;
+
                 if (jsfAttribute.isNeedsFileUpload())
                 {
+
                     return true;
+
                 }
+
             }
+
         }
+
         return false;
+
     }
 
     /**
@@ -958,29 +1223,47 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     protected boolean handleIsNeedsUserInterface()
     {
+
         for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
         {
+
             if (attribute instanceof GuiManageableEntityAttribute)
             {
+
                 final GuiManageableEntityAttribute jsfAttribute = (GuiManageableEntityAttribute) attribute;
+
                 if (!jsfAttribute.isHidden())
                 {
+
                     return true;
+
                 }
+
             }
+
         }
+
         for (final ManageableEntityAssociationEnd associationEnd : this.getManageableAssociationEnds())
         {
+
             if (associationEnd instanceof GuiManageableEntityAssociationEnd)
             {
+
                 final GuiManageableEntityAssociationEnd jsfAssociationEnd = (GuiManageableEntityAssociationEnd) associationEnd;
+
                 if (!jsfAssociationEnd.isDisplay())
                 {
+
                     return true;
+
                 }
+
             }
+
         }
+
         return false;
+
     }
 
     /**
@@ -990,7 +1273,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     public String handleGetConverterClassName()
     {
+
         return StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(GuiGlobals.CONVERTER_PATTERN)), "{0}", this.getName());
+
     }
 
     /**
@@ -1000,7 +1285,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     public String handleGetConverterType()
     {
+
         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getConverterClassName();
+
     }
 
     /**
@@ -1010,19 +1297,25 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     @Override
     public String handleGetConverterFullPath()
     {
+
         return StringUtils.replace(this.getConverterType(), this.getNamespaceProperty(), GuiGlobals.SEPARATOR);
+
     }
 
     @Override
     protected java.lang.String handleGetPageName()
     {
+
         return this.getName().toLowerCase();
+
     }
 
     @Override
     protected java.lang.String handleGetPageFullPath()
     {
+
         return GuiGlobals.SEPARATOR + this.getManageablePackagePath() + GuiGlobals.SEPARATOR + this.getPageName();
+
     }
 
     @Override
@@ -1232,7 +1525,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             if (this.logger_.isDebugEnabled())
             {
+
                 this.logger_.debug("RulesSearchData : " + associationEnd.getName() + " - " + associationEnd.getType() + " for : " + this.getFullyQualifiedName());
+
             }
 
             if (associationEnd.getType().hasExactStereotype(GuiProfile.STEREOTYPE_RULES_SEARCH_DATA))
@@ -1332,6 +1627,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             {
 
                 return true;
+
             }
 
         }
@@ -1773,11 +2069,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             String targetElementName = dep.getTargetElement().getName();
 
             // if (this.logger_.isDebugEnabled()) {
-
             this.logger_.info("Business Object Name : " + businessObjectName + " with dependency : " + targetElementName + " - " + this.getFullyQualifiedName());
 
             // }
-
             if (dep.getTargetElement() instanceof GuiValidableEntity)
             {
 
@@ -1794,7 +2088,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
                 if (!"".equals(String.valueOf(filterTag)))
                 {
+
                     attributeName = String.valueOf(filterTag);
+
                 }
 
             }
@@ -1802,7 +2098,6 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
         }
 
         // if (this.logger_.isDebugEnabled()) {
-
         this.logger_.info("Reference Attribute Name : " + attributeName + " for : " + GuiProfile.TAGGEDVALUE_MANAGEABLE_BOREF_DISCRIMINATOR + " - " + this.getFullyQualifiedName());
 
         // }
@@ -1819,11 +2114,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
                 final AttributeFacade attribute = ((GuiManageableEntityAttribute) o);
 
                 // if (this.logger_.isDebugEnabled()) {
-
                 this.logger_.info("Attribute Name : " + attribute.getName() + " for : " + businessObjectName + " - " + this.getFullyQualifiedName());
 
                 // }
-
                 if (attribute.getName().equals(attributeName))
                 {
 
@@ -1847,11 +2140,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             {
 
                 // if (this.logger_.isDebugEnabled()) {
-
                 this.logger_.info("Association Name : " + ((AssociationEndFacade) o).getName() + " for : " + businessObjectName + " - " + this.getFullyQualifiedName());
 
                 // }
-
                 if (((AssociationEndFacade) o).getName().equals(attributeName))
                 {
 
@@ -1962,6 +2253,13 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @param serviceName DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     @Override
     public boolean handleServiceNameExists(final String serviceName)
     {
@@ -2005,13 +2303,12 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     }
 
-    @Override
     // TODO remove
+    @Override
     protected AttributeFacade handleGetIdentifierToDelete()
     {
 
         // return super.getManageableIdentifier();
-
         final AttributeFacade attr = super.getManageableIdentifier();
 
         if (attr == null)
@@ -2041,8 +2338,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     }
 
-    @Override
     // TODO remove
+    @Override
     protected ManageableEntity handleGetManageableGeneralizationToDelete()
     {
 
@@ -2337,7 +2634,6 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
                     // voAttributes.addAll(voRequiredConstructorParameters);
                     //
                     // }
-
                 }
                 catch (final Exception e)
                 {
@@ -2419,6 +2715,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
                 {
 
                     this.logger_.info("GetCorrespondingRuleVOAttr : Looking VO attribute for : " + voAttrName + " - " + this.getFullyQualifiedName());
+
                     return voAttr;
 
                 }
@@ -2637,11 +2934,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
             final DependencyFacade dep = dependencyFacade;
 
             // if (this.logger_.isDebugEnabled()) {
-
             this.logger_.info("Entity : " + entity.getFullyQualifiedName() + " with dependency VO : " + dep.getTargetElement().getName() + " - " + this.getFullyQualifiedName());
 
             // }
-
             if (dep.getTargetElement().hasStereotype(UMLProfile.STEREOTYPE_VALUE_OBJECT))
             {
 
@@ -2654,4 +2949,5 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
         return false;
 
     }
+
 }

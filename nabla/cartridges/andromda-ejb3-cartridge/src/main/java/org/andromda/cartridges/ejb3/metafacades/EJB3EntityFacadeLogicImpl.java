@@ -1,14 +1,43 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.ejb3.metafacades;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
 import org.andromda.cartridges.ejb3.EJB3Globals;
 import org.andromda.cartridges.ejb3.EJB3Profile;
+
 import org.andromda.core.common.ExceptionRecorder;
+
 import org.andromda.metafacades.uml.AssociationEndFacade;
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.ClassifierFacade;
@@ -24,6 +53,7 @@ import org.andromda.metafacades.uml.TypeMappings;
 import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 import org.andromda.metafacades.uml.UMLProfile;
 import org.andromda.metafacades.uml.ValueObject;
+
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
@@ -33,160 +63,173 @@ import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
+import java.text.MessageFormat;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EntityFacade.
  *
  * @see EJB3EntityFacade
  */
-public class EJB3EntityFacadeLogicImpl
-    extends EJB3EntityFacadeLogic
+public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 {
-    private static final long serialVersionUID = 34L;
+
+    private static final long               serialVersionUID                          = 34L;
+
     /**
      * The default entity association cascade property
      */
-    public static final String ENTITY_DEFAULT_CASCADE = "entityDefaultCascade";
+    public static final String              ENTITY_DEFAULT_CASCADE                    = "entityDefaultCascade";
 
     /**
      * Stores the default entity inheritance strategy
      */
-    private static final String ENTITY_INHERITANCE_STRATEGY = "entityInheritanceStrategy";
+    private static final String             ENTITY_INHERITANCE_STRATEGY               = "entityInheritanceStrategy";
 
     /**
      * Stores the default entity discriminator type used in the
      * inheritance annotation
      */
-    private static final String ENTITY_DISCRIMINATOR_TYPE = "entityDiscriminatorType";
+    private static final String             ENTITY_DISCRIMINATOR_TYPE                 = "entityDiscriminatorType";
 
     /**
      * Stores the default entity discriminator column name used in
      * the DiscriminatorColumn annotation
      */
-    private static final String ENTITY_DISCRIMINATOR_COLUMN_NAME = "entityDiscriminatorColumnName";
+    private static final String             ENTITY_DISCRIMINATOR_COLUMN_NAME          = "entityDiscriminatorColumnName";
 
     /**
      * The default view type accessibility for an entity POJO bean
      */
-    public static final String ENTITY_DEFAULT_VIEW_TYPE = "entityViewType";
+    public static final String              ENTITY_DEFAULT_VIEW_TYPE                  = "entityViewType";
 
     /**
      * Value for one table per root class
      */
-    private static final String INHERITANCE_STRATEGY_TABLE_PER_CLASS = "TABLE_PER_CLASS";
+    private static final String             INHERITANCE_STRATEGY_TABLE_PER_CLASS      = "TABLE_PER_CLASS";
 
     /**
      * Value for a single table for the hierarchy
      */
-    private static final String INHERITANCE_STRATEGY_SINGLE_TABLE = "SINGLE_TABLE";
+    private static final String             INHERITANCE_STRATEGY_SINGLE_TABLE         = "SINGLE_TABLE";
 
     /**
      * Value for joined subclass
      */
-    private static final String INHERITANCE_STRATEGY_JOINED_SUBLCASS = "JOINED";
+    private static final String             INHERITANCE_STRATEGY_JOINED_SUBLCASS      = "JOINED";
 
     /**
      * Stores the valid inheritance strategies
      */
-    private static final Collection<String> inheritanceStrategies = new ArrayList<String>();
+    private static final Collection<String> inheritanceStrategies                     = new ArrayList<String>();
 
     static
     {
+
         inheritanceStrategies.add(INHERITANCE_STRATEGY_TABLE_PER_CLASS);
         inheritanceStrategies.add(INHERITANCE_STRATEGY_SINGLE_TABLE);
         inheritanceStrategies.add(INHERITANCE_STRATEGY_JOINED_SUBLCASS);
+
     }
 
     /**
      * Value for string based discriminator type
      */
-    public static final String DISCRIMINATORTYPE_STRING = "STRING";
+    public static final String              DISCRIMINATORTYPE_STRING                  = "STRING";
 
     /**
      * Value for char based discriminator type
      */
-    public static final String DISCRIMINATORTYPE_CHAR = "CHAR";
+    public static final String              DISCRIMINATORTYPE_CHAR                    = "CHAR";
 
     /**
      * Value for integer based discriminator type
      */
-    public static final String DISCRIMINATORTYPE_INTEGER = "INTEGER";
+    public static final String              DISCRIMINATORTYPE_INTEGER                 = "INTEGER";
 
     /**
      * Stores the valid discriminator types
      */
-    private static final Collection<String> discriminatorTypes = new ArrayList<String>();
+    private static final Collection<String> discriminatorTypes                        = new ArrayList<String>();
 
     static
     {
+
         discriminatorTypes.add(DISCRIMINATORTYPE_STRING);
         discriminatorTypes.add(DISCRIMINATORTYPE_CHAR);
         discriminatorTypes.add(DISCRIMINATORTYPE_INTEGER);
+
     }
 
     /**
      * The property which stores the pattern defining the entity name.
      */
-    public static final String ENTITY_NAME_PATTERN = "entityNamePattern";
+    public static final String              ENTITY_NAME_PATTERN                       = "entityNamePattern";
 
     /**
      * The property which stores the pattern defining the entity
      * implementation name.
      */
-    public static final String ENTITY_IMPLEMENTATION_NAME_PATTERN = "entityImplementationNamePattern";
+    public static final String              ENTITY_IMPLEMENTATION_NAME_PATTERN        = "entityImplementationNamePattern";
 
     /**
      * The property that stores the pattern defining the entity
      * listener class name.
      */
-    public static final String ENTITY_LISTENER_NAME_PATTERN = "entityListenerNamePattern";
+    public static final String              ENTITY_LISTENER_NAME_PATTERN              = "entityListenerNamePattern";
 
     /**
      * The property that stores the pattern defining the entity
      * embeddable super class name.
      */
-    public static final String ENTITY_EMBEDDABLE_NAME_PATTERN = "entityEmbeddableNamePattern";
+    public static final String              ENTITY_EMBEDDABLE_NAME_PATTERN            = "entityEmbeddableNamePattern";
 
     /**
      * The property that stores the pattern defining the entity
      * composite primary key class name.
      */
-    private static final String ENTITY_COMPOSITE_PRIMARY_KEY_NAME_PATTERN = "entityCompositePrimaryKeyNamePattern";
+    private static final String             ENTITY_COMPOSITE_PRIMARY_KEY_NAME_PATTERN = "entityCompositePrimaryKeyNamePattern";
 
     /**
      * The property that stores the generic finders option
      */
-    private static final String ENTITY_GENERIC_FINDERS = "entityGenericFinders";
+    private static final String             ENTITY_GENERIC_FINDERS                    = "entityGenericFinders";
 
     /**
      * The property that stores whether caching is enabled.
      */
-    private static final String HIBERNATE_ENABLE_CACHE = "hibernateEnableCache";
+    private static final String             HIBERNATE_ENABLE_CACHE                    = "hibernateEnableCache";
 
     /**
      * The property that stores the hibernate entity cache value.
      */
-    private static final String HIBERNATE_ENTITY_CACHE = "hibernateEntityCache";
+    private static final String             HIBERNATE_ENTITY_CACHE                    = "hibernateEntityCache";
 
     /**
      * The property that determines whether to use the default cache region for
      * entities and queries.
      */
-    private static final String USE_DEFAULT_CACHE_REGION = "useDefaultCacheRegion";
+    private static final String             USE_DEFAULT_CACHE_REGION                  = "useDefaultCacheRegion";
 
     /**
      * The pattern used to construct the DAO implementation name.
      */
-    private static final String DAO_IMPLEMENTATION_PATTERN = "daoImplementationNamePattern";
+    private static final String             DAO_IMPLEMENTATION_PATTERN                = "daoImplementationNamePattern";
 
     /**
      * The pattern used to construct the DAO base name.
      */
-    private static final String DAO_BASE_PATTERN = "daoBaseNamePattern";
+    private static final String             DAO_BASE_PATTERN                          = "daoBaseNamePattern";
 
     /**
      * The property which stores the pattern defining the DAO default exception name.
      */
-    private static final String DAO_DEFAULT_EXCEPTION_NAME_PATTERN = "daoDefaultExceptionNamePattern";
+    private static final String             DAO_DEFAULT_EXCEPTION_NAME_PATTERN        = "daoDefaultExceptionNamePattern";
 
     // ---------------- constructor -------------------------------
 
@@ -196,7 +239,8 @@ public class EJB3EntityFacadeLogicImpl
      */
     public EJB3EntityFacadeLogicImpl(final Object metaObject, final String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
+
     }
 
     // --------------- methods ---------------------
@@ -209,28 +253,41 @@ public class EJB3EntityFacadeLogicImpl
      */
     public Collection handleGetIdentifiers()
     {
+
         Collection identifiers = new ArrayList();
+
         for (final DependencyFacade dep : this.getSourceDependencies())
         {
+
             if (dep.hasStereotype(EJB3Profile.STEREOTYPE_IDENTIFIER))
             {
-                identifiers = ((ClassifierFacade)dep.getTargetElement()).getInstanceAttributes();
+
+                identifiers = ((ClassifierFacade) dep.getTargetElement()).getInstanceAttributes();
                 MetafacadeUtils.filterByStereotype(identifiers, EJB3Profile.STEREOTYPE_IDENTIFIER);
+
                 return identifiers;
+
             }
+
         }
 
         // No PK dependency found - try a PK attribute
-        if (this.getIdentifiers(true) != null && !this.getIdentifiers(true).isEmpty())
+        if ((this.getIdentifiers(true) != null) && !this.getIdentifiers(true).isEmpty())
         {
+
             AttributeFacade attr = this.getIdentifiers(true).iterator().next();
+
             identifiers.add(attr);
+
             return identifiers;
+
         }
 
         // Still nothing found - recurse up the inheritance tree
-        EJB3EntityFacade decorator = (EJB3EntityFacade)this.getGeneralization();
+        EJB3EntityFacade decorator = (EJB3EntityFacade) this.getGeneralization();
+
         return decorator.getIdentifiers();
+
     }
 
     /**
@@ -250,28 +307,39 @@ public class EJB3EntityFacadeLogicImpl
      */
     public Collection<EntityAttribute> getIdentifiers(boolean follow)
     {
+
         final List<AttributeFacade> attributes = this.getAttributes();
-        MetafacadeUtils.filterByStereotype(
-            attributes,
-            UMLProfile.STEREOTYPE_IDENTIFIER);
+
+        MetafacadeUtils.filterByStereotype(attributes, UMLProfile.STEREOTYPE_IDENTIFIER);
 
         if (attributes.isEmpty() && follow)
         {
+
             if (this.getGeneralization() instanceof EJB3EntityFacade)
             {
-                return ((EJB3EntityFacade)this.getGeneralization()).getIdentifiers(follow);
-            }
-            else if (this.getGeneralization() instanceof EJB3MappedSuperclassFacade)
+
+                return ((EJB3EntityFacade) this.getGeneralization()).getIdentifiers(follow);
+
+            } else if (this.getGeneralization() instanceof EJB3MappedSuperclassFacade)
             {
-                return ((EJB3MappedSuperclassFacade)this.getGeneralization()).getIdentifiers(follow);
+
+                return ((EJB3MappedSuperclassFacade) this.getGeneralization()).getIdentifiers(follow);
+
             }
+
         }
+
         Collection<EntityAttribute> identifiers = new ArrayList<EntityAttribute>();
+
         for (AttributeFacade attribute : attributes)
         {
-            identifiers.add((EntityAttribute)attribute);
+
+            identifiers.add((EntityAttribute) attribute);
+
         }
+
         return identifiers;
+
     }
 
     /**
@@ -280,7 +348,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsSyntheticCreateMethodAllowed()
     {
+
         return EJB3MetafacadeUtils.allowSyntheticCreateMethod(this);
+
     }
 
     /**
@@ -289,7 +359,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetAllEntityRelations()
     {
+
         return this.getEntityRelations();
+
     }
 
     /**
@@ -298,16 +370,23 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetJndiName()
     {
+
         StringBuilder jndiName = new StringBuilder();
         String jndiNamePrefix = StringUtils.trimToEmpty(this.getJndiNamePrefix());
+
         if (StringUtils.isNotBlank(jndiNamePrefix))
         {
+
             jndiName.append(jndiNamePrefix);
             jndiName.append("/");
+
         }
+
         jndiName.append("ejb/");
         jndiName.append(this.getFullyQualifiedName());
+
         return jndiName.toString();
+
     }
 
     /**
@@ -317,12 +396,18 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected String getJndiNamePrefix()
     {
+
         String prefix = null;
+
         if (this.isConfiguredProperty(EJB3Globals.JNDI_NAME_PREFIX))
         {
-            prefix = (String)this.getConfiguredProperty(EJB3Globals.JNDI_NAME_PREFIX);
+
+            prefix = (String) this.getConfiguredProperty(EJB3Globals.JNDI_NAME_PREFIX);
+
         }
+
         return prefix;
+
     }
 
     /**
@@ -331,8 +416,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetViewType()
     {
-        return EJB3MetafacadeUtils.getViewType(this,
-                String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_VIEW_TYPE)));
+
+        return EJB3MetafacadeUtils.getViewType(this, String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_VIEW_TYPE)));
+
     }
 
     /**
@@ -341,7 +427,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected List handleGetAllInstanceAttributes()
     {
+
         return EJB3MetafacadeUtils.getAllInstanceAttributes(this);
+
     }
 
     /**
@@ -350,7 +438,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected List handleGetInheritedInstanceAttributes()
     {
+
         return EJB3MetafacadeUtils.getInheritedInstanceAttributes(this);
+
     }
 
     /**
@@ -359,7 +449,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetHomeInterfaceName()
     {
+
         return EJB3MetafacadeUtils.getHomeInterfaceName(this);
+
     }
 
     /**
@@ -370,24 +462,34 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetValueDependencies()
     {
+
         Collection dependencies = super.getSourceDependencies();
-        CollectionUtils.filter(
-                dependencies,
-                new Predicate()
+
+        CollectionUtils.filter(dependencies, new Predicate()
+        {
+
+            public boolean evaluate(Object object)
+            {
+
+                boolean isValueRef = false;
+
+                if (object instanceof DependencyFacade)
                 {
-                    public boolean evaluate(Object object)
-                    {
-                        boolean isValueRef = false;
-                        if (object instanceof DependencyFacade)
-                        {
-                            DependencyFacade dep = (DependencyFacade)object;
-                            isValueRef = dep.getStereotypeNames().contains(EJB3Profile.STEREOTYPE_VALUE_REF)
-                                && dep.getTargetElement().hasExactStereotype(EJB3Profile.STEREOTYPE_VALUE_OBJECT);
-                        }
-                        return isValueRef;
-                    }
-                });
+
+                    DependencyFacade dep = (DependencyFacade) object;
+
+                    isValueRef = dep.getStereotypeNames().contains(EJB3Profile.STEREOTYPE_VALUE_REF) && dep.getTargetElement().hasExactStereotype(EJB3Profile.STEREOTYPE_VALUE_OBJECT);
+
+                }
+
+                return isValueRef;
+
+            }
+
+        });
+
         return dependencies;
+
     }
 
     /**
@@ -396,17 +498,25 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetEntityRelations()
     {
+
         Collection<AssociationEndFacade> result = new ArrayList<AssociationEndFacade>();
+
         for (final AssociationEndFacade associationEnd : this.getAssociationEnds())
         {
+
             ClassifierFacade target = associationEnd.getOtherEnd().getType();
+
             if (target instanceof EJB3EntityFacade && associationEnd.getOtherEnd().isNavigable())
             {
+
                 result.add(associationEnd);
+
             }
+
         }
 
         return result;
+
     }
 
     /**
@@ -416,7 +526,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetCreateMethods(boolean follow)
     {
+
         return EJB3MetafacadeUtils.getCreateMethods(this, follow);
+
     }
 
     /**
@@ -426,28 +538,41 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection<OperationFacade> handleGetSelectMethods(boolean follow)
     {
+
         Collection<OperationFacade> retval = new ArrayList<OperationFacade>();
         EJB3EntityFacade entity = null;
+
         do
         {
+
             for (final OperationFacade op : this.getOperations())
             {
+
                 if (op.hasStereotype(EJB3Profile.STEREOTYPE_SELECT_METHOD))
                 {
+
                     retval.add(op);
+
                 }
+
             }
+
             if (follow)
             {
-                entity = (EJB3EntityFacade)this.getGeneralization();
-            }
-            else
+
+                entity = (EJB3EntityFacade) this.getGeneralization();
+
+            } else
             {
+
                 break;
+
             }
-        }
-        while (entity != null);
+
+        } while (entity != null);
+
         return retval;
+
     }
 
     /**
@@ -457,7 +582,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetEnvironmentEntries(boolean follow)
     {
+
         return EJB3MetafacadeUtils.getEnvironmentEntries(this, follow);
+
     }
 
     /**
@@ -467,7 +594,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetConstants(boolean follow)
     {
+
         return EJB3MetafacadeUtils.getConstants(this, follow);
+
     }
 
     /**
@@ -476,16 +605,25 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsOperationPresent(String op)
     {
+
         Collection collOps = this.getOperations();
+
         for (final Iterator it = collOps.iterator(); it.hasNext();)
         {
-            final OperationFacade operation = (OperationFacade)it.next();
+
+            final OperationFacade operation = (OperationFacade) it.next();
+
             if (operation.getName().equalsIgnoreCase(op))
             {
+
                 return true;
+
             }
+
         }
+
         return false;
+
     }
 
     /**
@@ -494,16 +632,25 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsAttributePresent(String att)
     {
+
         Collection collAttrib = this.getAttributes(true);
+
         for (final Iterator it = collAttrib.iterator(); it.hasNext();)
         {
-            final AttributeFacade attr = (AttributeFacade)it.next();
+
+            final AttributeFacade attr = (AttributeFacade) it.next();
+
             if (attr.getName().equalsIgnoreCase(att))
             {
+
                 return true;
+
             }
+
         }
+
         return false;
+
     }
 
     /**
@@ -512,16 +659,25 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsIdentifierPresent(String id)
     {
+
         Collection collIdentifier = this.getIdentifiers(true);
+
         for (final Iterator it = collIdentifier.iterator(); it.hasNext();)
         {
-            final AttributeFacade attr = (AttributeFacade)it.next();
+
+            final AttributeFacade attr = (AttributeFacade) it.next();
+
             if (attr.getName().equalsIgnoreCase(id))
             {
+
                 return true;
+
             }
+
         }
+
         return false;
+
     }
 
     /**
@@ -530,12 +686,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetSqlType()
     {
+
         String mpSql = this.getMappingsProperty(UMLMetafacadeProperties.SQL_MAPPINGS_URI).getMappings().getName();
+
         if (mpSql.startsWith("Oracle"))
         {
+
             mpSql = "ORACLE";
+
         }
+
         return mpSql;
+
     }
 
     /**
@@ -546,29 +708,42 @@ public class EJB3EntityFacadeLogicImpl
      */
     private TypeMappings getMappingsProperty(final String propertyName)
     {
+
         Object property = this.getConfiguredProperty(propertyName);
         TypeMappings mappings = null;
         String uri = null;
+
         if (property instanceof String)
         {
-            uri = (String)property;
+
+            uri = (String) property;
+
             try
             {
+
                 mappings = TypeMappings.getInstance(uri);
                 this.setProperty(propertyName, mappings);
+
             }
             catch (Throwable th)
             {
+
                 String errMsg = "Error getting '" + propertyName + "' --> '" + uri + "'";
+
                 // don't throw the exception
                 ExceptionRecorder.instance().record(errMsg, th);
+
             }
-        }
-        else
+
+        } else
         {
-            mappings = (TypeMappings)property;
+
+            mappings = (TypeMappings) property;
+
         }
+
         return mappings;
+
     }
 
     /**
@@ -576,20 +751,32 @@ public class EJB3EntityFacadeLogicImpl
      */
     public Collection<OperationFacade> getBusinessOperations()
     {
+
         Collection<OperationFacade> operations = super.getBusinessOperations();
+
         CollectionUtils.filter(operations, new Predicate()
         {
+
             public boolean evaluate(Object object)
             {
+
                 boolean businessOperation = false;
+
                 if (EJB3OperationFacade.class.isAssignableFrom(object.getClass()))
                 {
-                    businessOperation = ((EJB3OperationFacade)object).isBusinessOperation();
+
+                    businessOperation = ((EJB3OperationFacade) object).isBusinessOperation();
+
                 }
+
                 return businessOperation;
+
             }
+
         });
+
         return operations;
+
     }
 
     /**
@@ -598,12 +785,11 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetEntityCompositePrimaryKeyName()
     {
-        String compPKPattern =
-            String.valueOf(this.getConfiguredProperty(ENTITY_COMPOSITE_PRIMARY_KEY_NAME_PATTERN));
 
-        return MessageFormat.format(
-            compPKPattern,
-                StringUtils.trimToEmpty(this.getName()));
+        String compPKPattern = String.valueOf(this.getConfiguredProperty(ENTITY_COMPOSITE_PRIMARY_KEY_NAME_PATTERN));
+
+        return MessageFormat.format(compPKPattern, StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -612,11 +798,11 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetEntityListenerName()
     {
-        String entityListenerPattern = (String)this.getConfiguredProperty(ENTITY_LISTENER_NAME_PATTERN);
 
-        return MessageFormat.format(
-            entityListenerPattern,
-                StringUtils.trimToEmpty(this.getName()));
+        String entityListenerPattern = (String) this.getConfiguredProperty(ENTITY_LISTENER_NAME_PATTERN);
+
+        return MessageFormat.format(entityListenerPattern, StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -625,12 +811,11 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetEntityEmbeddableName()
     {
-        String embeddableSuperclassName =
-            (String)this.getConfiguredProperty(ENTITY_EMBEDDABLE_NAME_PATTERN);
 
-        return MessageFormat.format(
-            embeddableSuperclassName,
-                StringUtils.trimToEmpty(this.getName()));
+        String embeddableSuperclassName = (String) this.getConfiguredProperty(ENTITY_EMBEDDABLE_NAME_PATTERN);
+
+        return MessageFormat.format(embeddableSuperclassName, StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -639,11 +824,11 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetEntityName()
     {
-        String entityNamePattern = (String)this.getConfiguredProperty(ENTITY_NAME_PATTERN);
 
-        return MessageFormat.format(
-            entityNamePattern,
-                StringUtils.trimToEmpty(this.getName()));
+        String entityNamePattern = (String) this.getConfiguredProperty(ENTITY_NAME_PATTERN);
+
+        return MessageFormat.format(entityNamePattern, StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -652,10 +837,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedEntityCompositePrimaryKeyName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getEntityCompositePrimaryKeyName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getEntityCompositePrimaryKeyName(), null);
+
     }
 
     /**
@@ -664,12 +848,11 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetEntityImplementationName()
     {
-        String implNamePattern =
-            String.valueOf(this.getConfiguredProperty(ENTITY_IMPLEMENTATION_NAME_PATTERN));
 
-        return MessageFormat.format(
-            implNamePattern,
-                StringUtils.trimToEmpty(this.getName()));
+        String implNamePattern = String.valueOf(this.getConfiguredProperty(ENTITY_IMPLEMENTATION_NAME_PATTERN));
+
+        return MessageFormat.format(implNamePattern, StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -678,10 +861,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedEntityListenerName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getEntityListenerName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getEntityListenerName(), null);
+
     }
 
     /**
@@ -690,10 +872,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedEntityEmbeddableName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getEntityEmbeddableName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getEntityEmbeddableName(), null);
+
     }
 
     /**
@@ -702,10 +883,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedEntityName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getEntityName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getEntityName(), null);
+
     }
 
     /**
@@ -714,10 +894,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedEntityImplementationName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getEntityImplementationName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getEntityImplementationName(), null);
+
     }
 
     /**
@@ -727,16 +906,23 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected String handleGetBeanName(boolean targetSuffix)
     {
+
         final String beanName = StringUtils.uncapitalize(StringUtils.trimToEmpty(this.getName()));
         StringBuilder beanNameBuffer = new StringBuilder(String.valueOf(this.getConfiguredProperty(EJB3Globals.BEAN_NAME_PREFIX)));
+
         beanNameBuffer.append(this.getDaoNamePattern().replaceAll("\\{0\\}", beanName));
+
         if (targetSuffix)
         {
+
             beanNameBuffer.append(EJB3Globals.BEAN_NAME_TARGET_SUFFIX);
+
         }
+
         return beanNameBuffer.toString();
+
     }
-    
+
     /**
      * Override the default table name definition to lookup the tagged value first.
      * @return tableName
@@ -744,12 +930,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     public String getTableName()
     {
-        String tableName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_ENTITY_TABLE_NAME);
+
+        String tableName = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_ENTITY_TABLE_NAME);
+
         if (StringUtils.isBlank(tableName))
         {
+
             tableName = super.getTableName();
+
         }
+
         return tableName;
+
     }
 
     /**
@@ -758,7 +950,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDefaultCascadeType()
     {
+
         return StringUtils.trimToEmpty(String.valueOf(this.getConfiguredProperty(ENTITY_DEFAULT_CASCADE)));
+
     }
 
     /**
@@ -767,13 +961,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDiscriminatorColumn()
     {
-        String discriminatorColumnName =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_COLUMN);
+
+        String discriminatorColumnName = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_COLUMN);
+
         if (StringUtils.isBlank(discriminatorColumnName))
         {
+
             discriminatorColumnName = String.valueOf(this.getConfiguredProperty(ENTITY_DISCRIMINATOR_COLUMN_NAME));
+
         }
+
         return discriminatorColumnName;
+
     }
 
     /**
@@ -782,7 +981,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDiscriminatorColumnDefinition()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_COLUMN_DEFINITION);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_COLUMN_DEFINITION);
+
     }
 
     /**
@@ -790,14 +991,19 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected int handleGetDiscriminatorLength()
     {
+
         int length = 0;
-        String lengthAsStr =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_COLUMN_LENGTH);
+        String lengthAsStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_COLUMN_LENGTH);
+
         if (StringUtils.isNotBlank(lengthAsStr))
         {
+
             length = NumberUtils.toInt(lengthAsStr);
+
         }
+
         return length;
+
     }
 
     /**
@@ -806,12 +1012,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDiscriminatorType()
     {
-        String discriminatorType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_TYPE);
+
+        String discriminatorType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_TYPE);
+
         if (StringUtils.isBlank(discriminatorType))
         {
+
             discriminatorType = String.valueOf(this.getConfiguredProperty(ENTITY_DISCRIMINATOR_TYPE));
+
         }
+
         return discriminatorType;
+
     }
 
     /**
@@ -820,13 +1032,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDiscriminatorValue()
     {
-        String discriminatorValue =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_VALUE);
+
+        String discriminatorValue = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_DISCRIMINATOR_VALUE);
+
         if (StringUtils.isBlank(discriminatorValue))
         {
+
             discriminatorValue = StringUtils.substring(this.getEntityName(), 0, 1);
+
         }
+
         return discriminatorValue;
+
     }
 
     /**
@@ -836,7 +1053,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getDefaultInheritanceStrategy()
     {
+
         return String.valueOf(this.getConfiguredProperty(ENTITY_INHERITANCE_STRATEGY));
+
     }
 
     /**
@@ -847,16 +1066,25 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getInheritance(EJB3EntityFacade entity)
     {
+
         String inheritance = null;
+
         if (entity != null)
         {
+
             Object value = entity.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_INHERITANCE);
+
             if (value != null)
             {
+
                 inheritance = String.valueOf(value);
+
             }
+
         }
+
         return inheritance;
+
     }
 
     /**
@@ -868,12 +1096,18 @@ public class EJB3EntityFacadeLogicImpl
      */
     private EJB3EntityFacade getSuperEntity()
     {
+
         EJB3EntityFacade superEntity = null;
+
         if ((this.getGeneralization() != null) && this.getGeneralization() instanceof EJB3EntityFacade)
         {
-            superEntity = (EJB3EntityFacade)this.getGeneralization();
+
+            superEntity = (EJB3EntityFacade) this.getGeneralization();
+
         }
+
         return superEntity;
+
     }
 
     /**
@@ -882,7 +1116,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsInheritanceSingleTable()
     {
+
         return this.getInheritanceStrategy().equalsIgnoreCase(INHERITANCE_STRATEGY_SINGLE_TABLE);
+
     }
 
     /**
@@ -891,18 +1127,25 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetInheritanceStrategy()
     {
+
         String inheritance = this.getInheritance(this);
-        for (EJB3EntityFacade superEntity = this.getSuperEntity();
-            (superEntity != null) && StringUtils.isBlank(inheritance); )
+
+        for (EJB3EntityFacade superEntity = this.getSuperEntity(); (superEntity != null) && StringUtils.isBlank(inheritance);)
         {
+
             inheritance = superEntity.getInheritanceStrategy();
+
         }
 
         if (StringUtils.isBlank(inheritance) || !inheritanceStrategies.contains(inheritance))
         {
+
             inheritance = this.getDefaultInheritanceStrategy();
+
         }
+
         return inheritance;
+
     }
 
     /**
@@ -911,7 +1154,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsInheritanceTablePerClass()
     {
+
         return this.getInheritanceStrategy().equalsIgnoreCase(INHERITANCE_STRATEGY_TABLE_PER_CLASS);
+
     }
 
     /**
@@ -920,7 +1165,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsInheritanceJoined()
     {
+
         return this.getInheritanceStrategy().equalsIgnoreCase(INHERITANCE_STRATEGY_JOINED_SUBLCASS);
+
     }
 
     /**
@@ -930,8 +1177,11 @@ public class EJB3EntityFacadeLogicImpl
      */
     private boolean isRoot()
     {
+
         final EJB3EntityFacade superEntity = this.getSuperEntity();
-        return (superEntity == null && !this.isAbstract());
+
+        return ((superEntity == null) && !this.isAbstract());
+
     }
 
     /**
@@ -940,8 +1190,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsRequiresSpecializationMapping()
     {
-        return (this.isInheritanceSingleTable() || this.isInheritanceTablePerClass() || this.isInheritanceJoined())
-                && !this.getSpecializations().isEmpty();
+
+        return (this.isInheritanceSingleTable() || this.isInheritanceTablePerClass() || this.isInheritanceJoined()) && !this.getSpecializations().isEmpty();
+
     }
 
     /**
@@ -950,10 +1201,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsRequiresGeneralizationMapping()
     {
-        return (this.getSuperEntity() != null &&
-                (this.getSuperEntity().isInheritanceSingleTable() ||
-                        this.getSuperEntity().isInheritanceTablePerClass() ||
-                        this.getSuperEntity().isInheritanceJoined()));
+
+        return ((this.getSuperEntity() != null) && (this.getSuperEntity().isInheritanceSingleTable() || this.getSuperEntity().isInheritanceTablePerClass() || this.getSuperEntity().isInheritanceJoined()));
+
     }
 
     /**
@@ -962,12 +1212,14 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsEmbeddableSuperclass()
     {
+
         boolean isEmbeddableSuperclass = this.hasStereotype(EJB3Profile.STEREOTYPE_MAPPED_SUPERCLASS);
 
         /**
          * Must the root class - Cannot have embeddable superclass in the middle of the hierarchy
          */
         return isEmbeddableSuperclass && isRoot();
+
     }
 
     /**
@@ -976,22 +1228,23 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsEmbeddableSuperclassGeneralizationExists()
     {
-        return (this.getSuperEntity() != null && this.getSuperEntity().isEmbeddableSuperclass());
+
+        return ((this.getSuperEntity() != null) && this.getSuperEntity().isEmbeddableSuperclass());
+
     }
 
     /**
      * @see EJB3EntityFacadeLogic#handleGetAttributesAsList(Collection, boolean, boolean, boolean)
      */
     @Override
-    protected String handleGetAttributesAsList(
-            Collection attributes,
-            boolean includeTypes,
-            boolean includeNames,
-            boolean includeAutoIdentifiers)
+    protected String handleGetAttributesAsList(Collection attributes, boolean includeTypes, boolean includeNames, boolean includeAutoIdentifiers)
     {
-        if ((!includeNames && !includeTypes) || attributes == null)
+
+        if ((!includeNames && !includeTypes) || (attributes == null))
         {
+
             return "";
+
         }
 
         StringBuilder sb = new StringBuilder();
@@ -999,49 +1252,66 @@ public class EJB3EntityFacadeLogicImpl
 
         for (final Iterator it = attributes.iterator(); it.hasNext();)
         {
-            EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade)it.next();
+
+            EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) it.next();
+
             /**
              * Do not include attributes that are assigned for optimistic lock value as a version
              */
             boolean isCompositePKPresent = this.isCompositePrimaryKeyPresent();
+
             if (!attr.isVersion())
             {
+
                 /*
                  * Do not include identifier attributes for entities with a composite primary key
                  * or if includeAutoIdentifiers is false, do not include identifiers with auto generated values.
                  */
-                if ((isCompositePKPresent && (includeAutoIdentifiers || !attr.isIdentifier())) ||
-                    (!isCompositePKPresent &&
-                            ((!includeAutoIdentifiers && attr.isIdentifier() && attr.isGeneratorTypeNone()) ||
-                            (includeAutoIdentifiers && attr.isIdentifier()) ||
-                            !attr.isIdentifier())))
+                if ((isCompositePKPresent && (includeAutoIdentifiers || !attr.isIdentifier()))
+                        || (!isCompositePKPresent && ((!includeAutoIdentifiers && attr.isIdentifier() && attr.isGeneratorTypeNone()) || (includeAutoIdentifiers && attr.isIdentifier()) || !attr.isIdentifier())))
                 {
+
                     sb.append(separator);
                     separator = ", ";
+
                     if (includeTypes)
                     {
+
                         /**
                          * If attribute is a LOB and lob type is overridden, then use
                          * overriding lob type.
                          */
                         if (attr.isLob() && StringUtils.isNotBlank(attr.getLobType()))
                         {
+
                             sb.append(attr.getLobType());
-                        }
-                        else
+
+                        } else
                         {
+
                             sb.append(attr.getGetterSetterTypeName());
+
                         }
+
                         sb.append(" ");
+
                     }
+
                     if (includeNames)
                     {
+
                         sb.append(attr.getName());
+
                     }
+
                 }
+
             }
+
         }
+
         return sb.toString();
+
     }
 
     /**
@@ -1050,7 +1320,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsGenericFinders()
     {
+
         return BooleanUtils.toBoolean(String.valueOf(this.getConfiguredProperty(ENTITY_GENERIC_FINDERS)));
+
     }
 
     /**
@@ -1059,12 +1331,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsCompositePrimaryKeyPresent()
     {
+
         boolean isCompositePK = false;
+
         if (this.getIdentifiers().size() > 1)
         {
+
             isCompositePK = true;
+
         }
+
         return isCompositePK;
+
     }
 
     /**
@@ -1073,7 +1351,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsListenerEnabled()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_LISTENER);
+
     }
 
     /**
@@ -1082,21 +1362,33 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsFinderFindAllExists()
     {
+
         boolean finderExists = false;
+
         for (final Iterator iter = this.getQueryOperations().iterator(); iter.hasNext();)
         {
-            final OperationFacade operation = (OperationFacade)iter.next();
+
+            final OperationFacade operation = (OperationFacade) iter.next();
+
             if ("findAll".equalsIgnoreCase(StringUtils.trimToEmpty(operation.getName())))
             {
+
                 // Check for no finder arguments
                 if (operation.getArguments().isEmpty())
                 {
+
                     finderExists = true;
+
                     break;
+
                 }
+
             }
+
         }
+
         return finderExists;
+
     }
 
     /**
@@ -1105,17 +1397,27 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsFinderFindByPrimaryKeyExists()
     {
+
         boolean finderExists = false;
+
         for (final Iterator iter = this.getQueryOperations().iterator(); iter.hasNext();)
         {
-            final OperationFacade operation = (OperationFacade)iter.next();
+
+            final OperationFacade operation = (OperationFacade) iter.next();
+
             if ("findByPrimaryKey".equalsIgnoreCase(operation.getName()))
             {
+
                 finderExists = true;
+
                 break;
+
             }
+
         }
+
         return finderExists;
+
     }
 
     /**
@@ -1124,7 +1426,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsManageable()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_MANAGEABLE);
+
     }
 
     /**
@@ -1132,38 +1436,53 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected AttributeFacade handleGetManageableDisplayAttribute()
     {
+
         AttributeFacade displayAttribute = null;
 
         final Object taggedValueObject = this.findTaggedValue(UMLProfile.TAGGEDVALUE_MANAGEABLE_DISPLAY_NAME);
+
         if (taggedValueObject != null)
         {
+
             displayAttribute = this.findAttribute(StringUtils.trimToEmpty(taggedValueObject.toString()));
+
         }
 
         final Collection<AttributeFacade> attributes = this.getAttributes(true);
-        for (final Iterator<AttributeFacade> attributeIterator = attributes.iterator();
-            attributeIterator.hasNext() && displayAttribute == null;)
+
+        for (final Iterator<AttributeFacade> attributeIterator = attributes.iterator(); attributeIterator.hasNext() && (displayAttribute == null);)
         {
+
             final AttributeFacade attribute = attributeIterator.next();
+
             if (attribute.isUnique())
             {
+
                 displayAttribute = attribute;
+
             }
+
         }
 
         if (displayAttribute == null)
         {
+
             if (!this.getIdentifiers().isEmpty())
             {
+
                 displayAttribute = this.getIdentifiers().iterator().next();
-            }
-            else if (!attributes.isEmpty())
+
+            } else if (!attributes.isEmpty())
             {
-                displayAttribute = (EntityAttribute)attributes.iterator().next();
+
+                displayAttribute = (EntityAttribute) attributes.iterator().next();
+
             }
+
         }
 
         return displayAttribute;
+
     }
 
     /**
@@ -1171,7 +1490,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected EJB3EntityAttributeFacade handleGetIdentifier()
     {
-        return (EJB3EntityAttributeFacade)this.getIdentifiers().iterator().next();
+
+        return (EJB3EntityAttributeFacade) this.getIdentifiers().iterator().next();
+
     }
 
     /**
@@ -1180,12 +1501,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetCacheType()
     {
-        String cacheType = (String)findTaggedValue(EJB3Profile.TAGGEDVALUE_HIBERNATE_ENTITY_CACHE);
+
+        String cacheType = (String) findTaggedValue(EJB3Profile.TAGGEDVALUE_HIBERNATE_ENTITY_CACHE);
+
         if (StringUtils.isBlank(cacheType))
         {
+
             cacheType = String.valueOf(this.getConfiguredProperty(HIBERNATE_ENTITY_CACHE));
+
         }
+
         return StringUtils.trimToEmpty(cacheType);
+
     }
 
     /**
@@ -1194,7 +1521,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsCacheEnabled()
     {
+
         return BooleanUtils.toBoolean(String.valueOf(this.getConfiguredProperty(HIBERNATE_ENABLE_CACHE)));
+
     }
 
     /**
@@ -1203,7 +1532,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsUseDefaultCacheRegion()
     {
+
         return BooleanUtils.toBoolean(String.valueOf(this.getConfiguredProperty(USE_DEFAULT_CACHE_REGION)));
+
     }
 
     /**
@@ -1212,24 +1543,25 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDaoName()
     {
-        return MessageFormat.format(
-            getDaoNamePattern(),
-                StringUtils.trimToEmpty(this.getName()));
+
+        return MessageFormat.format(getDaoNamePattern(), StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
      * @return getDaoNamePattern().replaceAll("\\{0\\}", getName())
      * @see org.andromda.cartridges.spring.metafacades.SpringEntity#getDaoName()
      */
-     /*
-    protected String handleGetDaoName()
-    {
-        return this.getDaoNamePattern().replaceAll(
-            "\\{0\\}",
-            this.getName());
-    }
-    */
-    
+
+    /*
+       protected String handleGetDaoName()
+       {
+           return this.getDaoNamePattern().replaceAll(
+               "\\{0\\}",
+               this.getName());
+       }
+     */
+
     /**
      * Gets the value of the {@link EJB3Globals#DAO_PATTERN}
      *
@@ -1237,19 +1569,20 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getDaoNamePattern()
     {
+
         return String.valueOf(this.getConfiguredProperty(EJB3Globals.DAO_PATTERN));
+
     }
-    
+
     /**
      * @see EJB3EntityFacadeLogic#handleGetFullyQualifiedDaoName()
      */
     @Override
     protected String handleGetFullyQualifiedDaoName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getDaoName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getDaoName(), null);
+
     }
 
     /**
@@ -1258,9 +1591,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDaoImplementationName()
     {
-        return MessageFormat.format(
-                getDaoImplementationNamePattern(),
-                StringUtils.trimToEmpty(this.getName()));
+
+        return MessageFormat.format(getDaoImplementationNamePattern(), StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -1270,7 +1603,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getDaoImplementationNamePattern()
     {
+
         return String.valueOf(this.getConfiguredProperty(DAO_IMPLEMENTATION_PATTERN));
+
     }
 
     /**
@@ -1279,10 +1614,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedDaoImplementationName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getDaoImplementationName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getDaoImplementationName(), null);
+
     }
 
     /**
@@ -1291,9 +1625,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDaoBaseName()
     {
-        return MessageFormat.format(
-                getDaoBaseNamePattern(),
-                StringUtils.trimToEmpty(this.getName()));
+
+        return MessageFormat.format(getDaoBaseNamePattern(), StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -1303,7 +1637,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getDaoBaseNamePattern()
     {
+
         return String.valueOf(this.getConfiguredProperty(DAO_BASE_PATTERN));
+
     }
 
     /**
@@ -1312,10 +1648,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedDaoBaseName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getDaoBaseName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getDaoBaseName(), null);
+
     }
 
     /**
@@ -1324,7 +1659,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsDaoBusinessOperationsPresent()
     {
-        return this.getDaoBusinessOperations() != null && !this.getDaoBusinessOperations().isEmpty();
+
+        return (this.getDaoBusinessOperations() != null) && !this.getDaoBusinessOperations().isEmpty();
+
     }
 
     /**
@@ -1332,22 +1669,27 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection<OperationFacade> handleGetDaoBusinessOperations()
     {
+
         // operations that are not finders and static
         Collection finders = this.getQueryOperations();
         Collection<OperationFacade> operations = this.getOperations();
 
         Collection<OperationFacade> nonFinders = CollectionUtils.subtract(operations, finders);
-        CollectionUtils.filter(
-            nonFinders,
-            new Predicate()
+
+        CollectionUtils.filter(nonFinders, new Predicate()
+        {
+
+            public boolean evaluate(Object object)
             {
-                public boolean evaluate(Object object)
-                {
-                    return ((OperationFacade)object).isStatic();
-                }
+
+                return ((OperationFacade) object).isStatic();
+
             }
-        );
+
+        });
+
         return nonFinders;
+
     }
 
     /**
@@ -1355,7 +1697,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection<DependencyFacade> handleGetValueObjectReferences()
     {
+
         return this.getValueObjectReferences(false);
+
     }
 
     /**
@@ -1363,7 +1707,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection<DependencyFacade> handleGetAllValueObjectReferences()
     {
+
         return this.getValueObjectReferences(true);
+
     }
 
     /**
@@ -1372,8 +1718,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsDaoImplementationRequired()
     {
-        return !this.getValueObjectReferences().isEmpty() || !this.getDaoBusinessOperations().isEmpty() ||
-            !this.getQueryOperations(true).isEmpty();
+
+        return !this.getValueObjectReferences().isEmpty() || !this.getDaoBusinessOperations().isEmpty() || !this.getQueryOperations(true).isEmpty();
+
     }
 
     /**
@@ -1382,7 +1729,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDaoNoTransformationConstantName()
     {
+
         return EJB3Globals.TRANSFORMATION_CONSTANT_PREFIX + EJB3Globals.NO_TRANSFORMATION_CONSTANT_SUFFIX;
+
     }
 
     /**
@@ -1390,30 +1739,46 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection<DependencyFacade> handleGetValueObjectReferences(boolean follow)
     {
+
         final Collection<DependencyFacade> sourceDependencies = new ArrayList<DependencyFacade>(this.getSourceDependencies());
+
         if (follow)
         {
-            for (GeneralizableElementFacade entity = this.getGeneralization(); entity != null;
-                entity = entity.getGeneralization())
+
+            for (GeneralizableElementFacade entity = this.getGeneralization(); entity != null; entity = entity.getGeneralization())
             {
+
                 sourceDependencies.addAll(entity.getSourceDependencies());
+
             }
+
         }
+
         Collection<DependencyFacade> valueDependencies = new ArrayList<DependencyFacade>();
+
         for (DependencyFacade dependency : sourceDependencies)
         {
+
             Object targetElement = dependency.getTargetElement();
+
             if (targetElement instanceof ClassifierFacade)
             {
-                ClassifierFacade element = (ClassifierFacade)targetElement;
-                if (element.isDataType() || element instanceof ValueObject ||
-                            element instanceof EnumerationFacade)
+
+                ClassifierFacade element = (ClassifierFacade) targetElement;
+
+                if (element.isDataType() || element instanceof ValueObject || element instanceof EnumerationFacade)
                 {
+
                     valueDependencies.add(dependency);
+
                 }
+
             }
+
         }
+
         return valueDependencies;
+
     }
 
     /**
@@ -1421,12 +1786,17 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Object handleGetRoot()
     {
+
         GeneralizableElementFacade generalization = this;
-        for (
-            ; generalization.getGeneralization() != null && generalization instanceof EJB3EntityFacade;
-            generalization = generalization.getGeneralization())
+
+        for (; (generalization.getGeneralization() != null) && generalization instanceof EJB3EntityFacade; generalization = generalization.getGeneralization())
+        {
+
             ;
+        }
+
         return generalization;
+
     }
 
     /**
@@ -1435,8 +1805,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDefaultPersistenceContextUnitName()
     {
-        return StringUtils.trimToEmpty(
-                ObjectUtils.toString(this.getConfiguredProperty(EJB3Globals.PERSISTENCE_CONTEXT_UNIT_NAME)));
+
+        return StringUtils.trimToEmpty(ObjectUtils.toString(this.getConfiguredProperty(EJB3Globals.PERSISTENCE_CONTEXT_UNIT_NAME)));
+
     }
 
     /**
@@ -1445,9 +1816,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetDaoDefaultExceptionName()
     {
-        return MessageFormat.format(
-                getDaoDefaultExceptionNamePattern(),
-                StringUtils.trimToEmpty(this.getName()));
+
+        return MessageFormat.format(getDaoDefaultExceptionNamePattern(), StringUtils.trimToEmpty(this.getName()));
+
     }
 
     /**
@@ -1457,7 +1828,9 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getDaoDefaultExceptionNamePattern()
     {
+
         return String.valueOf(this.getConfiguredProperty(DAO_DEFAULT_EXCEPTION_NAME_PATTERN));
+
     }
 
     /**
@@ -1466,10 +1839,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetFullyQualifiedDaoDefaultExceptionName()
     {
-        return EJB3MetafacadeUtils.getFullyQualifiedName(
-                this.getPackageName(),
-                this.getDaoDefaultExceptionName(),
-                null);
+
+        return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getDaoDefaultExceptionName(), null);
+
     }
 
     /**
@@ -1478,32 +1850,42 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsEntityImplementationRequired()
     {
+
         return !this.getBusinessOperations().isEmpty();
+
     }
 
     /**
      * @see EJB3EntityFacadeLogic#handleGetInstanceAttributes(boolean, boolean)
      */
-    protected Collection handleGetInstanceAttributes(
-            boolean follow,
-            boolean withIdentifiers)
+    protected Collection handleGetInstanceAttributes(boolean follow, boolean withIdentifiers)
     {
+
         final Collection attributes = this.getAttributes(follow, withIdentifiers);
-        CollectionUtils.filter(
-            attributes,
-            new Predicate()
+
+        CollectionUtils.filter(attributes, new Predicate()
+        {
+
+            public boolean evaluate(Object object)
             {
-                public boolean evaluate(Object object)
+
+                boolean valid = true;
+
+                if (object instanceof EntityAttribute)
                 {
-                    boolean valid = true;
-                    if (object instanceof EntityAttribute)
-                    {
-                        valid = !((EntityAttribute)object).isStatic();
-                    }
-                    return valid;
+
+                    valid = !((EntityAttribute) object).isStatic();
+
                 }
-            });
+
+                return valid;
+
+            }
+
+        });
+
         return attributes;
+
     }
 
     /**
@@ -1512,7 +1894,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetInstanceAttributeNameList(boolean follow, boolean withIdentifiers)
     {
+
         return this.getNameList(this.getInstanceAttributes(follow, withIdentifiers));
+
     }
 
     /**
@@ -1521,7 +1905,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetInstanceAttributeTypeList(boolean follow, boolean withIdentifiers)
     {
+
         return this.getTypeList(this.getInstanceAttributes(follow, withIdentifiers));
+
     }
 
     /**
@@ -1533,39 +1919,59 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getTypeList(final Collection attributes)
     {
+
         final StringBuilder list = new StringBuilder();
         final String comma = ", ";
-        CollectionUtils.forAllDo(
-            attributes,
-            new Closure()
+
+        CollectionUtils.forAllDo(attributes, new Closure()
+        {
+
+            public void execute(final Object object)
             {
-                public void execute(final Object object)
+
+                if (object instanceof AttributeFacade)
                 {
-                    if (object instanceof AttributeFacade)
+
+                    final AttributeFacade attribute = (AttributeFacade) object;
+
+                    if (attribute.getType() != null)
                     {
-                        final AttributeFacade attribute = (AttributeFacade)object;
-                        if (attribute.getType() != null)
-                        {
-                            list.append(attribute.getGetterSetterTypeName());
-                            list.append(comma);
-                        }
+
+                        list.append(attribute.getGetterSetterTypeName());
+                        list.append(comma);
+
                     }
-                    if (object instanceof AssociationEndFacade)
-                    {
-                        final AssociationEndFacade associationEnd = (AssociationEndFacade)object;
-                        if (associationEnd.getType() != null)
-                        {
-                            list.append(associationEnd.getGetterSetterTypeName());
-                            list.append(comma);
-                        }
-                    }
+
                 }
-            });
+
+                if (object instanceof AssociationEndFacade)
+                {
+
+                    final AssociationEndFacade associationEnd = (AssociationEndFacade) object;
+
+                    if (associationEnd.getType() != null)
+                    {
+
+                        list.append(associationEnd.getGetterSetterTypeName());
+                        list.append(comma);
+
+                    }
+
+                }
+
+            }
+
+        });
+
         if (list.toString().endsWith(comma))
         {
+
             list.delete(list.lastIndexOf(comma), list.length());
+
         }
+
         return list.toString();
+
     }
 
     /**
@@ -1576,31 +1982,45 @@ public class EJB3EntityFacadeLogicImpl
      */
     private String getNameList(final Collection properties)
     {
+
         final StringBuilder list = new StringBuilder();
         final String comma = ", ";
-        CollectionUtils.forAllDo(
-            properties,
-            new Closure()
+
+        CollectionUtils.forAllDo(properties, new Closure()
+        {
+
+            public void execute(Object object)
             {
-                public void execute(Object object)
+
+                if (object instanceof EntityAttribute)
                 {
-                    if (object instanceof EntityAttribute)
-                    {
-                        list.append(((AttributeFacade)object).getName());
-                        list.append(comma);
-                    }
-                    if (object instanceof EntityAssociationEnd)
-                    {
-                        list.append(((AssociationEndFacade)object).getName());
-                        list.append(comma);
-                    }
+
+                    list.append(((AttributeFacade) object).getName());
+                    list.append(comma);
+
                 }
-            });
+
+                if (object instanceof EntityAssociationEnd)
+                {
+
+                    list.append(((AssociationEndFacade) object).getName());
+                    list.append(comma);
+
+                }
+
+            }
+
+        });
+
         if (list.toString().endsWith(comma))
         {
+
             list.delete(list.lastIndexOf(comma), list.length());
+
         }
+
         return list.toString();
+
     }
 
     /**
@@ -1609,7 +2029,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsSecurityEnabled()
     {
+
         return StringUtils.isNotBlank(this.getSecurityRealm());
+
     }
 
     /**
@@ -1618,23 +2040,33 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetRolesAllowed()
     {
+
         StringBuilder rolesAllowed = null;
         String separator = "";
 
-        for (final Iterator iter = this.getNonRunAsRoles().iterator(); iter.hasNext(); )
+        for (final Iterator iter = this.getNonRunAsRoles().iterator(); iter.hasNext();)
         {
+
             if (rolesAllowed == null)
             {
+
                 rolesAllowed = new StringBuilder();
+
             }
+
             rolesAllowed.append(separator);
-            Role role = (Role)iter.next();
+
+            Role role = (Role) iter.next();
+
             rolesAllowed.append('"');
             rolesAllowed.append(role.getName());
             rolesAllowed.append('"');
             separator = ", ";
+
         }
-        return rolesAllowed != null ? rolesAllowed.toString() : null;
+
+        return (rolesAllowed != null) ? rolesAllowed.toString() : null;
+
     }
 
     /**
@@ -1643,13 +2075,18 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetSecurityRealm()
     {
-        String securityRealm = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SECURITY_REALM);
+
+        String securityRealm = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SECURITY_REALM);
+
         if (StringUtils.isBlank(securityRealm))
         {
-            securityRealm = StringUtils.trimToEmpty(
-                    ObjectUtils.toString(this.getConfiguredProperty(EJB3Globals.SECURITY_REALM)));
+
+            securityRealm = StringUtils.trimToEmpty(ObjectUtils.toString(this.getConfiguredProperty(EJB3Globals.SECURITY_REALM)));
+
         }
+
         return securityRealm;
+
     }
 
     /**
@@ -1657,41 +2094,51 @@ public class EJB3EntityFacadeLogicImpl
      */
     protected Collection handleGetNonRunAsRoles()
     {
+
         Collection<DependencyFacade> roles = this.getTargetDependencies();
-        CollectionUtils.filter(
-            roles,
-            new Predicate()
+
+        CollectionUtils.filter(roles, new Predicate()
+        {
+
+            public boolean evaluate(final Object object)
             {
-                public boolean evaluate(final Object object)
-                {
-                    DependencyFacade dependency = (DependencyFacade)object;
-                    return dependency != null
-                            && dependency.getSourceElement() != null
-                            && dependency.getSourceElement() instanceof Role
-                            && !dependency.hasStereotype(EJB3Profile.STEREOTYPE_SECURITY_RUNAS);
-                }
-            });
-        CollectionUtils.transform(
-            roles,
-            new Transformer()
+
+                DependencyFacade dependency = (DependencyFacade) object;
+
+                return (dependency != null) && (dependency.getSourceElement() != null) && dependency.getSourceElement() instanceof Role && !dependency.hasStereotype(EJB3Profile.STEREOTYPE_SECURITY_RUNAS);
+
+            }
+
+        });
+        CollectionUtils.transform(roles, new Transformer()
+        {
+
+            public Object transform(final Object object)
             {
-                public Object transform(final Object object)
-                {
-                    return ((DependencyFacade)object).getSourceElement();
-                }
-            });
+
+                return ((DependencyFacade) object).getSourceElement();
+
+            }
+
+        });
+
         final Collection allRoles = new LinkedHashSet(roles);
+
         // add all roles which are generalizations of this one
-        CollectionUtils.forAllDo(
-            roles,
-            new Closure()
+        CollectionUtils.forAllDo(roles, new Closure()
+        {
+
+            public void execute(final Object object)
             {
-                public void execute(final Object object)
-                {
-                    allRoles.addAll(((Role)object).getAllSpecializations());
-                }
-            });
+
+                allRoles.addAll(((Role) object).getAllSpecializations());
+
+            }
+
+        });
+
         return allRoles;
+
     }
 
     /**
@@ -1700,8 +2147,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsUseQueryCache()
     {
-        return BooleanUtils.toBoolean(
-                String.valueOf(this.getConfiguredProperty(EJB3Globals.HIBERNATE_USER_QUERY_CACHE)));
+
+        return BooleanUtils.toBoolean(String.valueOf(this.getConfiguredProperty(EJB3Globals.HIBERNATE_USER_QUERY_CACHE)));
+
     }
 
     /**
@@ -1710,7 +2158,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected boolean handleIsSeamComponent()
     {
+
         return EJB3MetafacadeUtils.isSeamComponent(this);
+
     }
 
     /**
@@ -1719,7 +2169,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetSeamComponentScopeType()
     {
+
         return EJB3MetafacadeUtils.getSeamComponentScopeType(this, false);
+
     }
 
     /**
@@ -1728,6 +2180,9 @@ public class EJB3EntityFacadeLogicImpl
     @Override
     protected String handleGetSeamComponentName()
     {
+
         return EJB3MetafacadeUtils.getSeamComponentName(this);
+
     }
+
 }

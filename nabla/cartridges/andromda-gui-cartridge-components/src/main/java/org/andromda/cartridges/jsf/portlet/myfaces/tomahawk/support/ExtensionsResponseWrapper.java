@@ -1,4 +1,39 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support;
+
+import org.xml.sax.InputSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,40 +42,40 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+
 import java.nio.charset.Charset;
+
 import java.util.Locale;
+
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
-import org.xml.sax.InputSource;
 
 /**
  * @author Sylvain Vieujot (latest modification by $Author: cwbrandon $)
  * @author Chad Brandon
  */
-public class ExtensionsResponseWrapper
-    extends HttpServletResponseWrapper
-    implements RenderResponse
+public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implements RenderResponse
 {
-    private ByteArrayOutputStream stream = null;
-    private PrintWriter printWriter = null;
-    private String contentType;
 
-    private final RenderResponse response;
+    private ByteArrayOutputStream stream      = null;
+    private PrintWriter           printWriter = null;
+    private String                contentType;
+    private final RenderResponse  response;
 
     /**
      * @param servletResponse
      * @param response
      */
-    public ExtensionsResponseWrapper(
-        final HttpServletResponse servletResponse,
-        final RenderResponse response)
+    public ExtensionsResponseWrapper(final HttpServletResponse servletResponse, final RenderResponse response)
     {
         super(servletResponse);
         this.response = response;
         stream = new ByteArrayOutputStream();
+
     }
 
     /**
@@ -48,7 +83,9 @@ public class ExtensionsResponseWrapper
      */
     public byte[] getBytes()
     {
+
         return stream.toByteArray();
+
     }
 
     /**
@@ -57,17 +94,22 @@ public class ExtensionsResponseWrapper
     @Override
     public String toString()
     {
+
         try
         {
+
             return stream.toString(getCharacterEncoding());
+
         }
         catch (final UnsupportedEncodingException e)
         {
+
             // an attempt to set an invalid character encoding would have caused
             // this exception before
-            throw new RuntimeException("Response accepted invalid character encoding "
-                + getCharacterEncoding());
+            throw new RuntimeException("Response accepted invalid character encoding " + getCharacterEncoding());
+
         }
+
     }
 
     /**
@@ -76,13 +118,18 @@ public class ExtensionsResponseWrapper
     @Override
     public PrintWriter getWriter()
     {
+
         if (printWriter == null)
         {
-            final OutputStreamWriter streamWriter = new OutputStreamWriter(
-                stream, Charset.forName(getCharacterEncoding()));
+
+            final OutputStreamWriter streamWriter = new OutputStreamWriter(stream, Charset.forName(getCharacterEncoding()));
+
             printWriter = new PrintWriter(streamWriter, true);
+
         }
+
         return printWriter;
+
     }
 
     /**
@@ -93,7 +140,9 @@ public class ExtensionsResponseWrapper
     @Override
     public ServletOutputStream getOutputStream() throws IOException
     {
+
         return new MyServletOutputStream(stream);
+
     }
 
     /**
@@ -101,8 +150,11 @@ public class ExtensionsResponseWrapper
      */
     public InputSource getInputSource()
     {
+
         final ByteArrayInputStream bais = new ByteArrayInputStream(stream.toByteArray());
+
         return new InputSource(bais);
+
     }
 
     /**
@@ -111,6 +163,7 @@ public class ExtensionsResponseWrapper
     @Override
     public void setContentLength(final int contentLength)
     {
+
     }
 
     /**
@@ -119,8 +172,10 @@ public class ExtensionsResponseWrapper
     @Override
     public void setContentType(final String contentType)
     {
+
         super.setContentType(contentType);
         this.contentType = contentType;
+
     }
 
     /**
@@ -129,7 +184,9 @@ public class ExtensionsResponseWrapper
     @Override
     public String getContentType()
     {
+
         return contentType;
+
     }
 
     /**
@@ -138,7 +195,9 @@ public class ExtensionsResponseWrapper
     @Override
     public void flushBuffer() throws IOException
     {
+
         stream.flush();
+
     }
 
     /**
@@ -146,57 +205,103 @@ public class ExtensionsResponseWrapper
      */
     public void finishResponse()
     {
+
         try
         {
+
             if (printWriter != null)
             {
+
                 printWriter.close();
-            }
-            else
+
+            } else
             {
+
                 if (stream != null)
                 {
+
                     stream.close();
+
                 }
+
             }
+
         }
         catch (final IOException e)
         {
+
             // Ignore
         }
+
     }
 
     /**
      * Used in the <code>getOutputStream()</code> method.
      */
-    private class MyServletOutputStream
-    extends ServletOutputStream
+    private class MyServletOutputStream extends ServletOutputStream
     {
+
         private final OutputStream outputStream;
 
-        public MyServletOutputStream(
-            final OutputStream outputStream)
+        /**
+         * Creates a new MyServletOutputStream object.
+         *
+         * @param outputStream DOCUMENT ME!
+         */
+        public MyServletOutputStream(final OutputStream outputStream)
         {
+
             this.outputStream = outputStream;
+
         }
 
+        /**
+         * DOCUMENT ME!
+         *
+         * @param b DOCUMENT ME!
+         *
+         * @throws IOException DOCUMENT ME!
+         */
         @Override
         public void write(final int b) throws IOException
         {
+
             outputStream.write(b);
+
         }
 
+        /**
+         * DOCUMENT ME!
+         *
+         * @param bytes DOCUMENT ME!
+         *
+         * @throws IOException DOCUMENT ME!
+         */
         @Override
         public void write(final byte[] bytes) throws IOException
         {
+
             outputStream.write(bytes);
+
         }
 
+        /**
+         * DOCUMENT ME!
+         *
+         * @param bytes DOCUMENT ME!
+         * @param off DOCUMENT ME!
+         * @param len DOCUMENT ME!
+         *
+         * @throws IOException DOCUMENT ME!
+         */
         @Override
         public void write(final byte[] bytes, final int off, final int len) throws IOException
         {
+
             outputStream.write(bytes, off, len);
+
         }
+
     }
 
     /**
@@ -204,7 +309,9 @@ public class ExtensionsResponseWrapper
      */
     public PortletURL createActionURL()
     {
+
         return response.createActionURL();
+
     }
 
     /**
@@ -212,7 +319,9 @@ public class ExtensionsResponseWrapper
      */
     public PortletURL createRenderURL()
     {
+
         return response.createRenderURL();
+
     }
 
     /**
@@ -221,7 +330,9 @@ public class ExtensionsResponseWrapper
     @Override
     public int getBufferSize()
     {
+
         return response.getBufferSize();
+
     }
 
     /**
@@ -230,7 +341,9 @@ public class ExtensionsResponseWrapper
     @Override
     public String getCharacterEncoding()
     {
+
         return response.getCharacterEncoding();
+
     }
 
     /**
@@ -239,7 +352,9 @@ public class ExtensionsResponseWrapper
     @Override
     public Locale getLocale()
     {
+
         return response.getLocale();
+
     }
 
     /**
@@ -247,7 +362,9 @@ public class ExtensionsResponseWrapper
      */
     public String getNamespace()
     {
+
         return response.getNamespace();
+
     }
 
     /**
@@ -255,7 +372,9 @@ public class ExtensionsResponseWrapper
      */
     public OutputStream getPortletOutputStream() throws IOException
     {
+
         return stream;
+
     }
 
     /**
@@ -264,7 +383,9 @@ public class ExtensionsResponseWrapper
     @Override
     public boolean isCommitted()
     {
+
         return response.isCommitted();
+
     }
 
     /**
@@ -273,7 +394,9 @@ public class ExtensionsResponseWrapper
     @Override
     public void reset()
     {
+
         response.reset();
+
     }
 
     /**
@@ -282,7 +405,9 @@ public class ExtensionsResponseWrapper
     @Override
     public void resetBuffer()
     {
+
         response.resetBuffer();
+
     }
 
     /**
@@ -291,7 +416,9 @@ public class ExtensionsResponseWrapper
     @Override
     public void setBufferSize(final int bufferSize)
     {
+
         response.setBufferSize(bufferSize);
+
     }
 
     /**
@@ -299,7 +426,9 @@ public class ExtensionsResponseWrapper
      */
     public void setTitle(final String title)
     {
+
         response.setTitle(title);
+
     }
 
     /**
@@ -307,7 +436,9 @@ public class ExtensionsResponseWrapper
      */
     public void addProperty(final String arg0, final String arg1)
     {
+
         response.addProperty(arg0, arg1);
+
     }
 
     /**
@@ -316,7 +447,9 @@ public class ExtensionsResponseWrapper
     @Override
     public String encodeURL(final String arg0)
     {
+
         return response.encodeURL(arg0);
+
     }
 
     /**
@@ -324,6 +457,9 @@ public class ExtensionsResponseWrapper
      */
     public void setProperty(final String arg0, final String arg1)
     {
+
         response.setProperty(arg0, arg1);
+
     }
+
 }

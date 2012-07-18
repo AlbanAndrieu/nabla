@@ -43,14 +43,16 @@ import java.util.List;
  * @version $Revision$
  * @since $Date$
  */
-public class Header {
+public class Header
+{
 
     private List<Field> items;
 
     /**
      * Creates a new Header object.
      */
-    public Header() {
+    public Header()
+    {
 
         this.items = new ArrayList<Field>();
 
@@ -61,7 +63,8 @@ public class Header {
      *
      * @return DOCUMENT ME!
      */
-    public List<Field> getItems() {
+    public List<Field> getItems()
+    {
 
         return this.items;
 
@@ -72,7 +75,8 @@ public class Header {
      *
      * @param items DOCUMENT ME!
      */
-    public void setItems(final List<Field> items) {
+    public void setItems(final List<Field> items)
+    {
 
         this.items = items;
 

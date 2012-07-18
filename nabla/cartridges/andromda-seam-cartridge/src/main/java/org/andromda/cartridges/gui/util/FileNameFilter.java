@@ -42,7 +42,8 @@ import java.io.File;
  * @version $Revision$
  * @since $Date$
  */
-public class FileNameFilter implements java.io.FilenameFilter {
+public class FileNameFilter implements java.io.FilenameFilter
+{
 
     private final String name;
 
@@ -51,7 +52,8 @@ public class FileNameFilter implements java.io.FilenameFilter {
      *
      * @param name DOCUMENT ME!
      */
-    public FileNameFilter(final String name) {
+    public FileNameFilter(final String name)
+    {
 
         this.name = name;
 
@@ -66,7 +68,8 @@ public class FileNameFilter implements java.io.FilenameFilter {
      * @return DOCUMENT ME!
      */
     @Override
-    public boolean accept(final File dir, final String name) {
+    public boolean accept(final File dir, final String name)
+    {
 
         return (this.name.equals(name));
 
@@ -80,14 +83,17 @@ public class FileNameFilter implements java.io.FilenameFilter {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isInFolder(final String file, final File repertoire) {
+    public boolean isInFolder(final String file, final File repertoire)
+    {
 
-        final String listefichiers[] = repertoire.list();
+        final String[] listefichiers = repertoire.list();
         boolean b = false;
 
-        for (final String listefichier : listefichiers) {
+        for (final String listefichier : listefichiers)
+        {
 
-            if (listefichier.equals(this.name)) {
+            if (listefichier.equals(this.name))
+            {
 
                 b = true;
 

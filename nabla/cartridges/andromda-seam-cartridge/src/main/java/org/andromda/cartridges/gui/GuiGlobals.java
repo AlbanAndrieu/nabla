@@ -1,3 +1,36 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.gui;
 
 /**
@@ -5,7 +38,9 @@ package org.andromda.cartridges.gui;
  *
  * @author Chad Brandon
  */
-public class GuiGlobals {
+public class GuiGlobals
+{
+
     /**
      * The suffix to append to the class names of CRUD value objects.
      */
@@ -228,25 +263,14 @@ public class GuiGlobals {
     public static final String USECASE_FORWARD_NAME_SUFFIX           = "-usecase";
 
     // public static final String TAGGEDVALUE_INPUT_TYPE_TEXT = "text";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_PLAINTEXT = "plaintext";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_TEXTAREA = "textarea";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_RADIO = "radio";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_CHECKBOX = "checkbox";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_HIDDEN = "hidden";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_SELECT = "select";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_PASSWORD = "password";
-
-    // public static final String TAGGEDVALUE_INPUT_TYPE_MULTIBOX = "multibox";
-
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_INPUT_TYPE_LINK           = "link";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_INPUT_TYPE_FILE           = "file";
 
     /**
@@ -254,22 +278,49 @@ public class GuiGlobals {
      */
     public static final String FORM_SUFFIX                           = "Form";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_CONTAINER_TYPE_TR    = "transparent";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_CONTAINER_TYPE_EX    = "expandable";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_CONTAINER_TYPE_TA    = "tabs";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_CONTAINER_TYPE_WI    = "window";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_LAYOUT_TYPE_WB       = "workbook";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_LAYOUT_TYPE_WS       = "worksheet";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_LAYOUT_TYPE_CO       = "container";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_CONTAINER_HEIGHT_DEF = "50";
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String TAGGEDVALUE_VIEW_CONTAINER_WIDTH_DEF  = "1230";
 
     /**
@@ -300,6 +351,7 @@ public class GuiGlobals {
     /**
      * DOCUMENT ME!
      */
+
     // public static final String NEW_LINE = System.getProperty("line.separator");
 
     /**
@@ -307,13 +359,16 @@ public class GuiGlobals {
      */
     public static final String FILE_SEPARATOR                        = System.getProperty("file.separator");
 
+    /**
+     * DOCUMENT ME!
+     */
     public static final String SEPARATOR                             = "/";
 
     /**
      * DOCUMENT ME!
      */
-    // public static final String PATH_SEPARATOR = System.getProperty("path.separator");
 
+    // public static final String PATH_SEPARATOR = System.getProperty("path.separator");
     public static final String MANUAL_MAPPING_LOCATION               = "manual-mapping";
 
 }

@@ -1,12 +1,48 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support;
 
 import java.io.InputStream;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.util.Enumeration;
 import java.util.Set;
 
 import javax.portlet.PortletContext;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
@@ -17,6 +53,7 @@ import javax.servlet.ServletException;
  */
 public class ServletContextWrapper implements ServletContext
 {
+
     private PortletContext portletContext;
 
     /**
@@ -24,7 +61,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public ServletContextWrapper(PortletContext portletContext)
     {
+
         this.portletContext = portletContext;
+
     }
 
     /**
@@ -32,7 +71,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public Object getAttribute(String arg0)
     {
+
         return portletContext.getAttribute(arg0);
+
     }
 
     /**
@@ -40,7 +81,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public Enumeration getAttributeNames()
     {
+
         return portletContext.getAttributeNames();
+
     }
 
     /**
@@ -49,8 +92,10 @@ public class ServletContextWrapper implements ServletContext
      */
     public ServletContext getContext(String arg0)
     {
+
         // TODO Portlet API does not have this method
         return null;
+
     }
 
     /**
@@ -58,7 +103,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public String getInitParameter(String arg0)
     {
+
         return portletContext.getInitParameter(arg0);
+
     }
 
     /**
@@ -66,7 +113,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public Enumeration getInitParameterNames()
     {
+
         return portletContext.getInitParameterNames();
+
     }
 
     /**
@@ -74,7 +123,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public int getMajorVersion()
     {
+
         return portletContext.getMajorVersion();
+
     }
 
     /**
@@ -82,7 +133,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public String getMimeType(String arg0)
     {
+
         return portletContext.getMimeType(arg0);
+
     }
 
     /**
@@ -90,7 +143,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public int getMinorVersion()
     {
+
         return portletContext.getMinorVersion();
+
     }
 
     /**
@@ -99,8 +154,10 @@ public class ServletContextWrapper implements ServletContext
      */
     public RequestDispatcher getNamedDispatcher(String arg0)
     {
+
         // TODO Portlet API does not have this method
         return null;
+
     }
 
     /**
@@ -108,7 +165,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public String getRealPath(String arg0)
     {
+
         return portletContext.getRealPath(arg0);
+
     }
 
     /**
@@ -117,8 +176,10 @@ public class ServletContextWrapper implements ServletContext
      */
     public RequestDispatcher getRequestDispatcher(String arg0)
     {
+
         // TODO Portlet API does not have this method
         return null;
+
     }
 
     /**
@@ -126,7 +187,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public URL getResource(String arg0) throws MalformedURLException
     {
+
         return portletContext.getResource(arg0);
+
     }
 
     /**
@@ -134,7 +197,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public InputStream getResourceAsStream(String arg0)
     {
+
         return portletContext.getResourceAsStream(arg0);
+
     }
 
     /**
@@ -142,7 +207,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public Set getResourcePaths(String arg0)
     {
+
         return portletContext.getResourcePaths(arg0);
+
     }
 
     /**
@@ -150,7 +217,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public String getServerInfo()
     {
+
         return portletContext.getServerInfo();
+
     }
 
     /**
@@ -161,8 +230,10 @@ public class ServletContextWrapper implements ServletContext
     @Deprecated
     public Servlet getServlet(String arg0) throws ServletException
     {
+
         // TODO Portlet API does not have this method
         return null;
+
     }
 
     /**
@@ -170,7 +241,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public String getServletContextName()
     {
+
         return portletContext.getPortletContextName();
+
     }
 
     /**
@@ -179,9 +252,12 @@ public class ServletContextWrapper implements ServletContext
      * @deprecated
      */
     @Deprecated
-    public Enumeration getServletNames() {
+    public Enumeration getServletNames()
+    {
+
         // TODO Portlet API does not have this method
         return null;
+
     }
 
     /**
@@ -192,8 +268,10 @@ public class ServletContextWrapper implements ServletContext
     @Deprecated
     public Enumeration getServlets()
     {
+
         // TODO Portlet API does not have this method
         return null;
+
     }
 
     /**
@@ -203,7 +281,9 @@ public class ServletContextWrapper implements ServletContext
     @Deprecated
     public void log(Exception arg0, String arg1)
     {
+
         portletContext.log(arg1, new Exception(arg0));
+
     }
 
     /**
@@ -212,7 +292,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public void log(String arg0, Throwable arg1)
     {
+
         portletContext.log(arg0, arg1);
+
     }
 
     /**
@@ -220,7 +302,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public void log(String arg0)
     {
+
         portletContext.log(arg0);
+
     }
 
     /**
@@ -228,7 +312,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public void removeAttribute(String arg0)
     {
+
         portletContext.removeAttribute(arg0);
+
     }
 
     /**
@@ -237,7 +323,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public void setAttribute(String arg0, Object arg1)
     {
+
         portletContext.setAttribute(arg0, arg1);
+
     }
 
     /**
@@ -245,6 +333,9 @@ public class ServletContextWrapper implements ServletContext
      */
     public String getContextPath()
     {
+
         return portletContext.getPortletContextName();
+
     }
+
 }

@@ -1,18 +1,47 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.ejb3.metafacades;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
 import org.andromda.cartridges.ejb3.EJB3Globals;
 import org.andromda.cartridges.ejb3.EJB3Profile;
+
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.OperationFacade;
 import org.andromda.metafacades.uml.ParameterFacade;
 import org.andromda.metafacades.uml.Role;
+
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
@@ -20,15 +49,24 @@ import org.apache.commons.collections.Transformer;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 
+import java.text.MessageFormat;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3SessionOperationFacade.
  *
  * @see EJB3SessionOperationFacade
  */
-public class EJB3SessionOperationFacadeLogicImpl
-    extends EJB3SessionOperationFacadeLogic
+public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFacadeLogic
 {
-    private static final long serialVersionUID = 34L;
+
+    private static final long   serialVersionUID                    = 34L;
+
     /**
      * The property which stores the pattern used to generate the service operation test name
      */
@@ -40,7 +78,8 @@ public class EJB3SessionOperationFacadeLogicImpl
      */
     public EJB3SessionOperationFacadeLogicImpl(final Object metaObject, final String context)
     {
-        super (metaObject, context);
+        super(metaObject, context);
+
     }
 
     /**
@@ -49,20 +88,30 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetViewType()
     {
-        String viewType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+
+        String viewType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+
         if (StringUtils.isEmpty(viewType))
         {
-            EJB3SessionFacade sessionFacade = (EJB3SessionFacade)this.getOwner();
+
+            EJB3SessionFacade sessionFacade = (EJB3SessionFacade) this.getOwner();
+
             if (StringUtils.isNotBlank(sessionFacade.getViewType()))
             {
+
                 viewType = sessionFacade.getViewType();
-            }
-            else
+
+            } else
             {
+
                 viewType = EJB3Globals.VIEW_TYPE_BOTH;
+
             }
+
         }
+
         return viewType;
+
     }
 
     /**
@@ -71,12 +120,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeRemote()
     {
+
         boolean isRemote = false;
+
         if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE))
         {
+
             isRemote = true;
+
         }
+
         return isRemote;
+
     }
 
     /**
@@ -85,12 +140,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeLocal()
     {
+
         boolean isLocal = false;
+
         if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL))
         {
+
             isLocal = true;
+
         }
+
         return isLocal;
+
     }
 
     /**
@@ -99,12 +160,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeBoth()
     {
+
         boolean isBoth = false;
+
         if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
         {
+
             isBoth = true;
+
         }
+
         return isBoth;
+
     }
 
     /**
@@ -113,13 +180,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeStrictlyLocal()
     {
+
         boolean isViewTypeStrictlyLocal = false;
-        String viewType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+        String viewType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+
         if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_LOCAL) || this.isViewTypeStrictlyBoth())
         {
+
             isViewTypeStrictlyLocal = true;
+
         }
+
         return isViewTypeStrictlyLocal;
+
     }
 
     /**
@@ -128,13 +201,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeStrictlyRemote()
     {
+
         boolean isViewTypeStrictlyRemote = false;
-        String viewType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+        String viewType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+
         if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_REMOTE) || this.isViewTypeStrictlyBoth())
         {
+
             isViewTypeStrictlyRemote = true;
+
         }
+
         return isViewTypeStrictlyRemote;
+
     }
 
     /**
@@ -143,13 +222,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeStrictlyBoth()
     {
+
         boolean isViewTypeStrictlyBoth = false;
-        String viewType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+        String viewType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
+
         if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
         {
+
             isViewTypeStrictlyBoth = true;
+
         }
+
         return isViewTypeStrictlyBoth;
+
     }
 
     /**
@@ -158,20 +243,23 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeAbsoluteLocal()
     {
+
         boolean isViewTypeAsbolutelyLocal = false;
-        EJB3SessionFacade session = (EJB3SessionFacade)this.getOwner();
-        if (!this.isLifecycleCallback() &&
-            StringUtils.equalsIgnoreCase(this.getVisibility(), "public") &&
-            ((session.isViewTypeBoth() &&
-                ((session.isViewTypeStrictlyRemote() && this.isViewTypeStrictlyLocal()) ||
-                ((session.isViewTypeStrictlyLocal() || session.isViewTypeStrictlyBoth()) &&
-                        !this.isViewTypeStrictlyRemote()))) ||
-            (session.isViewTypeStrictlyLocal() && !this.isViewTypeStrictlyRemote()) ||
-            this.isViewTypeStrictlyBoth()))
+        EJB3SessionFacade session = (EJB3SessionFacade) this.getOwner();
+
+        if (!this.isLifecycleCallback()
+                && StringUtils.equalsIgnoreCase(this.getVisibility(), "public")
+                && ((session.isViewTypeBoth() && ((session.isViewTypeStrictlyRemote() && this.isViewTypeStrictlyLocal()) || ((session.isViewTypeStrictlyLocal() || session.isViewTypeStrictlyBoth()) && !this
+                        .isViewTypeStrictlyRemote())))
+                        || (session.isViewTypeStrictlyLocal() && !this.isViewTypeStrictlyRemote()) || this.isViewTypeStrictlyBoth()))
         {
+
             isViewTypeAsbolutelyLocal = true;
+
         }
+
         return isViewTypeAsbolutelyLocal;
+
     }
 
     /**
@@ -180,20 +268,23 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeAbsoluteRemote()
     {
+
         boolean isViewTypeAsbolutelyRemote = false;
-        EJB3SessionFacade session = (EJB3SessionFacade)this.getOwner();
-        if (!this.isLifecycleCallback() &&
-            StringUtils.equalsIgnoreCase(this.getVisibility(), "public") &&
-            ((session.isViewTypeBoth() &&
-                ((session.isViewTypeStrictlyLocal() && this.isViewTypeStrictlyRemote()) ||
-                ((session.isViewTypeStrictlyRemote() || session.isViewTypeStrictlyBoth()) &&
-                        !this.isViewTypeStrictlyLocal()))) ||
-            (session.isViewTypeStrictlyRemote() && !this.isViewTypeStrictlyLocal()) ||
-            this.isViewTypeStrictlyBoth()))
+        EJB3SessionFacade session = (EJB3SessionFacade) this.getOwner();
+
+        if (!this.isLifecycleCallback()
+                && StringUtils.equalsIgnoreCase(this.getVisibility(), "public")
+                && ((session.isViewTypeBoth() && ((session.isViewTypeStrictlyLocal() && this.isViewTypeStrictlyRemote()) || ((session.isViewTypeStrictlyRemote() || session.isViewTypeStrictlyBoth()) && !this
+                        .isViewTypeStrictlyLocal())))
+                        || (session.isViewTypeStrictlyRemote() && !this.isViewTypeStrictlyLocal()) || this.isViewTypeStrictlyBoth()))
         {
+
             isViewTypeAsbolutelyRemote = true;
+
         }
+
         return isViewTypeAsbolutelyRemote;
+
     }
 
     /**
@@ -202,12 +293,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsViewTypeAbsoluteBoth()
     {
+
         boolean isViewTypeAbsolutelyBoth = false;
+
         if (this.isViewTypeAbsoluteLocal() && this.isViewTypeAbsoluteRemote())
         {
+
             isViewTypeAbsolutelyBoth = true;
+
         }
+
         return isViewTypeAbsolutelyBoth;
+
     }
 
     /**
@@ -218,16 +315,23 @@ public class EJB3SessionOperationFacadeLogicImpl
      */
     public String getSignature()
     {
+
         String signature = super.getSignature();
+
         if (this.isTimeoutCallback())
         {
+
             final StringBuilder timeoutSignature = new StringBuilder(this.getName());
+
             timeoutSignature.append("(");
             timeoutSignature.append("javax.ejb.Timer timer");
             timeoutSignature.append(")");
             signature = timeoutSignature.toString();
+
         }
+
         return signature;
+
     }
 
     /**
@@ -236,7 +340,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetTestSignature()
     {
+
         return this.getTestName() + "()";
+
     }
 
     /**
@@ -245,29 +351,35 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetTestName()
     {
-        String serviceOperationTestNamePattern =
-            (String)this.getConfiguredProperty(SERVICE_OPERATION_TEST_NAME_PATTERN);
+
+        String serviceOperationTestNamePattern = (String) this.getConfiguredProperty(SERVICE_OPERATION_TEST_NAME_PATTERN);
 
         String name = this.getName();
+
         // Determine if any overloaded operations exist - test name must be unique even if operation name is not
         List<OperationFacade> operations = this.getOwner().getOperations();
+
         for (OperationFacade operation : operations)
         {
-            if (operation.getName().equals(name) &&
-                !operation.getArgumentNames().equals(this.getArgumentNames()))
+
+            if (operation.getName().equals(name) && !operation.getArgumentNames().equals(this.getArgumentNames()))
             {
+
                 // Two methods with the same name different arguments exist, use argument names to distinguish
                 for (ParameterFacade argument : this.getArguments())
                 {
+
                     name += StringUtils.capitalize(argument.getName());
+
                 }
+
             }
+
         }
 
         // default = testOperationname[Parameternames]
-        return MessageFormat.format(
-                serviceOperationTestNamePattern,
-                StringUtils.trimToEmpty(StringUtils.capitalize(name)));
+        return MessageFormat.format(serviceOperationTestNamePattern, StringUtils.trimToEmpty(StringUtils.capitalize(name)));
+
     }
 
     /**
@@ -278,16 +390,23 @@ public class EJB3SessionOperationFacadeLogicImpl
      */
     public String getCall()
     {
+
         String call = super.getCall();
+
         if (this.isTimeoutCallback())
         {
+
             final StringBuilder buffer = new StringBuilder(this.getName());
+
             buffer.append("(");
             buffer.append("timer");
             buffer.append(")");
-            call =  buffer.toString();
+            call = buffer.toString();
+
         }
+
         return call;
+
     }
 
     /**
@@ -298,17 +417,25 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetTransactionType()
     {
-        String transType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_TRANSACTION_TYPE);
+
+        String transType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_TRANSACTION_TYPE);
+
         if (StringUtils.isNotBlank(transType))
         {
+
             transType = EJB3MetafacadeUtils.convertTransactionType(transType);
-        }
-        else
+
+        } else
         {
-            EJB3SessionFacade session = (EJB3SessionFacade)this.getOwner();
+
+            EJB3SessionFacade session = (EJB3SessionFacade) this.getOwner();
+
             transType = session.getTransactionType();
+
         }
+
         return transType;
+
     }
 
     /**
@@ -317,7 +444,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsBusinessOperation()
     {
+
         return !this.hasStereotype(EJB3Profile.STEREOTYPE_CREATE_METHOD);
+
     }
 
     /**
@@ -326,23 +455,33 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetRolesAllowed()
     {
+
         StringBuilder rolesAllowed = null;
         String separator = "";
 
-        for (final Iterator iter = this.getNonRunAsRoles().iterator(); iter.hasNext(); )
+        for (final Iterator iter = this.getNonRunAsRoles().iterator(); iter.hasNext();)
         {
+
             if (rolesAllowed == null)
             {
+
                 rolesAllowed = new StringBuilder();
+
             }
+
             rolesAllowed.append(separator);
-            Role role = (Role)iter.next();
+
+            Role role = (Role) iter.next();
+
             rolesAllowed.append('"');
             rolesAllowed.append(role.getName());
             rolesAllowed.append('"');
             separator = ", ";
+
         }
-        return rolesAllowed != null ? rolesAllowed.toString() : null;
+
+        return (rolesAllowed != null) ? rolesAllowed.toString() : null;
+
     }
 
     /**
@@ -351,13 +490,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsPermitAll()
     {
+
         boolean permitAll = false;
-        String permitAllStr = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SECURITY_PERMIT_ALL);
+        String permitAllStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SECURITY_PERMIT_ALL);
+
         if (StringUtils.isNotBlank(permitAllStr))
         {
+
             permitAll = BooleanUtils.toBoolean(permitAllStr);
+
         }
+
         return permitAll;
+
     }
 
     /**
@@ -366,13 +511,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsDenyAll()
     {
+
         boolean denyAll = false;
-        String denyAllStr = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SECURITY_DENY_ALL);
+        String denyAllStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SECURITY_DENY_ALL);
+
         if (StringUtils.isNotBlank(denyAllStr))
         {
+
             denyAll = BooleanUtils.toBoolean(denyAllStr);
+
         }
+
         return denyAll;
+
     }
 
     /**
@@ -381,7 +532,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetFlushMode()
     {
-        return (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_FLUSH_MODE);
+
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_FLUSH_MODE);
+
     }
 
     /**
@@ -390,16 +543,25 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetThrowsClause()
     {
+
         StringBuilder throwsClause = null;
+
         if (this.isExceptionsPresent())
         {
+
             throwsClause = new StringBuilder(this.getExceptionList());
+
         }
+
         if (throwsClause != null)
         {
+
             throwsClause.insert(0, "throws ");
+
         }
-        return throwsClause != null ? throwsClause.toString() : null;
+
+        return (throwsClause != null) ? throwsClause.toString() : null;
+
     }
 
     /**
@@ -408,17 +570,24 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetThrowsClause(String initialExceptions)
     {
+
         final StringBuilder throwsClause = new StringBuilder(initialExceptions);
+
         if (this.getThrowsClause() != null)
         {
+
             throwsClause.insert(0, ", ");
             throwsClause.insert(0, this.getThrowsClause());
-        }
-        else
+
+        } else
         {
+
             throwsClause.insert(0, "throws ");
+
         }
+
         return throwsClause.toString();
+
     }
 
     /**
@@ -426,51 +595,67 @@ public class EJB3SessionOperationFacadeLogicImpl
      */
     protected Collection<Role> handleGetNonRunAsRoles()
     {
+
         final Collection<Role> roles = new LinkedHashSet<Role>();
+
         if (this.getOwner() instanceof EJB3SessionFacade)
         {
-            roles.addAll(((EJB3SessionFacade)this.getOwner()).getNonRunAsRoles());
+
+            roles.addAll(((EJB3SessionFacade) this.getOwner()).getNonRunAsRoles());
+
         }
+
         Collection operationRoles = this.getTargetDependencies();
-        CollectionUtils.filter(
-            operationRoles,
-            new Predicate()
+
+        CollectionUtils.filter(operationRoles, new Predicate()
+        {
+
+            public boolean evaluate(Object object)
             {
-                public boolean evaluate(Object object)
-                {
-                    DependencyFacade dependency = (DependencyFacade)object;
-                    return dependency != null
-                        && dependency.getSourceElement() != null
-                        && Role.class.isAssignableFrom(dependency.getSourceElement().getClass())
+
+                DependencyFacade dependency = (DependencyFacade) object;
+
+                return (dependency != null) && (dependency.getSourceElement() != null) && Role.class.isAssignableFrom(dependency.getSourceElement().getClass())
                         && !dependency.hasStereotype(EJB3Profile.STEREOTYPE_SECURITY_RUNAS);
-                }
-            });
-        CollectionUtils.transform(
-            operationRoles,
-            new Transformer()
+
+            }
+
+        });
+        CollectionUtils.transform(operationRoles, new Transformer()
+        {
+
+            public Object transform(Object object)
             {
-                public Object transform(Object object)
-                {
-                    return ((DependencyFacade)object).getSourceElement();
-                }
-            });
+
+                return ((DependencyFacade) object).getSourceElement();
+
+            }
+
+        });
         roles.addAll(operationRoles);
+
         final Collection allRoles = new LinkedHashSet(roles);
 
         // add all roles which are specializations of this one
-        CollectionUtils.forAllDo(
-            roles,
-            new Closure()
+        CollectionUtils.forAllDo(roles, new Closure()
+        {
+
+            public void execute(Object object)
             {
-                public void execute(Object object)
+
+                if (object instanceof Role)
                 {
-                    if (object instanceof Role)
-                    {
-                        allRoles.addAll(((Role)object).getAllSpecializations());
-                    }
+
+                    allRoles.addAll(((Role) object).getAllSpecializations());
+
                 }
-            });
+
+            }
+
+        });
+
         return allRoles;
+
     }
 
     /**
@@ -479,7 +664,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsTimeoutCallback()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SERVICE_TIMER_TIMEOUT);
+
     }
 
     /**
@@ -488,7 +675,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetImplementationName()
     {
+
         return this.getImplementationOperationName(StringUtils.capitalize(this.getName()));
+
     }
 
     /**
@@ -497,7 +686,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetImplementationCall()
     {
+
         return this.getImplementationOperationName(StringUtils.capitalize(this.getCall()));
+
     }
 
     /**
@@ -506,9 +697,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetImplementationSignature()
     {
-        return ("public".equalsIgnoreCase(this.getVisibility()) ?
-                this.getImplementationOperationName(StringUtils.capitalize(this.getSignature())) :
-                    this.getSignature());
+
+        return ("public".equalsIgnoreCase(this.getVisibility()) ? this.getImplementationOperationName(StringUtils.capitalize(this.getSignature())) : this.getSignature());
+
     }
 
     /**
@@ -520,12 +711,11 @@ public class EJB3SessionOperationFacadeLogicImpl
      */
     private String getImplementationOperationName(String replacement)
     {
-        String implementationNamePattern =
-            (String)this.getConfiguredProperty(EJB3Globals.IMPLEMENTATION_OPERATION_NAME_PATTERN);
 
-        return MessageFormat.format(
-                implementationNamePattern,
-                StringUtils.trimToEmpty(replacement));
+        String implementationNamePattern = (String) this.getConfiguredProperty(EJB3Globals.IMPLEMENTATION_OPERATION_NAME_PATTERN);
+
+        return MessageFormat.format(implementationNamePattern, StringUtils.trimToEmpty(replacement));
+
     }
 
     /**
@@ -533,41 +723,56 @@ public class EJB3SessionOperationFacadeLogicImpl
      */
     protected Collection handleGetInterceptorReferences()
     {
+
         Collection references = this.getSourceDependencies();
-        CollectionUtils.filter(
-            references,
-            new Predicate()
+
+        CollectionUtils.filter(references, new Predicate()
+        {
+
+            public boolean evaluate(Object object)
             {
-                public boolean evaluate(Object object)
-                {
-                    DependencyFacade dependency = (DependencyFacade)object;
-                    ModelElementFacade targetElement = dependency.getTargetElement();
-                    return (targetElement != null && targetElement.hasStereotype(EJB3Profile.STEREOTYPE_INTERCEPTOR));
-                }
-            });
-        CollectionUtils.transform(
-            references,
-            new Transformer()
+
+                DependencyFacade dependency = (DependencyFacade) object;
+                ModelElementFacade targetElement = dependency.getTargetElement();
+
+                return ((targetElement != null) && targetElement.hasStereotype(EJB3Profile.STEREOTYPE_INTERCEPTOR));
+
+            }
+
+        });
+        CollectionUtils.transform(references, new Transformer()
+        {
+
+            public Object transform(final Object object)
             {
-                public Object transform(final Object object)
-                {
-                    return ((DependencyFacade)object).getTargetElement();
-                }
-            });
+
+                return ((DependencyFacade) object).getTargetElement();
+
+            }
+
+        });
+
         final Collection interceptors = new LinkedHashSet(references);
-        CollectionUtils.forAllDo(
-                references,
-                new Closure()
+
+        CollectionUtils.forAllDo(references, new Closure()
+        {
+
+            public void execute(Object object)
+            {
+
+                if (object instanceof EJB3InterceptorFacade)
                 {
-                    public void execute(Object object)
-                    {
-                        if (object instanceof EJB3InterceptorFacade)
-                        {
-                            interceptors.addAll(((EJB3InterceptorFacade)object).getInterceptorReferences());
-                        }
-                    }
-                });
+
+                    interceptors.addAll(((EJB3InterceptorFacade) object).getInterceptorReferences());
+
+                }
+
+            }
+
+        });
+
         return interceptors;
+
     }
 
     /**
@@ -576,14 +781,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsExcludeDefaultInterceptors()
     {
+
         boolean excludeDefault = false;
-        String excludeDefaultStr =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SERVICE_INTERCEPTOR_EXCLUDE_DEFAULT);
+        String excludeDefaultStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SERVICE_INTERCEPTOR_EXCLUDE_DEFAULT);
+
         if (excludeDefaultStr != null)
         {
+
             excludeDefault = BooleanUtils.toBoolean(excludeDefaultStr);
+
         }
+
         return excludeDefault;
+
     }
 
     /**
@@ -592,14 +802,19 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsExcludeClassInterceptors()
     {
+
         boolean excludeClass = false;
-        String excludeClassStr =
-            (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SERVICE_INTERCEPTOR_EXCLUDE_CLASS);
+        String excludeClassStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SERVICE_INTERCEPTOR_EXCLUDE_CLASS);
+
         if (excludeClassStr != null)
         {
+
             excludeClass = BooleanUtils.toBoolean(excludeClassStr);
+
         }
+
         return excludeClass;
+
     }
 
     /**
@@ -608,7 +823,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsPostConstruct()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_POST_CONSTRUCT);
+
     }
 
     /**
@@ -617,7 +834,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsPreDestroy()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_PRE_DESTROY);
+
     }
 
     /**
@@ -626,7 +845,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsPostActivate()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_POST_ACTIVATE);
+
     }
 
     /**
@@ -635,7 +856,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsPrePassivate()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_PRE_PASSIVATE);
+
     }
 
     /**
@@ -644,7 +867,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsLifecycleCallback()
     {
+
         return this.isPostConstruct() || this.isPreDestroy() || this.isPostActivate() || this.isPrePassivate();
+
     }
 
     /**
@@ -653,12 +878,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamValidationValidator()
     {
+
         boolean isSeamValidorMethod = false;
+
         if (this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_VALIDATION_VALIDATOR))
         {
+
             isSeamValidorMethod = true;
+
         }
+
         return isSeamValidorMethod;
+
     }
 
     /**
@@ -667,13 +898,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamValidationOutcome()
     {
-        String validationOutcome = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_VALIDATION_OUTCOME);
-        if (StringUtils.isNotBlank(validationOutcome) &&
-                !StringUtils.equals(validationOutcome, "org.jboss.seam.annotations.Outcome.REDISPLAY"))
+
+        String validationOutcome = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_VALIDATION_OUTCOME);
+
+        if (StringUtils.isNotBlank(validationOutcome) && !StringUtils.equals(validationOutcome, "org.jboss.seam.annotations.Outcome.REDISPLAY"))
         {
+
             validationOutcome = "\"" + validationOutcome + "\"";
+
         }
+
         return validationOutcome;
+
     }
 
     /**
@@ -682,8 +918,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamValidationRefreshEntities()
     {
-        return BooleanUtils.toBoolean(
-                (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_VALIDATION_REFRESH_ENTITIES));
+
+        return BooleanUtils.toBoolean((String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_VALIDATION_REFRESH_ENTITIES));
+
     }
 
     /**
@@ -692,12 +929,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamLifecycleCreate()
     {
+
         boolean isSeamLifecycleCreate = false;
+
         if (this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_LIFECYCLE_CREATE))
         {
+
             isSeamLifecycleCreate = true;
+
         }
+
         return isSeamLifecycleCreate;
+
     }
 
     /**
@@ -706,12 +949,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamLifecycleDestroy()
     {
+
         boolean isSeamLifecycleCreate = false;
+
         if (this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_LIFECYCLE_DESTROY))
         {
+
             isSeamLifecycleCreate = true;
+
         }
+
         return isSeamLifecycleCreate;
+
     }
 
     /**
@@ -720,12 +969,18 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamObserver()
     {
+
         boolean isSeamObserver = false;
+
         if (this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_LIFECYCLE_OBSERVER_EVENT) != null)
         {
+
             isSeamObserver = true;
+
         }
+
         return isSeamObserver;
+
     }
 
     /**
@@ -734,7 +989,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamObserverEventName()
     {
-        return "(\"" +  this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_LIFECYCLE_OBSERVER_EVENT) + "\")";
+
+        return "(\"" + this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_LIFECYCLE_OBSERVER_EVENT) + "\")";
+
     }
 
     /**
@@ -743,7 +1000,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamAsynchronous()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_ASYNCHRONOUS);
+
     }
 
     /**
@@ -752,7 +1011,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamBijectionFactory()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_BIJECTION_FACTORY);
+
     }
 
     /**
@@ -761,20 +1022,28 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamBijectionFactoryParameters()
     {
+
         List<String> parameters = new ArrayList<String>();
         String value = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_BIJECTION_FACTORY_VALUE);
-        if(StringUtils.isNotBlank(value))
+
+        if (StringUtils.isNotBlank(value))
         {
+
             parameters.add("value = \"" + value + "\"");
+
         }
 
         String scope = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_BIJECTION_FACTORY_SCOPE_TYPE);
-        if(StringUtils.isNotBlank(scope))
+
+        if (StringUtils.isNotBlank(scope))
         {
+
             parameters.add("scope = org.jboss.seam.ScopeType." + scope);
+
         }
 
         return EJB3MetafacadeUtils.buildAnnotationParameters(parameters);
+
     }
 
     /**
@@ -783,7 +1052,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamConversationBegin()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_BEGIN);
+
     }
 
     /**
@@ -792,44 +1063,65 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationBeginParameters()
     {
-        if(!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_BEGIN))
+
+        if (!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_BEGIN))
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             List<String> parameters = new ArrayList<String>();
-            String flushMode = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_FLUSH_MODE);
-            if(StringUtils.isNotBlank(flushMode))
+            String flushMode = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_FLUSH_MODE);
+
+            if (StringUtils.isNotBlank(flushMode))
             {
+
                 parameters.add("flushMode = org.jboss.seam.annotations.FlushModeType." + flushMode);
+
             }
 
-            String pageflow = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_PAGEFLOW);
-            if(StringUtils.isNotBlank(pageflow))
+            String pageflow = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_PAGEFLOW);
+
+            if (StringUtils.isNotBlank(pageflow))
             {
+
                 parameters.add("pageflow = \"" + pageflow + "\"");
+
             }
 
-            String join = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_JOIN);
-            if(StringUtils.isNotBlank(join))
+            String join = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_JOIN);
+
+            if (StringUtils.isNotBlank(join))
             {
+
                 parameters.add("join = " + join.toLowerCase());
+
             }
 
-            String nested = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_NESTED);
-            if(StringUtils.isNotBlank(nested))
+            String nested = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_NESTED);
+
+            if (StringUtils.isNotBlank(nested))
             {
+
                 parameters.add("nested = " + nested.toLowerCase());
+
             }
 
             Collection ifOutcome = this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_IF_OUTCOME);
-            if(ifOutcome != null && !ifOutcome.isEmpty())
+
+            if ((ifOutcome != null) && !ifOutcome.isEmpty())
             {
+
                 parameters.add(EJB3MetafacadeUtils.buildAnnotationMultivalueParameter("ifOutcome", ifOutcome));
+
             }
+
             return EJB3MetafacadeUtils.buildAnnotationParameters(parameters);
+
         }
+
     }
 
     /**
@@ -838,7 +1130,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamConversationBeginTask()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_BEGIN_TASK);
+
     }
 
     /**
@@ -847,28 +1141,38 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationBeginTaskParameters()
     {
-        if(!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_BEGIN_TASK))
+
+        if (!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_BEGIN_TASK))
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             List<String> parameters = new ArrayList<String>();
-            String flushMode = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_TASK_FLUSH_MODE);
-            if(StringUtils.isNotBlank(flushMode))
+            String flushMode = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_TASK_FLUSH_MODE);
+
+            if (StringUtils.isNotBlank(flushMode))
             {
+
                 parameters.add("flushMode = org.jboss.seam.annotations.FlushModeType." + flushMode + "\"");
+
             }
 
-            String taskIdParameter = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_TASK_ID_PARAMETER);
-            if(StringUtils.isNotBlank(taskIdParameter))
+            String taskIdParameter = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_TASK_ID_PARAMETER);
+
+            if (StringUtils.isNotBlank(taskIdParameter))
             {
+
                 parameters.add("taskIdParameter = \"" + taskIdParameter + "\"");
+
             }
+
             return EJB3MetafacadeUtils.buildAnnotationParameters(parameters);
+
         }
+
     }
 
     /**
@@ -877,7 +1181,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamConversationCreateProcess()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_CREATE_PROCESS);
+
     }
 
     /**
@@ -886,8 +1192,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationCreateProcessParameters()
     {
-        return "(definition = \"" +
-            this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_CREATE_PROCESS_DEFINITION) + "\")";
+
+        return "(definition = \"" + this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_CREATE_PROCESS_DEFINITION) + "\")";
+
     }
 
     /**
@@ -896,7 +1203,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamConversationEnd()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_END);
+
     }
 
     /**
@@ -905,47 +1214,58 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationEndParameters()
     {
-        if(!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_END))
+
+        if (!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_END))
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             List<String> parameters = new ArrayList<String>();
-            String beforeRedirect = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_BEFORE_REDIRECT);
-            if(StringUtils.isNotBlank(beforeRedirect))
+            String beforeRedirect = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_BEFORE_REDIRECT);
+
+            if (StringUtils.isNotBlank(beforeRedirect))
             {
+
                 parameters.add("beforeRedirect = " + beforeRedirect.toLowerCase());
+
             }
 
             Collection ifOutcome = this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_IF_OUTCOME);
-            if(ifOutcome != null && !ifOutcome.isEmpty())
+
+            if ((ifOutcome != null) && !ifOutcome.isEmpty())
             {
+
                 parameters.add(EJB3MetafacadeUtils.buildAnnotationMultivalueParameter("ifOutcome", ifOutcome));
+
             }
 
-            Collection exceptions = this.findTaggedValues(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_EVEN_IF_EXCEPTION);
-            if(exceptions != null && !exceptions.isEmpty())
+            Collection exceptions = this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_EVEN_IF_EXCEPTION);
+
+            if ((exceptions != null) && !exceptions.isEmpty())
             {
-                parameters.add(
-                        EJB3MetafacadeUtils.buildAnnotationMultivalueParameter(
-                                "ifOutcome",
-                                ifOutcome,
-                                false,
-                                ".class"));
+
+                parameters.add(EJB3MetafacadeUtils.buildAnnotationMultivalueParameter("ifOutcome", ifOutcome, false, ".class"));
+
             }
+
             return EJB3MetafacadeUtils.buildAnnotationParameters(parameters);
+
         }
+
     }
+
     /**
      * @see EJB3SessionOperationFacadeLogic#handleIsSeamConversationEndTask()
      */
     @Override
     protected boolean handleIsSeamConversationEndTask()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_END_TASK);
+
     }
 
     /**
@@ -954,33 +1274,47 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationEndTaskParameters()
     {
-        if(!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_END_TASK))
+
+        if (!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_END_TASK))
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             List<String> parameters = new ArrayList<String>();
-            String transition = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_TRANSITION_NAME);
-            if(StringUtils.isNotBlank(transition))
+            String transition = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_TRANSITION_NAME);
+
+            if (StringUtils.isNotBlank(transition))
             {
+
                 parameters.add("transition = \"" + transition + "\"");
+
             }
 
-            String beforeRedirect = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_BEFORE_REDIRECT);
-            if(StringUtils.isNotBlank(beforeRedirect))
+            String beforeRedirect = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_BEFORE_REDIRECT);
+
+            if (StringUtils.isNotBlank(beforeRedirect))
             {
+
                 parameters.add("beforeRedirect = " + beforeRedirect.toLowerCase());
+
             }
+
             Collection ifOutcome = this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_END_TASK_IF_OUTCOME);
-            if(ifOutcome != null && !ifOutcome.isEmpty())
+
+            if ((ifOutcome != null) && !ifOutcome.isEmpty())
             {
+
                 parameters.add(EJB3MetafacadeUtils.buildAnnotationMultivalueParameter("ifOutcome", ifOutcome));
+
             }
+
             return EJB3MetafacadeUtils.buildAnnotationParameters(parameters);
+
         }
+
     }
 
     /**
@@ -989,7 +1323,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamConversationResumeProcess()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_RESUME_PROCESS);
+
     }
 
     /**
@@ -998,9 +1334,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationResumeProcessParameters()
     {
-        return "(processIdParameter = \"" +
-            this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_RESUME_PROCESS_PROCESS_ID_PARAMETER) + "\")";
+
+        return "(processIdParameter = \"" + this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_RESUME_PROCESS_PROCESS_ID_PARAMETER) + "\")";
+
     }
 
     /**
@@ -1009,7 +1345,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamConversationStartTask()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_START_TASK);
+
     }
 
     /**
@@ -1018,29 +1356,38 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamConversationStartTaskParameters()
     {
+
         if (!this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_CONVERSATION_START_TASK))
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             List<String> parameters = new ArrayList<String>();
-            String flushMode = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_START_TASK_FLUSH_MODE);
+            String flushMode = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_START_TASK_FLUSH_MODE);
+
             if (StringUtils.isNotBlank(flushMode))
             {
+
                 parameters.add("flushMode = org.jboss.seam.annotations.FlushModeType." + flushMode);
+
             }
 
-            String taskIdParameter = (String)this.findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_START_TASK_ID_PARAMETER);
+            String taskIdParameter = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SEAM_CONVERSATION_START_TASK_ID_PARAMETER);
+
             if (StringUtils.isNotBlank(taskIdParameter))
             {
+
                 parameters.add("taskIdParameter = \"" + taskIdParameter + "\"");
+
             }
 
             return EJB3MetafacadeUtils.buildAnnotationParameters(parameters);
+
         }
+
     }
 
     /**
@@ -1049,7 +1396,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamTransactional()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_TRANSACTION_TRANSACTIONAL);
+
     }
 
     /**
@@ -1058,7 +1407,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamTransactionRollback()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_TRANSACTION_ROLLBACK);
+
     }
 
     /**
@@ -1067,15 +1418,21 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamTransactionRollbackParameters()
     {
-        Collection outcomes =  this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_TRANSACTION_ROLLBACK_IF_OUTCOME);
-        if (outcomes == null || outcomes.isEmpty())
+
+        Collection outcomes = this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_TRANSACTION_ROLLBACK_IF_OUTCOME);
+
+        if ((outcomes == null) || outcomes.isEmpty())
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             return "(" + EJB3MetafacadeUtils.buildAnnotationMultivalueParameter("ifOutcome", outcomes) + ")";
+
         }
+
     }
 
     /**
@@ -1084,7 +1441,9 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected boolean handleIsSeamWebRemote()
     {
+
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_WEBREMOTE);
+
     }
 
     /**
@@ -1093,14 +1452,21 @@ public class EJB3SessionOperationFacadeLogicImpl
     @Override
     protected String handleGetSeamWebRemoteParameters()
     {
+
         Collection excludes = this.findTaggedValues(EJB3Profile.TAGGEDVALUE_SEAM_WEBREMOTE_EXCLUDE);
-        if(excludes == null || excludes.isEmpty())
+
+        if ((excludes == null) || excludes.isEmpty())
         {
+
             return null;
-        }
-        else
+
+        } else
         {
+
             return "(" + EJB3MetafacadeUtils.buildAnnotationMultivalueParameter("exclude", excludes) + ")";
+
         }
+
     }
+
 }

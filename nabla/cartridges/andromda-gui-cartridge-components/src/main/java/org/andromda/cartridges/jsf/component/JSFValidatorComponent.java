@@ -1,24 +1,45 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.component;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import javax.faces.component.EditableValueHolder;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.validator.Validator;
 import org.andromda.cartridges.jsf.utils.ComponentUtils;
 import org.andromda.cartridges.jsf.validator.JSFValidator;
 import org.andromda.cartridges.jsf.validator.JSFValidatorException;
 import org.andromda.cartridges.jsf.validator.ValidatorMessages;
+
 import org.andromda.utils.StringUtilsHelper;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -28,14 +49,31 @@ import org.apache.commons.validator.Form;
 import org.apache.commons.validator.ValidatorAction;
 import org.apache.commons.validator.ValidatorResources;
 
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.faces.component.EditableValueHolder;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIComponentBase;
+import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
+import javax.faces.validator.Validator;
+
 /**
  * A JSF component that enabled the commons-validator server side validation, as well
  * as encodes JavaScript for all client-side validations
  * specified in the same JSP page (with <code>jsf:validator</code>.
  */
-public class JSFValidatorComponent
-    extends UIComponentBase
+public class JSFValidatorComponent extends UIComponentBase
 {
+
     private static final Log logger = LogFactory.getLog(JSFValidatorComponent.class);
 
     /**
@@ -43,6 +81,7 @@ public class JSFValidatorComponent
      */
     public JSFValidatorComponent()
     {
+
         // - default constructor for faces-config.xml
     }
 
@@ -60,7 +99,9 @@ public class JSFValidatorComponent
      */
     public String getRendererType()
     {
+
         return null;
+
     }
 
     /**
@@ -70,7 +111,9 @@ public class JSFValidatorComponent
      */
     public String getFamily()
     {
+
         return null;
+
     }
 
     /**
@@ -80,37 +123,40 @@ public class JSFValidatorComponent
      * @param id The validator's identifier
      * @param validator The JSF validator associated with the id and type
      */
-    private void addValidator(
-        final String type,
-        final String id,
-        final JSFValidator validator)
+    private void addValidator(final String type, final String id, final JSFValidator validator)
     {
-        Map map = (Map)this.validators.get(type);
+
+        Map map = (Map) this.validators.get(type);
+
         if (map == null)
         {
+
             map = new LinkedHashMap();
-            this.validators.put(
-                type,
-                map);
+            this.validators.put(type, map);
+
         }
+
         if (id != null)
         {
-            map.put(
-                id,
-                validator);
+
+            map.put(id, validator);
+
         }
+
     }
 
     private Object getContextAttribute(final String attributeName)
     {
-        return ComponentUtils.getAttribute(FacesContext.getCurrentInstance()
-            .getExternalContext().getContext(), attributeName);
+
+        return ComponentUtils.getAttribute(FacesContext.getCurrentInstance().getExternalContext().getContext(), attributeName);
+
     }
 
     private void setContextAttribute(final String attributeName, final String attributeValue)
     {
-        ComponentUtils.setAttribute(FacesContext.getCurrentInstance()
-            .getExternalContext().getContext(), attributeName, attributeValue);
+
+        ComponentUtils.setAttribute(FacesContext.getCurrentInstance().getExternalContext().getContext(), attributeName, attributeValue);
+
     }
 
     /**
@@ -126,87 +172,108 @@ public class JSFValidatorComponent
      * @param context The FacesContext for this request
      * @param form the id of the form.
      */
-    private void findValidators(
-        final UIComponent component,
-        final FacesContext context,
-        final UIComponent form)
+    private void findValidators(final UIComponent component, final FacesContext context, final UIComponent form)
     {
+
         if (component instanceof EditableValueHolder && this.canValidate(component))
         {
-            final EditableValueHolder valueHolder = (EditableValueHolder)component;
+
+            final EditableValueHolder valueHolder = (EditableValueHolder) component;
+
             if (form != null)
             {
+
                 final String formId = form.getId();
                 final String componentId = component.getId();
                 final ValidatorResources resources = JSFValidator.getValidatorResources();
+
                 if (resources != null)
                 {
-                    final Form validatorForm = resources.getForm(
-                            Locale.getDefault(),
-                            formId);
+
+                    final Form validatorForm = resources.getForm(Locale.getDefault(), formId);
+
                     if (validatorForm != null)
                     {
+
                         final List validatorFields = validatorForm.getFields();
+
                         for (final Iterator iterator = validatorFields.iterator(); iterator.hasNext();)
                         {
-                            final Field field = (Field)iterator.next();
+
+                            final Field field = (Field) iterator.next();
 
                             // we need to make it match the name of the id on the jsf components (if its nested).
                             final String fieldProperty = StringUtilsHelper.lowerCamelCaseName(field.getProperty());
+
                             if (componentId.equals(fieldProperty))
                             {
-                                for (final Iterator dependencyIterator = field.getDependencyList().iterator();
-                                    dependencyIterator.hasNext();)
+
+                                for (final Iterator dependencyIterator = field.getDependencyList().iterator(); dependencyIterator.hasNext();)
                                 {
-                                    final String dependency = (String)dependencyIterator.next();
+
+                                    final String dependency = (String) dependencyIterator.next();
                                     final ValidatorAction action = JSFValidator.getValidatorAction(dependency);
+
                                     if (action != null)
                                     {
+
                                         final JSFValidator validator = new JSFValidator(formId, action);
                                         final Arg[] args = field.getArgs(dependency);
+
                                         if (args != null)
                                         {
+
                                             for (final Iterator varIterator = field.getVars().keySet().iterator(); varIterator.hasNext();)
                                             {
-                                                final String name = (String)varIterator.next();
-                                                validator.addParameter(
-                                                    name,
-                                                    field.getVarValue(name));
+
+                                                final String name = (String) varIterator.next();
+
+                                                validator.addParameter(name, field.getVarValue(name));
+
                                             }
-                                            validator.setArgs(ValidatorMessages.getArgs(
-                                                    dependency,
-                                                    field));
-                                            this.addValidator(
-                                                dependency,
-                                                component.getClientId(context),
-                                                validator);
+
+                                            validator.setArgs(ValidatorMessages.getArgs(dependency, field));
+                                            this.addValidator(dependency, component.getClientId(context), validator);
+
                                             if (!this.validatorPresent(valueHolder, validator))
                                             {
+
                                                 valueHolder.addValidator(validator);
+
                                             }
+
                                         }
-                                    }
-                                    else
+
+                                    } else
                                     {
-                                        logger.error(
-                                            "No validator action with name '" + dependency +
-                                            "' registered in rules files '" + JSFValidator.RULES_LOCATION + '\'');
+
+                                        logger.error("No validator action with name '" + dependency + "' registered in rules files '" + JSFValidator.RULES_LOCATION + '\'');
+
                                     }
+
                                 }
+
                             }
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         for (final Iterator iterator = component.getFacetsAndChildren(); iterator.hasNext();)
         {
-            final UIComponent childComponent = (UIComponent)iterator.next();
-            this.findValidators(
-                childComponent,
-                context,
-                form);
+
+            final UIComponent childComponent = (UIComponent) iterator.next();
+
+            this.findValidators(childComponent, context, form);
+
         }
+
     }
 
     /**
@@ -217,20 +284,32 @@ public class JSFValidatorComponent
      */
     private boolean canValidate(final UIComponent component)
     {
+
         boolean canValidate = true;
+
         if (component != null)
         {
+
             canValidate = component.isRendered();
+
             if (canValidate)
             {
+
                 final UIComponent parent = component.getParent();
+
                 if (parent != null)
                 {
+
                     canValidate = canValidate(parent);
+
                 }
+
             }
+
         }
+
         return canValidate;
+
     }
 
     /**
@@ -242,27 +321,44 @@ public class JSFValidatorComponent
      */
     private boolean validatorPresent(EditableValueHolder valueHolder, final Validator validator)
     {
+
         boolean present = false;
+
         if (validator != null)
         {
+
             final Validator[] validators = valueHolder.getValidators();
+
             if (validators != null)
             {
+
                 for (int ctr = 0; ctr < validators.length; ctr++)
                 {
+
                     final Validator test = validators[ctr];
+
                     if (test instanceof JSFValidator)
                     {
+
                         present = test.toString().equals(validator.toString());
+
                         if (present)
                         {
+
                             break;
+
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         return present;
+
     }
 
     private static final String JAVASCRIPT_UTILITIES = "javascriptUtilities";
@@ -272,19 +368,16 @@ public class JSFValidatorComponent
      *
      * @param writer A response writer
      */
-    private final void writeScriptStart(final FacesContext context, UIComponent component)
-        throws IOException
+    private final void writeScriptStart(final FacesContext context, UIComponent component) throws IOException
     {
+
         final ResponseWriter writer = context.getResponseWriter();
         String id = component.getClientId(context);
-        writer.startElement(
-            "script",
-            component);
-        writer.writeAttribute(
-            "type",
-            "text/javascript",
-            null);
+
+        writer.startElement("script", component);
+        writer.writeAttribute("type", "text/javascript", null);
         writer.writeAttribute("id", id + ":validation-code", null);
+
     }
 
     /**
@@ -292,10 +385,11 @@ public class JSFValidatorComponent
      *
      * @param writer A response writer
      */
-    private void writeScriptEnd(ResponseWriter writer)
-        throws IOException
+    private void writeScriptEnd(ResponseWriter writer) throws IOException
     {
+
         writer.endElement("script");
+
     }
 
     /**
@@ -305,20 +399,23 @@ public class JSFValidatorComponent
      */
     private String getJavaScriptFunctionName(final ValidatorAction action)
     {
+
         String functionName = null;
         final String javascript = action.getJavascript();
+
         if (StringUtils.isNotBlank(javascript))
         {
+
             final String function = "function ";
             int functionIndex = javascript.indexOf(function);
+
             functionName = javascript.substring(functionIndex + 9);
-            functionName = functionName.substring(
-                    0,
-                    functionName.indexOf('(')).replaceAll(
-                    "[\\s]+",
-                    " ");
+            functionName = functionName.substring(0, functionName.indexOf('(')).replaceAll("[\\s]+", " ");
+
         }
+
         return functionName;
+
     }
 
     /**
@@ -334,7 +431,9 @@ public class JSFValidatorComponent
      */
     public void setClient(final String functionName)
     {
+
         this.getAttributes().put(CLIENT, functionName);
+
     }
 
     /**
@@ -344,8 +443,11 @@ public class JSFValidatorComponent
      */
     private boolean isClient()
     {
-        String client = (String)this.getAttributes().get(CLIENT);
+
+        String client = (String) this.getAttributes().get(CLIENT);
+
         return StringUtils.isBlank(client) ? true : Boolean.valueOf(client).booleanValue();
+
     }
 
     /**
@@ -356,12 +458,9 @@ public class JSFValidatorComponent
      * @param context The FacesContext for this request
      * @throws IOException
      */
-    private final void writeValidationFunctions(
-        final UIComponent form,
-        final ResponseWriter writer,
-        final FacesContext context)
-        throws IOException
+    private final void writeValidationFunctions(final UIComponent form, final ResponseWriter writer, final FacesContext context) throws IOException
     {
+
         writer.write("var bCancel = false;\n");
         writer.write("self.validate" + StringUtils.capitalize(form.getId()) + " = ");
         writer.write("function(form) { return bCancel || true\n");
@@ -372,68 +471,90 @@ public class JSFValidatorComponent
         // - remove any validators that don't have javascript functions defined.
         for (final Iterator iterator = validatorTypes.iterator(); iterator.hasNext();)
         {
-            final String type = (String)iterator.next();
+
+            final String type = (String) iterator.next();
             final ValidatorAction action = JSFValidator.getValidatorAction(type);
             final String functionName = this.getJavaScriptFunctionName(action);
+
             if (StringUtils.isBlank(functionName))
             {
+
                 iterator.remove();
+
             }
+
         }
 
         for (final Iterator iterator = validatorTypes.iterator(); iterator.hasNext();)
         {
-            final String type = (String)iterator.next();
+
+            final String type = (String) iterator.next();
             final ValidatorAction action = JSFValidator.getValidatorAction(type);
+
             if (!JAVASCRIPT_UTILITIES.equals(type))
             {
+
                 writer.write("&& ");
                 writer.write(this.getJavaScriptFunctionName(action));
                 writer.write("(form)\n");
+
             }
+
         }
+
         writer.write(";}\n");
 
         // - for each validator type, write callback
         for (final Iterator iterator = validatorTypes.iterator(); iterator.hasNext();)
         {
-            final String type = (String)iterator.next();
+
+            final String type = (String) iterator.next();
             final ValidatorAction action = JSFValidator.getValidatorAction(type);
             String callback = action.getJsFunctionName();
+
             if (StringUtils.isBlank(callback))
             {
+
                 callback = type;
+
             }
+
             writer.write("function ");
             writer.write(form.getId() + '_' + callback);
             writer.write("() { \n");
 
             // for each field validated by this type, add configuration object
-            final Map map = (Map)this.validators.get(type);
+            final Map map = (Map) this.validators.get(type);
             int ctr = 0;
+
             for (final Iterator idIterator = map.keySet().iterator(); idIterator.hasNext(); ctr++)
             {
-                final String id = (String)idIterator.next();
-                final JSFValidator validator = (JSFValidator)map.get(id);
+
+                final String id = (String) idIterator.next();
+                final JSFValidator validator = (JSFValidator) map.get(id);
+
                 writer.write("this[" + ctr + "] = ");
-                this.writeJavaScriptParams(
-                    writer,
-                    context,
-                    id,
-                    validator);
+                this.writeJavaScriptParams(writer, context, id, validator);
                 writer.write(";\n");
+
             }
+
             writer.write("}\n");
+
         }
 
         // - for each validator type, write code
         for (final Iterator iterator = validatorTypes.iterator(); iterator.hasNext();)
         {
-            final String type = (String)iterator.next();
+
+            final String type = (String) iterator.next();
             final ValidatorAction action = JSFValidator.getValidatorAction(type);
+
             writer.write(action.getJavascript());
             writer.write("\n");
+
         }
+
     }
 
     /**
@@ -444,51 +565,67 @@ public class JSFValidatorComponent
      * @param id String
      * @param validator The Commons validator
      */
-    private void writeJavaScriptParams(
-        final ResponseWriter writer,
-        final FacesContext context,
-        final String id,
-        final JSFValidator validator)
-        throws IOException
+    private void writeJavaScriptParams(final ResponseWriter writer, final FacesContext context, final String id, final JSFValidator validator) throws IOException
     {
+
         writer.write("new Array(\"");
         writer.write(id);
         writer.write("\", \"");
         writer.write(validator.getErrorMessage(context));
         writer.write("\", new Function(\"x\", \"return {");
+
         final Map parameters = validator.getParameters();
+
         for (final Iterator iterator = parameters.keySet().iterator(); iterator.hasNext();)
         {
-            final String name = (String)iterator.next();
+
+            final String name = (String) iterator.next();
+
             writer.write(name);
             writer.write(":");
+
             boolean mask = "mask".equals(name);
 
             // - mask validator does not construct regular expression
             if (mask)
             {
+
                 writer.write("/");
-            }
-            else
+
+            } else
             {
+
                 writer.write("'");
+
             }
+
             final Object parameter = parameters.get(name);
+
             writer.write(parameter.toString());
+
             if (mask)
             {
+
                 writer.write("/");
-            }
-            else
+
+            } else
             {
+
                 writer.write("'");
+
             }
+
             if (iterator.hasNext())
             {
+
                 writer.write(",");
+
             }
+
         }
+
         writer.write("}[x];\"))");
+
     }
 
     /**
@@ -498,26 +635,39 @@ public class JSFValidatorComponent
 
     private UIComponent findForm(final String id)
     {
+
         UIComponent form = null;
         UIComponent validator = null;
+
         try
         {
+
             validator = this.findComponent(id);
+
         }
         catch (NullPointerException exception)
         {
+
             // ignore - means we couldn't find the component
         }
+
         if (validator instanceof JSFValidatorComponent)
         {
+
             final UIComponent parent = validator.getParent();
+
             // When would parent ever NOT be an instance of UIComponent?
             if (parent instanceof UIComponent)
             {
+
                 form = parent;
+
             }
+
         }
+
         return form;
+
     }
 
     /**
@@ -533,51 +683,60 @@ public class JSFValidatorComponent
      * @param context The FacesContext for this request
      * @throws IOException
      */
-    public void encodeBegin(final FacesContext context)
-        throws IOException
+    public void encodeBegin(final FacesContext context) throws IOException
     {
+
         boolean validationResourcesPresent = this.getContextAttribute(RULES_NOT_PRESENT) == null;
-        if (validationResourcesPresent && JSFValidator.getValidatorResources() == null)
+
+        if (validationResourcesPresent && (JSFValidator.getValidatorResources() == null))
         {
-            this.setContextAttribute(
-                RULES_NOT_PRESENT,
-                "true");
+
+            this.setContextAttribute(RULES_NOT_PRESENT, "true");
             validationResourcesPresent = false;
+
         }
+
         if (validationResourcesPresent)
         {
+
             try
             {
+
                 this.validators.clear();
                 this.forms.clear();
                 // - add the javascript utilities each time
-                this.addValidator(
-                    JAVASCRIPT_UTILITIES,
-                    null,
-                    null);
+                this.addValidator(JAVASCRIPT_UTILITIES, null, null);
+
                 final UIComponent form = this.findForm(this.getId());
+
                 if (form != null)
                 {
-                    this.findValidators(
-                        form,
-                        context,
-                        form);
+
+                    this.findValidators(form, context, form);
+
                     if (this.isClient())
                     {
+
                         final ResponseWriter writer = context.getResponseWriter();
+
                         this.writeScriptStart(context, form);
-                        this.writeValidationFunctions(
-                            form,
-                            writer,
-                            context);
+                        this.writeValidationFunctions(form, writer, context);
                         this.writeScriptEnd(writer);
+
                     }
+
                 }
+
             }
             catch (final JSFValidatorException exception)
             {
+
                 logger.error(exception);
+
             }
+
         }
+
     }
+
 }

@@ -33,11 +33,6 @@
  */
 package org.andromda.cartridges.gui.util.parser;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.andromda.cartridges.gui.util.exception.ParsingException;
 import org.andromda.cartridges.gui.util.screensLib.Cell;
 import org.andromda.cartridges.gui.util.screensLib.Expandable;
@@ -49,10 +44,18 @@ import org.andromda.cartridges.gui.util.screensLib.Header;
 import org.andromda.cartridges.gui.util.screensLib.Item;
 import org.andromda.cartridges.gui.util.screensLib.TitleBar;
 import org.andromda.cartridges.gui.util.screensLib.ViewContent;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+
 import org.dom4j.io.SAXReader;
+
+import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * DOCUMENT ME!
@@ -61,7 +64,8 @@ import org.dom4j.io.SAXReader;
  * @version $Revision: 377 $
  * @since $Date: 2010-10-03 03:28:10 +0200 (dim., 03 oct. 2010) $
  */
-public class Parser {
+public class Parser
+{
 
     private Document     document;
     private List<String> attributesAndAssociations;
@@ -73,15 +77,19 @@ public class Parser {
      * @param url DOCUMENT ME!
      * @param attributesAndAssociations DOCUMENT ME!
      */
-    public Parser(final URL url, final List<String> attributesAndAssociations) {
+    public Parser(final URL url, final List<String> attributesAndAssociations)
+    {
 
-        try {
+        try
+        {
 
             this.document = this.parse(url);
             this.attributesAndAssociations = attributesAndAssociations;
             this.invalidAttributes = new ArrayList<String>();
 
-        } catch (final DocumentException e) {
+        }
+        catch (final DocumentException e)
+        {
 
             e.printStackTrace();
 
@@ -98,7 +106,8 @@ public class Parser {
      *
      * @throws DocumentException DOCUMENT ME!
      */
-    public Document parse(final URL url) throws DocumentException {
+    public Document parse(final URL url) throws DocumentException
+    {
 
         final SAXReader reader = new SAXReader();
         final Document document = reader.read(url);
@@ -114,34 +123,41 @@ public class Parser {
      *
      * @throws DocumentException DOCUMENT ME!
      */
-    public ViewContent parse() throws DocumentException {
+    public ViewContent parse() throws DocumentException
+    {
 
         final Element root = this.document.getRootElement();
 
-        if ((root != null) && root.getName().equals("view_content")) {
+        if ((root != null) && root.getName().equals("view_content"))
+        {
 
             final ViewContent view_content = new ViewContent();
 
             view_content.setHeader(this.header(root));
             view_content.setCells(this.cells(root));
 
-            if (view_content.getCells().size() == 0) {
+            if (view_content.getCells().size() == 0)
+            {
 
                 final List<Field> fields = new ArrayList<Field>();
 
-                for (final Iterator<Element> i = root.elementIterator(); i.hasNext();) {
+                for (final Iterator<Element> i = root.elementIterator(); i.hasNext();)
+                {
 
                     final Element element = i.next();
 
-                    if (element.getName().equals("fieldline")) {
+                    if (element.getName().equals("fieldline"))
+                    {
 
                         fields.add(this.fieldline(element));
 
-                    } else if (element.getName().equals("fieldset")) {
+                    } else if (element.getName().equals("fieldset"))
+                    {
 
                         fields.add(this.fieldset(element));
 
-                    } else if (element.getName().equals("expandable")) {
+                    } else if (element.getName().equals("expandable"))
+                    {
 
                         fields.add(this.expandable(element));
 
@@ -162,12 +178,14 @@ public class Parser {
     }
 
     @SuppressWarnings("unchecked")
-    private Header header(final Element view_content) {
+    private Header header(final Element view_content)
+    {
 
         final Element element = view_content.element("header");
         Header header = null;
 
-        if (element != null) {
+        if (element != null)
+        {
 
             header = new Header();
 
@@ -179,18 +197,23 @@ public class Parser {
 
     }
 
-    private List<Cell> cells(final Element root) {
+    private List<Cell> cells(final Element root)
+    {
 
         @SuppressWarnings("unchecked")
         final List<Element> elements = root.elements("cell");
 
-        if (elements.size() > 2) {
+        if (elements.size() > 2)
+        {
 
-            try {
+            try
+            {
 
                 throw new ParsingException();
 
-            } catch (final ParsingException e1) {
+            }
+            catch (final ParsingException e1)
+            {
 
                 e1.printStackTrace();
 
@@ -200,7 +223,8 @@ public class Parser {
 
         final List<Cell> cells = new ArrayList<Cell>();
 
-        for (final Object e : elements) {
+        for (final Object e : elements)
+        {
 
             cells.add(this.cell((Element) e));
 
@@ -210,28 +234,34 @@ public class Parser {
 
     }
 
-    private Cell cell(final Element element) {
+    private Cell cell(final Element element)
+    {
 
         final Cell cell = new Cell(element.attributeValue("align"));
         final List<Field> fields = new ArrayList<Field>();
 
-        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();)
+        {
 
             final Element e = i.next();
 
-            if (e.getName().equals("item")) {
+            if (e.getName().equals("item"))
+            {
 
                 fields.add(this.control(e));
 
-            } else if (e.getName().equals("fieldline")) {
+            } else if (e.getName().equals("fieldline"))
+            {
 
                 fields.add(this.fieldline(e));
 
-            } else if (e.getName().equals("fieldset")) {
+            } else if (e.getName().equals("fieldset"))
+            {
 
                 fields.add(this.fieldset(e));
 
-            } else if (e.getName().equals("expandables")) {
+            } else if (e.getName().equals("expandables"))
+            {
 
                 fields.add(this.expandables(e));
 
@@ -245,7 +275,8 @@ public class Parser {
 
     }
 
-    private Expandables expandables(final Element element) {
+    private Expandables expandables(final Element element)
+    {
 
         final Expandables expandables = new Expandables();
 
@@ -253,11 +284,13 @@ public class Parser {
 
         final List<Field> fields = new ArrayList<Field>();
 
-        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();)
+        {
 
             final Element e = i.next();
 
-            if (e.getName().equals("expandable")) {
+            if (e.getName().equals("expandable"))
+            {
 
                 fields.add(this.expandable(e));
 
@@ -271,7 +304,8 @@ public class Parser {
 
     }
 
-    private Expandable expandable(final Element element) {
+    private Expandable expandable(final Element element)
+    {
 
         final Expandable expandable = new Expandable();
 
@@ -279,19 +313,23 @@ public class Parser {
 
         final List<Field> fields = new ArrayList<Field>();
 
-        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();)
+        {
 
             final Element e = i.next();
 
-            if (e.getName().equals("item")) {
+            if (e.getName().equals("item"))
+            {
 
                 fields.add(this.control(e));
 
-            } else if (e.getName().equals("fieldline")) {
+            } else if (e.getName().equals("fieldline"))
+            {
 
                 fields.add(this.fieldline(e));
 
-            } else if (e.getName().equals("fieldset")) {
+            } else if (e.getName().equals("fieldset"))
+            {
 
                 fields.add(this.fieldset(e));
 
@@ -305,11 +343,13 @@ public class Parser {
 
     }
 
-    private List<Field> control(final List<Field> elements) {
+    private List<Field> control(final List<Field> elements)
+    {
 
         final List<Field> items = new ArrayList<Field>();
 
-        for (final Object e : elements) {
+        for (final Object e : elements)
+        {
 
             items.add(this.control((Element) e));
 
@@ -319,7 +359,8 @@ public class Parser {
 
     }
 
-    private Item control(final Element element) {
+    private Item control(final Element element)
+    {
 
         final Item item = new Item();
 
@@ -331,7 +372,8 @@ public class Parser {
 
         // TODO: delete (item.getLegend().equals("Related Cfg")) and solution how to
         // add Related Cfg in MailHeaderCfgMore.xml
-        if (!this.contains(item.getLegend(), this.attributesAndAssociations) && !(item.getLegend().equals("RelatedHelper"))) {
+        if (!this.contains(item.getLegend(), this.attributesAndAssociations) && !(item.getLegend().equals("RelatedHelper")))
+        {
 
             this.invalidAttributes.add(item.getLegend());
 
@@ -341,11 +383,14 @@ public class Parser {
 
     }
 
-    private boolean contains(final String name, final List<String> list) {
+    private boolean contains(final String name, final List<String> list)
+    {
 
-        for (final Object o : list) {
+        for (final Object o : list)
+        {
 
-            if (((String) o).equals(name)) {
+            if (((String) o).equals(name))
+            {
 
                 return true;
 
@@ -357,35 +402,42 @@ public class Parser {
 
     }
 
-    private TitleBar titleBar(final Element element) {
+    private TitleBar titleBar(final Element element)
+    {
 
         return new TitleBar(element.attributeValue("title"));
 
     }
 
-    private Fieldline fieldline(final Element element) {
+    private Fieldline fieldline(final Element element)
+    {
 
         final Fieldline fieldline = new Fieldline();
 
         final List<Field> fields = new ArrayList<Field>();
 
-        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();)
+        {
 
             final Element e = i.next();
 
-            if (e.getName().equals("item")) {
+            if (e.getName().equals("item"))
+            {
 
                 fields.add(this.control(e));
 
-            } else if (e.getName().equals("fieldset")) {
+            } else if (e.getName().equals("fieldset"))
+            {
 
                 fields.add(this.fieldset(e));
 
-            } else if (e.getName().equals("titleBar")) {
+            } else if (e.getName().equals("titleBar"))
+            {
 
                 fields.add(this.titleBar(e));
 
-            } else if (e.getName().equals("fieldline")) {
+            } else if (e.getName().equals("fieldline"))
+            {
 
                 fields.add(this.fieldline(e));
 
@@ -399,28 +451,34 @@ public class Parser {
 
     }
 
-    private Fieldset fieldset(final Element element) {
+    private Fieldset fieldset(final Element element)
+    {
 
         final Fieldset fieldset = new Fieldset();
         final List<Field> fields = new ArrayList<Field>();
 
-        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();) {
+        for (final Iterator<Element> i = element.elementIterator(); i.hasNext();)
+        {
 
             final Element e = i.next();
 
-            if (e.getName().equals("item")) {
+            if (e.getName().equals("item"))
+            {
 
                 fields.add(this.control(e));
 
-            } else if (e.getName().equals("fieldline")) {
+            } else if (e.getName().equals("fieldline"))
+            {
 
                 fields.add(this.fieldline(e));
 
-            } else if (e.getName().equals("fieldset")) {
+            } else if (e.getName().equals("fieldset"))
+            {
 
                 fields.add(this.fieldset(e));
 
-            } else if (e.getName().equals("titleBar")) {
+            } else if (e.getName().equals("titleBar"))
+            {
 
                 fields.add(this.titleBar(e));
 
@@ -440,7 +498,8 @@ public class Parser {
      *
      * @return DOCUMENT ME!
      */
-    public List<String> getInvalidAttributes() {
+    public List<String> getInvalidAttributes()
+    {
 
         return this.invalidAttributes;
 
@@ -451,7 +510,8 @@ public class Parser {
      *
      * @param invalidAttributes DOCUMENT ME!
      */
-    public void setInvalidAttributes(final List<String> invalidAttributes) {
+    public void setInvalidAttributes(final List<String> invalidAttributes)
+    {
 
         this.invalidAttributes = invalidAttributes;
 

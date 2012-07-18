@@ -1,12 +1,48 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
 import java.security.Principal;
+
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
@@ -16,15 +52,17 @@ import javax.servlet.http.HttpSession;
 /**
  *
  */
-public class MockHttpServletRequest
-    implements HttpServletRequest
+public class MockHttpServletRequest implements HttpServletRequest
 {
+
     /**
      * @see javax.servlet.http.HttpServletRequest#getAuthType()
      */
     public String getAuthType()
     {
+
         return null;
+
     }
 
     /**
@@ -32,7 +70,9 @@ public class MockHttpServletRequest
      */
     public String getContextPath()
     {
+
         return null;
+
     }
 
     /**
@@ -40,7 +80,9 @@ public class MockHttpServletRequest
      */
     public Cookie[] getCookies()
     {
+
         return new Cookie[0];
+
     }
 
     /**
@@ -48,7 +90,9 @@ public class MockHttpServletRequest
      */
     public long getDateHeader(String arg0)
     {
+
         return 0;
+
     }
 
     /**
@@ -56,7 +100,9 @@ public class MockHttpServletRequest
      */
     public String getHeader(String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -64,7 +110,9 @@ public class MockHttpServletRequest
      */
     public Enumeration getHeaderNames()
     {
+
         return null;
+
     }
 
     /**
@@ -72,7 +120,9 @@ public class MockHttpServletRequest
      */
     public Enumeration getHeaders(String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -80,7 +130,9 @@ public class MockHttpServletRequest
      */
     public int getIntHeader(String arg0)
     {
+
         return 0;
+
     }
 
     /**
@@ -88,7 +140,9 @@ public class MockHttpServletRequest
      */
     public String getMethod()
     {
+
         return null;
+
     }
 
     /**
@@ -96,7 +150,9 @@ public class MockHttpServletRequest
      */
     public String getPathInfo()
     {
+
         return null;
+
     }
 
     /**
@@ -104,7 +160,9 @@ public class MockHttpServletRequest
      */
     public String getPathTranslated()
     {
+
         return null;
+
     }
 
     /**
@@ -112,7 +170,9 @@ public class MockHttpServletRequest
      */
     public String getQueryString()
     {
+
         return null;
+
     }
 
     /**
@@ -120,7 +180,9 @@ public class MockHttpServletRequest
      */
     public String getRemoteUser()
     {
+
         return null;
+
     }
 
     /**
@@ -128,7 +190,9 @@ public class MockHttpServletRequest
      */
     public String getRequestURI()
     {
+
         return null;
+
     }
 
     /**
@@ -136,7 +200,9 @@ public class MockHttpServletRequest
      */
     public StringBuffer getRequestURL()
     {
+
         return null;
+
     }
 
     /**
@@ -144,7 +210,9 @@ public class MockHttpServletRequest
      */
     public String getRequestedSessionId()
     {
+
         return null;
+
     }
 
     /**
@@ -152,7 +220,9 @@ public class MockHttpServletRequest
      */
     public String getServletPath()
     {
+
         return null;
+
     }
 
     /**
@@ -160,7 +230,9 @@ public class MockHttpServletRequest
      */
     public HttpSession getSession()
     {
+
         return null;
+
     }
 
     /**
@@ -168,7 +240,9 @@ public class MockHttpServletRequest
      */
     public HttpSession getSession(boolean arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -176,7 +250,9 @@ public class MockHttpServletRequest
      */
     public Principal getUserPrincipal()
     {
+
         return null;
+
     }
 
     /**
@@ -184,7 +260,9 @@ public class MockHttpServletRequest
      */
     public boolean isRequestedSessionIdFromCookie()
     {
+
         return false;
+
     }
 
     /**
@@ -192,7 +270,9 @@ public class MockHttpServletRequest
      */
     public boolean isRequestedSessionIdFromURL()
     {
+
         return false;
+
     }
 
     /**
@@ -202,7 +282,9 @@ public class MockHttpServletRequest
     @Deprecated
     public boolean isRequestedSessionIdFromUrl()
     {
+
         return false;
+
     }
 
     /**
@@ -210,7 +292,9 @@ public class MockHttpServletRequest
      */
     public boolean isRequestedSessionIdValid()
     {
+
         return false;
+
     }
 
     /**
@@ -218,7 +302,9 @@ public class MockHttpServletRequest
      */
     public boolean isUserInRole(String arg0)
     {
+
         return false;
+
     }
 
     /**
@@ -226,7 +312,9 @@ public class MockHttpServletRequest
      */
     public Object getAttribute(String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -234,7 +322,9 @@ public class MockHttpServletRequest
      */
     public Enumeration getAttributeNames()
     {
+
         return null;
+
     }
 
     /**
@@ -242,7 +332,9 @@ public class MockHttpServletRequest
      */
     public String getCharacterEncoding()
     {
+
         return null;
+
     }
 
     /**
@@ -250,7 +342,9 @@ public class MockHttpServletRequest
      */
     public int getContentLength()
     {
+
         return 0;
+
     }
 
     /**
@@ -258,7 +352,9 @@ public class MockHttpServletRequest
      */
     public String getContentType()
     {
+
         return null;
+
     }
 
     /**
@@ -266,7 +362,9 @@ public class MockHttpServletRequest
      */
     public ServletInputStream getInputStream() throws IOException
     {
+
         return null;
+
     }
 
     /**
@@ -274,7 +372,9 @@ public class MockHttpServletRequest
      */
     public String getLocalAddr()
     {
+
         return null;
+
     }
 
     /**
@@ -282,7 +382,9 @@ public class MockHttpServletRequest
      */
     public String getLocalName()
     {
+
         return null;
+
     }
 
     /**
@@ -290,7 +392,9 @@ public class MockHttpServletRequest
      */
     public int getLocalPort()
     {
+
         return 0;
+
     }
 
     /**
@@ -298,7 +402,9 @@ public class MockHttpServletRequest
      */
     public Locale getLocale()
     {
+
         return null;
+
     }
 
     /**
@@ -306,7 +412,9 @@ public class MockHttpServletRequest
      */
     public Enumeration getLocales()
     {
+
         return null;
+
     }
 
     /**
@@ -314,7 +422,9 @@ public class MockHttpServletRequest
      */
     public String getParameter(String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -322,7 +432,9 @@ public class MockHttpServletRequest
      */
     public Map getParameterMap()
     {
+
         return null;
+
     }
 
     /**
@@ -330,7 +442,9 @@ public class MockHttpServletRequest
      */
     public Enumeration getParameterNames()
     {
+
         return null;
+
     }
 
     /**
@@ -338,7 +452,9 @@ public class MockHttpServletRequest
      */
     public String[] getParameterValues(String arg0)
     {
+
         return new String[0];
+
     }
 
     /**
@@ -346,7 +462,9 @@ public class MockHttpServletRequest
      */
     public String getProtocol()
     {
+
         return null;
+
     }
 
     /**
@@ -354,7 +472,9 @@ public class MockHttpServletRequest
      */
     public BufferedReader getReader() throws IOException
     {
+
         return null;
+
     }
 
     /**
@@ -364,7 +484,9 @@ public class MockHttpServletRequest
     @Deprecated
     public String getRealPath(String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -372,7 +494,9 @@ public class MockHttpServletRequest
      */
     public String getRemoteAddr()
     {
+
         return null;
+
     }
 
     /**
@@ -380,7 +504,9 @@ public class MockHttpServletRequest
      */
     public String getRemoteHost()
     {
+
         return null;
+
     }
 
     /**
@@ -388,7 +514,9 @@ public class MockHttpServletRequest
      */
     public int getRemotePort()
     {
+
         return 0;
+
     }
 
     /**
@@ -396,7 +524,9 @@ public class MockHttpServletRequest
      */
     public RequestDispatcher getRequestDispatcher(String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -404,7 +534,9 @@ public class MockHttpServletRequest
      */
     public String getScheme()
     {
+
         return null;
+
     }
 
     /**
@@ -412,7 +544,9 @@ public class MockHttpServletRequest
      */
     public String getServerName()
     {
+
         return null;
+
     }
 
     /**
@@ -420,7 +554,9 @@ public class MockHttpServletRequest
      */
     public int getServerPort()
     {
+
         return 0;
+
     }
 
     /**
@@ -428,7 +564,9 @@ public class MockHttpServletRequest
      */
     public boolean isSecure()
     {
+
         return false;
+
     }
 
     /**
@@ -436,6 +574,7 @@ public class MockHttpServletRequest
      */
     public void removeAttribute(String arg0)
     {
+
     }
 
     /**
@@ -443,6 +582,7 @@ public class MockHttpServletRequest
      */
     public void setAttribute(String arg0, Object arg1)
     {
+
     }
 
     /**
@@ -450,5 +590,7 @@ public class MockHttpServletRequest
      */
     public void setCharacterEncoding(String arg0) throws UnsupportedEncodingException
     {
+
     }
+
 }

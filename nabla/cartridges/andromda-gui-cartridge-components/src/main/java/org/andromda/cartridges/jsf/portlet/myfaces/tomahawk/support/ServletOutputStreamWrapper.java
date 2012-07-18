@@ -1,9 +1,44 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support;
 
 import java.io.CharConversionException;
 import java.io.IOException;
 import java.io.OutputStream;
+
 import java.text.MessageFormat;
+
 import javax.servlet.ServletOutputStream;
 
 /**
@@ -12,14 +47,19 @@ import javax.servlet.ServletOutputStream;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  *
  */
-public class ServletOutputStreamWrapper extends ServletOutputStream {
+public class ServletOutputStreamWrapper extends ServletOutputStream
+{
+
     private OutputStream outputStream;
 
     /**
      * @param outputStream
      */
-    public ServletOutputStreamWrapper(OutputStream outputStream) {
+    public ServletOutputStreamWrapper(OutputStream outputStream)
+    {
+
         this.outputStream = outputStream;
+
     }
 
     /**
@@ -34,11 +74,19 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void print(String s) throws IOException {
+    public void print(String s) throws IOException
+    {
+
         if (s == null)
+        {
             s = "null";
+        }
+
         int len = s.length();
-        for (int i = 0; i < len; i++) {
+
+        for (int i = 0; i < len; i++)
+        {
+
             char c = s.charAt(i);
 
             //
@@ -47,15 +95,22 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
             // servlet framework. It must suffice until servlet output
             // streams properly encode their output.
             //
-            if ((c & 0xff00) != 0) { // high order byte must be zero
+            if ((c & 0xff00) != 0)
+            { // high order byte must be zero
+
                 String errMsg = "Not an ISO 8859-1 character: {0}";
                 Object[] errArgs = new Object[1];
+
                 errArgs[0] = new Character(c);
                 errMsg = MessageFormat.format(errMsg, errArgs);
                 throw new CharConversionException(errMsg);
+
             }
+
             write(c);
+
         }
+
     }
 
     /**
@@ -69,14 +124,25 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void print(boolean b) throws IOException {
+    public void print(boolean b) throws IOException
+    {
+
         String msg;
-        if (b) {
+
+        if (b)
+        {
+
             msg = "true";
-        } else {
+
+        } else
+        {
+
             msg = "false";
+
         }
+
         print(msg);
+
     }
 
     /**
@@ -90,8 +156,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void print(char c) throws IOException {
+    public void print(char c) throws IOException
+    {
+
         print(String.valueOf(c));
+
     }
 
     /**
@@ -106,8 +175,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void print(int i) throws IOException {
+    public void print(int i) throws IOException
+    {
+
         print(String.valueOf(i));
+
     }
 
     /**
@@ -122,8 +194,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void print(long l) throws IOException {
+    public void print(long l) throws IOException
+    {
+
         print(String.valueOf(l));
+
     }
 
     /**
@@ -137,8 +212,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      * @exception IOException
      *                if an input or output exception occurred
      */
-    public void print(float f) throws IOException {
+    public void print(float f) throws IOException
+    {
+
         print(String.valueOf(f));
+
     }
 
     /**
@@ -152,8 +230,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      * @exception IOException
      *                if an input or output exception occurred
      */
-    public void print(double d) throws IOException {
+    public void print(double d) throws IOException
+    {
+
         print(String.valueOf(d));
+
     }
 
     /**
@@ -161,8 +242,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *
      * @exception IOException if an input or output exception occurred
      */
-    public void println() throws IOException {
+    public void println() throws IOException
+    {
+
         print("\r\n");
+
     }
 
     /**
@@ -175,9 +259,12 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-    public void println(String s) throws IOException {
+    public void println(String s) throws IOException
+    {
+
         print(s);
         println();
+
     }
 
     /**
@@ -189,9 +276,12 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-    public void println(boolean b) throws IOException {
+    public void println(boolean b) throws IOException
+    {
+
         print(b);
         println();
+
     }
 
     /**
@@ -206,9 +296,12 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void println(char c) throws IOException {
+    public void println(char c) throws IOException
+    {
+
         print(c);
         println();
+
     }
 
     /**
@@ -224,9 +317,12 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void println(int i) throws IOException {
+    public void println(int i) throws IOException
+    {
+
         print(i);
         println();
+
     }
 
     /**
@@ -242,9 +338,12 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void println(long l) throws IOException {
+    public void println(long l) throws IOException
+    {
+
         print(l);
         println();
+
     }
 
     /**
@@ -260,9 +359,12 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void println(float f) throws IOException {
+    public void println(float f) throws IOException
+    {
+
         print(f);
         println();
+
     }
 
     /**
@@ -278,64 +380,92 @@ public class ServletOutputStreamWrapper extends ServletOutputStream {
      *                if an input or output exception occurred
      *
      */
-    public void println(double d) throws IOException {
+    public void println(double d) throws IOException
+    {
+
         print(d);
         println();
+
     }
 
     /**
      * @see java.io.OutputStream#write(int)
      */
-    public void write(int b) throws IOException {
+    public void write(int b) throws IOException
+    {
+
         outputStream.write(b);
+
     }
 
     /**
      * @see java.io.OutputStream#close()
      */
-    public void close() throws IOException {
+    public void close() throws IOException
+    {
+
         outputStream.close();
+
     }
 
     /**
      * @see Object#equals(Object)
      */
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
+
         return outputStream.equals(obj);
+
     }
 
     /**
      * @see java.io.OutputStream#flush()
      */
-    public void flush() throws IOException {
+    public void flush() throws IOException
+    {
+
         outputStream.flush();
+
     }
 
     /**
      * @see Object#hashCode()
      */
-    public int hashCode() {
+    public int hashCode()
+    {
+
         return outputStream.hashCode();
+
     }
 
     /**
      * @see Object#toString()
      */
-    public String toString() {
+    public String toString()
+    {
+
         return outputStream.toString();
+
     }
 
     /**
      * @see java.io.OutputStream#write(byte[], int, int)
      */
-    public void write(byte[] b, int off, int len) throws IOException {
+    public void write(byte[] b, int off, int len) throws IOException
+    {
+
         outputStream.write(b, off, len);
+
     }
 
     /**
      * @see java.io.OutputStream#write(byte[])
      */
-    public void write(byte[] b) throws IOException {
+    public void write(byte[] b) throws IOException
+    {
+
         outputStream.write(b);
+
     }
+
 }

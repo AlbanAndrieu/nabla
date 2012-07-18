@@ -43,14 +43,16 @@ import java.util.List;
  * @version $Revision$
  * @since $Date$
  */
-public class Fieldline extends Field {
+public class Fieldline extends Field
+{
 
     private List<Field> items;
 
     /**
      * Creates a new Fieldline object.
      */
-    public Fieldline() {
+    public Fieldline()
+    {
         super("fieldline");
         this.items = new ArrayList<Field>();
 
@@ -61,7 +63,8 @@ public class Fieldline extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public List<Field> getItems() {
+    public List<Field> getItems()
+    {
 
         return this.items;
 
@@ -72,7 +75,8 @@ public class Fieldline extends Field {
      *
      * @param items DOCUMENT ME!
      */
-    public void setItems(final List<Field> items) {
+    public void setItems(final List<Field> items)
+    {
 
         this.items = items;
 

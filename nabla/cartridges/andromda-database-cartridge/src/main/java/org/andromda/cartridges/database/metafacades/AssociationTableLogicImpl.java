@@ -1,12 +1,46 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.database.metafacades;
+
+import org.andromda.cartridges.database.DatabaseGlobals;
+
+import org.andromda.metafacades.uml.EntityAssociationEnd;
+import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
-import org.andromda.cartridges.database.DatabaseGlobals;
-import org.andromda.metafacades.uml.EntityAssociationEnd;
-import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.database.metafacades.AssociationTable.
@@ -15,11 +49,18 @@ import org.andromda.metafacades.uml.UMLMetafacadeProperties;
  */
 public class AssociationTableLogicImpl extends AssociationTableLogic implements org.andromda.cartridges.database.metafacades.AssociationTable
 {
-    // ---------------- constructor -------------------------------
 
+    // ---------------- constructor -------------------------------
+    /**
+     * Creates a new AssociationTableLogicImpl object.
+     *
+     * @param metaObject DOCUMENT ME!
+     * @param context DOCUMENT ME!
+     */
     public AssociationTableLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
+
     }
 
     /**
@@ -28,7 +69,9 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
     @Override
     protected java.util.Collection handleGetForeignKeyColumns()
     {
+
         return this.getAssociationEnds();
+
     }
 
     /**
@@ -37,20 +80,32 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
     @Override
     protected String handleGetPrimaryKeyColumns()
     {
+
         final StringBuffer columns = new StringBuffer();
+
         for (final Iterator endIterator = this.getAssociationEnds().iterator(); endIterator.hasNext();)
         {
+
             final Object object = endIterator.next();
+
             if (EntityAssociationEnd.class.isAssignableFrom(object.getClass()))
             {
+
                 columns.append(((EntityAssociationEnd) object).getColumnName());
+
                 if (endIterator.hasNext())
                 {
+
                     columns.append(", ");
+
                 }
+
             }
+
         }
+
         return columns.toString();
+
     }
 
     /**
@@ -59,7 +114,9 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
     @Override
     protected String handleGetPrimaryKeyConstraintName()
     {
+
         return DatabaseMetafacadeUtils.toSqlIdentifierName(this.getConfiguredProperty(DatabaseGlobals.PRIMARY_KEY_CONSTRAINT_PREFIX), this, this.getMaxSqlNameLength());
+
     }
 
     /**
@@ -68,7 +125,9 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
     @Override
     protected boolean handleIsForeignKeyColumnsPresent()
     {
+
         return !this.getForeignKeyColumns().isEmpty();
+
     }
 
     /**
@@ -76,7 +135,9 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
      */
     public Short getMaxSqlNameLength()
     {
+
         return Short.valueOf((String) this.getConfiguredProperty(UMLMetafacadeProperties.MAX_SQL_NAME_LENGTH));
+
     }
 
     /**
@@ -85,12 +146,14 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
      */
     public int getDummyLoadSize()
     {
+
         int dummyLoadSize = -1;
 
         // Get the initial load size for this association table, the load size of one of the association ends
         dummyLoadSize = ((ForeignKeyColumn) this.getForeignKeyColumns().toArray()[0]).getImportedTable().getDummyLoadSize();
 
         return dummyLoadSize;
+
     }
 
     /**
@@ -100,7 +163,9 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
      */
     public boolean isEnumeration()
     {
+
         return false;
+
     }
 
     /**
@@ -111,6 +176,7 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
      */
     public Collection getNonForeignKeyColumns()
     {
+
         Collection nonForeignKeyColumns;
 
         nonForeignKeyColumns = new ArrayList();
@@ -118,5 +184,7 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
         nonForeignKeyColumns.clear();
 
         return nonForeignKeyColumns;
+
     }
+
 }

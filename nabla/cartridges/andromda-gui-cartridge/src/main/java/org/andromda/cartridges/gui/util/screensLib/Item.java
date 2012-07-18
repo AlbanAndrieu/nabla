@@ -40,7 +40,8 @@ package org.andromda.cartridges.gui.util.screensLib;
  * @version $Revision$
  * @since $Date$
  */
-public class Item extends Field {
+public class Item extends Field
+{
 
     private String  legend;
     private String  label;
@@ -52,7 +53,8 @@ public class Item extends Field {
     /**
      * Creates a new Item object.
      */
-    public Item() {
+    public Item()
+    {
         super("item");
 
     }
@@ -66,7 +68,8 @@ public class Item extends Field {
      * @param mandatory DOCUMENT ME!
      * @param label DOCUMENT ME!
      */
-    public Item(final String legend, final boolean hidden, final boolean readonly, final boolean mandatory, final String label) {
+    public Item(final String legend, final boolean hidden, final boolean readonly, final boolean mandatory, final String label)
+    {
         super("item");
         this.legend = legend;
         this.hidden = hidden;
@@ -74,11 +77,13 @@ public class Item extends Field {
         this.mandatory = mandatory;
         this.label = label;
 
-        if (this.label.equals("")) {
+        if (this.label.equals(""))
+        {
 
             this.isLabel = false;
 
-        } else {
+        } else
+        {
 
             this.isLabel = true;
 
@@ -91,7 +96,8 @@ public class Item extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public String getLegend() {
+    public String getLegend()
+    {
 
         return this.legend;
 
@@ -102,7 +108,8 @@ public class Item extends Field {
      *
      * @param legend DOCUMENT ME!
      */
-    public void setLegend(final String legend) {
+    public void setLegend(final String legend)
+    {
 
         this.legend = legend;
 
@@ -113,7 +120,8 @@ public class Item extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isHidden() {
+    public boolean isHidden()
+    {
 
         return this.hidden;
 
@@ -124,7 +132,8 @@ public class Item extends Field {
      *
      * @param hidden DOCUMENT ME!
      */
-    public void setHidden(final boolean hidden) {
+    public void setHidden(final boolean hidden)
+    {
 
         this.hidden = hidden;
 
@@ -135,7 +144,8 @@ public class Item extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isReadonly() {
+    public boolean isReadonly()
+    {
 
         return this.readonly;
 
@@ -146,7 +156,8 @@ public class Item extends Field {
      *
      * @param readonly DOCUMENT ME!
      */
-    public void setReadonly(final boolean readonly) {
+    public void setReadonly(final boolean readonly)
+    {
 
         this.readonly = readonly;
 
@@ -157,7 +168,8 @@ public class Item extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isMandatory() {
+    public boolean isMandatory()
+    {
 
         return this.mandatory;
 
@@ -168,7 +180,8 @@ public class Item extends Field {
      *
      * @param mandatory DOCUMENT ME!
      */
-    public void setMandatory(final boolean mandatory) {
+    public void setMandatory(final boolean mandatory)
+    {
 
         this.mandatory = mandatory;
 
@@ -179,7 +192,8 @@ public class Item extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public String getLabel() {
+    public String getLabel()
+    {
 
         return this.label;
 
@@ -190,15 +204,18 @@ public class Item extends Field {
      *
      * @param label DOCUMENT ME!
      */
-    public void setLabel(final String label) {
+    public void setLabel(final String label)
+    {
 
         this.label = label;
 
-        if (this.label.equals("")) {
+        if (this.label.equals(""))
+        {
 
             this.isLabel = false;
 
-        } else {
+        } else
+        {
 
             this.isLabel = true;
 
@@ -211,7 +228,8 @@ public class Item extends Field {
      *
      * @return DOCUMENT ME!
      */
-    public boolean getIsLabel() {
+    public boolean getIsLabel()
+    {
 
         return this.isLabel;
 

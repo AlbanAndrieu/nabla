@@ -1,3 +1,36 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.component.html;
 
 import javax.faces.component.UICommand;
@@ -12,36 +45,37 @@ import javax.faces.event.PhaseId;
 /**
  *
  */
-public class HtmlPopupFrame
-    extends UICommand
+public class HtmlPopupFrame extends UICommand
 {
+
     /**
      * org.andromda.cartridges.jsf.HtmlPopupFrame
      */
     public static final String COMPONENT_TYPE = "org.andromda.cartridges.jsf.HtmlPopupFrame";
+
     /**
      * org.andromda.cartridges.jsf.Popup
      */
-    public static final String RENDERER_TYPE = "org.andromda.cartridges.jsf.Popup";
-    private MethodBinding actionOpen;
-    private MethodBinding actionClose;
-    private String immediate;
-    private String accesskey;
-    private String dir;
-    private String lang;
-    private String tabindex;
-    private String title;
-    private String mouseHorizPos;
-    private String mouseVertPos;
-    private String style;
-    private String styleClass;
-    private String styleFrame;
-    private String styleClassFrame;
-    private String absolute;
-    private String center;
-    private String height;
-    private String width;
-    private String scrolling;
+    public static final String RENDERER_TYPE  = "org.andromda.cartridges.jsf.Popup";
+    private MethodBinding      actionOpen;
+    private MethodBinding      actionClose;
+    private String             immediate;
+    private String             accesskey;
+    private String             dir;
+    private String             lang;
+    private String             tabindex;
+    private String             title;
+    private String             mouseHorizPos;
+    private String             mouseVertPos;
+    private String             style;
+    private String             styleClass;
+    private String             styleFrame;
+    private String             styleClassFrame;
+    private String             absolute;
+    private String             center;
+    private String             height;
+    private String             width;
+    private String             scrolling;
 
     /**
      *
@@ -50,6 +84,7 @@ public class HtmlPopupFrame
     {
         super();
         setRendererType(RENDERER_TYPE);
+
     }
 
     /**
@@ -57,16 +92,25 @@ public class HtmlPopupFrame
      */
     public String getAccesskey()
     {
+
         if (null != this.accesskey)
         {
+
             return this.accesskey;
+
         }
+
         final ValueBinding binding = getValueBinding("accesskey");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -76,7 +120,9 @@ public class HtmlPopupFrame
      */
     public String getFamily()
     {
+
         return RENDERER_TYPE;
+
     }
 
     /**
@@ -84,7 +130,9 @@ public class HtmlPopupFrame
      */
     public void setAccesskey(String accesskey)
     {
+
         this.accesskey = accesskey;
+
     }
 
     /**
@@ -92,16 +140,25 @@ public class HtmlPopupFrame
      */
     public String getDir()
     {
+
         if (null != this.dir)
         {
+
             return this.dir;
+
         }
+
         ValueBinding binding = getValueBinding("dir");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -109,7 +166,9 @@ public class HtmlPopupFrame
      */
     public void setDir(String dir)
     {
+
         this.dir = dir;
+
     }
 
     /**
@@ -117,16 +176,25 @@ public class HtmlPopupFrame
      */
     public String getLang()
     {
+
         if (null != this.lang)
         {
+
             return this.lang;
+
         }
+
         final ValueBinding binding = getValueBinding("lang");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -134,7 +202,9 @@ public class HtmlPopupFrame
      */
     public void setLang(String lang)
     {
+
         this.lang = lang;
+
     }
 
     /**
@@ -142,17 +212,25 @@ public class HtmlPopupFrame
      */
     public String getTabindex()
     {
+
         if (null != this.tabindex)
         {
+
             return this.tabindex;
+
         }
+
         ValueBinding binding = getValueBinding("tabindex");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
 
         return null;
+
     }
 
     /**
@@ -160,7 +238,9 @@ public class HtmlPopupFrame
      */
     public void setTabindex(String tabindex)
     {
+
         this.tabindex = tabindex;
+
     }
 
     /**
@@ -168,16 +248,25 @@ public class HtmlPopupFrame
      */
     public String getTitle()
     {
+
         if (null != this.title)
         {
+
             return this.title;
+
         }
+
         ValueBinding binding = getValueBinding("title");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -185,7 +274,9 @@ public class HtmlPopupFrame
      */
     public void setTitle(String title)
     {
+
         this.title = title;
+
     }
 
     /**
@@ -193,17 +284,25 @@ public class HtmlPopupFrame
      */
     public String getHeight()
     {
+
         if (null != this.height)
         {
+
             return this.height;
+
         }
+
         ValueBinding binding = getValueBinding("height");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
 
         return null;
+
     }
 
     /**
@@ -211,7 +310,9 @@ public class HtmlPopupFrame
      */
     public void setHeight(String height)
     {
+
         this.height = height;
+
     }
 
     /**
@@ -219,16 +320,25 @@ public class HtmlPopupFrame
      */
     public String getWidth()
     {
+
         if (null != this.width)
         {
+
             return this.width;
+
         }
+
         ValueBinding binding = getValueBinding("width");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -236,7 +346,9 @@ public class HtmlPopupFrame
      */
     public void setWidth(String width)
     {
+
         this.width = width;
+
     }
 
     /**
@@ -244,16 +356,25 @@ public class HtmlPopupFrame
      */
     public String getMouseHorizPos()
     {
+
         if (null != this.mouseHorizPos)
         {
+
             return this.mouseHorizPos;
+
         }
+
         ValueBinding binding = getValueBinding("mouseRelHorizPos");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -261,7 +382,9 @@ public class HtmlPopupFrame
      */
     public void setMouseHorizPos(String mouseHorizPos)
     {
+
         this.mouseHorizPos = mouseHorizPos;
+
     }
 
     /**
@@ -269,16 +392,25 @@ public class HtmlPopupFrame
      */
     public String getMouseVertPos()
     {
+
         if (null != this.mouseVertPos)
         {
+
             return this.mouseVertPos;
+
         }
+
         ValueBinding binding = getValueBinding("mouseRelVertPos");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -286,7 +418,9 @@ public class HtmlPopupFrame
      */
     public void setMouseVertPos(String mouseVertPos)
     {
+
         this.mouseVertPos = mouseVertPos;
+
     }
 
     /**
@@ -294,16 +428,25 @@ public class HtmlPopupFrame
      */
     public String getStyle()
     {
+
         if (null != this.style)
         {
+
             return this.style;
+
         }
+
         ValueBinding binding = getValueBinding("style");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -311,7 +454,9 @@ public class HtmlPopupFrame
      */
     public void setStyle(String style)
     {
+
         this.style = style;
+
     }
 
     /**
@@ -319,16 +464,25 @@ public class HtmlPopupFrame
      */
     public String getStyleClass()
     {
+
         if (null != this.styleClass)
         {
+
             return this.styleClass;
+
         }
+
         ValueBinding binding = getValueBinding("styleClass");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -336,7 +490,9 @@ public class HtmlPopupFrame
      */
     public void setStyleClass(String styleClass)
     {
+
         this.styleClass = styleClass;
+
     }
 
     /**
@@ -344,16 +500,25 @@ public class HtmlPopupFrame
      */
     public String getStyleFrame()
     {
+
         if (null != this.styleFrame)
         {
+
             return this.styleFrame;
+
         }
+
         ValueBinding binding = getValueBinding("styleFrame");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -361,7 +526,9 @@ public class HtmlPopupFrame
      */
     public void setStyleFrame(String styleFrame)
     {
+
         this.styleFrame = styleFrame;
+
     }
 
     /**
@@ -369,16 +536,25 @@ public class HtmlPopupFrame
      */
     public String getStyleClassFrame()
     {
+
         if (null != this.styleClassFrame)
         {
+
             return this.styleClassFrame;
+
         }
+
         ValueBinding binding = getValueBinding("styleClassFrame");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -386,7 +562,9 @@ public class HtmlPopupFrame
      */
     public void setStyleClassFrame(String styleClassFrame)
     {
+
         this.styleClassFrame = styleClassFrame;
+
     }
 
     /**
@@ -394,16 +572,25 @@ public class HtmlPopupFrame
      */
     public String getAbsolute()
     {
+
         if (null != this.absolute)
         {
+
             return this.absolute;
+
         }
+
         ValueBinding binding = getValueBinding("absolute");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -411,7 +598,9 @@ public class HtmlPopupFrame
      */
     public void setAbsolute(String absolute)
     {
+
         this.absolute = absolute;
+
     }
 
     /**
@@ -419,16 +608,23 @@ public class HtmlPopupFrame
      */
     public MethodBinding getActionClose()
     {
+
         if (this.actionClose == null)
         {
+
             final ValueBinding binding = this.getValueBinding("actionClose");
+
             if (binding != null)
             {
-                this.actionClose = FacesContext.getCurrentInstance().getApplication().createMethodBinding(
-                        binding.getExpressionString(), new Class[0]);
+
+                this.actionClose = FacesContext.getCurrentInstance().getApplication().createMethodBinding(binding.getExpressionString(), new Class[0]);
+
             }
+
         }
+
         return this.actionClose;
+
     }
 
     /**
@@ -436,7 +632,9 @@ public class HtmlPopupFrame
      */
     public void setActionClose(MethodBinding actionClose)
     {
+
         this.actionClose = actionClose;
+
     }
 
     /**
@@ -444,16 +642,23 @@ public class HtmlPopupFrame
      */
     public MethodBinding getActionOpen()
     {
+
         if (this.actionOpen == null)
         {
+
             final ValueBinding binding = this.getValueBinding("actionOpen");
+
             if (binding != null)
             {
-                this.actionOpen = FacesContext.getCurrentInstance().getApplication().createMethodBinding(
-                        binding.getExpressionString(), new Class[0]);
+
+                this.actionOpen = FacesContext.getCurrentInstance().getApplication().createMethodBinding(binding.getExpressionString(), new Class[0]);
+
             }
+
         }
+
         return this.actionOpen;
+
     }
 
     /**
@@ -461,7 +666,9 @@ public class HtmlPopupFrame
      */
     public void setActionOpen(MethodBinding actionOpen)
     {
+
         this.actionOpen = actionOpen;
+
     }
 
     /**
@@ -469,16 +676,25 @@ public class HtmlPopupFrame
      */
     public String getCenter()
     {
+
         if (null != this.center)
         {
+
             return this.center;
+
         }
+
         ValueBinding binding = getValueBinding("center");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -486,7 +702,9 @@ public class HtmlPopupFrame
      */
     public void setCenter(String center)
     {
+
         this.center = center;
+
     }
 
     /**
@@ -494,16 +712,25 @@ public class HtmlPopupFrame
      */
     public String getImmediate()
     {
+
         if (null != this.immediate)
         {
+
             return this.immediate;
+
         }
+
         ValueBinding binding = getValueBinding("immediate");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -511,7 +738,9 @@ public class HtmlPopupFrame
      */
     public void setImmediate(String immediate)
     {
+
         this.immediate = immediate;
+
     }
 
     /**
@@ -519,16 +748,25 @@ public class HtmlPopupFrame
      */
     public String getScrolling()
     {
+
         if (null != this.scrolling)
         {
+
             return this.scrolling;
+
         }
+
         ValueBinding binding = getValueBinding("scrolling");
+
         if (binding != null)
         {
-            return (String)binding.getValue(getFacesContext());
+
+            return (String) binding.getValue(getFacesContext());
+
         }
+
         return null;
+
     }
 
     /**
@@ -536,7 +774,9 @@ public class HtmlPopupFrame
      */
     public void setScrolling(String disableScroll)
     {
+
         this.scrolling = disableScroll;
+
     }
 
     /**
@@ -544,7 +784,9 @@ public class HtmlPopupFrame
      */
     public Object saveState(FacesContext _context)
     {
+
         Object[] _values = new Object[20];
+
         _values[0] = super.saveState(_context);
         _values[1] = accesskey;
         _values[2] = lang;
@@ -557,55 +799,48 @@ public class HtmlPopupFrame
         _values[9] = styleClass;
         _values[10] = styleFrame;
         _values[11] = styleClassFrame;
-        _values[12] = saveAttachedState(
-                _context,
-                actionOpen);
-        _values[13] = saveAttachedState(
-                _context,
-                actionClose);
+        _values[12] = saveAttachedState(_context, actionOpen);
+        _values[13] = saveAttachedState(_context, actionClose);
         _values[14] = immediate;
         _values[15] = absolute;
         _values[16] = center;
         _values[17] = height;
         _values[18] = width;
         _values[19] = scrolling;
+
         return _values;
+
     }
 
     /**
      * @see javax.faces.component.UICommand#restoreState(javax.faces.context.FacesContext, Object)
      */
-    public void restoreState(
-        FacesContext _context,
-        Object _state)
+    public void restoreState(FacesContext _context, Object _state)
     {
-        Object[] _values = (Object[])_state;
-        super.restoreState(
-            _context,
-            _values[0]);
-        accesskey = (String)_values[1];
-        lang = (String)_values[2];
-        dir = (String)_values[3];
-        tabindex = (String)_values[4];
-        title = (String)_values[5];
-        mouseHorizPos = (String)_values[6];
-        mouseVertPos = (String)_values[7];
-        style = (String)_values[8];
-        styleClass = (String)_values[9];
-        styleFrame = (String)_values[10];
-        styleClassFrame = (String)_values[11];
-        actionOpen = (MethodBinding)restoreAttachedState(
-                _context,
-                _values[12]);
-        actionClose = (MethodBinding)restoreAttachedState(
-                _context,
-                _values[13]);
-        immediate = (String)_values[14];
-        absolute = (String)_values[15];
-        center = (String)_values[16];
-        height = (String)_values[17];
-        width = (String)_values[18];
-        scrolling = (String)_values[19];
+
+        Object[] _values = (Object[]) _state;
+
+        super.restoreState(_context, _values[0]);
+        accesskey = (String) _values[1];
+        lang = (String) _values[2];
+        dir = (String) _values[3];
+        tabindex = (String) _values[4];
+        title = (String) _values[5];
+        mouseHorizPos = (String) _values[6];
+        mouseVertPos = (String) _values[7];
+        style = (String) _values[8];
+        styleClass = (String) _values[9];
+        styleFrame = (String) _values[10];
+        styleClassFrame = (String) _values[11];
+        actionOpen = (MethodBinding) restoreAttachedState(_context, _values[12]);
+        actionClose = (MethodBinding) restoreAttachedState(_context, _values[13]);
+        immediate = (String) _values[14];
+        absolute = (String) _values[15];
+        center = (String) _values[16];
+        height = (String) _values[17];
+        width = (String) _values[18];
+        scrolling = (String) _values[19];
+
     }
 
     /**
@@ -613,20 +848,32 @@ public class HtmlPopupFrame
      */
     public void queueEventNormal(FacesEvent event)
     {
+
         if (event instanceof ActionEvent)
         {
+
             event.setPhaseId(PhaseId.INVOKE_APPLICATION);
+
         }
+
         if (event == null)
         {
+
             throw new NullPointerException();
+
         }
+
         UIComponent parent = getParent();
+
         if (parent == null)
         {
+
             throw new IllegalStateException();
+
         }
+
         parent.queueEvent(event);
+
     }
 
     /**
@@ -634,19 +881,32 @@ public class HtmlPopupFrame
      */
     public void queueEventImmediate(FacesEvent event)
     {
+
         if (event instanceof ActionEvent)
         {
+
             event.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+
         }
+
         if (event == null)
         {
+
             throw new NullPointerException();
+
         }
+
         UIComponent parent = getParent();
+
         if (parent == null)
         {
+
             throw new IllegalStateException();
+
         }
+
         parent.queueEvent(event);
+
     }
+
 }

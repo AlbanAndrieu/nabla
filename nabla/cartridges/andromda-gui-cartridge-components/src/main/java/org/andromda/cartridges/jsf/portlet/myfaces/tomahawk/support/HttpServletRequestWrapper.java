@@ -1,12 +1,48 @@
+/*
+ * Copyright (c) 2002-2004, Nabla
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Nabla' nor 'Alban' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
+ */
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
 import java.security.Principal;
+
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.portlet.PortalContext;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletMode;
@@ -14,6 +50,7 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
 import javax.portlet.WindowState;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
@@ -26,9 +63,9 @@ import javax.servlet.http.HttpSession;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Chad Brandon
  */
-public class HttpServletRequestWrapper
-implements HttpServletRequest
+public class HttpServletRequestWrapper implements HttpServletRequest
 {
+
     private final PortletRequest portletRequest;
     private final PortletContext portletContext;
 
@@ -36,12 +73,12 @@ implements HttpServletRequest
      * @param portletRequest
      * @param portletContext
      */
-    public HttpServletRequestWrapper(
-        final PortletRequest portletRequest,
-        final PortletContext portletContext)
+    public HttpServletRequestWrapper(final PortletRequest portletRequest, final PortletContext portletContext)
     {
+
         this.portletRequest = portletRequest;
         this.portletContext = portletContext;
+
     }
 
     /**
@@ -49,7 +86,9 @@ implements HttpServletRequest
      */
     public String getAuthType()
     {
+
         return portletRequest.getAuthType();
+
     }
 
     /**
@@ -57,7 +96,9 @@ implements HttpServletRequest
      */
     public String getContextPath()
     {
+
         return portletRequest.getContextPath();
+
     }
 
     /**
@@ -65,7 +106,9 @@ implements HttpServletRequest
      */
     public Cookie[] getCookies()
     {
+
         return new Cookie[0];
+
     }
 
     /**
@@ -73,7 +116,9 @@ implements HttpServletRequest
      */
     public long getDateHeader(final String dateHeader)
     {
+
         return 0;
+
     }
 
     /**
@@ -81,7 +126,9 @@ implements HttpServletRequest
      */
     public String getHeader(final String header)
     {
+
         return null;
+
     }
 
     /**
@@ -89,7 +136,9 @@ implements HttpServletRequest
      */
     public Enumeration getHeaderNames()
     {
+
         return null;
+
     }
 
     /**
@@ -97,7 +146,9 @@ implements HttpServletRequest
      */
     public Enumeration getHeaders(final String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -105,7 +156,9 @@ implements HttpServletRequest
      */
     public int getIntHeader(final String arg0)
     {
+
         return 0;
+
     }
 
     /**
@@ -113,7 +166,9 @@ implements HttpServletRequest
      */
     public String getMethod()
     {
+
         return null;
+
     }
 
     /**
@@ -121,7 +176,9 @@ implements HttpServletRequest
      */
     public String getPathInfo()
     {
+
         return null;
+
     }
 
     /**
@@ -129,7 +186,9 @@ implements HttpServletRequest
      */
     public String getPathTranslated()
     {
+
         return null;
+
     }
 
     /**
@@ -137,7 +196,9 @@ implements HttpServletRequest
      */
     public String getQueryString()
     {
+
         return null;
+
     }
 
     /**
@@ -145,7 +206,9 @@ implements HttpServletRequest
      */
     public String getRemoteUser()
     {
+
         return portletRequest.getRemoteUser();
+
     }
 
     /**
@@ -153,7 +216,9 @@ implements HttpServletRequest
      */
     public String getRequestedSessionId()
     {
+
         return portletRequest.getRequestedSessionId();
+
     }
 
     /**
@@ -161,7 +226,9 @@ implements HttpServletRequest
      */
     public String getRequestURI()
     {
+
         return null;
+
     }
 
     /**
@@ -169,7 +236,9 @@ implements HttpServletRequest
      */
     public StringBuffer getRequestURL()
     {
+
         return null;
+
     }
 
     /**
@@ -177,7 +246,9 @@ implements HttpServletRequest
      */
     public String getServletPath()
     {
+
         return null;
+
     }
 
     /**
@@ -185,8 +256,9 @@ implements HttpServletRequest
      */
     public HttpSession getSession()
     {
-        return new HttpSessionWrapper(portletRequest.getPortletSession(),
-            portletContext);
+
+        return new HttpSessionWrapper(portletRequest.getPortletSession(), portletContext);
+
     }
 
     /**
@@ -194,8 +266,9 @@ implements HttpServletRequest
      */
     public HttpSession getSession(final boolean create)
     {
-        return new HttpSessionWrapper(portletRequest.getPortletSession(create),
-            portletContext);
+
+        return new HttpSessionWrapper(portletRequest.getPortletSession(create), portletContext);
+
     }
 
     /**
@@ -203,7 +276,9 @@ implements HttpServletRequest
      */
     public Principal getUserPrincipal()
     {
+
         return portletRequest.getUserPrincipal();
+
     }
 
     /**
@@ -211,7 +286,9 @@ implements HttpServletRequest
      */
     public boolean isRequestedSessionIdFromCookie()
     {
+
         return false;
+
     }
 
     /**
@@ -221,7 +298,9 @@ implements HttpServletRequest
     @Deprecated
     public boolean isRequestedSessionIdFromUrl()
     {
+
         return false;
+
     }
 
     /**
@@ -229,7 +308,9 @@ implements HttpServletRequest
      */
     public boolean isRequestedSessionIdFromURL()
     {
+
         return false;
+
     }
 
     /**
@@ -237,7 +318,9 @@ implements HttpServletRequest
      */
     public boolean isRequestedSessionIdValid()
     {
+
         return portletRequest.isRequestedSessionIdValid();
+
     }
 
     /**
@@ -245,7 +328,9 @@ implements HttpServletRequest
      */
     public boolean isUserInRole(final String arg0)
     {
+
         return portletRequest.isUserInRole(arg0);
+
     }
 
     /**
@@ -253,7 +338,9 @@ implements HttpServletRequest
      */
     public Object getAttribute(final String arg0)
     {
+
         return portletRequest.getAttribute(arg0);
+
     }
 
     /**
@@ -261,7 +348,9 @@ implements HttpServletRequest
      */
     public Enumeration getAttributeNames()
     {
+
         return portletRequest.getAttributeNames();
+
     }
 
     /**
@@ -269,7 +358,9 @@ implements HttpServletRequest
      */
     public String getCharacterEncoding()
     {
+
         return null;
+
     }
 
     /**
@@ -277,7 +368,9 @@ implements HttpServletRequest
      */
     public int getContentLength()
     {
+
         return 0;
+
     }
 
     /**
@@ -285,7 +378,9 @@ implements HttpServletRequest
      */
     public String getContentType()
     {
+
         return null;
+
     }
 
     /**
@@ -293,7 +388,9 @@ implements HttpServletRequest
      */
     public ServletInputStream getInputStream() throws IOException
     {
+
         return null;
+
     }
 
     /**
@@ -301,7 +398,9 @@ implements HttpServletRequest
      */
     public Locale getLocale()
     {
+
         return portletRequest.getLocale();
+
     }
 
     /**
@@ -309,7 +408,9 @@ implements HttpServletRequest
      */
     public Enumeration getLocales()
     {
+
         return portletRequest.getLocales();
+
     }
 
     /**
@@ -317,7 +418,9 @@ implements HttpServletRequest
      */
     public String getParameter(final String arg0)
     {
+
         return portletRequest.getParameter(arg0);
+
     }
 
     /**
@@ -325,7 +428,9 @@ implements HttpServletRequest
      */
     public Map getParameterMap()
     {
+
         return portletRequest.getParameterMap();
+
     }
 
     /**
@@ -333,7 +438,9 @@ implements HttpServletRequest
      */
     public Enumeration getParameterNames()
     {
+
         return portletRequest.getParameterNames();
+
     }
 
     /**
@@ -341,7 +448,9 @@ implements HttpServletRequest
      */
     public String[] getParameterValues(final String arg0)
     {
+
         return portletRequest.getParameterValues(arg0);
+
     }
 
     /**
@@ -349,7 +458,9 @@ implements HttpServletRequest
      */
     public String getProtocol()
     {
+
         return null;
+
     }
 
     /**
@@ -357,7 +468,9 @@ implements HttpServletRequest
      */
     public BufferedReader getReader() throws IOException
     {
+
         return null;
+
     }
 
     /**
@@ -367,7 +480,9 @@ implements HttpServletRequest
     @Deprecated
     public String getRealPath(final String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -375,7 +490,9 @@ implements HttpServletRequest
      */
     public String getRemoteAddr()
     {
+
         return null;
+
     }
 
     /**
@@ -383,7 +500,9 @@ implements HttpServletRequest
      */
     public String getRemoteHost()
     {
+
         return null;
+
     }
 
     /**
@@ -391,7 +510,9 @@ implements HttpServletRequest
      */
     public RequestDispatcher getRequestDispatcher(final String arg0)
     {
+
         return null;
+
     }
 
     /**
@@ -399,7 +520,9 @@ implements HttpServletRequest
      */
     public String getScheme()
     {
+
         return portletRequest.getScheme();
+
     }
 
     /**
@@ -407,7 +530,9 @@ implements HttpServletRequest
      */
     public String getServerName()
     {
+
         return portletRequest.getServerName();
+
     }
 
     /**
@@ -415,7 +540,9 @@ implements HttpServletRequest
      */
     public int getServerPort()
     {
+
         return portletRequest.getServerPort();
+
     }
 
     /**
@@ -423,7 +550,9 @@ implements HttpServletRequest
      */
     public boolean isSecure()
     {
+
         return portletRequest.isSecure();
+
     }
 
     /**
@@ -431,7 +560,9 @@ implements HttpServletRequest
      */
     public void removeAttribute(final String arg0)
     {
+
         portletRequest.removeAttribute(arg0);
+
     }
 
     /**
@@ -439,7 +570,9 @@ implements HttpServletRequest
      */
     public void setAttribute(final String arg0, final Object arg1)
     {
+
         portletRequest.setAttribute(arg0, arg1);
+
     }
 
     /**
@@ -447,6 +580,7 @@ implements HttpServletRequest
      */
     public void setCharacterEncoding(final String encoding) throws UnsupportedEncodingException
     {
+
     }
 
     /**
@@ -454,7 +588,9 @@ implements HttpServletRequest
      */
     public PortalContext getPortalContext()
     {
+
         return portletRequest.getPortalContext();
+
     }
 
     /**
@@ -462,7 +598,9 @@ implements HttpServletRequest
      */
     public PortletMode getPortletMode()
     {
+
         return portletRequest.getPortletMode();
+
     }
 
     /**
@@ -470,7 +608,9 @@ implements HttpServletRequest
      */
     public PortletSession getPortletSession()
     {
+
         return portletRequest.getPortletSession();
+
     }
 
     /**
@@ -479,7 +619,9 @@ implements HttpServletRequest
      */
     public PortletSession getPortletSession(final boolean create)
     {
+
         return portletRequest.getPortletSession(create);
+
     }
 
     /**
@@ -487,7 +629,9 @@ implements HttpServletRequest
      */
     public PortletPreferences getPreferences()
     {
+
         return portletRequest.getPreferences();
+
     }
 
     /**
@@ -496,7 +640,9 @@ implements HttpServletRequest
      */
     public Enumeration getProperties(final String arg0)
     {
+
         return portletRequest.getProperties(arg0);
+
     }
 
     /**
@@ -505,7 +651,9 @@ implements HttpServletRequest
      */
     public String getProperty(final String arg0)
     {
+
         return portletRequest.getProperty(arg0);
+
     }
 
     /**
@@ -513,7 +661,9 @@ implements HttpServletRequest
      */
     public Enumeration getPropertyNames()
     {
+
         return portletRequest.getPropertyNames();
+
     }
 
     /**
@@ -521,7 +671,9 @@ implements HttpServletRequest
      */
     public String getResponseContentType()
     {
+
         return portletRequest.getResponseContentType();
+
     }
 
     /**
@@ -529,7 +681,9 @@ implements HttpServletRequest
      */
     public Enumeration getResponseContentTypes()
     {
+
         return portletRequest.getResponseContentTypes();
+
     }
 
     /**
@@ -537,7 +691,9 @@ implements HttpServletRequest
      */
     public WindowState getWindowState()
     {
+
         return portletRequest.getWindowState();
+
     }
 
     /**
@@ -546,7 +702,9 @@ implements HttpServletRequest
      */
     public boolean isPortletModeAllowed(final PortletMode portletMode)
     {
+
         return portletRequest.isPortletModeAllowed(portletMode);
+
     }
 
     /**
@@ -555,7 +713,9 @@ implements HttpServletRequest
      */
     public boolean isWindowStateAllowed(final WindowState windowState)
     {
+
         return portletRequest.isWindowStateAllowed(windowState);
+
     }
 
     /**
@@ -563,7 +723,9 @@ implements HttpServletRequest
      */
     public int getRemotePort()
     {
+
         return 0;
+
     }
 
     /**
@@ -571,7 +733,9 @@ implements HttpServletRequest
      */
     public String getLocalName()
     {
+
         return null;
+
     }
 
     /**
@@ -579,7 +743,9 @@ implements HttpServletRequest
      */
     public String getLocalAddr()
     {
+
         return null;
+
     }
 
     /**
@@ -587,6 +753,9 @@ implements HttpServletRequest
      */
     public int getLocalPort()
     {
+
         return 0;
+
     }
+
 }
