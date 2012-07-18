@@ -11,19 +11,19 @@ import java.util.List;
  */
 public interface IActivityDAO
 {
-    public void save( Activity transientInstance );
+    public void save(Activity transientInstance);
 
-    public void delete( Activity persistentInstance );
+    public void delete(Activity persistentInstance);
 
-    public Activity update( Activity detachedInstance );
+    public Activity update(Activity detachedInstance);
 
-    public Activity findById( Long id );
+    public Activity findById(Long id);
 
-    public List<Activity> findByProperty( String propertyName, Object value );
+    public List<Activity> findByProperty(String propertyName, Object value);
 
-    public List<Activity> findByVersion( Object version );
+    public List<Activity> findByVersion(Object version);
 
-    public List<Activity> findByName( Object name );
+    public List<Activity> findByName(Object name);
 
-    public List<Activity> findAll(  );
+    public List<Activity> findAll();
 }

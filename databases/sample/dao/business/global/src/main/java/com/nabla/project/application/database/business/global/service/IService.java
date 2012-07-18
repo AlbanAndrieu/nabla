@@ -6,7 +6,8 @@ import com.nabla.project.application.database.business.global.model.Activity;
 import com.nabla.project.application.database.business.global.model.Address;
 import com.nabla.project.application.database.business.global.model.Person;
 
-public interface IService {
+public interface IService
+{
     // activites
     public Activity getActivity(Long activityId);
 

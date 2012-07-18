@@ -15,13 +15,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 
-public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringContextTests {
+public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringContextTests
+{
     public static Logger  logger         = Logger.getLogger(AbstractDaoDatabase.class);
 
     private static String TEST_DATA_FILE = "dbunit-test-data.xml";
 
     @Override
-    protected String[] getConfigLocations() {
+    protected String[] getConfigLocations()
+    {
         return new String[] { "/spring-test-config.xml" };
     }
 
@@ -31,10 +33,12 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
     // This method is used to perform any setup operations, such as
     // populating a database table, within the transaction.
     @Override
-    protected void onSetUpInTransaction() throws Exception {
+    protected void onSetUpInTransaction() throws Exception
+    {
         // super.onSetUpInTransaction();
 
-        if (AbstractDaoDatabase.factory == null) {
+        if (AbstractDaoDatabase.factory == null)
+        {
             AbstractDaoDatabase.factory = new ClassPathXmlApplicationContext(this.getConfigLocations());
         }
 
@@ -48,11 +52,14 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
         // For previous dataset in NGTest
         this.deleteFromTables(this.TABLES);
 
-        try {
+        try
+        {
             AbstractDaoDatabase.logger.info("*** Inserting test data ***");
             // DatabaseOperation.CLEAN_INSERT.execute(dbUnitCon, dataSet);
             DatabaseOperation.INSERT.execute(dbUnitCon, dataSet);
-        } finally {
+        }
+        finally
+        {
             DataSourceUtils.releaseConnection(con, ds);
             AbstractDaoDatabase.logger.info("*** Finished inserting test data ***");
         }
@@ -60,7 +67,8 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
     }
 
     @Override
-    protected void onTearDownAfterTransaction() throws Exception {
+    protected void onTearDownAfterTransaction() throws Exception
+    {
 
         // Delete the data
         final DataSource ds = this.jdbcTemplate.getDataSource();
@@ -69,10 +77,13 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
         final IDatabaseConnection dbUnitCon = new DatabaseConnection(con);
         final IDataSet dataSet = new FlatXmlDataSet(Thread.currentThread().getContextClassLoader().getResourceAsStream(AbstractDaoDatabase.TEST_DATA_FILE));
 
-        try {
+        try
+        {
             DatabaseOperation.DELETE.execute(dbUnitCon, dataSet);
 
-        } finally {
+        }
+        finally
+        {
             DataSourceUtils.releaseConnection(con, ds);
             AbstractDaoDatabase.logger.info("*** Finished removing test data ***");
         }

@@ -43,7 +43,8 @@ import java.util.Date;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public final class Chronometer {
+public final class Chronometer
+{
 
     private long                   msBegin;
     private long                   msEnd;
@@ -54,7 +55,8 @@ public final class Chronometer {
     /**
      * Creates a new Chronometer object.
      */
-    public Chronometer() {
+    public Chronometer()
+    {
         this(Chronometer.DATE_PATTERN);
 
     }
@@ -64,7 +66,8 @@ public final class Chronometer {
      *
      * @param aDatePattern DOCUMENT ME!
      */
-    public Chronometer(final String aDatePattern) {
+    public Chronometer(final String aDatePattern)
+    {
 
         this.simpleDateFormat = new SimpleDateFormat(aDatePattern);
 
@@ -73,7 +76,8 @@ public final class Chronometer {
     /**
      * DOCUMENT ME!
      */
-    public void start() {
+    public void start()
+    {
 
         this.msTime = 0;
         this.msBegin = System.currentTimeMillis();
@@ -83,7 +87,8 @@ public final class Chronometer {
     /**
      * DOCUMENT ME!
      */
-    public void stop() {
+    public void stop()
+    {
 
         this.msEnd = System.currentTimeMillis();
         this.msTime += (this.msEnd - this.msBegin);
@@ -93,7 +98,8 @@ public final class Chronometer {
     /**
      * DOCUMENT ME!
      */
-    public void resume() {
+    public void resume()
+    {
 
         this.msBegin = System.currentTimeMillis();
 
@@ -104,7 +110,8 @@ public final class Chronometer {
      *
      * @return DOCUMENT ME!
      */
-    public long time() {
+    public long time()
+    {
 
         return this.msTime;
 
@@ -117,7 +124,8 @@ public final class Chronometer {
      *
      * @return DOCUMENT ME!
      */
-    public static String convertMillisToString(final long timeMillis) {
+    public static String convertMillisToString(final long timeMillis)
+    {
 
         return new SimpleDateFormat(Chronometer.DATE_PATTERN).format(timeMillis);
 
@@ -129,7 +137,8 @@ public final class Chronometer {
      * @return DOCUMENT ME!
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         return this.simpleDateFormat.format(new Date(this.time() - 3600000));
 
@@ -140,9 +149,11 @@ public final class Chronometer {
      *
      * @param arg DOCUMENT ME!
      */
-    public static void main(final String arg[]) {
+    public static void main(final String arg[])
+    {
 
-        try {
+        try
+        {
 
             final Chronometer chronometer = new Chronometer();
 
@@ -154,7 +165,9 @@ public final class Chronometer {
             chronometer.stop();
             System.out.println(chronometer);
 
-        } catch (final Exception e) {
+        }
+        catch (final Exception e)
+        {
 
         }
 

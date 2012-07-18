@@ -13,37 +13,42 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "PERSON", schema = "" /*
-                                     * , uniqueConstraints =
-                                     * {
-                                     * @UniqueConstraint( columnNames =
-                                     * {
-                                     * "LASTNAME"}
-                                     * )
-                                     * , @UniqueConstraint( columnNames =
-                                     * {
-                                     * "ADDRESS_ID"}
-                                     * )
-                                     * }
-                                     */
+ * , uniqueConstraints =
+ * {
+ * @UniqueConstraint( columnNames =
+ * {
+ * "LASTNAME"}
+ * )
+ * , @UniqueConstraint( columnNames =
+ * {
+ * "ADDRESS_ID"}
+ * )
+ * }
+ */
 )
-public class Person extends AbstractPerson implements java.io.Serializable {
+public class Person extends AbstractPerson implements java.io.Serializable
+{
     // Constructors
 
     /** default constructor */
-    public Person() {
+    public Person()
+    {
     }
 
     /** minimal constructor */
-    public Person(final Long id, final Address address, final Date birthdate, final String firstname, final String lastname, final Boolean married, final Integer nbchildren) {
+    public Person(final Long id, final Address address, final Date birthdate, final String firstname, final String lastname, final Boolean married, final Integer nbchildren)
+    {
         super(id, address, birthdate, firstname, lastname, married, nbchildren);
     }
 
     /** full constructor */
-    public Person(final Long id, final Address address, final Date birthdate, final String firstname, final String lastname, final Boolean married, final Integer nbchildren, final Set<Activity> activities) {
+    public Person(final Long id, final Address address, final Date birthdate, final String firstname, final String lastname, final Boolean married, final Integer nbchildren, final Set<Activity> activities)
+    {
         super(id, address, birthdate, firstname, lastname, married, nbchildren, activities);
     }
 
-    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbchildren) {
+    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbchildren)
+    {
         super();
         this.setLastname(lastname);
         this.setFirstname(firstname);
@@ -53,22 +58,27 @@ public class Person extends AbstractPerson implements java.io.Serializable {
     }
 
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    public boolean equals(final Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
 
-        if ((o == null) || (this.getClass() != o.getClass())) {
+        if ((o == null) || (this.getClass() != o.getClass()))
+        {
             return false;
         }
 
         final Person person = (Person) o;
 
-        if ((this.getFirstname() != null) ? (!this.getFirstname().equals(person.getFirstname())) : (person.getFirstname() != null)) {
+        if ((this.getFirstname() != null) ? (!this.getFirstname().equals(person.getFirstname())) : (person.getFirstname() != null))
+        {
             return false;
         }
 
-        if ((this.getLastname() != null) ? (!this.getLastname().equals(person.getLastname())) : (person.getLastname() != null)) {
+        if ((this.getLastname() != null) ? (!this.getLastname().equals(person.getLastname())) : (person.getLastname() != null))
+        {
             return false;
         }
 
@@ -76,7 +86,8 @@ public class Person extends AbstractPerson implements java.io.Serializable {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int result;
         result = ((this.getFirstname() != null) ? this.getFirstname().hashCode() : 0);
         result = (31 * result) + ((this.getLastname() != null) ? this.getLastname().hashCode() : 0);
@@ -85,7 +96,8 @@ public class Person extends AbstractPerson implements java.io.Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.getMarried(),
                 this.getNbchildren(), this.getAddress().getId());
     }

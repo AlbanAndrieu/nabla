@@ -24,10 +24,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.compass.annotations.SearchableProperty;
 
-@SuppressWarnings({ "unused", "serial" })
+@SuppressWarnings( { "unused", "serial" })
 @Entity
 @Table(name = "Person")
-public class Person /* extends BaseObject */implements Serializable {
+public class Person /* extends BaseObject */implements Serializable
+{
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -72,10 +73,12 @@ public class Person /* extends BaseObject */implements Serializable {
     private Set<Activity> activities = new HashSet<Activity>();
 
     // constructeurs
-    public Person() {
+    public Person()
+    {
     }
 
-    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbChildren) {
+    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbChildren)
+    {
         this.setLastName(lastname);
         this.setFirstName(firstname);
         this.setBirthDate(birtdate);
@@ -84,75 +87,93 @@ public class Person /* extends BaseObject */implements Serializable {
     }
 
     // getters and setters
-    public Long getId() {
+    public Long getId()
+    {
         return this.id;
     }
 
-    private void setId(final Long id) {
+    private void setId(final Long id)
+    {
         this.id = id;
     }
 
-    public int getVersion() {
+    public int getVersion()
+    {
         return this.version;
     }
 
-    private void setVersion(final int version) {
+    private void setVersion(final int version)
+    {
         this.version = version;
     }
 
-    public String getLastName() {
+    public String getLastName()
+    {
         return this.lastName;
     }
 
-    public void setLastName(final String lastname) {
+    public void setLastName(final String lastname)
+    {
         this.lastName = lastname;
     }
 
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return this.firstName;
     }
 
-    public void setFirstName(final String firstname) {
+    public void setFirstName(final String firstname)
+    {
         this.firstName = firstname;
     }
 
-    public Date getBirthDate() {
+    public Date getBirthDate()
+    {
         return this.birthDate;
     }
 
-    public void setBirthDate(final Date birthdate) {
+    public void setBirthDate(final Date birthdate)
+    {
         this.birthDate = birthdate;
     }
 
-    public boolean isMarried() {
+    public boolean isMarried()
+    {
         return this.married;
     }
 
-    public void setMarried(final boolean married) {
+    public void setMarried(final boolean married)
+    {
         this.married = married;
     }
 
-    public int getNbChildren() {
+    public int getNbChildren()
+    {
         return this.nbChildren;
     }
 
-    public void setNbChildren(final int nbChildren) {
+    public void setNbChildren(final int nbChildren)
+    {
         this.nbChildren = nbChildren;
     }
 
-    public Address getAddress() {
+    public Address getAddress()
+    {
         return this.address;
     }
 
-    public void setAddress(final Address address) {
+    public void setAddress(final Address address)
+    {
         this.address = address;
     }
 
-    public Set<Activity> getActivities() {
+    public Set<Activity> getActivities()
+    {
         return this.activities;
     }
 
-    public void setActivities(final Set<Activity> activities) {
+    public void setActivities(final Set<Activity> activities)
+    {
         this.activities = activities;
     }
 
@@ -160,11 +181,14 @@ public class Person /* extends BaseObject */implements Serializable {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    public boolean equals(final Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
-        if (!(o instanceof Person)) {
+        if (!(o instanceof Person))
+        {
             return false;
         }
 
@@ -177,7 +201,8 @@ public class Person /* extends BaseObject */implements Serializable {
      * {@inheritDoc}
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int result;
         result = (this.lastName != null ? this.lastName.hashCode() : 0);
         result = (29 * result) + (this.firstName != null ? this.firstName.hashCode() : 0);
@@ -189,9 +214,10 @@ public class Person /* extends BaseObject */implements Serializable {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id).append("version", this.version).append("lastName", this.lastName).append("firstName", this.firstName)
-                .append("birthDate", this.birthDate).append("married", this.married).append("nbChildren", this.nbChildren).append("address", this.address).toString();
+    public String toString()
+    {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id).append("version", this.version).append("lastName", this.lastName).append("firstName", this.firstName).append("birthDate",
+                this.birthDate).append("married", this.married).append("nbChildren", this.nbChildren).append("address", this.address).toString();
     }
     // public String toString() {
     // return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),

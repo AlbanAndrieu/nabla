@@ -16,12 +16,14 @@ import com.nabla.project.application.database.business.global.dao.IPersonDao;
 import com.nabla.project.application.database.business.global.model.Address;
 import com.nabla.project.application.database.business.global.model.Person;
 
-public class PersonDaoJpaTest extends BaseDaoTestCase {
+public class PersonDaoJpaTest extends BaseDaoTestCase
+{
     @Autowired
     private IPersonDao personDao = null;
 
     // private GenericDao<Person, Long> personDao = null;
-    public void setPersonDao(final IPersonDao personDao) {
+    public void setPersonDao(final IPersonDao personDao)
+    {
         this.personDao = personDao;
     }
 
@@ -31,7 +33,8 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
      * }
      */
     @Test
-    public void testFindPersonByLastName() throws Exception {
+    public void testFindPersonByLastName() throws Exception
+    {
         System.out.println("PersonDao : " + this.personDao);
 
         Person person = new Person();
@@ -49,7 +52,8 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
     }
 
     @Test
-    public void testAddAndRemovePerson() throws Exception {
+    public void testAddAndRemovePerson() throws Exception
+    {
         Person person = new Person();
 
         // Use the file PersonDaoHibernateTest.properties
@@ -74,13 +78,18 @@ public class PersonDaoJpaTest extends BaseDaoTestCase {
 
         this.personDao.remove(person.getId());
 
-        try {
+        try
+        {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        } catch (final EntityNotFoundException enf) {
+        }
+        catch (final EntityNotFoundException enf)
+        {
             this.log.debug("Expected exception: " + enf.getMessage());
             Assert.assertNotNull(enf);
-        } catch (final ObjectRetrievalFailureException orf) {
+        }
+        catch (final ObjectRetrievalFailureException orf)
+        {
             this.log.debug("Expected exception: " + orf.getMessage());
         }
     }

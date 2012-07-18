@@ -18,7 +18,8 @@ import com.nabla.project.application.model.person.entity.Person;
  */
 
 // public class PersonDAOTest extends JpaDaoSupport implements IPersonDAO
-public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO {
+public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
+{
     public static Logger       logger     = Logger.getLogger(PersonDAO.class);
 
     // property constants
@@ -28,7 +29,8 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
     public static final String MARRIED    = "married";
     public static final String NBCHILDREN = "nbchildren";
 
-    public PersonDAO() {
+    public PersonDAO()
+    {
         super(Person.class);
     }
 
@@ -89,10 +91,12 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
      */
     @Override
     @SuppressWarnings("unchecked")
-    public List<Person> findByProperty(final String propertyName, final Object value) {
+    public List<Person> findByProperty(final String propertyName, final Object value)
+    {
         PersonDAO.logger.info("finding Person instance with property: " + propertyName + ", value: " + value);
 
-        try {
+        try
+        {
             final Query q = super.getEntityManager().createQuery("select p from Person p where p." + propertyName + "= ?");
             q.setParameter(1, value);
 
@@ -100,7 +104,9 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
 
             // String queryString = "select model from Person model where model." + propertyName + "= ?1";
             // return getJpaTemplate( ).find( queryString, value );
-        } catch (final RuntimeException re) {
+        }
+        catch (final RuntimeException re)
+        {
             PersonDAO.logger.error("find by property name failed", re);
             ;
             throw re;
@@ -108,12 +114,14 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
     }
 
     @Override
-    public List<Person> findByVersion(final Object version) {
+    public List<Person> findByVersion(final Object version)
+    {
         return this.findByProperty(PersonDAO.VERSION, version);
     }
 
     @Override
-    public List<Person> findByFirstname(final Object firstname) {
+    public List<Person> findByFirstname(final Object firstname)
+    {
         return this.findByProperty(PersonDAO.FIRSTNAME, firstname);
     }
 
@@ -126,40 +134,48 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
 
     // @SuppressWarnings("unchecked")
     @Override
-    public List<Person> findByLastname(final Object lastName) {
+    public List<Person> findByLastname(final Object lastName)
+    {
         return this.findByProperty(PersonDAO.LASTNAME, lastName);
     }
 
     @Override
-    public List<Person> findByMarried(final Object married) {
+    public List<Person> findByMarried(final Object married)
+    {
         return this.findByProperty(PersonDAO.MARRIED, married);
     }
 
     @Override
-    public List<Person> findByNbchildren(final Object nbchildren) {
+    public List<Person> findByNbchildren(final Object nbchildren)
+    {
         return this.findByProperty(PersonDAO.NBCHILDREN, nbchildren);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Person> findAll() {
+    public List<Person> findAll()
+    {
         PersonDAO.logger.info("finding all Person instances");
 
-        try {
+        try
+        {
             final Query q = super.getEntityManager().createQuery("select p from Person p");
 
             return q.getResultList();
 
             // String queryString = "select model from Person model";
             // return getJpaTemplate( ).find( queryString );
-        } catch (final RuntimeException re) {
+        }
+        catch (final RuntimeException re)
+        {
             PersonDAO.logger.error("find all failed", re);
             ;
             throw re;
         }
     }
 
-    public static IPersonDAO getFromApplicationContext(final ApplicationContext ctx) {
+    public static IPersonDAO getFromApplicationContext(final ApplicationContext ctx)
+    {
         return (IPersonDAO) ctx.getBean("PersonDAOTest");
     }
 }

@@ -52,7 +52,8 @@ import org.compass.annotations.SearchableId;
   */
 @Entity
 @Table(name = "person", schema = "APP", catalog = "")
-public class Person extends BaseObject {
+public class Person extends BaseObject
+{
 
     private Long   id;
     private String firstName;
@@ -66,7 +67,8 @@ public class Person extends BaseObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @SearchableId
-    public Long getId() {
+    public Long getId()
+    {
 
         return this.id;
 
@@ -77,7 +79,8 @@ public class Person extends BaseObject {
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(final Long id) {
+    public void setId(final Long id)
+    {
 
         this.id = id;
 
@@ -89,7 +92,8 @@ public class Person extends BaseObject {
      * @return DOCUMENT ME!
      */
     @Column(name = "first_name", length = 50)
-    public String getFirstName() {
+    public String getFirstName()
+    {
 
         return this.firstName;
 
@@ -100,7 +104,8 @@ public class Person extends BaseObject {
      *
      * @param firstName DOCUMENT ME!
      */
-    public void setFirstName(final String firstName) {
+    public void setFirstName(final String firstName)
+    {
 
         this.firstName = firstName;
 
@@ -112,7 +117,8 @@ public class Person extends BaseObject {
      * @return DOCUMENT ME!
      */
     @Column(name = "last_name", length = 50)
-    public String getLastName() {
+    public String getLastName()
+    {
 
         return this.lastName;
 
@@ -123,7 +129,8 @@ public class Person extends BaseObject {
      *
      * @param lastName DOCUMENT ME!
      */
-    public void setLastName(final String lastName) {
+    public void setLastName(final String lastName)
+    {
 
         this.lastName = lastName;
 
@@ -137,15 +144,18 @@ public class Person extends BaseObject {
      * @return DOCUMENT ME!
      */
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(final Object o)
+    {
 
-        if (this == o) {
+        if (this == o)
+        {
 
             return true;
 
         }
 
-        if ((o == null) || (this.getClass() != o.getClass())) {
+        if ((o == null) || (this.getClass() != o.getClass()))
+        {
 
             return false;
 
@@ -153,13 +163,15 @@ public class Person extends BaseObject {
 
         final Person person = (Person) o;
 
-        if ((this.firstName != null) ? (!this.firstName.equals(person.firstName)) : (person.firstName != null)) {
+        if ((this.firstName != null) ? (!this.firstName.equals(person.firstName)) : (person.firstName != null))
+        {
 
             return false;
 
         }
 
-        if ((this.lastName != null) ? (!this.lastName.equals(person.lastName)) : (person.lastName != null)) {
+        if ((this.lastName != null) ? (!this.lastName.equals(person.lastName)) : (person.lastName != null))
+        {
 
             return false;
 
@@ -175,7 +187,8 @@ public class Person extends BaseObject {
      * @return DOCUMENT ME!
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
 
         int result;
 
@@ -192,7 +205,8 @@ public class Person extends BaseObject {
      * @return DOCUMENT ME!
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         return "Person{" + "id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + '}';
 

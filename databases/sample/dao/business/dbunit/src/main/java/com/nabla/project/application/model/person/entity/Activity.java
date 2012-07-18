@@ -9,23 +9,26 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "ACTIVITY", schema = "" /*
-                                       * , uniqueConstraints =
-                                       * {
-                                       * @UniqueConstraint( columnNames =
-                                       * {
-                                       * "NAME"}
-                                       * )
-                                       * }
-                                       */)
-public class Activity extends AbstractActivity implements java.io.Serializable {
+ * , uniqueConstraints =
+ * {
+ * @UniqueConstraint( columnNames =
+ * {
+ * "NAME"}
+ * )
+ * }
+ */)
+public class Activity extends AbstractActivity implements java.io.Serializable
+{
     // Constructors
 
     /** default constructor */
-    public Activity() {
+    public Activity()
+    {
     }
 
     /** minimal constructor */
-    public Activity(final Long id, final String name) {
+    public Activity(final Long id, final String name)
+    {
         super(id, name);
     }
 
@@ -35,7 +38,8 @@ public class Activity extends AbstractActivity implements java.io.Serializable {
      * super(id, name, persons);
      * }
      */
-    public Activity(final Long id, final int version, final String name) {
+    public Activity(final Long id, final int version, final String name)
+    {
         super();
         this.setId(id);
         this.setVersion(version);
@@ -43,7 +47,8 @@ public class Activity extends AbstractActivity implements java.io.Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return String.format("Ac[%d,%d,%s]", this.getId(), this.getVersion(), this.getName());
     }
 }

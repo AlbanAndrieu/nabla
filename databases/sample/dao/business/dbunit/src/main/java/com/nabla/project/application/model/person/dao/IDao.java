@@ -6,7 +6,8 @@ import com.nabla.project.application.model.person.entity.Activity;
 import com.nabla.project.application.model.person.entity.Address;
 import com.nabla.project.application.model.person.entity.Person;
 
-public interface IDao {
+public interface IDao
+{
 
     public Activity getActivity(Long activityId);
 

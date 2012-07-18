@@ -11,17 +11,20 @@ import org.springframework.dao.DataAccessException;
 import com.nabla.project.application.database.business.global.dao.IPersonDao;
 import com.nabla.project.application.database.business.global.model.Person;
 
-public class PersonDaoHibernateTest extends BaseDaoTestCase {
+public class PersonDaoHibernateTest extends BaseDaoTestCase
+{
     @Autowired
     private IPersonDao personDao = null;
 
     // private GenericDao<Person, Long> personDao = null;
-    public void setPersonDao(final IPersonDao personDao) {
+    public void setPersonDao(final IPersonDao personDao)
+    {
         this.personDao = personDao;
     }
 
     @Test
-    public void testFindPersonByLastName() throws Exception {
+    public void testFindPersonByLastName() throws Exception
+    {
         System.out.println("PersonDao : " + this.personDao);
 
         Person person = new Person();
@@ -36,7 +39,8 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase {
     }
 
     @Test
-    public void testAddAndRemovePerson() throws Exception {
+    public void testAddAndRemovePerson() throws Exception
+    {
         Person person = new Person();
 
         // Use the file PersonDaoHibernateTest.properties
@@ -58,10 +62,13 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase {
 
         this.personDao.remove(person.getId());
 
-        try {
+        try
+        {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        } catch (final DataAccessException dae) {
+        }
+        catch (final DataAccessException dae)
+        {
             this.log.debug("Expected exception: " + dae.getMessage());
             Assert.assertNotNull(dae);
         }

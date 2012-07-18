@@ -39,7 +39,8 @@ import org.springframework.security.userdetails.UserDetails;
 @Entity
 @Table(name = "app_user")
 @Searchable
-public class User extends BaseObject implements Serializable, UserDetails {
+public class User extends BaseObject implements Serializable, UserDetails
+{
     private static final long serialVersionUID = 3832626162173359411L;
 
     private Long              id;
@@ -63,7 +64,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     /**
      * Default constructor - creates a new instance with no values set.
      */
-    public User() {
+    public User()
+    {
     }
 
     /**
@@ -71,66 +73,77 @@ public class User extends BaseObject implements Serializable, UserDetails {
      *
      * @param username login name for user.
      */
-    public User(final String username) {
+    public User(final String username)
+    {
         this.username = username;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @SearchableId
-    public Long getId() {
+    public Long getId()
+    {
         return this.id;
     }
 
     @Override
     @Column(nullable = false, length = 50, unique = true)
     @SearchableProperty
-    public String getUsername() {
+    public String getUsername()
+    {
         return this.username;
     }
 
     @Override
     @Column(nullable = false)
-    public String getPassword() {
+    public String getPassword()
+    {
         return this.password;
     }
 
     @Transient
-    public String getConfirmPassword() {
+    public String getConfirmPassword()
+    {
         return this.confirmPassword;
     }
 
     @Column(name = "password_hint")
-    public String getPasswordHint() {
+    public String getPasswordHint()
+    {
         return this.passwordHint;
     }
 
     @Column(name = "first_name", nullable = false, length = 50)
     @SearchableProperty
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return this.firstName;
     }
 
     @Column(name = "last_name", nullable = false, length = 50)
     @SearchableProperty
-    public String getLastName() {
+    public String getLastName()
+    {
         return this.lastName;
     }
 
     @Column(nullable = false, unique = true)
     @SearchableProperty
-    public String getEmail() {
+    public String getEmail()
+    {
         return this.email;
     }
 
     @Column(name = "phone_number")
     @SearchableProperty
-    public String getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return this.phoneNumber;
     }
 
     @SearchableProperty
-    public String getWebsite() {
+    public String getWebsite()
+    {
         return this.website;
     }
 
@@ -140,7 +153,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
      * @return firstName + ' ' + lastName
      */
     @Transient
-    public String getFullName() {
+    public String getFullName()
+    {
         return this.firstName + ' ' + this.lastName;
     }
 
@@ -148,13 +162,15 @@ public class User extends BaseObject implements Serializable, UserDetails {
     // @SearchableComponent
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", unique = true, nullable = false)
-    public Address getAddress() {
+    public Address getAddress()
+    {
         return this.address;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
+    public Set<Role> getRoles()
+    {
         return this.roles;
     }
 
@@ -164,11 +180,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
      * @return a list of LabelValue objects with role information
      */
     @Transient
-    public List<LabelValue> getRoleList() {
+    public List<LabelValue> getRoleList()
+    {
         final List<LabelValue> userRoles = new ArrayList<LabelValue>();
 
-        if (this.roles != null) {
-            for (final Role role : this.roles) {
+        if (this.roles != null)
+        {
+            for (final Role role : this.roles)
+            {
                 // convert the user's roles to LabelValue Objects
                 userRoles.add(new LabelValue(role.getName(), role.getName()));
             }
@@ -182,7 +201,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
      *
      * @param role the fully instantiated role
      */
-    public void addRole(final Role role) {
+    public void addRole(final Role role)
+    {
         this.getRoles().add(role);
     }
 
@@ -192,23 +212,27 @@ public class User extends BaseObject implements Serializable, UserDetails {
      */
     @Override
     @Transient
-    public GrantedAuthority[] getAuthorities() {
+    public GrantedAuthority[] getAuthorities()
+    {
         return this.roles.toArray(new GrantedAuthority[0]);
     }
 
     @Version
-    public Integer getVersion() {
+    public Integer getVersion()
+    {
         return this.version;
     }
 
     @Override
     @Column(name = "account_enabled")
-    public boolean isEnabled() {
+    public boolean isEnabled()
+    {
         return this.enabled;
     }
 
     @Column(name = "account_expired", nullable = false)
-    public boolean isAccountExpired() {
+    public boolean isAccountExpired()
+    {
         return this.accountExpired;
     }
 
@@ -217,12 +241,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
      */
     @Override
     @Transient
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired()
+    {
         return !this.isAccountExpired();
     }
 
     @Column(name = "account_locked", nullable = false)
-    public boolean isAccountLocked() {
+    public boolean isAccountLocked()
+    {
         return this.accountLocked;
     }
 
@@ -231,12 +257,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
      */
     @Override
     @Transient
-    public boolean isAccountNonLocked() {
+    public boolean isAccountNonLocked()
+    {
         return !this.isAccountLocked();
     }
 
     @Column(name = "credentials_expired", nullable = false)
-    public boolean isCredentialsExpired() {
+    public boolean isCredentialsExpired()
+    {
         return this.credentialsExpired;
     }
 
@@ -245,75 +273,93 @@ public class User extends BaseObject implements Serializable, UserDetails {
      */
     @Override
     @Transient
-    public boolean isCredentialsNonExpired() {
+    public boolean isCredentialsNonExpired()
+    {
         return !this.credentialsExpired;
     }
 
-    public void setId(final Long id) {
+    public void setId(final Long id)
+    {
         this.id = id;
     }
 
-    public void setUsername(final String username) {
+    public void setUsername(final String username)
+    {
         this.username = username;
     }
 
-    public void setPassword(final String password) {
+    public void setPassword(final String password)
+    {
         this.password = password;
     }
 
-    public void setConfirmPassword(final String confirmPassword) {
+    public void setConfirmPassword(final String confirmPassword)
+    {
         this.confirmPassword = confirmPassword;
     }
 
-    public void setPasswordHint(final String passwordHint) {
+    public void setPasswordHint(final String passwordHint)
+    {
         this.passwordHint = passwordHint;
     }
 
-    public void setFirstName(final String firstName) {
+    public void setFirstName(final String firstName)
+    {
         this.firstName = firstName;
     }
 
-    public void setLastName(final String lastName) {
+    public void setLastName(final String lastName)
+    {
         this.lastName = lastName;
     }
 
-    public void setEmail(final String email) {
+    public void setEmail(final String email)
+    {
         this.email = email;
     }
 
-    public void setPhoneNumber(final String phoneNumber) {
+    public void setPhoneNumber(final String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setWebsite(final String website) {
+    public void setWebsite(final String website)
+    {
         this.website = website;
     }
 
-    public void setAddress(final Address address) {
+    public void setAddress(final Address address)
+    {
         this.address = address;
     }
 
-    public void setRoles(final Set<Role> roles) {
+    public void setRoles(final Set<Role> roles)
+    {
         this.roles = roles;
     }
 
-    public void setVersion(final Integer version) {
+    public void setVersion(final Integer version)
+    {
         this.version = version;
     }
 
-    public void setEnabled(final boolean enabled) {
+    public void setEnabled(final boolean enabled)
+    {
         this.enabled = enabled;
     }
 
-    public void setAccountExpired(final boolean accountExpired) {
+    public void setAccountExpired(final boolean accountExpired)
+    {
         this.accountExpired = accountExpired;
     }
 
-    public void setAccountLocked(final boolean accountLocked) {
+    public void setAccountLocked(final boolean accountLocked)
+    {
         this.accountLocked = accountLocked;
     }
 
-    public void setCredentialsExpired(final boolean credentialsExpired) {
+    public void setCredentialsExpired(final boolean credentialsExpired)
+    {
         this.credentialsExpired = credentialsExpired;
     }
 
@@ -321,11 +367,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    public boolean equals(final Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
-        if (!(o instanceof User)) {
+        if (!(o instanceof User))
+        {
             return false;
         }
 
@@ -339,7 +388,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
      * {@inheritDoc}
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return (this.username != null ? this.username.hashCode() : 0);
     }
 
@@ -347,21 +397,26 @@ public class User extends BaseObject implements Serializable, UserDetails {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        final ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("username", this.username).append("enabled", this.enabled).append("accountExpired", this.accountExpired)
-                .append("credentialsExpired", this.credentialsExpired).append("accountLocked", this.accountLocked);
+    public String toString()
+    {
+        final ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("username", this.username).append("enabled", this.enabled).append("accountExpired", this.accountExpired).append(
+                "credentialsExpired", this.credentialsExpired).append("accountLocked", this.accountLocked);
 
         final GrantedAuthority[] auths = this.getAuthorities();
-        if (auths != null) {
+        if (auths != null)
+        {
             sb.append("Granted Authorities: ");
 
-            for (int i = 0; i < auths.length; i++) {
-                if (i > 0) {
+            for (int i = 0; i < auths.length; i++)
+            {
+                if (i > 0)
+                {
                     sb.append(", ");
                 }
                 sb.append(auths[i].toString());
             }
-        } else {
+        } else
+        {
             sb.append("No Granted Authorities");
         }
         return sb.toString();

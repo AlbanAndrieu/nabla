@@ -11,8 +11,7 @@ import java.util.List;
  *
  * @author MyEclipse Persistence Tools
  */
-public interface IPersonDAO
-    extends GenericDao<Person, Long>
+public interface IPersonDAO extends GenericDao<Person, Long>
 {
     //public void save( Person transientInstance );
 
@@ -21,19 +20,19 @@ public interface IPersonDAO
     //public Person update( Person detachedInstance );
 
     //public Person findById( Long id );
-    public List<Person> findByProperty( String propertyName, Object value );
+    public List<Person> findByProperty(String propertyName, Object value);
 
-    public List<Person> findByVersion( Object version );
+    public List<Person> findByVersion(Object version);
 
-    public List<Person> findByFirstname( Object firstname );
+    public List<Person> findByFirstname(Object firstname);
 
-    public List<Person> findByLastname( Object lastname );
+    public List<Person> findByLastname(Object lastname);
 
-    public List<Person> findByMarried( Object married );
+    public List<Person> findByMarried(Object married);
 
-    public List<Person> findByNbchildren( Object nbchildren );
+    public List<Person> findByNbchildren(Object nbchildren);
 
-    public List<Person> findAll(  );
+    public List<Person> findAll();
 
     //public List<Person> findByLastName(String lastName);
 }

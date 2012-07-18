@@ -15,7 +15,8 @@ import com.nabla.project.application.model.person.dao.IPersonDAO;
 import com.nabla.project.application.model.person.entity.Person;
 import com.nabla.project.application.time.Chronometer;
 
-public class DaoTest extends AbstractDaoDatabase {
+public class DaoTest extends AbstractDaoDatabase
+{
     public static Logger logger  = Logger.getLogger(DaoTest.class);
     private IPersonDAO   testDao = null;
 
@@ -24,11 +25,13 @@ public class DaoTest extends AbstractDaoDatabase {
     Chronometer          chronometer;
 
     // Called by spring to inject the testDao
-    public void setTestDao(final IPersonDAO testDao) {
+    public void setTestDao(final IPersonDAO testDao)
+    {
         this.testDao = testDao;
     }
 
-    public static Test suite() {
+    public static Test suite()
+    {
         return new TestSuite(DaoTest.class);
     }
 
@@ -37,23 +40,28 @@ public class DaoTest extends AbstractDaoDatabase {
      * @see com.nabla.project.application.model.dao.person.AbstractDaoDatabase#onSetUpInTransaction()
      */
     @Override
-    protected void onSetUpInTransaction() throws Exception {
+    protected void onSetUpInTransaction() throws Exception
+    {
         // TODO Auto-generated method stub
         super.onSetUpInTransaction();
         this.chronometer = new Chronometer();
         this.chronometer.start();
     }
 
-    public void testFindAllNames() {
+    public void testFindAllNames()
+    {
         final List<Person> persons = this.testDao.findAll();
         Assert.assertEquals(2, persons.size());
 
         Date date;
 
-        try {
+        try
+        {
             date = new SimpleDateFormat("dd/MM/yy").parse("20/04/2007");
             Assert.assertTrue(persons.get(0).getBirthdate().compareTo(date) == 0);
-        } catch (final ParseException e) {
+        }
+        catch (final ParseException e)
+        {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -69,7 +77,8 @@ public class DaoTest extends AbstractDaoDatabase {
      * @see com.nabla.project.application.model.dao.person.AbstractDaoDatabase#onTearDownAfterTransaction()
      */
     @Override
-    protected void onTearDownAfterTransaction() throws Exception {
+    protected void onTearDownAfterTransaction() throws Exception
+    {
         // TODO Auto-generated method stub
         super.onTearDownAfterTransaction();
         this.chronometer.stop();

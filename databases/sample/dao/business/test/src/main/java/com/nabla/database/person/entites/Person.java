@@ -21,10 +21,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@SuppressWarnings({ "unused", "serial" })
+@SuppressWarnings( { "unused", "serial" })
 @Entity
 @Table(name = "Person")
-public class Person implements Serializable {
+public class Person implements Serializable
+{
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,10 +68,12 @@ public class Person implements Serializable {
     private Set<Activity> activities = new HashSet<Activity>();
 
     // constructeurs
-    public Person() {
+    public Person()
+    {
     }
 
-    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbChildren) {
+    public Person(final String lastname, final String firstname, final Date birtdate, final boolean married, final int nbChildren)
+    {
         this.setLastname(lastname);
         this.setFirstname(firstname);
         this.setBirthdate(birtdate);
@@ -80,81 +83,100 @@ public class Person implements Serializable {
 
     // toString
     @Override
-    public String toString() {
-        return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),
-                this.getNbChildren(), this.getAddress().getId());
+    public String toString()
+    {
+        return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(), this
+                .getNbChildren(), this.getAddress().getId());
     }
 
     // getters and setters
-    public Long getId() {
+    public Long getId()
+    {
         return this.id;
     }
 
-    private void setId(final Long id) {
+    private void setId(final Long id)
+    {
         this.id = id;
     }
 
-    public int getVersion() {
+    public int getVersion()
+    {
         return this.version;
     }
 
-    private void setVersion(final int version) {
+    private void setVersion(final int version)
+    {
         this.version = version;
     }
 
-    public String getLastname() {
+    public String getLastname()
+    {
         return this.lastname;
     }
 
-    public void setLastname(final String lastname) {
+    public void setLastname(final String lastname)
+    {
         this.lastname = lastname;
     }
 
-    public String getFirstname() {
+    public String getFirstname()
+    {
         return this.firstname;
     }
 
-    public void setFirstname(final String firstname) {
+    public void setFirstname(final String firstname)
+    {
         this.firstname = firstname;
     }
 
-    public Date getBirthdate() {
+    public Date getBirthdate()
+    {
         return this.birthdate;
     }
 
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final Date birthdate)
+    {
         this.birthdate = birthdate;
     }
 
-    public boolean isMarried() {
+    public boolean isMarried()
+    {
         return this.married;
     }
 
-    public void setMarried(final boolean married) {
+    public void setMarried(final boolean married)
+    {
         this.married = married;
     }
 
-    public int getNbChildren() {
+    public int getNbChildren()
+    {
         return this.nbChildren;
     }
 
-    public void setNbChildren(final int nbChildren) {
+    public void setNbChildren(final int nbChildren)
+    {
         this.nbChildren = nbChildren;
     }
 
-    public Address getAddress() {
+    public Address getAddress()
+    {
         return this.address;
     }
 
-    public void setAddress(final Address address) {
+    public void setAddress(final Address address)
+    {
         this.address = address;
     }
 
-    public Set<Activity> getActivities() {
+    public Set<Activity> getActivities()
+    {
         return this.activities;
     }
 
-    public void setActivities(final Set<Activity> activities) {
+    public void setActivities(final Set<Activity> activities)
+    {
         this.activities = activities;
     }
 }

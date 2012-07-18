@@ -22,8 +22,9 @@ import org.springframework.security.GrantedAuthority;
  */
 @Entity
 @Table(name = "role")
-@NamedQueries({ @NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name = :name ") })
-public class Role extends BaseObject implements Serializable, GrantedAuthority {
+@NamedQueries( { @NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name = :name ") })
+public class Role extends BaseObject implements Serializable, GrantedAuthority
+{
     private static final long serialVersionUID = 3690197650654049848L;
     private Long              id;
     private String            name;
@@ -32,7 +33,8 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
     /**
      * Default constructor - creates a new instance with no values set.
      */
-    public Role() {
+    public Role()
+    {
     }
 
     /**
@@ -40,13 +42,15 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      *
      * @param name name of the role.
      */
-    public Role(final String name) {
+    public Role(final String name)
+    {
         this.name = name;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public Long getId()
+    {
         return this.id;
     }
 
@@ -56,29 +60,35 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      */
     @Override
     @Transient
-    public String getAuthority() {
+    public String getAuthority()
+    {
         return this.getName();
     }
 
     @Column(length = 20)
-    public String getName() {
+    public String getName()
+    {
         return this.name;
     }
 
     @Column(length = 64)
-    public String getDescription() {
+    public String getDescription()
+    {
         return this.description;
     }
 
-    public void setId(final Long id) {
+    public void setId(final Long id)
+    {
         this.id = id;
     }
 
-    public void setName(final String name) {
+    public void setName(final String name)
+    {
         this.name = name;
     }
 
-    public void setDescription(final String description) {
+    public void setDescription(final String description)
+    {
         this.description = description;
     }
 
@@ -86,11 +96,14 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
+    public boolean equals(final Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
-        if (!(o instanceof Role)) {
+        if (!(o instanceof Role))
+        {
             return false;
         }
 
@@ -104,7 +117,8 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      * {@inheritDoc}
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return (this.name != null ? this.name.hashCode() : 0);
     }
 
@@ -112,7 +126,8 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).toString();
     }
 
@@ -120,7 +135,8 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(final Object o) {
+    public int compareTo(final Object o)
+    {
         return (this.equals(o) ? 0 : -1);
     }
 }

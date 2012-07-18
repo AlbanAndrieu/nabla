@@ -11,12 +11,14 @@ import com.nabla.database.person.entites.Address;
 import com.nabla.database.person.entites.Person;
 import com.nabla.database.person.service.IService;
 
-public class InitDB {
+public class InitDB
+{
     // couche service
     private static IService service;
 
     // constructeur
-    public static void main(final String[] args) throws ParseException {
+    public static void main(final String[] args) throws ParseException
+    {
         // configuration de l'application
         final ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
         // couche service
@@ -33,45 +35,55 @@ public class InitDB {
     }
 
     // affichage contenu table personne
-    private static void dumpPersons() {
+    private static void dumpPersons()
+    {
         System.out.format("[personnes]%n");
 
-        for (final Person p : InitDB.service.getAllPersons()) {
+        for (final Person p : InitDB.service.getAllPersons())
+        {
             System.out.println(p);
         }
     }
 
     // affichage contenu table Address
-    private static void dumpAddresses() {
+    private static void dumpAddresses()
+    {
         System.out.format("[adresses]%n");
 
-        for (final Address a : InitDB.service.getAllAddresses()) {
+        for (final Address a : InitDB.service.getAllAddresses())
+        {
             System.out.println(a);
         }
     }
 
     // affichage contenu table Activity
-    private static void dumpActivities() {
+    private static void dumpActivities()
+    {
         System.out.format("[activites]%n");
 
-        for (final Activity a : InitDB.service.getAllActivities()) {
+        for (final Activity a : InitDB.service.getAllActivities())
+        {
             System.out.println(a);
         }
     }
 
     // affichage contenu table Personne_Activite
-    private static void dumpPersonsActivities() {
+    private static void dumpPersonsActivities()
+    {
         System.out.println("[personnes/activites]");
 
-        for (final Person p : InitDB.service.getAllPersons()) {
-            for (final Activity a : InitDB.service.getActivitiesOfPerson(p.getId())) {
+        for (final Person p : InitDB.service.getAllPersons())
+        {
+            for (final Activity a : InitDB.service.getActivitiesOfPerson(p.getId()))
+            {
                 System.out.format("[%s,%s]%n", p.getLastname(), a.getName());
             }
         }
     }
 
     // remplissage tables
-    public static void fill() throws ParseException {
+    public static void fill() throws ParseException
+    {
         // creation activites
         final Activity act1 = new Activity();
         act1.setName("act1");
@@ -108,14 +120,17 @@ public class InitDB {
     }
 
     // supression elements des tables
-    public static void clean() {
+    public static void clean()
+    {
         // on supprime ttes les personnes et donc toutes les adresses
-        for (final Person person : InitDB.service.getAllPersons()) {
+        for (final Person person : InitDB.service.getAllPersons())
+        {
             InitDB.service.deletePerson(person.getId());
         }
 
         // on supprime ttes les activites
-        for (final Activity activity : InitDB.service.getAllActivities()) {
+        for (final Activity activity : InitDB.service.getAllActivities())
+        {
             InitDB.service.deleteActivity(activity.getId());
         }
     }

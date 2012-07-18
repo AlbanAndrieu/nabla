@@ -14,22 +14,26 @@ import com.nabla.project.application.model.person.dao.IPersonDAO;
 import com.nabla.project.application.model.person.entity.Address;
 import com.nabla.project.application.model.person.entity.Person;
 
-public class PersonDAOTest extends AbstractDaoDatabase {
+public class PersonDAOTest extends AbstractDaoDatabase
+{
 
     public static Logger logger    = Logger.getLogger(DaoTest.class);
 
     private IPersonDAO   personDao = null;
 
-    public void setTestDao(final IPersonDAO testDao) {
+    public void setTestDao(final IPersonDAO testDao)
+    {
         this.personDao = testDao;
     }
 
-    public void testFindPersonByLastName() throws Exception {
+    public void testFindPersonByLastName() throws Exception
+    {
         final List<Person> people = this.personDao.findByLastname("Raible");
         Assert.assertTrue(people.size() > 0);
     }
 
-    public void testAddAndRemovePerson() throws Exception {
+    public void testAddAndRemovePerson() throws Exception
+    {
         Person person = new Person("Lucas", "Cedric", new SimpleDateFormat("dd/MM/yy").parse("31/01/2000"), true, 2);
 
         // Use the file PersonDaoHibernateTest.properties
@@ -56,13 +60,18 @@ public class PersonDAOTest extends AbstractDaoDatabase {
 
         this.personDao.remove(person.getId());
 
-        try {
+        try
+        {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        } catch (final EntityNotFoundException enf) {
+        }
+        catch (final EntityNotFoundException enf)
+        {
             PersonDAOTest.logger.debug("Expected exception: " + enf.getMessage());
             Assert.assertNotNull(enf);
-        } catch (final ObjectRetrievalFailureException orf) {
+        }
+        catch (final ObjectRetrievalFailureException orf)
+        {
             PersonDAOTest.logger.debug("Expected exception: " + orf.getMessage());
         }
     }

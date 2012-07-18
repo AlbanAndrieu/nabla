@@ -20,14 +20,16 @@ import com.nabla.project.application.model.person.entity.Person;
 import com.nabla.project.application.model.person.service.IService;
 import com.nabla.project.application.time.Chronometer;
 
-public class NGTest extends TestCase {
+public class NGTest extends TestCase
+{
 
     public static Logger logger = Logger.getLogger(NGTest.class);
 
     Chronometer          chronometer;
 
     @Override
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
         super.setUp();
         // log
         // Log.init();
@@ -49,7 +51,8 @@ public class NGTest extends TestCase {
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown() throws Exception
+    {
         super.tearDown();
         // affichage tables
         NGTest.logger.info("--------------- Database data");
@@ -71,12 +74,14 @@ public class NGTest extends TestCase {
      *
      * @param testName name of the test case
      */
-    public NGTest(final String testName) {
+    public NGTest(final String testName)
+    {
         super(testName);
     }
 
     // remplissage tables
-    public void fill() throws ParseException {
+    public void fill() throws ParseException
+    {
         // creation activites
         final Activity act1 = new Activity();
         act1.setName("act1");
@@ -114,52 +119,65 @@ public class NGTest extends TestCase {
     }
 
     // supression elements des tables
-    public void clean() {
+    public void clean()
+    {
         // on supprime ttes les personnes et donc toutes les adresses
-        for (final Person personne : this.service.getAllPersons()) {
+        for (final Person personne : this.service.getAllPersons())
+        {
             this.service.deletePerson(personne.getId());
         }
         // on supprime ttes les activites
-        for (final Activity activite : this.service.getAllActivities()) {
+        for (final Activity activite : this.service.getAllActivities())
+        {
             this.service.deleteActivity(activite.getId());
         }
     }
 
     // affichage contenu table personne
-    private void dumpPersons() {
+    private void dumpPersons()
+    {
         NGTest.logger.info("[personnes]%n");
-        for (final Person c : this.service.getAllPersons()) {
+        for (final Person c : this.service.getAllPersons())
+        {
             System.out.println(c);
         }
     }
 
     // affichage contenu table Address
-    private void dumpAddresses() {
+    private void dumpAddresses()
+    {
         NGTest.logger.info("[adresses]%n");
-        for (final Address a : this.service.getAllAddresses()) {
+        for (final Address a : this.service.getAllAddresses())
+        {
             System.out.println(a);
         }
     }
 
     // affichage contenu table Activity
-    private void dumpActivities() {
+    private void dumpActivities()
+    {
         NGTest.logger.info("[activites]%n");
-        for (final Activity a : this.service.getAllActivities()) {
+        for (final Activity a : this.service.getAllActivities())
+        {
             System.out.println(a);
         }
     }
 
     // affichage contenu table Person_Activity
-    private void dumpPersonsActivities() {
+    private void dumpPersonsActivities()
+    {
         NGTest.logger.info("[personnes/activites]");
-        for (final Person p : this.service.getAllPersons()) {
-            for (final Activity a : this.service.getActivitiesOfPerson(p.getId())) {
+        for (final Person p : this.service.getAllPersons())
+        {
+            for (final Activity a : this.service.getActivitiesOfPerson(p.getId()))
+            {
                 System.out.format("[%s,%s]%n", p.getLastname(), a.getName());
             }
         }
     }
 
-    public void test01() {
+    public void test01()
+    {
         NGTest.logger.info("test01");
         // liste des personnes
         final List<Person> personnes = this.service.getAllPersons();
@@ -172,7 +190,8 @@ public class NGTest extends TestCase {
         assert 3 == activites.size();
     }
 
-    public void test02() {
+    public void test02()
+    {
         NGTest.logger.info("test02");
         // personne p1
         List<Person> personnes = this.service.getAllPersonsWithNameLike("p1%");
@@ -200,7 +219,8 @@ public class NGTest extends TestCase {
         assert 0 == activites.size();
     }
 
-    public void test03() {
+    public void test03()
+    {
         NGTest.logger.info("test03");
         // personne p1
         final List<Person> personnes = this.service.getAllPersonsWithNameLike("p1%");
@@ -220,7 +240,8 @@ public class NGTest extends TestCase {
         assert 1 == activites.size();
         // on l'ajoute aux activites de la personne p1
         final Set<Activity> activitesPersonP1 = new HashSet<Activity>();
-        for (final Activity a : activitesP1) {
+        for (final Activity a : activitesP1)
+        {
             activitesPersonP1.add(a);
         }
         activitesPersonP1.add(act4);
@@ -233,7 +254,8 @@ public class NGTest extends TestCase {
         assert 3 == activites.size();
     }
 
-    public void test04() {
+    public void test04()
+    {
         NGTest.logger.info("test04");
         // activite act1
         final List<Activity> activites = this.service.getAllActivitiesWithNameLike("act1%");
@@ -255,7 +277,8 @@ public class NGTest extends TestCase {
         assert 1 == personnesAct1.size();
     }
 
-    public void test05() {
+    public void test05()
+    {
         NGTest.logger.info("test05");
         // personne p1
         List<Person> personnes = this.service.getAllPersonsWithNameLike("p1%");
@@ -283,7 +306,8 @@ public class NGTest extends TestCase {
         assert "act2+".equals(act2.getName());
     }
 
-    public void test06() throws ParseException {
+    public void test06() throws ParseException
+    {
         NGTest.logger.info("test06");
         // liste des activites
         List<Activity> activites = this.service.getAllActivities();
@@ -298,10 +322,13 @@ public class NGTest extends TestCase {
         p4.getActivities().add(act4);
         // on doit avoir une exception lors de la sauvegarde de l'activite act4 et un rollback general
         boolean erreur = false;
-        try {
+        try
+        {
             // persister les personnes et les activites
             this.service.savePersonsWithActivities(new Person[] { p4, p5 });
-        } catch (final RuntimeException e) {
+        }
+        catch (final RuntimeException e)
+        {
             erreur = true;
         }
         // verifications : il y a du avoir une exception
@@ -321,7 +348,8 @@ public class NGTest extends TestCase {
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite() {
+    public static Test suite()
+    {
         return new TestSuite(NGTest.class);
     }
 }
