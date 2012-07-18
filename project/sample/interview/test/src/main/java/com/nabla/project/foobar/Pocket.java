@@ -44,7 +44,8 @@ import java.util.ListIterator;
  *
  * @since $Date$
  */
-public final class Pocket {
+public final class Pocket
+{
 
     // TODO use BigDecimal instead of float see http://www.javapractices.com/topic/TopicAction.do?Id=13
     // BigDecimal is not immutable
@@ -61,7 +62,8 @@ public final class Pocket {
      *
      * @param anInitialAmount DOCUMENT ME!
      */
-    public Pocket(final BigDecimal anInitialAmount) {
+    public Pocket(final BigDecimal anInitialAmount)
+    {
         super();
         this.remaining = anInitialAmount;
 
@@ -73,7 +75,8 @@ public final class Pocket {
      *
      * @return the remaining
      */
-    public BigDecimal getRemaining() {
+    public BigDecimal getRemaining()
+    {
 
         // TODO we may have trouble because rounding a sum and sum of round give not the same result
         // return Foobar.round(this.remaining);
@@ -86,7 +89,8 @@ public final class Pocket {
      *
      * @param aRemaining a remaining
      */
-    private void setRemaining(final BigDecimal aRemaining) {
+    private void setRemaining(final BigDecimal aRemaining)
+    {
 
         this.remaining = aRemaining;
 
@@ -97,7 +101,8 @@ public final class Pocket {
      *
      * @return the item
      */
-    public int getItem() {
+    public int getItem()
+    {
 
         return this.item;
 
@@ -108,7 +113,8 @@ public final class Pocket {
      *
      * @param anItem the item to set
      */
-    private void setItem(final int anItem) {
+    private void setItem(final int anItem)
+    {
 
         this.item = anItem;
 
@@ -121,9 +127,11 @@ public final class Pocket {
      *
      * @return true if buying is possible
      */
-    public Boolean buy(final BigDecimal aPrice) {
+    public Boolean buy(final BigDecimal aPrice)
+    {
 
-        if ((Foobar.isPlus(aPrice)) && (Foobar.isPlus(this.getRemaining())) && (Foobar.isPlus(this.getRemaining().subtract(aPrice)))) {
+        if ((Foobar.isPlus(aPrice)) && (Foobar.isPlus(this.getRemaining())) && (Foobar.isPlus(this.getRemaining().subtract(aPrice))))
+        {
 
             this.setRemaining(this.getRemaining().subtract(aPrice));
             this.setItem(this.getItem() + 1);
@@ -143,16 +151,19 @@ public final class Pocket {
      *
      * @return DOCUMENT ME!
      */
-    public Boolean solve(final Shelf shelf) {
+    public Boolean solve(final Shelf shelf)
+    {
 
         Boolean remained = true;
         final ListIterator<Foobar> iterator = shelf.getShelf().listIterator();
 
-        while (remained && iterator.hasNext()) {
+        while (remained && iterator.hasNext())
+        {
 
             final Foobar foobar = iterator.next();
 
-            if (!this.buy(foobar.getPrice())) {
+            if (!this.buy(foobar.getPrice()))
+            {
 
                 remained = false;
 
@@ -170,7 +181,8 @@ public final class Pocket {
      * @return DOCUMENT ME!
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 

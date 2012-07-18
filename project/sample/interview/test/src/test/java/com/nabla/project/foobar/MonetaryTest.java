@@ -47,7 +47,8 @@ import org.junit.Test;
  *
  * @since $Date$
  */
-public class MonetaryTest {
+public class MonetaryTest
+{
 
     private static final int RIGHT_ITEMS = 20;
 
@@ -55,7 +56,8 @@ public class MonetaryTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void test() {
+    public final void test()
+    {
 
         final Shelf shelf = new Shelf(Monetary.MAX_ITEMS);
 

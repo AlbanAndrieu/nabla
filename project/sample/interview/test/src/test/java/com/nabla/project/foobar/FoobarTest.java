@@ -47,7 +47,8 @@ import org.junit.Test;
  *
  * @since $Date$
  */
-public class FoobarTest {
+public class FoobarTest
+{
 
     /**
      * Must use BigDecimal method instead.
@@ -57,7 +58,8 @@ public class FoobarTest {
      * @return the Rounded Price
      */
     @Deprecated
-    public static float round(float aPrice) {
+    public static float round(float aPrice)
+    {
 
         aPrice *= 100;
         aPrice = (float) Math.round(aPrice) / 100;
@@ -70,7 +72,8 @@ public class FoobarTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void roundFloat() {
+    public final void roundFloat()
+    {
 
         float f = 1.234f;
 
@@ -87,7 +90,8 @@ public class FoobarTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testRoundFloat() {
+    public final void testRoundFloat()
+    {
 
         final float f = 1.234f;
         final float price = FoobarTest.round(f);
@@ -100,7 +104,8 @@ public class FoobarTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testRoundBigDecimal() {
+    public final void testRoundBigDecimal()
+    {
 
         final BigDecimal f = new BigDecimal("1.234");
         final BigDecimal price = Foobar.round(f);
@@ -113,7 +118,8 @@ public class FoobarTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testAddPercent() {
+    public final void testAddPercent()
+    {
 
         final Foobar Foobar1 = new Foobar(BigDecimal.ONE);
 

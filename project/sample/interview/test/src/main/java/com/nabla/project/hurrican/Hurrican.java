@@ -47,7 +47,8 @@ import com.nabla.project.hurrican.file.MyFile;
  *
  * @since $Date$
  */
-public final class Hurrican {
+public final class Hurrican
+{
 
     private static final transient Logger LOGGER         = Logger.getLogger(Hurrican.class);
 
@@ -59,7 +60,8 @@ public final class Hurrican {
     /**
      * Constructor.
      */
-    private Hurrican() {
+    private Hurrican()
+    {
         super();
 
         // this prevents even the native class from
@@ -75,17 +77,22 @@ public final class Hurrican {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public static void main(final String... args) throws Exception {
+    public static void main(final String... args) throws Exception
+    {
 
         final IMyFile input = new MyFile(FileHelper.DEFAULT_FILE_NAME);
 
-        try {
+        try
+        {
 
             input.printTest();
 
-        } catch (final Exception e) {
+        }
+        catch (final Exception e)
+        {
 
-            if (Hurrican.LOGGER.isDebugEnabled()) {
+            if (Hurrican.LOGGER.isDebugEnabled())
+            {
 
                 Hurrican.LOGGER.debug("Error", e);
 

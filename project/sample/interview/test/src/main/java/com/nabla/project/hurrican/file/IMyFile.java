@@ -42,7 +42,8 @@ import java.io.Serializable;
  * @version $Revision$
  * @since $Date$
  */
-public interface IMyFile extends Serializable {
+public interface IMyFile extends Serializable
+{
 
     /**
      * DOCUMENT ME!

@@ -46,7 +46,8 @@ import com.nabla.project.hurrican.VelocityConvertor;
  *
  * @since $Date$
  */
-public final class FileHelper {
+public final class FileHelper
+{
 
     /**
      * DOCUMENT ME!
@@ -61,7 +62,8 @@ public final class FileHelper {
     /**
      * The caller references the constants using <tt>FileHelper.DEFAULT_FILE_NAME</tt>, and so on. Thus, the caller should be prevented from constructing objects of this class, by declaring this private constructor.
      */
-    private FileHelper() {
+    private FileHelper()
+    {
         super();
 
         // this prevents even the native class from
@@ -77,7 +79,8 @@ public final class FileHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static String getCard(final String data) {
+    public static String getCard(final String data)
+    {
 
         return data.substring(0, 5);
 
@@ -90,7 +93,8 @@ public final class FileHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static String getDate(final String data) {
+    public static String getDate(final String data)
+    {
 
         return data.substring(6, 16);
 
@@ -103,7 +107,8 @@ public final class FileHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static String getYear(final String date) {
+    public static String getYear(final String date)
+    {
 
         return date.substring(6);
 
@@ -116,7 +121,8 @@ public final class FileHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static String getRecord(final String data) {
+    public static String getRecord(final String data)
+    {
 
         return data.substring(19, 21).trim();
 
@@ -129,7 +135,8 @@ public final class FileHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static String getNumber(final String data) {
+    public static String getNumber(final String data)
+    {
 
         return data.substring(30, 34).trim();
 
@@ -142,7 +149,8 @@ public final class FileHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static String getName(final String data) {
+    public static String getName(final String data)
+    {
 
         return data.substring(35, 45).trim();
 
@@ -156,20 +164,23 @@ public final class FileHelper {
      *
      * @throws IOException do not forget to close the reader in a finally
      */
-    public static void printData(final String season, final BufferedReader dataIn) throws IOException {
+    public static void printData(final String season, final BufferedReader dataIn) throws IOException
+    {
 
         String line = null; // not declared within while loop
-                            // readLine is a bit quirky :
-                            // it returns the content of a line MINUS the newline.
-                            // it returns null only for the END of the stream.
-                            // it returns an empty String if two newlines appear in a row.
+        // readLine is a bit quirky :
+        // it returns the content of a line MINUS the newline.
+        // it returns null only for the END of the stream.
+        // it returns an empty String if two newlines appear in a row.
 
-        while ((line = dataIn.readLine()) != null) {
+        while ((line = dataIn.readLine()) != null)
+        {
 
             final String date = FileHelper.getDate(line);
             final String year = FileHelper.getYear(date);
 
-            if (year.equals(season)) {
+            if (year.equals(season))
+            {
 
                 final Integer record = Integer.valueOf(FileHelper.getRecord(line));
 
@@ -194,28 +205,33 @@ public final class FileHelper {
      *
      * @throws IOException do not forget to close the reader in a finally
      */
-    public static void printMaxWind(final Integer record, final BufferedReader dataIn) throws IOException {
+    public static void printMaxWind(final Integer record, final BufferedReader dataIn) throws IOException
+    {
 
         Integer maxWind = 0;
 
-        for (int i = 0; i < record; i++) {
+        for (int i = 0; i < record; i++)
+        {
 
             final String lineData = dataIn.readLine();
 
-            if (lineData != null) {
+            if (lineData != null)
+            {
 
                 Integer index = 11;
 
                 // For positions and intensities
                 final Integer position = 4;
 
-                for (int j = 0; j < position; j++) {
+                for (int j = 0; j < position; j++)
+                {
 
                     final Integer wind = index + 9;
 
                     final Integer currentWind = Integer.valueOf(lineData.substring(wind, wind + 4).trim());
 
-                    if (currentWind > maxWind) {
+                    if (currentWind > maxWind)
+                    {
 
                         maxWind = currentWind;
 

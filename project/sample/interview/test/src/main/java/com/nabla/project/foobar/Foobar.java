@@ -45,7 +45,8 @@ import java.math.BigDecimal;
  */
 
 // See sample href=http://www.javapractices.com/topic/TopicAction.do?Id=13
-public final class Foobar {
+public final class Foobar
+{
 
     /**
      * Defined centrally, to allow for easy changes to the rounding mode.
@@ -66,7 +67,8 @@ public final class Foobar {
     /**
      * @param aPrice a price
      */
-    public Foobar(final BigDecimal aPrice) {
+    public Foobar(final BigDecimal aPrice)
+    {
         super();
         this.price = aPrice;
 
@@ -77,7 +79,8 @@ public final class Foobar {
      *
      * @return the price
      */
-    public BigDecimal getPrice() {
+    public BigDecimal getPrice()
+    {
 
         return this.price;
 
@@ -96,7 +99,8 @@ public final class Foobar {
      */
 
     // TODO must use BigDecimal instead
-    public static BigDecimal addPercent(final BigDecimal aPrice) {
+    public static BigDecimal addPercent(final BigDecimal aPrice)
+    {
 
         return aPrice.add(Foobar.getPercentage(aPrice));
 
@@ -111,7 +115,8 @@ public final class Foobar {
      *
      * @return the Rounded Price
      */
-    public static BigDecimal getPercentage(final BigDecimal aPrice) {
+    public static BigDecimal getPercentage(final BigDecimal aPrice)
+    {
 
         BigDecimal result = aPrice.multiply(Foobar.PERCENT);
 
@@ -130,7 +135,8 @@ public final class Foobar {
      *
      * @return the Rounded Price
      */
-    public static BigDecimal round(final BigDecimal aPrice) {
+    public static BigDecimal round(final BigDecimal aPrice)
+    {
 
         return aPrice.setScale(Foobar.DECIMALS, Foobar.ROUNDING_MODE);
 
@@ -146,7 +152,8 @@ public final class Foobar {
      */
 
     // TODO not used
-    public static BigDecimal getSum(final BigDecimal aFirstValue, final BigDecimal aSecondValue) {
+    public static BigDecimal getSum(final BigDecimal aFirstValue, final BigDecimal aSecondValue)
+    {
 
         final BigDecimal sum = aFirstValue.add(aSecondValue);
 
@@ -162,7 +169,8 @@ public final class Foobar {
      *
      * @return DOCUMENT ME!
      */
-    public static boolean isPlus(final BigDecimal aPrice) {
+    public static boolean isPlus(final BigDecimal aPrice)
+    {
 
         return aPrice.compareTo(BigDecimal.ZERO) > 0;
 
@@ -175,7 +183,8 @@ public final class Foobar {
      *
      * @return DOCUMENT ME!
      */
-    public static boolean isMinus(final BigDecimal aPrice) {
+    public static boolean isMinus(final BigDecimal aPrice)
+    {
 
         return aPrice.compareTo(BigDecimal.ZERO) < 0;
 
@@ -188,7 +197,8 @@ public final class Foobar {
      *
      * @return DOCUMENT ME!
      */
-    public static boolean isZero(final BigDecimal aPrice) {
+    public static boolean isZero(final BigDecimal aPrice)
+    {
 
         return aPrice.compareTo(BigDecimal.ZERO) == 0;
 
@@ -200,7 +210,8 @@ public final class Foobar {
      * @return DOCUMENT ME!
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 

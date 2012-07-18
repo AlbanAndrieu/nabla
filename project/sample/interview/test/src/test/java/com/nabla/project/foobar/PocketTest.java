@@ -47,13 +47,15 @@ import org.junit.Test;
  *
  * @since $Date$
  */
-public class PocketTest {
+public class PocketTest
+{
 
     /**
      * DOCUMENT ME!
      */
     @Test
-    public final void testRemaining() {
+    public final void testRemaining()
+    {
 
         final Pocket pocket = new Pocket(Monetary.DEFAULT_POCKET);
 
@@ -94,7 +96,8 @@ public class PocketTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testBuyNoPocket() {
+    public final void testBuyNoPocket()
+    {
 
         final Pocket pocket = new Pocket(BigDecimal.ZERO);
 
@@ -113,7 +116,8 @@ public class PocketTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testBuyNoPocketForPrice() {
+    public final void testBuyNoPocketForPrice()
+    {
 
         final Pocket pocket = new Pocket(new BigDecimal("100"));
 
@@ -132,7 +136,8 @@ public class PocketTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testBuyPriceNegatif() {
+    public final void testBuyPriceNegatif()
+    {
 
         final Pocket pocket = new Pocket(Monetary.DEFAULT_POCKET);
 

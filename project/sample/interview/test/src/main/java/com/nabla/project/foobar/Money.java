@@ -121,14 +121,16 @@ import java.util.Currency;
  *     cost = amount.times(price);
  *  }</PRE>
  */
-public final class Money implements Comparable<Money>, Serializable {
+public final class Money implements Comparable<Money>, Serializable
+{
 
     /**
      * Thrown when a set of <tt>Money</tt> objects do not have matching currencies.
      *
      * <P>For example, adding together Euros and Dollars does not make any sense.
      */
-    public static final class MismatchedCurrencyException extends RuntimeException {
+    public static final class MismatchedCurrencyException extends RuntimeException
+    {
 
         private static final long serialVersionUID = 1L;
 
@@ -138,7 +140,8 @@ public final class Money implements Comparable<Money>, Serializable {
          *
          * @param aMessage a message
          */
-        MismatchedCurrencyException(final String aMessage) {
+        MismatchedCurrencyException(final String aMessage)
+        {
             super(aMessage);
         }
     }
@@ -162,7 +165,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @param aDefaultCurrency is required.
      * @param aDefaultRounding is required.
      */
-    public static void init(final Currency aDefaultCurrency, final RoundingMode aDefaultRounding) {
+    public static void init(final Currency aDefaultCurrency, final RoundingMode aDefaultRounding)
+    {
         Money.defaultCurrency = aDefaultCurrency;
         Money.defaultRounding = aDefaultRounding;
     }
@@ -179,7 +183,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @param aRoundingStyle is required, must match a rounding style used by
      * {@link BigDecimal}.
      */
-    public Money(final BigDecimal aAmount, final Currency aCurrency, final RoundingMode aRoundingStyle) {
+    public Money(final BigDecimal aAmount, final Currency aCurrency, final RoundingMode aRoundingStyle)
+    {
         this.fAmount = aAmount;
         this.fCurrency = aCurrency;
         this.fRounding = aRoundingStyle;
@@ -192,7 +197,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * <P>The currency and rounding style both take default values.
      * @param aAmount is required, can be positive or negative.
      */
-    public Money(final BigDecimal aAmount) {
+    public Money(final BigDecimal aAmount)
+    {
         this(aAmount, Money.defaultCurrency, Money.defaultRounding);
     }
 
@@ -203,22 +209,26 @@ public final class Money implements Comparable<Money>, Serializable {
      * @param aAmount is required, can be positive or negative.
      * @param aCurrency is required.
      */
-    public Money(final BigDecimal aAmount, final Currency aCurrency) {
+    public Money(final BigDecimal aAmount, final Currency aCurrency)
+    {
         this(aAmount, aCurrency, Money.defaultRounding);
     }
 
     /** @return Return the amount passed to the constructor. */
-    public BigDecimal getAmount() {
+    public BigDecimal getAmount()
+    {
         return this.fAmount;
     }
 
     /** @return Return the currency passed to the constructor, or the default currency. */
-    public Currency getCurrency() {
+    public Currency getCurrency()
+    {
         return this.fCurrency;
     }
 
     /** @return Return the rounding style passed to the constructor, or the default rounding style. */
-    public RoundingMode getRoundingStyle() {
+    public RoundingMode getRoundingStyle()
+    {
         return this.fRounding;
     }
 
@@ -229,26 +239,31 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return Return <tt>true</tt> only if <tt>aThat</tt> <tt>Money</tt> has the same currency
      * as this <tt>Money</tt>.
      */
-    public boolean isSameCurrencyAs(final Money aThat) {
+    public boolean isSameCurrencyAs(final Money aThat)
+    {
         boolean result = false;
-        if (aThat != null) {
+        if (aThat != null)
+        {
             result = this.fCurrency.equals(aThat.fCurrency);
         }
         return result;
     }
 
     /** @return Return <tt>true</tt> only if the amount is positive. */
-    public boolean isPlus() {
+    public boolean isPlus()
+    {
         return this.fAmount.compareTo(BigDecimal.ZERO) > 0;
     }
 
     /** @return Return <tt>true</tt> only if the amount is negative. */
-    public boolean isMinus() {
+    public boolean isMinus()
+    {
         return this.fAmount.compareTo(BigDecimal.ZERO) < 0;
     }
 
     /** @return Return <tt>true</tt> only if the amount is zero. */
-    public boolean isZero() {
+    public boolean isZero()
+    {
         return this.fAmount.compareTo(BigDecimal.ZERO) == 0;
     }
 
@@ -260,7 +275,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public Money plus(final Money aThat) {
+    public Money plus(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return new Money(this.fAmount.add(aThat.fAmount), this.fCurrency, this.fRounding);
     }
@@ -273,7 +289,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public Money minus(final Money aThat) {
+    public Money minus(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return new Money(this.fAmount.subtract(aThat.fAmount), this.fCurrency, this.fRounding);
     }
@@ -290,9 +307,11 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public static Money sum(final Collection<Money> aMoneys, final Currency aCurrencyIfEmpty) {
+    public static Money sum(final Collection<Money> aMoneys, final Currency aCurrencyIfEmpty)
+    {
         Money sum = new Money(BigDecimal.ZERO, aCurrencyIfEmpty);
-        for (final Money money : aMoneys) {
+        for (final Money money : aMoneys)
+        {
             sum = sum.plus(money);
         }
         return sum;
@@ -307,7 +326,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * Currencies must match.
      * This method is <em>not</em> synonymous with the <tt>equals</tt> method.
      */
-    public boolean eq(final Money aThat) {
+    public boolean eq(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return this.compareAmount(aThat) == 0;
     }
@@ -320,7 +340,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return Return <tt>true</tt> only if  'this' amount is greater than
      * 'that' amount. Currencies must match.
      */
-    public boolean gt(final Money aThat) {
+    public boolean gt(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return this.compareAmount(aThat) > 0;
     }
@@ -333,7 +354,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return Return <tt>true</tt> only if 'this' amount is
      * greater than or equal to 'that' amount. Currencies must match.
      */
-    public boolean gteq(final Money aThat) {
+    public boolean gteq(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return this.compareAmount(aThat) >= 0;
     }
@@ -346,7 +368,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return Return <tt>true</tt> only if 'this' amount is less than
      * 'that' amount. Currencies must match.
      */
-    public boolean lt(final Money aThat) {
+    public boolean lt(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return this.compareAmount(aThat) < 0;
     }
@@ -359,7 +382,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return Return <tt>true</tt> only if 'this' amount is less than or equal to
      * 'that' amount. Currencies must match.
      */
-    public boolean lteq(final Money aThat) {
+    public boolean lteq(final Money aThat)
+    {
         this.checkCurrenciesMatch(aThat);
         return this.compareAmount(aThat) <= 0;
     }
@@ -374,7 +398,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public Money times(final int aFactor) {
+    public Money times(final int aFactor)
+    {
         final BigDecimal factor = new BigDecimal(aFactor);
         final BigDecimal newAmount = this.fAmount.multiply(factor);
         return new Money(newAmount, this.fCurrency, this.fRounding);
@@ -390,7 +415,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public Money times(final double aFactor) {
+    public Money times(final double aFactor)
+    {
         BigDecimal newAmount = this.fAmount.multiply(this.asBigDecimal(aFactor));
         newAmount = newAmount.setScale(this.getNumDecimalsForCurrency(), this.fRounding);
         return new Money(newAmount, this.fCurrency, this.fRounding);
@@ -406,7 +432,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public Money div(final int aDivisor) {
+    public Money div(final int aDivisor)
+    {
         final BigDecimal divisor = new BigDecimal(aDivisor);
         final BigDecimal newAmount = this.fAmount.divide(divisor, this.fRounding);
         return new Money(newAmount, this.fCurrency, this.fRounding);
@@ -422,18 +449,21 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a money
      */
-    public Money div(final double aDivisor) {
+    public Money div(final double aDivisor)
+    {
         final BigDecimal newAmount = this.fAmount.divide(this.asBigDecimal(aDivisor), this.fRounding);
         return new Money(newAmount, this.fCurrency, this.fRounding);
     }
 
     /** @return Return the absolute value of the amount. */
-    public Money abs() {
+    public Money abs()
+    {
         return this.isPlus() ? this : this.times(-1);
     }
 
     /** @return Return the amount x (-1). */
-    public Money negate() {
+    public Money negate()
+    {
         return this.times(-1);
     }
 
@@ -444,7 +474,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * always be suitable for display to an end user.
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return this.fAmount.toPlainString() + " " + this.fCurrency.getSymbol();
     }
 
@@ -459,11 +490,14 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return true or false
      */
     @Override
-    public boolean equals(final Object aThat) {
-        if (this == aThat) {
+    public boolean equals(final Object aThat)
+    {
+        if (this == aThat)
+        {
             return true;
         }
-        if (!(aThat instanceof Money)) {
+        if (!(aThat instanceof Money))
+        {
             return false;
         }
         final Money that = (Money) aThat;
@@ -475,8 +509,10 @@ public final class Money implements Comparable<Money>, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        if (this.fHashCode == 0) {
+    public int hashCode()
+    {
+        if (this.fHashCode == 0)
+        {
             this.fHashCode = Money.HASH_SEED;
             this.fHashCode = (Money.HASH_FACTOR * this.fHashCode) + this.fAmount.hashCode();
             this.fHashCode = (Money.HASH_FACTOR * this.fHashCode) + this.fCurrency.hashCode();
@@ -493,25 +529,30 @@ public final class Money implements Comparable<Money>, Serializable {
      * @return an int
      */
     @Override
-    public int compareTo(final Money aThat) {
+    public int compareTo(final Money aThat)
+    {
 
-        if (this == aThat) {
+        if (this == aThat)
+        {
             return 0;
         }
 
         // the object fields are never null
         int comparison = this.fAmount.compareTo(aThat.fAmount);
-        if (comparison != 0) {
+        if (comparison != 0)
+        {
             return comparison;
         }
 
         comparison = this.fCurrency.getCurrencyCode().compareTo(aThat.fCurrency.getCurrencyCode());
-        if (comparison != 0) {
+        if (comparison != 0)
+        {
             return comparison;
         }
 
         comparison = this.fRounding.compareTo(aThat.fRounding);
-        if (comparison != 0) {
+        if (comparison != 0)
+        {
             return comparison;
         }
 
@@ -578,7 +619,8 @@ public final class Money implements Comparable<Money>, Serializable {
      * @throws ClassNotFoundException an exception to handle
      * @throws IOException an exception to handle
      */
-    private void readObject(final ObjectInputStream aInputStream) throws ClassNotFoundException, IOException {
+    private void readObject(final ObjectInputStream aInputStream) throws ClassNotFoundException, IOException
+    {
         // always perform the default de-serialization first
         aInputStream.defaultReadObject();
         // defensive copy for mutable date field
@@ -595,7 +637,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @throws IOException an exception to handle
      */
-    private void writeObject(final ObjectOutputStream aOutputStream) throws IOException {
+    private void writeObject(final ObjectOutputStream aOutputStream) throws IOException
+    {
         // perform the default serialization for all non-transient, non-static fields
         aOutputStream.defaultWriteObject();
     }
@@ -604,14 +647,18 @@ public final class Money implements Comparable<Money>, Serializable {
      * Validate immutable data like BigDecimal.
      * It raise the exception IllegalArgumentException when arguments are wrong
      */
-    private void validateState() {
-        if (this.fAmount == null) {
+    private void validateState()
+    {
+        if (this.fAmount == null)
+        {
             throw new IllegalArgumentException("Amount cannot be null");
         }
-        if (this.fCurrency == null) {
+        if (this.fCurrency == null)
+        {
             throw new IllegalArgumentException("Currency cannot be null");
         }
-        if (this.fAmount.scale() > this.getNumDecimalsForCurrency()) {
+        if (this.fAmount.scale() > this.getNumDecimalsForCurrency())
+        {
             throw new IllegalArgumentException("Number of decimals is " + this.fAmount.scale() + ", but currency only takes " + this.getNumDecimalsForCurrency() + " decimals.");
         }
     }
@@ -621,7 +668,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return the number of decimal
      */
-    private int getNumDecimalsForCurrency() {
+    private int getNumDecimalsForCurrency()
+    {
         return this.fCurrency.getDefaultFractionDigits();
     }
 
@@ -631,8 +679,10 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @param aThat a money
      */
-    private void checkCurrenciesMatch(final Money aThat) {
-        if (!this.fCurrency.equals(aThat.getCurrency())) {
+    private void checkCurrenciesMatch(final Money aThat)
+    {
+        if (!this.fCurrency.equals(aThat.getCurrency()))
+        {
             throw new MismatchedCurrencyException(aThat.getCurrency() + " doesn't match the expected currency : " + this.fCurrency);
         }
     }
@@ -644,7 +694,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return result of compareTo on amount
      */
-    private int compareAmount(final Money aThat) {
+    private int compareAmount(final Money aThat)
+    {
         return this.fAmount.compareTo(aThat.fAmount);
     }
 
@@ -655,7 +706,8 @@ public final class Money implements Comparable<Money>, Serializable {
      *
      * @return a BigDecimal
      */
-    private BigDecimal asBigDecimal(final double aDouble) {
+    private BigDecimal asBigDecimal(final double aDouble)
+    {
         final String asString = Double.toString(aDouble);
         return new BigDecimal(asString);
     }

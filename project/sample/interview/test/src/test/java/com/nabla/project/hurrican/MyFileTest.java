@@ -55,13 +55,15 @@ import com.nabla.project.hurrican.file.MyFile;
  *
  * @since $Date$
  */
-public class MyFileTest {
+public class MyFileTest
+{
 
     /**
      * DOCUMENT ME!
      */
     @Test
-    public final void testFileName() {
+    public final void testFileName()
+    {
 
         final IMyFile input = new MyFile(FileHelper.DEFAULT_FILE_NAME);
 
@@ -75,36 +77,46 @@ public class MyFileTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testFileReadBufferedReader() {
+    public final void testFileReadBufferedReader()
+    {
 
         final IMyFile input = new MyFile(FileHelper.DEFAULT_FILE_NAME);
 
-        try {
+        try
+        {
 
             String sCurrentLine;
 
             final BufferedReader br = new BufferedReader(new FileReader(input.getPath()));
 
-            try {
+            try
+            {
 
-                while ((sCurrentLine = br.readLine()) != null) {
+                while ((sCurrentLine = br.readLine()) != null)
+                {
 
                     System.out.println(sCurrentLine);
 
                 }
 
-            } finally {
+            }
+            finally
+            {
 
                 br.close();
 
             }
 
-        } catch (final FileNotFoundException e) {
+        }
+        catch (final FileNotFoundException e)
+        {
 
             e.printStackTrace();
             Assert.fail();
 
-        } catch (final IOException e) {
+        }
+        catch (final IOException e)
+        {
 
             e.printStackTrace();
             Assert.fail();
@@ -119,7 +131,8 @@ public class MyFileTest {
      * @throws Exception
      */
     @Test
-    public final void testFileReadBufferedReaderFileNotFoundException() throws Exception {
+    public final void testFileReadBufferedReaderFileNotFoundException() throws Exception
+    {
 
         final MyFile input = new MyFile("NoFile" + FileHelper.DEFAULT_FILE_NAME_TXT);
 
@@ -133,15 +146,19 @@ public class MyFileTest {
      * @throws Exception
      */
     @Test(expected = Exception.class)
-    public final void testFileReadBufferedReaderException() throws Exception {
+    public final void testFileReadBufferedReaderException() throws Exception
+    {
 
         final MyFile input = new MyFile("");
 
-        try {
+        try
+        {
 
             input.printTest();
 
-        } catch (final Exception e) {
+        }
+        catch (final Exception e)
+        {
 
             e.printStackTrace();
             Assert.assertEquals("File path or url is not defined", e.getMessage());
@@ -157,30 +174,37 @@ public class MyFileTest {
      * @throws IOException DOCUMENT ME!
      */
     @Test
-    public final void testFileReadBufferedReaderCloseCatched() throws IOException {
+    public final void testFileReadBufferedReaderCloseCatched() throws IOException
+    {
 
         final BufferedReader dataIn = Mockito.mock(BufferedReader.class);
 
         Mockito.doThrow(new IOException()).when(dataIn).close(); // throws an
-                                                                 // IOException when
-                                                                 // the mock
-                                                                 // BufferedReader
-                                                                 // close method is
-                                                                 // called
+        // IOException when
+        // the mock
+        // BufferedReader
+        // close method is
+        // called
 
-        try {
+        try
+        {
 
-            try {
+            try
+            {
 
                 FileHelper.printData(Hurrican.DEFAULT_SEASON, dataIn);
 
-            } finally {
+            }
+            finally
+            {
 
                 dataIn.close();
 
             }
 
-        } catch (final IOException ex) {
+        }
+        catch (final IOException ex)
+        {
 
             ex.printStackTrace();
 
@@ -196,22 +220,26 @@ public class MyFileTest {
      * @throws IOException DOCUMENT ME!
      */
     @Test(expected = IOException.class)
-    public final void testFileReadBufferedReaderClose() throws IOException {
+    public final void testFileReadBufferedReaderClose() throws IOException
+    {
 
         final BufferedReader dataIn = Mockito.mock(BufferedReader.class);
 
         Mockito.doThrow(new IOException()).when(dataIn).close(); // throws an
-                                                                 // IOException when
-                                                                 // the mock
-                                                                 // BufferedReader
-                                                                 // close method is
-                                                                 // called
+        // IOException when
+        // the mock
+        // BufferedReader
+        // close method is
+        // called
 
-        try {
+        try
+        {
 
             FileHelper.printData(Hurrican.DEFAULT_SEASON, dataIn);
 
-        } finally {
+        }
+        finally
+        {
 
             dataIn.close();
 

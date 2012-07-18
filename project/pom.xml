@@ -64,7 +64,7 @@
 							<locales>en</locales>
 							<!--<locales>en,fr</locales> -->
 							<excludeModules>build-tools</excludeModules>
-							<excludeModules>maven-gui-plugin</excludeModules>
+							<!--<excludeModules>maven-gui-plugin</excludeModules>-->
 							<!--<siteDirectory>${basedir}/site/src/site</siteDirectory>-->
 							<port>${server.port}</port>
 

@@ -45,7 +45,8 @@ import org.apache.log4j.Logger;
  *
  * @since $Date$
  */
-public final class Monetary {
+public final class Monetary
+{
 
     /**
      * DOCUMENT ME!
@@ -61,7 +62,8 @@ public final class Monetary {
     /**
      * Constructor.
      */
-    private Monetary() {
+    private Monetary()
+    {
         super();
 
         // this prevents even the native class from
@@ -75,7 +77,8 @@ public final class Monetary {
      *
      * @param args arguments
      */
-    public static void main(final String... args) {
+    public static void main(final String... args)
+    {
 
         final Shelf shelf = new Shelf(Monetary.MAX_ITEMS);
 
@@ -83,7 +86,8 @@ public final class Monetary {
 
         final Pocket pocket = new Pocket(Monetary.DEFAULT_POCKET);
 
-        if (!pocket.solve(shelf)) {
+        if (!pocket.solve(shelf))
+        {
 
             Monetary.LOGGER.info("We spend all our money");
 

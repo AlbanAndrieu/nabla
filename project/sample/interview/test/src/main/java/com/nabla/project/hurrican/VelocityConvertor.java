@@ -41,7 +41,8 @@ package com.nabla.project.hurrican;
  *
  * @since $Date$
  */
-public final class VelocityConvertor {
+public final class VelocityConvertor
+{
 
     // TODO use BigDecimal
     /**
@@ -52,7 +53,8 @@ public final class VelocityConvertor {
     /**
      * Creates a new VelocityConvertor object.
      */
-    private VelocityConvertor() {
+    private VelocityConvertor()
+    {
         super();
 
         // this prevents even the native class from
@@ -68,7 +70,8 @@ public final class VelocityConvertor {
      *
      * @return speed in Kilometer per hour
      */
-    public static float knotsToKmph(final float aSpeedKnots) {
+    public static float knotsToKmph(final float aSpeedKnots)
+    {
 
         return aSpeedKnots * VelocityConvertor.KNOTS_TO_KILOMETER;
 

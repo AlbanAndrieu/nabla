@@ -45,13 +45,15 @@ import org.junit.Test;
  *
  * @since $Date$
  */
-public class VelocityConvertorTest {
+public class VelocityConvertorTest
+{
 
     /**
      * DOCUMENT ME!
      */
     @Test
-    public final void testWindConvert() {
+    public final void testWindConvert()
+    {
 
         final float windInKnots1 = 100f;
         final float windInKilometer1 = VelocityConvertor.knotsToKmph(windInKnots1);

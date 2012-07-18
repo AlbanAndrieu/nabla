@@ -46,13 +46,15 @@ import org.mockito.Mockito;
  *
  * @since $Date$
  */
-public class HumanTest {
+public class HumanTest
+{
 
     /**
      * DOCUMENT ME!
      */
     @Test
-    public final void testMock() {
+    public final void testMock()
+    {
 
         final Dictionary human = Mockito.mock(Dictionary.class);
 
@@ -66,7 +68,8 @@ public class HumanTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void test() {
+    public final void test()
+    {
 
         final Dictionary human = new Human();
         final String martian = human.translate("foobar");

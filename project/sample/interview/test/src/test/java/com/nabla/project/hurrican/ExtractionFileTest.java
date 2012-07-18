@@ -55,7 +55,8 @@ import com.nabla.project.hurrican.file.MyFile;
  *
  * @since $Date$
  */
-public class ExtractionFileTest {
+public class ExtractionFileTest
+{
 
     /**
      * DOCUMENT ME!
@@ -63,7 +64,8 @@ public class ExtractionFileTest {
      * @throws IOException DOCUMENT ME!
      */
     @Test
-    public final void testDataHeader() throws IOException {
+    public final void testDataHeader() throws IOException
+    {
 
         final List<String> list = new ArrayList<String>();
 
@@ -76,9 +78,11 @@ public class ExtractionFileTest {
          */
         final BufferedReader dataIn = new BufferedReader(new FileReader(input.getPath()));
 
-        try {
+        try
+        {
 
-            while ((line = dataIn.readLine()) != null) {
+            while ((line = dataIn.readLine()) != null)
+            {
 
                 list.add(line);
 
@@ -116,7 +120,9 @@ public class ExtractionFileTest {
             System.out.println("Name : " + name);
             Assert.assertEquals("NOT NAMED", name);
 
-        } finally {
+        }
+        finally
+        {
 
             dataIn.close();
 
@@ -130,7 +136,8 @@ public class ExtractionFileTest {
      * @throws IOException DOCUMENT ME!
      */
     @Test
-    public final void testData() throws IOException {
+    public final void testData() throws IOException
+    {
 
         final List<String> list = new ArrayList<String>();
 
@@ -142,22 +149,26 @@ public class ExtractionFileTest {
         String line;
         final BufferedReader dataIn = new BufferedReader(new FileReader(input.getPath()));
 
-        try {
+        try
+        {
 
-            while ((line = dataIn.readLine()) != null) {
+            while ((line = dataIn.readLine()) != null)
+            {
 
                 final String date = FileHelper.getDate(line);
                 final String year = FileHelper.getYear(date);
 
                 // System.out.println("Year : " + year);
-                if (year.equals(Hurrican.DEFAULT_SEASON)) {
+                if (year.equals(Hurrican.DEFAULT_SEASON))
+                {
 
                     // final Integer record = Integer.valueOf(line.substring(20, 21));
                     final Integer record = Integer.valueOf(FileHelper.getRecord(line));
 
                     System.out.println("Record : " + record);
 
-                    for (int i = 0; i < record; i++) {
+                    for (int i = 0; i < record; i++)
+                    {
 
                         // System.out.println(line);
                         list.add(line);
@@ -174,7 +185,9 @@ public class ExtractionFileTest {
             System.out.println(list.get(1));
             System.out.println(list.get(2));
 
-        } finally {
+        }
+        finally
+        {
 
             dataIn.close();
 
@@ -186,9 +199,11 @@ public class ExtractionFileTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testExtractDataPosition() {
+    public final void testExtractDataPosition()
+    {
 
-        try {
+        try
+        {
 
             final List<String> list = new ArrayList<String>();
             final List<String> data = new ArrayList<String>();
@@ -198,27 +213,32 @@ public class ExtractionFileTest {
             // final DataInputStream dataIn = new DataInputStream(new FileInputStream(((FileDestination) input).getPath()));
             final BufferedReader dataIn = new BufferedReader(new FileReader(input.getPath()));
 
-            try {
+            try
+            {
 
                 String line;
 
-                while ((line = dataIn.readLine()) != null) {
+                while ((line = dataIn.readLine()) != null)
+                {
 
                     final String date = line.substring(6, 16);
                     final String year = date.substring(6);
 
-                    if (year.equals(Hurrican.DEFAULT_SEASON)) {
+                    if (year.equals(Hurrican.DEFAULT_SEASON))
+                    {
 
                         final Integer record = Integer.valueOf(line.substring(20, 21));
 
                         // System.out.println("Record : " + record);
                         list.add(line);
 
-                        for (int i = 0; i < record; i++) {
+                        for (int i = 0; i < record; i++)
+                        {
 
                             final String lineData = dataIn.readLine();
 
-                            if (lineData != null) {
+                            if (lineData != null)
+                            {
 
                                 System.out.println(lineData);
                                 // It will be better to get the max wind here instead doing after
@@ -244,7 +264,8 @@ public class ExtractionFileTest {
 
                 final Integer position = 4;
 
-                for (int i = 0; i < position; i++) {
+                for (int i = 0; i < position; i++)
+                {
 
                     System.out.println("Data " + i + " - Type : " + data.get(1).substring(type, type + 1));
 
@@ -273,13 +294,17 @@ public class ExtractionFileTest {
                 // 1886 onward).
                 System.out.println("Data 2 : " + data.get(2));
 
-            } finally {
+            }
+            finally
+            {
 
                 dataIn.close();
 
             }
 
-        } catch (final IOException e) {
+        }
+        catch (final IOException e)
+        {
 
             e.printStackTrace();
 

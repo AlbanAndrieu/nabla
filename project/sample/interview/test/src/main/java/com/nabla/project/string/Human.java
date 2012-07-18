@@ -38,7 +38,8 @@ package com.nabla.project.string;
  *
  * @author Alban
  */
-public class Human implements Dictionary {
+public class Human implements Dictionary
+{
 
     /**
      * Translate Human to Martian.
@@ -48,7 +49,8 @@ public class Human implements Dictionary {
      * @return a string
      */
     @Override
-    public final String translate(final String aWord) {
+    public final String translate(final String aWord)
+    {
 
         // Use already done methos !
         // import org.apache.commons.lang.StringUtils;
@@ -59,7 +61,8 @@ public class Human implements Dictionary {
         final int len = aWord.length();
         final StringBuilder dest = new StringBuilder(len);
 
-        for (i = (len - 1); i >= 0; i--) {
+        for (i = (len - 1); i >= 0; i--)
+        {
 
             dest.append(aWord.charAt(i));
 

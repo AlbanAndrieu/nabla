@@ -40,7 +40,8 @@ package com.nabla.project.string;
  * @version $Revision$
  * @since $Date$
  */
-public interface Dictionary {
+public interface Dictionary
+{
 
     /**
      * Translate Human to Martian.

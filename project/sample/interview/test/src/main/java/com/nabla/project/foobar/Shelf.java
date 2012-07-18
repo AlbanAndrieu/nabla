@@ -46,7 +46,8 @@ import java.util.ListIterator;
  *
  * @since $Date$
  */
-public final class Shelf {
+public final class Shelf
+{
 
     private static final int   DEFAULT_ITEMS = 21;
     private final List<Foobar> shelf         = new ArrayList<Foobar>();
@@ -54,7 +55,8 @@ public final class Shelf {
     /**
      * Creates a new Shelf object.
      */
-    public Shelf() {
+    public Shelf()
+    {
         this(Shelf.DEFAULT_ITEMS);
     }
 
@@ -63,7 +65,8 @@ public final class Shelf {
      *
      * @param maxItem DOCUMENT ME!
      */
-    public Shelf(final int maxItem) {
+    public Shelf(final int maxItem)
+    {
         super();
         this.init(maxItem);
 
@@ -76,14 +79,17 @@ public final class Shelf {
      */
 
     // TODO Do Lazy initialization maybe
-    private void init(final int aMaxItem) {
+    private void init(final int aMaxItem)
+    {
 
-        if (aMaxItem > 0) {
+        if (aMaxItem > 0)
+        {
 
             this.getShelf().add(new Foobar(BigDecimal.ONE));
 
             // System.out.println(maxItem + " - ");
-            for (int i = 0; i < (aMaxItem - 1); i++) {
+            for (int i = 0; i < (aMaxItem - 1); i++)
+            {
 
                 final Foobar actualFoobar = this.getShelf().get(i);
 
@@ -103,7 +109,8 @@ public final class Shelf {
      *
      * @return the shelf
      */
-    public List<Foobar> getShelf() {
+    public List<Foobar> getShelf()
+    {
 
         return this.shelf;
 
@@ -124,7 +131,8 @@ public final class Shelf {
      *
      * @return the shelf size
      */
-    public int size() {
+    public int size()
+    {
 
         return this.getShelf().size();
 
@@ -135,14 +143,16 @@ public final class Shelf {
      *
      * @return the sum of the items in the shelf
      */
-    public BigDecimal sum() {
+    public BigDecimal sum()
+    {
 
         BigDecimal amount = new BigDecimal("0");
 
         // sum.setScale(Foobar.DECIMALS, Foobar.ROUNDING_MODE);
         final ListIterator<Foobar> iterator = this.getShelf().listIterator();
 
-        while (iterator.hasNext()) {
+        while (iterator.hasNext())
+        {
 
             final Foobar foobar = iterator.next();
 
@@ -166,7 +176,8 @@ public final class Shelf {
      * @return DOCUMENT ME!
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 

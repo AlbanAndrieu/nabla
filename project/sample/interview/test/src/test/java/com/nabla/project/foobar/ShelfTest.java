@@ -49,13 +49,15 @@ import org.junit.Test;
  *
  * @since $Date$
  */
-public class ShelfTest {
+public class ShelfTest
+{
 
     /**
      * DOCUMENT ME!
      */
     @Test
-    public final void testInit() {
+    public final void testInit()
+    {
 
         final int max = 3;
 
@@ -63,7 +65,8 @@ public class ShelfTest {
 
         shelf.add(new Foobar(BigDecimal.ONE));
 
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i < max; i++)
+        {
 
             final Foobar actualFoobar = shelf.get(i);
 
@@ -86,7 +89,8 @@ public class ShelfTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testInit0Item() {
+    public final void testInit0Item()
+    {
 
         final Shelf shelf = new Shelf(0);
 
@@ -99,7 +103,8 @@ public class ShelfTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testInit1Item() {
+    public final void testInit1Item()
+    {
 
         final Shelf shelf = new Shelf(1);
 
@@ -112,7 +117,8 @@ public class ShelfTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testInit4Item() {
+    public final void testInit4Item()
+    {
 
         final Shelf shelf = new Shelf(4);
 
@@ -127,16 +133,18 @@ public class ShelfTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testInit20Item() {
+    public final void testInit20Item()
+    {
 
         final Shelf shelf = new Shelf(20);
 
         System.out.println(shelf);
         Assert.assertEquals(20, shelf.size());
         Assert.assertEquals(187.39f, shelf.sum().floatValue());
-        Assert.assertEquals(
-                "size=20 sum=187.39 shelf=[price=1, price=1.20, price=1.44, price=1.73, price=2.08, price=2.50, price=3.00, price=3.60, price=4.32, price=5.18, price=6.22, price=7.46, price=8.95, price=10.74, price=12.89, price=15.47, price=18.56, price=22.27, price=26.72, price=32.06]",
-                shelf.toString());
+        Assert
+                .assertEquals(
+                        "size=20 sum=187.39 shelf=[price=1, price=1.20, price=1.44, price=1.73, price=2.08, price=2.50, price=3.00, price=3.60, price=4.32, price=5.18, price=6.22, price=7.46, price=8.95, price=10.74, price=12.89, price=15.47, price=18.56, price=22.27, price=26.72, price=32.06]",
+                        shelf.toString());
 
     }
 
@@ -144,7 +152,8 @@ public class ShelfTest {
      * DOCUMENT ME!
      */
     @Test
-    public final void testInit21Item() {
+    public final void testInit21Item()
+    {
 
         final Shelf shelf = new Shelf(21);
 

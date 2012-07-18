@@ -49,7 +49,8 @@ import com.nabla.project.hurrican.Hurrican;
 /**
  * Helper to get a file on Eclipse environment Reading and writing text files Check best practice.
  */
-public final class MyFile implements IMyFile {
+public final class MyFile implements IMyFile
+{
 
     private static final long             serialVersionUID = 1L;
     private static final transient Logger LOGGER           = Logger.getLogger(MyFile.class);
@@ -58,7 +59,8 @@ public final class MyFile implements IMyFile {
     /** @serial */
     private final String                  path;
 
-    public void addURL(final URL url) throws Exception {
+    public void addURL(final URL url) throws Exception
+    {
         final URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         final Class clazz = URLClassLoader.class;
 
@@ -71,7 +73,8 @@ public final class MyFile implements IMyFile {
     /**
      * @param aUrl ask for the file name only (path will be taken from eclipse default target classes directory) example test.txt
      */
-    public MyFile(final String aUrl) {
+    public MyFile(final String aUrl)
+    {
         // this(aUrl, System.getProperty("user.dir") + File.separator + "target-eclipse" + File.separator + "classes" + File.separator + aUrl);
         this(aUrl, System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + aUrl);
         // this(aUrl, aUrl);
@@ -97,7 +100,8 @@ public final class MyFile implements IMyFile {
      * @param aUrl ask for the file name only
      * @param aPath should be defined with the url
      */
-    private MyFile(final String aUrl, final String aPath) {
+    private MyFile(final String aUrl, final String aPath)
+    {
 
         this.url = aUrl;
         this.path = aPath;
@@ -110,7 +114,8 @@ public final class MyFile implements IMyFile {
      * @return DOCUMENT ME!
      */
     @Override
-    public String getUrl() {
+    public String getUrl()
+    {
 
         return this.url;
 
@@ -126,7 +131,8 @@ public final class MyFile implements IMyFile {
      * @return the path
      */
     @Override
-    public String getPath() {
+    public String getPath()
+    {
 
         return this.path;
 
@@ -151,7 +157,8 @@ public final class MyFile implements IMyFile {
      *
      * @throws FileNotFoundException do not forget to close the reader in a finally
      */
-    private BufferedReader getReader() throws FileNotFoundException {
+    private BufferedReader getReader() throws FileNotFoundException
+    {
 
         // use buffering, reading one line at a time
         // FileReader always assumes default encoding is OK!
@@ -165,37 +172,47 @@ public final class MyFile implements IMyFile {
      * @throws Exception DOCUMENT ME!
      */
     @Override
-    public void printTest() throws Exception {
+    public void printTest() throws Exception
+    {
 
-        if ((this.getPath() != null) && !this.getUrl().isEmpty()) {
+        if ((this.getPath() != null) && !this.getUrl().isEmpty())
+        {
 
-            if (MyFile.LOGGER.isDebugEnabled()) {
+            if (MyFile.LOGGER.isDebugEnabled())
+            {
 
                 MyFile.LOGGER.debug("File path = " + this.getPath());
 
             }
 
-            try {
+            try
+            {
 
                 final BufferedReader dataIn = this.getReader();
 
-                try {
+                try
+                {
 
                     FileHelper.printData(Hurrican.DEFAULT_SEASON, dataIn);
 
-                } finally {
+                }
+                finally
+                {
 
                     dataIn.close();
 
                 }
 
-            } catch (final IOException ex) {
+            }
+            catch (final IOException ex)
+            {
 
                 ex.printStackTrace();
 
             }
 
-        } else {
+        } else
+        {
 
             throw new Exception("File path or url is not defined");
 
@@ -209,7 +226,8 @@ public final class MyFile implements IMyFile {
      * @return DOCUMENT ME!
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 
