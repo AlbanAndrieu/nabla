@@ -1720,7 +1720,7 @@
 		<maven.assembly.plugin.version>2.1</maven.assembly.plugin.version>
 		<maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
 		<maven.scm.plugin.version>1.2</maven.scm.plugin.version>
-		<maven.checkstyle.plugin.version>2.7</maven.checkstyle.plugin.version>
+		<maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
 		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
 		<maven.dependency.plugin.version>2.2</maven.dependency.plugin.version>
@@ -3093,6 +3093,7 @@
     		      </execution>
     		    </executions>
     		  </plugin>
+     <!--
      <plugin>
         <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
         <artifactId>maven-java-formatter-plugin</artifactId>
@@ -3118,6 +3119,7 @@
           </dependency>
         </dependencies>
       </plugin>
+      -->
                   <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
