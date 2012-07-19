@@ -1485,9 +1485,11 @@
 		<jbossall.client.version>4.2.3.GA</jbossall.client.version>
 		<jboss.annotations.ejb3.version>4.2.3.GA</jboss.annotations.ejb3.version>
 		<jboss.embeddable.version>1.0.0.Alpha9</jboss.embeddable.version>
+                <jboss.microcontainer.version>alpha_9</jboss.microcontainer.version>
 		<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
                 <jboss.cache.version>1.4.1.SP9</jboss.cache.version>
                 <jboss.el.version>1.0_02.CR5</jboss.el.version>	
+                <jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
                 <el.api.version>2.2.1-b04</el.api.version>	
 		<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
 		<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
@@ -1849,7 +1851,7 @@
 									<pluginExecutionFilter>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-antrun-plugin</artifactId>
-										<versionRange>[1.7,)</versionRange>
+										<versionRange>[${maven.antrun.plugin.version},)</versionRange>
 										<goals>
 											<goal>run</goal>
 										</goals>
@@ -3863,8 +3865,8 @@
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
 				<version>${commons.fileupload.version}</version>
-				<scope>runtime</scope>
-				<!--<scope>compile</scope>-->
+				<!--<scope>runtime</scope>-->
+				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -4461,23 +4463,22 @@
                 <version>${jboss.version}</version>
                 <scope>runtime</scope>
             </dependency>
-
             <!--dependency>
                 <groupId>org.jboss.microcontainer</groupId>
                 <artifactId>jboss-ejb3-all</artifactId>
-                <version>alpha_9</version>
+                <version>${jboss.microcontainer.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.microcontainer</groupId>
                 <artifactId>jms-ra</artifactId>
-                <version>alpha_9</version>
+                <version>${jboss.microcontainer.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.microcontainer</groupId>
                 <artifactId>jcainflow</artifactId>
-                <version>alpha_9</version>
+                <version>${jboss.microcontainer.version}</version>
                 <scope>provided</scope>
             </dependency-->
             
