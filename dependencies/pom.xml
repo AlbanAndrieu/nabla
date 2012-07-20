@@ -1724,6 +1724,7 @@
 		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
 		<maven.dependency.plugin.version>2.2</maven.dependency.plugin.version>
+		<maven.clover.plugin.version>3.1.6</maven.clover.plugin.version>
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 		<maven.replacer.plugin.version>1.4.0</maven.replacer.plugin.version>
 		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
@@ -2977,20 +2978,18 @@
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>${maven.dependency.plugin.version}</version>
 				</plugin>
+                                <!--
 				<plugin>
 					<groupId>com.atlassian.maven.plugins</groupId>
 					<artifactId>maven-clover2-plugin</artifactId>
-					<!-- <version>3.7</version> -->
+					<version>${maven.clover.plugin.version}</version>
 					<configuration>
 						<jdk>${jdkLevel}</jdk>
-						<!--
-							<licenseLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</licenseLocation>
-							<generateHtml>false</generateHtml>
-						-->
 						<generateXml>true</generateXml>
 						<generatePdf>true</generatePdf>
 					</configuration>
 				</plugin>
+                                -->
 				<plugin>
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-java2ws-plugin</artifactId>
@@ -3093,7 +3092,6 @@
     		      </execution>
     		    </executions>
     		  </plugin>
-     <!--
      <plugin>
         <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
         <artifactId>maven-java-formatter-plugin</artifactId>
@@ -3106,7 +3104,7 @@
           </execution>
         </executions>
         <configuration>
-          <configFile>project/jalopy_regles_nabla_eclipse.xml</configFile>
+          <configFile>${home.dir}/build-tools/src/main/resources/project/jalopy_regles_nabla_eclipse.xml</configFile>
           <compilerSource>${jdkLevel}</compilerSource>
           <compilerCompliance>${jdkLevel}</compilerCompliance>
           <compilerTargetPlatform>${jdkLevel}</compilerTargetPlatform>
@@ -3119,7 +3117,6 @@
           </dependency>
         </dependencies>
       </plugin>
-      -->
                   <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
