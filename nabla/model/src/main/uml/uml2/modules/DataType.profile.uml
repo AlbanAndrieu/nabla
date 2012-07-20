@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="5e16ce39-6682-11e1-85dd-bf989cc331c3" name="DataType" metamodelReference="_0metamodelReferenceDataType">
-  <eAnnotations xmi:id="_ulIcFMSREeGg5bWJWQgkqQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-    <contents xmi:type="ecore:EPackage" xmi:id="_ulIcFcSREeGg5bWJWQgkqQ" name="DataType" nsURI="http:///schemas/DataType/_uH-iocSREeGg5bWJWQgkqQ/0" nsPrefix="DataType"/>
+  <eAnnotations xmi:id="_85L4YtKvEeGmDYMpM3OaAA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_85L4Y9KvEeGmDYMpM3OaAA" name="DataType" nsURI="http:///schemas/DataType/_8jKio9KvEeGmDYMpM3OaAA/0" nsPrefix="DataType"/>
   </eAnnotations>
   <packageImport xmi:id="_0metamodelReferenceDataType">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
