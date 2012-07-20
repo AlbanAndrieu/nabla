@@ -75,7 +75,7 @@
       of any *.xml files in the search locations (instead of having to specify explicit paths...).
       Except for 'profileMappingsUri', this approach did not seem to work as there is no
       "logical" mapping name. mappingsUri is specified without 'Mappings' suffix on file name.
-      See http://docs.andromda.org/mappings.html.
+      See http://www.andromda.org/docs/mappings.html.
       A default empty mda/config/mappings/JavaMappings.xml is provided with the generated project.
       It can be used to customize mappings from UML to Java datatypes used by all cartridges. -->
     <mappingsSearchLocations>
@@ -89,7 +89,7 @@
     <namespaces>
         <!-- namespace property values used by ALL cartridges -->
         <!-- Variable references refer to properties defined in root pom.xml or mda/pom.xml files -->
-        <!-- See http://www.andromda.org/docs/andromda-metafacades/andromda-uml-metafacades/andromda-metafacades-emf-uml2/namespace.html -->
+        <!-- See http://www.andromda.org/docs/andromda-metafacades/andromda-uml-metafacades/emf/andromda-metafacades-emf-uml22/namespace.html -->
         <namespace name="default">
             <properties>
                 <!-- Use enums, strongly typed collections with templates, and @annotation markups -->
@@ -136,8 +136,7 @@
                 <property name="testDialect">${hibernate.dialect}</property>
                 <property name="hibernateVersion">3</property>                   
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
-                <property name="hibernateHbm2DDLAuto">create-drop</property>
-                <!--<property name="hibernateHbm2DDLAuto">create-drop</property> does not work with unitest-->               
+                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest-->               
                 <property name="hibernateDialect">${hibernate.dialect}</property>       
                 <property name="persistenceContextUnitName">${application.id}</property>
                 <property name="hibernateQueryUseNamedParameters">true</property>

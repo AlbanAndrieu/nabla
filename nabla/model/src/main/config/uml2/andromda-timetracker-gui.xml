@@ -138,7 +138,8 @@
                 <property name="testDriver">${jdbc.driver}</property>
                 <property name="testConnectionUrl">${jdbc.url}</property>
                 <property name="testDialect">${hibernate.dialect}</property>
-                <property name="hibernateHbm2DDLAuto">update</property>
+                <!--<property name="hibernateHbm2DDLAuto">update</property>-->
+                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest--> 
             </properties>
         </namespace>
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->

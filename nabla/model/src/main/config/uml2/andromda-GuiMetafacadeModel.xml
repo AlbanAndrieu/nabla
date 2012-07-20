@@ -2,7 +2,7 @@
     <properties>
         <property name="cartridgeFilter">meta</property>
         <property name="failOnValidationErrors">true</property>
-        <!--<property name="loggingConfigurationUri">file:${basedir}/../log4j.xml</property>-->
+        <property name="loggingConfigurationUri">file:${basedir}/../log4j.xml</property>
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes. 
     To start server from mda directory: mvn andromda:start-server.
