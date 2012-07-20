@@ -26,48 +26,58 @@ import org.jboss.errai.bus.server.annotations.Service;
  */
 @ApplicationScoped
 @Service
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements MemberService
+{
 
-  @Inject
-  private Logger log;
+    @Inject
+    private Logger          log;
 
-  @Inject
-  private EntityManager em;
+    @Inject
+    private EntityManager   em;
 
-  @Inject
-  private UserTransaction userTransaction;
+    @Inject
+    private UserTransaction userTransaction;
 
-  @Inject @New
-  private Event<Member> newMemberEvent;
+    @Inject
+    @New
+    private Event<Member>   newMemberEvent;
 
-  @Override
-  public void register(Member newMember) {
-    log.info("Registering " + newMember.getName());
-    try {
-      userTransaction.begin();
-      em.persist(newMember);
-      userTransaction.commit();
-    } catch (Exception ex) {
-      try {
-        userTransaction.rollback();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      throw new RuntimeException("Registering the member failed: "+ex.toString());
+    @Override
+    public void register(Member newMember)
+    {
+        log.info("Registering " + newMember.getName());
+        try
+        {
+            userTransaction.begin();
+            em.persist(newMember);
+            userTransaction.commit();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                userTransaction.rollback();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            throw new RuntimeException("Registering the member failed: " + ex.toString());
+        }
+        newMemberEvent.fire(newMember);
     }
-    newMemberEvent.fire(newMember);
-  }
 
-  @Override
-  public List<Member> retrieveAllMembersOrderedByName() {
-    CriteriaBuilder cb = em.getCriteriaBuilder();
-    CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-    Root<Member> member = criteria.from(Member.class);
-    // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-    // feature in JPA 2.0
-    // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
-    criteria.select(member).orderBy(cb.asc(member.get("name")));
-    return em.createQuery(criteria).getResultList();
-  }
+    @Override
+    public List<Member> retrieveAllMembersOrderedByName()
+    {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+        Root<Member> member = criteria.from(Member.class);
+        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
+        // feature in JPA 2.0
+        // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
+        criteria.select(member).orderBy(cb.asc(member.get("name")));
+        return em.createQuery(criteria).getResultList();
+    }
 
 }

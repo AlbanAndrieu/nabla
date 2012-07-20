@@ -42,79 +42,93 @@ import org.jboss.errai.common.client.api.annotations.Portable;
 @XmlRootElement
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class Member implements Serializable, Comparable<Member> {
-  /** Default value included to remove warning. Remove or modify at will. **/
-  private static final long serialVersionUID = 1L;
+public class Member implements Serializable, Comparable<Member>
+{
+    /** Default value included to remove warning. Remove or modify at will. **/
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue
-  private Long id;
+    @Id
+    @GeneratedValue
+    private Long              id;
 
-  @NotNull
-  @Size(min = 1, max = 25)
-  @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
-  private String name;
+    @NotNull
+    @Size(min = 1, max = 25)
+    @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+    private String            name;
 
-  @NotNull
-  @NotEmpty
-  @Email
-  private String email;
+    @NotNull
+    @NotEmpty
+    @Email
+    private String            email;
 
-  @NotNull
-  @Size(min = 10, max = 12)
-  @Digits(fraction = 0, integer = 12)
-  @Column(name = "phone_number")
-  private String phoneNumber;
+    @NotNull
+    @Size(min = 10, max = 12)
+    @Digits(fraction = 0, integer = 12)
+    @Column(name = "phone_number")
+    private String            phoneNumber;
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  /**
-   * Compares this member to the other member case-insensitive-alphabetically by name.
-   */
-  @Override
-  public int compareTo(Member o) {
-    if (o == null) {
-      return 1;
+    public Long getId()
+    {
+        return id;
     }
-    if (this.name == null && o.name != null) {
-      return -1;
+
+    public void setId(Long id)
+    {
+        this.id = id;
     }
-    if (this.name == null && o.name == null) {
-      return 0;
+
+    public String getName()
+    {
+        return name;
     }
-    if (this.name != null && o.name == null) {
-      return 1;
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
-    return this.name.compareToIgnoreCase(o.name);
-  }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Compares this member to the other member case-insensitive-alphabetically by name.
+     */
+    @Override
+    public int compareTo(Member o)
+    {
+        if (o == null)
+        {
+            return 1;
+        }
+        if (this.name == null && o.name != null)
+        {
+            return -1;
+        }
+        if (this.name == null && o.name == null)
+        {
+            return 0;
+        }
+        if (this.name != null && o.name == null)
+        {
+            return 1;
+        }
+        return this.name.compareToIgnoreCase(o.name);
+    }
 }

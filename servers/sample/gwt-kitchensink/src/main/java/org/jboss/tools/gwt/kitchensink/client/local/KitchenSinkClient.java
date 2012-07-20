@@ -52,194 +52,231 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-public class KitchenSinkClient extends Composite {
+public class KitchenSinkClient extends Composite
+{
 
-  private static final KitchenSinkTemplates TEMPLATES = GWT.create(KitchenSinkTemplates.class);
+    private static final KitchenSinkTemplates TEMPLATES = GWT.create(KitchenSinkTemplates.class);
 
-  private static KitchenSinkClientUiBinder uiBinder = GWT.create(KitchenSinkClientUiBinder.class);
+    private static KitchenSinkClientUiBinder  uiBinder  = GWT.create(KitchenSinkClientUiBinder.class);
 
-  interface KitchenSinkClientUiBinder extends
-      UiBinder<Widget, KitchenSinkClient> {
-  }
-
-  private final Caller<MemberService> memberService;
-
-  /**
-   * The list of members. Add to this list via the
-   * {@link #addDisplayedMember(Member)} method to ensure the update is visible to
-   * the user.
-   */
-  private final List<Member> members = new ArrayList<Member>();
-
-  // The following fields are all injected during instance construction by GWT UiBinder
-
-  @UiField Label generalErrorLabel;
-
-  @UiField Button registerButton;
-  @UiField Label registerConfirmMessage;
-
-  @UiField TextBox nameBox;
-  @UiField Label nameValidationErr;
-
-  @UiField TextBox emailBox;
-  @UiField Label emailValidationErr;
-
-  @UiField TextBox phoneBox;
-  @UiField Label phoneValidationErr;
-
-  @UiField Label tableEmptyMessage;
-
-  @UiField(provided=true) CellTable<Member> membersTable = new CellTable<Member>();
-
-  public KitchenSinkClient(Caller<MemberService> memberService) {
-    this.memberService = memberService;
-    initWidget(uiBinder.createAndBindUi(this));
-
-    // This sets up the structure of the Registered Members CellTable
-
-    membersTable.addColumn(new Column<Member, String>(new TextCell()) {
-      @Override
-      public String getValue(Member m) {
-        return m.getName();
-      }
-    }, "Name");
-
-    membersTable.addColumn(new Column<Member, String>(new TextCell()) {
-      @Override
-      public String getValue(Member m) {
-        return m.getEmail();
-      }
-    }, "Email");
-
-    membersTable.addColumn(new Column<Member, String>(new TextCell()) {
-      @Override
-      public String getValue(Member m) {
-        return m.getPhoneNumber();
-      }
-    }, "Phone Number");
-
-    membersTable.addColumn(new Column<Member, SafeHtml>(new SafeHtmlCell()) {
-      @Override
-      public SafeHtml getValue(Member m) {
-        String url = "rest/members/" + m.getId();
-        return TEMPLATES.link(UriUtils.fromString(url), url);
-      }
-    }, "REST URL");
-}
-
-  /**
-   * Validates the new member data and sends it to the server if validation
-   * passes. Displays validation messages if validation fails.
-   *
-   * @param event The click event (ignored)
-   */
-  @UiHandler("registerButton")
-  void onRegisterButtonClick(ClickEvent event) {
-    Member newMember = new Member();
-    newMember.setName(nameBox.getText());
-    newMember.setEmail(emailBox.getText());
-    newMember.setPhoneNumber(phoneBox.getText());
-
-    nameValidationErr.setText("");
-    emailValidationErr.setText("");
-    phoneValidationErr.setText("");
-    registerConfirmMessage.setText("");
-    registerConfirmMessage.setStyleName("errorMessage");
-
-    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-    Set<ConstraintViolation<Member>> violations = validator.validate(newMember);
-
-    for (ConstraintViolation<Member> cv : violations) {
-      String prop = cv.getPropertyPath().toString();
-      if (prop.equals("name")) {
-        nameValidationErr.setText(cv.getMessage());
-      } else if (prop.equals("email")) {
-        emailValidationErr.setText(cv.getMessage());
-      } else if (prop.equals("phoneNumber")) {
-        phoneValidationErr.setText(cv.getMessage());
-      } else {
-        registerConfirmMessage.setText(cv.getMessage());
-      }
+    interface KitchenSinkClientUiBinder extends UiBinder<Widget, KitchenSinkClient>
+    {
     }
 
-    if (!violations.isEmpty()) return;
+    private final Caller<MemberService> memberService;
 
-    memberService.call(
-        new RemoteCallback<Void>() {
-          @Override
-          public void callback(Void response) {
-            registerConfirmMessage.setText("Registration Complete!");
-            registerConfirmMessage.setStyleName("successMessage");
+    /**
+     * The list of members. Add to this list via the
+     * {@link #addDisplayedMember(Member)} method to ensure the update is visible to
+     * the user.
+     */
+    private final List<Member>          members      = new ArrayList<Member>();
 
-            // the server will also broadcast a @New Member CDI event, which causes the table to update
-            // so we don't have to do that here.
-          }
-        },
-        new ErrorCallback() {
+    // The following fields are all injected during instance construction by GWT UiBinder
+
+    @UiField
+    Label                               generalErrorLabel;
+
+    @UiField
+    Button                              registerButton;
+    @UiField
+    Label                               registerConfirmMessage;
+
+    @UiField
+    TextBox                             nameBox;
+    @UiField
+    Label                               nameValidationErr;
+
+    @UiField
+    TextBox                             emailBox;
+    @UiField
+    Label                               emailValidationErr;
+
+    @UiField
+    TextBox                             phoneBox;
+    @UiField
+    Label                               phoneValidationErr;
+
+    @UiField
+    Label                               tableEmptyMessage;
+
+    @UiField(provided = true)
+    CellTable<Member>                   membersTable = new CellTable<Member>();
+
+    public KitchenSinkClient(Caller<MemberService> memberService)
+    {
+        this.memberService = memberService;
+        initWidget(uiBinder.createAndBindUi(this));
+
+        // This sets up the structure of the Registered Members CellTable
+
+        membersTable.addColumn(new Column<Member, String>(new TextCell())
+        {
             @Override
-            public boolean error(Message message, Throwable throwable) {
-              registerConfirmMessage.setText("Member registration failed: " + throwable.getMessage());
-              return false;
+            public String getValue(Member m)
+            {
+                return m.getName();
             }
-          }).register(newMember);
-  }
+        }, "Name");
 
-  /**
-   * Adds the given member into the local Registered Members CellTable. Does not
-   * communicate with the server.
-   *
-   * @param m
-   *          The member to add to the CellTable being displayed in the web
-   *          page.
-   */
-  public void addDisplayedMember(Member m) {
-    members.add(m);
-    Collections.sort(members);
-    membersTable.setRowData(members);
-    setTableStatusMessage("");
-  }
+        membersTable.addColumn(new Column<Member, String>(new TextCell())
+        {
+            @Override
+            public String getValue(Member m)
+            {
+                return m.getEmail();
+            }
+        }, "Email");
 
-  /**
-   * Replaces the displayed list of members with the given list of members.
-   *
-   * @param members The list of members to display on the web page. Not null.
-   */
-  public void setDisplayedMembers(List<Member> members) {
-    this.members.clear();
-    this.members.addAll(members);
-    membersTable.setRowData(this.members);
-    if (members.isEmpty()) {
-      setTableStatusMessage("No members registered yet.");
-    } else {
-      setTableStatusMessage("");
+        membersTable.addColumn(new Column<Member, String>(new TextCell())
+        {
+            @Override
+            public String getValue(Member m)
+            {
+                return m.getPhoneNumber();
+            }
+        }, "Phone Number");
+
+        membersTable.addColumn(new Column<Member, SafeHtml>(new SafeHtmlCell())
+        {
+            @Override
+            public SafeHtml getValue(Member m)
+            {
+                String url = "rest/members/" + m.getId();
+                return TEMPLATES.link(UriUtils.fromString(url), url);
+            }
+        }, "REST URL");
     }
-  }
 
-  /**
-   * Sets the general error message that appears near the top of the page.
-   */
-  public void setGeneralErrorMessage(String string) {
-    generalErrorLabel.setText(string);
-  }
+    /**
+     * Validates the new member data and sends it to the server if validation
+     * passes. Displays validation messages if validation fails.
+     *
+     * @param event The click event (ignored)
+     */
+    @UiHandler("registerButton")
+    void onRegisterButtonClick(ClickEvent event)
+    {
+        Member newMember = new Member();
+        newMember.setName(nameBox.getText());
+        newMember.setEmail(emailBox.getText());
+        newMember.setPhoneNumber(phoneBox.getText());
 
-  /**
-   * Sets the message that appears underneath the Registered Members table.
-   */
-  public void setTableStatusMessage(String message) {
-    tableEmptyMessage.setText(message);
-  }
+        nameValidationErr.setText("");
+        emailValidationErr.setText("");
+        phoneValidationErr.setText("");
+        registerConfirmMessage.setText("");
+        registerConfirmMessage.setStyleName("errorMessage");
 
-  /**
-   * This is GWT's facility for building HTML snippets that are not vulnerable
-   * to XSS attacks.
-   * <p>
-   * See <a href=
-   * "http://code.google.com/webtoolkit/doc/latest/DevGuideSecuritySafeHtml.html#Creating_SafeHtml_Values"
-   * >the GWT user guide</a> for details.
-   */
-  public interface KitchenSinkTemplates extends SafeHtmlTemplates {
-    @Template("<a target=\"_blank\" href=\"{0}\">{1}</a>")
-    SafeHtml link(SafeUri url, String linkText);
-  }
+        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+        Set<ConstraintViolation<Member>> violations = validator.validate(newMember);
+
+        for (ConstraintViolation<Member> cv : violations)
+        {
+            String prop = cv.getPropertyPath().toString();
+            if (prop.equals("name"))
+            {
+                nameValidationErr.setText(cv.getMessage());
+            } else if (prop.equals("email"))
+            {
+                emailValidationErr.setText(cv.getMessage());
+            } else if (prop.equals("phoneNumber"))
+            {
+                phoneValidationErr.setText(cv.getMessage());
+            } else
+            {
+                registerConfirmMessage.setText(cv.getMessage());
+            }
+        }
+
+        if (!violations.isEmpty())
+            return;
+
+        memberService.call(new RemoteCallback<Void>()
+        {
+            @Override
+            public void callback(Void response)
+            {
+                registerConfirmMessage.setText("Registration Complete!");
+                registerConfirmMessage.setStyleName("successMessage");
+
+                // the server will also broadcast a @New Member CDI event, which causes the table to update
+                // so we don't have to do that here.
+            }
+        }, new ErrorCallback()
+        {
+            @Override
+            public boolean error(Message message, Throwable throwable)
+            {
+                registerConfirmMessage.setText("Member registration failed: " + throwable.getMessage());
+                return false;
+            }
+        }).register(newMember);
+    }
+
+    /**
+     * Adds the given member into the local Registered Members CellTable. Does not
+     * communicate with the server.
+     *
+     * @param m
+     *          The member to add to the CellTable being displayed in the web
+     *          page.
+     */
+    public void addDisplayedMember(Member m)
+    {
+        members.add(m);
+        Collections.sort(members);
+        membersTable.setRowData(members);
+        setTableStatusMessage("");
+    }
+
+    /**
+     * Replaces the displayed list of members with the given list of members.
+     *
+     * @param members The list of members to display on the web page. Not null.
+     */
+    public void setDisplayedMembers(List<Member> members)
+    {
+        this.members.clear();
+        this.members.addAll(members);
+        membersTable.setRowData(this.members);
+        if (members.isEmpty())
+        {
+            setTableStatusMessage("No members registered yet.");
+        } else
+        {
+            setTableStatusMessage("");
+        }
+    }
+
+    /**
+     * Sets the general error message that appears near the top of the page.
+     */
+    public void setGeneralErrorMessage(String string)
+    {
+        generalErrorLabel.setText(string);
+    }
+
+    /**
+     * Sets the message that appears underneath the Registered Members table.
+     */
+    public void setTableStatusMessage(String message)
+    {
+        tableEmptyMessage.setText(message);
+    }
+
+    /**
+     * This is GWT's facility for building HTML snippets that are not vulnerable
+     * to XSS attacks.
+     * <p>
+     * See <a href=
+     * "http://code.google.com/webtoolkit/doc/latest/DevGuideSecuritySafeHtml.html#Creating_SafeHtml_Values"
+     * >the GWT user guide</a> for details.
+     */
+    public interface KitchenSinkTemplates extends SafeHtmlTemplates
+    {
+        @Template("<a target=\"_blank\" href=\"{0}\">{1}</a>")
+        SafeHtml link(SafeUri url, String linkText);
+    }
 
 }

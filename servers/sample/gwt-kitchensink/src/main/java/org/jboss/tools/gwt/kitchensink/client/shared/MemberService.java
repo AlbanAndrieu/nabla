@@ -13,7 +13,9 @@ import org.jboss.errai.bus.server.annotations.Remote;
  * @see org.jboss.tools.gwt.kitchensink.controller.MemberServiceImpl
  */
 @Remote
-public interface MemberService {
-  public void register(Member member);
-  public List<Member> retrieveAllMembersOrderedByName();
+public interface MemberService
+{
+    public void register(Member member);
+
+    public List<Member> retrieveAllMembersOrderedByName();
 }

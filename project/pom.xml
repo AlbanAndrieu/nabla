@@ -403,19 +403,17 @@
 									<version>${maven.checkstyle.plugin.version}</version>
 									<configuration>
 										<linkXref>true</linkXref>
-										<!--<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding> -->
 										<charset>${project.build.sourceEncoding}</charset>
 										<docencoding>${project.build.sourceEncoding}</docencoding>
 										<encoding>${project.build.sourceEncoding}</encoding>
 										<includeTestSourceDirectory>true</includeTestSourceDirectory>
-										<!--<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>-->
+<!--
 										<configLocation>project/checkstyle_checks.xml</configLocation>
 										<headerLocation>project/LICENSE-1.0.txt</headerLocation>
+-->
+							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
+							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>							 
 										<propertyExpansion>projectname=nabla</propertyExpansion>
-										<!-- 
-										<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
-										<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
-										 -->
 									</configuration>														
 								</plugin>
 
