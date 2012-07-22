@@ -438,8 +438,10 @@
                                 <basedir>${basedir}/../app/src/main/sql</basedir>
                                 <includes>
                                     <!--<include>schema.sql</include>-->
+                                    <!--
                                     <include>static-data-insert.sql</include>
                                     <include>test-data-insert.sql</include>
+                                    -->
                                 </includes>
                             </fileset>
                             <!-- We continue because database can be already created and data already inserted -->
@@ -489,6 +491,7 @@
 		<includes>
 		        <include>**/*.xml</include>
 		        <include>**/*.properties</include>
+		        <include>**/*.sql</include>
 		</includes>
             </resource>
             <resource>

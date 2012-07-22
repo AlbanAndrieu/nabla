@@ -28,6 +28,7 @@ import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -368,6 +369,68 @@ public abstract class UserDaoBase
         }
         this.getHibernateTemplate().deleteAll(entities);
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @SuppressWarnings({"unchecked"})
+    public User findByEmail(String email)
+    {
+        return (User)this.findByEmail(UserDao.TRANSFORM_NONE, email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Object findByEmail(final int transform, final String email)
+    {
+        return this.findByEmail(transform, "from UserImpl as user where user.email = :email", email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User findByEmail(final String queryString, final String email)
+    {
+        return (User)this.findByEmail(UserDao.TRANSFORM_NONE, queryString, email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Object findByEmail(final int transform, final String queryString, final String email)
+    {
+        try
+        {
+            Query queryObject = super.getSession(false).createQuery(queryString);
+            queryObject.setParameter("email", email);
+            Set results = new LinkedHashSet(queryObject.list());
+            Object result = null;
+            if (results.size() > 1)
+            {
+                throw new InvalidDataAccessResourceUsageException(
+                    "More than one instance of 'org.andromda.timetracker.domain.User"
+                        + "' was found when executing query --> '" + queryString + "'");
+            }
+            else if (results.size() == 1)
+            {
+                result = results.iterator().next();
+            }
+            if(transform != TRANSFORM_NONE){
+                result = transformEntity(transform, (User)result);
+            }
+            return result;
+        }
+        catch (HibernateException ex)
+        {
+            throw super.convertHibernateAccessException(ex);
+        }
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -243,11 +243,11 @@ public abstract class TimecardDaoBase
      */
     @Override
     public Timecard create(
-        TimecardStatus status,
+        String comments,
         Date startDate,
-        String comments)
+        TimecardStatus status)
     {
-        return (Timecard)this.create(TimecardDao.TRANSFORM_NONE, status, startDate, comments);
+        return (Timecard)this.create(TimecardDao.TRANSFORM_NONE, comments, startDate, status);
     }
 
     /**
@@ -256,14 +256,14 @@ public abstract class TimecardDaoBase
     @Override
     public Object create(
         final int transform,
-        TimecardStatus status,
+        String comments,
         Date startDate,
-        String comments)
+        TimecardStatus status)
     {
         Timecard entity = new TimecardImpl();
-        entity.setStatus(status);
-        entity.setStartDate(startDate);
         entity.setComments(comments);
+        entity.setStartDate(startDate);
+        entity.setStatus(status);
         return this.create(transform, entity);
     }
 
@@ -672,17 +672,17 @@ public abstract class TimecardDaoBase
         Timecard target,
         boolean copyIfNull)
     {
-        if (copyIfNull || source.getStatus() != null)
+        if (copyIfNull || source.getComments() != null)
         {
-            target.setStatus(source.getStatus());
+            target.setComments(source.getComments());
         }
         if (copyIfNull || source.getStartDate() != null)
         {
             target.setStartDate(source.getStartDate());
         }
-        if (copyIfNull || source.getComments() != null)
+        if (copyIfNull || source.getStatus() != null)
         {
-            target.setComments(source.getComments());
+            target.setStatus(source.getStatus());
         }
     }
 
@@ -824,17 +824,17 @@ public abstract class TimecardDaoBase
         Timecard target,
         boolean copyIfNull)
     {
-        if (copyIfNull || source.getStatus() != null)
+        if (copyIfNull || source.getComments() != null)
         {
-            target.setStatus(source.getStatus());
+            target.setComments(source.getComments());
         }
         if (copyIfNull || source.getStartDate() != null)
         {
             target.setStartDate(source.getStartDate());
         }
-        if (copyIfNull || source.getComments() != null)
+        if (copyIfNull || source.getStatus() != null)
         {
-            target.setComments(source.getComments());
+            target.setStatus(source.getStatus());
         }
     }
 

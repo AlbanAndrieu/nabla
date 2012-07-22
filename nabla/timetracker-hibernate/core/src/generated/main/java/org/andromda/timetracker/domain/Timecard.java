@@ -19,27 +19,27 @@ public abstract class Timecard
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -635666710596476780L;
+    private static final long serialVersionUID = -8810488711747049867L;
 
     // Generate 4 attributes
-    private TimecardStatus status;
+    private String comments;
 
     /**
      * 
-     * @return this.status TimecardStatus
+     * @return this.comments String
      */
-    public TimecardStatus getStatus()
+    public String getComments()
     {
-        return this.status;
+        return this.comments;
     }
 
     /**
      * 
-     * @param statusIn TimecardStatus
+     * @param commentsIn String
      */
-    public void setStatus(TimecardStatus statusIn)
+    public void setComments(String commentsIn)
     {
-        this.status = statusIn;
+        this.comments = commentsIn;
     }
 
     private Date startDate;
@@ -62,24 +62,24 @@ public abstract class Timecard
         this.startDate = startDateIn;
     }
 
-    private String comments;
+    private TimecardStatus status;
 
     /**
      * 
-     * @return this.comments String
+     * @return this.status TimecardStatus
      */
-    public String getComments()
+    public TimecardStatus getStatus()
     {
-        return this.comments;
+        return this.status;
     }
 
     /**
      * 
-     * @param commentsIn String
+     * @param statusIn TimecardStatus
      */
-    public void setComments(String commentsIn)
+    public void setStatus(TimecardStatus statusIn)
     {
-        this.comments = commentsIn;
+        this.status = statusIn;
     }
 
     private Long id;
@@ -243,18 +243,18 @@ public abstract class Timecard
         /**
          * Constructs a new instance of {@link Timecard}, taking all required and/or
          * read-only properties as arguments, except for identifiers.
-         * @param status TimecardStatus
-         * @param startDate Date
          * @param comments String
+         * @param startDate Date
+         * @param status TimecardStatus
          * @param submitter User
          * @return newInstance
          */
-        public static Timecard newInstance(TimecardStatus status, Date startDate, String comments, User submitter)
+        public static Timecard newInstance(String comments, Date startDate, TimecardStatus status, User submitter)
         {
             final Timecard entity = new TimecardImpl();
-            entity.setStatus(status);
-            entity.setStartDate(startDate);
             entity.setComments(comments);
+            entity.setStartDate(startDate);
+            entity.setStatus(status);
             entity.setSubmitter(submitter);
             return entity;
         }
@@ -262,20 +262,20 @@ public abstract class Timecard
         /**
          * Constructs a new instance of {@link Timecard}, taking all possible properties
          * (except the identifier(s))as arguments.
-         * @param status TimecardStatus
-         * @param startDate Date
          * @param comments String
+         * @param startDate Date
+         * @param status TimecardStatus
          * @param approver User
          * @param submitter User
          * @param allocations Collection<TimeAllocation>
          * @return newInstance Timecard
          */
-        public static Timecard newInstance(TimecardStatus status, Date startDate, String comments, User approver, User submitter, Collection<TimeAllocation> allocations)
+        public static Timecard newInstance(String comments, Date startDate, TimecardStatus status, User approver, User submitter, Collection<TimeAllocation> allocations)
         {
             final Timecard entity = new TimecardImpl();
-            entity.setStatus(status);
-            entity.setStartDate(startDate);
             entity.setComments(comments);
+            entity.setStartDate(startDate);
+            entity.setStatus(status);
             entity.setApprover(approver);
             entity.setSubmitter(submitter);
             entity.setAllocations(allocations);
@@ -295,17 +295,17 @@ public abstract class Timecard
         }
         else
         {
-            if (this.getStatus() != null)
+            if (this.getComments() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getStatus().compareTo(o.getStatus()));
+                cmp = (cmp != 0 ? cmp : this.getComments().compareTo(o.getComments()));
             }
             if (this.getStartDate() != null)
             {
                 cmp = (cmp != 0 ? cmp : this.getStartDate().compareTo(o.getStartDate()));
             }
-            if (this.getComments() != null)
+            if (this.getStatus() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getComments().compareTo(o.getComments()));
+                cmp = (cmp != 0 ? cmp : this.getStatus().compareTo(o.getStatus()));
             }
         }
         return cmp;

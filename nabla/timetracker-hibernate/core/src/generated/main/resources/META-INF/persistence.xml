@@ -13,7 +13,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:/timetracker-hibernate</jta-data-source>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
             <property name="hibernate.jdbc.batch_size" value="0"/>

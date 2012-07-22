@@ -19,7 +19,7 @@ public abstract class User
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -3876530241628970605L;
+    private static final long serialVersionUID = -6177852626226267723L;
 
     // Generate 9 attributes
     private String username;
