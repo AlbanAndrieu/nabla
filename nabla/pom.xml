@@ -126,8 +126,7 @@
     	            </plugin>
     	        </plugins>	
     	    </build>
-        </profile>  
-        <!--
+        </profile> 
         <profile>
             <id>sample</id>
             <activation>
@@ -136,11 +135,8 @@
 	        </property>
 	        </activation>
 		<modules>		    
-       		    <module>timetracker-hibernate</module>
-                    <module>timetracker-ejb3</module>
-                    <module>timetracker-gui</module>
+       		    <module>sample</module>
 		</modules>
-	</profile>  	   
-       --> 
+	</profile> 
      </profiles>
 </project>
