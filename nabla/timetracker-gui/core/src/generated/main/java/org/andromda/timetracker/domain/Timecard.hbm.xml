@@ -17,19 +17,19 @@
                 <!-- id-generator merge-point -->
             </generator>
         </id>
-        <property name="status">
-            <column name="STATUS" not-null="true" unique="false" sql-type="VARCHAR(256)"/>
-            <type name="org.andromda.persistence.hibernate.usertypes.HibernateEnumType">
-                 <param name="enumClassName">org.andromda.timetracker.domain.TimecardStatus</param>
-            </type>
+        <property name="comments">
+            <column name="COMMENTS" not-null="true" unique="false" sql-type="VARCHAR(256)"/>
+            <type name="java.lang.String"/>
         </property>
         <property name="startDate">
             <column name="START_DATE" not-null="true" unique="false" sql-type="DATETIME"/>
             <type name="java.util.Date"/>
         </property>
-        <property name="comments">
-            <column name="COMMENTS" not-null="true" unique="false" sql-type="VARCHAR(256)"/>
-            <type name="java.lang.String"/>
+        <property name="status">
+            <column name="STATUS" not-null="true" unique="false" sql-type="VARCHAR(256)"/>
+            <type name="org.andromda.persistence.hibernate.usertypes.HibernateEnumType">
+                 <param name="enumClassName">org.andromda.timetracker.domain.TimecardStatus</param>
+            </type>
         </property>
         <many-to-one name="approver" class="org.andromda.timetracker.domain.UserImpl" foreign-key="TIMECARD_APPROVER_FKC" not-null="false" lazy="proxy" fetch="select">
             <column name="APPROVER_FK" not-null="false" sql-type="BIGINT"/>

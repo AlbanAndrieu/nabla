@@ -22,7 +22,7 @@
         <tr:panelGroupLayout layout="vertical" inlineStyle="display:#{manageUserForm.editState?'none':''}">
         <tr:subform id="manageUserForm_search">
         <tr:panelFormLayout>
-        <tr:inputText id="searchForm_username" value="#{manageUserForm.searchForm.username}" label="#{messages['user.username']}:" required="false" readOnly="false">
+        <tr:inputText id="searchForm_username" value="#{manageUserForm.searchForm.username}" label="#{messages['user.username']}:" required="false" readOnly="false" maximumLength="50">
         </tr:inputText>
         <tr:inputText id="searchForm_password" value="#{manageUserForm.searchForm.password}" label="#{messages['user.password']}:" required="false" readOnly="false">
         </tr:inputText>
@@ -30,7 +30,7 @@
         </tr:inputText>
         <tr:inputText id="searchForm_lastName" value="#{manageUserForm.searchForm.lastName}" label="#{messages['user.last.name']}:" required="false" readOnly="false">
         </tr:inputText>
-        <tr:inputText id="searchForm_email" value="#{manageUserForm.searchForm.email}" label="#{messages['user.email']}:" required="false" readOnly="false">
+        <tr:inputText id="searchForm_email" value="#{manageUserForm.searchForm.email}" label="#{messages['user.email']}:" required="false" readOnly="false" maximumLength="50">
         </tr:inputText>
         <tr:selectOneChoice id="searchForm_isActive" value="#{manageUserForm.searchForm.isActive}" label="#{messages['user.is.active']}:" required="false" readOnly="false" unselectedLabel="">
             <tr:selectItem label="#{messages['yes']}" value="true"/>
@@ -143,7 +143,7 @@
         <tr:panelGroupLayout layout="vertical" inlineStyle="display:#{manageUserForm.editState?'':'none'}">
         <tr:subform id="manageUserForm_edit" >
             <tr:panelFormLayout>
-        <tr:inputText id="username" value="#{manageUserForm.username}" label="#{messages['user.username']}:" required="true" readOnly="false">
+        <tr:inputText id="username" value="#{manageUserForm.username}" label="#{messages['user.username']}:" required="true" readOnly="false" maximumLength="50">
         </tr:inputText>
         <tr:inputText id="password" value="#{manageUserForm.password}" label="#{messages['user.password']}:" required="true" readOnly="false">
         </tr:inputText>
@@ -151,7 +151,7 @@
         </tr:inputText>
         <tr:inputText id="lastName" value="#{manageUserForm.lastName}" label="#{messages['user.last.name']}:" required="true" readOnly="false">
         </tr:inputText>
-        <tr:inputText id="email" value="#{manageUserForm.email}" label="#{messages['user.email']}:" required="true" readOnly="false">
+        <tr:inputText id="email" value="#{manageUserForm.email}" label="#{messages['user.email']}:" required="true" readOnly="false" maximumLength="50">
         </tr:inputText>
         <tr:selectBooleanCheckbox id="isActive" value="#{manageUserForm.isActive}" label="#{messages['user.is.active']}:" required="true" readOnly="false"/>
         <tr:inputDate id="creationDate" value="#{manageUserForm.creationDate}" label="#{messages['user.creation.date']}:" required="true">

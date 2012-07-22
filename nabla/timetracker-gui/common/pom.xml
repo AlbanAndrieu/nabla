@@ -11,6 +11,7 @@
     <packaging>jar</packaging>
     <name>TimeTracker GUI Common</name>
     <dependencies>
+        <!--
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mda</artifactId>
@@ -19,6 +20,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -27,10 +29,12 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
+        -->
     </dependencies>
     <build>
         <plugins>

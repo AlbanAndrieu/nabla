@@ -7,13 +7,16 @@
  * TEMPLATE:    SpringServiceBase.vsl in andromda-spring cartridge
  * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::UserService
  * STEREOTYPE:  Service
+ * STEREOTYPE:  Seam
  */
 package org.andromda.timetracker.service;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Locale;
 import org.andromda.timetracker.BeanLocator;
 import org.andromda.timetracker.PrincipalStore;
+import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserDao;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
@@ -30,6 +33,72 @@ import org.springframework.context.MessageSource;
 public abstract class UserServiceBase
     implements UserService
 {
+    /**
+     * 
+     */
+    private Object logger;
+
+    /**
+     * Getter for logger
+     * @return Value of logger
+     */
+    protected Object getLogger()
+    {
+        return this.logger;
+    }
+    /**
+     * Setter for logger
+     * @param loggerIn New value for logger
+     */
+    protected void setLogger(Object loggerIn)
+    {
+        this.logger = loggerIn;
+    }
+
+    /**
+     * 
+     */
+    private User user;
+
+    /**
+     * Getter for user
+     * @return Value of user
+     */
+    public User getUser()
+    {
+        return this.user;
+    }
+    /**
+     * Setter for user
+     * @param userIn New value for user
+     */
+    public void setUser(User userIn)
+    {
+        this.user = userIn;
+    }
+
+    /**
+     * 
+     */
+    private List<User> userList;
+
+    /**
+     * Getter for userList
+     * @return Value of userList
+     */
+    public List<User> getUserList()
+    {
+        return this.userList;
+    }
+    /**
+     * Setter for userList
+     * @param userListIn New value for userList
+     */
+    public void setUserList(List<User> userListIn)
+    {
+        this.userList = userListIn;
+    }
+
     private UserDao userDao;
 
     /**

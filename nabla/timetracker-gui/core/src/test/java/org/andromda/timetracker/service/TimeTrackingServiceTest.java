@@ -12,18 +12,20 @@ import org.testng.annotations.Test;
 /**
  *
  */
-public class TimeTrackingServiceTest {
-    private static String TimecardHdrFormat = "%-13s %-13s %-10s %-11s";
-    private static String TimecardRowFormat = "%-13s %-13s %-10s %-11tD";
+public class TimeTrackingServiceTest
+{
+    private static String       TimecardHdrFormat = "%-13s %-13s %-10s %-11s";
+    private static String       TimecardRowFormat = "%-13s %-13s %-10s %-11tD";
 
-    private Log logger = LogFactory.getLog(TimeTrackingServiceTest.class);
+    private Log                 logger            = LogFactory.getLog(TimeTrackingServiceTest.class);
     private TimeTrackingService timeTrackingService;
 
     /**
      * Initialize test suite
      */
     @BeforeSuite
-    public void initializeTestSuite() {
+    public void initializeTestSuite()
+    {
 
         // Initialize ServiceLocator
         this.logger.info("Initializing ServiceLocator");
@@ -39,7 +41,8 @@ public class TimeTrackingServiceTest {
      *
      */
     @Test
-    public void testFindAllTimecards() {
+    public void testFindAllTimecards()
+    {
         this.logger.info("testFindAllTimecards:");
         TimecardSearchCriteriaVO criteria = new TimecardSearchCriteriaVO();
         //Collection<? extends TimecardSummaryVO> timecards = this.timeTrackingService.findTimecards(criteria);
@@ -51,7 +54,8 @@ public class TimeTrackingServiceTest {
      *
      */
     @Test
-    public void testFindTimecardsForSubmitter() {
+    public void testFindTimecardsForSubmitter()
+    {
         this.logger.info("testFindTimecardsForSubmitter:");
         TimecardSearchCriteriaVO criteria = new TimecardSearchCriteriaVO();
         criteria.setSubmitterId(new Long(1));
@@ -64,18 +68,13 @@ public class TimeTrackingServiceTest {
     //private void logTimecards(Collection<? extends TimecardSummaryVO> timecards)
     {
         Formatter formatter = new Formatter();
-        formatter.format(TimecardHdrFormat, "Submitter", "Approver", "Status",    "Start Date");
+        formatter.format(TimecardHdrFormat, "Submitter", "Approver", "Status", "Start Date");
         this.logger.info(formatter.toString());
         //for (TimecardSummaryVO timecard : timecards)
         for (int i = 0; i < timecards.length; i++)
         {
             formatter = new Formatter();
-            formatter.format(
-                    TimecardRowFormat,
-                    timecards[i].getSubmitterName(),
-                    timecards[i].getApproverName(),
-                    timecards[i].getStatus(),
-                    timecards[i].getStartDate());
+            formatter.format(TimecardRowFormat, timecards[i].getSubmitterName(), timecards[i].getApproverName(), timecards[i].getStatus(), timecards[i].getStartDate());
             this.logger.info(formatter.toString());
         }
     }

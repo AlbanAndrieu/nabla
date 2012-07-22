@@ -17,20 +17,22 @@ public class UserVOComparator implements Comparator<UserVO>
      * @return result
      */
     @Override
-    public int compare(UserVO o1, UserVO o2) {
+    public int compare(UserVO o1, UserVO o2)
+    {
         int result = 0; // assume equal
 
-        if (o1 == null) {
+        if (o1 == null)
+        {
             result = (o2 == null) ? 0 : -1;
-        }
-        else if (o2 == null) {
+        } else if (o2 == null)
+        {
             result = 1;
-        }
-        else if ((o1.getUsername() != null) && (o2.getUsername() != null)) {
+        } else if ((o1.getUsername() != null) && (o2.getUsername() != null))
+        {
             // Both not-null, compare usernames
             result = o1.getUsername().compareTo(o2.getUsername());
-        }
-        else if ((o1.getId() != null) && (o2.getId() != null)) {
+        } else if ((o1.getId() != null) && (o2.getId() != null))
+        {
             // Both not-null but no names, check id's
             result = o1.getId().compareTo(o2.getId());
         }

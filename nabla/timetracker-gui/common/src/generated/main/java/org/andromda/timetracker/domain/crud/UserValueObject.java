@@ -12,7 +12,7 @@ public class UserValueObject
     implements Serializable
 {
     /** The serial version UID of this class. Needed for serialization. */
-    private static final long serialVersionUID = -3876530241628970605L;
+    private static final long serialVersionUID = -6177852626226267723L;
 
     private String username;
 
