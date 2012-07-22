@@ -7,9 +7,7 @@ import java.io.Serializable;
 /**
  * @see org.andromda.timetracker.domain.crud.UserController
  */
-public class UserControllerImpl
-    extends UserController
-    implements Serializable
+public class UserControllerImpl extends UserController implements Serializable
 {
     /**
      * The serial version UID of this class. Needed for serialization.

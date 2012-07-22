@@ -5,8 +5,7 @@ package org.andromda.timetracker.web.timecarddetails;
 /**
  * @see org.andromda.timetracker.web.timecarddetails.TimecardController
  */
-public class TimecardControllerImpl
-    extends TimecardController
+public class TimecardControllerImpl extends TimecardController
 {
     /**
      * The serial version UID of this class. Needed for serialization.

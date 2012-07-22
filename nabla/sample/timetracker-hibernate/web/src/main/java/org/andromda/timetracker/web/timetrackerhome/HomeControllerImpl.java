@@ -5,8 +5,7 @@ package org.andromda.timetracker.web.timetrackerhome;
 /**
  * @see org.andromda.timetracker.web.timetrackerhome.HomeController
  */
-public class HomeControllerImpl
-    extends HomeController
+public class HomeControllerImpl extends HomeController
 {
     /**
      * The serial version UID of this class. Needed for serialization.

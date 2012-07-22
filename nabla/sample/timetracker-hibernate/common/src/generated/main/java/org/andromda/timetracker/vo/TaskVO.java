@@ -1,6 +1,6 @@
 // license-header java merge-point
 //
-/**s
+/**
  * Attention: Generated code! Do not modify by hand!!
  *
  * TEMPLATE:     ValueObject.vsl in andromda-java-cartridge.

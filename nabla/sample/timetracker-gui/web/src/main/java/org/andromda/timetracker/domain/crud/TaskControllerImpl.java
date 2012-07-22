@@ -7,9 +7,7 @@ import java.io.Serializable;
 /**
  * @see org.andromda.timetracker.domain.crud.TaskController
  */
-public class TaskControllerImpl
-    extends TaskController
-    implements Serializable
+public class TaskControllerImpl extends TaskController implements Serializable
 {
     /**
      * The serial version UID of this class. Needed for serialization.

@@ -10,7 +10,7 @@
     </parent>
     <artifactId>service</artifactId>
     <packaging>jar</packaging>
-    <name>[${project.parent.artifactId} :: GUI Service Business Tier] - ${project.artifactId} : ${project.version}</name>
+    <name>[${project.parent.artifactId} :: EJB3 Service Business Tier] - ${project.artifactId} : ${project.version}</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -90,11 +90,13 @@
             <!--<version>${hibernate.commons.annotations.version}</version>-->
             <scope>provided</scope>
         </dependency>            
+        <!--
         <dependency>             
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <type>pom</type>
         </dependency>
+        -->
         <!-- make sure when using cglib-nodep that for org.hibernate hibernate asm cglib are excluded -->
         <dependency>
             <groupId>cglib</groupId>
@@ -166,6 +168,13 @@
             <scope>test</scope>
         </dependency>
                 
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+			                
 	<dependency>
 	    <groupId>commons-io</groupId>
 	    <artifactId>commons-io</artifactId>
@@ -201,6 +210,7 @@
 		<includes>
 			<include>**/*.xml</include>
 			<include>**/*.properties</include>
+			<include>**/*.sql</include>
 		</includes>
             </resource>
             <resource>
