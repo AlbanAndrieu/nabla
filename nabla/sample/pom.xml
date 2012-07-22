@@ -17,5 +17,9 @@
 		<module>timetracker-hibernate</module>
                 <!--<module>timetracker-ejb3</module>
                 <module>timetracker-gui</module>-->
-  </modules>
+  	</modules>
+  	
+  	<properties>
+  		<nabla.mda.dir>${pom.basedir}/../../..</nabla.mda.dir>
+  	</properties>
 </project>
