@@ -11,8 +11,8 @@
     <description>The TimeTracker Project.</description>
     
     <parent>
-	<groupId>com.nabla.project.uml</groupId>
-	<artifactId>nabla</artifactId>
+	<groupId>com.nabla.project.uml.sample</groupId>
+	<artifactId>sample</artifactId>
 	<version>1.0</version>
     </parent>
         
