@@ -2035,6 +2035,19 @@
             					 	 	 	 	<ignore></ignore>
             					 	 	 	</action>
             					 	 	</pluginExecution>
+            					 	 	<pluginExecution>
+            					 	 	 	<pluginExecutionFilter>
+            					 	 	 	 	<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+            					 	 	 	 	<artifactId>maven-java-formatter-plugin</artifactId>
+            					 	 	 	 	<versionRange>[${maven.java.formatter.plugin.version},)</versionRange>
+            					 	 	 	 	<goals>
+            					 	 	 	 	 	<goal>compile</goal>
+            					 	 	 	 	</goals>
+            					 	 	 	</pluginExecutionFilter>
+            					 	 	 	<action>
+            					 	 	 	 	<ignore></ignore>
+            					 	 	 	</action>
+            					 	 	</pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                           <groupId>org.codehaus.mojo</groupId>
