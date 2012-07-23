@@ -302,7 +302,7 @@
                   <persistenceunit>${project.parent.artifactId}</persistenceunit>
                   <!--<configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>-->
 
-                  <outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
+                  <outputfilename>schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
                   <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
