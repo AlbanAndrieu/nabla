@@ -145,11 +145,13 @@
     <build>
         <!--<defaultGoal>install</defaultGoal>-->
         <plugins>
+            <!--
             <plugin>
                 <groupId>com.ctp.seam.maven</groupId>
                 <artifactId>maven-hotdeploy-plugin</artifactId>
                 <extensions>true</extensions>
             </plugin>
+            -->
             <plugin>
                 <!-- run with 'mvn cli:execute-phase' -->
                 <groupId>org.twdata.maven</groupId>
