@@ -1348,7 +1348,14 @@
                   <snapshots>
                     <enabled>false</enabled>
                   </snapshots>
-                </pluginRepository>		
+                </pluginRepository>
+                <!--
+                <pluginRepository>
+                	<id>ctpjava</id>
+        		<name>CTP Public Repository</name>
+        		<url>http://ctpjava.googlecode.com/svn/trunk/repository</url>
+    		</pluginRepository>	
+		-->	
 	</pluginRepositories>
 
 	<!-- Keep Alphabetical Order. Capital Letter goes first -->
@@ -3038,6 +3045,7 @@
 							<included>false</included>
 						</asfExtOptions>
 					</configuration>
+					<!--
         				<executions>
         				  <execution>
         				    <id>site</id>
@@ -3047,6 +3055,7 @@
         				    </goals>
         				  </execution>
         				</executions>					
+					-->
 				</plugin>
                                 <plugin>
                                     <groupId>org.mortbay.jetty</groupId>
