@@ -16,7 +16,7 @@
             </generator>
         </id>
         <property name="username">
-            <column name="USERNAME" not-null="true" unique="true" sql-type="VARCHAR(256)" index="USERNAME_INDEX"/>
+            <column name="USERNAME" not-null="true" unique="true" sql-type="VARCHAR(50)" index="USERNAME_INDEX"/>
             <type name="java.lang.String"/>
         </property>
         <property name="password">
@@ -32,7 +32,7 @@
             <type name="java.lang.String"/>
         </property>
         <property name="email">
-            <column name="EMAIL" not-null="true" unique="true" sql-type="VARCHAR(256)"/>
+            <column name="EMAIL" not-null="true" unique="true" sql-type="VARCHAR(50)"/>
             <type name="java.lang.String"/>
         </property>
         <property name="isActive">

@@ -17,35 +17,35 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * This class represents a timecard submitted by a person.
  */
-@XmlType(propOrder = {"status", "startDate", "comments"})
+@XmlType(propOrder = {"comments", "startDate", "status"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Timecard implements Serializable, Comparable<Timecard>
  {
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -635666710596476780L;
+    private static final long serialVersionUID = -8810488711747049867L;
 
     // Generate 4 attributes
-    @XmlElement(name = "status")
-    private TimecardStatus status;
+    @XmlElement(name = "comments")
+    private String comments;
 
     /**
      * 
-     * @return this.status TimecardStatus
+     * @return this.comments String
      */
-    public TimecardStatus getStatus()
+    public String getComments()
     {
-        return this.status;
+        return this.comments;
     }
 
     /**
      * 
-     * @param statusIn TimecardStatus
+     * @param commentsIn String
      */
-    public void setStatus(TimecardStatus statusIn)
+    public void setComments(String commentsIn)
     {
-        this.status = statusIn;
+        this.comments = commentsIn;
     }
 
     @XmlElement(name = "startDate")
@@ -69,25 +69,25 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
         this.startDate = startDateIn;
     }
 
-    @XmlElement(name = "comments")
-    private String comments;
+    @XmlElement(name = "status")
+    private TimecardStatus status;
 
     /**
      * 
-     * @return this.comments String
+     * @return this.status TimecardStatus
      */
-    public String getComments()
+    public TimecardStatus getStatus()
     {
-        return this.comments;
+        return this.status;
     }
 
     /**
      * 
-     * @param commentsIn String
+     * @param statusIn TimecardStatus
      */
-    public void setComments(String commentsIn)
+    public void setStatus(TimecardStatus statusIn)
     {
-        this.comments = commentsIn;
+        this.status = statusIn;
     }
 
     @XmlElement(name = "id")
@@ -253,18 +253,18 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
         /**
          * Constructs a new instance of {@link Timecard}, taking all required and/or
          * read-only properties as arguments, except for identifiers.
-         * @param status TimecardStatus
-         * @param startDate Date
          * @param comments String
+         * @param startDate Date
+         * @param status TimecardStatus
          * @param submitter User
          * @return newInstance
          */
-        public static Timecard newInstance(TimecardStatus status, Date startDate, String comments, User submitter)
+        public static Timecard newInstance(String comments, Date startDate, TimecardStatus status, User submitter)
         {
             final Timecard entityInstance = new TimecardImpl();
-            entityInstance.setStatus(status);
-            entityInstance.setStartDate(startDate);
             entityInstance.setComments(comments);
+            entityInstance.setStartDate(startDate);
+            entityInstance.setStatus(status);
             entityInstance.setSubmitter(submitter);
             return entityInstance;
         }
@@ -272,20 +272,20 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
         /**
          * Constructs a new instance of {@link Timecard}, taking all possible properties
          * (except the identifier(s))as arguments.
-         * @param status TimecardStatus
-         * @param startDate Date
          * @param comments String
+         * @param startDate Date
+         * @param status TimecardStatus
          * @param approver User
          * @param submitter User
          * @param allocations Collection<TimeAllocation>
          * @return newInstance Timecard
          */
-        public static Timecard newInstance(TimecardStatus status, Date startDate, String comments, User approver, User submitter, Collection<TimeAllocation> allocations)
+        public static Timecard newInstance(String comments, Date startDate, TimecardStatus status, User approver, User submitter, Collection<TimeAllocation> allocations)
         {
             final Timecard entityInstance = new TimecardImpl();
-            entityInstance.setStatus(status);
-            entityInstance.setStartDate(startDate);
             entityInstance.setComments(comments);
+            entityInstance.setStartDate(startDate);
+            entityInstance.setStatus(status);
             entityInstance.setApprover(approver);
             entityInstance.setSubmitter(submitter);
             entityInstance.setAllocations(allocations);
@@ -305,17 +305,17 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
         }
         else
         {
-            if (this.getStatus() != null)
+            if (this.getComments() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getStatus().compareTo(o.getStatus()));
+                cmp = (cmp != 0 ? cmp : this.getComments().compareTo(o.getComments()));
             }
             if (this.getStartDate() != null)
             {
                 cmp = (cmp != 0 ? cmp : this.getStartDate().compareTo(o.getStartDate()));
             }
-            if (this.getComments() != null)
+            if (this.getStatus() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getComments().compareTo(o.getComments()));
+                cmp = (cmp != 0 ? cmp : this.getStatus().compareTo(o.getStatus()));
             }
         }
         return cmp;
