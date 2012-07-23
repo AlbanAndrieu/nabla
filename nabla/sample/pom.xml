@@ -8,15 +8,15 @@
         </parent>
                 	
 	<modelVersion>4.0.0</modelVersion>
-    	<groupId>com.nabla.project.uml.sample</groupId>
+    	<groupId>com.nabla.project.uml.timetracker</groupId>
     	<artifactId>sample</artifactId>
 	<packaging>pom</packaging>
 	<name>Nabla Samples</name>
     	<description>Nabla Samples</description>
 	<modules>
 		<module>timetracker-hibernate</module>
-        <module>timetracker-ejb3</module>
-        <module>timetracker-gui</module>
+        	<module>timetracker-ejb3</module>
+        	<module>timetracker-gui</module>
   	</modules>
   	
   	<properties>
