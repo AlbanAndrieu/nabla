@@ -223,10 +223,12 @@
                   <create>true</create>
                   <format>true</format>
                   <jdk5>true</jdk5>
-                  <persistenceunit>${project.parent.artifactId}</persistenceunit>
+                  <!--<persistenceunit>${project.parent.artifactId}</persistenceunit>-->
                   <!--<configurationfile>src/main/resources/hibernate.cfg.xml</configurationfile>-->
+		  <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
+                  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 
-                  <outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
+                  <outputfilename>schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
                   <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
