@@ -19,9 +19,23 @@
                 <model type="emf-uml22">
                     <uri>${model.uri}</uri>
                     <moduleSearchLocations>
-                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}</location>
-                        <!--<location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-${uml.type}</location>-->
-                        <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-uml</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-datatype/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-meta/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-business/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-backend/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-gui/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-test/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-messaging/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-persistence/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-presentation/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-process/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-seam/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-service/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-xml/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-shared/${andromda.version}</location>
+                        <location patterns="**/*.xml.zip,**/*.xml">${settings.localRepository}/org/andromda/profiles/${uml.type}/andromda-profile-webservice/${andromda.version}</location>                        
+                        <location patterns="**/*.xml.zip">${settings.localRepository}/org/andromda/metafacades/andromda-metafacades-uml/${andromda.version}/</location>
                     </moduleSearchLocations>                    
                     <modelPackages>
                         <modelPackage process="false">org::andromda::metafacades::uml</modelPackage>
