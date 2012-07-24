@@ -571,7 +571,7 @@
 						<configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
 						<propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 
-						<outputfilename>../../../../app/src/main/sql/schema-hibernate.sql</outputfilename>
+						<outputfilename>schema-hibernate.sql</outputfilename>
 						<!-- <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile> -->
 					</componentProperties>
 				</configuration>
