@@ -73,7 +73,7 @@
 
 				<!-- Change this to the host on which your database will be deployed -->
 				<!--<database.host>localhost</database.host>-->
-				<database.host>cloudbees</database.host>				
+				<database.host>ec2-174-129-9-255.compute-1.amazonaws.com</database.host>				
 				<!-- Change this the port on which your database will be deploy -->
 				<!--<database.port>3406</database.port>-->
 				<database.port>3306</database.port>				
