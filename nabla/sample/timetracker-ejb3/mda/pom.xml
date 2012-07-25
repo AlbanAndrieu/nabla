@@ -134,7 +134,7 @@
 		<id>xmi</id>
 		<activation>
 			<property>
-				<name>!profile.activation</name>
+				<name>profile.activation</name>
 			</property>
 		</activation>
 		<build>
@@ -348,7 +348,7 @@
                            </includes>
                        </fileset>
                        <fileset>
-                           <directory>${web.generated.dir}</directory>
+                           <directory>${web.generated.java.dir}</directory>
                            <includes>
                                <include>**/*.xml</include>
                                <include>**/*.properties</include>
@@ -415,7 +415,7 @@
         <service.manual.test.dir>${project.basedir}/../service/src/test/java</service.manual.test.dir>
         <service.manual.test.resources.dir>${project.basedir}/../service/src/test/resources</service.manual.test.resources.dir>
 
-        <web.generated.dir>${project.basedir}/../web/${maven.build.generated}/main/java</web.generated.dir>
+        <web.generated.java.dir>${project.basedir}/../web/${maven.build.generated}/main/java</web.generated.java.dir>
         <!--
         <web.generated.web.dir>${project.basedir}/../web/${maven.build.generated}/main/webapp</web.generated.web.dir>
         -->
