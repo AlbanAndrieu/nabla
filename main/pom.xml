@@ -63,11 +63,13 @@
 		<product.thirdparty>${env.THIRDPARTY_ROOT}</product.thirdparty> <!-- used for dtd in mda -->
 
 		<!-- Application settings -->
-		<application.id>application</application.id> <!-- used by MDA -->
+		<application.id>${project.parent.artifactId}</application.id> <!-- hint: same value as artifactId -->
+		<!--<application.id>application</application.id>--> <!-- used by MDA -->
 		<application.name>Nabla</application.name> <!-- used by MDA -->
 		<!--<application.version>${project.version}</application.version>--> <!-- used by MDA -->
 		<application.version>${product.version}</application.version> <!-- used by MDA -->
-		<application.package>com.nabla.backend</application.package> <!-- used by MDA -->
+		<!--<application.package>com.nabla.backend</application.package>--> <!-- used by MDA -->
+		<application.package>com.nabla.project</application.package> <!-- used by MDA -->
 		<application.context.name>applicationContext-daos.xml</application.context.name>
 		
 		<!-- START overrided in cargo profile -->
@@ -144,11 +146,13 @@
 	</dependencyManagement>
 
 	<dependencies>
+	        <!--
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>junit</groupId>
