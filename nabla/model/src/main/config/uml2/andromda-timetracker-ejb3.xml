@@ -281,10 +281,10 @@
                 <property name="viewType">facelets</property>
                 <!--<property name="viewType">jsp</property>-->
                 <property name="applicationName">${application.name}</property>
-                <property name="forms">${web.generated.dir}</property>
+                <property name="forms">${web.generated.java.dir}</property>
                 <property name="views">${web.generated.web.dir}</property>
-                <property name="managed-beans">${web.generated.dir}</property>
-                <property name="controllers">${web.generated.dir}</property>
+                <property name="managed-beans">${web.generated.java.dir}</property>
+                <property name="controllers">${web.generated.java.dir}</property>
                 <property name="controller-impls">${web.manual.dir}</property>
                 <property name="messages">${web.generated.web.dir}</property>
                 <property name="configuration">${web.generated.web.dir}</property>
