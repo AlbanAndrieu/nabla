@@ -21,5 +21,6 @@
   	
   	<properties>
   		<nabla.mda.dir>${pom.basedir}/../../..</nabla.mda.dir>
-  	</properties>
+                <model.uri>file:${pom.basedir}/../../model/src/main/uml/${uml.type}/timetracker/${model.name}.uml</model.uri>
+        </properties>      
 </project>
