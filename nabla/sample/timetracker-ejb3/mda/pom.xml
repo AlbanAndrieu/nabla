@@ -219,8 +219,8 @@
 		                			<groupId>${jdbc.groupId}</groupId>
 		                			<artifactId>${jdbc.artifactId}</artifactId>
 		                			<version>${jdbc.version}</version>
-		                		</dependency>	                		
-                            </dependencies>
+		                		</dependency>	       
+                                        </dependencies>
 		                </plugin>
 			</plugins>
 		</build>
@@ -232,18 +232,23 @@
                	        <scope>compile</scope>
                	    </dependency>             
                	    <!-- START USED BY Schema2XMI -->
+            	    <dependency>
+            	        <groupId>commons-beanutils</groupId>
+            	        <artifactId>commons-beanutils</artifactId>
+            	        <version>${commons.beanutils.version}</version>
+            	    </dependency>               	    
                	    <dependency>
-               	               <groupId>org.andromda</groupId>
-               	               <artifactId>andromda-core</artifactId>
-               	               <version>${andromda.version}</version>
-               	               <scope>compile</scope>
-               	               <exclusions>
-               	                   <exclusion>
-               	                       <groupId>log4j</groupId>
-               	                       <artifactId>log4j</artifactId>
-               	                   </exclusion>
-               	               </exclusions>
-               	           </dependency>
+               	        <groupId>org.andromda</groupId>
+               	        <artifactId>andromda-core</artifactId>
+               	        <version>${andromda.version}</version>
+               	        <scope>compile</scope>
+               	        <exclusions>
+               	            <exclusion>
+               	                <groupId>log4j</groupId>
+               	                <artifactId>log4j</artifactId>
+               	            </exclusion>
+               	        </exclusions>
+               	    </dependency>
                	    <dependency>
                	    	<groupId>org.andromda.repositories</groupId>
                	    	<artifactId>andromda-repository-mdr-uml14</artifactId>
@@ -266,7 +271,7 @@
                         <artifactId>andromda-ocl-validation-library</artifactId>
                         <version>${andromda.version}</version>
                         <scope>provided</scope>
-                    </dependency>                                            
+                    </dependency>                                                         
                	    <!-- END USED BY Schema2XMI -->        
                	    
     		</dependencies>			
