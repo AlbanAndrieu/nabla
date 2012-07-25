@@ -10,10 +10,8 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<!--<groupId>com.nabla.project</groupId> -->
 	<artifactId>servers</artifactId>
 	<name>Servers</name>
-	<!--<version>1.0</version> -->
 	<packaging>pom</packaging>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
 
@@ -116,11 +114,31 @@
 
 		<profile>
 			<id>sonar</id>
+			<!--
 			<activation>
 				<property>
 					<name>!profile.activation</name>
 				</property>
 			</activation>
+			-->
+			<activation>
+				<file>
+					<!-- This employs that the basedir expression is only recognized by
+						Maven 3.x (see MNG-2363) -->
+					<exists>${basedir}</exists>
+				</file>
+			</activation>			
+			<build>
+    			<!-- To use the plugin goals in your POM or parent POM -->
+    			
+    			<plugins>
+    			  <plugin>
+    			    <groupId>org.codehaus.mojo</groupId>
+    			    <artifactId>sonar-maven-plugin</artifactId>
+    			    <version>${maven.sonar.maven.plugin.version}</version>
+    			  </plugin>
+    			</plugins>	
+    			</build>		
 			<properties>
 				<!-- sonar user admin password admin -->
 				<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
@@ -150,11 +168,12 @@
 			</activation>
 			<properties>
 			        <!--<as.version>4.2</as.version>-->
+			        <!--<as.version>5</as.version>-->
 			        <as.version>5</as.version>
 				<!-- START INFO USE BY MDA -->
 				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
-				<jboss.home>C:\jboss-5.1.0.GA</jboss.home>
-				<!--<jboss.home>C:\jboss-7.0.2.GA</jboss.home>-->
+				<!--<jboss.home>C:\jboss-5.1.0.GA</jboss.home>-->
+				<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
@@ -176,45 +195,49 @@
 				<cargo.wait>false</cargo.wait>
 				<!--<jboss.bind.address>localhost</jboss.bind.address>-->
 				<!-- for jboss < 6 -->
+				<!--	
                                 <jboss.server>default</jboss.server>
                                 <jboss.servers.directory>${jboss.home}/server</jboss.servers.directory>
                                 <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deploy</jboss.deploy.directory>    	
-                                <!--	
+                                -->     
                                 <jboss.server>standalone</jboss.server>
                                 <jboss.servers.directory>${jboss.home}</jboss.servers.directory>
-                                <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory> 
-                                -->                                 	
+                                <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>                             	
 			</properties>
-
-			<dependencies>
-			        <!--
-				<dependency>
-					<groupId>httpunit</groupId>
-					<artifactId>httpunit</artifactId>
-					<scope>test</scope>
-				</dependency>
-				-->
-
-				<dependency>
-					<groupId>jboss</groupId>
-					<artifactId>jboss-j2ee</artifactId>
-					<version>${jboss.version}</version>
-					<scope>provided</scope>
-				</dependency>
-				<!--
-				<dependency>
-					<groupId>org.jbpm.jbpm3</groupId>
-					<artifactId>jbpm-jpdl</artifactId>
-					<version>${jbpm.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.jbpm.jbpm3</groupId>
-					<artifactId>jbpm-identity</artifactId>
-					<version>${jbpm.version}</version>
-				</dependency>
-				-->
-			</dependencies>
 		</profile>
+		
+		<!-- An optional Arquillian testing profile for your war -->
+                <profile>
+                  <!-- An optional Arquillian testing profile that executes tests in
+                    your JBoss AS instance -->
+                  <!-- This profile will start a new JBoss AS instance, and execute the
+                    test, shutting it down when done -->
+                  <!-- Run with: mvn clean test -Parq-jbossas-managed -->
+                  <id>arq-jbossas-managed</id>
+                  <dependencies>
+                    <dependency>
+                      <groupId>org.jboss.as</groupId>
+                      <artifactId>jboss-as-arquillian-container-managed</artifactId>
+                      <scope>test</scope>
+                    </dependency>
+                  </dependencies>
+                </profile>
+                
+                <!-- An optional Arquillian testing profile for your war -->
+                <profile>
+                  <!-- An optional Arquillian testing profile that executes tests in
+                    a remote JBoss AS instance -->
+                  <!-- Run with: mvn clean test -Parq-jbossas-remote -->
+                  <id>arq-jbossas-remote</id>
+                  <dependencies>
+                    <dependency>
+                      <groupId>org.jboss.as</groupId>
+                      <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                      <scope>test</scope>
+                    </dependency>
+                  </dependencies>
+                </profile>	
+                	
 		<profile>
 			<id>jetty6</id>
 			<properties>
