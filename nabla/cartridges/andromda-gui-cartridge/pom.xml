@@ -164,6 +164,12 @@ inv:manageableServiceName->notEmpty()
                            </includes>
                        </fileset>
                        <fileset>
+                           <directory>${maven.build.src}/main/java</directory>
+                           <includes>
+                               <include>**/*.java</include>
+                           </includes>
+                       </fileset>
+                       <fileset>
                            <directory>${project.basedir}/null</directory>
                            <includes>
                                <include>**/*</include>
