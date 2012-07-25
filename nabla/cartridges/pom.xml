@@ -149,6 +149,11 @@
                         </plugins>
                 </pluginManagement>
         </build>
+        
+        <properties>
+                <model.uri>file:${pom.basedir}/../../model/src/main/uml/${uml.type}/cartridges/${project.parent.artifactId}/${model.name}.uml</model.uri>
+        </properties>                
+        
         <modules>
                 <module>andromda-database-cartridge</module>
                 <module>andromda-ejb3-cartridge</module>
