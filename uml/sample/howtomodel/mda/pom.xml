@@ -34,7 +34,7 @@
         	    	<artifactId>andromda-spring-cartridge</artifactId>
         	    	<version>${andromda.version}</version>
         	    	<scope>runtime</scope>
-        	</dependency>                
+        	</dependency>
                 <dependency>
 			<groupId>org.andromda.cartridges</groupId>
 			<artifactId>andromda-ejb3-cartridge</artifactId>
@@ -108,30 +108,63 @@
 				<groupId>org.andromda.maven.plugins</groupId>
 				<artifactId>andromda-maven-plugin</artifactId>
 				<version>${andromda.version}</version>
-				<!--
-				<executions>
-					<execution>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<configurationUri>${project.basedir}/src/main/config/${uml.type}/andromda.xml</configurationUri>
-					-->
-					<!-- Check model dates vs output file dates from previous gen, skip if files are later -->
-					<!--
-					<lastModifiedCheck>true</lastModifiedCheck>
-				</configuration>
-				-->
 			</plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-clean-plugin</artifactId>
+                            <version>${maven.clean.plugin.version}</version>
+                            <configuration>
+                               <filesets>
+                                   <fileset>
+                                       <directory>${common.generated.dir}</directory>
+                                       <includes>
+                                           <include>**/*.xml</include>
+                                           <include>**/*.properties</include>
+                                           <include>**/*.java</include>
+                                       </includes>
+                                   </fileset>
+                                   <fileset>
+                                       <directory>${core.generated.dir}</directory>
+                                       <includes>
+                                           <include>**/*.xml</include>
+                                           <include>**/*.properties</include>
+                                           <include>**/*.java</include>
+                                       </includes>
+                                   </fileset>
+                                   <fileset>
+                                       <directory>${workflow.generated.dir}</directory>
+                                       <includes>
+                                           <include>**/*.xml</include>
+                                           <include>**/*.properties</include>
+                                           <include>**/*.java</include>
+                                       </includes>
+                                   </fileset>
+                                   <fileset>
+                                       <directory>${web.generated.java.dir}</directory>
+                                       <includes>
+                                           <include>**/*.xml</include>
+                                           <include>**/*.properties</include>
+                                           <include>**/*.java</include>
+                                       </includes>
+                                   </fileset>
+                                   <fileset>
+                                       <directory>${web.generated.web.dir}</directory>
+                                       <includes>
+                                           <include>**/*.xml</include>
+                                           <include>**/*.properties</include>
+                                           <include>**/*.java</include>
+                                       </includes>
+                                   </fileset>
+                               </filesets>
+                            </configuration>
+                        </plugin>
 		</plugins>
 	</build>
 	<properties>
 		<!-- Avoid JDK6 XJC runtime error on wdsl2java from conflicting Jaxb2.2 -->
 		<!-- Versioned independently from CXF core -->
 		<cxf.xjc.version>2.3.0</cxf.xjc.version>
-		<model.name>HowToModel</model.name>		
+		<model.name>HowToModel</model.name>
 		<filter></filter>
 		<validation>true</validation>
 		<!-- use this merge location if dont want the code to change
