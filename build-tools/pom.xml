@@ -121,7 +121,7 @@
 				</repository>
 				-->
 				<repository>
-					<id>server-forge-releases</id>
+					<id>server-forge-release</id>
 					<name>External Staging Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 					<uniqueVersion>true</uniqueVersion>
@@ -136,7 +136,7 @@
 				</snapshotRepository>
 				-->
 				<snapshotRepository>
-					<id>server-forge-snapshots</id>
+					<id>server-forge-snapshot</id>
 					<name>External Snapshot Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 					<uniqueVersion>true</uniqueVersion>
@@ -154,7 +154,7 @@
             		</properties>     
             		--> 
             		<properties>
-            		    <repositoryId>server-forge-releases</repositoryId>
+            		    <repositoryId>server-forge-release</repositoryId>
             		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             		</properties>  			
 		</profile>	
