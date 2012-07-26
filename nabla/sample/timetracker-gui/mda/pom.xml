@@ -294,22 +294,6 @@
                            </includes>
                        </fileset>
                        <fileset>
-                           <directory>${database.generated.dir}</directory>
-                           <includes>
-                               <include>**/*.xml</include>
-                               <include>**/*.properties</include>
-                               <include>**/*.java</include>
-                           </includes>
-                       </fileset>
-                       <fileset>
-                           <directory>${service.generated.dir}</directory>
-                           <includes>
-                               <include>**/*.xml</include>
-                               <include>**/*.properties</include>
-                               <include>**/*.java</include>
-                           </includes>
-                       </fileset>
-                       <fileset>
                            <directory>${workflow.generated.dir}</directory>
                            <includes>
                                <include>**/*.xml</include>
