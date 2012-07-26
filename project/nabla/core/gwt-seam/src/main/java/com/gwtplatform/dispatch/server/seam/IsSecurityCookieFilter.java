@@ -5,6 +5,7 @@ package com.gwtplatform.dispatch.server.seam;
  * 
  * @author Florian Sauter
  */
-public interface IsSecurityCookieFilter {
+public interface IsSecurityCookieFilter
+{
 
 }

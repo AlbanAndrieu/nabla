@@ -27,5 +27,6 @@ import com.gwtplatform.dispatch.server.actionvalidator.AbstractDefaultActionVali
  * @author Florian Sauter
  */
 @Name("gwtpDefaultActionValidator")
-public class DefaultActionValidator extends AbstractDefaultActionValidator {
+public class DefaultActionValidator extends AbstractDefaultActionValidator
+{
 }

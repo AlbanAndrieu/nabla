@@ -9,8 +9,10 @@ import com.gwtplatform.dispatch.shared.Result;
  * 
  * @author Florian Sauter
  */
-public interface HandlerRegistry {
+public interface HandlerRegistry
+{
 
-	<A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass);
-	<A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass, Class<? extends ActionValidator> actionValidatorClass);
+    <A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass);
+
+    <A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass, Class<? extends ActionValidator> actionValidatorClass);
 }

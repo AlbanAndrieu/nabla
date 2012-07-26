@@ -7,10 +7,12 @@ import com.gwtplatform.dispatch.server.AbstractRandomSecurityCookieFilter;
 /**
  * @author Florian Sauter
  */
-public class RandomSecurityCookieFilter extends AbstractRandomSecurityCookieFilter implements IsSecurityCookieFilter {
+public class RandomSecurityCookieFilter extends AbstractRandomSecurityCookieFilter implements IsSecurityCookieFilter
+{
 
-	protected RandomSecurityCookieFilter(String securityCookieName, SecureRandom random) {
-		super(securityCookieName, random);
-	}
+    protected RandomSecurityCookieFilter(String securityCookieName, SecureRandom random)
+    {
+        super(securityCookieName, random);
+    }
 
 }

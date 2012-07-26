@@ -10,15 +10,13 @@
         </parent>
                 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project</groupId>
 	<artifactId>nabla</artifactId>
 	<packaging>pom</packaging>
 	<name>Nabla</name>
-	<version>1.0</version>
 	<!-- This element provides a basic description of your project -->
 	<description>Nabla project</description>
 	<modules>
-		<module>frontend</module>
+		<!--<module>frontend</module>-->
 		<module>core</module>
 	</modules>
 </project>

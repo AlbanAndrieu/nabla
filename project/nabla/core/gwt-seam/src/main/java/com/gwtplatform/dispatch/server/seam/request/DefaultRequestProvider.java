@@ -25,11 +25,13 @@ import com.gwtplatform.dispatch.server.RequestProvider;
 /**
  * @author Florian Sauter
  */
-public class DefaultRequestProvider implements RequestProvider {
-	
-  @Override
-  public HttpServletRequest getServletRequest() {
-    return ServletContexts.instance().getRequest();
-  }
+public class DefaultRequestProvider implements RequestProvider
+{
+
+    @Override
+    public HttpServletRequest getServletRequest()
+    {
+        return ServletContexts.instance().getRequest();
+    }
 
 }

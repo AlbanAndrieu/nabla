@@ -15,30 +15,37 @@ import com.gwtplatform.dispatch.shared.ServiceException;
 
 @AutoCreate
 @Name("gwtpDispatchImpl")
-public class DispatchImpl implements Dispatch {
+public class DispatchImpl implements Dispatch
+{
 
-	@In private ActionHandlerValidatorRegistry gwtpActionHandlerValidatorRegistry;
-	
-	private NonAbstractDispatchImpl nonAbstractDispatchImpl;
-	
-	@Create
-	public void create() {
-		nonAbstractDispatchImpl = new NonAbstractDispatchImpl(gwtpActionHandlerValidatorRegistry);
-	}
-	
-	@Override
-	public <A extends Action<R>, R extends Result> R execute(A action) throws ActionException, ServiceException {
-		return nonAbstractDispatchImpl.execute(action);
-	}
+    @In
+    private ActionHandlerValidatorRegistry gwtpActionHandlerValidatorRegistry;
 
-	@Override
-	public <A extends Action<R>, R extends Result> void undo(A action, R result) throws ActionException, ServiceException {
-		nonAbstractDispatchImpl.undo(action, result);
-	}
+    private NonAbstractDispatchImpl        nonAbstractDispatchImpl;
 
-	private class NonAbstractDispatchImpl extends AbstractDispatchImpl {
-		protected NonAbstractDispatchImpl(ActionHandlerValidatorRegistry actionHandlerValidatorRegistry) {
-			super(actionHandlerValidatorRegistry);
-		}
-	}
+    @Create
+    public void create()
+    {
+        nonAbstractDispatchImpl = new NonAbstractDispatchImpl(gwtpActionHandlerValidatorRegistry);
+    }
+
+    @Override
+    public <A extends Action<R>, R extends Result> R execute(A action) throws ActionException, ServiceException
+    {
+        return nonAbstractDispatchImpl.execute(action);
+    }
+
+    @Override
+    public <A extends Action<R>, R extends Result> void undo(A action, R result) throws ActionException, ServiceException
+    {
+        nonAbstractDispatchImpl.undo(action, result);
+    }
+
+    private class NonAbstractDispatchImpl extends AbstractDispatchImpl
+    {
+        protected NonAbstractDispatchImpl(ActionHandlerValidatorRegistry actionHandlerValidatorRegistry)
+        {
+            super(actionHandlerValidatorRegistry);
+        }
+    }
 }

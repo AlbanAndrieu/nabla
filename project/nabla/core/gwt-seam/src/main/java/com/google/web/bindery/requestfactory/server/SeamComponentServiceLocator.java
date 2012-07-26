@@ -32,15 +32,18 @@ import com.google.web.bindery.requestfactory.shared.ServiceLocator;
  * 
  * @author Florian Sauter
  */
-public class SeamComponentServiceLocator implements ServiceLocator {
+public class SeamComponentServiceLocator implements ServiceLocator
+{
 
-	@Override
-	public Object getInstance(Class<?> clazz) {
-		Object instantiatedClass = Component.getInstance(clazz);
-		if(instantiatedClass == null) {
-			throw new NullPointerException("Could not instantiate " + clazz.getSimpleName());
-		}
-		return instantiatedClass;
-	}
+    @Override
+    public Object getInstance(Class<?> clazz)
+    {
+        Object instantiatedClass = Component.getInstance(clazz);
+        if (instantiatedClass == null)
+        {
+            throw new NullPointerException("Could not instantiate " + clazz.getSimpleName());
+        }
+        return instantiatedClass;
+    }
 
 }

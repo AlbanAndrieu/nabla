@@ -24,50 +24,57 @@ import com.gwtplatform.dispatch.server.seam.actionvalidator.DefaultActionValidat
 @AutoCreate
 @Scope(ScopeType.APPLICATION)
 @Name("gwtpActionHandlerValidatorRegistry")
-public class SeamActionHandlerValidatorRegistry implements ActionHandlerValidatorRegistry, HandlerRegistry {
-	
-	private Map<Class<? extends Action<?>>, ActionHandlerValidatorClass<? extends Action<?>, ? extends Result>> actionHandlerValidatorClasses;
+public class SeamActionHandlerValidatorRegistry implements ActionHandlerValidatorRegistry, HandlerRegistry
+{
 
-	@Create
-	public void create() {
-		actionHandlerValidatorClasses = new HashMap<Class<? extends Action<?>>, ActionHandlerValidatorClass<? extends Action<?>, ? extends Result>>();
-	}
-	
-	@Override
-	public void clearActionHandlerValidators() {
-		// Nothing to clear (no caching)
-	}
+    private Map<Class<? extends Action<?>>, ActionHandlerValidatorClass<? extends Action<?>, ? extends Result>> actionHandlerValidatorClasses;
 
-	@Override
-	public <A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass) {
-		ActionHandlerValidatorClass<A, R> handlerValidatorMap = new ActionHandlerValidatorClass<A, R>(handlerClass, DefaultActionValidator.class);
-		actionHandlerValidatorClasses.put(actionClass, handlerValidatorMap);
-	}
-	
-	@Override
-	public <A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass, Class<? extends ActionValidator> actionValidatorClass) {
-		ActionHandlerValidatorClass<A, R> handlerValidatorMap = new ActionHandlerValidatorClass<A, R>(handlerClass, actionValidatorClass);
-		actionHandlerValidatorClasses.put(actionClass, handlerValidatorMap);
-	}
+    @Create
+    public void create()
+    {
+        actionHandlerValidatorClasses = new HashMap<Class<? extends Action<?>>, ActionHandlerValidatorClass<? extends Action<?>, ? extends Result>>();
+    }
 
-	
-	@Override
-	@SuppressWarnings("unchecked")
-	public <A extends Action<R>, R extends Result> ActionHandlerValidatorInstance findActionHandlerValidator(A action) {
-		ActionHandlerValidatorInstance actionHandlerValidatorInstance = null;
+    @Override
+    public void clearActionHandlerValidators()
+    {
+        // Nothing to clear (no caching)
+    }
 
-		ActionHandlerValidatorClass<? extends Action<?>, ? extends Result> actionHandlerValidatorClass = actionHandlerValidatorClasses.get(action.getClass());
-		if(actionHandlerValidatorClass != null)  {
-			ActionHandler<A, R> handler = (ActionHandler<A, R>) Component.getInstance(actionHandlerValidatorClass.getActionHandlerClass());
-			ActionValidator validator = (ActionValidator) Component.getInstance(actionHandlerValidatorClass.getActionValidatorClass());
-			actionHandlerValidatorInstance = new ActionHandlerValidatorInstance(validator, handler);
-		}
+    @Override
+    public <A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass)
+    {
+        ActionHandlerValidatorClass<A, R> handlerValidatorMap = new ActionHandlerValidatorClass<A, R>(handlerClass, DefaultActionValidator.class);
+        actionHandlerValidatorClasses.put(actionClass, handlerValidatorMap);
+    }
 
-		return actionHandlerValidatorInstance;
-	}
+    @Override
+    public <A extends Action<R>, R extends Result> void bindHandler(Class<A> actionClass, Class<? extends ActionHandler<A, R>> handlerClass, Class<? extends ActionValidator> actionValidatorClass)
+    {
+        ActionHandlerValidatorClass<A, R> handlerValidatorMap = new ActionHandlerValidatorClass<A, R>(handlerClass, actionValidatorClass);
+        actionHandlerValidatorClasses.put(actionClass, handlerValidatorMap);
+    }
 
-	@Override
-	public ActionValidator findActionValidator(Class<? extends ActionValidator> actionValidatorClass) {
-		return (ActionValidator) Component.getInstance(actionValidatorClass);
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public <A extends Action<R>, R extends Result> ActionHandlerValidatorInstance findActionHandlerValidator(A action)
+    {
+        ActionHandlerValidatorInstance actionHandlerValidatorInstance = null;
+
+        ActionHandlerValidatorClass<? extends Action<?>, ? extends Result> actionHandlerValidatorClass = actionHandlerValidatorClasses.get(action.getClass());
+        if (actionHandlerValidatorClass != null)
+        {
+            ActionHandler<A, R> handler = (ActionHandler<A, R>) Component.getInstance(actionHandlerValidatorClass.getActionHandlerClass());
+            ActionValidator validator = (ActionValidator) Component.getInstance(actionHandlerValidatorClass.getActionValidatorClass());
+            actionHandlerValidatorInstance = new ActionHandlerValidatorInstance(validator, handler);
+        }
+
+        return actionHandlerValidatorInstance;
+    }
+
+    @Override
+    public ActionValidator findActionValidator(Class<? extends ActionValidator> actionValidatorClass)
+    {
+        return (ActionValidator) Component.getInstance(actionValidatorClass);
+    }
 }

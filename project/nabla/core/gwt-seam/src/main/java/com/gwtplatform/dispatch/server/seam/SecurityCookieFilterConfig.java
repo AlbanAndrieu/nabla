@@ -9,16 +9,17 @@ import java.lang.annotation.Target;
 import com.gwtplatform.dispatch.server.seam.IsSecurityCookieFilter;
 
 @Inherited
-@Target({ElementType.TYPE})
+@Target( { ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SecurityCookieFilterConfig {
+public @interface SecurityCookieFilterConfig
+{
 
-	public static final String DEFAULT_URL_PATTERN = "/seam/resource/*";
-	
-	Class<? extends IsSecurityCookieFilter> filterClass();
-	
-	String urlPattern() default DEFAULT_URL_PATTERN;
-	
-	String cookieName() default "";
-	
+    public static final String DEFAULT_URL_PATTERN = "/seam/resource/*";
+
+    Class<? extends IsSecurityCookieFilter> filterClass();
+
+    String urlPattern() default DEFAULT_URL_PATTERN;
+
+    String cookieName() default "";
+
 }
