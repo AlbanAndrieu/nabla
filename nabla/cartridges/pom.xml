@@ -151,7 +151,7 @@
         </build>
         
         <properties>
-                <model.uri>file:${pom.basedir}/../../model/src/main/uml/${uml.type}/cartridges/${project.parent.artifactId}/${model.name}.uml</model.uri>
+                <model.uri>file:${pom.basedir}/../../model/src/main/uml/${uml.type}/cartridges/${project.artifactId}/${model.name}.uml</model.uri>
         </properties>                
         
         <modules>
