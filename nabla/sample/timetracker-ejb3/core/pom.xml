@@ -5,7 +5,6 @@
 		<groupId>org.andromda.timetracker.ejb3</groupId>
 		<artifactId>timetracker-ejb3</artifactId>
 		<version>3.4</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>core</artifactId>
 	<packaging>ejb</packaging>
@@ -458,14 +457,12 @@
 	        </dependency> 
             -->       
 	</dependencies>
-	
-	<!--
+
 	<properties>
-		<maven.test.skip>true</maven.test.skip>
+		<maven.test.skip>false</maven.test.skip>
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 	</properties>
-	-->
-	
+
 	<build>
 		<plugins>			
 			<plugin>
@@ -652,9 +649,9 @@
                                         <fileset>
                                             <basedir>${basedir}/../app/src/main/sql</basedir>
                                             <includes>
-                                                <include>schema-hibernate.sql</include>
+                                                <!--<include>schema-hibernate.sql</include>
                                                 <include>static-data-insert.sql</include>
-                                                <include>test-data-insert.sql</include>
+                                                <include>test-data-insert.sql</include>-->
                                             </includes>
                                         </fileset>
                                         <!-- We continue because database can be already created and data already inserted -->
@@ -880,6 +877,11 @@
 					<resource>
 						<directory>${basedir}/src/main/resources</directory>
 						<filtering>true</filtering>
+		<includes>
+		        <include>**/*.xml</include>
+		        <include>**/*.properties</include>
+		        <include>**/*.sql</include>
+		</includes>
 					</resource>
 					<resource>
 						<directory>${basedir}/src/main/java</directory>
