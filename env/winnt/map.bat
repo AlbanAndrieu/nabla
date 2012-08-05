@@ -1,13 +1,16 @@
-En tant que root
+cls
+REM En tant que root
  
-Demonter le path
-umount –f <path>
+REM Demonter le path
+REM umount f <path>
  
-remonter les map
-automount -v
+REM remonter les map
+REM automount -v
 
 NET USE I: /delete /yes
 NET USE J: /delete /yes
 
 NET USE I: \\ptxsnas01\project\dev_obj\users\albandri10
 NET USE J: \\ptxsnas02\project\dev\users\albandri10
+
+pause
