@@ -130,7 +130,22 @@ under the License.
       <id>website</id>
       <username>u54677262</username>
       <password>TODO</password>
-    </server>         
+    </server>
+    <server>
+      <id>server-releases</id>
+      <username>alban.andrieu@nabla.mobi</username>
+      <password>TODO</password>
+    </server>
+    <server>
+      <id>server-forge-release</id>
+      <username>nabla</username>
+      <password>TODO</password>
+    </server>   
+    <server>
+      <id>server-forge-snapshot</id>
+      <username>nabla</username>
+      <password>TODO</password>
+    </server>           
     <!-- Another sample, using keys to authenticate.
     <server>
       <id>siteServer</id>
