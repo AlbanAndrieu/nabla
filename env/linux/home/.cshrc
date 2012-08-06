@@ -8,19 +8,15 @@ if ( $?prompt ) then
     # yes, we're in an interactive shell
 
     # prompt
-    set prompt = "%{\033[1;36m%}peter %{\033[1;35m%}[%~] %{\033[1;36m%}%n \%%{\033[1;33m%} "
+    set prompt = "%{\033[1;36m%}%m@%{\033[1;36m%}%n %{\033[1;35m%}%~ %{\033[1;33m%} "
 
     # history
     set history         = 1000
     set savehist        = 1000
-    set EDITOR          = nedit
     set filec fignore = (.o)
 
     # cmd-line bindings
     bindkey -v          ; # use vi key bindings
-
-    # display
-    set DISPLAY         = localhost:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
@@ -45,38 +41,28 @@ endif
 # XXXXXXXXXXXXXXXXXXXXX
 ##
 
+setenv ARCH linux
 setenv MACHINE x86Linux
-setenv ARCH x86Linux
-
-echo ${ARCH} ${MACHINE}
-
-# ----------
-if ( "${ARCH}" == sun4sol ) then
-    coreadm -p core.%f.%n.%p $$
-endif
 
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
-setenv DRIVE_PATH ${DRIVE_PATH}
-# ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-setenv DEV_HOME ${DRIVE_PATH}/workspace/users
-# Do not use hudson workspace
-#setenv WORKSPACE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
+setenv DRIVE_PATH 
+setenv PROJECT_HOME ${DRIVE_PATH}/workspace/users
 
-setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
-echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
+setenv WORKSPACE_ENV ${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 
-echo ${SHELL}
+#If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
+setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin
 
-alias 00 'source ${DEV_HOME}/${KPLUSTP_USER}00/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+echo SHELL : ${SHELL}
 
-if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
-    echo ${WORKSPACE_ENV}/dev.env.sh
-    . ${WORKSPACE_ENV}/dev.env.sh
-fi
+alias 00 'source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
-# Set current development branche environment
-# 10
+#echo $PATH wrong after
+if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
+    echo ${WORKSPACE_ENV}/home/dev.env.csh
+    source ${WORKSPACE_ENV}/home/dev.env.csh
+endif
+
 echo "Set your environment with 10 alias."

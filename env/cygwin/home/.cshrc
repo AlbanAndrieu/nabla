@@ -20,7 +20,7 @@ if ( $?prompt ) then
     bindkey -v          ; # use vi key bindings
 
     # display
-    set DISPLAY         = Alban-PC:0.0
+    set DISPLAY         = albandri-Latitude-E4300:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
@@ -58,7 +58,7 @@ endif
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
 setenv DRIVE_PATH ${DRIVE_PATH}
-# ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
+# ${PROJECT_HOME}/albandri10
 setenv DEV_HOME ${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #setenv WORKSPACE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}

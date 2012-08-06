@@ -174,7 +174,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-alias 00='. ${DEV_HOME}/${KPLUSTP_USER}00/env/home/dev.env.sh'
+alias 00='. ${PROJECT_HOME}/${KPLUSTP_USER}00/env/home/dev.env.sh'
 alias 10='. ${WORKSPACE_ENV}/home/dev.env.sh'
 
 echo ${SHELL}
