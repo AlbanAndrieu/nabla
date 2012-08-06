@@ -5,20 +5,24 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-# ... or force ignoredups and ignorespace
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -36,7 +40,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -78,9 +82,13 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -lrta'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -115,20 +123,19 @@ export ARCH=linux
 
 echo ${ARCH} ${MACHINE}
 
-export DEV_USER=albandri
-export DEV_VERSION=30
-export DEV_EXTRACTION=ktpplus
+export PROJECT_USER=albandri
+export PROJECT_VERSION=10
 export DRIVE_PATH=
-export DEV_HOME=${DRIVE_PATH}/workspace/users
+export PROJECT_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
-export WORKSPACE_ENV=${DEV_HOME}/${DEV_USER}${DEV_VERSION}/env/${ARCH}
+export WORKSPACE_ENV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 
-export THIRDPARTY_ROOT=${DRIVE_PATH}/thirdparty
-echo THIRDPARTY_ROOT ${THIRDPARTY_ROOT}
+export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
+echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
 
 if [ "${ARCH}" = cygwin ]
 then
-  export CORBA_ROOT=${THIRDPARTY_ROOT}/tao
+  export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
   export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 
   echo ${ACE_ROOT}
@@ -150,23 +157,30 @@ then
 
   DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
   export DDS_ROOT
+
+  echo "make and make static_libs=1 in"
+  echo "cd ${ACE_ROOT}/ace"
+  echo "cd ${ACE_ROOT}/apps/gperf"
+  echo "cd ${TAO_ROOT}/tao"
+  echo "cd ${TAO_ROOT}/TAO_IDL"
+  echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
+
 fi
 
-echo "make and make static_libs=1 in"
-echo "cd ${ACE_ROOT}/ace"
-echo "cd ${ACE_ROOT}/apps/gperf"
-echo "cd ${TAO_ROOT}/tao"
-echo "cd ${TAO_ROOT}/TAO_IDL"
-echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
-
 #If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
-#:/sbin:/usr/local/sbin:
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-#export LD_LIBRARY_PATH=$ACE_ROOT/lib:$LD_LIBRARY_PATH
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+alias 00='. ${DEV_HOME}/${KPLUSTP_USER}00/env/home/dev.env.sh'
+alias 10='. ${WORKSPACE_ENV}/home/dev.env.sh'
 
 echo ${SHELL}
 
-if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
-    echo ${WORKSPACE_ENV}/dev.env.sh
-    . ${WORKSPACE_ENV}/dev.env.sh
+if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
+    echo ${WORKSPACE_ENV}/home/dev.env.sh
+    . ${WORKSPACE_ENV}/home/dev.env.sh
 fi
+
