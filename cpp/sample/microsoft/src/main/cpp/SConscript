@@ -1,0 +1,12 @@
+#imports
+import os
+import ProjectMacro
+#getting local scons environment
+Import('env')
+localenv = env.Clone()
+
+#exporting headers
+localenv.Install(os.path.join(localenv['KTPPIncludesDir'],''), Glob('include/*.h')+Glob('include/*.ipp'))
+
+#building shared library
+localenv.SharedLibrary(os.path.join(localenv['KTPPLibDir'],'main_library'), Glob('*.cpp'))

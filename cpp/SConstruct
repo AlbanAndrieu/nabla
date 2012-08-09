@@ -1,0 +1,427 @@
+#################
+# K+TP Build NG script
+######################
+
+import os
+import re
+
+from config import ProjectMacro
+
+EnsureSConsVersion(2, 1)
+EnsurePythonVersion(2, 3)
+#TODO use 2.7.3 for eclipse plugins Sconsolidator
+#EnsurePythonVersion(2, 7)
+
+# To be retrieved automatically
+Arch = ProjectMacro.getArch()
+print "Arch :", Arch
+
+# Command line variables definition
+vars = Variables('variables.py') # you can store your defaults in this file
+vars.AddVariables(
+    EnumVariable('opt', 'Set to True to build with opt flags', 'False', ['True', 'False']),
+    ('gcc_version', 'Set gcc version to use', '4.1.2'),
+    ('install_path', 'Set install path', 'install'),
+    EnumVariable('target', 'Target platform', 'default', ['default', 'local'])
+)
+env = DefaultEnvironment(tools = ['gcc', 'gnulink'], CC = '/usr/local/bin/gcc')
+
+if Arch in ['x86sol','sun4sol']:
+    env = Environment(tools=['suncc', 'sunc++', 'sunlink'])
+#print "ENV PATH :", env['ENV']['PATH']
+env = Environment(variables = vars, tools = ['default', 'packaging', 'Project'], toolpath = ['config'])
+print "ENV TOOLS :", env['TOOLS']
+#print "dump whole env :", env.Dump()
+print "ENV ENV :", env['ENV']
+vars.Update(env)
+Help(vars.GenerateHelpText(env))
+unknown = vars.UnknownVariables()
+if unknown:
+    print "Unknown variables :", unknown.keys()
+    Exit(1)
+
+print "vars :", vars.GenerateHelpText(env)
+# Save variables
+vars.Save('variables.py', env)
+
+# SCons configuration
+SetOption('max_drift', '1') # We are using a local disk
+Decider('MD5-timestamp')
+
+# Paths deduced from sandbox location
+env['sandbox'] = Dir("#").srcnode().abspath
+
+print "sandbox :", env['sandbox']
+
+#
+# Environment extraction
+#########################
+# Default values setted when no environment defined (like jenkins)
+if env['target'] == 'local':
+  KTPPDev = env['sandbox']
+  KTPPTarget = env['sandbox'] + '/target'
+else:
+  KTPPDev = ProjectMacro.getEnvVariable('PROJECT_SRC',os.path.dirname(env['sandbox']))
+  KTPPTarget = ProjectMacro.getEnvVariable('PROJECT_TARGET_PATH',os.path.dirname(env['sandbox'])) + '/sample'
+
+if re.search('dev\/', KTPPTarget):
+  KTPPTarget = re.sub(r'dev\/', 'dev_obj/', KTPPTarget)
+
+print "KTPPTarget :", KTPPTarget
+
+if env['target'] == 'local':
+	KTPPThirdPartyDir = env['sandbox'] + '/thirdparty'
+else:
+	KTPPThirdPartyDir = ProjectMacro.getEnvVariable('PROJECT_THIRDPARTY_PATH','/thirdparty')
+
+print "KTPPThirdPartyDir :", KTPPThirdPartyDir
+
+# might not WORK in eclipse (hard code it)
+KTPPJavaDir = ProjectMacro.getEnvVariable('JAVA_HOME', KTPPThirdPartyDir + 'java' + Arch)
+print "KTPPJavaDir :", KTPPJavaDir
+
+env['cache_path'] = KTPPTarget + '/buildcache-' + Arch
+print "env['cache_path'] :", env['cache_path']
+CacheDir(env['cache_path'])
+SConsignFile(KTPPTarget + '/scons-signatures-' + Arch)
+
+KplusOptFolderName = env['output_folder']
+
+#registering function to handle builderrors correctly
+ProjectMacro.registerBuildFailuresAtExit()
+
+if env['opt'] == 'True':
+	print "opt mode activated"
+	theOptDbgFolder = 'opt'+env['Suffix64']
+	env.Prepend(CCFLAGS = env['opt_flags'])
+	env.Prepend(CCFLAGS = '-DNDEBUG')
+	if Arch in ['sun4sol','x86sol']:
+		env.Prepend(CCFLAGS = '-xlibmil')
+		env.Prepend(CCFLAGS = '-xlibmopt')
+else:
+	theOptDbgFolder = 'debug'+env['Suffix64']
+	env.Prepend(CCFLAGS = env['debug_flags'])
+	env.Prepend(CCFLAGS = '-DDEBUG')
+
+#binaries directory
+thePath=os.path.join(KTPPTarget,'bin',Arch)
+ProjectMacro.mkdir(thePath)
+KTPPBinDir = os.path.abspath(thePath)
+#obj directories
+thePath=os.path.join(KTPPTarget,'obj',Arch)
+ProjectMacro.mkdir(os.path.join(thePath,theOptDbgFolder))
+KTPObjDir = os.path.abspath(os.path.join(thePath,theOptDbgFolder))
+thePath=os.path.join(KTPPTarget,'include',Arch)
+ProjectMacro.mkdir(thePath)
+KTPPIncludesDir = os.path.abspath(thePath)
+#lib directories
+thePath=os.path.join(KTPPTarget,'lib',Arch,theOptDbgFolder)
+ProjectMacro.mkdir(thePath)
+KTPPStaticLibDir = Dir(thePath).srcnode().abspath
+thePath=os.path.join(KTPPStaticLibDir,'shared')
+ProjectMacro.mkdir(thePath)
+KTPPLibDir = Dir(thePath).srcnode().abspath
+env['KTPPStaticLibDir'] = KTPPStaticLibDir
+env['KTPPLibDir'] = KTPPLibDir
+env['KTPPBinDir'] = KTPPBinDir
+env['KTPPIncludesDir'] = KTPPIncludesDir
+
+print "static lib dir :", KTPPStaticLibDir
+print "shared lib dir :", KTPPLibDir
+print "bin dir :", KTPPBinDir
+print "include dir :", KTPPIncludesDir
+
+VariantDir(os.path.join(KTPObjDir,'sample'), 'sample', duplicate=0)
+
+env['CPPPATH'] = [
+    '.',
+# published headers
+	KTPPIncludesDir,
+# 3rd parties
+#	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'boost',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'zlib',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'infra',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'ida',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'xerces',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'log4cxx',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers'),
+#	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO'),
+#	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO','orbsvcs'),
+#	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'kdb_kplus',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'kdb_kplustp',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'kplus',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'els',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'kmf',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'faketat',Arch,'include'),
+#	os.path.join(KTPPThirdPartyDir,'fareport',Arch,'include'),
+	os.path.join(KTPPJavaDir,'include'),
+	os.path.join(KTPPJavaDir,'include',['linux','solaris'][Arch!='x86Linux']), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 	
+#	os.path.join(KTPPThirdPartyDir,'quality_server',Arch,'include'),
+]
+
+# -L parameter
+##############
+env["LIBPATH"]     = [
+	KTPPStaticLibDir,
+	KTPPLibDir,
+#	os.path.join(KTPPThirdPartyDir,'boost', Arch, 'lib',['','opt/shared'][Arch!='x86Linux']),
+#	os.path.join(KTPPThirdPartyDir,'xerces', Arch, 'lib'),
+#	os.path.join(KTPPThirdPartyDir,'knel', Arch, 'opt','shared'),
+#	os.path.join(KTPPThirdPartyDir,'qt', Arch, 'lib'),
+#	os.path.join(KTPPThirdPartyDir,'kdb_kplustp', Arch, KplusOptFolderName,'shared'),
+#	os.path.join(KTPPThirdPartyDir,'kdb_kplus', Arch, KplusOptFolderName,'shared'),
+#	os.path.join(KTPPThirdPartyDir,'ida', Arch, KplusOptFolderName,'shared'),
+#	os.path.join(KTPPThirdPartyDir,'kmf', Arch, KplusOptFolderName,'shared'),
+#	os.path.join(KTPPThirdPartyDir,'libxml2', Arch, 'lib'),
+#	os.path.join(KTPPThirdPartyDir,'quality_server',Arch,'lib'),
+#	os.path.join(KTPPThirdPartyDir,'ksecurity',Arch,'lib'),
+#	os.path.join(KTPPThirdPartyDir,'adfin', Arch),
+#	os.path.join(KTPPThirdPartyDir,'kplus', Arch, KplusOptFolderName,'shared'),
+#	os.path.join(KTPPThirdPartyDir,'kplus', Arch, KplusOptFolderName),
+#	os.path.join(KTPPThirdPartyDir,'tao', Arch, 'ACE_wrappers','lib'),
+#	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'lib'),
+#	os.path.join(KTPPThirdPartyDir,'rv', Arch, 'lib'),
+#	os.path.join(KTPPThirdPartyDir,'infra', Arch, 'opt','shared'),
+#	os.path.join(KTPPThirdPartyDir,'els',Arch),
+#	os.path.join(KTPPThirdPartyDir,'faketat',Arch,'opt','shared'),
+#	os.path.join(KTPPThirdPartyDir,'fareport',Arch,'opt','shared'),
+#	os.path.join(KTPPThirdPartyDir,'apr',Arch,'lib'),
+	os.path.join(KTPPJavaDir, 'jre','lib',env['java_arch'],'server'), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 
+#	os.path.join(KTPPThirdPartyDir,'apr-util',Arch,'lib'),
+#	os.path.join(KTPPThirdPartyDir,'log4cxx', Arch, 'lib'),
+#	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'lib'),
+#	os.path.join(KTPPThirdPartyDir,'tibjms',Arch,'lib',['64',''][Arch!='x86Linux']),
+
+# 3rd parties
+]
+
+#print "LIBPATH :", env['LIBPATH']
+LD_LIBRARY_PATH=':'.join([os.path.abspath(x) for x in env['LIBPATH']])
+print "LD_LIBRARY_PATH :", LD_LIBRARY_PATH
+textfile = file('path.sh','w')
+textfile.writelines('#!/bin/sh\n')
+textfile.writelines('#Generated by scons\n')
+textfile.writelines('export LIBPATH=' + LD_LIBRARY_PATH + '\n')
+#textfile.writelines('echo LIBPATH : $LIBPATH \n')
+#textfile.writelines('exit 0\n')
+textfile.close()
+
+env['TAO'] = [
+	'ACE',
+	'ACE_RMCast',
+	'TAO',
+	'TAO_BiDirGIOP',
+	'TAO_DynamicAny',
+	'TAO_DynamicInterface',
+	'TAO_IDL_BE',
+	'TAO_IDL_FE',
+	'TAO_IFR_Client',
+	'TAO_IORManip',
+	'TAO_IORTable',
+	'TAO_Messaging',
+	'TAO_PortableServer',
+	'TAO_RTCORBA',
+	'TAO_RTPortableServer',
+	'TAO_SmartProxies',
+	'TAO_Strategies',
+	'TAO_TypeCodeFactory',
+	'TAO_Utils',
+	'TAO_CosNaming',
+	'TAO_Codeset',
+]
+
+#####################################
+# 3rd parties versions suffixes
+#
+Versions = dict([
+    ('infra', '27e'),
+    ('kml_1', '05'),
+    ('kml_2', 'v1r26'),
+    ('ida', 'v5r03'),
+    ('kdbgen', 'v33u3323'),
+    ('ktpgen', 'v33u3320'),
+    ('kdbchoice', 'v33r17'),
+])
+#
+#####################################
+
+#### Lists of libs for link
+env['KMLLibs'] = [
+	'GuaranteedTransport' + Versions['kml_2'],
+	'RvTransport' + Versions['kml_2'],
+	'KML' + Versions['kml_2'],
+	'KMF' + Versions['kml_2'],
+	'tibrv'+env['Suffix64'],
+	'tibrvcm'+env['Suffix64'],
+	'tibrvcmq'+env['Suffix64'],
+	'tibrvft'+env['Suffix64'],
+	'tibrvcpp'+env['Suffix64'],
+	'crypto',
+	'infratools' + Versions['infra'],
+	'infracpptools' + Versions['infra'],
+	'kml' + Versions['kml_1'] + 'e',
+	'kmlconfig' + Versions['kml_1'] + 'e',
+	'kmllog' + Versions['kml_1'] + 'e',
+	'KNEL' + Versions['kml_1'],
+	'KTools' + Versions['kml_1'],
+	'XML',
+	'xml2',
+]
+
+env['IDALibs'] = [
+	'KDBType' + Versions['ida'],
+	'KDBC' + Versions['ida'],
+	'KDB' + Versions['ida'],
+	'KRDV' + Versions['ida'],
+	'KDBCommon' + Versions['ida'],
+	'turazkrypt',
+]
+
+env['KDBLibs'] = [
+	'KDBCHOICESKondor' + Versions['kdbgen'],
+	'KDBGENCPPLOCAL2' + Versions['kdbgen'],
+	'KDBGENCPPLOCAL1' + Versions['kdbgen'],
+	'KDBGENCPPGLOBAL' + Versions['kdbgen'],
+	'KDBGENCPPKUSTOM' + Versions['kdbgen'],
+	'KDBGENCPPARCHIVE' + Versions['kdbgen'],
+	'KDBGENCPPVERSION' + Versions['kdbgen'],
+	'KDBGEN' + Versions['kdbgen'],
+	'KRDVGEN' + Versions['kdbgen'],
+	'KTPCHOICES' + Versions['ktpgen'],
+	'KTPGENCPP' + Versions['ktpgen'],
+	'KTPGENCPPARCHIVE' + Versions['ktpgen'],
+	'KDBCHOICESCommon' + Versions['kdbchoice'],
+]
+
+env['KTPKplusLinkLibraries'] = [
+	'KOPENimpl',
+	'KOTProvider',
+	'KOTDynProvider',
+	'KOTConvert',
+	'KFS',
+	'KFINDEALSpricing',
+	'OpennessPricing',
+	'OpennessPricingComponents',
+	'Openness_Controller',
+	'Openness_Controller_EMS',
+	'Openness_Serializer_Services',
+	'Openness_Serializer',
+	'Openness_Serializer_Deals',
+	'Openness_Dictionary',
+	'Openness_Messaging_Common',
+	'Openness_Messaging_EMS',
+	'Openness_Serializer_MarketData',
+	'KBATCH',
+	'KDEALSmodel',
+	'KCUTOVER',
+	'KPROBAcurves',
+	'KVOLATcurves',
+	'KOTTools',
+	'KSCHED',
+	'KURVE',
+	'KFIN',
+	'KFINDEALS',
+	'KCOMMODITY',
+	'KFIN',
+	'KOPEN',
+	'KSCHEDgenerator',
+	'KVOLATcurves',
+	'KOTTools',
+	'KINFLATION',
+	'KSCHEDengine',
+	'KVOLATengine',
+	'KURVEengine',
+	'KURVEassign',
+	'KURVEdynamic',
+	'KCORREL',
+	'KFINTOOLS',
+	'KPRICES',
+	'KONDORutils',
+	'KELS',
+	'KDBUTILS',
+	'KCALCONF',
+	'KDATE',
+	'KUSTOM',
+	'KDBTOOLS',
+	'XML',
+	'KRT',
+	'KTHREAD',
+	'Loggers',
+	'KOTShared',
+	'KOTTypes',
+	'KOTDealsLight',
+	'KLightweight',
+	'KEXPORT',
+	'KONDORutils',
+	'KLINTengine',
+	'KFINDEALS',
+	'KCondition_Compil',
+	'KCondition',
+	'KDATE',
+	'IMPEXP',
+	'KOperationsMvts',
+	'OKAPIRDV',
+	'KLINTengine',
+	'KDBTOOLS',
+	'KFIN',
+	'KFINMATH',
+	'KRYPTONcore',
+	'Serialize',
+	'KRDVwatch',
+	'KC',
+	'KCPP',
+	'RFSFinTools',
+	'KFINBONDS',
+#adfin
+	'AdfComp',
+	'AdfApi',
+	'AdfDef',
+	'AdfRand',
+	'AdfStyle',
+	'AdfMath',
+	'AdfBasic',
+	'AdfRes',
+#qt
+	'QtCore',
+#algebra
+	'Algebra_Compil',
+	'Algebra_Compil_Parsing',
+	'Algebra_Functions',
+	'Algebra_Tree',
+	'Algebra_Utils',
+	'Algebra',
+]
+
+#additional libs for link
+env['OSDependentLibs']=[]
+if Arch in ['x86sol','sun4sol']:
+	env['OSDependentLibs'].extend([ 'posix4','pthread','thread','socket'])
+
+#register the idl builder
+ProjectMacro.registerIDLBuilders(env,KTPPThirdPartyDir,Arch)
+
+# Variables visible to SConscripts
+Export('env')
+
+#Sconscript calls
+SConscript(KTPObjDir+'/sample/microsoft/src/main/cpp/SConscript')
+SConscript(KTPObjDir+'/sample/microsoft/src/main/app/SConscript')
+
+SConscript(KTPObjDir+'/sample/microsoft/src/test/cpp/SConscript')
+SConscript(KTPObjDir+'/sample/microsoft/src/test/app/SConscript')
+
+#env.Package( NAME           = 'kplustp',
+#             VERSION        = '1.2.3',
+#             PACKAGEVERSION = 0,
+#             PACKAGETYPE    = 'targz',
+#             source=[KTPPLibDir, KTPPBinDir],
+#             LICENSE        = 'misys',
+#             SUMMARY        = 'KplusTP (K+ Back Office)',
+#             DESCRIPTION    = 'KplusTP (K+ Back Office)',
+#             X_RPM_GROUP    = 'Application/kplustp',
+#             SOURCE_URL     = 'http://misys.org/kplustp-1.2.3.tar.gz'
+#        )
+
+print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)
