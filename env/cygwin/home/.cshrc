@@ -20,7 +20,7 @@ if ( $?prompt ) then
     bindkey -v          ; # use vi key bindings
 
     # display
-    set DISPLAY         = albandri-Latitude-E4300:0.0
+    set DISPLAY         = PTXMZ0087:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"

@@ -3,6 +3,6 @@
 C:
 chdir C:\cygwin\bin
 
-@echo ./setEnvFiles.allUserDev.sh ./profiles/albandri.dev.properties
+@echo ./env/config/setEnvFiles.allUserDev.sh ./env/config/profiles/albandri10.cygwin.properties
 
-bash --login -i ./setEnvFiles.allUserDev.sh ./profiles/albandri.dev.properties
+bash --login -i ./env/config/setEnvFiles.allUserDev.sh ./env/config/profiles/albandri10.cygwin.properties

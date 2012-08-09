@@ -25,13 +25,18 @@ set M2_HOME=C:\apache-maven-3.0.4
 set M2=%M2_HOME%\bin
 set M2_REPO=C:\repos
 
-set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
+#set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
+rm Add MaxPermSize for andromda
+set MAVEN_OPTS=-Xms256m -Xmx512m -XX:PermSize=40M -XX:MaxPermSize=128M
 
 set MD_HOME=C:\MagicDraw UML 16.5
 set ANDROMDA_HOME=C:\repo\org\andromda
 
 set JBOSS_HOME=C:\jboss-4.2.2.GA
 set JBOSS=%JBOSS_HOME%\bin
+
+set BEES_HOME=C:\cloudbees-sdk-1.1
+set BEES=%BEES_HOME%
 
 set CMAKE_HOME=C:\CMake-2.6.4
 set CMAKE=%CMAKE_HOME%\bin
