@@ -1398,7 +1398,7 @@
 		<maven.buildnumber.plugin.version>1.0</maven.buildnumber.plugin.version>
 		<maven.gmaven.plugin.version>1.4</maven.gmaven.plugin.version>
 		<maven.verifier.plugin.version>1.0-beta-1</maven.verifier.plugin.version>
-		<maven.surefire.plugin.version>2.12.1</maven.surefire.plugin.version>
+		<maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
 		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
 		<maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
 		<maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
