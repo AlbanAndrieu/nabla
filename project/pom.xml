@@ -759,4 +759,7 @@
 		</profile>		
 	</profiles>
 
+			<modules>
+				<module>nabla</module>
+			</modules>
 </project>

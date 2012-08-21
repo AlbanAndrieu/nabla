@@ -7,7 +7,8 @@ call mvn dependency:analyze > analyze.log
 call mvn help:effective-pom > effective.log
 call mvn initialize -Pshow-properties > properties.log
 call mvn scm:validate
-call mvn jalopy:format
+REM call mvn jalopy:format
+call mvn java-formatter:format
 call mvn source:jar 
 call mvn source:test-jar
 call mvn eclipse:clean 
