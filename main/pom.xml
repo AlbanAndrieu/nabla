@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
@@ -104,7 +104,8 @@
 		<jboss.remote.debug.port>8787</jboss.remote.debug.port>
 		<jboss.htpp.debug.port>8181</jboss.htpp.debug.port> <!-- in Eclipse Local Monitor Port 8181 and Port 8180 -->
 		
-		<tomcat.port>8070</tomcat.port>		
+		<hudson.port>8070</hudson.port>
+		<tomcat.port>8280</tomcat.port>	
 		<oracle.port>8080</oracle.port>
 		<archiva.port>8010</archiva.port>
 		<continuum.port>8020</continuum.port>
