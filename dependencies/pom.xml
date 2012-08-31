@@ -1111,6 +1111,7 @@
 		<ant-nodeps.version>1.7.0</ant-nodeps.version>
 		<ant.version>1.7.0</ant.version>
 		<ant.trax.version>1.7.0</ant.trax.version>
+		<c3p0.version>0.8.5.2</c3p0.version>
 
 		<jdbc.derby.version>10.3.1.4</jdbc.derby.version>
 		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
@@ -1136,6 +1137,7 @@
                 <jboss.cache.version>1.4.1.SP9</jboss.cache.version>
                 <jboss.el.version>1.0_02.CR5</jboss.el.version>	
                 <jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
+                <jbossws.client.version>2.0.1.SP2</jbossws.client.version>
                 <el.api.version>2.2.1-b04</el.api.version>	
 		<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
 		<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
@@ -1319,7 +1321,7 @@
 
 		<!-- Plugin version definitions -->
 		<maven.project.version>2.2.1</maven.project.version>
-		<plexus.util.version>3.0.1</plexus.util.version>
+		<plexus.util.version>3.0.2</plexus.util.version>
 		<plexus.container.default.version>1.5.5</plexus.container.default.version>
 
 		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
@@ -1907,8 +1909,7 @@
 								<rules>
 									<requireMavenVersion>
 										<!-- minimum version is 2.0.7, higher versions allowed -->
-										<version>[2.2.1,)</version>
-										<!--<version>[3.0.0,)</version> -->
+										<version>[${maven.project.version},)</version>
 									</requireMavenVersion>
 
 									<requireJavaVersion>
@@ -3338,6 +3339,11 @@
 				<version>${javax.activation.version}</version>
 				<scope>compile</scope>
 			</dependency>
+            		<dependency>
+            		    <groupId>c3p0</groupId>
+            		    <artifactId>c3p0</artifactId>
+            		    <version>${c3p0.version}</version>
+            		</dependency>			
 			<dependency>
 				<groupId>ant</groupId>
 				<artifactId>ant</artifactId>
@@ -4942,7 +4948,7 @@
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-plugin-api</artifactId>
-				<version>${maven.version}</version>
+				<version>${maven.project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.maven</groupId>
