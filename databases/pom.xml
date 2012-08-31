@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -47,7 +47,7 @@
 				<jdbc.client.artifactId>mysql-connector-java</jdbc.client.artifactId>
 				<jdbc.groupId>mysql</jdbc.groupId>
 				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-				<jdbc.version>5.1.10</jdbc.version>
+				<jdbc.version>5.1.14</jdbc.version>
 
 				<!-- <jdbc.driver.jar>${base.dir}/model/doa/lib/mysql-connector-java-5.0.5-bin.jar</jdbc.driver.jar> -->
 				<!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}-${jdbc.version}.jar</jdbc.driver.jar> -->
