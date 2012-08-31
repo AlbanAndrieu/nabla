@@ -1,0 +1,37 @@
+log4j.rootLogger = [[LOG4J_ROOT_CATEGORY]]
+#log4j.rootCategory = [[LOG4J_ROOT_CATEGORY]]
+
+log4j.debug=TRUE
+
+# The root category uses the appender called CONSOLE. Since no priority is
+# specified, the root category assumes the default priority for root
+# which is DEBUG in log4j. The root category is the only category that
+# has a default priority. All other categories do not have a default
+# priority. in which case the priority is inherited from the
+# hierarchy.
+
+# CONSOLE is set to be a ConsoleAppender which outputs to System.out. 
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+
+# CONSOLE uses PatternLayout.
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
+
+log4j.appender.FILE=org.apache.log4j.RollingFileAppender
+log4j.appender.FILE.File=[[LOG4J_SERVER_FILE]]
+log4j.appender.FILE.MaxFileSize=500KB
+log4j.appender.FILE.MaxBackupIndex=10
+log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
+
+# LUMBERMILL CHAINSAW
+log4j.appender.SOCKETSERV=org.apache.log4j.net.SocketAppender
+log4j.appender.SOCKETSERV.Port=[[LOG4J_SERVER_PORT]]
+log4j.appender.SOCKETSERV.RemoteHost=[[LOG4J_SERVER_HOST]]
+
+log4j.logger.org.springframework=WARN, [[LOG4J_ACTIVE_APPENDER]]
+log4j.logger.org.hibernate=WARN, [[LOG4J_ACTIVE_APPENDER]]
+
+log4j.logger.org.apache.catalina.core.ContainerBase.[Catalina].[localhost]=DEBUG
+log4j.logger.org.apache.catalina.core=DEBUG
+log4j.logger.org.apache.catalina.session=DEBUG
