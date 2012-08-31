@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -346,78 +346,80 @@
             <dependency>
                 <groupId>c3p0</groupId>
                 <artifactId>c3p0</artifactId>
-                <version>0.8.5.2</version>
+                <version>${c3p0.version}</version>
             </dependency>
             <dependency>
                 <groupId>antlr</groupId>
                 <artifactId>antlr</artifactId>
-                <version>2.7.7</version>
+                <version>${ant.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-digester</groupId>
                 <artifactId>commons-digester</artifactId>
-                <version>2.1</version>
+                <version>${commons.digester.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
+                <version>${servlet.api.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.lowagie</groupId>
                 <artifactId>itext</artifactId>
-                <version>2.1.7</version>
+                <version>${itext.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
-                <version>1.2</version>
+                <version>${jstl.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>oro</groupId>
                 <artifactId>oro</artifactId>
-                <version>2.0.8</version>
+                <version>${oro.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <!-- MyFaces Dependencies -->
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-api</artifactId>
-                <version>1.2.9</version>
+                <version>${myfaces.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-impl</artifactId>
-                <version>1.2.9</version>
+                <version>${myfaces.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.8.2</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
-                <version>1.2.16</version>
+                <version>${log4j.version}</version>
                 <!--scope>test</scope-->
             </dependency>
+            <!--
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.14</version>
                 <scope>test</scope>
             </dependency>
+            -->
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
-                <version>5.14.6</version>
+                <version>${testng.version}</version>
                 <scope>test</scope>
                 <exclusions>
                     <exclusion>

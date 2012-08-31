@@ -108,7 +108,7 @@
 		<dependency>
 			<groupId>org.jboss</groupId>
 			<artifactId>jbossws-client</artifactId>
-			<version>2.0.1.SP2</version>
+			<version>${jbossws.client.version}</version>
 			<scope>provided</scope>
 		</dependency>
     		
@@ -182,10 +182,12 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 		</dependency>
+		<!--		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		-->		
 	</dependencies>
 	<build>
 		<plugins>
@@ -194,8 +196,9 @@
 				<artifactId>build-helper-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ejb-plugin</artifactId>
-				<version>2.3</version>
+				<version>${maven.ejb.plugin.version}</version>
 				<configuration>
 					<ejbVersion>3.0</ejbVersion>
 					<archive>
