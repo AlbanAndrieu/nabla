@@ -351,7 +351,7 @@
             <dependency>
                 <groupId>antlr</groupId>
                 <artifactId>antlr</artifactId>
-                <version>${ant.version}</version>
+                <version>${antlr.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-digester</groupId>
