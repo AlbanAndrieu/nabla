@@ -490,6 +490,7 @@
 									<version>${maven.javancss.plugin.version}</version>
 								</plugin>
 								
+								<!--
             							<plugin>
             							    <groupId>org.codehaus.mojo</groupId>
             							    <artifactId>versions-maven-plugin</artifactId>
@@ -504,6 +505,7 @@
             							        </reportSet>
             							    </reportSets>
             							</plugin>
+            							-->
             							
 								<plugin>
 									<groupId>org.apache.maven.plugins</groupId>
