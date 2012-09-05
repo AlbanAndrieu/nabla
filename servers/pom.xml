@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -70,42 +70,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				<plugin>
-					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>maven-jetty-plugin</artifactId>
-					<version>${maven.jetty.plugin.version}</version>
-					<configuration>
-						<contextPath>/</contextPath>
-						<scanIntervalSeconds>3</scanIntervalSeconds>
-						<scanTargetPatterns>
-							<scanTargetPattern>
-								<directory>src/main/webapp/WEB-INF</directory>
-								<excludes>
-									<exclude>**/*.jsp</exclude>
-								</excludes>
-								<includes>
-									<include>**/*.properties</include>
-									<include>**/*.xml</include>
-								</includes>
-							</scanTargetPattern>
-						</scanTargetPatterns>
-					</configuration>
-				</plugin>
 				<!-- end Web application server helpers -->
-
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>jboss-packaging-maven-plugin</artifactId>
-					<version>${maven.jboss.packaging.plugin.version}</version>
-					<!-- Enable packaging types and lifecycle bindings. -->
-					<extensions>true</extensions>
-				</plugin>
-
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>jboss-maven-plugin</artifactId>
-					<version>${maven.jboss.plugin.version}</version>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -167,6 +132,7 @@
 				</property>
 			</activation>
 			<properties>
+			        <!-- console user myNewUser admin added with add-user.sh -->
 			        <!--<as.version>4.2</as.version>-->
 			        <!--<as.version>5</as.version>-->
 			        <as.version>5</as.version>
@@ -184,10 +150,12 @@
 				<webservice.port>8180</webservice.port>
 				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
 				<dataSource>java:/${dataSource.name}</dataSource>
+				<deploy.url>WRONG use tomcat profile</deploy.url>
 
 				<!-- END INFO USE BY MDA -->
-				<!--<cargo.container>jboss4x</cargo.container>-->
-				<cargo.container>jboss5x</cargo.container>
+				<!--<cargo.container>jboss4x</cargo.container>
+				<cargo.container>jboss5x</cargo.container>-->
+				<cargo.container>jboss7x</cargo.container>
 				<cargo.container.home>${jboss.home}</cargo.container.home>
 				<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
 				<cargo.host>localhost</cargo.host>
@@ -252,13 +220,19 @@
 		</profile>
 		<profile>
 			<id>tomcat7x</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>			
 			<properties>
 				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${tomcat.port}</server.port>
 				<dataSource>${dataSource.name}</dataSource>
-
+				<deploy.url>http://localhost:${tomcat.port}/manager/html</deploy.url>
+				
 				<cargo.container>tomcat7x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
 				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.16/bin/apache-tomcat-7.0.16.zip</cargo.container.url>
@@ -275,6 +249,7 @@
 				<server.name>${product.name}</server.name>
 				<server.port>${tomcat.port}</server.port>
 				<dataSource>${dataSource.name}</dataSource>
+				<deploy.url>http://localhost:${tomcat.port}/manager</deploy.url>
 
 				<cargo.container>tomcat6x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
