@@ -8,9 +8,7 @@ import re
 from config import ProjectMacro
 
 EnsureSConsVersion(2, 1)
-EnsurePythonVersion(2, 3)
-#TODO use 2.7.3 for eclipse plugins Sconsolidator
-#EnsurePythonVersion(2, 7)
+EnsurePythonVersion(2, 7)
 
 # To be retrieved automatically
 Arch = ProjectMacro.getArch()
@@ -141,24 +139,14 @@ env['CPPPATH'] = [
 #	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'include'),
 #	os.path.join(KTPPThirdPartyDir,'boost',Arch,'include'),
 #	os.path.join(KTPPThirdPartyDir,'zlib',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'infra',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'ida',Arch,'include'),
 #	os.path.join(KTPPThirdPartyDir,'xerces',Arch,'include'),
 #	os.path.join(KTPPThirdPartyDir,'log4cxx',Arch,'include'),
 #	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers'),
 #	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO'),
 #	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO','orbsvcs'),
 #	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'kdb_kplus',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'kdb_kplustp',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'kplus',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'els',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'kmf',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'faketat',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'fareport',Arch,'include'),
 	os.path.join(KTPPJavaDir,'include'),
 	os.path.join(KTPPJavaDir,'include',['linux','solaris'][Arch!='x86Linux']), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 	
-#	os.path.join(KTPPThirdPartyDir,'quality_server',Arch,'include'),
 ]
 
 # -L parameter
@@ -168,31 +156,15 @@ env["LIBPATH"]     = [
 	KTPPLibDir,
 #	os.path.join(KTPPThirdPartyDir,'boost', Arch, 'lib',['','opt/shared'][Arch!='x86Linux']),
 #	os.path.join(KTPPThirdPartyDir,'xerces', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'knel', Arch, 'opt','shared'),
-#	os.path.join(KTPPThirdPartyDir,'qt', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'kdb_kplustp', Arch, KplusOptFolderName,'shared'),
-#	os.path.join(KTPPThirdPartyDir,'kdb_kplus', Arch, KplusOptFolderName,'shared'),
-#	os.path.join(KTPPThirdPartyDir,'ida', Arch, KplusOptFolderName,'shared'),
-#	os.path.join(KTPPThirdPartyDir,'kmf', Arch, KplusOptFolderName,'shared'),
 #	os.path.join(KTPPThirdPartyDir,'libxml2', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'quality_server',Arch,'lib'),
-#	os.path.join(KTPPThirdPartyDir,'ksecurity',Arch,'lib'),
-#	os.path.join(KTPPThirdPartyDir,'adfin', Arch),
-#	os.path.join(KTPPThirdPartyDir,'kplus', Arch, KplusOptFolderName,'shared'),
-#	os.path.join(KTPPThirdPartyDir,'kplus', Arch, KplusOptFolderName),
 #	os.path.join(KTPPThirdPartyDir,'tao', Arch, 'ACE_wrappers','lib'),
 #	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'lib'),
 #	os.path.join(KTPPThirdPartyDir,'rv', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'infra', Arch, 'opt','shared'),
-#	os.path.join(KTPPThirdPartyDir,'els',Arch),
-#	os.path.join(KTPPThirdPartyDir,'faketat',Arch,'opt','shared'),
-#	os.path.join(KTPPThirdPartyDir,'fareport',Arch,'opt','shared'),
 #	os.path.join(KTPPThirdPartyDir,'apr',Arch,'lib'),
-	os.path.join(KTPPJavaDir, 'jre','lib',env['java_arch'],'server'), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 
 #	os.path.join(KTPPThirdPartyDir,'apr-util',Arch,'lib'),
 #	os.path.join(KTPPThirdPartyDir,'log4cxx', Arch, 'lib'),
 #	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'lib'),
-#	os.path.join(KTPPThirdPartyDir,'tibjms',Arch,'lib',['64',''][Arch!='x86Linux']),
+	os.path.join(KTPPJavaDir, 'jre','lib',env['java_arch'],'server'), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 
 
 # 3rd parties
 ]
@@ -236,162 +208,23 @@ env['TAO'] = [
 # 3rd parties versions suffixes
 #
 Versions = dict([
-    ('infra', '27e'),
-    ('kml_1', '05'),
-    ('kml_2', 'v1r26'),
-    ('ida', 'v5r03'),
-    ('kdbgen', 'v33u3323'),
-    ('ktpgen', 'v33u3320'),
-    ('kdbchoice', 'v33r17'),
+    ('test_1', '01'),
+    ('test_2', '02'),
 ])
 #
 #####################################
 
 #### Lists of libs for link
-env['KMLLibs'] = [
-	'GuaranteedTransport' + Versions['kml_2'],
-	'RvTransport' + Versions['kml_2'],
-	'KML' + Versions['kml_2'],
-	'KMF' + Versions['kml_2'],
+env['MORELibs'] = [
+#	'Todo1' + Versions['test_1'],
+#	'Todo2' + Versions['test_2'],
 	'tibrv'+env['Suffix64'],
 	'tibrvcm'+env['Suffix64'],
 	'tibrvcmq'+env['Suffix64'],
 	'tibrvft'+env['Suffix64'],
 	'tibrvcpp'+env['Suffix64'],
 	'crypto',
-	'infratools' + Versions['infra'],
-	'infracpptools' + Versions['infra'],
-	'kml' + Versions['kml_1'] + 'e',
-	'kmlconfig' + Versions['kml_1'] + 'e',
-	'kmllog' + Versions['kml_1'] + 'e',
-	'KNEL' + Versions['kml_1'],
-	'KTools' + Versions['kml_1'],
-	'XML',
 	'xml2',
-]
-
-env['IDALibs'] = [
-	'KDBType' + Versions['ida'],
-	'KDBC' + Versions['ida'],
-	'KDB' + Versions['ida'],
-	'KRDV' + Versions['ida'],
-	'KDBCommon' + Versions['ida'],
-	'turazkrypt',
-]
-
-env['KDBLibs'] = [
-	'KDBCHOICESKondor' + Versions['kdbgen'],
-	'KDBGENCPPLOCAL2' + Versions['kdbgen'],
-	'KDBGENCPPLOCAL1' + Versions['kdbgen'],
-	'KDBGENCPPGLOBAL' + Versions['kdbgen'],
-	'KDBGENCPPKUSTOM' + Versions['kdbgen'],
-	'KDBGENCPPARCHIVE' + Versions['kdbgen'],
-	'KDBGENCPPVERSION' + Versions['kdbgen'],
-	'KDBGEN' + Versions['kdbgen'],
-	'KRDVGEN' + Versions['kdbgen'],
-	'KTPCHOICES' + Versions['ktpgen'],
-	'KTPGENCPP' + Versions['ktpgen'],
-	'KTPGENCPPARCHIVE' + Versions['ktpgen'],
-	'KDBCHOICESCommon' + Versions['kdbchoice'],
-]
-
-env['KTPKplusLinkLibraries'] = [
-	'KOPENimpl',
-	'KOTProvider',
-	'KOTDynProvider',
-	'KOTConvert',
-	'KFS',
-	'KFINDEALSpricing',
-	'OpennessPricing',
-	'OpennessPricingComponents',
-	'Openness_Controller',
-	'Openness_Controller_EMS',
-	'Openness_Serializer_Services',
-	'Openness_Serializer',
-	'Openness_Serializer_Deals',
-	'Openness_Dictionary',
-	'Openness_Messaging_Common',
-	'Openness_Messaging_EMS',
-	'Openness_Serializer_MarketData',
-	'KBATCH',
-	'KDEALSmodel',
-	'KCUTOVER',
-	'KPROBAcurves',
-	'KVOLATcurves',
-	'KOTTools',
-	'KSCHED',
-	'KURVE',
-	'KFIN',
-	'KFINDEALS',
-	'KCOMMODITY',
-	'KFIN',
-	'KOPEN',
-	'KSCHEDgenerator',
-	'KVOLATcurves',
-	'KOTTools',
-	'KINFLATION',
-	'KSCHEDengine',
-	'KVOLATengine',
-	'KURVEengine',
-	'KURVEassign',
-	'KURVEdynamic',
-	'KCORREL',
-	'KFINTOOLS',
-	'KPRICES',
-	'KONDORutils',
-	'KELS',
-	'KDBUTILS',
-	'KCALCONF',
-	'KDATE',
-	'KUSTOM',
-	'KDBTOOLS',
-	'XML',
-	'KRT',
-	'KTHREAD',
-	'Loggers',
-	'KOTShared',
-	'KOTTypes',
-	'KOTDealsLight',
-	'KLightweight',
-	'KEXPORT',
-	'KONDORutils',
-	'KLINTengine',
-	'KFINDEALS',
-	'KCondition_Compil',
-	'KCondition',
-	'KDATE',
-	'IMPEXP',
-	'KOperationsMvts',
-	'OKAPIRDV',
-	'KLINTengine',
-	'KDBTOOLS',
-	'KFIN',
-	'KFINMATH',
-	'KRYPTONcore',
-	'Serialize',
-	'KRDVwatch',
-	'KC',
-	'KCPP',
-	'RFSFinTools',
-	'KFINBONDS',
-#adfin
-	'AdfComp',
-	'AdfApi',
-	'AdfDef',
-	'AdfRand',
-	'AdfStyle',
-	'AdfMath',
-	'AdfBasic',
-	'AdfRes',
-#qt
-	'QtCore',
-#algebra
-	'Algebra_Compil',
-	'Algebra_Compil_Parsing',
-	'Algebra_Functions',
-	'Algebra_Tree',
-	'Algebra_Utils',
-	'Algebra',
 ]
 
 #additional libs for link
@@ -412,16 +245,16 @@ SConscript(KTPObjDir+'/sample/microsoft/src/main/app/SConscript')
 SConscript(KTPObjDir+'/sample/microsoft/src/test/cpp/SConscript')
 SConscript(KTPObjDir+'/sample/microsoft/src/test/app/SConscript')
 
-#env.Package( NAME           = 'kplustp',
+#env.Package( NAME           = 'nabla',
 #             VERSION        = '1.2.3',
 #             PACKAGEVERSION = 0,
 #             PACKAGETYPE    = 'targz',
 #             source=[KTPPLibDir, KTPPBinDir],
 #             LICENSE        = 'misys',
-#             SUMMARY        = 'KplusTP (K+ Back Office)',
-#             DESCRIPTION    = 'KplusTP (K+ Back Office)',
-#             X_RPM_GROUP    = 'Application/kplustp',
-#             SOURCE_URL     = 'http://misys.org/kplustp-1.2.3.tar.gz'
+#             SUMMARY        = 'Nabla (Backend)',
+#             DESCRIPTION    = 'Nabla (Backend)',
+#             X_RPM_GROUP    = 'Application/nabla',
+#             SOURCE_URL     = 'http://nabla.mobi/nabla-1.2.3.tar.gz'
 #        )
 
 print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)
