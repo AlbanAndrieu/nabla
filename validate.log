@@ -1,0 +1,2707 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Maven Build Tools Configuration for quality metrics
+[INFO] AndroMDA Maven Site Plugins
+[INFO] Nabla Site Skin
+[INFO] Users
+[INFO] Dependencies pom file
+[INFO] Databases
+[INFO] Main
+[INFO] Servers
+[INFO] Customs
+[INFO] Project
+[INFO] Nabla UML
+[INFO] AndroMDA Assembly
+[INFO] AndroMDA Metafacades
+[INFO] AndroMDA UML Metafacades
+[INFO] AndroMDA UML Common Metafacades
+[INFO] AndroMDA Profiles
+[INFO] AndroMDA UML 2.0 Profile
+[INFO] AndroMDA UML 2.0 Datatype Profile
+[INFO] AndroMDA UML 2.0 Messaging Profile
+[INFO] AndroMDA UML 2.0 Meta Profile
+[INFO] AndroMDA UML 2.0 Persistence Profile
+[INFO] AndroMDA UML 2.0 Presentation Profile
+[INFO] AndroMDA UML 2.0 Process Profile
+[INFO] AndroMDA UML 2.0 Service Profile
+[INFO] AndroMDA UML 2.0 WebService Profile
+[INFO] AndroMDA UML 2.0 XML Profile
+[INFO] AndroMDA UML 2.0 Common Profile
+[INFO] AndroMDA UML 2.0 Gui Profile
+[INFO] AndroMDA UML 2.0 Backend Profile
+[INFO] AndroMDA UML 2.0 Test Profile
+[INFO] AndroMDA UML 2.0 Shared Profile
+[INFO] AndroMDA UML 2.0 Seam Profile
+[INFO] AndroMDA Cartridges
+[INFO] AndroMDA Database Cartridge
+[INFO] AndroMDA EJB3 Cartridge
+[INFO] AndroMDA Gui Cartridge Components
+[INFO] AndroMDA Gui Cartridge
+[INFO] AndroMDA Seam Cartridge
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Build Tools Configuration for quality metrics 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Maven Site Plugins 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Nabla Site Skin 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Users 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Dependencies pom file 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ dependencies ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ dependencies ---
+[INFO] com.nabla.project:dependencies 1.0 1.0
+[INFO] com.nabla.project:dependencies 1.0 1.0
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Databases 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ databases ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ databases ---
+[INFO] com.nabla.project:databases 1.0 1.0
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] com.nabla.project:databases 1.0 1.0
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Main 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ main ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ main ---
+[INFO] com.nabla.project:main 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] com.nabla.project:main 1.0 1.0
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ main ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:33 at timestamp: 1344551673406
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\main
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Servers 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ servers ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ servers ---
+[INFO] com.nabla.project:servers 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] com.nabla.project:servers 1.0 1.0
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ servers ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:34 at timestamp: 1344551674125
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\servers
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Customs 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ customs ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ customs ---
+[INFO] com.nabla.project:customs 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] com.nabla.project:customs 1.0 1.0
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ customs ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:34 at timestamp: 1344551674515
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\customs
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Project 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ project ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ project ---
+[INFO] com.nabla.project:project 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] com.nabla.project:project 1.0 1.0
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ project ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:34 at timestamp: 1344551674984
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\project
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Nabla UML 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ uml ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ uml ---
+[INFO] com.nabla.project:uml 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.nabla.project:uml 1.0 1.0
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ uml ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:35 at timestamp: 1344551675359
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\uml
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Assembly 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ nabla ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ nabla ---
+[INFO] com.nabla.project.uml:nabla 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.nabla.project.uml:nabla 1.0 1.0
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ nabla ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:35 at timestamp: 1344551675765
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Metafacades 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ metafacades ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ metafacades ---
+[INFO] org.andromda.metafacades:metafacades 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.metafacades:metafacades 1.0 1.0
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ metafacades ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:36 at timestamp: 1344551676234
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\metafacades
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML Metafacades 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ uml2 ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ uml2 ---
+[INFO] org.andromda.metafacades:uml2 1.0 1.0
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.metafacades:uml2 1.0 1.0
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ uml2 ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:38 at timestamp: 1344551678406
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\metafacades\uml2
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML Common Metafacades 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-metafacades-uml ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-metafacades-uml ---
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-metafacades-uml ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:40 at timestamp: 1344551680562
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\metafacades\uml2\common
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Profiles 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ profiles ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ profiles ---
+[INFO] org.andromda.profiles:profiles 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.profiles:profiles 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ profiles ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:41 at timestamp: 1344551681187
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ uml2 ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ uml2 ---
+[INFO] org.andromda.profiles.uml2:uml2 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.profiles.uml2:uml2 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ uml2 ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:42 at timestamp: 1344551682656
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Datatype Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-datatype ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-datatype ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-datatype 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml2:andromda-profile-datatype 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-datatype ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:43 at timestamp: 1344551683296
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\datatype
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Messaging Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-messaging ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-messaging ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-messaging 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.profiles.uml2:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-messaging ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:43 at timestamp: 1344551683703
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\messaging
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Meta Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-meta ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-meta ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-meta 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-meta 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-meta ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:44 at timestamp: 1344551684109
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\meta
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Persistence Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-persistence ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-persistence ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-persistence 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.profiles.uml2:andromda-profile-persistence 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-persistence ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:44 at timestamp: 1344551684500
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\persistence
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Presentation Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-presentation ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-presentation ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-presentation 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml2:andromda-profile-presentation 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-presentation ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:44 at timestamp: 1344551684890
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\presentation
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Process Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-process ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-process ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-process 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-process 3.4 3.4
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-process ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:45 at timestamp: 1344551685296
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\process
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Service Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-service ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-service ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-service 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.profiles.uml2:andromda-profile-service 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-service ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:45 at timestamp: 1344551685687
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\service
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 WebService Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-webservice ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-webservice ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-webservice 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-webservice 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-webservice ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:46 at timestamp: 1344551686093
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\webservice
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 XML Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-xml ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-xml ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-xml 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.profiles.uml2:andromda-profile-xml 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-xml ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:46 at timestamp: 1344551686500
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\xml
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Common Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile ---
+[INFO] org.andromda.profiles.uml2:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-presentation 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.profiles.uml2:andromda-profile-persistence 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.profiles.uml2:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-xml 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.uml2:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-meta 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml2:andromda-profile-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-process 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.profiles.uml2:andromda-profile-service 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:52 at timestamp: 1344551692171
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\common
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Gui Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-gui ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-gui ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-gui 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.profiles.uml2:andromda-profile-gui 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-gui ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:52 at timestamp: 1344551692593
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\gui
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Backend Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-backend ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-backend ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-backend 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.profiles.uml2:andromda-profile-backend 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-backend ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:52 at timestamp: 1344551692984
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\backend
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Test Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-test ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-test ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-test 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml2:andromda-profile-test 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-test ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:53 at timestamp: 1344551693375
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\test
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Shared Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-shared ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-shared ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-shared 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-gui 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-backend 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-test 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.profiles.uml2:andromda-profile-backend 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-persistence 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.profiles.uml2:andromda-profile-gui 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-test 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-shared 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-xml 3.4 3.4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml2:andromda-profile-meta 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml2:andromda-profile-presentation 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] org.andromda.profiles.uml2:andromda-profile-process 3.4 3.4
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.profiles.uml2:andromda-profile-service 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-shared ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:55 at timestamp: 1344551695578
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\shared
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA UML 2.0 Seam Profile 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-profile-seam ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-profile-seam ---
+[INFO] org.andromda.profiles.uml2:andromda-profile-seam 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] junit:junit 4.10 4.10
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.profiles.uml2:andromda-profile-seam 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-profile-seam ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:56 at timestamp: 1344551696031
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\profiles\uml2\seam
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Cartridges 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ cartridges ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ cartridges ---
+[INFO] org.andromda.cartridges:cartridges 1.0 1.0
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.cartridges:cartridges 1.0 1.0
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ cartridges ---
+[INFO] Storing buildNumber: 2012-08-10 00:34:59 at timestamp: 1344551699609
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\cartridges
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Database Cartridge 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-database-cartridge ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-database-cartridge ---
+[INFO] org.andromda.cartridges:andromda-database-cartridge 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-database-cartridge 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-database-cartridge ---
+[INFO] Storing buildNumber: 2012-08-10 00:35:02 at timestamp: 1344551702125
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\cartridges\andromda-database-cartridge
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA EJB3 Cartridge 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-ejb3-cartridge ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-ejb3-cartridge ---
+[INFO] org.andromda.cartridges:andromda-ejb3-cartridge 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.translationlibraries:andromda-ocl-query-library 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-java-cartridge 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.hibernate:hibernate-entitymanager 3.6.8.Final 3.6.8.Final
+[INFO] org.hibernate:hibernate-core 3.3.2.GA 3.3.2.GA
+[INFO] cglib:cglib 2.2 2.2
+[INFO] asm:asm 3.3.1 3.3.1
+[INFO] org.hibernate.javax.persistence:hibernate-jpa-2.0-api 1.0.1.Final 1.0.1.Final
+[INFO] org.slf4j:slf4j-api 1.6.4 1.6.4
+[INFO] org.jboss.spec:jboss-javaee-web-6.0 2.0.0.Final 2.0.0.Final
+[INFO] org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.resource:jboss-connector-api_1.6_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec 1.0.1.Final 1.0.1.Final
+[INFO] org.jboss.spec.javax.el:jboss-el-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.faces:jboss-jsf-api_2.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.security.auth.message:jboss-jaspi-api_1.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.el:jboss-el-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.el:jboss-el-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet.jstl:jboss-jstl-api_1.2_spec 1.0.1.Final 1.0.1.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.xml.bind:jboss-jaxb-api_2.2_spec 1.0.2.Final 1.0.2.Final
+[INFO] javax.enterprise:cdi-api 1.0-SP4 1.0-SP4
+[INFO] org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] javax.inject:javax.inject 1 1
+[INFO] javax.inject:javax.inject 1 1
+[INFO] javax.inject:javax.inject 1 1
+[INFO] org.hibernate.javax.persistence:hibernate-jpa-2.0-api 1.0.1.Final 1.0.1.Final
+[INFO] org.hibernate.javax.persistence:hibernate-jpa-2.0-api 1.0.1.Final 1.0.1.Final
+[INFO] javax.validation:validation-api 1.0.0.GA 1.0.0.GA
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.testng:testng 6.3 6.3
+[INFO] junit:junit 4.10 4.10
+[INFO] com.beust:jcommander 1.12 1.12
+[INFO] org.yaml:snakeyaml 1.6 1.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hibernate:hibernate-core 3.3.2.GA 3.3.2.GA
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.jboss.spec.javax.security.auth.message:jboss-jaspi-api_1.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec:jboss-javaee-web-6.0 2.0.0.Final 2.0.0.Final
+[INFO] org.hibernate:hibernate-entitymanager 3.6.8.Final 3.6.8.Final
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.hibernate.javax.persistence:hibernate-jpa-2.0-api 1.0.1.Final 1.0.1.Final
+[INFO] org.hibernate.javax.persistence:hibernate-jpa-2.0-api 1.0.1.Final 1.0.1.Final
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec 1.0.1.Final 1.0.1.Final
+[INFO] org.andromda.translationlibraries:andromda-ocl-query-library 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.testng:testng 6.3 6.3
+[INFO] cglib:cglib 2.2 2.2
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] org.slf4j:slf4j-api 1.6.4 1.6.4
+[INFO] javax.enterprise:cdi-api 1.0-SP4 1.0-SP4
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.jboss.spec.javax.resource:jboss-connector-api_1.6_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.xml.bind:jboss-jaxb-api_2.2_spec 1.0.2.Final 1.0.2.Final
+[INFO] org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-java-cartridge 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.jboss.spec.javax.faces:jboss-jsf-api_2.0_spec 1.0.0.Final 1.0.0.Final
+[INFO] javax.inject:javax.inject 1 1
+[INFO] javax.inject:javax.inject 1 1
+[INFO] asm:asm 3.3.1 3.3.1
+[INFO] org.yaml:snakeyaml 1.6 1.6
+[INFO] org.andromda.cartridges:andromda-ejb3-cartridge 3.4 3.4
+[INFO] org.jboss.spec.javax.servlet.jstl:jboss-jstl-api_1.2_spec 1.0.1.Final 1.0.1.Final
+[INFO] com.beust:jcommander 1.12 1.12
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] javax.validation:validation-api 1.0.0.GA 1.0.0.GA
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.jboss.spec.javax.el:jboss-el-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] org.jboss.spec.javax.el:jboss-el-api_2.2_spec 1.0.0.Final 1.0.0.Final
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-ejb3-cartridge ---
+[INFO] Storing buildNumber: 2012-08-10 00:35:04 at timestamp: 1344551704953
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\cartridges\andromda-ejb3-cartridge
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Gui Cartridge Components 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-gui-cartridge-components ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-gui-cartridge-components ---
+[INFO] org.andromda.cartridges:andromda-gui-cartridge-components 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.apache.myfaces.core:myfaces-impl 1.2.9 1.2.9
+[INFO] org.apache.myfaces.core:myfaces-api 1.2.9 1.2.9
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-discovery:commons-discovery 0.4 0.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-codec:commons-codec 1.5 1.5
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] javax.el:el-api 2.2.1-b04 2.2.1-b04
+[INFO] org.apache.myfaces.tomahawk:tomahawk12 1.1.11 1.1.11
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-validator:commons-validator 1.3.1 1.3.1
+[INFO] commons-fileupload:commons-fileupload 1.2.2 1.2.2
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-codec:commons-codec 1.5 1.5
+[INFO] commons-codec:commons-codec 1.5 1.5
+[INFO] oro:oro 2.0.8 2.0.8
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] javax.servlet:jstl 1.2 1.2
+[INFO] batik:batik-awt-util 1.6-1 1.6-1
+[INFO] batik:batik-util 1.6-1 1.6-1
+[INFO] batik:batik-gui-util 1.6-1 1.6-1
+[INFO] batik:batik-ext 1.6-1 1.6-1
+[INFO] xml-apis:xmlParserAPIs 2.0.2 2.0.2
+[INFO] javax.portlet:portlet-api 1.0 1.0
+[INFO] org.apache.portals.bridges:portals-bridges-portletfilter 1.0.4 1.0.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-fileupload:commons-fileupload 1.2.2 1.2.2
+[INFO] commons-fileupload:commons-fileupload 1.2.2 1.2.2
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-validator:commons-validator 1.3.1 1.3.1
+[INFO] commons-validator:commons-validator 1.3.1 1.3.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] javax.servlet.jsp:jsp-api 2.2.1-b03 2.2.1-b03
+[INFO] javax.servlet:servlet-api 2.5 2.5
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] org.andromda.cartridges:andromda-gui-cartridge-components 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] batik:batik-ext 1.6-1 1.6-1
+[INFO] javax.servlet:jstl 1.2 1.2
+[INFO] org.apache.portals.bridges:portals-bridges-portletfilter 1.0.4 1.0.4
+[INFO] javax.servlet.jsp:jsp-api 2.2.1-b03 2.2.1-b03
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] batik:batik-awt-util 1.6-1 1.6-1
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] oro:oro 2.0.8 2.0.8
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] batik:batik-gui-util 1.6-1 1.6-1
+[INFO] commons-fileupload:commons-fileupload 1.2.2 1.2.2
+[INFO] commons-fileupload:commons-fileupload 1.2.2 1.2.2
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.apache.myfaces.tomahawk:tomahawk12 1.1.11 1.1.11
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] xml-apis:xmlParserAPIs 2.0.2 2.0.2
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] commons-discovery:commons-discovery 0.4 0.4
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] javax.servlet:servlet-api 2.5 2.5
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] javax.el:el-api 2.2.1-b04 2.2.1-b04
+[INFO] commons-codec:commons-codec 1.5 1.5
+[INFO] commons-codec:commons-codec 1.5 1.5
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.apache.myfaces.core:myfaces-api 1.2.9 1.2.9
+[INFO] org.apache.myfaces.core:myfaces-impl 1.2.9 1.2.9
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] javax.portlet:portlet-api 1.0 1.0
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] batik:batik-util 1.6-1 1.6-1
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] commons-validator:commons-validator 1.3.1 1.3.1
+[INFO] commons-validator:commons-validator 1.3.1 1.3.1
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-gui-cartridge-components ---
+[INFO] Storing buildNumber: 2012-08-10 00:35:06 at timestamp: 1344551706906
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\cartridges\andromda-gui-cartridge-components
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Gui Cartridge 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-gui-cartridge ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-gui-cartridge ---
+[INFO] org.andromda.cartridges:andromda-gui-cartridge 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] dom4j:dom4j 1.6.1 1.6.1
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] dom4j:dom4j 1.6.1 1.6.1
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-gui-cartridge 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-gui-cartridge ---
+[INFO] Storing buildNumber: 2012-08-10 00:35:07 at timestamp: 1344551707906
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\cartridges\andromda-gui-cartridge
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AndroMDA Seam Cartridge 3.4
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- properties-maven-plugin:1.0-alpha-2:read-project-properties (default) @ andromda-seam-cartridge ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.1:enforce (enforce-jdk) @ andromda-seam-cartridge ---
+[INFO] org.andromda.cartridges:andromda-seam-cartridge 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] dom4j:dom4j 1.6.1 1.6.1
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] junit:junit 4.10 4.10
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] xalan:xalan 2.7.1 2.7.1
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] commons-lang:commons-lang 2.6 2.6
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-validation-library 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-meta-cartridge 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-meta 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-persistence 3.4 3.4
+[INFO] de.plushnikov:doctor-jim 1.0 1.0
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] org.andromda.metafacades:andromda-metafacades-uml 3.4 3.4
+[INFO] junit:junit 4.10 4.10
+[INFO] junit:junit 4.10 4.10
+[INFO] dom4j:dom4j 1.6.1 1.6.1
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda:andromda-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-xml 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-xml 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile 3.4 3.4
+[INFO] xerces:xercesImpl 2.9.1 2.9.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-presentation 3.4 3.4
+[INFO] org.andromda.cartridges:andromda-seam-cartridge 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-service 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-persistence 3.4 3.4
+[INFO] junitperf:junitperf 1.8 1.8
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.translationlibraries:andromda-ocl-translation-core 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-webservice 3.4 3.4
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] commons-logging:commons-logging 1.1.1 1.1.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-datatype 3.4 3.4
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] log4j:log4j 1.2.16 1.2.16
+[INFO] org.andromda.profiles.uml14:andromda-profile-service 3.4 3.4
+[INFO] org.andromda.profiles.uml14:andromda-profile-process 3.4 3.4
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] commons-collections:commons-collections 3.2.1 3.2.1
+[INFO] xalan:serializer 2.7.1 2.7.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-webservice 3.4 3.4
+[INFO] org.omg.profiles.uml14:UML_Standard_Profile 1.0.1 1.0.1
+[INFO] org.andromda.profiles.uml14:andromda-profile-messaging 3.4 3.4
+[INFO] xmlunit:xmlunit 1.2 1.2
+[INFO] org.andromda.profiles.uml14:andromda-profile-presentation 3.4 3.4
+[INFO] commons-beanutils:commons-beanutils 1.8.3 1.8.3
+[INFO] org.andromda.profiles.emf.uml22:andromda-datatype 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-common 3.4 3.4
+[INFO] org.hamcrest:hamcrest-core 1.1 1.1
+[INFO] com.h2database:h2 1.3.160 1.3.160
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] commons-io:commons-io 2.1 2.1
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda:andromda-utils 3.4 3.4
+[INFO] org.andromda.profiles.emf.uml22:andromda-process 3.4 3.4
+[INFO] commons-digester:commons-digester 2.1 2.1
+[INFO] org.andromda.profiles.emf.uml22:andromda-meta 3.4 3.4
+[INFO] 
+[INFO] --- buildnumber-maven-plugin:1.0:create (default) @ andromda-seam-cartridge ---
+[INFO] Storing buildNumber: 2012-08-10 00:35:08 at timestamp: 1344551708500
+[INFO] Executing: cmd.exe /X /C "svn --non-interactive info"
+[INFO] Working directory: C:\workspace\users\albandri10\nabla\cartridges\andromda-seam-cartridge
+[INFO] Storing buildScmBranch: UNKNOWN_BRANCH
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] Maven Build Tools Configuration for quality metrics  SUCCESS [0.000s]
+[INFO] AndroMDA Maven Site Plugins ....................... SUCCESS [0.015s]
+[INFO] Nabla Site Skin ................................... SUCCESS [0.094s]
+[INFO] Users ............................................. SUCCESS [0.000s]
+[INFO] Dependencies pom file ............................. SUCCESS [1.922s]
+[INFO] Databases ......................................... SUCCESS [0.250s]
+[INFO] Main .............................................. SUCCESS [2.797s]
+[INFO] Servers ........................................... SUCCESS [0.422s]
+[INFO] Customs ........................................... SUCCESS [0.390s]
+[INFO] Project ........................................... SUCCESS [0.469s]
+[INFO] Nabla UML ......................................... SUCCESS [0.375s]
+[INFO] AndroMDA Assembly ................................. SUCCESS [0.406s]
+[INFO] AndroMDA Metafacades .............................. SUCCESS [0.485s]
+[INFO] AndroMDA UML Metafacades .......................... SUCCESS [2.203s]
+[INFO] AndroMDA UML Common Metafacades ................... SUCCESS [2.343s]
+[INFO] AndroMDA Profiles ................................. SUCCESS [0.407s]
+[INFO] AndroMDA UML 2.0 Profile .......................... SUCCESS [1.687s]
+[INFO] AndroMDA UML 2.0 Datatype Profile ................. SUCCESS [0.406s]
+[INFO] AndroMDA UML 2.0 Messaging Profile ................ SUCCESS [0.407s]
+[INFO] AndroMDA UML 2.0 Meta Profile ..................... SUCCESS [0.406s]
+[INFO] AndroMDA UML 2.0 Persistence Profile .............. SUCCESS [0.391s]
+[INFO] AndroMDA UML 2.0 Presentation Profile ............. SUCCESS [0.406s]
+[INFO] AndroMDA UML 2.0 Process Profile .................. SUCCESS [0.390s]
+[INFO] AndroMDA UML 2.0 Service Profile .................. SUCCESS [0.391s]
+[INFO] AndroMDA UML 2.0 WebService Profile ............... SUCCESS [0.406s]
+[INFO] AndroMDA UML 2.0 XML Profile ...................... SUCCESS [0.407s]
+[INFO] AndroMDA UML 2.0 Common Profile ................... SUCCESS [5.687s]
+[INFO] AndroMDA UML 2.0 Gui Profile ...................... SUCCESS [0.422s]
+[INFO] AndroMDA UML 2.0 Backend Profile .................. SUCCESS [0.375s]
+[INFO] AndroMDA UML 2.0 Test Profile ..................... SUCCESS [0.406s]
+[INFO] AndroMDA UML 2.0 Shared Profile ................... SUCCESS [2.188s]
+[INFO] AndroMDA UML 2.0 Seam Profile ..................... SUCCESS [0.453s]
+[INFO] AndroMDA Cartridges ............................... SUCCESS [3.578s]
+[INFO] AndroMDA Database Cartridge ....................... SUCCESS [2.516s]
+[INFO] AndroMDA EJB3 Cartridge ........................... SUCCESS [2.828s]
+[INFO] AndroMDA Gui Cartridge Components ................. SUCCESS [1.968s]
+[INFO] AndroMDA Gui Cartridge ............................ SUCCESS [0.985s]
+[INFO] AndroMDA Seam Cartridge ........................... SUCCESS [0.594s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 54.172s
+[INFO] Finished at: Fri Aug 10 00:35:08 CEST 2012
+[INFO] Final Memory: 53M/247M
+[INFO] ------------------------------------------------------------------------

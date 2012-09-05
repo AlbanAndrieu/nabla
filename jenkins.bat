@@ -1,19 +1,24 @@
 cls
 
-call mvn validate
+call setenv.bat
+call mvn validate > validate.log
+call mvn versions:display-dependency-updates > updates.log
 call mvn help:active-profiles > profile.log
 call mvn dependency:tree > dependency.log
 call mvn dependency:analyze > analyze.log
 call mvn help:effective-pom > effective.log
 call mvn initialize -Pshow-properties > properties.log
-call mvn scm:validate
-REM call mvn jalopy:format
-call mvn java-formatter:format
-call mvn source:jar 
-call mvn source:test-jar
-call mvn eclipse:clean 
-call mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders
-call mvn rat:check
-call mvn doap:generate
+call mvn scm:validate > scm-validate.log
+REM call mvn jalopy:format > format.log
+call mvn java-formatter:format > forma.log
+call mvn source:jar > source.log
+call mvn source:test-jar > source-test.log
+call mvn javadoc:javadoc > javadoc.log
+call mvn jxr:jxr > jxr.log
+call mvn jxr:test-jxr > jxr-test.log
+call mvn eclipse:clean > eclipse-clean.log
+call mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders > eclipse.log
+call mvn rat:check > rat.log
+call mvn doap:generate > doap.log
 
 pause
