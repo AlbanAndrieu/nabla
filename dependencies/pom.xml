@@ -893,7 +893,6 @@
 						<artifactId>javancss-maven-plugin</artifactId>
 						<version>${maven.javancss.plugin.version}</version>
 					</plugin>
-					<!-- waiting 1.3 version
             				<plugin>
             				    <groupId>org.codehaus.mojo</groupId>
             				    <artifactId>versions-maven-plugin</artifactId>
@@ -908,7 +907,7 @@
             				        </reportSet>
             				    </reportSets>
             				</plugin>
-            				-->
+            				
             				<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-doap-plugin</artifactId>
@@ -1227,8 +1226,8 @@
 		<wiser.version>1.2</wiser.version>
 
 		<google.api.client.version>1.0.10-alpha</google.api.client.version>
-		<!--<gwt.version>2.5.0-rc1</gwt.version>-->
-		<gwt.version>2.4.0</gwt.version>
+		<gwt.version>2.5.0-rc1</gwt.version>
+		<!--<gwt.version>2.4.0</gwt.version>-->
 		<gae.version>1.5.3</gae.version>
 		<gwtp.all.version>0.7</gwtp.all.version>
 		<gwt.seam.version>1.0</gwt.seam.version>
@@ -1252,6 +1251,7 @@
 		<portlet.api.version>1.0</portlet.api.version>
 		<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>
 		<icefaces.version>1.8.2</icefaces.version>
+		<nekohtml.version>1.9.6.2</nekohtml.version>
 
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
@@ -1335,7 +1335,7 @@
 
 		<maven.xdoclet.plugin.version>1.0-alpha-2</maven.xdoclet.plugin.version>
 		<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
-		<maven.tomcat.plugin.version>1.0-beta-1</maven.tomcat.plugin.version>
+		<maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
 		<maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
 		<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
 		<maven.cobertura.plugin.version>2.5.1</maven.cobertura.plugin.version>
@@ -1385,7 +1385,7 @@
 		<maven.install.plugin.version>2.3.1</maven.install.plugin.version>
 		<maven.ear.plugin.version>2.7</maven.ear.plugin.version>
 		<maven.jboss.plugin.version>1.4</maven.jboss.plugin.version>
-		<maven.jboss.packaging.plugin.version>2.1.1</maven.jboss.packaging.plugin.version>
+		<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
 		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
 		<maven.minify.plugin.version>1.3.5</maven.minify.plugin.version>
 		<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>
@@ -1404,12 +1404,13 @@
 		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
 		<maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
 		<maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
-		<maven.versions.plugin.version>1.2</maven.versions.plugin.version>
+		<maven.versions.plugin.version>1.3.1</maven.versions.plugin.version>
 		<maven.xml.plugin.version>1.0-beta-3</maven.xml.plugin.version>
 		<maven.idea.plugin.version>2.1</maven.idea.plugin.version>
 		<maven.cargo.maven2.plugin.version>1.0.3</maven.cargo.maven2.plugin.version>
-		<!--<maven.jetty.plugin.version>6.1.21</maven.jetty.plugin.version>-->
-		<maven.jetty.plugin.version>8.0.3.v20111011</maven.jetty.plugin.version>
+		<!--<maven.jetty.plugin.version>8.0.3.v20111011</maven.jetty.plugin.version>-->
+		<maven.jetty.plugin.version>7.0.0-pre5</maven.jetty.plugin.version>
+		<maven.jboss.as.maven.plugin.version>7.1.1.Final</maven.jboss.as.maven.plugin.version>
 		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>
 		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
 		<maven.axistools.plugin.version>1.3</maven.axistools.plugin.version>
@@ -1438,7 +1439,12 @@
     		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
     		  dependencies from org.jboss.spec will have their version defined by this
     		  BOM -->
-    		<version.org.jboss.spec.jboss.javaee6>2.0.0.Final</version.org.jboss.spec.jboss.javaee6>
+    		<!--<version.org.jboss.spec.jboss.javaee6>2.0.0.Final</version.org.jboss.spec.jboss.javaee6>-->
+    		<version.org.jboss.spec.jboss.javaee6>3.0.1.Final</version.org.jboss.spec.jboss.javaee6>
+    		<!-- Define the version of Tomcat' Java EE 6 APIs we want to import. Any
+    		  dependencies from org.jboss.spec will have their version defined by this
+    		  BOM -->
+    		<version.javax.javaee-api>6.0</version.javax.javaee-api>
     		<!-- Alternatively, comment out the above line, and un-comment the line
     		  below to use version 3.0.0.Beta1-redhat-1 which is a release certified to
     		  work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven
@@ -2697,16 +2703,58 @@
         				</executions>					
 					-->
 				</plugin>
+				<!--
                                 <plugin>
-                                    <groupId>org.mortbay.jetty</groupId>
-                                    <artifactId>jetty-maven-plugin</artifactId>
-                                    <version>${maven.jetty.plugin.version}</version>
+                                        <groupId>org.mortbay.jetty</groupId>
+                                        <artifactId>jetty-maven-plugin</artifactId>
+                                        <version>${maven.jetty.plugin.version}</version>
                                 </plugin>
+                                -->
+				<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>maven-jetty-plugin</artifactId>
+					<version>${maven.jetty.plugin.version}</version>
+					<configuration>
+						<contextPath>/</contextPath>
+						<scanIntervalSeconds>3</scanIntervalSeconds>
+						<scanTargetPatterns>
+							<scanTargetPattern>
+								<directory>src/main/webapp/WEB-INF</directory>
+								<excludes>
+									<exclude>**/*.jsp</exclude>
+								</excludes>
+								<includes>
+									<include>**/*.properties</include>
+									<include>**/*.xml</include>
+								</includes>
+							</scanTargetPattern>
+						</scanTargetPatterns>
+					</configuration>
+				</plugin>                                        
+                                <plugin>
+                                        <groupId>org.jboss.as.plugins</groupId>
+                                        <artifactId>jboss-as-maven-plugin</artifactId>
+                                        <version>${maven.jboss.as.maven.plugin.version}</version>
+                                </plugin>                                                                               
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>tomcat-maven-plugin</artifactId>
 					<version>${maven.tomcat.plugin.version}</version>
 				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jboss-packaging-maven-plugin</artifactId>
+					<version>${maven.jboss.packaging.plugin.version}</version>
+					<!-- Enable packaging types and lifecycle bindings. -->
+					<extensions>true</extensions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jboss-maven-plugin</artifactId>
+					<version>${maven.jboss.plugin.version}</version>
+				</plugin>				
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>gwt-maven-plugin</artifactId>
@@ -2801,17 +2849,24 @@
                           stack with any version of JBoss AS that implements Java EE 6, not just JBoss
                           AS 7! -->
                         <dependency>
-                          <groupId>org.jboss.spec</groupId>
-                          <artifactId>jboss-javaee-6.0</artifactId>
-                          <version>${version.org.jboss.spec.jboss.javaee6}</version>
-                          <type>pom</type>
-                          <scope>import</scope>
-                        </dependency>		
+                                <groupId>org.jboss.spec</groupId>
+                                <artifactId>jboss-javaee-6.0</artifactId>
+                                <version>${version.org.jboss.spec.jboss.javaee6}</version>
+                                <type>pom</type>
+                                <scope>import</scope>
+                        </dependency>
+                        <!-- Tomcat -->
+                        <dependency>
+                                <groupId>javax</groupId>
+                                <artifactId>javaee-api</artifactId>
+                                <version>${version.javax.javaee-api}</version>
+                                <scope>provided</scope>
+                        </dependency>                        
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
-				        <type>jar</type>
+				<type>jar</type>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -3789,7 +3844,14 @@
                 </exclusion>
               </exclusions>
             </dependency>
-                  
+
+            <dependency>
+                <groupId>nekohtml</groupId>
+                <artifactId>nekohtml</artifactId>
+                <version>${nekohtml.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-api</artifactId>
@@ -4492,7 +4554,6 @@
                           <artifactId>jboss-seam-resteasy</artifactId>
                           <version>${seam.version}</version>
                           <exclusions>
-                            <!-- ** -->
                             <exclusion>
                               <groupId>org.jboss.seam</groupId>
                               <artifactId>jboss-seam</artifactId>
