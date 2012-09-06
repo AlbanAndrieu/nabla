@@ -14,11 +14,10 @@
 	<artifactId>core</artifactId>
 	<packaging>pom</packaging>
 	<name>Nabla Core</name>
-	<version>1.0</version>
 	<!-- This element provides a basic description of your project -->
 	<description>Core project</description>
 	<modules>
-		<!--<module>etl</module>-->
+		<module>etl</module>
 		<module>gwt-seam</module>
 	</modules>
 </project>
