@@ -1424,7 +1424,7 @@
 		<maven.remote.resources.plugin.version>1.0</maven.remote.resources.plugin.version>
 		<maven.default.skin.version>1.0</maven.default.skin.version>
 		<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
-		<maven.jaxb2.plugin.version>0.7.1</maven.jaxb2.plugin.version>
+		<maven.jaxb2.plugin.version>0.8.2</maven.jaxb2.plugin.version>
 		<maven.sql.plugin.version>1.5</maven.sql.plugin.version>
 		<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
 		<maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
