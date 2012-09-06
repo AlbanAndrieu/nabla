@@ -41,7 +41,6 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -49,12 +48,13 @@ import java.util.List;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class PipeListenerContainer implements Runnable {
+public class PipeListenerContainer implements Runnable
+{
 
-    protected Logger logger = Logger.getLogger(this.getClass());
-    protected List<Object> list = new ArrayList<Object>();
-    protected String name;
-    protected RequestId requestId;
+    protected Logger       logger = Logger.getLogger(this.getClass());
+    protected List<Object> list   = new ArrayList<Object>();
+    protected String       name;
+    protected RequestId    requestId;
 
     /**
      * Creates a new PipeListenerContainer object.
@@ -62,7 +62,8 @@ public class PipeListenerContainer implements Runnable {
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public PipeListenerContainer(String name, RequestId requestId) {
+    public PipeListenerContainer(String name, RequestId requestId)
+    {
 
         setName(name);
         setRequestId(requestId);
@@ -74,7 +75,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -85,7 +87,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -96,7 +99,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -107,7 +111,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -118,7 +123,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public List<Object> getList() {
+    public List<Object> getList()
+    {
 
         return list;
 
@@ -129,7 +135,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @param list DOCUMENT ME!
      */
-    public void setList(List<Object> list) {
+    public void setList(List<Object> list)
+    {
 
         this.list = list;
 
@@ -138,20 +145,23 @@ public class PipeListenerContainer implements Runnable {
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
         Thread.currentThread().setName("PipeContainer_" + this.name + this.requestId);
         logger.info("Entering consumer thread");
-        new PipeBlockingQueueListener<Object>(this.name, this.requestId) {
+        new PipeBlockingQueueListener<Object>(this.name, this.requestId)
+        {
 
-                @Override
-                public void onMessage(Object o) {
+            @Override
+            public void onMessage(Object o)
+            {
 
-                    list.add(o);
+                list.add(o);
 
-                }
+            }
 
-            };
+        };
         logger.info("Exiting consumer thread");
 
     }
@@ -161,7 +171,8 @@ public class PipeListenerContainer implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public Thread launch() {
+    public Thread launch()
+    {
 
         Thread thread = new Thread(this);
 

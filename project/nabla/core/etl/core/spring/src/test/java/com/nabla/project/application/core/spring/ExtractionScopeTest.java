@@ -40,7 +40,6 @@ import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -48,14 +47,16 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ExtractionScopeTest extends TestCase {
+public class ExtractionScopeTest extends TestCase
+{
 
     protected Logger logger = Logger.getLogger(ExtractionScopeTest.class);
 
     /**
      * DOCUMENT ME!
      */
-    public void setUp() {
+    public void setUp()
+    {
 
         Log.init();
 
@@ -66,7 +67,8 @@ public class ExtractionScopeTest extends TestCase {
     /**
      * DOCUMENT ME!
      */
-    public void testRequestId() {
+    public void testRequestId()
+    {
 
         RequestId requestId1 = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         RequestId requestId2 = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);

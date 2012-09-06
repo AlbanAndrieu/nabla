@@ -37,7 +37,6 @@ import com.nabla.project.application.core.log.Log;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,7 +44,8 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class Jmx {
+public class Jmx
+{
 
     protected static Logger logger = Logger.getLogger(Jmx.class);
 
@@ -56,13 +56,16 @@ public class Jmx {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) throws Exception
+    {
 
         Log.init();
 
-        while (true) {
+        while (true)
+        {
 
-            if (logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled())
+            {
                 logger.debug("waiting");
             }
 

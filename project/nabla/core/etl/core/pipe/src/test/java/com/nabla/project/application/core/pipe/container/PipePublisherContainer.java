@@ -41,7 +41,6 @@ import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
 import com.nabla.project.application.core.pipe.PipeQueueMBean;
 import com.nabla.project.application.core.spring.PipeConfig;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,10 +50,11 @@ import com.nabla.project.application.core.spring.PipeConfig;
   *
  * @param <X> DOCUMENT ME!
  */
-public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
+public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
+{
 
-    protected String name;
-    protected RequestId requestId;
+    protected String           name;
+    protected RequestId        requestId;
     protected PipePublisher<X> pipePublisher;
 
     /**
@@ -63,7 +63,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public PipePublisherContainer(String name, RequestId requestId) {
+    public PipePublisherContainer(String name, RequestId requestId)
+    {
 
         setName(name);
         setRequestId(requestId);
@@ -77,7 +78,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -88,7 +90,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -99,7 +102,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -110,7 +114,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -121,7 +126,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @return DOCUMENT ME!
      */
-    public PipePublisher<X> getPipePublisher() {
+    public PipePublisher<X> getPipePublisher()
+    {
 
         return pipePublisher;
 
@@ -132,7 +138,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @param pipePublisher DOCUMENT ME!
      */
-    public void setPipePublisher(PipePublisher<X> pipePublisher) {
+    public void setPipePublisher(PipePublisher<X> pipePublisher)
+    {
 
         this.pipePublisher = pipePublisher;
 
@@ -143,7 +150,8 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean {
      *
      * @return DOCUMENT ME!
      */
-    public String toString() {
+    public String toString()
+    {
 
         return name;
 

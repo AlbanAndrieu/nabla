@@ -42,7 +42,6 @@ import java.io.ObjectInputStream;
 
 import java.lang.reflect.Method;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,10 +49,11 @@ import java.lang.reflect.Method;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ServiceRunner implements Runnable {
+public class ServiceRunner implements Runnable
+{
 
     private MethodInvocation invocation;
-    private Object service;
+    private Object           service;
 
     /**
      * Creates a new ServiceRunner object.
@@ -61,7 +61,8 @@ public class ServiceRunner implements Runnable {
      * @param invocation DOCUMENT ME!
      * @param service DOCUMENT ME!
      */
-    public ServiceRunner(MethodInvocation invocation, Object service) {
+    public ServiceRunner(MethodInvocation invocation, Object service)
+    {
 
         this.invocation = invocation;
         this.service = service;
@@ -71,13 +72,17 @@ public class ServiceRunner implements Runnable {
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
-        try {
+        try
+        {
 
             invocation.getMethod().invoke(service, invocation.getArguments());
 
-        } catch (Throwable t) {
+        }
+        catch (Throwable t)
+        {
 
             throw new RuntimeException("Exception during service execution", t);
 
@@ -93,12 +98,14 @@ public class ServiceRunner implements Runnable {
      * @throws Exception DOCUMENT ME!
      * @throws RuntimeException DOCUMENT ME!
      */
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) throws Exception
+    {
 
         ObjectInputStream ois = new ObjectInputStream(System.in);
-        Object methodArgs[] = (Object []) ois.readObject();
+        Object methodArgs[] = (Object[]) ois.readObject();
 
-        if (args.length < 3) {
+        if (args.length < 3)
+        {
 
             throw new RuntimeException("Error : usage : java com.nabla.project.application.tool.runner.ServiceRunner configFileName beanName methodName");
 
@@ -107,14 +114,16 @@ public class ServiceRunner implements Runnable {
         String configFileName = args[0];
         String beanName = args[1];
         String methodName = args[2];
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String [] { configFileName });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { configFileName });
         Object service = context.getBean(beanName);
         Method serviceMethod = null;
         Method methods[] = service.getClass().getMethods();
 
-        for (Method method : methods) {
+        for (Method method : methods)
+        {
 
-            if (method.getName().equals(methodName)) {
+            if (method.getName().equals(methodName))
+            {
 
                 serviceMethod = method;
 
@@ -122,7 +131,8 @@ public class ServiceRunner implements Runnable {
 
         }
 
-        if (serviceMethod == null) {
+        if (serviceMethod == null)
+        {
 
             throw new RuntimeException("Method " + methodName + " not found in class " + service.getClass());
 

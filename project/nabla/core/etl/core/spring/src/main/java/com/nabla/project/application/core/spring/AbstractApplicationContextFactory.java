@@ -41,7 +41,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -49,26 +48,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class AbstractApplicationContextFactory {
+public abstract class AbstractApplicationContextFactory
+{
 
-    protected static Logger logger = Logger.getLogger(AbstractApplicationContextFactory.class);
+    protected static Logger    logger                           = Logger.getLogger(AbstractApplicationContextFactory.class);
 
     /**
      * DOCUMENT ME!
      */
-    public final static String springBaseDefaultConfiguration[] = { "com/nabla/project/application/core/spring/ServiceBase.xml",
-                                                                   };
-    private static String springConfiguration[] = springBaseDefaultConfiguration;
+    public final static String springBaseDefaultConfiguration[] = { "com/nabla/project/application/core/spring/ServiceBase.xml", };
+    private static String      springConfiguration[]            = springBaseDefaultConfiguration;
 
     /**
      * Creates a new AbstractApplicationContextFactory object.
      */
-    protected AbstractApplicationContextFactory() {
+    protected AbstractApplicationContextFactory()
+    {
         super();
 
     }
 
-    private static AbstractApplicationContextFactory getInstance() {
+    private static AbstractApplicationContextFactory getInstance()
+    {
 
         return null;
 
@@ -81,9 +82,11 @@ public abstract class AbstractApplicationContextFactory {
      *
      * @return DOCUMENT ME!
      */
-    public synchronized ApplicationContext getApplicationContext() {
+    public synchronized ApplicationContext getApplicationContext()
+    {
 
-        if (this.applicationContext == null) {
+        if (this.applicationContext == null)
+        {
 
             this.applicationContext = new ClassPathXmlApplicationContext(springConfiguration);
 
@@ -98,7 +101,8 @@ public abstract class AbstractApplicationContextFactory {
     /**
      * DOCUMENT ME!
      */
-    public static void newExtractionScope() {
+    public static void newExtractionScope()
+    {
 
         ExtractionScope.extractionId.set(new RequestId());
 
@@ -109,7 +113,8 @@ public abstract class AbstractApplicationContextFactory {
      *
      * @return DOCUMENT ME!
      */
-    public static String [] getSpringConfiguration() {
+    public static String[] getSpringConfiguration()
+    {
 
         return springConfiguration;
 
@@ -120,7 +125,8 @@ public abstract class AbstractApplicationContextFactory {
      *
      * @param springConfiguration DOCUMENT ME!
      */
-    public static void setSpringConfiguration(String springConfiguration[]) {
+    public static void setSpringConfiguration(String springConfiguration[])
+    {
 
         AbstractApplicationContextFactory.springConfiguration = springConfiguration;
 

@@ -42,7 +42,8 @@ package com.nabla.project.application.api.helpers;
   *
  * @param <T> DOCUMENT ME!
  */
-public interface PipeListener<T> {
+public interface PipeListener<T>
+{
 
     void onMessage(T t);
 

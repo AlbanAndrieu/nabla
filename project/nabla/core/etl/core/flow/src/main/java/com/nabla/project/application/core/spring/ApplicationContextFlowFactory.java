@@ -40,18 +40,20 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ApplicationContextFlowFactory extends AbstractApplicationContextFactory {
+public class ApplicationContextFlowFactory extends AbstractApplicationContextFactory
+{
 
     /**
      * DOCUMENT ME!
      */
-    public static String springConfiguration[] = springBaseDefaultConfiguration;
+    public static String                               springConfiguration[]     = springBaseDefaultConfiguration;
     private final static ApplicationContextFlowFactory applicationContextFactory = new ApplicationContextFlowFactory();
 
     /**
      * Creates a new ApplicationContextFlowFactory object.
      */
-    private ApplicationContextFlowFactory() {
+    private ApplicationContextFlowFactory()
+    {
         super();
 
     }
@@ -61,7 +63,8 @@ public class ApplicationContextFlowFactory extends AbstractApplicationContextFac
      *
      * @return DOCUMENT ME!
      */
-    public static AbstractApplicationContextFactory getInstance() {
+    public static AbstractApplicationContextFactory getInstance()
+    {
 
         return applicationContextFactory;
 

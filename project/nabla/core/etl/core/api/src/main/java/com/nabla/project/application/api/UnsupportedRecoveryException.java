@@ -40,7 +40,8 @@ package com.nabla.project.application.api;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class UnsupportedRecoveryException extends UnsupportedOperationException {
+public class UnsupportedRecoveryException extends UnsupportedOperationException
+{
 
     private static final long serialVersionUID = 1L;
 

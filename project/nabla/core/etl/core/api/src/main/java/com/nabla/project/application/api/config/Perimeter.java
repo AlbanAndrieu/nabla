@@ -48,7 +48,8 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class Perimeter implements Serializable {
+public abstract class Perimeter implements Serializable
+{
 
     private static final long     serialVersionUID = 1L;
 
@@ -64,7 +65,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public Perimeter getSubPerimeter() {
+    public Perimeter getSubPerimeter()
+    {
 
         return this.subPerimeter;
 
@@ -75,7 +77,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param subPerimeter DOCUMENT ME!
      */
-    public void setSubPerimeter(final Perimeter subPerimeter) {
+    public void setSubPerimeter(final Perimeter subPerimeter)
+    {
 
         this.subPerimeter = subPerimeter;
 
@@ -86,7 +89,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public Set<Condition> getConditions() {
+    public Set<Condition> getConditions()
+    {
 
         return this.conditions;
 
@@ -97,7 +101,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param conditions DOCUMENT ME!
      */
-    public void setConditions(final Set<Condition> conditions) {
+    public void setConditions(final Set<Condition> conditions)
+    {
 
         this.conditions = conditions;
 
@@ -108,7 +113,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param condition DOCUMENT ME!
      */
-    public void addCondition(final Condition condition) {
+    public void addCondition(final Condition condition)
+    {
 
         this.conditions.add(condition);
 
@@ -119,7 +125,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param condition DOCUMENT ME!
      */
-    public void removeCondition(final Condition condition) {
+    public void removeCondition(final Condition condition)
+    {
 
         this.conditions.remove(condition);
 
@@ -130,7 +137,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public Map<String, String> getQueryParts() {
+    public Map<String, String> getQueryParts()
+    {
 
         return this.queryParts;
 
@@ -141,7 +149,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param queryParts DOCUMENT ME!
      */
-    public void setQueryParts(final Map<String, String> queryParts) {
+    public void setQueryParts(final Map<String, String> queryParts)
+    {
 
         this.queryParts = queryParts;
 
@@ -152,7 +161,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public String getSqlQueryById() {
+    public String getSqlQueryById()
+    {
 
         return this.sqlQueryById;
 
@@ -163,7 +173,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param sqlQueryById DOCUMENT ME!
      */
-    public void setSqlQueryById(final String sqlQueryById) {
+    public void setSqlQueryById(final String sqlQueryById)
+    {
 
         this.sqlQueryById = sqlQueryById;
 
@@ -174,7 +185,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public Set<String> getIdList() {
+    public Set<String> getIdList()
+    {
 
         return this.idList;
 
@@ -185,7 +197,8 @@ public abstract class Perimeter implements Serializable {
      *
      * @param idList DOCUMENT ME!
      */
-    public void setIdList(final Set<String> idList) {
+    public void setIdList(final Set<String> idList)
+    {
 
         this.idList = idList;
 
@@ -196,9 +209,11 @@ public abstract class Perimeter implements Serializable {
      *
      * @param id DOCUMENT ME!
      */
-    public void addId(final String id) {
+    public void addId(final String id)
+    {
 
-        if (!this.idList.add(id)) {
+        if (!this.idList.add(id))
+        {
 
             this.logger.debug("ID already in set");
 

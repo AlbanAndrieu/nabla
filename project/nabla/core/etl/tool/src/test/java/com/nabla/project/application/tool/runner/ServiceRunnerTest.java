@@ -40,7 +40,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -48,21 +47,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ServiceRunnerTest extends TestCase {
+public class ServiceRunnerTest extends TestCase
+{
 
     private Logger logger = Logger.getLogger(getClass());
 
     /**
      * Creates a new ServiceRunnerTest object.
      */
-    public ServiceRunnerTest() {
+    public ServiceRunnerTest()
+    {
 
     }
 
     /**
      * DOCUMENT ME!
      */
-    public void setUp() {
+    public void setUp()
+    {
 
         ServiceImpl.setStatus(ServiceStatus.NOT_STARTED);
 
@@ -73,10 +75,10 @@ public class ServiceRunnerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testServiceRunnerSeparatedThread() throws Exception {
+    public void testServiceRunnerSeparatedThread() throws Exception
+    {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-            new String [] { "com/nabla/project/application/tool/runner/SeparatedThreadConfig.xml" });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "com/nabla/project/application/tool/runner/SeparatedThreadConfig.xml" });
         IService service = (IService) context.getBean("testService");
 
         service.startService();
@@ -92,9 +94,10 @@ public class ServiceRunnerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testServiceRunnerSameThread() throws Exception {
+    public void testServiceRunnerSameThread() throws Exception
+    {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String [] { "com/nabla/project/application/tool/runner/SameThreadConfig.xml" });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "com/nabla/project/application/tool/runner/SameThreadConfig.xml" });
         IService service = (IService) context.getBean("testService");
 
         service.startService();
@@ -107,9 +110,10 @@ public class ServiceRunnerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testServiceRunnerSeparatedVM() throws Exception {
+    public void testServiceRunnerSeparatedVM() throws Exception
+    {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String [] { "com/nabla/project/application/tool/runner/SeparatedJVMConfig.xml" });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "com/nabla/project/application/tool/runner/SeparatedJVMConfig.xml" });
         IService service = (IService) context.getBean("testService");
 
         service.startService();
@@ -124,10 +128,10 @@ public class ServiceRunnerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testServiceRunnerSeparatedVMWithParameters()
-                                                    throws Exception {
+    public void testServiceRunnerSeparatedVMWithParameters() throws Exception
+    {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String [] { "com/nabla/project/application/tool/runner/SeparatedJVMConfig.xml" });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "com/nabla/project/application/tool/runner/SeparatedJVMConfig.xml" });
         IService service = (IService) context.getBean("testService");
         ServiceParameter param = new ServiceParameter();
 
@@ -142,10 +146,10 @@ public class ServiceRunnerTest extends TestCase {
     /**
      * DOCUMENT ME!
      */
-    public void testSynchronousAsynchronousService() {
+    public void testSynchronousAsynchronousService()
+    {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-            new String [] { "com/nabla/project/application/tool/runner/SynchronousAsynchronousServiceConfig.xml" });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "com/nabla/project/application/tool/runner/SynchronousAsynchronousServiceConfig.xml" });
         SynchronousAsynchronousService service = (SynchronousAsynchronousService) context.getBean("testService");
 
         service.sayHello();
@@ -156,23 +160,27 @@ public class ServiceRunnerTest extends TestCase {
     /**
      * DOCUMENT ME!
      */
-    public void testSynchronousAsynchronousServiceWrongConfig() {
+    public void testSynchronousAsynchronousServiceWrongConfig()
+    {
 
-        try {
+        try
+        {
 
-            new ClassPathXmlApplicationContext(new String [] { "com/nabla/project/application/tool/runner/SynchronousAsynchronousServiceWrongConfig.xml" });
+            new ClassPathXmlApplicationContext(new String[] { "com/nabla/project/application/tool/runner/SynchronousAsynchronousServiceWrongConfig.xml" });
             fail("IllegalArgumentException should be thrown with this config : methods with return types cannot be invoked asynchronously");
 
-        } catch (Exception iae) {
+        }
+        catch (Exception iae)
+        {
 
-            if (logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled())
+            {
 
                 logger.debug("Exception : ", iae);
 
             }
 
-            assertTrue(
-                iae.getMessage().indexOf(
+            assertTrue(iae.getMessage().indexOf(
                     "serviceInterface for ServiceRunner must containt only method returning void : public abstract java.lang.String com.nabla.project.application.tool.runner.SynchronousAsynchronousService.sayHello()") != -1);
 
         }

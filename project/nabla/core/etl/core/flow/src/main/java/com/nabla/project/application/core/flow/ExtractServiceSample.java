@@ -43,7 +43,6 @@ import com.nabla.project.application.api.config.Perimeter;
 import com.nabla.project.application.api.config.RequestId;
 import com.nabla.project.application.core.flow.writer.FileDestination;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,7 +50,8 @@ import com.nabla.project.application.core.flow.writer.FileDestination;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ExtractServiceSample implements ExtractService {
+public class ExtractServiceSample implements ExtractService
+{
 
     /**
      * DOCUMENT ME!
@@ -63,7 +63,8 @@ public class ExtractServiceSample implements ExtractService {
      * @param format DOCUMENT ME!
      * @param packaging DOCUMENT ME!
      */
-    public void extractPerimeter(Perimeter perimeter, RequestId id, Destination output, Destination status, Format format, Packaging packaging) {
+    public void extractPerimeter(Perimeter perimeter, RequestId id, Destination output, Destination status, Format format, Packaging packaging)
+    {
 
         System.out.println("output : " + ((FileDestination) output).getUrl());
 
@@ -74,7 +75,8 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @param status DOCUMENT ME!
      */
-    public void recoverRequest(RequestStatus status) {
+    public void recoverRequest(RequestStatus status)
+    {
 
         throw new UnsupportedRecoveryException();
 
@@ -87,14 +89,16 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsFormat(Format f) {
+    public boolean supportsFormat(Format f)
+    {
 
-        switch (f) {
+        switch (f)
+        {
 
-            case XML :
+            case XML:
                 return true;
 
-            default :
+            default:
                 return false;
 
         }
@@ -108,7 +112,8 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsOutputDestination(Destination outputDestination) {
+    public boolean supportsOutputDestination(Destination outputDestination)
+    {
 
         return outputDestination instanceof FileDestination;
 
@@ -121,14 +126,16 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsPackaging(Packaging p) {
+    public boolean supportsPackaging(Packaging p)
+    {
 
-        switch (p) {
+        switch (p)
+        {
 
-            case STANDARD :
+            case STANDARD:
                 return true;
 
-            default :
+            default:
                 return false;
 
         }
@@ -142,7 +149,8 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsPerimeter(Perimeter p) {
+    public boolean supportsPerimeter(Perimeter p)
+    {
 
         return true;
 
@@ -155,7 +163,8 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsStatusDestination(Destination statusDestination) {
+    public boolean supportsStatusDestination(Destination statusDestination)
+    {
 
         return statusDestination instanceof FileDestination;
 
@@ -166,7 +175,8 @@ public class ExtractServiceSample implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public String getExtractServiceId() {
+    public String getExtractServiceId()
+    {
 
         return "Extract_Service_Sample";
 

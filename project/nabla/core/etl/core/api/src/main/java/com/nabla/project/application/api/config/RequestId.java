@@ -37,7 +37,6 @@ import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,17 +44,19 @@ import java.io.Serializable;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class RequestId implements Serializable, RequestIdMBean {
+public class RequestId implements Serializable, RequestIdMBean
+{
 
     private static final long serialVersionUID = 1L;
-    protected static Logger logger = Logger.getLogger(RequestId.class);
-    protected static int _id = 0;
-    protected String id;
+    protected static Logger   logger           = Logger.getLogger(RequestId.class);
+    protected static int      _id              = 0;
+    protected String          id;
 
     /**
      * Creates a new RequestId object.
      */
-    public RequestId() {
+    public RequestId()
+    {
         this(Integer.toString(++_id));
 
     }
@@ -65,11 +66,13 @@ public class RequestId implements Serializable, RequestIdMBean {
      *
      * @param id DOCUMENT ME!
      */
-    public RequestId(String id) {
+    public RequestId(String id)
+    {
 
         this.id = id;
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
 
             logger.debug("RequestId(" + id + ")");
 
@@ -82,7 +85,8 @@ public class RequestId implements Serializable, RequestIdMBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getId() {
+    public String getId()
+    {
 
         return id;
 
@@ -93,7 +97,8 @@ public class RequestId implements Serializable, RequestIdMBean {
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(String id) {
+    public void setId(String id)
+    {
 
         this.id = id;
 
@@ -106,7 +111,8 @@ public class RequestId implements Serializable, RequestIdMBean {
      *
      * @return DOCUMENT ME!
      */
-    public boolean equals(Object other) {
+    public boolean equals(Object other)
+    {
 
         return (other instanceof RequestId) && (other.toString().equals(id));
 
@@ -117,7 +123,8 @@ public class RequestId implements Serializable, RequestIdMBean {
      *
      * @return DOCUMENT ME!
      */
-    public String toString() {
+    public String toString()
+    {
 
         return id;
 

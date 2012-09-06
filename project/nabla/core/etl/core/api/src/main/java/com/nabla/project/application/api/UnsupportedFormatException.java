@@ -35,7 +35,6 @@ package com.nabla.project.application.api;
 
 import com.nabla.project.application.api.config.Format;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,17 +42,19 @@ import com.nabla.project.application.api.config.Format;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class UnsupportedFormatException extends UnsupportedOperationException {
+public class UnsupportedFormatException extends UnsupportedOperationException
+{
 
     private static final long serialVersionUID = 1L;
-    private Format unsupportedFormat;
+    private Format            unsupportedFormat;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public Format getUnsupportedFormat() {
+    public Format getUnsupportedFormat()
+    {
 
         return unsupportedFormat;
 
@@ -64,7 +65,8 @@ public class UnsupportedFormatException extends UnsupportedOperationException {
      *
      * @param unsupportedFormat DOCUMENT ME!
      */
-    public void setUnsupportedFormat(Format unsupportedFormat) {
+    public void setUnsupportedFormat(Format unsupportedFormat)
+    {
 
         this.unsupportedFormat = unsupportedFormat;
 

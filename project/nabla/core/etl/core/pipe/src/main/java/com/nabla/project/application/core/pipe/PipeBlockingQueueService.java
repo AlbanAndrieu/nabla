@@ -47,7 +47,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -55,11 +54,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class PipeBlockingQueueService {
+public class PipeBlockingQueueService
+{
 
-    private static Logger logger = Logger.getLogger(PipeBlockingQueueService.class);
-    private static Map<String, PipeBlockingQueue> queueMap = new HashMap<String, PipeBlockingQueue>();
-    private static PipeBlockingQueueService queueService = new PipeBlockingQueueService();
+    private static Logger                         logger       = Logger.getLogger(PipeBlockingQueueService.class);
+    private static Map<String, PipeBlockingQueue> queueMap     = new HashMap<String, PipeBlockingQueue>();
+    private static PipeBlockingQueueService       queueService = new PipeBlockingQueueService();
 
     /**
      * DOCUMENT ME!
@@ -69,19 +69,24 @@ public class PipeBlockingQueueService {
      * @param requestId DOCUMENT ME!
      * @param queueSize DOCUMENT ME!
      */
-    public static <T> void createPipeBlockingQueue(String name, RequestId requestId, int queueSize) {
+    public static <T> void createPipeBlockingQueue(String name, RequestId requestId, int queueSize)
+    {
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("Create a new queue named : " + name + requestId);
         }
 
-        synchronized (queueMap) {
+        synchronized (queueMap)
+        {
 
-            if (getQueue(name, requestId) == null) {
+            if (getQueue(name, requestId) == null)
+            {
 
                 queueMap.put(name + requestId, queueService.new PipeBlockingQueue<T>(queueSize));
 
-            } else {
+            } else
+            {
 
                 logger.error("ERROR when creating the new queue named : " + name + requestId);
                 throw new TechnicalException("A queue with this name already exist");
@@ -98,20 +103,25 @@ public class PipeBlockingQueueService {
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public static void destroyQueue(String name, RequestId requestId) {
+    public static void destroyQueue(String name, RequestId requestId)
+    {
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("Destroying the queue named : " + name + requestId);
         }
 
-        synchronized (queueMap) {
+        synchronized (queueMap)
+        {
 
-            if (queueMap.get(name + requestId) == null) {
+            if (queueMap.get(name + requestId) == null)
+            {
 
                 logger.error("ERROR when destroying the queue named : " + name + requestId + " (Queue not found)");
                 throw new TechnicalException("The queue doesn't exist.");
 
-            } else {
+            } else
+            {
 
                 PipeBlockingQueue queue = queueMap.remove(name + requestId);
 
@@ -126,11 +136,14 @@ public class PipeBlockingQueueService {
     /**
      * DOCUMENT ME!
      */
-    public static void destroyAllQueue() {
+    public static void destroyAllQueue()
+    {
 
-        synchronized (queueMap) {
+        synchronized (queueMap)
+        {
 
-            if (logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled())
+            {
                 logger.debug("destroyAllQueue");
             }
 
@@ -138,11 +151,13 @@ public class PipeBlockingQueueService {
 
             queues.addAll(queueMap.keySet());
 
-            for (int i = 0; i < queues.size(); i++) {
+            for (int i = 0; i < queues.size(); i++)
+            {
 
                 String queueName = (String) queues.toArray()[i];
 
-                if (logger.isDebugEnabled()) {
+                if (logger.isDebugEnabled())
+                {
                     logger.debug("Destroying the queue named : " + queueName);
                 }
 
@@ -161,9 +176,11 @@ public class PipeBlockingQueueService {
      *
      * @param queues DOCUMENT ME!
      */
-    public static void destroyQueues(Set<Pipe<Object>> queues) {
+    public static void destroyQueues(Set<Pipe<Object>> queues)
+    {
 
-        for (Pipe<Object> pipe : queues) {
+        for (Pipe<Object> pipe : queues)
+        {
 
             PipeBlockingQueueService.destroyQueue(pipe.getName(), pipe.getRequestId());
 
@@ -171,9 +188,11 @@ public class PipeBlockingQueueService {
 
     }
 
-    static <T> PipeBlockingQueue<T> getQueue(String name, RequestId requestId) {
+    static <T> PipeBlockingQueue<T> getQueue(String name, RequestId requestId)
+    {
 
-        synchronized (queueMap) {
+        synchronized (queueMap)
+        {
 
             return queueMap.get(name + requestId);
 
@@ -190,7 +209,8 @@ public class PipeBlockingQueueService {
       *
      * @param <T> DOCUMENT ME!
      */
-    class PipeBlockingQueue<T> extends ArrayBlockingQueue<T> {
+    class PipeBlockingQueue<T> extends ArrayBlockingQueue<T>
+    {
 
         /**
          * DOCUMENT ME!
@@ -202,7 +222,8 @@ public class PipeBlockingQueueService {
          *
          * @param capacity DOCUMENT ME!
          */
-        public PipeBlockingQueue(int capacity) {
+        public PipeBlockingQueue(int capacity)
+        {
             super(capacity, false);
 
         }
@@ -216,17 +237,22 @@ public class PipeBlockingQueueService {
          * @return DOCUMENT ME!
          */
         @Override
-        public T poll(long timeout, TimeUnit unit) {
+        public T poll(long timeout, TimeUnit unit)
+        {
 
-            try {
+            try
+            {
 
-                if (logger.isDebugEnabled()) {
+                if (logger.isDebugEnabled())
+                {
                     logger.debug("Retrieve object from queue");
                 }
 
                 return super.poll(timeout, unit);
 
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
 
                 throw new TechnicalException("Exception pushing element in queue", e);
 
@@ -240,17 +266,22 @@ public class PipeBlockingQueueService {
          * @param o DOCUMENT ME!
          */
         @Override
-        public void put(T o) {
+        public void put(T o)
+        {
 
-            try {
+            try
+            {
 
-                if (logger.isDebugEnabled()) {
+                if (logger.isDebugEnabled())
+                {
                     logger.debug("Put object in queue");
                 }
 
                 super.put(o);
 
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
 
                 throw new TechnicalException("Exception pushing element in queue", e);
 
@@ -258,19 +289,22 @@ public class PipeBlockingQueueService {
 
         }
 
-        void open() {
+        void open()
+        {
 
             isOpen.set(true);
 
         }
 
-        void close() {
+        void close()
+        {
 
             isOpen.set(false);
 
         }
 
-        boolean isOpen() {
+        boolean isOpen()
+        {
 
             return isOpen.get();
 

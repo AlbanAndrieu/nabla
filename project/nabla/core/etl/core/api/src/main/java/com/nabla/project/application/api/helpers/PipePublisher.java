@@ -42,7 +42,8 @@ package com.nabla.project.application.api.helpers;
   *
  * @param <X> DOCUMENT ME!
  */
-public interface PipePublisher<X> {
+public interface PipePublisher<X>
+{
 
     void publish(X t);
 

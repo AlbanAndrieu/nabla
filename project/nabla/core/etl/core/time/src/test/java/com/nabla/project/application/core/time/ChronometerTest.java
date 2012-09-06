@@ -39,7 +39,6 @@ import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -47,15 +46,17 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ChronometerTest extends TestCase {
+public class ChronometerTest extends TestCase
+{
 
     /**
      * DOCUMENT ME!
      */
-    public static Logger logger = Logger.getLogger(ChronometerTest.class);
-    Chronometer chronometer = new Chronometer();
+    public static Logger logger      = Logger.getLogger(ChronometerTest.class);
+    Chronometer          chronometer = new Chronometer();
 
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
 
         Log.init();
 
@@ -66,13 +67,16 @@ public class ChronometerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testChronometer() throws Exception {
+    public void testChronometer() throws Exception
+    {
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("waiting");
         }
 
-        if (Log.getCommonlogger().isDebugEnabled()) {
+        if (Log.getCommonlogger().isDebugEnabled())
+        {
             Log.getCommonlogger().debug("waiting");
         }
 
@@ -81,7 +85,8 @@ public class ChronometerTest extends TestCase {
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown() throws Exception
+    {
 
         super.tearDown();
         chronometer.stop();

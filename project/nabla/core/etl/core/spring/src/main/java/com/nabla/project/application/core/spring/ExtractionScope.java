@@ -48,7 +48,6 @@ import java.util.Map;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -56,22 +55,25 @@ import javax.management.ObjectName;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ExtractionScope implements Scope {
+public class ExtractionScope implements Scope
+{
 
-    protected static Logger logger = Logger.getLogger(ExtractionScope.class);
+    protected static Logger                       logger    = Logger.getLogger(ExtractionScope.class);
     protected Map<RequestId, Map<String, Object>> scopeMaps = new HashMap<RequestId, Map<String, Object>>();
-    protected MBeanServer mbs;
+    protected MBeanServer                         mbs;
 
     /**
      * Creates a new ExtractionScope object.
      */
-    public ExtractionScope() {
+    public ExtractionScope()
+    {
 
         mbs = ManagementFactory.getPlatformMBeanServer();
 
     }
 
-    protected final String getJmxObjectName(String beanName, RequestId requestId) {
+    protected final String getJmxObjectName(String beanName, RequestId requestId)
+    {
 
         return new StringBuffer().append("Extraction").append(requestId).append(":type=").append(beanName).toString();
 
@@ -85,11 +87,13 @@ public class ExtractionScope implements Scope {
      *
      * @return DOCUMENT ME!
      */
-    public Object get(String beanName, ObjectFactory objectFactory) {
+    public Object get(String beanName, ObjectFactory objectFactory)
+    {
 
         RequestId requestId = (RequestId) extractionId.get();
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
 
             logger.debug(new StringBuffer().append("get(").append(beanName).append(") extractionId=").append(requestId));
 
@@ -97,7 +101,8 @@ public class ExtractionScope implements Scope {
 
         Map<String, Object> beansMap = scopeMaps.get(requestId);
 
-        if (beansMap == null) {
+        if (beansMap == null)
+        {
 
             beansMap = new HashMap<String, Object>();
             scopeMaps.put(requestId, beansMap);
@@ -106,13 +111,16 @@ public class ExtractionScope implements Scope {
 
         Object bean = beansMap.get(beanName);
 
-        if (bean == null) {
+        if (bean == null)
+        {
 
-            if (AbstractConfig.beanRequestIdName.equals(beanName)) {
+            if (AbstractConfig.beanRequestIdName.equals(beanName))
+            {
 
                 bean = requestId;
 
-            } else {
+            } else
+            {
 
                 bean = objectFactory.getObject();
 
@@ -120,17 +128,21 @@ public class ExtractionScope implements Scope {
 
             beansMap.put(beanName, bean);
 
-            try {
+            try
+            {
 
                 ObjectName name = new ObjectName(getJmxObjectName(beanName, requestId));
 
                 mbs.registerMBean(bean, name);
 
-                if (logger.isDebugEnabled()) {
+                if (logger.isDebugEnabled())
+                {
                     logger.debug("JMX registration done for " + name);
                 }
 
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
 
                 logger.warn(ex);
 
@@ -147,7 +159,8 @@ public class ExtractionScope implements Scope {
      *
      * @return DOCUMENT ME!
      */
-    public String getConversationId() {
+    public String getConversationId()
+    {
 
         return extractionId.get().toString();
 
@@ -159,9 +172,11 @@ public class ExtractionScope implements Scope {
      * @param beanName DOCUMENT ME!
      * @param arg1 DOCUMENT ME!
      */
-    public void registerDestructionCallback(String beanName, Runnable arg1) {
+    public void registerDestructionCallback(String beanName, Runnable arg1)
+    {
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("registerDestructionCallback(" + beanName + ")");
         }
 
@@ -174,11 +189,13 @@ public class ExtractionScope implements Scope {
      *
      * @return DOCUMENT ME!
      */
-    public Object remove(String beanName) {
+    public Object remove(String beanName)
+    {
 
         RequestId requestId = (RequestId) extractionId.get();
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("remove(" + beanName + ") extractionId=" + requestId);
         }
 
@@ -186,23 +203,28 @@ public class ExtractionScope implements Scope {
 
         Map<String, Object> beansMap = scopeMaps.get(requestId);
 
-        if (beansMap != null) {
+        if (beansMap != null)
+        {
 
             beansMap.remove(beanName);
 
         }
 
-        try {
+        try
+        {
 
             ObjectName name = new ObjectName(getJmxObjectName(beanName, requestId));
 
             mbs.unregisterMBean(name);
 
-            if (logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled())
+            {
                 logger.debug("JMX registration done for " + name);
             }
 
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
 
             logger.warn(ex);
 
@@ -215,18 +237,21 @@ public class ExtractionScope implements Scope {
     /**
      * DOCUMENT ME!
      */
-    public static ThreadLocal extractionId = new ThreadLocal() {
+    public static ThreadLocal extractionId = new ThreadLocal()
+                                           {
 
-        protected synchronized RequestId initialValue() {
+                                               protected synchronized RequestId initialValue()
+                                               {
 
-            if (logger.isDebugEnabled()) {
-                logger.debug("initialValue");
-            }
+                                                   if (logger.isDebugEnabled())
+                                                   {
+                                                       logger.debug("initialValue");
+                                                   }
 
-            return new RequestId();
+                                                   return new RequestId();
 
-        }
+                                               }
 
-    };
+                                           };
 
 }

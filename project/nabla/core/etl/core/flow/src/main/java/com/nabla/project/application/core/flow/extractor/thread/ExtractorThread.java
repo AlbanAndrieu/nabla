@@ -38,7 +38,6 @@ import com.nabla.project.application.core.time.Chronometer;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -46,14 +45,16 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ExtractorThread extends Extractor implements ExtractorThreadMBean {
+public class ExtractorThread extends Extractor implements ExtractorThreadMBean
+{
 
     protected Logger logger = Logger.getLogger(getClass());
 
     /**
      * DOCUMENT ME!
      */
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet()
+    {
 
         super.afterPropertiesSet();
 
@@ -66,7 +67,8 @@ public class ExtractorThread extends Extractor implements ExtractorThreadMBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getPipeOutName() {
+    public String getPipeOutName()
+    {
 
         return pipe.getName();
 
@@ -75,9 +77,11 @@ public class ExtractorThread extends Extractor implements ExtractorThreadMBean {
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
-        try {
+        try
+        {
 
             Thread.currentThread().setName(getExtractorThreadName());
 
@@ -91,11 +95,14 @@ public class ExtractorThread extends Extractor implements ExtractorThreadMBean {
             chronometer.stop();
             logger.info(getName() + " completed. Time = " + chronometer);
 
-        } catch (Throwable exception) {
+        }
+        catch (Throwable exception)
+        {
 
             logger.error("Exception: " + exception.getMessage());
 
-            if (pipeException != null) {
+            if (pipeException != null)
+            {
 
                 pipeException.publish(exception);
 

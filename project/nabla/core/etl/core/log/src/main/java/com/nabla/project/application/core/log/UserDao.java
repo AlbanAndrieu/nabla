@@ -35,7 +35,6 @@ package com.nabla.project.application.core.log;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,7 +42,8 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public final class UserDao {
+public final class UserDao
+{
 
     private Logger _log = null;
 
@@ -52,7 +52,8 @@ public final class UserDao {
      *
      * @param log DOCUMENT ME!
      */
-    public void setLog(final Logger log) {
+    public void setLog(final Logger log)
+    {
 
         this._log = log;
 
@@ -63,9 +64,11 @@ public final class UserDao {
      *
      * @param id DOCUMENT ME!
      */
-    public void loadUser(String id) {
+    public void loadUser(String id)
+    {
 
-        if (_log.isDebugEnabled()) {
+        if (_log.isDebugEnabled())
+        {
             _log.debug("Loading a User...");
         }
 

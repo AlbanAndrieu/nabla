@@ -40,12 +40,13 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class AbstractFlowConfig extends AbstractPipeConfig {
+public abstract class AbstractFlowConfig extends AbstractPipeConfig
+{
 
     /**
      * DOCUMENT ME!
      */
-    public static String beanExtractorThreadName = "extractorThread";
+    public static String beanExtractorThreadName   = "extractorThread";
 
     /**
      * DOCUMENT ME!
@@ -55,6 +56,6 @@ public abstract class AbstractFlowConfig extends AbstractPipeConfig {
     /**
      * DOCUMENT ME!
      */
-    public static String beanWriterThreadName = "writerThread";
+    public static String beanWriterThreadName      = "writerThread";
 
 }

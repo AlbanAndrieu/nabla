@@ -42,7 +42,6 @@ import com.nabla.project.application.api.writer.WriterThreadInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,23 +49,25 @@ import java.util.List;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class ExtractServiceCommon implements ExtractService {
+public abstract class ExtractServiceCommon implements ExtractService
+{
 
-    protected RequestId requestId;
-    protected List<ExtractorThreadInterface<Object>> extractors;
-    protected List<Thread> extractorsThreads = new ArrayList<Thread>();
+    protected RequestId                                        requestId;
+    protected List<ExtractorThreadInterface<Object>>           extractors;
+    protected List<Thread>                                     extractorsThreads   = new ArrayList<Thread>();
     protected List<TransformerThreadInterface<Object, Object>> transformers;
-    protected List<Thread> transformersThreads = new ArrayList<Thread>();
-    protected boolean isUsingWriterThread = true;
-    protected List<WriterThreadInterface<Object>> writers;
-    protected List<Thread> writersThreads = new ArrayList<Thread>();
+    protected List<Thread>                                     transformersThreads = new ArrayList<Thread>();
+    protected boolean                                          isUsingWriterThread = true;
+    protected List<WriterThreadInterface<Object>>              writers;
+    protected List<Thread>                                     writersThreads      = new ArrayList<Thread>();
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -77,7 +78,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -88,7 +90,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public List<ExtractorThreadInterface<Object>> getExtractors() {
+    public List<ExtractorThreadInterface<Object>> getExtractors()
+    {
 
         return extractors;
 
@@ -99,7 +102,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @param extractors DOCUMENT ME!
      */
-    public void setExtractors(List<ExtractorThreadInterface<Object>> extractors) {
+    public void setExtractors(List<ExtractorThreadInterface<Object>> extractors)
+    {
 
         this.extractors = extractors;
 
@@ -110,7 +114,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isUsingWriterThread() {
+    public boolean isUsingWriterThread()
+    {
 
         return isUsingWriterThread;
 
@@ -121,7 +126,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @param isUsingWriterThread DOCUMENT ME!
      */
-    public void setUsingWriterThread(boolean isUsingWriterThread) {
+    public void setUsingWriterThread(boolean isUsingWriterThread)
+    {
 
         this.isUsingWriterThread = isUsingWriterThread;
 
@@ -132,7 +138,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public List<TransformerThreadInterface<Object, Object>> getTransformers() {
+    public List<TransformerThreadInterface<Object, Object>> getTransformers()
+    {
 
         return transformers;
 
@@ -143,7 +150,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @param transformers DOCUMENT ME!
      */
-    public void setTransformers(List<TransformerThreadInterface<Object, Object>> transformers) {
+    public void setTransformers(List<TransformerThreadInterface<Object, Object>> transformers)
+    {
 
         this.transformers = transformers;
 
@@ -154,7 +162,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @return DOCUMENT ME!
      */
-    public List<WriterThreadInterface<Object>> getWriters() {
+    public List<WriterThreadInterface<Object>> getWriters()
+    {
 
         return writers;
 
@@ -165,7 +174,8 @@ public abstract class ExtractServiceCommon implements ExtractService {
      *
      * @param writers DOCUMENT ME!
      */
-    public void setWriters(List<WriterThreadInterface<Object>> writers) {
+    public void setWriters(List<WriterThreadInterface<Object>> writers)
+    {
 
         this.writers = writers;
 

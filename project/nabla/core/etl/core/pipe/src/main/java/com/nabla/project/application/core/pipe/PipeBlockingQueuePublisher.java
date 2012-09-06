@@ -36,7 +36,6 @@ package com.nabla.project.application.core.pipe;
 import com.nabla.project.application.api.config.RequestId;
 import com.nabla.project.application.api.helpers.PipePublisher;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -46,7 +45,8 @@ import com.nabla.project.application.api.helpers.PipePublisher;
   *
  * @param <X> DOCUMENT ME!
  */
-public class PipeBlockingQueuePublisher<X> implements PipePublisher<X> {
+public class PipeBlockingQueuePublisher<X> implements PipePublisher<X>
+{
 
     protected PipeBlockingQueueService.PipeBlockingQueue<X> queue;
 
@@ -56,7 +56,8 @@ public class PipeBlockingQueuePublisher<X> implements PipePublisher<X> {
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public PipeBlockingQueuePublisher(String name, RequestId requestId) {
+    public PipeBlockingQueuePublisher(String name, RequestId requestId)
+    {
 
         queue = PipeBlockingQueueService.getQueue(name, requestId);
 
@@ -67,7 +68,8 @@ public class PipeBlockingQueuePublisher<X> implements PipePublisher<X> {
      *
      * @param t DOCUMENT ME!
      */
-    public void publish(X t) {
+    public void publish(X t)
+    {
 
         queue.put(t);
 
@@ -76,7 +78,8 @@ public class PipeBlockingQueuePublisher<X> implements PipePublisher<X> {
     /**
      * DOCUMENT ME!
      */
-    public void closeQueue() {
+    public void closeQueue()
+    {
 
         queue.close();
 

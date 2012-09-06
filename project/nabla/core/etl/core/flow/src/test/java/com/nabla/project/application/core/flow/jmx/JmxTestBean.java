@@ -40,17 +40,19 @@ package com.nabla.project.application.core.flow.jmx;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class JmxTestBean implements JmxTestBeanMBean {
+public class JmxTestBean implements JmxTestBeanMBean
+{
 
     private String name;
-    private int age;
+    private int    age;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public int getAge() {
+    public int getAge()
+    {
 
         return age;
 
@@ -61,7 +63,8 @@ public class JmxTestBean implements JmxTestBeanMBean {
      *
      * @param age DOCUMENT ME!
      */
-    public void setAge(int age) {
+    public void setAge(int age)
+    {
 
         this.age = age;
 
@@ -72,7 +75,8 @@ public class JmxTestBean implements JmxTestBeanMBean {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -83,7 +87,8 @@ public class JmxTestBean implements JmxTestBeanMBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -97,7 +102,8 @@ public class JmxTestBean implements JmxTestBeanMBean {
      *
      * @return DOCUMENT ME!
      */
-    public int add(int x, int y) {
+    public int add(int x, int y)
+    {
 
         return x + y;
 
@@ -106,7 +112,8 @@ public class JmxTestBean implements JmxTestBeanMBean {
     /**
      * DOCUMENT ME!
      */
-    public void dontExposeMe() {
+    public void dontExposeMe()
+    {
 
         throw new RuntimeException();
 

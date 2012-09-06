@@ -42,7 +42,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,14 +49,16 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class LogCustomTest extends TestCase {
+public class LogCustomTest extends TestCase
+{
 
     /**
      * DOCUMENT ME!
      */
     public static Logger logger = Logger.getLogger(LogCustomTest.class);
 
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
 
     }
 
@@ -66,26 +67,31 @@ public class LogCustomTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testLog() throws Exception {
+    public void testLog() throws Exception
+    {
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("testLog");
         }
 
         ApplicationContext ctx = new FileSystemXmlApplicationContext("src/test/java/com/nabla/project/application/core/log/LogCustom.xml");
         Log4JLogger commonlogger = (Log4JLogger) ctx.getBean("loggingfactorybean");
 
-        if (commonlogger.isDebugEnabled()) {
+        if (commonlogger.isDebugEnabled())
+        {
             commonlogger.debug("Common logger is enable");
         }
 
         Log.setCommonlogger(commonlogger);
 
-        if (Log.getCommonlogger().isDebugEnabled()) {
+        if (Log.getCommonlogger().isDebugEnabled())
+        {
             Log.getCommonlogger().debug("mylogger 1 - DEBUG - should not be print");
         }
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("rootLogger 1 - DEBUG - should not be print");
         }
 

@@ -33,9 +33,8 @@
  */
 package com.nabla.project.application.tool.runner;
 
-public enum ServiceStatus {
-    STARTED,
-    FINISHED,
-    NOT_STARTED;
+public enum ServiceStatus
+{
+    STARTED, FINISHED, NOT_STARTED;
 
 }

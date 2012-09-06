@@ -46,7 +46,6 @@ import java.lang.reflect.Method;
 
 import java.util.List;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -54,15 +53,16 @@ import java.util.List;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ServiceInvoker implements MethodInterceptor, InitializingBean {
+public class ServiceInvoker implements MethodInterceptor, InitializingBean
+{
 
-    private Object service;
-    private Class serviceInterface;
+    private Object         service;
+    private Class          serviceInterface;
     private InvocationType invocationType;
-    private String newVMconfigFileName;
-    private String newVMServiceBeanName;
-    private String newVMClasspathRoot;
-    private List<String> asynchronousMethodNameList;
+    private String         newVMconfigFileName;
+    private String         newVMServiceBeanName;
+    private String         newVMClasspathRoot;
+    private List<String>   asynchronousMethodNameList;
 
     /**
      * DOCUMENT ME!
@@ -74,19 +74,24 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      * @throws Throwable DOCUMENT ME!
      * @throws RuntimeException DOCUMENT ME!
      */
-    public Object invoke(MethodInvocation invocation) throws Throwable {
+    public Object invoke(MethodInvocation invocation) throws Throwable
+    {
 
-        try {
+        try
+        {
 
-            if (InvocationType.SAME_THREAD.equals(invocationType) || !isAsynchronousMethod(invocation.getMethod())) {
+            if (InvocationType.SAME_THREAD.equals(invocationType) || !isAsynchronousMethod(invocation.getMethod()))
+            {
 
                 return invocation.getMethod().invoke(service, invocation.getArguments());
 
-            } else if (InvocationType.SEPARATED_THREAD.equals(invocationType)) {
+            } else if (InvocationType.SEPARATED_THREAD.equals(invocationType))
+            {
 
                 invokeInNewThread(invocation, service);
 
-            } else if (InvocationType.SEPARATED_VM.equals(invocationType)) {
+            } else if (InvocationType.SEPARATED_VM.equals(invocationType))
+            {
 
                 invokeInNewJVM(invocation);
 
@@ -94,7 +99,9 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
             return null;
 
-        } catch (Throwable ex) {
+        }
+        catch (Throwable ex)
+        {
 
             ex.printStackTrace();
             throw new RuntimeException("Failed to invoke service runner for service [" + getServiceInterface() + "]", ex);
@@ -103,13 +110,16 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
     }
 
-    private boolean isAsynchronousMethod(Method method) {
+    private boolean isAsynchronousMethod(Method method)
+    {
 
-        if (asynchronousMethodNameList == null) {
+        if (asynchronousMethodNameList == null)
+        {
 
             return true;
 
-        } else {
+        } else
+        {
 
             return asynchronousMethodNameList.contains(method.getName());
 
@@ -117,7 +127,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
     }
 
-    private void invokeInNewThread(MethodInvocation invocation, Object service) {
+    private void invokeInNewThread(MethodInvocation invocation, Object service)
+    {
 
         ServiceRunner runner = new ServiceRunner(invocation, service);
         Thread invocationThread = new Thread(runner);
@@ -126,25 +137,25 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
     }
 
-    private void invokeInNewJVM(MethodInvocation invocation) {
+    private void invokeInNewJVM(MethodInvocation invocation)
+    {
 
-        try {
+        try
+        {
 
             checkInvocationArgumentsForJVMTransfer(invocation.getArguments());
 
             String classpath = System.getProperty("java.class.path");
 
-            if (newVMClasspathRoot != null) {
+            if (newVMClasspathRoot != null)
+            {
 
                 classpath = generateClassPath(newVMClasspathRoot);
 
             }
 
-            ProcessBuilder pb = new ProcessBuilder(
-                new String [] {
-                    "java", "-classpath", classpath, "com.nabla.project.application.tool.runner.ServiceRunner", newVMconfigFileName, newVMServiceBeanName,
-                    invocation.getMethod().getName()
-                });
+            ProcessBuilder pb = new ProcessBuilder(new String[] { "java", "-classpath", classpath, "com.nabla.project.application.tool.runner.ServiceRunner", newVMconfigFileName, newVMServiceBeanName,
+                    invocation.getMethod().getName() });
             Process p = pb.start();
 
             ObjectOutputStream oos = new ObjectOutputStream(p.getOutputStream());
@@ -152,7 +163,9 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
             oos.writeObject(invocation.getArguments());
             oos.flush();
 
-        } catch (Exception ioe) {
+        }
+        catch (Exception ioe)
+        {
 
             throw new RuntimeException(ioe);
 
@@ -160,29 +173,33 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
     }
 
-    private String generateClassPath(String classpathRoot) {
+    private String generateClassPath(String classpathRoot)
+    {
 
         File rootDir = new File(classpathRoot);
 
-        if (!rootDir.isDirectory()) {
+        if (!rootDir.isDirectory())
+        {
 
-            throw new RuntimeException(
-                "Error while generating classpath with classpath root : " + classpathRoot + " ; absolute path is : " + rootDir.getAbsolutePath());
+            throw new RuntimeException("Error while generating classpath with classpath root : " + classpathRoot + " ; absolute path is : " + rootDir.getAbsolutePath());
 
         }
 
         String fileNames[] = rootDir.list();
         String result = "";
 
-        for (String fileName : fileNames) {
+        for (String fileName : fileNames)
+        {
 
             File file = new File(fileName);
 
-            if (file.isDirectory()) {
+            if (file.isDirectory())
+            {
 
                 result += generateClassPath(fileName);
 
-            } else if (fileName.endsWith(".jar")) {
+            } else if (fileName.endsWith(".jar"))
+            {
 
                 result += (rootDir + File.separator + fileName + ";");
 
@@ -194,11 +211,14 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
     }
 
-    private void checkInvocationArgumentsForJVMTransfer(Object arguments[]) {
+    private void checkInvocationArgumentsForJVMTransfer(Object arguments[])
+    {
 
-        for (Object arg : arguments) {
+        for (Object arg : arguments)
+        {
 
-            if (!(arg instanceof Serializable)) {
+            if (!(arg instanceof Serializable))
+            {
 
                 throw new IllegalArgumentException("method parameter " + arg + " must be serializable in order to execute method in a separated JVM");
 
@@ -213,7 +233,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public Object getService() {
+    public Object getService()
+    {
 
         return service;
 
@@ -224,7 +245,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param service DOCUMENT ME!
      */
-    public void setService(Object service) {
+    public void setService(Object service)
+    {
 
         this.service = service;
 
@@ -235,7 +257,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public Class getServiceInterface() {
+    public Class getServiceInterface()
+    {
 
         return serviceInterface;
 
@@ -246,7 +269,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param serviceInterface DOCUMENT ME!
      */
-    public void setServiceInterface(Class serviceInterface) {
+    public void setServiceInterface(Class serviceInterface)
+    {
 
         this.serviceInterface = serviceInterface;
 
@@ -257,7 +281,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public InvocationType getInvocationType() {
+    public InvocationType getInvocationType()
+    {
 
         return invocationType;
 
@@ -268,7 +293,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param invocationType DOCUMENT ME!
      */
-    public void setInvocationType(InvocationType invocationType) {
+    public void setInvocationType(InvocationType invocationType)
+    {
 
         this.invocationType = invocationType;
 
@@ -279,7 +305,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getNewVMServiceBeanName() {
+    public String getNewVMServiceBeanName()
+    {
 
         return newVMServiceBeanName;
 
@@ -290,7 +317,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param newVMServiceBeanName DOCUMENT ME!
      */
-    public void setNewVMServiceBeanName(String newVMServiceBeanName) {
+    public void setNewVMServiceBeanName(String newVMServiceBeanName)
+    {
 
         this.newVMServiceBeanName = newVMServiceBeanName;
 
@@ -301,7 +329,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getNewVMconfigFileName() {
+    public String getNewVMconfigFileName()
+    {
 
         return newVMconfigFileName;
 
@@ -312,7 +341,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param newVMconfigFileName DOCUMENT ME!
      */
-    public void setNewVMconfigFileName(String newVMconfigFileName) {
+    public void setNewVMconfigFileName(String newVMconfigFileName)
+    {
 
         this.newVMconfigFileName = newVMconfigFileName;
 
@@ -323,7 +353,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public List<String> getAsynchronousMethodNameList() {
+    public List<String> getAsynchronousMethodNameList()
+    {
 
         return asynchronousMethodNameList;
 
@@ -334,7 +365,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param asynchronousMethodNameList DOCUMENT ME!
      */
-    public void setAsynchronousMethodNameList(List<String> asynchronousMethodNameList) {
+    public void setAsynchronousMethodNameList(List<String> asynchronousMethodNameList)
+    {
 
         this.asynchronousMethodNameList = asynchronousMethodNameList;
 
@@ -343,9 +375,11 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
     /**
      * DOCUMENT ME!
      */
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet()
+    {
 
-        if ((serviceInterface != null) && !serviceInterface.isInterface()) {
+        if ((serviceInterface != null) && !serviceInterface.isInterface())
+        {
 
             throw new IllegalArgumentException("serviceInterface must be an interface");
 
@@ -353,9 +387,11 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
 
         Method methods[] = serviceInterface.getDeclaredMethods();
 
-        for (Method method : methods) {
+        for (Method method : methods)
+        {
 
-            if (isAsynchronousMethod(method) && !method.getReturnType().equals(Void.TYPE)) {
+            if (isAsynchronousMethod(method) && !method.getReturnType().equals(Void.TYPE))
+            {
 
                 throw new IllegalArgumentException("serviceInterface for ServiceRunner must containt only method returning void : " + method);
 
@@ -370,7 +406,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @return DOCUMENT ME!
      */
-    public String getNewVMClasspathRoot() {
+    public String getNewVMClasspathRoot()
+    {
 
         return newVMClasspathRoot;
 
@@ -381,7 +418,8 @@ public class ServiceInvoker implements MethodInterceptor, InitializingBean {
      *
      * @param newVMClasspathRoot DOCUMENT ME!
      */
-    public void setNewVMClasspathRoot(String newVMClasspathRoot) {
+    public void setNewVMClasspathRoot(String newVMClasspathRoot)
+    {
 
         this.newVMClasspathRoot = newVMClasspathRoot;
 

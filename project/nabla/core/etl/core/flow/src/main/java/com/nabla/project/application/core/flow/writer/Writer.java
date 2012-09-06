@@ -39,7 +39,6 @@ import com.nabla.project.application.api.helpers.PipePublisher;
 import com.nabla.project.application.api.writer.WriterDataInterface;
 import com.nabla.project.application.api.writer.WriterThreadInterface;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -49,13 +48,14 @@ import com.nabla.project.application.api.writer.WriterThreadInterface;
   *
  * @param <X> DOCUMENT ME!
  */
-public abstract class Writer<X> implements WriterThreadInterface<X> {
+public abstract class Writer<X> implements WriterThreadInterface<X>
+{
 
-    protected Object id;
-    protected RequestId requestId;
-    protected String name = "Writer";
-    protected Pipe<X> pipeIn;
-    protected WriterDataInterface writerData;
+    protected Object                   id;
+    protected RequestId                requestId;
+    protected String                   name = "Writer";
+    protected Pipe<X>                  pipeIn;
+    protected WriterDataInterface      writerData;
     protected PipePublisher<Throwable> pipeException;
 
     /**
@@ -63,7 +63,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public Object getId() {
+    public Object getId()
+    {
 
         return id;
 
@@ -74,7 +75,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(Object id) {
+    public void setId(Object id)
+    {
 
         this.id = id;
 
@@ -85,7 +87,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -96,7 +99,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -107,7 +111,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -118,7 +123,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -129,7 +135,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public Pipe<X> getPipeIn() {
+    public Pipe<X> getPipeIn()
+    {
 
         return pipeIn;
 
@@ -140,7 +147,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @param pipeIn DOCUMENT ME!
      */
-    public void setPipeIn(Pipe<X> pipeIn) {
+    public void setPipeIn(Pipe<X> pipeIn)
+    {
 
         this.pipeIn = pipeIn;
 
@@ -151,7 +159,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public PipePublisher<Throwable> getPipeException() {
+    public PipePublisher<Throwable> getPipeException()
+    {
 
         return pipeException;
 
@@ -162,7 +171,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @param pipeException DOCUMENT ME!
      */
-    public void setPipeException(PipePublisher<Throwable> pipeException) {
+    public void setPipeException(PipePublisher<Throwable> pipeException)
+    {
 
         this.pipeException = pipeException;
 
@@ -173,7 +183,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public WriterDataInterface getWriterData() {
+    public WriterDataInterface getWriterData()
+    {
 
         return writerData;
 
@@ -184,7 +195,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @param writerData DOCUMENT ME!
      */
-    public void setWriterData(WriterDataInterface writerData) {
+    public void setWriterData(WriterDataInterface writerData)
+    {
 
         this.writerData = writerData;
 
@@ -195,7 +207,8 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public String getPipeInName() {
+    public String getPipeInName()
+    {
 
         return (pipeIn != null) ? pipeIn.getName() : null;
 
@@ -204,25 +217,30 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
     /**
      * DOCUMENT ME!
      */
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet()
+    {
 
     }
 
-    protected String getWriterThreadName() {
+    protected String getWriterThreadName()
+    {
 
         StringBuffer threadName = new StringBuffer();
         boolean isFirst = true;
 
-        if (name != null) {
+        if (name != null)
+        {
 
             threadName.append(name);
             isFirst = false;
 
         }
 
-        if (requestId != null) {
+        if (requestId != null)
+        {
 
-            if (!isFirst) {
+            if (!isFirst)
+            {
 
                 threadName.append('-');
 
@@ -233,9 +251,11 @@ public abstract class Writer<X> implements WriterThreadInterface<X> {
 
         }
 
-        if (id != null) {
+        if (id != null)
+        {
 
-            if (!isFirst) {
+            if (!isFirst)
+            {
 
                 threadName.append('-');
 

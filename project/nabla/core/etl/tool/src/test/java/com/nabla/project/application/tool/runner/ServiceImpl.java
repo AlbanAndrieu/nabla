@@ -35,7 +35,6 @@ package com.nabla.project.application.tool.runner;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,9 +42,10 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ServiceImpl implements IService {
+public class ServiceImpl implements IService
+{
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger              logger = Logger.getLogger(getClass());
 
     /**
      * DOCUMENT ME!
@@ -55,16 +55,20 @@ public class ServiceImpl implements IService {
     /**
      * DOCUMENT ME!
      */
-    public void startService() {
+    public void startService()
+    {
 
         status = ServiceStatus.STARTED;
 
-        try {
+        try
+        {
 
             Thread.sleep(1000);
             logger.info("Running...");
 
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e)
+        {
 
             throw new RuntimeException(e);
 
@@ -79,7 +83,8 @@ public class ServiceImpl implements IService {
      *
      * @param param DOCUMENT ME!
      */
-    public void startServiceWithParameter(ServiceParameter param) {
+    public void startServiceWithParameter(ServiceParameter param)
+    {
 
         startService();
         logger.info(param.getName());
@@ -91,7 +96,8 @@ public class ServiceImpl implements IService {
      *
      * @return DOCUMENT ME!
      */
-    public static ServiceStatus getStatus() {
+    public static ServiceStatus getStatus()
+    {
 
         return status;
 
@@ -102,7 +108,8 @@ public class ServiceImpl implements IService {
      *
      * @param status DOCUMENT ME!
      */
-    public static void setStatus(ServiceStatus status) {
+    public static void setStatus(ServiceStatus status)
+    {
 
         ServiceImpl.status = status;
 

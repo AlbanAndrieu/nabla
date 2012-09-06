@@ -43,7 +43,8 @@ package com.nabla.project.application.api.transformer;
  * @param <ObjectContainer> DOCUMENT ME!
  * @param <Object> DOCUMENT ME!
  */
-public interface TransformerDataInterface<ObjectContainer, Object> {
+public interface TransformerDataInterface<ObjectContainer, Object>
+{
 
     /**
      * DOCUMENT ME!

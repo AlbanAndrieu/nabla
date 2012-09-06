@@ -37,7 +37,6 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,22 +44,24 @@ import java.util.Date;
  * @version $Revision$
  * @since $Date$
   */
-public class Version {
+public class Version
+{
 
-    protected int versionMajor = 0;
-    protected int versionMinor = 7;
-    protected int releaseMajor = 6;
-    protected int releaseMinor = 645;
+    protected int    versionMajor = 0;
+    protected int    versionMinor = 7;
+    protected int    releaseMajor = 6;
+    protected int    releaseMinor = 645;
     protected String versionId;
-    protected String copyright = "ALBAN (ETL project)";
-    protected Date releaseDate = new Date(1182514063871L);
+    protected String copyright    = "ALBAN (ETL project)";
+    protected Date   releaseDate  = new Date(1182514063871L);
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public int getReleaseMajor() {
+    public int getReleaseMajor()
+    {
 
         return releaseMajor;
 
@@ -71,7 +72,8 @@ public class Version {
      *
      * @param releaseMajor DOCUMENT ME!
      */
-    public void setReleaseMajor(int releaseMajor) {
+    public void setReleaseMajor(int releaseMajor)
+    {
 
         this.releaseMajor = releaseMajor;
 
@@ -82,7 +84,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public int getReleaseMinor() {
+    public int getReleaseMinor()
+    {
 
         return releaseMinor;
 
@@ -93,7 +96,8 @@ public class Version {
      *
      * @param releaseMinor DOCUMENT ME!
      */
-    public void setReleaseMinor(int releaseMinor) {
+    public void setReleaseMinor(int releaseMinor)
+    {
 
         this.releaseMinor = releaseMinor;
 
@@ -104,7 +108,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public int getVersionMajor() {
+    public int getVersionMajor()
+    {
 
         return versionMajor;
 
@@ -115,7 +120,8 @@ public class Version {
      *
      * @param versionMajor DOCUMENT ME!
      */
-    public void setVersionMajor(int versionMajor) {
+    public void setVersionMajor(int versionMajor)
+    {
 
         this.versionMajor = versionMajor;
 
@@ -126,7 +132,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public int getVersionMinor() {
+    public int getVersionMinor()
+    {
 
         return versionMinor;
 
@@ -137,7 +144,8 @@ public class Version {
      *
      * @param versionMinor DOCUMENT ME!
      */
-    public void setVersionMinor(int versionMinor) {
+    public void setVersionMinor(int versionMinor)
+    {
 
         this.versionMinor = versionMinor;
 
@@ -148,9 +156,11 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public synchronized String getVersionId() {
+    public synchronized String getVersionId()
+    {
 
-        if (versionId == null) {
+        if (versionId == null)
+        {
 
             StringBuffer str = new StringBuffer();
 
@@ -170,7 +180,8 @@ public class Version {
      *
      * @param versionId DOCUMENT ME!
      */
-    public void setVersionId(String versionId) {
+    public void setVersionId(String versionId)
+    {
 
         this.versionId = versionId;
 
@@ -181,7 +192,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public String getCopyright() {
+    public String getCopyright()
+    {
 
         return copyright;
 
@@ -192,7 +204,8 @@ public class Version {
      *
      * @param copyright DOCUMENT ME!
      */
-    public void setCopyright(String copyright) {
+    public void setCopyright(String copyright)
+    {
 
         this.copyright = copyright;
 
@@ -203,7 +216,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public Date getReleaseDate() {
+    public Date getReleaseDate()
+    {
 
         return releaseDate;
 
@@ -214,7 +228,8 @@ public class Version {
      *
      * @param releaseDate DOCUMENT ME!
      */
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(Date releaseDate)
+    {
 
         this.releaseDate = releaseDate;
 
@@ -225,7 +240,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public String getReleaseDateFormated() {
+    public String getReleaseDateFormated()
+    {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -238,7 +254,8 @@ public class Version {
      *
      * @return DOCUMENT ME!
      */
-    public String toString() {
+    public String toString()
+    {
 
         return getVersionId();
 

@@ -42,7 +42,6 @@ import org.apache.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,15 +49,17 @@ import java.io.ByteArrayInputStream;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class StreamTest extends TestCase {
+public class StreamTest extends TestCase
+{
 
     /**
      * DOCUMENT ME!
      */
-    public static Logger logger = Logger.getLogger(StreamTest.class);
-    Chronometer chronometer = new Chronometer();
+    public static Logger logger      = Logger.getLogger(StreamTest.class);
+    Chronometer          chronometer = new Chronometer();
 
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
 
         Log.init();
         logger.info("Chronometer starting");
@@ -71,7 +72,8 @@ public class StreamTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testReadStream() throws Exception {
+    public void testReadStream() throws Exception
+    {
 
         String reference = "abcdef";
         String source = reference;
@@ -84,7 +86,8 @@ public class StreamTest extends TestCase {
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown() throws Exception
+    {
 
         super.tearDown();
         chronometer.stop();

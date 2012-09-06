@@ -38,7 +38,6 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -46,14 +45,16 @@ import org.springframework.beans.factory.InitializingBean;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ServiceInvokerFactoryBean extends ServiceInvoker implements FactoryBean, InitializingBean {
+public class ServiceInvokerFactoryBean extends ServiceInvoker implements FactoryBean, InitializingBean
+{
 
     private Object serviceProxy;
 
     /**
      * DOCUMENT ME!
      */
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet()
+    {
 
         super.afterPropertiesSet();
         this.serviceProxy = ProxyFactory.getProxy(getServiceInterface(), this);
@@ -65,7 +66,8 @@ public class ServiceInvokerFactoryBean extends ServiceInvoker implements Factory
      *
      * @return DOCUMENT ME!
      */
-    public Object getObject() {
+    public Object getObject()
+    {
 
         return this.serviceProxy;
 
@@ -76,7 +78,8 @@ public class ServiceInvokerFactoryBean extends ServiceInvoker implements Factory
      *
      * @return DOCUMENT ME!
      */
-    public Class getObjectType() {
+    public Class getObjectType()
+    {
 
         return getServiceInterface();
 
@@ -87,7 +90,8 @@ public class ServiceInvokerFactoryBean extends ServiceInvoker implements Factory
      *
      * @return DOCUMENT ME!
      */
-    public boolean isSingleton() {
+    public boolean isSingleton()
+    {
 
         return true;
 

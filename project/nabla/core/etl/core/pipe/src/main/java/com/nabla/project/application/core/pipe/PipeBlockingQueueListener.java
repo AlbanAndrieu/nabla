@@ -38,7 +38,6 @@ import com.nabla.project.application.api.helpers.PipeListener;
 
 import java.util.concurrent.TimeUnit;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -48,7 +47,8 @@ import java.util.concurrent.TimeUnit;
   *
  * @param <T> DOCUMENT ME!
  */
-public abstract class PipeBlockingQueueListener<T> implements PipeListener<T> {
+public abstract class PipeBlockingQueueListener<T> implements PipeListener<T>
+{
 
     /**
      * Creates a new PipeBlockingQueueListener object.
@@ -56,15 +56,18 @@ public abstract class PipeBlockingQueueListener<T> implements PipeListener<T> {
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public PipeBlockingQueueListener(String name, RequestId requestId) {
+    public PipeBlockingQueueListener(String name, RequestId requestId)
+    {
 
         PipeBlockingQueueService.PipeBlockingQueue<T> queue = PipeBlockingQueueService.getQueue(name, requestId);
 
-        while ((queue.isOpen()) || (!queue.isEmpty())) {
+        while ((queue.isOpen()) || (!queue.isEmpty()))
+        {
 
             T result = (T) queue.poll(5, TimeUnit.SECONDS);
 
-            if (result != null) {
+            if (result != null)
+            {
 
                 onMessage(result);
 

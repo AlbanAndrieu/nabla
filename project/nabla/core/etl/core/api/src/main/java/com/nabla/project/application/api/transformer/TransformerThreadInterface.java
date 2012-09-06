@@ -40,7 +40,6 @@ import com.nabla.project.application.api.writer.WriterDataInterface;
 
 import org.springframework.beans.factory.InitializingBean;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,7 +50,8 @@ import org.springframework.beans.factory.InitializingBean;
  * @param <SRC> DOCUMENT ME!
  * @param <TRG> DOCUMENT ME!
  */
-public interface TransformerThreadInterface<SRC, TRG> extends Runnable, InitializingBean {
+public interface TransformerThreadInterface<SRC, TRG> extends Runnable, InitializingBean
+{
 
     /**
      * DOCUMENT ME!

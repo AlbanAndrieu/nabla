@@ -11,7 +11,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.core.etl.model.xml</groupId>
 	<artifactId>xml</artifactId>
-<!-- 	<version>1.0</version> -->
 	<packaging>jar</packaging>
 	<name>Etl Model Xml</name>
 	<description>Implementation using java objects to perform model transformation and Jaxb to generate XML</description>
@@ -83,6 +82,10 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
 		<!-- JAXB api http://mojo.codehaus.org/jaxws-maven-plugin/dependencies.html -->
 		<!--
 		<dependency>

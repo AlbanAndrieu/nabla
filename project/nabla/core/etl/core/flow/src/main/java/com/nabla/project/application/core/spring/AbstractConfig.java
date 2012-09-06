@@ -40,12 +40,14 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class AbstractConfig {
+public abstract class AbstractConfig
+{
 
     /**
      * Creates a new AbstractConfig object.
      */
-    protected AbstractConfig() {
+    protected AbstractConfig()
+    {
         super();
 
     }
@@ -53,12 +55,12 @@ public abstract class AbstractConfig {
     /**
      * DOCUMENT ME!
      */
-    public static String beanRequestIdName = "requestId";
+    public static String beanRequestIdName         = "requestId";
 
     /**
      * DOCUMENT ME!
      */
-    public static String beanExtractorThreadName = "extractorThread";
+    public static String beanExtractorThreadName   = "extractorThread";
 
     /**
      * DOCUMENT ME!
@@ -68,25 +70,26 @@ public abstract class AbstractConfig {
     /**
      * DOCUMENT ME!
      */
-    public static String beanWriterThreadName = "writerThread";
+    public static String beanWriterThreadName      = "writerThread";
 
     /**
      * DOCUMENT ME!
      */
-    public static String beanJmxExporter = "exporter";
+    public static String beanJmxExporter           = "exporter";
 
     /**
      * DOCUMENT ME!
      */
-    public static String beanConfig = "defaultConfiguration";
+    public static String beanConfig                = "defaultConfiguration";
 
     /**
      * DOCUMENT ME!
      */
-    public static String beanVersion = "version";
-    private int queueSize;
+    public static String beanVersion               = "version";
+    private int          queueSize;
 
-    private static AbstractConfig getInstance() {
+    private static AbstractConfig getInstance()
+    {
 
         return null;
 
@@ -97,7 +100,8 @@ public abstract class AbstractConfig {
      *
      * @return DOCUMENT ME!
      */
-    public int getQueueSize() {
+    public int getQueueSize()
+    {
 
         return queueSize;
 
@@ -108,7 +112,8 @@ public abstract class AbstractConfig {
      *
      * @param queueSize DOCUMENT ME!
      */
-    public void setQueueSize(int queueSize) {
+    public void setQueueSize(int queueSize)
+    {
 
         this.queueSize = queueSize;
 

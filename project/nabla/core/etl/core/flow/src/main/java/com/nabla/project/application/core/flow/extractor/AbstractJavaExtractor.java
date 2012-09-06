@@ -39,7 +39,6 @@ import com.nabla.project.application.api.helpers.PipePublisher;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -49,19 +48,21 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
   *
  * @param <X> DOCUMENT ME!
  */
-public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements ExtractDataInterface<X> {
+public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements ExtractDataInterface<X>
+{
 
-    protected String name;
-    protected Perimeter perimeter;
+    protected String           name;
+    protected Perimeter        perimeter;
     protected PipePublisher<X> pipeOut;
-    protected int counter;
+    protected int              counter;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -72,7 +73,8 @@ public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -83,7 +85,8 @@ public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements
      *
      * @return DOCUMENT ME!
      */
-    public Perimeter getPerimeter() {
+    public Perimeter getPerimeter()
+    {
 
         return perimeter;
 
@@ -94,7 +97,8 @@ public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements
      *
      * @param perimeter DOCUMENT ME!
      */
-    public void setPerimeter(Perimeter perimeter) {
+    public void setPerimeter(Perimeter perimeter)
+    {
 
         this.perimeter = perimeter;
 
@@ -105,7 +109,8 @@ public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements
      *
      * @return DOCUMENT ME!
      */
-    public PipePublisher<X> getPipeOut() {
+    public PipePublisher<X> getPipeOut()
+    {
 
         return pipeOut;
 
@@ -116,7 +121,8 @@ public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements
      *
      * @param pipeOut DOCUMENT ME!
      */
-    public void setPipeOut(PipePublisher<X> pipeOut) {
+    public void setPipeOut(PipePublisher<X> pipeOut)
+    {
 
         this.pipeOut = pipeOut;
 
@@ -127,7 +133,8 @@ public abstract class AbstractJavaExtractor<X> extends JdbcDaoSupport implements
      *
      * @return DOCUMENT ME!
      */
-    public int getCounter() {
+    public int getCounter()
+    {
 
         return counter;
 

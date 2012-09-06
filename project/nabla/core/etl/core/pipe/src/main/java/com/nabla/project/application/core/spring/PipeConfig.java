@@ -40,7 +40,8 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class PipeConfig extends AbstractPipeConfig {
+public class PipeConfig extends AbstractPipeConfig
+{
 
     /**
      * DOCUMENT ME!
@@ -50,7 +51,8 @@ public class PipeConfig extends AbstractPipeConfig {
     /**
      * Creates a new PipeConfig object.
      */
-    private PipeConfig() {
+    private PipeConfig()
+    {
         super();
 
     }
@@ -60,7 +62,8 @@ public class PipeConfig extends AbstractPipeConfig {
      *
      * @return DOCUMENT ME!
      */
-    public static PipeConfig getInstance() {
+    public static PipeConfig getInstance()
+    {
 
         return (PipeConfig) ApplicationContexPipeFactory.getInstance().getApplicationContext().getBean(PipeConfig.beanConfig);
 

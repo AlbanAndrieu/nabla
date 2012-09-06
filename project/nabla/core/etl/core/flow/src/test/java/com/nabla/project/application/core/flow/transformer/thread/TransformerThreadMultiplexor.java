@@ -39,7 +39,6 @@ import com.nabla.project.application.core.time.Chronometer;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,9 +49,10 @@ import org.apache.log4j.Logger;
  * @param <SRC> DOCUMENT ME!
  * @param <TRG> DOCUMENT ME!
  */
-public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SRC, TRG> {
+public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SRC, TRG>
+{
 
-    protected Logger logger = Logger.getLogger(getClass());
+    protected Logger    logger = Logger.getLogger(getClass());
     protected Pipe<TRG> pipeOut2;
 
     /**
@@ -60,7 +60,8 @@ public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SR
      *
      * @return DOCUMENT ME!
      */
-    public Pipe<TRG> getPipeOut2() {
+    public Pipe<TRG> getPipeOut2()
+    {
 
         return pipeOut2;
 
@@ -71,7 +72,8 @@ public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SR
      *
      * @param pipeOut2 DOCUMENT ME!
      */
-    public void setPipeOut2(Pipe<TRG> pipeOut2) {
+    public void setPipeOut2(Pipe<TRG> pipeOut2)
+    {
 
         this.pipeOut2 = pipeOut2;
 
@@ -80,9 +82,11 @@ public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SR
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
-        try {
+        try
+        {
 
             Thread.currentThread().setName(getTransformerThreadName());
 
@@ -91,19 +95,21 @@ public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SR
             logger.info(name + " started.");
             chronometer.start();
 
-            new PipeBlockingQueueListener<SRC>(this.pipeIn.getName(), this.pipeIn.getRequestId()) {
+            new PipeBlockingQueueListener<SRC>(this.pipeIn.getName(), this.pipeIn.getRequestId())
+            {
 
-                    @Override
-                    public void onMessage(SRC src) {
+                @Override
+                public void onMessage(SRC src)
+                {
 
-                        TRG target = (TRG) src;
+                    TRG target = (TRG) src;
 
-                        pipeOut.getPipePublisher().publish(target);
-                        pipeOut2.getPipePublisher().publish(target);
+                    pipeOut.getPipePublisher().publish(target);
+                    pipeOut2.getPipePublisher().publish(target);
 
-                    }
+                }
 
-                };
+            };
 
             pipeOut.getPipePublisher().closeQueue();
             pipeOut2.getPipePublisher().closeQueue();
@@ -111,11 +117,14 @@ public class TransformerThreadMultiplexor<SRC, TRG> extends TransformerThread<SR
             chronometer.stop();
             logger.info(getName() + " completed. Time = " + chronometer);
 
-        } catch (Throwable exception) {
+        }
+        catch (Throwable exception)
+        {
 
             logger.error("Exception: " + exception.getMessage());
 
-            if (pipeException != null) {
+            if (pipeException != null)
+            {
 
                 pipeException.publish(exception);
 

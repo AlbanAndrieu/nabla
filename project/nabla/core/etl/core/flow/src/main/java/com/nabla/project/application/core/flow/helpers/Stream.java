@@ -37,7 +37,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,7 +44,8 @@ import java.io.InputStream;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class Stream {
+public class Stream
+{
 
     /**
      * DOCUMENT ME!
@@ -56,14 +56,15 @@ public class Stream {
      *
      * @throws IOException DOCUMENT ME!
      */
-    public static String readStream(InputStream inputStream)
-                             throws IOException {
+    public static String readStream(InputStream inputStream) throws IOException
+    {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         int read;
         byte buffer[] = new byte[512];
 
-        while ((read = inputStream.read(buffer)) > 0) {
+        while ((read = inputStream.read(buffer)) > 0)
+        {
 
             outputStream.write(buffer, 0, read);
 

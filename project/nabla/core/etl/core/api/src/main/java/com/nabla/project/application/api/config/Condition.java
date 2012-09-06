@@ -35,7 +35,6 @@ package com.nabla.project.application.api.config;
 
 import java.io.Serializable;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,18 +42,20 @@ import java.io.Serializable;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class Condition implements Serializable {
+public class Condition implements Serializable
+{
 
     private static final long serialVersionUID = 1L;
-    private ConditionId conditionId;
-    private String value;
+    private ConditionId       conditionId;
+    private String            value;
 
     /**
      * Creates a new Condition object.
      *
      * @param conditionId DOCUMENT ME!
      */
-    public Condition(ConditionId conditionId) {
+    public Condition(ConditionId conditionId)
+    {
         this(conditionId, null);
 
     }
@@ -65,7 +66,8 @@ public class Condition implements Serializable {
      * @param conditionId DOCUMENT ME!
      * @param parameter DOCUMENT ME!
      */
-    public Condition(ConditionId conditionId, String parameter) {
+    public Condition(ConditionId conditionId, String parameter)
+    {
 
         this.conditionId = conditionId;
         this.value = parameter;
@@ -77,7 +79,8 @@ public class Condition implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public ConditionId getConditionId() {
+    public ConditionId getConditionId()
+    {
 
         return conditionId;
 
@@ -88,7 +91,8 @@ public class Condition implements Serializable {
      *
      * @param conditionId DOCUMENT ME!
      */
-    public void setConditionId(ConditionId conditionId) {
+    public void setConditionId(ConditionId conditionId)
+    {
 
         this.conditionId = conditionId;
 
@@ -99,7 +103,8 @@ public class Condition implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public String getValue() {
+    public String getValue()
+    {
 
         return value;
 
@@ -110,7 +115,8 @@ public class Condition implements Serializable {
      *
      * @param value DOCUMENT ME!
      */
-    public void setValue(String value) {
+    public void setValue(String value)
+    {
 
         this.value = value;
 
@@ -123,19 +129,23 @@ public class Condition implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
 
-        if (o == null) {
+        if (o == null)
+        {
 
             return false;
 
         }
 
-        if (!(o instanceof Condition)) {
+        if (!(o instanceof Condition))
+        {
 
             return false;
 
-        } else {
+        } else
+        {
 
             Condition comp = (Condition) o;
 
@@ -150,17 +160,16 @@ public class Condition implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public int hashCode() {
+    public int hashCode()
+    {
 
         return this.conditionId.hashCode();
 
     }
-    public enum ConditionId {
-        KEY("[KEY]", ":key"),
-        STATUS("[STATUS]", ":status"),
-        DATEMIN("[DATEMIN]", ":datemin"),
-        DATEMAX("[DATEMIN]", ":datemax"),
-        MAXROW("[MAXROW]", ":maxrow");
+
+    public enum ConditionId
+    {
+        KEY("[KEY]", ":key"), STATUS("[STATUS]", ":status"), DATEMIN("[DATEMIN]", ":datemin"), DATEMAX("[DATEMIN]", ":datemax"), MAXROW("[MAXROW]", ":maxrow");
 
         private String xmlMapping;
         private String sqlValueName;
@@ -170,7 +179,8 @@ public class Condition implements Serializable {
          *
          * @param aXmlMapping DOCUMENT ME!
          */
-        ConditionId(String aXmlMapping) {
+        ConditionId(String aXmlMapping)
+        {
             this(aXmlMapping, null);
 
         }
@@ -181,7 +191,8 @@ public class Condition implements Serializable {
          * @param aXmlMapping DOCUMENT ME!
          * @param aSqlValueName DOCUMENT ME!
          */
-        ConditionId(String aXmlMapping, String aSqlValueName) {
+        ConditionId(String aXmlMapping, String aSqlValueName)
+        {
 
             xmlMapping = aXmlMapping;
             sqlValueName = aSqlValueName;
@@ -193,7 +204,8 @@ public class Condition implements Serializable {
          *
          * @return DOCUMENT ME!
          */
-        public String getXmlMapping() {
+        public String getXmlMapping()
+        {
 
             return xmlMapping;
 
@@ -204,7 +216,8 @@ public class Condition implements Serializable {
          *
          * @return DOCUMENT ME!
          */
-        public String getSqlValueName() {
+        public String getSqlValueName()
+        {
 
             return sqlValueName;
 

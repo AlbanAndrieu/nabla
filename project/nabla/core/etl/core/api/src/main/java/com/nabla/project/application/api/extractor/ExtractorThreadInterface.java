@@ -40,7 +40,6 @@ import com.nabla.project.application.api.helpers.PipePublisher;
 
 import org.springframework.beans.factory.InitializingBean;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,7 +49,8 @@ import org.springframework.beans.factory.InitializingBean;
   *
  * @param <X> DOCUMENT ME!
  */
-public interface ExtractorThreadInterface<X> extends Runnable, InitializingBean {
+public interface ExtractorThreadInterface<X> extends Runnable, InitializingBean
+{
 
     /**
      * DOCUMENT ME!

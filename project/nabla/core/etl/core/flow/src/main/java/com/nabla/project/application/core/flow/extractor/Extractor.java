@@ -40,7 +40,6 @@ import com.nabla.project.application.api.extractor.ExtractorThreadInterface;
 import com.nabla.project.application.api.helpers.Pipe;
 import com.nabla.project.application.api.helpers.PipePublisher;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,14 +49,15 @@ import com.nabla.project.application.api.helpers.PipePublisher;
   *
  * @param <X> DOCUMENT ME!
  */
-public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
+public abstract class Extractor<X> implements ExtractorThreadInterface<X>
+{
 
-    protected Object id;
-    protected RequestId requestId;
-    protected String name = "Extractor";
-    protected Perimeter perimeter;
-    protected Pipe<X> pipe;
-    protected ExtractDataInterface extractorData;
+    protected Object                   id;
+    protected RequestId                requestId;
+    protected String                   name = "Extractor";
+    protected Perimeter                perimeter;
+    protected Pipe<X>                  pipe;
+    protected ExtractDataInterface     extractorData;
     protected PipePublisher<Throwable> pipeException;
 
     /**
@@ -65,7 +65,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public Object getId() {
+    public Object getId()
+    {
 
         return id;
 
@@ -76,7 +77,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(Object id) {
+    public void setId(Object id)
+    {
 
         this.id = id;
 
@@ -87,7 +89,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -98,7 +101,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -109,7 +113,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -120,7 +125,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -131,7 +137,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public Perimeter getPerimeter() {
+    public Perimeter getPerimeter()
+    {
 
         return perimeter;
 
@@ -142,7 +149,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public Pipe<X> getPipe() {
+    public Pipe<X> getPipe()
+    {
 
         return pipe;
 
@@ -153,7 +161,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param pipe DOCUMENT ME!
      */
-    public void setPipe(Pipe<X> pipe) {
+    public void setPipe(Pipe<X> pipe)
+    {
 
         this.pipe = pipe;
 
@@ -164,7 +173,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param perimeter DOCUMENT ME!
      */
-    public void setPerimeter(Perimeter perimeter) {
+    public void setPerimeter(Perimeter perimeter)
+    {
 
         this.perimeter = perimeter;
 
@@ -175,7 +185,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public ExtractDataInterface getExtractorData() {
+    public ExtractDataInterface getExtractorData()
+    {
 
         return extractorData;
 
@@ -186,7 +197,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param extractorData DOCUMENT ME!
      */
-    public void setExtractorData(ExtractDataInterface extractorData) {
+    public void setExtractorData(ExtractDataInterface extractorData)
+    {
 
         this.extractorData = extractorData;
 
@@ -197,7 +209,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @return DOCUMENT ME!
      */
-    public PipePublisher<Throwable> getPipeException() {
+    public PipePublisher<Throwable> getPipeException()
+    {
 
         return pipeException;
 
@@ -208,7 +221,8 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
      *
      * @param pipeException DOCUMENT ME!
      */
-    public void setPipeException(PipePublisher<Throwable> pipeException) {
+    public void setPipeException(PipePublisher<Throwable> pipeException)
+    {
 
         this.pipeException = pipeException;
 
@@ -217,25 +231,30 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
     /**
      * DOCUMENT ME!
      */
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet()
+    {
 
     }
 
-    protected String getExtractorThreadName() {
+    protected String getExtractorThreadName()
+    {
 
         StringBuffer threadName = new StringBuffer();
         boolean isFirst = true;
 
-        if (name != null) {
+        if (name != null)
+        {
 
             threadName.append(name);
             isFirst = false;
 
         }
 
-        if (requestId != null) {
+        if (requestId != null)
+        {
 
-            if (!isFirst) {
+            if (!isFirst)
+            {
 
                 threadName.append('-');
 
@@ -246,9 +265,11 @@ public abstract class Extractor<X> implements ExtractorThreadInterface<X> {
 
         }
 
-        if (id != null) {
+        if (id != null)
+        {
 
-            if (!isFirst) {
+            if (!isFirst)
+            {
 
                 threadName.append('-');
 

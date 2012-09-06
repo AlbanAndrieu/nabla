@@ -40,15 +40,17 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ApplicationContexPipeFactory extends AbstractApplicationContextFactory {
+public class ApplicationContexPipeFactory extends AbstractApplicationContextFactory
+{
 
-    private static String springConfiguration[] = springBaseDefaultConfiguration;
+    private static String                             springConfiguration[]     = springBaseDefaultConfiguration;
     private final static ApplicationContexPipeFactory applicationContextFactory = new ApplicationContexPipeFactory();
 
     /**
      * Creates a new ApplicationContexPipeFactory object.
      */
-    private ApplicationContexPipeFactory() {
+    private ApplicationContexPipeFactory()
+    {
         super();
 
     }
@@ -58,7 +60,8 @@ public class ApplicationContexPipeFactory extends AbstractApplicationContextFact
      *
      * @return DOCUMENT ME!
      */
-    public static AbstractApplicationContextFactory getInstance() {
+    public static AbstractApplicationContextFactory getInstance()
+    {
 
         return applicationContextFactory;
 
@@ -69,7 +72,8 @@ public class ApplicationContexPipeFactory extends AbstractApplicationContextFact
      *
      * @return DOCUMENT ME!
      */
-    public static String [] getSpringConfiguration() {
+    public static String[] getSpringConfiguration()
+    {
 
         return springConfiguration;
 
@@ -80,7 +84,8 @@ public class ApplicationContexPipeFactory extends AbstractApplicationContextFact
      *
      * @param springConfiguration DOCUMENT ME!
      */
-    public static void setSpringConfiguration(String springConfiguration[]) {
+    public static void setSpringConfiguration(String springConfiguration[])
+    {
 
         ApplicationContexPipeFactory.springConfiguration = springConfiguration;
 

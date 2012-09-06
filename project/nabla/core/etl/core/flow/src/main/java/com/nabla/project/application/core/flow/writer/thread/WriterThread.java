@@ -41,7 +41,6 @@ import com.nabla.project.application.core.time.Chronometer;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,7 +50,8 @@ import org.apache.log4j.Logger;
   *
  * @param <X> DOCUMENT ME!
  */
-public class WriterThread<X> extends Writer<X> implements WriterThreadMBean {
+public class WriterThread<X> extends Writer<X> implements WriterThreadMBean
+{
 
     protected Logger logger = Logger.getLogger(getClass());
 
@@ -61,7 +61,8 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean {
      * @param output DOCUMENT ME!
      * @param packaging DOCUMENT ME!
      */
-    public void open(Destination output, Packaging packaging) {
+    public void open(Destination output, Packaging packaging)
+    {
 
         writerData.open(output, packaging);
 
@@ -70,7 +71,8 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean {
     /**
      * DOCUMENT ME!
      */
-    public void close() {
+    public void close()
+    {
 
         writerData.close();
 
@@ -81,7 +83,8 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean {
      *
      * @param data DOCUMENT ME!
      */
-    public void write(Object data) {
+    public void write(Object data)
+    {
 
         writerData.write(data);
 
@@ -90,9 +93,11 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean {
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
-        try {
+        try
+        {
 
             Thread.currentThread().setName(getWriterThreadName());
 
@@ -101,37 +106,45 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean {
             logger.info(name + " started.");
             chronometer.start();
 
-            new PipeBlockingQueueListener<X>(this.pipeIn.getName(), this.pipeIn.getRequestId()) {
+            new PipeBlockingQueueListener<X>(this.pipeIn.getName(), this.pipeIn.getRequestId())
+            {
 
-                    @Override
-                    public void onMessage(X x) {
+                @Override
+                public void onMessage(X x)
+                {
 
-                        write(x);
+                    write(x);
 
-                    }
+                }
 
-                };
+            };
 
             chronometer.stop();
             logger.info(getName() + " completed. Time = " + chronometer);
 
-        } catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
 
             exception.printStackTrace();
             logger.error("Exception: " + exception.getMessage());
 
-            if (pipeException != null) {
+            if (pipeException != null)
+            {
 
                 pipeException.publish(exception);
 
             }
 
-        } catch (Throwable exception) {
+        }
+        catch (Throwable exception)
+        {
 
             logger.error("Exception: " + exception.getMessage());
             logger.error(exception.getStackTrace());
 
-            if (pipeException != null) {
+            if (pipeException != null)
+            {
 
                 pipeException.publish(exception);
 

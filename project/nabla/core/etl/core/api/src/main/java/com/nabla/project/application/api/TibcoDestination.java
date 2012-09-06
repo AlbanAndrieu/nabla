@@ -41,7 +41,8 @@ package com.nabla.project.application.api;
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
 // TODO DELETE
-public class TibcoDestination {
+public class TibcoDestination
+{
 
     private String topic;
     private String network;
@@ -53,7 +54,8 @@ public class TibcoDestination {
      *
      * @return DOCUMENT ME!
      */
-    public String getDaemon() {
+    public String getDaemon()
+    {
 
         return this.daemon;
 
@@ -64,7 +66,8 @@ public class TibcoDestination {
      *
      * @param daemon DOCUMENT ME!
      */
-    public void setDaemon(final String daemon) {
+    public void setDaemon(final String daemon)
+    {
 
         this.daemon = daemon;
 
@@ -75,7 +78,8 @@ public class TibcoDestination {
      *
      * @return DOCUMENT ME!
      */
-    public String getNetwork() {
+    public String getNetwork()
+    {
 
         return this.network;
 
@@ -86,7 +90,8 @@ public class TibcoDestination {
      *
      * @param network DOCUMENT ME!
      */
-    public void setNetwork(final String network) {
+    public void setNetwork(final String network)
+    {
 
         this.network = network;
 
@@ -97,7 +102,8 @@ public class TibcoDestination {
      *
      * @return DOCUMENT ME!
      */
-    public String getService() {
+    public String getService()
+    {
 
         return this.service;
 
@@ -108,7 +114,8 @@ public class TibcoDestination {
      *
      * @param service DOCUMENT ME!
      */
-    public void setService(final String service) {
+    public void setService(final String service)
+    {
 
         this.service = service;
 
@@ -119,7 +126,8 @@ public class TibcoDestination {
      *
      * @return DOCUMENT ME!
      */
-    public String getTopic() {
+    public String getTopic()
+    {
 
         return this.topic;
 
@@ -130,7 +138,8 @@ public class TibcoDestination {
      *
      * @param topic DOCUMENT ME!
      */
-    public void setTopic(final String topic) {
+    public void setTopic(final String topic)
+    {
 
         this.topic = topic;
 

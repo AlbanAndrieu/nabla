@@ -40,7 +40,8 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class FlowConfig extends AbstractFlowConfig {
+public class FlowConfig extends AbstractFlowConfig
+{
 
     /**
      * DOCUMENT ME!
@@ -50,7 +51,8 @@ public class FlowConfig extends AbstractFlowConfig {
     /**
      * Creates a new FlowConfig object.
      */
-    private FlowConfig() {
+    private FlowConfig()
+    {
         super();
 
     }
@@ -60,7 +62,8 @@ public class FlowConfig extends AbstractFlowConfig {
      *
      * @return DOCUMENT ME!
      */
-    public static FlowConfig getInstance() {
+    public static FlowConfig getInstance()
+    {
 
         return (FlowConfig) ApplicationContextFlowFactory.getInstance().getApplicationContext().getBean(FlowConfig.beanConfig);
 

@@ -37,7 +37,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,7 +44,8 @@ import java.io.Serializable;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public interface Destination extends Serializable {
+public interface Destination extends Serializable
+{
 
     /**
      * DOCUMENT ME!
@@ -56,8 +56,7 @@ public interface Destination extends Serializable {
      *
      * @throws IOException DOCUMENT ME!
      */
-    public OutputStream getOutputStream(Packaging packaging)
-                                 throws IOException;
+    public OutputStream getOutputStream(Packaging packaging) throws IOException;
 
     /**
      * DOCUMENT ME!

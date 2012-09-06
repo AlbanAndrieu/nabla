@@ -39,7 +39,6 @@ import com.nabla.project.application.api.config.Packaging;
 import com.nabla.project.application.api.config.Perimeter;
 import com.nabla.project.application.api.config.RequestId;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -47,21 +46,23 @@ import com.nabla.project.application.api.config.RequestId;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ExtractServiceParameterWrapper {
+public class ExtractServiceParameterWrapper
+{
 
-    private Perimeter perimeter;
+    private Perimeter   perimeter;
     private Destination output;
     private Destination status;
-    private Format format;
-    private Packaging packaging;
-    private RequestId requestId;
+    private Format      format;
+    private Packaging   packaging;
+    private RequestId   requestId;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public Format getFormat() {
+    public Format getFormat()
+    {
 
         return format;
 
@@ -72,7 +73,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @param format DOCUMENT ME!
      */
-    public void setFormat(Format format) {
+    public void setFormat(Format format)
+    {
 
         this.format = format;
 
@@ -83,7 +85,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @return DOCUMENT ME!
      */
-    public Destination getOutput() {
+    public Destination getOutput()
+    {
 
         return output;
 
@@ -94,7 +97,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @param output DOCUMENT ME!
      */
-    public void setOutput(Destination output) {
+    public void setOutput(Destination output)
+    {
 
         this.output = output;
 
@@ -105,7 +109,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @return DOCUMENT ME!
      */
-    public Packaging getPackaging() {
+    public Packaging getPackaging()
+    {
 
         return packaging;
 
@@ -116,7 +121,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @param packaging DOCUMENT ME!
      */
-    public void setPackaging(Packaging packaging) {
+    public void setPackaging(Packaging packaging)
+    {
 
         this.packaging = packaging;
 
@@ -127,7 +133,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @return DOCUMENT ME!
      */
-    public Perimeter getPerimeter() {
+    public Perimeter getPerimeter()
+    {
 
         return perimeter;
 
@@ -138,7 +145,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @param perimeter DOCUMENT ME!
      */
-    public void setPerimeter(Perimeter perimeter) {
+    public void setPerimeter(Perimeter perimeter)
+    {
 
         this.perimeter = perimeter;
 
@@ -149,7 +157,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -160,7 +169,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -171,7 +181,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @return DOCUMENT ME!
      */
-    public Destination getStatus() {
+    public Destination getStatus()
+    {
 
         return status;
 
@@ -182,7 +193,8 @@ public class ExtractServiceParameterWrapper {
      *
      * @param status DOCUMENT ME!
      */
-    public void setStatus(Destination status) {
+    public void setStatus(Destination status)
+    {
 
         this.status = status;
 

@@ -40,7 +40,8 @@ package com.nabla.project.application.api;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class TechnicalException extends RuntimeException {
+public class TechnicalException extends RuntimeException
+{
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +50,8 @@ public class TechnicalException extends RuntimeException {
      *
      * @param message DOCUMENT ME!
      */
-    public TechnicalException(String message) {
+    public TechnicalException(String message)
+    {
         super(message);
 
     }
@@ -60,7 +62,8 @@ public class TechnicalException extends RuntimeException {
      * @param message DOCUMENT ME!
      * @param t DOCUMENT ME!
      */
-    public TechnicalException(String message, Throwable t) {
+    public TechnicalException(String message, Throwable t)
+    {
         super(message, t);
 
     }

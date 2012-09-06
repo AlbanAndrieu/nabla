@@ -33,9 +33,8 @@
  */
 package com.nabla.project.application.api.config;
 
-public enum Format {
-    XML,
-    TXT,
-    CSV;
+public enum Format
+{
+    XML, TXT, CSV;
 
 }

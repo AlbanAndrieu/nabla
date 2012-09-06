@@ -40,12 +40,14 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class AbstractConfig {
+public abstract class AbstractConfig
+{
 
     /**
      * Creates a new AbstractConfig object.
      */
-    protected AbstractConfig() {
+    protected AbstractConfig()
+    {
         super();
 
     }

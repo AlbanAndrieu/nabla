@@ -33,8 +33,8 @@
  */
 package com.nabla.project.application.api.config;
 
-public enum Packaging {
-    STANDARD,
-    COMPRESSED;
+public enum Packaging
+{
+    STANDARD, COMPRESSED;
 
 }

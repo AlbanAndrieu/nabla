@@ -35,7 +35,6 @@ package com.nabla.project.application.tool.runner;
 
 import java.io.Serializable;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,7 +42,8 @@ import java.io.Serializable;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ServiceParameter implements Serializable {
+public class ServiceParameter implements Serializable
+{
 
     private String name;
 
@@ -52,7 +52,8 @@ public class ServiceParameter implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -63,7 +64,8 @@ public class ServiceParameter implements Serializable {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 

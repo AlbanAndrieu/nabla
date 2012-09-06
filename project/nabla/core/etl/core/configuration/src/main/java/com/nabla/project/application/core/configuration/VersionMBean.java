@@ -35,7 +35,6 @@ package com.nabla.project.application.core.configuration;
 
 import java.util.Date;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,7 +42,8 @@ import java.util.Date;
  * @version $Revision$
  * @since $Date$
   */
-public interface VersionMBean {
+public interface VersionMBean
+{
 
     /**
      * DOCUMENT ME!

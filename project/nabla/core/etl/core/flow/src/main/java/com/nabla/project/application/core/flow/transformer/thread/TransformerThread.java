@@ -40,7 +40,6 @@ import com.nabla.project.application.core.time.Chronometer;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,17 +50,20 @@ import org.apache.log4j.Logger;
  * @param <SRC> DOCUMENT ME!
  * @param <TRG> DOCUMENT ME!
  */
-public class TransformerThread<SRC, TRG> extends Transformer<SRC, TRG> implements TransformerThreadMBean {
+public class TransformerThread<SRC, TRG> extends Transformer<SRC, TRG> implements TransformerThreadMBean
+{
 
-    protected Logger logger = Logger.getLogger(getClass());
+    protected Logger             logger = Logger.getLogger(getClass());
     protected PipePublisher<TRG> pipeOutPublished;
 
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
-        try {
+        try
+        {
 
             Thread.currentThread().setName(getTransformerThreadName());
 
@@ -70,44 +72,53 @@ public class TransformerThread<SRC, TRG> extends Transformer<SRC, TRG> implement
             logger.info(name + " started.");
             chronometer.start();
 
-            if (isUsePipeOut) {
+            if (isUsePipeOut)
+            {
 
                 pipeOutPublished = pipeOut.getPipePublisher();
-                new PipeBlockingQueueListener<SRC>(this.pipeIn.getName(), pipeIn.getRequestId()) {
+                new PipeBlockingQueueListener<SRC>(this.pipeIn.getName(), pipeIn.getRequestId())
+                {
 
-                        @Override
-                        public final void onMessage(SRC src) {
+                    @Override
+                    public final void onMessage(SRC src)
+                    {
 
-                            pipeOutPublished.publish((TRG) transformerData.transform(src));
+                        pipeOutPublished.publish((TRG) transformerData.transform(src));
 
-                        }
+                    }
 
-                    };
+                };
                 pipeOutPublished.closeQueue();
 
-            } else {
+            } else
+            {
                 assert (pipeIn != null);
-                new PipeBlockingQueueListener<SRC>(this.pipeIn.getName(), pipeIn.getRequestId()) {
+                new PipeBlockingQueueListener<SRC>(this.pipeIn.getName(), pipeIn.getRequestId())
+                {
 
-                        @Override
-                        public final void onMessage(SRC src) {
+                    @Override
+                    public final void onMessage(SRC src)
+                    {
 
-                            writerData.write(transformerData.transform(src));
+                        writerData.write(transformerData.transform(src));
 
-                        }
+                    }
 
-                    };
+                };
 
             }
 
             chronometer.stop();
             logger.info(getName() + " completed. Time = " + chronometer);
 
-        } catch (Throwable exception) {
+        }
+        catch (Throwable exception)
+        {
 
             logger.error("Exception: " + exception.getMessage());
 
-            if (pipeException != null) {
+            if (pipeException != null)
+            {
 
                 pipeException.publish(exception);
 

@@ -35,7 +35,6 @@ package com.nabla.project.application.api;
 
 import com.nabla.project.application.api.config.Packaging;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -43,17 +42,19 @@ import com.nabla.project.application.api.config.Packaging;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class UnsupportedPackagingException extends UnsupportedOperationException {
+public class UnsupportedPackagingException extends UnsupportedOperationException
+{
 
     private static final long serialVersionUID = 1L;
-    private Packaging unsupportedPackaging;
+    private Packaging         unsupportedPackaging;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public Packaging getUnsupportedPackaging() {
+    public Packaging getUnsupportedPackaging()
+    {
 
         return unsupportedPackaging;
 
@@ -64,7 +65,8 @@ public class UnsupportedPackagingException extends UnsupportedOperationException
      *
      * @param unsupportedPackaging DOCUMENT ME!
      */
-    public void setUnsupportedPackaging(Packaging unsupportedPackaging) {
+    public void setUnsupportedPackaging(Packaging unsupportedPackaging)
+    {
 
         this.unsupportedPackaging = unsupportedPackaging;
 

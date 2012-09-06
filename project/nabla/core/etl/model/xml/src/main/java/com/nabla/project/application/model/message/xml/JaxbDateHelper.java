@@ -43,7 +43,6 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,24 +50,29 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @version $Revision$
  * @since $Date$
   */
-public class JaxbDateHelper {
+public class JaxbDateHelper
+{
 
     /**
      * DOCUMENT ME!
      */
-    public static Logger logger = Logger.getLogger(JaxbDateHelper.class);
+    public static Logger           logger = Logger.getLogger(JaxbDateHelper.class);
     private static DatatypeFactory myDataTypeFactory;
 
-    static {
+    static
+    {
 
         Logger logger = Logger.getLogger(JaxbDateHelper.class);
 
-        try {
+        try
+        {
 
             logger.info("Initializing DatatypeFactory");
             myDataTypeFactory = DatatypeFactory.newInstance();
 
-        } catch (DatatypeConfigurationException e) {
+        }
+        catch (DatatypeConfigurationException e)
+        {
 
             logger.error("DatatypeFactory initialsation exception");
             e.printStackTrace();
@@ -85,9 +89,11 @@ public class JaxbDateHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static XMLGregorianCalendar getJaxbDate(Date date) {
+    public static XMLGregorianCalendar getJaxbDate(Date date)
+    {
 
-        if (date != null) {
+        if (date != null)
+        {
 
             GregorianCalendar gCal = new GregorianCalendar();
 
@@ -101,7 +107,8 @@ public class JaxbDateHelper {
 
             return xmlCal;
 
-        } else {
+        } else
+        {
 
             return null;
 
@@ -116,9 +123,11 @@ public class JaxbDateHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static XMLGregorianCalendar getJaxbTime(Date date) {
+    public static XMLGregorianCalendar getJaxbTime(Date date)
+    {
 
-        if (date != null) {
+        if (date != null)
+        {
 
             GregorianCalendar gCal = new GregorianCalendar();
 
@@ -132,7 +141,8 @@ public class JaxbDateHelper {
 
             return xmlCal;
 
-        } else {
+        } else
+        {
 
             return null;
 
@@ -147,9 +157,11 @@ public class JaxbDateHelper {
      *
      * @return DOCUMENT ME!
      */
-    public static XMLGregorianCalendar getJaxbDateTime(Date date) {
+    public static XMLGregorianCalendar getJaxbDateTime(Date date)
+    {
 
-        if (date != null) {
+        if (date != null)
+        {
 
             GregorianCalendar gCal = new GregorianCalendar();
 
@@ -159,7 +171,8 @@ public class JaxbDateHelper {
 
             return xmlCal;
 
-        } else {
+        } else
+        {
 
             return null;
 

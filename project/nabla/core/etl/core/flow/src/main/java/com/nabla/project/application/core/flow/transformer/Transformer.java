@@ -40,7 +40,6 @@ import com.nabla.project.application.api.transformer.TransformerDataInterface;
 import com.nabla.project.application.api.transformer.TransformerThreadInterface;
 import com.nabla.project.application.api.writer.WriterDataInterface;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -51,24 +50,26 @@ import com.nabla.project.application.api.writer.WriterDataInterface;
  * @param <SRC> DOCUMENT ME!
  * @param <TRG> DOCUMENT ME!
  */
-public abstract class Transformer<SRC, TRG> implements TransformerThreadInterface<SRC, TRG> {
+public abstract class Transformer<SRC, TRG> implements TransformerThreadInterface<SRC, TRG>
+{
 
-    protected Object id;
-    protected RequestId requestId;
-    protected String name = "Transformer";
-    protected Pipe<SRC> pipeIn;
-    protected Pipe<TRG> pipeOut;
+    protected Object                   id;
+    protected RequestId                requestId;
+    protected String                   name = "Transformer";
+    protected Pipe<SRC>                pipeIn;
+    protected Pipe<TRG>                pipeOut;
     protected PipePublisher<Throwable> pipeException;
     protected TransformerDataInterface transformerData;
-    protected boolean isUsePipeOut;
-    protected WriterDataInterface writerData;
+    protected boolean                  isUsePipeOut;
+    protected WriterDataInterface      writerData;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public Object getId() {
+    public Object getId()
+    {
 
         return id;
 
@@ -79,7 +80,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(Object id) {
+    public void setId(Object id)
+    {
 
         this.id = id;
 
@@ -90,7 +92,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -101,7 +104,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -112,7 +116,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -123,7 +128,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -134,7 +140,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public PipePublisher<Throwable> getPipeException() {
+    public PipePublisher<Throwable> getPipeException()
+    {
 
         return pipeException;
 
@@ -145,7 +152,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param pipeException DOCUMENT ME!
      */
-    public void setPipeException(PipePublisher<Throwable> pipeException) {
+    public void setPipeException(PipePublisher<Throwable> pipeException)
+    {
 
         this.pipeException = pipeException;
 
@@ -156,7 +164,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public TransformerDataInterface getTransformerData() {
+    public TransformerDataInterface getTransformerData()
+    {
 
         return transformerData;
 
@@ -167,7 +176,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param transformerData DOCUMENT ME!
      */
-    public void setTransformerData(TransformerDataInterface transformerData) {
+    public void setTransformerData(TransformerDataInterface transformerData)
+    {
 
         this.transformerData = transformerData;
 
@@ -178,7 +188,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public WriterDataInterface getWriterData() {
+    public WriterDataInterface getWriterData()
+    {
 
         return writerData;
 
@@ -189,7 +200,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param writerData DOCUMENT ME!
      */
-    public void setWriterData(WriterDataInterface writerData) {
+    public void setWriterData(WriterDataInterface writerData)
+    {
 
         this.writerData = writerData;
 
@@ -200,7 +212,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public boolean isUsePipeOut() {
+    public boolean isUsePipeOut()
+    {
 
         return isUsePipeOut;
 
@@ -211,7 +224,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param isUsePipeOut DOCUMENT ME!
      */
-    public void setUsePipeOut(boolean isUsePipeOut) {
+    public void setUsePipeOut(boolean isUsePipeOut)
+    {
 
         this.isUsePipeOut = isUsePipeOut;
 
@@ -222,7 +236,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public Pipe<SRC> getPipeIn() {
+    public Pipe<SRC> getPipeIn()
+    {
 
         return pipeIn;
 
@@ -233,7 +248,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param pipeIn DOCUMENT ME!
      */
-    public void setPipeIn(Pipe<SRC> pipeIn) {
+    public void setPipeIn(Pipe<SRC> pipeIn)
+    {
 
         this.pipeIn = pipeIn;
 
@@ -244,7 +260,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public Pipe<TRG> getPipeOut() {
+    public Pipe<TRG> getPipeOut()
+    {
 
         return pipeOut;
 
@@ -255,7 +272,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @param pipeOut DOCUMENT ME!
      */
-    public void setPipeOut(Pipe<TRG> pipeOut) {
+    public void setPipeOut(Pipe<TRG> pipeOut)
+    {
 
         this.pipeOut = pipeOut;
 
@@ -264,7 +282,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
     /**
      * DOCUMENT ME!
      */
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet()
+    {
 
     }
 
@@ -273,7 +292,8 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public String getPipeInName() {
+    public String getPipeInName()
+    {
 
         return (pipeIn != null) ? pipeIn.getName() : null;
 
@@ -284,27 +304,32 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
      *
      * @return DOCUMENT ME!
      */
-    public String getPipeOutName() {
+    public String getPipeOutName()
+    {
 
         return (pipeOut != null) ? pipeOut.getName() : null;
 
     }
 
-    protected String getTransformerThreadName() {
+    protected String getTransformerThreadName()
+    {
 
         StringBuffer threadName = new StringBuffer();
         boolean isFirst = true;
 
-        if (this.name != null) {
+        if (this.name != null)
+        {
 
             threadName.append(name);
             isFirst = false;
 
         }
 
-        if (requestId != null) {
+        if (requestId != null)
+        {
 
-            if (!isFirst) {
+            if (!isFirst)
+            {
 
                 threadName.append('-');
 
@@ -315,9 +340,11 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
         }
 
-        if (this.id != null) {
+        if (this.id != null)
+        {
 
-            if (!isFirst) {
+            if (!isFirst)
+            {
 
                 threadName.append('-');
 

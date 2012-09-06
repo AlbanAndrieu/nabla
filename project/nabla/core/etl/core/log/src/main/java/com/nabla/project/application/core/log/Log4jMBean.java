@@ -36,7 +36,6 @@ package com.nabla.project.application.core.log;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -44,14 +43,16 @@ import org.apache.log4j.LogManager;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class Log4jMBean {
+public class Log4jMBean
+{
 
     /**
      * DOCUMENT ME!
      *
      * @param category DOCUMENT ME!
      */
-    public void activateInfo(String category) {
+    public void activateInfo(String category)
+    {
 
         LogManager.getLogger(category).setLevel(Level.INFO);
 
@@ -62,7 +63,8 @@ public class Log4jMBean {
      *
      * @param category DOCUMENT ME!
      */
-    public void activateDebug(String category) {
+    public void activateDebug(String category)
+    {
 
         LogManager.getLogger(category).setLevel(Level.DEBUG);
 
@@ -73,7 +75,8 @@ public class Log4jMBean {
      *
      * @param category DOCUMENT ME!
      */
-    public void activateWarn(String category) {
+    public void activateWarn(String category)
+    {
 
         LogManager.getLogger(category).setLevel(Level.WARN);
 
@@ -84,7 +87,8 @@ public class Log4jMBean {
      *
      * @param category DOCUMENT ME!
      */
-    public void activateError(String category) {
+    public void activateError(String category)
+    {
 
         LogManager.getLogger(category).setLevel(Level.ERROR);
 
@@ -95,7 +99,8 @@ public class Log4jMBean {
      *
      * @param category DOCUMENT ME!
      */
-    public void activateFatal(String category) {
+    public void activateFatal(String category)
+    {
 
         LogManager.getLogger(category).setLevel(Level.FATAL);
 
@@ -107,7 +112,8 @@ public class Log4jMBean {
      * @param packageName DOCUMENT ME!
      * @param level DOCUMENT ME!
      */
-    public void setLogger(String packageName, String level) {
+    public void setLogger(String packageName, String level)
+    {
 
         LogManager.getLogger(packageName).setLevel(Level.toLevel(level));
 

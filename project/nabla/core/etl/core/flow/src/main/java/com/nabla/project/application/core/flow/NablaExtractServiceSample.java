@@ -58,7 +58,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -66,7 +65,8 @@ import java.util.Set;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class NablaExtractServiceSample extends ExtractServiceCommon implements NablaExtractServiceMBean {
+public class NablaExtractServiceSample extends ExtractServiceCommon implements NablaExtractServiceMBean
+{
 
     protected Logger logger = Logger.getLogger(getClass());
 
@@ -80,7 +80,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      * @param format DOCUMENT ME!
      * @param packaging DOCUMENT ME!
      */
-    public void extractPerimeter(Perimeter perimeter, RequestId id, Destination output, Destination status, Format format, Packaging packaging) {
+    public void extractPerimeter(Perimeter perimeter, RequestId id, Destination output, Destination status, Format format, Packaging packaging)
+    {
 
         logger.info("Extract starting");
 
@@ -93,9 +94,11 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
         Set<Pipe<Object>> queues = new HashSet<Pipe<Object>>();
         String exceptionQueueName = "ExceptionQueue";
 
-        try {
+        try
+        {
 
-            if (logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled())
+            {
                 logger.debug("isUsingWriterThread=" + isUsingWriterThread);
             }
 
@@ -114,14 +117,16 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
             int extractorThreadId = 0;
             ThreadGroup tg_extractor = new ThreadGroup("group_extractor");
 
-            for (ExtractorThreadInterface<Object> extractor : extractors) {
+            for (ExtractorThreadInterface<Object> extractor : extractors)
+            {
 
                 extractor.setId(new Integer(++extractorThreadId));
                 extractor.setPerimeter(perimeter);
                 extractor.setPipeException(pipeOutException);
                 extractor.afterPropertiesSet();
 
-                if (extractor.getPipe() != null) {
+                if (extractor.getPipe() != null)
+                {
 
                     queues.add(extractor.getPipe());
 
@@ -139,19 +144,22 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
             int transformerThreadId = 0;
             ThreadGroup tg_transfomer = new ThreadGroup("group_transfomer");
 
-            for (TransformerThreadInterface<Object, Object> transformer : transformers) {
+            for (TransformerThreadInterface<Object, Object> transformer : transformers)
+            {
 
                 transformer.setId(new Integer(++transformerThreadId));
                 transformer.setPipeException(pipeOutException);
                 transformer.afterPropertiesSet();
 
-                if (transformer.getPipeIn() != null) {
+                if (transformer.getPipeIn() != null)
+                {
 
                     queues.add(transformer.getPipeIn());
 
                 }
 
-                if (transformer.getPipeOut() != null) {
+                if (transformer.getPipeOut() != null)
+                {
 
                     queues.add(transformer.getPipeOut());
 
@@ -159,7 +167,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
                 Thread transformerThread = new Thread(tg_transfomer, transformer, "transformer" + transformerThreadId);
 
-                if ((!isUsingWriterThread) && (transformer.getWriterData() != null)) {
+                if ((!isUsingWriterThread) && (transformer.getWriterData() != null))
+                {
 
                     transformer.getWriterData().open(output, packaging);
 
@@ -172,18 +181,21 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
             }
 
-            if (isUsingWriterThread) {
+            if (isUsingWriterThread)
+            {
 
                 int writerThreadId = 0;
                 ThreadGroup tg_writer = new ThreadGroup("group_writer");
 
-                for (WriterThreadInterface<Object> writer : writers) {
+                for (WriterThreadInterface<Object> writer : writers)
+                {
 
                     writer.setId(new Integer(++writerThreadId));
                     writer.setPipeException(pipeOutException);
                     writer.afterPropertiesSet();
 
-                    if (writer.getPipeIn() != null) {
+                    if (writer.getPipeIn() != null)
+                    {
 
                         queues.add(writer.getPipeIn());
 
@@ -202,21 +214,25 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
             }
 
-            for (Thread extractorThread : extractorsThreads) {
+            for (Thread extractorThread : extractorsThreads)
+            {
 
                 extractorThread.join();
 
             }
 
-            for (Thread transformerThread : transformersThreads) {
+            for (Thread transformerThread : transformersThreads)
+            {
 
                 transformerThread.join();
 
             }
 
-            for (TransformerThreadInterface<Object, Object> transformer : transformers) {
+            for (TransformerThreadInterface<Object, Object> transformer : transformers)
+            {
 
-                if ((!isUsingWriterThread) && (transformer.getWriterData() != null)) {
+                if ((!isUsingWriterThread) && (transformer.getWriterData() != null))
+                {
 
                     transformer.getWriterData().close();
 
@@ -224,9 +240,11 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
             }
 
-            if (isUsingWriterThread) {
+            if (isUsingWriterThread)
+            {
 
-                for (Thread writerThread : writersThreads) {
+                for (Thread writerThread : writersThreads)
+                {
 
                     writerThread.join();
 
@@ -238,9 +256,11 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
             pipeOutException.closeQueue();
 
-            if (isUsingWriterThread) {
+            if (isUsingWriterThread)
+            {
 
-                for (WriterThreadInterface<Object> writer : writers) {
+                for (WriterThreadInterface<Object> writer : writers)
+                {
 
                     writer.close();
 
@@ -250,12 +270,16 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
             dumpException(exceptionQueueName, this.requestId);
 
-        } catch (Throwable ex) {
+        }
+        catch (Throwable ex)
+        {
 
             logger.error("Exception :" + ex.getMessage());
             ex.printStackTrace();
 
-        } finally {
+        }
+        finally
+        {
 
             PipeBlockingQueueService.destroyQueues(queues);
 
@@ -272,24 +296,28 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      * @param exceptionQueueName DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public void dumpException(String exceptionQueueName, RequestId requestId) {
+    public void dumpException(String exceptionQueueName, RequestId requestId)
+    {
 
-        new PipeBlockingQueueListener<Throwable>(exceptionQueueName, requestId) {
+        new PipeBlockingQueueListener<Throwable>(exceptionQueueName, requestId)
+        {
 
-                @Override
-                public void onMessage(Throwable throwable) {
+            @Override
+            public void onMessage(Throwable throwable)
+            {
 
-                    logger.error("Exception: " + throwable.getMessage());
+                logger.error("Exception: " + throwable.getMessage());
 
-                    if (throwable instanceof Exception) {
+                if (throwable instanceof Exception)
+                {
 
-                        ((Exception) throwable).printStackTrace();
-
-                    }
+                    ((Exception) throwable).printStackTrace();
 
                 }
 
-            };
+            }
+
+        };
 
     }
 
@@ -298,7 +326,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @param status DOCUMENT ME!
      */
-    public void recoverRequest(RequestStatus status) {
+    public void recoverRequest(RequestStatus status)
+    {
 
         throw new UnsupportedRecoveryException();
 
@@ -311,7 +340,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsFormat(Format f) {
+    public boolean supportsFormat(Format f)
+    {
 
         return Format.XML.equals(f);
 
@@ -324,7 +354,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsOutputDestination(Destination outputDestination) {
+    public boolean supportsOutputDestination(Destination outputDestination)
+    {
 
         return outputDestination instanceof FileDestination;
 
@@ -337,7 +368,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsPackaging(Packaging p) {
+    public boolean supportsPackaging(Packaging p)
+    {
 
         logger.error("supportsPackaging : pass");
 
@@ -352,7 +384,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsPerimeter(Perimeter p) {
+    public boolean supportsPerimeter(Perimeter p)
+    {
 
         return true;
 
@@ -365,7 +398,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @return DOCUMENT ME!
      */
-    public boolean supportsStatusDestination(Destination statusDestination) {
+    public boolean supportsStatusDestination(Destination statusDestination)
+    {
 
         return statusDestination instanceof FileDestination;
 
@@ -376,7 +410,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
      *
      * @return DOCUMENT ME!
      */
-    public String getExtractServiceId() {
+    public String getExtractServiceId()
+    {
 
         return "EoleExtractService";
 

@@ -39,7 +39,6 @@ import com.nabla.project.application.api.config.Packaging;
 import com.nabla.project.application.api.config.Perimeter;
 import com.nabla.project.application.api.config.RequestId;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -47,7 +46,8 @@ import com.nabla.project.application.api.config.RequestId;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public interface ExtractService {
+public interface ExtractService
+{
 
     /**
      * DOCUMENT ME!

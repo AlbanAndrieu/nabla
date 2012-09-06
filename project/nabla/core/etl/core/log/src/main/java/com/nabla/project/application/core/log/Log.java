@@ -40,7 +40,6 @@ import org.apache.log4j.Level;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -48,20 +47,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class Log {
+public class Log
+{
 
-    protected static boolean isNotInit = true;
-    private static Log4JLogger commonlogger;
+    protected static boolean          isNotInit = true;
+    private static Log4JLogger        commonlogger;
     private static ApplicationContext applicationContext;
 
     /**
      * DOCUMENT ME!
      */
-    public static void init() {
+    public static void init()
+    {
 
-        synchronized (Log.class) {
+        synchronized (Log.class)
+        {
 
-            if (isNotInit) {
+            if (isNotInit)
+            {
 
                 applicationContext = new ClassPathXmlApplicationContext("com/nabla/project/application/core/log/Log.xml");
 
@@ -81,7 +84,8 @@ public class Log {
      *
      * @param level DOCUMENT ME!
      */
-    public static void setLogLevel(Level level) {
+    public static void setLogLevel(Level level)
+    {
 
         commonlogger.getLogger().setLevel(level);
 
@@ -92,7 +96,8 @@ public class Log {
      *
      * @return DOCUMENT ME!
      */
-    public static Log4JLogger getCommonlogger() {
+    public static Log4JLogger getCommonlogger()
+    {
 
         return commonlogger;
 
@@ -103,7 +108,8 @@ public class Log {
      *
      * @param commonlogger DOCUMENT ME!
      */
-    public static void setCommonlogger(Log4JLogger commonlogger) {
+    public static void setCommonlogger(Log4JLogger commonlogger)
+    {
 
         Log.commonlogger = commonlogger;
 
@@ -114,7 +120,8 @@ public class Log {
      *
      * @return DOCUMENT ME!
      */
-    public static ApplicationContext getApplicationContext() {
+    public static ApplicationContext getApplicationContext()
+    {
 
         return applicationContext;
 

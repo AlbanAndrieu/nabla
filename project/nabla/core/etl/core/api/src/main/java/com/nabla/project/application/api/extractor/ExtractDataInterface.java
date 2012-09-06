@@ -36,7 +36,6 @@ package com.nabla.project.application.api.extractor;
 import com.nabla.project.application.api.config.Perimeter;
 import com.nabla.project.application.api.helpers.PipePublisher;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -46,7 +45,8 @@ import com.nabla.project.application.api.helpers.PipePublisher;
   *
  * @param <X> DOCUMENT ME!
  */
-public interface ExtractDataInterface<X> {
+public interface ExtractDataInterface<X>
+{
 
     /**
      * DOCUMENT ME!

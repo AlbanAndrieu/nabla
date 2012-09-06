@@ -35,7 +35,6 @@ package com.nabla.project.application.api.helpers;
 
 import com.nabla.project.application.api.config.RequestId;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,7 +44,8 @@ import com.nabla.project.application.api.config.RequestId;
   *
  * @param <X> DOCUMENT ME!
  */
-public interface Pipe<X> {
+public interface Pipe<X>
+{
 
     /**
      * DOCUMENT ME!

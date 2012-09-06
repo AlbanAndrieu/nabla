@@ -47,7 +47,6 @@ import java.io.OutputStream;
 
 import java.util.zip.GZIPOutputStream;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -55,17 +54,19 @@ import java.util.zip.GZIPOutputStream;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class FileDestination implements Destination {
+public class FileDestination implements Destination
+{
 
     private transient Logger logger = Logger.getLogger(getClass());
-    protected String url;
-    protected String path;
-    protected OutputStream outputStream;
+    protected String         url;
+    protected String         path;
+    protected OutputStream   outputStream;
 
     /**
      * Creates a new FileDestination object.
      */
-    public FileDestination() {
+    public FileDestination()
+    {
 
     }
 
@@ -74,7 +75,8 @@ public class FileDestination implements Destination {
      *
      * @param aUrl DOCUMENT ME!
      */
-    public FileDestination(String aUrl) {
+    public FileDestination(String aUrl)
+    {
 
         this.url = aUrl;
         this.path = System.getProperty("user.dir") + File.separator + "target" + File.separator + aUrl + ".xml";
@@ -87,7 +89,8 @@ public class FileDestination implements Destination {
      * @param url DOCUMENT ME!
      * @param path DOCUMENT ME!
      */
-    public FileDestination(String url, String path) {
+    public FileDestination(String url, String path)
+    {
 
         this.url = url;
         this.path = path;
@@ -99,7 +102,8 @@ public class FileDestination implements Destination {
      *
      * @return DOCUMENT ME!
      */
-    public String getUrl() {
+    public String getUrl()
+    {
 
         return url;
 
@@ -110,7 +114,8 @@ public class FileDestination implements Destination {
      *
      * @param aUrl DOCUMENT ME!
      */
-    public void setUrl(String aUrl) {
+    public void setUrl(String aUrl)
+    {
 
         this.url = aUrl;
         this.path = System.getProperty("user.dir") + File.separator + "target" + File.separator + aUrl + ".xml";
@@ -126,32 +131,37 @@ public class FileDestination implements Destination {
      *
      * @throws IOException DOCUMENT ME!
      */
-    public OutputStream getOutputStream(Packaging packaging)
-                                 throws IOException {
+    public OutputStream getOutputStream(Packaging packaging) throws IOException
+    {
 
-        if (outputStream == null) {
+        if (outputStream == null)
+        {
 
-            try {
+            try
+            {
 
-                switch (packaging) {
+                switch (packaging)
+                {
 
-                    case STANDARD :
+                    case STANDARD:
                         outputStream = new BufferedOutputStream(new FileOutputStream(this.path), 32768);
 
                         break;
 
-                    case COMPRESSED :
+                    case COMPRESSED:
                         this.path = this.path + ".gz";
                         outputStream = new GZIPOutputStream(new FileOutputStream(this.path), 32768);
 
                         break;
 
-                    default :
+                    default:
                         throw new UnsupportedFormatException();
 
                 }
 
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
 
                 logger.error(e);
 
@@ -161,7 +171,8 @@ public class FileDestination implements Destination {
 
         }
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("File path = " + this.path);
         }
 
@@ -174,9 +185,11 @@ public class FileDestination implements Destination {
      *
      * @throws IOException DOCUMENT ME!
      */
-    public void close() throws IOException {
+    public void close() throws IOException
+    {
 
-        if (outputStream != null) {
+        if (outputStream != null)
+        {
 
             outputStream.close();
 
@@ -191,7 +204,8 @@ public class FileDestination implements Destination {
      *
      * @return DOCUMENT ME!
      */
-    public String getPath() {
+    public String getPath()
+    {
 
         return path;
 
@@ -202,7 +216,8 @@ public class FileDestination implements Destination {
      *
      * @param path DOCUMENT ME!
      */
-    public void setPath(String path) {
+    public void setPath(String path)
+    {
 
         this.path = path;
 
@@ -213,7 +228,8 @@ public class FileDestination implements Destination {
      *
      * @return DOCUMENT ME!
      */
-    public String toString() {
+    public String toString()
+    {
 
         StringBuffer str = new StringBuffer();
 
@@ -231,7 +247,8 @@ public class FileDestination implements Destination {
      *
      * @return DOCUMENT ME!
      */
-    public static String createFullPathForTmpFile(String fileName) {
+    public static String createFullPathForTmpFile(String fileName)
+    {
 
         StringBuffer str = new StringBuffer();
 

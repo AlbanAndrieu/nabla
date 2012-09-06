@@ -40,19 +40,20 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class ApplicationContextFactory extends AbstractApplicationContextFactory {
+public class ApplicationContextFactory extends AbstractApplicationContextFactory
+{
 
     /**
      * DOCUMENT ME!
      */
-    public final static String springDefaultConfiguration[] = { "com/nabla/project/application/core/spring/ServiceBase.xml",
-                                                               };
-    private final static ApplicationContextFactory applicationContextFactory = new ApplicationContextFactory();
+    public final static String                     springDefaultConfiguration[] = { "com/nabla/project/application/core/spring/ServiceBase.xml", };
+    private final static ApplicationContextFactory applicationContextFactory    = new ApplicationContextFactory();
 
     /**
      * Creates a new ApplicationContextFactory object.
      */
-    private ApplicationContextFactory() {
+    private ApplicationContextFactory()
+    {
         super();
 
     }
@@ -62,7 +63,8 @@ public class ApplicationContextFactory extends AbstractApplicationContextFactory
      *
      * @return DOCUMENT ME!
      */
-    public static AbstractApplicationContextFactory getInstance() {
+    public static AbstractApplicationContextFactory getInstance()
+    {
 
         return applicationContextFactory;
 

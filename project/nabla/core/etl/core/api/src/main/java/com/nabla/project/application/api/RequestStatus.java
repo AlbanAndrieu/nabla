@@ -37,7 +37,6 @@ import com.nabla.project.application.api.config.RequestId;
 
 import java.io.Serializable;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,19 +44,21 @@ import java.io.Serializable;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class RequestStatus implements Serializable {
+public class RequestStatus implements Serializable
+{
 
     private static final long serialVersionUID = 1L;
-    private RequestId id;
-    private boolean succeeded;
-    private boolean recoverable;
+    private RequestId         id;
+    private boolean           succeeded;
+    private boolean           recoverable;
 
     /**
      * DOCUMENT ME!
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getId() {
+    public RequestId getId()
+    {
 
         return id;
 
@@ -68,7 +69,8 @@ public class RequestStatus implements Serializable {
      *
      * @param id DOCUMENT ME!
      */
-    public void setId(RequestId id) {
+    public void setId(RequestId id)
+    {
 
         this.id = id;
 
@@ -79,7 +81,8 @@ public class RequestStatus implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isRecoverable() {
+    public boolean isRecoverable()
+    {
 
         return recoverable;
 
@@ -90,7 +93,8 @@ public class RequestStatus implements Serializable {
      *
      * @param recoverable DOCUMENT ME!
      */
-    public void setRecoverable(boolean recoverable) {
+    public void setRecoverable(boolean recoverable)
+    {
 
         this.recoverable = recoverable;
 
@@ -101,7 +105,8 @@ public class RequestStatus implements Serializable {
      *
      * @return DOCUMENT ME!
      */
-    public boolean isSucceeded() {
+    public boolean isSucceeded()
+    {
 
         return succeeded;
 
@@ -112,7 +117,8 @@ public class RequestStatus implements Serializable {
      *
      * @param succeeded DOCUMENT ME!
      */
-    public void setSucceeded(boolean succeeded) {
+    public void setSucceeded(boolean succeeded)
+    {
 
         this.succeeded = succeeded;
 

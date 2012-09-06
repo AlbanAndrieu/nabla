@@ -40,7 +40,8 @@ package com.nabla.project.application.core.spring;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public abstract class AbstractPipeConfig extends AbstractConfig {
+public abstract class AbstractPipeConfig extends AbstractConfig
+{
 
     private int queueSize;
 
@@ -49,7 +50,8 @@ public abstract class AbstractPipeConfig extends AbstractConfig {
      *
      * @return DOCUMENT ME!
      */
-    public int getQueueSize() {
+    public int getQueueSize()
+    {
 
         return queueSize;
 
@@ -60,7 +62,8 @@ public abstract class AbstractPipeConfig extends AbstractConfig {
      *
      * @param queueSize DOCUMENT ME!
      */
-    public void setQueueSize(int queueSize) {
+    public void setQueueSize(int queueSize)
+    {
 
         this.queueSize = queueSize;
 

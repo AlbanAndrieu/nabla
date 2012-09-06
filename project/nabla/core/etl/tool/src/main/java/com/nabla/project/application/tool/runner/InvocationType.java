@@ -33,9 +33,8 @@
  */
 package com.nabla.project.application.tool.runner;
 
-public enum InvocationType {
-    SAME_THREAD,
-    SEPARATED_THREAD,
-    SEPARATED_VM;
+public enum InvocationType
+{
+    SAME_THREAD, SEPARATED_THREAD, SEPARATED_VM;
 
 }

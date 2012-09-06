@@ -12,7 +12,6 @@
 	<groupId>com.nabla.project.core.etl.tool</groupId>
 	<artifactId>tool</artifactId>
 	<packaging>jar</packaging>
-	<!-- <version>1.0</version> -->
 	<name>Etl Tool</name>
 	<description>Technical Components providing transverse technical functionalities to services</description>
 
@@ -52,9 +51,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

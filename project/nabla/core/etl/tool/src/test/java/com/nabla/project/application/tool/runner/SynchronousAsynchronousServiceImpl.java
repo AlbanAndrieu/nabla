@@ -40,12 +40,14 @@ package com.nabla.project.application.tool.runner;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class SynchronousAsynchronousServiceImpl implements SynchronousAsynchronousService {
+public class SynchronousAsynchronousServiceImpl implements SynchronousAsynchronousService
+{
 
     /**
      * DOCUMENT ME!
      */
-    public void asynchronousService() {
+    public void asynchronousService()
+    {
 
     }
 
@@ -54,7 +56,8 @@ public class SynchronousAsynchronousServiceImpl implements SynchronousAsynchrono
      *
      * @return DOCUMENT ME!
      */
-    public String sayHello() {
+    public String sayHello()
+    {
 
         return null;
 

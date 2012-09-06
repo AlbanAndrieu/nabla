@@ -39,7 +39,6 @@ import junit.framework.TestCase;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -47,14 +46,16 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class LogTest extends TestCase {
+public class LogTest extends TestCase
+{
 
     /**
      * DOCUMENT ME!
      */
     public static Logger logger = Logger.getLogger(LogTest.class);
 
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
 
         Log.init();
 
@@ -65,11 +66,13 @@ public class LogTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testDefaultLog() throws Exception {
+    public void testDefaultLog() throws Exception
+    {
 
         logger.setLevel(Level.DEBUG);
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("rootLogger 1 - DEBUG");
         }
 
@@ -79,7 +82,8 @@ public class LogTest extends TestCase {
         logger.setLevel(Level.INFO);
         Log.setLogLevel(Level.INFO);
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("rootLogger 2 - DEBUG - should not be print");
         }
 
@@ -89,7 +93,8 @@ public class LogTest extends TestCase {
         logger.setLevel(Level.WARN);
         Log.setLogLevel(Level.WARN);
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("rootLogger 3 - DEBUG - should not be print");
         }
 
@@ -99,7 +104,8 @@ public class LogTest extends TestCase {
         logger.setLevel(Level.ERROR);
         Log.setLogLevel(Level.ERROR);
 
-        if (logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled())
+        {
             logger.debug("rootLogger 5 - DEBUG - should not be print");
         }
 
@@ -112,7 +118,8 @@ public class LogTest extends TestCase {
         logger.setLevel(Level.DEBUG);
         Log.setLogLevel(Level.INFO);
 
-        if (Log.getCommonlogger().isDebugEnabled()) {
+        if (Log.getCommonlogger().isDebugEnabled())
+        {
             Log.getCommonlogger().debug("mylogger 4 - DEBUG - should not be print");
         }
 

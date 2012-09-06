@@ -42,7 +42,6 @@ import com.nabla.project.application.core.spring.PipeConfig;
 
 import junit.framework.TestCase;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -50,24 +49,30 @@ import junit.framework.TestCase;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class PipeListenerContainerTest extends TestCase {
+public class PipeListenerContainerTest extends TestCase
+{
 
-    protected String pipeName = "pipeTest";
+    protected String    pipeName = "pipeTest";
     protected RequestId requestId;
 
-    protected void setUp() {
+    protected void setUp()
+    {
 
         Log.init();
 
     }
 
-    protected void tearDown() {
+    protected void tearDown()
+    {
 
-        try {
+        try
+        {
 
             PipeBlockingQueueService.destroyQueue(this.pipeName, this.requestId);
 
-        } catch (Throwable ex) {
+        }
+        catch (Throwable ex)
+        {
 
         }
 
@@ -76,7 +81,8 @@ public class PipeListenerContainerTest extends TestCase {
     /**
      * Creates a new PipeListenerContainerTest object.
      */
-    public PipeListenerContainerTest() {
+    public PipeListenerContainerTest()
+    {
 
         this.requestId = new RequestId();
 
@@ -87,7 +93,8 @@ public class PipeListenerContainerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testPipeContainerCounterEmpty() throws Exception {
+    public void testPipeContainerCounterEmpty() throws Exception
+    {
 
         PipeBlockingQueueService.createPipeBlockingQueue(this.pipeName, this.requestId, PipeConfig.getInstance().getQueueSize());
 
@@ -108,7 +115,8 @@ public class PipeListenerContainerTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testPipeContainerCounter() throws Exception {
+    public void testPipeContainerCounter() throws Exception
+    {
 
         PipeBlockingQueueService.createPipeBlockingQueue(this.pipeName, this.requestId, PipeConfig.getInstance().getQueueSize());
 
@@ -118,7 +126,8 @@ public class PipeListenerContainerTest extends TestCase {
 
         int nbTests = 10;
 
-        for (int i = 0; i < nbTests; i++) {
+        for (int i = 0; i < nbTests; i++)
+        {
 
             pipeOut.publish(new Integer(i));
 
@@ -130,7 +139,8 @@ public class PipeListenerContainerTest extends TestCase {
         assertNotNull(pipeContainer.getList());
         assertEquals(10, pipeContainer.getList().size());
 
-        for (int i = 0; i < nbTests; i++) {
+        for (int i = 0; i < nbTests; i++)
+        {
 
             assertEquals(new Integer(i), pipeContainer.getList().get(i));
 

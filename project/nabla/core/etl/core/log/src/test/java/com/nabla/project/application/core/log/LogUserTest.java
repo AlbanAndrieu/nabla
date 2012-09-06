@@ -37,7 +37,6 @@ import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -45,14 +44,16 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class LogUserTest extends TestCase {
+public class LogUserTest extends TestCase
+{
 
     /**
      * DOCUMENT ME!
      */
     public static Logger logger = Logger.getLogger(LogTest.class);
 
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
 
         Log.init();
 
@@ -61,7 +62,8 @@ public class LogUserTest extends TestCase {
     /**
      * DOCUMENT ME!
      */
-    public void testUserLog() {
+    public void testUserLog()
+    {
 
         UserDao dao = (UserDao) Log.getApplicationContext().getBean("userDao");
 

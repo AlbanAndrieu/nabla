@@ -40,7 +40,6 @@ import com.nabla.project.application.core.spring.PipeConfig;
 
 import junit.framework.TestCase;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -48,24 +47,30 @@ import junit.framework.TestCase;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class PipeListenerContainerCounterTest extends TestCase {
+public class PipeListenerContainerCounterTest extends TestCase
+{
 
-    protected String pipeName = "pipeTest";
+    protected String    pipeName = "pipeTest";
     protected RequestId requestId;
 
-    protected void setUp() {
+    protected void setUp()
+    {
 
         PipeBlockingQueueService.createPipeBlockingQueue(this.pipeName, this.requestId, PipeConfig.getInstance().getQueueSize());
 
     }
 
-    protected void tearDown() {
+    protected void tearDown()
+    {
 
-        try {
+        try
+        {
 
             PipeBlockingQueueService.destroyQueue(this.pipeName, this.requestId);
 
-        } catch (Throwable ex) {
+        }
+        catch (Throwable ex)
+        {
 
         }
 
@@ -74,7 +79,8 @@ public class PipeListenerContainerCounterTest extends TestCase {
     /**
      * Creates a new PipeListenerContainerCounterTest object.
      */
-    public PipeListenerContainerCounterTest() {
+    public PipeListenerContainerCounterTest()
+    {
 
         Log.init();
         this.requestId = new RequestId();
@@ -86,7 +92,8 @@ public class PipeListenerContainerCounterTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testPipeContainerCounterEmpty() throws Exception {
+    public void testPipeContainerCounterEmpty() throws Exception
+    {
 
         PipePublisher<Object> pipeOut = new PipeBlockingQueuePublisher<Object>(this.pipeName, this.requestId);
         PipeListenerContainerCounter pipeContainerCounter = new PipeListenerContainerCounter(this.pipeName, this.requestId);
@@ -104,7 +111,8 @@ public class PipeListenerContainerCounterTest extends TestCase {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public void testPipeContainerCounter() throws Exception {
+    public void testPipeContainerCounter() throws Exception
+    {
 
         PipePublisher<Object> pipeOut = new PipeBlockingQueuePublisher<Object>(this.pipeName, this.requestId);
         PipeListenerContainerCounter pipeContainerCounter = new PipeListenerContainerCounter(this.pipeName, this.requestId);
@@ -112,7 +120,8 @@ public class PipeListenerContainerCounterTest extends TestCase {
 
         int nbTests = 10;
 
-        for (int i = 0; i < nbTests; i++) {
+        for (int i = 0; i < nbTests; i++)
+        {
 
             pipeOut.publish(new Integer(i));
 

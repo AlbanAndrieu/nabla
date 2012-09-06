@@ -38,7 +38,6 @@ import com.nabla.project.application.core.pipe.PipeBlockingQueueListener;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * DOCUMENT ME!
  *
@@ -46,11 +45,12 @@ import org.apache.log4j.Logger;
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
   */
-public class PipeListenerContainerCounter implements Runnable {
+public class PipeListenerContainerCounter implements Runnable
+{
 
-    protected Logger logger = Logger.getLogger(this.getClass());
-    protected int counter = 0;
-    protected String name;
+    protected Logger    logger  = Logger.getLogger(this.getClass());
+    protected int       counter = 0;
+    protected String    name;
     protected RequestId requestId;
 
     /**
@@ -59,7 +59,8 @@ public class PipeListenerContainerCounter implements Runnable {
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
-    public PipeListenerContainerCounter(String name, RequestId requestId) {
+    public PipeListenerContainerCounter(String name, RequestId requestId)
+    {
 
         setName(name);
         setRequestId(requestId);
@@ -71,7 +72,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public String getName() {
+    public String getName()
+    {
 
         return name;
 
@@ -82,7 +84,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @param name DOCUMENT ME!
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
 
         this.name = name;
 
@@ -93,7 +96,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public RequestId getRequestId() {
+    public RequestId getRequestId()
+    {
 
         return requestId;
 
@@ -104,7 +108,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @param requestId DOCUMENT ME!
      */
-    public void setRequestId(RequestId requestId) {
+    public void setRequestId(RequestId requestId)
+    {
 
         this.requestId = requestId;
 
@@ -115,7 +120,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public int getCounter() {
+    public int getCounter()
+    {
 
         return counter;
 
@@ -126,7 +132,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @param counter DOCUMENT ME!
      */
-    public void setCounter(int counter) {
+    public void setCounter(int counter)
+    {
 
         this.counter = counter;
 
@@ -135,20 +142,23 @@ public class PipeListenerContainerCounter implements Runnable {
     /**
      * DOCUMENT ME!
      */
-    public void run() {
+    public void run()
+    {
 
         Thread.currentThread().setName("PipeContainerCounter_" + this.name + this.requestId);
         logger.info("Entering consumer thread");
-        new PipeBlockingQueueListener<Object>(this.name, this.requestId) {
+        new PipeBlockingQueueListener<Object>(this.name, this.requestId)
+        {
 
-                @Override
-                public void onMessage(Object o) {
+            @Override
+            public void onMessage(Object o)
+            {
 
-                    counter++;
+                counter++;
 
-                }
+            }
 
-            };
+        };
         logger.info("Exiting consumer thread");
 
     }
@@ -158,7 +168,8 @@ public class PipeListenerContainerCounter implements Runnable {
      *
      * @return DOCUMENT ME!
      */
-    public Thread launch() {
+    public Thread launch()
+    {
 
         Thread thread = new Thread(this);
 
