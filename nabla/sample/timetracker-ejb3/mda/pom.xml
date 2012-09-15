@@ -370,6 +370,8 @@
         </plugins>
     </build>
     <properties>
+        <!-- if error occurs : Error running AndroMDA: invalid stream header -->
+        <!-- close your jboss 7 -->
     	<model.base.name>timetracker</model.base.name>
     	<model.name>${model.base.name}-ejb3</model.name>
         <!-- Avoid JDK6 XJC runtime error on wdsl2java from conflicting Jaxb2.2 -->
