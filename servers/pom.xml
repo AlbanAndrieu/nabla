@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -134,8 +134,8 @@
 			<properties>
 			        <!-- console user myNewUser admin added with add-user.sh -->
 			        <!--<as.version>4.2</as.version>-->
-			        <!--<as.version>5</as.version>-->
 			        <as.version>5</as.version>
+			        <!--<as.version>6</as.version>-->
 				<!-- START INFO USE BY MDA -->
 				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
 				<!--<jboss.home>C:\jboss-5.1.0.GA</jboss.home>-->
