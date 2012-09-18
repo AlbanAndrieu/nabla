@@ -1,26 +1,7 @@
-log4j.rootLogger = DEBUG, CONSOLE, SOCKETSERV, FILE, EXECUTION_TRACE
-log4j.rootCategory = DEBUG, CONSOLE, SOCKETSERV, FILE, EXECUTION_TRACE
+log4j.rootLogger = DEBUG, CONSOLE, SOCKETSERV, FILE
+#log4j.rootCategory = DEBUG, CONSOLE, SOCKETSERV, FILE
 
 log4j.debug=TRUE
-
-#message filtering for BusinessTrace appender
-log4j.additivity.BusinessTrace=false
-log4j.logger.BusinessTrace=DEBUG, SOCKETSERV, LOG_SERVER
-
-log4j.logger.org.springframework=WARN, CONSOLE, SOCKETSERV, FILE
-log4j.logger.org.hibernate=WARN, CONSOLE, SOCKETSERV, FILE
-log4j.logger.com.reuters.kplustp.aop=WARN, CONSOLE, SOCKETSERV, FILE
-log4j.logger.com.reuters.kplustp.common.storage=INFO, CONSOLE, SOCKETSERV, FILE
-
-# message filtering for EjbTrace appender
-log4j.additivity.EjbTrace=false
-log4j.logger.EjbTrace.DeadLocks=DEBUG, LOG_SERVER
-log4j.logger.EjbTrace.com.rfs.j2ee.KiWI.controller.ejb.KiWIClientFacadeLocalEJB.processXmlTemplate=INFO, LOG_SERVER
-log4j.logger.java.io.NotSerializableException=INFO, LOG_SERVER
-log4j.logger.org.jboss.ejb.plugins.AbstractInstanceCache=INFO, LOG_SERVER
-log4j.logger.org.jboss.ejb.plugins.StatefulSessionInstanceInterceptor=INFO, LOG_SERVER
-log4j.logger.com.reuters.jboss.plugins.LockedStatefulSessionInstanceInterceptor=INFO, LOG_SERVER
- 
 
 # The root category uses the appender called CONSOLE. Since no priority is
 # specified, the root category assumes the default priority for root
@@ -43,18 +24,14 @@ log4j.appender.FILE.MaxBackupIndex=10
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
 log4j.appender.FILE.layout.ConversionPattern=PROJECT - %d{yyyy/MM/dd HH:mm:ss}  %-5p [%t] %c{2} - %m%n
 
-# Log server for merging log
-log4j.appender.LOG_SERVER=org.apache.log4j.net.SocketAppender
-log4j.appender.LOG_SERVER.Port=4699
-log4j.appender.LOG_SERVER.RemoteHost=ptxw13066.france.effix.fr
-
+# LUMBERMILL CHAINSAW
 log4j.appender.SOCKETSERV=org.apache.log4j.net.SocketAppender
 log4j.appender.SOCKETSERV.Port=4445
-log4j.appender.SOCKETSERV.RemoteHost=localhost
+log4j.appender.SOCKETSERV.RemoteHost=Alban-PC
 
-# catch Execution log for BusinessTrace   
-log4j.appender.EXECUTION_TRACE=com.reuters.log.transactionlog.ExecutionAppender
-	
+log4j.logger.org.springframework=WARN, CONSOLE, SOCKETSERV, FILE
+log4j.logger.org.hibernate=WARN, CONSOLE, SOCKETSERV, FILE
+
 log4j.logger.org.apache.catalina.core.ContainerBase.[Catalina].[localhost]=DEBUG
 log4j.logger.org.apache.catalina.core=DEBUG
 log4j.logger.org.apache.catalina.session=DEBUG
