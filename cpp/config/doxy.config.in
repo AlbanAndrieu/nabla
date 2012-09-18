@@ -505,12 +505,6 @@ RECURSIVE              = YES
 # subdirectory from a directory tree whose root is specified with the INPUT tag.
 
 EXCLUDE                = @EXCLUDE@ \
-                         ../../ql/config.hpp \
-                         ../../ql/config.bcc.hpp \
-                         ../../ql/config.decc.hpp \
-                         ../../ql/config.msvc.hpp \
-                         ../../ql/config.mwcw.hpp \
-                         ../../ql/math/interpolations/abcdinterpolation.hpp \
                          *test* \
                          *Test* \
                          .svn
@@ -1043,10 +1037,10 @@ SEARCH_INCLUDES        = YES
 INCLUDE_PATH           = /cygdrive/c/cygwin/lib/gcc/i686-pc-cygwin/@GCC_VERSION@/include/c++ \
                          /cygdrive/c/cygwin/usr/include/boost \
                          /cygdrive/c/cygwin/usr/include/libxml2 \
-                         /cygdrive/c/thirdparty/tibco/tibrv/@TIBCO_VERSION@/@MACHINE@/include \
-                         /cygdrive/c/thirdparty/tao/ACE_wrappers/TAO
+                         @PROJECT_THIRDPARTY_PATH@/tibco/tibrv/@TIBCO_VERSION@/@MACHINE@/include \
+                         @PROJECT_THIRDPARTY_PATH@/tao/ACE_wrappers/TAO
 #                         /cygdrive/c/cygwin/usr/include \
-#                         /cygdrive/c/target/include/@MACHINE@/debug \
+#                         @DEV_BINARY_DIR@/include/@MACHINE@/debug \
 
 # You can use the INCLUDE_FILE_PATTERNS tag to specify one or more wildcard 
 # patterns (like *.h and *.hpp) to filter out the header-files in the 
