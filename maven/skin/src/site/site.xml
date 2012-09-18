@@ -46,6 +46,10 @@ under the License.
   <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
    
   <body>
+    <head>
+      <link rel="meta" title="DOAP" href="${project.url}/doap_${project.artifactId}.rdf" type="application/rdf+xml"/>
+    </head>
+  
     <breadcrumbs>
       <item name="Skins" href="http://maven.apache.org/skins/index.html" />
     </breadcrumbs> 
