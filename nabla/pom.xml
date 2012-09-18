@@ -29,6 +29,7 @@
         <module>profiles</module>
         <module>cartridges</module>
         <!--<module>empty</module>-->
+        <!--<module>application</module>-->
     </modules>
     
     <profiles>
