@@ -40,17 +40,20 @@ public abstract class EJB3InterceptorFacadeLogic
     extends MetafacadeBase
     implements EJB3InterceptorFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3InterceptorFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3InterceptorFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superService =
@@ -128,8 +131,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract String handleGetInterceptorName();
 
-    private String __interceptorName1a;
-    private boolean __interceptorName1aSet = false;
+    private String interceptorName1a;
+    private boolean interceptorName1aSet = false;
 
     /**
      * Returns the interceptor class name.
@@ -137,19 +140,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final String getInterceptorName()
     {
-        String interceptorName1a = this.__interceptorName1a;
-        if (!this.__interceptorName1aSet)
+        String ainterceptorName1a = this.interceptorName1a;
+        if (!this.interceptorName1aSet)
         {
             // interceptorName has no pre constraints
-            interceptorName1a = handleGetInterceptorName();
+            ainterceptorName1a = handleGetInterceptorName();
             // interceptorName has no post constraints
-            this.__interceptorName1a = interceptorName1a;
+            this.interceptorName1a = ainterceptorName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interceptorName1aSet = true;
+                this.interceptorName1aSet = true;
             }
         }
-        return interceptorName1a;
+        return ainterceptorName1a;
     }
 
    /**
@@ -158,8 +161,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedInterceptorName();
 
-    private String __fullyQualifiedInterceptorName2a;
-    private boolean __fullyQualifiedInterceptorName2aSet = false;
+    private String fullyQualifiedInterceptorName2a;
+    private boolean fullyQualifiedInterceptorName2aSet = false;
 
     /**
      * Returns the fully qualified interceptor class name.
@@ -167,19 +170,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final String getFullyQualifiedInterceptorName()
     {
-        String fullyQualifiedInterceptorName2a = this.__fullyQualifiedInterceptorName2a;
-        if (!this.__fullyQualifiedInterceptorName2aSet)
+        String afullyQualifiedInterceptorName2a = this.fullyQualifiedInterceptorName2a;
+        if (!this.fullyQualifiedInterceptorName2aSet)
         {
             // fullyQualifiedInterceptorName has no pre constraints
-            fullyQualifiedInterceptorName2a = handleGetFullyQualifiedInterceptorName();
+            afullyQualifiedInterceptorName2a = handleGetFullyQualifiedInterceptorName();
             // fullyQualifiedInterceptorName has no post constraints
-            this.__fullyQualifiedInterceptorName2a = fullyQualifiedInterceptorName2a;
+            this.fullyQualifiedInterceptorName2a = afullyQualifiedInterceptorName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedInterceptorName2aSet = true;
+                this.fullyQualifiedInterceptorName2aSet = true;
             }
         }
-        return fullyQualifiedInterceptorName2a;
+        return afullyQualifiedInterceptorName2a;
     }
 
    /**
@@ -188,8 +191,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract Collection handleGetInterceptorReferences();
 
-    private Collection __interceptorReferences3a;
-    private boolean __interceptorReferences3aSet = false;
+    private Collection interceptorReferences3a;
+    private boolean interceptorReferences3aSet = false;
 
     /**
      * Returns the Collection of target elements from this interceptor class where  the target class
@@ -198,19 +201,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final Collection getInterceptorReferences()
     {
-        Collection interceptorReferences3a = this.__interceptorReferences3a;
-        if (!this.__interceptorReferences3aSet)
+        Collection ainterceptorReferences3a = this.interceptorReferences3a;
+        if (!this.interceptorReferences3aSet)
         {
             // interceptorReferences has no pre constraints
-            interceptorReferences3a = handleGetInterceptorReferences();
+            ainterceptorReferences3a = handleGetInterceptorReferences();
             // interceptorReferences has no post constraints
-            this.__interceptorReferences3a = interceptorReferences3a;
+            this.interceptorReferences3a = ainterceptorReferences3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interceptorReferences3aSet = true;
+                this.interceptorReferences3aSet = true;
             }
         }
-        return interceptorReferences3a;
+        return ainterceptorReferences3a;
     }
 
    /**
@@ -219,8 +222,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract boolean handleIsDefaultInterceptor();
 
-    private boolean __defaultInterceptor4a;
-    private boolean __defaultInterceptor4aSet = false;
+    private boolean defaultInterceptor4a;
+    private boolean defaultInterceptor4aSet = false;
 
     /**
      * Returns true if this interceptor is a default interceptor.
@@ -228,19 +231,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final boolean isDefaultInterceptor()
     {
-        boolean defaultInterceptor4a = this.__defaultInterceptor4a;
-        if (!this.__defaultInterceptor4aSet)
+        boolean adefaultInterceptor4a = this.defaultInterceptor4a;
+        if (!this.defaultInterceptor4aSet)
         {
             // defaultInterceptor has no pre constraints
-            defaultInterceptor4a = handleIsDefaultInterceptor();
+            adefaultInterceptor4a = handleIsDefaultInterceptor();
             // defaultInterceptor has no post constraints
-            this.__defaultInterceptor4a = defaultInterceptor4a;
+            this.defaultInterceptor4a = adefaultInterceptor4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__defaultInterceptor4aSet = true;
+                this.defaultInterceptor4aSet = true;
             }
         }
-        return defaultInterceptor4a;
+        return adefaultInterceptor4a;
     }
 
     /**
@@ -313,7 +316,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperService().getAllProperties();
     }
@@ -323,7 +326,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperService().getAllRequiredConstructorParameters();
     }
@@ -380,7 +383,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperService().getAttributes(follow);
     }
@@ -477,7 +480,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperService().getNavigableConnectingEnds(follow);
     }
@@ -518,7 +521,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperService().getProperties();
     }
@@ -539,7 +542,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperService().getRequiredConstructorParameters();
     }
@@ -938,7 +941,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperService().findTaggedValues(tagName);
     }
@@ -968,7 +971,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperService().getConstraints(kind);
     }

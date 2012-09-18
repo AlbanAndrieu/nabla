@@ -17,17 +17,20 @@ public abstract class EJB3WebServiceOperationFacadeLogic
     extends EJB3SessionOperationFacadeLogicImpl
     implements EJB3WebServiceOperationFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3WebServiceOperationFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3WebServiceOperationFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.metaObject = metaObjectIn;
@@ -77,8 +80,8 @@ public abstract class EJB3WebServiceOperationFacadeLogic
     */
     protected abstract boolean handleIsExposed();
 
-    private boolean __exposed1a;
-    private boolean __exposed1aSet = false;
+    private boolean exposed1a;
+    private boolean exposed1aSet = false;
 
     /**
      * Returns true/false depending on whether or not this web service operation is exposed.
@@ -86,19 +89,19 @@ public abstract class EJB3WebServiceOperationFacadeLogic
      */
     public final boolean isExposed()
     {
-        boolean exposed1a = this.__exposed1a;
-        if (!this.__exposed1aSet)
+        boolean aexposed1a = this.exposed1a;
+        if (!this.exposed1aSet)
         {
             // exposed has no pre constraints
-            exposed1a = handleIsExposed();
+            aexposed1a = handleIsExposed();
             // exposed has no post constraints
-            this.__exposed1a = exposed1a;
+            this.exposed1a = aexposed1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__exposed1aSet = true;
+                this.exposed1aSet = true;
             }
         }
-        return exposed1a;
+        return aexposed1a;
     }
 
    /**
@@ -107,8 +110,8 @@ public abstract class EJB3WebServiceOperationFacadeLogic
     */
     protected abstract boolean handleIsOneway();
 
-    private boolean __oneway2a;
-    private boolean __oneway2aSet = false;
+    private boolean oneway2a;
+    private boolean oneway2aSet = false;
 
     /**
      * Specifies that this webservice operation has only an input message and no output. Typically,
@@ -120,19 +123,19 @@ public abstract class EJB3WebServiceOperationFacadeLogic
      */
     public final boolean isOneway()
     {
-        boolean oneway2a = this.__oneway2a;
-        if (!this.__oneway2aSet)
+        boolean aoneway2a = this.oneway2a;
+        if (!this.oneway2aSet)
         {
             // oneway has no pre constraints
-            oneway2a = handleIsOneway();
+            aoneway2a = handleIsOneway();
             // oneway has no post constraints
-            this.__oneway2a = oneway2a;
+            this.oneway2a = aoneway2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__oneway2aSet = true;
+                this.oneway2aSet = true;
             }
         }
-        return oneway2a;
+        return aoneway2a;
     }
 
    /**
@@ -141,8 +144,8 @@ public abstract class EJB3WebServiceOperationFacadeLogic
     */
     protected abstract String handleGetMethodName();
 
-    private String __methodName3a;
-    private boolean __methodName3aSet = false;
+    private String methodName3a;
+    private boolean methodName3aSet = false;
 
     /**
      * Returns the webMethod operation name.
@@ -150,19 +153,19 @@ public abstract class EJB3WebServiceOperationFacadeLogic
      */
     public final String getMethodName()
     {
-        String methodName3a = this.__methodName3a;
-        if (!this.__methodName3aSet)
+        String amethodName3a = this.methodName3a;
+        if (!this.methodName3aSet)
         {
             // methodName has no pre constraints
-            methodName3a = handleGetMethodName();
+            amethodName3a = handleGetMethodName();
             // methodName has no post constraints
-            this.__methodName3a = methodName3a;
+            this.methodName3a = amethodName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__methodName3aSet = true;
+                this.methodName3aSet = true;
             }
         }
-        return methodName3a;
+        return amethodName3a;
     }
 
    /**
@@ -171,8 +174,8 @@ public abstract class EJB3WebServiceOperationFacadeLogic
     */
     protected abstract String handleGetResultName();
 
-    private String __resultName4a;
-    private boolean __resultName4aSet = false;
+    private String resultName4a;
+    private boolean resultName4aSet = false;
 
     /**
      * Returns the webResult name.
@@ -180,19 +183,19 @@ public abstract class EJB3WebServiceOperationFacadeLogic
      */
     public final String getResultName()
     {
-        String resultName4a = this.__resultName4a;
-        if (!this.__resultName4aSet)
+        String aresultName4a = this.resultName4a;
+        if (!this.resultName4aSet)
         {
             // resultName has no pre constraints
-            resultName4a = handleGetResultName();
+            aresultName4a = handleGetResultName();
             // resultName has no post constraints
-            this.__resultName4a = resultName4a;
+            this.resultName4a = aresultName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__resultName4aSet = true;
+                this.resultName4aSet = true;
             }
         }
-        return resultName4a;
+        return aresultName4a;
     }
 
     // ---------------- business methods ----------------------

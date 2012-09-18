@@ -36,17 +36,20 @@ public abstract class AssociationTableLogic
     extends MetafacadeBase
     implements AssociationTable
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected AssociationTableLogic(Object metaObjectIn, String context)
+    protected AssociationTableLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEntityAssociation =
@@ -61,7 +64,7 @@ public abstract class AssociationTableLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(AssociationTableLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(AssociationTableLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -129,8 +132,8 @@ public abstract class AssociationTableLogic
     */
     protected abstract String handleGetPrimaryKeyColumns();
 
-    private String __primaryKeyColumns1a;
-    private boolean __primaryKeyColumns1aSet = false;
+    private String primaryKeyColumns1a;
+    private boolean primaryKeyColumns1aSet = false;
 
     /**
      * A comma seperated list of primary key columns.
@@ -138,19 +141,19 @@ public abstract class AssociationTableLogic
      */
     public final String getPrimaryKeyColumns()
     {
-        String primaryKeyColumns1a = this.__primaryKeyColumns1a;
-        if (!this.__primaryKeyColumns1aSet)
+        String aprimaryKeyColumns1a = this.primaryKeyColumns1a;
+        if (!this.primaryKeyColumns1aSet)
         {
             // primaryKeyColumns has no pre constraints
-            primaryKeyColumns1a = handleGetPrimaryKeyColumns();
+            aprimaryKeyColumns1a = handleGetPrimaryKeyColumns();
             // primaryKeyColumns has no post constraints
-            this.__primaryKeyColumns1a = primaryKeyColumns1a;
+            this.primaryKeyColumns1a = aprimaryKeyColumns1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__primaryKeyColumns1aSet = true;
+                this.primaryKeyColumns1aSet = true;
             }
         }
-        return primaryKeyColumns1a;
+        return aprimaryKeyColumns1a;
     }
 
    /**
@@ -159,8 +162,8 @@ public abstract class AssociationTableLogic
     */
     protected abstract String handleGetPrimaryKeyConstraintName();
 
-    private String __primaryKeyConstraintName2a;
-    private boolean __primaryKeyConstraintName2aSet = false;
+    private String primaryKeyConstraintName2a;
+    private boolean primaryKeyConstraintName2aSet = false;
 
     /**
      * The name of the primary key constraint for this table.
@@ -168,19 +171,19 @@ public abstract class AssociationTableLogic
      */
     public final String getPrimaryKeyConstraintName()
     {
-        String primaryKeyConstraintName2a = this.__primaryKeyConstraintName2a;
-        if (!this.__primaryKeyConstraintName2aSet)
+        String aprimaryKeyConstraintName2a = this.primaryKeyConstraintName2a;
+        if (!this.primaryKeyConstraintName2aSet)
         {
             // primaryKeyConstraintName has no pre constraints
-            primaryKeyConstraintName2a = handleGetPrimaryKeyConstraintName();
+            aprimaryKeyConstraintName2a = handleGetPrimaryKeyConstraintName();
             // primaryKeyConstraintName has no post constraints
-            this.__primaryKeyConstraintName2a = primaryKeyConstraintName2a;
+            this.primaryKeyConstraintName2a = aprimaryKeyConstraintName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__primaryKeyConstraintName2aSet = true;
+                this.primaryKeyConstraintName2aSet = true;
             }
         }
-        return primaryKeyConstraintName2a;
+        return aprimaryKeyConstraintName2a;
     }
 
    /**
@@ -189,8 +192,8 @@ public abstract class AssociationTableLogic
     */
     protected abstract boolean handleIsForeignKeyColumnsPresent();
 
-    private boolean __foreignKeyColumnsPresent3a;
-    private boolean __foreignKeyColumnsPresent3aSet = false;
+    private boolean foreignKeyColumnsPresent3a;
+    private boolean foreignKeyColumnsPresent3aSet = false;
 
     /**
      * Are there foreign key columns present in this table?
@@ -198,25 +201,25 @@ public abstract class AssociationTableLogic
      */
     public final boolean isForeignKeyColumnsPresent()
     {
-        boolean foreignKeyColumnsPresent3a = this.__foreignKeyColumnsPresent3a;
-        if (!this.__foreignKeyColumnsPresent3aSet)
+        boolean aforeignKeyColumnsPresent3a = this.foreignKeyColumnsPresent3a;
+        if (!this.foreignKeyColumnsPresent3aSet)
         {
             // foreignKeyColumnsPresent has no pre constraints
-            foreignKeyColumnsPresent3a = handleIsForeignKeyColumnsPresent();
+            aforeignKeyColumnsPresent3a = handleIsForeignKeyColumnsPresent();
             // foreignKeyColumnsPresent has no post constraints
-            this.__foreignKeyColumnsPresent3a = foreignKeyColumnsPresent3a;
+            this.foreignKeyColumnsPresent3a = aforeignKeyColumnsPresent3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__foreignKeyColumnsPresent3aSet = true;
+                this.foreignKeyColumnsPresent3aSet = true;
             }
         }
-        return foreignKeyColumnsPresent3a;
+        return aforeignKeyColumnsPresent3a;
     }
 
     // ------------- associations ------------------
 
-    private Collection<ForeignKeyColumn> __getForeignKeyColumns1r;
-    private boolean __getForeignKeyColumns1rSet = false;
+    private Collection<ForeignKeyColumn> getForeignKeyColumns1r;
+    private boolean getForeignKeyColumns1rSet = false;
 
     /**
      * 
@@ -224,8 +227,8 @@ public abstract class AssociationTableLogic
      */
     public final Collection<ForeignKeyColumn> getForeignKeyColumns()
     {
-        Collection<ForeignKeyColumn> getForeignKeyColumns1r = this.__getForeignKeyColumns1r;
-        if (!this.__getForeignKeyColumns1rSet)
+        Collection<ForeignKeyColumn> getForeignKeyColumns1r = this.getForeignKeyColumns1r;
+        if (!this.getForeignKeyColumns1rSet)
         {
             // associationTable has no pre constraints
             Collection result = handleGetForeignKeyColumns();
@@ -237,13 +240,13 @@ public abstract class AssociationTableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                AssociationTableLogic.logger.warn("incorrect metafacade cast for AssociationTableLogic.getForeignKeyColumns Collection<ForeignKeyColumn> " + result + ": " + shieldedResult);
+                AssociationTableLogic.LOGGER.warn("incorrect metafacade cast for AssociationTableLogic.getForeignKeyColumns Collection<ForeignKeyColumn> " + result + ": " + shieldedResult);
             }
             // associationTable has no post constraints
-            this.__getForeignKeyColumns1r = getForeignKeyColumns1r;
+            this.getForeignKeyColumns1r = getForeignKeyColumns1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getForeignKeyColumns1rSet = true;
+                this.getForeignKeyColumns1rSet = true;
             }
         }
         return getForeignKeyColumns1r;

@@ -17,17 +17,20 @@ public abstract class EJB3WebServiceFacadeLogic
     extends EJB3SessionFacadeLogicImpl
     implements EJB3WebServiceFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3WebServiceFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3WebServiceFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.metaObject = metaObjectIn;
@@ -77,8 +80,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedWebServiceInterfaceName();
 
-    private String __fullyQualifiedWebServiceInterfaceName1a;
-    private boolean __fullyQualifiedWebServiceInterfaceName1aSet = false;
+    private String fullyQualifiedWebServiceInterfaceName1a;
+    private boolean fullyQualifiedWebServiceInterfaceName1aSet = false;
 
     /**
      * Returns the fully qualified interface name for this web service.
@@ -86,19 +89,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getFullyQualifiedWebServiceInterfaceName()
     {
-        String fullyQualifiedWebServiceInterfaceName1a = this.__fullyQualifiedWebServiceInterfaceName1a;
-        if (!this.__fullyQualifiedWebServiceInterfaceName1aSet)
+        String afullyQualifiedWebServiceInterfaceName1a = this.fullyQualifiedWebServiceInterfaceName1a;
+        if (!this.fullyQualifiedWebServiceInterfaceName1aSet)
         {
             // fullyQualifiedWebServiceInterfaceName has no pre constraints
-            fullyQualifiedWebServiceInterfaceName1a = handleGetFullyQualifiedWebServiceInterfaceName();
+            afullyQualifiedWebServiceInterfaceName1a = handleGetFullyQualifiedWebServiceInterfaceName();
             // fullyQualifiedWebServiceInterfaceName has no post constraints
-            this.__fullyQualifiedWebServiceInterfaceName1a = fullyQualifiedWebServiceInterfaceName1a;
+            this.fullyQualifiedWebServiceInterfaceName1a = afullyQualifiedWebServiceInterfaceName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedWebServiceInterfaceName1aSet = true;
+                this.fullyQualifiedWebServiceInterfaceName1aSet = true;
             }
         }
-        return fullyQualifiedWebServiceInterfaceName1a;
+        return afullyQualifiedWebServiceInterfaceName1a;
     }
 
    /**
@@ -107,8 +110,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetWebServiceInterfaceName();
 
-    private String __webServiceInterfaceName2a;
-    private boolean __webServiceInterfaceName2aSet = false;
+    private String webServiceInterfaceName2a;
+    private boolean webServiceInterfaceName2aSet = false;
 
     /**
      * Returns the web service interface name for with web service.
@@ -116,19 +119,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getWebServiceInterfaceName()
     {
-        String webServiceInterfaceName2a = this.__webServiceInterfaceName2a;
-        if (!this.__webServiceInterfaceName2aSet)
+        String awebServiceInterfaceName2a = this.webServiceInterfaceName2a;
+        if (!this.webServiceInterfaceName2aSet)
         {
             // webServiceInterfaceName has no pre constraints
-            webServiceInterfaceName2a = handleGetWebServiceInterfaceName();
+            awebServiceInterfaceName2a = handleGetWebServiceInterfaceName();
             // webServiceInterfaceName has no post constraints
-            this.__webServiceInterfaceName2a = webServiceInterfaceName2a;
+            this.webServiceInterfaceName2a = awebServiceInterfaceName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__webServiceInterfaceName2aSet = true;
+                this.webServiceInterfaceName2aSet = true;
             }
         }
-        return webServiceInterfaceName2a;
+        return awebServiceInterfaceName2a;
     }
 
    /**
@@ -137,8 +140,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetStyle();
 
-    private String __style3a;
-    private boolean __style3aSet = false;
+    private String style3a;
+    private boolean style3aSet = false;
 
     /**
      * Defines the encoding binding style for messages send to and from the Web Service.  Can be one
@@ -147,19 +150,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getStyle()
     {
-        String style3a = this.__style3a;
-        if (!this.__style3aSet)
+        String astyle3a = this.style3a;
+        if (!this.style3aSet)
         {
             // style has no pre constraints
-            style3a = handleGetStyle();
+            astyle3a = handleGetStyle();
             // style has no post constraints
-            this.__style3a = style3a;
+            this.style3a = astyle3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__style3aSet = true;
+                this.style3aSet = true;
             }
         }
-        return style3a;
+        return astyle3a;
     }
 
    /**
@@ -168,8 +171,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetUse();
 
-    private String __use4a;
-    private boolean __use4aSet = false;
+    private String use4a;
+    private boolean use4aSet = false;
 
     /**
      * Defines the formatting style for messages sent to and from the Web Service.  Can be one of
@@ -178,19 +181,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getUse()
     {
-        String use4a = this.__use4a;
-        if (!this.__use4aSet)
+        String ause4a = this.use4a;
+        if (!this.use4aSet)
         {
             // use has no pre constraints
-            use4a = handleGetUse();
+            ause4a = handleGetUse();
             // use has no post constraints
-            this.__use4a = use4a;
+            this.use4a = ause4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__use4aSet = true;
+                this.use4aSet = true;
             }
         }
-        return use4a;
+        return ause4a;
     }
 
    /**
@@ -199,8 +202,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsRpcStyle();
 
-    private boolean __rpcStyle5a;
-    private boolean __rpcStyle5aSet = false;
+    private boolean rpcStyle5a;
+    private boolean rpcStyle5aSet = false;
 
     /**
      * Indicates whether or not this service is "rpc" style.
@@ -208,19 +211,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isRpcStyle()
     {
-        boolean rpcStyle5a = this.__rpcStyle5a;
-        if (!this.__rpcStyle5aSet)
+        boolean arpcStyle5a = this.rpcStyle5a;
+        if (!this.rpcStyle5aSet)
         {
             // rpcStyle has no pre constraints
-            rpcStyle5a = handleIsRpcStyle();
+            arpcStyle5a = handleIsRpcStyle();
             // rpcStyle has no post constraints
-            this.__rpcStyle5a = rpcStyle5a;
+            this.rpcStyle5a = arpcStyle5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__rpcStyle5aSet = true;
+                this.rpcStyle5aSet = true;
             }
         }
-        return rpcStyle5a;
+        return arpcStyle5a;
     }
 
    /**
@@ -229,8 +232,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsDocumentStyle();
 
-    private boolean __documentStyle6a;
-    private boolean __documentStyle6aSet = false;
+    private boolean documentStyle6a;
+    private boolean documentStyle6aSet = false;
 
     /**
      * Indicates whether or not this service is "document" style
@@ -238,19 +241,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isDocumentStyle()
     {
-        boolean documentStyle6a = this.__documentStyle6a;
-        if (!this.__documentStyle6aSet)
+        boolean adocumentStyle6a = this.documentStyle6a;
+        if (!this.documentStyle6aSet)
         {
             // documentStyle has no pre constraints
-            documentStyle6a = handleIsDocumentStyle();
+            adocumentStyle6a = handleIsDocumentStyle();
             // documentStyle has no post constraints
-            this.__documentStyle6a = documentStyle6a;
+            this.documentStyle6a = adocumentStyle6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__documentStyle6aSet = true;
+                this.documentStyle6aSet = true;
             }
         }
-        return documentStyle6a;
+        return adocumentStyle6a;
     }
 
    /**
@@ -259,8 +262,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsEncodedUse();
 
-    private boolean __encodedUse7a;
-    private boolean __encodedUse7aSet = false;
+    private boolean encodedUse7a;
+    private boolean encodedUse7aSet = false;
 
     /**
      * Indicates whether or not this web service has a "encoded" use defined.
@@ -268,19 +271,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isEncodedUse()
     {
-        boolean encodedUse7a = this.__encodedUse7a;
-        if (!this.__encodedUse7aSet)
+        boolean aencodedUse7a = this.encodedUse7a;
+        if (!this.encodedUse7aSet)
         {
             // encodedUse has no pre constraints
-            encodedUse7a = handleIsEncodedUse();
+            aencodedUse7a = handleIsEncodedUse();
             // encodedUse has no post constraints
-            this.__encodedUse7a = encodedUse7a;
+            this.encodedUse7a = aencodedUse7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__encodedUse7aSet = true;
+                this.encodedUse7aSet = true;
             }
         }
-        return encodedUse7a;
+        return aencodedUse7a;
     }
 
    /**
@@ -289,8 +292,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsLiteralUse();
 
-    private boolean __literalUse8a;
-    private boolean __literalUse8aSet = false;
+    private boolean literalUse8a;
+    private boolean literalUse8aSet = false;
 
     /**
      * Indicates whether or not this web service has a "literal" use defined.
@@ -298,19 +301,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isLiteralUse()
     {
-        boolean literalUse8a = this.__literalUse8a;
-        if (!this.__literalUse8aSet)
+        boolean aliteralUse8a = this.literalUse8a;
+        if (!this.literalUse8aSet)
         {
             // literalUse has no pre constraints
-            literalUse8a = handleIsLiteralUse();
+            aliteralUse8a = handleIsLiteralUse();
             // literalUse has no post constraints
-            this.__literalUse8a = literalUse8a;
+            this.literalUse8a = aliteralUse8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__literalUse8aSet = true;
+                this.literalUse8aSet = true;
             }
         }
-        return literalUse8a;
+        return aliteralUse8a;
     }
 
    /**
@@ -319,8 +322,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsWebServiceOperationsExist();
 
-    private boolean __webServiceOperationsExist9a;
-    private boolean __webServiceOperationsExist9aSet = false;
+    private boolean webServiceOperationsExist9a;
+    private boolean webServiceOperationsExist9aSet = false;
 
     /**
      * 
@@ -328,19 +331,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isWebServiceOperationsExist()
     {
-        boolean webServiceOperationsExist9a = this.__webServiceOperationsExist9a;
-        if (!this.__webServiceOperationsExist9aSet)
+        boolean awebServiceOperationsExist9a = this.webServiceOperationsExist9a;
+        if (!this.webServiceOperationsExist9aSet)
         {
             // webServiceOperationsExist has no pre constraints
-            webServiceOperationsExist9a = handleIsWebServiceOperationsExist();
+            awebServiceOperationsExist9a = handleIsWebServiceOperationsExist();
             // webServiceOperationsExist has no post constraints
-            this.__webServiceOperationsExist9a = webServiceOperationsExist9a;
+            this.webServiceOperationsExist9a = awebServiceOperationsExist9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__webServiceOperationsExist9aSet = true;
+                this.webServiceOperationsExist9aSet = true;
             }
         }
-        return webServiceOperationsExist9a;
+        return awebServiceOperationsExist9a;
     }
 
    /**
@@ -349,8 +352,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsWrappedParameterStyle();
 
-    private boolean __wrappedParameterStyle10a;
-    private boolean __wrappedParameterStyle10aSet = false;
+    private boolean wrappedParameterStyle10a;
+    private boolean wrappedParameterStyle10aSet = false;
 
     /**
      * Indicates whether or not this service parameter is "wrapped" style.
@@ -358,19 +361,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isWrappedParameterStyle()
     {
-        boolean wrappedParameterStyle10a = this.__wrappedParameterStyle10a;
-        if (!this.__wrappedParameterStyle10aSet)
+        boolean awrappedParameterStyle10a = this.wrappedParameterStyle10a;
+        if (!this.wrappedParameterStyle10aSet)
         {
             // wrappedParameterStyle has no pre constraints
-            wrappedParameterStyle10a = handleIsWrappedParameterStyle();
+            awrappedParameterStyle10a = handleIsWrappedParameterStyle();
             // wrappedParameterStyle has no post constraints
-            this.__wrappedParameterStyle10a = wrappedParameterStyle10a;
+            this.wrappedParameterStyle10a = awrappedParameterStyle10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__wrappedParameterStyle10aSet = true;
+                this.wrappedParameterStyle10aSet = true;
             }
         }
-        return wrappedParameterStyle10a;
+        return awrappedParameterStyle10a;
     }
 
    /**
@@ -379,8 +382,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract boolean handleIsBareParameterStyle();
 
-    private boolean __bareParameterStyle11a;
-    private boolean __bareParameterStyle11aSet = false;
+    private boolean bareParameterStyle11a;
+    private boolean bareParameterStyle11aSet = false;
 
     /**
      * Indicates whether or not this service parameter is "bare" style.
@@ -388,19 +391,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final boolean isBareParameterStyle()
     {
-        boolean bareParameterStyle11a = this.__bareParameterStyle11a;
-        if (!this.__bareParameterStyle11aSet)
+        boolean abareParameterStyle11a = this.bareParameterStyle11a;
+        if (!this.bareParameterStyle11aSet)
         {
             // bareParameterStyle has no pre constraints
-            bareParameterStyle11a = handleIsBareParameterStyle();
+            abareParameterStyle11a = handleIsBareParameterStyle();
             // bareParameterStyle has no post constraints
-            this.__bareParameterStyle11a = bareParameterStyle11a;
+            this.bareParameterStyle11a = abareParameterStyle11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__bareParameterStyle11aSet = true;
+                this.bareParameterStyle11aSet = true;
             }
         }
-        return bareParameterStyle11a;
+        return abareParameterStyle11a;
     }
 
    /**
@@ -409,8 +412,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetParameterStyle();
 
-    private String __parameterStyle12a;
-    private boolean __parameterStyle12aSet = false;
+    private String parameterStyle12a;
+    private boolean parameterStyle12aSet = false;
 
     /**
      * Determines whether method parameters represent the entire message body, or whether the
@@ -420,19 +423,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getParameterStyle()
     {
-        String parameterStyle12a = this.__parameterStyle12a;
-        if (!this.__parameterStyle12aSet)
+        String aparameterStyle12a = this.parameterStyle12a;
+        if (!this.parameterStyle12aSet)
         {
             // parameterStyle has no pre constraints
-            parameterStyle12a = handleGetParameterStyle();
+            aparameterStyle12a = handleGetParameterStyle();
             // parameterStyle has no post constraints
-            this.__parameterStyle12a = parameterStyle12a;
+            this.parameterStyle12a = aparameterStyle12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__parameterStyle12aSet = true;
+                this.parameterStyle12aSet = true;
             }
         }
-        return parameterStyle12a;
+        return aparameterStyle12a;
     }
 
    /**
@@ -441,8 +444,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetQName();
 
-    private String __qName13a;
-    private boolean __qName13aSet = false;
+    private String qName13a;
+    private boolean qName13aSet = false;
 
     /**
      * Returns the QName for this service.  Usually it will be the same name as the model element,
@@ -451,19 +454,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getQName()
     {
-        String qName13a = this.__qName13a;
-        if (!this.__qName13aSet)
+        String aqName13a = this.qName13a;
+        if (!this.qName13aSet)
         {
             // qName has no pre constraints
-            qName13a = handleGetQName();
+            aqName13a = handleGetQName();
             // qName has no post constraints
-            this.__qName13a = qName13a;
+            this.qName13a = aqName13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__qName13aSet = true;
+                this.qName13aSet = true;
             }
         }
-        return qName13a;
+        return aqName13a;
     }
 
    /**
@@ -472,8 +475,8 @@ public abstract class EJB3WebServiceFacadeLogic
     */
     protected abstract String handleGetNamespace();
 
-    private String __namespace14a;
-    private boolean __namespace14aSet = false;
+    private String namespace14a;
+    private boolean namespace14aSet = false;
 
     /**
      * The name of the target namespace to which this web service belongs.
@@ -481,19 +484,19 @@ public abstract class EJB3WebServiceFacadeLogic
      */
     public final String getNamespace()
     {
-        String namespace14a = this.__namespace14a;
-        if (!this.__namespace14aSet)
+        String anamespace14a = this.namespace14a;
+        if (!this.namespace14aSet)
         {
             // namespace has no pre constraints
-            namespace14a = handleGetNamespace();
+            anamespace14a = handleGetNamespace();
             // namespace has no post constraints
-            this.__namespace14a = namespace14a;
+            this.namespace14a = anamespace14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__namespace14aSet = true;
+                this.namespace14aSet = true;
             }
         }
-        return namespace14a;
+        return anamespace14a;
     }
 
     /**

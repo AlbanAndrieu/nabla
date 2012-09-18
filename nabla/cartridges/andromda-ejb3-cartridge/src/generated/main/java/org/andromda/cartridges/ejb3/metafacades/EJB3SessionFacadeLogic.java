@@ -41,17 +41,20 @@ public abstract class EJB3SessionFacadeLogic
     extends MetafacadeBase
     implements EJB3SessionFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3SessionFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3SessionFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superService =
@@ -66,7 +69,7 @@ public abstract class EJB3SessionFacadeLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(EJB3SessionFacadeLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(EJB3SessionFacadeLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -134,8 +137,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsSyntheticCreateMethodAllowed();
 
-    private boolean __syntheticCreateMethodAllowed1a;
-    private boolean __syntheticCreateMethodAllowed1aSet = false;
+    private boolean syntheticCreateMethodAllowed1a;
+    private boolean syntheticCreateMethodAllowed1aSet = false;
 
     /**
      * Whether or not to allow a synthetic (auto generated) create method.
@@ -143,19 +146,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isSyntheticCreateMethodAllowed()
     {
-        boolean syntheticCreateMethodAllowed1a = this.__syntheticCreateMethodAllowed1a;
-        if (!this.__syntheticCreateMethodAllowed1aSet)
+        boolean asyntheticCreateMethodAllowed1a = this.syntheticCreateMethodAllowed1a;
+        if (!this.syntheticCreateMethodAllowed1aSet)
         {
             // syntheticCreateMethodAllowed has no pre constraints
-            syntheticCreateMethodAllowed1a = handleIsSyntheticCreateMethodAllowed();
+            asyntheticCreateMethodAllowed1a = handleIsSyntheticCreateMethodAllowed();
             // syntheticCreateMethodAllowed has no post constraints
-            this.__syntheticCreateMethodAllowed1a = syntheticCreateMethodAllowed1a;
+            this.syntheticCreateMethodAllowed1a = asyntheticCreateMethodAllowed1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__syntheticCreateMethodAllowed1aSet = true;
+                this.syntheticCreateMethodAllowed1aSet = true;
             }
         }
-        return syntheticCreateMethodAllowed1a;
+        return asyntheticCreateMethodAllowed1a;
     }
 
    /**
@@ -164,8 +167,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetBusinessOperations();
 
-    private Collection __businessOperations2a;
-    private boolean __businessOperations2aSet = false;
+    private Collection businessOperations2a;
+    private boolean businessOperations2aSet = false;
 
     /**
      * All "business" operations for this Session EJB.  These are any operations that are NOT
@@ -174,19 +177,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getBusinessOperations()
     {
-        Collection businessOperations2a = this.__businessOperations2a;
-        if (!this.__businessOperations2aSet)
+        Collection abusinessOperations2a = this.businessOperations2a;
+        if (!this.businessOperations2aSet)
         {
             // businessOperations has no pre constraints
-            businessOperations2a = handleGetBusinessOperations();
+            abusinessOperations2a = handleGetBusinessOperations();
             // businessOperations has no post constraints
-            this.__businessOperations2a = businessOperations2a;
+            this.businessOperations2a = abusinessOperations2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__businessOperations2aSet = true;
+                this.businessOperations2aSet = true;
             }
         }
-        return businessOperations2a;
+        return abusinessOperations2a;
     }
 
    /**
@@ -195,8 +198,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract List handleGetAllInstanceAttributes();
 
-    private List __allInstanceAttributes3a;
-    private boolean __allInstanceAttributes3aSet = false;
+    private List allInstanceAttributes3a;
+    private boolean allInstanceAttributes3aSet = false;
 
     /**
      * All instanceAttributes for this session EJB. The list includes the instanceAttributes that
@@ -206,19 +209,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final List getAllInstanceAttributes()
     {
-        List allInstanceAttributes3a = this.__allInstanceAttributes3a;
-        if (!this.__allInstanceAttributes3aSet)
+        List aallInstanceAttributes3a = this.allInstanceAttributes3a;
+        if (!this.allInstanceAttributes3aSet)
         {
             // allInstanceAttributes has no pre constraints
-            allInstanceAttributes3a = handleGetAllInstanceAttributes();
+            aallInstanceAttributes3a = handleGetAllInstanceAttributes();
             // allInstanceAttributes has no post constraints
-            this.__allInstanceAttributes3a = allInstanceAttributes3a;
+            this.allInstanceAttributes3a = aallInstanceAttributes3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__allInstanceAttributes3aSet = true;
+                this.allInstanceAttributes3aSet = true;
             }
         }
-        return allInstanceAttributes3a;
+        return aallInstanceAttributes3a;
     }
 
    /**
@@ -227,8 +230,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract List handleGetInheritedInstanceAttributes();
 
-    private List __inheritedInstanceAttributes4a;
-    private boolean __inheritedInstanceAttributes4aSet = false;
+    private List inheritedInstanceAttributes4a;
+    private boolean inheritedInstanceAttributes4aSet = false;
 
     /**
      * Alll inherited instanceAttributes this session EJB.  The instanceAttributes are grouped by
@@ -238,19 +241,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final List getInheritedInstanceAttributes()
     {
-        List inheritedInstanceAttributes4a = this.__inheritedInstanceAttributes4a;
-        if (!this.__inheritedInstanceAttributes4aSet)
+        List ainheritedInstanceAttributes4a = this.inheritedInstanceAttributes4a;
+        if (!this.inheritedInstanceAttributes4aSet)
         {
             // inheritedInstanceAttributes has no pre constraints
-            inheritedInstanceAttributes4a = handleGetInheritedInstanceAttributes();
+            ainheritedInstanceAttributes4a = handleGetInheritedInstanceAttributes();
             // inheritedInstanceAttributes has no post constraints
-            this.__inheritedInstanceAttributes4a = inheritedInstanceAttributes4a;
+            this.inheritedInstanceAttributes4a = ainheritedInstanceAttributes4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inheritedInstanceAttributes4aSet = true;
+                this.inheritedInstanceAttributes4aSet = true;
             }
         }
-        return inheritedInstanceAttributes4a;
+        return ainheritedInstanceAttributes4a;
     }
 
    /**
@@ -259,8 +262,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetJndiNameRemote();
 
-    private String __jndiNameRemote5a;
-    private boolean __jndiNameRemote5aSet = false;
+    private String jndiNameRemote5a;
+    private boolean jndiNameRemote5aSet = false;
 
     /**
      * The JNDI name to which this session EJB remote interface is bound.
@@ -268,19 +271,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getJndiNameRemote()
     {
-        String jndiNameRemote5a = this.__jndiNameRemote5a;
-        if (!this.__jndiNameRemote5aSet)
+        String ajndiNameRemote5a = this.jndiNameRemote5a;
+        if (!this.jndiNameRemote5aSet)
         {
             // jndiNameRemote has no pre constraints
-            jndiNameRemote5a = handleGetJndiNameRemote();
+            ajndiNameRemote5a = handleGetJndiNameRemote();
             // jndiNameRemote has no post constraints
-            this.__jndiNameRemote5a = jndiNameRemote5a;
+            this.jndiNameRemote5a = ajndiNameRemote5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__jndiNameRemote5aSet = true;
+                this.jndiNameRemote5aSet = true;
             }
         }
-        return jndiNameRemote5a;
+        return ajndiNameRemote5a;
     }
 
    /**
@@ -289,8 +292,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsStateful();
 
-    private boolean __stateful6a;
-    private boolean __stateful6aSet = false;
+    private boolean stateful6a;
+    private boolean stateful6aSet = false;
 
     /**
      * True/false depending on whether or not this Session EJB is stateful or not.
@@ -298,19 +301,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isStateful()
     {
-        boolean stateful6a = this.__stateful6a;
-        if (!this.__stateful6aSet)
+        boolean astateful6a = this.stateful6a;
+        if (!this.stateful6aSet)
         {
             // stateful has no pre constraints
-            stateful6a = handleIsStateful();
+            astateful6a = handleIsStateful();
             // stateful has no post constraints
-            this.__stateful6a = stateful6a;
+            this.stateful6a = astateful6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__stateful6aSet = true;
+                this.stateful6aSet = true;
             }
         }
-        return stateful6a;
+        return astateful6a;
     }
 
    /**
@@ -319,8 +322,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsStateless();
 
-    private boolean __stateless7a;
-    private boolean __stateless7aSet = false;
+    private boolean stateless7a;
+    private boolean stateless7aSet = false;
 
     /**
      * True/false depending on whether or not this Session EJB is stateless or not.
@@ -328,19 +331,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isStateless()
     {
-        boolean stateless7a = this.__stateless7a;
-        if (!this.__stateless7aSet)
+        boolean astateless7a = this.stateless7a;
+        if (!this.stateless7aSet)
         {
             // stateless has no pre constraints
-            stateless7a = handleIsStateless();
+            astateless7a = handleIsStateless();
             // stateless has no post constraints
-            this.__stateless7a = stateless7a;
+            this.stateless7a = astateless7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__stateless7aSet = true;
+                this.stateless7aSet = true;
             }
         }
-        return stateless7a;
+        return astateless7a;
     }
 
    /**
@@ -349,8 +352,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetType();
 
-    private String __type8a;
-    private boolean __type8aSet = false;
+    private String type8a;
+    private boolean type8aSet = false;
 
     /**
      * Returns the name of the type of this Session EJB, either Stateless or Stateful.
@@ -358,19 +361,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getType()
     {
-        String type8a = this.__type8a;
-        if (!this.__type8aSet)
+        String atype8a = this.type8a;
+        if (!this.type8aSet)
         {
             // type has no pre constraints
-            type8a = handleGetType();
+            atype8a = handleGetType();
             // type has no post constraints
-            this.__type8a = type8a;
+            this.type8a = atype8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__type8aSet = true;
+                this.type8aSet = true;
             }
         }
-        return type8a;
+        return atype8a;
     }
 
    /**
@@ -379,8 +382,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetViewType();
 
-    private String __viewType9a;
-    private boolean __viewType9aSet = false;
+    private String viewType9a;
+    private boolean viewType9aSet = false;
 
     /**
      * A string indicating whether the Bean is a local or remotely accessable bean.
@@ -388,19 +391,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getViewType()
     {
-        String viewType9a = this.__viewType9a;
-        if (!this.__viewType9aSet)
+        String aviewType9a = this.viewType9a;
+        if (!this.viewType9aSet)
         {
             // viewType has no pre constraints
-            viewType9a = handleGetViewType();
+            aviewType9a = handleGetViewType();
             // viewType has no post constraints
-            this.__viewType9a = viewType9a;
+            this.viewType9a = aviewType9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewType9aSet = true;
+                this.viewType9aSet = true;
             }
         }
-        return viewType9a;
+        return aviewType9a;
     }
 
    /**
@@ -409,8 +412,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetHomeInterfaceName();
 
-    private String __homeInterfaceName10a;
-    private boolean __homeInterfaceName10aSet = false;
+    private String homeInterfaceName10a;
+    private boolean homeInterfaceName10aSet = false;
 
     /**
      * A String representing the name of a home interface for this entity EJB.
@@ -418,19 +421,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getHomeInterfaceName()
     {
-        String homeInterfaceName10a = this.__homeInterfaceName10a;
-        if (!this.__homeInterfaceName10aSet)
+        String ahomeInterfaceName10a = this.homeInterfaceName10a;
+        if (!this.homeInterfaceName10aSet)
         {
             // homeInterfaceName has no pre constraints
-            homeInterfaceName10a = handleGetHomeInterfaceName();
+            ahomeInterfaceName10a = handleGetHomeInterfaceName();
             // homeInterfaceName has no post constraints
-            this.__homeInterfaceName10a = homeInterfaceName10a;
+            this.homeInterfaceName10a = ahomeInterfaceName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__homeInterfaceName10aSet = true;
+                this.homeInterfaceName10aSet = true;
             }
         }
-        return homeInterfaceName10a;
+        return ahomeInterfaceName10a;
     }
 
    /**
@@ -439,8 +442,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetTransactionType();
 
-    private String __transactionType11a;
-    private boolean __transactionType11aSet = false;
+    private String transactionType11a;
+    private boolean transactionType11aSet = false;
 
     /**
      * Gets the transaction type for this service (i.e. REQUIRED, etc)
@@ -448,19 +451,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getTransactionType()
     {
-        String transactionType11a = this.__transactionType11a;
-        if (!this.__transactionType11aSet)
+        String atransactionType11a = this.transactionType11a;
+        if (!this.transactionType11aSet)
         {
             // transactionType has no pre constraints
-            transactionType11a = handleGetTransactionType();
+            atransactionType11a = handleGetTransactionType();
             // transactionType has no post constraints
-            this.__transactionType11a = transactionType11a;
+            this.transactionType11a = atransactionType11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionType11aSet = true;
+                this.transactionType11aSet = true;
             }
         }
-        return transactionType11a;
+        return atransactionType11a;
     }
 
    /**
@@ -469,8 +472,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceName();
 
-    private String __serviceName12a;
-    private boolean __serviceName12aSet = false;
+    private String serviceName12a;
+    private boolean serviceName12aSet = false;
 
     /**
      * Returns service bean name.
@@ -478,19 +481,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceName()
     {
-        String serviceName12a = this.__serviceName12a;
-        if (!this.__serviceName12aSet)
+        String aserviceName12a = this.serviceName12a;
+        if (!this.serviceName12aSet)
         {
             // serviceName has no pre constraints
-            serviceName12a = handleGetServiceName();
+            aserviceName12a = handleGetServiceName();
             // serviceName has no post constraints
-            this.__serviceName12a = serviceName12a;
+            this.serviceName12a = aserviceName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceName12aSet = true;
+                this.serviceName12aSet = true;
             }
         }
-        return serviceName12a;
+        return aserviceName12a;
     }
 
    /**
@@ -499,8 +502,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceLocalInterfaceName();
 
-    private String __serviceLocalInterfaceName13a;
-    private boolean __serviceLocalInterfaceName13aSet = false;
+    private String serviceLocalInterfaceName13a;
+    private boolean serviceLocalInterfaceName13aSet = false;
 
     /**
      * Returns the service bean local interface name.
@@ -508,19 +511,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceLocalInterfaceName()
     {
-        String serviceLocalInterfaceName13a = this.__serviceLocalInterfaceName13a;
-        if (!this.__serviceLocalInterfaceName13aSet)
+        String aserviceLocalInterfaceName13a = this.serviceLocalInterfaceName13a;
+        if (!this.serviceLocalInterfaceName13aSet)
         {
             // serviceLocalInterfaceName has no pre constraints
-            serviceLocalInterfaceName13a = handleGetServiceLocalInterfaceName();
+            aserviceLocalInterfaceName13a = handleGetServiceLocalInterfaceName();
             // serviceLocalInterfaceName has no post constraints
-            this.__serviceLocalInterfaceName13a = serviceLocalInterfaceName13a;
+            this.serviceLocalInterfaceName13a = aserviceLocalInterfaceName13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceLocalInterfaceName13aSet = true;
+                this.serviceLocalInterfaceName13aSet = true;
             }
         }
-        return serviceLocalInterfaceName13a;
+        return aserviceLocalInterfaceName13a;
     }
 
    /**
@@ -529,8 +532,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceRemoteInterfaceName();
 
-    private String __serviceRemoteInterfaceName14a;
-    private boolean __serviceRemoteInterfaceName14aSet = false;
+    private String serviceRemoteInterfaceName14a;
+    private boolean serviceRemoteInterfaceName14aSet = false;
 
     /**
      * Returns the service bean remote interface name.
@@ -538,19 +541,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceRemoteInterfaceName()
     {
-        String serviceRemoteInterfaceName14a = this.__serviceRemoteInterfaceName14a;
-        if (!this.__serviceRemoteInterfaceName14aSet)
+        String aserviceRemoteInterfaceName14a = this.serviceRemoteInterfaceName14a;
+        if (!this.serviceRemoteInterfaceName14aSet)
         {
             // serviceRemoteInterfaceName has no pre constraints
-            serviceRemoteInterfaceName14a = handleGetServiceRemoteInterfaceName();
+            aserviceRemoteInterfaceName14a = handleGetServiceRemoteInterfaceName();
             // serviceRemoteInterfaceName has no post constraints
-            this.__serviceRemoteInterfaceName14a = serviceRemoteInterfaceName14a;
+            this.serviceRemoteInterfaceName14a = aserviceRemoteInterfaceName14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceRemoteInterfaceName14aSet = true;
+                this.serviceRemoteInterfaceName14aSet = true;
             }
         }
-        return serviceRemoteInterfaceName14a;
+        return aserviceRemoteInterfaceName14a;
     }
 
    /**
@@ -559,8 +562,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceImplementationName();
 
-    private String __serviceImplementationName15a;
-    private boolean __serviceImplementationName15aSet = false;
+    private String serviceImplementationName15a;
+    private boolean serviceImplementationName15aSet = false;
 
     /**
      * Returns the service bean implementation name.
@@ -568,19 +571,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceImplementationName()
     {
-        String serviceImplementationName15a = this.__serviceImplementationName15a;
-        if (!this.__serviceImplementationName15aSet)
+        String aserviceImplementationName15a = this.serviceImplementationName15a;
+        if (!this.serviceImplementationName15aSet)
         {
             // serviceImplementationName has no pre constraints
-            serviceImplementationName15a = handleGetServiceImplementationName();
+            aserviceImplementationName15a = handleGetServiceImplementationName();
             // serviceImplementationName has no post constraints
-            this.__serviceImplementationName15a = serviceImplementationName15a;
+            this.serviceImplementationName15a = aserviceImplementationName15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceImplementationName15aSet = true;
+                this.serviceImplementationName15aSet = true;
             }
         }
-        return serviceImplementationName15a;
+        return aserviceImplementationName15a;
     }
 
    /**
@@ -589,8 +592,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceListenerName();
 
-    private String __serviceListenerName16a;
-    private boolean __serviceListenerName16aSet = false;
+    private String serviceListenerName16a;
+    private boolean serviceListenerName16aSet = false;
 
     /**
      * Returns the service bean callback listener name.
@@ -598,19 +601,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceListenerName()
     {
-        String serviceListenerName16a = this.__serviceListenerName16a;
-        if (!this.__serviceListenerName16aSet)
+        String aserviceListenerName16a = this.serviceListenerName16a;
+        if (!this.serviceListenerName16aSet)
         {
             // serviceListenerName has no pre constraints
-            serviceListenerName16a = handleGetServiceListenerName();
+            aserviceListenerName16a = handleGetServiceListenerName();
             // serviceListenerName has no post constraints
-            this.__serviceListenerName16a = serviceListenerName16a;
+            this.serviceListenerName16a = aserviceListenerName16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceListenerName16aSet = true;
+                this.serviceListenerName16aSet = true;
             }
         }
-        return serviceListenerName16a;
+        return aserviceListenerName16a;
     }
 
    /**
@@ -619,8 +622,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceImplementationName();
 
-    private String __fullyQualifiedServiceImplementationName17a;
-    private boolean __fullyQualifiedServiceImplementationName17aSet = false;
+    private String fullyQualifiedServiceImplementationName17a;
+    private boolean fullyQualifiedServiceImplementationName17aSet = false;
 
     /**
      * Returns the fully qualified service bean implementation name.
@@ -628,19 +631,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceImplementationName()
     {
-        String fullyQualifiedServiceImplementationName17a = this.__fullyQualifiedServiceImplementationName17a;
-        if (!this.__fullyQualifiedServiceImplementationName17aSet)
+        String afullyQualifiedServiceImplementationName17a = this.fullyQualifiedServiceImplementationName17a;
+        if (!this.fullyQualifiedServiceImplementationName17aSet)
         {
             // fullyQualifiedServiceImplementationName has no pre constraints
-            fullyQualifiedServiceImplementationName17a = handleGetFullyQualifiedServiceImplementationName();
+            afullyQualifiedServiceImplementationName17a = handleGetFullyQualifiedServiceImplementationName();
             // fullyQualifiedServiceImplementationName has no post constraints
-            this.__fullyQualifiedServiceImplementationName17a = fullyQualifiedServiceImplementationName17a;
+            this.fullyQualifiedServiceImplementationName17a = afullyQualifiedServiceImplementationName17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceImplementationName17aSet = true;
+                this.fullyQualifiedServiceImplementationName17aSet = true;
             }
         }
-        return fullyQualifiedServiceImplementationName17a;
+        return afullyQualifiedServiceImplementationName17a;
     }
 
    /**
@@ -649,8 +652,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceListenerName();
 
-    private String __fullyQualifiedServiceListenerName18a;
-    private boolean __fullyQualifiedServiceListenerName18aSet = false;
+    private String fullyQualifiedServiceListenerName18a;
+    private boolean fullyQualifiedServiceListenerName18aSet = false;
 
     /**
      * Returns the fully qualified service bean listener name.
@@ -658,19 +661,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceListenerName()
     {
-        String fullyQualifiedServiceListenerName18a = this.__fullyQualifiedServiceListenerName18a;
-        if (!this.__fullyQualifiedServiceListenerName18aSet)
+        String afullyQualifiedServiceListenerName18a = this.fullyQualifiedServiceListenerName18a;
+        if (!this.fullyQualifiedServiceListenerName18aSet)
         {
             // fullyQualifiedServiceListenerName has no pre constraints
-            fullyQualifiedServiceListenerName18a = handleGetFullyQualifiedServiceListenerName();
+            afullyQualifiedServiceListenerName18a = handleGetFullyQualifiedServiceListenerName();
             // fullyQualifiedServiceListenerName has no post constraints
-            this.__fullyQualifiedServiceListenerName18a = fullyQualifiedServiceListenerName18a;
+            this.fullyQualifiedServiceListenerName18a = afullyQualifiedServiceListenerName18a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceListenerName18aSet = true;
+                this.fullyQualifiedServiceListenerName18aSet = true;
             }
         }
-        return fullyQualifiedServiceListenerName18a;
+        return afullyQualifiedServiceListenerName18a;
     }
 
    /**
@@ -679,8 +682,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceLocalInterfaceName();
 
-    private String __fullyQualifiedServiceLocalInterfaceName19a;
-    private boolean __fullyQualifiedServiceLocalInterfaceName19aSet = false;
+    private String fullyQualifiedServiceLocalInterfaceName19a;
+    private boolean fullyQualifiedServiceLocalInterfaceName19aSet = false;
 
     /**
      * Returns the fully qualified service bean local interface name.
@@ -688,19 +691,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceLocalInterfaceName()
     {
-        String fullyQualifiedServiceLocalInterfaceName19a = this.__fullyQualifiedServiceLocalInterfaceName19a;
-        if (!this.__fullyQualifiedServiceLocalInterfaceName19aSet)
+        String afullyQualifiedServiceLocalInterfaceName19a = this.fullyQualifiedServiceLocalInterfaceName19a;
+        if (!this.fullyQualifiedServiceLocalInterfaceName19aSet)
         {
             // fullyQualifiedServiceLocalInterfaceName has no pre constraints
-            fullyQualifiedServiceLocalInterfaceName19a = handleGetFullyQualifiedServiceLocalInterfaceName();
+            afullyQualifiedServiceLocalInterfaceName19a = handleGetFullyQualifiedServiceLocalInterfaceName();
             // fullyQualifiedServiceLocalInterfaceName has no post constraints
-            this.__fullyQualifiedServiceLocalInterfaceName19a = fullyQualifiedServiceLocalInterfaceName19a;
+            this.fullyQualifiedServiceLocalInterfaceName19a = afullyQualifiedServiceLocalInterfaceName19a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceLocalInterfaceName19aSet = true;
+                this.fullyQualifiedServiceLocalInterfaceName19aSet = true;
             }
         }
-        return fullyQualifiedServiceLocalInterfaceName19a;
+        return afullyQualifiedServiceLocalInterfaceName19a;
     }
 
    /**
@@ -709,8 +712,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceRemoteInterfaceName();
 
-    private String __fullyQualifiedServiceRemoteInterfaceName20a;
-    private boolean __fullyQualifiedServiceRemoteInterfaceName20aSet = false;
+    private String fullyQualifiedServiceRemoteInterfaceName20a;
+    private boolean fullyQualifiedServiceRemoteInterfaceName20aSet = false;
 
     /**
      * Returns the fully qualified service bean remote interface name.
@@ -718,19 +721,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceRemoteInterfaceName()
     {
-        String fullyQualifiedServiceRemoteInterfaceName20a = this.__fullyQualifiedServiceRemoteInterfaceName20a;
-        if (!this.__fullyQualifiedServiceRemoteInterfaceName20aSet)
+        String afullyQualifiedServiceRemoteInterfaceName20a = this.fullyQualifiedServiceRemoteInterfaceName20a;
+        if (!this.fullyQualifiedServiceRemoteInterfaceName20aSet)
         {
             // fullyQualifiedServiceRemoteInterfaceName has no pre constraints
-            fullyQualifiedServiceRemoteInterfaceName20a = handleGetFullyQualifiedServiceRemoteInterfaceName();
+            afullyQualifiedServiceRemoteInterfaceName20a = handleGetFullyQualifiedServiceRemoteInterfaceName();
             // fullyQualifiedServiceRemoteInterfaceName has no post constraints
-            this.__fullyQualifiedServiceRemoteInterfaceName20a = fullyQualifiedServiceRemoteInterfaceName20a;
+            this.fullyQualifiedServiceRemoteInterfaceName20a = afullyQualifiedServiceRemoteInterfaceName20a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceRemoteInterfaceName20aSet = true;
+                this.fullyQualifiedServiceRemoteInterfaceName20aSet = true;
             }
         }
-        return fullyQualifiedServiceRemoteInterfaceName20a;
+        return afullyQualifiedServiceRemoteInterfaceName20a;
     }
 
    /**
@@ -739,8 +742,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetPersistenceContextType();
 
-    private String __persistenceContextType21a;
-    private boolean __persistenceContextType21aSet = false;
+    private String persistenceContextType21a;
+    private boolean persistenceContextType21aSet = false;
 
     /**
      * Specifies whether the persistence context for this EntityManager is transaction scoped or
@@ -749,19 +752,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getPersistenceContextType()
     {
-        String persistenceContextType21a = this.__persistenceContextType21a;
-        if (!this.__persistenceContextType21aSet)
+        String apersistenceContextType21a = this.persistenceContextType21a;
+        if (!this.persistenceContextType21aSet)
         {
             // persistenceContextType has no pre constraints
-            persistenceContextType21a = handleGetPersistenceContextType();
+            apersistenceContextType21a = handleGetPersistenceContextType();
             // persistenceContextType has no post constraints
-            this.__persistenceContextType21a = persistenceContextType21a;
+            this.persistenceContextType21a = apersistenceContextType21a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__persistenceContextType21aSet = true;
+                this.persistenceContextType21aSet = true;
             }
         }
-        return persistenceContextType21a;
+        return apersistenceContextType21a;
     }
 
    /**
@@ -770,8 +773,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetPersistenceContextUnitName();
 
-    private String __persistenceContextUnitName22a;
-    private boolean __persistenceContextUnitName22aSet = false;
+    private String persistenceContextUnitName22a;
+    private boolean persistenceContextUnitName22aSet = false;
 
     /**
      * Returns the persistence context unit name for the injected EntityManger.  This is only
@@ -780,19 +783,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getPersistenceContextUnitName()
     {
-        String persistenceContextUnitName22a = this.__persistenceContextUnitName22a;
-        if (!this.__persistenceContextUnitName22aSet)
+        String apersistenceContextUnitName22a = this.persistenceContextUnitName22a;
+        if (!this.persistenceContextUnitName22aSet)
         {
             // persistenceContextUnitName has no pre constraints
-            persistenceContextUnitName22a = handleGetPersistenceContextUnitName();
+            apersistenceContextUnitName22a = handleGetPersistenceContextUnitName();
             // persistenceContextUnitName has no post constraints
-            this.__persistenceContextUnitName22a = persistenceContextUnitName22a;
+            this.persistenceContextUnitName22a = apersistenceContextUnitName22a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__persistenceContextUnitName22aSet = true;
+                this.persistenceContextUnitName22aSet = true;
             }
         }
-        return persistenceContextUnitName22a;
+        return apersistenceContextUnitName22a;
     }
 
    /**
@@ -801,8 +804,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetPersistenceContextReferences();
 
-    private Collection __persistenceContextReferences23a;
-    private boolean __persistenceContextReferences23aSet = false;
+    private Collection persistenceContextReferences23a;
+    private boolean persistenceContextReferences23aSet = false;
 
     /**
      * Returns the Collection of target objects from the service bean class that have a stereotype
@@ -811,19 +814,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getPersistenceContextReferences()
     {
-        Collection persistenceContextReferences23a = this.__persistenceContextReferences23a;
-        if (!this.__persistenceContextReferences23aSet)
+        Collection apersistenceContextReferences23a = this.persistenceContextReferences23a;
+        if (!this.persistenceContextReferences23aSet)
         {
             // persistenceContextReferences has no pre constraints
-            persistenceContextReferences23a = handleGetPersistenceContextReferences();
+            apersistenceContextReferences23a = handleGetPersistenceContextReferences();
             // persistenceContextReferences has no post constraints
-            this.__persistenceContextReferences23a = persistenceContextReferences23a;
+            this.persistenceContextReferences23a = apersistenceContextReferences23a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__persistenceContextReferences23aSet = true;
+                this.persistenceContextReferences23aSet = true;
             }
         }
-        return persistenceContextReferences23a;
+        return apersistenceContextReferences23a;
     }
 
    /**
@@ -832,8 +835,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceName();
 
-    private String __fullyQualifiedServiceName24a;
-    private boolean __fullyQualifiedServiceName24aSet = false;
+    private String fullyQualifiedServiceName24a;
+    private boolean fullyQualifiedServiceName24aSet = false;
 
     /**
      * Returns the fully qualified service bean name.
@@ -841,19 +844,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceName()
     {
-        String fullyQualifiedServiceName24a = this.__fullyQualifiedServiceName24a;
-        if (!this.__fullyQualifiedServiceName24aSet)
+        String afullyQualifiedServiceName24a = this.fullyQualifiedServiceName24a;
+        if (!this.fullyQualifiedServiceName24aSet)
         {
             // fullyQualifiedServiceName has no pre constraints
-            fullyQualifiedServiceName24a = handleGetFullyQualifiedServiceName();
+            afullyQualifiedServiceName24a = handleGetFullyQualifiedServiceName();
             // fullyQualifiedServiceName has no post constraints
-            this.__fullyQualifiedServiceName24a = fullyQualifiedServiceName24a;
+            this.fullyQualifiedServiceName24a = afullyQualifiedServiceName24a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceName24aSet = true;
+                this.fullyQualifiedServiceName24aSet = true;
             }
         }
-        return fullyQualifiedServiceName24a;
+        return afullyQualifiedServiceName24a;
     }
 
    /**
@@ -862,8 +865,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetRolesAllowed();
 
-    private String __rolesAllowed25a;
-    private boolean __rolesAllowed25aSet = false;
+    private String rolesAllowed25a;
+    private boolean rolesAllowed25aSet = false;
 
     /**
      * Returns the comma separated list of roles allowd to execute all operations in this session
@@ -872,19 +875,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getRolesAllowed()
     {
-        String rolesAllowed25a = this.__rolesAllowed25a;
-        if (!this.__rolesAllowed25aSet)
+        String arolesAllowed25a = this.rolesAllowed25a;
+        if (!this.rolesAllowed25aSet)
         {
             // rolesAllowed has no pre constraints
-            rolesAllowed25a = handleGetRolesAllowed();
+            arolesAllowed25a = handleGetRolesAllowed();
             // rolesAllowed has no post constraints
-            this.__rolesAllowed25a = rolesAllowed25a;
+            this.rolesAllowed25a = arolesAllowed25a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__rolesAllowed25aSet = true;
+                this.rolesAllowed25aSet = true;
             }
         }
-        return rolesAllowed25a;
+        return arolesAllowed25a;
     }
 
    /**
@@ -893,8 +896,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsPermitAll();
 
-    private boolean __permitAll26a;
-    private boolean __permitAll26aSet = false;
+    private boolean permitAll26a;
+    private boolean permitAll26aSet = false;
 
     /**
      * Returns true if all roles are permitted to execute all operations in this session bean.  This
@@ -904,19 +907,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isPermitAll()
     {
-        boolean permitAll26a = this.__permitAll26a;
-        if (!this.__permitAll26aSet)
+        boolean apermitAll26a = this.permitAll26a;
+        if (!this.permitAll26aSet)
         {
             // permitAll has no pre constraints
-            permitAll26a = handleIsPermitAll();
+            apermitAll26a = handleIsPermitAll();
             // permitAll has no post constraints
-            this.__permitAll26a = permitAll26a;
+            this.permitAll26a = apermitAll26a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__permitAll26aSet = true;
+                this.permitAll26aSet = true;
             }
         }
-        return permitAll26a;
+        return apermitAll26a;
     }
 
    /**
@@ -925,8 +928,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSecurityRealm();
 
-    private String __securityRealm27a;
-    private boolean __securityRealm27aSet = false;
+    private String securityRealm27a;
+    private boolean securityRealm27aSet = false;
 
     /**
      * Returns the security domain value.  Specified using the securityRealm namespace property or
@@ -935,19 +938,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSecurityRealm()
     {
-        String securityRealm27a = this.__securityRealm27a;
-        if (!this.__securityRealm27aSet)
+        String asecurityRealm27a = this.securityRealm27a;
+        if (!this.securityRealm27aSet)
         {
             // securityRealm has no pre constraints
-            securityRealm27a = handleGetSecurityRealm();
+            asecurityRealm27a = handleGetSecurityRealm();
             // securityRealm has no post constraints
-            this.__securityRealm27a = securityRealm27a;
+            this.securityRealm27a = asecurityRealm27a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__securityRealm27aSet = true;
+                this.securityRealm27aSet = true;
             }
         }
-        return securityRealm27a;
+        return asecurityRealm27a;
     }
 
    /**
@@ -956,8 +959,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetPersistenceContainer();
 
-    private String __persistenceContainer28a;
-    private boolean __persistenceContainer28aSet = false;
+    private String persistenceContainer28a;
+    private boolean persistenceContainer28aSet = false;
 
     /**
      * Returns the EJB3 container engine (jboss, weblogic).
@@ -965,19 +968,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getPersistenceContainer()
     {
-        String persistenceContainer28a = this.__persistenceContainer28a;
-        if (!this.__persistenceContainer28aSet)
+        String apersistenceContainer28a = this.persistenceContainer28a;
+        if (!this.persistenceContainer28aSet)
         {
             // persistenceContainer has no pre constraints
-            persistenceContainer28a = handleGetPersistenceContainer();
+            apersistenceContainer28a = handleGetPersistenceContainer();
             // persistenceContainer has no post constraints
-            this.__persistenceContainer28a = persistenceContainer28a;
+            this.persistenceContainer28a = apersistenceContainer28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__persistenceContainer28aSet = true;
+                this.persistenceContainer28aSet = true;
             }
         }
-        return persistenceContainer28a;
+        return apersistenceContainer28a;
     }
 
    /**
@@ -986,8 +989,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsPersistenceContainerJboss();
 
-    private boolean __persistenceContainerJboss29a;
-    private boolean __persistenceContainerJboss29aSet = false;
+    private boolean persistenceContainerJboss29a;
+    private boolean persistenceContainerJboss29aSet = false;
 
     /**
      * Returns true if the persistence container is the JBoss engine.
@@ -995,19 +998,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isPersistenceContainerJboss()
     {
-        boolean persistenceContainerJboss29a = this.__persistenceContainerJboss29a;
-        if (!this.__persistenceContainerJboss29aSet)
+        boolean apersistenceContainerJboss29a = this.persistenceContainerJboss29a;
+        if (!this.persistenceContainerJboss29aSet)
         {
             // persistenceContainerJboss has no pre constraints
-            persistenceContainerJboss29a = handleIsPersistenceContainerJboss();
+            apersistenceContainerJboss29a = handleIsPersistenceContainerJboss();
             // persistenceContainerJboss has no post constraints
-            this.__persistenceContainerJboss29a = persistenceContainerJboss29a;
+            this.persistenceContainerJboss29a = apersistenceContainerJboss29a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__persistenceContainerJboss29aSet = true;
+                this.persistenceContainerJboss29aSet = true;
             }
         }
-        return persistenceContainerJboss29a;
+        return apersistenceContainerJboss29a;
     }
 
    /**
@@ -1016,8 +1019,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsPersistenceContainerWeblogic();
 
-    private boolean __persistenceContainerWeblogic30a;
-    private boolean __persistenceContainerWeblogic30aSet = false;
+    private boolean persistenceContainerWeblogic30a;
+    private boolean persistenceContainerWeblogic30aSet = false;
 
     /**
      * Returns true if the persistence container is the Weblogic engine.
@@ -1025,19 +1028,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isPersistenceContainerWeblogic()
     {
-        boolean persistenceContainerWeblogic30a = this.__persistenceContainerWeblogic30a;
-        if (!this.__persistenceContainerWeblogic30aSet)
+        boolean apersistenceContainerWeblogic30a = this.persistenceContainerWeblogic30a;
+        if (!this.persistenceContainerWeblogic30aSet)
         {
             // persistenceContainerWeblogic has no pre constraints
-            persistenceContainerWeblogic30a = handleIsPersistenceContainerWeblogic();
+            apersistenceContainerWeblogic30a = handleIsPersistenceContainerWeblogic();
             // persistenceContainerWeblogic has no post constraints
-            this.__persistenceContainerWeblogic30a = persistenceContainerWeblogic30a;
+            this.persistenceContainerWeblogic30a = apersistenceContainerWeblogic30a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__persistenceContainerWeblogic30aSet = true;
+                this.persistenceContainerWeblogic30aSet = true;
             }
         }
-        return persistenceContainerWeblogic30a;
+        return apersistenceContainerWeblogic30a;
     }
 
    /**
@@ -1046,8 +1049,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetRunAs();
 
-    private String __runAs31a;
-    private boolean __runAs31aSet = false;
+    private String runAs31a;
+    private boolean runAs31aSet = false;
 
     /**
      * Returns the run-as identity for the session bean which is used to establish the identity the
@@ -1056,19 +1059,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getRunAs()
     {
-        String runAs31a = this.__runAs31a;
-        if (!this.__runAs31aSet)
+        String arunAs31a = this.runAs31a;
+        if (!this.runAs31aSet)
         {
             // runAs has no pre constraints
-            runAs31a = handleGetRunAs();
+            arunAs31a = handleGetRunAs();
             // runAs has no post constraints
-            this.__runAs31a = runAs31a;
+            this.runAs31a = arunAs31a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__runAs31aSet = true;
+                this.runAs31aSet = true;
             }
         }
-        return runAs31a;
+        return arunAs31a;
     }
 
    /**
@@ -1077,8 +1080,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsDenyAll();
 
-    private boolean __denyAll32a;
-    private boolean __denyAll32aSet = false;
+    private boolean denyAll32a;
+    private boolean denyAll32aSet = false;
 
     /**
      * Returns true if NO roles are permitted to execute operations in this bean.  This is specified
@@ -1088,19 +1091,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isDenyAll()
     {
-        boolean denyAll32a = this.__denyAll32a;
-        if (!this.__denyAll32aSet)
+        boolean adenyAll32a = this.denyAll32a;
+        if (!this.denyAll32aSet)
         {
             // denyAll has no pre constraints
-            denyAll32a = handleIsDenyAll();
+            adenyAll32a = handleIsDenyAll();
             // denyAll has no post constraints
-            this.__denyAll32a = denyAll32a;
+            this.denyAll32a = adenyAll32a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__denyAll32aSet = true;
+                this.denyAll32aSet = true;
             }
         }
-        return denyAll32a;
+        return adenyAll32a;
     }
 
    /**
@@ -1109,8 +1112,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetTransactionManagement();
 
-    private String __transactionManagement33a;
-    private boolean __transactionManagement33aSet = false;
+    private String transactionManagement33a;
+    private boolean transactionManagement33aSet = false;
 
     /**
      * Returns the transaction demarcation strategy for this bean.  Typically, this will return BEAN
@@ -1120,19 +1123,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getTransactionManagement()
     {
-        String transactionManagement33a = this.__transactionManagement33a;
-        if (!this.__transactionManagement33aSet)
+        String atransactionManagement33a = this.transactionManagement33a;
+        if (!this.transactionManagement33aSet)
         {
             // transactionManagement has no pre constraints
-            transactionManagement33a = handleGetTransactionManagement();
+            atransactionManagement33a = handleGetTransactionManagement();
             // transactionManagement has no post constraints
-            this.__transactionManagement33a = transactionManagement33a;
+            this.transactionManagement33a = atransactionManagement33a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionManagement33aSet = true;
+                this.transactionManagement33aSet = true;
             }
         }
-        return transactionManagement33a;
+        return atransactionManagement33a;
     }
 
    /**
@@ -1141,8 +1144,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsTransactionManagementBean();
 
-    private boolean __transactionManagementBean34a;
-    private boolean __transactionManagementBean34aSet = false;
+    private boolean transactionManagementBean34a;
+    private boolean transactionManagementBean34aSet = false;
 
     /**
      * Returns true if the transaction demarcation strategy is bean managedfor this bean.
@@ -1150,19 +1153,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isTransactionManagementBean()
     {
-        boolean transactionManagementBean34a = this.__transactionManagementBean34a;
-        if (!this.__transactionManagementBean34aSet)
+        boolean atransactionManagementBean34a = this.transactionManagementBean34a;
+        if (!this.transactionManagementBean34aSet)
         {
             // transactionManagementBean has no pre constraints
-            transactionManagementBean34a = handleIsTransactionManagementBean();
+            atransactionManagementBean34a = handleIsTransactionManagementBean();
             // transactionManagementBean has no post constraints
-            this.__transactionManagementBean34a = transactionManagementBean34a;
+            this.transactionManagementBean34a = atransactionManagementBean34a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionManagementBean34aSet = true;
+                this.transactionManagementBean34aSet = true;
             }
         }
-        return transactionManagementBean34a;
+        return atransactionManagementBean34a;
     }
 
    /**
@@ -1171,8 +1174,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetResourceUserTransactionReferences();
 
-    private Collection __resourceUserTransactionReferences35a;
-    private boolean __resourceUserTransactionReferences35aSet = false;
+    private Collection resourceUserTransactionReferences35a;
+    private boolean resourceUserTransactionReferences35aSet = false;
 
     /**
      * Returns the Collection of dependencies from the service bean that have stereotype of
@@ -1181,19 +1184,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getResourceUserTransactionReferences()
     {
-        Collection resourceUserTransactionReferences35a = this.__resourceUserTransactionReferences35a;
-        if (!this.__resourceUserTransactionReferences35aSet)
+        Collection aresourceUserTransactionReferences35a = this.resourceUserTransactionReferences35a;
+        if (!this.resourceUserTransactionReferences35aSet)
         {
             // resourceUserTransactionReferences has no pre constraints
-            resourceUserTransactionReferences35a = handleGetResourceUserTransactionReferences();
+            aresourceUserTransactionReferences35a = handleGetResourceUserTransactionReferences();
             // resourceUserTransactionReferences has no post constraints
-            this.__resourceUserTransactionReferences35a = resourceUserTransactionReferences35a;
+            this.resourceUserTransactionReferences35a = aresourceUserTransactionReferences35a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__resourceUserTransactionReferences35aSet = true;
+                this.resourceUserTransactionReferences35aSet = true;
             }
         }
-        return resourceUserTransactionReferences35a;
+        return aresourceUserTransactionReferences35a;
     }
 
    /**
@@ -1202,8 +1205,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetResourceDataSourceReferences();
 
-    private Collection __resourceDataSourceReferences36a;
-    private boolean __resourceDataSourceReferences36aSet = false;
+    private Collection resourceDataSourceReferences36a;
+    private boolean resourceDataSourceReferences36aSet = false;
 
     /**
      * Returns the Collection of dependencies from the service bean that have stereotype of
@@ -1212,19 +1215,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getResourceDataSourceReferences()
     {
-        Collection resourceDataSourceReferences36a = this.__resourceDataSourceReferences36a;
-        if (!this.__resourceDataSourceReferences36aSet)
+        Collection aresourceDataSourceReferences36a = this.resourceDataSourceReferences36a;
+        if (!this.resourceDataSourceReferences36aSet)
         {
             // resourceDataSourceReferences has no pre constraints
-            resourceDataSourceReferences36a = handleGetResourceDataSourceReferences();
+            aresourceDataSourceReferences36a = handleGetResourceDataSourceReferences();
             // resourceDataSourceReferences has no post constraints
-            this.__resourceDataSourceReferences36a = resourceDataSourceReferences36a;
+            this.resourceDataSourceReferences36a = aresourceDataSourceReferences36a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__resourceDataSourceReferences36aSet = true;
+                this.resourceDataSourceReferences36aSet = true;
             }
         }
-        return resourceDataSourceReferences36a;
+        return aresourceDataSourceReferences36a;
     }
 
    /**
@@ -1233,8 +1236,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetMessageDrivenReferences();
 
-    private Collection __messageDrivenReferences37a;
-    private boolean __messageDrivenReferences37aSet = false;
+    private Collection messageDrivenReferences37a;
+    private boolean messageDrivenReferences37aSet = false;
 
     /**
      * Returns the Collection of dependencies from the service bean class where the target class has
@@ -1243,19 +1246,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getMessageDrivenReferences()
     {
-        Collection messageDrivenReferences37a = this.__messageDrivenReferences37a;
-        if (!this.__messageDrivenReferences37aSet)
+        Collection amessageDrivenReferences37a = this.messageDrivenReferences37a;
+        if (!this.messageDrivenReferences37aSet)
         {
             // messageDrivenReferences has no pre constraints
-            messageDrivenReferences37a = handleGetMessageDrivenReferences();
+            amessageDrivenReferences37a = handleGetMessageDrivenReferences();
             // messageDrivenReferences has no post constraints
-            this.__messageDrivenReferences37a = messageDrivenReferences37a;
+            this.messageDrivenReferences37a = amessageDrivenReferences37a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageDrivenReferences37aSet = true;
+                this.messageDrivenReferences37aSet = true;
             }
         }
-        return messageDrivenReferences37a;
+        return amessageDrivenReferences37a;
     }
 
    /**
@@ -1264,8 +1267,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceDelegateName();
 
-    private String __serviceDelegateName38a;
-    private boolean __serviceDelegateName38aSet = false;
+    private String serviceDelegateName38a;
+    private boolean serviceDelegateName38aSet = false;
 
     /**
      * Return the service bean delegate class name.
@@ -1273,19 +1276,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceDelegateName()
     {
-        String serviceDelegateName38a = this.__serviceDelegateName38a;
-        if (!this.__serviceDelegateName38aSet)
+        String aserviceDelegateName38a = this.serviceDelegateName38a;
+        if (!this.serviceDelegateName38aSet)
         {
             // serviceDelegateName has no pre constraints
-            serviceDelegateName38a = handleGetServiceDelegateName();
+            aserviceDelegateName38a = handleGetServiceDelegateName();
             // serviceDelegateName has no post constraints
-            this.__serviceDelegateName38a = serviceDelegateName38a;
+            this.serviceDelegateName38a = aserviceDelegateName38a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceDelegateName38aSet = true;
+                this.serviceDelegateName38aSet = true;
             }
         }
-        return serviceDelegateName38a;
+        return aserviceDelegateName38a;
     }
 
    /**
@@ -1294,8 +1297,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceDelegateName();
 
-    private String __fullyQualifiedServiceDelegateName39a;
-    private boolean __fullyQualifiedServiceDelegateName39aSet = false;
+    private String fullyQualifiedServiceDelegateName39a;
+    private boolean fullyQualifiedServiceDelegateName39aSet = false;
 
     /**
      * Returns the fully qualified service bean delegate class name.
@@ -1303,19 +1306,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceDelegateName()
     {
-        String fullyQualifiedServiceDelegateName39a = this.__fullyQualifiedServiceDelegateName39a;
-        if (!this.__fullyQualifiedServiceDelegateName39aSet)
+        String afullyQualifiedServiceDelegateName39a = this.fullyQualifiedServiceDelegateName39a;
+        if (!this.fullyQualifiedServiceDelegateName39aSet)
         {
             // fullyQualifiedServiceDelegateName has no pre constraints
-            fullyQualifiedServiceDelegateName39a = handleGetFullyQualifiedServiceDelegateName();
+            afullyQualifiedServiceDelegateName39a = handleGetFullyQualifiedServiceDelegateName();
             // fullyQualifiedServiceDelegateName has no post constraints
-            this.__fullyQualifiedServiceDelegateName39a = fullyQualifiedServiceDelegateName39a;
+            this.fullyQualifiedServiceDelegateName39a = afullyQualifiedServiceDelegateName39a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceDelegateName39aSet = true;
+                this.fullyQualifiedServiceDelegateName39aSet = true;
             }
         }
-        return fullyQualifiedServiceDelegateName39a;
+        return afullyQualifiedServiceDelegateName39a;
     }
 
    /**
@@ -1324,8 +1327,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetJndiNameLocal();
 
-    private String __jndiNameLocal40a;
-    private boolean __jndiNameLocal40aSet = false;
+    private String jndiNameLocal40a;
+    private boolean jndiNameLocal40aSet = false;
 
     /**
      * The JNDI name to which this session EJB local interface is bound.
@@ -1333,19 +1336,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getJndiNameLocal()
     {
-        String jndiNameLocal40a = this.__jndiNameLocal40a;
-        if (!this.__jndiNameLocal40aSet)
+        String ajndiNameLocal40a = this.jndiNameLocal40a;
+        if (!this.jndiNameLocal40aSet)
         {
             // jndiNameLocal has no pre constraints
-            jndiNameLocal40a = handleGetJndiNameLocal();
+            ajndiNameLocal40a = handleGetJndiNameLocal();
             // jndiNameLocal has no post constraints
-            this.__jndiNameLocal40a = jndiNameLocal40a;
+            this.jndiNameLocal40a = ajndiNameLocal40a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__jndiNameLocal40aSet = true;
+                this.jndiNameLocal40aSet = true;
             }
         }
-        return jndiNameLocal40a;
+        return ajndiNameLocal40a;
     }
 
    /**
@@ -1354,8 +1357,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsViewTypeLocal();
 
-    private boolean __viewTypeLocal41a;
-    private boolean __viewTypeLocal41aSet = false;
+    private boolean viewTypeLocal41a;
+    private boolean viewTypeLocal41aSet = false;
 
     /**
      * Return true if the view type accessability for this bean is local or both.
@@ -1364,19 +1367,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isViewTypeLocal()
     {
-        boolean viewTypeLocal41a = this.__viewTypeLocal41a;
-        if (!this.__viewTypeLocal41aSet)
+        boolean aviewTypeLocal41a = this.viewTypeLocal41a;
+        if (!this.viewTypeLocal41aSet)
         {
             // viewTypeLocal has no pre constraints
-            viewTypeLocal41a = handleIsViewTypeLocal();
+            aviewTypeLocal41a = handleIsViewTypeLocal();
             // viewTypeLocal has no post constraints
-            this.__viewTypeLocal41a = viewTypeLocal41a;
+            this.viewTypeLocal41a = aviewTypeLocal41a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeLocal41aSet = true;
+                this.viewTypeLocal41aSet = true;
             }
         }
-        return viewTypeLocal41a;
+        return aviewTypeLocal41a;
     }
 
    /**
@@ -1385,8 +1388,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsViewTypeRemote();
 
-    private boolean __viewTypeRemote42a;
-    private boolean __viewTypeRemote42aSet = false;
+    private boolean viewTypeRemote42a;
+    private boolean viewTypeRemote42aSet = false;
 
     /**
      * Return true if the view type accessability for this bean is remote or both.
@@ -1394,19 +1397,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isViewTypeRemote()
     {
-        boolean viewTypeRemote42a = this.__viewTypeRemote42a;
-        if (!this.__viewTypeRemote42aSet)
+        boolean aviewTypeRemote42a = this.viewTypeRemote42a;
+        if (!this.viewTypeRemote42aSet)
         {
             // viewTypeRemote has no pre constraints
-            viewTypeRemote42a = handleIsViewTypeRemote();
+            aviewTypeRemote42a = handleIsViewTypeRemote();
             // viewTypeRemote has no post constraints
-            this.__viewTypeRemote42a = viewTypeRemote42a;
+            this.viewTypeRemote42a = aviewTypeRemote42a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeRemote42aSet = true;
+                this.viewTypeRemote42aSet = true;
             }
         }
-        return viewTypeRemote42a;
+        return aviewTypeRemote42a;
     }
 
    /**
@@ -1415,8 +1418,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetInterceptorReferences();
 
-    private Collection __interceptorReferences43a;
-    private boolean __interceptorReferences43aSet = false;
+    private Collection interceptorReferences43a;
+    private boolean interceptorReferences43aSet = false;
 
     /**
      * Returns the Collection of target elements from the service bean class where  the target class
@@ -1425,19 +1428,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getInterceptorReferences()
     {
-        Collection interceptorReferences43a = this.__interceptorReferences43a;
-        if (!this.__interceptorReferences43aSet)
+        Collection ainterceptorReferences43a = this.interceptorReferences43a;
+        if (!this.interceptorReferences43aSet)
         {
             // interceptorReferences has no pre constraints
-            interceptorReferences43a = handleGetInterceptorReferences();
+            ainterceptorReferences43a = handleGetInterceptorReferences();
             // interceptorReferences has no post constraints
-            this.__interceptorReferences43a = interceptorReferences43a;
+            this.interceptorReferences43a = ainterceptorReferences43a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interceptorReferences43aSet = true;
+                this.interceptorReferences43aSet = true;
             }
         }
-        return interceptorReferences43a;
+        return ainterceptorReferences43a;
     }
 
    /**
@@ -1446,8 +1449,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetDefaultExceptionName();
 
-    private String __defaultExceptionName44a;
-    private boolean __defaultExceptionName44aSet = false;
+    private String defaultExceptionName44a;
+    private boolean defaultExceptionName44aSet = false;
 
     /**
      * The name of the default exception to be generated for this service.
@@ -1455,19 +1458,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getDefaultExceptionName()
     {
-        String defaultExceptionName44a = this.__defaultExceptionName44a;
-        if (!this.__defaultExceptionName44aSet)
+        String adefaultExceptionName44a = this.defaultExceptionName44a;
+        if (!this.defaultExceptionName44aSet)
         {
             // defaultExceptionName has no pre constraints
-            defaultExceptionName44a = handleGetDefaultExceptionName();
+            adefaultExceptionName44a = handleGetDefaultExceptionName();
             // defaultExceptionName has no post constraints
-            this.__defaultExceptionName44a = defaultExceptionName44a;
+            this.defaultExceptionName44a = adefaultExceptionName44a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__defaultExceptionName44aSet = true;
+                this.defaultExceptionName44aSet = true;
             }
         }
-        return defaultExceptionName44a;
+        return adefaultExceptionName44a;
     }
 
    /**
@@ -1476,8 +1479,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedDefaultExceptionName();
 
-    private String __fullyQualifiedDefaultExceptionName45a;
-    private boolean __fullyQualifiedDefaultExceptionName45aSet = false;
+    private String fullyQualifiedDefaultExceptionName45a;
+    private boolean fullyQualifiedDefaultExceptionName45aSet = false;
 
     /**
      * The fully qualified class name of the default exception.
@@ -1485,19 +1488,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedDefaultExceptionName()
     {
-        String fullyQualifiedDefaultExceptionName45a = this.__fullyQualifiedDefaultExceptionName45a;
-        if (!this.__fullyQualifiedDefaultExceptionName45aSet)
+        String afullyQualifiedDefaultExceptionName45a = this.fullyQualifiedDefaultExceptionName45a;
+        if (!this.fullyQualifiedDefaultExceptionName45aSet)
         {
             // fullyQualifiedDefaultExceptionName has no pre constraints
-            fullyQualifiedDefaultExceptionName45a = handleGetFullyQualifiedDefaultExceptionName();
+            afullyQualifiedDefaultExceptionName45a = handleGetFullyQualifiedDefaultExceptionName();
             // fullyQualifiedDefaultExceptionName has no post constraints
-            this.__fullyQualifiedDefaultExceptionName45a = fullyQualifiedDefaultExceptionName45a;
+            this.fullyQualifiedDefaultExceptionName45a = afullyQualifiedDefaultExceptionName45a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedDefaultExceptionName45aSet = true;
+                this.fullyQualifiedDefaultExceptionName45aSet = true;
             }
         }
-        return fullyQualifiedDefaultExceptionName45a;
+        return afullyQualifiedDefaultExceptionName45a;
     }
 
    /**
@@ -1506,8 +1509,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsAllowDefaultServiceException();
 
-    private boolean __allowDefaultServiceException46a;
-    private boolean __allowDefaultServiceException46aSet = false;
+    private boolean allowDefaultServiceException46a;
+    private boolean allowDefaultServiceException46aSet = false;
 
     /**
      * Indicates whether or not a default service exception should be allowed.
@@ -1515,19 +1518,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isAllowDefaultServiceException()
     {
-        boolean allowDefaultServiceException46a = this.__allowDefaultServiceException46a;
-        if (!this.__allowDefaultServiceException46aSet)
+        boolean aallowDefaultServiceException46a = this.allowDefaultServiceException46a;
+        if (!this.allowDefaultServiceException46aSet)
         {
             // allowDefaultServiceException has no pre constraints
-            allowDefaultServiceException46a = handleIsAllowDefaultServiceException();
+            aallowDefaultServiceException46a = handleIsAllowDefaultServiceException();
             // allowDefaultServiceException has no post constraints
-            this.__allowDefaultServiceException46a = allowDefaultServiceException46a;
+            this.allowDefaultServiceException46a = aallowDefaultServiceException46a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__allowDefaultServiceException46aSet = true;
+                this.allowDefaultServiceException46aSet = true;
             }
         }
-        return allowDefaultServiceException46a;
+        return aallowDefaultServiceException46a;
     }
 
    /**
@@ -1536,8 +1539,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsListenerEnabled();
 
-    private boolean __listenerEnabled47a;
-    private boolean __listenerEnabled47aSet = false;
+    private boolean listenerEnabled47a;
+    private boolean listenerEnabled47aSet = false;
 
     /**
      * Returns true if this session bean has the stereotype Listener.  False otherwise.
@@ -1545,19 +1548,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isListenerEnabled()
     {
-        boolean listenerEnabled47a = this.__listenerEnabled47a;
-        if (!this.__listenerEnabled47aSet)
+        boolean alistenerEnabled47a = this.listenerEnabled47a;
+        if (!this.listenerEnabled47aSet)
         {
             // listenerEnabled has no pre constraints
-            listenerEnabled47a = handleIsListenerEnabled();
+            alistenerEnabled47a = handleIsListenerEnabled();
             // listenerEnabled has no post constraints
-            this.__listenerEnabled47a = listenerEnabled47a;
+            this.listenerEnabled47a = alistenerEnabled47a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__listenerEnabled47aSet = true;
+                this.listenerEnabled47aSet = true;
             }
         }
-        return listenerEnabled47a;
+        return alistenerEnabled47a;
     }
 
    /**
@@ -1566,8 +1569,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetJndiNamePrefix();
 
-    private String __jndiNamePrefix48a;
-    private boolean __jndiNamePrefix48aSet = false;
+    private String jndiNamePrefix48a;
+    private boolean jndiNamePrefix48aSet = false;
 
     /**
      * Returns the JNDI name prefix for this session bean.  This is set using the jndiNamePrefix
@@ -1581,19 +1584,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getJndiNamePrefix()
     {
-        String jndiNamePrefix48a = this.__jndiNamePrefix48a;
-        if (!this.__jndiNamePrefix48aSet)
+        String ajndiNamePrefix48a = this.jndiNamePrefix48a;
+        if (!this.jndiNamePrefix48aSet)
         {
             // jndiNamePrefix has no pre constraints
-            jndiNamePrefix48a = handleGetJndiNamePrefix();
+            ajndiNamePrefix48a = handleGetJndiNamePrefix();
             // jndiNamePrefix has no post constraints
-            this.__jndiNamePrefix48a = jndiNamePrefix48a;
+            this.jndiNamePrefix48a = ajndiNamePrefix48a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__jndiNamePrefix48aSet = true;
+                this.jndiNamePrefix48aSet = true;
             }
         }
-        return jndiNamePrefix48a;
+        return ajndiNamePrefix48a;
     }
 
    /**
@@ -1602,8 +1605,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsSecurityEnabled();
 
-    private boolean __securityEnabled49a;
-    private boolean __securityEnabled49aSet = false;
+    private boolean securityEnabled49a;
+    private boolean securityEnabled49aSet = false;
 
     /**
      * Returns true if the security realm is specified indicating to generate the security
@@ -1612,19 +1615,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isSecurityEnabled()
     {
-        boolean securityEnabled49a = this.__securityEnabled49a;
-        if (!this.__securityEnabled49aSet)
+        boolean asecurityEnabled49a = this.securityEnabled49a;
+        if (!this.securityEnabled49aSet)
         {
             // securityEnabled has no pre constraints
-            securityEnabled49a = handleIsSecurityEnabled();
+            asecurityEnabled49a = handleIsSecurityEnabled();
             // securityEnabled has no post constraints
-            this.__securityEnabled49a = securityEnabled49a;
+            this.securityEnabled49a = asecurityEnabled49a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__securityEnabled49aSet = true;
+                this.securityEnabled49aSet = true;
             }
         }
-        return securityEnabled49a;
+        return asecurityEnabled49a;
     }
 
    /**
@@ -1633,8 +1636,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsExcludeDefaultInterceptors();
 
-    private boolean __excludeDefaultInterceptors50a;
-    private boolean __excludeDefaultInterceptors50aSet = false;
+    private boolean excludeDefaultInterceptors50a;
+    private boolean excludeDefaultInterceptors50aSet = false;
 
     /**
      * Determines whether to exclude the invocation of the default interceptors for all business
@@ -1643,19 +1646,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isExcludeDefaultInterceptors()
     {
-        boolean excludeDefaultInterceptors50a = this.__excludeDefaultInterceptors50a;
-        if (!this.__excludeDefaultInterceptors50aSet)
+        boolean aexcludeDefaultInterceptors50a = this.excludeDefaultInterceptors50a;
+        if (!this.excludeDefaultInterceptors50aSet)
         {
             // excludeDefaultInterceptors has no pre constraints
-            excludeDefaultInterceptors50a = handleIsExcludeDefaultInterceptors();
+            aexcludeDefaultInterceptors50a = handleIsExcludeDefaultInterceptors();
             // excludeDefaultInterceptors has no post constraints
-            this.__excludeDefaultInterceptors50a = excludeDefaultInterceptors50a;
+            this.excludeDefaultInterceptors50a = aexcludeDefaultInterceptors50a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__excludeDefaultInterceptors50aSet = true;
+                this.excludeDefaultInterceptors50aSet = true;
             }
         }
-        return excludeDefaultInterceptors50a;
+        return aexcludeDefaultInterceptors50a;
     }
 
    /**
@@ -1664,8 +1667,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsClusteringEnabled();
 
-    private boolean __clusteringEnabled51a;
-    private boolean __clusteringEnabled51aSet = false;
+    private boolean clusteringEnabled51a;
+    private boolean clusteringEnabled51aSet = false;
 
     /**
      * Determine whether clustering has been enabled.  Either set application wide using
@@ -1674,19 +1677,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isClusteringEnabled()
     {
-        boolean clusteringEnabled51a = this.__clusteringEnabled51a;
-        if (!this.__clusteringEnabled51aSet)
+        boolean aclusteringEnabled51a = this.clusteringEnabled51a;
+        if (!this.clusteringEnabled51aSet)
         {
             // clusteringEnabled has no pre constraints
-            clusteringEnabled51a = handleIsClusteringEnabled();
+            aclusteringEnabled51a = handleIsClusteringEnabled();
             // clusteringEnabled has no post constraints
-            this.__clusteringEnabled51a = clusteringEnabled51a;
+            this.clusteringEnabled51a = aclusteringEnabled51a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__clusteringEnabled51aSet = true;
+                this.clusteringEnabled51aSet = true;
             }
         }
-        return clusteringEnabled51a;
+        return aclusteringEnabled51a;
     }
 
    /**
@@ -1695,8 +1698,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsWebServiceOperationExists();
 
-    private boolean __webServiceOperationExists52a;
-    private boolean __webServiceOperationExists52aSet = false;
+    private boolean webServiceOperationExists52a;
+    private boolean webServiceOperationExists52aSet = false;
 
     /**
      * Returns true if at least one of the session bean operations is marked with the
@@ -1705,19 +1708,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isWebServiceOperationExists()
     {
-        boolean webServiceOperationExists52a = this.__webServiceOperationExists52a;
-        if (!this.__webServiceOperationExists52aSet)
+        boolean awebServiceOperationExists52a = this.webServiceOperationExists52a;
+        if (!this.webServiceOperationExists52aSet)
         {
             // webServiceOperationExists has no pre constraints
-            webServiceOperationExists52a = handleIsWebServiceOperationExists();
+            awebServiceOperationExists52a = handleIsWebServiceOperationExists();
             // webServiceOperationExists has no post constraints
-            this.__webServiceOperationExists52a = webServiceOperationExists52a;
+            this.webServiceOperationExists52a = awebServiceOperationExists52a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__webServiceOperationExists52aSet = true;
+                this.webServiceOperationExists52aSet = true;
             }
         }
-        return webServiceOperationExists52a;
+        return awebServiceOperationExists52a;
     }
 
    /**
@@ -1726,8 +1729,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsWebServiceEnabled();
 
-    private boolean __webServiceEnabled53a;
-    private boolean __webServiceEnabled53aSet = false;
+    private boolean webServiceEnabled53a;
+    private boolean webServiceEnabled53aSet = false;
 
     /**
      * Returns true if the session bean has either one of the following:
@@ -1737,19 +1740,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isWebServiceEnabled()
     {
-        boolean webServiceEnabled53a = this.__webServiceEnabled53a;
-        if (!this.__webServiceEnabled53aSet)
+        boolean awebServiceEnabled53a = this.webServiceEnabled53a;
+        if (!this.webServiceEnabled53aSet)
         {
             // webServiceEnabled has no pre constraints
-            webServiceEnabled53a = handleIsWebServiceEnabled();
+            awebServiceEnabled53a = handleIsWebServiceEnabled();
             // webServiceEnabled has no post constraints
-            this.__webServiceEnabled53a = webServiceEnabled53a;
+            this.webServiceEnabled53a = awebServiceEnabled53a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__webServiceEnabled53aSet = true;
+                this.webServiceEnabled53aSet = true;
             }
         }
-        return webServiceEnabled53a;
+        return awebServiceEnabled53a;
     }
 
    /**
@@ -1758,8 +1761,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceBaseName();
 
-    private String __serviceBaseName54a;
-    private boolean __serviceBaseName54aSet = false;
+    private String serviceBaseName54a;
+    private boolean serviceBaseName54aSet = false;
 
     /**
      * Returns the service bean base name.
@@ -1767,19 +1770,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceBaseName()
     {
-        String serviceBaseName54a = this.__serviceBaseName54a;
-        if (!this.__serviceBaseName54aSet)
+        String aserviceBaseName54a = this.serviceBaseName54a;
+        if (!this.serviceBaseName54aSet)
         {
             // serviceBaseName has no pre constraints
-            serviceBaseName54a = handleGetServiceBaseName();
+            aserviceBaseName54a = handleGetServiceBaseName();
             // serviceBaseName has no post constraints
-            this.__serviceBaseName54a = serviceBaseName54a;
+            this.serviceBaseName54a = aserviceBaseName54a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceBaseName54aSet = true;
+                this.serviceBaseName54aSet = true;
             }
         }
-        return serviceBaseName54a;
+        return aserviceBaseName54a;
     }
 
    /**
@@ -1788,8 +1791,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceBaseName();
 
-    private String __fullyQualifiedServiceBaseName55a;
-    private boolean __fullyQualifiedServiceBaseName55aSet = false;
+    private String fullyQualifiedServiceBaseName55a;
+    private boolean fullyQualifiedServiceBaseName55aSet = false;
 
     /**
      * Returns the fully qualified service base name.
@@ -1797,19 +1800,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceBaseName()
     {
-        String fullyQualifiedServiceBaseName55a = this.__fullyQualifiedServiceBaseName55a;
-        if (!this.__fullyQualifiedServiceBaseName55aSet)
+        String afullyQualifiedServiceBaseName55a = this.fullyQualifiedServiceBaseName55a;
+        if (!this.fullyQualifiedServiceBaseName55aSet)
         {
             // fullyQualifiedServiceBaseName has no pre constraints
-            fullyQualifiedServiceBaseName55a = handleGetFullyQualifiedServiceBaseName();
+            afullyQualifiedServiceBaseName55a = handleGetFullyQualifiedServiceBaseName();
             // fullyQualifiedServiceBaseName has no post constraints
-            this.__fullyQualifiedServiceBaseName55a = fullyQualifiedServiceBaseName55a;
+            this.fullyQualifiedServiceBaseName55a = afullyQualifiedServiceBaseName55a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceBaseName55aSet = true;
+                this.fullyQualifiedServiceBaseName55aSet = true;
             }
         }
-        return fullyQualifiedServiceBaseName55a;
+        return afullyQualifiedServiceBaseName55a;
     }
 
    /**
@@ -1818,8 +1821,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsSeamComponent();
 
-    private boolean __seamComponent56a;
-    private boolean __seamComponent56aSet = false;
+    private boolean seamComponent56a;
+    private boolean seamComponent56aSet = false;
 
     /**
      * Returns true if this session bean has the <<Seam>> stereotype modelled indicating it is a
@@ -1828,19 +1831,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isSeamComponent()
     {
-        boolean seamComponent56a = this.__seamComponent56a;
-        if (!this.__seamComponent56aSet)
+        boolean aseamComponent56a = this.seamComponent56a;
+        if (!this.seamComponent56aSet)
         {
             // seamComponent has no pre constraints
-            seamComponent56a = handleIsSeamComponent();
+            aseamComponent56a = handleIsSeamComponent();
             // seamComponent has no post constraints
-            this.__seamComponent56a = seamComponent56a;
+            this.seamComponent56a = aseamComponent56a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponent56aSet = true;
+                this.seamComponent56aSet = true;
             }
         }
-        return seamComponent56a;
+        return aseamComponent56a;
     }
 
    /**
@@ -1849,8 +1852,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentScopeType();
 
-    private String __seamComponentScopeType57a;
-    private boolean __seamComponentScopeType57aSet = false;
+    private String seamComponentScopeType57a;
+    private boolean seamComponentScopeType57aSet = false;
 
     /**
      * Tagged value andromda.seam.component.scope. Defines the default context of the component. 
@@ -1867,19 +1870,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentScopeType()
     {
-        String seamComponentScopeType57a = this.__seamComponentScopeType57a;
-        if (!this.__seamComponentScopeType57aSet)
+        String aseamComponentScopeType57a = this.seamComponentScopeType57a;
+        if (!this.seamComponentScopeType57aSet)
         {
             // seamComponentScopeType has no pre constraints
-            seamComponentScopeType57a = handleGetSeamComponentScopeType();
+            aseamComponentScopeType57a = handleGetSeamComponentScopeType();
             // seamComponentScopeType has no post constraints
-            this.__seamComponentScopeType57a = seamComponentScopeType57a;
+            this.seamComponentScopeType57a = aseamComponentScopeType57a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentScopeType57aSet = true;
+                this.seamComponentScopeType57aSet = true;
             }
         }
-        return seamComponentScopeType57a;
+        return aseamComponentScopeType57a;
     }
 
    /**
@@ -1888,8 +1891,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentName();
 
-    private String __seamComponentName58a;
-    private boolean __seamComponentName58aSet = false;
+    private String seamComponentName58a;
+    private boolean seamComponentName58aSet = false;
 
     /**
      * Returns the Seam component name for the class.
@@ -1897,19 +1900,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentName()
     {
-        String seamComponentName58a = this.__seamComponentName58a;
-        if (!this.__seamComponentName58aSet)
+        String aseamComponentName58a = this.seamComponentName58a;
+        if (!this.seamComponentName58aSet)
         {
             // seamComponentName has no pre constraints
-            seamComponentName58a = handleGetSeamComponentName();
+            aseamComponentName58a = handleGetSeamComponentName();
             // seamComponentName has no post constraints
-            this.__seamComponentName58a = seamComponentName58a;
+            this.seamComponentName58a = aseamComponentName58a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentName58aSet = true;
+                this.seamComponentName58aSet = true;
             }
         }
-        return seamComponentName58a;
+        return aseamComponentName58a;
     }
 
    /**
@@ -1918,8 +1921,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsViewTypeBoth();
 
-    private boolean __viewTypeBoth59a;
-    private boolean __viewTypeBoth59aSet = false;
+    private boolean viewTypeBoth59a;
+    private boolean viewTypeBoth59aSet = false;
 
     /**
      * Return true if the view type accessability for this bean is both.
@@ -1927,19 +1930,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isViewTypeBoth()
     {
-        boolean viewTypeBoth59a = this.__viewTypeBoth59a;
-        if (!this.__viewTypeBoth59aSet)
+        boolean aviewTypeBoth59a = this.viewTypeBoth59a;
+        if (!this.viewTypeBoth59aSet)
         {
             // viewTypeBoth has no pre constraints
-            viewTypeBoth59a = handleIsViewTypeBoth();
+            aviewTypeBoth59a = handleIsViewTypeBoth();
             // viewTypeBoth has no post constraints
-            this.__viewTypeBoth59a = viewTypeBoth59a;
+            this.viewTypeBoth59a = aviewTypeBoth59a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeBoth59aSet = true;
+                this.viewTypeBoth59aSet = true;
             }
         }
-        return viewTypeBoth59a;
+        return aviewTypeBoth59a;
     }
 
    /**
@@ -1948,8 +1951,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsViewTypeStrictlyLocal();
 
-    private boolean __viewTypeStrictlyLocal60a;
-    private boolean __viewTypeStrictlyLocal60aSet = false;
+    private boolean viewTypeStrictlyLocal60a;
+    private boolean viewTypeStrictlyLocal60aSet = false;
 
     /**
      * Returns true if the bean view type was explicity set to local view using tagged value or set
@@ -1958,19 +1961,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isViewTypeStrictlyLocal()
     {
-        boolean viewTypeStrictlyLocal60a = this.__viewTypeStrictlyLocal60a;
-        if (!this.__viewTypeStrictlyLocal60aSet)
+        boolean aviewTypeStrictlyLocal60a = this.viewTypeStrictlyLocal60a;
+        if (!this.viewTypeStrictlyLocal60aSet)
         {
             // viewTypeStrictlyLocal has no pre constraints
-            viewTypeStrictlyLocal60a = handleIsViewTypeStrictlyLocal();
+            aviewTypeStrictlyLocal60a = handleIsViewTypeStrictlyLocal();
             // viewTypeStrictlyLocal has no post constraints
-            this.__viewTypeStrictlyLocal60a = viewTypeStrictlyLocal60a;
+            this.viewTypeStrictlyLocal60a = aviewTypeStrictlyLocal60a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeStrictlyLocal60aSet = true;
+                this.viewTypeStrictlyLocal60aSet = true;
             }
         }
-        return viewTypeStrictlyLocal60a;
+        return aviewTypeStrictlyLocal60a;
     }
 
    /**
@@ -1979,8 +1982,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsViewTypeStrictlyRemote();
 
-    private boolean __viewTypeStrictlyRemote61a;
-    private boolean __viewTypeStrictlyRemote61aSet = false;
+    private boolean viewTypeStrictlyRemote61a;
+    private boolean viewTypeStrictlyRemote61aSet = false;
 
     /**
      * Returns true if the bean view type was explicity set to remote view using tagged value or set
@@ -1989,19 +1992,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isViewTypeStrictlyRemote()
     {
-        boolean viewTypeStrictlyRemote61a = this.__viewTypeStrictlyRemote61a;
-        if (!this.__viewTypeStrictlyRemote61aSet)
+        boolean aviewTypeStrictlyRemote61a = this.viewTypeStrictlyRemote61a;
+        if (!this.viewTypeStrictlyRemote61aSet)
         {
             // viewTypeStrictlyRemote has no pre constraints
-            viewTypeStrictlyRemote61a = handleIsViewTypeStrictlyRemote();
+            aviewTypeStrictlyRemote61a = handleIsViewTypeStrictlyRemote();
             // viewTypeStrictlyRemote has no post constraints
-            this.__viewTypeStrictlyRemote61a = viewTypeStrictlyRemote61a;
+            this.viewTypeStrictlyRemote61a = aviewTypeStrictlyRemote61a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeStrictlyRemote61aSet = true;
+                this.viewTypeStrictlyRemote61aSet = true;
             }
         }
-        return viewTypeStrictlyRemote61a;
+        return aviewTypeStrictlyRemote61a;
     }
 
    /**
@@ -2010,8 +2013,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsViewTypeStrictlyBoth();
 
-    private boolean __viewTypeStrictlyBoth62a;
-    private boolean __viewTypeStrictlyBoth62aSet = false;
+    private boolean viewTypeStrictlyBoth62a;
+    private boolean viewTypeStrictlyBoth62aSet = false;
 
     /**
      * Returns true if the bean view type was explicity set to both view using tagged value or set
@@ -2020,19 +2023,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isViewTypeStrictlyBoth()
     {
-        boolean viewTypeStrictlyBoth62a = this.__viewTypeStrictlyBoth62a;
-        if (!this.__viewTypeStrictlyBoth62aSet)
+        boolean aviewTypeStrictlyBoth62a = this.viewTypeStrictlyBoth62a;
+        if (!this.viewTypeStrictlyBoth62aSet)
         {
             // viewTypeStrictlyBoth has no pre constraints
-            viewTypeStrictlyBoth62a = handleIsViewTypeStrictlyBoth();
+            aviewTypeStrictlyBoth62a = handleIsViewTypeStrictlyBoth();
             // viewTypeStrictlyBoth has no post constraints
-            this.__viewTypeStrictlyBoth62a = viewTypeStrictlyBoth62a;
+            this.viewTypeStrictlyBoth62a = aviewTypeStrictlyBoth62a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeStrictlyBoth62aSet = true;
+                this.viewTypeStrictlyBoth62aSet = true;
             }
         }
-        return viewTypeStrictlyBoth62a;
+        return aviewTypeStrictlyBoth62a;
     }
 
    /**
@@ -2041,8 +2044,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsSeamComponentStartup();
 
-    private boolean __seamComponentStartup63a;
-    private boolean __seamComponentStartup63aSet = false;
+    private boolean seamComponentStartup63a;
+    private boolean seamComponentStartup63aSet = false;
 
     /**
      * Returns true if stereotype <<Startup>> is set. Specifies that an application scope component
@@ -2052,19 +2055,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isSeamComponentStartup()
     {
-        boolean seamComponentStartup63a = this.__seamComponentStartup63a;
-        if (!this.__seamComponentStartup63aSet)
+        boolean aseamComponentStartup63a = this.seamComponentStartup63a;
+        if (!this.seamComponentStartup63aSet)
         {
             // seamComponentStartup has no pre constraints
-            seamComponentStartup63a = handleIsSeamComponentStartup();
+            aseamComponentStartup63a = handleIsSeamComponentStartup();
             // seamComponentStartup has no post constraints
-            this.__seamComponentStartup63a = seamComponentStartup63a;
+            this.seamComponentStartup63a = aseamComponentStartup63a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentStartup63aSet = true;
+                this.seamComponentStartup63aSet = true;
             }
         }
-        return seamComponentStartup63a;
+        return aseamComponentStartup63a;
     }
 
    /**
@@ -2073,8 +2076,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentConversionalIfNotBegunOutcome();
 
-    private String __seamComponentConversionalIfNotBegunOutcome64a;
-    private boolean __seamComponentConversionalIfNotBegunOutcome64aSet = false;
+    private String seamComponentConversionalIfNotBegunOutcome64a;
+    private boolean seamComponentConversionalIfNotBegunOutcome64aSet = false;
 
     /**
      * Tagged value andromda.seam.component.conversional.ifnotbegunoutcome. Specifies that a
@@ -2085,19 +2088,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentConversionalIfNotBegunOutcome()
     {
-        String seamComponentConversionalIfNotBegunOutcome64a = this.__seamComponentConversionalIfNotBegunOutcome64a;
-        if (!this.__seamComponentConversionalIfNotBegunOutcome64aSet)
+        String aseamComponentConversionalIfNotBegunOutcome64a = this.seamComponentConversionalIfNotBegunOutcome64a;
+        if (!this.seamComponentConversionalIfNotBegunOutcome64aSet)
         {
             // seamComponentConversionalIfNotBegunOutcome has no pre constraints
-            seamComponentConversionalIfNotBegunOutcome64a = handleGetSeamComponentConversionalIfNotBegunOutcome();
+            aseamComponentConversionalIfNotBegunOutcome64a = handleGetSeamComponentConversionalIfNotBegunOutcome();
             // seamComponentConversionalIfNotBegunOutcome has no post constraints
-            this.__seamComponentConversionalIfNotBegunOutcome64a = seamComponentConversionalIfNotBegunOutcome64a;
+            this.seamComponentConversionalIfNotBegunOutcome64a = aseamComponentConversionalIfNotBegunOutcome64a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentConversionalIfNotBegunOutcome64aSet = true;
+                this.seamComponentConversionalIfNotBegunOutcome64aSet = true;
             }
         }
-        return seamComponentConversionalIfNotBegunOutcome64a;
+        return aseamComponentConversionalIfNotBegunOutcome64a;
     }
 
    /**
@@ -2106,8 +2109,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentIntercept();
 
-    private String __seamComponentIntercept65a;
-    private boolean __seamComponentIntercept65aSet = false;
+    private String seamComponentIntercept65a;
+    private boolean seamComponentIntercept65aSet = false;
 
     /**
      * Tagged value andromda.seam.component.intercept. Determines when Seam interceptors are active.
@@ -2120,19 +2123,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentIntercept()
     {
-        String seamComponentIntercept65a = this.__seamComponentIntercept65a;
-        if (!this.__seamComponentIntercept65aSet)
+        String aseamComponentIntercept65a = this.seamComponentIntercept65a;
+        if (!this.seamComponentIntercept65aSet)
         {
             // seamComponentIntercept has no pre constraints
-            seamComponentIntercept65a = handleGetSeamComponentIntercept();
+            aseamComponentIntercept65a = handleGetSeamComponentIntercept();
             // seamComponentIntercept has no post constraints
-            this.__seamComponentIntercept65a = seamComponentIntercept65a;
+            this.seamComponentIntercept65a = aseamComponentIntercept65a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentIntercept65aSet = true;
+                this.seamComponentIntercept65aSet = true;
             }
         }
-        return seamComponentIntercept65a;
+        return aseamComponentIntercept65a;
     }
 
    /**
@@ -2141,8 +2144,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentJndiName();
 
-    private String __seamComponentJndiName66a;
-    private boolean __seamComponentJndiName66aSet = false;
+    private String seamComponentJndiName66a;
+    private boolean seamComponentJndiName66aSet = false;
 
     /**
      * Tagged value andromda.seam.component.jndiname. Specifies the JNDI name that Seam will use to
@@ -2152,19 +2155,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentJndiName()
     {
-        String seamComponentJndiName66a = this.__seamComponentJndiName66a;
-        if (!this.__seamComponentJndiName66aSet)
+        String aseamComponentJndiName66a = this.seamComponentJndiName66a;
+        if (!this.seamComponentJndiName66aSet)
         {
             // seamComponentJndiName has no pre constraints
-            seamComponentJndiName66a = handleGetSeamComponentJndiName();
+            aseamComponentJndiName66a = handleGetSeamComponentJndiName();
             // seamComponentJndiName has no post constraints
-            this.__seamComponentJndiName66a = seamComponentJndiName66a;
+            this.seamComponentJndiName66a = aseamComponentJndiName66a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentJndiName66aSet = true;
+                this.seamComponentJndiName66aSet = true;
             }
         }
-        return seamComponentJndiName66a;
+        return aseamComponentJndiName66a;
     }
 
    /**
@@ -2173,8 +2176,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsSeamComponentReadonly();
 
-    private boolean __seamComponentReadonly67a;
-    private boolean __seamComponentReadonly67aSet = false;
+    private boolean seamComponentReadonly67a;
+    private boolean seamComponentReadonly67aSet = false;
 
     /**
      * Tagged value andromda.seam.component.readonly. Specifies that a JavaBean component or
@@ -2183,19 +2186,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isSeamComponentReadonly()
     {
-        boolean seamComponentReadonly67a = this.__seamComponentReadonly67a;
-        if (!this.__seamComponentReadonly67aSet)
+        boolean aseamComponentReadonly67a = this.seamComponentReadonly67a;
+        if (!this.seamComponentReadonly67aSet)
         {
             // seamComponentReadonly has no pre constraints
-            seamComponentReadonly67a = handleIsSeamComponentReadonly();
+            aseamComponentReadonly67a = handleIsSeamComponentReadonly();
             // seamComponentReadonly has no post constraints
-            this.__seamComponentReadonly67a = seamComponentReadonly67a;
+            this.seamComponentReadonly67a = aseamComponentReadonly67a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentReadonly67aSet = true;
+                this.seamComponentReadonly67aSet = true;
             }
         }
-        return seamComponentReadonly67a;
+        return aseamComponentReadonly67a;
     }
 
    /**
@@ -2204,8 +2207,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetSeamComponentRoleNames();
 
-    private Collection __seamComponentRoleNames68a;
-    private boolean __seamComponentRoleNames68aSet = false;
+    private Collection seamComponentRoleNames68a;
+    private boolean seamComponentRoleNames68aSet = false;
 
     /**
      * Tagged value andromda.seam.component.role.name. Allows a Seam component to be bound to
@@ -2216,19 +2219,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getSeamComponentRoleNames()
     {
-        Collection seamComponentRoleNames68a = this.__seamComponentRoleNames68a;
-        if (!this.__seamComponentRoleNames68aSet)
+        Collection aseamComponentRoleNames68a = this.seamComponentRoleNames68a;
+        if (!this.seamComponentRoleNames68aSet)
         {
             // seamComponentRoleNames has no pre constraints
-            seamComponentRoleNames68a = handleGetSeamComponentRoleNames();
+            aseamComponentRoleNames68a = handleGetSeamComponentRoleNames();
             // seamComponentRoleNames has no post constraints
-            this.__seamComponentRoleNames68a = seamComponentRoleNames68a;
+            this.seamComponentRoleNames68a = aseamComponentRoleNames68a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentRoleNames68aSet = true;
+                this.seamComponentRoleNames68aSet = true;
             }
         }
-        return seamComponentRoleNames68a;
+        return aseamComponentRoleNames68a;
     }
 
    /**
@@ -2237,8 +2240,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentSynchronizedTimeout();
 
-    private String __seamComponentSynchronizedTimeout69a;
-    private boolean __seamComponentSynchronizedTimeout69aSet = false;
+    private String seamComponentSynchronizedTimeout69a;
+    private boolean seamComponentSynchronizedTimeout69aSet = false;
 
     /**
      * Tagged value andromda.seam.component.synchronized.timeout. Specifies that a component is
@@ -2249,19 +2252,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentSynchronizedTimeout()
     {
-        String seamComponentSynchronizedTimeout69a = this.__seamComponentSynchronizedTimeout69a;
-        if (!this.__seamComponentSynchronizedTimeout69aSet)
+        String aseamComponentSynchronizedTimeout69a = this.seamComponentSynchronizedTimeout69a;
+        if (!this.seamComponentSynchronizedTimeout69aSet)
         {
             // seamComponentSynchronizedTimeout has no pre constraints
-            seamComponentSynchronizedTimeout69a = handleGetSeamComponentSynchronizedTimeout();
+            aseamComponentSynchronizedTimeout69a = handleGetSeamComponentSynchronizedTimeout();
             // seamComponentSynchronizedTimeout has no post constraints
-            this.__seamComponentSynchronizedTimeout69a = seamComponentSynchronizedTimeout69a;
+            this.seamComponentSynchronizedTimeout69a = aseamComponentSynchronizedTimeout69a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentSynchronizedTimeout69aSet = true;
+                this.seamComponentSynchronizedTimeout69aSet = true;
             }
         }
-        return seamComponentSynchronizedTimeout69a;
+        return aseamComponentSynchronizedTimeout69a;
     }
 
    /**
@@ -2270,8 +2273,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract boolean handleIsSeamComponentTransactional();
 
-    private boolean __seamComponentTransactional70a;
-    private boolean __seamComponentTransactional70aSet = false;
+    private boolean seamComponentTransactional70a;
+    private boolean seamComponentTransactional70aSet = false;
 
     /**
      * Returns true if stereotype <<Transactional>> is set. Specifies that a JavaBean component
@@ -2283,19 +2286,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final boolean isSeamComponentTransactional()
     {
-        boolean seamComponentTransactional70a = this.__seamComponentTransactional70a;
-        if (!this.__seamComponentTransactional70aSet)
+        boolean aseamComponentTransactional70a = this.seamComponentTransactional70a;
+        if (!this.seamComponentTransactional70aSet)
         {
             // seamComponentTransactional has no pre constraints
-            seamComponentTransactional70a = handleIsSeamComponentTransactional();
+            aseamComponentTransactional70a = handleIsSeamComponentTransactional();
             // seamComponentTransactional has no post constraints
-            this.__seamComponentTransactional70a = seamComponentTransactional70a;
+            this.seamComponentTransactional70a = aseamComponentTransactional70a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentTransactional70aSet = true;
+                this.seamComponentTransactional70aSet = true;
             }
         }
-        return seamComponentTransactional70a;
+        return aseamComponentTransactional70a;
     }
 
    /**
@@ -2304,8 +2307,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetSeamComponentStartupParameters();
 
-    private String __seamComponentStartupParameters71a;
-    private boolean __seamComponentStartupParameters71aSet = false;
+    private String seamComponentStartupParameters71a;
+    private boolean seamComponentStartupParameters71aSet = false;
 
     /**
      * Returns a string with parameters for the Startup annotation. Supported parameters:
@@ -2315,19 +2318,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getSeamComponentStartupParameters()
     {
-        String seamComponentStartupParameters71a = this.__seamComponentStartupParameters71a;
-        if (!this.__seamComponentStartupParameters71aSet)
+        String aseamComponentStartupParameters71a = this.seamComponentStartupParameters71a;
+        if (!this.seamComponentStartupParameters71aSet)
         {
             // seamComponentStartupParameters has no pre constraints
-            seamComponentStartupParameters71a = handleGetSeamComponentStartupParameters();
+            aseamComponentStartupParameters71a = handleGetSeamComponentStartupParameters();
             // seamComponentStartupParameters has no post constraints
-            this.__seamComponentStartupParameters71a = seamComponentStartupParameters71a;
+            this.seamComponentStartupParameters71a = aseamComponentStartupParameters71a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentStartupParameters71aSet = true;
+                this.seamComponentStartupParameters71aSet = true;
             }
         }
-        return seamComponentStartupParameters71a;
+        return aseamComponentStartupParameters71a;
     }
 
    /**
@@ -2336,8 +2339,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract Collection handleGetSeamComponentRoleScopeTypes();
 
-    private Collection __seamComponentRoleScopeTypes72a;
-    private boolean __seamComponentRoleScopeTypes72aSet = false;
+    private Collection seamComponentRoleScopeTypes72a;
+    private boolean seamComponentRoleScopeTypes72aSet = false;
 
     /**
      * If multiple roles are specified (since a seam component can be bound to multiple context
@@ -2348,19 +2351,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final Collection getSeamComponentRoleScopeTypes()
     {
-        Collection seamComponentRoleScopeTypes72a = this.__seamComponentRoleScopeTypes72a;
-        if (!this.__seamComponentRoleScopeTypes72aSet)
+        Collection aseamComponentRoleScopeTypes72a = this.seamComponentRoleScopeTypes72a;
+        if (!this.seamComponentRoleScopeTypes72aSet)
         {
             // seamComponentRoleScopeTypes has no pre constraints
-            seamComponentRoleScopeTypes72a = handleGetSeamComponentRoleScopeTypes();
+            aseamComponentRoleScopeTypes72a = handleGetSeamComponentRoleScopeTypes();
             // seamComponentRoleScopeTypes has no post constraints
-            this.__seamComponentRoleScopeTypes72a = seamComponentRoleScopeTypes72a;
+            this.seamComponentRoleScopeTypes72a = aseamComponentRoleScopeTypes72a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentRoleScopeTypes72aSet = true;
+                this.seamComponentRoleScopeTypes72aSet = true;
             }
         }
-        return seamComponentRoleScopeTypes72a;
+        return aseamComponentRoleScopeTypes72a;
     }
 
    /**
@@ -2369,8 +2372,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceTestName();
 
-    private String __fullyQualifiedServiceTestName73a;
-    private boolean __fullyQualifiedServiceTestName73aSet = false;
+    private String fullyQualifiedServiceTestName73a;
+    private boolean fullyQualifiedServiceTestName73aSet = false;
 
     /**
      * Returns the fully qualified service test class name
@@ -2378,19 +2381,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceTestName()
     {
-        String fullyQualifiedServiceTestName73a = this.__fullyQualifiedServiceTestName73a;
-        if (!this.__fullyQualifiedServiceTestName73aSet)
+        String afullyQualifiedServiceTestName73a = this.fullyQualifiedServiceTestName73a;
+        if (!this.fullyQualifiedServiceTestName73aSet)
         {
             // fullyQualifiedServiceTestName has no pre constraints
-            fullyQualifiedServiceTestName73a = handleGetFullyQualifiedServiceTestName();
+            afullyQualifiedServiceTestName73a = handleGetFullyQualifiedServiceTestName();
             // fullyQualifiedServiceTestName has no post constraints
-            this.__fullyQualifiedServiceTestName73a = fullyQualifiedServiceTestName73a;
+            this.fullyQualifiedServiceTestName73a = afullyQualifiedServiceTestName73a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceTestName73aSet = true;
+                this.fullyQualifiedServiceTestName73aSet = true;
             }
         }
-        return fullyQualifiedServiceTestName73a;
+        return afullyQualifiedServiceTestName73a;
     }
 
    /**
@@ -2399,8 +2402,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceTestName();
 
-    private String __serviceTestName74a;
-    private boolean __serviceTestName74aSet = false;
+    private String serviceTestName74a;
+    private boolean serviceTestName74aSet = false;
 
     /**
      * Returns the service bean test class name
@@ -2408,19 +2411,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceTestName()
     {
-        String serviceTestName74a = this.__serviceTestName74a;
-        if (!this.__serviceTestName74aSet)
+        String aserviceTestName74a = this.serviceTestName74a;
+        if (!this.serviceTestName74aSet)
         {
             // serviceTestName has no pre constraints
-            serviceTestName74a = handleGetServiceTestName();
+            aserviceTestName74a = handleGetServiceTestName();
             // serviceTestName has no post constraints
-            this.__serviceTestName74a = serviceTestName74a;
+            this.serviceTestName74a = aserviceTestName74a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceTestName74aSet = true;
+                this.serviceTestName74aSet = true;
             }
         }
-        return serviceTestName74a;
+        return aserviceTestName74a;
     }
 
    /**
@@ -2429,8 +2432,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetTestPackageName();
 
-    private String __testPackageName75a;
-    private boolean __testPackageName75aSet = false;
+    private String testPackageName75a;
+    private boolean testPackageName75aSet = false;
 
     /**
      * Returns the service test package name. This simply appends .test to the existing service
@@ -2439,19 +2442,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getTestPackageName()
     {
-        String testPackageName75a = this.__testPackageName75a;
-        if (!this.__testPackageName75aSet)
+        String atestPackageName75a = this.testPackageName75a;
+        if (!this.testPackageName75aSet)
         {
             // testPackageName has no pre constraints
-            testPackageName75a = handleGetTestPackageName();
+            atestPackageName75a = handleGetTestPackageName();
             // testPackageName has no post constraints
-            this.__testPackageName75a = testPackageName75a;
+            this.testPackageName75a = atestPackageName75a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__testPackageName75aSet = true;
+                this.testPackageName75aSet = true;
             }
         }
-        return testPackageName75a;
+        return atestPackageName75a;
     }
 
    /**
@@ -2460,8 +2463,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetServiceInterfaceName();
 
-    private String __serviceInterfaceName76a;
-    private boolean __serviceInterfaceName76aSet = false;
+    private String serviceInterfaceName76a;
+    private boolean serviceInterfaceName76aSet = false;
 
     /**
      * The parent business interface name for this session bean.
@@ -2469,19 +2472,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getServiceInterfaceName()
     {
-        String serviceInterfaceName76a = this.__serviceInterfaceName76a;
-        if (!this.__serviceInterfaceName76aSet)
+        String aserviceInterfaceName76a = this.serviceInterfaceName76a;
+        if (!this.serviceInterfaceName76aSet)
         {
             // serviceInterfaceName has no pre constraints
-            serviceInterfaceName76a = handleGetServiceInterfaceName();
+            aserviceInterfaceName76a = handleGetServiceInterfaceName();
             // serviceInterfaceName has no post constraints
-            this.__serviceInterfaceName76a = serviceInterfaceName76a;
+            this.serviceInterfaceName76a = aserviceInterfaceName76a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__serviceInterfaceName76aSet = true;
+                this.serviceInterfaceName76aSet = true;
             }
         }
-        return serviceInterfaceName76a;
+        return aserviceInterfaceName76a;
     }
 
    /**
@@ -2490,8 +2493,8 @@ public abstract class EJB3SessionFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedServiceInterfaceName();
 
-    private String __fullyQualifiedServiceInterfaceName77a;
-    private boolean __fullyQualifiedServiceInterfaceName77aSet = false;
+    private String fullyQualifiedServiceInterfaceName77a;
+    private boolean fullyQualifiedServiceInterfaceName77aSet = false;
 
     /**
      * The fully qualified parent business interface name for this session bean.
@@ -2499,19 +2502,19 @@ public abstract class EJB3SessionFacadeLogic
      */
     public final String getFullyQualifiedServiceInterfaceName()
     {
-        String fullyQualifiedServiceInterfaceName77a = this.__fullyQualifiedServiceInterfaceName77a;
-        if (!this.__fullyQualifiedServiceInterfaceName77aSet)
+        String afullyQualifiedServiceInterfaceName77a = this.fullyQualifiedServiceInterfaceName77a;
+        if (!this.fullyQualifiedServiceInterfaceName77aSet)
         {
             // fullyQualifiedServiceInterfaceName has no pre constraints
-            fullyQualifiedServiceInterfaceName77a = handleGetFullyQualifiedServiceInterfaceName();
+            afullyQualifiedServiceInterfaceName77a = handleGetFullyQualifiedServiceInterfaceName();
             // fullyQualifiedServiceInterfaceName has no post constraints
-            this.__fullyQualifiedServiceInterfaceName77a = fullyQualifiedServiceInterfaceName77a;
+            this.fullyQualifiedServiceInterfaceName77a = afullyQualifiedServiceInterfaceName77a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedServiceInterfaceName77aSet = true;
+                this.fullyQualifiedServiceInterfaceName77aSet = true;
             }
         }
-        return fullyQualifiedServiceInterfaceName77a;
+        return afullyQualifiedServiceInterfaceName77a;
     }
 
     // ---------------- business methods ----------------------
@@ -2666,7 +2669,7 @@ public abstract class EJB3SessionFacadeLogic
         catch (ClassCastException ex)
         {
             // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-            EJB3SessionFacadeLogic.logger.warn("incorrect metafacade cast for EJB3SessionFacadeLogic.getNonRunAsRoles Collection<Role> " + result + ": " + shieldedResult);
+            EJB3SessionFacadeLogic.LOGGER.warn("incorrect metafacade cast for EJB3SessionFacadeLogic.getNonRunAsRoles Collection<Role> " + result + ": " + shieldedResult);
         }
         // eJB3SessionFacade has no post constraints
         return getNonRunAsRoles1r;
@@ -2748,7 +2751,7 @@ public abstract class EJB3SessionFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperService().getAllProperties();
     }
@@ -2758,7 +2761,7 @@ public abstract class EJB3SessionFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperService().getAllRequiredConstructorParameters();
     }
@@ -2815,7 +2818,7 @@ public abstract class EJB3SessionFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperService().getAttributes(follow);
     }
@@ -2912,7 +2915,7 @@ public abstract class EJB3SessionFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperService().getNavigableConnectingEnds(follow);
     }
@@ -2953,7 +2956,7 @@ public abstract class EJB3SessionFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperService().getProperties();
     }
@@ -2974,7 +2977,7 @@ public abstract class EJB3SessionFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperService().getRequiredConstructorParameters();
     }
@@ -3373,7 +3376,7 @@ public abstract class EJB3SessionFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperService().findTaggedValues(tagName);
     }
@@ -3403,7 +3406,7 @@ public abstract class EJB3SessionFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperService().getConstraints(kind);
     }

@@ -34,17 +34,20 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     extends MetafacadeBase
     implements EJB3SessionOperationParameterFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3SessionOperationParameterFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3SessionOperationParameterFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superParameterFacade =
@@ -122,8 +125,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronousDuration();
 
-    private boolean __seamAsynchronousDuration1a;
-    private boolean __seamAsynchronousDuration1aSet = false;
+    private boolean seamAsynchronousDuration1a;
+    private boolean seamAsynchronousDuration1aSet = false;
 
     /**
      * Specifies that a parameter of the asynchronous call is the duration before the call is
@@ -132,19 +135,19 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      */
     public final boolean isSeamAsynchronousDuration()
     {
-        boolean seamAsynchronousDuration1a = this.__seamAsynchronousDuration1a;
-        if (!this.__seamAsynchronousDuration1aSet)
+        boolean aseamAsynchronousDuration1a = this.seamAsynchronousDuration1a;
+        if (!this.seamAsynchronousDuration1aSet)
         {
             // seamAsynchronousDuration has no pre constraints
-            seamAsynchronousDuration1a = handleIsSeamAsynchronousDuration();
+            aseamAsynchronousDuration1a = handleIsSeamAsynchronousDuration();
             // seamAsynchronousDuration has no post constraints
-            this.__seamAsynchronousDuration1a = seamAsynchronousDuration1a;
+            this.seamAsynchronousDuration1a = aseamAsynchronousDuration1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamAsynchronousDuration1aSet = true;
+                this.seamAsynchronousDuration1aSet = true;
             }
         }
-        return seamAsynchronousDuration1a;
+        return aseamAsynchronousDuration1a;
     }
 
    /**
@@ -153,8 +156,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronousExpiration();
 
-    private boolean __seamAsynchronousExpiration2a;
-    private boolean __seamAsynchronousExpiration2aSet = false;
+    private boolean seamAsynchronousExpiration2a;
+    private boolean seamAsynchronousExpiration2aSet = false;
 
     /**
      * Specifies that a parameter of the asynchronous call is the datetime at which the call is
@@ -163,19 +166,19 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      */
     public final boolean isSeamAsynchronousExpiration()
     {
-        boolean seamAsynchronousExpiration2a = this.__seamAsynchronousExpiration2a;
-        if (!this.__seamAsynchronousExpiration2aSet)
+        boolean aseamAsynchronousExpiration2a = this.seamAsynchronousExpiration2a;
+        if (!this.seamAsynchronousExpiration2aSet)
         {
             // seamAsynchronousExpiration has no pre constraints
-            seamAsynchronousExpiration2a = handleIsSeamAsynchronousExpiration();
+            aseamAsynchronousExpiration2a = handleIsSeamAsynchronousExpiration();
             // seamAsynchronousExpiration has no post constraints
-            this.__seamAsynchronousExpiration2a = seamAsynchronousExpiration2a;
+            this.seamAsynchronousExpiration2a = aseamAsynchronousExpiration2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamAsynchronousExpiration2aSet = true;
+                this.seamAsynchronousExpiration2aSet = true;
             }
         }
-        return seamAsynchronousExpiration2a;
+        return aseamAsynchronousExpiration2a;
     }
 
    /**
@@ -184,8 +187,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronousIntervalDuration();
 
-    private boolean __seamAsynchronousIntervalDuration3a;
-    private boolean __seamAsynchronousIntervalDuration3aSet = false;
+    private boolean seamAsynchronousIntervalDuration3a;
+    private boolean seamAsynchronousIntervalDuration3aSet = false;
 
     /**
      * Specifies that an asynchronous method call recurs, and that the annotationed parameter is
@@ -194,19 +197,19 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      */
     public final boolean isSeamAsynchronousIntervalDuration()
     {
-        boolean seamAsynchronousIntervalDuration3a = this.__seamAsynchronousIntervalDuration3a;
-        if (!this.__seamAsynchronousIntervalDuration3aSet)
+        boolean aseamAsynchronousIntervalDuration3a = this.seamAsynchronousIntervalDuration3a;
+        if (!this.seamAsynchronousIntervalDuration3aSet)
         {
             // seamAsynchronousIntervalDuration has no pre constraints
-            seamAsynchronousIntervalDuration3a = handleIsSeamAsynchronousIntervalDuration();
+            aseamAsynchronousIntervalDuration3a = handleIsSeamAsynchronousIntervalDuration();
             // seamAsynchronousIntervalDuration has no post constraints
-            this.__seamAsynchronousIntervalDuration3a = seamAsynchronousIntervalDuration3a;
+            this.seamAsynchronousIntervalDuration3a = aseamAsynchronousIntervalDuration3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamAsynchronousIntervalDuration3aSet = true;
+                this.seamAsynchronousIntervalDuration3aSet = true;
             }
         }
-        return seamAsynchronousIntervalDuration3a;
+        return aseamAsynchronousIntervalDuration3a;
     }
 
     /**
@@ -252,7 +255,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperParameterFacade().findTaggedValues(tagName);
     }
@@ -282,7 +285,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperParameterFacade().getConstraints(kind);
     }

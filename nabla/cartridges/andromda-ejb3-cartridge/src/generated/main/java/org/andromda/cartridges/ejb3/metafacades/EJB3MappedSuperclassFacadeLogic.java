@@ -17,17 +17,20 @@ public abstract class EJB3MappedSuperclassFacadeLogic
     extends EJB3EntityFacadeLogicImpl
     implements EJB3MappedSuperclassFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3MappedSuperclassFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3MappedSuperclassFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.metaObject = metaObjectIn;

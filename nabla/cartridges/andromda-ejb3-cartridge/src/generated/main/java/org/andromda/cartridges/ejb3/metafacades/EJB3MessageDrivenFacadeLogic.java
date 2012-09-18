@@ -40,17 +40,20 @@ public abstract class EJB3MessageDrivenFacadeLogic
     extends MetafacadeBase
     implements EJB3MessageDrivenFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3MessageDrivenFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3MessageDrivenFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superService =
@@ -128,8 +131,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetAcknowledgeMode();
 
-    private String __acknowledgeMode1a;
-    private boolean __acknowledgeMode1aSet = false;
+    private String acknowledgeMode1a;
+    private boolean acknowledgeMode1aSet = false;
 
     /**
      * Returns the acknowledge mode for this JMS message driven bean.  This is automatically handled
@@ -144,19 +147,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getAcknowledgeMode()
     {
-        String acknowledgeMode1a = this.__acknowledgeMode1a;
-        if (!this.__acknowledgeMode1aSet)
+        String aacknowledgeMode1a = this.acknowledgeMode1a;
+        if (!this.acknowledgeMode1aSet)
         {
             // acknowledgeMode has no pre constraints
-            acknowledgeMode1a = handleGetAcknowledgeMode();
+            aacknowledgeMode1a = handleGetAcknowledgeMode();
             // acknowledgeMode has no post constraints
-            this.__acknowledgeMode1a = acknowledgeMode1a;
+            this.acknowledgeMode1a = aacknowledgeMode1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__acknowledgeMode1aSet = true;
+                this.acknowledgeMode1aSet = true;
             }
         }
-        return acknowledgeMode1a;
+        return aacknowledgeMode1a;
     }
 
    /**
@@ -165,8 +168,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetDestination();
 
-    private String __destination2a;
-    private boolean __destination2aSet = false;
+    private String destination2a;
+    private boolean destination2aSet = false;
 
     /**
      * Returns the destination queue or topic JNDI name this message driven bean is associated with.
@@ -174,19 +177,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getDestination()
     {
-        String destination2a = this.__destination2a;
-        if (!this.__destination2aSet)
+        String adestination2a = this.destination2a;
+        if (!this.destination2aSet)
         {
             // destination has no pre constraints
-            destination2a = handleGetDestination();
+            adestination2a = handleGetDestination();
             // destination has no post constraints
-            this.__destination2a = destination2a;
+            this.destination2a = adestination2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__destination2aSet = true;
+                this.destination2aSet = true;
             }
         }
-        return destination2a;
+        return adestination2a;
     }
 
    /**
@@ -195,8 +198,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetDestinationType();
 
-    private String __destinationType3a;
-    private boolean __destinationType3aSet = false;
+    private String destinationType3a;
+    private boolean destinationType3aSet = false;
 
     /**
      * Returns the destination type of the message driven bean.  Possible values are javax.jms.Queue
@@ -207,19 +210,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getDestinationType()
     {
-        String destinationType3a = this.__destinationType3a;
-        if (!this.__destinationType3aSet)
+        String adestinationType3a = this.destinationType3a;
+        if (!this.destinationType3aSet)
         {
             // destinationType has no pre constraints
-            destinationType3a = handleGetDestinationType();
+            adestinationType3a = handleGetDestinationType();
             // destinationType has no post constraints
-            this.__destinationType3a = destinationType3a;
+            this.destinationType3a = adestinationType3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__destinationType3aSet = true;
+                this.destinationType3aSet = true;
             }
         }
-        return destinationType3a;
+        return adestinationType3a;
     }
 
    /**
@@ -228,8 +231,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedMessageDrivenImplementationName();
 
-    private String __fullyQualifiedMessageDrivenImplementationName4a;
-    private boolean __fullyQualifiedMessageDrivenImplementationName4aSet = false;
+    private String fullyQualifiedMessageDrivenImplementationName4a;
+    private boolean fullyQualifiedMessageDrivenImplementationName4aSet = false;
 
     /**
      * Returns the fully qualified message driven bean implementation name.
@@ -237,19 +240,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getFullyQualifiedMessageDrivenImplementationName()
     {
-        String fullyQualifiedMessageDrivenImplementationName4a = this.__fullyQualifiedMessageDrivenImplementationName4a;
-        if (!this.__fullyQualifiedMessageDrivenImplementationName4aSet)
+        String afullyQualifiedMessageDrivenImplementationName4a = this.fullyQualifiedMessageDrivenImplementationName4a;
+        if (!this.fullyQualifiedMessageDrivenImplementationName4aSet)
         {
             // fullyQualifiedMessageDrivenImplementationName has no pre constraints
-            fullyQualifiedMessageDrivenImplementationName4a = handleGetFullyQualifiedMessageDrivenImplementationName();
+            afullyQualifiedMessageDrivenImplementationName4a = handleGetFullyQualifiedMessageDrivenImplementationName();
             // fullyQualifiedMessageDrivenImplementationName has no post constraints
-            this.__fullyQualifiedMessageDrivenImplementationName4a = fullyQualifiedMessageDrivenImplementationName4a;
+            this.fullyQualifiedMessageDrivenImplementationName4a = afullyQualifiedMessageDrivenImplementationName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedMessageDrivenImplementationName4aSet = true;
+                this.fullyQualifiedMessageDrivenImplementationName4aSet = true;
             }
         }
-        return fullyQualifiedMessageDrivenImplementationName4a;
+        return afullyQualifiedMessageDrivenImplementationName4a;
     }
 
    /**
@@ -258,8 +261,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedMessageDrivenListenerName();
 
-    private String __fullyQualifiedMessageDrivenListenerName5a;
-    private boolean __fullyQualifiedMessageDrivenListenerName5aSet = false;
+    private String fullyQualifiedMessageDrivenListenerName5a;
+    private boolean fullyQualifiedMessageDrivenListenerName5aSet = false;
 
     /**
      * Returns the fully qualified message driven bean listener name.
@@ -267,19 +270,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getFullyQualifiedMessageDrivenListenerName()
     {
-        String fullyQualifiedMessageDrivenListenerName5a = this.__fullyQualifiedMessageDrivenListenerName5a;
-        if (!this.__fullyQualifiedMessageDrivenListenerName5aSet)
+        String afullyQualifiedMessageDrivenListenerName5a = this.fullyQualifiedMessageDrivenListenerName5a;
+        if (!this.fullyQualifiedMessageDrivenListenerName5aSet)
         {
             // fullyQualifiedMessageDrivenListenerName has no pre constraints
-            fullyQualifiedMessageDrivenListenerName5a = handleGetFullyQualifiedMessageDrivenListenerName();
+            afullyQualifiedMessageDrivenListenerName5a = handleGetFullyQualifiedMessageDrivenListenerName();
             // fullyQualifiedMessageDrivenListenerName has no post constraints
-            this.__fullyQualifiedMessageDrivenListenerName5a = fullyQualifiedMessageDrivenListenerName5a;
+            this.fullyQualifiedMessageDrivenListenerName5a = afullyQualifiedMessageDrivenListenerName5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedMessageDrivenListenerName5aSet = true;
+                this.fullyQualifiedMessageDrivenListenerName5aSet = true;
             }
         }
-        return fullyQualifiedMessageDrivenListenerName5a;
+        return afullyQualifiedMessageDrivenListenerName5a;
     }
 
    /**
@@ -288,8 +291,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedMessageDrivenName();
 
-    private String __fullyQualifiedMessageDrivenName6a;
-    private boolean __fullyQualifiedMessageDrivenName6aSet = false;
+    private String fullyQualifiedMessageDrivenName6a;
+    private boolean fullyQualifiedMessageDrivenName6aSet = false;
 
     /**
      * Returns the fully qualified message driven bean name.
@@ -297,19 +300,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getFullyQualifiedMessageDrivenName()
     {
-        String fullyQualifiedMessageDrivenName6a = this.__fullyQualifiedMessageDrivenName6a;
-        if (!this.__fullyQualifiedMessageDrivenName6aSet)
+        String afullyQualifiedMessageDrivenName6a = this.fullyQualifiedMessageDrivenName6a;
+        if (!this.fullyQualifiedMessageDrivenName6aSet)
         {
             // fullyQualifiedMessageDrivenName has no pre constraints
-            fullyQualifiedMessageDrivenName6a = handleGetFullyQualifiedMessageDrivenName();
+            afullyQualifiedMessageDrivenName6a = handleGetFullyQualifiedMessageDrivenName();
             // fullyQualifiedMessageDrivenName has no post constraints
-            this.__fullyQualifiedMessageDrivenName6a = fullyQualifiedMessageDrivenName6a;
+            this.fullyQualifiedMessageDrivenName6a = afullyQualifiedMessageDrivenName6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedMessageDrivenName6aSet = true;
+                this.fullyQualifiedMessageDrivenName6aSet = true;
             }
         }
-        return fullyQualifiedMessageDrivenName6a;
+        return afullyQualifiedMessageDrivenName6a;
     }
 
    /**
@@ -318,8 +321,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetMessageDrivenImplementationName();
 
-    private String __messageDrivenImplementationName7a;
-    private boolean __messageDrivenImplementationName7aSet = false;
+    private String messageDrivenImplementationName7a;
+    private boolean messageDrivenImplementationName7aSet = false;
 
     /**
      * Returns the message driven bean implementation name.
@@ -327,19 +330,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getMessageDrivenImplementationName()
     {
-        String messageDrivenImplementationName7a = this.__messageDrivenImplementationName7a;
-        if (!this.__messageDrivenImplementationName7aSet)
+        String amessageDrivenImplementationName7a = this.messageDrivenImplementationName7a;
+        if (!this.messageDrivenImplementationName7aSet)
         {
             // messageDrivenImplementationName has no pre constraints
-            messageDrivenImplementationName7a = handleGetMessageDrivenImplementationName();
+            amessageDrivenImplementationName7a = handleGetMessageDrivenImplementationName();
             // messageDrivenImplementationName has no post constraints
-            this.__messageDrivenImplementationName7a = messageDrivenImplementationName7a;
+            this.messageDrivenImplementationName7a = amessageDrivenImplementationName7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageDrivenImplementationName7aSet = true;
+                this.messageDrivenImplementationName7aSet = true;
             }
         }
-        return messageDrivenImplementationName7a;
+        return amessageDrivenImplementationName7a;
     }
 
    /**
@@ -348,8 +351,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetMessageDrivenListenerName();
 
-    private String __messageDrivenListenerName8a;
-    private boolean __messageDrivenListenerName8aSet = false;
+    private String messageDrivenListenerName8a;
+    private boolean messageDrivenListenerName8aSet = false;
 
     /**
      * Returns the message driven bean callback listener name.
@@ -357,19 +360,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getMessageDrivenListenerName()
     {
-        String messageDrivenListenerName8a = this.__messageDrivenListenerName8a;
-        if (!this.__messageDrivenListenerName8aSet)
+        String amessageDrivenListenerName8a = this.messageDrivenListenerName8a;
+        if (!this.messageDrivenListenerName8aSet)
         {
             // messageDrivenListenerName has no pre constraints
-            messageDrivenListenerName8a = handleGetMessageDrivenListenerName();
+            amessageDrivenListenerName8a = handleGetMessageDrivenListenerName();
             // messageDrivenListenerName has no post constraints
-            this.__messageDrivenListenerName8a = messageDrivenListenerName8a;
+            this.messageDrivenListenerName8a = amessageDrivenListenerName8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageDrivenListenerName8aSet = true;
+                this.messageDrivenListenerName8aSet = true;
             }
         }
-        return messageDrivenListenerName8a;
+        return amessageDrivenListenerName8a;
     }
 
    /**
@@ -378,8 +381,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetMessageDrivenName();
 
-    private String __messageDrivenName9a;
-    private boolean __messageDrivenName9aSet = false;
+    private String messageDrivenName9a;
+    private boolean messageDrivenName9aSet = false;
 
     /**
      * Returns message driven bean name.
@@ -387,19 +390,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getMessageDrivenName()
     {
-        String messageDrivenName9a = this.__messageDrivenName9a;
-        if (!this.__messageDrivenName9aSet)
+        String amessageDrivenName9a = this.messageDrivenName9a;
+        if (!this.messageDrivenName9aSet)
         {
             // messageDrivenName has no pre constraints
-            messageDrivenName9a = handleGetMessageDrivenName();
+            amessageDrivenName9a = handleGetMessageDrivenName();
             // messageDrivenName has no post constraints
-            this.__messageDrivenName9a = messageDrivenName9a;
+            this.messageDrivenName9a = amessageDrivenName9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageDrivenName9aSet = true;
+                this.messageDrivenName9aSet = true;
             }
         }
-        return messageDrivenName9a;
+        return amessageDrivenName9a;
     }
 
    /**
@@ -408,8 +411,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetMessageSelector();
 
-    private String __messageSelector10a;
-    private boolean __messageSelector10aSet = false;
+    private String messageSelector10a;
+    private boolean messageSelector10aSet = false;
 
     /**
      * Returns the JMS message selector used when determining the messages a message driven bean is
@@ -418,19 +421,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getMessageSelector()
     {
-        String messageSelector10a = this.__messageSelector10a;
-        if (!this.__messageSelector10aSet)
+        String amessageSelector10a = this.messageSelector10a;
+        if (!this.messageSelector10aSet)
         {
             // messageSelector has no pre constraints
-            messageSelector10a = handleGetMessageSelector();
+            amessageSelector10a = handleGetMessageSelector();
             // messageSelector has no post constraints
-            this.__messageSelector10a = messageSelector10a;
+            this.messageSelector10a = amessageSelector10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageSelector10aSet = true;
+                this.messageSelector10aSet = true;
             }
         }
-        return messageSelector10a;
+        return amessageSelector10a;
     }
 
    /**
@@ -439,8 +442,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetRunAs();
 
-    private String __runAs11a;
-    private boolean __runAs11aSet = false;
+    private String runAs11a;
+    private boolean runAs11aSet = false;
 
     /**
      * Returns the run-as identity for the message driven bean which is used to establish the
@@ -450,19 +453,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getRunAs()
     {
-        String runAs11a = this.__runAs11a;
-        if (!this.__runAs11aSet)
+        String arunAs11a = this.runAs11a;
+        if (!this.runAs11aSet)
         {
             // runAs has no pre constraints
-            runAs11a = handleGetRunAs();
+            arunAs11a = handleGetRunAs();
             // runAs has no post constraints
-            this.__runAs11a = runAs11a;
+            this.runAs11a = arunAs11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__runAs11aSet = true;
+                this.runAs11aSet = true;
             }
         }
-        return runAs11a;
+        return arunAs11a;
     }
 
    /**
@@ -471,8 +474,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetSubscriptionDurability();
 
-    private String __subscriptionDurability12a;
-    private boolean __subscriptionDurability12aSet = false;
+    private String subscriptionDurability12a;
+    private boolean subscriptionDurability12aSet = false;
 
     /**
      * If the message driven bean is associated with a topic, then this will return the subscription
@@ -484,19 +487,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getSubscriptionDurability()
     {
-        String subscriptionDurability12a = this.__subscriptionDurability12a;
-        if (!this.__subscriptionDurability12aSet)
+        String asubscriptionDurability12a = this.subscriptionDurability12a;
+        if (!this.subscriptionDurability12aSet)
         {
             // subscriptionDurability has no pre constraints
-            subscriptionDurability12a = handleGetSubscriptionDurability();
+            asubscriptionDurability12a = handleGetSubscriptionDurability();
             // subscriptionDurability has no post constraints
-            this.__subscriptionDurability12a = subscriptionDurability12a;
+            this.subscriptionDurability12a = asubscriptionDurability12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__subscriptionDurability12aSet = true;
+                this.subscriptionDurability12aSet = true;
             }
         }
-        return subscriptionDurability12a;
+        return asubscriptionDurability12a;
     }
 
    /**
@@ -505,8 +508,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetTransactionManagement();
 
-    private String __transactionManagement13a;
-    private boolean __transactionManagement13aSet = false;
+    private String transactionManagement13a;
+    private boolean transactionManagement13aSet = false;
 
     /**
      * Returns the transaction demarcation strategy for this bean.  Typically, this will return BEAN
@@ -516,19 +519,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getTransactionManagement()
     {
-        String transactionManagement13a = this.__transactionManagement13a;
-        if (!this.__transactionManagement13aSet)
+        String atransactionManagement13a = this.transactionManagement13a;
+        if (!this.transactionManagement13aSet)
         {
             // transactionManagement has no pre constraints
-            transactionManagement13a = handleGetTransactionManagement();
+            atransactionManagement13a = handleGetTransactionManagement();
             // transactionManagement has no post constraints
-            this.__transactionManagement13a = transactionManagement13a;
+            this.transactionManagement13a = atransactionManagement13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionManagement13aSet = true;
+                this.transactionManagement13aSet = true;
             }
         }
-        return transactionManagement13a;
+        return atransactionManagement13a;
     }
 
    /**
@@ -537,8 +540,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsTransactionManagementBean();
 
-    private boolean __transactionManagementBean14a;
-    private boolean __transactionManagementBean14aSet = false;
+    private boolean transactionManagementBean14a;
+    private boolean transactionManagementBean14aSet = false;
 
     /**
      * Returns true if the transaction demarcation strategy is bean managedfor this bean.
@@ -546,19 +549,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isTransactionManagementBean()
     {
-        boolean transactionManagementBean14a = this.__transactionManagementBean14a;
-        if (!this.__transactionManagementBean14aSet)
+        boolean atransactionManagementBean14a = this.transactionManagementBean14a;
+        if (!this.transactionManagementBean14aSet)
         {
             // transactionManagementBean has no pre constraints
-            transactionManagementBean14a = handleIsTransactionManagementBean();
+            atransactionManagementBean14a = handleIsTransactionManagementBean();
             // transactionManagementBean has no post constraints
-            this.__transactionManagementBean14a = transactionManagementBean14a;
+            this.transactionManagementBean14a = atransactionManagementBean14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionManagementBean14aSet = true;
+                this.transactionManagementBean14aSet = true;
             }
         }
-        return transactionManagementBean14a;
+        return atransactionManagementBean14a;
     }
 
    /**
@@ -567,8 +570,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetTransactionType();
 
-    private String __transactionType15a;
-    private boolean __transactionType15aSet = false;
+    private String transactionType15a;
+    private boolean transactionType15aSet = false;
 
     /**
      * Gets the transaction type for this message driven bean.  For container managed demarcation,
@@ -578,19 +581,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getTransactionType()
     {
-        String transactionType15a = this.__transactionType15a;
-        if (!this.__transactionType15aSet)
+        String atransactionType15a = this.transactionType15a;
+        if (!this.transactionType15aSet)
         {
             // transactionType has no pre constraints
-            transactionType15a = handleGetTransactionType();
+            atransactionType15a = handleGetTransactionType();
             // transactionType has no post constraints
-            this.__transactionType15a = transactionType15a;
+            this.transactionType15a = atransactionType15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionType15aSet = true;
+                this.transactionType15aSet = true;
             }
         }
-        return transactionType15a;
+        return atransactionType15a;
     }
 
    /**
@@ -599,8 +602,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsDestinationTypeQueue();
 
-    private boolean __destinationTypeQueue16a;
-    private boolean __destinationTypeQueue16aSet = false;
+    private boolean destinationTypeQueue16a;
+    private boolean destinationTypeQueue16aSet = false;
 
     /**
      * Returns true if the destination type if a javax.jms.Queue.
@@ -608,19 +611,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isDestinationTypeQueue()
     {
-        boolean destinationTypeQueue16a = this.__destinationTypeQueue16a;
-        if (!this.__destinationTypeQueue16aSet)
+        boolean adestinationTypeQueue16a = this.destinationTypeQueue16a;
+        if (!this.destinationTypeQueue16aSet)
         {
             // destinationTypeQueue has no pre constraints
-            destinationTypeQueue16a = handleIsDestinationTypeQueue();
+            adestinationTypeQueue16a = handleIsDestinationTypeQueue();
             // destinationTypeQueue has no post constraints
-            this.__destinationTypeQueue16a = destinationTypeQueue16a;
+            this.destinationTypeQueue16a = adestinationTypeQueue16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__destinationTypeQueue16aSet = true;
+                this.destinationTypeQueue16aSet = true;
             }
         }
-        return destinationTypeQueue16a;
+        return adestinationTypeQueue16a;
     }
 
    /**
@@ -629,8 +632,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsDestinationTypeTopic();
 
-    private boolean __destinationTypeTopic17a;
-    private boolean __destinationTypeTopic17aSet = false;
+    private boolean destinationTypeTopic17a;
+    private boolean destinationTypeTopic17aSet = false;
 
     /**
      * Returns true if the destination type is a javax.jms.Topic.
@@ -638,19 +641,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isDestinationTypeTopic()
     {
-        boolean destinationTypeTopic17a = this.__destinationTypeTopic17a;
-        if (!this.__destinationTypeTopic17aSet)
+        boolean adestinationTypeTopic17a = this.destinationTypeTopic17a;
+        if (!this.destinationTypeTopic17aSet)
         {
             // destinationTypeTopic has no pre constraints
-            destinationTypeTopic17a = handleIsDestinationTypeTopic();
+            adestinationTypeTopic17a = handleIsDestinationTypeTopic();
             // destinationTypeTopic has no post constraints
-            this.__destinationTypeTopic17a = destinationTypeTopic17a;
+            this.destinationTypeTopic17a = adestinationTypeTopic17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__destinationTypeTopic17aSet = true;
+                this.destinationTypeTopic17aSet = true;
             }
         }
-        return destinationTypeTopic17a;
+        return adestinationTypeTopic17a;
     }
 
    /**
@@ -659,8 +662,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract int handleGetMinimumPoolSize();
 
-    private int __minimumPoolSize18a;
-    private boolean __minimumPoolSize18aSet = false;
+    private int minimumPoolSize18a;
+    private boolean minimumPoolSize18aSet = false;
 
     /**
      * Returns the MDB minimum pool size.
@@ -668,19 +671,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final int getMinimumPoolSize()
     {
-        int minimumPoolSize18a = this.__minimumPoolSize18a;
-        if (!this.__minimumPoolSize18aSet)
+        int aminimumPoolSize18a = this.minimumPoolSize18a;
+        if (!this.minimumPoolSize18aSet)
         {
             // minimumPoolSize has no pre constraints
-            minimumPoolSize18a = handleGetMinimumPoolSize();
+            aminimumPoolSize18a = handleGetMinimumPoolSize();
             // minimumPoolSize has no post constraints
-            this.__minimumPoolSize18a = minimumPoolSize18a;
+            this.minimumPoolSize18a = aminimumPoolSize18a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__minimumPoolSize18aSet = true;
+                this.minimumPoolSize18aSet = true;
             }
         }
-        return minimumPoolSize18a;
+        return aminimumPoolSize18a;
     }
 
    /**
@@ -689,8 +692,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsListenerEnabled();
 
-    private boolean __listenerEnabled19a;
-    private boolean __listenerEnabled19aSet = false;
+    private boolean listenerEnabled19a;
+    private boolean listenerEnabled19aSet = false;
 
     /**
      * Returns true if this message driven bean has the stereotype Listener.  False otherwise.
@@ -698,19 +701,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isListenerEnabled()
     {
-        boolean listenerEnabled19a = this.__listenerEnabled19a;
-        if (!this.__listenerEnabled19aSet)
+        boolean alistenerEnabled19a = this.listenerEnabled19a;
+        if (!this.listenerEnabled19aSet)
         {
             // listenerEnabled has no pre constraints
-            listenerEnabled19a = handleIsListenerEnabled();
+            alistenerEnabled19a = handleIsListenerEnabled();
             // listenerEnabled has no post constraints
-            this.__listenerEnabled19a = listenerEnabled19a;
+            this.listenerEnabled19a = alistenerEnabled19a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__listenerEnabled19aSet = true;
+                this.listenerEnabled19aSet = true;
             }
         }
-        return listenerEnabled19a;
+        return alistenerEnabled19a;
     }
 
    /**
@@ -719,8 +722,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract Collection handleGetInterceptorReferences();
 
-    private Collection __interceptorReferences20a;
-    private boolean __interceptorReferences20aSet = false;
+    private Collection interceptorReferences20a;
+    private boolean interceptorReferences20aSet = false;
 
     /**
      * Returns the Collection of target elements from the message-driven bean class where  the
@@ -729,19 +732,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final Collection getInterceptorReferences()
     {
-        Collection interceptorReferences20a = this.__interceptorReferences20a;
-        if (!this.__interceptorReferences20aSet)
+        Collection ainterceptorReferences20a = this.interceptorReferences20a;
+        if (!this.interceptorReferences20aSet)
         {
             // interceptorReferences has no pre constraints
-            interceptorReferences20a = handleGetInterceptorReferences();
+            ainterceptorReferences20a = handleGetInterceptorReferences();
             // interceptorReferences has no post constraints
-            this.__interceptorReferences20a = interceptorReferences20a;
+            this.interceptorReferences20a = ainterceptorReferences20a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interceptorReferences20aSet = true;
+                this.interceptorReferences20aSet = true;
             }
         }
-        return interceptorReferences20a;
+        return ainterceptorReferences20a;
     }
 
    /**
@@ -750,8 +753,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsExcludeDefaultInterceptors();
 
-    private boolean __excludeDefaultInterceptors21a;
-    private boolean __excludeDefaultInterceptors21aSet = false;
+    private boolean excludeDefaultInterceptors21a;
+    private boolean excludeDefaultInterceptors21aSet = false;
 
     /**
      * Determines whether to exclude the invocation of the default interceptors for all business
@@ -760,19 +763,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isExcludeDefaultInterceptors()
     {
-        boolean excludeDefaultInterceptors21a = this.__excludeDefaultInterceptors21a;
-        if (!this.__excludeDefaultInterceptors21aSet)
+        boolean aexcludeDefaultInterceptors21a = this.excludeDefaultInterceptors21a;
+        if (!this.excludeDefaultInterceptors21aSet)
         {
             // excludeDefaultInterceptors has no pre constraints
-            excludeDefaultInterceptors21a = handleIsExcludeDefaultInterceptors();
+            aexcludeDefaultInterceptors21a = handleIsExcludeDefaultInterceptors();
             // excludeDefaultInterceptors has no post constraints
-            this.__excludeDefaultInterceptors21a = excludeDefaultInterceptors21a;
+            this.excludeDefaultInterceptors21a = aexcludeDefaultInterceptors21a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__excludeDefaultInterceptors21aSet = true;
+                this.excludeDefaultInterceptors21aSet = true;
             }
         }
-        return excludeDefaultInterceptors21a;
+        return aexcludeDefaultInterceptors21a;
     }
 
    /**
@@ -781,8 +784,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract int handleGetMaximumPoolSize();
 
-    private int __maximumPoolSize22a;
-    private boolean __maximumPoolSize22aSet = false;
+    private int maximumPoolSize22a;
+    private boolean maximumPoolSize22aSet = false;
 
     /**
      * Returns the MDB maximum pool size.
@@ -790,19 +793,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final int getMaximumPoolSize()
     {
-        int maximumPoolSize22a = this.__maximumPoolSize22a;
-        if (!this.__maximumPoolSize22aSet)
+        int amaximumPoolSize22a = this.maximumPoolSize22a;
+        if (!this.maximumPoolSize22aSet)
         {
             // maximumPoolSize has no pre constraints
-            maximumPoolSize22a = handleGetMaximumPoolSize();
+            amaximumPoolSize22a = handleGetMaximumPoolSize();
             // maximumPoolSize has no post constraints
-            this.__maximumPoolSize22a = maximumPoolSize22a;
+            this.maximumPoolSize22a = amaximumPoolSize22a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__maximumPoolSize22aSet = true;
+                this.maximumPoolSize22aSet = true;
             }
         }
-        return maximumPoolSize22a;
+        return amaximumPoolSize22a;
     }
 
    /**
@@ -811,8 +814,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetTestPackageName();
 
-    private String __testPackageName23a;
-    private boolean __testPackageName23aSet = false;
+    private String testPackageName23a;
+    private boolean testPackageName23aSet = false;
 
     /**
      * Returns the message driven test package name. This simply appends .test to the existing class
@@ -821,19 +824,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getTestPackageName()
     {
-        String testPackageName23a = this.__testPackageName23a;
-        if (!this.__testPackageName23aSet)
+        String atestPackageName23a = this.testPackageName23a;
+        if (!this.testPackageName23aSet)
         {
             // testPackageName has no pre constraints
-            testPackageName23a = handleGetTestPackageName();
+            atestPackageName23a = handleGetTestPackageName();
             // testPackageName has no post constraints
-            this.__testPackageName23a = testPackageName23a;
+            this.testPackageName23a = atestPackageName23a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__testPackageName23aSet = true;
+                this.testPackageName23aSet = true;
             }
         }
-        return testPackageName23a;
+        return atestPackageName23a;
     }
 
    /**
@@ -842,8 +845,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetMessageDrivenTestName();
 
-    private String __messageDrivenTestName24a;
-    private boolean __messageDrivenTestName24aSet = false;
+    private String messageDrivenTestName24a;
+    private boolean messageDrivenTestName24aSet = false;
 
     /**
      * Returns the message driven bean test class name
@@ -851,19 +854,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getMessageDrivenTestName()
     {
-        String messageDrivenTestName24a = this.__messageDrivenTestName24a;
-        if (!this.__messageDrivenTestName24aSet)
+        String amessageDrivenTestName24a = this.messageDrivenTestName24a;
+        if (!this.messageDrivenTestName24aSet)
         {
             // messageDrivenTestName has no pre constraints
-            messageDrivenTestName24a = handleGetMessageDrivenTestName();
+            amessageDrivenTestName24a = handleGetMessageDrivenTestName();
             // messageDrivenTestName has no post constraints
-            this.__messageDrivenTestName24a = messageDrivenTestName24a;
+            this.messageDrivenTestName24a = amessageDrivenTestName24a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageDrivenTestName24aSet = true;
+                this.messageDrivenTestName24aSet = true;
             }
         }
-        return messageDrivenTestName24a;
+        return amessageDrivenTestName24a;
     }
 
    /**
@@ -872,8 +875,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedMessageDrivenTestName();
 
-    private String __fullyQualifiedMessageDrivenTestName25a;
-    private boolean __fullyQualifiedMessageDrivenTestName25aSet = false;
+    private String fullyQualifiedMessageDrivenTestName25a;
+    private boolean fullyQualifiedMessageDrivenTestName25aSet = false;
 
     /**
      * Returns the fully qualified message driven test class name
@@ -881,19 +884,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getFullyQualifiedMessageDrivenTestName()
     {
-        String fullyQualifiedMessageDrivenTestName25a = this.__fullyQualifiedMessageDrivenTestName25a;
-        if (!this.__fullyQualifiedMessageDrivenTestName25aSet)
+        String afullyQualifiedMessageDrivenTestName25a = this.fullyQualifiedMessageDrivenTestName25a;
+        if (!this.fullyQualifiedMessageDrivenTestName25aSet)
         {
             // fullyQualifiedMessageDrivenTestName has no pre constraints
-            fullyQualifiedMessageDrivenTestName25a = handleGetFullyQualifiedMessageDrivenTestName();
+            afullyQualifiedMessageDrivenTestName25a = handleGetFullyQualifiedMessageDrivenTestName();
             // fullyQualifiedMessageDrivenTestName has no post constraints
-            this.__fullyQualifiedMessageDrivenTestName25a = fullyQualifiedMessageDrivenTestName25a;
+            this.fullyQualifiedMessageDrivenTestName25a = afullyQualifiedMessageDrivenTestName25a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedMessageDrivenTestName25aSet = true;
+                this.fullyQualifiedMessageDrivenTestName25aSet = true;
             }
         }
-        return fullyQualifiedMessageDrivenTestName25a;
+        return afullyQualifiedMessageDrivenTestName25a;
     }
 
    /**
@@ -902,8 +905,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsSubscriptionDurable();
 
-    private boolean __subscriptionDurable26a;
-    private boolean __subscriptionDurable26aSet = false;
+    private boolean subscriptionDurable26a;
+    private boolean subscriptionDurable26aSet = false;
 
     /**
      * Returns true if the topic subscription durability setting is Durable.
@@ -911,19 +914,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isSubscriptionDurable()
     {
-        boolean subscriptionDurable26a = this.__subscriptionDurable26a;
-        if (!this.__subscriptionDurable26aSet)
+        boolean asubscriptionDurable26a = this.subscriptionDurable26a;
+        if (!this.subscriptionDurable26aSet)
         {
             // subscriptionDurable has no pre constraints
-            subscriptionDurable26a = handleIsSubscriptionDurable();
+            asubscriptionDurable26a = handleIsSubscriptionDurable();
             // subscriptionDurable has no post constraints
-            this.__subscriptionDurable26a = subscriptionDurable26a;
+            this.subscriptionDurable26a = asubscriptionDurable26a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__subscriptionDurable26aSet = true;
+                this.subscriptionDurable26aSet = true;
             }
         }
-        return subscriptionDurable26a;
+        return asubscriptionDurable26a;
     }
 
    /**
@@ -932,8 +935,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract boolean handleIsSubscriptionNonDurable();
 
-    private boolean __subscriptionNonDurable27a;
-    private boolean __subscriptionNonDurable27aSet = false;
+    private boolean subscriptionNonDurable27a;
+    private boolean subscriptionNonDurable27aSet = false;
 
     /**
      * Returns true if the subscription durability setting is NonDurable.
@@ -941,19 +944,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final boolean isSubscriptionNonDurable()
     {
-        boolean subscriptionNonDurable27a = this.__subscriptionNonDurable27a;
-        if (!this.__subscriptionNonDurable27aSet)
+        boolean asubscriptionNonDurable27a = this.subscriptionNonDurable27a;
+        if (!this.subscriptionNonDurable27aSet)
         {
             // subscriptionNonDurable has no pre constraints
-            subscriptionNonDurable27a = handleIsSubscriptionNonDurable();
+            asubscriptionNonDurable27a = handleIsSubscriptionNonDurable();
             // subscriptionNonDurable has no post constraints
-            this.__subscriptionNonDurable27a = subscriptionNonDurable27a;
+            this.subscriptionNonDurable27a = asubscriptionNonDurable27a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__subscriptionNonDurable27aSet = true;
+                this.subscriptionNonDurable27aSet = true;
             }
         }
-        return subscriptionNonDurable27a;
+        return asubscriptionNonDurable27a;
     }
 
    /**
@@ -962,8 +965,8 @@ public abstract class EJB3MessageDrivenFacadeLogic
     */
     protected abstract String handleGetDurableSubscriptionId();
 
-    private String __durableSubscriptionId28a;
-    private boolean __durableSubscriptionId28aSet = false;
+    private String durableSubscriptionId28a;
+    private boolean durableSubscriptionId28aSet = false;
 
     /**
      * This returns a subscription name which is only required for durable subscriptions.
@@ -971,19 +974,19 @@ public abstract class EJB3MessageDrivenFacadeLogic
      */
     public final String getDurableSubscriptionId()
     {
-        String durableSubscriptionId28a = this.__durableSubscriptionId28a;
-        if (!this.__durableSubscriptionId28aSet)
+        String adurableSubscriptionId28a = this.durableSubscriptionId28a;
+        if (!this.durableSubscriptionId28aSet)
         {
             // durableSubscriptionId has no pre constraints
-            durableSubscriptionId28a = handleGetDurableSubscriptionId();
+            adurableSubscriptionId28a = handleGetDurableSubscriptionId();
             // durableSubscriptionId has no post constraints
-            this.__durableSubscriptionId28a = durableSubscriptionId28a;
+            this.durableSubscriptionId28a = adurableSubscriptionId28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__durableSubscriptionId28aSet = true;
+                this.durableSubscriptionId28aSet = true;
             }
         }
-        return durableSubscriptionId28a;
+        return adurableSubscriptionId28a;
     }
 
     // ---------------- business methods ----------------------
@@ -1146,7 +1149,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperService().getAllProperties();
     }
@@ -1156,7 +1159,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperService().getAllRequiredConstructorParameters();
     }
@@ -1213,7 +1216,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperService().getAttributes(follow);
     }
@@ -1310,7 +1313,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperService().getNavigableConnectingEnds(follow);
     }
@@ -1351,7 +1354,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperService().getProperties();
     }
@@ -1372,7 +1375,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperService().getRequiredConstructorParameters();
     }
@@ -1771,7 +1774,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperService().findTaggedValues(tagName);
     }
@@ -1801,7 +1804,7 @@ public abstract class EJB3MessageDrivenFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperService().getConstraints(kind);
     }

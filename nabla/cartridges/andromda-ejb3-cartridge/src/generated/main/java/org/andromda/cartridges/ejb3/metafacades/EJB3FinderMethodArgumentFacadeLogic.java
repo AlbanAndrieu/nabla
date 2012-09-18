@@ -34,17 +34,20 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     extends MetafacadeBase
     implements EJB3FinderMethodArgumentFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3FinderMethodArgumentFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3FinderMethodArgumentFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superParameterFacade =
@@ -122,8 +125,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract String handleGetTemporalType();
 
-    private String __temporalType1a;
-    private boolean __temporalType1aSet = false;
+    private String temporalType1a;
+    private boolean temporalType1aSet = false;
 
     /**
      * Returns the temporal type value set via tagged value on finder method parameters if one
@@ -133,19 +136,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final String getTemporalType()
     {
-        String temporalType1a = this.__temporalType1a;
-        if (!this.__temporalType1aSet)
+        String atemporalType1a = this.temporalType1a;
+        if (!this.temporalType1aSet)
         {
             // temporalType has no pre constraints
-            temporalType1a = handleGetTemporalType();
+            atemporalType1a = handleGetTemporalType();
             // temporalType has no post constraints
-            this.__temporalType1a = temporalType1a;
+            this.temporalType1a = atemporalType1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__temporalType1aSet = true;
+                this.temporalType1aSet = true;
             }
         }
-        return temporalType1a;
+        return atemporalType1a;
     }
 
    /**
@@ -154,8 +157,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsFirstResult();
 
-    private boolean __firstResult2a;
-    private boolean __firstResult2aSet = false;
+    private boolean firstResult2a;
+    private boolean firstResult2aSet = false;
 
     /**
      * Returns true if FirstResult stereotype is applied to this finder method parameter.
@@ -163,19 +166,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isFirstResult()
     {
-        boolean firstResult2a = this.__firstResult2a;
-        if (!this.__firstResult2aSet)
+        boolean afirstResult2a = this.firstResult2a;
+        if (!this.firstResult2aSet)
         {
             // firstResult has no pre constraints
-            firstResult2a = handleIsFirstResult();
+            afirstResult2a = handleIsFirstResult();
             // firstResult has no post constraints
-            this.__firstResult2a = firstResult2a;
+            this.firstResult2a = afirstResult2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__firstResult2aSet = true;
+                this.firstResult2aSet = true;
             }
         }
-        return firstResult2a;
+        return afirstResult2a;
     }
 
    /**
@@ -184,8 +187,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsMaxResults();
 
-    private boolean __maxResults3a;
-    private boolean __maxResults3aSet = false;
+    private boolean maxResults3a;
+    private boolean maxResults3aSet = false;
 
     /**
      * Returns true if MaxResults stereotype is applied to this finder method parameter.
@@ -193,19 +196,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isMaxResults()
     {
-        boolean maxResults3a = this.__maxResults3a;
-        if (!this.__maxResults3aSet)
+        boolean amaxResults3a = this.maxResults3a;
+        if (!this.maxResults3aSet)
         {
             // maxResults has no pre constraints
-            maxResults3a = handleIsMaxResults();
+            amaxResults3a = handleIsMaxResults();
             // maxResults has no post constraints
-            this.__maxResults3a = maxResults3a;
+            this.maxResults3a = amaxResults3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__maxResults3aSet = true;
+                this.maxResults3aSet = true;
             }
         }
-        return maxResults3a;
+        return amaxResults3a;
     }
 
    /**
@@ -214,8 +217,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsEnumerationTypeOrdinal();
 
-    private boolean __enumerationTypeOrdinal4a;
-    private boolean __enumerationTypeOrdinal4aSet = false;
+    private boolean enumerationTypeOrdinal4a;
+    private boolean enumerationTypeOrdinal4aSet = false;
 
     /**
      * Returns true if this parameter is of type enum and has ordinal values.
@@ -223,19 +226,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isEnumerationTypeOrdinal()
     {
-        boolean enumerationTypeOrdinal4a = this.__enumerationTypeOrdinal4a;
-        if (!this.__enumerationTypeOrdinal4aSet)
+        boolean aenumerationTypeOrdinal4a = this.enumerationTypeOrdinal4a;
+        if (!this.enumerationTypeOrdinal4aSet)
         {
             // enumerationTypeOrdinal has no pre constraints
-            enumerationTypeOrdinal4a = handleIsEnumerationTypeOrdinal();
+            aenumerationTypeOrdinal4a = handleIsEnumerationTypeOrdinal();
             // enumerationTypeOrdinal has no post constraints
-            this.__enumerationTypeOrdinal4a = enumerationTypeOrdinal4a;
+            this.enumerationTypeOrdinal4a = aenumerationTypeOrdinal4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__enumerationTypeOrdinal4aSet = true;
+                this.enumerationTypeOrdinal4aSet = true;
             }
         }
-        return enumerationTypeOrdinal4a;
+        return aenumerationTypeOrdinal4a;
     }
 
    /**
@@ -244,8 +247,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsEnumerationTypeString();
 
-    private boolean __enumerationTypeString5a;
-    private boolean __enumerationTypeString5aSet = false;
+    private boolean enumerationTypeString5a;
+    private boolean enumerationTypeString5aSet = false;
 
     /**
      * Returns true if this parameter is of type enum and has string values.
@@ -253,19 +256,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isEnumerationTypeString()
     {
-        boolean enumerationTypeString5a = this.__enumerationTypeString5a;
-        if (!this.__enumerationTypeString5aSet)
+        boolean aenumerationTypeString5a = this.enumerationTypeString5a;
+        if (!this.enumerationTypeString5aSet)
         {
             // enumerationTypeString has no pre constraints
-            enumerationTypeString5a = handleIsEnumerationTypeString();
+            aenumerationTypeString5a = handleIsEnumerationTypeString();
             // enumerationTypeString has no post constraints
-            this.__enumerationTypeString5a = enumerationTypeString5a;
+            this.enumerationTypeString5a = aenumerationTypeString5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__enumerationTypeString5aSet = true;
+                this.enumerationTypeString5aSet = true;
             }
         }
-        return enumerationTypeString5a;
+        return aenumerationTypeString5a;
     }
 
     /**
@@ -311,7 +314,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperParameterFacade().findTaggedValues(tagName);
     }
@@ -341,7 +344,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperParameterFacade().getConstraints(kind);
     }

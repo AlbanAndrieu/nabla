@@ -35,17 +35,20 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     extends MetafacadeBase
     implements EJB3ManageableEntityAssociationEndFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3ManageableEntityAssociationEndFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3ManageableEntityAssociationEndFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superManageableEntityAssociationEnd =
@@ -150,8 +153,8 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoSetterName();
 
-    private String __daoSetterName1a;
-    private boolean __daoSetterName1aSet = false;
+    private String daoSetterName1a;
+    private boolean daoSetterName1aSet = false;
 
     /**
      * 
@@ -159,19 +162,19 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
      */
     public final String getDaoSetterName()
     {
-        String daoSetterName1a = this.__daoSetterName1a;
-        if (!this.__daoSetterName1aSet)
+        String adaoSetterName1a = this.daoSetterName1a;
+        if (!this.daoSetterName1aSet)
         {
             // daoSetterName has no pre constraints
-            daoSetterName1a = handleGetDaoSetterName();
+            adaoSetterName1a = handleGetDaoSetterName();
             // daoSetterName has no post constraints
-            this.__daoSetterName1a = daoSetterName1a;
+            this.daoSetterName1a = adaoSetterName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoSetterName1aSet = true;
+                this.daoSetterName1aSet = true;
             }
         }
-        return daoSetterName1a;
+        return adaoSetterName1a;
     }
 
    /**
@@ -180,8 +183,8 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoReferenceName();
 
-    private String __daoReferenceName2a;
-    private boolean __daoReferenceName2aSet = false;
+    private String daoReferenceName2a;
+    private boolean daoReferenceName2aSet = false;
 
     /**
      * 
@@ -189,19 +192,19 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
      */
     public final String getDaoReferenceName()
     {
-        String daoReferenceName2a = this.__daoReferenceName2a;
-        if (!this.__daoReferenceName2aSet)
+        String adaoReferenceName2a = this.daoReferenceName2a;
+        if (!this.daoReferenceName2aSet)
         {
             // daoReferenceName has no pre constraints
-            daoReferenceName2a = handleGetDaoReferenceName();
+            adaoReferenceName2a = handleGetDaoReferenceName();
             // daoReferenceName has no post constraints
-            this.__daoReferenceName2a = daoReferenceName2a;
+            this.daoReferenceName2a = adaoReferenceName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoReferenceName2aSet = true;
+                this.daoReferenceName2aSet = true;
             }
         }
-        return daoReferenceName2a;
+        return adaoReferenceName2a;
     }
 
    /**
@@ -210,8 +213,8 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoName();
 
-    private String __daoName3a;
-    private boolean __daoName3aSet = false;
+    private String daoName3a;
+    private boolean daoName3aSet = false;
 
     /**
      * 
@@ -219,19 +222,19 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
      */
     public final String getDaoName()
     {
-        String daoName3a = this.__daoName3a;
-        if (!this.__daoName3aSet)
+        String adaoName3a = this.daoName3a;
+        if (!this.daoName3aSet)
         {
             // daoName has no pre constraints
-            daoName3a = handleGetDaoName();
+            adaoName3a = handleGetDaoName();
             // daoName has no post constraints
-            this.__daoName3a = daoName3a;
+            this.daoName3a = adaoName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoName3aSet = true;
+                this.daoName3aSet = true;
             }
         }
-        return daoName3a;
+        return adaoName3a;
     }
 
    /**
@@ -240,8 +243,8 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoGetterName();
 
-    private String __daoGetterName4a;
-    private boolean __daoGetterName4aSet = false;
+    private String daoGetterName4a;
+    private boolean daoGetterName4aSet = false;
 
     /**
      * 
@@ -249,19 +252,19 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
      */
     public final String getDaoGetterName()
     {
-        String daoGetterName4a = this.__daoGetterName4a;
-        if (!this.__daoGetterName4aSet)
+        String adaoGetterName4a = this.daoGetterName4a;
+        if (!this.daoGetterName4aSet)
         {
             // daoGetterName has no pre constraints
-            daoGetterName4a = handleGetDaoGetterName();
+            adaoGetterName4a = handleGetDaoGetterName();
             // daoGetterName has no post constraints
-            this.__daoGetterName4a = daoGetterName4a;
+            this.daoGetterName4a = adaoGetterName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoGetterName4aSet = true;
+                this.daoGetterName4aSet = true;
             }
         }
-        return daoGetterName4a;
+        return adaoGetterName4a;
     }
 
     /**
@@ -1032,7 +1035,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperEJB3AssociationEndFacade().findTaggedValues(tagName);
     }
@@ -1062,7 +1065,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperEJB3AssociationEndFacade().getConstraints(kind);
     }

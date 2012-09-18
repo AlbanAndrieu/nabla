@@ -30,17 +30,20 @@ public abstract class EJB3DependencyFacadeLogic
     extends MetafacadeBase
     implements EJB3DependencyFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3DependencyFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3DependencyFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superDependencyFacade =
@@ -118,8 +121,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetTransformationConstantName();
 
-    private String __transformationConstantName1a;
-    private boolean __transformationConstantName1aSet = false;
+    private String transformationConstantName1a;
+    private boolean transformationConstantName1aSet = false;
 
     /**
      * The name of the constant designated for use as a transformation flag for value objects (only
@@ -128,19 +131,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getTransformationConstantName()
     {
-        String transformationConstantName1a = this.__transformationConstantName1a;
-        if (!this.__transformationConstantName1aSet)
+        String atransformationConstantName1a = this.transformationConstantName1a;
+        if (!this.transformationConstantName1aSet)
         {
             // transformationConstantName has no pre constraints
-            transformationConstantName1a = handleGetTransformationConstantName();
+            atransformationConstantName1a = handleGetTransformationConstantName();
             // transformationConstantName has no post constraints
-            this.__transformationConstantName1a = transformationConstantName1a;
+            this.transformationConstantName1a = atransformationConstantName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationConstantName1aSet = true;
+                this.transformationConstantName1aSet = true;
             }
         }
-        return transformationConstantName1a;
+        return atransformationConstantName1a;
     }
 
    /**
@@ -149,8 +152,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetTransformationMethodName();
 
-    private String __transformationMethodName2a;
-    private boolean __transformationMethodName2aSet = false;
+    private String transformationMethodName2a;
+    private boolean transformationMethodName2aSet = false;
 
     /**
      * The name of the method used for transformation into a value object (only makes sense when
@@ -159,19 +162,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getTransformationMethodName()
     {
-        String transformationMethodName2a = this.__transformationMethodName2a;
-        if (!this.__transformationMethodName2aSet)
+        String atransformationMethodName2a = this.transformationMethodName2a;
+        if (!this.transformationMethodName2aSet)
         {
             // transformationMethodName has no pre constraints
-            transformationMethodName2a = handleGetTransformationMethodName();
+            atransformationMethodName2a = handleGetTransformationMethodName();
             // transformationMethodName has no post constraints
-            this.__transformationMethodName2a = transformationMethodName2a;
+            this.transformationMethodName2a = atransformationMethodName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationMethodName2aSet = true;
+                this.transformationMethodName2aSet = true;
             }
         }
-        return transformationMethodName2a;
+        return atransformationMethodName2a;
     }
 
    /**
@@ -180,8 +183,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetTransformationAnonymousName();
 
-    private String __transformationAnonymousName3a;
-    private boolean __transformationAnonymousName3aSet = false;
+    private String transformationAnonymousName3a;
+    private boolean transformationAnonymousName3aSet = false;
 
     /**
      * 
@@ -189,19 +192,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getTransformationAnonymousName()
     {
-        String transformationAnonymousName3a = this.__transformationAnonymousName3a;
-        if (!this.__transformationAnonymousName3aSet)
+        String atransformationAnonymousName3a = this.transformationAnonymousName3a;
+        if (!this.transformationAnonymousName3aSet)
         {
             // transformationAnonymousName has no pre constraints
-            transformationAnonymousName3a = handleGetTransformationAnonymousName();
+            atransformationAnonymousName3a = handleGetTransformationAnonymousName();
             // transformationAnonymousName has no post constraints
-            this.__transformationAnonymousName3a = transformationAnonymousName3a;
+            this.transformationAnonymousName3a = atransformationAnonymousName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationAnonymousName3aSet = true;
+                this.transformationAnonymousName3aSet = true;
             }
         }
-        return transformationAnonymousName3a;
+        return atransformationAnonymousName3a;
     }
 
    /**
@@ -210,8 +213,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract boolean handleIsCircularReference();
 
-    private boolean __circularReference4a;
-    private boolean __circularReference4aSet = false;
+    private boolean circularReference4a;
+    private boolean circularReference4aSet = false;
 
     /**
      * Indicates if this dependency is part of a circular reference (meaning that both entities
@@ -220,19 +223,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final boolean isCircularReference()
     {
-        boolean circularReference4a = this.__circularReference4a;
-        if (!this.__circularReference4aSet)
+        boolean acircularReference4a = this.circularReference4a;
+        if (!this.circularReference4aSet)
         {
             // circularReference has no pre constraints
-            circularReference4a = handleIsCircularReference();
+            acircularReference4a = handleIsCircularReference();
             // circularReference has no post constraints
-            this.__circularReference4a = circularReference4a;
+            this.circularReference4a = acircularReference4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__circularReference4aSet = true;
+                this.circularReference4aSet = true;
             }
         }
-        return circularReference4a;
+        return acircularReference4a;
     }
 
    /**
@@ -241,8 +244,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract int handleGetTransformationConstantValue();
 
-    private int __transformationConstantValue5a;
-    private boolean __transformationConstantValue5aSet = false;
+    private int transformationConstantValue5a;
+    private boolean transformationConstantValue5aSet = false;
 
     /**
      * Gets the transformation constant integer value.
@@ -250,19 +253,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final int getTransformationConstantValue()
     {
-        int transformationConstantValue5a = this.__transformationConstantValue5a;
-        if (!this.__transformationConstantValue5aSet)
+        int atransformationConstantValue5a = this.transformationConstantValue5a;
+        if (!this.transformationConstantValue5aSet)
         {
             // transformationConstantValue has no pre constraints
-            transformationConstantValue5a = handleGetTransformationConstantValue();
+            atransformationConstantValue5a = handleGetTransformationConstantValue();
             // transformationConstantValue has no post constraints
-            this.__transformationConstantValue5a = transformationConstantValue5a;
+            this.transformationConstantValue5a = atransformationConstantValue5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationConstantValue5aSet = true;
+                this.transformationConstantValue5aSet = true;
             }
         }
-        return transformationConstantValue5a;
+        return atransformationConstantValue5a;
     }
 
    /**
@@ -271,8 +274,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetTransformationToCollectionMethodName();
 
-    private String __transformationToCollectionMethodName6a;
-    private boolean __transformationToCollectionMethodName6aSet = false;
+    private String transformationToCollectionMethodName6a;
+    private boolean transformationToCollectionMethodName6aSet = false;
 
     /**
      * Returns the name of the method for transforming the contents of a collection.
@@ -280,19 +283,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getTransformationToCollectionMethodName()
     {
-        String transformationToCollectionMethodName6a = this.__transformationToCollectionMethodName6a;
-        if (!this.__transformationToCollectionMethodName6aSet)
+        String atransformationToCollectionMethodName6a = this.transformationToCollectionMethodName6a;
+        if (!this.transformationToCollectionMethodName6aSet)
         {
             // transformationToCollectionMethodName has no pre constraints
-            transformationToCollectionMethodName6a = handleGetTransformationToCollectionMethodName();
+            atransformationToCollectionMethodName6a = handleGetTransformationToCollectionMethodName();
             // transformationToCollectionMethodName has no post constraints
-            this.__transformationToCollectionMethodName6a = transformationToCollectionMethodName6a;
+            this.transformationToCollectionMethodName6a = atransformationToCollectionMethodName6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationToCollectionMethodName6aSet = true;
+                this.transformationToCollectionMethodName6aSet = true;
             }
         }
-        return transformationToCollectionMethodName6a;
+        return atransformationToCollectionMethodName6a;
     }
 
    /**
@@ -301,8 +304,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetDaoName();
 
-    private String __daoName7a;
-    private boolean __daoName7aSet = false;
+    private String daoName7a;
+    private boolean daoName7aSet = false;
 
     /**
      * The name given to a DAO reference.
@@ -310,19 +313,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getDaoName()
     {
-        String daoName7a = this.__daoName7a;
-        if (!this.__daoName7aSet)
+        String adaoName7a = this.daoName7a;
+        if (!this.daoName7aSet)
         {
             // daoName has no pre constraints
-            daoName7a = handleGetDaoName();
+            adaoName7a = handleGetDaoName();
             // daoName has no post constraints
-            this.__daoName7a = daoName7a;
+            this.daoName7a = adaoName7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoName7aSet = true;
+                this.daoName7aSet = true;
             }
         }
-        return daoName7a;
+        return adaoName7a;
     }
 
    /**
@@ -331,8 +334,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetDaoGetterName();
 
-    private String __daoGetterName8a;
-    private boolean __daoGetterName8aSet = false;
+    private String daoGetterName8a;
+    private boolean daoGetterName8aSet = false;
 
     /**
      * The name of the DAO reference getter name.
@@ -340,19 +343,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getDaoGetterName()
     {
-        String daoGetterName8a = this.__daoGetterName8a;
-        if (!this.__daoGetterName8aSet)
+        String adaoGetterName8a = this.daoGetterName8a;
+        if (!this.daoGetterName8aSet)
         {
             // daoGetterName has no pre constraints
-            daoGetterName8a = handleGetDaoGetterName();
+            adaoGetterName8a = handleGetDaoGetterName();
             // daoGetterName has no post constraints
-            this.__daoGetterName8a = daoGetterName8a;
+            this.daoGetterName8a = adaoGetterName8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoGetterName8aSet = true;
+                this.daoGetterName8aSet = true;
             }
         }
-        return daoGetterName8a;
+        return adaoGetterName8a;
     }
 
    /**
@@ -361,8 +364,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetDaoSetterName();
 
-    private String __daoSetterName9a;
-    private boolean __daoSetterName9aSet = false;
+    private String daoSetterName9a;
+    private boolean daoSetterName9aSet = false;
 
     /**
      * The DAO reference setter's name.
@@ -370,19 +373,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getDaoSetterName()
     {
-        String daoSetterName9a = this.__daoSetterName9a;
-        if (!this.__daoSetterName9aSet)
+        String adaoSetterName9a = this.daoSetterName9a;
+        if (!this.daoSetterName9aSet)
         {
             // daoSetterName has no pre constraints
-            daoSetterName9a = handleGetDaoSetterName();
+            adaoSetterName9a = handleGetDaoSetterName();
             // daoSetterName has no post constraints
-            this.__daoSetterName9a = daoSetterName9a;
+            this.daoSetterName9a = adaoSetterName9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__daoSetterName9aSet = true;
+                this.daoSetterName9aSet = true;
             }
         }
-        return daoSetterName9a;
+        return adaoSetterName9a;
     }
 
    /**
@@ -391,8 +394,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetTransformationToEntityCollectionMethodName();
 
-    private String __transformationToEntityCollectionMethodName10a;
-    private boolean __transformationToEntityCollectionMethodName10aSet = false;
+    private String transformationToEntityCollectionMethodName10a;
+    private boolean transformationToEntityCollectionMethodName10aSet = false;
 
     /**
      * The method name that performs the value object collection to entity collection
@@ -401,19 +404,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getTransformationToEntityCollectionMethodName()
     {
-        String transformationToEntityCollectionMethodName10a = this.__transformationToEntityCollectionMethodName10a;
-        if (!this.__transformationToEntityCollectionMethodName10aSet)
+        String atransformationToEntityCollectionMethodName10a = this.transformationToEntityCollectionMethodName10a;
+        if (!this.transformationToEntityCollectionMethodName10aSet)
         {
             // transformationToEntityCollectionMethodName has no pre constraints
-            transformationToEntityCollectionMethodName10a = handleGetTransformationToEntityCollectionMethodName();
+            atransformationToEntityCollectionMethodName10a = handleGetTransformationToEntityCollectionMethodName();
             // transformationToEntityCollectionMethodName has no post constraints
-            this.__transformationToEntityCollectionMethodName10a = transformationToEntityCollectionMethodName10a;
+            this.transformationToEntityCollectionMethodName10a = atransformationToEntityCollectionMethodName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationToEntityCollectionMethodName10aSet = true;
+                this.transformationToEntityCollectionMethodName10aSet = true;
             }
         }
-        return transformationToEntityCollectionMethodName10a;
+        return atransformationToEntityCollectionMethodName10a;
     }
 
    /**
@@ -422,8 +425,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetTransformationToEntityMethodName();
 
-    private String __transformationToEntityMethodName11a;
-    private boolean __transformationToEntityMethodName11aSet = false;
+    private String transformationToEntityMethodName11a;
+    private boolean transformationToEntityMethodName11aSet = false;
 
     /**
      * The name of the "to entity" transformation method name.
@@ -431,19 +434,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getTransformationToEntityMethodName()
     {
-        String transformationToEntityMethodName11a = this.__transformationToEntityMethodName11a;
-        if (!this.__transformationToEntityMethodName11aSet)
+        String atransformationToEntityMethodName11a = this.transformationToEntityMethodName11a;
+        if (!this.transformationToEntityMethodName11aSet)
         {
             // transformationToEntityMethodName has no pre constraints
-            transformationToEntityMethodName11a = handleGetTransformationToEntityMethodName();
+            atransformationToEntityMethodName11a = handleGetTransformationToEntityMethodName();
             // transformationToEntityMethodName has no post constraints
-            this.__transformationToEntityMethodName11a = transformationToEntityMethodName11a;
+            this.transformationToEntityMethodName11a = atransformationToEntityMethodName11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transformationToEntityMethodName11aSet = true;
+                this.transformationToEntityMethodName11aSet = true;
             }
         }
-        return transformationToEntityMethodName11a;
+        return atransformationToEntityMethodName11a;
     }
 
    /**
@@ -452,8 +455,8 @@ public abstract class EJB3DependencyFacadeLogic
     */
     protected abstract String handleGetValueObjectToEntityTransformerName();
 
-    private String __valueObjectToEntityTransformerName12a;
-    private boolean __valueObjectToEntityTransformerName12aSet = false;
+    private String valueObjectToEntityTransformerName12a;
+    private boolean valueObjectToEntityTransformerName12aSet = false;
 
     /**
      * The name of the class that performs the value object to entity transformation.
@@ -461,19 +464,19 @@ public abstract class EJB3DependencyFacadeLogic
      */
     public final String getValueObjectToEntityTransformerName()
     {
-        String valueObjectToEntityTransformerName12a = this.__valueObjectToEntityTransformerName12a;
-        if (!this.__valueObjectToEntityTransformerName12aSet)
+        String avalueObjectToEntityTransformerName12a = this.valueObjectToEntityTransformerName12a;
+        if (!this.valueObjectToEntityTransformerName12aSet)
         {
             // valueObjectToEntityTransformerName has no pre constraints
-            valueObjectToEntityTransformerName12a = handleGetValueObjectToEntityTransformerName();
+            avalueObjectToEntityTransformerName12a = handleGetValueObjectToEntityTransformerName();
             // valueObjectToEntityTransformerName has no post constraints
-            this.__valueObjectToEntityTransformerName12a = valueObjectToEntityTransformerName12a;
+            this.valueObjectToEntityTransformerName12a = avalueObjectToEntityTransformerName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__valueObjectToEntityTransformerName12aSet = true;
+                this.valueObjectToEntityTransformerName12aSet = true;
             }
         }
-        return valueObjectToEntityTransformerName12a;
+        return avalueObjectToEntityTransformerName12a;
     }
 
     /**
@@ -555,7 +558,7 @@ public abstract class EJB3DependencyFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperDependencyFacade().findTaggedValues(tagName);
     }
@@ -585,7 +588,7 @@ public abstract class EJB3DependencyFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperDependencyFacade().getConstraints(kind);
     }

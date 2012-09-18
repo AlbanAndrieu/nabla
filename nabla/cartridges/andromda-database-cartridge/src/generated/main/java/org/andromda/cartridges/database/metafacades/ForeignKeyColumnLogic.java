@@ -35,17 +35,20 @@ public abstract class ForeignKeyColumnLogic
     extends MetafacadeBase
     implements ForeignKeyColumn
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected ForeignKeyColumnLogic(Object metaObjectIn, String context)
+    protected ForeignKeyColumnLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEntityAssociationEnd =
@@ -60,7 +63,7 @@ public abstract class ForeignKeyColumnLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(ForeignKeyColumnLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(ForeignKeyColumnLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -128,8 +131,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract boolean handleIsCascadeDelete();
 
-    private boolean __cascadeDelete1a;
-    private boolean __cascadeDelete1aSet = false;
+    private boolean cascadeDelete1a;
+    private boolean cascadeDelete1aSet = false;
 
     /**
      * Denotes whether or not a row of this column's table needs to be deleted if the importing key
@@ -138,19 +141,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final boolean isCascadeDelete()
     {
-        boolean cascadeDelete1a = this.__cascadeDelete1a;
-        if (!this.__cascadeDelete1aSet)
+        boolean acascadeDelete1a = this.cascadeDelete1a;
+        if (!this.cascadeDelete1aSet)
         {
             // cascadeDelete has no pre constraints
-            cascadeDelete1a = handleIsCascadeDelete();
+            acascadeDelete1a = handleIsCascadeDelete();
             // cascadeDelete has no post constraints
-            this.__cascadeDelete1a = cascadeDelete1a;
+            this.cascadeDelete1a = acascadeDelete1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__cascadeDelete1aSet = true;
+                this.cascadeDelete1aSet = true;
             }
         }
-        return cascadeDelete1a;
+        return acascadeDelete1a;
     }
 
    /**
@@ -159,8 +162,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract String handleGetConstraintName();
 
-    private String __constraintName2a;
-    private boolean __constraintName2aSet = false;
+    private String constraintName2a;
+    private boolean constraintName2aSet = false;
 
     /**
      * The name of the foreign key constraint.
@@ -168,19 +171,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final String getConstraintName()
     {
-        String constraintName2a = this.__constraintName2a;
-        if (!this.__constraintName2aSet)
+        String aconstraintName2a = this.constraintName2a;
+        if (!this.constraintName2aSet)
         {
             // constraintName has no pre constraints
-            constraintName2a = handleGetConstraintName();
+            aconstraintName2a = handleGetConstraintName();
             // constraintName has no post constraints
-            this.__constraintName2a = constraintName2a;
+            this.constraintName2a = aconstraintName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__constraintName2aSet = true;
+                this.constraintName2aSet = true;
             }
         }
-        return constraintName2a;
+        return aconstraintName2a;
     }
 
    /**
@@ -189,8 +192,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract String handleGetIndexName();
 
-    private String __indexName3a;
-    private boolean __indexName3aSet = false;
+    private String indexName3a;
+    private boolean indexName3aSet = false;
 
     /**
      * The name of the index for this foreign-key column.
@@ -198,19 +201,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final String getIndexName()
     {
-        String indexName3a = this.__indexName3a;
-        if (!this.__indexName3aSet)
+        String aindexName3a = this.indexName3a;
+        if (!this.indexName3aSet)
         {
             // indexName has no pre constraints
-            indexName3a = handleGetIndexName();
+            aindexName3a = handleGetIndexName();
             // indexName has no post constraints
-            this.__indexName3a = indexName3a;
+            this.indexName3a = aindexName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__indexName3aSet = true;
+                this.indexName3aSet = true;
             }
         }
-        return indexName3a;
+        return aindexName3a;
     }
 
    /**
@@ -219,8 +222,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract String handleGetTableName();
 
-    private String __tableName4a;
-    private boolean __tableName4aSet = false;
+    private String tableName4a;
+    private boolean tableName4aSet = false;
 
     /**
      * The name of the table tha stores the foreign key.
@@ -228,19 +231,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final String getTableName()
     {
-        String tableName4a = this.__tableName4a;
-        if (!this.__tableName4aSet)
+        String atableName4a = this.tableName4a;
+        if (!this.tableName4aSet)
         {
             // tableName has no pre constraints
-            tableName4a = handleGetTableName();
+            atableName4a = handleGetTableName();
             // tableName has no post constraints
-            this.__tableName4a = tableName4a;
+            this.tableName4a = atableName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__tableName4aSet = true;
+                this.tableName4aSet = true;
             }
         }
-        return tableName4a;
+        return atableName4a;
     }
 
     // ---------------- business methods ----------------------
@@ -268,8 +271,8 @@ public abstract class ForeignKeyColumnLogic
 
     // ------------- associations ------------------
 
-    private Table __getTable1r;
-    private boolean __getTable1rSet = false;
+    private Table getTable1r;
+    private boolean getTable1rSet = false;
 
     /**
      * The foreign-key columns that are part of this table.
@@ -277,8 +280,8 @@ public abstract class ForeignKeyColumnLogic
      */
     public final Table getTable()
     {
-        Table getTable1r = this.__getTable1r;
-        if (!this.__getTable1rSet)
+        Table getTable1r = this.getTable1r;
+        if (!this.getTable1rSet)
         {
             // foreignKeyColumns has no pre constraints
             Object result = handleGetTable();
@@ -290,13 +293,13 @@ public abstract class ForeignKeyColumnLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                ForeignKeyColumnLogic.logger.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getTable Table " + result + ": " + shieldedResult);
+                ForeignKeyColumnLogic.LOGGER.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getTable Table " + result + ": " + shieldedResult);
             }
             // foreignKeyColumns has no post constraints
-            this.__getTable1r = getTable1r;
+            this.getTable1r = getTable1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getTable1rSet = true;
+                this.getTable1rSet = true;
             }
         }
         return getTable1r;
@@ -308,8 +311,8 @@ public abstract class ForeignKeyColumnLogic
      */
     protected abstract Object handleGetTable();
 
-    private Column __getImportedPrimaryKeyColumn2r;
-    private boolean __getImportedPrimaryKeyColumn2rSet = false;
+    private Column getImportedPrimaryKeyColumn2r;
+    private boolean getImportedPrimaryKeyColumn2rSet = false;
 
     /**
      * The foreign-key columns importing this table.
@@ -317,8 +320,8 @@ public abstract class ForeignKeyColumnLogic
      */
     public final Column getImportedPrimaryKeyColumn()
     {
-        Column getImportedPrimaryKeyColumn2r = this.__getImportedPrimaryKeyColumn2r;
-        if (!this.__getImportedPrimaryKeyColumn2rSet)
+        Column getImportedPrimaryKeyColumn2r = this.getImportedPrimaryKeyColumn2r;
+        if (!this.getImportedPrimaryKeyColumn2rSet)
         {
             // exportedColumns has no pre constraints
             Object result = handleGetImportedPrimaryKeyColumn();
@@ -330,13 +333,13 @@ public abstract class ForeignKeyColumnLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                ForeignKeyColumnLogic.logger.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getImportedPrimaryKeyColumn Column " + result + ": " + shieldedResult);
+                ForeignKeyColumnLogic.LOGGER.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getImportedPrimaryKeyColumn Column " + result + ": " + shieldedResult);
             }
             // exportedColumns has no post constraints
-            this.__getImportedPrimaryKeyColumn2r = getImportedPrimaryKeyColumn2r;
+            this.getImportedPrimaryKeyColumn2r = getImportedPrimaryKeyColumn2r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getImportedPrimaryKeyColumn2rSet = true;
+                this.getImportedPrimaryKeyColumn2rSet = true;
             }
         }
         return getImportedPrimaryKeyColumn2r;
@@ -348,8 +351,8 @@ public abstract class ForeignKeyColumnLogic
      */
     protected abstract Object handleGetImportedPrimaryKeyColumn();
 
-    private Table __getImportedTable3r;
-    private boolean __getImportedTable3rSet = false;
+    private Table getImportedTable3r;
+    private boolean getImportedTable3rSet = false;
 
     /**
      * 
@@ -357,8 +360,8 @@ public abstract class ForeignKeyColumnLogic
      */
     public final Table getImportedTable()
     {
-        Table getImportedTable3r = this.__getImportedTable3r;
-        if (!this.__getImportedTable3rSet)
+        Table getImportedTable3r = this.getImportedTable3r;
+        if (!this.getImportedTable3rSet)
         {
             // foreignKeyColumn has no pre constraints
             Object result = handleGetImportedTable();
@@ -370,13 +373,13 @@ public abstract class ForeignKeyColumnLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                ForeignKeyColumnLogic.logger.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getImportedTable Table " + result + ": " + shieldedResult);
+                ForeignKeyColumnLogic.LOGGER.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getImportedTable Table " + result + ": " + shieldedResult);
             }
             // foreignKeyColumn has no post constraints
-            this.__getImportedTable3r = getImportedTable3r;
+            this.getImportedTable3r = getImportedTable3r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getImportedTable3rSet = true;
+                this.getImportedTable3rSet = true;
             }
         }
         return getImportedTable3r;
@@ -388,8 +391,8 @@ public abstract class ForeignKeyColumnLogic
      */
     protected abstract Object handleGetImportedTable();
 
-    private AssociationTable __getAssociationTable4r;
-    private boolean __getAssociationTable4rSet = false;
+    private AssociationTable getAssociationTable4r;
+    private boolean getAssociationTable4rSet = false;
 
     /**
      * The foreign-key columns that are part of this association table.
@@ -397,8 +400,8 @@ public abstract class ForeignKeyColumnLogic
      */
     public final AssociationTable getAssociationTable()
     {
-        AssociationTable getAssociationTable4r = this.__getAssociationTable4r;
-        if (!this.__getAssociationTable4rSet)
+        AssociationTable getAssociationTable4r = this.getAssociationTable4r;
+        if (!this.getAssociationTable4rSet)
         {
             // foreignKeyColumns has no pre constraints
             Object result = handleGetAssociationTable();
@@ -410,13 +413,13 @@ public abstract class ForeignKeyColumnLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                ForeignKeyColumnLogic.logger.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getAssociationTable AssociationTable " + result + ": " + shieldedResult);
+                ForeignKeyColumnLogic.LOGGER.warn("incorrect metafacade cast for ForeignKeyColumnLogic.getAssociationTable AssociationTable " + result + ": " + shieldedResult);
             }
             // foreignKeyColumns has no post constraints
-            this.__getAssociationTable4r = getAssociationTable4r;
+            this.getAssociationTable4r = getAssociationTable4r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getAssociationTable4rSet = true;
+                this.getAssociationTable4rSet = true;
             }
         }
         return getAssociationTable4r;

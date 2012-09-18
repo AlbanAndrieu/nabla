@@ -37,17 +37,20 @@ public abstract class EJB3PersistenceContextFacadeLogic
     extends MetafacadeBase
     implements EJB3PersistenceContextFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3PersistenceContextFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3PersistenceContextFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superClassifierFacade =
@@ -125,8 +128,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     */
     protected abstract String handleGetUnitName();
 
-    private String __unitName1a;
-    private boolean __unitName1aSet = false;
+    private String unitName1a;
+    private boolean unitName1aSet = false;
 
     /**
      * Returns the persistence context unit name for the injected EntityManger.  This looks up the
@@ -136,19 +139,19 @@ public abstract class EJB3PersistenceContextFacadeLogic
      */
     public final String getUnitName()
     {
-        String unitName1a = this.__unitName1a;
-        if (!this.__unitName1aSet)
+        String aunitName1a = this.unitName1a;
+        if (!this.unitName1aSet)
         {
             // unitName has no pre constraints
-            unitName1a = handleGetUnitName();
+            aunitName1a = handleGetUnitName();
             // unitName has no post constraints
-            this.__unitName1a = unitName1a;
+            this.unitName1a = aunitName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__unitName1aSet = true;
+                this.unitName1aSet = true;
             }
         }
-        return unitName1a;
+        return aunitName1a;
     }
 
    /**
@@ -157,8 +160,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     */
     protected abstract String handleGetContextType();
 
-    private String __contextType2a;
-    private boolean __contextType2aSet = false;
+    private String contextType2a;
+    private boolean contextType2aSet = false;
 
     /**
      * Specifies whether the persistence context for this EntityManager is transaction scoped or
@@ -168,19 +171,19 @@ public abstract class EJB3PersistenceContextFacadeLogic
      */
     public final String getContextType()
     {
-        String contextType2a = this.__contextType2a;
-        if (!this.__contextType2aSet)
+        String acontextType2a = this.contextType2a;
+        if (!this.contextType2aSet)
         {
             // contextType has no pre constraints
-            contextType2a = handleGetContextType();
+            acontextType2a = handleGetContextType();
             // contextType has no post constraints
-            this.__contextType2a = contextType2a;
+            this.contextType2a = acontextType2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__contextType2aSet = true;
+                this.contextType2aSet = true;
             }
         }
-        return contextType2a;
+        return acontextType2a;
     }
 
    /**
@@ -189,8 +192,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     */
     protected abstract String handleGetDatasource();
 
-    private String __datasource3a;
-    private boolean __datasource3aSet = false;
+    private String datasource3a;
+    private boolean datasource3aSet = false;
 
     /**
      * Returns the datasource specified via the andromda.service.persistence.context.datasource tag
@@ -199,19 +202,19 @@ public abstract class EJB3PersistenceContextFacadeLogic
      */
     public final String getDatasource()
     {
-        String datasource3a = this.__datasource3a;
-        if (!this.__datasource3aSet)
+        String adatasource3a = this.datasource3a;
+        if (!this.datasource3aSet)
         {
             // datasource has no pre constraints
-            datasource3a = handleGetDatasource();
+            adatasource3a = handleGetDatasource();
             // datasource has no post constraints
-            this.__datasource3a = datasource3a;
+            this.datasource3a = adatasource3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__datasource3aSet = true;
+                this.datasource3aSet = true;
             }
         }
-        return datasource3a;
+        return adatasource3a;
     }
 
     /**
@@ -275,7 +278,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperClassifierFacade().getAllProperties();
     }
@@ -285,7 +288,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperClassifierFacade().getAllRequiredConstructorParameters();
     }
@@ -342,7 +345,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperClassifierFacade().getAttributes(follow);
     }
@@ -439,7 +442,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperClassifierFacade().getNavigableConnectingEnds(follow);
     }
@@ -480,7 +483,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperClassifierFacade().getProperties();
     }
@@ -501,7 +504,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperClassifierFacade().getRequiredConstructorParameters();
     }
@@ -900,7 +903,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperClassifierFacade().findTaggedValues(tagName);
     }
@@ -930,7 +933,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperClassifierFacade().getConstraints(kind);
     }

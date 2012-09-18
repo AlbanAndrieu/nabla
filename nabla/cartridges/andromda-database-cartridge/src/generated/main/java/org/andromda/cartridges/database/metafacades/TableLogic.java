@@ -42,17 +42,20 @@ public abstract class TableLogic
     extends MetafacadeBase
     implements Table
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected TableLogic(Object metaObjectIn, String context)
+    protected TableLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEntity =
@@ -67,7 +70,7 @@ public abstract class TableLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(TableLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(TableLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -135,8 +138,8 @@ public abstract class TableLogic
     */
     protected abstract int handleGetDummyLoadSize();
 
-    private int __dummyLoadSize1a;
-    private boolean __dummyLoadSize1aSet = false;
+    private int dummyLoadSize1a;
+    private boolean dummyLoadSize1aSet = false;
 
     /**
      * The number of rows to insert to create the dummy load for this table.
@@ -144,19 +147,19 @@ public abstract class TableLogic
      */
     public final int getDummyLoadSize()
     {
-        int dummyLoadSize1a = this.__dummyLoadSize1a;
-        if (!this.__dummyLoadSize1aSet)
+        int adummyLoadSize1a = this.dummyLoadSize1a;
+        if (!this.dummyLoadSize1aSet)
         {
             // dummyLoadSize has no pre constraints
-            dummyLoadSize1a = handleGetDummyLoadSize();
+            adummyLoadSize1a = handleGetDummyLoadSize();
             // dummyLoadSize has no post constraints
-            this.__dummyLoadSize1a = dummyLoadSize1a;
+            this.dummyLoadSize1a = adummyLoadSize1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dummyLoadSize1aSet = true;
+                this.dummyLoadSize1aSet = true;
             }
         }
-        return dummyLoadSize1a;
+        return adummyLoadSize1a;
     }
 
    /**
@@ -165,8 +168,8 @@ public abstract class TableLogic
     */
     protected abstract boolean handleIsForeignKeyColumnsPresent();
 
-    private boolean __foreignKeyColumnsPresent2a;
-    private boolean __foreignKeyColumnsPresent2aSet = false;
+    private boolean foreignKeyColumnsPresent2a;
+    private boolean foreignKeyColumnsPresent2aSet = false;
 
     /**
      * Are there foreign key columns present in this table ?
@@ -174,19 +177,19 @@ public abstract class TableLogic
      */
     public final boolean isForeignKeyColumnsPresent()
     {
-        boolean foreignKeyColumnsPresent2a = this.__foreignKeyColumnsPresent2a;
-        if (!this.__foreignKeyColumnsPresent2aSet)
+        boolean aforeignKeyColumnsPresent2a = this.foreignKeyColumnsPresent2a;
+        if (!this.foreignKeyColumnsPresent2aSet)
         {
             // foreignKeyColumnsPresent has no pre constraints
-            foreignKeyColumnsPresent2a = handleIsForeignKeyColumnsPresent();
+            aforeignKeyColumnsPresent2a = handleIsForeignKeyColumnsPresent();
             // foreignKeyColumnsPresent has no post constraints
-            this.__foreignKeyColumnsPresent2a = foreignKeyColumnsPresent2a;
+            this.foreignKeyColumnsPresent2a = aforeignKeyColumnsPresent2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__foreignKeyColumnsPresent2aSet = true;
+                this.foreignKeyColumnsPresent2aSet = true;
             }
         }
-        return foreignKeyColumnsPresent2a;
+        return aforeignKeyColumnsPresent2a;
     }
 
    /**
@@ -195,8 +198,8 @@ public abstract class TableLogic
     */
     protected abstract String handleGetPrimaryKeyConstraintName();
 
-    private String __primaryKeyConstraintName3a;
-    private boolean __primaryKeyConstraintName3aSet = false;
+    private String primaryKeyConstraintName3a;
+    private boolean primaryKeyConstraintName3aSet = false;
 
     /**
      * The name of the primary key constraint for this table.
@@ -204,25 +207,25 @@ public abstract class TableLogic
      */
     public final String getPrimaryKeyConstraintName()
     {
-        String primaryKeyConstraintName3a = this.__primaryKeyConstraintName3a;
-        if (!this.__primaryKeyConstraintName3aSet)
+        String aprimaryKeyConstraintName3a = this.primaryKeyConstraintName3a;
+        if (!this.primaryKeyConstraintName3aSet)
         {
             // primaryKeyConstraintName has no pre constraints
-            primaryKeyConstraintName3a = handleGetPrimaryKeyConstraintName();
+            aprimaryKeyConstraintName3a = handleGetPrimaryKeyConstraintName();
             // primaryKeyConstraintName has no post constraints
-            this.__primaryKeyConstraintName3a = primaryKeyConstraintName3a;
+            this.primaryKeyConstraintName3a = aprimaryKeyConstraintName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__primaryKeyConstraintName3aSet = true;
+                this.primaryKeyConstraintName3aSet = true;
             }
         }
-        return primaryKeyConstraintName3a;
+        return aprimaryKeyConstraintName3a;
     }
 
     // ------------- associations ------------------
 
-    private Collection<Table> __getImportingTables1r;
-    private boolean __getImportingTables1rSet = false;
+    private Collection<Table> getImportingTables1r;
+    private boolean getImportingTables1rSet = false;
 
     /**
      * Those tables that are being imported by this table, using foreign-keys.
@@ -230,8 +233,8 @@ public abstract class TableLogic
      */
     public final Collection<Table> getImportingTables()
     {
-        Collection<Table> getImportingTables1r = this.__getImportingTables1r;
-        if (!this.__getImportingTables1rSet)
+        Collection<Table> getImportingTables1r = this.getImportingTables1r;
+        if (!this.getImportingTables1rSet)
         {
             // importedTables has no pre constraints
             Collection result = handleGetImportingTables();
@@ -243,13 +246,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getImportingTables Collection<Table> " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getImportingTables Collection<Table> " + result + ": " + shieldedResult);
             }
             // importedTables has no post constraints
-            this.__getImportingTables1r = getImportingTables1r;
+            this.getImportingTables1r = getImportingTables1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getImportingTables1rSet = true;
+                this.getImportingTables1rSet = true;
             }
         }
         return getImportingTables1r;
@@ -261,8 +264,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetImportingTables();
 
-    private Collection<Table> __getImportedTables2r;
-    private boolean __getImportedTables2rSet = false;
+    private Collection<Table> getImportedTables2r;
+    private boolean getImportedTables2rSet = false;
 
     /**
      * Those tables that are importing this table using foreign-keys.
@@ -270,8 +273,8 @@ public abstract class TableLogic
      */
     public final Collection<Table> getImportedTables()
     {
-        Collection<Table> getImportedTables2r = this.__getImportedTables2r;
-        if (!this.__getImportedTables2rSet)
+        Collection<Table> getImportedTables2r = this.getImportedTables2r;
+        if (!this.getImportedTables2rSet)
         {
             // importingTables has no pre constraints
             Collection result = handleGetImportedTables();
@@ -283,13 +286,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getImportedTables Collection<Table> " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getImportedTables Collection<Table> " + result + ": " + shieldedResult);
             }
             // importingTables has no post constraints
-            this.__getImportedTables2r = getImportedTables2r;
+            this.getImportedTables2r = getImportedTables2r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getImportedTables2rSet = true;
+                this.getImportedTables2rSet = true;
             }
         }
         return getImportedTables2r;
@@ -301,8 +304,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetImportedTables();
 
-    private Collection<Column> __getIdentifierForeignKeyColumns3r;
-    private boolean __getIdentifierForeignKeyColumns3rSet = false;
+    private Collection<Column> getIdentifierForeignKeyColumns3r;
+    private boolean getIdentifierForeignKeyColumns3rSet = false;
 
     /**
      * The table imported when this column plays a primary key that's a foreign key.
@@ -310,8 +313,8 @@ public abstract class TableLogic
      */
     public final Collection<Column> getIdentifierForeignKeyColumns()
     {
-        Collection<Column> getIdentifierForeignKeyColumns3r = this.__getIdentifierForeignKeyColumns3r;
-        if (!this.__getIdentifierForeignKeyColumns3rSet)
+        Collection<Column> getIdentifierForeignKeyColumns3r = this.getIdentifierForeignKeyColumns3r;
+        if (!this.getIdentifierForeignKeyColumns3rSet)
         {
             // importedTable has no pre constraints
             Collection result = handleGetIdentifierForeignKeyColumns();
@@ -323,13 +326,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getIdentifierForeignKeyColumns Collection<Column> " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getIdentifierForeignKeyColumns Collection<Column> " + result + ": " + shieldedResult);
             }
             // importedTable has no post constraints
-            this.__getIdentifierForeignKeyColumns3r = getIdentifierForeignKeyColumns3r;
+            this.getIdentifierForeignKeyColumns3r = getIdentifierForeignKeyColumns3r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getIdentifierForeignKeyColumns3rSet = true;
+                this.getIdentifierForeignKeyColumns3rSet = true;
             }
         }
         return getIdentifierForeignKeyColumns3r;
@@ -341,8 +344,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetIdentifierForeignKeyColumns();
 
-    private Collection<Column> __getColumns4r;
-    private boolean __getColumns4rSet = false;
+    private Collection<Column> getColumns4r;
+    private boolean getColumns4rSet = false;
 
     /**
      * 
@@ -350,8 +353,8 @@ public abstract class TableLogic
      */
     public final Collection<Column> getColumns()
     {
-        Collection<Column> getColumns4r = this.__getColumns4r;
-        if (!this.__getColumns4rSet)
+        Collection<Column> getColumns4r = this.getColumns4r;
+        if (!this.getColumns4rSet)
         {
             // table has no pre constraints
             Collection result = handleGetColumns();
@@ -363,13 +366,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getColumns Collection<Column> " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getColumns Collection<Column> " + result + ": " + shieldedResult);
             }
             // table has no post constraints
-            this.__getColumns4r = getColumns4r;
+            this.getColumns4r = getColumns4r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getColumns4rSet = true;
+                this.getColumns4rSet = true;
             }
         }
         return getColumns4r;
@@ -381,8 +384,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetColumns();
 
-    private Column __getPrimaryKeyColumn5r;
-    private boolean __getPrimaryKeyColumn5rSet = false;
+    private Column getPrimaryKeyColumn5r;
+    private boolean getPrimaryKeyColumn5rSet = false;
 
     /**
      * 
@@ -390,8 +393,8 @@ public abstract class TableLogic
      */
     public final Column getPrimaryKeyColumn()
     {
-        Column getPrimaryKeyColumn5r = this.__getPrimaryKeyColumn5r;
-        if (!this.__getPrimaryKeyColumn5rSet)
+        Column getPrimaryKeyColumn5r = this.getPrimaryKeyColumn5r;
+        if (!this.getPrimaryKeyColumn5rSet)
         {
             // table has no pre constraints
             Object result = handleGetPrimaryKeyColumn();
@@ -403,13 +406,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getPrimaryKeyColumn Column " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getPrimaryKeyColumn Column " + result + ": " + shieldedResult);
             }
             // table has no post constraints
-            this.__getPrimaryKeyColumn5r = getPrimaryKeyColumn5r;
+            this.getPrimaryKeyColumn5r = getPrimaryKeyColumn5r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getPrimaryKeyColumn5rSet = true;
+                this.getPrimaryKeyColumn5rSet = true;
             }
         }
         return getPrimaryKeyColumn5r;
@@ -421,8 +424,8 @@ public abstract class TableLogic
      */
     protected abstract Object handleGetPrimaryKeyColumn();
 
-    private Collection<Column> __getNonForeignKeyColumns6r;
-    private boolean __getNonForeignKeyColumns6rSet = false;
+    private Collection<Column> getNonForeignKeyColumns6r;
+    private boolean getNonForeignKeyColumns6rSet = false;
 
     /**
      * The set of tables that are importing this primary key column using foreign-keys.
@@ -430,8 +433,8 @@ public abstract class TableLogic
      */
     public final Collection<Column> getNonForeignKeyColumns()
     {
-        Collection<Column> getNonForeignKeyColumns6r = this.__getNonForeignKeyColumns6r;
-        if (!this.__getNonForeignKeyColumns6rSet)
+        Collection<Column> getNonForeignKeyColumns6r = this.getNonForeignKeyColumns6r;
+        if (!this.getNonForeignKeyColumns6rSet)
         {
             // importingTables has no pre constraints
             Collection result = handleGetNonForeignKeyColumns();
@@ -443,13 +446,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getNonForeignKeyColumns Collection<Column> " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getNonForeignKeyColumns Collection<Column> " + result + ": " + shieldedResult);
             }
             // importingTables has no post constraints
-            this.__getNonForeignKeyColumns6r = getNonForeignKeyColumns6r;
+            this.getNonForeignKeyColumns6r = getNonForeignKeyColumns6r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getNonForeignKeyColumns6rSet = true;
+                this.getNonForeignKeyColumns6rSet = true;
             }
         }
         return getNonForeignKeyColumns6r;
@@ -461,8 +464,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetNonForeignKeyColumns();
 
-    private Collection<ForeignKeyColumn> __getForeignKeyColumns8r;
-    private boolean __getForeignKeyColumns8rSet = false;
+    private Collection<ForeignKeyColumn> getForeignKeyColumns8r;
+    private boolean getForeignKeyColumns8rSet = false;
 
     /**
      * This foreign-key column's table.
@@ -470,8 +473,8 @@ public abstract class TableLogic
      */
     public final Collection<ForeignKeyColumn> getForeignKeyColumns()
     {
-        Collection<ForeignKeyColumn> getForeignKeyColumns8r = this.__getForeignKeyColumns8r;
-        if (!this.__getForeignKeyColumns8rSet)
+        Collection<ForeignKeyColumn> getForeignKeyColumns8r = this.getForeignKeyColumns8r;
+        if (!this.getForeignKeyColumns8rSet)
         {
             // table has no pre constraints
             Collection result = handleGetForeignKeyColumns();
@@ -483,13 +486,13 @@ public abstract class TableLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                TableLogic.logger.warn("incorrect metafacade cast for TableLogic.getForeignKeyColumns Collection<ForeignKeyColumn> " + result + ": " + shieldedResult);
+                TableLogic.LOGGER.warn("incorrect metafacade cast for TableLogic.getForeignKeyColumns Collection<ForeignKeyColumn> " + result + ": " + shieldedResult);
             }
             // table has no post constraints
-            this.__getForeignKeyColumns8r = getForeignKeyColumns8r;
+            this.getForeignKeyColumns8r = getForeignKeyColumns8r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getForeignKeyColumns8rSet = true;
+                this.getForeignKeyColumns8rSet = true;
             }
         }
         return getForeignKeyColumns8r;

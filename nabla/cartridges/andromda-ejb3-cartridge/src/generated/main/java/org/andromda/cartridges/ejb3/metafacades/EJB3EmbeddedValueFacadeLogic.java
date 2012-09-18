@@ -37,17 +37,20 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     extends MetafacadeBase
     implements EJB3EmbeddedValueFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3EmbeddedValueFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3EmbeddedValueFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superClassifierFacade =
@@ -125,8 +128,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     */
     protected abstract boolean handleIsImmutable();
 
-    private boolean __immutable1a;
-    private boolean __immutable1aSet = false;
+    private boolean immutable1a;
+    private boolean immutable1aSet = false;
 
     /**
      * Returns true if the embedded value object is immutable.
@@ -134,19 +137,19 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      */
     public final boolean isImmutable()
     {
-        boolean immutable1a = this.__immutable1a;
-        if (!this.__immutable1aSet)
+        boolean aimmutable1a = this.immutable1a;
+        if (!this.immutable1aSet)
         {
             // immutable has no pre constraints
-            immutable1a = handleIsImmutable();
+            aimmutable1a = handleIsImmutable();
             // immutable has no post constraints
-            this.__immutable1a = immutable1a;
+            this.immutable1a = aimmutable1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__immutable1aSet = true;
+                this.immutable1aSet = true;
             }
         }
-        return immutable1a;
+        return aimmutable1a;
     }
 
    /**
@@ -155,8 +158,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     */
     protected abstract String handleGetImplementationName();
 
-    private String __implementationName2a;
-    private boolean __implementationName2aSet = false;
+    private String implementationName2a;
+    private boolean implementationName2aSet = false;
 
     /**
      * Returns the name of the implementation class.
@@ -164,19 +167,19 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      */
     public final String getImplementationName()
     {
-        String implementationName2a = this.__implementationName2a;
-        if (!this.__implementationName2aSet)
+        String aimplementationName2a = this.implementationName2a;
+        if (!this.implementationName2aSet)
         {
             // implementationName has no pre constraints
-            implementationName2a = handleGetImplementationName();
+            aimplementationName2a = handleGetImplementationName();
             // implementationName has no post constraints
-            this.__implementationName2a = implementationName2a;
+            this.implementationName2a = aimplementationName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationName2aSet = true;
+                this.implementationName2aSet = true;
             }
         }
-        return implementationName2a;
+        return aimplementationName2a;
     }
 
    /**
@@ -185,8 +188,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedImplementationName();
 
-    private String __fullyQualifiedImplementationName3a;
-    private boolean __fullyQualifiedImplementationName3aSet = false;
+    private String fullyQualifiedImplementationName3a;
+    private boolean fullyQualifiedImplementationName3aSet = false;
 
     /**
      * Returns the fully qualified name of the embeddable value implementation class.
@@ -194,19 +197,19 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      */
     public final String getFullyQualifiedImplementationName()
     {
-        String fullyQualifiedImplementationName3a = this.__fullyQualifiedImplementationName3a;
-        if (!this.__fullyQualifiedImplementationName3aSet)
+        String afullyQualifiedImplementationName3a = this.fullyQualifiedImplementationName3a;
+        if (!this.fullyQualifiedImplementationName3aSet)
         {
             // fullyQualifiedImplementationName has no pre constraints
-            fullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
+            afullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
             // fullyQualifiedImplementationName has no post constraints
-            this.__fullyQualifiedImplementationName3a = fullyQualifiedImplementationName3a;
+            this.fullyQualifiedImplementationName3a = afullyQualifiedImplementationName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedImplementationName3aSet = true;
+                this.fullyQualifiedImplementationName3aSet = true;
             }
         }
-        return fullyQualifiedImplementationName3a;
+        return afullyQualifiedImplementationName3a;
     }
 
     /**
@@ -270,7 +273,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperClassifierFacade().getAllProperties();
     }
@@ -280,7 +283,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperClassifierFacade().getAllRequiredConstructorParameters();
     }
@@ -337,7 +340,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperClassifierFacade().getAttributes(follow);
     }
@@ -434,7 +437,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperClassifierFacade().getNavigableConnectingEnds(follow);
     }
@@ -475,7 +478,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperClassifierFacade().getProperties();
     }
@@ -496,7 +499,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperClassifierFacade().getRequiredConstructorParameters();
     }
@@ -895,7 +898,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperClassifierFacade().findTaggedValues(tagName);
     }
@@ -925,7 +928,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperClassifierFacade().getConstraints(kind);
     }

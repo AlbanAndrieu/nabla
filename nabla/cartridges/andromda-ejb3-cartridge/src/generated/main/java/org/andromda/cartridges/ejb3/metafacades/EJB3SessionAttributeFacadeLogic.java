@@ -33,17 +33,20 @@ public abstract class EJB3SessionAttributeFacadeLogic
     extends MetafacadeBase
     implements EJB3SessionAttributeFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3SessionAttributeFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3SessionAttributeFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superAttributeFacade =
@@ -121,8 +124,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetTransactionType();
 
-    private String __transactionType1a;
-    private boolean __transactionType1aSet = false;
+    private String transactionType1a;
+    private boolean transactionType1aSet = false;
 
     /**
      * Gets the transaction type for this attribute (i.e. REQUIRED, etc)
@@ -130,19 +133,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getTransactionType()
     {
-        String transactionType1a = this.__transactionType1a;
-        if (!this.__transactionType1aSet)
+        String atransactionType1a = this.transactionType1a;
+        if (!this.transactionType1aSet)
         {
             // transactionType has no pre constraints
-            transactionType1a = handleGetTransactionType();
+            atransactionType1a = handleGetTransactionType();
             // transactionType has no post constraints
-            this.__transactionType1a = transactionType1a;
+            this.transactionType1a = atransactionType1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionType1aSet = true;
+                this.transactionType1aSet = true;
             }
         }
-        return transactionType1a;
+        return atransactionType1a;
     }
 
    /**
@@ -151,8 +154,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamBijectionIn();
 
-    private boolean __seamBijectionIn2a;
-    private boolean __seamBijectionIn2aSet = false;
+    private boolean seamBijectionIn2a;
+    private boolean seamBijectionIn2aSet = false;
 
     /**
      * Returns true the attribute is modelled with the <<In>> stereotype indicating that it is a
@@ -162,19 +165,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamBijectionIn()
     {
-        boolean seamBijectionIn2a = this.__seamBijectionIn2a;
-        if (!this.__seamBijectionIn2aSet)
+        boolean aseamBijectionIn2a = this.seamBijectionIn2a;
+        if (!this.seamBijectionIn2aSet)
         {
             // seamBijectionIn has no pre constraints
-            seamBijectionIn2a = handleIsSeamBijectionIn();
+            aseamBijectionIn2a = handleIsSeamBijectionIn();
             // seamBijectionIn has no post constraints
-            this.__seamBijectionIn2a = seamBijectionIn2a;
+            this.seamBijectionIn2a = aseamBijectionIn2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionIn2aSet = true;
+                this.seamBijectionIn2aSet = true;
             }
         }
-        return seamBijectionIn2a;
+        return aseamBijectionIn2a;
     }
 
    /**
@@ -183,8 +186,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamBijectionOut();
 
-    private boolean __seamBijectionOut3a;
-    private boolean __seamBijectionOut3aSet = false;
+    private boolean seamBijectionOut3a;
+    private boolean seamBijectionOut3aSet = false;
 
     /**
      * Returns true if the attribute is modelled with the <<Out>> stereotype indicating that it is a
@@ -194,19 +197,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamBijectionOut()
     {
-        boolean seamBijectionOut3a = this.__seamBijectionOut3a;
-        if (!this.__seamBijectionOut3aSet)
+        boolean aseamBijectionOut3a = this.seamBijectionOut3a;
+        if (!this.seamBijectionOut3aSet)
         {
             // seamBijectionOut has no pre constraints
-            seamBijectionOut3a = handleIsSeamBijectionOut();
+            aseamBijectionOut3a = handleIsSeamBijectionOut();
             // seamBijectionOut has no post constraints
-            this.__seamBijectionOut3a = seamBijectionOut3a;
+            this.seamBijectionOut3a = aseamBijectionOut3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionOut3aSet = true;
+                this.seamBijectionOut3aSet = true;
             }
         }
-        return seamBijectionOut3a;
+        return aseamBijectionOut3a;
     }
 
    /**
@@ -215,8 +218,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamValidationValid();
 
-    private boolean __seamValidationValid4a;
-    private boolean __seamValidationValid4aSet = false;
+    private boolean seamValidationValid4a;
+    private boolean seamValidationValid4aSet = false;
 
     /**
      * Returns true if the <<Valid>> stereotype is modelled on seam component bean attribute to
@@ -226,19 +229,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamValidationValid()
     {
-        boolean seamValidationValid4a = this.__seamValidationValid4a;
-        if (!this.__seamValidationValid4aSet)
+        boolean aseamValidationValid4a = this.seamValidationValid4a;
+        if (!this.seamValidationValid4aSet)
         {
             // seamValidationValid has no pre constraints
-            seamValidationValid4a = handleIsSeamValidationValid();
+            aseamValidationValid4a = handleIsSeamValidationValid();
             // seamValidationValid has no post constraints
-            this.__seamValidationValid4a = seamValidationValid4a;
+            this.seamValidationValid4a = aseamValidationValid4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamValidationValid4aSet = true;
+                this.seamValidationValid4aSet = true;
             }
         }
-        return seamValidationValid4a;
+        return aseamValidationValid4a;
     }
 
    /**
@@ -247,8 +250,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamDataModel();
 
-    private boolean __seamDataModel5a;
-    private boolean __seamDataModel5aSet = false;
+    private boolean seamDataModel5a;
+    private boolean seamDataModel5aSet = false;
 
     /**
      * Returns true if the attribute of type List, Map, Set or Object[] is modelled with the
@@ -259,19 +262,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamDataModel()
     {
-        boolean seamDataModel5a = this.__seamDataModel5a;
-        if (!this.__seamDataModel5aSet)
+        boolean aseamDataModel5a = this.seamDataModel5a;
+        if (!this.seamDataModel5aSet)
         {
             // seamDataModel has no pre constraints
-            seamDataModel5a = handleIsSeamDataModel();
+            aseamDataModel5a = handleIsSeamDataModel();
             // seamDataModel has no post constraints
-            this.__seamDataModel5a = seamDataModel5a;
+            this.seamDataModel5a = aseamDataModel5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamDataModel5aSet = true;
+                this.seamDataModel5aSet = true;
             }
         }
-        return seamDataModel5a;
+        return aseamDataModel5a;
     }
 
    /**
@@ -280,8 +283,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamDataModelSelection();
 
-    private boolean __seamDataModelSelection6a;
-    private boolean __seamDataModelSelection6aSet = false;
+    private boolean seamDataModelSelection6a;
+    private boolean seamDataModelSelection6aSet = false;
 
     /**
      * Returns true if stereotype <<DataModelSelection>> is set. Injects the selected value from the
@@ -290,19 +293,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamDataModelSelection()
     {
-        boolean seamDataModelSelection6a = this.__seamDataModelSelection6a;
-        if (!this.__seamDataModelSelection6aSet)
+        boolean aseamDataModelSelection6a = this.seamDataModelSelection6a;
+        if (!this.seamDataModelSelection6aSet)
         {
             // seamDataModelSelection has no pre constraints
-            seamDataModelSelection6a = handleIsSeamDataModelSelection();
+            aseamDataModelSelection6a = handleIsSeamDataModelSelection();
             // seamDataModelSelection has no post constraints
-            this.__seamDataModelSelection6a = seamDataModelSelection6a;
+            this.seamDataModelSelection6a = aseamDataModelSelection6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamDataModelSelection6aSet = true;
+                this.seamDataModelSelection6aSet = true;
             }
         }
-        return seamDataModelSelection6a;
+        return aseamDataModelSelection6a;
     }
 
    /**
@@ -311,8 +314,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamDataModelSelectionIndex();
 
-    private boolean __seamDataModelSelectionIndex7a;
-    private boolean __seamDataModelSelectionIndex7aSet = false;
+    private boolean seamDataModelSelectionIndex7a;
+    private boolean seamDataModelSelectionIndex7aSet = false;
 
     /**
      * Returns true if stereotype <<DataModelSelectionIndex>> is set. Exposes the selection index of
@@ -322,19 +325,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamDataModelSelectionIndex()
     {
-        boolean seamDataModelSelectionIndex7a = this.__seamDataModelSelectionIndex7a;
-        if (!this.__seamDataModelSelectionIndex7aSet)
+        boolean aseamDataModelSelectionIndex7a = this.seamDataModelSelectionIndex7a;
+        if (!this.seamDataModelSelectionIndex7aSet)
         {
             // seamDataModelSelectionIndex has no pre constraints
-            seamDataModelSelectionIndex7a = handleIsSeamDataModelSelectionIndex();
+            aseamDataModelSelectionIndex7a = handleIsSeamDataModelSelectionIndex();
             // seamDataModelSelectionIndex has no post constraints
-            this.__seamDataModelSelectionIndex7a = seamDataModelSelectionIndex7a;
+            this.seamDataModelSelectionIndex7a = aseamDataModelSelectionIndex7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamDataModelSelectionIndex7aSet = true;
+                this.seamDataModelSelectionIndex7aSet = true;
             }
         }
-        return seamDataModelSelectionIndex7a;
+        return aseamDataModelSelectionIndex7a;
     }
 
    /**
@@ -343,8 +346,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamBijectionLogger();
 
-    private boolean __seamBijectionLogger8a;
-    private boolean __seamBijectionLogger8aSet = false;
+    private boolean seamBijectionLogger8a;
+    private boolean seamBijectionLogger8aSet = false;
 
     /**
      * Returns true if stereotype <<Logger>> is set. Specifies that a component field is to be
@@ -353,19 +356,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamBijectionLogger()
     {
-        boolean seamBijectionLogger8a = this.__seamBijectionLogger8a;
-        if (!this.__seamBijectionLogger8aSet)
+        boolean aseamBijectionLogger8a = this.seamBijectionLogger8a;
+        if (!this.seamBijectionLogger8aSet)
         {
             // seamBijectionLogger has no pre constraints
-            seamBijectionLogger8a = handleIsSeamBijectionLogger();
+            aseamBijectionLogger8a = handleIsSeamBijectionLogger();
             // seamBijectionLogger has no post constraints
-            this.__seamBijectionLogger8a = seamBijectionLogger8a;
+            this.seamBijectionLogger8a = aseamBijectionLogger8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionLogger8aSet = true;
+                this.seamBijectionLogger8aSet = true;
             }
         }
-        return seamBijectionLogger8a;
+        return aseamBijectionLogger8a;
     }
 
    /**
@@ -374,8 +377,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamBijectionRequestParameter();
 
-    private boolean __seamBijectionRequestParameter9a;
-    private boolean __seamBijectionRequestParameter9aSet = false;
+    private boolean seamBijectionRequestParameter9a;
+    private boolean seamBijectionRequestParameter9aSet = false;
 
     /**
      * Returns true if stereotype <<RequestParameter>> is set. Specifies that a component attribute
@@ -385,19 +388,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamBijectionRequestParameter()
     {
-        boolean seamBijectionRequestParameter9a = this.__seamBijectionRequestParameter9a;
-        if (!this.__seamBijectionRequestParameter9aSet)
+        boolean aseamBijectionRequestParameter9a = this.seamBijectionRequestParameter9a;
+        if (!this.seamBijectionRequestParameter9aSet)
         {
             // seamBijectionRequestParameter has no pre constraints
-            seamBijectionRequestParameter9a = handleIsSeamBijectionRequestParameter();
+            aseamBijectionRequestParameter9a = handleIsSeamBijectionRequestParameter();
             // seamBijectionRequestParameter has no post constraints
-            this.__seamBijectionRequestParameter9a = seamBijectionRequestParameter9a;
+            this.seamBijectionRequestParameter9a = aseamBijectionRequestParameter9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionRequestParameter9aSet = true;
+                this.seamBijectionRequestParameter9aSet = true;
             }
         }
-        return seamBijectionRequestParameter9a;
+        return aseamBijectionRequestParameter9a;
     }
 
    /**
@@ -406,8 +409,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamBijectionInParameters();
 
-    private String __seamBijectionInParameters10a;
-    private boolean __seamBijectionInParameters10aSet = false;
+    private String seamBijectionInParameters10a;
+    private boolean seamBijectionInParameters10aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.In annotation. Supported
@@ -423,19 +426,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamBijectionInParameters()
     {
-        String seamBijectionInParameters10a = this.__seamBijectionInParameters10a;
-        if (!this.__seamBijectionInParameters10aSet)
+        String aseamBijectionInParameters10a = this.seamBijectionInParameters10a;
+        if (!this.seamBijectionInParameters10aSet)
         {
             // seamBijectionInParameters has no pre constraints
-            seamBijectionInParameters10a = handleGetSeamBijectionInParameters();
+            aseamBijectionInParameters10a = handleGetSeamBijectionInParameters();
             // seamBijectionInParameters has no post constraints
-            this.__seamBijectionInParameters10a = seamBijectionInParameters10a;
+            this.seamBijectionInParameters10a = aseamBijectionInParameters10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionInParameters10aSet = true;
+                this.seamBijectionInParameters10aSet = true;
             }
         }
-        return seamBijectionInParameters10a;
+        return aseamBijectionInParameters10a;
     }
 
    /**
@@ -444,8 +447,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamBijectionLoggerParameters();
 
-    private String __seamBijectionLoggerParameters11a;
-    private boolean __seamBijectionLoggerParameters11aSet = false;
+    private String seamBijectionLoggerParameters11a;
+    private boolean seamBijectionLoggerParameters11aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.Logger annotation. Supported
@@ -455,19 +458,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamBijectionLoggerParameters()
     {
-        String seamBijectionLoggerParameters11a = this.__seamBijectionLoggerParameters11a;
-        if (!this.__seamBijectionLoggerParameters11aSet)
+        String aseamBijectionLoggerParameters11a = this.seamBijectionLoggerParameters11a;
+        if (!this.seamBijectionLoggerParameters11aSet)
         {
             // seamBijectionLoggerParameters has no pre constraints
-            seamBijectionLoggerParameters11a = handleGetSeamBijectionLoggerParameters();
+            aseamBijectionLoggerParameters11a = handleGetSeamBijectionLoggerParameters();
             // seamBijectionLoggerParameters has no post constraints
-            this.__seamBijectionLoggerParameters11a = seamBijectionLoggerParameters11a;
+            this.seamBijectionLoggerParameters11a = aseamBijectionLoggerParameters11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionLoggerParameters11aSet = true;
+                this.seamBijectionLoggerParameters11aSet = true;
             }
         }
-        return seamBijectionLoggerParameters11a;
+        return aseamBijectionLoggerParameters11a;
     }
 
    /**
@@ -476,8 +479,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamBijectionOutParameters();
 
-    private String __seamBijectionOutParameters12a;
-    private boolean __seamBijectionOutParameters12aSet = false;
+    private String seamBijectionOutParameters12a;
+    private boolean seamBijectionOutParameters12aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.Out annotation. Supported
@@ -491,19 +494,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamBijectionOutParameters()
     {
-        String seamBijectionOutParameters12a = this.__seamBijectionOutParameters12a;
-        if (!this.__seamBijectionOutParameters12aSet)
+        String aseamBijectionOutParameters12a = this.seamBijectionOutParameters12a;
+        if (!this.seamBijectionOutParameters12aSet)
         {
             // seamBijectionOutParameters has no pre constraints
-            seamBijectionOutParameters12a = handleGetSeamBijectionOutParameters();
+            aseamBijectionOutParameters12a = handleGetSeamBijectionOutParameters();
             // seamBijectionOutParameters has no post constraints
-            this.__seamBijectionOutParameters12a = seamBijectionOutParameters12a;
+            this.seamBijectionOutParameters12a = aseamBijectionOutParameters12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionOutParameters12aSet = true;
+                this.seamBijectionOutParameters12aSet = true;
             }
         }
-        return seamBijectionOutParameters12a;
+        return aseamBijectionOutParameters12a;
     }
 
    /**
@@ -512,8 +515,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamBijectionRequestParameterParameters();
 
-    private String __seamBijectionRequestParameterParameters13a;
-    private boolean __seamBijectionRequestParameterParameters13aSet = false;
+    private String seamBijectionRequestParameterParameters13a;
+    private boolean seamBijectionRequestParameterParameters13aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.RequestParameter annotation.
@@ -524,19 +527,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamBijectionRequestParameterParameters()
     {
-        String seamBijectionRequestParameterParameters13a = this.__seamBijectionRequestParameterParameters13a;
-        if (!this.__seamBijectionRequestParameterParameters13aSet)
+        String aseamBijectionRequestParameterParameters13a = this.seamBijectionRequestParameterParameters13a;
+        if (!this.seamBijectionRequestParameterParameters13aSet)
         {
             // seamBijectionRequestParameterParameters has no pre constraints
-            seamBijectionRequestParameterParameters13a = handleGetSeamBijectionRequestParameterParameters();
+            aseamBijectionRequestParameterParameters13a = handleGetSeamBijectionRequestParameterParameters();
             // seamBijectionRequestParameterParameters has no post constraints
-            this.__seamBijectionRequestParameterParameters13a = seamBijectionRequestParameterParameters13a;
+            this.seamBijectionRequestParameterParameters13a = aseamBijectionRequestParameterParameters13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionRequestParameterParameters13aSet = true;
+                this.seamBijectionRequestParameterParameters13aSet = true;
             }
         }
-        return seamBijectionRequestParameterParameters13a;
+        return aseamBijectionRequestParameterParameters13a;
     }
 
    /**
@@ -545,8 +548,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamDataModelParameters();
 
-    private String __seamDataModelParameters14a;
-    private boolean __seamDataModelParameters14aSet = false;
+    private String seamDataModelParameters14a;
+    private boolean seamDataModelParameters14aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.DataModel annotation. Supported
@@ -558,19 +561,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamDataModelParameters()
     {
-        String seamDataModelParameters14a = this.__seamDataModelParameters14a;
-        if (!this.__seamDataModelParameters14aSet)
+        String aseamDataModelParameters14a = this.seamDataModelParameters14a;
+        if (!this.seamDataModelParameters14aSet)
         {
             // seamDataModelParameters has no pre constraints
-            seamDataModelParameters14a = handleGetSeamDataModelParameters();
+            aseamDataModelParameters14a = handleGetSeamDataModelParameters();
             // seamDataModelParameters has no post constraints
-            this.__seamDataModelParameters14a = seamDataModelParameters14a;
+            this.seamDataModelParameters14a = aseamDataModelParameters14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamDataModelParameters14aSet = true;
+                this.seamDataModelParameters14aSet = true;
             }
         }
-        return seamDataModelParameters14a;
+        return aseamDataModelParameters14a;
     }
 
    /**
@@ -579,8 +582,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamDataModelSelectionParameters();
 
-    private String __seamDataModelSelectionParameters15a;
-    private boolean __seamDataModelSelectionParameters15aSet = false;
+    private String seamDataModelSelectionParameters15a;
+    private boolean seamDataModelSelectionParameters15aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.DataModelSelection annotation.
@@ -591,19 +594,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamDataModelSelectionParameters()
     {
-        String seamDataModelSelectionParameters15a = this.__seamDataModelSelectionParameters15a;
-        if (!this.__seamDataModelSelectionParameters15aSet)
+        String aseamDataModelSelectionParameters15a = this.seamDataModelSelectionParameters15a;
+        if (!this.seamDataModelSelectionParameters15aSet)
         {
             // seamDataModelSelectionParameters has no pre constraints
-            seamDataModelSelectionParameters15a = handleGetSeamDataModelSelectionParameters();
+            aseamDataModelSelectionParameters15a = handleGetSeamDataModelSelectionParameters();
             // seamDataModelSelectionParameters has no post constraints
-            this.__seamDataModelSelectionParameters15a = seamDataModelSelectionParameters15a;
+            this.seamDataModelSelectionParameters15a = aseamDataModelSelectionParameters15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamDataModelSelectionParameters15aSet = true;
+                this.seamDataModelSelectionParameters15aSet = true;
             }
         }
-        return seamDataModelSelectionParameters15a;
+        return aseamDataModelSelectionParameters15a;
     }
 
    /**
@@ -612,8 +615,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract String handleGetSeamDataModelSelectionIndexParameters();
 
-    private String __seamDataModelSelectionIndexParameters16a;
-    private boolean __seamDataModelSelectionIndexParameters16aSet = false;
+    private String seamDataModelSelectionIndexParameters16a;
+    private boolean seamDataModelSelectionIndexParameters16aSet = false;
 
     /**
      * Returns a parameter string for org.jboss.seam.annotations.DataModelSelection annotation.
@@ -624,19 +627,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final String getSeamDataModelSelectionIndexParameters()
     {
-        String seamDataModelSelectionIndexParameters16a = this.__seamDataModelSelectionIndexParameters16a;
-        if (!this.__seamDataModelSelectionIndexParameters16aSet)
+        String aseamDataModelSelectionIndexParameters16a = this.seamDataModelSelectionIndexParameters16a;
+        if (!this.seamDataModelSelectionIndexParameters16aSet)
         {
             // seamDataModelSelectionIndexParameters has no pre constraints
-            seamDataModelSelectionIndexParameters16a = handleGetSeamDataModelSelectionIndexParameters();
+            aseamDataModelSelectionIndexParameters16a = handleGetSeamDataModelSelectionIndexParameters();
             // seamDataModelSelectionIndexParameters has no post constraints
-            this.__seamDataModelSelectionIndexParameters16a = seamDataModelSelectionIndexParameters16a;
+            this.seamDataModelSelectionIndexParameters16a = aseamDataModelSelectionIndexParameters16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamDataModelSelectionIndexParameters16aSet = true;
+                this.seamDataModelSelectionIndexParameters16aSet = true;
             }
         }
-        return seamDataModelSelectionIndexParameters16a;
+        return aseamDataModelSelectionIndexParameters16a;
     }
 
    /**
@@ -645,8 +648,8 @@ public abstract class EJB3SessionAttributeFacadeLogic
     */
     protected abstract boolean handleIsSeamAttribute();
 
-    private boolean __seamAttribute17a;
-    private boolean __seamAttribute17aSet = false;
+    private boolean seamAttribute17a;
+    private boolean seamAttribute17aSet = false;
 
     /**
      * Returns true if this attribute is a seam component attribute, marked with one or more of the
@@ -655,19 +658,19 @@ public abstract class EJB3SessionAttributeFacadeLogic
      */
     public final boolean isSeamAttribute()
     {
-        boolean seamAttribute17a = this.__seamAttribute17a;
-        if (!this.__seamAttribute17aSet)
+        boolean aseamAttribute17a = this.seamAttribute17a;
+        if (!this.seamAttribute17aSet)
         {
             // seamAttribute has no pre constraints
-            seamAttribute17a = handleIsSeamAttribute();
+            aseamAttribute17a = handleIsSeamAttribute();
             // seamAttribute has no post constraints
-            this.__seamAttribute17a = seamAttribute17a;
+            this.seamAttribute17a = aseamAttribute17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamAttribute17aSet = true;
+                this.seamAttribute17aSet = true;
             }
         }
-        return seamAttribute17a;
+        return aseamAttribute17a;
     }
 
     /**
@@ -960,7 +963,7 @@ public abstract class EJB3SessionAttributeFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperAttributeFacade().findTaggedValues(tagName);
     }
@@ -990,7 +993,7 @@ public abstract class EJB3SessionAttributeFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperAttributeFacade().getConstraints(kind);
     }

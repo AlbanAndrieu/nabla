@@ -35,17 +35,20 @@ public abstract class EJB3AssociationFacadeLogic
     extends MetafacadeBase
     implements EJB3AssociationFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3AssociationFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3AssociationFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEntityAssociation =
@@ -384,7 +387,7 @@ public abstract class EJB3AssociationFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperEntityAssociation().findTaggedValues(tagName);
     }
@@ -414,7 +417,7 @@ public abstract class EJB3AssociationFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperEntityAssociation().getConstraints(kind);
     }

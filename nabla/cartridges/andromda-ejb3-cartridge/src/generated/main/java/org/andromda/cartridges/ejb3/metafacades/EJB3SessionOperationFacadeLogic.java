@@ -39,17 +39,20 @@ public abstract class EJB3SessionOperationFacadeLogic
     extends MetafacadeBase
     implements EJB3SessionOperationFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3SessionOperationFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3SessionOperationFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superServiceOperation =
@@ -64,7 +67,7 @@ public abstract class EJB3SessionOperationFacadeLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(EJB3SessionOperationFacadeLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(EJB3SessionOperationFacadeLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -132,8 +135,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetViewType();
 
-    private String __viewType1a;
-    private boolean __viewType1aSet = false;
+    private String viewType1a;
+    private boolean viewType1aSet = false;
 
     /**
      * Returns a string representing whether this operation is local, remotely or both local and
@@ -142,19 +145,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getViewType()
     {
-        String viewType1a = this.__viewType1a;
-        if (!this.__viewType1aSet)
+        String aviewType1a = this.viewType1a;
+        if (!this.viewType1aSet)
         {
             // viewType has no pre constraints
-            viewType1a = handleGetViewType();
+            aviewType1a = handleGetViewType();
             // viewType has no post constraints
-            this.__viewType1a = viewType1a;
+            this.viewType1a = aviewType1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewType1aSet = true;
+                this.viewType1aSet = true;
             }
         }
-        return viewType1a;
+        return aviewType1a;
     }
 
    /**
@@ -163,8 +166,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeRemote();
 
-    private boolean __viewTypeRemote2a;
-    private boolean __viewTypeRemote2aSet = false;
+    private boolean viewTypeRemote2a;
+    private boolean viewTypeRemote2aSet = false;
 
     /**
      * Returns true if the view type accessability for the operation is remote.
@@ -172,19 +175,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeRemote()
     {
-        boolean viewTypeRemote2a = this.__viewTypeRemote2a;
-        if (!this.__viewTypeRemote2aSet)
+        boolean aviewTypeRemote2a = this.viewTypeRemote2a;
+        if (!this.viewTypeRemote2aSet)
         {
             // viewTypeRemote has no pre constraints
-            viewTypeRemote2a = handleIsViewTypeRemote();
+            aviewTypeRemote2a = handleIsViewTypeRemote();
             // viewTypeRemote has no post constraints
-            this.__viewTypeRemote2a = viewTypeRemote2a;
+            this.viewTypeRemote2a = aviewTypeRemote2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeRemote2aSet = true;
+                this.viewTypeRemote2aSet = true;
             }
         }
-        return viewTypeRemote2a;
+        return aviewTypeRemote2a;
     }
 
    /**
@@ -193,8 +196,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeLocal();
 
-    private boolean __viewTypeLocal3a;
-    private boolean __viewTypeLocal3aSet = false;
+    private boolean viewTypeLocal3a;
+    private boolean viewTypeLocal3aSet = false;
 
     /**
      * Return true if the view type accessability for this operation is local.
@@ -202,19 +205,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeLocal()
     {
-        boolean viewTypeLocal3a = this.__viewTypeLocal3a;
-        if (!this.__viewTypeLocal3aSet)
+        boolean aviewTypeLocal3a = this.viewTypeLocal3a;
+        if (!this.viewTypeLocal3aSet)
         {
             // viewTypeLocal has no pre constraints
-            viewTypeLocal3a = handleIsViewTypeLocal();
+            aviewTypeLocal3a = handleIsViewTypeLocal();
             // viewTypeLocal has no post constraints
-            this.__viewTypeLocal3a = viewTypeLocal3a;
+            this.viewTypeLocal3a = aviewTypeLocal3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeLocal3aSet = true;
+                this.viewTypeLocal3aSet = true;
             }
         }
-        return viewTypeLocal3a;
+        return aviewTypeLocal3a;
     }
 
    /**
@@ -223,8 +226,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeBoth();
 
-    private boolean __viewTypeBoth4a;
-    private boolean __viewTypeBoth4aSet = false;
+    private boolean viewTypeBoth4a;
+    private boolean viewTypeBoth4aSet = false;
 
     /**
      * Returns true if the view type accessability for this operation is both local and remote.
@@ -232,19 +235,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeBoth()
     {
-        boolean viewTypeBoth4a = this.__viewTypeBoth4a;
-        if (!this.__viewTypeBoth4aSet)
+        boolean aviewTypeBoth4a = this.viewTypeBoth4a;
+        if (!this.viewTypeBoth4aSet)
         {
             // viewTypeBoth has no pre constraints
-            viewTypeBoth4a = handleIsViewTypeBoth();
+            aviewTypeBoth4a = handleIsViewTypeBoth();
             // viewTypeBoth has no post constraints
-            this.__viewTypeBoth4a = viewTypeBoth4a;
+            this.viewTypeBoth4a = aviewTypeBoth4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeBoth4aSet = true;
+                this.viewTypeBoth4aSet = true;
             }
         }
-        return viewTypeBoth4a;
+        return aviewTypeBoth4a;
     }
 
    /**
@@ -253,8 +256,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetTransactionType();
 
-    private String __transactionType5a;
-    private boolean __transactionType5aSet = false;
+    private String transactionType5a;
+    private boolean transactionType5aSet = false;
 
     /**
      * Gets the transaction type for this attribute (i.e. REQUIRED, etc)
@@ -262,19 +265,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getTransactionType()
     {
-        String transactionType5a = this.__transactionType5a;
-        if (!this.__transactionType5aSet)
+        String atransactionType5a = this.transactionType5a;
+        if (!this.transactionType5aSet)
         {
             // transactionType has no pre constraints
-            transactionType5a = handleGetTransactionType();
+            atransactionType5a = handleGetTransactionType();
             // transactionType has no post constraints
-            this.__transactionType5a = transactionType5a;
+            this.transactionType5a = atransactionType5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionType5aSet = true;
+                this.transactionType5aSet = true;
             }
         }
-        return transactionType5a;
+        return atransactionType5a;
     }
 
    /**
@@ -283,8 +286,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsBusinessOperation();
 
-    private boolean __businessOperation6a;
-    private boolean __businessOperation6aSet = false;
+    private boolean businessOperation6a;
+    private boolean businessOperation6aSet = false;
 
     /**
      * True/false on whether or not this operation is an EJB session business operation.
@@ -292,19 +295,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isBusinessOperation()
     {
-        boolean businessOperation6a = this.__businessOperation6a;
-        if (!this.__businessOperation6aSet)
+        boolean abusinessOperation6a = this.businessOperation6a;
+        if (!this.businessOperation6aSet)
         {
             // businessOperation has no pre constraints
-            businessOperation6a = handleIsBusinessOperation();
+            abusinessOperation6a = handleIsBusinessOperation();
             // businessOperation has no post constraints
-            this.__businessOperation6a = businessOperation6a;
+            this.businessOperation6a = abusinessOperation6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__businessOperation6aSet = true;
+                this.businessOperation6aSet = true;
             }
         }
-        return businessOperation6a;
+        return abusinessOperation6a;
     }
 
    /**
@@ -313,8 +316,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetRolesAllowed();
 
-    private String __rolesAllowed7a;
-    private boolean __rolesAllowed7aSet = false;
+    private String rolesAllowed7a;
+    private boolean rolesAllowed7aSet = false;
 
     /**
      * Returns the comma separated list of roles allowd to execute this operation.  This is defined
@@ -323,19 +326,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getRolesAllowed()
     {
-        String rolesAllowed7a = this.__rolesAllowed7a;
-        if (!this.__rolesAllowed7aSet)
+        String arolesAllowed7a = this.rolesAllowed7a;
+        if (!this.rolesAllowed7aSet)
         {
             // rolesAllowed has no pre constraints
-            rolesAllowed7a = handleGetRolesAllowed();
+            arolesAllowed7a = handleGetRolesAllowed();
             // rolesAllowed has no post constraints
-            this.__rolesAllowed7a = rolesAllowed7a;
+            this.rolesAllowed7a = arolesAllowed7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__rolesAllowed7aSet = true;
+                this.rolesAllowed7aSet = true;
             }
         }
-        return rolesAllowed7a;
+        return arolesAllowed7a;
     }
 
    /**
@@ -344,8 +347,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsPermitAll();
 
-    private boolean __permitAll8a;
-    private boolean __permitAll8aSet = false;
+    private boolean permitAll8a;
+    private boolean permitAll8aSet = false;
 
     /**
      * Returns true if all roles are permitted to execute this operation.  This is specified in the
@@ -355,19 +358,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isPermitAll()
     {
-        boolean permitAll8a = this.__permitAll8a;
-        if (!this.__permitAll8aSet)
+        boolean apermitAll8a = this.permitAll8a;
+        if (!this.permitAll8aSet)
         {
             // permitAll has no pre constraints
-            permitAll8a = handleIsPermitAll();
+            apermitAll8a = handleIsPermitAll();
             // permitAll has no post constraints
-            this.__permitAll8a = permitAll8a;
+            this.permitAll8a = apermitAll8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__permitAll8aSet = true;
+                this.permitAll8aSet = true;
             }
         }
-        return permitAll8a;
+        return apermitAll8a;
     }
 
    /**
@@ -376,8 +379,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsDenyAll();
 
-    private boolean __denyAll9a;
-    private boolean __denyAll9aSet = false;
+    private boolean denyAll9a;
+    private boolean denyAll9aSet = false;
 
     /**
      * Returns true if NO roles are permitted to execute this operation in this bean.  This is
@@ -386,19 +389,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isDenyAll()
     {
-        boolean denyAll9a = this.__denyAll9a;
-        if (!this.__denyAll9aSet)
+        boolean adenyAll9a = this.denyAll9a;
+        if (!this.denyAll9aSet)
         {
             // denyAll has no pre constraints
-            denyAll9a = handleIsDenyAll();
+            adenyAll9a = handleIsDenyAll();
             // denyAll has no post constraints
-            this.__denyAll9a = denyAll9a;
+            this.denyAll9a = adenyAll9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__denyAll9aSet = true;
+                this.denyAll9aSet = true;
             }
         }
-        return denyAll9a;
+        return adenyAll9a;
     }
 
    /**
@@ -407,8 +410,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetFlushMode();
 
-    private String __flushMode10a;
-    private boolean __flushMode10aSet = false;
+    private String flushMode10a;
+    private boolean flushMode10aSet = false;
 
     /**
      * Return the flush mode to determine when the changes to the database are performed in the
@@ -419,19 +422,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getFlushMode()
     {
-        String flushMode10a = this.__flushMode10a;
-        if (!this.__flushMode10aSet)
+        String aflushMode10a = this.flushMode10a;
+        if (!this.flushMode10aSet)
         {
             // flushMode has no pre constraints
-            flushMode10a = handleGetFlushMode();
+            aflushMode10a = handleGetFlushMode();
             // flushMode has no post constraints
-            this.__flushMode10a = flushMode10a;
+            this.flushMode10a = aflushMode10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__flushMode10aSet = true;
+                this.flushMode10aSet = true;
             }
         }
-        return flushMode10a;
+        return aflushMode10a;
     }
 
    /**
@@ -440,8 +443,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetThrowsClause();
 
-    private String __throwsClause11a;
-    private boolean __throwsClause11aSet = false;
+    private String throwsClause11a;
+    private boolean throwsClause11aSet = false;
 
     /**
      * Gets the throws clause for this service or null if the operation doesn't have any exceptions.
@@ -449,19 +452,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getThrowsClause()
     {
-        String throwsClause11a = this.__throwsClause11a;
-        if (!this.__throwsClause11aSet)
+        String athrowsClause11a = this.throwsClause11a;
+        if (!this.throwsClause11aSet)
         {
             // throwsClause has no pre constraints
-            throwsClause11a = handleGetThrowsClause();
+            athrowsClause11a = handleGetThrowsClause();
             // throwsClause has no post constraints
-            this.__throwsClause11a = throwsClause11a;
+            this.throwsClause11a = athrowsClause11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__throwsClause11aSet = true;
+                this.throwsClause11aSet = true;
             }
         }
-        return throwsClause11a;
+        return athrowsClause11a;
     }
 
    /**
@@ -470,8 +473,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsTimeoutCallback();
 
-    private boolean __timeoutCallback12a;
-    private boolean __timeoutCallback12aSet = false;
+    private boolean timeoutCallback12a;
+    private boolean timeoutCallback12aSet = false;
 
     /**
      * Returns true if the Timeout stereotype is modelled on the session bean operation.  This will
@@ -481,19 +484,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isTimeoutCallback()
     {
-        boolean timeoutCallback12a = this.__timeoutCallback12a;
-        if (!this.__timeoutCallback12aSet)
+        boolean atimeoutCallback12a = this.timeoutCallback12a;
+        if (!this.timeoutCallback12aSet)
         {
             // timeoutCallback has no pre constraints
-            timeoutCallback12a = handleIsTimeoutCallback();
+            atimeoutCallback12a = handleIsTimeoutCallback();
             // timeoutCallback has no post constraints
-            this.__timeoutCallback12a = timeoutCallback12a;
+            this.timeoutCallback12a = atimeoutCallback12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__timeoutCallback12aSet = true;
+                this.timeoutCallback12aSet = true;
             }
         }
-        return timeoutCallback12a;
+        return atimeoutCallback12a;
     }
 
    /**
@@ -502,8 +505,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetImplementationName();
 
-    private String __implementationName13a;
-    private boolean __implementationName13aSet = false;
+    private String implementationName13a;
+    private boolean implementationName13aSet = false;
 
     /**
      * The name of the operation used within the service implementation that contains the core
@@ -512,19 +515,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getImplementationName()
     {
-        String implementationName13a = this.__implementationName13a;
-        if (!this.__implementationName13aSet)
+        String aimplementationName13a = this.implementationName13a;
+        if (!this.implementationName13aSet)
         {
             // implementationName has no pre constraints
-            implementationName13a = handleGetImplementationName();
+            aimplementationName13a = handleGetImplementationName();
             // implementationName has no post constraints
-            this.__implementationName13a = implementationName13a;
+            this.implementationName13a = aimplementationName13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationName13aSet = true;
+                this.implementationName13aSet = true;
             }
         }
-        return implementationName13a;
+        return aimplementationName13a;
     }
 
    /**
@@ -533,8 +536,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetImplementationCall();
 
-    private String __implementationCall14a;
-    private boolean __implementationCall14aSet = false;
+    private String implementationCall14a;
+    private boolean implementationCall14aSet = false;
 
     /**
      * The method call for the implementation operation.
@@ -542,19 +545,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getImplementationCall()
     {
-        String implementationCall14a = this.__implementationCall14a;
-        if (!this.__implementationCall14aSet)
+        String aimplementationCall14a = this.implementationCall14a;
+        if (!this.implementationCall14aSet)
         {
             // implementationCall has no pre constraints
-            implementationCall14a = handleGetImplementationCall();
+            aimplementationCall14a = handleGetImplementationCall();
             // implementationCall has no post constraints
-            this.__implementationCall14a = implementationCall14a;
+            this.implementationCall14a = aimplementationCall14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationCall14aSet = true;
+                this.implementationCall14aSet = true;
             }
         }
-        return implementationCall14a;
+        return aimplementationCall14a;
     }
 
    /**
@@ -563,8 +566,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetImplementationSignature();
 
-    private String __implementationSignature15a;
-    private boolean __implementationSignature15aSet = false;
+    private String implementationSignature15a;
+    private boolean implementationSignature15aSet = false;
 
     /**
      * The signature of the implementation operation.
@@ -572,19 +575,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getImplementationSignature()
     {
-        String implementationSignature15a = this.__implementationSignature15a;
-        if (!this.__implementationSignature15aSet)
+        String aimplementationSignature15a = this.implementationSignature15a;
+        if (!this.implementationSignature15aSet)
         {
             // implementationSignature has no pre constraints
-            implementationSignature15a = handleGetImplementationSignature();
+            aimplementationSignature15a = handleGetImplementationSignature();
             // implementationSignature has no post constraints
-            this.__implementationSignature15a = implementationSignature15a;
+            this.implementationSignature15a = aimplementationSignature15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationSignature15aSet = true;
+                this.implementationSignature15aSet = true;
             }
         }
-        return implementationSignature15a;
+        return aimplementationSignature15a;
     }
 
    /**
@@ -593,8 +596,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract Collection handleGetInterceptorReferences();
 
-    private Collection __interceptorReferences16a;
-    private boolean __interceptorReferences16aSet = false;
+    private Collection interceptorReferences16a;
+    private boolean interceptorReferences16aSet = false;
 
     /**
      * Returns the Collection of target elements from the service bean method where  the target
@@ -603,19 +606,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final Collection getInterceptorReferences()
     {
-        Collection interceptorReferences16a = this.__interceptorReferences16a;
-        if (!this.__interceptorReferences16aSet)
+        Collection ainterceptorReferences16a = this.interceptorReferences16a;
+        if (!this.interceptorReferences16aSet)
         {
             // interceptorReferences has no pre constraints
-            interceptorReferences16a = handleGetInterceptorReferences();
+            ainterceptorReferences16a = handleGetInterceptorReferences();
             // interceptorReferences has no post constraints
-            this.__interceptorReferences16a = interceptorReferences16a;
+            this.interceptorReferences16a = ainterceptorReferences16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interceptorReferences16aSet = true;
+                this.interceptorReferences16aSet = true;
             }
         }
-        return interceptorReferences16a;
+        return ainterceptorReferences16a;
     }
 
    /**
@@ -624,8 +627,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsExcludeDefaultInterceptors();
 
-    private boolean __excludeDefaultInterceptors17a;
-    private boolean __excludeDefaultInterceptors17aSet = false;
+    private boolean excludeDefaultInterceptors17a;
+    private boolean excludeDefaultInterceptors17aSet = false;
 
     /**
      * Determines whether to exclude the invocation of the default interceptors for the applied
@@ -634,19 +637,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isExcludeDefaultInterceptors()
     {
-        boolean excludeDefaultInterceptors17a = this.__excludeDefaultInterceptors17a;
-        if (!this.__excludeDefaultInterceptors17aSet)
+        boolean aexcludeDefaultInterceptors17a = this.excludeDefaultInterceptors17a;
+        if (!this.excludeDefaultInterceptors17aSet)
         {
             // excludeDefaultInterceptors has no pre constraints
-            excludeDefaultInterceptors17a = handleIsExcludeDefaultInterceptors();
+            aexcludeDefaultInterceptors17a = handleIsExcludeDefaultInterceptors();
             // excludeDefaultInterceptors has no post constraints
-            this.__excludeDefaultInterceptors17a = excludeDefaultInterceptors17a;
+            this.excludeDefaultInterceptors17a = aexcludeDefaultInterceptors17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__excludeDefaultInterceptors17aSet = true;
+                this.excludeDefaultInterceptors17aSet = true;
             }
         }
-        return excludeDefaultInterceptors17a;
+        return aexcludeDefaultInterceptors17a;
     }
 
    /**
@@ -655,8 +658,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsExcludeClassInterceptors();
 
-    private boolean __excludeClassInterceptors18a;
-    private boolean __excludeClassInterceptors18aSet = false;
+    private boolean excludeClassInterceptors18a;
+    private boolean excludeClassInterceptors18aSet = false;
 
     /**
      * Specifies whether to exclude the invocation of the class interceptors for the applied
@@ -665,19 +668,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isExcludeClassInterceptors()
     {
-        boolean excludeClassInterceptors18a = this.__excludeClassInterceptors18a;
-        if (!this.__excludeClassInterceptors18aSet)
+        boolean aexcludeClassInterceptors18a = this.excludeClassInterceptors18a;
+        if (!this.excludeClassInterceptors18aSet)
         {
             // excludeClassInterceptors has no pre constraints
-            excludeClassInterceptors18a = handleIsExcludeClassInterceptors();
+            aexcludeClassInterceptors18a = handleIsExcludeClassInterceptors();
             // excludeClassInterceptors has no post constraints
-            this.__excludeClassInterceptors18a = excludeClassInterceptors18a;
+            this.excludeClassInterceptors18a = aexcludeClassInterceptors18a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__excludeClassInterceptors18aSet = true;
+                this.excludeClassInterceptors18aSet = true;
             }
         }
-        return excludeClassInterceptors18a;
+        return aexcludeClassInterceptors18a;
     }
 
    /**
@@ -686,8 +689,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsPostConstruct();
 
-    private boolean __postConstruct19a;
-    private boolean __postConstruct19aSet = false;
+    private boolean postConstruct19a;
+    private boolean postConstruct19aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostConstruct>> stereotype.
@@ -696,19 +699,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isPostConstruct()
     {
-        boolean postConstruct19a = this.__postConstruct19a;
-        if (!this.__postConstruct19aSet)
+        boolean apostConstruct19a = this.postConstruct19a;
+        if (!this.postConstruct19aSet)
         {
             // postConstruct has no pre constraints
-            postConstruct19a = handleIsPostConstruct();
+            apostConstruct19a = handleIsPostConstruct();
             // postConstruct has no post constraints
-            this.__postConstruct19a = postConstruct19a;
+            this.postConstruct19a = apostConstruct19a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postConstruct19aSet = true;
+                this.postConstruct19aSet = true;
             }
         }
-        return postConstruct19a;
+        return apostConstruct19a;
     }
 
    /**
@@ -717,8 +720,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsPreDestroy();
 
-    private boolean __preDestroy20a;
-    private boolean __preDestroy20aSet = false;
+    private boolean preDestroy20a;
+    private boolean preDestroy20aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PreDestroy>> stereotype.
@@ -727,19 +730,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isPreDestroy()
     {
-        boolean preDestroy20a = this.__preDestroy20a;
-        if (!this.__preDestroy20aSet)
+        boolean apreDestroy20a = this.preDestroy20a;
+        if (!this.preDestroy20aSet)
         {
             // preDestroy has no pre constraints
-            preDestroy20a = handleIsPreDestroy();
+            apreDestroy20a = handleIsPreDestroy();
             // preDestroy has no post constraints
-            this.__preDestroy20a = preDestroy20a;
+            this.preDestroy20a = apreDestroy20a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__preDestroy20aSet = true;
+                this.preDestroy20aSet = true;
             }
         }
-        return preDestroy20a;
+        return apreDestroy20a;
     }
 
    /**
@@ -748,8 +751,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsPostActivate();
 
-    private boolean __postActivate21a;
-    private boolean __postActivate21aSet = false;
+    private boolean postActivate21a;
+    private boolean postActivate21aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostActivate>> stereotype.
@@ -759,19 +762,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isPostActivate()
     {
-        boolean postActivate21a = this.__postActivate21a;
-        if (!this.__postActivate21aSet)
+        boolean apostActivate21a = this.postActivate21a;
+        if (!this.postActivate21aSet)
         {
             // postActivate has no pre constraints
-            postActivate21a = handleIsPostActivate();
+            apostActivate21a = handleIsPostActivate();
             // postActivate has no post constraints
-            this.__postActivate21a = postActivate21a;
+            this.postActivate21a = apostActivate21a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postActivate21aSet = true;
+                this.postActivate21aSet = true;
             }
         }
-        return postActivate21a;
+        return apostActivate21a;
     }
 
    /**
@@ -780,8 +783,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsPrePassivate();
 
-    private boolean __prePassivate22a;
-    private boolean __prePassivate22aSet = false;
+    private boolean prePassivate22a;
+    private boolean prePassivate22aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PrePassivate>> stereotype.
@@ -791,19 +794,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isPrePassivate()
     {
-        boolean prePassivate22a = this.__prePassivate22a;
-        if (!this.__prePassivate22aSet)
+        boolean aprePassivate22a = this.prePassivate22a;
+        if (!this.prePassivate22aSet)
         {
             // prePassivate has no pre constraints
-            prePassivate22a = handleIsPrePassivate();
+            aprePassivate22a = handleIsPrePassivate();
             // prePassivate has no post constraints
-            this.__prePassivate22a = prePassivate22a;
+            this.prePassivate22a = aprePassivate22a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__prePassivate22aSet = true;
+                this.prePassivate22aSet = true;
             }
         }
-        return prePassivate22a;
+        return aprePassivate22a;
     }
 
    /**
@@ -812,8 +815,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsLifecycleCallback();
 
-    private boolean __lifecycleCallback23a;
-    private boolean __lifecycleCallback23aSet = false;
+    private boolean lifecycleCallback23a;
+    private boolean lifecycleCallback23aSet = false;
 
     /**
      * Returns true if this operation is marked with any of the lifecycle callback stereotypes like
@@ -822,19 +825,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isLifecycleCallback()
     {
-        boolean lifecycleCallback23a = this.__lifecycleCallback23a;
-        if (!this.__lifecycleCallback23aSet)
+        boolean alifecycleCallback23a = this.lifecycleCallback23a;
+        if (!this.lifecycleCallback23aSet)
         {
             // lifecycleCallback has no pre constraints
-            lifecycleCallback23a = handleIsLifecycleCallback();
+            alifecycleCallback23a = handleIsLifecycleCallback();
             // lifecycleCallback has no post constraints
-            this.__lifecycleCallback23a = lifecycleCallback23a;
+            this.lifecycleCallback23a = alifecycleCallback23a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__lifecycleCallback23aSet = true;
+                this.lifecycleCallback23aSet = true;
             }
         }
-        return lifecycleCallback23a;
+        return alifecycleCallback23a;
     }
 
    /**
@@ -843,8 +846,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamValidationValidator();
 
-    private boolean __seamValidationValidator24a;
-    private boolean __seamValidationValidator24aSet = false;
+    private boolean seamValidationValidator24a;
+    private boolean seamValidationValidator24aSet = false;
 
     /**
      * Returns true if the <<Validator>> stereotype is modelled on this operation and the session
@@ -853,19 +856,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamValidationValidator()
     {
-        boolean seamValidationValidator24a = this.__seamValidationValidator24a;
-        if (!this.__seamValidationValidator24aSet)
+        boolean aseamValidationValidator24a = this.seamValidationValidator24a;
+        if (!this.seamValidationValidator24aSet)
         {
             // seamValidationValidator has no pre constraints
-            seamValidationValidator24a = handleIsSeamValidationValidator();
+            aseamValidationValidator24a = handleIsSeamValidationValidator();
             // seamValidationValidator has no post constraints
-            this.__seamValidationValidator24a = seamValidationValidator24a;
+            this.seamValidationValidator24a = aseamValidationValidator24a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamValidationValidator24aSet = true;
+                this.seamValidationValidator24aSet = true;
             }
         }
-        return seamValidationValidator24a;
+        return aseamValidationValidator24a;
     }
 
    /**
@@ -874,8 +877,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamValidationOutcome();
 
-    private String __seamValidationOutcome25a;
-    private boolean __seamValidationOutcome25aSet = false;
+    private String seamValidationOutcome25a;
+    private boolean seamValidationOutcome25aSet = false;
 
     /**
      * Returns the JSF outcome when validation fails, set using andromda.seam.validation.outcome.
@@ -883,19 +886,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamValidationOutcome()
     {
-        String seamValidationOutcome25a = this.__seamValidationOutcome25a;
-        if (!this.__seamValidationOutcome25aSet)
+        String aseamValidationOutcome25a = this.seamValidationOutcome25a;
+        if (!this.seamValidationOutcome25aSet)
         {
             // seamValidationOutcome has no pre constraints
-            seamValidationOutcome25a = handleGetSeamValidationOutcome();
+            aseamValidationOutcome25a = handleGetSeamValidationOutcome();
             // seamValidationOutcome has no post constraints
-            this.__seamValidationOutcome25a = seamValidationOutcome25a;
+            this.seamValidationOutcome25a = aseamValidationOutcome25a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamValidationOutcome25aSet = true;
+                this.seamValidationOutcome25aSet = true;
             }
         }
-        return seamValidationOutcome25a;
+        return aseamValidationOutcome25a;
     }
 
    /**
@@ -904,8 +907,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamValidationRefreshEntities();
 
-    private boolean __seamValidationRefreshEntities26a;
-    private boolean __seamValidationRefreshEntities26aSet = false;
+    private boolean seamValidationRefreshEntities26a;
+    private boolean seamValidationRefreshEntities26aSet = false;
 
     /**
      * Returns true if the andromda.seam.validation.refreshEntities is modelled on the operation as
@@ -915,19 +918,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamValidationRefreshEntities()
     {
-        boolean seamValidationRefreshEntities26a = this.__seamValidationRefreshEntities26a;
-        if (!this.__seamValidationRefreshEntities26aSet)
+        boolean aseamValidationRefreshEntities26a = this.seamValidationRefreshEntities26a;
+        if (!this.seamValidationRefreshEntities26aSet)
         {
             // seamValidationRefreshEntities has no pre constraints
-            seamValidationRefreshEntities26a = handleIsSeamValidationRefreshEntities();
+            aseamValidationRefreshEntities26a = handleIsSeamValidationRefreshEntities();
             // seamValidationRefreshEntities has no post constraints
-            this.__seamValidationRefreshEntities26a = seamValidationRefreshEntities26a;
+            this.seamValidationRefreshEntities26a = aseamValidationRefreshEntities26a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamValidationRefreshEntities26aSet = true;
+                this.seamValidationRefreshEntities26aSet = true;
             }
         }
-        return seamValidationRefreshEntities26a;
+        return aseamValidationRefreshEntities26a;
     }
 
    /**
@@ -936,8 +939,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeStrictlyLocal();
 
-    private boolean __viewTypeStrictlyLocal27a;
-    private boolean __viewTypeStrictlyLocal27aSet = false;
+    private boolean viewTypeStrictlyLocal27a;
+    private boolean viewTypeStrictlyLocal27aSet = false;
 
     /**
      * Returns true if the operation view type was explicity set to local view using tagged value.
@@ -945,19 +948,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeStrictlyLocal()
     {
-        boolean viewTypeStrictlyLocal27a = this.__viewTypeStrictlyLocal27a;
-        if (!this.__viewTypeStrictlyLocal27aSet)
+        boolean aviewTypeStrictlyLocal27a = this.viewTypeStrictlyLocal27a;
+        if (!this.viewTypeStrictlyLocal27aSet)
         {
             // viewTypeStrictlyLocal has no pre constraints
-            viewTypeStrictlyLocal27a = handleIsViewTypeStrictlyLocal();
+            aviewTypeStrictlyLocal27a = handleIsViewTypeStrictlyLocal();
             // viewTypeStrictlyLocal has no post constraints
-            this.__viewTypeStrictlyLocal27a = viewTypeStrictlyLocal27a;
+            this.viewTypeStrictlyLocal27a = aviewTypeStrictlyLocal27a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeStrictlyLocal27aSet = true;
+                this.viewTypeStrictlyLocal27aSet = true;
             }
         }
-        return viewTypeStrictlyLocal27a;
+        return aviewTypeStrictlyLocal27a;
     }
 
    /**
@@ -966,8 +969,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeStrictlyRemote();
 
-    private boolean __viewTypeStrictlyRemote28a;
-    private boolean __viewTypeStrictlyRemote28aSet = false;
+    private boolean viewTypeStrictlyRemote28a;
+    private boolean viewTypeStrictlyRemote28aSet = false;
 
     /**
      * Returns true if the operation view type was explicity set to remote view using tagged value.
@@ -975,19 +978,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeStrictlyRemote()
     {
-        boolean viewTypeStrictlyRemote28a = this.__viewTypeStrictlyRemote28a;
-        if (!this.__viewTypeStrictlyRemote28aSet)
+        boolean aviewTypeStrictlyRemote28a = this.viewTypeStrictlyRemote28a;
+        if (!this.viewTypeStrictlyRemote28aSet)
         {
             // viewTypeStrictlyRemote has no pre constraints
-            viewTypeStrictlyRemote28a = handleIsViewTypeStrictlyRemote();
+            aviewTypeStrictlyRemote28a = handleIsViewTypeStrictlyRemote();
             // viewTypeStrictlyRemote has no post constraints
-            this.__viewTypeStrictlyRemote28a = viewTypeStrictlyRemote28a;
+            this.viewTypeStrictlyRemote28a = aviewTypeStrictlyRemote28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeStrictlyRemote28aSet = true;
+                this.viewTypeStrictlyRemote28aSet = true;
             }
         }
-        return viewTypeStrictlyRemote28a;
+        return aviewTypeStrictlyRemote28a;
     }
 
    /**
@@ -996,8 +999,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeAbsoluteLocal();
 
-    private boolean __viewTypeAbsoluteLocal29a;
-    private boolean __viewTypeAbsoluteLocal29aSet = false;
+    private boolean viewTypeAbsoluteLocal29a;
+    private boolean viewTypeAbsoluteLocal29aSet = false;
 
     /**
      * Return true if the view type of the operation is local after examing all aspects of the owner
@@ -1006,19 +1009,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeAbsoluteLocal()
     {
-        boolean viewTypeAbsoluteLocal29a = this.__viewTypeAbsoluteLocal29a;
-        if (!this.__viewTypeAbsoluteLocal29aSet)
+        boolean aviewTypeAbsoluteLocal29a = this.viewTypeAbsoluteLocal29a;
+        if (!this.viewTypeAbsoluteLocal29aSet)
         {
             // viewTypeAbsoluteLocal has no pre constraints
-            viewTypeAbsoluteLocal29a = handleIsViewTypeAbsoluteLocal();
+            aviewTypeAbsoluteLocal29a = handleIsViewTypeAbsoluteLocal();
             // viewTypeAbsoluteLocal has no post constraints
-            this.__viewTypeAbsoluteLocal29a = viewTypeAbsoluteLocal29a;
+            this.viewTypeAbsoluteLocal29a = aviewTypeAbsoluteLocal29a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeAbsoluteLocal29aSet = true;
+                this.viewTypeAbsoluteLocal29aSet = true;
             }
         }
-        return viewTypeAbsoluteLocal29a;
+        return aviewTypeAbsoluteLocal29a;
     }
 
    /**
@@ -1027,8 +1030,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeAbsoluteRemote();
 
-    private boolean __viewTypeAbsoluteRemote30a;
-    private boolean __viewTypeAbsoluteRemote30aSet = false;
+    private boolean viewTypeAbsoluteRemote30a;
+    private boolean viewTypeAbsoluteRemote30aSet = false;
 
     /**
      * Return true if the view type of the operation is local after examing all aspects of the owner
@@ -1037,19 +1040,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeAbsoluteRemote()
     {
-        boolean viewTypeAbsoluteRemote30a = this.__viewTypeAbsoluteRemote30a;
-        if (!this.__viewTypeAbsoluteRemote30aSet)
+        boolean aviewTypeAbsoluteRemote30a = this.viewTypeAbsoluteRemote30a;
+        if (!this.viewTypeAbsoluteRemote30aSet)
         {
             // viewTypeAbsoluteRemote has no pre constraints
-            viewTypeAbsoluteRemote30a = handleIsViewTypeAbsoluteRemote();
+            aviewTypeAbsoluteRemote30a = handleIsViewTypeAbsoluteRemote();
             // viewTypeAbsoluteRemote has no post constraints
-            this.__viewTypeAbsoluteRemote30a = viewTypeAbsoluteRemote30a;
+            this.viewTypeAbsoluteRemote30a = aviewTypeAbsoluteRemote30a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeAbsoluteRemote30aSet = true;
+                this.viewTypeAbsoluteRemote30aSet = true;
             }
         }
-        return viewTypeAbsoluteRemote30a;
+        return aviewTypeAbsoluteRemote30a;
     }
 
    /**
@@ -1058,8 +1061,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeAbsoluteBoth();
 
-    private boolean __viewTypeAbsoluteBoth31a;
-    private boolean __viewTypeAbsoluteBoth31aSet = false;
+    private boolean viewTypeAbsoluteBoth31a;
+    private boolean viewTypeAbsoluteBoth31aSet = false;
 
     /**
      * Return true if the view type of the operation is both after examing all aspects of the owner
@@ -1068,19 +1071,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeAbsoluteBoth()
     {
-        boolean viewTypeAbsoluteBoth31a = this.__viewTypeAbsoluteBoth31a;
-        if (!this.__viewTypeAbsoluteBoth31aSet)
+        boolean aviewTypeAbsoluteBoth31a = this.viewTypeAbsoluteBoth31a;
+        if (!this.viewTypeAbsoluteBoth31aSet)
         {
             // viewTypeAbsoluteBoth has no pre constraints
-            viewTypeAbsoluteBoth31a = handleIsViewTypeAbsoluteBoth();
+            aviewTypeAbsoluteBoth31a = handleIsViewTypeAbsoluteBoth();
             // viewTypeAbsoluteBoth has no post constraints
-            this.__viewTypeAbsoluteBoth31a = viewTypeAbsoluteBoth31a;
+            this.viewTypeAbsoluteBoth31a = aviewTypeAbsoluteBoth31a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeAbsoluteBoth31aSet = true;
+                this.viewTypeAbsoluteBoth31aSet = true;
             }
         }
-        return viewTypeAbsoluteBoth31a;
+        return aviewTypeAbsoluteBoth31a;
     }
 
    /**
@@ -1089,8 +1092,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsViewTypeStrictlyBoth();
 
-    private boolean __viewTypeStrictlyBoth32a;
-    private boolean __viewTypeStrictlyBoth32aSet = false;
+    private boolean viewTypeStrictlyBoth32a;
+    private boolean viewTypeStrictlyBoth32aSet = false;
 
     /**
      * Returns true if the operation view type was explicity set to both using tagged value.
@@ -1098,19 +1101,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isViewTypeStrictlyBoth()
     {
-        boolean viewTypeStrictlyBoth32a = this.__viewTypeStrictlyBoth32a;
-        if (!this.__viewTypeStrictlyBoth32aSet)
+        boolean aviewTypeStrictlyBoth32a = this.viewTypeStrictlyBoth32a;
+        if (!this.viewTypeStrictlyBoth32aSet)
         {
             // viewTypeStrictlyBoth has no pre constraints
-            viewTypeStrictlyBoth32a = handleIsViewTypeStrictlyBoth();
+            aviewTypeStrictlyBoth32a = handleIsViewTypeStrictlyBoth();
             // viewTypeStrictlyBoth has no post constraints
-            this.__viewTypeStrictlyBoth32a = viewTypeStrictlyBoth32a;
+            this.viewTypeStrictlyBoth32a = aviewTypeStrictlyBoth32a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewTypeStrictlyBoth32aSet = true;
+                this.viewTypeStrictlyBoth32aSet = true;
             }
         }
-        return viewTypeStrictlyBoth32a;
+        return aviewTypeStrictlyBoth32a;
     }
 
    /**
@@ -1119,8 +1122,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronous();
 
-    private boolean __seamAsynchronous33a;
-    private boolean __seamAsynchronous33aSet = false;
+    private boolean seamAsynchronous33a;
+    private boolean seamAsynchronous33aSet = false;
 
     /**
      * Stereotype Asynchronous. Specifies that the method call is processed asynchronously.
@@ -1128,19 +1131,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamAsynchronous()
     {
-        boolean seamAsynchronous33a = this.__seamAsynchronous33a;
-        if (!this.__seamAsynchronous33aSet)
+        boolean aseamAsynchronous33a = this.seamAsynchronous33a;
+        if (!this.seamAsynchronous33aSet)
         {
             // seamAsynchronous has no pre constraints
-            seamAsynchronous33a = handleIsSeamAsynchronous();
+            aseamAsynchronous33a = handleIsSeamAsynchronous();
             // seamAsynchronous has no post constraints
-            this.__seamAsynchronous33a = seamAsynchronous33a;
+            this.seamAsynchronous33a = aseamAsynchronous33a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamAsynchronous33aSet = true;
+                this.seamAsynchronous33aSet = true;
             }
         }
-        return seamAsynchronous33a;
+        return aseamAsynchronous33a;
     }
 
    /**
@@ -1149,8 +1152,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationBegin();
 
-    private boolean __seamConversationBegin34a;
-    private boolean __seamConversationBegin34aSet = false;
+    private boolean seamConversationBegin34a;
+    private boolean seamConversationBegin34aSet = false;
 
     /**
      * Returns true if the <<Begin>> stereotype is set. Specifies that a long-running conversation
@@ -1159,19 +1162,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationBegin()
     {
-        boolean seamConversationBegin34a = this.__seamConversationBegin34a;
-        if (!this.__seamConversationBegin34aSet)
+        boolean aseamConversationBegin34a = this.seamConversationBegin34a;
+        if (!this.seamConversationBegin34aSet)
         {
             // seamConversationBegin has no pre constraints
-            seamConversationBegin34a = handleIsSeamConversationBegin();
+            aseamConversationBegin34a = handleIsSeamConversationBegin();
             // seamConversationBegin has no post constraints
-            this.__seamConversationBegin34a = seamConversationBegin34a;
+            this.seamConversationBegin34a = aseamConversationBegin34a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationBegin34aSet = true;
+                this.seamConversationBegin34aSet = true;
             }
         }
-        return seamConversationBegin34a;
+        return aseamConversationBegin34a;
     }
 
    /**
@@ -1180,8 +1183,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationBeginTask();
 
-    private boolean __seamConversationBeginTask35a;
-    private boolean __seamConversationBeginTask35aSet = false;
+    private boolean seamConversationBeginTask35a;
+    private boolean seamConversationBeginTask35aSet = false;
 
     /**
      * Returns true if stereotype <<BeginTask>> is set. Resumes work on an incomplete jBPM task.
@@ -1193,19 +1196,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationBeginTask()
     {
-        boolean seamConversationBeginTask35a = this.__seamConversationBeginTask35a;
-        if (!this.__seamConversationBeginTask35aSet)
+        boolean aseamConversationBeginTask35a = this.seamConversationBeginTask35a;
+        if (!this.seamConversationBeginTask35aSet)
         {
             // seamConversationBeginTask has no pre constraints
-            seamConversationBeginTask35a = handleIsSeamConversationBeginTask();
+            aseamConversationBeginTask35a = handleIsSeamConversationBeginTask();
             // seamConversationBeginTask has no post constraints
-            this.__seamConversationBeginTask35a = seamConversationBeginTask35a;
+            this.seamConversationBeginTask35a = aseamConversationBeginTask35a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationBeginTask35aSet = true;
+                this.seamConversationBeginTask35aSet = true;
             }
         }
-        return seamConversationBeginTask35a;
+        return aseamConversationBeginTask35a;
     }
 
    /**
@@ -1214,8 +1217,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationCreateProcess();
 
-    private boolean __seamConversationCreateProcess36a;
-    private boolean __seamConversationCreateProcess36aSet = false;
+    private boolean seamConversationCreateProcess36a;
+    private boolean seamConversationCreateProcess36aSet = false;
 
     /**
      * Returns true if stereotype <<CreateProcess>> is set. Creates a new jBPM process instance when
@@ -1225,19 +1228,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationCreateProcess()
     {
-        boolean seamConversationCreateProcess36a = this.__seamConversationCreateProcess36a;
-        if (!this.__seamConversationCreateProcess36aSet)
+        boolean aseamConversationCreateProcess36a = this.seamConversationCreateProcess36a;
+        if (!this.seamConversationCreateProcess36aSet)
         {
             // seamConversationCreateProcess has no pre constraints
-            seamConversationCreateProcess36a = handleIsSeamConversationCreateProcess();
+            aseamConversationCreateProcess36a = handleIsSeamConversationCreateProcess();
             // seamConversationCreateProcess has no post constraints
-            this.__seamConversationCreateProcess36a = seamConversationCreateProcess36a;
+            this.seamConversationCreateProcess36a = aseamConversationCreateProcess36a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationCreateProcess36aSet = true;
+                this.seamConversationCreateProcess36aSet = true;
             }
         }
-        return seamConversationCreateProcess36a;
+        return aseamConversationCreateProcess36a;
     }
 
    /**
@@ -1246,8 +1249,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationEnd();
 
-    private boolean __seamConversationEnd37a;
-    private boolean __seamConversationEnd37aSet = false;
+    private boolean seamConversationEnd37a;
+    private boolean seamConversationEnd37aSet = false;
 
     /**
      * Returns true if stereotype <<End>> is set. Specifies that a long-running conversation ends
@@ -1256,19 +1259,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationEnd()
     {
-        boolean seamConversationEnd37a = this.__seamConversationEnd37a;
-        if (!this.__seamConversationEnd37aSet)
+        boolean aseamConversationEnd37a = this.seamConversationEnd37a;
+        if (!this.seamConversationEnd37aSet)
         {
             // seamConversationEnd has no pre constraints
-            seamConversationEnd37a = handleIsSeamConversationEnd();
+            aseamConversationEnd37a = handleIsSeamConversationEnd();
             // seamConversationEnd has no post constraints
-            this.__seamConversationEnd37a = seamConversationEnd37a;
+            this.seamConversationEnd37a = aseamConversationEnd37a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationEnd37aSet = true;
+                this.seamConversationEnd37aSet = true;
             }
         }
-        return seamConversationEnd37a;
+        return aseamConversationEnd37a;
     }
 
    /**
@@ -1277,8 +1280,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationEndTask();
 
-    private boolean __seamConversationEndTask38a;
-    private boolean __seamConversationEndTask38aSet = false;
+    private boolean seamConversationEndTask38a;
+    private boolean seamConversationEndTask38aSet = false;
 
     /**
      * Returns true if stereotype <<EndTask>> is set and "Ends" a jBPM task. Specifies that a
@@ -1290,19 +1293,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationEndTask()
     {
-        boolean seamConversationEndTask38a = this.__seamConversationEndTask38a;
-        if (!this.__seamConversationEndTask38aSet)
+        boolean aseamConversationEndTask38a = this.seamConversationEndTask38a;
+        if (!this.seamConversationEndTask38aSet)
         {
             // seamConversationEndTask has no pre constraints
-            seamConversationEndTask38a = handleIsSeamConversationEndTask();
+            aseamConversationEndTask38a = handleIsSeamConversationEndTask();
             // seamConversationEndTask has no post constraints
-            this.__seamConversationEndTask38a = seamConversationEndTask38a;
+            this.seamConversationEndTask38a = aseamConversationEndTask38a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationEndTask38aSet = true;
+                this.seamConversationEndTask38aSet = true;
             }
         }
-        return seamConversationEndTask38a;
+        return aseamConversationEndTask38a;
     }
 
    /**
@@ -1311,8 +1314,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamBijectionFactory();
 
-    private boolean __seamBijectionFactory39a;
-    private boolean __seamBijectionFactory39aSet = false;
+    private boolean seamBijectionFactory39a;
+    private boolean seamBijectionFactory39aSet = false;
 
     /**
      * Returns true when stereotype <<Factory>> is set. When it is used on an operation which return
@@ -1329,19 +1332,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamBijectionFactory()
     {
-        boolean seamBijectionFactory39a = this.__seamBijectionFactory39a;
-        if (!this.__seamBijectionFactory39aSet)
+        boolean aseamBijectionFactory39a = this.seamBijectionFactory39a;
+        if (!this.seamBijectionFactory39aSet)
         {
             // seamBijectionFactory has no pre constraints
-            seamBijectionFactory39a = handleIsSeamBijectionFactory();
+            aseamBijectionFactory39a = handleIsSeamBijectionFactory();
             // seamBijectionFactory has no post constraints
-            this.__seamBijectionFactory39a = seamBijectionFactory39a;
+            this.seamBijectionFactory39a = aseamBijectionFactory39a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionFactory39aSet = true;
+                this.seamBijectionFactory39aSet = true;
             }
         }
-        return seamBijectionFactory39a;
+        return aseamBijectionFactory39a;
     }
 
    /**
@@ -1350,8 +1353,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamObserverEventName();
 
-    private String __seamObserverEventName40a;
-    private boolean __seamObserverEventName40aSet = false;
+    private String seamObserverEventName40a;
+    private boolean seamObserverEventName40aSet = false;
 
     /**
      * Specifies that the method should be called when a component-driven event of the specified
@@ -1360,19 +1363,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamObserverEventName()
     {
-        String seamObserverEventName40a = this.__seamObserverEventName40a;
-        if (!this.__seamObserverEventName40aSet)
+        String aseamObserverEventName40a = this.seamObserverEventName40a;
+        if (!this.seamObserverEventName40aSet)
         {
             // seamObserverEventName has no pre constraints
-            seamObserverEventName40a = handleGetSeamObserverEventName();
+            aseamObserverEventName40a = handleGetSeamObserverEventName();
             // seamObserverEventName has no post constraints
-            this.__seamObserverEventName40a = seamObserverEventName40a;
+            this.seamObserverEventName40a = aseamObserverEventName40a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamObserverEventName40aSet = true;
+                this.seamObserverEventName40aSet = true;
             }
         }
-        return seamObserverEventName40a;
+        return aseamObserverEventName40a;
     }
 
    /**
@@ -1381,8 +1384,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationResumeProcess();
 
-    private boolean __seamConversationResumeProcess41a;
-    private boolean __seamConversationResumeProcess41aSet = false;
+    private boolean seamConversationResumeProcess41a;
+    private boolean seamConversationResumeProcess41aSet = false;
 
     /**
      * Returns true if stereotype <<ResumeProcess>> is set. Re-enters the scope of an existing jBPM
@@ -1392,19 +1395,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationResumeProcess()
     {
-        boolean seamConversationResumeProcess41a = this.__seamConversationResumeProcess41a;
-        if (!this.__seamConversationResumeProcess41aSet)
+        boolean aseamConversationResumeProcess41a = this.seamConversationResumeProcess41a;
+        if (!this.seamConversationResumeProcess41aSet)
         {
             // seamConversationResumeProcess has no pre constraints
-            seamConversationResumeProcess41a = handleIsSeamConversationResumeProcess();
+            aseamConversationResumeProcess41a = handleIsSeamConversationResumeProcess();
             // seamConversationResumeProcess has no post constraints
-            this.__seamConversationResumeProcess41a = seamConversationResumeProcess41a;
+            this.seamConversationResumeProcess41a = aseamConversationResumeProcess41a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationResumeProcess41aSet = true;
+                this.seamConversationResumeProcess41aSet = true;
             }
         }
-        return seamConversationResumeProcess41a;
+        return aseamConversationResumeProcess41a;
     }
 
    /**
@@ -1413,8 +1416,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamTransactionRollback();
 
-    private boolean __seamTransactionRollback42a;
-    private boolean __seamTransactionRollback42aSet = false;
+    private boolean seamTransactionRollback42a;
+    private boolean seamTransactionRollback42aSet = false;
 
     /**
      * Returns true if stereotype <<Rollback>> is set. If the outcome of the method matches any of
@@ -1424,19 +1427,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamTransactionRollback()
     {
-        boolean seamTransactionRollback42a = this.__seamTransactionRollback42a;
-        if (!this.__seamTransactionRollback42aSet)
+        boolean aseamTransactionRollback42a = this.seamTransactionRollback42a;
+        if (!this.seamTransactionRollback42aSet)
         {
             // seamTransactionRollback has no pre constraints
-            seamTransactionRollback42a = handleIsSeamTransactionRollback();
+            aseamTransactionRollback42a = handleIsSeamTransactionRollback();
             // seamTransactionRollback has no post constraints
-            this.__seamTransactionRollback42a = seamTransactionRollback42a;
+            this.seamTransactionRollback42a = aseamTransactionRollback42a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamTransactionRollback42aSet = true;
+                this.seamTransactionRollback42aSet = true;
             }
         }
-        return seamTransactionRollback42a;
+        return aseamTransactionRollback42a;
     }
 
    /**
@@ -1445,8 +1448,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamConversationStartTask();
 
-    private boolean __seamConversationStartTask43a;
-    private boolean __seamConversationStartTask43aSet = false;
+    private boolean seamConversationStartTask43a;
+    private boolean seamConversationStartTask43aSet = false;
 
     /**
      * Returns true if stereotype <<StartTask>> is set. It "Starts" a jBPM task. Specifies that a
@@ -1461,19 +1464,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamConversationStartTask()
     {
-        boolean seamConversationStartTask43a = this.__seamConversationStartTask43a;
-        if (!this.__seamConversationStartTask43aSet)
+        boolean aseamConversationStartTask43a = this.seamConversationStartTask43a;
+        if (!this.seamConversationStartTask43aSet)
         {
             // seamConversationStartTask has no pre constraints
-            seamConversationStartTask43a = handleIsSeamConversationStartTask();
+            aseamConversationStartTask43a = handleIsSeamConversationStartTask();
             // seamConversationStartTask has no post constraints
-            this.__seamConversationStartTask43a = seamConversationStartTask43a;
+            this.seamConversationStartTask43a = aseamConversationStartTask43a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationStartTask43aSet = true;
+                this.seamConversationStartTask43aSet = true;
             }
         }
-        return seamConversationStartTask43a;
+        return aseamConversationStartTask43a;
     }
 
    /**
@@ -1482,8 +1485,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamTransactional();
 
-    private boolean __seamTransactional44a;
-    private boolean __seamTransactional44aSet = false;
+    private boolean seamTransactional44a;
+    private boolean seamTransactional44aSet = false;
 
     /**
      * Specifies that a JavaBean component should have a similar transactional behavior to the
@@ -1494,19 +1497,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamTransactional()
     {
-        boolean seamTransactional44a = this.__seamTransactional44a;
-        if (!this.__seamTransactional44aSet)
+        boolean aseamTransactional44a = this.seamTransactional44a;
+        if (!this.seamTransactional44aSet)
         {
             // seamTransactional has no pre constraints
-            seamTransactional44a = handleIsSeamTransactional();
+            aseamTransactional44a = handleIsSeamTransactional();
             // seamTransactional has no post constraints
-            this.__seamTransactional44a = seamTransactional44a;
+            this.seamTransactional44a = aseamTransactional44a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamTransactional44aSet = true;
+                this.seamTransactional44aSet = true;
             }
         }
-        return seamTransactional44a;
+        return aseamTransactional44a;
     }
 
    /**
@@ -1515,8 +1518,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamWebRemote();
 
-    private boolean __seamWebRemote45a;
-    private boolean __seamWebRemote45aSet = false;
+    private boolean seamWebRemote45a;
+    private boolean seamWebRemote45aSet = false;
 
     /**
      * True if <<WebRemote>> stereotype is set. Indicates that the annotated method may be called
@@ -1525,19 +1528,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamWebRemote()
     {
-        boolean seamWebRemote45a = this.__seamWebRemote45a;
-        if (!this.__seamWebRemote45aSet)
+        boolean aseamWebRemote45a = this.seamWebRemote45a;
+        if (!this.seamWebRemote45aSet)
         {
             // seamWebRemote has no pre constraints
-            seamWebRemote45a = handleIsSeamWebRemote();
+            aseamWebRemote45a = handleIsSeamWebRemote();
             // seamWebRemote has no post constraints
-            this.__seamWebRemote45a = seamWebRemote45a;
+            this.seamWebRemote45a = aseamWebRemote45a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamWebRemote45aSet = true;
+                this.seamWebRemote45aSet = true;
             }
         }
-        return seamWebRemote45a;
+        return aseamWebRemote45a;
     }
 
    /**
@@ -1546,8 +1549,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamLifecycleDestroy();
 
-    private boolean __seamLifecycleDestroy46a;
-    private boolean __seamLifecycleDestroy46aSet = false;
+    private boolean seamLifecycleDestroy46a;
+    private boolean seamLifecycleDestroy46aSet = false;
 
     /**
      * Returns true if the operation has the <<Destroy>> stereotype modelled.
@@ -1555,19 +1558,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamLifecycleDestroy()
     {
-        boolean seamLifecycleDestroy46a = this.__seamLifecycleDestroy46a;
-        if (!this.__seamLifecycleDestroy46aSet)
+        boolean aseamLifecycleDestroy46a = this.seamLifecycleDestroy46a;
+        if (!this.seamLifecycleDestroy46aSet)
         {
             // seamLifecycleDestroy has no pre constraints
-            seamLifecycleDestroy46a = handleIsSeamLifecycleDestroy();
+            aseamLifecycleDestroy46a = handleIsSeamLifecycleDestroy();
             // seamLifecycleDestroy has no post constraints
-            this.__seamLifecycleDestroy46a = seamLifecycleDestroy46a;
+            this.seamLifecycleDestroy46a = aseamLifecycleDestroy46a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamLifecycleDestroy46aSet = true;
+                this.seamLifecycleDestroy46aSet = true;
             }
         }
-        return seamLifecycleDestroy46a;
+        return aseamLifecycleDestroy46a;
     }
 
    /**
@@ -1576,8 +1579,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamLifecycleCreate();
 
-    private boolean __seamLifecycleCreate47a;
-    private boolean __seamLifecycleCreate47aSet = false;
+    private boolean seamLifecycleCreate47a;
+    private boolean seamLifecycleCreate47aSet = false;
 
     /**
      * Returns true if the operation has the <<Create>> stereotype modelled.
@@ -1585,19 +1588,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamLifecycleCreate()
     {
-        boolean seamLifecycleCreate47a = this.__seamLifecycleCreate47a;
-        if (!this.__seamLifecycleCreate47aSet)
+        boolean aseamLifecycleCreate47a = this.seamLifecycleCreate47a;
+        if (!this.seamLifecycleCreate47aSet)
         {
             // seamLifecycleCreate has no pre constraints
-            seamLifecycleCreate47a = handleIsSeamLifecycleCreate();
+            aseamLifecycleCreate47a = handleIsSeamLifecycleCreate();
             // seamLifecycleCreate has no post constraints
-            this.__seamLifecycleCreate47a = seamLifecycleCreate47a;
+            this.seamLifecycleCreate47a = aseamLifecycleCreate47a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamLifecycleCreate47aSet = true;
+                this.seamLifecycleCreate47aSet = true;
             }
         }
-        return seamLifecycleCreate47a;
+        return aseamLifecycleCreate47a;
     }
 
    /**
@@ -1606,8 +1609,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamWebRemoteParameters();
 
-    private String __seamWebRemoteParameters48a;
-    private boolean __seamWebRemoteParameters48aSet = false;
+    private String seamWebRemoteParameters48a;
+    private boolean seamWebRemoteParameters48aSet = false;
 
     /**
      * Returns a string with parameters for the org.jboss.seam.annotations.WebRemote annotation.
@@ -1618,19 +1621,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamWebRemoteParameters()
     {
-        String seamWebRemoteParameters48a = this.__seamWebRemoteParameters48a;
-        if (!this.__seamWebRemoteParameters48aSet)
+        String aseamWebRemoteParameters48a = this.seamWebRemoteParameters48a;
+        if (!this.seamWebRemoteParameters48aSet)
         {
             // seamWebRemoteParameters has no pre constraints
-            seamWebRemoteParameters48a = handleGetSeamWebRemoteParameters();
+            aseamWebRemoteParameters48a = handleGetSeamWebRemoteParameters();
             // seamWebRemoteParameters has no post constraints
-            this.__seamWebRemoteParameters48a = seamWebRemoteParameters48a;
+            this.seamWebRemoteParameters48a = aseamWebRemoteParameters48a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamWebRemoteParameters48aSet = true;
+                this.seamWebRemoteParameters48aSet = true;
             }
         }
-        return seamWebRemoteParameters48a;
+        return aseamWebRemoteParameters48a;
     }
 
    /**
@@ -1639,8 +1642,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationBeginParameters();
 
-    private String __seamConversationBeginParameters49a;
-    private boolean __seamConversationBeginParameters49aSet = false;
+    private String seamConversationBeginParameters49a;
+    private boolean seamConversationBeginParameters49aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.Begin annotation. Supported
@@ -1660,19 +1663,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationBeginParameters()
     {
-        String seamConversationBeginParameters49a = this.__seamConversationBeginParameters49a;
-        if (!this.__seamConversationBeginParameters49aSet)
+        String aseamConversationBeginParameters49a = this.seamConversationBeginParameters49a;
+        if (!this.seamConversationBeginParameters49aSet)
         {
             // seamConversationBeginParameters has no pre constraints
-            seamConversationBeginParameters49a = handleGetSeamConversationBeginParameters();
+            aseamConversationBeginParameters49a = handleGetSeamConversationBeginParameters();
             // seamConversationBeginParameters has no post constraints
-            this.__seamConversationBeginParameters49a = seamConversationBeginParameters49a;
+            this.seamConversationBeginParameters49a = aseamConversationBeginParameters49a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationBeginParameters49aSet = true;
+                this.seamConversationBeginParameters49aSet = true;
             }
         }
-        return seamConversationBeginParameters49a;
+        return aseamConversationBeginParameters49a;
     }
 
    /**
@@ -1681,8 +1684,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationBeginTaskParameters();
 
-    private String __seamConversationBeginTaskParameters50a;
-    private boolean __seamConversationBeginTaskParameters50aSet = false;
+    private String seamConversationBeginTaskParameters50a;
+    private boolean seamConversationBeginTaskParameters50aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.BeginTask annotation. Supported
@@ -1695,19 +1698,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationBeginTaskParameters()
     {
-        String seamConversationBeginTaskParameters50a = this.__seamConversationBeginTaskParameters50a;
-        if (!this.__seamConversationBeginTaskParameters50aSet)
+        String aseamConversationBeginTaskParameters50a = this.seamConversationBeginTaskParameters50a;
+        if (!this.seamConversationBeginTaskParameters50aSet)
         {
             // seamConversationBeginTaskParameters has no pre constraints
-            seamConversationBeginTaskParameters50a = handleGetSeamConversationBeginTaskParameters();
+            aseamConversationBeginTaskParameters50a = handleGetSeamConversationBeginTaskParameters();
             // seamConversationBeginTaskParameters has no post constraints
-            this.__seamConversationBeginTaskParameters50a = seamConversationBeginTaskParameters50a;
+            this.seamConversationBeginTaskParameters50a = aseamConversationBeginTaskParameters50a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationBeginTaskParameters50aSet = true;
+                this.seamConversationBeginTaskParameters50aSet = true;
             }
         }
-        return seamConversationBeginTaskParameters50a;
+        return aseamConversationBeginTaskParameters50a;
     }
 
    /**
@@ -1716,8 +1719,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationCreateProcessParameters();
 
-    private String __seamConversationCreateProcessParameters51a;
-    private boolean __seamConversationCreateProcessParameters51aSet = false;
+    private String seamConversationCreateProcessParameters51a;
+    private boolean seamConversationCreateProcessParameters51aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.CreateProcess annotation.
@@ -1728,19 +1731,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationCreateProcessParameters()
     {
-        String seamConversationCreateProcessParameters51a = this.__seamConversationCreateProcessParameters51a;
-        if (!this.__seamConversationCreateProcessParameters51aSet)
+        String aseamConversationCreateProcessParameters51a = this.seamConversationCreateProcessParameters51a;
+        if (!this.seamConversationCreateProcessParameters51aSet)
         {
             // seamConversationCreateProcessParameters has no pre constraints
-            seamConversationCreateProcessParameters51a = handleGetSeamConversationCreateProcessParameters();
+            aseamConversationCreateProcessParameters51a = handleGetSeamConversationCreateProcessParameters();
             // seamConversationCreateProcessParameters has no post constraints
-            this.__seamConversationCreateProcessParameters51a = seamConversationCreateProcessParameters51a;
+            this.seamConversationCreateProcessParameters51a = aseamConversationCreateProcessParameters51a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationCreateProcessParameters51aSet = true;
+                this.seamConversationCreateProcessParameters51aSet = true;
             }
         }
-        return seamConversationCreateProcessParameters51a;
+        return aseamConversationCreateProcessParameters51a;
     }
 
    /**
@@ -1749,8 +1752,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationEndParameters();
 
-    private String __seamConversationEndParameters52a;
-    private boolean __seamConversationEndParameters52aSet = false;
+    private String seamConversationEndParameters52a;
+    private boolean seamConversationEndParameters52aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.End annotation. Supported
@@ -1765,19 +1768,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationEndParameters()
     {
-        String seamConversationEndParameters52a = this.__seamConversationEndParameters52a;
-        if (!this.__seamConversationEndParameters52aSet)
+        String aseamConversationEndParameters52a = this.seamConversationEndParameters52a;
+        if (!this.seamConversationEndParameters52aSet)
         {
             // seamConversationEndParameters has no pre constraints
-            seamConversationEndParameters52a = handleGetSeamConversationEndParameters();
+            aseamConversationEndParameters52a = handleGetSeamConversationEndParameters();
             // seamConversationEndParameters has no post constraints
-            this.__seamConversationEndParameters52a = seamConversationEndParameters52a;
+            this.seamConversationEndParameters52a = aseamConversationEndParameters52a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationEndParameters52aSet = true;
+                this.seamConversationEndParameters52aSet = true;
             }
         }
-        return seamConversationEndParameters52a;
+        return aseamConversationEndParameters52a;
     }
 
    /**
@@ -1786,8 +1789,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationEndTaskParameters();
 
-    private String __seamConversationEndTaskParameters53a;
-    private boolean __seamConversationEndTaskParameters53aSet = false;
+    private String seamConversationEndTaskParameters53a;
+    private boolean seamConversationEndTaskParameters53aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.EndTask annotation. Supported
@@ -1803,19 +1806,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationEndTaskParameters()
     {
-        String seamConversationEndTaskParameters53a = this.__seamConversationEndTaskParameters53a;
-        if (!this.__seamConversationEndTaskParameters53aSet)
+        String aseamConversationEndTaskParameters53a = this.seamConversationEndTaskParameters53a;
+        if (!this.seamConversationEndTaskParameters53aSet)
         {
             // seamConversationEndTaskParameters has no pre constraints
-            seamConversationEndTaskParameters53a = handleGetSeamConversationEndTaskParameters();
+            aseamConversationEndTaskParameters53a = handleGetSeamConversationEndTaskParameters();
             // seamConversationEndTaskParameters has no post constraints
-            this.__seamConversationEndTaskParameters53a = seamConversationEndTaskParameters53a;
+            this.seamConversationEndTaskParameters53a = aseamConversationEndTaskParameters53a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationEndTaskParameters53aSet = true;
+                this.seamConversationEndTaskParameters53aSet = true;
             }
         }
-        return seamConversationEndTaskParameters53a;
+        return aseamConversationEndTaskParameters53a;
     }
 
    /**
@@ -1824,8 +1827,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamBijectionFactoryParameters();
 
-    private String __seamBijectionFactoryParameters54a;
-    private boolean __seamBijectionFactoryParameters54aSet = false;
+    private String seamBijectionFactoryParameters54a;
+    private boolean seamBijectionFactoryParameters54aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.Factory annotation. Supported
@@ -1838,19 +1841,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamBijectionFactoryParameters()
     {
-        String seamBijectionFactoryParameters54a = this.__seamBijectionFactoryParameters54a;
-        if (!this.__seamBijectionFactoryParameters54aSet)
+        String aseamBijectionFactoryParameters54a = this.seamBijectionFactoryParameters54a;
+        if (!this.seamBijectionFactoryParameters54aSet)
         {
             // seamBijectionFactoryParameters has no pre constraints
-            seamBijectionFactoryParameters54a = handleGetSeamBijectionFactoryParameters();
+            aseamBijectionFactoryParameters54a = handleGetSeamBijectionFactoryParameters();
             // seamBijectionFactoryParameters has no post constraints
-            this.__seamBijectionFactoryParameters54a = seamBijectionFactoryParameters54a;
+            this.seamBijectionFactoryParameters54a = aseamBijectionFactoryParameters54a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamBijectionFactoryParameters54aSet = true;
+                this.seamBijectionFactoryParameters54aSet = true;
             }
         }
-        return seamBijectionFactoryParameters54a;
+        return aseamBijectionFactoryParameters54a;
     }
 
    /**
@@ -1859,8 +1862,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationResumeProcessParameters();
 
-    private String __seamConversationResumeProcessParameters55a;
-    private boolean __seamConversationResumeProcessParameters55aSet = false;
+    private String seamConversationResumeProcessParameters55a;
+    private boolean seamConversationResumeProcessParameters55aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.ResumeProcess annotation.
@@ -1871,19 +1874,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationResumeProcessParameters()
     {
-        String seamConversationResumeProcessParameters55a = this.__seamConversationResumeProcessParameters55a;
-        if (!this.__seamConversationResumeProcessParameters55aSet)
+        String aseamConversationResumeProcessParameters55a = this.seamConversationResumeProcessParameters55a;
+        if (!this.seamConversationResumeProcessParameters55aSet)
         {
             // seamConversationResumeProcessParameters has no pre constraints
-            seamConversationResumeProcessParameters55a = handleGetSeamConversationResumeProcessParameters();
+            aseamConversationResumeProcessParameters55a = handleGetSeamConversationResumeProcessParameters();
             // seamConversationResumeProcessParameters has no post constraints
-            this.__seamConversationResumeProcessParameters55a = seamConversationResumeProcessParameters55a;
+            this.seamConversationResumeProcessParameters55a = aseamConversationResumeProcessParameters55a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationResumeProcessParameters55aSet = true;
+                this.seamConversationResumeProcessParameters55aSet = true;
             }
         }
-        return seamConversationResumeProcessParameters55a;
+        return aseamConversationResumeProcessParameters55a;
     }
 
    /**
@@ -1892,8 +1895,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamConversationStartTaskParameters();
 
-    private String __seamConversationStartTaskParameters56a;
-    private boolean __seamConversationStartTaskParameters56aSet = false;
+    private String seamConversationStartTaskParameters56a;
+    private boolean seamConversationStartTaskParameters56aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.StartTask annotation. Supported
@@ -1906,19 +1909,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamConversationStartTaskParameters()
     {
-        String seamConversationStartTaskParameters56a = this.__seamConversationStartTaskParameters56a;
-        if (!this.__seamConversationStartTaskParameters56aSet)
+        String aseamConversationStartTaskParameters56a = this.seamConversationStartTaskParameters56a;
+        if (!this.seamConversationStartTaskParameters56aSet)
         {
             // seamConversationStartTaskParameters has no pre constraints
-            seamConversationStartTaskParameters56a = handleGetSeamConversationStartTaskParameters();
+            aseamConversationStartTaskParameters56a = handleGetSeamConversationStartTaskParameters();
             // seamConversationStartTaskParameters has no post constraints
-            this.__seamConversationStartTaskParameters56a = seamConversationStartTaskParameters56a;
+            this.seamConversationStartTaskParameters56a = aseamConversationStartTaskParameters56a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamConversationStartTaskParameters56aSet = true;
+                this.seamConversationStartTaskParameters56aSet = true;
             }
         }
-        return seamConversationStartTaskParameters56a;
+        return aseamConversationStartTaskParameters56a;
     }
 
    /**
@@ -1927,8 +1930,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetSeamTransactionRollbackParameters();
 
-    private String __seamTransactionRollbackParameters57a;
-    private boolean __seamTransactionRollbackParameters57aSet = false;
+    private String seamTransactionRollbackParameters57a;
+    private boolean seamTransactionRollbackParameters57aSet = false;
 
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.Rollback annotation. Supported
@@ -1939,19 +1942,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getSeamTransactionRollbackParameters()
     {
-        String seamTransactionRollbackParameters57a = this.__seamTransactionRollbackParameters57a;
-        if (!this.__seamTransactionRollbackParameters57aSet)
+        String aseamTransactionRollbackParameters57a = this.seamTransactionRollbackParameters57a;
+        if (!this.seamTransactionRollbackParameters57aSet)
         {
             // seamTransactionRollbackParameters has no pre constraints
-            seamTransactionRollbackParameters57a = handleGetSeamTransactionRollbackParameters();
+            aseamTransactionRollbackParameters57a = handleGetSeamTransactionRollbackParameters();
             // seamTransactionRollbackParameters has no post constraints
-            this.__seamTransactionRollbackParameters57a = seamTransactionRollbackParameters57a;
+            this.seamTransactionRollbackParameters57a = aseamTransactionRollbackParameters57a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamTransactionRollbackParameters57aSet = true;
+                this.seamTransactionRollbackParameters57aSet = true;
             }
         }
-        return seamTransactionRollbackParameters57a;
+        return aseamTransactionRollbackParameters57a;
     }
 
    /**
@@ -1960,8 +1963,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract boolean handleIsSeamObserver();
 
-    private boolean __seamObserver58a;
-    private boolean __seamObserver58aSet = false;
+    private boolean seamObserver58a;
+    private boolean seamObserver58aSet = false;
 
     /**
      * True if the annotated method is a seam component-driven event observer.
@@ -1969,19 +1972,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final boolean isSeamObserver()
     {
-        boolean seamObserver58a = this.__seamObserver58a;
-        if (!this.__seamObserver58aSet)
+        boolean aseamObserver58a = this.seamObserver58a;
+        if (!this.seamObserver58aSet)
         {
             // seamObserver has no pre constraints
-            seamObserver58a = handleIsSeamObserver();
+            aseamObserver58a = handleIsSeamObserver();
             // seamObserver has no post constraints
-            this.__seamObserver58a = seamObserver58a;
+            this.seamObserver58a = aseamObserver58a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamObserver58aSet = true;
+                this.seamObserver58aSet = true;
             }
         }
-        return seamObserver58a;
+        return aseamObserver58a;
     }
 
    /**
@@ -1990,8 +1993,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetTestSignature();
 
-    private String __testSignature59a;
-    private boolean __testSignature59aSet = false;
+    private String testSignature59a;
+    private boolean testSignature59aSet = false;
 
     /**
      * Returns the session operation test signature used to generate the test method for the
@@ -2000,19 +2003,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getTestSignature()
     {
-        String testSignature59a = this.__testSignature59a;
-        if (!this.__testSignature59aSet)
+        String atestSignature59a = this.testSignature59a;
+        if (!this.testSignature59aSet)
         {
             // testSignature has no pre constraints
-            testSignature59a = handleGetTestSignature();
+            atestSignature59a = handleGetTestSignature();
             // testSignature has no post constraints
-            this.__testSignature59a = testSignature59a;
+            this.testSignature59a = atestSignature59a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__testSignature59aSet = true;
+                this.testSignature59aSet = true;
             }
         }
-        return testSignature59a;
+        return atestSignature59a;
     }
 
    /**
@@ -2021,8 +2024,8 @@ public abstract class EJB3SessionOperationFacadeLogic
     */
     protected abstract String handleGetTestName();
 
-    private String __testName60a;
-    private boolean __testName60aSet = false;
+    private String testName60a;
+    private boolean testName60aSet = false;
 
     /**
      * Returns the operation test name
@@ -2030,19 +2033,19 @@ public abstract class EJB3SessionOperationFacadeLogic
      */
     public final String getTestName()
     {
-        String testName60a = this.__testName60a;
-        if (!this.__testName60aSet)
+        String atestName60a = this.testName60a;
+        if (!this.testName60aSet)
         {
             // testName has no pre constraints
-            testName60a = handleGetTestName();
+            atestName60a = handleGetTestName();
             // testName has no post constraints
-            this.__testName60a = testName60a;
+            this.testName60a = atestName60a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__testName60aSet = true;
+                this.testName60aSet = true;
             }
         }
-        return testName60a;
+        return atestName60a;
     }
 
     // ---------------- business methods ----------------------
@@ -2090,7 +2093,7 @@ public abstract class EJB3SessionOperationFacadeLogic
         catch (ClassCastException ex)
         {
             // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-            EJB3SessionOperationFacadeLogic.logger.warn("incorrect metafacade cast for EJB3SessionOperationFacadeLogic.getNonRunAsRoles Collection<Role> " + result + ": " + shieldedResult);
+            EJB3SessionOperationFacadeLogic.LOGGER.warn("incorrect metafacade cast for EJB3SessionOperationFacadeLogic.getNonRunAsRoles Collection<Role> " + result + ": " + shieldedResult);
         }
         // eJB3SessionOperationFacade has no post constraints
         return getNonRunAsRoles1r;
@@ -2154,7 +2157,7 @@ public abstract class EJB3SessionOperationFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperServiceOperation().findTaggedValues(tagName);
     }
@@ -2184,7 +2187,7 @@ public abstract class EJB3SessionOperationFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperServiceOperation().getConstraints(kind);
     }
@@ -2654,7 +2657,7 @@ public abstract class EJB3SessionOperationFacadeLogic
      * A collection of all exceptions thrown by this operation.
      * @see OperationFacade#getExceptions()
      */
-    public Collection getExceptions()
+    public Collection<ModelElementFacade> getExceptions()
     {
         return this.getSuperServiceOperation().getExceptions();
     }

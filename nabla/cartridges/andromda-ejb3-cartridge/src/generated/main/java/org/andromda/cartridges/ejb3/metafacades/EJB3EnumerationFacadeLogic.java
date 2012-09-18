@@ -38,17 +38,20 @@ public abstract class EJB3EnumerationFacadeLogic
     extends MetafacadeBase
     implements EJB3EnumerationFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3EnumerationFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3EnumerationFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEnumerationFacade =
@@ -220,7 +223,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperEnumerationFacade().getAllProperties();
     }
@@ -230,7 +233,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperEnumerationFacade().getAllRequiredConstructorParameters();
     }
@@ -287,7 +290,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperEnumerationFacade().getAttributes(follow);
     }
@@ -384,7 +387,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperEnumerationFacade().getNavigableConnectingEnds(follow);
     }
@@ -425,7 +428,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperEnumerationFacade().getProperties();
     }
@@ -446,7 +449,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperEnumerationFacade().getRequiredConstructorParameters();
     }
@@ -902,7 +905,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperEnumerationFacade().findTaggedValues(tagName);
     }
@@ -932,7 +935,7 @@ public abstract class EJB3EnumerationFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperEnumerationFacade().getConstraints(kind);
     }

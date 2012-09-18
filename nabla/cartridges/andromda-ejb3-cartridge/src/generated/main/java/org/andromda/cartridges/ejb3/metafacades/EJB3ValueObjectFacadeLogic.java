@@ -38,17 +38,20 @@ public abstract class EJB3ValueObjectFacadeLogic
     extends MetafacadeBase
     implements EJB3ValueObjectFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3ValueObjectFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3ValueObjectFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superValueObject =
@@ -126,8 +129,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     */
     protected abstract boolean handleIsSeamComponent();
 
-    private boolean __seamComponent1a;
-    private boolean __seamComponent1aSet = false;
+    private boolean seamComponent1a;
+    private boolean seamComponent1aSet = false;
 
     /**
      * Returns true if this value object has the <<Seam>> stereotype modeled indicating it is a Seam
@@ -136,19 +139,19 @@ public abstract class EJB3ValueObjectFacadeLogic
      */
     public final boolean isSeamComponent()
     {
-        boolean seamComponent1a = this.__seamComponent1a;
-        if (!this.__seamComponent1aSet)
+        boolean aseamComponent1a = this.seamComponent1a;
+        if (!this.seamComponent1aSet)
         {
             // seamComponent has no pre constraints
-            seamComponent1a = handleIsSeamComponent();
+            aseamComponent1a = handleIsSeamComponent();
             // seamComponent has no post constraints
-            this.__seamComponent1a = seamComponent1a;
+            this.seamComponent1a = aseamComponent1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponent1aSet = true;
+                this.seamComponent1aSet = true;
             }
         }
-        return seamComponent1a;
+        return aseamComponent1a;
     }
 
    /**
@@ -157,8 +160,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     */
     protected abstract String handleGetSeamComponentName();
 
-    private String __seamComponentName2a;
-    private boolean __seamComponentName2aSet = false;
+    private String seamComponentName2a;
+    private boolean seamComponentName2aSet = false;
 
     /**
      * Returns the Seam component name for the class.
@@ -166,19 +169,19 @@ public abstract class EJB3ValueObjectFacadeLogic
      */
     public final String getSeamComponentName()
     {
-        String seamComponentName2a = this.__seamComponentName2a;
-        if (!this.__seamComponentName2aSet)
+        String aseamComponentName2a = this.seamComponentName2a;
+        if (!this.seamComponentName2aSet)
         {
             // seamComponentName has no pre constraints
-            seamComponentName2a = handleGetSeamComponentName();
+            aseamComponentName2a = handleGetSeamComponentName();
             // seamComponentName has no post constraints
-            this.__seamComponentName2a = seamComponentName2a;
+            this.seamComponentName2a = aseamComponentName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentName2aSet = true;
+                this.seamComponentName2aSet = true;
             }
         }
-        return seamComponentName2a;
+        return aseamComponentName2a;
     }
 
    /**
@@ -187,8 +190,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     */
     protected abstract String handleGetSeamComponentScopeType();
 
-    private String __seamComponentScopeType3a;
-    private boolean __seamComponentScopeType3aSet = false;
+    private String seamComponentScopeType3a;
+    private boolean seamComponentScopeType3aSet = false;
 
     /**
      * Returns the seam component scope type if one is specified.
@@ -196,19 +199,19 @@ public abstract class EJB3ValueObjectFacadeLogic
      */
     public final String getSeamComponentScopeType()
     {
-        String seamComponentScopeType3a = this.__seamComponentScopeType3a;
-        if (!this.__seamComponentScopeType3aSet)
+        String aseamComponentScopeType3a = this.seamComponentScopeType3a;
+        if (!this.seamComponentScopeType3aSet)
         {
             // seamComponentScopeType has no pre constraints
-            seamComponentScopeType3a = handleGetSeamComponentScopeType();
+            aseamComponentScopeType3a = handleGetSeamComponentScopeType();
             // seamComponentScopeType has no post constraints
-            this.__seamComponentScopeType3a = seamComponentScopeType3a;
+            this.seamComponentScopeType3a = aseamComponentScopeType3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__seamComponentScopeType3aSet = true;
+                this.seamComponentScopeType3aSet = true;
             }
         }
-        return seamComponentScopeType3a;
+        return aseamComponentScopeType3a;
     }
 
     /**
@@ -281,7 +284,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllProperties()
      */
-    public Collection getAllProperties()
+    public Collection<ModelElementFacade> getAllProperties()
     {
         return this.getSuperValueObject().getAllProperties();
     }
@@ -291,7 +294,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * ancestors. Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getAllRequiredConstructorParameters()
      */
-    public Collection getAllRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getAllRequiredConstructorParameters()
     {
         return this.getSuperValueObject().getAllRequiredConstructorParameters();
     }
@@ -348,7 +351,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * hierarchy and gets the attributes from the super classes as well.
      * @see ClassifierFacade#getAttributes(boolean follow)
      */
-    public List getAttributes(boolean follow)
+    public List<AttributeFacade> getAttributes(boolean follow)
     {
         return this.getSuperValueObject().getAttributes(follow);
     }
@@ -445,7 +448,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * is true goes up the inheritance hierarchy and gets the super association ends as well.
      * @see ClassifierFacade#getNavigableConnectingEnds(boolean follow)
      */
-    public List getNavigableConnectingEnds(boolean follow)
+    public List<AssociationEndFacade> getNavigableConnectingEnds(boolean follow)
     {
         return this.getSuperValueObject().getNavigableConnectingEnds(follow);
     }
@@ -486,7 +489,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * and navigable connecting association ends.
      * @see ClassifierFacade#getProperties()
      */
-    public List getProperties()
+    public List<ModelElementFacade> getProperties()
     {
         return this.getSuperValueObject().getProperties();
     }
@@ -507,7 +510,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * Properties are any attributes and navigable connecting association ends.
      * @see ClassifierFacade#getRequiredConstructorParameters()
      */
-    public Collection getRequiredConstructorParameters()
+    public Collection<ModelElementFacade> getRequiredConstructorParameters()
     {
         return this.getSuperValueObject().getRequiredConstructorParameters();
     }
@@ -906,7 +909,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperValueObject().findTaggedValues(tagName);
     }
@@ -936,7 +939,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperValueObject().getConstraints(kind);
     }

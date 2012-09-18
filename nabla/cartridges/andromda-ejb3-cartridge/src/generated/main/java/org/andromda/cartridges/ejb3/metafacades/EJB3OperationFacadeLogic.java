@@ -33,17 +33,20 @@ public abstract class EJB3OperationFacadeLogic
     extends MetafacadeBase
     implements EJB3OperationFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3OperationFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3OperationFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superOperationFacade =
@@ -121,8 +124,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsBusinessOperation();
 
-    private boolean __businessOperation1a;
-    private boolean __businessOperation1aSet = false;
+    private boolean businessOperation1a;
+    private boolean businessOperation1aSet = false;
 
     /**
      * True/false on whether or not this operation is an EJB business operation.  This returns true
@@ -134,19 +137,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isBusinessOperation()
     {
-        boolean businessOperation1a = this.__businessOperation1a;
-        if (!this.__businessOperation1aSet)
+        boolean abusinessOperation1a = this.businessOperation1a;
+        if (!this.businessOperation1aSet)
         {
             // businessOperation has no pre constraints
-            businessOperation1a = handleIsBusinessOperation();
+            abusinessOperation1a = handleIsBusinessOperation();
             // businessOperation has no post constraints
-            this.__businessOperation1a = businessOperation1a;
+            this.businessOperation1a = abusinessOperation1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__businessOperation1aSet = true;
+                this.businessOperation1aSet = true;
             }
         }
-        return businessOperation1a;
+        return abusinessOperation1a;
     }
 
    /**
@@ -155,8 +158,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsSelectMethod();
 
-    private boolean __selectMethod2a;
-    private boolean __selectMethod2aSet = false;
+    private boolean selectMethod2a;
+    private boolean selectMethod2aSet = false;
 
     /**
      * True/false on whether or not this operation represents a select method.
@@ -164,19 +167,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isSelectMethod()
     {
-        boolean selectMethod2a = this.__selectMethod2a;
-        if (!this.__selectMethod2aSet)
+        boolean aselectMethod2a = this.selectMethod2a;
+        if (!this.selectMethod2aSet)
         {
             // selectMethod has no pre constraints
-            selectMethod2a = handleIsSelectMethod();
+            aselectMethod2a = handleIsSelectMethod();
             // selectMethod has no post constraints
-            this.__selectMethod2a = selectMethod2a;
+            this.selectMethod2a = aselectMethod2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__selectMethod2aSet = true;
+                this.selectMethod2aSet = true;
             }
         }
-        return selectMethod2a;
+        return aselectMethod2a;
     }
 
    /**
@@ -185,8 +188,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPrePersist();
 
-    private boolean __prePersist3a;
-    private boolean __prePersist3aSet = false;
+    private boolean prePersist3a;
+    private boolean prePersist3aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PrePersist>> stereotype.
@@ -195,19 +198,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPrePersist()
     {
-        boolean prePersist3a = this.__prePersist3a;
-        if (!this.__prePersist3aSet)
+        boolean aprePersist3a = this.prePersist3a;
+        if (!this.prePersist3aSet)
         {
             // prePersist has no pre constraints
-            prePersist3a = handleIsPrePersist();
+            aprePersist3a = handleIsPrePersist();
             // prePersist has no post constraints
-            this.__prePersist3a = prePersist3a;
+            this.prePersist3a = aprePersist3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__prePersist3aSet = true;
+                this.prePersist3aSet = true;
             }
         }
-        return prePersist3a;
+        return aprePersist3a;
     }
 
    /**
@@ -216,8 +219,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPostPersist();
 
-    private boolean __postPersist4a;
-    private boolean __postPersist4aSet = false;
+    private boolean postPersist4a;
+    private boolean postPersist4aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostPersist>> stereotype.
@@ -226,19 +229,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPostPersist()
     {
-        boolean postPersist4a = this.__postPersist4a;
-        if (!this.__postPersist4aSet)
+        boolean apostPersist4a = this.postPersist4a;
+        if (!this.postPersist4aSet)
         {
             // postPersist has no pre constraints
-            postPersist4a = handleIsPostPersist();
+            apostPersist4a = handleIsPostPersist();
             // postPersist has no post constraints
-            this.__postPersist4a = postPersist4a;
+            this.postPersist4a = apostPersist4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postPersist4aSet = true;
+                this.postPersist4aSet = true;
             }
         }
-        return postPersist4a;
+        return apostPersist4a;
     }
 
    /**
@@ -247,8 +250,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPreRemove();
 
-    private boolean __preRemove5a;
-    private boolean __preRemove5aSet = false;
+    private boolean preRemove5a;
+    private boolean preRemove5aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PreRemove>> stereotype.
@@ -257,19 +260,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPreRemove()
     {
-        boolean preRemove5a = this.__preRemove5a;
-        if (!this.__preRemove5aSet)
+        boolean apreRemove5a = this.preRemove5a;
+        if (!this.preRemove5aSet)
         {
             // preRemove has no pre constraints
-            preRemove5a = handleIsPreRemove();
+            apreRemove5a = handleIsPreRemove();
             // preRemove has no post constraints
-            this.__preRemove5a = preRemove5a;
+            this.preRemove5a = apreRemove5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__preRemove5aSet = true;
+                this.preRemove5aSet = true;
             }
         }
-        return preRemove5a;
+        return apreRemove5a;
     }
 
    /**
@@ -278,8 +281,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPostRemove();
 
-    private boolean __postRemove6a;
-    private boolean __postRemove6aSet = false;
+    private boolean postRemove6a;
+    private boolean postRemove6aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostRemove>> stereotype.
@@ -288,19 +291,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPostRemove()
     {
-        boolean postRemove6a = this.__postRemove6a;
-        if (!this.__postRemove6aSet)
+        boolean apostRemove6a = this.postRemove6a;
+        if (!this.postRemove6aSet)
         {
             // postRemove has no pre constraints
-            postRemove6a = handleIsPostRemove();
+            apostRemove6a = handleIsPostRemove();
             // postRemove has no post constraints
-            this.__postRemove6a = postRemove6a;
+            this.postRemove6a = apostRemove6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postRemove6aSet = true;
+                this.postRemove6aSet = true;
             }
         }
-        return postRemove6a;
+        return apostRemove6a;
     }
 
    /**
@@ -309,8 +312,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPreUpdate();
 
-    private boolean __preUpdate7a;
-    private boolean __preUpdate7aSet = false;
+    private boolean preUpdate7a;
+    private boolean preUpdate7aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PreUpdate>> stereotype.
@@ -319,19 +322,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPreUpdate()
     {
-        boolean preUpdate7a = this.__preUpdate7a;
-        if (!this.__preUpdate7aSet)
+        boolean apreUpdate7a = this.preUpdate7a;
+        if (!this.preUpdate7aSet)
         {
             // preUpdate has no pre constraints
-            preUpdate7a = handleIsPreUpdate();
+            apreUpdate7a = handleIsPreUpdate();
             // preUpdate has no post constraints
-            this.__preUpdate7a = preUpdate7a;
+            this.preUpdate7a = apreUpdate7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__preUpdate7aSet = true;
+                this.preUpdate7aSet = true;
             }
         }
-        return preUpdate7a;
+        return apreUpdate7a;
     }
 
    /**
@@ -340,8 +343,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPostUpdate();
 
-    private boolean __postUpdate8a;
-    private boolean __postUpdate8aSet = false;
+    private boolean postUpdate8a;
+    private boolean postUpdate8aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostUpdate>> stereotype.
@@ -350,19 +353,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPostUpdate()
     {
-        boolean postUpdate8a = this.__postUpdate8a;
-        if (!this.__postUpdate8aSet)
+        boolean apostUpdate8a = this.postUpdate8a;
+        if (!this.postUpdate8aSet)
         {
             // postUpdate has no pre constraints
-            postUpdate8a = handleIsPostUpdate();
+            apostUpdate8a = handleIsPostUpdate();
             // postUpdate has no post constraints
-            this.__postUpdate8a = postUpdate8a;
+            this.postUpdate8a = apostUpdate8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postUpdate8aSet = true;
+                this.postUpdate8aSet = true;
             }
         }
-        return postUpdate8a;
+        return apostUpdate8a;
     }
 
    /**
@@ -371,8 +374,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsPostLoad();
 
-    private boolean __postLoad9a;
-    private boolean __postLoad9aSet = false;
+    private boolean postLoad9a;
+    private boolean postLoad9aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostLoad>> stereotype.
@@ -381,19 +384,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isPostLoad()
     {
-        boolean postLoad9a = this.__postLoad9a;
-        if (!this.__postLoad9aSet)
+        boolean apostLoad9a = this.postLoad9a;
+        if (!this.postLoad9aSet)
         {
             // postLoad has no pre constraints
-            postLoad9a = handleIsPostLoad();
+            apostLoad9a = handleIsPostLoad();
             // postLoad has no post constraints
-            this.__postLoad9a = postLoad9a;
+            this.postLoad9a = apostLoad9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postLoad9aSet = true;
+                this.postLoad9aSet = true;
             }
         }
-        return postLoad9a;
+        return apostLoad9a;
     }
 
    /**
@@ -402,8 +405,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsLifecycleCallback();
 
-    private boolean __lifecycleCallback10a;
-    private boolean __lifecycleCallback10aSet = false;
+    private boolean lifecycleCallback10a;
+    private boolean lifecycleCallback10aSet = false;
 
     /**
      * Returns true if this operation is marked with any of the lifecycle callback stereotypes like
@@ -412,19 +415,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isLifecycleCallback()
     {
-        boolean lifecycleCallback10a = this.__lifecycleCallback10a;
-        if (!this.__lifecycleCallback10aSet)
+        boolean alifecycleCallback10a = this.lifecycleCallback10a;
+        if (!this.lifecycleCallback10aSet)
         {
             // lifecycleCallback has no pre constraints
-            lifecycleCallback10a = handleIsLifecycleCallback();
+            alifecycleCallback10a = handleIsLifecycleCallback();
             // lifecycleCallback has no post constraints
-            this.__lifecycleCallback10a = lifecycleCallback10a;
+            this.lifecycleCallback10a = alifecycleCallback10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__lifecycleCallback10aSet = true;
+                this.lifecycleCallback10aSet = true;
             }
         }
-        return lifecycleCallback10a;
+        return alifecycleCallback10a;
     }
 
    /**
@@ -433,8 +436,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract String handleGetImplementationName();
 
-    private String __implementationName11a;
-    private boolean __implementationName11aSet = false;
+    private String implementationName11a;
+    private boolean implementationName11aSet = false;
 
     /**
      * The name of the operation used within the entity implementation.
@@ -442,19 +445,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final String getImplementationName()
     {
-        String implementationName11a = this.__implementationName11a;
-        if (!this.__implementationName11aSet)
+        String aimplementationName11a = this.implementationName11a;
+        if (!this.implementationName11aSet)
         {
             // implementationName has no pre constraints
-            implementationName11a = handleGetImplementationName();
+            aimplementationName11a = handleGetImplementationName();
             // implementationName has no post constraints
-            this.__implementationName11a = implementationName11a;
+            this.implementationName11a = aimplementationName11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationName11aSet = true;
+                this.implementationName11aSet = true;
             }
         }
-        return implementationName11a;
+        return aimplementationName11a;
     }
 
    /**
@@ -463,8 +466,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract String handleGetImplementationCall();
 
-    private String __implementationCall12a;
-    private boolean __implementationCall12aSet = false;
+    private String implementationCall12a;
+    private boolean implementationCall12aSet = false;
 
     /**
      * The method call for the implementation operation.
@@ -472,19 +475,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final String getImplementationCall()
     {
-        String implementationCall12a = this.__implementationCall12a;
-        if (!this.__implementationCall12aSet)
+        String aimplementationCall12a = this.implementationCall12a;
+        if (!this.implementationCall12aSet)
         {
             // implementationCall has no pre constraints
-            implementationCall12a = handleGetImplementationCall();
+            aimplementationCall12a = handleGetImplementationCall();
             // implementationCall has no post constraints
-            this.__implementationCall12a = implementationCall12a;
+            this.implementationCall12a = aimplementationCall12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationCall12aSet = true;
+                this.implementationCall12aSet = true;
             }
         }
-        return implementationCall12a;
+        return aimplementationCall12a;
     }
 
    /**
@@ -493,8 +496,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract String handleGetImplementationSignature();
 
-    private String __implementationSignature13a;
-    private boolean __implementationSignature13aSet = false;
+    private String implementationSignature13a;
+    private boolean implementationSignature13aSet = false;
 
     /**
      * The signature for the implementation operation.
@@ -502,19 +505,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final String getImplementationSignature()
     {
-        String implementationSignature13a = this.__implementationSignature13a;
-        if (!this.__implementationSignature13aSet)
+        String aimplementationSignature13a = this.implementationSignature13a;
+        if (!this.implementationSignature13aSet)
         {
             // implementationSignature has no pre constraints
-            implementationSignature13a = handleGetImplementationSignature();
+            aimplementationSignature13a = handleGetImplementationSignature();
             // implementationSignature has no post constraints
-            this.__implementationSignature13a = implementationSignature13a;
+            this.implementationSignature13a = aimplementationSignature13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationSignature13aSet = true;
+                this.implementationSignature13aSet = true;
             }
         }
-        return implementationSignature13a;
+        return aimplementationSignature13a;
     }
 
    /**
@@ -523,8 +526,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsCreateMethod();
 
-    private boolean __createMethod14a;
-    private boolean __createMethod14aSet = false;
+    private boolean createMethod14a;
+    private boolean createMethod14aSet = false;
 
     /**
      * Returns true if the operation has the <<CreateMethod>> stereotype.
@@ -532,19 +535,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isCreateMethod()
     {
-        boolean createMethod14a = this.__createMethod14a;
-        if (!this.__createMethod14aSet)
+        boolean acreateMethod14a = this.createMethod14a;
+        if (!this.createMethod14aSet)
         {
             // createMethod has no pre constraints
-            createMethod14a = handleIsCreateMethod();
+            acreateMethod14a = handleIsCreateMethod();
             // createMethod has no post constraints
-            this.__createMethod14a = createMethod14a;
+            this.createMethod14a = acreateMethod14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__createMethod14aSet = true;
+                this.createMethod14aSet = true;
             }
         }
-        return createMethod14a;
+        return acreateMethod14a;
     }
 
    /**
@@ -553,8 +556,8 @@ public abstract class EJB3OperationFacadeLogic
     */
     protected abstract boolean handleIsFinderMethod();
 
-    private boolean __finderMethod15a;
-    private boolean __finderMethod15aSet = false;
+    private boolean finderMethod15a;
+    private boolean finderMethod15aSet = false;
 
     /**
      * Returns true if the operation is a finder or query operation.
@@ -562,19 +565,19 @@ public abstract class EJB3OperationFacadeLogic
      */
     public final boolean isFinderMethod()
     {
-        boolean finderMethod15a = this.__finderMethod15a;
-        if (!this.__finderMethod15aSet)
+        boolean afinderMethod15a = this.finderMethod15a;
+        if (!this.finderMethod15aSet)
         {
             // finderMethod has no pre constraints
-            finderMethod15a = handleIsFinderMethod();
+            afinderMethod15a = handleIsFinderMethod();
             // finderMethod has no post constraints
-            this.__finderMethod15a = finderMethod15a;
+            this.finderMethod15a = afinderMethod15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__finderMethod15aSet = true;
+                this.finderMethod15aSet = true;
             }
         }
-        return finderMethod15a;
+        return afinderMethod15a;
     }
 
     // ------------- associations ------------------
@@ -622,7 +625,7 @@ public abstract class EJB3OperationFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperOperationFacade().findTaggedValues(tagName);
     }
@@ -652,7 +655,7 @@ public abstract class EJB3OperationFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperOperationFacade().getConstraints(kind);
     }
@@ -1122,7 +1125,7 @@ public abstract class EJB3OperationFacadeLogic
      * A collection of all exceptions thrown by this operation.
      * @see OperationFacade#getExceptions()
      */
-    public Collection getExceptions()
+    public Collection<ModelElementFacade> getExceptions()
     {
         return this.getSuperOperationFacade().getExceptions();
     }

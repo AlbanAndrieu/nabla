@@ -34,17 +34,20 @@ public abstract class EJB3FinderMethodFacadeLogic
     extends MetafacadeBase
     implements EJB3FinderMethodFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3FinderMethodFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3FinderMethodFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEntityQueryOperation =
@@ -122,8 +125,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract String handleGetQuery();
 
-    private String __query1a;
-    private boolean __query1aSet = false;
+    private String query1a;
+    private boolean query1aSet = false;
 
     /**
      * The query string for this EJB entity finder.
@@ -131,19 +134,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final String getQuery()
     {
-        String query1a = this.__query1a;
-        if (!this.__query1aSet)
+        String aquery1a = this.query1a;
+        if (!this.query1aSet)
         {
             // query has no pre constraints
-            query1a = handleGetQuery();
+            aquery1a = handleGetQuery();
             // query has no post constraints
-            this.__query1a = query1a;
+            this.query1a = aquery1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__query1aSet = true;
+                this.query1aSet = true;
             }
         }
-        return query1a;
+        return aquery1a;
     }
 
    /**
@@ -152,8 +155,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract String handleGetTransactionType();
 
-    private String __transactionType2a;
-    private boolean __transactionType2aSet = false;
+    private String transactionType2a;
+    private boolean transactionType2aSet = false;
 
     /**
      * Gets the transaction type for this finder (i.e. REQUIRED, etc)
@@ -161,19 +164,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final String getTransactionType()
     {
-        String transactionType2a = this.__transactionType2a;
-        if (!this.__transactionType2aSet)
+        String atransactionType2a = this.transactionType2a;
+        if (!this.transactionType2aSet)
         {
             // transactionType has no pre constraints
-            transactionType2a = handleGetTransactionType();
+            atransactionType2a = handleGetTransactionType();
             // transactionType has no post constraints
-            this.__transactionType2a = transactionType2a;
+            this.transactionType2a = atransactionType2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__transactionType2aSet = true;
+                this.transactionType2aSet = true;
             }
         }
-        return transactionType2a;
+        return atransactionType2a;
     }
 
    /**
@@ -182,8 +185,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract boolean handleIsUseNamedParameters();
 
-    private boolean __useNamedParameters3a;
-    private boolean __useNamedParameters3aSet = false;
+    private boolean useNamedParameters3a;
+    private boolean useNamedParameters3aSet = false;
 
     /**
      * Indicates whether or not the query parameters used for the body of the finder should be named
@@ -192,19 +195,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final boolean isUseNamedParameters()
     {
-        boolean useNamedParameters3a = this.__useNamedParameters3a;
-        if (!this.__useNamedParameters3aSet)
+        boolean auseNamedParameters3a = this.useNamedParameters3a;
+        if (!this.useNamedParameters3aSet)
         {
             // useNamedParameters has no pre constraints
-            useNamedParameters3a = handleIsUseNamedParameters();
+            auseNamedParameters3a = handleIsUseNamedParameters();
             // useNamedParameters has no post constraints
-            this.__useNamedParameters3a = useNamedParameters3a;
+            this.useNamedParameters3a = auseNamedParameters3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__useNamedParameters3aSet = true;
+                this.useNamedParameters3aSet = true;
             }
         }
-        return useNamedParameters3a;
+        return auseNamedParameters3a;
     }
 
    /**
@@ -213,8 +216,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract boolean handleIsUseQueryCache();
 
-    private boolean __useQueryCache4a;
-    private boolean __useQueryCache4aSet = false;
+    private boolean useQueryCache4a;
+    private boolean useQueryCache4aSet = false;
 
     /**
      * Returns true if this query has the andromda_ejb_query_useCache tagged value true or the
@@ -223,19 +226,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final boolean isUseQueryCache()
     {
-        boolean useQueryCache4a = this.__useQueryCache4a;
-        if (!this.__useQueryCache4aSet)
+        boolean auseQueryCache4a = this.useQueryCache4a;
+        if (!this.useQueryCache4aSet)
         {
             // useQueryCache has no pre constraints
-            useQueryCache4a = handleIsUseQueryCache();
+            auseQueryCache4a = handleIsUseQueryCache();
             // useQueryCache has no post constraints
-            this.__useQueryCache4a = useQueryCache4a;
+            this.useQueryCache4a = auseQueryCache4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__useQueryCache4aSet = true;
+                this.useQueryCache4aSet = true;
             }
         }
-        return useQueryCache4a;
+        return auseQueryCache4a;
     }
 
    /**
@@ -244,8 +247,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract boolean handleIsNamedQuery();
 
-    private boolean __namedQuery5a;
-    private boolean __namedQuery5aSet = false;
+    private boolean namedQuery5a;
+    private boolean namedQuery5aSet = false;
 
     /**
      * Returns true if query is specified using OCL or created by AndroMDA itself.  Return false if
@@ -254,19 +257,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final boolean isNamedQuery()
     {
-        boolean namedQuery5a = this.__namedQuery5a;
-        if (!this.__namedQuery5aSet)
+        boolean anamedQuery5a = this.namedQuery5a;
+        if (!this.namedQuery5aSet)
         {
             // namedQuery has no pre constraints
-            namedQuery5a = handleIsNamedQuery();
+            anamedQuery5a = handleIsNamedQuery();
             // namedQuery has no post constraints
-            this.__namedQuery5a = namedQuery5a;
+            this.namedQuery5a = anamedQuery5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__namedQuery5aSet = true;
+                this.namedQuery5aSet = true;
             }
         }
-        return namedQuery5a;
+        return anamedQuery5a;
     }
 
     // ---------------- business methods ----------------------
@@ -358,7 +361,7 @@ public abstract class EJB3FinderMethodFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperEntityQueryOperation().findTaggedValues(tagName);
     }
@@ -388,7 +391,7 @@ public abstract class EJB3FinderMethodFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperEntityQueryOperation().getConstraints(kind);
     }
@@ -858,7 +861,7 @@ public abstract class EJB3FinderMethodFacadeLogic
      * A collection of all exceptions thrown by this operation.
      * @see OperationFacade#getExceptions()
      */
-    public Collection getExceptions()
+    public Collection<ModelElementFacade> getExceptions()
     {
         return this.getSuperEntityQueryOperation().getExceptions();
     }

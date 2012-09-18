@@ -33,17 +33,20 @@ public abstract class EJB3EntityAttributeFacadeLogic
     extends MetafacadeBase
     implements EJB3EntityAttributeFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3EntityAttributeFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3EntityAttributeFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEntityAttribute =
@@ -121,8 +124,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetFetchType();
 
-    private String __fetchType1a;
-    private boolean __fetchType1aSet = false;
+    private String fetchType1a;
+    private boolean fetchType1aSet = false;
 
     /**
      * Gets the fetch type for this attribute.  Default fetch type for attribute is EAGER.
@@ -131,19 +134,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getFetchType()
     {
-        String fetchType1a = this.__fetchType1a;
-        if (!this.__fetchType1aSet)
+        String afetchType1a = this.fetchType1a;
+        if (!this.fetchType1aSet)
         {
             // fetchType has no pre constraints
-            fetchType1a = handleGetFetchType();
+            afetchType1a = handleGetFetchType();
             // fetchType has no post constraints
-            this.__fetchType1a = fetchType1a;
+            this.fetchType1a = afetchType1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fetchType1aSet = true;
+                this.fetchType1aSet = true;
             }
         }
-        return fetchType1a;
+        return afetchType1a;
     }
 
    /**
@@ -152,8 +155,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsVersion();
 
-    private boolean __version2a;
-    private boolean __version2aSet = false;
+    private boolean version2a;
+    private boolean version2aSet = false;
 
     /**
      * True is this attribute is a version property (optimistic lock value) for this entity class.
@@ -161,19 +164,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isVersion()
     {
-        boolean version2a = this.__version2a;
-        if (!this.__version2aSet)
+        boolean aversion2a = this.version2a;
+        if (!this.version2aSet)
         {
             // version has no pre constraints
-            version2a = handleIsVersion();
+            aversion2a = handleIsVersion();
             // version has no post constraints
-            this.__version2a = version2a;
+            this.version2a = aversion2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__version2aSet = true;
+                this.version2aSet = true;
             }
         }
-        return version2a;
+        return aversion2a;
     }
 
    /**
@@ -182,8 +185,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsLob();
 
-    private boolean __lob3a;
-    private boolean __lob3aSet = false;
+    private boolean lob3a;
+    private boolean lob3aSet = false;
 
     /**
      * Returns true if the property type is specified as datatype::Blob or datatype::Clob.
@@ -192,19 +195,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isLob()
     {
-        boolean lob3a = this.__lob3a;
-        if (!this.__lob3aSet)
+        boolean alob3a = this.lob3a;
+        if (!this.lob3aSet)
         {
             // lob has no pre constraints
-            lob3a = handleIsLob();
+            alob3a = handleIsLob();
             // lob has no post constraints
-            this.__lob3a = lob3a;
+            this.lob3a = alob3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__lob3aSet = true;
+                this.lob3aSet = true;
             }
         }
-        return lob3a;
+        return alob3a;
     }
 
    /**
@@ -213,8 +216,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetGeneratorType();
 
-    private String __generatorType4a;
-    private boolean __generatorType4aSet = false;
+    private String generatorType4a;
+    private boolean generatorType4aSet = false;
 
     /**
      * Determine the generator type for the Id annotation on the entity attribute - the PK strategy.
@@ -224,19 +227,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getGeneratorType()
     {
-        String generatorType4a = this.__generatorType4a;
-        if (!this.__generatorType4aSet)
+        String ageneratorType4a = this.generatorType4a;
+        if (!this.generatorType4aSet)
         {
             // generatorType has no pre constraints
-            generatorType4a = handleGetGeneratorType();
+            ageneratorType4a = handleGetGeneratorType();
             // generatorType has no post constraints
-            this.__generatorType4a = generatorType4a;
+            this.generatorType4a = ageneratorType4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorType4aSet = true;
+                this.generatorType4aSet = true;
             }
         }
-        return generatorType4a;
+        return ageneratorType4a;
     }
 
    /**
@@ -245,8 +248,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetColumnDefinition();
 
-    private String __columnDefinition5a;
-    private boolean __columnDefinition5aSet = false;
+    private String columnDefinition5a;
+    private boolean columnDefinition5aSet = false;
 
     /**
      * Defines the column definition DDL used when creating table schema - use to override default
@@ -255,19 +258,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getColumnDefinition()
     {
-        String columnDefinition5a = this.__columnDefinition5a;
-        if (!this.__columnDefinition5aSet)
+        String acolumnDefinition5a = this.columnDefinition5a;
+        if (!this.columnDefinition5aSet)
         {
             // columnDefinition has no pre constraints
-            columnDefinition5a = handleGetColumnDefinition();
+            acolumnDefinition5a = handleGetColumnDefinition();
             // columnDefinition has no post constraints
-            this.__columnDefinition5a = columnDefinition5a;
+            this.columnDefinition5a = acolumnDefinition5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnDefinition5aSet = true;
+                this.columnDefinition5aSet = true;
             }
         }
-        return columnDefinition5a;
+        return acolumnDefinition5a;
     }
 
    /**
@@ -276,8 +279,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetColumnPrecision();
 
-    private String __columnPrecision6a;
-    private boolean __columnPrecision6aSet = false;
+    private String columnPrecision6a;
+    private boolean columnPrecision6aSet = false;
 
     /**
      * Set the column precision value.  Only applies to double and float columns.
@@ -286,19 +289,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getColumnPrecision()
     {
-        String columnPrecision6a = this.__columnPrecision6a;
-        if (!this.__columnPrecision6aSet)
+        String acolumnPrecision6a = this.columnPrecision6a;
+        if (!this.columnPrecision6aSet)
         {
             // columnPrecision has no pre constraints
-            columnPrecision6a = handleGetColumnPrecision();
+            acolumnPrecision6a = handleGetColumnPrecision();
             // columnPrecision has no post constraints
-            this.__columnPrecision6a = columnPrecision6a;
+            this.columnPrecision6a = acolumnPrecision6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnPrecision6aSet = true;
+                this.columnPrecision6aSet = true;
             }
         }
-        return columnPrecision6a;
+        return acolumnPrecision6a;
     }
 
    /**
@@ -307,8 +310,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetColumnScale();
 
-    private String __columnScale7a;
-    private boolean __columnScale7aSet = false;
+    private String columnScale7a;
+    private boolean columnScale7aSet = false;
 
     /**
      * Column scale use denotes the decimal precision.
@@ -317,19 +320,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getColumnScale()
     {
-        String columnScale7a = this.__columnScale7a;
-        if (!this.__columnScale7aSet)
+        String acolumnScale7a = this.columnScale7a;
+        if (!this.columnScale7aSet)
         {
             // columnScale has no pre constraints
-            columnScale7a = handleGetColumnScale();
+            acolumnScale7a = handleGetColumnScale();
             // columnScale has no post constraints
-            this.__columnScale7a = columnScale7a;
+            this.columnScale7a = acolumnScale7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnScale7aSet = true;
+                this.columnScale7aSet = true;
             }
         }
-        return columnScale7a;
+        return acolumnScale7a;
     }
 
    /**
@@ -338,8 +341,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsColumnNullable();
 
-    private boolean __columnNullable8a;
-    private boolean __columnNullable8aSet = false;
+    private boolean columnNullable8a;
+    private boolean columnNullable8aSet = false;
 
     /**
      * Whether the column can be nullable.  False for identifier and unique fields.  If
@@ -349,19 +352,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isColumnNullable()
     {
-        boolean columnNullable8a = this.__columnNullable8a;
-        if (!this.__columnNullable8aSet)
+        boolean acolumnNullable8a = this.columnNullable8a;
+        if (!this.columnNullable8aSet)
         {
             // columnNullable has no pre constraints
-            columnNullable8a = handleIsColumnNullable();
+            acolumnNullable8a = handleIsColumnNullable();
             // columnNullable has no post constraints
-            this.__columnNullable8a = columnNullable8a;
+            this.columnNullable8a = acolumnNullable8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnNullable8aSet = true;
+                this.columnNullable8aSet = true;
             }
         }
-        return columnNullable8a;
+        return acolumnNullable8a;
     }
 
    /**
@@ -370,8 +373,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsEager();
 
-    private boolean __eager9a;
-    private boolean __eager9aSet = false;
+    private boolean eager9a;
+    private boolean eager9aSet = false;
 
     /**
      * Determine if the fetch type for this attribute is eager loading.
@@ -379,19 +382,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isEager()
     {
-        boolean eager9a = this.__eager9a;
-        if (!this.__eager9aSet)
+        boolean aeager9a = this.eager9a;
+        if (!this.eager9aSet)
         {
             // eager has no pre constraints
-            eager9a = handleIsEager();
+            aeager9a = handleIsEager();
             // eager has no post constraints
-            this.__eager9a = eager9a;
+            this.eager9a = aeager9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__eager9aSet = true;
+                this.eager9aSet = true;
             }
         }
-        return eager9a;
+        return aeager9a;
     }
 
    /**
@@ -400,8 +403,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsLazy();
 
-    private boolean __lazy10a;
-    private boolean __lazy10aSet = false;
+    private boolean lazy10a;
+    private boolean lazy10aSet = false;
 
     /**
      * Determine if the fetch type for this attribute is lazy loading.
@@ -409,19 +412,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isLazy()
     {
-        boolean lazy10a = this.__lazy10a;
-        if (!this.__lazy10aSet)
+        boolean alazy10a = this.lazy10a;
+        if (!this.lazy10aSet)
         {
             // lazy has no pre constraints
-            lazy10a = handleIsLazy();
+            alazy10a = handleIsLazy();
             // lazy has no post constraints
-            this.__lazy10a = lazy10a;
+            this.lazy10a = alazy10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__lazy10aSet = true;
+                this.lazy10aSet = true;
             }
         }
-        return lazy10a;
+        return alazy10a;
     }
 
    /**
@@ -430,8 +433,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetGeneratorName();
 
-    private String __generatorName11a;
-    private boolean __generatorName11aSet = false;
+    private String generatorName11a;
+    private boolean generatorName11aSet = false;
 
     /**
      * Return the name for the generator, if one exists and should exists for SequenceGenerator and
@@ -440,19 +443,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getGeneratorName()
     {
-        String generatorName11a = this.__generatorName11a;
-        if (!this.__generatorName11aSet)
+        String ageneratorName11a = this.generatorName11a;
+        if (!this.generatorName11aSet)
         {
             // generatorName has no pre constraints
-            generatorName11a = handleGetGeneratorName();
+            ageneratorName11a = handleGetGeneratorName();
             // generatorName has no post constraints
-            this.__generatorName11a = generatorName11a;
+            this.generatorName11a = ageneratorName11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorName11aSet = true;
+                this.generatorName11aSet = true;
             }
         }
-        return generatorName11a;
+        return ageneratorName11a;
     }
 
    /**
@@ -461,8 +464,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetGeneratorSourceName();
 
-    private String __generatorSourceName12a;
-    private boolean __generatorSourceName12aSet = false;
+    private String generatorSourceName12a;
+    private boolean generatorSourceName12aSet = false;
 
     /**
      * Returns the sequence name or table name for the generator depending on the generator type
@@ -471,19 +474,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getGeneratorSourceName()
     {
-        String generatorSourceName12a = this.__generatorSourceName12a;
-        if (!this.__generatorSourceName12aSet)
+        String ageneratorSourceName12a = this.generatorSourceName12a;
+        if (!this.generatorSourceName12aSet)
         {
             // generatorSourceName has no pre constraints
-            generatorSourceName12a = handleGetGeneratorSourceName();
+            ageneratorSourceName12a = handleGetGeneratorSourceName();
             // generatorSourceName has no post constraints
-            this.__generatorSourceName12a = generatorSourceName12a;
+            this.generatorSourceName12a = ageneratorSourceName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorSourceName12aSet = true;
+                this.generatorSourceName12aSet = true;
             }
         }
-        return generatorSourceName12a;
+        return ageneratorSourceName12a;
     }
 
    /**
@@ -492,8 +495,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetGeneratorPkColumnValue();
 
-    private String __generatorPkColumnValue13a;
-    private boolean __generatorPkColumnValue13aSet = false;
+    private String generatorPkColumnValue13a;
+    private boolean generatorPkColumnValue13aSet = false;
 
     /**
      * Returns the name of the primary key value in the generator table assigned to this set of
@@ -502,19 +505,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getGeneratorPkColumnValue()
     {
-        String generatorPkColumnValue13a = this.__generatorPkColumnValue13a;
-        if (!this.__generatorPkColumnValue13aSet)
+        String ageneratorPkColumnValue13a = this.generatorPkColumnValue13a;
+        if (!this.generatorPkColumnValue13aSet)
         {
             // generatorPkColumnValue has no pre constraints
-            generatorPkColumnValue13a = handleGetGeneratorPkColumnValue();
+            ageneratorPkColumnValue13a = handleGetGeneratorPkColumnValue();
             // generatorPkColumnValue has no post constraints
-            this.__generatorPkColumnValue13a = generatorPkColumnValue13a;
+            this.generatorPkColumnValue13a = ageneratorPkColumnValue13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorPkColumnValue13aSet = true;
+                this.generatorPkColumnValue13aSet = true;
             }
         }
-        return generatorPkColumnValue13a;
+        return ageneratorPkColumnValue13a;
     }
 
    /**
@@ -523,8 +526,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract int handleGetGeneratorInitialValue();
 
-    private int __generatorInitialValue14a;
-    private boolean __generatorInitialValue14aSet = false;
+    private int generatorInitialValue14a;
+    private boolean generatorInitialValue14aSet = false;
 
     /**
      * Returns the inital value assigned when allocating ids from the specified generator.
@@ -532,19 +535,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final int getGeneratorInitialValue()
     {
-        int generatorInitialValue14a = this.__generatorInitialValue14a;
-        if (!this.__generatorInitialValue14aSet)
+        int ageneratorInitialValue14a = this.generatorInitialValue14a;
+        if (!this.generatorInitialValue14aSet)
         {
             // generatorInitialValue has no pre constraints
-            generatorInitialValue14a = handleGetGeneratorInitialValue();
+            ageneratorInitialValue14a = handleGetGeneratorInitialValue();
             // generatorInitialValue has no post constraints
-            this.__generatorInitialValue14a = generatorInitialValue14a;
+            this.generatorInitialValue14a = ageneratorInitialValue14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorInitialValue14aSet = true;
+                this.generatorInitialValue14aSet = true;
             }
         }
-        return generatorInitialValue14a;
+        return ageneratorInitialValue14a;
     }
 
    /**
@@ -553,8 +556,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract int handleGetGeneratorAllocationSize();
 
-    private int __generatorAllocationSize15a;
-    private boolean __generatorAllocationSize15aSet = false;
+    private int generatorAllocationSize15a;
+    private boolean generatorAllocationSize15aSet = false;
 
     /**
      * Returns the amount to increment the generator value when allocating id numbers.
@@ -562,19 +565,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final int getGeneratorAllocationSize()
     {
-        int generatorAllocationSize15a = this.__generatorAllocationSize15a;
-        if (!this.__generatorAllocationSize15aSet)
+        int ageneratorAllocationSize15a = this.generatorAllocationSize15a;
+        if (!this.generatorAllocationSize15aSet)
         {
             // generatorAllocationSize has no pre constraints
-            generatorAllocationSize15a = handleGetGeneratorAllocationSize();
+            ageneratorAllocationSize15a = handleGetGeneratorAllocationSize();
             // generatorAllocationSize has no post constraints
-            this.__generatorAllocationSize15a = generatorAllocationSize15a;
+            this.generatorAllocationSize15a = ageneratorAllocationSize15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorAllocationSize15aSet = true;
+                this.generatorAllocationSize15aSet = true;
             }
         }
-        return generatorAllocationSize15a;
+        return ageneratorAllocationSize15a;
     }
 
    /**
@@ -583,8 +586,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsGeneratorTypeSequence();
 
-    private boolean __generatorTypeSequence16a;
-    private boolean __generatorTypeSequence16aSet = false;
+    private boolean generatorTypeSequence16a;
+    private boolean generatorTypeSequence16aSet = false;
 
     /**
      * Returns true if a sequence generator has been assigned to this attribute, false otherwise.
@@ -592,19 +595,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isGeneratorTypeSequence()
     {
-        boolean generatorTypeSequence16a = this.__generatorTypeSequence16a;
-        if (!this.__generatorTypeSequence16aSet)
+        boolean ageneratorTypeSequence16a = this.generatorTypeSequence16a;
+        if (!this.generatorTypeSequence16aSet)
         {
             // generatorTypeSequence has no pre constraints
-            generatorTypeSequence16a = handleIsGeneratorTypeSequence();
+            ageneratorTypeSequence16a = handleIsGeneratorTypeSequence();
             // generatorTypeSequence has no post constraints
-            this.__generatorTypeSequence16a = generatorTypeSequence16a;
+            this.generatorTypeSequence16a = ageneratorTypeSequence16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorTypeSequence16aSet = true;
+                this.generatorTypeSequence16aSet = true;
             }
         }
-        return generatorTypeSequence16a;
+        return ageneratorTypeSequence16a;
     }
 
    /**
@@ -613,8 +616,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsGeneratorTypeTable();
 
-    private boolean __generatorTypeTable17a;
-    private boolean __generatorTypeTable17aSet = false;
+    private boolean generatorTypeTable17a;
+    private boolean generatorTypeTable17aSet = false;
 
     /**
      * Returns true if a table generator has been assigned to this attribute, false otherwise.
@@ -622,19 +625,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isGeneratorTypeTable()
     {
-        boolean generatorTypeTable17a = this.__generatorTypeTable17a;
-        if (!this.__generatorTypeTable17aSet)
+        boolean ageneratorTypeTable17a = this.generatorTypeTable17a;
+        if (!this.generatorTypeTable17aSet)
         {
             // generatorTypeTable has no pre constraints
-            generatorTypeTable17a = handleIsGeneratorTypeTable();
+            ageneratorTypeTable17a = handleIsGeneratorTypeTable();
             // generatorTypeTable has no post constraints
-            this.__generatorTypeTable17a = generatorTypeTable17a;
+            this.generatorTypeTable17a = ageneratorTypeTable17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorTypeTable17aSet = true;
+                this.generatorTypeTable17aSet = true;
             }
         }
-        return generatorTypeTable17a;
+        return ageneratorTypeTable17a;
     }
 
    /**
@@ -643,8 +646,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsGeneratorTypeAuto();
 
-    private boolean __generatorTypeAuto18a;
-    private boolean __generatorTypeAuto18aSet = false;
+    private boolean generatorTypeAuto18a;
+    private boolean generatorTypeAuto18aSet = false;
 
     /**
      * Returns true if an auto generator has been assigned to this attribute, false otherwise.
@@ -652,19 +655,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isGeneratorTypeAuto()
     {
-        boolean generatorTypeAuto18a = this.__generatorTypeAuto18a;
-        if (!this.__generatorTypeAuto18aSet)
+        boolean ageneratorTypeAuto18a = this.generatorTypeAuto18a;
+        if (!this.generatorTypeAuto18aSet)
         {
             // generatorTypeAuto has no pre constraints
-            generatorTypeAuto18a = handleIsGeneratorTypeAuto();
+            ageneratorTypeAuto18a = handleIsGeneratorTypeAuto();
             // generatorTypeAuto has no post constraints
-            this.__generatorTypeAuto18a = generatorTypeAuto18a;
+            this.generatorTypeAuto18a = ageneratorTypeAuto18a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorTypeAuto18aSet = true;
+                this.generatorTypeAuto18aSet = true;
             }
         }
-        return generatorTypeAuto18a;
+        return ageneratorTypeAuto18a;
     }
 
    /**
@@ -673,8 +676,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsGeneratorTypeNone();
 
-    private boolean __generatorTypeNone19a;
-    private boolean __generatorTypeNone19aSet = false;
+    private boolean generatorTypeNone19a;
+    private boolean generatorTypeNone19aSet = false;
 
     /**
      * Returns true no generator has been assigned to this attribute, false otherwise.
@@ -682,19 +685,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isGeneratorTypeNone()
     {
-        boolean generatorTypeNone19a = this.__generatorTypeNone19a;
-        if (!this.__generatorTypeNone19aSet)
+        boolean ageneratorTypeNone19a = this.generatorTypeNone19a;
+        if (!this.generatorTypeNone19aSet)
         {
             // generatorTypeNone has no pre constraints
-            generatorTypeNone19a = handleIsGeneratorTypeNone();
+            ageneratorTypeNone19a = handleIsGeneratorTypeNone();
             // generatorTypeNone has no post constraints
-            this.__generatorTypeNone19a = generatorTypeNone19a;
+            this.generatorTypeNone19a = ageneratorTypeNone19a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorTypeNone19aSet = true;
+                this.generatorTypeNone19aSet = true;
             }
         }
-        return generatorTypeNone19a;
+        return ageneratorTypeNone19a;
     }
 
    /**
@@ -703,8 +706,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsGeneratorTypeIdentity();
 
-    private boolean __generatorTypeIdentity20a;
-    private boolean __generatorTypeIdentity20aSet = false;
+    private boolean generatorTypeIdentity20a;
+    private boolean generatorTypeIdentity20aSet = false;
 
     /**
      * Returns true if an identity generator has been assigned to this attribute, false otherwise.
@@ -712,19 +715,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isGeneratorTypeIdentity()
     {
-        boolean generatorTypeIdentity20a = this.__generatorTypeIdentity20a;
-        if (!this.__generatorTypeIdentity20aSet)
+        boolean ageneratorTypeIdentity20a = this.generatorTypeIdentity20a;
+        if (!this.generatorTypeIdentity20aSet)
         {
             // generatorTypeIdentity has no pre constraints
-            generatorTypeIdentity20a = handleIsGeneratorTypeIdentity();
+            ageneratorTypeIdentity20a = handleIsGeneratorTypeIdentity();
             // generatorTypeIdentity has no post constraints
-            this.__generatorTypeIdentity20a = generatorTypeIdentity20a;
+            this.generatorTypeIdentity20a = ageneratorTypeIdentity20a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorTypeIdentity20aSet = true;
+                this.generatorTypeIdentity20aSet = true;
             }
         }
-        return generatorTypeIdentity20a;
+        return ageneratorTypeIdentity20a;
     }
 
    /**
@@ -733,8 +736,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetTemporalType();
 
-    private String __temporalType21a;
-    private boolean __temporalType21aSet = false;
+    private String temporalType21a;
+    private boolean temporalType21aSet = false;
 
     /**
      * Returns the temporal type value set via tagged value on attribute if one exists.  Expect one
@@ -744,19 +747,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getTemporalType()
     {
-        String temporalType21a = this.__temporalType21a;
-        if (!this.__temporalType21aSet)
+        String atemporalType21a = this.temporalType21a;
+        if (!this.temporalType21aSet)
         {
             // temporalType has no pre constraints
-            temporalType21a = handleGetTemporalType();
+            atemporalType21a = handleGetTemporalType();
             // temporalType has no post constraints
-            this.__temporalType21a = temporalType21a;
+            this.temporalType21a = atemporalType21a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__temporalType21aSet = true;
+                this.temporalType21aSet = true;
             }
         }
-        return temporalType21a;
+        return atemporalType21a;
     }
 
    /**
@@ -765,8 +768,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetEnumerationType();
 
-    private String __enumerationType22a;
-    private boolean __enumerationType22aSet = false;
+    private String enumerationType22a;
+    private boolean enumerationType22aSet = false;
 
     /**
      * Returns the persistent property/field enumeration type.  Will return either ORDINAL for enums
@@ -776,19 +779,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getEnumerationType()
     {
-        String enumerationType22a = this.__enumerationType22a;
-        if (!this.__enumerationType22aSet)
+        String aenumerationType22a = this.enumerationType22a;
+        if (!this.enumerationType22aSet)
         {
             // enumerationType has no pre constraints
-            enumerationType22a = handleGetEnumerationType();
+            aenumerationType22a = handleGetEnumerationType();
             // enumerationType has no post constraints
-            this.__enumerationType22a = enumerationType22a;
+            this.enumerationType22a = aenumerationType22a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__enumerationType22aSet = true;
+                this.enumerationType22aSet = true;
             }
         }
-        return enumerationType22a;
+        return aenumerationType22a;
     }
 
    /**
@@ -797,8 +800,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsInsertEnabled();
 
-    private boolean __insertEnabled23a;
-    private boolean __insertEnabled23aSet = false;
+    private boolean insertEnabled23a;
+    private boolean insertEnabled23aSet = false;
 
     /**
      * Specifies whether a mapped column should be included in SQL INSERT statements.
@@ -806,19 +809,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isInsertEnabled()
     {
-        boolean insertEnabled23a = this.__insertEnabled23a;
-        if (!this.__insertEnabled23aSet)
+        boolean ainsertEnabled23a = this.insertEnabled23a;
+        if (!this.insertEnabled23aSet)
         {
             // insertEnabled has no pre constraints
-            insertEnabled23a = handleIsInsertEnabled();
+            ainsertEnabled23a = handleIsInsertEnabled();
             // insertEnabled has no post constraints
-            this.__insertEnabled23a = insertEnabled23a;
+            this.insertEnabled23a = ainsertEnabled23a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__insertEnabled23aSet = true;
+                this.insertEnabled23aSet = true;
             }
         }
-        return insertEnabled23a;
+        return ainsertEnabled23a;
     }
 
    /**
@@ -827,8 +830,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsUpdateEnabled();
 
-    private boolean __updateEnabled24a;
-    private boolean __updateEnabled24aSet = false;
+    private boolean updateEnabled24a;
+    private boolean updateEnabled24aSet = false;
 
     /**
      * Specifies whether a mapped column should be included in SQL UPDATE statements.
@@ -836,19 +839,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isUpdateEnabled()
     {
-        boolean updateEnabled24a = this.__updateEnabled24a;
-        if (!this.__updateEnabled24aSet)
+        boolean aupdateEnabled24a = this.updateEnabled24a;
+        if (!this.updateEnabled24aSet)
         {
             // updateEnabled has no pre constraints
-            updateEnabled24a = handleIsUpdateEnabled();
+            aupdateEnabled24a = handleIsUpdateEnabled();
             // updateEnabled has no post constraints
-            this.__updateEnabled24a = updateEnabled24a;
+            this.updateEnabled24a = aupdateEnabled24a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__updateEnabled24aSet = true;
+                this.updateEnabled24aSet = true;
             }
         }
-        return updateEnabled24a;
+        return aupdateEnabled24a;
     }
 
    /**
@@ -857,8 +860,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetLobType();
 
-    private String __lobType25a;
-    private boolean __lobType25aSet = false;
+    private String lobType25a;
+    private boolean lobType25aSet = false;
 
     /**
      * Returns the user overriden lob type for this property.  This is set via tagged value
@@ -867,19 +870,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getLobType()
     {
-        String lobType25a = this.__lobType25a;
-        if (!this.__lobType25aSet)
+        String alobType25a = this.lobType25a;
+        if (!this.lobType25aSet)
         {
             // lobType has no pre constraints
-            lobType25a = handleGetLobType();
+            alobType25a = handleGetLobType();
             // lobType has no post constraints
-            this.__lobType25a = lobType25a;
+            this.lobType25a = alobType25a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__lobType25aSet = true;
+                this.lobType25aSet = true;
             }
         }
-        return lobType25a;
+        return alobType25a;
     }
 
    /**
@@ -888,8 +891,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsContainsEmbeddedObject();
 
-    private boolean __containsEmbeddedObject26a;
-    private boolean __containsEmbeddedObject26aSet = false;
+    private boolean containsEmbeddedObject26a;
+    private boolean containsEmbeddedObject26aSet = false;
 
     /**
      * Returns true if this attribute's type is an embedded value object.
@@ -897,19 +900,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isContainsEmbeddedObject()
     {
-        boolean containsEmbeddedObject26a = this.__containsEmbeddedObject26a;
-        if (!this.__containsEmbeddedObject26aSet)
+        boolean acontainsEmbeddedObject26a = this.containsEmbeddedObject26a;
+        if (!this.containsEmbeddedObject26aSet)
         {
             // containsEmbeddedObject has no pre constraints
-            containsEmbeddedObject26a = handleIsContainsEmbeddedObject();
+            acontainsEmbeddedObject26a = handleIsContainsEmbeddedObject();
             // containsEmbeddedObject has no post constraints
-            this.__containsEmbeddedObject26a = containsEmbeddedObject26a;
+            this.containsEmbeddedObject26a = acontainsEmbeddedObject26a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__containsEmbeddedObject26aSet = true;
+                this.containsEmbeddedObject26aSet = true;
             }
         }
-        return containsEmbeddedObject26a;
+        return acontainsEmbeddedObject26a;
     }
 
    /**
@@ -918,8 +921,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsGeneratorTypeGeneric();
 
-    private boolean __generatorTypeGeneric27a;
-    private boolean __generatorTypeGeneric27aSet = false;
+    private boolean generatorTypeGeneric27a;
+    private boolean generatorTypeGeneric27aSet = false;
 
     /**
      * Returns true if a generic generator has been assigned to this attribute, false otherwise.
@@ -927,19 +930,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isGeneratorTypeGeneric()
     {
-        boolean generatorTypeGeneric27a = this.__generatorTypeGeneric27a;
-        if (!this.__generatorTypeGeneric27aSet)
+        boolean ageneratorTypeGeneric27a = this.generatorTypeGeneric27a;
+        if (!this.generatorTypeGeneric27aSet)
         {
             // generatorTypeGeneric has no pre constraints
-            generatorTypeGeneric27a = handleIsGeneratorTypeGeneric();
+            ageneratorTypeGeneric27a = handleIsGeneratorTypeGeneric();
             // generatorTypeGeneric has no post constraints
-            this.__generatorTypeGeneric27a = generatorTypeGeneric27a;
+            this.generatorTypeGeneric27a = ageneratorTypeGeneric27a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorTypeGeneric27aSet = true;
+                this.generatorTypeGeneric27aSet = true;
             }
         }
-        return generatorTypeGeneric27a;
+        return ageneratorTypeGeneric27a;
     }
 
    /**
@@ -948,8 +951,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetGeneratorGenericStrategy();
 
-    private String __generatorGenericStrategy28a;
-    private boolean __generatorGenericStrategy28aSet = false;
+    private String generatorGenericStrategy28a;
+    private boolean generatorGenericStrategy28aSet = false;
 
     /**
      * Returns the org.hibernate.annotations.GenericGenerator strategy either a predefined Hibernate
@@ -958,19 +961,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getGeneratorGenericStrategy()
     {
-        String generatorGenericStrategy28a = this.__generatorGenericStrategy28a;
-        if (!this.__generatorGenericStrategy28aSet)
+        String ageneratorGenericStrategy28a = this.generatorGenericStrategy28a;
+        if (!this.generatorGenericStrategy28aSet)
         {
             // generatorGenericStrategy has no pre constraints
-            generatorGenericStrategy28a = handleGetGeneratorGenericStrategy();
+            ageneratorGenericStrategy28a = handleGetGeneratorGenericStrategy();
             // generatorGenericStrategy has no post constraints
-            this.__generatorGenericStrategy28a = generatorGenericStrategy28a;
+            this.generatorGenericStrategy28a = ageneratorGenericStrategy28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__generatorGenericStrategy28aSet = true;
+                this.generatorGenericStrategy28aSet = true;
             }
         }
-        return generatorGenericStrategy28a;
+        return ageneratorGenericStrategy28a;
     }
 
    /**
@@ -979,8 +982,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsColumnEmptyable();
 
-    private boolean __columnEmptyable29a;
-    private boolean __columnEmptyable29aSet = false;
+    private boolean columnEmptyable29a;
+    private boolean columnEmptyable29aSet = false;
 
     /**
      * Whether the column can be empty.  False for identifier and unique fields.  If
@@ -990,19 +993,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isColumnEmptyable()
     {
-        boolean columnEmptyable29a = this.__columnEmptyable29a;
-        if (!this.__columnEmptyable29aSet)
+        boolean acolumnEmptyable29a = this.columnEmptyable29a;
+        if (!this.columnEmptyable29aSet)
         {
             // columnEmptyable has no pre constraints
-            columnEmptyable29a = handleIsColumnEmptyable();
+            acolumnEmptyable29a = handleIsColumnEmptyable();
             // columnEmptyable has no post constraints
-            this.__columnEmptyable29a = columnEmptyable29a;
+            this.columnEmptyable29a = acolumnEmptyable29a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnEmptyable29aSet = true;
+                this.columnEmptyable29aSet = true;
             }
         }
-        return columnEmptyable29a;
+        return acolumnEmptyable29a;
     }
 
    /**
@@ -1011,8 +1014,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract boolean handleIsColumnEmailable();
 
-    private boolean __columnEmailable30a;
-    private boolean __columnEmailable30aSet = false;
+    private boolean columnEmailable30a;
+    private boolean columnEmailable30aSet = false;
 
     /**
      * Whether the column can be an email.  If andromda_persistence_column_emailable tag is set, the
@@ -1021,19 +1024,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final boolean isColumnEmailable()
     {
-        boolean columnEmailable30a = this.__columnEmailable30a;
-        if (!this.__columnEmailable30aSet)
+        boolean acolumnEmailable30a = this.columnEmailable30a;
+        if (!this.columnEmailable30aSet)
         {
             // columnEmailable has no pre constraints
-            columnEmailable30a = handleIsColumnEmailable();
+            acolumnEmailable30a = handleIsColumnEmailable();
             // columnEmailable has no post constraints
-            this.__columnEmailable30a = columnEmailable30a;
+            this.columnEmailable30a = acolumnEmailable30a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnEmailable30aSet = true;
+                this.columnEmailable30aSet = true;
             }
         }
-        return columnEmailable30a;
+        return acolumnEmailable30a;
     }
 
    /**
@@ -1042,8 +1045,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetColumnPatternable();
 
-    private String __columnPatternable31a;
-    private boolean __columnPatternable31aSet = false;
+    private String columnPatternable31a;
+    private boolean columnPatternable31aSet = false;
 
     /**
      * Whether the column can have a validation pattern. If andromda_validation_pattern tag is set,
@@ -1052,19 +1055,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getColumnPatternable()
     {
-        String columnPatternable31a = this.__columnPatternable31a;
-        if (!this.__columnPatternable31aSet)
+        String acolumnPatternable31a = this.columnPatternable31a;
+        if (!this.columnPatternable31aSet)
         {
             // columnPatternable has no pre constraints
-            columnPatternable31a = handleGetColumnPatternable();
+            acolumnPatternable31a = handleGetColumnPatternable();
             // columnPatternable has no post constraints
-            this.__columnPatternable31a = columnPatternable31a;
+            this.columnPatternable31a = acolumnPatternable31a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnPatternable31aSet = true;
+                this.columnPatternable31aSet = true;
             }
         }
-        return columnPatternable31a;
+        return acolumnPatternable31a;
     }
 
    /**
@@ -1073,8 +1076,8 @@ public abstract class EJB3EntityAttributeFacadeLogic
     */
     protected abstract String handleGetColumnMinLength();
 
-    private String __columnMinLength32a;
-    private boolean __columnMinLength32aSet = false;
+    private String columnMinLength32a;
+    private boolean columnMinLength32aSet = false;
 
     /**
      * Whether the column can have a validation on minimum length. If andromda_validation_minLength
@@ -1083,19 +1086,19 @@ public abstract class EJB3EntityAttributeFacadeLogic
      */
     public final String getColumnMinLength()
     {
-        String columnMinLength32a = this.__columnMinLength32a;
-        if (!this.__columnMinLength32aSet)
+        String acolumnMinLength32a = this.columnMinLength32a;
+        if (!this.columnMinLength32aSet)
         {
             // columnMinLength has no pre constraints
-            columnMinLength32a = handleGetColumnMinLength();
+            acolumnMinLength32a = handleGetColumnMinLength();
             // columnMinLength has no post constraints
-            this.__columnMinLength32a = columnMinLength32a;
+            this.columnMinLength32a = acolumnMinLength32a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__columnMinLength32aSet = true;
+                this.columnMinLength32aSet = true;
             }
         }
-        return columnMinLength32a;
+        return acolumnMinLength32a;
     }
 
     // ------------- associations ------------------
@@ -1489,7 +1492,7 @@ public abstract class EJB3EntityAttributeFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperEntityAttribute().findTaggedValues(tagName);
     }
@@ -1519,7 +1522,7 @@ public abstract class EJB3EntityAttributeFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperEntityAttribute().getConstraints(kind);
     }

@@ -37,17 +37,20 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     extends MetafacadeBase
     implements EJB3MessageDrivenOperationFacade
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected EJB3MessageDrivenOperationFacadeLogic(Object metaObjectIn, String context)
+    protected EJB3MessageDrivenOperationFacadeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superServiceOperation =
@@ -125,8 +128,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     */
     protected abstract boolean handleIsPostConstruct();
 
-    private boolean __postConstruct1a;
-    private boolean __postConstruct1aSet = false;
+    private boolean postConstruct1a;
+    private boolean postConstruct1aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostConstruct>> stereotype.
@@ -135,19 +138,19 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      */
     public final boolean isPostConstruct()
     {
-        boolean postConstruct1a = this.__postConstruct1a;
-        if (!this.__postConstruct1aSet)
+        boolean apostConstruct1a = this.postConstruct1a;
+        if (!this.postConstruct1aSet)
         {
             // postConstruct has no pre constraints
-            postConstruct1a = handleIsPostConstruct();
+            apostConstruct1a = handleIsPostConstruct();
             // postConstruct has no post constraints
-            this.__postConstruct1a = postConstruct1a;
+            this.postConstruct1a = apostConstruct1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__postConstruct1aSet = true;
+                this.postConstruct1aSet = true;
             }
         }
-        return postConstruct1a;
+        return apostConstruct1a;
     }
 
    /**
@@ -156,8 +159,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     */
     protected abstract boolean handleIsPreDestroy();
 
-    private boolean __preDestroy2a;
-    private boolean __preDestroy2aSet = false;
+    private boolean preDestroy2a;
+    private boolean preDestroy2aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PreDestroy>> stereotype.
@@ -166,19 +169,19 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      */
     public final boolean isPreDestroy()
     {
-        boolean preDestroy2a = this.__preDestroy2a;
-        if (!this.__preDestroy2aSet)
+        boolean apreDestroy2a = this.preDestroy2a;
+        if (!this.preDestroy2aSet)
         {
             // preDestroy has no pre constraints
-            preDestroy2a = handleIsPreDestroy();
+            apreDestroy2a = handleIsPreDestroy();
             // preDestroy has no post constraints
-            this.__preDestroy2a = preDestroy2a;
+            this.preDestroy2a = apreDestroy2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__preDestroy2aSet = true;
+                this.preDestroy2aSet = true;
             }
         }
-        return preDestroy2a;
+        return apreDestroy2a;
     }
 
     /**
@@ -233,7 +236,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      * will contains only String instances, or will be empty. Never null.
      * @see ModelElementFacade#findTaggedValues(String tagName)
      */
-    public Collection findTaggedValues(String tagName)
+    public Collection<Object> findTaggedValues(String tagName)
     {
         return this.getSuperServiceOperation().findTaggedValues(tagName);
     }
@@ -263,7 +266,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      * kinds are "inv", "pre" and "post". Other kinds are possible.
      * @see ModelElementFacade#getConstraints(String kind)
      */
-    public Collection getConstraints(String kind)
+    public Collection<ConstraintFacade> getConstraints(String kind)
     {
         return this.getSuperServiceOperation().getConstraints(kind);
     }
@@ -733,7 +736,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      * A collection of all exceptions thrown by this operation.
      * @see OperationFacade#getExceptions()
      */
-    public Collection getExceptions()
+    public Collection<ModelElementFacade> getExceptions()
     {
         return this.getSuperServiceOperation().getExceptions();
     }
