@@ -30,7 +30,7 @@ public class SimpleTest extends SeamOpenEjbTest
                 this.setValue("#{identity.password}", "cooldude");
                 SimpleTest.logger.info("Identity password : " + this.getValue("#{identity.password}"));
                 this.invokeMethod("#{identity.login}");
-                
+
                 assert this.getValue("#{identity.loggedIn}").equals(true);
 
                 this.invokeMethod("#{identity.logout}");
