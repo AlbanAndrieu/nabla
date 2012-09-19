@@ -39,7 +39,7 @@ public abstract class UserServiceBase implements UserService
     /**
      * Inject DAO UserDao
      */
-    @EJB    
+    @EJB(mappedName="howtomodel-1.0/UserDaoImpl")
     private UserDao userDao;
 
     // --------------- Constructors ---------------

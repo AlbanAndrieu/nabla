@@ -34,13 +34,13 @@ public abstract class PersonDaoBase implements PersonDao
 {
 
     private static final Logger logger = Logger.getLogger(PersonDaoBase.class);
-    
+
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context howtomodel     */    
+     * Inject persistence context howtomodel     */
     @PersistenceContext(unitName = "howtomodel")
     protected EntityManager entityManager;
 

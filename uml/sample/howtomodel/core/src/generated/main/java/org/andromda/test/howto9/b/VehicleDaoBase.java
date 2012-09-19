@@ -32,13 +32,13 @@ public abstract class VehicleDaoBase implements VehicleDao
 {
 
     private static final Logger logger = Logger.getLogger(VehicleDaoBase.class);
-    
+
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context howtomodel     */    
+     * Inject persistence context howtomodel     */
     @PersistenceContext(unitName = "howtomodel")
     protected EntityManager entityManager;
 

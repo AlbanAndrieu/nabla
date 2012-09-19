@@ -41,13 +41,13 @@ public abstract class RentalServiceBase implements RentalService
     /**
      * Inject DAO PersonDao
      */
-    @EJB    
+    @EJB(mappedName="howtomodel-1.0/PersonDaoImpl")
     private PersonDao personDao;
 
     /**
      * Inject DAO CarDao
      */
-    @EJB    
+    @EJB(mappedName="howtomodel-1.0/CarDaoImpl")
     private CarDao carDao;
 
     // ------ Message Driven EJB Injection Definitions --------
