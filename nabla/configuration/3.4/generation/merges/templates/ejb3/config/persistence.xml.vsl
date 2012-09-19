@@ -90,6 +90,10 @@ Modify as necessary for JPA unit testing
 #end
 #if ($hibernateEnableCache.equalsIgnoreCase("true"))
 #**##if ($stringUtils.isNotBlank($hibernateCacheProvider))
+            <!-- does not work with jboss 7 : https://docs.jboss.org/author/display/AS7/Seam+2+Booking+EAR+Migration+of+Binaries+-+Step+by+Step 
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
+            please set property hibernate.cache.provider to empty for hibernateCacheProvider in pom.xml in server for profile jboss7
+            -->
             <property name="hibernate.cache.provider_class" value="${hibernateCacheProvider}"/>
 #**##end
 #**##if ($stringUtils.isNotBlank($hibernateTreecacheMbeanObject))
@@ -102,7 +106,11 @@ Modify as necessary for JPA unit testing
 
             <!-- Must add hibernate3 module: http://planet.jboss.org/post/using_a_different_persistence_provider_with_as_7_0_1
             <property name="hibernate.ejb.resource_scanner" value="org.jboss.as.jpa.hibernate3.HibernateAnnotationScanner"/>-->
-            <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/>
+            <!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/>-->
+            <!-- define JPA provider, check: 
+            https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication
+      	    <property name="jboss.as.jpa.providerModule" value="hibernate3-bundled" /> -->
+            <property name="jboss.as.jpa.providerModule" value="${jpa.provider.module}" />
 
             <property name="hibernate.transaction.manager_lookup_class" value="${pu.hibernate.transaction.manager_lookup_class}"/>
             <!--<property name="jboss.entity.manager.factory.jndi.name" value="${entityManagerFactoryJndiName}"/>-->
@@ -169,6 +177,10 @@ Modify as necessary for JPA unit testing
 #end
 #if ($hibernateEnableCache.equalsIgnoreCase("true"))
 #*  *##if ($stringUtils.isNotBlank($hibernateCacheProvider))
+            <!-- does not work with jboss 7 : https://docs.jboss.org/author/display/AS7/Seam+2+Booking+EAR+Migration+of+Binaries+-+Step+by+Step 
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
+            please set property hibernate.cache.provider to empty for hibernateCacheProvider in pom.xml in server for profile jboss7
+            -->
             <property name="hibernate.cache.provider_class" value="${hibernateCacheProvider}"/>
 #*  *##end
 #*  *##if ($stringUtils.isNotBlank($hibernateTreecacheMbeanObject))
