@@ -55,6 +55,10 @@
                     <groupId>jboss.jboss-embeddable-ejb3</groupId>
                     <artifactId>thirdparty-all</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -62,57 +66,47 @@
             <artifactId>web</artifactId>
             <version>${project.version}</version>
             <type>war</type>
-            <!--<type>seam-war</type>-->
         </dependency>
-        
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>${scope.type}</scope>
+        </dependency>
+
         <!-- commons -->
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils-core</artifactId>
             <type>jar</type>
-        </dependency>        
-        
+        </dependency>
+
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
-            <type>jar</type>            
-            <!--<version>${commons.digester.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-            -->
+            <type>jar</type>
         </dependency>
-        
+
         <!--
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
         </dependency>
         -->
-        
+
         <!-- Jboss Seam -->
         <dependency>
           <groupId>org.jboss.seam</groupId>
           <artifactId>jboss-seam</artifactId>
           <type>ejb</type>
-          <!--<scope>provided</scope>-->
         </dependency>
 
 	<dependency>
 	  <groupId>org.jboss.seam</groupId>
 	  <artifactId>jboss-seam-remoting</artifactId>
 	  <version>${seam.version}</version>
-	  <exclusions>
-	  	<exclusion>
-	  		<groupId>dom4j</groupId>
-	  		<artifactId>dom4j</artifactId>
-	  	</exclusion>
-	  </exclusions>
 	</dependency>
-               
+
         <!--
         <dependency>
           <groupId>org.jboss.seam</groupId>
@@ -124,103 +118,141 @@
           <groupId>org.jboss.el</groupId>
           <artifactId>jboss-el</artifactId>
           <type>jar</type>
-          <!--<scope>provided</scope>-->
         </dependency>
-        
+
         <!-- richfaces -->
         <dependency>
           <groupId>org.richfaces.framework</groupId>
           <artifactId>richfaces-api</artifactId>
           <type>jar</type>
         </dependency>
-            
+
         <!--
-	<dependency> 
-	  <groupId>net.sf.ehcache</groupId> 
-	  <artifactId>ehcache</artifactId> 
+	<dependency>
+	  <groupId>net.sf.ehcache</groupId>
+	  <artifactId>ehcache</artifactId>
 	  <version>${ehcache.jar.version}</version>
           <type>jar</type>
 	</dependency>
 	-->
-	
+
         <!-- hibernate -->
-        <!--
+        <!-- Define hiberante artifacts versions -->
+        <!-- Define dependency version of hibernate-core -->
         <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-commons-annotations</artifactId>
-          <scope>provided</scope>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <scope>compile</scope>
         </dependency>
-        -->
-                
-        <!-- 
-          JBoss Rules. Needed if you implement drools functionality, e.g. Seam Idendity 
-          see: samples/jboss-seam/examlpes/seamspace 
+
+        <!-- Define dependency version of hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Define dependency version of hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- NOTE: hibernate-annotations are not included here, since hibernate-core 
+        3.6.X contains former artifact. -->
+        <!--
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-annotations</artifactId>
+		<scope>compile</scope>
+	</dependency>
+	-->
+	
+        <!-- Define dependency version of hibernate-commons-annotations -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Define dependency version of hibernate-infinispan -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-infinispan</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--
+          JBoss Rules. Needed if you implement drools functionality, e.g. Seam Idendity
+          see: samples/jboss-seam/examlpes/seamspace
         -->
         <dependency>
           <groupId>org.drools</groupId>
           <artifactId>drools-core</artifactId>
           <version>${drools.version}</version>
         </dependency>
-      
+
         <dependency>
           <groupId>org.drools</groupId>
           <artifactId>drools-compiler</artifactId>
           <version>${drools.version}</version>
         </dependency>
-        
-        <!-- 
+
+        <!--
         <dependency>
           <groupId>org.drools</groupId>
           <artifactId>drools-api</artifactId>
         </dependency>
-       
+
         <dependency>
           <groupId>org.drools</groupId>
           <artifactId>drools-decisiontables</artifactId>
         </dependency>
-       
+
         <dependency>
           <groupId>org.drools</groupId>
           <artifactId>drools-templates</artifactId>
         </dependency>
-       
+
         <dependency>
           <groupId>com.thoughtworks.xstream</groupId>
           <artifactId>xstream</artifactId>
         </dependency>
-       
+
         <dependency>
           <groupId>xpp3</groupId>
           <artifactId>xpp3_min</artifactId>
         </dependency>
         -->
-        
+
         <!-- rules + groovy -->
-        <!-- 
+        <!--
         <dependency>
           <groupId>org.antlr</groupId>
           <artifactId>antlr-runtime</artifactId>
         </dependency>
-        --> 
-        
-        <!-- Added transient by JBoss Rules 
+        -->
+
+        <!-- Added transient by JBoss Rules
         <dependency>
           <groupId>org.mvel</groupId>
           <artifactId>mvel2</artifactId>
           <version>${mvel.version}</version>
-        </dependency> 
+        </dependency>
 
         <dependency>
           <groupId>janino</groupId>
           <artifactId>janino</artifactId>
         </dependency>
-       
+
         <dependency>
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>core</artifactId>
         </dependency>
         -->
-       
+
         <!-- JBoss jBPM -->
         <!--
         <dependency>
@@ -240,13 +272,13 @@
 	   		<groupId>org.hibernate</groupId>
 	   		<artifactId>hibernate</artifactId>
 	   	</exclusion>
-	   </exclusions>     
-        </dependency>	
+	   </exclusions>
+        </dependency>
 	<dependency>
 	   <groupId>org.apache.lucene</groupId>
 	   <artifactId>lucene-core</artifactId>
 	   <scope>provided</scope>
-	</dependency>  
+	</dependency>
 
 	<dependency>
 	   <groupId>com.google.gwt</groupId>
@@ -259,7 +291,7 @@
              <artifactId>gwt-servlet</artifactId>
              <version>${gwt.version}</version>
         </dependency>
-		
+
         <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
         <!--
         <dependency>
@@ -291,8 +323,8 @@
               </includes>
             </resource>
         </resources>
-        
-        <plugins>        
+
+        <plugins>
             <!--
               Maven resources plugin The default resources folder for ear is the
               src/main/application folder. Stuff in this folder will go into the
@@ -352,10 +384,10 @@
                     <finalName>${application.id}-ear</finalName>
                     <displayName>${application.display.name}</displayName>
                     <description>${application.description}</description>
+                    <generateApplicationXml>false</generateApplicationXml>
                     <!--
-                    <generateApplicationXml>true</generateApplicationXml>
                     <includeJar>false</includeJar>
-                    <fileNameMapping>no-version</fileNameMapping>                    
+                    <fileNameMapping>no-version</fileNameMapping>
                     -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <!--
@@ -367,7 +399,7 @@
         	        <artifactTypeMapping type="seam-war" mapping="war"/>
         	    </artifactTypeMappings>
         	    <unpackTypes>war</unpackTypes>
-        	    -->                    
+        	    -->
         	    <!--<ejbVersion>3.0</ejbVersion>-->
                     <jboss>
                       <!--
@@ -375,12 +407,12 @@
                         configure the 'jboss' element. see:
                         http://maven.apache.org/plugins/maven-ear-plugin/usage.html and:
                         http://maven.apache.org/plugins/maven-ear-plugin/examples/generating-jboss-app.html
-                      -->                    
-                      <version>${as.version}</version><!-- JBosse version -->
-         
+                      -->
+                      <version>${as.version}</version><!-- JBoss version -->
+
                       <!--
                       <loader-repository>org.andromda.timetracker:loader=${project.build.finalName}</loader-repository>
-                      <loader-repository-config>java2ParentDelegation=false</loader-repository-config>                      
+                      <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
                       -->
                       <loader-repository>
                         <!--
@@ -389,8 +421,8 @@
                           application from those that exist within the JBoss application
                           server's shared artifacts or JARs (for example, those that
                           reside in the default server's lib directory or in JBoss's
-                          general lib directory). 
-                          The classloader is referenced in jboss-app.xml for EAR deployment and and in 
+                          general lib directory).
+                          The classloader is referenced in jboss-app.xml for EAR deployment and and in
                           jboss-web.xml for WAR deployment (SiA-2.5.3-p63).
                           see: http://www.jboss.org/community/wiki/classloadingconfiguration
                           see: http://www.mastertheboss.com/en/jboss-application-server/141-jboss-classloader.html
@@ -402,9 +434,9 @@
                         Comment out this tag if you have deployed the *-ds.xml file to the appserver's deploy folder
                       -->
                       <data-sources>
-                        <!--<data-source>META-INF/${application.id}-login-service.xml</data-source>--> 
+                        <!--<data-source>META-INF/${application.id}-login-service.xml</data-source>-->
                         <data-source>META-INF/ds/${application.id}-ds.xml</data-source>
-                      </data-sources>    
+                      </data-sources>
                     </jboss>
 
                     <modules>
@@ -419,15 +451,15 @@
                             <artifactId>el-api</artifactId>
                             <includeInApplicationXml>true</includeInApplicationXml>
                         </jarModule>
-                        -->              
-                        <!--                    
+                        -->
+                        <!--
                         <jarModule>
                             <groupId>org.jboss.seam</groupId>
                             <artifactId>jboss-seam</artifactId>
                             <includeInApplicationXml>true</includeInApplicationXml>
-                        </jarModule>  
-                        -->                  
-                                    
+                        </jarModule>
+                        -->
+
                         <!--
                         <jarModule>
                             <groupId>${project.groupId}</groupId>
@@ -442,17 +474,17 @@
                             <contextRoot>/${application.id}</contextRoot>
                             <unpack>${application.unpack.modules}</unpack>
                         </webModule>
-                   
+
                         <ejbModule>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>core</artifactId>
                             <unpack>${application.unpack.modules}</unpack>
                         </ejbModule>
-                                                
+
                         <ejbModule>
                             <groupId>org.jboss.seam</groupId>
                             <artifactId>jboss-seam</artifactId>
-                        </ejbModule>                        
+                        </ejbModule>
                     </modules>
 
                     <archive>
@@ -461,7 +493,15 @@
                         <Build-Revision>${buildNumber}</Build-Revision>
                         <Mode>${environment}</Mode>
                       </manifestEntries>
-                    </archive>                    
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${maven.jboss.as.plugin.version}</version>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
             <plugin>
@@ -483,7 +523,7 @@
                         </copy>
                     </target>
                 </configuration>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>

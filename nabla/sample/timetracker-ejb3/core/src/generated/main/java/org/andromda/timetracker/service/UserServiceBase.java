@@ -45,7 +45,7 @@ public abstract class UserServiceBase implements UserService, Serializable
     /**
      * Inject DAO UserDao
      */
-    @EJB    
+    @EJB 
     private UserDao userDao;
 
     // --------- Attribute Definitions ------------

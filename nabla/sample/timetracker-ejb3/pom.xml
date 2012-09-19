@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -185,6 +185,7 @@
         <module>core</module>
         <!--<module>core-test</module>-->
         <module>service</module>
+        <module>war-base</module>
         <module>web</module>
         <module>app</module>
         <module>client</module>
@@ -214,10 +215,20 @@
         <maven.build.generated>src/generated</maven.build.generated>
         -->
         <commons.digester.version>1.8.1</commons.digester.version>
-        <!-- WORKS
-        <hibernate.core.version>3.3.2.GA</hibernate.core.version>
-        <hibernate.entitymanager.version>3.3.2.GA</hibernate.entitymanager.version>
+        <!-- WORKS with jboss 7 but not openejb
+        <hibernate.core.version>3.6.8.Final</hibernate.core.version>
         -->
+        <!-- works with hibernate.core.version 3.6.8.Final -->
+        <!--
+        <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version> 
+        -->
+        <!-- WORKS with openejb
+        <hibernate.core.version>3.3.2.GA</hibernate.core.version>
+        <hibernate.entitymanager.version>${hibernate.core.version}</hibernate.entitymanager.version>
+        -->        
+        <!-- <hibernate.validator.version>4.2.0.Final</hibernate.validator.version> -->
+        <!--error in test <hibernate.annotations.version>3.2.0.ga</hibernate.annotations.version>-->
+        <!--<hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>-->
         <!--
         <hibernate.core.version>3.6.10.Final</hibernate.core.version>
         <hibernate.entitymanager.version>3.6.10.Final</hibernate.entitymanager.version>
@@ -244,9 +255,6 @@
         <jboss.el.version>1.0_02.CR5</jboss.el.version>
         <!--<jboss.el.version>2.0.1.GA</jboss.el.version>-->
         <!--<gwt.version>1.5.2</gwt.version>-->
-        <!--<hibernate.validator.version>4.2.0.Final</hibernate.validator.version> TODO -->
-        <!--error in test <hibernate.annotations.version>3.2.0.ga</hibernate.annotations.version>-->
-        <hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>
 
         <!--<hibernate3.version>3.6.8.Final</hibernate3.version>-->
 
@@ -259,16 +267,18 @@
  
     	<application.context>${application.id}</application.context>
     	<application.web.context>${application.context}</application.web.context>
-    	<application.display.name>Seam Reference Implementation</application.display.name>
+    	<application.display.name>Nabla Reference Implementation</application.display.name>
     	<application.description>
-    	  The Seam Reference Implementation is a Maven multi module project 
+    	  The Nabla Reference Implementation is a Maven multi module project 
     	  you can use as a template for your own JBoss Seam project
     	</application.description>
     	<application.distributable>false</application.distributable>
     	<!-- JBoss JNDI Pattern -->
-    	<application.jndi.pattern>${application.context}-ear/#{ejbName}/local</application.jndi.pattern>
+    	<application.jndi.pattern>${ejb.jndi.pattern}</application.jndi.pattern>
     	<!-- OpenEJB JNDI Pattern -->
-    	<application.jndi.pattern.test>/#{ejbName}/Local</application.jndi.pattern.test>
+    	<!--use same propertie as jboss5x profile for openejb to work -->
+    	<application.jndi.pattern.test>${ejb.jndi.pattern.test}</application.jndi.pattern.test>    	
+
     	<application.unpack.modules>false</application.unpack.modules>
     </properties>
 </project>

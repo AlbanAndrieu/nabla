@@ -244,15 +244,18 @@
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-core</artifactId>
-                    <!--<version>${hibernate3.version}</version>-->
-                    <version>${hibernate.core.version}</version>
+                    <version>${hibernate.legacy.core.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
-                    <!--<version>${hibernate3.version}</version>-->
-                    <version>${hibernate.entitymanager.version}</version>
-                  </dependency>
+                    <version>${hibernate.legacy.entitymanager.version}</version>
+                  </dependency>                       
+                  <dependency>
+                      <groupId>org.hibernate</groupId>
+                      <artifactId>hibernate-validator</artifactId>
+                      <version>${hibernate.validator.version}</version>
+                  </dependency>                  
                   <dependency>
                       <groupId>javax.validation</groupId>
                       <artifactId>validation-api</artifactId>
@@ -267,11 +270,6 @@
                       <groupId>org.slf4j</groupId>
                       <artifactId>slf4j-simple</artifactId>
                       <version>${slf4j.version}</version>
-                  </dependency>                       
-                  <dependency>
-                      <groupId>org.hibernate</groupId>
-                      <artifactId>hibernate-validator</artifactId>
-                      <version>${hibernate.validator.version}</version>
                   </dependency>
                 </dependencies>
             </plugin>
@@ -330,6 +328,7 @@
             <!-- Use for in-memory DB jdbc:h2:timetracker;MODE=MySQL for in-JVM connections only, but it must be started within maven -->
             <!-- Use for server DB jdbc:h2:tcp://localhost/timetracker;MODE=MySQL for external connections, but it must be started outside maven -->
             <!-- default-cli execution id allows us to run the same configuration from the mvn command line -->
+            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sql-maven-plugin</artifactId>
@@ -351,19 +350,25 @@
                         </goals>
                         <configuration>
                             <autocommit>true</autocommit>
+                            -->
                             <!-- Ascending alphabetical order, not the order of files in includes -->
                             <!--<orderFile>ascending</orderFile>-->
+                            <!--
                             <fileset>
                                 <basedir>${basedir}/../app/src/main/sql</basedir>
                                 <includes>
+                                    -->
                                     <!--<include>schema.sql</include>-->
                                     <!--<include>schema-drop.sql</include>-->
                                     <!--<include>schema-create.sql</include>-->
+                                    <!--
                                     <include>static-data-insert.sql</include>
                                     <include>test-data-insert.sql</include>
                                 </includes>
                             </fileset>
+                            -->
                             <!-- We continue because database can be already created and data already inserted -->
+                            <!--
                             <onError>continue</onError>
                         </configuration>
                     </execution>
@@ -376,6 +381,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-ejb-plugin</artifactId>

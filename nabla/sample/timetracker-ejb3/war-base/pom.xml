@@ -529,7 +529,7 @@
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>${maven.jboss.as.maven.plugin.version}</version>
+                <version>${maven.jboss.as.plugin.version}</version>
             </plugin>
             <!-- mvn -Dslf4j=false -Dlog4j.configuration=file:../../etc/log4j.lcf -Dapplication.property.dir=../../etc jetty:run-war -->
             <!-- mvn jetty:run-war >jetty.log -->
