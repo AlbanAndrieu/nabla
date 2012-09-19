@@ -55,17 +55,20 @@ public abstract class GuiUseCaseLogic
     extends MetafacadeBase
     implements GuiUseCase
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiUseCaseLogic(Object metaObjectIn, String context)
+    protected GuiUseCaseLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndUseCase =
@@ -80,7 +83,7 @@ public abstract class GuiUseCaseLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiUseCaseLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiUseCaseLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -148,8 +151,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetTitleKey();
 
-    private String __titleKey1a;
-    private boolean __titleKey1aSet = false;
+    private String titleKey1a;
+    private boolean titleKey1aSet = false;
 
     /**
      * The title message key for this use-case.
@@ -157,19 +160,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getTitleKey()
     {
-        String titleKey1a = this.__titleKey1a;
-        if (!this.__titleKey1aSet)
+        String atitleKey1a = this.titleKey1a;
+        if (!this.titleKey1aSet)
         {
             // titleKey has no pre constraints
-            titleKey1a = handleGetTitleKey();
+            atitleKey1a = handleGetTitleKey();
             // titleKey has no post constraints
-            this.__titleKey1a = titleKey1a;
+            this.titleKey1a = atitleKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__titleKey1aSet = true;
+                this.titleKey1aSet = true;
             }
         }
-        return titleKey1a;
+        return atitleKey1a;
     }
 
    /**
@@ -178,8 +181,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetTitleValue();
 
-    private String __titleValue2a;
-    private boolean __titleValue2aSet = false;
+    private String titleValue2a;
+    private boolean titleValue2aSet = false;
 
     /**
      * The title message value for this use-case.
@@ -187,19 +190,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getTitleValue()
     {
-        String titleValue2a = this.__titleValue2a;
-        if (!this.__titleValue2aSet)
+        String atitleValue2a = this.titleValue2a;
+        if (!this.titleValue2aSet)
         {
             // titleValue has no pre constraints
-            titleValue2a = handleGetTitleValue();
+            atitleValue2a = handleGetTitleValue();
             // titleValue has no post constraints
-            this.__titleValue2a = titleValue2a;
+            this.titleValue2a = atitleValue2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__titleValue2aSet = true;
+                this.titleValue2aSet = true;
             }
         }
-        return titleValue2a;
+        return atitleValue2a;
     }
 
    /**
@@ -208,8 +211,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetActionPath();
 
-    private String __actionPath3a;
-    private boolean __actionPath3aSet = false;
+    private String actionPath3a;
+    private boolean actionPath3aSet = false;
 
     /**
      * This use-case's action path.
@@ -217,19 +220,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getActionPath()
     {
-        String actionPath3a = this.__actionPath3a;
-        if (!this.__actionPath3aSet)
+        String aactionPath3a = this.actionPath3a;
+        if (!this.actionPath3aSet)
         {
             // actionPath has no pre constraints
-            actionPath3a = handleGetActionPath();
+            aactionPath3a = handleGetActionPath();
             // actionPath has no post constraints
-            this.__actionPath3a = actionPath3a;
+            this.actionPath3a = aactionPath3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__actionPath3aSet = true;
+                this.actionPath3aSet = true;
             }
         }
-        return actionPath3a;
+        return aactionPath3a;
     }
 
    /**
@@ -238,8 +241,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetActionPathRoot();
 
-    private String __actionPathRoot4a;
-    private boolean __actionPathRoot4aSet = false;
+    private String actionPathRoot4a;
+    private boolean actionPathRoot4aSet = false;
 
     /**
      * The root of the action path.
@@ -247,19 +250,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getActionPathRoot()
     {
-        String actionPathRoot4a = this.__actionPathRoot4a;
-        if (!this.__actionPathRoot4aSet)
+        String aactionPathRoot4a = this.actionPathRoot4a;
+        if (!this.actionPathRoot4aSet)
         {
             // actionPathRoot has no pre constraints
-            actionPathRoot4a = handleGetActionPathRoot();
+            aactionPathRoot4a = handleGetActionPathRoot();
             // actionPathRoot has no post constraints
-            this.__actionPathRoot4a = actionPathRoot4a;
+            this.actionPathRoot4a = aactionPathRoot4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__actionPathRoot4aSet = true;
+                this.actionPathRoot4aSet = true;
             }
         }
-        return actionPathRoot4a;
+        return aactionPathRoot4a;
     }
 
    /**
@@ -268,8 +271,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsApplicationValidationRequired();
 
-    private boolean __applicationValidationRequired5a;
-    private boolean __applicationValidationRequired5aSet = false;
+    private boolean applicationValidationRequired5a;
+    private boolean applicationValidationRequired5aSet = false;
 
     /**
      * True if at least one client/server parameter found in the collection of existing use-cases
@@ -278,19 +281,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isApplicationValidationRequired()
     {
-        boolean applicationValidationRequired5a = this.__applicationValidationRequired5a;
-        if (!this.__applicationValidationRequired5aSet)
+        boolean aapplicationValidationRequired5a = this.applicationValidationRequired5a;
+        if (!this.applicationValidationRequired5aSet)
         {
             // applicationValidationRequired has no pre constraints
-            applicationValidationRequired5a = handleIsApplicationValidationRequired();
+            aapplicationValidationRequired5a = handleIsApplicationValidationRequired();
             // applicationValidationRequired has no post constraints
-            this.__applicationValidationRequired5a = applicationValidationRequired5a;
+            this.applicationValidationRequired5a = aapplicationValidationRequired5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__applicationValidationRequired5aSet = true;
+                this.applicationValidationRequired5aSet = true;
             }
         }
-        return applicationValidationRequired5a;
+        return aapplicationValidationRequired5a;
     }
 
    /**
@@ -299,8 +302,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsValidationRequired();
 
-    private boolean __validationRequired6a;
-    private boolean __validationRequired6aSet = false;
+    private boolean validationRequired6a;
+    private boolean validationRequired6aSet = false;
 
     /**
      * True if some client/server parameters require validation for this use-case.
@@ -308,19 +311,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isValidationRequired()
     {
-        boolean validationRequired6a = this.__validationRequired6a;
-        if (!this.__validationRequired6aSet)
+        boolean avalidationRequired6a = this.validationRequired6a;
+        if (!this.validationRequired6aSet)
         {
             // validationRequired has no pre constraints
-            validationRequired6a = handleIsValidationRequired();
+            avalidationRequired6a = handleIsValidationRequired();
             // validationRequired has no post constraints
-            this.__validationRequired6a = validationRequired6a;
+            this.validationRequired6a = avalidationRequired6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__validationRequired6aSet = true;
+                this.validationRequired6aSet = true;
             }
         }
-        return validationRequired6a;
+        return avalidationRequired6a;
     }
 
    /**
@@ -329,8 +332,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String __onlineHelpKey7a;
-    private boolean __onlineHelpKey7aSet = false;
+    private String onlineHelpKey7a;
+    private boolean onlineHelpKey7aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -339,19 +342,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getOnlineHelpKey()
     {
-        String onlineHelpKey7a = this.__onlineHelpKey7a;
-        if (!this.__onlineHelpKey7aSet)
+        String aonlineHelpKey7a = this.onlineHelpKey7a;
+        if (!this.onlineHelpKey7aSet)
         {
             // onlineHelpKey has no pre constraints
-            onlineHelpKey7a = handleGetOnlineHelpKey();
+            aonlineHelpKey7a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.__onlineHelpKey7a = onlineHelpKey7a;
+            this.onlineHelpKey7a = aonlineHelpKey7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpKey7aSet = true;
+                this.onlineHelpKey7aSet = true;
             }
         }
-        return onlineHelpKey7a;
+        return aonlineHelpKey7a;
     }
 
    /**
@@ -360,8 +363,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String __onlineHelpValue8a;
-    private boolean __onlineHelpValue8aSet = false;
+    private String onlineHelpValue8a;
+    private boolean onlineHelpValue8aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -370,19 +373,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getOnlineHelpValue()
     {
-        String onlineHelpValue8a = this.__onlineHelpValue8a;
-        if (!this.__onlineHelpValue8aSet)
+        String aonlineHelpValue8a = this.onlineHelpValue8a;
+        if (!this.onlineHelpValue8aSet)
         {
             // onlineHelpValue has no pre constraints
-            onlineHelpValue8a = handleGetOnlineHelpValue();
+            aonlineHelpValue8a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.__onlineHelpValue8a = onlineHelpValue8a;
+            this.onlineHelpValue8a = aonlineHelpValue8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpValue8aSet = true;
+                this.onlineHelpValue8aSet = true;
             }
         }
-        return onlineHelpValue8a;
+        return aonlineHelpValue8a;
     }
 
    /**
@@ -391,8 +394,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsApplicationUseCase();
 
-    private boolean __applicationUseCase9a;
-    private boolean __applicationUseCase9aSet = false;
+    private boolean applicationUseCase9a;
+    private boolean applicationUseCase9aSet = false;
 
     /**
      * True if this use-case is where the application starts.
@@ -400,19 +403,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isApplicationUseCase()
     {
-        boolean applicationUseCase9a = this.__applicationUseCase9a;
-        if (!this.__applicationUseCase9aSet)
+        boolean aapplicationUseCase9a = this.applicationUseCase9a;
+        if (!this.applicationUseCase9aSet)
         {
             // applicationUseCase has no pre constraints
-            applicationUseCase9a = handleIsApplicationUseCase();
+            aapplicationUseCase9a = handleIsApplicationUseCase();
             // applicationUseCase has no post constraints
-            this.__applicationUseCase9a = applicationUseCase9a;
+            this.applicationUseCase9a = aapplicationUseCase9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__applicationUseCase9aSet = true;
+                this.applicationUseCase9aSet = true;
             }
         }
-        return applicationUseCase9a;
+        return aapplicationUseCase9a;
     }
 
    /**
@@ -421,8 +424,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract TreeNode handleGetApplicationHierarchyRoot();
 
-    private TreeNode __applicationHierarchyRoot10a;
-    private boolean __applicationHierarchyRoot10aSet = false;
+    private TreeNode applicationHierarchyRoot10a;
+    private boolean applicationHierarchyRoot10aSet = false;
 
     /**
      * The root node of the application usecase hierarchy. Only makes sense when this usecase is an
@@ -433,19 +436,19 @@ public abstract class GuiUseCaseLogic
      */
     public final TreeNode getApplicationHierarchyRoot()
     {
-        TreeNode applicationHierarchyRoot10a = this.__applicationHierarchyRoot10a;
-        if (!this.__applicationHierarchyRoot10aSet)
+        TreeNode aapplicationHierarchyRoot10a = this.applicationHierarchyRoot10a;
+        if (!this.applicationHierarchyRoot10aSet)
         {
             // applicationHierarchyRoot has no pre constraints
-            applicationHierarchyRoot10a = handleGetApplicationHierarchyRoot();
+            aapplicationHierarchyRoot10a = handleGetApplicationHierarchyRoot();
             // applicationHierarchyRoot has no post constraints
-            this.__applicationHierarchyRoot10a = applicationHierarchyRoot10a;
+            this.applicationHierarchyRoot10a = aapplicationHierarchyRoot10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__applicationHierarchyRoot10aSet = true;
+                this.applicationHierarchyRoot10aSet = true;
             }
         }
-        return applicationHierarchyRoot10a;
+        return aapplicationHierarchyRoot10a;
     }
 
    /**
@@ -454,8 +457,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract TreeNode handleGetHierarchyRoot();
 
-    private TreeNode __hierarchyRoot11a;
-    private boolean __hierarchyRoot11aSet = false;
+    private TreeNode hierarchyRoot11a;
+    private boolean hierarchyRoot11aSet = false;
 
     /**
      * The root of the hierarchy of application usecases where this usecase is at the top. It is
@@ -465,19 +468,19 @@ public abstract class GuiUseCaseLogic
      */
     public final TreeNode getHierarchyRoot()
     {
-        TreeNode hierarchyRoot11a = this.__hierarchyRoot11a;
-        if (!this.__hierarchyRoot11aSet)
+        TreeNode ahierarchyRoot11a = this.hierarchyRoot11a;
+        if (!this.hierarchyRoot11aSet)
         {
             // hierarchyRoot has no pre constraints
-            hierarchyRoot11a = handleGetHierarchyRoot();
+            ahierarchyRoot11a = handleGetHierarchyRoot();
             // hierarchyRoot has no post constraints
-            this.__hierarchyRoot11a = hierarchyRoot11a;
+            this.hierarchyRoot11a = ahierarchyRoot11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__hierarchyRoot11aSet = true;
+                this.hierarchyRoot11aSet = true;
             }
         }
-        return hierarchyRoot11a;
+        return ahierarchyRoot11a;
     }
 
    /**
@@ -486,8 +489,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetCssFileName();
 
-    private String __cssFileName12a;
-    private boolean __cssFileName12aSet = false;
+    private String cssFileName12a;
+    private boolean cssFileName12aSet = false;
 
     /**
      * The name of the file containing specific styles for this use-case only.
@@ -495,19 +498,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getCssFileName()
     {
-        String cssFileName12a = this.__cssFileName12a;
-        if (!this.__cssFileName12aSet)
+        String acssFileName12a = this.cssFileName12a;
+        if (!this.cssFileName12aSet)
         {
             // cssFileName has no pre constraints
-            cssFileName12a = handleGetCssFileName();
+            acssFileName12a = handleGetCssFileName();
             // cssFileName has no post constraints
-            this.__cssFileName12a = cssFileName12a;
+            this.cssFileName12a = acssFileName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__cssFileName12aSet = true;
+                this.cssFileName12aSet = true;
             }
         }
-        return cssFileName12a;
+        return acssFileName12a;
     }
 
    /**
@@ -516,8 +519,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract Map handleGetAllMessages();
 
-    private Map __allMessages13a;
-    private boolean __allMessages13aSet = false;
+    private Map allMessages13a;
+    private boolean allMessages13aSet = false;
 
     /**
      * A map with keys sorted alphabetically, normalized across all different use-cases and pages
@@ -526,19 +529,19 @@ public abstract class GuiUseCaseLogic
      */
     public final Map getAllMessages()
     {
-        Map allMessages13a = this.__allMessages13a;
-        if (!this.__allMessages13aSet)
+        Map aallMessages13a = this.allMessages13a;
+        if (!this.allMessages13aSet)
         {
             // allMessages has no pre constraints
-            allMessages13a = handleGetAllMessages();
+            aallMessages13a = handleGetAllMessages();
             // allMessages has no post constraints
-            this.__allMessages13a = allMessages13a;
+            this.allMessages13a = aallMessages13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__allMessages13aSet = true;
+                this.allMessages13aSet = true;
             }
         }
-        return allMessages13a;
+        return aallMessages13a;
     }
 
    /**
@@ -547,8 +550,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsCyclic();
 
-    private boolean __cyclic14a;
-    private boolean __cyclic14aSet = false;
+    private boolean cyclic14a;
+    private boolean cyclic14aSet = false;
 
     /**
      * 
@@ -556,19 +559,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isCyclic()
     {
-        boolean cyclic14a = this.__cyclic14a;
-        if (!this.__cyclic14aSet)
+        boolean acyclic14a = this.cyclic14a;
+        if (!this.cyclic14aSet)
         {
             // cyclic has no pre constraints
-            cyclic14a = handleIsCyclic();
+            acyclic14a = handleIsCyclic();
             // cyclic has no post constraints
-            this.__cyclic14a = cyclic14a;
+            this.cyclic14a = acyclic14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__cyclic14aSet = true;
+                this.cyclic14aSet = true;
             }
         }
-        return cyclic14a;
+        return acyclic14a;
     }
 
    /**
@@ -577,8 +580,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetOnlineHelpPagePath();
 
-    private String __onlineHelpPagePath15a;
-    private boolean __onlineHelpPagePath15aSet = false;
+    private String onlineHelpPagePath15a;
+    private boolean onlineHelpPagePath15aSet = false;
 
     /**
      * The full path to this use-case's online help page.
@@ -586,19 +589,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getOnlineHelpPagePath()
     {
-        String onlineHelpPagePath15a = this.__onlineHelpPagePath15a;
-        if (!this.__onlineHelpPagePath15aSet)
+        String aonlineHelpPagePath15a = this.onlineHelpPagePath15a;
+        if (!this.onlineHelpPagePath15aSet)
         {
             // onlineHelpPagePath has no pre constraints
-            onlineHelpPagePath15a = handleGetOnlineHelpPagePath();
+            aonlineHelpPagePath15a = handleGetOnlineHelpPagePath();
             // onlineHelpPagePath has no post constraints
-            this.__onlineHelpPagePath15a = onlineHelpPagePath15a;
+            this.onlineHelpPagePath15a = aonlineHelpPagePath15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpPagePath15aSet = true;
+                this.onlineHelpPagePath15aSet = true;
             }
         }
-        return onlineHelpPagePath15a;
+        return aonlineHelpPagePath15a;
     }
 
    /**
@@ -607,8 +610,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetOnlineHelpActionPath();
 
-    private String __onlineHelpActionPath16a;
-    private boolean __onlineHelpActionPath16aSet = false;
+    private String onlineHelpActionPath16a;
+    private boolean onlineHelpActionPath16aSet = false;
 
     /**
      * The full path to this use-case's online help action. The returned String does not have a
@@ -617,19 +620,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getOnlineHelpActionPath()
     {
-        String onlineHelpActionPath16a = this.__onlineHelpActionPath16a;
-        if (!this.__onlineHelpActionPath16aSet)
+        String aonlineHelpActionPath16a = this.onlineHelpActionPath16a;
+        if (!this.onlineHelpActionPath16aSet)
         {
             // onlineHelpActionPath has no pre constraints
-            onlineHelpActionPath16a = handleGetOnlineHelpActionPath();
+            aonlineHelpActionPath16a = handleGetOnlineHelpActionPath();
             // onlineHelpActionPath has no post constraints
-            this.__onlineHelpActionPath16a = onlineHelpActionPath16a;
+            this.onlineHelpActionPath16a = aonlineHelpActionPath16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpActionPath16aSet = true;
+                this.onlineHelpActionPath16aSet = true;
             }
         }
-        return onlineHelpActionPath16a;
+        return aonlineHelpActionPath16a;
     }
 
    /**
@@ -638,8 +641,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetFormKey();
 
-    private String __formKey17a;
-    private boolean __formKey17aSet = false;
+    private String formKey17a;
+    private boolean formKey17aSet = false;
 
     /**
      * The key under which to store the forms contained in this use-case.
@@ -647,19 +650,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getFormKey()
     {
-        String formKey17a = this.__formKey17a;
-        if (!this.__formKey17aSet)
+        String aformKey17a = this.formKey17a;
+        if (!this.formKey17aSet)
         {
             // formKey has no pre constraints
-            formKey17a = handleGetFormKey();
+            aformKey17a = handleGetFormKey();
             // formKey has no post constraints
-            this.__formKey17a = formKey17a;
+            this.formKey17a = aformKey17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__formKey17aSet = true;
+                this.formKey17aSet = true;
             }
         }
-        return formKey17a;
+        return aformKey17a;
     }
 
    /**
@@ -668,8 +671,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsWorkbook();
 
-    private boolean __workbook18a;
-    private boolean __workbook18aSet = false;
+    private boolean workbook18a;
+    private boolean workbook18aSet = false;
 
     /**
      * 
@@ -677,19 +680,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isWorkbook()
     {
-        boolean workbook18a = this.__workbook18a;
-        if (!this.__workbook18aSet)
+        boolean aworkbook18a = this.workbook18a;
+        if (!this.workbook18aSet)
         {
             // workbook has no pre constraints
-            workbook18a = handleIsWorkbook();
+            aworkbook18a = handleIsWorkbook();
             // workbook has no post constraints
-            this.__workbook18a = workbook18a;
+            this.workbook18a = aworkbook18a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__workbook18aSet = true;
+                this.workbook18aSet = true;
             }
         }
-        return workbook18a;
+        return aworkbook18a;
     }
 
    /**
@@ -698,8 +701,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsWorksheet();
 
-    private boolean __worksheet19a;
-    private boolean __worksheet19aSet = false;
+    private boolean worksheet19a;
+    private boolean worksheet19aSet = false;
 
     /**
      * 
@@ -707,19 +710,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isWorksheet()
     {
-        boolean worksheet19a = this.__worksheet19a;
-        if (!this.__worksheet19aSet)
+        boolean aworksheet19a = this.worksheet19a;
+        if (!this.worksheet19aSet)
         {
             // worksheet has no pre constraints
-            worksheet19a = handleIsWorksheet();
+            aworksheet19a = handleIsWorksheet();
             // worksheet has no post constraints
-            this.__worksheet19a = worksheet19a;
+            this.worksheet19a = aworksheet19a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__worksheet19aSet = true;
+                this.worksheet19aSet = true;
             }
         }
-        return worksheet19a;
+        return aworksheet19a;
     }
 
    /**
@@ -728,8 +731,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsContainer();
 
-    private boolean __container20a;
-    private boolean __container20aSet = false;
+    private boolean container20a;
+    private boolean container20aSet = false;
 
     /**
      * 
@@ -737,19 +740,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isContainer()
     {
-        boolean container20a = this.__container20a;
-        if (!this.__container20aSet)
+        boolean acontainer20a = this.container20a;
+        if (!this.container20aSet)
         {
             // container has no pre constraints
-            container20a = handleIsContainer();
+            acontainer20a = handleIsContainer();
             // container has no post constraints
-            this.__container20a = container20a;
+            this.container20a = acontainer20a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__container20aSet = true;
+                this.container20aSet = true;
             }
         }
-        return container20a;
+        return acontainer20a;
     }
 
    /**
@@ -758,8 +761,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetContainerHeight();
 
-    private String __containerHeight21a;
-    private boolean __containerHeight21aSet = false;
+    private String containerHeight21a;
+    private boolean containerHeight21aSet = false;
 
     /**
      * 
@@ -767,19 +770,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getContainerHeight()
     {
-        String containerHeight21a = this.__containerHeight21a;
-        if (!this.__containerHeight21aSet)
+        String acontainerHeight21a = this.containerHeight21a;
+        if (!this.containerHeight21aSet)
         {
             // containerHeight has no pre constraints
-            containerHeight21a = handleGetContainerHeight();
+            acontainerHeight21a = handleGetContainerHeight();
             // containerHeight has no post constraints
-            this.__containerHeight21a = containerHeight21a;
+            this.containerHeight21a = acontainerHeight21a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__containerHeight21aSet = true;
+                this.containerHeight21aSet = true;
             }
         }
-        return containerHeight21a;
+        return acontainerHeight21a;
     }
 
    /**
@@ -788,8 +791,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetContainerWidth();
 
-    private String __containerWidth22a;
-    private boolean __containerWidth22aSet = false;
+    private String containerWidth22a;
+    private boolean containerWidth22aSet = false;
 
     /**
      * 
@@ -797,19 +800,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getContainerWidth()
     {
-        String containerWidth22a = this.__containerWidth22a;
-        if (!this.__containerWidth22aSet)
+        String acontainerWidth22a = this.containerWidth22a;
+        if (!this.containerWidth22aSet)
         {
             // containerWidth has no pre constraints
-            containerWidth22a = handleGetContainerWidth();
+            acontainerWidth22a = handleGetContainerWidth();
             // containerWidth has no post constraints
-            this.__containerWidth22a = containerWidth22a;
+            this.containerWidth22a = acontainerWidth22a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__containerWidth22aSet = true;
+                this.containerWidth22aSet = true;
             }
         }
-        return containerWidth22a;
+        return acontainerWidth22a;
     }
 
    /**
@@ -818,8 +821,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPath();
 
-    private String __path23a;
-    private boolean __path23aSet = false;
+    private String path23a;
+    private boolean path23aSet = false;
 
     /**
      * The path to which this use case points.
@@ -827,19 +830,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPath()
     {
-        String path23a = this.__path23a;
-        if (!this.__path23aSet)
+        String apath23a = this.path23a;
+        if (!this.path23aSet)
         {
             // path has no pre constraints
-            path23a = handleGetPath();
+            apath23a = handleGetPath();
             // path has no post constraints
-            this.__path23a = path23a;
+            this.path23a = apath23a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__path23aSet = true;
+                this.path23aSet = true;
             }
         }
-        return path23a;
+        return apath23a;
     }
 
    /**
@@ -848,8 +851,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPathRoot();
 
-    private String __pathRoot24a;
-    private boolean __pathRoot24aSet = false;
+    private String pathRoot24a;
+    private boolean pathRoot24aSet = false;
 
     /**
      * The root path for this use case (this is the path the directory containing the use case's
@@ -858,19 +861,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPathRoot()
     {
-        String pathRoot24a = this.__pathRoot24a;
-        if (!this.__pathRoot24aSet)
+        String apathRoot24a = this.pathRoot24a;
+        if (!this.pathRoot24aSet)
         {
             // pathRoot has no pre constraints
-            pathRoot24a = handleGetPathRoot();
+            apathRoot24a = handleGetPathRoot();
             // pathRoot has no post constraints
-            this.__pathRoot24a = pathRoot24a;
+            this.pathRoot24a = apathRoot24a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__pathRoot24aSet = true;
+                this.pathRoot24aSet = true;
             }
         }
-        return pathRoot24a;
+        return apathRoot24a;
     }
 
    /**
@@ -879,8 +882,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetForwardName();
 
-    private String __forwardName25a;
-    private boolean __forwardName25aSet = false;
+    private String forwardName25a;
+    private boolean forwardName25aSet = false;
 
     /**
      * The name that will cause a forward to use case.
@@ -888,19 +891,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getForwardName()
     {
-        String forwardName25a = this.__forwardName25a;
-        if (!this.__forwardName25aSet)
+        String aforwardName25a = this.forwardName25a;
+        if (!this.forwardName25aSet)
         {
             // forwardName has no pre constraints
-            forwardName25a = handleGetForwardName();
+            aforwardName25a = handleGetForwardName();
             // forwardName has no post constraints
-            this.__forwardName25a = forwardName25a;
+            this.forwardName25a = aforwardName25a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__forwardName25aSet = true;
+                this.forwardName25aSet = true;
             }
         }
-        return forwardName25a;
+        return aforwardName25a;
     }
 
    /**
@@ -909,8 +912,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetActionClassName();
 
-    private String __actionClassName26a;
-    private boolean __actionClassName26aSet = false;
+    private String actionClassName26a;
+    private boolean actionClassName26aSet = false;
 
     /**
      * The name of the action class that forwards to this use case.
@@ -918,19 +921,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getActionClassName()
     {
-        String actionClassName26a = this.__actionClassName26a;
-        if (!this.__actionClassName26aSet)
+        String aactionClassName26a = this.actionClassName26a;
+        if (!this.actionClassName26aSet)
         {
             // actionClassName has no pre constraints
-            actionClassName26a = handleGetActionClassName();
+            aactionClassName26a = handleGetActionClassName();
             // actionClassName has no post constraints
-            this.__actionClassName26a = actionClassName26a;
+            this.actionClassName26a = aactionClassName26a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__actionClassName26aSet = true;
+                this.actionClassName26aSet = true;
             }
         }
-        return actionClassName26a;
+        return aactionClassName26a;
     }
 
    /**
@@ -939,8 +942,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetFullyQualifiedActionClassPath();
 
-    private String __fullyQualifiedActionClassPath27a;
-    private boolean __fullyQualifiedActionClassPath27aSet = false;
+    private String fullyQualifiedActionClassPath27a;
+    private boolean fullyQualifiedActionClassPath27aSet = false;
 
     /**
      * The fully qualified path to the action class that forwards to this use case.
@@ -948,19 +951,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getFullyQualifiedActionClassPath()
     {
-        String fullyQualifiedActionClassPath27a = this.__fullyQualifiedActionClassPath27a;
-        if (!this.__fullyQualifiedActionClassPath27aSet)
+        String afullyQualifiedActionClassPath27a = this.fullyQualifiedActionClassPath27a;
+        if (!this.fullyQualifiedActionClassPath27aSet)
         {
             // fullyQualifiedActionClassPath has no pre constraints
-            fullyQualifiedActionClassPath27a = handleGetFullyQualifiedActionClassPath();
+            afullyQualifiedActionClassPath27a = handleGetFullyQualifiedActionClassPath();
             // fullyQualifiedActionClassPath has no post constraints
-            this.__fullyQualifiedActionClassPath27a = fullyQualifiedActionClassPath27a;
+            this.fullyQualifiedActionClassPath27a = afullyQualifiedActionClassPath27a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedActionClassPath27aSet = true;
+                this.fullyQualifiedActionClassPath27aSet = true;
             }
         }
-        return fullyQualifiedActionClassPath27a;
+        return afullyQualifiedActionClassPath27a;
     }
 
    /**
@@ -969,8 +972,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetControllerAction();
 
-    private String __controllerAction28a;
-    private boolean __controllerAction28aSet = false;
+    private String controllerAction28a;
+    private boolean controllerAction28aSet = false;
 
     /**
      * The name of the action on the controller that executions this use case.
@@ -978,19 +981,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getControllerAction()
     {
-        String controllerAction28a = this.__controllerAction28a;
-        if (!this.__controllerAction28aSet)
+        String acontrollerAction28a = this.controllerAction28a;
+        if (!this.controllerAction28aSet)
         {
             // controllerAction has no pre constraints
-            controllerAction28a = handleGetControllerAction();
+            acontrollerAction28a = handleGetControllerAction();
             // controllerAction has no post constraints
-            this.__controllerAction28a = controllerAction28a;
+            this.controllerAction28a = acontrollerAction28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__controllerAction28aSet = true;
+                this.controllerAction28aSet = true;
             }
         }
-        return controllerAction28a;
+        return acontrollerAction28a;
     }
 
    /**
@@ -999,8 +1002,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetFullyQualifiedActionClassName();
 
-    private String __fullyQualifiedActionClassName29a;
-    private boolean __fullyQualifiedActionClassName29aSet = false;
+    private String fullyQualifiedActionClassName29a;
+    private boolean fullyQualifiedActionClassName29aSet = false;
 
     /**
      * The fully qualified name of the action class that forwards to this use case.
@@ -1008,19 +1011,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getFullyQualifiedActionClassName()
     {
-        String fullyQualifiedActionClassName29a = this.__fullyQualifiedActionClassName29a;
-        if (!this.__fullyQualifiedActionClassName29aSet)
+        String afullyQualifiedActionClassName29a = this.fullyQualifiedActionClassName29a;
+        if (!this.fullyQualifiedActionClassName29aSet)
         {
             // fullyQualifiedActionClassName has no pre constraints
-            fullyQualifiedActionClassName29a = handleGetFullyQualifiedActionClassName();
+            afullyQualifiedActionClassName29a = handleGetFullyQualifiedActionClassName();
             // fullyQualifiedActionClassName has no post constraints
-            this.__fullyQualifiedActionClassName29a = fullyQualifiedActionClassName29a;
+            this.fullyQualifiedActionClassName29a = afullyQualifiedActionClassName29a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedActionClassName29aSet = true;
+                this.fullyQualifiedActionClassName29aSet = true;
             }
         }
-        return fullyQualifiedActionClassName29a;
+        return afullyQualifiedActionClassName29a;
     }
 
    /**
@@ -1029,8 +1032,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetInitialTargetPath();
 
-    private String __initialTargetPath30a;
-    private boolean __initialTargetPath30aSet = false;
+    private String initialTargetPath30a;
+    private boolean initialTargetPath30aSet = false;
 
     /**
      * The path of the initial target going into this use case.
@@ -1038,19 +1041,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getInitialTargetPath()
     {
-        String initialTargetPath30a = this.__initialTargetPath30a;
-        if (!this.__initialTargetPath30aSet)
+        String ainitialTargetPath30a = this.initialTargetPath30a;
+        if (!this.initialTargetPath30aSet)
         {
             // initialTargetPath has no pre constraints
-            initialTargetPath30a = handleGetInitialTargetPath();
+            ainitialTargetPath30a = handleGetInitialTargetPath();
             // initialTargetPath has no post constraints
-            this.__initialTargetPath30a = initialTargetPath30a;
+            this.initialTargetPath30a = ainitialTargetPath30a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__initialTargetPath30aSet = true;
+                this.initialTargetPath30aSet = true;
             }
         }
-        return initialTargetPath30a;
+        return ainitialTargetPath30a;
     }
 
    /**
@@ -1059,8 +1062,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsInitialTargetView();
 
-    private boolean __initialTargetView31a;
-    private boolean __initialTargetView31aSet = false;
+    private boolean initialTargetView31a;
+    private boolean initialTargetView31aSet = false;
 
     /**
      * Indicates whether or not the initial target of this use case is a view or not.
@@ -1068,19 +1071,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isInitialTargetView()
     {
-        boolean initialTargetView31a = this.__initialTargetView31a;
-        if (!this.__initialTargetView31aSet)
+        boolean ainitialTargetView31a = this.initialTargetView31a;
+        if (!this.initialTargetView31aSet)
         {
             // initialTargetView has no pre constraints
-            initialTargetView31a = handleIsInitialTargetView();
+            ainitialTargetView31a = handleIsInitialTargetView();
             // initialTargetView has no post constraints
-            this.__initialTargetView31a = initialTargetView31a;
+            this.initialTargetView31a = ainitialTargetView31a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__initialTargetView31aSet = true;
+                this.initialTargetView31aSet = true;
             }
         }
-        return initialTargetView31a;
+        return ainitialTargetView31a;
     }
 
    /**
@@ -1089,8 +1092,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsViewHasNameOfUseCase();
 
-    private boolean __viewHasNameOfUseCase32a;
-    private boolean __viewHasNameOfUseCase32aSet = false;
+    private boolean viewHasNameOfUseCase32a;
+    private boolean viewHasNameOfUseCase32aSet = false;
 
     /**
      * Indicates whether or not at least one view in the use case has the same name as this use
@@ -1099,19 +1102,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isViewHasNameOfUseCase()
     {
-        boolean viewHasNameOfUseCase32a = this.__viewHasNameOfUseCase32a;
-        if (!this.__viewHasNameOfUseCase32aSet)
+        boolean aviewHasNameOfUseCase32a = this.viewHasNameOfUseCase32a;
+        if (!this.viewHasNameOfUseCase32aSet)
         {
             // viewHasNameOfUseCase has no pre constraints
-            viewHasNameOfUseCase32a = handleIsViewHasNameOfUseCase();
+            aviewHasNameOfUseCase32a = handleIsViewHasNameOfUseCase();
             // viewHasNameOfUseCase has no post constraints
-            this.__viewHasNameOfUseCase32a = viewHasNameOfUseCase32a;
+            this.viewHasNameOfUseCase32a = aviewHasNameOfUseCase32a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__viewHasNameOfUseCase32aSet = true;
+                this.viewHasNameOfUseCase32aSet = true;
             }
         }
-        return viewHasNameOfUseCase32a;
+        return aviewHasNameOfUseCase32a;
     }
 
    /**
@@ -1120,8 +1123,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract boolean handleIsRegistrationUseCase();
 
-    private boolean __registrationUseCase33a;
-    private boolean __registrationUseCase33aSet = false;
+    private boolean registrationUseCase33a;
+    private boolean registrationUseCase33aSet = false;
 
     /**
      * Indicates whether or not this is a front-end registration use case.  Only one use case can be
@@ -1130,19 +1133,19 @@ public abstract class GuiUseCaseLogic
      */
     public final boolean isRegistrationUseCase()
     {
-        boolean registrationUseCase33a = this.__registrationUseCase33a;
-        if (!this.__registrationUseCase33aSet)
+        boolean aregistrationUseCase33a = this.registrationUseCase33a;
+        if (!this.registrationUseCase33aSet)
         {
             // registrationUseCase has no pre constraints
-            registrationUseCase33a = handleIsRegistrationUseCase();
+            aregistrationUseCase33a = handleIsRegistrationUseCase();
             // registrationUseCase has no post constraints
-            this.__registrationUseCase33a = registrationUseCase33a;
+            this.registrationUseCase33a = aregistrationUseCase33a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__registrationUseCase33aSet = true;
+                this.registrationUseCase33aSet = true;
             }
         }
-        return registrationUseCase33a;
+        return aregistrationUseCase33a;
     }
 
    /**
@@ -1151,8 +1154,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetForwardsClassName();
 
-    private String __forwardsClassName34a;
-    private boolean __forwardsClassName34aSet = false;
+    private String forwardsClassName34a;
+    private boolean forwardsClassName34aSet = false;
 
     /**
      * The name of the class that stores all the forwards paths.
@@ -1160,19 +1163,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getForwardsClassName()
     {
-        String forwardsClassName34a = this.__forwardsClassName34a;
-        if (!this.__forwardsClassName34aSet)
+        String aforwardsClassName34a = this.forwardsClassName34a;
+        if (!this.forwardsClassName34aSet)
         {
             // forwardsClassName has no pre constraints
-            forwardsClassName34a = handleGetForwardsClassName();
+            aforwardsClassName34a = handleGetForwardsClassName();
             // forwardsClassName has no post constraints
-            this.__forwardsClassName34a = forwardsClassName34a;
+            this.forwardsClassName34a = aforwardsClassName34a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__forwardsClassName34aSet = true;
+                this.forwardsClassName34aSet = true;
             }
         }
-        return forwardsClassName34a;
+        return aforwardsClassName34a;
     }
 
    /**
@@ -1181,8 +1184,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract List handleGetAllForwards();
 
-    private List __allForwards35a;
-    private boolean __allForwards35aSet = false;
+    private List allForwards35a;
+    private boolean allForwards35aSet = false;
 
     /**
      * Constains all forwards includes regular FrontEndForwards and all actiion forwards.
@@ -1190,19 +1193,19 @@ public abstract class GuiUseCaseLogic
      */
     public final List getAllForwards()
     {
-        List allForwards35a = this.__allForwards35a;
-        if (!this.__allForwards35aSet)
+        List aallForwards35a = this.allForwards35a;
+        if (!this.allForwards35aSet)
         {
             // allForwards has no pre constraints
-            allForwards35a = handleGetAllForwards();
+            aallForwards35a = handleGetAllForwards();
             // allForwards has no post constraints
-            this.__allForwards35a = allForwards35a;
+            this.allForwards35a = aallForwards35a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__allForwards35aSet = true;
+                this.allForwards35aSet = true;
             }
         }
-        return allForwards35a;
+        return aallForwards35a;
     }
 
    /**
@@ -1211,8 +1214,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPortletViewForwardName();
 
-    private String __portletViewForwardName36a;
-    private boolean __portletViewForwardName36aSet = false;
+    private String portletViewForwardName36a;
+    private boolean portletViewForwardName36aSet = false;
 
     /**
      * The forward name for the portlet 'view' page.
@@ -1220,19 +1223,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPortletViewForwardName()
     {
-        String portletViewForwardName36a = this.__portletViewForwardName36a;
-        if (!this.__portletViewForwardName36aSet)
+        String aportletViewForwardName36a = this.portletViewForwardName36a;
+        if (!this.portletViewForwardName36aSet)
         {
             // portletViewForwardName has no pre constraints
-            portletViewForwardName36a = handleGetPortletViewForwardName();
+            aportletViewForwardName36a = handleGetPortletViewForwardName();
             // portletViewForwardName has no post constraints
-            this.__portletViewForwardName36a = portletViewForwardName36a;
+            this.portletViewForwardName36a = aportletViewForwardName36a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__portletViewForwardName36aSet = true;
+                this.portletViewForwardName36aSet = true;
             }
         }
-        return portletViewForwardName36a;
+        return aportletViewForwardName36a;
     }
 
    /**
@@ -1241,8 +1244,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPortletEditForwardName();
 
-    private String __portletEditForwardName37a;
-    private boolean __portletEditForwardName37aSet = false;
+    private String portletEditForwardName37a;
+    private boolean portletEditForwardName37aSet = false;
 
     /**
      * The forward name for the portlet 'edit' page.
@@ -1250,19 +1253,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPortletEditForwardName()
     {
-        String portletEditForwardName37a = this.__portletEditForwardName37a;
-        if (!this.__portletEditForwardName37aSet)
+        String aportletEditForwardName37a = this.portletEditForwardName37a;
+        if (!this.portletEditForwardName37aSet)
         {
             // portletEditForwardName has no pre constraints
-            portletEditForwardName37a = handleGetPortletEditForwardName();
+            aportletEditForwardName37a = handleGetPortletEditForwardName();
             // portletEditForwardName has no post constraints
-            this.__portletEditForwardName37a = portletEditForwardName37a;
+            this.portletEditForwardName37a = aportletEditForwardName37a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__portletEditForwardName37aSet = true;
+                this.portletEditForwardName37aSet = true;
             }
         }
-        return portletEditForwardName37a;
+        return aportletEditForwardName37a;
     }
 
    /**
@@ -1271,8 +1274,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPortletHelpForwardName();
 
-    private String __portletHelpForwardName38a;
-    private boolean __portletHelpForwardName38aSet = false;
+    private String portletHelpForwardName38a;
+    private boolean portletHelpForwardName38aSet = false;
 
     /**
      * The forward name for the portlet 'help' page.
@@ -1280,19 +1283,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPortletHelpForwardName()
     {
-        String portletHelpForwardName38a = this.__portletHelpForwardName38a;
-        if (!this.__portletHelpForwardName38aSet)
+        String aportletHelpForwardName38a = this.portletHelpForwardName38a;
+        if (!this.portletHelpForwardName38aSet)
         {
             // portletHelpForwardName has no pre constraints
-            portletHelpForwardName38a = handleGetPortletHelpForwardName();
+            aportletHelpForwardName38a = handleGetPortletHelpForwardName();
             // portletHelpForwardName has no post constraints
-            this.__portletHelpForwardName38a = portletHelpForwardName38a;
+            this.portletHelpForwardName38a = aportletHelpForwardName38a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__portletHelpForwardName38aSet = true;
+                this.portletHelpForwardName38aSet = true;
             }
         }
-        return portletHelpForwardName38a;
+        return aportletHelpForwardName38a;
     }
 
    /**
@@ -1301,8 +1304,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPortletViewPath();
 
-    private String __portletViewPath39a;
-    private boolean __portletViewPath39aSet = false;
+    private String portletViewPath39a;
+    private boolean portletViewPath39aSet = false;
 
     /**
      * The path to the portlet 'view' page.
@@ -1310,19 +1313,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPortletViewPath()
     {
-        String portletViewPath39a = this.__portletViewPath39a;
-        if (!this.__portletViewPath39aSet)
+        String aportletViewPath39a = this.portletViewPath39a;
+        if (!this.portletViewPath39aSet)
         {
             // portletViewPath has no pre constraints
-            portletViewPath39a = handleGetPortletViewPath();
+            aportletViewPath39a = handleGetPortletViewPath();
             // portletViewPath has no post constraints
-            this.__portletViewPath39a = portletViewPath39a;
+            this.portletViewPath39a = aportletViewPath39a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__portletViewPath39aSet = true;
+                this.portletViewPath39aSet = true;
             }
         }
-        return portletViewPath39a;
+        return aportletViewPath39a;
     }
 
    /**
@@ -1331,8 +1334,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPortletEditPath();
 
-    private String __portletEditPath40a;
-    private boolean __portletEditPath40aSet = false;
+    private String portletEditPath40a;
+    private boolean portletEditPath40aSet = false;
 
     /**
      * The path to the portlet 'edit' page.
@@ -1340,19 +1343,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPortletEditPath()
     {
-        String portletEditPath40a = this.__portletEditPath40a;
-        if (!this.__portletEditPath40aSet)
+        String aportletEditPath40a = this.portletEditPath40a;
+        if (!this.portletEditPath40aSet)
         {
             // portletEditPath has no pre constraints
-            portletEditPath40a = handleGetPortletEditPath();
+            aportletEditPath40a = handleGetPortletEditPath();
             // portletEditPath has no post constraints
-            this.__portletEditPath40a = portletEditPath40a;
+            this.portletEditPath40a = aportletEditPath40a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__portletEditPath40aSet = true;
+                this.portletEditPath40aSet = true;
             }
         }
-        return portletEditPath40a;
+        return aportletEditPath40a;
     }
 
    /**
@@ -1361,8 +1364,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract String handleGetPortletHelpPath();
 
-    private String __portletHelpPath41a;
-    private boolean __portletHelpPath41aSet = false;
+    private String portletHelpPath41a;
+    private boolean portletHelpPath41aSet = false;
 
     /**
      * The path to the 'help' page of the portlet.
@@ -1370,19 +1373,19 @@ public abstract class GuiUseCaseLogic
      */
     public final String getPortletHelpPath()
     {
-        String portletHelpPath41a = this.__portletHelpPath41a;
-        if (!this.__portletHelpPath41aSet)
+        String aportletHelpPath41a = this.portletHelpPath41a;
+        if (!this.portletHelpPath41aSet)
         {
             // portletHelpPath has no pre constraints
-            portletHelpPath41a = handleGetPortletHelpPath();
+            aportletHelpPath41a = handleGetPortletHelpPath();
             // portletHelpPath has no post constraints
-            this.__portletHelpPath41a = portletHelpPath41a;
+            this.portletHelpPath41a = aportletHelpPath41a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__portletHelpPath41aSet = true;
+                this.portletHelpPath41aSet = true;
             }
         }
-        return portletHelpPath41a;
+        return aportletHelpPath41a;
     }
 
    /**
@@ -1397,11 +1400,11 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiForward> getForwards()
     {
-        List<GuiForward> forwards42a = null;
+        List<GuiForward> aforwards42a = null;
         // forwards has no pre constraints
-        forwards42a = handleGetForwards();
+        aforwards42a = handleGetForwards();
         // forwards has no post constraints
-        return forwards42a;
+        return aforwards42a;
     }
 
    /**
@@ -1410,8 +1413,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract List<GuiAction> handleGetActionForwards();
 
-    private List<GuiAction> __actionForwards43a;
-    private boolean __actionForwards43aSet = false;
+    private List<GuiAction> actionForwards43a;
+    private boolean actionForwards43aSet = false;
 
     /**
      * All forwards in this use case that are represented as actions.
@@ -1419,19 +1422,19 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiAction> getActionForwards()
     {
-        List<GuiAction> actionForwards43a = this.__actionForwards43a;
-        if (!this.__actionForwards43aSet)
+        List<GuiAction> aactionForwards43a = this.actionForwards43a;
+        if (!this.actionForwards43aSet)
         {
             // actionForwards has no pre constraints
-            actionForwards43a = handleGetActionForwards();
+            aactionForwards43a = handleGetActionForwards();
             // actionForwards has no post constraints
-            this.__actionForwards43a = actionForwards43a;
+            this.actionForwards43a = aactionForwards43a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__actionForwards43aSet = true;
+                this.actionForwards43aSet = true;
             }
         }
-        return actionForwards43a;
+        return aactionForwards43a;
     }
 
    /**
@@ -1440,8 +1443,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract Collection<GuiView> handleGetAllViews();
 
-    private Collection<GuiView> __allViews44a;
-    private boolean __allViews44aSet = false;
+    private Collection<GuiView> allViews44a;
+    private boolean allViews44aSet = false;
 
     /**
      * All views for the application (not just the ones belonging to this use case).
@@ -1449,19 +1452,19 @@ public abstract class GuiUseCaseLogic
      */
     public final Collection<GuiView> getAllViews()
     {
-        Collection<GuiView> allViews44a = this.__allViews44a;
-        if (!this.__allViews44aSet)
+        Collection<GuiView> aallViews44a = this.allViews44a;
+        if (!this.allViews44aSet)
         {
             // allViews has no pre constraints
-            allViews44a = handleGetAllViews();
+            aallViews44a = handleGetAllViews();
             // allViews has no post constraints
-            this.__allViews44a = allViews44a;
+            this.allViews44a = aallViews44a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__allViews44aSet = true;
+                this.allViews44aSet = true;
             }
         }
-        return allViews44a;
+        return aallViews44a;
     }
 
    /**
@@ -1470,8 +1473,8 @@ public abstract class GuiUseCaseLogic
     */
     protected abstract List<GuiUseCase> handleGetRegistrationUseCases();
 
-    private List<GuiUseCase> __registrationUseCases45a;
-    private boolean __registrationUseCases45aSet = false;
+    private List<GuiUseCase> registrationUseCases45a;
+    private boolean registrationUseCases45aSet = false;
 
     /**
      * All use cases that are labled as registration use cases.
@@ -1479,19 +1482,19 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiUseCase> getRegistrationUseCases()
     {
-        List<GuiUseCase> registrationUseCases45a = this.__registrationUseCases45a;
-        if (!this.__registrationUseCases45aSet)
+        List<GuiUseCase> aregistrationUseCases45a = this.registrationUseCases45a;
+        if (!this.registrationUseCases45aSet)
         {
             // registrationUseCases has no pre constraints
-            registrationUseCases45a = handleGetRegistrationUseCases();
+            aregistrationUseCases45a = handleGetRegistrationUseCases();
             // registrationUseCases has no post constraints
-            this.__registrationUseCases45a = registrationUseCases45a;
+            this.registrationUseCases45a = aregistrationUseCases45a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__registrationUseCases45aSet = true;
+                this.registrationUseCases45aSet = true;
             }
         }
-        return registrationUseCases45a;
+        return aregistrationUseCases45a;
     }
 
     // ---------------- business methods ----------------------
@@ -1574,8 +1577,8 @@ public abstract class GuiUseCaseLogic
 
     // ------------- associations ------------------
 
-    private List<GuiView> __getAllPages1r;
-    private boolean __getAllPages1rSet = false;
+    private List<GuiView> getAllPages1r;
+    private boolean getAllPages1rSet = false;
 
     /**
      * 
@@ -1583,8 +1586,8 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiView> getAllPages()
     {
-        List<GuiView> getAllPages1r = this.__getAllPages1r;
-        if (!this.__getAllPages1rSet)
+        List<GuiView> getAllPages1r = this.getAllPages1r;
+        if (!this.getAllPages1rSet)
         {
             // guiUseCase has no pre constraints
             List result = handleGetAllPages();
@@ -1596,13 +1599,13 @@ public abstract class GuiUseCaseLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getAllPages List<GuiView> " + result + ": " + shieldedResult);
+                GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getAllPages List<GuiView> " + result + ": " + shieldedResult);
             }
             // guiUseCase has no post constraints
-            this.__getAllPages1r = getAllPages1r;
+            this.getAllPages1r = getAllPages1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getAllPages1rSet = true;
+                this.getAllPages1rSet = true;
             }
         }
         return getAllPages1r;
@@ -1614,8 +1617,8 @@ public abstract class GuiUseCaseLogic
      */
     protected abstract List handleGetAllPages();
 
-    private List<GuiParameter> __getFormFields2r;
-    private boolean __getFormFields2rSet = false;
+    private List<GuiParameter> getFormFields2r;
+    private boolean getFormFields2rSet = false;
 
     /**
      * 
@@ -1623,8 +1626,8 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiParameter> getFormFields()
     {
-        List<GuiParameter> getFormFields2r = this.__getFormFields2r;
-        if (!this.__getFormFields2rSet)
+        List<GuiParameter> getFormFields2r = this.getFormFields2r;
+        if (!this.getFormFields2rSet)
         {
             // guiUseCase has no pre constraints
             List result = handleGetFormFields();
@@ -1636,13 +1639,13 @@ public abstract class GuiUseCaseLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getFormFields List<GuiParameter> " + result + ": " + shieldedResult);
+                GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getFormFields List<GuiParameter> " + result + ": " + shieldedResult);
             }
             // guiUseCase has no post constraints
-            this.__getFormFields2r = getFormFields2r;
+            this.getFormFields2r = getFormFields2r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getFormFields2rSet = true;
+                this.getFormFields2rSet = true;
             }
         }
         return getFormFields2r;
@@ -1654,8 +1657,8 @@ public abstract class GuiUseCaseLogic
      */
     protected abstract List handleGetFormFields();
 
-    private Collection<GuiUseCase> __getIncludedUseCases3r;
-    private boolean __getIncludedUseCases3rSet = false;
+    private Collection<GuiUseCase> getIncludedUseCases3r;
+    private boolean getIncludedUseCases3rSet = false;
 
     /**
      * 
@@ -1663,8 +1666,8 @@ public abstract class GuiUseCaseLogic
      */
     public final Collection<GuiUseCase> getIncludedUseCases()
     {
-        Collection<GuiUseCase> getIncludedUseCases3r = this.__getIncludedUseCases3r;
-        if (!this.__getIncludedUseCases3rSet)
+        Collection<GuiUseCase> getIncludedUseCases3r = this.getIncludedUseCases3r;
+        if (!this.getIncludedUseCases3rSet)
         {
             // guiUseCase has no pre constraints
             Collection result = handleGetIncludedUseCases();
@@ -1676,13 +1679,13 @@ public abstract class GuiUseCaseLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getIncludedUseCases Collection<GuiUseCase> " + result + ": " + shieldedResult);
+                GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getIncludedUseCases Collection<GuiUseCase> " + result + ": " + shieldedResult);
             }
             // guiUseCase has no post constraints
-            this.__getIncludedUseCases3r = getIncludedUseCases3r;
+            this.getIncludedUseCases3r = getIncludedUseCases3r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getIncludedUseCases3rSet = true;
+                this.getIncludedUseCases3rSet = true;
             }
         }
         return getIncludedUseCases3r;
@@ -1694,8 +1697,8 @@ public abstract class GuiUseCaseLogic
      */
     protected abstract Collection handleGetIncludedUseCases();
 
-    private List<GuiParameter> __getPageVariables4r;
-    private boolean __getPageVariables4rSet = false;
+    private List<GuiParameter> getPageVariables4r;
+    private boolean getPageVariables4rSet = false;
 
     /**
      * 
@@ -1703,8 +1706,8 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiParameter> getPageVariables()
     {
-        List<GuiParameter> getPageVariables4r = this.__getPageVariables4r;
-        if (!this.__getPageVariables4rSet)
+        List<GuiParameter> getPageVariables4r = this.getPageVariables4r;
+        if (!this.getPageVariables4rSet)
         {
             // guiUseCase has no pre constraints
             List result = handleGetPageVariables();
@@ -1716,13 +1719,13 @@ public abstract class GuiUseCaseLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getPageVariables List<GuiParameter> " + result + ": " + shieldedResult);
+                GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getPageVariables List<GuiParameter> " + result + ": " + shieldedResult);
             }
             // guiUseCase has no post constraints
-            this.__getPageVariables4r = getPageVariables4r;
+            this.getPageVariables4r = getPageVariables4r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getPageVariables4rSet = true;
+                this.getPageVariables4rSet = true;
             }
         }
         return getPageVariables4r;
@@ -1734,8 +1737,8 @@ public abstract class GuiUseCaseLogic
      */
     protected abstract List handleGetPageVariables();
 
-    private List<GuiUseCase> __getDirectSubUseCases5r;
-    private boolean __getDirectSubUseCases5rSet = false;
+    private List<GuiUseCase> getDirectSubUseCases5r;
+    private boolean getDirectSubUseCases5rSet = false;
 
     /**
      * 
@@ -1743,8 +1746,8 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiUseCase> getDirectSubUseCases()
     {
-        List<GuiUseCase> getDirectSubUseCases5r = this.__getDirectSubUseCases5r;
-        if (!this.__getDirectSubUseCases5rSet)
+        List<GuiUseCase> getDirectSubUseCases5r = this.getDirectSubUseCases5r;
+        if (!this.getDirectSubUseCases5rSet)
         {
             // guiUseCase has no pre constraints
             List result = handleGetDirectSubUseCases();
@@ -1756,13 +1759,13 @@ public abstract class GuiUseCaseLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getDirectSubUseCases List<GuiUseCase> " + result + ": " + shieldedResult);
+                GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getDirectSubUseCases List<GuiUseCase> " + result + ": " + shieldedResult);
             }
             // guiUseCase has no post constraints
-            this.__getDirectSubUseCases5r = getDirectSubUseCases5r;
+            this.getDirectSubUseCases5r = getDirectSubUseCases5r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getDirectSubUseCases5rSet = true;
+                this.getDirectSubUseCases5rSet = true;
             }
         }
         return getDirectSubUseCases5r;
@@ -1774,8 +1777,8 @@ public abstract class GuiUseCaseLogic
      */
     protected abstract List handleGetDirectSubUseCases();
 
-    private List<GuiView> __getPages6r;
-    private boolean __getPages6rSet = false;
+    private List<GuiView> getPages6r;
+    private boolean getPages6rSet = false;
 
     /**
      * 
@@ -1783,8 +1786,8 @@ public abstract class GuiUseCaseLogic
      */
     public final List<GuiView> getPages()
     {
-        List<GuiView> getPages6r = this.__getPages6r;
-        if (!this.__getPages6rSet)
+        List<GuiView> getPages6r = this.getPages6r;
+        if (!this.getPages6rSet)
         {
             // guiUseCase has no pre constraints
             List result = handleGetPages();
@@ -1796,13 +1799,13 @@ public abstract class GuiUseCaseLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getPages List<GuiView> " + result + ": " + shieldedResult);
+                GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getPages List<GuiView> " + result + ": " + shieldedResult);
             }
             // guiUseCase has no post constraints
-            this.__getPages6r = getPages6r;
+            this.getPages6r = getPages6r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getPages6rSet = true;
+                this.getPages6rSet = true;
             }
         }
         return getPages6r;
@@ -1831,7 +1834,7 @@ public abstract class GuiUseCaseLogic
         catch (ClassCastException ex)
         {
             // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-            GuiUseCaseLogic.logger.warn("incorrect metafacade cast for GuiUseCaseLogic.getPreferences GuiPortletPreferences " + result + ": " + shieldedResult);
+            GuiUseCaseLogic.LOGGER.warn("incorrect metafacade cast for GuiUseCaseLogic.getPreferences GuiPortletPreferences " + result + ": " + shieldedResult);
         }
         // useCase has no post constraints
         return getPreferences7r;

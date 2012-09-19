@@ -1204,7 +1204,9 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
                 if (this.logger_.isDebugEnabled())
                 {
+
                     this.logger_.debug("handleGetNavigationRules is : " + name + " for : " + this.getFullyQualifiedName());
+
                 }
 
                 rules.put(name, forward);

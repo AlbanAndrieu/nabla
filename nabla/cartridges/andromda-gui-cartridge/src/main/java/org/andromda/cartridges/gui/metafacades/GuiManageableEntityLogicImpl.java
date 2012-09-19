@@ -868,8 +868,10 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
             if (this.logger_.isDebugEnabled())
             {
+
                 this.logger_.debug("collectAssociationEndsEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType() + " - "
                         + this.getFullyQualifiedName());
+
             }
 
             // if (otherEnd instanceof ManageableEntityAssociationEnd)
@@ -925,8 +927,10 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
             if (this.logger_.isDebugEnabled())
             {
+
                 this.logger_.debug("collectAssociationEndsManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
                         + " - " + this.getFullyQualifiedName());
+
             }
 
             // if (otherEnd.isNavigable() && otherEnd.getType() instanceof Entity) {
@@ -979,8 +983,10 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
             if (this.logger_.isDebugEnabled())
             {
+
                 this.logger_.debug("collectAssociationEndsGuiManageableEntity Name : " + associationEnd.getName() + " with otherEnd : " + otherEnd.getName() + " - " + otherEnd.isNavigable() + " -- " + otherEnd.getType()
                         + " - " + this.getFullyQualifiedName());
+
             }
 
             if (otherEnd.isNavigable() && (otherEnd.getType() instanceof GuiManageableEntity) && !otherEnd.hasStereotype(GuiProfile.STEREOTYPE_VERSIONABLE_REF)

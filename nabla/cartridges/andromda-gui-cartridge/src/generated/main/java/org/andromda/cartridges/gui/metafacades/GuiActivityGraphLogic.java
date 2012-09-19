@@ -45,17 +45,20 @@ public abstract class GuiActivityGraphLogic
     extends MetafacadeBase
     implements GuiActivityGraph
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiActivityGraphLogic(Object metaObjectIn, String context)
+    protected GuiActivityGraphLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndActivityGraph =
@@ -70,7 +73,7 @@ public abstract class GuiActivityGraphLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiActivityGraphLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiActivityGraphLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -132,8 +135,8 @@ public abstract class GuiActivityGraphLogic
 
     // ------------- associations ------------------
 
-    private GuiAction __getFirstAction1r;
-    private boolean __getFirstAction1rSet = false;
+    private GuiAction getFirstAction1r;
+    private boolean getFirstAction1rSet = false;
 
     /**
      * 
@@ -141,8 +144,8 @@ public abstract class GuiActivityGraphLogic
      */
     public final GuiAction getFirstAction()
     {
-        GuiAction getFirstAction1r = this.__getFirstAction1r;
-        if (!this.__getFirstAction1rSet)
+        GuiAction getFirstAction1r = this.getFirstAction1r;
+        if (!this.getFirstAction1rSet)
         {
             // guiActivityGraph has no pre constraints
             Object result = handleGetFirstAction();
@@ -154,13 +157,13 @@ public abstract class GuiActivityGraphLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiActivityGraphLogic.logger.warn("incorrect metafacade cast for GuiActivityGraphLogic.getFirstAction GuiAction " + result + ": " + shieldedResult);
+                GuiActivityGraphLogic.LOGGER.warn("incorrect metafacade cast for GuiActivityGraphLogic.getFirstAction GuiAction " + result + ": " + shieldedResult);
             }
             // guiActivityGraph has no post constraints
-            this.__getFirstAction1r = getFirstAction1r;
+            this.getFirstAction1r = getFirstAction1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getFirstAction1rSet = true;
+                this.getFirstAction1rSet = true;
             }
         }
         return getFirstAction1r;

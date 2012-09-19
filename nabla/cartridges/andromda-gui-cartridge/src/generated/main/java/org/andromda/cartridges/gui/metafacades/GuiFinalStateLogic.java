@@ -43,17 +43,20 @@ public abstract class GuiFinalStateLogic
     extends MetafacadeBase
     implements GuiFinalState
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiFinalStateLogic(Object metaObjectIn, String context)
+    protected GuiFinalStateLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndFinalState =
@@ -68,7 +71,7 @@ public abstract class GuiFinalStateLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiFinalStateLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiFinalStateLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -136,8 +139,8 @@ public abstract class GuiFinalStateLogic
     */
     protected abstract String handleGetFullPath();
 
-    private String __fullPath1a;
-    private boolean __fullPath1aSet = false;
+    private String fullPath1a;
+    private boolean fullPath1aSet = false;
 
     /**
      * A final state maps onto a use-case. The full path to this use-case is returned here. In case
@@ -147,19 +150,19 @@ public abstract class GuiFinalStateLogic
      */
     public final String getFullPath()
     {
-        String fullPath1a = this.__fullPath1a;
-        if (!this.__fullPath1aSet)
+        String afullPath1a = this.fullPath1a;
+        if (!this.fullPath1aSet)
         {
             // fullPath has no pre constraints
-            fullPath1a = handleGetFullPath();
+            afullPath1a = handleGetFullPath();
             // fullPath has no post constraints
-            this.__fullPath1a = fullPath1a;
+            this.fullPath1a = afullPath1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullPath1aSet = true;
+                this.fullPath1aSet = true;
             }
         }
-        return fullPath1a;
+        return afullPath1a;
     }
 
    /**
@@ -168,8 +171,8 @@ public abstract class GuiFinalStateLogic
     */
     protected abstract String handleGetPath();
 
-    private String __path2a;
-    private boolean __path2aSet = false;
+    private String path2a;
+    private boolean path2aSet = false;
 
     /**
      * The path to which this final state points.
@@ -177,25 +180,25 @@ public abstract class GuiFinalStateLogic
      */
     public final String getPath()
     {
-        String path2a = this.__path2a;
-        if (!this.__path2aSet)
+        String apath2a = this.path2a;
+        if (!this.path2aSet)
         {
             // path has no pre constraints
-            path2a = handleGetPath();
+            apath2a = handleGetPath();
             // path has no post constraints
-            this.__path2a = path2a;
+            this.path2a = apath2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__path2aSet = true;
+                this.path2aSet = true;
             }
         }
-        return path2a;
+        return apath2a;
     }
 
     // ------------- associations ------------------
 
-    private List<GuiAction> __getActions1r;
-    private boolean __getActions1rSet = false;
+    private List<GuiAction> getActions1r;
+    private boolean getActions1rSet = false;
 
     /**
      * 
@@ -203,8 +206,8 @@ public abstract class GuiFinalStateLogic
      */
     public final List<GuiAction> getActions()
     {
-        List<GuiAction> getActions1r = this.__getActions1r;
-        if (!this.__getActions1rSet)
+        List<GuiAction> getActions1r = this.getActions1r;
+        if (!this.getActions1rSet)
         {
             // guiFinalState has no pre constraints
             List result = handleGetActions();
@@ -216,13 +219,13 @@ public abstract class GuiFinalStateLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiFinalStateLogic.logger.warn("incorrect metafacade cast for GuiFinalStateLogic.getActions List<GuiAction> " + result + ": " + shieldedResult);
+                GuiFinalStateLogic.LOGGER.warn("incorrect metafacade cast for GuiFinalStateLogic.getActions List<GuiAction> " + result + ": " + shieldedResult);
             }
             // guiFinalState has no post constraints
-            this.__getActions1r = getActions1r;
+            this.getActions1r = getActions1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getActions1rSet = true;
+                this.getActions1rSet = true;
             }
         }
         return getActions1r;

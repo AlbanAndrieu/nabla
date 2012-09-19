@@ -43,17 +43,20 @@ public abstract class GuiControllerOperationLogic
     extends MetafacadeBase
     implements GuiControllerOperation
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiControllerOperationLogic(Object metaObjectIn, String context)
+    protected GuiControllerOperationLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndControllerOperation =
@@ -68,7 +71,7 @@ public abstract class GuiControllerOperationLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiControllerOperationLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiControllerOperationLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -136,8 +139,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetInterfaceName();
 
-    private String __interfaceName1a;
-    private boolean __interfaceName1aSet = false;
+    private String interfaceName1a;
+    private boolean interfaceName1aSet = false;
 
     /**
      * The name of the interface used for forms that correspond to the calling of this operation (we
@@ -147,19 +150,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getInterfaceName()
     {
-        String interfaceName1a = this.__interfaceName1a;
-        if (!this.__interfaceName1aSet)
+        String ainterfaceName1a = this.interfaceName1a;
+        if (!this.interfaceName1aSet)
         {
             // interfaceName has no pre constraints
-            interfaceName1a = handleGetInterfaceName();
+            ainterfaceName1a = handleGetInterfaceName();
             // interfaceName has no post constraints
-            this.__interfaceName1a = interfaceName1a;
+            this.interfaceName1a = ainterfaceName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interfaceName1aSet = true;
+                this.interfaceName1aSet = true;
             }
         }
-        return interfaceName1a;
+        return ainterfaceName1a;
     }
 
    /**
@@ -168,8 +171,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetInterfacePackageName();
 
-    private String __interfacePackageName2a;
-    private boolean __interfacePackageName2aSet = false;
+    private String interfacePackageName2a;
+    private boolean interfacePackageName2aSet = false;
 
     /**
      * The package of the interface used for forms that correspond to the calling of this operation
@@ -179,19 +182,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getInterfacePackageName()
     {
-        String interfacePackageName2a = this.__interfacePackageName2a;
-        if (!this.__interfacePackageName2aSet)
+        String ainterfacePackageName2a = this.interfacePackageName2a;
+        if (!this.interfacePackageName2aSet)
         {
             // interfacePackageName has no pre constraints
-            interfacePackageName2a = handleGetInterfacePackageName();
+            ainterfacePackageName2a = handleGetInterfacePackageName();
             // interfacePackageName has no post constraints
-            this.__interfacePackageName2a = interfacePackageName2a;
+            this.interfacePackageName2a = ainterfacePackageName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interfacePackageName2aSet = true;
+                this.interfacePackageName2aSet = true;
             }
         }
-        return interfacePackageName2a;
+        return ainterfacePackageName2a;
     }
 
    /**
@@ -200,8 +203,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetInterfaceFullPath();
 
-    private String __interfaceFullPath3a;
-    private boolean __interfaceFullPath3aSet = false;
+    private String interfaceFullPath3a;
+    private boolean interfaceFullPath3aSet = false;
 
     /**
      * The package of the interface converted to a file-system compatible format.
@@ -209,19 +212,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getInterfaceFullPath()
     {
-        String interfaceFullPath3a = this.__interfaceFullPath3a;
-        if (!this.__interfaceFullPath3aSet)
+        String ainterfaceFullPath3a = this.interfaceFullPath3a;
+        if (!this.interfaceFullPath3aSet)
         {
             // interfaceFullPath has no pre constraints
-            interfaceFullPath3a = handleGetInterfaceFullPath();
+            ainterfaceFullPath3a = handleGetInterfaceFullPath();
             // interfaceFullPath has no post constraints
-            this.__interfaceFullPath3a = interfaceFullPath3a;
+            this.interfaceFullPath3a = ainterfaceFullPath3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interfaceFullPath3aSet = true;
+                this.interfaceFullPath3aSet = true;
             }
         }
-        return interfaceFullPath3a;
+        return ainterfaceFullPath3a;
     }
 
    /**
@@ -230,8 +233,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetInterfaceType();
 
-    private String __interfaceType4a;
-    private boolean __interfaceType4aSet = false;
+    private String interfaceType4a;
+    private boolean interfaceType4aSet = false;
 
     /**
      * The fully qualified name of the interface.
@@ -239,19 +242,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getInterfaceType()
     {
-        String interfaceType4a = this.__interfaceType4a;
-        if (!this.__interfaceType4aSet)
+        String ainterfaceType4a = this.interfaceType4a;
+        if (!this.interfaceType4aSet)
         {
             // interfaceType has no pre constraints
-            interfaceType4a = handleGetInterfaceType();
+            ainterfaceType4a = handleGetInterfaceType();
             // interfaceType has no post constraints
-            this.__interfaceType4a = interfaceType4a;
+            this.interfaceType4a = ainterfaceType4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__interfaceType4aSet = true;
+                this.interfaceType4aSet = true;
             }
         }
-        return interfaceType4a;
+        return ainterfaceType4a;
     }
 
    /**
@@ -260,8 +263,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract boolean handleIsBackEndServiceOperationMatchingParameters();
 
-    private boolean __backEndServiceOperationMatchingParameters5a;
-    private boolean __backEndServiceOperationMatchingParameters5aSet = false;
+    private boolean backEndServiceOperationMatchingParameters5a;
+    private boolean backEndServiceOperationMatchingParameters5aSet = false;
 
     /**
      * 
@@ -269,19 +272,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final boolean isBackEndServiceOperationMatchingParameters()
     {
-        boolean backEndServiceOperationMatchingParameters5a = this.__backEndServiceOperationMatchingParameters5a;
-        if (!this.__backEndServiceOperationMatchingParameters5aSet)
+        boolean abackEndServiceOperationMatchingParameters5a = this.backEndServiceOperationMatchingParameters5a;
+        if (!this.backEndServiceOperationMatchingParameters5aSet)
         {
             // backEndServiceOperationMatchingParameters has no pre constraints
-            backEndServiceOperationMatchingParameters5a = handleIsBackEndServiceOperationMatchingParameters();
+            abackEndServiceOperationMatchingParameters5a = handleIsBackEndServiceOperationMatchingParameters();
             // backEndServiceOperationMatchingParameters has no post constraints
-            this.__backEndServiceOperationMatchingParameters5a = backEndServiceOperationMatchingParameters5a;
+            this.backEndServiceOperationMatchingParameters5a = abackEndServiceOperationMatchingParameters5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__backEndServiceOperationMatchingParameters5aSet = true;
+                this.backEndServiceOperationMatchingParameters5aSet = true;
             }
         }
-        return backEndServiceOperationMatchingParameters5a;
+        return abackEndServiceOperationMatchingParameters5a;
     }
 
    /**
@@ -290,8 +293,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract boolean handleIsCallingBackEnd();
 
-    private boolean __callingBackEnd6a;
-    private boolean __callingBackEnd6aSet = false;
+    private boolean callingBackEnd6a;
+    private boolean callingBackEnd6aSet = false;
 
     /**
      * If this is true then the backEndServiceOperation property is not null, meaning this operation
@@ -300,19 +303,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final boolean isCallingBackEnd()
     {
-        boolean callingBackEnd6a = this.__callingBackEnd6a;
-        if (!this.__callingBackEnd6aSet)
+        boolean acallingBackEnd6a = this.callingBackEnd6a;
+        if (!this.callingBackEnd6aSet)
         {
             // callingBackEnd has no pre constraints
-            callingBackEnd6a = handleIsCallingBackEnd();
+            acallingBackEnd6a = handleIsCallingBackEnd();
             // callingBackEnd has no post constraints
-            this.__callingBackEnd6a = callingBackEnd6a;
+            this.callingBackEnd6a = acallingBackEnd6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__callingBackEnd6aSet = true;
+                this.callingBackEnd6aSet = true;
             }
         }
-        return callingBackEnd6a;
+        return acallingBackEnd6a;
     }
 
    /**
@@ -321,8 +324,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetFullyQualifiedFormPath();
 
-    private String __fullyQualifiedFormPath7a;
-    private boolean __fullyQualifiedFormPath7aSet = false;
+    private String fullyQualifiedFormPath7a;
+    private boolean fullyQualifiedFormPath7aSet = false;
 
     /**
      * The fully qualified path of the form file.
@@ -330,19 +333,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getFullyQualifiedFormPath()
     {
-        String fullyQualifiedFormPath7a = this.__fullyQualifiedFormPath7a;
-        if (!this.__fullyQualifiedFormPath7aSet)
+        String afullyQualifiedFormPath7a = this.fullyQualifiedFormPath7a;
+        if (!this.fullyQualifiedFormPath7aSet)
         {
             // fullyQualifiedFormPath has no pre constraints
-            fullyQualifiedFormPath7a = handleGetFullyQualifiedFormPath();
+            afullyQualifiedFormPath7a = handleGetFullyQualifiedFormPath();
             // fullyQualifiedFormPath has no post constraints
-            this.__fullyQualifiedFormPath7a = fullyQualifiedFormPath7a;
+            this.fullyQualifiedFormPath7a = afullyQualifiedFormPath7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedFormPath7aSet = true;
+                this.fullyQualifiedFormPath7aSet = true;
             }
         }
-        return fullyQualifiedFormPath7a;
+        return afullyQualifiedFormPath7a;
     }
 
    /**
@@ -351,8 +354,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetFullyQualifiedFormName();
 
-    private String __fullyQualifiedFormName8a;
-    private boolean __fullyQualifiedFormName8aSet = false;
+    private String fullyQualifiedFormName8a;
+    private boolean fullyQualifiedFormName8aSet = false;
 
     /**
      * The fully qualified form name.
@@ -360,19 +363,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getFullyQualifiedFormName()
     {
-        String fullyQualifiedFormName8a = this.__fullyQualifiedFormName8a;
-        if (!this.__fullyQualifiedFormName8aSet)
+        String afullyQualifiedFormName8a = this.fullyQualifiedFormName8a;
+        if (!this.fullyQualifiedFormName8aSet)
         {
             // fullyQualifiedFormName has no pre constraints
-            fullyQualifiedFormName8a = handleGetFullyQualifiedFormName();
+            afullyQualifiedFormName8a = handleGetFullyQualifiedFormName();
             // fullyQualifiedFormName has no post constraints
-            this.__fullyQualifiedFormName8a = fullyQualifiedFormName8a;
+            this.fullyQualifiedFormName8a = afullyQualifiedFormName8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedFormName8aSet = true;
+                this.fullyQualifiedFormName8aSet = true;
             }
         }
-        return fullyQualifiedFormName8a;
+        return afullyQualifiedFormName8a;
     }
 
    /**
@@ -381,8 +384,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetFormName();
 
-    private String __formName9a;
-    private boolean __formName9aSet = false;
+    private String formName9a;
+    private boolean formName9aSet = false;
 
     /**
      * The form name the corresponds to this controller operation.
@@ -390,19 +393,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getFormName()
     {
-        String formName9a = this.__formName9a;
-        if (!this.__formName9aSet)
+        String aformName9a = this.formName9a;
+        if (!this.formName9aSet)
         {
             // formName has no pre constraints
-            formName9a = handleGetFormName();
+            aformName9a = handleGetFormName();
             // formName has no post constraints
-            this.__formName9a = formName9a;
+            this.formName9a = aformName9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__formName9aSet = true;
+                this.formName9aSet = true;
             }
         }
-        return formName9a;
+        return aformName9a;
     }
 
    /**
@@ -411,8 +414,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetFormCall();
 
-    private String __formCall10a;
-    private boolean __formCall10aSet = false;
+    private String formCall10a;
+    private boolean formCall10aSet = false;
 
     /**
      * The operation call that takes the appropriate form as an argument.
@@ -420,19 +423,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getFormCall()
     {
-        String formCall10a = this.__formCall10a;
-        if (!this.__formCall10aSet)
+        String aformCall10a = this.formCall10a;
+        if (!this.formCall10aSet)
         {
             // formCall has no pre constraints
-            formCall10a = handleGetFormCall();
+            aformCall10a = handleGetFormCall();
             // formCall has no post constraints
-            this.__formCall10a = formCall10a;
+            this.formCall10a = aformCall10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__formCall10aSet = true;
+                this.formCall10aSet = true;
             }
         }
-        return formCall10a;
+        return aformCall10a;
     }
 
    /**
@@ -441,8 +444,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetFormSignature();
 
-    private String __formSignature11a;
-    private boolean __formSignature11aSet = false;
+    private String formSignature11a;
+    private boolean formSignature11aSet = false;
 
     /**
      * The controller operation signature that takes the appropriate form (if this operation has at
@@ -451,19 +454,19 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getFormSignature()
     {
-        String formSignature11a = this.__formSignature11a;
-        if (!this.__formSignature11aSet)
+        String aformSignature11a = this.formSignature11a;
+        if (!this.formSignature11aSet)
         {
             // formSignature has no pre constraints
-            formSignature11a = handleGetFormSignature();
+            aformSignature11a = handleGetFormSignature();
             // formSignature has no post constraints
-            this.__formSignature11a = formSignature11a;
+            this.formSignature11a = aformSignature11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__formSignature11aSet = true;
+                this.formSignature11aSet = true;
             }
         }
-        return formSignature11a;
+        return aformSignature11a;
     }
 
    /**
@@ -472,8 +475,8 @@ public abstract class GuiControllerOperationLogic
     */
     protected abstract String handleGetImplementationFormSignature();
 
-    private String __implementationFormSignature12a;
-    private boolean __implementationFormSignature12aSet = false;
+    private String implementationFormSignature12a;
+    private boolean implementationFormSignature12aSet = false;
 
     /**
      * The controller implementation operation signature that takes the appropriate form (if this
@@ -482,25 +485,25 @@ public abstract class GuiControllerOperationLogic
      */
     public final String getImplementationFormSignature()
     {
-        String implementationFormSignature12a = this.__implementationFormSignature12a;
-        if (!this.__implementationFormSignature12aSet)
+        String aimplementationFormSignature12a = this.implementationFormSignature12a;
+        if (!this.implementationFormSignature12aSet)
         {
             // implementationFormSignature has no pre constraints
-            implementationFormSignature12a = handleGetImplementationFormSignature();
+            aimplementationFormSignature12a = handleGetImplementationFormSignature();
             // implementationFormSignature has no post constraints
-            this.__implementationFormSignature12a = implementationFormSignature12a;
+            this.implementationFormSignature12a = aimplementationFormSignature12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationFormSignature12aSet = true;
+                this.implementationFormSignature12aSet = true;
             }
         }
-        return implementationFormSignature12a;
+        return aimplementationFormSignature12a;
     }
 
     // ------------- associations ------------------
 
-    private GuiController __getController1r;
-    private boolean __getController1rSet = false;
+    private GuiController getController1r;
+    private boolean getController1rSet = false;
 
     /**
      * 
@@ -508,8 +511,8 @@ public abstract class GuiControllerOperationLogic
      */
     public final GuiController getController()
     {
-        GuiController getController1r = this.__getController1r;
-        if (!this.__getController1rSet)
+        GuiController getController1r = this.getController1r;
+        if (!this.getController1rSet)
         {
             // guiControllerOperation has no pre constraints
             Object result = handleGetController();
@@ -521,13 +524,13 @@ public abstract class GuiControllerOperationLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiControllerOperationLogic.logger.warn("incorrect metafacade cast for GuiControllerOperationLogic.getController GuiController " + result + ": " + shieldedResult);
+                GuiControllerOperationLogic.LOGGER.warn("incorrect metafacade cast for GuiControllerOperationLogic.getController GuiController " + result + ": " + shieldedResult);
             }
             // guiControllerOperation has no post constraints
-            this.__getController1r = getController1r;
+            this.getController1r = getController1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getController1rSet = true;
+                this.getController1rSet = true;
             }
         }
         return getController1r;
@@ -539,8 +542,8 @@ public abstract class GuiControllerOperationLogic
      */
     protected abstract Object handleGetController();
 
-    private ServiceOperation __getBackEndServiceOperation2r;
-    private boolean __getBackEndServiceOperation2rSet = false;
+    private ServiceOperation getBackEndServiceOperation2r;
+    private boolean getBackEndServiceOperation2rSet = false;
 
     /**
      * 
@@ -548,8 +551,8 @@ public abstract class GuiControllerOperationLogic
      */
     public final ServiceOperation getBackEndServiceOperation()
     {
-        ServiceOperation getBackEndServiceOperation2r = this.__getBackEndServiceOperation2r;
-        if (!this.__getBackEndServiceOperation2rSet)
+        ServiceOperation getBackEndServiceOperation2r = this.getBackEndServiceOperation2r;
+        if (!this.getBackEndServiceOperation2rSet)
         {
             // guiControllerOperation has no pre constraints
             Object result = handleGetBackEndServiceOperation();
@@ -561,13 +564,13 @@ public abstract class GuiControllerOperationLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiControllerOperationLogic.logger.warn("incorrect metafacade cast for GuiControllerOperationLogic.getBackEndServiceOperation ServiceOperation " + result + ": " + shieldedResult);
+                GuiControllerOperationLogic.LOGGER.warn("incorrect metafacade cast for GuiControllerOperationLogic.getBackEndServiceOperation ServiceOperation " + result + ": " + shieldedResult);
             }
             // guiControllerOperation has no post constraints
-            this.__getBackEndServiceOperation2r = getBackEndServiceOperation2r;
+            this.getBackEndServiceOperation2r = getBackEndServiceOperation2r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getBackEndServiceOperation2rSet = true;
+                this.getBackEndServiceOperation2rSet = true;
             }
         }
         return getBackEndServiceOperation2r;

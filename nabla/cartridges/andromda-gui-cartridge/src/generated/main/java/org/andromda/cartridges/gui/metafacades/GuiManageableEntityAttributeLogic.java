@@ -40,17 +40,20 @@ public abstract class GuiManageableEntityAttributeLogic
     extends MetafacadeBase
     implements GuiManageableEntityAttribute
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiManageableEntityAttributeLogic(Object metaObjectIn, String context)
+    protected GuiManageableEntityAttributeLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superManageableEntityAttribute =
@@ -65,7 +68,7 @@ public abstract class GuiManageableEntityAttributeLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiManageableEntityAttributeLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiManageableEntityAttributeLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -133,8 +136,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDateFormat();
 
-    private String __dateFormat1a;
-    private boolean __dateFormat1aSet = false;
+    private String dateFormat1a;
+    private boolean dateFormat1aSet = false;
 
     /**
      * The String format to use when referring to this date, only makes sense when the type is a
@@ -143,19 +146,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDateFormat()
     {
-        String dateFormat1a = this.__dateFormat1a;
-        if (!this.__dateFormat1aSet)
+        String adateFormat1a = this.dateFormat1a;
+        if (!this.dateFormat1aSet)
         {
             // dateFormat has no pre constraints
-            dateFormat1a = handleGetDateFormat();
+            adateFormat1a = handleGetDateFormat();
             // dateFormat has no post constraints
-            this.__dateFormat1a = dateFormat1a;
+            this.dateFormat1a = adateFormat1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dateFormat1aSet = true;
+                this.dateFormat1aSet = true;
             }
         }
-        return dateFormat1a;
+        return adateFormat1a;
     }
 
    /**
@@ -164,8 +167,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsHidden();
 
-    private boolean __hidden2a;
-    private boolean __hidden2aSet = false;
+    private boolean hidden2a;
+    private boolean hidden2aSet = false;
 
     /**
      * Whether or not this attribute should be hidden from the view
@@ -173,19 +176,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isHidden()
     {
-        boolean hidden2a = this.__hidden2a;
-        if (!this.__hidden2aSet)
+        boolean ahidden2a = this.hidden2a;
+        if (!this.hidden2aSet)
         {
             // hidden has no pre constraints
-            hidden2a = handleIsHidden();
+            ahidden2a = handleIsHidden();
             // hidden has no post constraints
-            this.__hidden2a = hidden2a;
+            this.hidden2a = ahidden2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__hidden2aSet = true;
+                this.hidden2aSet = true;
             }
         }
-        return hidden2a;
+        return ahidden2a;
     }
 
    /**
@@ -194,8 +197,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetWidgetType();
 
-    private String __widgetType3a;
-    private boolean __widgetType3aSet = false;
+    private String widgetType3a;
+    private boolean widgetType3aSet = false;
 
     /**
      * The widget to use when rendering this attribute
@@ -203,19 +206,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getWidgetType()
     {
-        String widgetType3a = this.__widgetType3a;
-        if (!this.__widgetType3aSet)
+        String awidgetType3a = this.widgetType3a;
+        if (!this.widgetType3aSet)
         {
             // widgetType has no pre constraints
-            widgetType3a = handleGetWidgetType();
+            awidgetType3a = handleGetWidgetType();
             // widgetType has no post constraints
-            this.__widgetType3a = widgetType3a;
+            this.widgetType3a = awidgetType3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__widgetType3aSet = true;
+                this.widgetType3aSet = true;
             }
         }
-        return widgetType3a;
+        return awidgetType3a;
     }
 
    /**
@@ -224,8 +227,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsStrictDateFormat();
 
-    private boolean __strictDateFormat4a;
-    private boolean __strictDateFormat4aSet = false;
+    private boolean strictDateFormat4a;
+    private boolean strictDateFormat4aSet = false;
 
     /**
      * True if this field is a date type and the date format is not be interpreted strictly.
@@ -233,19 +236,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isStrictDateFormat()
     {
-        boolean strictDateFormat4a = this.__strictDateFormat4a;
-        if (!this.__strictDateFormat4aSet)
+        boolean astrictDateFormat4a = this.strictDateFormat4a;
+        if (!this.strictDateFormat4aSet)
         {
             // strictDateFormat has no pre constraints
-            strictDateFormat4a = handleIsStrictDateFormat();
+            astrictDateFormat4a = handleIsStrictDateFormat();
             // strictDateFormat has no post constraints
-            this.__strictDateFormat4a = strictDateFormat4a;
+            this.strictDateFormat4a = astrictDateFormat4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__strictDateFormat4aSet = true;
+                this.strictDateFormat4aSet = true;
             }
         }
-        return strictDateFormat4a;
+        return astrictDateFormat4a;
     }
 
    /**
@@ -254,8 +257,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsSafeNamePresent();
 
-    private boolean __safeNamePresent5a;
-    private boolean __safeNamePresent5aSet = false;
+    private boolean safeNamePresent5a;
+    private boolean safeNamePresent5aSet = false;
 
     /**
      * True if this parameter has a name that can properly be handled by Jakarta commons (this lib
@@ -264,19 +267,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isSafeNamePresent()
     {
-        boolean safeNamePresent5a = this.__safeNamePresent5a;
-        if (!this.__safeNamePresent5aSet)
+        boolean asafeNamePresent5a = this.safeNamePresent5a;
+        if (!this.safeNamePresent5aSet)
         {
             // safeNamePresent has no pre constraints
-            safeNamePresent5a = handleIsSafeNamePresent();
+            asafeNamePresent5a = handleIsSafeNamePresent();
             // safeNamePresent has no post constraints
-            this.__safeNamePresent5a = safeNamePresent5a;
+            this.safeNamePresent5a = asafeNamePresent5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__safeNamePresent5aSet = true;
+                this.safeNamePresent5aSet = true;
             }
         }
-        return safeNamePresent5a;
+        return asafeNamePresent5a;
     }
 
    /**
@@ -285,8 +288,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsFilterElement();
 
-    private boolean __filterElement6a;
-    private boolean __filterElement6aSet = false;
+    private boolean filterElement6a;
+    private boolean filterElement6aSet = false;
 
     /**
      * 
@@ -294,19 +297,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isFilterElement()
     {
-        boolean filterElement6a = this.__filterElement6a;
-        if (!this.__filterElement6aSet)
+        boolean afilterElement6a = this.filterElement6a;
+        if (!this.filterElement6aSet)
         {
             // filterElement has no pre constraints
-            filterElement6a = handleIsFilterElement();
+            afilterElement6a = handleIsFilterElement();
             // filterElement has no post constraints
-            this.__filterElement6a = filterElement6a;
+            this.filterElement6a = afilterElement6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__filterElement6aSet = true;
+                this.filterElement6aSet = true;
             }
         }
-        return filterElement6a;
+        return afilterElement6a;
     }
 
    /**
@@ -315,8 +318,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsMandatory();
 
-    private boolean __mandatory7a;
-    private boolean __mandatory7aSet = false;
+    private boolean mandatory7a;
+    private boolean mandatory7aSet = false;
 
     /**
      * 
@@ -324,19 +327,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isMandatory()
     {
-        boolean mandatory7a = this.__mandatory7a;
-        if (!this.__mandatory7aSet)
+        boolean amandatory7a = this.mandatory7a;
+        if (!this.mandatory7aSet)
         {
             // mandatory has no pre constraints
-            mandatory7a = handleIsMandatory();
+            amandatory7a = handleIsMandatory();
             // mandatory has no post constraints
-            this.__mandatory7a = mandatory7a;
+            this.mandatory7a = amandatory7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__mandatory7aSet = true;
+                this.mandatory7aSet = true;
             }
         }
-        return mandatory7a;
+        return amandatory7a;
     }
 
    /**
@@ -345,8 +348,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsCoherencySource();
 
-    private boolean __coherencySource8a;
-    private boolean __coherencySource8aSet = false;
+    private boolean coherencySource8a;
+    private boolean coherencySource8aSet = false;
 
     /**
      * 
@@ -354,19 +357,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isCoherencySource()
     {
-        boolean coherencySource8a = this.__coherencySource8a;
-        if (!this.__coherencySource8aSet)
+        boolean acoherencySource8a = this.coherencySource8a;
+        if (!this.coherencySource8aSet)
         {
             // coherencySource has no pre constraints
-            coherencySource8a = handleIsCoherencySource();
+            acoherencySource8a = handleIsCoherencySource();
             // coherencySource has no post constraints
-            this.__coherencySource8a = coherencySource8a;
+            this.coherencySource8a = acoherencySource8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__coherencySource8aSet = true;
+                this.coherencySource8aSet = true;
             }
         }
-        return coherencySource8a;
+        return acoherencySource8a;
     }
 
    /**
@@ -375,8 +378,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsCoherencyTarget();
 
-    private boolean __coherencyTarget9a;
-    private boolean __coherencyTarget9aSet = false;
+    private boolean coherencyTarget9a;
+    private boolean coherencyTarget9aSet = false;
 
     /**
      * 
@@ -384,19 +387,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isCoherencyTarget()
     {
-        boolean coherencyTarget9a = this.__coherencyTarget9a;
-        if (!this.__coherencyTarget9aSet)
+        boolean acoherencyTarget9a = this.coherencyTarget9a;
+        if (!this.coherencyTarget9aSet)
         {
             // coherencyTarget has no pre constraints
-            coherencyTarget9a = handleIsCoherencyTarget();
+            acoherencyTarget9a = handleIsCoherencyTarget();
             // coherencyTarget has no post constraints
-            this.__coherencyTarget9a = coherencyTarget9a;
+            this.coherencyTarget9a = acoherencyTarget9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__coherencyTarget9aSet = true;
+                this.coherencyTarget9aSet = true;
             }
         }
-        return coherencyTarget9a;
+        return acoherencyTarget9a;
     }
 
    /**
@@ -405,8 +408,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDisplayName();
 
-    private String __displayName10a;
-    private boolean __displayName10aSet = false;
+    private String displayName10a;
+    private boolean displayName10aSet = false;
 
     /**
      * 
@@ -414,19 +417,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDisplayName()
     {
-        String displayName10a = this.__displayName10a;
-        if (!this.__displayName10aSet)
+        String adisplayName10a = this.displayName10a;
+        if (!this.displayName10aSet)
         {
             // displayName has no pre constraints
-            displayName10a = handleGetDisplayName();
+            adisplayName10a = handleGetDisplayName();
             // displayName has no post constraints
-            this.__displayName10a = displayName10a;
+            this.displayName10a = adisplayName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__displayName10aSet = true;
+                this.displayName10aSet = true;
             }
         }
-        return displayName10a;
+        return adisplayName10a;
     }
 
    /**
@@ -435,8 +438,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetFunctionalCoherency();
 
-    private String __functionalCoherency11a;
-    private boolean __functionalCoherency11aSet = false;
+    private String functionalCoherency11a;
+    private boolean functionalCoherency11aSet = false;
 
     /**
      * 
@@ -444,19 +447,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getFunctionalCoherency()
     {
-        String functionalCoherency11a = this.__functionalCoherency11a;
-        if (!this.__functionalCoherency11aSet)
+        String afunctionalCoherency11a = this.functionalCoherency11a;
+        if (!this.functionalCoherency11aSet)
         {
             // functionalCoherency has no pre constraints
-            functionalCoherency11a = handleGetFunctionalCoherency();
+            afunctionalCoherency11a = handleGetFunctionalCoherency();
             // functionalCoherency has no post constraints
-            this.__functionalCoherency11a = functionalCoherency11a;
+            this.functionalCoherency11a = afunctionalCoherency11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__functionalCoherency11aSet = true;
+                this.functionalCoherency11aSet = true;
             }
         }
-        return functionalCoherency11a;
+        return afunctionalCoherency11a;
     }
 
    /**
@@ -465,8 +468,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDictionaryReturnType();
 
-    private String __dictionaryReturnType12a;
-    private boolean __dictionaryReturnType12aSet = false;
+    private String dictionaryReturnType12a;
+    private boolean dictionaryReturnType12aSet = false;
 
     /**
      * 
@@ -474,19 +477,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDictionaryReturnType()
     {
-        String dictionaryReturnType12a = this.__dictionaryReturnType12a;
-        if (!this.__dictionaryReturnType12aSet)
+        String adictionaryReturnType12a = this.dictionaryReturnType12a;
+        if (!this.dictionaryReturnType12aSet)
         {
             // dictionaryReturnType has no pre constraints
-            dictionaryReturnType12a = handleGetDictionaryReturnType();
+            adictionaryReturnType12a = handleGetDictionaryReturnType();
             // dictionaryReturnType has no post constraints
-            this.__dictionaryReturnType12a = dictionaryReturnType12a;
+            this.dictionaryReturnType12a = adictionaryReturnType12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dictionaryReturnType12aSet = true;
+                this.dictionaryReturnType12aSet = true;
             }
         }
-        return dictionaryReturnType12a;
+        return adictionaryReturnType12a;
     }
 
    /**
@@ -495,8 +498,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetNumericFormat();
 
-    private String __numericFormat13a;
-    private boolean __numericFormat13aSet = false;
+    private String numericFormat13a;
+    private boolean numericFormat13aSet = false;
 
     /**
      * 
@@ -504,19 +507,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getNumericFormat()
     {
-        String numericFormat13a = this.__numericFormat13a;
-        if (!this.__numericFormat13aSet)
+        String anumericFormat13a = this.numericFormat13a;
+        if (!this.numericFormat13aSet)
         {
             // numericFormat has no pre constraints
-            numericFormat13a = handleGetNumericFormat();
+            anumericFormat13a = handleGetNumericFormat();
             // numericFormat has no post constraints
-            this.__numericFormat13a = numericFormat13a;
+            this.numericFormat13a = anumericFormat13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__numericFormat13aSet = true;
+                this.numericFormat13aSet = true;
             }
         }
-        return numericFormat13a;
+        return anumericFormat13a;
     }
 
    /**
@@ -525,8 +528,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsReadOnlyForUpdate();
 
-    private boolean __readOnlyForUpdate14a;
-    private boolean __readOnlyForUpdate14aSet = false;
+    private boolean readOnlyForUpdate14a;
+    private boolean readOnlyForUpdate14aSet = false;
 
     /**
      * 
@@ -534,19 +537,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isReadOnlyForUpdate()
     {
-        boolean readOnlyForUpdate14a = this.__readOnlyForUpdate14a;
-        if (!this.__readOnlyForUpdate14aSet)
+        boolean areadOnlyForUpdate14a = this.readOnlyForUpdate14a;
+        if (!this.readOnlyForUpdate14aSet)
         {
             // readOnlyForUpdate has no pre constraints
-            readOnlyForUpdate14a = handleIsReadOnlyForUpdate();
+            areadOnlyForUpdate14a = handleIsReadOnlyForUpdate();
             // readOnlyForUpdate has no post constraints
-            this.__readOnlyForUpdate14a = readOnlyForUpdate14a;
+            this.readOnlyForUpdate14a = areadOnlyForUpdate14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__readOnlyForUpdate14aSet = true;
+                this.readOnlyForUpdate14aSet = true;
             }
         }
-        return readOnlyForUpdate14a;
+        return areadOnlyForUpdate14a;
     }
 
    /**
@@ -555,8 +558,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract int handleGetFieldSize();
 
-    private int __fieldSize15a;
-    private boolean __fieldSize15aSet = false;
+    private int fieldSize15a;
+    private boolean fieldSize15aSet = false;
 
     /**
      * 
@@ -564,19 +567,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final int getFieldSize()
     {
-        int fieldSize15a = this.__fieldSize15a;
-        if (!this.__fieldSize15aSet)
+        int afieldSize15a = this.fieldSize15a;
+        if (!this.fieldSize15aSet)
         {
             // fieldSize has no pre constraints
-            fieldSize15a = handleGetFieldSize();
+            afieldSize15a = handleGetFieldSize();
             // fieldSize has no post constraints
-            this.__fieldSize15a = fieldSize15a;
+            this.fieldSize15a = afieldSize15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fieldSize15aSet = true;
+                this.fieldSize15aSet = true;
             }
         }
-        return fieldSize15a;
+        return afieldSize15a;
     }
 
    /**
@@ -585,8 +588,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsDealType();
 
-    private boolean __dealType16a;
-    private boolean __dealType16aSet = false;
+    private boolean dealType16a;
+    private boolean dealType16aSet = false;
 
     /**
      * 
@@ -594,19 +597,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isDealType()
     {
-        boolean dealType16a = this.__dealType16a;
-        if (!this.__dealType16aSet)
+        boolean adealType16a = this.dealType16a;
+        if (!this.dealType16aSet)
         {
             // dealType has no pre constraints
-            dealType16a = handleIsDealType();
+            adealType16a = handleIsDealType();
             // dealType has no post constraints
-            this.__dealType16a = dealType16a;
+            this.dealType16a = adealType16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dealType16aSet = true;
+                this.dealType16aSet = true;
             }
         }
-        return dealType16a;
+        return adealType16a;
     }
 
    /**
@@ -615,8 +618,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsDealId();
 
-    private boolean __dealId17a;
-    private boolean __dealId17aSet = false;
+    private boolean dealId17a;
+    private boolean dealId17aSet = false;
 
     /**
      * 
@@ -624,19 +627,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isDealId()
     {
-        boolean dealId17a = this.__dealId17a;
-        if (!this.__dealId17aSet)
+        boolean adealId17a = this.dealId17a;
+        if (!this.dealId17aSet)
         {
             // dealId has no pre constraints
-            dealId17a = handleIsDealId();
+            adealId17a = handleIsDealId();
             // dealId has no post constraints
-            this.__dealId17a = dealId17a;
+            this.dealId17a = adealId17a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dealId17aSet = true;
+                this.dealId17aSet = true;
             }
         }
-        return dealId17a;
+        return adealId17a;
     }
 
    /**
@@ -645,8 +648,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetChoiceType();
 
-    private String __choiceType18a;
-    private boolean __choiceType18aSet = false;
+    private String choiceType18a;
+    private boolean choiceType18aSet = false;
 
     /**
      * 
@@ -654,19 +657,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getChoiceType()
     {
-        String choiceType18a = this.__choiceType18a;
-        if (!this.__choiceType18aSet)
+        String achoiceType18a = this.choiceType18a;
+        if (!this.choiceType18aSet)
         {
             // choiceType has no pre constraints
-            choiceType18a = handleGetChoiceType();
+            achoiceType18a = handleGetChoiceType();
             // choiceType has no post constraints
-            this.__choiceType18a = choiceType18a;
+            this.choiceType18a = achoiceType18a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__choiceType18aSet = true;
+                this.choiceType18aSet = true;
             }
         }
-        return choiceType18a;
+        return achoiceType18a;
     }
 
    /**
@@ -675,8 +678,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String __messageKey19a;
-    private boolean __messageKey19aSet = false;
+    private String messageKey19a;
+    private boolean messageKey19aSet = false;
 
     /**
      * 
@@ -684,19 +687,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getMessageKey()
     {
-        String messageKey19a = this.__messageKey19a;
-        if (!this.__messageKey19aSet)
+        String amessageKey19a = this.messageKey19a;
+        if (!this.messageKey19aSet)
         {
             // messageKey has no pre constraints
-            messageKey19a = handleGetMessageKey();
+            amessageKey19a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.__messageKey19a = messageKey19a;
+            this.messageKey19a = amessageKey19a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageKey19aSet = true;
+                this.messageKey19aSet = true;
             }
         }
-        return messageKey19a;
+        return amessageKey19a;
     }
 
    /**
@@ -705,8 +708,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String __messageValue20a;
-    private boolean __messageValue20aSet = false;
+    private String messageValue20a;
+    private boolean messageValue20aSet = false;
 
     /**
      * 
@@ -714,19 +717,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getMessageValue()
     {
-        String messageValue20a = this.__messageValue20a;
-        if (!this.__messageValue20aSet)
+        String amessageValue20a = this.messageValue20a;
+        if (!this.messageValue20aSet)
         {
             // messageValue has no pre constraints
-            messageValue20a = handleGetMessageValue();
+            amessageValue20a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.__messageValue20a = messageValue20a;
+            this.messageValue20a = amessageValue20a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageValue20aSet = true;
+                this.messageValue20aSet = true;
             }
         }
-        return messageValue20a;
+        return amessageValue20a;
     }
 
    /**
@@ -735,8 +738,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsNeedsFileUpload();
 
-    private boolean __needsFileUpload21a;
-    private boolean __needsFileUpload21aSet = false;
+    private boolean needsFileUpload21a;
+    private boolean needsFileUpload21aSet = false;
 
     /**
      * True if this attribute is of a type that cannot easily be represented as a textual string and
@@ -745,19 +748,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isNeedsFileUpload()
     {
-        boolean needsFileUpload21a = this.__needsFileUpload21a;
-        if (!this.__needsFileUpload21aSet)
+        boolean aneedsFileUpload21a = this.needsFileUpload21a;
+        if (!this.needsFileUpload21aSet)
         {
             // needsFileUpload has no pre constraints
-            needsFileUpload21a = handleIsNeedsFileUpload();
+            aneedsFileUpload21a = handleIsNeedsFileUpload();
             // needsFileUpload has no post constraints
-            this.__needsFileUpload21a = needsFileUpload21a;
+            this.needsFileUpload21a = aneedsFileUpload21a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__needsFileUpload21aSet = true;
+                this.needsFileUpload21aSet = true;
             }
         }
-        return needsFileUpload21a;
+        return aneedsFileUpload21a;
     }
 
    /**
@@ -766,8 +769,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String __onlineHelpKey22a;
-    private boolean __onlineHelpKey22aSet = false;
+    private String onlineHelpKey22a;
+    private boolean onlineHelpKey22aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -776,19 +779,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getOnlineHelpKey()
     {
-        String onlineHelpKey22a = this.__onlineHelpKey22a;
-        if (!this.__onlineHelpKey22aSet)
+        String aonlineHelpKey22a = this.onlineHelpKey22a;
+        if (!this.onlineHelpKey22aSet)
         {
             // onlineHelpKey has no pre constraints
-            onlineHelpKey22a = handleGetOnlineHelpKey();
+            aonlineHelpKey22a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.__onlineHelpKey22a = onlineHelpKey22a;
+            this.onlineHelpKey22a = aonlineHelpKey22a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpKey22aSet = true;
+                this.onlineHelpKey22aSet = true;
             }
         }
-        return onlineHelpKey22a;
+        return aonlineHelpKey22a;
     }
 
    /**
@@ -797,8 +800,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String __onlineHelpValue23a;
-    private boolean __onlineHelpValue23aSet = false;
+    private String onlineHelpValue23a;
+    private boolean onlineHelpValue23aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -807,19 +810,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getOnlineHelpValue()
     {
-        String onlineHelpValue23a = this.__onlineHelpValue23a;
-        if (!this.__onlineHelpValue23aSet)
+        String aonlineHelpValue23a = this.onlineHelpValue23a;
+        if (!this.onlineHelpValue23aSet)
         {
             // onlineHelpValue has no pre constraints
-            onlineHelpValue23a = handleGetOnlineHelpValue();
+            aonlineHelpValue23a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.__onlineHelpValue23a = onlineHelpValue23a;
+            this.onlineHelpValue23a = aonlineHelpValue23a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpValue23aSet = true;
+                this.onlineHelpValue23aSet = true;
             }
         }
-        return onlineHelpValue23a;
+        return aonlineHelpValue23a;
     }
 
    /**
@@ -828,8 +831,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetFormat();
 
-    private String __format24a;
-    private boolean __format24aSet = false;
+    private String format24a;
+    private boolean format24aSet = false;
 
     /**
      * 
@@ -837,19 +840,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getFormat()
     {
-        String format24a = this.__format24a;
-        if (!this.__format24aSet)
+        String aformat24a = this.format24a;
+        if (!this.format24aSet)
         {
             // format has no pre constraints
-            format24a = handleGetFormat();
+            aformat24a = handleGetFormat();
             // format has no post constraints
-            this.__format24a = format24a;
+            this.format24a = aformat24a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__format24aSet = true;
+                this.format24aSet = true;
             }
         }
-        return format24a;
+        return aformat24a;
     }
 
    /**
@@ -858,8 +861,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDefaultDateFormat();
 
-    private String __defaultDateFormat25a;
-    private boolean __defaultDateFormat25aSet = false;
+    private String defaultDateFormat25a;
+    private boolean defaultDateFormat25aSet = false;
 
     /**
      * 
@@ -867,19 +870,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDefaultDateFormat()
     {
-        String defaultDateFormat25a = this.__defaultDateFormat25a;
-        if (!this.__defaultDateFormat25aSet)
+        String adefaultDateFormat25a = this.defaultDateFormat25a;
+        if (!this.defaultDateFormat25aSet)
         {
             // defaultDateFormat has no pre constraints
-            defaultDateFormat25a = handleGetDefaultDateFormat();
+            adefaultDateFormat25a = handleGetDefaultDateFormat();
             // defaultDateFormat has no post constraints
-            this.__defaultDateFormat25a = defaultDateFormat25a;
+            this.defaultDateFormat25a = adefaultDateFormat25a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__defaultDateFormat25aSet = true;
+                this.defaultDateFormat25aSet = true;
             }
         }
-        return defaultDateFormat25a;
+        return adefaultDateFormat25a;
     }
 
    /**
@@ -888,8 +891,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDefaultTimeFormat();
 
-    private String __defaultTimeFormat26a;
-    private boolean __defaultTimeFormat26aSet = false;
+    private String defaultTimeFormat26a;
+    private boolean defaultTimeFormat26aSet = false;
 
     /**
      * 
@@ -897,19 +900,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDefaultTimeFormat()
     {
-        String defaultTimeFormat26a = this.__defaultTimeFormat26a;
-        if (!this.__defaultTimeFormat26aSet)
+        String adefaultTimeFormat26a = this.defaultTimeFormat26a;
+        if (!this.defaultTimeFormat26aSet)
         {
             // defaultTimeFormat has no pre constraints
-            defaultTimeFormat26a = handleGetDefaultTimeFormat();
+            adefaultTimeFormat26a = handleGetDefaultTimeFormat();
             // defaultTimeFormat has no post constraints
-            this.__defaultTimeFormat26a = defaultTimeFormat26a;
+            this.defaultTimeFormat26a = adefaultTimeFormat26a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__defaultTimeFormat26aSet = true;
+                this.defaultTimeFormat26aSet = true;
             }
         }
-        return defaultTimeFormat26a;
+        return adefaultTimeFormat26a;
     }
 
    /**
@@ -918,8 +921,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDateFormatter();
 
-    private String __dateFormatter27a;
-    private boolean __dateFormatter27aSet = false;
+    private String dateFormatter27a;
+    private boolean dateFormatter27aSet = false;
 
     /**
      * 
@@ -927,19 +930,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDateFormatter()
     {
-        String dateFormatter27a = this.__dateFormatter27a;
-        if (!this.__dateFormatter27aSet)
+        String adateFormatter27a = this.dateFormatter27a;
+        if (!this.dateFormatter27aSet)
         {
             // dateFormatter has no pre constraints
-            dateFormatter27a = handleGetDateFormatter();
+            adateFormatter27a = handleGetDateFormatter();
             // dateFormatter has no post constraints
-            this.__dateFormatter27a = dateFormatter27a;
+            this.dateFormatter27a = adateFormatter27a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dateFormatter27aSet = true;
+                this.dateFormatter27aSet = true;
             }
         }
-        return dateFormatter27a;
+        return adateFormatter27a;
     }
 
    /**
@@ -948,8 +951,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetTimeFormatter();
 
-    private String __timeFormatter28a;
-    private boolean __timeFormatter28aSet = false;
+    private String timeFormatter28a;
+    private boolean timeFormatter28aSet = false;
 
     /**
      * 
@@ -957,19 +960,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getTimeFormatter()
     {
-        String timeFormatter28a = this.__timeFormatter28a;
-        if (!this.__timeFormatter28aSet)
+        String atimeFormatter28a = this.timeFormatter28a;
+        if (!this.timeFormatter28aSet)
         {
             // timeFormatter has no pre constraints
-            timeFormatter28a = handleGetTimeFormatter();
+            atimeFormatter28a = handleGetTimeFormatter();
             // timeFormatter has no post constraints
-            this.__timeFormatter28a = timeFormatter28a;
+            this.timeFormatter28a = atimeFormatter28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__timeFormatter28aSet = true;
+                this.timeFormatter28aSet = true;
             }
         }
-        return timeFormatter28a;
+        return atimeFormatter28a;
     }
 
    /**
@@ -978,8 +981,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetBackingListName();
 
-    private String __backingListName29a;
-    private boolean __backingListName29aSet = false;
+    private String backingListName29a;
+    private boolean backingListName29aSet = false;
 
     /**
      * 
@@ -987,19 +990,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getBackingListName()
     {
-        String backingListName29a = this.__backingListName29a;
-        if (!this.__backingListName29aSet)
+        String abackingListName29a = this.backingListName29a;
+        if (!this.backingListName29aSet)
         {
             // backingListName has no pre constraints
-            backingListName29a = handleGetBackingListName();
+            abackingListName29a = handleGetBackingListName();
             // backingListName has no post constraints
-            this.__backingListName29a = backingListName29a;
+            this.backingListName29a = abackingListName29a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__backingListName29aSet = true;
+                this.backingListName29aSet = true;
             }
         }
-        return backingListName29a;
+        return abackingListName29a;
     }
 
    /**
@@ -1008,8 +1011,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetValueListName();
 
-    private String __valueListName30a;
-    private boolean __valueListName30aSet = false;
+    private String valueListName30a;
+    private boolean valueListName30aSet = false;
 
     /**
      * 
@@ -1017,19 +1020,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getValueListName()
     {
-        String valueListName30a = this.__valueListName30a;
-        if (!this.__valueListName30aSet)
+        String avalueListName30a = this.valueListName30a;
+        if (!this.valueListName30aSet)
         {
             // valueListName has no pre constraints
-            valueListName30a = handleGetValueListName();
+            avalueListName30a = handleGetValueListName();
             // valueListName has no post constraints
-            this.__valueListName30a = valueListName30a;
+            this.valueListName30a = avalueListName30a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__valueListName30aSet = true;
+                this.valueListName30aSet = true;
             }
         }
-        return valueListName30a;
+        return avalueListName30a;
     }
 
    /**
@@ -1038,8 +1041,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetLabelListName();
 
-    private String __labelListName31a;
-    private boolean __labelListName31aSet = false;
+    private String labelListName31a;
+    private boolean labelListName31aSet = false;
 
     /**
      * 
@@ -1047,19 +1050,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getLabelListName()
     {
-        String labelListName31a = this.__labelListName31a;
-        if (!this.__labelListName31aSet)
+        String alabelListName31a = this.labelListName31a;
+        if (!this.labelListName31aSet)
         {
             // labelListName has no pre constraints
-            labelListName31a = handleGetLabelListName();
+            alabelListName31a = handleGetLabelListName();
             // labelListName has no post constraints
-            this.__labelListName31a = labelListName31a;
+            this.labelListName31a = alabelListName31a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__labelListName31aSet = true;
+                this.labelListName31aSet = true;
             }
         }
-        return labelListName31a;
+        return alabelListName31a;
     }
 
    /**
@@ -1068,8 +1071,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract Collection handleGetValidatorTypes();
 
-    private Collection __validatorTypes32a;
-    private boolean __validatorTypes32aSet = false;
+    private Collection validatorTypes32a;
+    private boolean validatorTypes32aSet = false;
 
     /**
      * All validator types for this attribute.
@@ -1077,19 +1080,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final Collection getValidatorTypes()
     {
-        Collection validatorTypes32a = this.__validatorTypes32a;
-        if (!this.__validatorTypes32aSet)
+        Collection avalidatorTypes32a = this.validatorTypes32a;
+        if (!this.validatorTypes32aSet)
         {
             // validatorTypes has no pre constraints
-            validatorTypes32a = handleGetValidatorTypes();
+            avalidatorTypes32a = handleGetValidatorTypes();
             // validatorTypes has no post constraints
-            this.__validatorTypes32a = validatorTypes32a;
+            this.validatorTypes32a = avalidatorTypes32a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__validatorTypes32aSet = true;
+                this.validatorTypes32aSet = true;
             }
         }
-        return validatorTypes32a;
+        return avalidatorTypes32a;
     }
 
    /**
@@ -1098,8 +1101,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsValidationRequired();
 
-    private boolean __validationRequired33a;
-    private boolean __validationRequired33aSet = false;
+    private boolean validationRequired33a;
+    private boolean validationRequired33aSet = false;
 
     /**
      * Indicates whether or not this attribute requires some kind of validation (the collection of
@@ -1108,19 +1111,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isValidationRequired()
     {
-        boolean validationRequired33a = this.__validationRequired33a;
-        if (!this.__validationRequired33aSet)
+        boolean avalidationRequired33a = this.validationRequired33a;
+        if (!this.validationRequired33aSet)
         {
             // validationRequired has no pre constraints
-            validationRequired33a = handleIsValidationRequired();
+            avalidationRequired33a = handleIsValidationRequired();
             // validationRequired has no post constraints
-            this.__validationRequired33a = validationRequired33a;
+            this.validationRequired33a = avalidationRequired33a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__validationRequired33aSet = true;
+                this.validationRequired33aSet = true;
             }
         }
-        return validationRequired33a;
+        return avalidationRequired33a;
     }
 
    /**
@@ -1129,8 +1132,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetValidWhen();
 
-    private String __validWhen34a;
-    private boolean __validWhen34aSet = false;
+    private String validWhen34a;
+    private boolean validWhen34aSet = false;
 
     /**
      * 
@@ -1138,19 +1141,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getValidWhen()
     {
-        String validWhen34a = this.__validWhen34a;
-        if (!this.__validWhen34aSet)
+        String avalidWhen34a = this.validWhen34a;
+        if (!this.validWhen34aSet)
         {
             // validWhen has no pre constraints
-            validWhen34a = handleGetValidWhen();
+            avalidWhen34a = handleGetValidWhen();
             // validWhen has no post constraints
-            this.__validWhen34a = validWhen34a;
+            this.validWhen34a = avalidWhen34a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__validWhen34aSet = true;
+                this.validWhen34aSet = true;
             }
         }
-        return validWhen34a;
+        return avalidWhen34a;
     }
 
    /**
@@ -1159,8 +1162,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputCheckbox();
 
-    private boolean __inputCheckbox35a;
-    private boolean __inputCheckbox35aSet = false;
+    private boolean inputCheckbox35a;
+    private boolean inputCheckbox35aSet = false;
 
     /**
      * 
@@ -1168,19 +1171,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputCheckbox()
     {
-        boolean inputCheckbox35a = this.__inputCheckbox35a;
-        if (!this.__inputCheckbox35aSet)
+        boolean ainputCheckbox35a = this.inputCheckbox35a;
+        if (!this.inputCheckbox35aSet)
         {
             // inputCheckbox has no pre constraints
-            inputCheckbox35a = handleIsInputCheckbox();
+            ainputCheckbox35a = handleIsInputCheckbox();
             // inputCheckbox has no post constraints
-            this.__inputCheckbox35a = inputCheckbox35a;
+            this.inputCheckbox35a = ainputCheckbox35a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputCheckbox35aSet = true;
+                this.inputCheckbox35aSet = true;
             }
         }
-        return inputCheckbox35a;
+        return ainputCheckbox35a;
     }
 
    /**
@@ -1189,8 +1192,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputFile();
 
-    private boolean __inputFile36a;
-    private boolean __inputFile36aSet = false;
+    private boolean inputFile36a;
+    private boolean inputFile36aSet = false;
 
     /**
      * 
@@ -1198,19 +1201,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputFile()
     {
-        boolean inputFile36a = this.__inputFile36a;
-        if (!this.__inputFile36aSet)
+        boolean ainputFile36a = this.inputFile36a;
+        if (!this.inputFile36aSet)
         {
             // inputFile has no pre constraints
-            inputFile36a = handleIsInputFile();
+            ainputFile36a = handleIsInputFile();
             // inputFile has no post constraints
-            this.__inputFile36a = inputFile36a;
+            this.inputFile36a = ainputFile36a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputFile36aSet = true;
+                this.inputFile36aSet = true;
             }
         }
-        return inputFile36a;
+        return ainputFile36a;
     }
 
    /**
@@ -1219,8 +1222,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputHidden();
 
-    private boolean __inputHidden37a;
-    private boolean __inputHidden37aSet = false;
+    private boolean inputHidden37a;
+    private boolean inputHidden37aSet = false;
 
     /**
      * 
@@ -1228,19 +1231,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputHidden()
     {
-        boolean inputHidden37a = this.__inputHidden37a;
-        if (!this.__inputHidden37aSet)
+        boolean ainputHidden37a = this.inputHidden37a;
+        if (!this.inputHidden37aSet)
         {
             // inputHidden has no pre constraints
-            inputHidden37a = handleIsInputHidden();
+            ainputHidden37a = handleIsInputHidden();
             // inputHidden has no post constraints
-            this.__inputHidden37a = inputHidden37a;
+            this.inputHidden37a = ainputHidden37a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputHidden37aSet = true;
+                this.inputHidden37aSet = true;
             }
         }
-        return inputHidden37a;
+        return ainputHidden37a;
     }
 
    /**
@@ -1249,8 +1252,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputMultibox();
 
-    private boolean __inputMultibox38a;
-    private boolean __inputMultibox38aSet = false;
+    private boolean inputMultibox38a;
+    private boolean inputMultibox38aSet = false;
 
     /**
      * 
@@ -1258,19 +1261,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputMultibox()
     {
-        boolean inputMultibox38a = this.__inputMultibox38a;
-        if (!this.__inputMultibox38aSet)
+        boolean ainputMultibox38a = this.inputMultibox38a;
+        if (!this.inputMultibox38aSet)
         {
             // inputMultibox has no pre constraints
-            inputMultibox38a = handleIsInputMultibox();
+            ainputMultibox38a = handleIsInputMultibox();
             // inputMultibox has no post constraints
-            this.__inputMultibox38a = inputMultibox38a;
+            this.inputMultibox38a = ainputMultibox38a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputMultibox38aSet = true;
+                this.inputMultibox38aSet = true;
             }
         }
-        return inputMultibox38a;
+        return ainputMultibox38a;
     }
 
    /**
@@ -1279,8 +1282,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputRadio();
 
-    private boolean __inputRadio39a;
-    private boolean __inputRadio39aSet = false;
+    private boolean inputRadio39a;
+    private boolean inputRadio39aSet = false;
 
     /**
      * 
@@ -1288,19 +1291,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputRadio()
     {
-        boolean inputRadio39a = this.__inputRadio39a;
-        if (!this.__inputRadio39aSet)
+        boolean ainputRadio39a = this.inputRadio39a;
+        if (!this.inputRadio39aSet)
         {
             // inputRadio has no pre constraints
-            inputRadio39a = handleIsInputRadio();
+            ainputRadio39a = handleIsInputRadio();
             // inputRadio has no post constraints
-            this.__inputRadio39a = inputRadio39a;
+            this.inputRadio39a = ainputRadio39a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputRadio39aSet = true;
+                this.inputRadio39aSet = true;
             }
         }
-        return inputRadio39a;
+        return ainputRadio39a;
     }
 
    /**
@@ -1309,8 +1312,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputSecret();
 
-    private boolean __inputSecret40a;
-    private boolean __inputSecret40aSet = false;
+    private boolean inputSecret40a;
+    private boolean inputSecret40aSet = false;
 
     /**
      * 
@@ -1318,19 +1321,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputSecret()
     {
-        boolean inputSecret40a = this.__inputSecret40a;
-        if (!this.__inputSecret40aSet)
+        boolean ainputSecret40a = this.inputSecret40a;
+        if (!this.inputSecret40aSet)
         {
             // inputSecret has no pre constraints
-            inputSecret40a = handleIsInputSecret();
+            ainputSecret40a = handleIsInputSecret();
             // inputSecret has no post constraints
-            this.__inputSecret40a = inputSecret40a;
+            this.inputSecret40a = ainputSecret40a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputSecret40aSet = true;
+                this.inputSecret40aSet = true;
             }
         }
-        return inputSecret40a;
+        return ainputSecret40a;
     }
 
    /**
@@ -1339,8 +1342,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputSelect();
 
-    private boolean __inputSelect41a;
-    private boolean __inputSelect41aSet = false;
+    private boolean inputSelect41a;
+    private boolean inputSelect41aSet = false;
 
     /**
      * 
@@ -1348,19 +1351,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputSelect()
     {
-        boolean inputSelect41a = this.__inputSelect41a;
-        if (!this.__inputSelect41aSet)
+        boolean ainputSelect41a = this.inputSelect41a;
+        if (!this.inputSelect41aSet)
         {
             // inputSelect has no pre constraints
-            inputSelect41a = handleIsInputSelect();
+            ainputSelect41a = handleIsInputSelect();
             // inputSelect has no post constraints
-            this.__inputSelect41a = inputSelect41a;
+            this.inputSelect41a = ainputSelect41a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputSelect41aSet = true;
+                this.inputSelect41aSet = true;
             }
         }
-        return inputSelect41a;
+        return ainputSelect41a;
     }
 
    /**
@@ -1369,8 +1372,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputTable();
 
-    private boolean __inputTable42a;
-    private boolean __inputTable42aSet = false;
+    private boolean inputTable42a;
+    private boolean inputTable42aSet = false;
 
     /**
      * 
@@ -1378,19 +1381,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputTable()
     {
-        boolean inputTable42a = this.__inputTable42a;
-        if (!this.__inputTable42aSet)
+        boolean ainputTable42a = this.inputTable42a;
+        if (!this.inputTable42aSet)
         {
             // inputTable has no pre constraints
-            inputTable42a = handleIsInputTable();
+            ainputTable42a = handleIsInputTable();
             // inputTable has no post constraints
-            this.__inputTable42a = inputTable42a;
+            this.inputTable42a = ainputTable42a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputTable42aSet = true;
+                this.inputTable42aSet = true;
             }
         }
-        return inputTable42a;
+        return ainputTable42a;
     }
 
    /**
@@ -1399,8 +1402,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetInputTableIdentifierColumns();
 
-    private String __inputTableIdentifierColumns43a;
-    private boolean __inputTableIdentifierColumns43aSet = false;
+    private String inputTableIdentifierColumns43a;
+    private boolean inputTableIdentifierColumns43aSet = false;
 
     /**
      * 
@@ -1408,19 +1411,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getInputTableIdentifierColumns()
     {
-        String inputTableIdentifierColumns43a = this.__inputTableIdentifierColumns43a;
-        if (!this.__inputTableIdentifierColumns43aSet)
+        String ainputTableIdentifierColumns43a = this.inputTableIdentifierColumns43a;
+        if (!this.inputTableIdentifierColumns43aSet)
         {
             // inputTableIdentifierColumns has no pre constraints
-            inputTableIdentifierColumns43a = handleGetInputTableIdentifierColumns();
+            ainputTableIdentifierColumns43a = handleGetInputTableIdentifierColumns();
             // inputTableIdentifierColumns has no post constraints
-            this.__inputTableIdentifierColumns43a = inputTableIdentifierColumns43a;
+            this.inputTableIdentifierColumns43a = ainputTableIdentifierColumns43a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputTableIdentifierColumns43aSet = true;
+                this.inputTableIdentifierColumns43aSet = true;
             }
         }
-        return inputTableIdentifierColumns43a;
+        return ainputTableIdentifierColumns43a;
     }
 
    /**
@@ -1429,8 +1432,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputText();
 
-    private boolean __inputText44a;
-    private boolean __inputText44aSet = false;
+    private boolean inputText44a;
+    private boolean inputText44aSet = false;
 
     /**
      * 
@@ -1438,19 +1441,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputText()
     {
-        boolean inputText44a = this.__inputText44a;
-        if (!this.__inputText44aSet)
+        boolean ainputText44a = this.inputText44a;
+        if (!this.inputText44aSet)
         {
             // inputText has no pre constraints
-            inputText44a = handleIsInputText();
+            ainputText44a = handleIsInputText();
             // inputText has no post constraints
-            this.__inputText44a = inputText44a;
+            this.inputText44a = ainputText44a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputText44aSet = true;
+                this.inputText44aSet = true;
             }
         }
-        return inputText44a;
+        return ainputText44a;
     }
 
    /**
@@ -1459,8 +1462,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputTextarea();
 
-    private boolean __inputTextarea45a;
-    private boolean __inputTextarea45aSet = false;
+    private boolean inputTextarea45a;
+    private boolean inputTextarea45aSet = false;
 
     /**
      * 
@@ -1468,19 +1471,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputTextarea()
     {
-        boolean inputTextarea45a = this.__inputTextarea45a;
-        if (!this.__inputTextarea45aSet)
+        boolean ainputTextarea45a = this.inputTextarea45a;
+        if (!this.inputTextarea45aSet)
         {
             // inputTextarea has no pre constraints
-            inputTextarea45a = handleIsInputTextarea();
+            ainputTextarea45a = handleIsInputTextarea();
             // inputTextarea has no post constraints
-            this.__inputTextarea45a = inputTextarea45a;
+            this.inputTextarea45a = ainputTextarea45a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputTextarea45aSet = true;
+                this.inputTextarea45aSet = true;
             }
         }
-        return inputTextarea45a;
+        return ainputTextarea45a;
     }
 
    /**
@@ -1489,8 +1492,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsInputTypePresent();
 
-    private boolean __inputTypePresent46a;
-    private boolean __inputTypePresent46aSet = false;
+    private boolean inputTypePresent46a;
+    private boolean inputTypePresent46aSet = false;
 
     /**
      * 
@@ -1498,19 +1501,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isInputTypePresent()
     {
-        boolean inputTypePresent46a = this.__inputTypePresent46a;
-        if (!this.__inputTypePresent46aSet)
+        boolean ainputTypePresent46a = this.inputTypePresent46a;
+        if (!this.inputTypePresent46aSet)
         {
             // inputTypePresent has no pre constraints
-            inputTypePresent46a = handleIsInputTypePresent();
+            ainputTypePresent46a = handleIsInputTypePresent();
             // inputTypePresent has no post constraints
-            this.__inputTypePresent46a = inputTypePresent46a;
+            this.inputTypePresent46a = ainputTypePresent46a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__inputTypePresent46aSet = true;
+                this.inputTypePresent46aSet = true;
             }
         }
-        return inputTypePresent46a;
+        return ainputTypePresent46a;
     }
 
    /**
@@ -1519,8 +1522,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetDummyValue();
 
-    private String __dummyValue47a;
-    private boolean __dummyValue47aSet = false;
+    private String dummyValue47a;
+    private boolean dummyValue47aSet = false;
 
     /**
      * 
@@ -1528,19 +1531,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getDummyValue()
     {
-        String dummyValue47a = this.__dummyValue47a;
-        if (!this.__dummyValue47aSet)
+        String adummyValue47a = this.dummyValue47a;
+        if (!this.dummyValue47aSet)
         {
             // dummyValue has no pre constraints
-            dummyValue47a = handleGetDummyValue();
+            adummyValue47a = handleGetDummyValue();
             // dummyValue has no post constraints
-            this.__dummyValue47a = dummyValue47a;
+            this.dummyValue47a = adummyValue47a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dummyValue47aSet = true;
+                this.dummyValue47aSet = true;
             }
         }
-        return dummyValue47a;
+        return adummyValue47a;
     }
 
    /**
@@ -1549,8 +1552,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsEqualValidator();
 
-    private boolean __equalValidator48a;
-    private boolean __equalValidator48aSet = false;
+    private boolean equalValidator48a;
+    private boolean equalValidator48aSet = false;
 
     /**
      * 
@@ -1558,19 +1561,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isEqualValidator()
     {
-        boolean equalValidator48a = this.__equalValidator48a;
-        if (!this.__equalValidator48aSet)
+        boolean aequalValidator48a = this.equalValidator48a;
+        if (!this.equalValidator48aSet)
         {
             // equalValidator has no pre constraints
-            equalValidator48a = handleIsEqualValidator();
+            aequalValidator48a = handleIsEqualValidator();
             // equalValidator has no post constraints
-            this.__equalValidator48a = equalValidator48a;
+            this.equalValidator48a = aequalValidator48a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__equalValidator48aSet = true;
+                this.equalValidator48aSet = true;
             }
         }
-        return equalValidator48a;
+        return aequalValidator48a;
     }
 
    /**
@@ -1579,8 +1582,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract boolean handleIsPlaintext();
 
-    private boolean __plaintext49a;
-    private boolean __plaintext49aSet = false;
+    private boolean plaintext49a;
+    private boolean plaintext49aSet = false;
 
     /**
      * 
@@ -1588,19 +1591,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final boolean isPlaintext()
     {
-        boolean plaintext49a = this.__plaintext49a;
-        if (!this.__plaintext49aSet)
+        boolean aplaintext49a = this.plaintext49a;
+        if (!this.plaintext49aSet)
         {
             // plaintext has no pre constraints
-            plaintext49a = handleIsPlaintext();
+            aplaintext49a = handleIsPlaintext();
             // plaintext has no post constraints
-            this.__plaintext49a = plaintext49a;
+            this.plaintext49a = aplaintext49a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__plaintext49aSet = true;
+                this.plaintext49aSet = true;
             }
         }
-        return plaintext49a;
+        return aplaintext49a;
     }
 
    /**
@@ -1609,8 +1612,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetValueListDummyValue();
 
-    private String __valueListDummyValue50a;
-    private boolean __valueListDummyValue50aSet = false;
+    private String valueListDummyValue50a;
+    private boolean valueListDummyValue50aSet = false;
 
     /**
      * 
@@ -1618,19 +1621,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getValueListDummyValue()
     {
-        String valueListDummyValue50a = this.__valueListDummyValue50a;
-        if (!this.__valueListDummyValue50aSet)
+        String avalueListDummyValue50a = this.valueListDummyValue50a;
+        if (!this.valueListDummyValue50aSet)
         {
             // valueListDummyValue has no pre constraints
-            valueListDummyValue50a = handleGetValueListDummyValue();
+            avalueListDummyValue50a = handleGetValueListDummyValue();
             // valueListDummyValue has no post constraints
-            this.__valueListDummyValue50a = valueListDummyValue50a;
+            this.valueListDummyValue50a = avalueListDummyValue50a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__valueListDummyValue50aSet = true;
+                this.valueListDummyValue50aSet = true;
             }
         }
-        return valueListDummyValue50a;
+        return avalueListDummyValue50a;
     }
 
    /**
@@ -1639,8 +1642,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract Collection handleGetValidatorVars();
 
-    private Collection __validatorVars51a;
-    private boolean __validatorVars51aSet = false;
+    private Collection validatorVars51a;
+    private boolean validatorVars51aSet = false;
 
     /**
      * The validator variables.
@@ -1648,19 +1651,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final Collection getValidatorVars()
     {
-        Collection validatorVars51a = this.__validatorVars51a;
-        if (!this.__validatorVars51aSet)
+        Collection avalidatorVars51a = this.validatorVars51a;
+        if (!this.validatorVars51aSet)
         {
             // validatorVars has no pre constraints
-            validatorVars51a = handleGetValidatorVars();
+            avalidatorVars51a = handleGetValidatorVars();
             // validatorVars has no post constraints
-            this.__validatorVars51a = validatorVars51a;
+            this.validatorVars51a = avalidatorVars51a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__validatorVars51aSet = true;
+                this.validatorVars51aSet = true;
             }
         }
-        return validatorVars51a;
+        return avalidatorVars51a;
     }
 
    /**
@@ -1669,8 +1672,8 @@ public abstract class GuiManageableEntityAttributeLogic
     */
     protected abstract String handleGetMaxLength();
 
-    private String __maxLength52a;
-    private boolean __maxLength52aSet = false;
+    private String maxLength52a;
+    private boolean maxLength52aSet = false;
 
     /**
      * The max length allowed in the input component
@@ -1678,19 +1681,19 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final String getMaxLength()
     {
-        String maxLength52a = this.__maxLength52a;
-        if (!this.__maxLength52aSet)
+        String amaxLength52a = this.maxLength52a;
+        if (!this.maxLength52aSet)
         {
             // maxLength has no pre constraints
-            maxLength52a = handleGetMaxLength();
+            amaxLength52a = handleGetMaxLength();
             // maxLength has no post constraints
-            this.__maxLength52a = maxLength52a;
+            this.maxLength52a = amaxLength52a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__maxLength52aSet = true;
+                this.maxLength52aSet = true;
             }
         }
-        return maxLength52a;
+        return amaxLength52a;
     }
 
     // ---------------- business methods ----------------------
@@ -1911,8 +1914,8 @@ public abstract class GuiManageableEntityAttributeLogic
 
     // ------------- associations ------------------
 
-    private List<GuiManageableEntityAttribute> __getStateCoherencies1r;
-    private boolean __getStateCoherencies1rSet = false;
+    private List<GuiManageableEntityAttribute> getStateCoherencies1r;
+    private boolean getStateCoherencies1rSet = false;
 
     /**
      * 
@@ -1920,8 +1923,8 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final List<GuiManageableEntityAttribute> getStateCoherencies()
     {
-        List<GuiManageableEntityAttribute> getStateCoherencies1r = this.__getStateCoherencies1r;
-        if (!this.__getStateCoherencies1rSet)
+        List<GuiManageableEntityAttribute> getStateCoherencies1r = this.getStateCoherencies1r;
+        if (!this.getStateCoherencies1rSet)
         {
             // guiManageableEntityAttribute has no pre constraints
             List result = handleGetStateCoherencies();
@@ -1933,13 +1936,13 @@ public abstract class GuiManageableEntityAttributeLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiManageableEntityAttributeLogic.logger.warn("incorrect metafacade cast for GuiManageableEntityAttributeLogic.getStateCoherencies List<GuiManageableEntityAttribute> " + result + ": " + shieldedResult);
+                GuiManageableEntityAttributeLogic.LOGGER.warn("incorrect metafacade cast for GuiManageableEntityAttributeLogic.getStateCoherencies List<GuiManageableEntityAttribute> " + result + ": " + shieldedResult);
             }
             // guiManageableEntityAttribute has no post constraints
-            this.__getStateCoherencies1r = getStateCoherencies1r;
+            this.getStateCoherencies1r = getStateCoherencies1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getStateCoherencies1rSet = true;
+                this.getStateCoherencies1rSet = true;
             }
         }
         return getStateCoherencies1r;
@@ -1968,7 +1971,7 @@ public abstract class GuiManageableEntityAttributeLogic
         catch (ClassCastException ex)
         {
             // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-            GuiManageableEntityAttributeLogic.logger.warn("incorrect metafacade cast for GuiManageableEntityAttributeLogic.getValueCoherencyTargets List<GuiManageableEntityAttribute> " + result + ": " + shieldedResult);
+            GuiManageableEntityAttributeLogic.LOGGER.warn("incorrect metafacade cast for GuiManageableEntityAttributeLogic.getValueCoherencyTargets List<GuiManageableEntityAttribute> " + result + ": " + shieldedResult);
         }
         // guiManageableEntityAttribute has no post constraints
         return getValueCoherencyTargets2r;
@@ -1980,8 +1983,8 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     protected abstract List handleGetValueCoherencyTargets();
 
-    private List<GuiManageableEntityAttribute> __getValueCoherencySources3r;
-    private boolean __getValueCoherencySources3rSet = false;
+    private List<GuiManageableEntityAttribute> getValueCoherencySources3r;
+    private boolean getValueCoherencySources3rSet = false;
 
     /**
      * 
@@ -1989,8 +1992,8 @@ public abstract class GuiManageableEntityAttributeLogic
      */
     public final List<GuiManageableEntityAttribute> getValueCoherencySources()
     {
-        List<GuiManageableEntityAttribute> getValueCoherencySources3r = this.__getValueCoherencySources3r;
-        if (!this.__getValueCoherencySources3rSet)
+        List<GuiManageableEntityAttribute> getValueCoherencySources3r = this.getValueCoherencySources3r;
+        if (!this.getValueCoherencySources3rSet)
         {
             // guiManageableEntityAttribute has no pre constraints
             List result = handleGetValueCoherencySources();
@@ -2002,13 +2005,13 @@ public abstract class GuiManageableEntityAttributeLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiManageableEntityAttributeLogic.logger.warn("incorrect metafacade cast for GuiManageableEntityAttributeLogic.getValueCoherencySources List<GuiManageableEntityAttribute> " + result + ": " + shieldedResult);
+                GuiManageableEntityAttributeLogic.LOGGER.warn("incorrect metafacade cast for GuiManageableEntityAttributeLogic.getValueCoherencySources List<GuiManageableEntityAttribute> " + result + ": " + shieldedResult);
             }
             // guiManageableEntityAttribute has no post constraints
-            this.__getValueCoherencySources3r = getValueCoherencySources3r;
+            this.getValueCoherencySources3r = getValueCoherencySources3r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getValueCoherencySources3rSet = true;
+                this.getValueCoherencySources3rSet = true;
             }
         }
         return getValueCoherencySources3r;

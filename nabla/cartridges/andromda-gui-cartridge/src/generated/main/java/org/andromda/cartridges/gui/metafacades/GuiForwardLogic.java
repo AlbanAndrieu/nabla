@@ -48,17 +48,20 @@ public abstract class GuiForwardLogic
     extends MetafacadeBase
     implements GuiForward
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiForwardLogic(Object metaObjectIn, String context)
+    protected GuiForwardLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndForward =
@@ -73,7 +76,7 @@ public abstract class GuiForwardLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiForwardLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiForwardLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -141,8 +144,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetForwardName();
 
-    private String __forwardName1a;
-    private boolean __forwardName1aSet = false;
+    private String forwardName1a;
+    private boolean forwardName1aSet = false;
 
     /**
      * The name for this forward. This name is always lowercase and words are separated using dots,
@@ -151,19 +154,19 @@ public abstract class GuiForwardLogic
      */
     public final String getForwardName()
     {
-        String forwardName1a = this.__forwardName1a;
-        if (!this.__forwardName1aSet)
+        String aforwardName1a = this.forwardName1a;
+        if (!this.forwardName1aSet)
         {
             // forwardName has no pre constraints
-            forwardName1a = handleGetForwardName();
+            aforwardName1a = handleGetForwardName();
             // forwardName has no post constraints
-            this.__forwardName1a = forwardName1a;
+            this.forwardName1a = aforwardName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__forwardName1aSet = true;
+                this.forwardName1aSet = true;
             }
         }
-        return forwardName1a;
+        return aforwardName1a;
     }
 
    /**
@@ -172,8 +175,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetForwardPath();
 
-    private String __forwardPath2a;
-    private boolean __forwardPath2aSet = false;
+    private String forwardPath2a;
+    private boolean forwardPath2aSet = false;
 
     /**
      * Returns the path targetted by this forward.
@@ -181,19 +184,19 @@ public abstract class GuiForwardLogic
      */
     public final String getForwardPath()
     {
-        String forwardPath2a = this.__forwardPath2a;
-        if (!this.__forwardPath2aSet)
+        String aforwardPath2a = this.forwardPath2a;
+        if (!this.forwardPath2aSet)
         {
             // forwardPath has no pre constraints
-            forwardPath2a = handleGetForwardPath();
+            aforwardPath2a = handleGetForwardPath();
             // forwardPath has no post constraints
-            this.__forwardPath2a = forwardPath2a;
+            this.forwardPath2a = aforwardPath2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__forwardPath2aSet = true;
+                this.forwardPath2aSet = true;
             }
         }
-        return forwardPath2a;
+        return aforwardPath2a;
     }
 
    /**
@@ -202,8 +205,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetGuardName();
 
-    private String __guardName3a;
-    private boolean __guardName3aSet = false;
+    private String guardName3a;
+    private boolean guardName3aSet = false;
 
     /**
      * If this forward is guarded (such as with decision points) this method return the name of that
@@ -212,19 +215,19 @@ public abstract class GuiForwardLogic
      */
     public final String getGuardName()
     {
-        String guardName3a = this.__guardName3a;
-        if (!this.__guardName3aSet)
+        String aguardName3a = this.guardName3a;
+        if (!this.guardName3aSet)
         {
             // guardName has no pre constraints
-            guardName3a = handleGetGuardName();
+            aguardName3a = handleGetGuardName();
             // guardName has no post constraints
-            this.__guardName3a = guardName3a;
+            this.guardName3a = aguardName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__guardName3aSet = true;
+                this.guardName3aSet = true;
             }
         }
-        return guardName3a;
+        return aguardName3a;
     }
 
    /**
@@ -233,8 +236,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsEnteringPage();
 
-    private boolean __enteringPage4a;
-    private boolean __enteringPage4aSet = false;
+    private boolean enteringPage4a;
+    private boolean enteringPage4aSet = false;
 
     /**
      * True if this action directly targets a view page, false otherwise.
@@ -242,19 +245,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isEnteringPage()
     {
-        boolean enteringPage4a = this.__enteringPage4a;
-        if (!this.__enteringPage4aSet)
+        boolean aenteringPage4a = this.enteringPage4a;
+        if (!this.enteringPage4aSet)
         {
             // enteringPage has no pre constraints
-            enteringPage4a = handleIsEnteringPage();
+            aenteringPage4a = handleIsEnteringPage();
             // enteringPage has no post constraints
-            this.__enteringPage4a = enteringPage4a;
+            this.enteringPage4a = aenteringPage4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__enteringPage4aSet = true;
+                this.enteringPage4aSet = true;
             }
         }
-        return enteringPage4a;
+        return aenteringPage4a;
     }
 
    /**
@@ -263,8 +266,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetTargetNameKey();
 
-    private String __targetNameKey5a;
-    private boolean __targetNameKey5aSet = false;
+    private String targetNameKey5a;
+    private boolean targetNameKey5aSet = false;
 
     /**
      * The resource bundle key of the name for the target element. This method returns the key for
@@ -273,19 +276,19 @@ public abstract class GuiForwardLogic
      */
     public final String getTargetNameKey()
     {
-        String targetNameKey5a = this.__targetNameKey5a;
-        if (!this.__targetNameKey5aSet)
+        String atargetNameKey5a = this.targetNameKey5a;
+        if (!this.targetNameKey5aSet)
         {
             // targetNameKey has no pre constraints
-            targetNameKey5a = handleGetTargetNameKey();
+            atargetNameKey5a = handleGetTargetNameKey();
             // targetNameKey has no post constraints
-            this.__targetNameKey5a = targetNameKey5a;
+            this.targetNameKey5a = atargetNameKey5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__targetNameKey5aSet = true;
+                this.targetNameKey5aSet = true;
             }
         }
-        return targetNameKey5a;
+        return atargetNameKey5a;
     }
 
    /**
@@ -294,8 +297,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsExitingPage();
 
-    private boolean __exitingPage6a;
-    private boolean __exitingPage6aSet = false;
+    private boolean exitingPage6a;
+    private boolean exitingPage6aSet = false;
 
     /**
      * Whether or not this forward (transition) is coming out of a page.
@@ -303,19 +306,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isExitingPage()
     {
-        boolean exitingPage6a = this.__exitingPage6a;
-        if (!this.__exitingPage6aSet)
+        boolean aexitingPage6a = this.exitingPage6a;
+        if (!this.exitingPage6aSet)
         {
             // exitingPage has no pre constraints
-            exitingPage6a = handleIsExitingPage();
+            aexitingPage6a = handleIsExitingPage();
             // exitingPage has no post constraints
-            this.__exitingPage6a = exitingPage6a;
+            this.exitingPage6a = aexitingPage6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__exitingPage6aSet = true;
+                this.exitingPage6aSet = true;
             }
         }
-        return exitingPage6a;
+        return aexitingPage6a;
     }
 
    /**
@@ -324,8 +327,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsSuccessMessagesPresent();
 
-    private boolean __successMessagesPresent7a;
-    private boolean __successMessagesPresent7aSet = false;
+    private boolean successMessagesPresent7a;
+    private boolean successMessagesPresent7aSet = false;
 
     /**
      * 
@@ -333,19 +336,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isSuccessMessagesPresent()
     {
-        boolean successMessagesPresent7a = this.__successMessagesPresent7a;
-        if (!this.__successMessagesPresent7aSet)
+        boolean asuccessMessagesPresent7a = this.successMessagesPresent7a;
+        if (!this.successMessagesPresent7aSet)
         {
             // successMessagesPresent has no pre constraints
-            successMessagesPresent7a = handleIsSuccessMessagesPresent();
+            asuccessMessagesPresent7a = handleIsSuccessMessagesPresent();
             // successMessagesPresent has no post constraints
-            this.__successMessagesPresent7a = successMessagesPresent7a;
+            this.successMessagesPresent7a = asuccessMessagesPresent7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__successMessagesPresent7aSet = true;
+                this.successMessagesPresent7aSet = true;
             }
         }
-        return successMessagesPresent7a;
+        return asuccessMessagesPresent7a;
     }
 
    /**
@@ -354,8 +357,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract Map handleGetSuccessMessages();
 
-    private Map __successMessages8a;
-    private boolean __successMessages8aSet = false;
+    private Map successMessages8a;
+    private boolean successMessages8aSet = false;
 
     /**
      * A map of key=value pairs, one for each success message.
@@ -363,19 +366,19 @@ public abstract class GuiForwardLogic
      */
     public final Map getSuccessMessages()
     {
-        Map successMessages8a = this.__successMessages8a;
-        if (!this.__successMessages8aSet)
+        Map asuccessMessages8a = this.successMessages8a;
+        if (!this.successMessages8aSet)
         {
             // successMessages has no pre constraints
-            successMessages8a = handleGetSuccessMessages();
+            asuccessMessages8a = handleGetSuccessMessages();
             // successMessages has no post constraints
-            this.__successMessages8a = successMessages8a;
+            this.successMessages8a = asuccessMessages8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__successMessages8aSet = true;
+                this.successMessages8aSet = true;
             }
         }
-        return successMessages8a;
+        return asuccessMessages8a;
     }
 
    /**
@@ -384,8 +387,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsWarningMessagesPresent();
 
-    private boolean __warningMessagesPresent9a;
-    private boolean __warningMessagesPresent9aSet = false;
+    private boolean warningMessagesPresent9a;
+    private boolean warningMessagesPresent9aSet = false;
 
     /**
      * 
@@ -393,19 +396,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isWarningMessagesPresent()
     {
-        boolean warningMessagesPresent9a = this.__warningMessagesPresent9a;
-        if (!this.__warningMessagesPresent9aSet)
+        boolean awarningMessagesPresent9a = this.warningMessagesPresent9a;
+        if (!this.warningMessagesPresent9aSet)
         {
             // warningMessagesPresent has no pre constraints
-            warningMessagesPresent9a = handleIsWarningMessagesPresent();
+            awarningMessagesPresent9a = handleIsWarningMessagesPresent();
             // warningMessagesPresent has no post constraints
-            this.__warningMessagesPresent9a = warningMessagesPresent9a;
+            this.warningMessagesPresent9a = awarningMessagesPresent9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__warningMessagesPresent9aSet = true;
+                this.warningMessagesPresent9aSet = true;
             }
         }
-        return warningMessagesPresent9a;
+        return awarningMessagesPresent9a;
     }
 
    /**
@@ -414,8 +417,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract Map handleGetWarningMessages();
 
-    private Map __warningMessages10a;
-    private boolean __warningMessages10aSet = false;
+    private Map warningMessages10a;
+    private boolean warningMessages10aSet = false;
 
     /**
      * A map of key=value pairs, one for each warning message.
@@ -423,19 +426,19 @@ public abstract class GuiForwardLogic
      */
     public final Map getWarningMessages()
     {
-        Map warningMessages10a = this.__warningMessages10a;
-        if (!this.__warningMessages10aSet)
+        Map awarningMessages10a = this.warningMessages10a;
+        if (!this.warningMessages10aSet)
         {
             // warningMessages has no pre constraints
-            warningMessages10a = handleGetWarningMessages();
+            awarningMessages10a = handleGetWarningMessages();
             // warningMessages has no post constraints
-            this.__warningMessages10a = warningMessages10a;
+            this.warningMessages10a = awarningMessages10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__warningMessages10aSet = true;
+                this.warningMessages10aSet = true;
             }
         }
-        return warningMessages10a;
+        return awarningMessages10a;
     }
 
    /**
@@ -444,8 +447,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsErrorMessagesPresent();
 
-    private boolean __errorMessagesPresent11a;
-    private boolean __errorMessagesPresent11aSet = false;
+    private boolean errorMessagesPresent11a;
+    private boolean errorMessagesPresent11aSet = false;
 
     /**
      * 
@@ -453,19 +456,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isErrorMessagesPresent()
     {
-        boolean errorMessagesPresent11a = this.__errorMessagesPresent11a;
-        if (!this.__errorMessagesPresent11aSet)
+        boolean aerrorMessagesPresent11a = this.errorMessagesPresent11a;
+        if (!this.errorMessagesPresent11aSet)
         {
             // errorMessagesPresent has no pre constraints
-            errorMessagesPresent11a = handleIsErrorMessagesPresent();
+            aerrorMessagesPresent11a = handleIsErrorMessagesPresent();
             // errorMessagesPresent has no post constraints
-            this.__errorMessagesPresent11a = errorMessagesPresent11a;
+            this.errorMessagesPresent11a = aerrorMessagesPresent11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__errorMessagesPresent11aSet = true;
+                this.errorMessagesPresent11aSet = true;
             }
         }
-        return errorMessagesPresent11a;
+        return aerrorMessagesPresent11a;
     }
 
    /**
@@ -474,8 +477,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract Map handleGetErrorMessages();
 
-    private Map __errorMessages12a;
-    private boolean __errorMessages12aSet = false;
+    private Map errorMessages12a;
+    private boolean errorMessages12aSet = false;
 
     /**
      * 
@@ -483,19 +486,19 @@ public abstract class GuiForwardLogic
      */
     public final Map getErrorMessages()
     {
-        Map errorMessages12a = this.__errorMessages12a;
-        if (!this.__errorMessages12aSet)
+        Map aerrorMessages12a = this.errorMessages12a;
+        if (!this.errorMessages12aSet)
         {
             // errorMessages has no pre constraints
-            errorMessages12a = handleGetErrorMessages();
+            aerrorMessages12a = handleGetErrorMessages();
             // errorMessages has no post constraints
-            this.__errorMessages12a = errorMessages12a;
+            this.errorMessages12a = aerrorMessages12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__errorMessages12aSet = true;
+                this.errorMessages12aSet = true;
             }
         }
-        return errorMessages12a;
+        return aerrorMessages12a;
     }
 
    /**
@@ -504,8 +507,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetPath();
 
-    private String __path13a;
-    private boolean __path13aSet = false;
+    private String path13a;
+    private boolean path13aSet = false;
 
     /**
      * The path to which this forward points.
@@ -513,19 +516,19 @@ public abstract class GuiForwardLogic
      */
     public final String getPath()
     {
-        String path13a = this.__path13a;
-        if (!this.__path13aSet)
+        String apath13a = this.path13a;
+        if (!this.path13aSet)
         {
             // path has no pre constraints
-            path13a = handleGetPath();
+            apath13a = handleGetPath();
             // path has no post constraints
-            this.__path13a = path13a;
+            this.path13a = apath13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__path13aSet = true;
+                this.path13aSet = true;
             }
         }
-        return path13a;
+        return apath13a;
     }
 
    /**
@@ -534,8 +537,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsFinalStateTarget();
 
-    private boolean __finalStateTarget14a;
-    private boolean __finalStateTarget14aSet = false;
+    private boolean finalStateTarget14a;
+    private boolean finalStateTarget14aSet = false;
 
     /**
      * Indicates whether or not a final state is the target of this forward.
@@ -543,19 +546,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isFinalStateTarget()
     {
-        boolean finalStateTarget14a = this.__finalStateTarget14a;
-        if (!this.__finalStateTarget14aSet)
+        boolean afinalStateTarget14a = this.finalStateTarget14a;
+        if (!this.finalStateTarget14aSet)
         {
             // finalStateTarget has no pre constraints
-            finalStateTarget14a = handleIsFinalStateTarget();
+            afinalStateTarget14a = handleIsFinalStateTarget();
             // finalStateTarget has no post constraints
-            this.__finalStateTarget14a = finalStateTarget14a;
+            this.finalStateTarget14a = afinalStateTarget14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__finalStateTarget14aSet = true;
+                this.finalStateTarget14aSet = true;
             }
         }
-        return finalStateTarget14a;
+        return afinalStateTarget14a;
     }
 
    /**
@@ -564,8 +567,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetFromOutcome();
 
-    private String __fromOutcome15a;
-    private boolean __fromOutcome15aSet = false;
+    private String fromOutcome15a;
+    private boolean fromOutcome15aSet = false;
 
     /**
      * The name that corresponds to the from-outcome in an navigational rule.
@@ -573,25 +576,25 @@ public abstract class GuiForwardLogic
      */
     public final String getFromOutcome()
     {
-        String fromOutcome15a = this.__fromOutcome15a;
-        if (!this.__fromOutcome15aSet)
+        String afromOutcome15a = this.fromOutcome15a;
+        if (!this.fromOutcome15aSet)
         {
             // fromOutcome has no pre constraints
-            fromOutcome15a = handleGetFromOutcome();
+            afromOutcome15a = handleGetFromOutcome();
             // fromOutcome has no post constraints
-            this.__fromOutcome15a = fromOutcome15a;
+            this.fromOutcome15a = afromOutcome15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fromOutcome15aSet = true;
+                this.fromOutcome15aSet = true;
             }
         }
-        return fromOutcome15a;
+        return afromOutcome15a;
     }
 
     // ------------- associations ------------------
 
-    private GuiActivityGraph __getGuiActivityGraph1r;
-    private boolean __getGuiActivityGraph1rSet = false;
+    private GuiActivityGraph getGuiActivityGraph1r;
+    private boolean getGuiActivityGraph1rSet = false;
 
     /**
      * 
@@ -599,8 +602,8 @@ public abstract class GuiForwardLogic
      */
     public final GuiActivityGraph getGuiActivityGraph()
     {
-        GuiActivityGraph getGuiActivityGraph1r = this.__getGuiActivityGraph1r;
-        if (!this.__getGuiActivityGraph1rSet)
+        GuiActivityGraph getGuiActivityGraph1r = this.getGuiActivityGraph1r;
+        if (!this.getGuiActivityGraph1rSet)
         {
             // guiForward has no pre constraints
             Object result = handleGetGuiActivityGraph();
@@ -612,13 +615,13 @@ public abstract class GuiForwardLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiForwardLogic.logger.warn("incorrect metafacade cast for GuiForwardLogic.getGuiActivityGraph GuiActivityGraph " + result + ": " + shieldedResult);
+                GuiForwardLogic.LOGGER.warn("incorrect metafacade cast for GuiForwardLogic.getGuiActivityGraph GuiActivityGraph " + result + ": " + shieldedResult);
             }
             // guiForward has no post constraints
-            this.__getGuiActivityGraph1r = getGuiActivityGraph1r;
+            this.getGuiActivityGraph1r = getGuiActivityGraph1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getGuiActivityGraph1rSet = true;
+                this.getGuiActivityGraph1rSet = true;
             }
         }
         return getGuiActivityGraph1r;

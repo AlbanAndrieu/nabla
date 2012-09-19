@@ -45,17 +45,20 @@ public abstract class GuiExceptionHandlerLogic
     extends MetafacadeBase
     implements GuiExceptionHandler
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiExceptionHandlerLogic(Object metaObjectIn, String context)
+    protected GuiExceptionHandlerLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndExceptionHandler =
@@ -70,7 +73,7 @@ public abstract class GuiExceptionHandlerLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiExceptionHandlerLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiExceptionHandlerLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -138,8 +141,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetExceptionKey();
 
-    private String __exceptionKey1a;
-    private boolean __exceptionKey1aSet = false;
+    private String exceptionKey1a;
+    private boolean exceptionKey1aSet = false;
 
     /**
      * The key to use with this handler's message resource bundle that will retrieve the error
@@ -148,19 +151,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getExceptionKey()
     {
-        String exceptionKey1a = this.__exceptionKey1a;
-        if (!this.__exceptionKey1aSet)
+        String aexceptionKey1a = this.exceptionKey1a;
+        if (!this.exceptionKey1aSet)
         {
             // exceptionKey has no pre constraints
-            exceptionKey1a = handleGetExceptionKey();
+            aexceptionKey1a = handleGetExceptionKey();
             // exceptionKey has no post constraints
-            this.__exceptionKey1a = exceptionKey1a;
+            this.exceptionKey1a = aexceptionKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__exceptionKey1aSet = true;
+                this.exceptionKey1aSet = true;
             }
         }
-        return exceptionKey1a;
+        return aexceptionKey1a;
     }
 
    /**
@@ -169,8 +172,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetExceptionType();
 
-    private String __exceptionType2a;
-    private boolean __exceptionType2aSet = false;
+    private String exceptionType2a;
+    private boolean exceptionType2aSet = false;
 
     /**
      * Fully qualified Java class name of the exception type to register with this handler.
@@ -178,19 +181,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getExceptionType()
     {
-        String exceptionType2a = this.__exceptionType2a;
-        if (!this.__exceptionType2aSet)
+        String aexceptionType2a = this.exceptionType2a;
+        if (!this.exceptionType2aSet)
         {
             // exceptionType has no pre constraints
-            exceptionType2a = handleGetExceptionType();
+            aexceptionType2a = handleGetExceptionType();
             // exceptionType has no post constraints
-            this.__exceptionType2a = exceptionType2a;
+            this.exceptionType2a = aexceptionType2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__exceptionType2aSet = true;
+                this.exceptionType2aSet = true;
             }
         }
-        return exceptionType2a;
+        return aexceptionType2a;
     }
 
    /**
@@ -199,8 +202,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetExceptionPath();
 
-    private String __exceptionPath3a;
-    private boolean __exceptionPath3aSet = false;
+    private String exceptionPath3a;
+    private boolean exceptionPath3aSet = false;
 
     /**
      * The module-relative URI to the resource that will complete the request/response if this
@@ -209,19 +212,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getExceptionPath()
     {
-        String exceptionPath3a = this.__exceptionPath3a;
-        if (!this.__exceptionPath3aSet)
+        String aexceptionPath3a = this.exceptionPath3a;
+        if (!this.exceptionPath3aSet)
         {
             // exceptionPath has no pre constraints
-            exceptionPath3a = handleGetExceptionPath();
+            aexceptionPath3a = handleGetExceptionPath();
             // exceptionPath has no post constraints
-            this.__exceptionPath3a = exceptionPath3a;
+            this.exceptionPath3a = aexceptionPath3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__exceptionPath3aSet = true;
+                this.exceptionPath3aSet = true;
             }
         }
-        return exceptionPath3a;
+        return aexceptionPath3a;
     }
 
    /**
@@ -230,8 +233,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String __messageKey4a;
-    private boolean __messageKey4aSet = false;
+    private String messageKey4a;
+    private boolean messageKey4aSet = false;
 
     /**
      * 
@@ -239,19 +242,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getMessageKey()
     {
-        String messageKey4a = this.__messageKey4a;
-        if (!this.__messageKey4aSet)
+        String amessageKey4a = this.messageKey4a;
+        if (!this.messageKey4aSet)
         {
             // messageKey has no pre constraints
-            messageKey4a = handleGetMessageKey();
+            amessageKey4a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.__messageKey4a = messageKey4a;
+            this.messageKey4a = amessageKey4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageKey4aSet = true;
+                this.messageKey4aSet = true;
             }
         }
-        return messageKey4a;
+        return amessageKey4a;
     }
 
     // ------------- associations ------------------

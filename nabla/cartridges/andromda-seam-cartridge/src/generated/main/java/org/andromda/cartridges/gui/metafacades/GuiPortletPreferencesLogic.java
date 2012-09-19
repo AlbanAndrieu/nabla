@@ -39,17 +39,20 @@ public abstract class GuiPortletPreferencesLogic
     extends MetafacadeBase
     implements GuiPortletPreferences
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiPortletPreferencesLogic(Object metaObjectIn, String context)
+    protected GuiPortletPreferencesLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superClassifierFacade =
@@ -64,7 +67,7 @@ public abstract class GuiPortletPreferencesLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiPortletPreferencesLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiPortletPreferencesLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -143,7 +146,7 @@ public abstract class GuiPortletPreferencesLogic
         catch (ClassCastException ex)
         {
             // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-            GuiPortletPreferencesLogic.logger.warn("incorrect metafacade cast for GuiPortletPreferencesLogic.getUseCase GuiUseCase " + result + ": " + shieldedResult);
+            GuiPortletPreferencesLogic.LOGGER.warn("incorrect metafacade cast for GuiPortletPreferencesLogic.getUseCase GuiUseCase " + result + ": " + shieldedResult);
         }
         // preferences has no post constraints
         return getUseCase1r;

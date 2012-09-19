@@ -1793,6 +1793,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
         {
 
             ;
+
         }
 
         return generalization;

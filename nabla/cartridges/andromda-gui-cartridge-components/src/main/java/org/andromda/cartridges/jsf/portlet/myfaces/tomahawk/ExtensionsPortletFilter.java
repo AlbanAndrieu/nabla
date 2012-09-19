@@ -265,7 +265,9 @@ public class ExtensionsPortletFilter implements PortletFilter
 
             if (log.isDebugEnabled())
             {
+
                 log.debug("ActionRequest is multipart content.");
+
             }
 
             if (multipartEncoding != null)
@@ -273,7 +275,9 @@ public class ExtensionsPortletFilter implements PortletFilter
 
                 if (log.isDebugEnabled())
                 {
+
                     log.debug("Mutlipart encoding is " + multipartEncoding);
+
                 }
 
                 request.setCharacterEncoding(multipartEncoding);

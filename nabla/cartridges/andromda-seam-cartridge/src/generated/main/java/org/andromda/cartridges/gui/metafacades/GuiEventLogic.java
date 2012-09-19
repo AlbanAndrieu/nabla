@@ -37,17 +37,20 @@ public abstract class GuiEventLogic
     extends MetafacadeBase
     implements GuiEvent
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiEventLogic(Object metaObjectIn, String context)
+    protected GuiEventLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndEvent =
@@ -125,8 +128,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String __messageKey1a;
-    private boolean __messageKey1aSet = false;
+    private String messageKey1a;
+    private boolean messageKey1aSet = false;
 
     /**
      * The resource message key for this trigger.
@@ -134,19 +137,19 @@ public abstract class GuiEventLogic
      */
     public final String getMessageKey()
     {
-        String messageKey1a = this.__messageKey1a;
-        if (!this.__messageKey1aSet)
+        String amessageKey1a = this.messageKey1a;
+        if (!this.messageKey1aSet)
         {
             // messageKey has no pre constraints
-            messageKey1a = handleGetMessageKey();
+            amessageKey1a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.__messageKey1a = messageKey1a;
+            this.messageKey1a = amessageKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageKey1aSet = true;
+                this.messageKey1aSet = true;
             }
         }
-        return messageKey1a;
+        return amessageKey1a;
     }
 
    /**
@@ -155,8 +158,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String __messageValue2a;
-    private boolean __messageValue2aSet = false;
+    private String messageValue2a;
+    private boolean messageValue2aSet = false;
 
     /**
      * The resource message value  for this trigger, this would be the button label or hyperlink
@@ -165,19 +168,19 @@ public abstract class GuiEventLogic
      */
     public final String getMessageValue()
     {
-        String messageValue2a = this.__messageValue2a;
-        if (!this.__messageValue2aSet)
+        String amessageValue2a = this.messageValue2a;
+        if (!this.messageValue2aSet)
         {
             // messageValue has no pre constraints
-            messageValue2a = handleGetMessageValue();
+            amessageValue2a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.__messageValue2a = messageValue2a;
+            this.messageValue2a = amessageValue2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageValue2aSet = true;
+                this.messageValue2aSet = true;
             }
         }
-        return messageValue2a;
+        return amessageValue2a;
     }
 
    /**
@@ -186,8 +189,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetResetMessageKey();
 
-    private String __resetMessageKey3a;
-    private boolean __resetMessageKey3aSet = false;
+    private String resetMessageKey3a;
+    private boolean resetMessageKey3aSet = false;
 
     /**
      * The resource message key for the reset button.
@@ -195,19 +198,19 @@ public abstract class GuiEventLogic
      */
     public final String getResetMessageKey()
     {
-        String resetMessageKey3a = this.__resetMessageKey3a;
-        if (!this.__resetMessageKey3aSet)
+        String aresetMessageKey3a = this.resetMessageKey3a;
+        if (!this.resetMessageKey3aSet)
         {
             // resetMessageKey has no pre constraints
-            resetMessageKey3a = handleGetResetMessageKey();
+            aresetMessageKey3a = handleGetResetMessageKey();
             // resetMessageKey has no post constraints
-            this.__resetMessageKey3a = resetMessageKey3a;
+            this.resetMessageKey3a = aresetMessageKey3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__resetMessageKey3aSet = true;
+                this.resetMessageKey3aSet = true;
             }
         }
-        return resetMessageKey3a;
+        return aresetMessageKey3a;
     }
 
    /**
@@ -216,8 +219,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetResetMessageValue();
 
-    private String __resetMessageValue4a;
-    private boolean __resetMessageValue4aSet = false;
+    private String resetMessageValue4a;
+    private boolean resetMessageValue4aSet = false;
 
     /**
      * The default value for the reset button's message.
@@ -225,19 +228,19 @@ public abstract class GuiEventLogic
      */
     public final String getResetMessageValue()
     {
-        String resetMessageValue4a = this.__resetMessageValue4a;
-        if (!this.__resetMessageValue4aSet)
+        String aresetMessageValue4a = this.resetMessageValue4a;
+        if (!this.resetMessageValue4aSet)
         {
             // resetMessageValue has no pre constraints
-            resetMessageValue4a = handleGetResetMessageValue();
+            aresetMessageValue4a = handleGetResetMessageValue();
             // resetMessageValue has no post constraints
-            this.__resetMessageValue4a = resetMessageValue4a;
+            this.resetMessageValue4a = aresetMessageValue4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__resetMessageValue4aSet = true;
+                this.resetMessageValue4aSet = true;
             }
         }
-        return resetMessageValue4a;
+        return aresetMessageValue4a;
     }
 
     /**

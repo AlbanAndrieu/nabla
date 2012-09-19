@@ -24,17 +24,20 @@ public abstract class GuiValidableEntityLogic
     extends GuiManageableEntityLogicImpl
     implements GuiValidableEntity
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiValidableEntityLogic(Object metaObjectIn, String context)
+    protected GuiValidableEntityLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.metaObject = metaObjectIn;
@@ -43,7 +46,7 @@ public abstract class GuiValidableEntityLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiValidableEntityLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiValidableEntityLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -89,8 +92,8 @@ public abstract class GuiValidableEntityLogic
     */
     protected abstract String handleGetValidationNameSuffix();
 
-    private String __validationNameSuffix1a;
-    private boolean __validationNameSuffix1aSet = false;
+    private String validationNameSuffix1a;
+    private boolean validationNameSuffix1aSet = false;
 
     /**
      * 
@@ -98,19 +101,19 @@ public abstract class GuiValidableEntityLogic
      */
     public final String getValidationNameSuffix()
     {
-        String validationNameSuffix1a = this.__validationNameSuffix1a;
-        if (!this.__validationNameSuffix1aSet)
+        String avalidationNameSuffix1a = this.validationNameSuffix1a;
+        if (!this.validationNameSuffix1aSet)
         {
             // validationNameSuffix has no pre constraints
-            validationNameSuffix1a = handleGetValidationNameSuffix();
+            avalidationNameSuffix1a = handleGetValidationNameSuffix();
             // validationNameSuffix has no post constraints
-            this.__validationNameSuffix1a = validationNameSuffix1a;
+            this.validationNameSuffix1a = avalidationNameSuffix1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__validationNameSuffix1aSet = true;
+                this.validationNameSuffix1aSet = true;
             }
         }
-        return validationNameSuffix1a;
+        return avalidationNameSuffix1a;
     }
 
     // ---------------- business methods ----------------------
@@ -174,7 +177,7 @@ public abstract class GuiValidableEntityLogic
         catch (ClassCastException ex)
         {
             // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-            GuiValidableEntityLogic.logger.warn("incorrect metafacade cast for GuiValidableEntityLogic.getValidableObjectReferences List<Entity> " + result + ": " + shieldedResult);
+            GuiValidableEntityLogic.LOGGER.warn("incorrect metafacade cast for GuiValidableEntityLogic.getValidableObjectReferences List<Entity> " + result + ": " + shieldedResult);
         }
         // guiValidableEntity has no post constraints
         return getValidableObjectReferences1r;

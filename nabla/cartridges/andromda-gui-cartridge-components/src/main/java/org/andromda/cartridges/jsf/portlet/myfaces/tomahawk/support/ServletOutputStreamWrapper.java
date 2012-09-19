@@ -79,7 +79,9 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
 
         if (s == null)
         {
+
             s = "null";
+
         }
 
         int len = s.length();

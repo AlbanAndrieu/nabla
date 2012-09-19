@@ -43,17 +43,20 @@ public abstract class GuiSessionObjectLogic
     extends MetafacadeBase
     implements GuiSessionObject
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiSessionObjectLogic(Object metaObjectIn, String context)
+    protected GuiSessionObjectLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superClassifierFacade =
@@ -68,7 +71,7 @@ public abstract class GuiSessionObjectLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiSessionObjectLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiSessionObjectLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -136,8 +139,8 @@ public abstract class GuiSessionObjectLogic
     */
     protected abstract String handleGetFullPath();
 
-    private String __fullPath1a;
-    private boolean __fullPath1aSet = false;
+    private String fullPath1a;
+    private boolean fullPath1aSet = false;
 
     /**
      * The full path to the session object class file (comparable to the package name).
@@ -145,19 +148,19 @@ public abstract class GuiSessionObjectLogic
      */
     public final String getFullPath()
     {
-        String fullPath1a = this.__fullPath1a;
-        if (!this.__fullPath1aSet)
+        String afullPath1a = this.fullPath1a;
+        if (!this.fullPath1aSet)
         {
             // fullPath has no pre constraints
-            fullPath1a = handleGetFullPath();
+            afullPath1a = handleGetFullPath();
             // fullPath has no post constraints
-            this.__fullPath1a = fullPath1a;
+            this.fullPath1a = afullPath1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullPath1aSet = true;
+                this.fullPath1aSet = true;
             }
         }
-        return fullPath1a;
+        return afullPath1a;
     }
 
     // ------------- associations ------------------

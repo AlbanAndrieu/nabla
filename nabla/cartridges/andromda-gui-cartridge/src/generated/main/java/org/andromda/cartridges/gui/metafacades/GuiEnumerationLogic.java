@@ -38,17 +38,20 @@ public abstract class GuiEnumerationLogic
     extends MetafacadeBase
     implements GuiEnumeration
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiEnumerationLogic(Object metaObjectIn, String context)
+    protected GuiEnumerationLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superEnumerationFacade =
@@ -126,8 +129,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetConverterName();
 
-    private String __converterName1a;
-    private boolean __converterName1aSet = false;
+    private String converterName1a;
+    private boolean converterName1aSet = false;
 
     /**
      * The converter name used for this enumeration.
@@ -135,19 +138,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getConverterName()
     {
-        String converterName1a = this.__converterName1a;
-        if (!this.__converterName1aSet)
+        String aconverterName1a = this.converterName1a;
+        if (!this.converterName1aSet)
         {
             // converterName has no pre constraints
-            converterName1a = handleGetConverterName();
+            aconverterName1a = handleGetConverterName();
             // converterName has no post constraints
-            this.__converterName1a = converterName1a;
+            this.converterName1a = aconverterName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__converterName1aSet = true;
+                this.converterName1aSet = true;
             }
         }
-        return converterName1a;
+        return aconverterName1a;
     }
 
    /**
@@ -156,8 +159,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetFullyQualifiedConverterName();
 
-    private String __fullyQualifiedConverterName2a;
-    private boolean __fullyQualifiedConverterName2aSet = false;
+    private String fullyQualifiedConverterName2a;
+    private boolean fullyQualifiedConverterName2aSet = false;
 
     /**
      * The fully qualified converter name for this enumeration.
@@ -165,19 +168,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getFullyQualifiedConverterName()
     {
-        String fullyQualifiedConverterName2a = this.__fullyQualifiedConverterName2a;
-        if (!this.__fullyQualifiedConverterName2aSet)
+        String afullyQualifiedConverterName2a = this.fullyQualifiedConverterName2a;
+        if (!this.fullyQualifiedConverterName2aSet)
         {
             // fullyQualifiedConverterName has no pre constraints
-            fullyQualifiedConverterName2a = handleGetFullyQualifiedConverterName();
+            afullyQualifiedConverterName2a = handleGetFullyQualifiedConverterName();
             // fullyQualifiedConverterName has no post constraints
-            this.__fullyQualifiedConverterName2a = fullyQualifiedConverterName2a;
+            this.fullyQualifiedConverterName2a = afullyQualifiedConverterName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedConverterName2aSet = true;
+                this.fullyQualifiedConverterName2aSet = true;
             }
         }
-        return fullyQualifiedConverterName2a;
+        return afullyQualifiedConverterName2a;
     }
 
    /**
@@ -186,8 +189,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetConverterPath();
 
-    private String __converterPath3a;
-    private boolean __converterPath3aSet = false;
+    private String converterPath3a;
+    private boolean converterPath3aSet = false;
 
     /**
      * The path to the converter file.
@@ -195,19 +198,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getConverterPath()
     {
-        String converterPath3a = this.__converterPath3a;
-        if (!this.__converterPath3aSet)
+        String aconverterPath3a = this.converterPath3a;
+        if (!this.converterPath3aSet)
         {
             // converterPath has no pre constraints
-            converterPath3a = handleGetConverterPath();
+            aconverterPath3a = handleGetConverterPath();
             // converterPath has no post constraints
-            this.__converterPath3a = converterPath3a;
+            this.converterPath3a = aconverterPath3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__converterPath3aSet = true;
+                this.converterPath3aSet = true;
             }
         }
-        return converterPath3a;
+        return aconverterPath3a;
     }
 
    /**
@@ -216,8 +219,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String __messageKey4a;
-    private boolean __messageKey4aSet = false;
+    private String messageKey4a;
+    private boolean messageKey4aSet = false;
 
     /**
      * 
@@ -225,19 +228,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getMessageKey()
     {
-        String messageKey4a = this.__messageKey4a;
-        if (!this.__messageKey4aSet)
+        String amessageKey4a = this.messageKey4a;
+        if (!this.messageKey4aSet)
         {
             // messageKey has no pre constraints
-            messageKey4a = handleGetMessageKey();
+            amessageKey4a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.__messageKey4a = messageKey4a;
+            this.messageKey4a = amessageKey4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageKey4aSet = true;
+                this.messageKey4aSet = true;
             }
         }
-        return messageKey4a;
+        return amessageKey4a;
     }
 
     /**

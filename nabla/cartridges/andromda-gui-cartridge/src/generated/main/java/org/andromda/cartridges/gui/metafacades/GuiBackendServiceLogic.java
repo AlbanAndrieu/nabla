@@ -40,17 +40,20 @@ public abstract class GuiBackendServiceLogic
     extends MetafacadeBase
     implements GuiBackendService
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiBackendServiceLogic(Object metaObjectIn, String context)
+    protected GuiBackendServiceLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superService =
@@ -128,8 +131,8 @@ public abstract class GuiBackendServiceLogic
     */
     protected abstract String handleGetAccessorImplementation();
 
-    private String __accessorImplementation1a;
-    private boolean __accessorImplementation1aSet = false;
+    private String accessorImplementation1a;
+    private boolean accessorImplementation1aSet = false;
 
     /**
      * The implementation to use in a controller template in order to get an instance of this
@@ -138,19 +141,19 @@ public abstract class GuiBackendServiceLogic
      */
     public final String getAccessorImplementation()
     {
-        String accessorImplementation1a = this.__accessorImplementation1a;
-        if (!this.__accessorImplementation1aSet)
+        String aaccessorImplementation1a = this.accessorImplementation1a;
+        if (!this.accessorImplementation1aSet)
         {
             // accessorImplementation has no pre constraints
-            accessorImplementation1a = handleGetAccessorImplementation();
+            aaccessorImplementation1a = handleGetAccessorImplementation();
             // accessorImplementation has no post constraints
-            this.__accessorImplementation1a = accessorImplementation1a;
+            this.accessorImplementation1a = aaccessorImplementation1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__accessorImplementation1aSet = true;
+                this.accessorImplementation1aSet = true;
             }
         }
-        return accessorImplementation1a;
+        return aaccessorImplementation1a;
     }
 
     /**

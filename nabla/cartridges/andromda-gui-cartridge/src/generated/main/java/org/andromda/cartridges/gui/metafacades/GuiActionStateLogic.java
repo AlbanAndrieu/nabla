@@ -42,17 +42,20 @@ public abstract class GuiActionStateLogic
     extends MetafacadeBase
     implements GuiActionState
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiActionStateLogic(Object metaObjectIn, String context)
+    protected GuiActionStateLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndActionState =

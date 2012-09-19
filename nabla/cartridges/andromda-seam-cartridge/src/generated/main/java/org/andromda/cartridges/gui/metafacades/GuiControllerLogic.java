@@ -47,17 +47,20 @@ public abstract class GuiControllerLogic
     extends MetafacadeBase
     implements GuiController
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiControllerLogic(Object metaObjectIn, String context)
+    protected GuiControllerLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndController =
@@ -72,7 +75,7 @@ public abstract class GuiControllerLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiControllerLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiControllerLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -147,11 +150,11 @@ public abstract class GuiControllerLogic
      */
     public final String getFullPath()
     {
-        String fullPath1a = null;
+        String afullPath1a = null;
         // fullPath has no pre constraints
-        fullPath1a = handleGetFullPath();
+        afullPath1a = handleGetFullPath();
         // fullPath has no post constraints
-        return fullPath1a;
+        return afullPath1a;
     }
 
    /**
@@ -160,8 +163,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetImplementationName();
 
-    private String __implementationName2a;
-    private boolean __implementationName2aSet = false;
+    private String implementationName2a;
+    private boolean implementationName2aSet = false;
 
     /**
      * The implementation name of this controller.
@@ -169,19 +172,19 @@ public abstract class GuiControllerLogic
      */
     public final String getImplementationName()
     {
-        String implementationName2a = this.__implementationName2a;
-        if (!this.__implementationName2aSet)
+        String aimplementationName2a = this.implementationName2a;
+        if (!this.implementationName2aSet)
         {
             // implementationName has no pre constraints
-            implementationName2a = handleGetImplementationName();
+            aimplementationName2a = handleGetImplementationName();
             // implementationName has no post constraints
-            this.__implementationName2a = implementationName2a;
+            this.implementationName2a = aimplementationName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__implementationName2aSet = true;
+                this.implementationName2aSet = true;
             }
         }
-        return implementationName2a;
+        return aimplementationName2a;
     }
 
    /**
@@ -190,8 +193,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetFullyQualifiedImplementationName();
 
-    private String __fullyQualifiedImplementationName3a;
-    private boolean __fullyQualifiedImplementationName3aSet = false;
+    private String fullyQualifiedImplementationName3a;
+    private boolean fullyQualifiedImplementationName3aSet = false;
 
     /**
      * The fully qualified implementation name of this controller.
@@ -199,19 +202,19 @@ public abstract class GuiControllerLogic
      */
     public final String getFullyQualifiedImplementationName()
     {
-        String fullyQualifiedImplementationName3a = this.__fullyQualifiedImplementationName3a;
-        if (!this.__fullyQualifiedImplementationName3aSet)
+        String afullyQualifiedImplementationName3a = this.fullyQualifiedImplementationName3a;
+        if (!this.fullyQualifiedImplementationName3aSet)
         {
             // fullyQualifiedImplementationName has no pre constraints
-            fullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
+            afullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
             // fullyQualifiedImplementationName has no post constraints
-            this.__fullyQualifiedImplementationName3a = fullyQualifiedImplementationName3a;
+            this.fullyQualifiedImplementationName3a = afullyQualifiedImplementationName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedImplementationName3aSet = true;
+                this.fullyQualifiedImplementationName3aSet = true;
             }
         }
-        return fullyQualifiedImplementationName3a;
+        return afullyQualifiedImplementationName3a;
     }
 
    /**
@@ -220,8 +223,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetFullyQualifiedImplementationPath();
 
-    private String __fullyQualifiedImplementationPath4a;
-    private boolean __fullyQualifiedImplementationPath4aSet = false;
+    private String fullyQualifiedImplementationPath4a;
+    private boolean fullyQualifiedImplementationPath4aSet = false;
 
     /**
      * The fully qualified path to the controller implemention file.
@@ -229,19 +232,19 @@ public abstract class GuiControllerLogic
      */
     public final String getFullyQualifiedImplementationPath()
     {
-        String fullyQualifiedImplementationPath4a = this.__fullyQualifiedImplementationPath4a;
-        if (!this.__fullyQualifiedImplementationPath4aSet)
+        String afullyQualifiedImplementationPath4a = this.fullyQualifiedImplementationPath4a;
+        if (!this.fullyQualifiedImplementationPath4aSet)
         {
             // fullyQualifiedImplementationPath has no pre constraints
-            fullyQualifiedImplementationPath4a = handleGetFullyQualifiedImplementationPath();
+            afullyQualifiedImplementationPath4a = handleGetFullyQualifiedImplementationPath();
             // fullyQualifiedImplementationPath has no post constraints
-            this.__fullyQualifiedImplementationPath4a = fullyQualifiedImplementationPath4a;
+            this.fullyQualifiedImplementationPath4a = afullyQualifiedImplementationPath4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__fullyQualifiedImplementationPath4aSet = true;
+                this.fullyQualifiedImplementationPath4aSet = true;
             }
         }
-        return fullyQualifiedImplementationPath4a;
+        return afullyQualifiedImplementationPath4a;
     }
 
    /**
@@ -250,8 +253,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetBeanName();
 
-    private String __beanName5a;
-    private boolean __beanName5aSet = false;
+    private String beanName5a;
+    private boolean beanName5aSet = false;
 
     /**
      * The bean name of this controller (this is what is stored in the JSF configuration file).
@@ -259,19 +262,19 @@ public abstract class GuiControllerLogic
      */
     public final String getBeanName()
     {
-        String beanName5a = this.__beanName5a;
-        if (!this.__beanName5aSet)
+        String abeanName5a = this.beanName5a;
+        if (!this.beanName5aSet)
         {
             // beanName has no pre constraints
-            beanName5a = handleGetBeanName();
+            abeanName5a = handleGetBeanName();
             // beanName has no post constraints
-            this.__beanName5a = beanName5a;
+            this.beanName5a = abeanName5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__beanName5aSet = true;
+                this.beanName5aSet = true;
             }
         }
-        return beanName5a;
+        return abeanName5a;
     }
 
    /**
@@ -280,8 +283,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetControllerSerialVersionUID();
 
-    private String __controllerSerialVersionUID6a;
-    private boolean __controllerSerialVersionUID6aSet = false;
+    private String controllerSerialVersionUID6a;
+    private boolean controllerSerialVersionUID6aSet = false;
 
     /**
      * The calculated serial version UID for this controller.
@@ -289,19 +292,19 @@ public abstract class GuiControllerLogic
      */
     public final String getControllerSerialVersionUID()
     {
-        String controllerSerialVersionUID6a = this.__controllerSerialVersionUID6a;
-        if (!this.__controllerSerialVersionUID6aSet)
+        String acontrollerSerialVersionUID6a = this.controllerSerialVersionUID6a;
+        if (!this.controllerSerialVersionUID6aSet)
         {
             // controllerSerialVersionUID has no pre constraints
-            controllerSerialVersionUID6a = handleGetControllerSerialVersionUID();
+            acontrollerSerialVersionUID6a = handleGetControllerSerialVersionUID();
             // controllerSerialVersionUID has no post constraints
-            this.__controllerSerialVersionUID6a = controllerSerialVersionUID6a;
+            this.controllerSerialVersionUID6a = acontrollerSerialVersionUID6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__controllerSerialVersionUID6aSet = true;
+                this.controllerSerialVersionUID6aSet = true;
             }
         }
-        return controllerSerialVersionUID6a;
+        return acontrollerSerialVersionUID6a;
     }
 
    /**
@@ -316,17 +319,17 @@ public abstract class GuiControllerLogic
      */
     public final List<DependencyFacade> getSessionObjectReferences()
     {
-        List<DependencyFacade> sessionObjectReferences7a = null;
+        List<DependencyFacade> asessionObjectReferences7a = null;
         // sessionObjectReferences has no pre constraints
-        sessionObjectReferences7a = handleGetSessionObjectReferences();
+        asessionObjectReferences7a = handleGetSessionObjectReferences();
         // sessionObjectReferences has no post constraints
-        return sessionObjectReferences7a;
+        return asessionObjectReferences7a;
     }
 
     // ------------- associations ------------------
 
-    private List<GuiSessionObject> __getSessionObjects1r;
-    private boolean __getSessionObjects1rSet = false;
+    private List<GuiSessionObject> getSessionObjects1r;
+    private boolean getSessionObjects1rSet = false;
 
     /**
      * 
@@ -334,8 +337,8 @@ public abstract class GuiControllerLogic
      */
     public final List<GuiSessionObject> getSessionObjects()
     {
-        List<GuiSessionObject> getSessionObjects1r = this.__getSessionObjects1r;
-        if (!this.__getSessionObjects1rSet)
+        List<GuiSessionObject> getSessionObjects1r = this.getSessionObjects1r;
+        if (!this.getSessionObjects1rSet)
         {
             // guiController has no pre constraints
             List result = handleGetSessionObjects();
@@ -347,13 +350,13 @@ public abstract class GuiControllerLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiControllerLogic.logger.warn("incorrect metafacade cast for GuiControllerLogic.getSessionObjects List<GuiSessionObject> " + result + ": " + shieldedResult);
+                GuiControllerLogic.LOGGER.warn("incorrect metafacade cast for GuiControllerLogic.getSessionObjects List<GuiSessionObject> " + result + ": " + shieldedResult);
             }
             // guiController has no post constraints
-            this.__getSessionObjects1r = getSessionObjects1r;
+            this.getSessionObjects1r = getSessionObjects1r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getSessionObjects1rSet = true;
+                this.getSessionObjects1rSet = true;
             }
         }
         return getSessionObjects1r;
@@ -365,8 +368,8 @@ public abstract class GuiControllerLogic
      */
     protected abstract List handleGetSessionObjects();
 
-    private List<GuiParameter> __getAllArguments2r;
-    private boolean __getAllArguments2rSet = false;
+    private List<GuiParameter> getAllArguments2r;
+    private boolean getAllArguments2rSet = false;
 
     /**
      * 
@@ -374,8 +377,8 @@ public abstract class GuiControllerLogic
      */
     public final List<GuiParameter> getAllArguments()
     {
-        List<GuiParameter> getAllArguments2r = this.__getAllArguments2r;
-        if (!this.__getAllArguments2rSet)
+        List<GuiParameter> getAllArguments2r = this.getAllArguments2r;
+        if (!this.getAllArguments2rSet)
         {
             // guiController has no pre constraints
             List result = handleGetAllArguments();
@@ -387,13 +390,13 @@ public abstract class GuiControllerLogic
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                GuiControllerLogic.logger.warn("incorrect metafacade cast for GuiControllerLogic.getAllArguments List<GuiParameter> " + result + ": " + shieldedResult);
+                GuiControllerLogic.LOGGER.warn("incorrect metafacade cast for GuiControllerLogic.getAllArguments List<GuiParameter> " + result + ": " + shieldedResult);
             }
             // guiController has no post constraints
-            this.__getAllArguments2r = getAllArguments2r;
+            this.getAllArguments2r = getAllArguments2r;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__getAllArguments2rSet = true;
+                this.getAllArguments2rSet = true;
             }
         }
         return getAllArguments2r;

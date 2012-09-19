@@ -37,17 +37,20 @@ public abstract class GuiPseudostateLogic
     extends MetafacadeBase
     implements GuiPseudostate
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiPseudostateLogic(Object metaObjectIn, String context)
+    protected GuiPseudostateLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superFrontEndPseudostate =
@@ -125,8 +128,8 @@ public abstract class GuiPseudostateLogic
     */
     protected abstract String handleGetActionMethodName();
 
-    private String __actionMethodName1a;
-    private boolean __actionMethodName1aSet = false;
+    private String actionMethodName1a;
+    private boolean actionMethodName1aSet = false;
 
     /**
      * The method name that delegates transitions from this state.
@@ -134,19 +137,19 @@ public abstract class GuiPseudostateLogic
      */
     public final String getActionMethodName()
     {
-        String actionMethodName1a = this.__actionMethodName1a;
-        if (!this.__actionMethodName1aSet)
+        String aactionMethodName1a = this.actionMethodName1a;
+        if (!this.actionMethodName1aSet)
         {
             // actionMethodName has no pre constraints
-            actionMethodName1a = handleGetActionMethodName();
+            aactionMethodName1a = handleGetActionMethodName();
             // actionMethodName has no post constraints
-            this.__actionMethodName1a = actionMethodName1a;
+            this.actionMethodName1a = aactionMethodName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__actionMethodName1aSet = true;
+                this.actionMethodName1aSet = true;
             }
         }
-        return actionMethodName1a;
+        return aactionMethodName1a;
     }
 
     /**

@@ -51,7 +51,7 @@ public abstract class $entity.daoBaseName## no new line
 {
 
     private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(${entity.daoBaseName}.class);
-    
+
     /** Session Context Injection */
     @javax.annotation.Resource
     protected javax.ejb.SessionContext context;
@@ -59,12 +59,12 @@ public abstract class $entity.daoBaseName## no new line
 #if ($entity.seamComponent)
     /**
      * Inject persistence seam context
-     */    
+     */
     @org.jboss.seam.annotations.In
 #else
     /**
      * Inject persistence context #if ($entity.defaultPersistenceContextUnitName)${entity.defaultPersistenceContextUnitName}#end
-     */    
+     */
     @javax.persistence.PersistenceContext#if ($entity.defaultPersistenceContextUnitName)(unitName = "${entity.defaultPersistenceContextUnitName}")#end
 #end
 
@@ -87,7 +87,12 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * Inject DAO $entityRef.targetElement.fullyQualifiedDaoName
      */
-    @javax.ejb.EJB
+#set ($jndiNamePrefix = $entity.jndiNamePrefix)     
+#if (!$jndiNamePrefix.empty)   
+    @javax.ejb.EJB(mappedName="${jndiNamePrefix}/${entityRef.targetElement.daoImplementationName}")
+#else   
+    @javax.ejb.EJB 
+#end          
     protected $entityRef.targetElement.fullyQualifiedDaoName $entityRef.daoName;
 
 #**##end
@@ -970,7 +975,7 @@ public abstract class $entity.daoBaseName## no new line
 
     /**
      * @return the hibernateSession
-     */   
+     */
 #if ($entity.seamComponent)
     public Session getHibernateSession()
     {
@@ -981,9 +986,9 @@ public abstract class $entity.daoBaseName## no new line
         {
             return (org.hibernate.Session) this.entityManager.getDelegate();
         }
-    }    
+    }
 
-#else    
+#else
     public Session getHibernateSession()
     {
         return this.hibernateSession;
@@ -995,7 +1000,7 @@ public abstract class $entity.daoBaseName## no new line
     public void setHibernateSession(Session hibernateSessionIn)
     {
         this.hibernateSession = hibernateSessionIn;
-    }        
+    }
 #end
 #end
 }

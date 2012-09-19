@@ -84,7 +84,9 @@ public class GuiForwardLogicImpl extends GuiForwardLogic
 
         if (this.logger_.isDebugEnabled())
         {
+
             this.logger_.debug("getName is : " + name + " - " + target + " for : " + this.getFullyQualifiedName());
+
         }
 
         if (target instanceof GuiFinalState)

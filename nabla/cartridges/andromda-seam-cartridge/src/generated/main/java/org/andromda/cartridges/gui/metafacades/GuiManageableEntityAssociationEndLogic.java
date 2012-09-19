@@ -38,17 +38,20 @@ public abstract class GuiManageableEntityAssociationEndLogic
     extends MetafacadeBase
     implements GuiManageableEntityAssociationEnd
 {
+
+    private static final long serialVersionUID = 1L;
+    
     /**
      * The underlying UML object
      * @see Object
      */
-    protected Object metaObject;
+    protected transient Object metaObject;
 
     /** Create Metafacade implementation instance using the MetafacadeFactory from the context
      * @param metaObjectIn
      * @param context
      */
-    protected GuiManageableEntityAssociationEndLogic(Object metaObjectIn, String context)
+    protected GuiManageableEntityAssociationEndLogic(final Object metaObjectIn, String context)
     {
         super(metaObjectIn, getContext(context));
         this.superManageableEntityAssociationEnd =
@@ -63,7 +66,7 @@ public abstract class GuiManageableEntityAssociationEndLogic
     /**
      * The logger instance.
      */
-    private static final Logger logger = Logger.getLogger(GuiManageableEntityAssociationEndLogic.class);
+    private static final Logger LOGGER = Logger.getLogger(GuiManageableEntityAssociationEndLogic.class);
 
     /**
      * Gets the context for this metafacade logic instance.
@@ -131,8 +134,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsSafeNamePresent();
 
-    private boolean __safeNamePresent1a;
-    private boolean __safeNamePresent1aSet = false;
+    private boolean safeNamePresent1a;
+    private boolean safeNamePresent1aSet = false;
 
     /**
      * True if this parameter has a name that can properly be handled by Jakarta commons (this lib
@@ -141,19 +144,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isSafeNamePresent()
     {
-        boolean safeNamePresent1a = this.__safeNamePresent1a;
-        if (!this.__safeNamePresent1aSet)
+        boolean asafeNamePresent1a = this.safeNamePresent1a;
+        if (!this.safeNamePresent1aSet)
         {
             // safeNamePresent has no pre constraints
-            safeNamePresent1a = handleIsSafeNamePresent();
+            asafeNamePresent1a = handleIsSafeNamePresent();
             // safeNamePresent has no post constraints
-            this.__safeNamePresent1a = safeNamePresent1a;
+            this.safeNamePresent1a = asafeNamePresent1a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__safeNamePresent1aSet = true;
+                this.safeNamePresent1aSet = true;
             }
         }
-        return safeNamePresent1a;
+        return asafeNamePresent1a;
     }
 
    /**
@@ -162,8 +165,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsFilterElement();
 
-    private boolean __filterElement2a;
-    private boolean __filterElement2aSet = false;
+    private boolean filterElement2a;
+    private boolean filterElement2aSet = false;
 
     /**
      * 
@@ -171,19 +174,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isFilterElement()
     {
-        boolean filterElement2a = this.__filterElement2a;
-        if (!this.__filterElement2aSet)
+        boolean afilterElement2a = this.filterElement2a;
+        if (!this.filterElement2aSet)
         {
             // filterElement has no pre constraints
-            filterElement2a = handleIsFilterElement();
+            afilterElement2a = handleIsFilterElement();
             // filterElement has no post constraints
-            this.__filterElement2a = filterElement2a;
+            this.filterElement2a = afilterElement2a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__filterElement2aSet = true;
+                this.filterElement2aSet = true;
             }
         }
-        return filterElement2a;
+        return afilterElement2a;
     }
 
    /**
@@ -192,8 +195,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetDisplayName();
 
-    private String __displayName3a;
-    private boolean __displayName3aSet = false;
+    private String displayName3a;
+    private boolean displayName3aSet = false;
 
     /**
      * 
@@ -201,19 +204,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getDisplayName()
     {
-        String displayName3a = this.__displayName3a;
-        if (!this.__displayName3aSet)
+        String adisplayName3a = this.displayName3a;
+        if (!this.displayName3aSet)
         {
             // displayName has no pre constraints
-            displayName3a = handleGetDisplayName();
+            adisplayName3a = handleGetDisplayName();
             // displayName has no post constraints
-            this.__displayName3a = displayName3a;
+            this.displayName3a = adisplayName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__displayName3aSet = true;
+                this.displayName3aSet = true;
             }
         }
-        return displayName3a;
+        return adisplayName3a;
     }
 
    /**
@@ -222,8 +225,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetFunctionalCoherency();
 
-    private String __functionalCoherency4a;
-    private boolean __functionalCoherency4aSet = false;
+    private String functionalCoherency4a;
+    private boolean functionalCoherency4aSet = false;
 
     /**
      * 
@@ -231,19 +234,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getFunctionalCoherency()
     {
-        String functionalCoherency4a = this.__functionalCoherency4a;
-        if (!this.__functionalCoherency4aSet)
+        String afunctionalCoherency4a = this.functionalCoherency4a;
+        if (!this.functionalCoherency4aSet)
         {
             // functionalCoherency has no pre constraints
-            functionalCoherency4a = handleGetFunctionalCoherency();
+            afunctionalCoherency4a = handleGetFunctionalCoherency();
             // functionalCoherency has no post constraints
-            this.__functionalCoherency4a = functionalCoherency4a;
+            this.functionalCoherency4a = afunctionalCoherency4a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__functionalCoherency4aSet = true;
+                this.functionalCoherency4aSet = true;
             }
         }
-        return functionalCoherency4a;
+        return afunctionalCoherency4a;
     }
 
    /**
@@ -252,8 +255,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetDictionaryReturnType();
 
-    private String __dictionaryReturnType5a;
-    private boolean __dictionaryReturnType5aSet = false;
+    private String dictionaryReturnType5a;
+    private boolean dictionaryReturnType5aSet = false;
 
     /**
      * 
@@ -261,19 +264,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getDictionaryReturnType()
     {
-        String dictionaryReturnType5a = this.__dictionaryReturnType5a;
-        if (!this.__dictionaryReturnType5aSet)
+        String adictionaryReturnType5a = this.dictionaryReturnType5a;
+        if (!this.dictionaryReturnType5aSet)
         {
             // dictionaryReturnType has no pre constraints
-            dictionaryReturnType5a = handleGetDictionaryReturnType();
+            adictionaryReturnType5a = handleGetDictionaryReturnType();
             // dictionaryReturnType has no post constraints
-            this.__dictionaryReturnType5a = dictionaryReturnType5a;
+            this.dictionaryReturnType5a = adictionaryReturnType5a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__dictionaryReturnType5aSet = true;
+                this.dictionaryReturnType5aSet = true;
             }
         }
-        return dictionaryReturnType5a;
+        return adictionaryReturnType5a;
     }
 
    /**
@@ -282,8 +285,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsMandatory();
 
-    private boolean __mandatory6a;
-    private boolean __mandatory6aSet = false;
+    private boolean mandatory6a;
+    private boolean mandatory6aSet = false;
 
     /**
      * Denotes a mandatory field (help group must have a value)
@@ -291,19 +294,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isMandatory()
     {
-        boolean mandatory6a = this.__mandatory6a;
-        if (!this.__mandatory6aSet)
+        boolean amandatory6a = this.mandatory6a;
+        if (!this.mandatory6aSet)
         {
             // mandatory has no pre constraints
-            mandatory6a = handleIsMandatory();
+            amandatory6a = handleIsMandatory();
             // mandatory has no post constraints
-            this.__mandatory6a = mandatory6a;
+            this.mandatory6a = amandatory6a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__mandatory6aSet = true;
+                this.mandatory6aSet = true;
             }
         }
-        return mandatory6a;
+        return amandatory6a;
     }
 
    /**
@@ -312,8 +315,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsSimpleDisplay();
 
-    private boolean __simpleDisplay7a;
-    private boolean __simpleDisplay7aSet = false;
+    private boolean simpleDisplay7a;
+    private boolean simpleDisplay7aSet = false;
 
     /**
      * 
@@ -321,19 +324,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isSimpleDisplay()
     {
-        boolean simpleDisplay7a = this.__simpleDisplay7a;
-        if (!this.__simpleDisplay7aSet)
+        boolean asimpleDisplay7a = this.simpleDisplay7a;
+        if (!this.simpleDisplay7aSet)
         {
             // simpleDisplay has no pre constraints
-            simpleDisplay7a = handleIsSimpleDisplay();
+            asimpleDisplay7a = handleIsSimpleDisplay();
             // simpleDisplay has no post constraints
-            this.__simpleDisplay7a = simpleDisplay7a;
+            this.simpleDisplay7a = asimpleDisplay7a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__simpleDisplay7aSet = true;
+                this.simpleDisplay7aSet = true;
             }
         }
-        return simpleDisplay7a;
+        return asimpleDisplay7a;
     }
 
    /**
@@ -342,8 +345,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsReadOnlyForUpdate();
 
-    private boolean __readOnlyForUpdate8a;
-    private boolean __readOnlyForUpdate8aSet = false;
+    private boolean readOnlyForUpdate8a;
+    private boolean readOnlyForUpdate8aSet = false;
 
     /**
      * 
@@ -351,19 +354,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isReadOnlyForUpdate()
     {
-        boolean readOnlyForUpdate8a = this.__readOnlyForUpdate8a;
-        if (!this.__readOnlyForUpdate8aSet)
+        boolean areadOnlyForUpdate8a = this.readOnlyForUpdate8a;
+        if (!this.readOnlyForUpdate8aSet)
         {
             // readOnlyForUpdate has no pre constraints
-            readOnlyForUpdate8a = handleIsReadOnlyForUpdate();
+            areadOnlyForUpdate8a = handleIsReadOnlyForUpdate();
             // readOnlyForUpdate has no post constraints
-            this.__readOnlyForUpdate8a = readOnlyForUpdate8a;
+            this.readOnlyForUpdate8a = areadOnlyForUpdate8a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__readOnlyForUpdate8aSet = true;
+                this.readOnlyForUpdate8aSet = true;
             }
         }
-        return readOnlyForUpdate8a;
+        return areadOnlyForUpdate8a;
     }
 
    /**
@@ -372,8 +375,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetWidgetType();
 
-    private String __widgetType9a;
-    private boolean __widgetType9aSet = false;
+    private String widgetType9a;
+    private boolean widgetType9aSet = false;
 
     /**
      * 
@@ -381,19 +384,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getWidgetType()
     {
-        String widgetType9a = this.__widgetType9a;
-        if (!this.__widgetType9aSet)
+        String awidgetType9a = this.widgetType9a;
+        if (!this.widgetType9aSet)
         {
             // widgetType has no pre constraints
-            widgetType9a = handleGetWidgetType();
+            awidgetType9a = handleGetWidgetType();
             // widgetType has no post constraints
-            this.__widgetType9a = widgetType9a;
+            this.widgetType9a = awidgetType9a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__widgetType9aSet = true;
+                this.widgetType9aSet = true;
             }
         }
-        return widgetType9a;
+        return awidgetType9a;
     }
 
    /**
@@ -402,8 +405,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String __messageKey10a;
-    private boolean __messageKey10aSet = false;
+    private String messageKey10a;
+    private boolean messageKey10aSet = false;
 
     /**
      * 
@@ -411,19 +414,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getMessageKey()
     {
-        String messageKey10a = this.__messageKey10a;
-        if (!this.__messageKey10aSet)
+        String amessageKey10a = this.messageKey10a;
+        if (!this.messageKey10aSet)
         {
             // messageKey has no pre constraints
-            messageKey10a = handleGetMessageKey();
+            amessageKey10a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.__messageKey10a = messageKey10a;
+            this.messageKey10a = amessageKey10a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageKey10aSet = true;
+                this.messageKey10aSet = true;
             }
         }
-        return messageKey10a;
+        return amessageKey10a;
     }
 
    /**
@@ -432,8 +435,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String __messageValue11a;
-    private boolean __messageValue11aSet = false;
+    private String messageValue11a;
+    private boolean messageValue11aSet = false;
 
     /**
      * 
@@ -441,19 +444,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getMessageValue()
     {
-        String messageValue11a = this.__messageValue11a;
-        if (!this.__messageValue11aSet)
+        String amessageValue11a = this.messageValue11a;
+        if (!this.messageValue11aSet)
         {
             // messageValue has no pre constraints
-            messageValue11a = handleGetMessageValue();
+            amessageValue11a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.__messageValue11a = messageValue11a;
+            this.messageValue11a = amessageValue11a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__messageValue11aSet = true;
+                this.messageValue11aSet = true;
             }
         }
-        return messageValue11a;
+        return amessageValue11a;
     }
 
    /**
@@ -462,8 +465,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String __onlineHelpKey12a;
-    private boolean __onlineHelpKey12aSet = false;
+    private String onlineHelpKey12a;
+    private boolean onlineHelpKey12aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -472,19 +475,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getOnlineHelpKey()
     {
-        String onlineHelpKey12a = this.__onlineHelpKey12a;
-        if (!this.__onlineHelpKey12aSet)
+        String aonlineHelpKey12a = this.onlineHelpKey12a;
+        if (!this.onlineHelpKey12aSet)
         {
             // onlineHelpKey has no pre constraints
-            onlineHelpKey12a = handleGetOnlineHelpKey();
+            aonlineHelpKey12a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.__onlineHelpKey12a = onlineHelpKey12a;
+            this.onlineHelpKey12a = aonlineHelpKey12a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpKey12aSet = true;
+                this.onlineHelpKey12aSet = true;
             }
         }
-        return onlineHelpKey12a;
+        return aonlineHelpKey12a;
     }
 
    /**
@@ -493,8 +496,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String __onlineHelpValue13a;
-    private boolean __onlineHelpValue13aSet = false;
+    private String onlineHelpValue13a;
+    private boolean onlineHelpValue13aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -503,19 +506,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getOnlineHelpValue()
     {
-        String onlineHelpValue13a = this.__onlineHelpValue13a;
-        if (!this.__onlineHelpValue13aSet)
+        String aonlineHelpValue13a = this.onlineHelpValue13a;
+        if (!this.onlineHelpValue13aSet)
         {
             // onlineHelpValue has no pre constraints
-            onlineHelpValue13a = handleGetOnlineHelpValue();
+            aonlineHelpValue13a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.__onlineHelpValue13a = onlineHelpValue13a;
+            this.onlineHelpValue13a = aonlineHelpValue13a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__onlineHelpValue13aSet = true;
+                this.onlineHelpValue13aSet = true;
             }
         }
-        return onlineHelpValue13a;
+        return aonlineHelpValue13a;
     }
 
    /**
@@ -524,8 +527,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetBackingListName();
 
-    private String __backingListName14a;
-    private boolean __backingListName14aSet = false;
+    private String backingListName14a;
+    private boolean backingListName14aSet = false;
 
     /**
      * 
@@ -533,19 +536,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getBackingListName()
     {
-        String backingListName14a = this.__backingListName14a;
-        if (!this.__backingListName14aSet)
+        String abackingListName14a = this.backingListName14a;
+        if (!this.backingListName14aSet)
         {
             // backingListName has no pre constraints
-            backingListName14a = handleGetBackingListName();
+            abackingListName14a = handleGetBackingListName();
             // backingListName has no post constraints
-            this.__backingListName14a = backingListName14a;
+            this.backingListName14a = abackingListName14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__backingListName14aSet = true;
+                this.backingListName14aSet = true;
             }
         }
-        return backingListName14a;
+        return abackingListName14a;
     }
 
    /**
@@ -554,8 +557,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetValueListName();
 
-    private String __valueListName15a;
-    private boolean __valueListName15aSet = false;
+    private String valueListName15a;
+    private boolean valueListName15aSet = false;
 
     /**
      * 
@@ -563,19 +566,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getValueListName()
     {
-        String valueListName15a = this.__valueListName15a;
-        if (!this.__valueListName15aSet)
+        String avalueListName15a = this.valueListName15a;
+        if (!this.valueListName15aSet)
         {
             // valueListName has no pre constraints
-            valueListName15a = handleGetValueListName();
+            avalueListName15a = handleGetValueListName();
             // valueListName has no post constraints
-            this.__valueListName15a = valueListName15a;
+            this.valueListName15a = avalueListName15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__valueListName15aSet = true;
+                this.valueListName15aSet = true;
             }
         }
-        return valueListName15a;
+        return avalueListName15a;
     }
 
    /**
@@ -584,8 +587,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetLabelListName();
 
-    private String __labelListName16a;
-    private boolean __labelListName16aSet = false;
+    private String labelListName16a;
+    private boolean labelListName16aSet = false;
 
     /**
      * 
@@ -593,19 +596,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getLabelListName()
     {
-        String labelListName16a = this.__labelListName16a;
-        if (!this.__labelListName16aSet)
+        String alabelListName16a = this.labelListName16a;
+        if (!this.labelListName16aSet)
         {
             // labelListName has no pre constraints
-            labelListName16a = handleGetLabelListName();
+            alabelListName16a = handleGetLabelListName();
             // labelListName has no post constraints
-            this.__labelListName16a = labelListName16a;
+            this.labelListName16a = alabelListName16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.__labelListName16aSet = true;
+                this.labelListName16aSet = true;
             }
         }
-        return labelListName16a;
+        return alabelListName16a;
     }
 
     // ---------------- business methods ----------------------

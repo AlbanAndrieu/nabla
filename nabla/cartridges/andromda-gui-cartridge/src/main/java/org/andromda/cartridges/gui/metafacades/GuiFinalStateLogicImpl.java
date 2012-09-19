@@ -142,7 +142,9 @@ public class GuiFinalStateLogicImpl extends GuiFinalStateLogic
 
         if (this.logger_.isDebugEnabled())
         {
+
             this.logger_.debug("getName is : " + name + " for : " + this.getFullyQualifiedName());
+
         }
 
         if ((name == null) || name.isEmpty())
