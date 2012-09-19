@@ -1,5 +1,5 @@
 #################
-# K+TP Build NG script
+# Scons build script
 ######################
 
 import os
@@ -20,7 +20,7 @@ vars.AddVariables(
     EnumVariable('opt', 'Set to True to build with opt flags', 'False', ['True', 'False']),
     ('gcc_version', 'Set gcc version to use', '4.1.2'),
     ('install_path', 'Set install path', 'install'),
-    EnumVariable('target', 'Target platform', 'default', ['default', 'local'])
+    EnumVariable('target', 'Target platform', 'local', ['default', 'local'])
 )
 env = DefaultEnvironment(tools = ['gcc', 'gnulink'], CC = '/usr/local/bin/gcc')
 
@@ -108,7 +108,6 @@ KTPPBinDir = os.path.abspath(thePath)
 #obj directories
 thePath=os.path.join(KTPPTarget,'obj',Arch)
 ProjectMacro.mkdir(os.path.join(thePath,theOptDbgFolder))
-KTPObjDir = os.path.abspath(os.path.join(thePath,theOptDbgFolder))
 thePath=os.path.join(KTPPTarget,'include',Arch)
 ProjectMacro.mkdir(thePath)
 KTPPIncludesDir = os.path.abspath(thePath)
@@ -119,6 +118,13 @@ KTPPStaticLibDir = Dir(thePath).srcnode().abspath
 thePath=os.path.join(KTPPStaticLibDir,'shared')
 ProjectMacro.mkdir(thePath)
 KTPPLibDir = Dir(thePath).srcnode().abspath
+
+if env['target'] == 'local':
+  KTPObjDir = '.'
+else:
+  KTPObjDir = os.path.abspath(os.path.join(thePath,theOptDbgFolder))
+  VariantDir(os.path.join(KTPObjDir,'sample'), 'sample', duplicate=0)
+
 env['KTPPStaticLibDir'] = KTPPStaticLibDir
 env['KTPPLibDir'] = KTPPLibDir
 env['KTPPBinDir'] = KTPPBinDir
@@ -128,8 +134,6 @@ print "static lib dir :", KTPPStaticLibDir
 print "shared lib dir :", KTPPLibDir
 print "bin dir :", KTPPBinDir
 print "include dir :", KTPPIncludesDir
-
-VariantDir(os.path.join(KTPObjDir,'sample'), 'sample', duplicate=0)
 
 env['CPPPATH'] = [
     '.',
@@ -146,7 +150,7 @@ env['CPPPATH'] = [
 #	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO','orbsvcs'),
 #	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'include'),
 	os.path.join(KTPPJavaDir,'include'),
-	os.path.join(KTPPJavaDir,'include',['linux','solaris'][Arch!='x86Linux']), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 	
+	os.path.join(KTPPJavaDir,'include',['linux','solaris'][Arch!='x86Linux']),
 ]
 
 # -L parameter
@@ -164,7 +168,7 @@ env["LIBPATH"]     = [
 #	os.path.join(KTPPThirdPartyDir,'apr-util',Arch,'lib'),
 #	os.path.join(KTPPThirdPartyDir,'log4cxx', Arch, 'lib'),
 #	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'lib'),
-	os.path.join(KTPPJavaDir, 'jre','lib',env['java_arch'],'server'), #http://stackoverflow.com/questions/394809/python-ternary-operator simulated ternary operator to check if we are on amd64 or i386 
+	os.path.join(KTPPJavaDir, 'jre','lib',env['java_arch'],'server'),
 
 # 3rd parties
 ]
@@ -227,6 +231,18 @@ env['MORELibs'] = [
 	'xml2',
 ]
 
+# Clean
+Clean('.', 'install')
+
+if 'package' in COMMAND_LINE_TARGETS:
+    print "Remove nabla-1.2.3 directory"
+    env.Execute("rm -Rf nabla-1.2.3")
+
+# nabla target
+if 'nabla' in COMMAND_LINE_TARGETS:
+    #env.Execute("svn status libs|perl -l -ne 'if(s,^\?\s+(.+(?:\.cpp|\.h|\.xml|timestamps|sconsign.dblite|/ddl|/business|ps-make|ps-make.*|ps-private|.*\.vcproj|.*\.bak|.*\.hierarchy|.*\.views|.*\.per|.*\.enum2|.*\.gen))$,$1,){print $_}' | xargs rm -fr")
+    SetOption("clean", 1)
+
 #additional libs for link
 env['OSDependentLibs']=[]
 if Arch in ['x86sol','sun4sol']:
@@ -236,25 +252,28 @@ if Arch in ['x86sol','sun4sol']:
 ProjectMacro.registerIDLBuilders(env,KTPPThirdPartyDir,Arch)
 
 # Variables visible to SConscripts
-Export('env')
+Export('env', 'Versions')
 
 #Sconscript calls
-SConscript(KTPObjDir+'/sample/microsoft/src/main/cpp/SConscript')
-SConscript(KTPObjDir+'/sample/microsoft/src/main/app/SConscript')
+if not GetOption('help'):
+    env.SConscript([
+    		KTPObjDir+'/sample/microsoft/src/main/cpp/SConscript',
+			KTPObjDir+'/sample/microsoft/src/main/app/SConscript',
+    ])
 
 SConscript(KTPObjDir+'/sample/microsoft/src/test/cpp/SConscript')
 SConscript(KTPObjDir+'/sample/microsoft/src/test/app/SConscript')
 
-#env.Package( NAME           = 'nabla',
-#             VERSION        = '1.2.3',
-#             PACKAGEVERSION = 0,
-#             PACKAGETYPE    = 'targz',
-#             source=[KTPPLibDir, KTPPBinDir],
-#             LICENSE        = 'misys',
-#             SUMMARY        = 'Nabla (Backend)',
-#             DESCRIPTION    = 'Nabla (Backend)',
-#             X_RPM_GROUP    = 'Application/nabla',
-#             SOURCE_URL     = 'http://nabla.mobi/nabla-1.2.3.tar.gz'
-#        )
+env.Package( NAME           = 'nabla',
+             VERSION        = '1.2.3',
+             PACKAGEVERSION = 0,
+             PACKAGETYPE    = 'targz',
+             source=[KTPPLibDir, KTPPBinDir],
+             LICENSE        = 'misys',
+             SUMMARY        = 'Nabla (Backend)',
+             DESCRIPTION    = 'Nabla (Backend)',
+             X_RPM_GROUP    = 'Application/nabla',
+             SOURCE_URL     = 'http://nabla.mobi/nabla-1.2.3.tar.gz'
+        )
 
 print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)
