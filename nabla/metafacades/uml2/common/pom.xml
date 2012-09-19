@@ -23,10 +23,12 @@
         
     <build>
         <plugins>
+            <!--
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-bootstrap-plugin</artifactId>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-model-archiver-plugin</artifactId>
