@@ -29,15 +29,14 @@ def generate(env, **kw):
         else:
             env['Suffix64']=''
             env['output_folder'] = 'opt'
-            env['java_arch'] = ''           
-
+            env['java_arch'] = ''
     elif Arch in ['x86sol','sun4sol']:
         env['debug_flags'] = '-g0'
         env['opt_flags'] = '-fast'
         if Arch=='x86sol':
             env['cc_path'] = '/rms/sunpro/sun-studio-12.x86sol_2/SUNWspro/bin'
         else:
-            env['cc_path'] = '/rms/sunpro/sun-studio-12/SUNWspro/bin'   
+            env['cc_path'] = '/rms/sunpro/sun-studio-12/SUNWspro/bin'
         #/opt/SUNWspro/bin:/usr/sfw/bin
         env['ENV']['PATH'] = env['cc_path'] + ':/usr/bin:/usr/sbin:/usr/ccs/bin:/usr/local/bin'
         env['ENV']['LD_LIBRARY_PATH'] = ''
@@ -48,8 +47,7 @@ def generate(env, **kw):
         if Arch=='x86sol':
             env['java_arch'] = 'i386'
         else:
-            env['java_arch'] = 'sparc'        
-    
+            env['java_arch'] = 'sparc'
     print "CC is:", env['CC']
 
     if Arch == 'x86Linux':
@@ -72,27 +70,34 @@ def generate(env, **kw):
             '-include','/usr/include/c++/' + env['gcc_version'] + '/memory',    #KRMSParser pour auto_ptr
             '-include','/usr/include/c++/' + env['gcc_version'] + '/algorithm', #KASRKCVaRAggregation pour "sort"
         ]
-        #Activate for debug purpose (when we integrate kplus and we have error with symbols resolutions) 
+        #Activate for debug purpose (when we integrate kplus and we have error with symbols resolutions)
         #env['LINKFLAGS'] = ['-Wl,-z,defs']
+        # If not set, -l order on command lines matter for static librairies
+        env['LINKFLAGS'] = [
+            '-Wl,--no-as-needed',
+        ]
     elif Arch in ['x86sol','sun4sol']:
-	    env['CCFLAGS'] = [
-		    '-features=no%conststrings,no%localfor',
-		    '-DOWTOOLKIT_WARNING_DISABLED',
-		    '-DP100',
-		    '-xildoff',
-		    '-DSYSV',
-		    '-DSVR4',
-		    '-Dsolaris',
-		    '-DANSI_C',
-		    '-D_TEMPLATES_ENABLE_',
-		    '-mt',
-		    '-D_POSIX_THREADS',
-		    '-D_REENTRANT',
-		    '-DuseTao',
-		    '-DACE_HAS_EXCEPTIONS',
-	    ]
-	    env['LINKFLAGS'] = ['-zrescan']
-        
+	env['CCFLAGS'] = [
+	    '-features=no%conststrings,no%localfor',
+	    '-DOWTOOLKIT_WARNING_DISABLED',
+	    '-DP100',
+	    '-xildoff',
+	    '-DSYSV',
+	    '-DSVR4',
+	    '-Dsolaris',
+	    '-DANSI_C',
+	    '-D_TEMPLATES_ENABLE_',
+	    '-mt',
+	    '-D_POSIX_THREADS',
+	    '-D_REENTRANT',
+	    '-DuseTao',
+	    '-DACE_HAS_EXCEPTIONS',
+	]
+	# If not set, -l order on command lines matter for static librairies
+	env['LINKFLAGS'] = [
+	    '-zrescan',
+	]
+
     print "CCCOM is:", env.subst('$CCCOM')
 
 def exists(env):
