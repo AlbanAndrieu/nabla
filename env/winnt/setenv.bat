@@ -32,7 +32,7 @@ set MAVEN_OPTS=-Xms256m -Xmx512m -XX:PermSize=40M -XX:MaxPermSize=128M
 set MD_HOME=C:\MagicDraw UML 16.5
 set ANDROMDA_HOME=C:\repo\org\andromda
 
-set JBOSS_HOME=C:\jboss-4.2.2.GA
+set JBOSS_HOME=C:\jboss-as-7.1.1.Final
 set JBOSS=%JBOSS_HOME%\bin
 
 set BEES_HOME=C:\cloudbees-sdk-1.1

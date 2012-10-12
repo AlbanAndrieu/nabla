@@ -28,6 +28,7 @@ log4j.appender.FILE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
 log4j.appender.SOCKETSERV=org.apache.log4j.net.SocketAppender
 log4j.appender.SOCKETSERV.Port=[[LOG4J_SERVER_PORT]]
 log4j.appender.SOCKETSERV.RemoteHost=[[LOG4J_SERVER_HOST]]
+log4j.appender.SOCKETSERV.ReconnectionDelay=10000
 
 log4j.logger.org.springframework=WARN, [[LOG4J_ACTIVE_APPENDER]]
 log4j.logger.org.hibernate=WARN, [[LOG4J_ACTIVE_APPENDER]]

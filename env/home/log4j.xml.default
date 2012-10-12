@@ -37,8 +37,8 @@
          ================================ -->
    <appender name="SOCKETSERV" class="org.apache.log4j.net.SocketAppender">
       <param name="Port" value="[[LOG4J_SERVER_PORT]]"/>
-      <param name="RemoteHost" value="localhost"/>
-      <param name="ReconnectionDelay" value="[[LOG4J_SERVER_HOST]]"/>
+      <param name="RemoteHost" value="[[LOG4J_SERVER_HOST]]"/>
+      <param name="ReconnectionDelay" value="100000"/>
       <param name="Threshold" value="DEBUG"/>
       <layout class="org.apache.log4j.PatternLayout">
          <!-- The default pattern: Date Priority [Category] Message\n -->
