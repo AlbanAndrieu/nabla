@@ -1021,7 +1021,7 @@
 		<jdkOptimize>false</jdkOptimize>
 
 		<maven.test.skip>false</maven.test.skip>
-		<maven.test.failure.skip>false</maven.test.failure.skip>
+		<maven.test.failure.skip>true</maven.test.failure.skip>
 		<!-- TODO overrided in filter -->
 
 		<copyright.year>2012</copyright.year>
