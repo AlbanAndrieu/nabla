@@ -1,9 +1,10 @@
 
 echo "WORKSPACE ${WORKSPACE}"
 
-export PROJECT_DEV=${WORKSPACE}
-export PROJECT_EXTRACTION=cpp
-export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
+#In Hudson
+#Extract trunk/cpp in Google Code (automatic configuration)
+#Batch Windows command : %WORKSPACE%\sample\build-cygwin\cmake.bat
+export PROJECT_SRC=${WORKSPACE}
 export PROJECT_TARGET_PATH=/cygdrive/c/target
 
 echo "PROJECT_SRC : $PROJECT_SRC - PROJECT_TARGET_PATH : $PROJECT_TARGET_PATH"
