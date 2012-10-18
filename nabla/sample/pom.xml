@@ -15,8 +15,8 @@
     	<description>Nabla Samples</description>
 	<modules>
 		<module>timetracker-hibernate</module>
-        	<module>timetracker-ejb3</module>
-        	<module>timetracker-gui</module>
+		<module>timetracker-gui</module>
+        	<module>timetracker-ejb3</module>        	
   	</modules>
   	
   	<properties>
