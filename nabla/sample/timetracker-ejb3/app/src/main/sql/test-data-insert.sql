@@ -1,3 +1,5 @@
+-- duplicated with import.sql in core project
+
 insert into TIMECARD (ID, STATUS, START_DATE, COMMENTS, APPROVER_FK, SUBMITTER_FK) values ( 1, 'APPROVED',  PARSEDATETIME('2011-05-15', 'yyyy-MM-dd'), 'Timecard 01', 1, 2);
 insert into TIMECARD (ID, STATUS, START_DATE, COMMENTS, APPROVER_FK, SUBMITTER_FK) values ( 2, 'APPROVED',  PARSEDATETIME('2011-05-15', 'yyyy-MM-dd'), 'Timecard 02', 2, 3);
 insert into TIMECARD (ID, STATUS, START_DATE, COMMENTS, APPROVER_FK, SUBMITTER_FK) values ( 3, 'APPROVED',  PARSEDATETIME('2011-05-15', 'yyyy-MM-dd'), 'Timecard 03', 3, 4);

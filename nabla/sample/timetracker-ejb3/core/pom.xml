@@ -9,6 +9,25 @@
 	<artifactId>core</artifactId>
 	<packaging>ejb</packaging>
 	<name>[${project.parent.artifactId} :: EJB3 Core Business Tier] - ${project.artifactId} : ${project.version}</name>
+   	
+   <dependencyManagement>
+      <dependencies>
+         <!-- JBoss distributes a complete set of Java EE 6 APIs including 
+            a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
+            a collection) of artifacts. We use this here so that we always get the correct 
+            versions of artifacts. Here we use the jboss-javaee-6.0-with-hibernate stack 
+            (you can read this as the JBoss stack of the Java EE Web Profile 6 APIs with 
+            extras from the Hibernate family of projects) -->
+        <dependency>
+            <groupId>org.jboss.bom</groupId>
+            <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+            <version>${jboss.bom.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+      </dependencies>
+   </dependencyManagement>
+   	
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -140,24 +159,54 @@
 			<scope>provided</scope>
 		</dependency>
 
+                <!--Import dependencies to hibernate packages(eg. hibernate-core) depending on features you want to use like Hibernate Session used in the 	quickstart-->
+                <!--please note that scope is provided as these jars are shipped with as7-->
+      		<!-- for hibernate 4 add
+      		<scope>provided</scope>
+      		-->
+                <!-- Define dependency on hibernate 3.x, since scope is 'compile', 
+                     it will be included in WEB-INF/lib -->
+                <!-- Import the hibernate-core, so its included in deployment unit: 
+                     NOTE! this scope is "compile", this will make Maven war plugin to include 
+                     it in WEB-INF/lib -->		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.core.version}</version>
 			<scope>provided</scope>
 		</dependency>
+                <!-- Import the hibernate-entitymanager, so its included in deployment 
+                     unit: NOTE! this scope is "compile", this will make Maven war plugin to include 
+                     it in WEB-INF/lib -->		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.entitymanager.version}</version>
 			<scope>provided</scope>
 		</dependency>
+                <!-- JSR-303 (Bean Validation) Implementation -->
+                <!-- Provides portable constraints such as @Email -->
+                <!-- Hibernate Validator is shipped in JBoss AS 7 -->	
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.validator.version}</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>		
+                <!-- Import the hibernate-commons-annotations, so its included in 
+                     deployment unit: NOTE! this scope is "compile", this will make Maven war 
+                     plugin to include it in WEB-INF/lib -->		
+                <dependency>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-commons-annotations</artifactId>
+                </dependency>		
+                <!-- Import the hibernate-infinispan, so its included in deployment 
+                     unit: NOTE! this scope is "compile", this will make Maven war plugin to include 
+                     it in WEB-INF/lib -->            	
+                <dependency>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-infinispan</artifactId>
+                </dependency>	
 
                 <!--
                 <dependency>
@@ -517,7 +566,69 @@
                 <scope>provided</scope>
             </dependency>
             -->
+                <!-- jboss dependencies -->
+        	<!-- Import the CDI API, we use provided scope as the API is included
+        	in JBoss AS 7 -->
+        	<!--
+        	<dependency>
+        	    <groupId>javax.enterprise</groupId>
+        	    <artifactId>cdi-api</artifactId>
+        	    <scope>provided</scope>
+        	</dependency>
+                -->        	
+        	<!-- Import the Common Annotations API (JSR-250), we use provided scope
+        	    as the API is included in JBoss AS 7 -->
+        	<!--        	    
+        	<dependency>
+        	    <groupId>org.jboss.spec.javax.annotation</groupId>
+        	    <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+        	    <scope>provided</scope>
+        	</dependency>
+                -->            	
+        	<!-- Import the EJB API, we use provided scope as the API is included in
+        	      JBoss AS 7 -->
+        	<!--        	      
+        	<dependency>
+        	    <groupId>org.jboss.spec.javax.ejb</groupId>
+        	    <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+        	    <scope>provided</scope>
+        	</dependency>        
+                -->            	
+                <!-- Define the version of JBoss' Java EE 6 APIs we want to import. 
+                    Any dependencies from org.jboss.spec will have their version defined by this 
+                    BOM -->
+                <!-- JBoss distributes a complete set of Java EE 6 APIs including 
+                    a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
+                    a collection) of artifacts. We use this here so that we always get the correct 
+                    versions of artifacts. Here we use the jboss-javaee-6.0 stack (you can read 
+                    this as the JBoss stack of the Java EE 6 APIs). You can actually use this 
+                    stack with any version of JBoss AS that implements Java EE 6, not just JBoss 
+                    AS 7! -->
+                <!-- put this in dependencyManagement
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-6.0</artifactId>
+                    <version>${version.org.jboss.spec.jboss.javaee6}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+                -->      	         
 	</dependencies>
+
+	<properties>
+        <!--	
+		<maven.test.skip>false</maven.test.skip>
+		<maven.test.failure.skip>true</maven.test.failure.skip>
+                 -->
+      <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
+      <jboss.bom.version>1.0.0.Final</jboss.bom.version>
+      <!-- Alternatively, comment out the above line, and un-comment the line below to
+         use version 1.0.0.Final-redhat-1 which is a release certified
+         to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven repository. -->
+      <!--
+      <jboss.bom.version>1.0.0.Final-redhat-1</jboss.bom.version>
+      -->
+   </properties>
 
 	<build>
 		<plugins>
@@ -664,7 +775,22 @@
 						<artifactId>slf4j-simple</artifactId>
 						<version>${slf4j.version}</version>
 					</dependency>
-	
+	          			<dependency>
+	          				<groupId>javassist</groupId>
+	          				<artifactId>javassist</artifactId>
+	          				<version>${javassist.version}</version>
+	          			</dependency>			
+                  			<dependency>
+                  				<groupId>asm</groupId>
+                  				<artifactId>asm</artifactId>
+                  				<version>${asm.version}</version>
+                  			</dependency>		
+                  			<dependency>
+	          				<groupId>cglib</groupId>
+	          				<artifactId>cglib</artifactId>
+	          				<version>${cglib.version}</version>
+	          			</dependency>
+	          			
 					<dependency>
 						<groupId>xerces</groupId>
 						<artifactId>xercesImpl</artifactId>
@@ -915,7 +1041,11 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<inherited>true</inherited>
 						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>						
 							<childDelegation>true</childDelegation>
 							<useSystemClassLoader>true</useSystemClassLoader>
 							<argLine>
@@ -1111,7 +1241,10 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>${maven.surefire.plugin.version}</version>
+						<inherited>true</inherited>
 						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>						
 							<suiteXmlFiles>
 								<suiteXmlFile>src/test/bootstrap-microcontainer/testng.xml</suiteXmlFile>
 							</suiteXmlFiles>

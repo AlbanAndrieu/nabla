@@ -38,14 +38,14 @@ public abstract class UserRoleDaoBase implements UserRoleDao
 {
 
     private static final Logger logger = Logger.getLogger(UserRoleDaoBase.class);
-    
+
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
      * Inject persistence seam context
-     */    
+     */
     @In
 
     protected EntityManager entityManager;
@@ -526,7 +526,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
 
     /**
      * @return the hibernateSession
-     */   
+     */
     public Session getHibernateSession()
     {
         if (this.entityManager.getDelegate() instanceof HibernateEntityManager)
@@ -536,6 +536,6 @@ public abstract class UserRoleDaoBase implements UserRoleDao
         {
             return (Session) this.entityManager.getDelegate();
         }
-    }    
+    }
 
 }

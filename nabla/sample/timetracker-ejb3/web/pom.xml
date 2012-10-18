@@ -289,7 +289,7 @@
 		<scope>${scope.type}</scope>
 	</dependency>
     -->
-		        
+    
 	<dependency>
 		<groupId>org.testng</groupId>
 		<artifactId>testng</artifactId>
@@ -350,8 +350,41 @@
 	  <version>${seam.version}</version>
 	  <scope>${scope.type}</scope>
 	  <type>ejb</type>
-	</dependency>
-     -->
+	</dependency>    
+    -->
+ 			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-core</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-analyzers</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<!--
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-queries</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-highlighter</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-snowball</artifactId>
+				<version>${lucene.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			-->			       
+
         <dependency>
           <groupId>org.jboss.seam</groupId>
           <artifactId>jboss-seam-ui</artifactId>
@@ -405,7 +438,7 @@
 		<version>${javassist.version}</version>
 		<scope>${scope.type}</scope>
 	</dependency>
-		
+			
         <dependency>
         	<groupId>asm</groupId>
         	<artifactId>asm</artifactId>
@@ -598,7 +631,63 @@
 	    <optional>true</optional>
 	</dependency>        
 	-->	
-                                		
+	
+	<!-- jboss dependencies -->            
+        <!-- Import the CDI API, we use provided scope as the API is included
+            in JBoss AS 7 -->
+        <!--
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope
+            as the API is included in JBoss AS 7 -->
+        <!--            
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!-- Import the JSF API, we use provided scope as the API is included
+            in JBoss AS 7 -->
+        <!--            
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->        
+        <!-- Import the EJB API, we use provided scope as the API is included in
+              JBoss AS 7 -->
+        <!--              
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>	   
+        -->    
+        <!-- Define the version of JBoss' Java EE 6 APIs we want to import. 
+            Any dependencies from org.jboss.spec will have their version defined by this 
+            BOM -->
+        <!-- JBoss distributes a complete set of Java EE 6 APIs including 
+            a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
+            a collection) of artifacts. We use this here so that we always get the correct 
+            versions of artifacts. Here we use the jboss-javaee-6.0 stack (you can read 
+            this as the JBoss stack of the Java EE 6 APIs). You can actually use this 
+            stack with any version of JBoss AS that implements Java EE 6, not just JBoss 
+            AS 7! -->
+        <!-- put this in dependencyManagement            
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>${version.org.jboss.spec.jboss.javaee6}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>                         	
+        -->	
     </dependencies>
     
     <properties>    
@@ -807,6 +896,8 @@
                     <!--<packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class,**/WEB-INF/classes/META-INF/*.xml</packagingExcludes>-->     
                     <packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class</packagingExcludes>    
                     <!--<webappDirectory>${jboss.deploy.directory}/${project.parent.artifactId}</webappDirectory>-->
+                    <!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                     <!--
                     <overlays>
                       <overlay>

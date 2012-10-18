@@ -40,7 +40,7 @@ public abstract class SecurityServiceBase implements SecurityService
     /**
      * Inject DAO UserDao
      */
-    @EJB    
+    @EJB 
     private UserDao userDao;
 
     // --------------- Constructors ---------------

@@ -323,7 +323,7 @@
         <cxf.version>2.3.3</cxf.version>
         <!-- Versioned independently from CXF core -->
         <cxf.xjc.version>2.3.0</cxf.xjc.version>
-        <model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules/${model.base.name}.uml</model.uri>
+        <!--<model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/modules/${model.base.name}.uml</model.uri>-->
         <filter></filter>
         <validation>true</validation>
         <!-- ant script location for temp copy of resources -->

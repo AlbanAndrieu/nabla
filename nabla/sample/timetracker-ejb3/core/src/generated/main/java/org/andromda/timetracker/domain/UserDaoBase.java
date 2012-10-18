@@ -41,14 +41,14 @@ public abstract class UserDaoBase implements UserDao
 {
 
     private static final Logger logger = Logger.getLogger(UserDaoBase.class);
-    
+
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
      * Inject persistence seam context
-     */    
+     */
     @In
 
     protected EntityManager entityManager;
@@ -58,7 +58,7 @@ public abstract class UserDaoBase implements UserDao
     /**
      * Inject DAO UserRoleDao
      */
-    @EJB
+    @EJB 
     protected UserRoleDao userRoleDao;
 
     /**
@@ -807,7 +807,7 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * @return the hibernateSession
-     */   
+     */
     public Session getHibernateSession()
     {
         if (this.entityManager.getDelegate() instanceof HibernateEntityManager)
@@ -817,6 +817,6 @@ public abstract class UserDaoBase implements UserDao
         {
             return (Session) this.entityManager.getDelegate();
         }
-    }    
+    }
 
 }

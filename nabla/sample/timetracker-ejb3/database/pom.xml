@@ -225,6 +225,7 @@
                   <jdk5>true</jdk5>
                   <!--<persistenceunit>${project.parent.artifactId}</persistenceunit>-->
                   <!--<configurationfile>src/main/resources/hibernate.cfg.xml</configurationfile>-->
+                  <persistenceunit>${pu.name}</persistenceunit>
 		  <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
                   <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 
@@ -270,7 +271,28 @@
                       <groupId>org.slf4j</groupId>
                       <artifactId>slf4j-simple</artifactId>
                       <version>${slf4j.version}</version>
-                  </dependency>
+                  </dependency>      
+	          <dependency>
+	          	<groupId>javassist</groupId>
+	          	<artifactId>javassist</artifactId>
+	          	<version>${javassist.version}</version>
+	          </dependency>			
+                  <dependency>
+                  	<groupId>asm</groupId>
+                  	<artifactId>asm</artifactId>
+                  	<version>${asm.version}</version>
+                  </dependency>		
+                  <dependency>
+	          	<groupId>cglib</groupId>
+	          	<artifactId>cglib</artifactId>
+	          	<version>${cglib.version}</version>
+	          </dependency>	                  
+	          
+                  <dependency>
+                  	<groupId>xerces</groupId>
+                  	<artifactId>xercesImpl</artifactId>
+                  	<version>${xerces.version}</version>
+                  </dependency>	  
                 </dependencies>
             </plugin>
             <!-- H2 chokes on 'ENGINE=InnoDB' in DDL, remove from generated SQL before running against H2 DB >

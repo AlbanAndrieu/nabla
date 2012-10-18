@@ -37,13 +37,13 @@ public abstract class TaskDaoBase implements TaskDao
 {
 
     private static final Logger logger = Logger.getLogger(TaskDaoBase.class);
-    
+
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context timetracker-ejb3     */    
+     * Inject persistence context timetracker-ejb3     */
     @PersistenceContext(unitName = "timetracker-ejb3")
     protected EntityManager entityManager;
 
@@ -529,7 +529,7 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * @return the hibernateSession
-     */   
+     */
     public Session getHibernateSession()
     {
         return this.hibernateSession;
@@ -541,5 +541,5 @@ public abstract class TaskDaoBase implements TaskDao
     public void setHibernateSession(Session hibernateSessionIn)
     {
         this.hibernateSession = hibernateSessionIn;
-    }        
+    }
 }

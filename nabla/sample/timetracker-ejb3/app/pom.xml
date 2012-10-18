@@ -380,11 +380,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
+                <version>${maven.ear.plugin.version}</version>
                 <configuration>
                     <finalName>${application.id}-ear</finalName>
                     <displayName>${application.display.name}</displayName>
                     <description>${application.description}</description>
+                    <!--
                     <generateApplicationXml>false</generateApplicationXml>
+                    -->
                     <!--
                     <includeJar>false</includeJar>
                     <fileNameMapping>no-version</fileNameMapping>
@@ -496,14 +499,17 @@
                     </archive>
                 </configuration>
             </plugin>
+            <!-- JBoss AS plugin to deploy ear -->
+            <!-- mvn clean package jboss-as:deploy -->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>${maven.jboss.as.plugin.version}</version>
                 <configuration>
-                    <skip>true</skip>
+                    <filename>${application.id}-ear.ear</filename>
+                    <skip>false</skip>
                 </configuration>
-            </plugin>
+            </plugin>            
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
