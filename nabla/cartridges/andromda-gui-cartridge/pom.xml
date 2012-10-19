@@ -9,7 +9,6 @@
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
-        <!--<groupId>org.andromda.cartridges</groupId> -->
         <artifactId>andromda-gui-cartridge</artifactId>
         <version>3.4</version>
         <!-- <packaging>andromda-cartridge</packaging> -->
@@ -32,6 +31,7 @@ inv:manageableServiceName->notEmpty()
                     <version>${project.version}</version>
                 </dependency>
                 -->
+                <!-- needed by eclipse -->
                 <dependency>
                         <groupId>org.andromda.metafacades</groupId>
                         <artifactId>andromda-metafacades-uml</artifactId>
@@ -56,6 +56,7 @@ inv:manageableServiceName->notEmpty()
                                 <artifactId>andromda-maven-plugin</artifactId>
                                 <!--<version>${andromda.version}</version> -->
                         </plugin>
+                        <!--
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-dependency-plugin</artifactId>
@@ -81,6 +82,7 @@ inv:manageableServiceName->notEmpty()
                                         </execution>
                                 </executions>
                         </plugin>
+                        -->
                         <plugin>
                                 <groupId>org.andromda.maven.plugins</groupId>
                                 <artifactId>andromda-cartridge-plugin</artifactId>
@@ -91,8 +93,8 @@ inv:manageableServiceName->notEmpty()
                                                 <phase>generate-test-sources</phase>
                                                 <goals>
                                                         <!-- Use update goal when you want to validate your change (comment test goal) -->
-                                                        <goal>test</goal>
-                                                        <!--<goal>update</goal>-->
+                                                        <!--<goal>test</goal>-->
+                                                        <goal>update</goal>
                                                 </goals>
                                                 <configuration>
                                                         <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
