@@ -24,7 +24,7 @@
 	</organization>
 
 	<prerequisites>
-		<maven>2.2.0</maven>
+		<maven>3.0.4</maven>
 	</prerequisites>
 
 	<issueManagement>
@@ -1020,6 +1020,9 @@
 		<jdkDebug>true</jdkDebug>
 		<jdkOptimize>false</jdkOptimize>
 
+		<!--<maven.version>2.2.1</maven.version>-->
+		<maven.version>3.0.4</maven.version>
+
 		<maven.test.skip>false</maven.test.skip>
 		<maven.test.failure.skip>true</maven.test.failure.skip>
 		<!-- TODO overrided in filter -->
@@ -1059,9 +1062,9 @@
 		<jfreechart.version2>1.0.13</jfreechart.version2>
 		<jfree.jcommon.version>1.0.16</jfree.jcommon.version>
 		<jfreechart-demo.version>1.0.13</jfreechart-demo.version>
-		<junitperf.version>1.8</junitperf.version>
-		<dbunit.version>2.4.4</dbunit.version>
-		<testng.version>6.3</testng.version>
+		<junitperf.version>1.9.1</junitperf.version>
+		<dbunit.version>2.4.9</dbunit.version>
+		<testng.version>6.8</testng.version>
 		<htmlunit.version>1.11</htmlunit.version>
 		<org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
 		<oro.version>2.0.8</oro.version>
@@ -1130,6 +1133,7 @@
 		<xml.security.version>1.3.0</xml.security.version>
 		<xml.apis.version>1.0.b2</xml.apis.version>
 		<!--<xml.apis.version>2.0.2</xml.apis.version>-->
+		<batik.ext.version>1.7</batik.ext.version>
 
 		<jboss.version>4.2.2.GA</jboss.version>
 		<jbossall.client.version>4.2.3.GA</jbossall.client.version>
@@ -1142,6 +1146,7 @@
                 <jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
                 <jbossws.client.version>2.0.1.SP2</jbossws.client.version>
                 <el.api.version>2.2.1-b04</el.api.version>
+                <el.ri.version>1.0</el.ri.version>
 		<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
 		<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
     		<openejb.core.version>3.1.4</openejb.core.version>
@@ -1157,6 +1162,7 @@
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
 		<jsf.version>1.2_12</jsf.version>
+		<sun.jsf.version>2.1.0-b03</sun.jsf.version>
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<aspectj.version>1.6.6</aspectj.version>
 		<clickstream.version>1.0.2</clickstream.version>
@@ -1199,10 +1205,10 @@
 		<jbpm.version>3.3.1.GA</jbpm.version>
 		<ibatis.version>2.3.0</ibatis.version>
 		<javax.ejb.api.version>3.0</javax.ejb.api.version>
-		<javax.mail.version>1.4.3</javax.mail.version>
+		<javax.mail.version>1.4.5</javax.mail.version>
 		<jpa.version>1.0</jpa.version>
 		<jstl.version>1.2</jstl.version>
-		<log4j.version>1.2.16</log4j.version>
+		<log4j.version>1.2.17</log4j.version>
 		<oscache.version>2.3</oscache.version>
 		<shale.version>1.0.4</shale.version>
 		<sitemesh.version>2.2.1</sitemesh.version>
@@ -1224,20 +1230,20 @@
 
 		<!-- Testing dependency versions -->
 		<cargo.version>1.0</cargo.version>
-		<jmock.version>2.5.1</jmock.version>
-		<easymock.version>2.2</easymock.version>
-		<mockito.version>1.8.0</mockito.version>
+		<jmock.version>2.6.0-RC2</jmock.version>
+		<easymock.version>3.1</easymock.version>
+		<mockito.version>1.9.5</mockito.version>
+		<hamcrest.core.version>1.3.RC2</hamcrest.core.version>
 		<jsp.version>2.0</jsp.version>
 		<jsp-api.version>2.2.1-b03</jsp-api.version>
-		<!--<junit.version>4.8.2</junit.version>-->
-		<junit.version>4.10</junit.version>
+		<junit.version>4.11-beta-1</junit.version>
 		<httpunit.version>1.6.2</httpunit.version>
-		<xmlunit.version>1.2</xmlunit.version>
+		<xmlunit.version>1.3</xmlunit.version>
 		<wiser.version>1.2</wiser.version>
 
 		<google.api.client.version>1.0.10-alpha</google.api.client.version>
-		<!--<gwt.version>2.5.0-rc1</gwt.version>-->
-		<gwt.version>2.4.0</gwt.version>
+		<gwt.version>2.5.0-rc2</gwt.version>
+		<!--<gwt.version>2.4.0</gwt.version>-->
 		<gae.version>1.5.3</gae.version>
 		<gwtp.all.version>0.7</gwtp.all.version>
 		<gwt.seam.version>1.0</gwt.seam.version>
@@ -1272,16 +1278,16 @@
 		<appfuse.version>2.1.0-M1</appfuse.version>
 		<javax.persistence.version>1.0.2</javax.persistence.version>
 
-		<cxf.version>2.2.10</cxf.version>
+		<cxf.version>2.5.6</cxf.version>
 		<xalan.version>2.7.1</xalan.version>
-		<xerces.version>2.9.1</xerces.version>
+		<xerces.version>2.10.0</xerces.version>
 		<tomcat.version>6.0.29</tomcat.version>
 
 		<!--<jconnect.version>6.0.5.26312</jconnect.version>-->
 		<jconnect.version>7.0.7</jconnect.version>
 		<logback.version>0.9.26</logback.version>
-		<slf4j.version>1.7.0</slf4j.version>
-		<derby.version>10.5.3.0_1</derby.version>
+		<slf4j.version>1.7.2</slf4j.version>
+		<derby.version>10.9.1.0</derby.version>
 		<commons.dbcp>1.2.2</commons.dbcp>
 
 		<blazeds.version>3.2.0.3978</blazeds.version>
@@ -1317,7 +1323,7 @@
 		<xmlsec.version>1.4.3</xmlsec.version>
 		<wss4j.version>1.5.8</wss4j.version>
 		<wsdl4j.version>1.6.2</wsdl4j.version>
-		<groovy.version>1.7.2</groovy.version>
+		<groovy.version>2.0.5</groovy.version>
 
 		<!--
 			French Encoding in some files: can't use UTF-8, TODO update source
@@ -1331,8 +1337,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Plugin version definitions -->
-		<maven.project.version>2.2.1</maven.project.version>
-		<plexus.util.version>3.0.3</plexus.util.version>
+		<maven.project.version>3.0-alpha-2</maven.project.version>                
+		<plexus.util.version>3.0.8</plexus.util.version>
 		<plexus.container.default.version>1.5.5</plexus.container.default.version>
 
 		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
@@ -1344,95 +1350,93 @@
 		<doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
 		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
 
-		<maven.xdoclet.plugin.version>1.0-alpha-2</maven.xdoclet.plugin.version>
+		<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 		<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
 		<maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
 		<maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
 		<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
-		<maven.cobertura.plugin.version>2.5.1</maven.cobertura.plugin.version>
-		<maven.release.plugin.version>2.1</maven.release.plugin.version>
+		<maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
+		<maven.release.plugin.version>2.3.2</maven.release.plugin.version>
 		<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
 		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
-		<maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
+		<maven.jar.plugin.version>2.4</maven.jar.plugin.version>
 		<maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
-		<maven.war.plugin.version>2.2</maven.war.plugin.version>
+		<maven.war.plugin.version>2.3</maven.war.plugin.version>
 		<maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
 		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
-		<maven.archiver.plugin.version>2.2</maven.archiver.plugin.version>
+		<maven.archiver.plugin.version>2.5</maven.archiver.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.artifact.plugin.version>2.0.1</maven.artifact.plugin.version>
+		<maven.artifact.plugin.version>${maven.version}</maven.artifact.plugin.version>
+                <maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.gui.plugin.version>1.0</maven.gui.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.1</maven.plugin.plugin.plugin.version>
-		<!--<maven.plugin.plugin.plugin.version>2.5.1</maven.plugin.plugin.plugin.version>-->
-		<maven.clirr.plugin.version>2.4</maven.clirr.plugin.version>
-		<maven.patch.plugin.version>1.0</maven.patch.plugin.version>
+		<maven.clirr.plugin.version>2.5</maven.clirr.plugin.version>
+		<maven.patch.plugin.version>1.1.1</maven.patch.plugin.version>
 		<maven.one.plugin.version>1.2</maven.one.plugin.version>
-		<maven.findbugs.plugin.version>2.3.2</maven.findbugs.plugin.version>
+		<maven.findbugs.plugin.version>2.5.2</maven.findbugs.plugin.version>
 		<maven.javancss.plugin.version>2.0</maven.javancss.plugin.version>
 		<maven.jdepend.plugin.version>2.0-beta-2</maven.jdepend.plugin.version>
-		<maven.changes.plugin.version>2.6</maven.changes.plugin.version>
+		<maven.changes.plugin.version>2.8</maven.changes.plugin.version>
 		<maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
-		<maven.native2ascii.maven.plugin.version>1.0-alpha-1</maven.native2ascii.maven.plugin.version>
-		<maven.archetype.plugin.version>2.0</maven.archetype.plugin.version>
+		<maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
+		<maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
 		<maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
-		<maven.assembly.plugin.version>2.1</maven.assembly.plugin.version>
+		<maven.assembly.plugin.version>2.3</maven.assembly.plugin.version>
 		<maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
-		<maven.scm.plugin.version>1.2</maven.scm.plugin.version>
+		<maven.scm.plugin.version>1.8</maven.scm.plugin.version>
 		<maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
-		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
-		<maven.dependency.plugin.version>2.2</maven.dependency.plugin.version>
+		<maven.dependency.plugin.version>2.5.1</maven.dependency.plugin.version>
 		<maven.clover.plugin.version>3.1.6</maven.clover.plugin.version>
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
-		<maven.replacer.plugin.version>1.4.0</maven.replacer.plugin.version>
+		<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
 		<maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
 		<maven.sonar.maven.plugin.version>2.0</maven.sonar.maven.plugin.version>
 		<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
-                <maven.cli.plugin.version>0.7</maven.cli.plugin.version>
-		<maven.shade.plugin.version>1.0.1</maven.shade.plugin.version>
+                <maven.cli.plugin.version>1.0.6</maven.cli.plugin.version>
+		<maven.shade.plugin.version>1.7.1</maven.shade.plugin.version>
 		<maven.rar.plugin.version>2.2</maven.rar.plugin.version>
-		<maven.install.plugin.version>2.3.1</maven.install.plugin.version>
+		<maven.install.plugin.version>2.4</maven.install.plugin.version>
 		<maven.ear.plugin.version>2.8</maven.ear.plugin.version>
-		<maven.jboss.plugin.version>1.4</maven.jboss.plugin.version>
+		<maven.jboss.plugin.version>1.5.0</maven.jboss.plugin.version>
 		<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
-		<maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
+		<maven.invoker.plugin.version>1.7</maven.invoker.plugin.version>
 		<maven.minify.plugin.version>1.3.5</maven.minify.plugin.version>
-		<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>
+		<maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
 		<maven.jxr.plugin.version>2.3</maven.jxr.plugin.version>
-		<maven.pmd.plugin.version>2.6</maven.pmd.plugin.version>
-		<maven.project.info.reports.plugin.version>2.5</maven.project.info.reports.plugin.version>
-		<maven.resources.plugin.version>2.5</maven.resources.plugin.version>
+		<maven.pmd.plugin.version>2.7.1</maven.pmd.plugin.version>
+		<maven.project.info.reports.plugin.version>2.5.1</maven.project.info.reports.plugin.version>
+		<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
 		<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
 		<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>
-		<maven.site.plugin.version>3.1</maven.site.plugin.version>
-		<maven.source.plugin.version>2.1.2</maven.source.plugin.version>
-		<maven.buildnumber.plugin.version>1.0</maven.buildnumber.plugin.version>
+		<maven.site.plugin.version>3.2</maven.site.plugin.version>
+		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
+		<maven.buildnumber.plugin.version>1.2</maven.buildnumber.plugin.version>
 		<maven.gmaven.plugin.version>1.4</maven.gmaven.plugin.version>
-		<maven.verifier.plugin.version>1.0-beta-1</maven.verifier.plugin.version>
-		<maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
+		<maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
+		<maven.surefire.plugin.version>2.12.4</maven.surefire.plugin.version>
 		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
 		<maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
 		<maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
 		<maven.versions.plugin.version>1.3.1</maven.versions.plugin.version>
-		<maven.xml.plugin.version>1.0-beta-3</maven.xml.plugin.version>
-		<maven.idea.plugin.version>2.1</maven.idea.plugin.version>
-		<maven.cargo.maven2.plugin.version>1.0.6</maven.cargo.maven2.plugin.version>
-		<!--<maven.jetty.plugin.version>8.0.3.v20111011</maven.jetty.plugin.version>-->
-		<maven.jetty.plugin.version>7.0.0-pre5</maven.jetty.plugin.version>
-		<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version>
-		<maven.ant.plugin.version>2.0-beta-1</maven.ant.plugin.version>
+		<maven.idea.plugin.version>2.2</maven.idea.plugin.version>
+		<maven.cargo.maven2.plugin.version>1.2.4</maven.cargo.maven2.plugin.version>
+		<maven.jetty.plugin.version>7.0.0.pre5</maven.jetty.plugin.version>
+		<maven.jboss.as.plugin.version>7.2.Final</maven.jboss.as.plugin.version>
+		<maven.ant.plugin.version>2.3</maven.ant.plugin.version>
 		<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
-		<maven.axistools.plugin.version>1.3</maven.axistools.plugin.version>
-		<maven.enforcer.plugin.version>1.1</maven.enforcer.plugin.version>
+		<maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
+		<maven.enforcer.plugin.version>1.1.1</maven.enforcer.plugin.version>
 		<maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
 		<maven.doap.plugin.version>1.1</maven.doap.plugin.version>
 		<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>
-		<maven.help.plugin.version>2.0.2</maven.help.plugin.version>
+		<maven.help.plugin.version>2.1.1</maven.help.plugin.version>
 		<maven.build.helper.plugin.version>1.7</maven.build.helper.plugin.version>
-		<maven.repository.plugin.version>2.0</maven.repository.plugin.version>
-		<maven.remote.resources.plugin.version>1.0</maven.remote.resources.plugin.version>
+		<maven.repository.plugin.version>2.3.1</maven.repository.plugin.version>
+		<maven.remote.resources.plugin.version>1.3</maven.remote.resources.plugin.version>
 		<maven.default.skin.version>1.0</maven.default.skin.version>
 		<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
 		<maven.jaxb2.plugin.version>0.8.2</maven.jaxb2.plugin.version>
@@ -1728,21 +1732,6 @@
                                                                           <execute />
                                                                         </action>
                                                                 </pluginExecution>
-                                                                <!--
-                                                                <pluginExecution>
-                                                                        <pluginExecutionFilter>
-                                                                          <groupId>org.codehaus.mojo</groupId>
-                                                                          <artifactId>gwt-maven-plugin</artifactId>
-                                                                          <versionRange>[${maven.gwt.plugin.version},)</versionRange>
-                                                                          <goals>
-                                                                            <goal>resources</goal>
-                                                                          </goals>
-                                                                        </pluginExecutionFilter>
-                                                                        <action>
-                                                                          <execute />
-                                                                        </action>
-                                                                </pluginExecution>
-                                                                -->
                                                                 <pluginExecution>
                                                                   <pluginExecutionFilter>
                                                                     <groupId>net.kindleit</groupId>
@@ -1930,7 +1919,7 @@
 								<rules>
 									<requireMavenVersion>
 										<!-- minimum version is 2.0.7, higher versions allowed -->
-										<version>[${maven.project.version},)</version>
+										<version>[${maven.version},)</version>
 									</requireMavenVersion>
 
 									<requireJavaVersion>
@@ -2718,13 +2707,6 @@
         				</executions>
 					-->
 				</plugin>
-				<!--
-                                <plugin>
-                                        <groupId>org.mortbay.jetty</groupId>
-                                        <artifactId>jetty-maven-plugin</artifactId>
-                                        <version>${maven.jetty.plugin.version}</version>
-                                </plugin>
-                                -->
 				<plugin>
 					<groupId>org.mortbay.jetty</groupId>
 					<artifactId>maven-jetty-plugin</artifactId>
@@ -2775,6 +2757,11 @@
                                         <artifactId>gwt-maven-plugin</artifactId>
                                         <version>${maven.gwt.plugin.version}</version>
                                 </plugin>
+				<plugin>
+                                	<groupId>org.codehaus.mojo</groupId>
+                                	<artifactId>xml-maven-plugin</artifactId>
+                                	<version>${maven.xml.plugin.version}</version>
+                        	</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -2954,7 +2941,11 @@
 				<artifactId>bsh</artifactId>
 				<version>${org.beanshell.bsh.version}</version>
 			</dependency>
-
+            		<dependency>
+            			<groupId>org.hamcrest</groupId>
+            		    	<artifactId>hamcrest-core</artifactId>
+            		    	<version>${hamcrest.core.version}</version>
+            		</dependency>
 			<dependency>
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
@@ -4066,7 +4057,11 @@
             		    	<artifactId>el-api</artifactId>
             		    	<version>${el.api.version}</version>
             		</dependency>
-
+        		<dependency>
+           			<groupId>com.sun.el</groupId>
+            			<artifactId>el-ri</artifactId>
+            			<version>${el.ri.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
@@ -4762,6 +4757,11 @@
 				<version>${xml.apis.version}</version>
 				<scope>provided</scope>
 			</dependency>
+       			<dependency>
+            			<groupId>batik</groupId>
+            			<artifactId>batik-ext</artifactId>
+            			<version>${batik.ext.version}</version>
+        		</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-api</artifactId>
@@ -5094,7 +5094,7 @@
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-plugin-api</artifactId>
-				<version>${maven.project.version}</version>
+				<version>${maven.plugin.api.plugin.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.maven</groupId>
