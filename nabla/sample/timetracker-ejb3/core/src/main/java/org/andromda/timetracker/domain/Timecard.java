@@ -28,7 +28,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  *
  */
 @Entity
-@Table(name = "TIMECARD", uniqueConstraints = @UniqueConstraint(columnNames = {"id"}))
+@Table(name = "TIMECARD", uniqueConstraints = @UniqueConstraint(columnNames = { "id" }))
 // Uncomment to enable entity listener for Timecard
 // @javax.persistence.EntityListeners({org.andromda.timetracker.domain.TimecardListener.class})
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
@@ -76,7 +76,6 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
         super(comments, startDate, status, approver, submitter, allocations);
     }
 
-
     // -------------- Entity Methods -----------------
 
     /**
@@ -99,7 +98,6 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
         return null;
     }
 
-
     // --------------- Lifecycle callbacks -----------------
 
     /**
@@ -111,8 +109,7 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
         if (this.getId() != null)
         {
             cmp = this.getId().compareTo(o.getId());
-        }
-        else
+        } else
         {
             if (this.getComments() != null)
             {

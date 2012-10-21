@@ -6,7 +6,6 @@
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>service</artifactId>
     <packaging>jar</packaging>
@@ -147,7 +146,11 @@
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
-        
+
+       <dependency>
+            <groupId>batik</groupId>
+            <artifactId>batik-ext</artifactId>
+            <version>${batik.ext.version}</version>
         <!-- replace this by slf4j-api and slf4j-simple
         http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
         <dependency>

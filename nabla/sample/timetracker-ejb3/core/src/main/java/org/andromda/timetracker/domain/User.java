@@ -33,15 +33,11 @@ import org.jboss.seam.annotations.Scope;
 @Scope(ScopeType.SESSION)
 @Name("user")
 @Entity
-@Table(name = "USERS", uniqueConstraints = @UniqueConstraint(columnNames = {"username", "email", "id"}))
+@Table(name = "USERS", uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email", "id" }))
 // Uncomment to enable entity listener for User
 // @javax.persistence.EntityListeners({org.andromda.timetracker.domain.UserListener.class})
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries
-({
-    @NamedQuery(name = "User.findAll", query = "select user from User AS user"),
-    @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email")
-})
+@NamedQueries( { @NamedQuery(name = "User.findAll", query = "select user from User AS user"), @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email") })
 public class User extends UserEmbeddable implements Serializable, Comparable<User>
 {
     /**
@@ -88,7 +84,6 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
         super(username, password, firstName, lastName, email, isActive, creationDate, comment, roles);
     }
 
-
     // -------------- Entity Methods -----------------
 
     /**
@@ -101,7 +96,6 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
         return null;
     }
 
-
     // --------------- Lifecycle callbacks -----------------
 
     /**
@@ -113,8 +107,7 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
         if (this.getId() != null)
         {
             cmp = this.getId().compareTo(o.getId());
-        }
-        else
+        } else
         {
             if (this.getUsername() != null)
             {

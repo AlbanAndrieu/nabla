@@ -6,7 +6,6 @@
 		<groupId>org.andromda.timetracker.ejb3</groupId>
 		<artifactId>timetracker-ejb3</artifactId>
 		<version>3.4</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
  
 	<groupId>org.andromda.timetracker.ejb3</groupId>

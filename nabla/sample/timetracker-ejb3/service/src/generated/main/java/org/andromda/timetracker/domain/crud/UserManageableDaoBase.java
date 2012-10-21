@@ -304,7 +304,6 @@ public final class UserManageableDaoBase
         entity.setIsActive(isActive);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
-        // entity.setId(id);
         @SuppressWarnings("unchecked")
         final Set<UserRole> rolesEntities = (roles != null && roles.length > 0)
             ? this.findUserRoleByIds(roles)

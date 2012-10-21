@@ -12,14 +12,15 @@ import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
 
 @Entity
-public class Movie implements java.io.Serializable {
+public class Movie implements java.io.Serializable
+{
 
     private static final long serialVersionUID = 1L;
 
     @Id
     // @GeneratedValue(strategy = IDENTITY)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long           id;
+    private Long              id;
 
     @Version
     private Long              version;

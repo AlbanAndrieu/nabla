@@ -10,7 +10,8 @@ import org.jboss.seam.security.Identity;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
-public class UserTest extends SeamOpenEjbTest {
+public class UserTest extends SeamOpenEjbTest
+{
 
     //    private static final String  DIRECTOR_JOEL_COEN      = "Joel Coen";
     //    private static final String  THE_BIG_LEBOWSKI_TITLE  = "The Big Lebowski";
@@ -32,9 +33,10 @@ public class UserTest extends SeamOpenEjbTest {
 
     private static final LogProvider log = Logging.getLogProvider(UserTest.class);
 
-    private boolean mockLogin() {
-        Credentials credentials = (Credentials)Component.getInstance("org.jboss.seam.security.credentials");
-        Identity identity = (Identity)Component.getInstance("org.jboss.seam.security.identity");
+    private boolean mockLogin()
+    {
+        Credentials credentials = (Credentials) Component.getInstance("org.jboss.seam.security.credentials");
+        Identity identity = (Identity) Component.getInstance("org.jboss.seam.security.identity");
         credentials.setUsername("admin");
         identity.addRole("admin");
         return identity.login().equals("loggedIn");
@@ -42,7 +44,8 @@ public class UserTest extends SeamOpenEjbTest {
 
     @Override
     @BeforeSuite
-    public void beforeSuite() throws Exception {
+    public void beforeSuite() throws Exception
+    {
         //System.out.println("**** UserTest.beforeSuite()");
 
         // Change some logging, INFO|DEBUG|WARN|ERROR|FATAL
@@ -57,7 +60,8 @@ public class UserTest extends SeamOpenEjbTest {
 
     @Override
     @BeforeClass
-    public void setupClass() throws Exception {
+    public void setupClass() throws Exception
+    {
         super.setupClass();
 
         // Delete all movies

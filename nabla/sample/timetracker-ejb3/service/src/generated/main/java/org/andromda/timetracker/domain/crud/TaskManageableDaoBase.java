@@ -149,7 +149,6 @@ public final class TaskManageableDaoBase
         final Task entity = this.getDao().load(id);
 
         entity.setName(name);
-        // entity.setId(id);
 
         this.getDao().update(entity);
         return entity;
