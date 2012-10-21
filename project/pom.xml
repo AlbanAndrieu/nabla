@@ -34,9 +34,6 @@
 					<exists>${basedir}</exists>
 				</file>
 			</activation>
-			<properties>
-				<maven.project.version>3.0.4</maven.project.version>
-			</properties>
 			<build>
 				<pluginManagement>
 					<plugins>
