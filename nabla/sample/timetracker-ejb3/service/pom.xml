@@ -147,10 +147,11 @@
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
 
-       <dependency>
+        <dependency>
             <groupId>batik</groupId>
             <artifactId>batik-ext</artifactId>
             <version>${batik.ext.version}</version>
+        </dependency>
         <!-- replace this by slf4j-api and slf4j-simple
         http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
         <dependency>
