@@ -11,7 +11,6 @@
 	<groupId>com.nabla.project.databases.sample.dao.business.hibernate</groupId>
 	<artifactId>hibernate</artifactId>
 	<name>Databases DAO Hibernate</name>
-	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
 	<description>Database DAO Hibernate : Test Main Spring Jpa Hibernate Derby compatibility and DBUnit</description>
 

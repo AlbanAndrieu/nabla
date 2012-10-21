@@ -376,7 +376,7 @@
 				<jdbc.client.artifactId>h2</jdbc.client.artifactId>
 				<jdbc.groupId>com.h2database</jdbc.groupId>
 				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-				<jdbc.version>1.3.160</jdbc.version>
+				<jdbc.version>1.3.168</jdbc.version>
 				<jdbc.driver>org.h2.Driver</jdbc.driver>
 
 				<database.host></database.host>
