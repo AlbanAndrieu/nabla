@@ -1,8 +1,9 @@
 cls
 
 call setenv.bat
-call mvn validate > validate.log
-call mvn versions:display-dependency-updates > updates.log
+call mvn validate -Psample > validate.log
+call mvn versions:display-dependency-updates -Psample > dependency-updates.log
+call mvn versions:display-plugin-updates -Psample > plugin-updates.log
 call mvn help:active-profiles > profile.log
 call mvn dependency:tree > dependency.log
 call mvn dependency:analyze > analyze.log

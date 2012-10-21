@@ -9,7 +9,7 @@ def generate(env, **kw):
 
     if Arch in ['x86Linux','cygwin']:
         if not 'gcc_version' in env:
-            env['gcc_version'] = '4.6'
+            env['gcc_version'] = '4.6.3'
         env['debug_flags'] = '-g'
         env['opt_flags'] = '-O'
         env['ENV']['PATH'] = '/bin:/usr/bin'
@@ -63,7 +63,6 @@ def generate(env, **kw):
             '-D_TEMPLATES_ENABLE_',
             '-DACE_HAS_EXCEPTIONS',
             '-DuseTao'
-            '-include','/usr/include/c++/' + env['gcc_version'] + '/cstring',
             '-include','/usr/include/stdio.h',
             '-include','/usr/include/stdlib.h',
             '-include','/usr/include/c++/' + env['gcc_version'] + '/typeinfo',
