@@ -1242,18 +1242,19 @@
 		<wiser.version>1.2</wiser.version>
 
 		<google.api.client.version>1.0.10-alpha</google.api.client.version>
-		<gwt.version>2.5.0-rc2</gwt.version>
-		<!--<gwt.version>2.4.0</gwt.version>-->
+		<!--<gwt.version>2.5.0-rc2</gwt.version>-->
+		<gwt.version>2.4.0</gwt.version>
 		<gae.version>1.5.3</gae.version>
 		<gwtp.all.version>0.7</gwtp.all.version>
 		<gwt.seam.version>1.0</gwt.seam.version>
 		<errai.version>2.0.Beta3</errai.version>
 
 		<selenium.version>0.8.1</selenium.version>
-                <drools.version>5.0.1</drools.version>
-                <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
+		<drools.version>5.0.1</drools.version>
+		<!--<drools.version>5.1.1</drools.version>-->
+		<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
 
-                <richfaces.version>3.3.3.Final</richfaces.version>
+		<richfaces.version>3.3.3.Final</richfaces.version>
 		<myfaces.version>1.2.9</myfaces.version>
 		<!--<myfaces.version>1.2.11</myfaces.version> does not work-->
 		<!--<myfaces.version>2.1.6</myfaces.version>-->
@@ -1280,7 +1281,8 @@
 
 		<cxf.version>2.5.6</cxf.version>
 		<xalan.version>2.7.1</xalan.version>
-		<xerces.version>2.10.0</xerces.version>
+		<xerces.version>2.9.1</xerces.version>
+		<!--<xerces.version>2.10.0</xerces.version> TODO add dependency batik to avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
 		<tomcat.version>6.0.29</tomcat.version>
 
 		<!--<jconnect.version>6.0.5.26312</jconnect.version>-->
@@ -1304,6 +1306,8 @@
 		<geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
 
 		<seam.version>2.2.1.Final</seam.version>
+		<seam.bom.version>3.1.0.Final</seam.bom.version>
+		<!--<seam.version>2.3.0.CR1</seam.version>-->
 		<seam.international.version>3.0.0.Alpha1</seam.international.version>
 
 		<jaxb.api.version>2.1</jaxb.api.version>
@@ -1401,7 +1405,8 @@
 		<maven.rar.plugin.version>2.2</maven.rar.plugin.version>
 		<maven.install.plugin.version>2.4</maven.install.plugin.version>
 		<maven.ear.plugin.version>2.8</maven.ear.plugin.version>
-		<maven.jboss.plugin.version>1.5.0</maven.jboss.plugin.version>
+		<maven.jboss.plugin.version>1.4.1</maven.jboss.plugin.version> <!-- only version 1.4.1 supports hard deploying multiple files -->
+		<!--<maven.jboss.plugin.version>1.5.0</maven.jboss.plugin.version>-->
 		<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
 		<maven.invoker.plugin.version>1.7</maven.invoker.plugin.version>
 		<maven.minify.plugin.version>1.3.5</maven.minify.plugin.version>
@@ -1478,6 +1483,7 @@
 				<version>${wagon.webdav.plugin.version}</version>
 			</extension>
                         -->
+                        <!-- comment to avoid basic authentication scheme selected -->
 		        <extension>
 			       <groupId>org.apache.maven.wagon</groupId>
 			       <artifactId>wagon-webdav-jackrabbit</artifactId>
@@ -2416,17 +2422,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>${maven.clean.plugin.version}</version>
-<configuration>
-<excludeDefaultDirectories>true</excludeDefaultDirectories>
-<filesets>
-<fileset>
-<directory>${project.build.directory}</directory>
-<excludes>
-<exclude>generated-resources/eclipse/**</exclude>
-</excludes>
-</fileset>
-</filesets>
-</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -2839,12 +2834,7 @@
             <version>1.0</version>
           </dependency>
         </dependencies>
-      </plugin>
-                  <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${maven.enforcer.plugin.version}</version>
-                  </plugin>
+      </plugin> 
     		  <plugin>
     		    <groupId>com.cloudbees</groupId>
     		    <artifactId>bees-maven-plugin</artifactId>
@@ -2885,6 +2875,22 @@
                                 <scope>provided</scope>
                         </dependency>
                         -->
+                        <!--
+         		<dependency>
+         		   <groupId>org.jboss.seam</groupId>
+         		   <artifactId>seam</artifactId>
+         		   <version>${seam.version}</version>
+         		   <scope>import</scope>
+         		   <type>pom</type>
+         		</dependency>    
+         		-->
+			<dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>seam-bom</artifactId>
+				<version>${seam.bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>         		                    
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -4768,6 +4774,7 @@
 				<version>${xml.apis.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			<!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
        			<dependency>
             			<groupId>batik</groupId>
             			<artifactId>batik-ext</artifactId>
