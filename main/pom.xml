@@ -105,7 +105,8 @@
 		<jboss.htpp.debug.port>8181</jboss.htpp.debug.port> <!-- in Eclipse Local Monitor Port 8181 and Port 8180 -->
 		
 		<hudson.port>8070</hudson.port>
-		<tomcat.port>8280</tomcat.port>	
+		<tomcat.port>8280</tomcat.port>
+                <jenkins.port>${tomcat.port}</jenkins.port>
 		<oracle.port>8080</oracle.port>
 		<archiva.port>8010</archiva.port>
 		<continuum.port>8020</continuum.port>
@@ -740,6 +741,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
+						<version>${maven.source.plugin.version}</version>
 						<inherited>true</inherited>
 						<configuration>
 							<includePom>true</includePom>
@@ -827,9 +829,10 @@
 			<build>
 				<plugins>
 					<plugin>
-						<inherited>true</inherited>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>${maven.javadoc.plugin.version}</version>
+						<inherited>true</inherited>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>
@@ -842,6 +845,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-deploy-plugin</artifactId>
+						<version>${maven.deploy.plugin.version}</version>
 						<inherited>true</inherited>						
 						<configuration>
 							<updateReleaseInfo>true</updateReleaseInfo>

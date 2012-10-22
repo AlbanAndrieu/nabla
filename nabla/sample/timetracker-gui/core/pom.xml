@@ -165,6 +165,11 @@
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
+        <dependency>
+            <groupId>batik</groupId>
+            <artifactId>batik-ext</artifactId>
+            <version>${batik.ext.version}</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.andromda</groupId>

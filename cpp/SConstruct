@@ -258,7 +258,7 @@ Export('env', 'Versions')
 if not GetOption('help'):
     env.SConscript([
     		KTPObjDir+'/sample/microsoft/src/main/cpp/SConscript',
-			KTPObjDir+'/sample/microsoft/src/main/app/SConscript',
+		KTPObjDir+'/sample/microsoft/src/main/app/SConscript',
     ])
 
 SConscript(KTPObjDir+'/sample/microsoft/src/test/cpp/SConscript')
@@ -277,3 +277,9 @@ env.Package( NAME           = 'nabla',
         )
 
 print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)
+
+#See http://google-styleguide.googlecode.com/
+os.system('./cpplint.sh')
+
+#TODO : http://v8.googlecode.com/svn/trunk/SConstruct
+

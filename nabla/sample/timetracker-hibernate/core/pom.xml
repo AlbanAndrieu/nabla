@@ -166,10 +166,17 @@
             <artifactId>jboss-j2ee</artifactId>
         </dependency>
         <dependency>
+            <groupId>batik</groupId>
+            <artifactId>batik-ext</artifactId>
+            <version>${batik.ext.version}</version>
+        </dependency>
+	<!--
+        <dependency>
             <groupId>org.andromda</groupId>
             <artifactId>andromda-script-wrappers</artifactId>
             <scope>provided</scope>
         </dependency>
+	-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
