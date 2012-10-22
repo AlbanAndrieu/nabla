@@ -649,41 +649,14 @@
 								</regexes>
 							</check>
 						</configuration>
-<executions>  
-      <execution>  
-        <id>clean</id>  
-        <phase>clean</phase>  
-        <goals>  
-          <goal>clean</goal>  
-        </goals>  
-      </execution>  
-      <execution>  
-        <id>package</id>  
-        <phase>package</phase>  
-        <goals>  
-          <goal>check</goal>  
-        </goals>  
-      </execution>  
+			<executions>  
+ 	<execution>
+            <goals>
+              <goal>clean</goal>
+              <!--<goal>check</goal> comment to avoid running tests twice-->
+            </goals>
+          </execution>
     </executions>  
-<!--
-<executions>
-<execution>
-<id>site</id>
-<phase>pre-site</phase>
-<goals>
-<goal>clean</goal>
-</goals>
-</execution>
-<execution>
-<id>instrument</id>
-<phase>site</phase>
-<goals>
-<goal>instrument</goal>
-<goal>cobertura</goal>
-</goals>
-</execution>
-</executions>
--->
 					</plugin>
                                         <!--
 					<plugin>
