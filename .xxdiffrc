@@ -1,0 +1,5 @@
+AutoSelectMerge: True
+IgnoreHorizontalWhitespace: True
+IgnorePerHunkWhitespace: True
+Show.LineNumbers: True
+Command.DiffFiles2: "diff -b -w -d -B -i"
