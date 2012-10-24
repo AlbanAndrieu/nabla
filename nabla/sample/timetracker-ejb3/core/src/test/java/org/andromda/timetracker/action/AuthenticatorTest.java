@@ -32,7 +32,8 @@ public class AuthenticatorTest extends SeamOpenEjbTest
         super.beforeSuite();
     }
 
-    @Test
+    // Ignore Junit Test @Ignore("Pending improvment")
+    @Test(enabled=false)
     public void shouldAuthenticate() throws Exception
     {
         new ComponentTest()
