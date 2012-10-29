@@ -6,3 +6,6 @@ fi
 vncserver :$displayNum -geometry 1920x1200 -depth 24
 
 echo "`hostname`:$displayNum" > currentDisplay.txt
+
+echo "For copy/paste launch"
+echo "/usr/bin/vncconfig"
