@@ -2,6 +2,8 @@ cls
 
 call setenv.bat
 call mvn validate -Psample > validate.log
+call mvn validate -Dnabla -Psample > validate-nabla.log
+REM call mvn clean -Dnabla -Psample -amd andromda-database-cartridge > clean-nabla.log
 call mvn versions:display-dependency-updates -Psample > dependency-updates.log
 call mvn versions:display-plugin-updates -Psample > plugin-updates.log
 call mvn help:active-profiles > profile.log
@@ -21,5 +23,8 @@ call mvn eclipse:clean > eclipse-clean.log
 call mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders > eclipse.log
 call mvn rat:check > rat.log
 call mvn doap:generate > doap.log
+
+REM call mvn install -pl maven/skin
+REM call mvn install -amd maven/skin
 
 pause
