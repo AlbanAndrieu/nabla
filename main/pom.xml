@@ -40,28 +40,6 @@
 		-->
 		<java.home>${env.JAVA_HOME}</java.home>
 
-		<product.id>nabla</product.id>
-		<product.name>nabla</product.name>
-		<product.title>${product.name} Application</product.title>
-		<product.major.version>${env.VERSION}</product.major.version>
-
-		<product.sourceDirectory>${home.dir}/${product.name}</product.sourceDirectory>
-
-		<product.branch.version>1.0</product.branch.version>
-		<product.status.number>1</product.status.number>
-		<product.load.number>01</product.load.number>
-		<product.patch.number>000</product.patch.number>
-		<product.patch.version>${product.major.version}.${product.status.number}.${product.load.number}${product.patch.number}</product.patch.version>
-		<product.dependencies>${product.name} ${product.patch.version}</product.dependencies>
-		<product.push.number>01</product.push.number>
-		<product.push.version>${product.patch.version}.${product.push.number}</product.push.version>
-		<product.version>${product.major.version}${product.push.version}</product.version>
-
-		<product.username>${env.UNIX_USERNAME}</product.username>
-
-		<product.workspace>${product.username}${product.major.version}</product.workspace>
-		<product.thirdparty>${env.THIRDPARTY_ROOT}</product.thirdparty> <!-- used for dtd in mda -->
-
 		<!-- Application settings -->
 		<application.id>${project.parent.artifactId}</application.id> <!-- hint: same value as artifactId -->
 		<!--<application.id>application</application.id>--> <!-- used by MDA -->
