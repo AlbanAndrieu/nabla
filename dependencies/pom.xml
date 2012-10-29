@@ -147,6 +147,7 @@
     		      <plugin>
     		        <groupId>org.codehaus.gmaven</groupId>
     		        <artifactId>gmaven-plugin</artifactId>
+    		        <version>${maven.gmaven.plugin.version}</version>
     		        <executions>
     		          <execution>
     		            <id>g-show-properties</id>
@@ -320,13 +321,14 @@
 					<!-- Code Coverage by Clover -->
 					<!-- Bind Clover Coverage instrumentation to the site generation -->
 					<!-- Blocked by http://jira.codehaus.org/browse/MCLOVER-50 -->
-					<!--
-					<plugin>
-						<groupId>com.atlassian.maven.plugins</groupId>
-						<artifactId>maven-clover2-plugin</artifactId>
+					<plugin> 
+                		    		<groupId>com.atlassian.maven.plugins</groupId>
+                		    		<artifactId>maven-clover2-plugin</artifactId>
+                		    		<version>${maven.clover.plugin.version}</version>
 						<configuration>
 							<generateHistorical>true</generateHistorical>
 						</configuration>
+					<!--						
 						<executions>
 							<execution>
 								<phase>pre-site</phase>
@@ -334,10 +336,10 @@
 									<goal>instrument</goal>
 									<goal>aggregate</goal>
 								</goals>
-								</execution>
-							</executions>
+							</execution>
+						</executions>
+					-->							
 						</plugin>
-					-->
 
 					<!-- Delete code coverage database when 'mvn clean' is executed -->
 					<plugin>
@@ -1005,6 +1007,28 @@
 		<target.dir>target</target.dir> <!-- default value that can be overrided -->
 		<environment>development</environment> <!-- default value that can be overrided -->
 
+		<product.id>nabla</product.id>
+		<product.name>nabla</product.name>
+		<product.title>${product.name} Application : ${env.BUILD_TAGS}</product.title>
+		<product.major.version>${project.version}</product.major.version>
+
+		<product.sourceDirectory>${home.dir}/${product.name}</product.sourceDirectory>
+
+		<product.branch.version>${env.VERSION}</product.branch.version>
+		<product.status.number>1</product.status.number>
+		<product.load.number>${env.EXECUTOR_NUMBER}</product.load.number>
+		<product.patch.number>${env.BUILD_NUMBER}</product.patch.number>
+		<product.patch.version>${product.major.version}.${product.status.number}.${product.load.number}${product.patch.number}</product.patch.version>
+		<product.push.number>${env.SVN_REVISION}</product.push.number>
+		<product.push.version>${product.patch.version}.${product.push.number}</product.push.version>				
+		<product.dependencies>${product.name} ${product.patch.version}</product.dependencies>
+		<product.version>${product.major.version}${product.push.version}</product.version>
+
+		<product.username>${env.UNIX_USERNAME}</product.username>
+
+		<product.workspace>${product.username}${product.major.version}</product.workspace>
+		<product.thirdparty>${env.THIRDPARTY_ROOT}</product.thirdparty> <!-- used for dtd in mda -->
+		
 		<!--<scm.base>svn:svn://ALBAN-PC/svn/repo/main/user/trunk</scm.base> -->
 		<scm.base>svn:http://alban.googlecode.com/svn/</scm.base>
 		<!-- TODO fix env setting for overrided home.dir -->
@@ -1071,6 +1095,7 @@
 
 		<javax.j2ee.version>1.3.1</javax.j2ee.version>
 		<saxon.version>8.7</saxon.version>
+		<classworlds.version>1.1</classworlds.version>
 		<dom4j.version>1.6.1</dom4j.version>
 		<jmdns.version>1.0</jmdns.version>
 
@@ -1112,7 +1137,7 @@
 		<taglibs.version>1.1.2</taglibs.version>
 		<javax.activation.version>1.1.1</javax.activation.version>
 		<antlr.version>2.7.7</antlr.version>
-		<org.antlr.version>3.1.3</org.antlr.version>
+		<org.antlr.version>3.3</org.antlr.version>
 		<jdom.version>1.0</jdom.version>
 		<ant-nodeps.version>1.7.0</ant-nodeps.version>
 		<ant.version>1.7.0</ant.version>
@@ -1197,7 +1222,7 @@
 		<hibernate.search.version>3.1.1.GA</hibernate.search.version>
 		<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
 		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
-        <!--<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>-->
+		<!--<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>-->
 		<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
 		<ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>
 		<jboss.ejb3.persistence.version>4.0.5-GA</jboss.ejb3.persistence.version>
@@ -1393,7 +1418,7 @@
 		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
 		<maven.dependency.plugin.version>2.5.1</maven.dependency.plugin.version>
-		<maven.clover.plugin.version>3.1.6</maven.clover.plugin.version>
+		<maven.clover.plugin.version>3.1.7</maven.clover.plugin.version>
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 		<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
@@ -1416,7 +1441,7 @@
 		<maven.project.info.reports.plugin.version>2.5.1</maven.project.info.reports.plugin.version>
 		<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
 		<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
-		<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>
+		<!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
 		<maven.site.plugin.version>3.2</maven.site.plugin.version>
 		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
 		<maven.buildnumber.plugin.version>1.2</maven.buildnumber.plugin.version>
@@ -2117,7 +2142,7 @@
         			  <artifactId>gmaven-plugin</artifactId>
         			  <version>${maven.gmaven.plugin.version}</version>
         			  <configuration>
-        			    <providerSelection>1.7</providerSelection>
+        			    <providerSelection>2.0</providerSelection>
         			    <debug>${jdkDebug}</debug>
         			    <stacktrace>${jdkDebug}</stacktrace>
         			    <targetBytecode>1.5</targetBytecode> <!-- is the value to compile for a JDK 1.5 or later JVM. -->
@@ -2150,6 +2175,7 @@
         			      <artifactId>groovy-all</artifactId>
         			      <version>${groovy.version}</version>
         			    </dependency>
+        			         			    
         			  </dependencies>
 
         			  <!--
@@ -2670,7 +2696,7 @@
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-java2ws-plugin</artifactId>
 					<version>${cxf.version}</version>
-				</plugin>
+				</plugin>				
 				<plugin>
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-codegen-plugin</artifactId>
@@ -2767,7 +2793,89 @@
                                 	<groupId>org.codehaus.mojo</groupId>
                                 	<artifactId>xml-maven-plugin</artifactId>
                                 	<version>${maven.xml.plugin.version}</version>
+                		    	<dependencies>
+                		    	    <dependency>
+                		    	        <groupId>classworlds</groupId>
+                		    	        <artifactId>classworlds</artifactId>
+                		    	        <version>${classworlds.version}</version>
+                		    	    </dependency>
+                		    	    <dependency>
+                		    	        <groupId>net.sf.saxon</groupId>
+                		    	        <artifactId>saxon</artifactId>
+                		    	        <version>${saxon.version}</version>
+                		    	    </dependency>
+                		    	</dependencies>                                	
                         	</plugin>
+
+                		<plugin>
+                		    <groupId>com.adobe.ac</groupId>
+                		    <artifactId>flex-pmd-cpd-maven-plugin</artifactId>
+                		    <version>${flex.pmd.version}</version>
+                		</plugin>
+                		<plugin>
+                		    <groupId>com.adobe.ac</groupId>
+                		    <artifactId>flex-pmd-maven-plugin</artifactId>
+                		    <version>${flex.pmd.version}</version>
+                		</plugin>
+                		<plugin>
+                		    <groupId>com.adobe.ac</groupId>
+                		    <artifactId>flex-pmd-metrics-maven-plugin</artifactId>
+                		    <version>${flex.pmd.version}</version>
+                		</plugin>
+
+                		<plugin>
+                		    <groupId>org.apache.felix</groupId>
+                		    <artifactId>maven-bundle-plugin</artifactId>
+                		    <version>${bundle.maven.plugin.version}</version>
+                		</plugin>
+                		
+                		<plugin>
+                		    <groupId>org.apache.maven.plugins</groupId>
+                		    <artifactId>maven-failsafe-plugin</artifactId>
+                		    <version>${maven.failsafe.plugin.version}</version>
+                		</plugin>
+
+                		<plugin>
+                		    <groupId>org.sonatype.flexmojos</groupId>
+                		    <artifactId>flexmojos-maven-plugin</artifactId>
+                		    <version>${flexmojos.maven.plugin.version}</version>
+                		    <dependencies>
+                		        <dependency>
+                		            <groupId>com.adobe.flex</groupId>
+                		            <artifactId>afe</artifactId>
+                		            <version>${flex.sdk.version}</version>
+                		        </dependency>
+                		        <dependency>
+                		            <groupId>com.adobe.flex</groupId>
+                		            <artifactId>aglj40</artifactId>
+                		            <version>${flex.sdk.version}</version>
+                		        </dependency>
+                		        <dependency>
+                		            <groupId>com.adobe.flex</groupId>
+                		            <artifactId>compiler</artifactId>
+                		            <version>${flex.sdk.version}</version>
+                		            <type>pom</type>
+                		        </dependency>
+                		        <dependency>
+                		            <groupId>com.adobe.flex</groupId>
+                		            <artifactId>flex-fontkit</artifactId>
+                		            <version>${flex.sdk.version}</version>
+                		        </dependency>
+                		        <dependency>
+                		            <groupId>com.adobe.flex</groupId>
+                		            <artifactId>rideau</artifactId>
+                		            <version>${flex.sdk.version}</version>
+                		        </dependency>
+                		        <dependency>
+                		            <groupId>com.adobe.flex.compiler</groupId>
+                		            <artifactId>asdoc</artifactId>
+                		            <version>${flex.sdk.version}</version>
+                		            <classifier>template</classifier>
+                		            <type>zip</type>
+                		        </dependency>
+                		    </dependencies>
+                		</plugin>
+                                        	
 			</plugins>
 		</pluginManagement>
 
@@ -3504,6 +3612,11 @@
 				<version>${org.antlr.version}</version>
 				<scope>compile</scope>
 			</dependency>
+            		<dependency>
+            		    	<groupId>org.antlr</groupId>
+            		    	<artifactId>antlr-runtime</artifactId>
+            		    	<version>${org.antlr.version}</version>
+            		</dependency>			
 			<dependency>
 				<groupId>antlr</groupId>
 				<artifactId>antlr</artifactId>
