@@ -30,8 +30,9 @@
 					<name>nabla</name>
 				</property>
 			</activation>
-			<modules>				
-				<module>nabla</module>
+			<modules>			
+				<module>uml</module>				
+				<module>nabla</module>				
 			</modules>
 		</profile>	
 		<profile>
@@ -50,7 +51,6 @@
 				<module>servers</module>		
 				<module>customs</module>
 				<module>project</module>
-				<module>uml</module>
 			</modules>
 		</profile>	
 	        <!--Profile configuration for local builds -->
