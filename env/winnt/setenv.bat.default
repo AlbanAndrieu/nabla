@@ -1,6 +1,9 @@
 rem retieve current directory under windows
 rem set POC_HOME=%~dp0
 
+# Deactivate proxy
+rem proxycfg -d
+
 set VERSION=[[DEV_VERSION]]
 
 set UNIX_USERNAME=[[UNIX_USERNAME]]
@@ -50,6 +53,7 @@ rem set MSYS_HOME=C:\msys\1.0
 set MSVCDir=C:\MinGW
 
 set HUDSON_HOME=C:\hudson
+set JENKINS_HOME=C:\hudson
 set SVN_HOME=C:\Program Files\SlikSvn
 
 set ORACLE_HOME=C:\oraclexe\app\oracle\product\10.2.0\server
@@ -60,8 +64,6 @@ set QTDIR=C:\cygwin\lib\qt3
 
 set MACHINE=x86Linux
 set TIBCO_HOME=C:\Tibco\Tibrv
-
-set HUDSON_HOME=C:\hudson
 
 rem set DISPLAY=localhost:0.0
 
