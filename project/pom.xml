@@ -551,6 +551,17 @@
 									<version>${maven.dashboard.plugin.version}</version>
 								</plugin>
 -->
+								<plugin>
+									<groupId>com.atlassian.maven.plugins</groupId>
+									<artifactId>maven-clover2-plugin</artifactId>
+									<version>${maven.clover.plugin.version}</version>
+									<configuration>
+										<jdk>${jdkLevel}</jdk>
+										<generateXml>true</generateXml>
+										<generatePdf>true</generatePdf>
+										<generateHistorical>true</generateHistorical>
+									</configuration>
+								</plugin>
 							</reportPlugins>
 						</configuration>
 						<dependencies>
@@ -718,6 +729,39 @@
 						<artifactId>taglist-maven-plugin</artifactId>
 						<version>${maven.taglist.plugin.version}</version>
 					</plugin>
+					<plugin>
+	 	        		        <groupId>com.atlassian.maven.plugins</groupId>
+      						<artifactId>maven-clover2-plugin</artifactId>
+      						<version>${maven.clover.plugin.version}</version>
+						<configuration>
+	 	        		            <flushPolicy>threaded</flushPolicy>
+	 	        		            <flushInterval>100</flushInterval>
+	 	        		            <targetPercentage>25%</targetPercentage>
+           					    <!--<licenseLocation>${clover.licenseLocation}</licenseLocation>-->
+      						</configuration>
+	 	        		        <executions>
+	 	        		            <execution>
+	 	        		                <id>main</id>
+	 	        		                <phase>verify</phase>
+	 	        		                <goals>
+	 	        		                    <goal>instrument</goal>
+	 	        		                    <goal>aggregate</goal>
+	 	        		                    <goal>check</goal>
+	 	        		                    <goal>log</goal>
+	 	        		                </goals>
+	 	        		            </execution>
+	 	        		            <execution>
+	 	        		                <id>site</id>
+	 	        		                <phase>pre-site</phase>
+	 	        		                <goals>
+	 	        		                    <goal>instrument</goal>
+	 	        		                    <goal>aggregate</goal>
+                  					    <!-- We save a history point in order to have data to generate a historical report -->
+	 	        		                    <goal>save-history</goal> 	
+	 	        		                </goals>
+	 	        		            </execution>
+	 	        		        </executions>
+	 	        		</plugin>					
 				</plugins>
 			</build>
 		</profile>
