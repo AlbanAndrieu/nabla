@@ -26,12 +26,27 @@
 	<profiles>
 		<profile>
 			<!-- site light for jenkins -->
-			<id>jenkins-site</id>
+			<id>jenkins</id>
+            		<activation>
+            		    <property>
+            		        <name>BUILD_NUMBER</name>
+            		    </property>
+            		</activation>
+			<properties>
+				<invoker.skip>true</invoker.skip>
+				<maven.test.skip>false</maven.test.skip>
+				<maven.test.failure.skip>true</maven.test.failure.skip>
+				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
+			</properties>
+		</profile>			
+		<profile>
+			<!-- site light for jenkins -->
+			<id>jenkins-old</id>
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<maven.test.failure.skip>true</maven.test.failure.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
-			</properties>
+			</properties>			
 			<build>
 				<plugins>
 					<plugin>
