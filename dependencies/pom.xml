@@ -203,11 +203,35 @@
 		<!-- ================= END Environment Profiles	================= -->
 
 		<profile>
+			<id>maven-3-site</id>
+			<activation>
+				<file>
+					<!-- This employs that the basedir expression is only recognized by
+						Maven 3.x (see MNG-2363) -->
+					<exists>${basedir}</exists>
+				</file>
+			</activation>
+			<properties>
+				<maven.test.skip>false</maven.test.skip>
+				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
+			</properties>				
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-site-plugin</artifactId>
+							<version>${maven.site.plugin.version}</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
 			<id>maven-2-site</id>
 			<properties>
 				<maven.test.skip>false</maven.test.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
-				<!--<application.package>com.nabla.project</application.package>-->
 			</properties>
 			<build>
 				<pluginManagement>
