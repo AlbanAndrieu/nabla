@@ -23,6 +23,7 @@
 	</properties>
 			
 	<profiles>
+	        <!--
 		<profile>
 			<id>uml</id>
 			<activation>
@@ -45,13 +46,16 @@
 				<module>nabla</module>				
 			</modules>
 		</profile>	
+		-->
 		<profile>
 			<id>default</id>
+			<!--
 			<activation>
 				<property>
 					<name>!nabla</name>
 				</property>
 			</activation>
+			-->
 			<modules>
 				<module>build-tools</module>	 
 				<module>maven</module>
@@ -61,6 +65,7 @@
 				<module>servers</module>		
 				<module>customs</module>
 				<module>project</module>
+				<module>nabla</module>
 			</modules>
 		</profile>	
 	        <!--Profile configuration for local builds -->
