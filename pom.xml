@@ -23,7 +23,18 @@
 	</properties>
 			
 	<profiles>
-	        <!--
+		<profile>
+			<id>base</id>
+			<activation>
+				<property>
+					<name>base</name>
+				</property>
+			</activation>
+			<modules>						
+				<module>build-tools</module>	 
+				<module>maven</module>			
+			</modules>
+		</profile>	
 		<profile>
 			<id>uml</id>
 			<activation>
@@ -32,39 +43,26 @@
 				</property>
 			</activation>
 			<modules>			
-				<module>uml</module>				
-			</modules>
-		</profile>		
-		<profile>
-			<id>nabla</id>
-			<activation>
-				<property>
-					<name>nabla</name>
-				</property>
-			</activation>
-			<modules>						
-				<module>nabla</module>				
+				<module>uml</module>
+				<module>nabla</module>			
 			</modules>
 		</profile>	
-		-->
 		<profile>
 			<id>default</id>
-			<!--
 			<activation>
 				<property>
-					<name>!nabla</name>
+				        <name>!base</name>
+					<!--<name>!uml</name>-->
 				</property>
 			</activation>
-			-->
 			<modules>
-				<module>build-tools</module>	 
-				<module>maven</module>
 				<module>dependencies</module>				  
 				<module>databases</module>				  
 				<module>main</module>
 				<module>servers</module>		
 				<module>customs</module>
 				<module>project</module>
+				<module>uml</module>
 				<module>nabla</module>
 			</modules>
 		</profile>	
