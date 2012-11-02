@@ -83,12 +83,12 @@
 									<artifactId>maven-plugin-plugin</artifactId>
 									<version>${maven.plugin.plugin.plugin.version}</version>
 								</plugin>
-								<plugin> 
-									<groupId>org.apache.maven.plugins</groupId> 
+								<plugin>
+									<groupId>org.apache.maven.plugins</groupId>
 									<artifactId>maven-surefire-report-plugin</artifactId>
 									<version>${maven.surefire.plugin.version}</version>
 									<!--
-									<configuration> 
+									<configuration>
 										<aggregate>true</aggregate>
 									</configuration>
 									-->
@@ -190,7 +190,7 @@
 														<name>opt</name>
 														<placement>X</placement>
 														<head>opt:</head>
-													</tag>										
+													</tag>
 												</tags>
 											</configuration>
 											<reports>
@@ -315,7 +315,7 @@
 											-nodefontsize 9 -nodefontpackagesize 7
 											-outputencoding utf8</additionalparam>
 										<excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
-										-->									
+										-->
 										<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
 										<docletArtifact>
 											<groupId>org.umlgraph</groupId>
@@ -327,9 +327,9 @@
     										<additionalparam>-qualify</additionalparam>
     										<additionalparam>-types</additionalparam>
     										<additionalparam>-visibility</additionalparam>
-    										<additionalparam>-collpackages</additionalparam>							
+    										<additionalparam>-collpackages</additionalparam>
 										<show>private</show>
-									</configuration>								
+									</configuration>
 								</plugin>
 
 								<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
@@ -385,14 +385,14 @@
 								</plugin>
 								<!-- When there is JXR cross-refernce output available, it will be linked
 									to in case of test failures -->
-                                        			
+
 								<!--
-								<plugin> 
-									<groupId>org.codehaus.mojo</groupId> 
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
 									<artifactId>emma-maven-plugin</artifactId>
-									<version>${maven.emma.plugin.version}</version> 
+									<version>${maven.emma.plugin.version}</version>
 								</plugin>
-								-->						
+								-->
 
 								<!-- Comment verifier la qualitee code avec checkstyle ou PMD -->
 								<!-- *** GENERATION CHECKSTYLE *** -->
@@ -412,9 +412,9 @@
 										<headerLocation>project/LICENSE-1.0.txt</headerLocation>
 -->
 							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
-							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>							 
+							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
 										<propertyExpansion>projectname=nabla</propertyExpansion>
-									</configuration>														
+									</configuration>
 								</plugin>
 
 								<!-- *** GENERATION PMD *** -->
@@ -486,7 +486,7 @@
 									<artifactId>javancss-maven-plugin</artifactId>
 									<version>${maven.javancss.plugin.version}</version>
 								</plugin>
-								
+
 								<!--
             							<plugin>
             							    <groupId>org.codehaus.mojo</groupId>
@@ -503,7 +503,7 @@
             							    </reportSets>
             							</plugin>
             							-->
-            							
+
 								<plugin>
 									<groupId>org.apache.maven.plugins</groupId>
 									<artifactId>maven-doap-plugin</artifactId>
@@ -576,7 +576,7 @@
 								<groupId>com.nabla.project</groupId>
 								<artifactId>skin</artifactId>
 								<version>1.0</version>
-							</dependency>	
+							</dependency>
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
@@ -600,13 +600,13 @@
 						<version>${maven.changelog.plugin.version}</version>
 					</plugin>
 					<!--
-					<plugin> 
+					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>emma-maven-plugin</artifactId>
 						<version>${maven.emma.plugin.version}</version>
 						<inherited>true</inherited>
 					</plugin>
-					-->				
+					-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-scm-plugin</artifactId>
@@ -660,14 +660,14 @@
 								</regexes>
 							</check>
 						</configuration>
-			<executions>  
+			<executions>
  	<execution>
             <goals>
               <goal>clean</goal>
               <!--<goal>check</goal> comment to avoid running tests twice-->
             </goals>
           </execution>
-    </executions>  
+    </executions>
 					</plugin>
                                         <!--
 					<plugin>
@@ -722,7 +722,7 @@
 								<version>${commons.logging.version}</version>
 							</dependency>
 						</dependencies>
-					</plugin>	
+					</plugin>
                                         -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -736,8 +736,7 @@
 						<configuration>
 	 	        		            <flushPolicy>threaded</flushPolicy>
 	 	        		            <flushInterval>100</flushInterval>
-	 	        		            <targetPercentage>25%</targetPercentage>
-           					    <!--<licenseLocation>${clover.licenseLocation}</licenseLocation>-->
+	 	        		            <!--<targetPercentage>25%</targetPercentage>-->
       						</configuration>
 	 	        		        <executions>
 	 	        		            <execution>
@@ -757,11 +756,11 @@
 	 	        		                    <goal>instrument</goal>
 	 	        		                    <goal>aggregate</goal>
                   					    <!-- We save a history point in order to have data to generate a historical report -->
-	 	        		                    <goal>save-history</goal> 	
+	 	        		                    <goal>save-history</goal>
 	 	        		                </goals>
 	 	        		            </execution>
 	 	        		        </executions>
-	 	        		</plugin>					
+	 	        		</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -775,7 +774,7 @@
 			<modules>
 				<module>sample</module>
 			</modules>
-		</profile>		
+		</profile>
 	</profiles>
 
 			<modules>
