@@ -1049,6 +1049,7 @@
 
 		<maven.test.skip>false</maven.test.skip>
 		<maven.test.failure.skip>true</maven.test.failure.skip>
+		<maven.clover.licenseLocation>${home.dir}/build-tools/src/main/resources/project/clover.license</maven.clover.licenseLocation>
 		<!-- TODO overrided in filter -->
 
 		<copyright.year>2012</copyright.year>
@@ -2726,6 +2727,13 @@
 						<generateXml>true</generateXml>
 						<generatePdf>true</generatePdf>
 						<generateHistorical>true</generateHistorical>
+						<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>
+						<!--
+						<license><![CDATA[PRPqqDetMlwPVvGmCtUsdXLjuMNpdsmwXSsfaGGrLKrcLGgB
+mk2L08qaG9tluU2sutFUsFMoR2L01lDe91>VJmozfxDyKznn
+qmMPusPnROoMprppqROtSpnnNqRpPNQMNQuXvXUVXwSPnmpm
+UUnprnsuuqmmmmmUUnprnsuuqmmmmmUUEXYiXUUn]]></license>
+-->
 					</configuration>
 				</plugin>
 				<plugin>
