@@ -2717,7 +2717,6 @@
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>${maven.dependency.plugin.version}</version>
 				</plugin>
-				<!--
 				<plugin>
 					<groupId>com.atlassian.maven.plugins</groupId>
 					<artifactId>maven-clover2-plugin</artifactId>
@@ -2726,9 +2725,9 @@
 						<jdk>${jdkLevel}</jdk>
 						<generateXml>true</generateXml>
 						<generatePdf>true</generatePdf>
+						<generateHistorical>true</generateHistorical>
 					</configuration>
 				</plugin>
-				-->
 				<plugin>
 					<groupId>org.apache.cxf</groupId>
 					<artifactId>cxf-java2ws-plugin</artifactId>
