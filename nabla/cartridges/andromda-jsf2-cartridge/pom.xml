@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -92,39 +92,6 @@
                 -->
             </plugin>
             <plugin>
-                <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromda-cartridge-plugin</artifactId>
-                <version>${andromda.version}</version>
-                <executions>
-                    <execution>
-                        <id>jsf2-uml2</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <!-- Use update goal when you want to validate your change (comment test goal) -->
-                            <!--<goal>test</goal>-->
-                            <goal>update</goal>
-                        </goals>
-                        <configuration>
-                            <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
-                            <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
-
-                            <actualDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/actualUML2</actualDirectory>
-                            <expectedDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/expectedUML2</expectedDirectory>
-                            <reportDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/reportsUML2</reportDirectory>
-                            <!--
-                            <artifacts>
-                                <artifact>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>${project.artifactId}-components</artifactId>
-                                    <path>resources/WEB-INF/lib</path>
-                                </artifact>
-                            </artifacts>                            
-                            -->
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>${maven.clean.plugin.version}</version>
@@ -150,7 +117,7 @@
                        </fileset>
                    </filesets>
                 </configuration>
-            </plugin>  
+            </plugin>
             <!--
             <plugin>
                 <extensions>true</extensions>
@@ -218,4 +185,53 @@
         <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir>-->
         <test.output.dir>${project.basedir}/../tmp-jsf2/cartridge-test/actualUML2</test.output.dir>
     </properties>
+    <profiles>
+       <profile>
+           <id>andromda-test</id>
+           <!--
+           <activation>
+	      <property>
+                  <name>profile.activation</name>
+              </property>
+           </activation>
+           -->
+           <build>
+                <plugins>
+            		<plugin>
+            		    <groupId>org.andromda.maven.plugins</groupId>
+            		    <artifactId>andromda-cartridge-plugin</artifactId>
+            		    <version>${andromda.version}</version>
+            		    <executions>
+            		        <execution>
+            		            <id>jsf2-uml2</id>
+            		            <phase>generate-test-sources</phase>
+            		            <goals>
+            		                <!-- Use update goal when you want to validate your change (comment test goal) -->
+            		                <goal>test</goal>
+            		                <!--<goal>update</goal>-->
+            		            </goals>
+            		            <configuration>
+            		                <expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-outputUML2.zip</expectedOutputArchive>
+            		                <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/test/andromda.xml</configurationUri>
+            		
+            		                <actualDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/actualUML2</actualDirectory>
+            		                <expectedDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/expectedUML2</expectedDirectory>
+            		                <reportDirectory>${project.basedir}/../tmp-jsf2/cartridge-test/reportsUML2</reportDirectory>
+            		                <!--
+            		                <artifacts>
+            		                    <artifact>
+            		                        <groupId>${project.groupId}</groupId>
+            		                        <artifactId>${project.artifactId}-components</artifactId>
+            		                        <path>resources/WEB-INF/lib</path>
+            		                    </artifact>
+            		                </artifacts>
+            		                -->
+            		            </configuration>
+            		        </execution>
+            		    </executions>
+            		</plugin>
+                </plugins>
+           </build>
+	</profile>
+    </profiles>
 </project>

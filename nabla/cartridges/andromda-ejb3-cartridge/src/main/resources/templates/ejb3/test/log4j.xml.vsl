@@ -27,17 +27,18 @@
         </layout>
     </appender>
 
+   <!--
    <appender name="SOCKETSERV" class="org.apache.log4j.net.SocketAppender">
       <param name="Port" value="4445"/>
       <param name="RemoteHost" value="localhost"/>
       <param name="ReconnectionDelay" value="60000"/>
       <param name="Threshold" value="DEBUG"/>
       <layout class="org.apache.log4j.PatternLayout">
-         <!-- The default pattern: Date Priority [Category] Message\n -->
          <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
       </layout>
    </appender>
-
+   -->
+   
 ## Just use the shortest Entity package, assume that's the top level package in the hierarchy
 #set ($pkg="0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789")
 #foreach ($entity in $entities)
@@ -68,7 +69,7 @@
        <!-- To log debug messages only, uncomment the following appender -->
        <appender-ref ref="FILE"/>
        <!-- To log on chainsaw, uncomment the following appender -->
-       <appender-ref ref="SOCKETSERV"/>
+       <!-- <appender-ref ref="SOCKETSERV"/> -->
    </root>
 
 </log4j:configuration>
