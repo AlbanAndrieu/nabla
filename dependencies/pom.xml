@@ -115,6 +115,7 @@
 	<licenses>
 		<license>
 			<name>Nabla</name>
+            <!-- TODO remove hard coded LICENSE-1.0.txt -->
 			<url>../build-tools/src/main/resources/project/LICENSE-1.0.txt</url>
 			<distribution>perso</distribution>
 			<comments>This program is the property of Nabla</comments>
@@ -2960,7 +2961,8 @@ UUnprnsuuqmmmmmUUnprnsuuqmmmmmUUEXYiXUUn]]></license>
 		     </execution>
 		   </executions>
 		   <configuration>
-		     <configFile>${home.dir}/build-tools/src/main/resources/project/jalopy_regles_nabla_eclipse.xml</configFile>
+		     <!--<configFile>${home.dir}/build-tools/src/main/resources/project/jalopy_regles_nabla_eclipse.xml</configFile>-->
+		     <configFile>/project/jalopy_regles_nabla_eclipse.xml</configFile>
 		     <compilerSource>${jdkLevel}</compilerSource>
 		     <compilerCompliance>${jdkLevel}</compilerCompliance>
 		     <compilerTargetPlatform>${jdkLevel}</compilerTargetPlatform>
