@@ -578,7 +578,6 @@
                 </profile>
         </profiles>
 
-	<!--
 	<repositories>
 		<repository>
 			<id>server-forge-release</id>
@@ -630,5 +629,4 @@
                         </releases>
                 </pluginRepository>
         </pluginRepositories>
-        -->
 </project>
