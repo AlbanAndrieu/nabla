@@ -1,550 +1,601 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<parent>
-		<groupId>com.nabla.project</groupId>
-		<artifactId>dependencies</artifactId>
-		<version>1.0</version>
-		<!--<relativePath>../dependencies/pom.xml</relativePath>-->
-	</parent>
+        <parent>
+                <groupId>com.nabla.project</groupId>
+                <artifactId>dependencies</artifactId>
+                <version>1.0</version>
+                <!--<relativePath>../dependencies/pom.xml</relativePath>-->
+        </parent>
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project</groupId>
-	<artifactId>databases</artifactId>
-	<name>Databases</name>
-	<version>1.0</version>
-	<packaging>pom</packaging>
-	<description>The Databases pom file is a superpom to centralize all third parties</description>
-	<scm>
-		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/databases</connection>
-		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/databases</developerConnection>
-		<url>https://alban.googlecode.com/svn/${project.svn.path}/databases</url>
-		<tag>HEAD</tag>
-	</scm>
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.nabla.project</groupId>
+        <artifactId>databases</artifactId>
+        <name>Databases</name>
+        <version>1.0</version>
+        <packaging>pom</packaging>
+        <description>The Databases pom file is a superpom to centralize all third parties</description>
+        <scm>
+                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/databases</connection>
+                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/databases</developerConnection>
+                <url>https://alban.googlecode.com/svn/${project.svn.path}/databases</url>
+                <tag>HEAD</tag>
+        </scm>
 
-	<profiles>
-		<!-- ================= START Database Profiles ================= -->
-		<profile>
-			<id>mysql</id>
-			<properties>
+        <profiles>
+                <!-- ================= START Database Profiles ================= -->
+                <profile>
+                        <id>mysql</id>
+                        <properties>
 
-				<database>mysql</database>
-				<!--<database.name>myDBGlobal</database.name>-->
-				<database.name>nabla</database.name>
-				<!-- Database settings -->
-				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<dbunit.schema></dbunit.schema>
+                                <database>mysql</database>
+                                <!--<database.name>myDBGlobal</database.name>-->
+                                <database.name>nabla</database.name>
+                                <!-- Database settings -->
+                                <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                                <dbunit.schema></dbunit.schema>
 
-				<!--
-					Change driver jar for appropriate database For MySQL use:
-					mysql-connector-java-X-bin.jar For Hypersonic use: hsqldb.jar
-				-->
-				<!--
-					<jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar>
-				-->
-				<jdbc.client.artifactId>mysql-connector-java</jdbc.client.artifactId>
-				<jdbc.groupId>mysql</jdbc.groupId>
-				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-				<jdbc.version>5.1.14</jdbc.version>
-
-				<!-- <jdbc.driver.jar>${base.dir}/model/doa/lib/mysql-connector-java-5.0.5-bin.jar</jdbc.driver.jar> -->
-				<!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}-${jdbc.version}.jar</jdbc.driver.jar> -->
-				<jdbc.driver.jar>
-				<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
-                                TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
-                                </jdbc.driver.jar>
-				<!--
-					Change driver for appropriate database For MySQL use:
-					com.mysql.jdbc.Driver For Hypersonic use: org.hsqldb.jdbcDriver For
-					Oracle9i use: oracle.jdbc.driver.OracleDriver For DB2 use:
-					COM.ibm.db2.jdbc.app.DB2Driver For Informix use:
-					com.informix.jdbc.IfxDriver For MSSQL use:
-					com.microsoft.jdbc.sqlserver.SQLServerDriver For Pointbase use:
-					com.pointbase.jdbc.jdbcUniversalDriver For Postgres use:
-					org.postgresql.Driver For Sybase use:
-					com.sybase.jdbc2.jdbc.SybDataSource For SapDB use:
-					com.sap.dbtech.jdbc.DriverSapDB For Progress use:
-					com.progress.sql.jdbc.JdbcProgressDriver For Derby use:
-					org.apache.derby.jdbc.EmbeddedDriver
-				-->
-				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-
-				<!-- Change this to the host on which your database will be deployed -->
-				<!--<database.host>localhost</database.host>-->
-				<database.host>ec2-174-129-9-255.compute-1.amazonaws.com</database.host>				
-				<!-- Change this the port on which your database will be deploy -->
-				<!--<database.port>3406</database.port>-->
-				<database.port>3306</database.port>				
-				<!--
-					Change connection url for appropriate database For MySQL use:
-					jdbc:mysql://localhost:3306/timetracker For Hypersonic use:
-					jdbc:hsqldb:hsql://127.0.0.1:1701 For Oracle9i use:
-					jdbc:oracle:thin:@localhost:1521:yoursid For DB2 use:
-					jdbc:db2:timetracker For Informix use:
-					jdbc:informix-sqli://localhost:1557/timetracker:INFORMIXSERVER=myserver
-					For MSSQL use:
-					jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=timetracker
-					For Pointbase use:
-					jdbc:pointbase:server://@pointbase.server@:@pointbase.port/pointbase.timetracker@,new
-					For Postgres use: jdbc:postgresql://localhost/timetracker For
-					Sybase use:
-					jdbc:sybase:Tds:localhost:5000/timetracker?JCONNECT_VERSION=6 For
-					SapDB use: jdbc:sapdb://127.0.0.1/timetracker For Progress use:
-					jdbc:JdbcProgress:T:localhost:3305:timetracker
-				-->
-                                
                                 <!--
-				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>
-				-->
-				<jdbc.username>nabla</jdbc.username>
-				<jdbc.password>nabla</jdbc.password>
+                                        Change driver jar for appropriate database For MySQL use:
+                                        mysql-connector-java-X-bin.jar For Hypersonic use: hsqldb.jar
+                                -->
+                                <!--
+                                        <jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar>
+                                -->
+                                <jdbc.client.artifactId>mysql-connector-java</jdbc.client.artifactId>
+                                <jdbc.groupId>mysql</jdbc.groupId>
+                                <jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
+                                <jdbc.version>5.1.14</jdbc.version>
 
-				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.client.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.client.url>
-				<!--<jdbc.url>${jdbc.client.url}</jdbc.url> -->
-				<jdbc.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}?createDatabaseIfNotExist=true]]></jdbc.url>
-				<!-- <jdbc.url>jdbc:mysql://localhost:3306/timetracker</jdbc.url> -->
-
-				<!-- START DATABASE INFO USE BY ANROMDA -->
-				<!--
-					Change this to generate to the correct MDA database mappings, For
-					MySql use: MySQL For Hypersonic use: HypersonicSql For Oracle9i
-					use: Oracle9i For DB2 use: DB2 For Informix use: InformixDB For
-					MSSQL use: MSSQL For Pointbase use: PointBase For Postgres use:
-					PostgreSQL For Sybase use: Sybase For SapDB use: SapDB For Derby
-					use: Derby
-				-->
-				<sql.mappings>MySQL</sql.mappings>
-				<!--
-					Change exception sorder class name for appropriate database For
-					MySQL use:
-					org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter For
-					Hypersonic use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
-					Oracle9i use:
-					org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter For
-					DB2 use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
-					Informix use:
-					org.jboss.resource.adapter.jdbc.vendor.InformixExceptionSorter For
-					MSSQL use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
-					Pointbase use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
-					Postgres use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
-					Sybase use:
-					org.jboss.resource.adapter.jdbc.vendor.SybaseExceptionSorter For
-					SapDB use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
-					Progress use:
-					org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter
-				-->
-				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter</jdbc.exception.sorter>
-				<!-- END DATABASE INFO USE BY ANROMDA -->
-
-				<!-- START DATABASE INFO USE BY BOTH -->
-				<!--
-					Change this for the appropriate database For MySql use:
-					org.hibernate.dialect.MySQLDialect For MySql InnoDB use:
-					org.hibernate.dialect.MySQLInnoDBDialect For MySql MyISAM use:
-					org.hibernate.dialect.MySQLMyISAMDialect For Hypersonic use:
-					org.hibernate.dialect.HSQLDialect For Oracle any version use:
-					org.hibernate.dialect.OracleDialect For Oracle9i/10g use:
-					org.hibernate.dialect.Oracle9Dialect For DB2 use:
-					org.hibernate.dialect.DB2Dialect For Informix use:
-					org.hibernate.dialect.InformixDialect For MSSQL use:
-					org.hibernate.dialect.SQLServerDialect For Pointbase use:
-					org.hibernate.dialect.PointbaseDialect For Postgres use:
-					org.hibernate.dialect.PostgreSQLDialect For Sybase use:
-					org.hibernate.dialect.SybaseDialect For Sybase Anywhere use:
-					org.hibernate.dialect.SybaseAnywhereDialect For SapDB use:
-					org.hibernate.dialect.SAPDBDialect For Progress use:
-					org.hibernate.dialect.ProgressDialect For Derby use:
-					org.hibernate.dialect.DerbyDialect
-				-->
-				<hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
-				<!--
-					Change this to the correct database type mappings (for Jboss)
-					For MySql use: mySQL
-					For Hypersonic use: Hypersonic SQL
-					For Oracle9i use: Oracle9i
-					For DB2 use: DB2
-					For Informix use: InformixDB
-					For MSSQL use: MS SQLSERVER2000
-					For Pointbase use: PointBase
-					For Postgres use: PostgreSQL 7.2
-					For Sybase use: Sybase
-					For SapDB use: SapDB
-					For Derby use: Derby
-				-->
-				<jboss.typeMappings>mySQL</jboss.typeMappings>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>sybase</id>
-			<properties>
-
-				<database>sybase</database>
-				<database.name>myDBGlobal</database.name>
-				<!-- Database settings -->
-				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<dbunit.schema></dbunit.schema>
-
-				<jdbc.client.artifactId>jconn3</jdbc.client.artifactId>
-				<jdbc.groupId>com.sybase</jdbc.groupId>
-				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-				<jdbc.version>6.0</jdbc.version>
-
-				<!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}.jar</jdbc.driver.jar> -->
-				<jdbc.driver.jar>
-				<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
+                                <!-- <jdbc.driver.jar>${base.dir}/model/doa/lib/mysql-connector-java-5.0.5-bin.jar</jdbc.driver.jar> -->
+                                <!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}-${jdbc.version}.jar</jdbc.driver.jar> -->
+                                <jdbc.driver.jar>
+                                <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
                                 TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
                                 </jdbc.driver.jar>
-				<!--
-					<unittest.datasource.driver.class.name>
-					com.sybase.jdbc3.jdbc.SybDriver
-					</unittest.datasource.driver.class.name>
-					<unittest.datasource.class.name>
-					org.springframework.jdbc.datasource.DriverManagerDataSource
-					</unittest.datasource.class.name>
-				-->
-				<!--
-					<jdbc.driver>com.sybase.jdbc2.jdbc.SybDataSource</jdbc.driver>
-					<jdbc.driver>com.sybase.jdbc3.jdbc.SybDataSource</jdbc.driver>
-				-->
-				<jdbc.driver>com.sybase.jdbc3.jdbc.SybDriver</jdbc.driver>
+                                <!--
+                                        Change driver for appropriate database For MySQL use:
+                                        com.mysql.jdbc.Driver For Hypersonic use: org.hsqldb.jdbcDriver For
+                                        Oracle9i use: oracle.jdbc.driver.OracleDriver For DB2 use:
+                                        COM.ibm.db2.jdbc.app.DB2Driver For Informix use:
+                                        com.informix.jdbc.IfxDriver For MSSQL use:
+                                        com.microsoft.jdbc.sqlserver.SQLServerDriver For Pointbase use:
+                                        com.pointbase.jdbc.jdbcUniversalDriver For Postgres use:
+                                        org.postgresql.Driver For Sybase use:
+                                        com.sybase.jdbc2.jdbc.SybDataSource For SapDB use:
+                                        com.sap.dbtech.jdbc.DriverSapDB For Progress use:
+                                        com.progress.sql.jdbc.JdbcProgressDriver For Derby use:
+                                        org.apache.derby.jdbc.EmbeddedDriver
+                                -->
+                                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 
-				<!-- Change this to the host on which your database will be deployed -->
-				<database.host>kdbxsol02</database.host>
-				<!-- Change this the port on which your database will be deploy -->
-				<database.port>4100</database.port>
+                                <!-- Change this to the host on which your database will be deployed -->
+                                <!--<database.host>localhost</database.host>-->
+                                <database.host>ec2-174-129-9-255.compute-1.amazonaws.com</database.host>
+                                <!-- Change this the port on which your database will be deploy -->
+                                <!--<database.port>3406</database.port>-->
+                                <database.port>3306</database.port>
+                                <!--
+                                        Change connection url for appropriate database For MySQL use:
+                                        jdbc:mysql://localhost:3306/timetracker For Hypersonic use:
+                                        jdbc:hsqldb:hsql://127.0.0.1:1701 For Oracle9i use:
+                                        jdbc:oracle:thin:@localhost:1521:yoursid For DB2 use:
+                                        jdbc:db2:timetracker For Informix use:
+                                        jdbc:informix-sqli://localhost:1557/timetracker:INFORMIXSERVER=myserver
+                                        For MSSQL use:
+                                        jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=timetracker
+                                        For Pointbase use:
+                                        jdbc:pointbase:server://@pointbase.server@:@pointbase.port/pointbase.timetracker@,new
+                                        For Postgres use: jdbc:postgresql://localhost/timetracker For
+                                        Sybase use:
+                                        jdbc:sybase:Tds:localhost:5000/timetracker?JCONNECT_VERSION=6 For
+                                        SapDB use: jdbc:sapdb://127.0.0.1/timetracker For Progress use:
+                                        jdbc:JdbcProgress:T:localhost:3305:timetracker
+                                -->
 
-				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>
+                                <!--
+                                <jdbc.username>sa</jdbc.username>
+                                <jdbc.password></jdbc.password>
+                                -->
+                                <jdbc.username>nabla</jdbc.username>
+                                <jdbc.password>nabla</jdbc.password>
 
-				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.client.url><![CDATA[jdbc:sybase:Tds://${database.host}:${database.port}/${database.name}]]></jdbc.client.url>
-				<!--<jdbc.url>${jdbc.client.url}</jdbc.url> -->
-				<jdbc.url><![CDATA[jdbc:sybase:Tds://${database.host}:${database.port}/${database.name}]]></jdbc.url>
-				<!-- <jdbc.url>jdbc:mysql://localhost:3306/timetracker</jdbc.url> -->
+                                <!-- jdbc:mysql://localhost:3306/myDB -->
+                                <jdbc.client.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.client.url>
+                                <!--<jdbc.url>${jdbc.client.url}</jdbc.url> -->
+                                <jdbc.url><![CDATA[jdbc:mysql://${database.host}:${database.port}/${database.name}?createDatabaseIfNotExist=true]]></jdbc.url>
+                                <!-- <jdbc.url>jdbc:mysql://localhost:3306/timetracker</jdbc.url> -->
 
-				<sql.mappings>Sybase</sql.mappings>
+                                <!-- START DATABASE INFO USE BY ANROMDA -->
+                                <!--
+                                        Change this to generate to the correct MDA database mappings, For
+                                        MySql use: MySQL For Hypersonic use: HypersonicSql For Oracle9i
+                                        use: Oracle9i For DB2 use: DB2 For Informix use: InformixDB For
+                                        MSSQL use: MSSQL For Pointbase use: PointBase For Postgres use:
+                                        PostgreSQL For Sybase use: Sybase For SapDB use: SapDB For Derby
+                                        use: Derby
+                                -->
+                                <sql.mappings>MySQL</sql.mappings>
+                                <!--
+                                        Change exception sorder class name for appropriate database For
+                                        MySQL use:
+                                        org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter For
+                                        Hypersonic use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
+                                        Oracle9i use:
+                                        org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter For
+                                        DB2 use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
+                                        Informix use:
+                                        org.jboss.resource.adapter.jdbc.vendor.InformixExceptionSorter For
+                                        MSSQL use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
+                                        Pointbase use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
+                                        Postgres use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
+                                        Sybase use:
+                                        org.jboss.resource.adapter.jdbc.vendor.SybaseExceptionSorter For
+                                        SapDB use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter For
+                                        Progress use:
+                                        org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter
+                                -->
+                                <jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter</jdbc.exception.sorter>
+                                <!-- END DATABASE INFO USE BY ANROMDA -->
 
-				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.SybaseExceptionSorter</jdbc.exception.sorter>
+                                <!-- START DATABASE INFO USE BY BOTH -->
+                                <!--
+                                        Change this for the appropriate database For MySql use:
+                                        org.hibernate.dialect.MySQLDialect For MySql InnoDB use:
+                                        org.hibernate.dialect.MySQLInnoDBDialect For MySql MyISAM use:
+                                        org.hibernate.dialect.MySQLMyISAMDialect For Hypersonic use:
+                                        org.hibernate.dialect.HSQLDialect For Oracle any version use:
+                                        org.hibernate.dialect.OracleDialect For Oracle9i/10g use:
+                                        org.hibernate.dialect.Oracle9Dialect For DB2 use:
+                                        org.hibernate.dialect.DB2Dialect For Informix use:
+                                        org.hibernate.dialect.InformixDialect For MSSQL use:
+                                        org.hibernate.dialect.SQLServerDialect For Pointbase use:
+                                        org.hibernate.dialect.PointbaseDialect For Postgres use:
+                                        org.hibernate.dialect.PostgreSQLDialect For Sybase use:
+                                        org.hibernate.dialect.SybaseDialect For Sybase Anywhere use:
+                                        org.hibernate.dialect.SybaseAnywhereDialect For SapDB use:
+                                        org.hibernate.dialect.SAPDBDialect For Progress use:
+                                        org.hibernate.dialect.ProgressDialect For Derby use:
+                                        org.hibernate.dialect.DerbyDialect
+                                -->
+                                <hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
+                                <!--
+                                        Change this to the correct database type mappings (for Jboss)
+                                        For MySql use: mySQL
+                                        For Hypersonic use: Hypersonic SQL
+                                        For Oracle9i use: Oracle9i
+                                        For DB2 use: DB2
+                                        For Informix use: InformixDB
+                                        For MSSQL use: MS SQLSERVER2000
+                                        For Pointbase use: PointBase
+                                        For Postgres use: PostgreSQL 7.2
+                                        For Sybase use: Sybase
+                                        For SapDB use: SapDB
+                                        For Derby use: Derby
+                                -->
+                                <jboss.typeMappings>mySQL</jboss.typeMappings>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                        <dependencies>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.client.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
+                                </dependency>
+                        </dependencies>
+                </profile>
+                <profile>
+                        <id>sybase</id>
+                        <properties>
 
-				<hibernate.dialect>org.hibernate.dialect.SybaseDialect</hibernate.dialect>
-				<jboss.typeMappings>Sybase</jboss.typeMappings>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>derby</id>
-			<!--
-			<activation>
-				<property>
-					<name>!profile.activation</name>
-				</property>
-			</activation>
-			-->
-			<properties>
-				<database>derby</database>
-				<database.name>myDBGlobal</database.name>
-				<!-- Database settings -->
-				<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<dbunit.schema>APP</dbunit.schema>
-				<jdbc.driver.jar>
-					<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
+                                <database>sybase</database>
+                                <database.name>myDBGlobal</database.name>
+                                <!-- Database settings -->
+                                <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                                <dbunit.schema></dbunit.schema>
+
+                                <jdbc.client.artifactId>jconn3</jdbc.client.artifactId>
+                                <jdbc.groupId>com.sybase</jdbc.groupId>
+                                <jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
+                                <jdbc.version>6.0</jdbc.version>
+
+                                <!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}.jar</jdbc.driver.jar> -->
+                                <jdbc.driver.jar>
+                                <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
                                 TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
-				</jdbc.driver.jar>
+                                </jdbc.driver.jar>
+                                <!--
+                                        <unittest.datasource.driver.class.name>
+                                        com.sybase.jdbc3.jdbc.SybDriver
+                                        </unittest.datasource.driver.class.name>
+                                        <unittest.datasource.class.name>
+                                        org.springframework.jdbc.datasource.DriverManagerDataSource
+                                        </unittest.datasource.class.name>
+                                -->
+                                <!--
+                                        <jdbc.driver>com.sybase.jdbc2.jdbc.SybDataSource</jdbc.driver>
+                                        <jdbc.driver>com.sybase.jdbc3.jdbc.SybDataSource</jdbc.driver>
+                                -->
+                                <jdbc.driver>com.sybase.jdbc3.jdbc.SybDriver</jdbc.driver>
 
-				<jdbc.groupId>org.apache.derby</jdbc.groupId>
-				<jdbc.client.artifactId>derbyclient</jdbc.client.artifactId>
-				<jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId>
-				<jdbc.artifactId>${jdbc.embedded.artifactId}</jdbc.artifactId>
-				<jdbc.version>${jdbc.derby.version}</jdbc.version>
-				<jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
-				<jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
-				<!--
-					<jdbc.driver> 
-					org.apache.derby.jdbc.ClientDriver
-					org.apache.derby.jdbc.EmbeddedDriver
-					org.apache.derby.jdbc.AutoloadedDriver 
-					</jdbc.driver>
-				-->
-				<!--<jdbc.driver>org.apache.derby.jdbc.AutoloadedDriver</jdbc.driver>-->				
-				<jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
-				<database.host>localhost</database.host>
-				<database.port>1527</database.port>
-				<!-- informartion must be declare in pom module -->
-				<!-- <jdbc.embedded.url><![CDATA[jdbc:derby:F:\workspace\SVNView\poc\Extractor-Database\Extractor-Business-Dao\myDB]]></jdbc.embedded.url> -->
-				<!-- ;shutdown=true -->
-				<!-- <jdbc.client.url><![CDATA[jdbc:derby://${database.host}:${database.port}/myDB]]></jdbc.client.url> -->
-				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<jdbc.username>user</jdbc.username>
-				<jdbc.password>user</jdbc.password>
-				<!-- jdbc:mysql://localhost:3306/myDB -->
-				<!-- create database in C:/tmp -->
-				<jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
-				<jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
-				<jdbc.url>${jdbc.embedded.url}</jdbc.url>
+                                <!-- Change this to the host on which your database will be deployed -->
+                                <database.host>kdbxsol02</database.host>
+                                <!-- Change this the port on which your database will be deploy -->
+                                <database.port>4100</database.port>
 
-				<hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
-				<jboss.typeMappings>Derby</jboss.typeMappings>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-			<dependencies>
-				<!--
-					Comment out if deploying to a Java EE 5 server with a server
-					provided data source
-				-->
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.embedded.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>derbytools</artifactId>
-					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>derbynet</artifactId>
-					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
-					<scope>provided</scope>
-				</dependency>
+                                <jdbc.username>sa</jdbc.username>
+                                <jdbc.password></jdbc.password>
 
-				<!-- org.apache.derby.jdbc.ClientDriver -->
-				<!--
-				<dependency> 
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version> 
-					<scope>compile</scope>
-				</dependency>
-				-->
-			</dependencies>
-		</profile>
-		<profile>
-			<id>h2</id>
-			<activation>
-				<property>
-					<name>!profile.activation</name>
-				</property>
-			</activation>					
-			<properties>
-				<database>h2</database>
-				<database.name>myDBGlobal</database.name>
+                                <!-- jdbc:mysql://localhost:3306/myDB -->
+                                <jdbc.client.url><![CDATA[jdbc:sybase:Tds://${database.host}:${database.port}/${database.name}]]></jdbc.client.url>
+                                <!--<jdbc.url>${jdbc.client.url}</jdbc.url> -->
+                                <jdbc.url><![CDATA[jdbc:sybase:Tds://${database.host}:${database.port}/${database.name}]]></jdbc.url>
+                                <!-- <jdbc.url>jdbc:mysql://localhost:3306/timetracker</jdbc.url> -->
 
-				<!-- Database settings -->
-				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<dbunit.schema>PUBLIC</dbunit.schema>
-				<sql.mappings>H2Sql</sql.mappings>
-				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
-				<!-- H2 Database with No emulation mode and Hibernate dialect, for local in-memory testing -->
-				<jdbc.client.artifactId>h2</jdbc.client.artifactId>
-				<jdbc.groupId>com.h2database</jdbc.groupId>
-				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-				<jdbc.version>1.3.168</jdbc.version>
-				<jdbc.driver>org.h2.Driver</jdbc.driver>
+                                <sql.mappings>Sybase</sql.mappings>
 
-				<database.host></database.host>
-				<database.port></database.port>
-				<!-- See http://www.h2database.com/html/features.html#database_url (mixed mode) -->
-				<!--<jdbc.url><![CDATA[jdbc:h2:tutorial-service]]></jdbc.url> -->
-				<jdbc.url>jdbc:h2:~/${database.name};AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</jdbc.url>
-				<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
-				<jdbc.driver.lib>${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
-				<jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
+                                <jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.SybaseExceptionSorter</jdbc.exception.sorter>
 
-				<jdbc.username>sa</jdbc.username>
-				<jdbc.password>sa</jdbc.password>
-
-				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-				<jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>hsqldb</id>	
-			<properties>
-				<database>hsqldb</database>
-				<database.name>myDBGlobal</database.name>
-				<dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<dbunit.schema>NABLA</dbunit.schema>
-				<sql.mappings>HypersonicSql</sql.mappings>
-				<jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
-				<jdbc.client.artifactId>hsqldb</jdbc.client.artifactId>
-				<jdbc.groupId>hsqldb</jdbc.groupId>
-				<jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-				<jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
-				<jdbc.driver>org.hsqldb.jdbcDriver</jdbc.driver>
-
-				<database.host>localhost</database.host>
-				<database.port>1701</database.port>
-				<!--<jdbc.url><![CDATA[jdbc:hsqldb:tutorial-service;shutdown=true]]></jdbc.url> -->
-				<!--<jdbc.url>jdbc:hsqldb:hsql://${database.host}:${database.port}</jdbc.url>-->
-				<jdbc.url>jdbc:hsqldb:mem:${database.name}</jdbc.url>
-				<!--<jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar> -->
-				<jdbc.driver.lib>${settings.localRepository}/com/hsqldb/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
-				<jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
-
-				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>
-
-				<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
-				<jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>			
-		</profile>
-		<profile>
-			<id>oracle</id>
-			<properties>
-				<database>oracle</database>
-				<database.name>myDBGlobal</database.name>
-				<!-- Database settings -->
-				<dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-				<!--<dbunit.schema>SYSTEM</dbunit.schema> -->
-				<dbunit.schema>NABLA</dbunit.schema>
-				<!-- Make sure to capitalize the schema name -->
-				<!--<sql.mappings>Oracle10g</sql.mappings> -->
-				<sql.mappings>Oracle9i</sql.mappings>
-				<jdbc.exception.sorter>org.hibernate.dialect.Oracle10gDialect</jdbc.exception.sorter>
-				<jdbc.groupId>com.oracle</jdbc.groupId>
-				<jdbc.artifactId>ojdbc14</jdbc.artifactId>
-				<jdbc.client.artifactId>ojdbc14</jdbc.client.artifactId>
-				<!-- <jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId> -->
-				<jdbc.version>10.2.0.2.0</jdbc.version>
-				<!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}.jar</jdbc.driver.jar> -->
-				<jdbc.driver.jar>
-					<!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
+                                <hibernate.dialect>org.hibernate.dialect.SybaseDialect</hibernate.dialect>
+                                <jboss.typeMappings>Sybase</jboss.typeMappings>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                        <dependencies>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.client.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
+                                </dependency>
+                        </dependencies>
+                </profile>
+                <profile>
+                        <id>derby</id>
+                        <!--
+                        <activation>
+                                <property>
+                                        <name>!profile.activation</name>
+                                </property>
+                        </activation>
+                        -->
+                        <properties>
+                                <database>derby</database>
+                                <database.name>myDBGlobal</database.name>
+                                <!-- Database settings -->
+                                <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                                <dbunit.schema>APP</dbunit.schema>
+                                <jdbc.driver.jar>
+                                        <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
                                 TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
-				</jdbc.driver.jar>
+                                </jdbc.driver.jar>
 
-				<jdbc.driver>oracle.jdbc.OracleDriver</jdbc.driver>
+                                <jdbc.groupId>org.apache.derby</jdbc.groupId>
+                                <jdbc.client.artifactId>derbyclient</jdbc.client.artifactId>
+                                <jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId>
+                                <jdbc.artifactId>${jdbc.embedded.artifactId}</jdbc.artifactId>
+                                <jdbc.version>${jdbc.derby.version}</jdbc.version>
+                                <jdbc.embedded.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.embedded.driver>
+                                <jdbc.client.driver>org.apache.derby.jdbc.ClientDriver</jdbc.client.driver>
+                                <!--
+                                        <jdbc.driver>
+                                        org.apache.derby.jdbc.ClientDriver
+                                        org.apache.derby.jdbc.EmbeddedDriver
+                                        org.apache.derby.jdbc.AutoloadedDriver
+                                        </jdbc.driver>
+                                -->
+                                <!--<jdbc.driver>org.apache.derby.jdbc.AutoloadedDriver</jdbc.driver>-->
+                                <jdbc.driver>${jdbc.embedded.driver}</jdbc.driver>
+                                <database.host>localhost</database.host>
+                                <database.port>1527</database.port>
+                                <!-- informartion must be declare in pom module -->
+                                <!-- <jdbc.embedded.url><![CDATA[jdbc:derby:F:\workspace\SVNView\poc\Extractor-Database\Extractor-Business-Dao\myDB]]></jdbc.embedded.url> -->
+                                <!-- ;shutdown=true -->
+                                <!-- <jdbc.client.url><![CDATA[jdbc:derby://${database.host}:${database.port}/myDB]]></jdbc.client.url> -->
+                                <!-- jdbc:mysql://localhost:3306/myDB -->
+                                <jdbc.username>user</jdbc.username>
+                                <jdbc.password>user</jdbc.password>
+                                <!-- jdbc:mysql://localhost:3306/myDB -->
+                                <!-- create database in C:/tmp -->
+                                <jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
+                                <jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
+                                <jdbc.url>${jdbc.embedded.url}</jdbc.url>
 
-				<database.host>localhost</database.host>
-				<database.port>1521</database.port>
-				<!-- <jdbc.url><![CDATA[jdbc:oracle:thin:@localhost:1521:XE]]></jdbc.url> -->
-				<jdbc.url><![CDATA[jdbc:oracle:thin:@${database.host}:${database.port}:xe]]></jdbc.url>
-				<!--
-					<jdbc.username>system</jdbc.username>
-					<jdbc.password>admin</jdbc.password>
-				-->
-				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>
+                                <hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+                                <jboss.typeMappings>Derby</jboss.typeMappings>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                        <dependencies>
+                                <!--
+                                        Comment out if deploying to a Java EE 5 server with a server
+                                        provided data source
+                                -->
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.embedded.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
+                                </dependency>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>derbytools</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
+                                </dependency>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>derbynet</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
+                                </dependency>
 
-				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
-				<jboss.typeMappings>Oracle10g</jboss.typeMappings>
-				<dataSource.name>jdbc/${application.id}</dataSource.name>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
-					<!--<scope>compile</scope> -->
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>postgresql</id>
-			<properties>
-				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
-				<jdbc.groupId>postgresql</jdbc.groupId>
-				<jdbc.artifactId>postgresql</jdbc.artifactId>
-				<jdbc.version>8.1-407.jdbc3</jdbc.version>
-				<jdbc.driver>org.postgresql.Driver</jdbc.driver>
-				<jdbc.url><![CDATA[jdbc:postgresql://localhost/tutorial-service]]></jdbc.url>
-				<jdbc.username>postgres</jdbc.username>
-				<jdbc.password>postgres</jdbc.password>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-		</profile>
-		<profile>
-			<!--
-				You need to enable TCP/IP Connections for SQL Server 2005 after
-				installing.
-			-->
-			<!-- http://www.mattwoodward.com/blog/index.cfm?commentID=211 -->
-			<id>sqlserver</id>
-			<properties>
-				<dbunit.dataTypeFactoryName>org.dbunit.ext.mssql.MsSqlDataTypeFactory</dbunit.dataTypeFactoryName>
-				<dbunit.operation.type>MSSQL_CLEAN_INSERT</dbunit.operation.type>
-				<hibernate.dialect>org.hibernate.dialect.SQLServerDialect</hibernate.dialect>
-				<jdbc.groupId>net.sourceforge.jtds</jdbc.groupId>
-				<jdbc.artifactId>jtds</jdbc.artifactId>
-				<jdbc.version>1.2</jdbc.version>
-				<jdbc.driver>net.sourceforge.jtds.jdbc.Driver</jdbc.driver>
-				<jdbc.url><![CDATA[jdbc:jtds:sqlserver://localhost:3683/tutorial-service]]></jdbc.url>
-				<jdbc.username>sa</jdbc.username>
-				<jdbc.password></jdbc.password>
-				<dataSource.name>${application.id}</dataSource.name>
-			</properties>
-		</profile>
-		<!-- ================= END Database Profiles ================= -->
+                                <!-- org.apache.derby.jdbc.ClientDriver -->
+                                <!--
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.client.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <scope>compile</scope>
+                                </dependency>
+                                -->
+                        </dependencies>
+                </profile>
+                <profile>
+                        <id>h2</id>
+                        <activation>
+                                <property>
+                                        <name>!profile.activation</name>
+                                </property>
+                        </activation>
+                        <properties>
+                                <database>h2</database>
+                                <database.name>myDBGlobal</database.name>
+
+                                <!-- Database settings -->
+                                <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                                <dbunit.schema>PUBLIC</dbunit.schema>
+                                <sql.mappings>H2Sql</sql.mappings>
+                                <jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
+                                <!-- H2 Database with No emulation mode and Hibernate dialect, for local in-memory testing -->
+                                <jdbc.client.artifactId>h2</jdbc.client.artifactId>
+                                <jdbc.groupId>com.h2database</jdbc.groupId>
+                                <jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
+                                <jdbc.version>1.3.168</jdbc.version>
+                                <jdbc.driver>org.h2.Driver</jdbc.driver>
+
+                                <database.host></database.host>
+                                <database.port></database.port>
+                                <!-- See http://www.h2database.com/html/features.html#database_url (mixed mode) -->
+                                <!--<jdbc.url><![CDATA[jdbc:h2:tutorial-service]]></jdbc.url> -->
+                                <jdbc.url>jdbc:h2:~/${database.name};AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</jdbc.url>
+                                <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
+                                <jdbc.driver.lib>${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
+                                <jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
+
+                                <jdbc.username>sa</jdbc.username>
+                                <jdbc.password>sa</jdbc.password>
+
+                                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                                <jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                        <dependencies>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.client.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <scope>provided</scope>
+                                </dependency>
+                        </dependencies>
+                </profile>
+                <profile>
+                        <id>hsqldb</id>
+                        <properties>
+                                <database>hsqldb</database>
+                                <database.name>myDBGlobal</database.name>
+                                <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                                <dbunit.schema>NABLA</dbunit.schema>
+                                <sql.mappings>HypersonicSql</sql.mappings>
+                                <jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
+                                <jdbc.client.artifactId>hsqldb</jdbc.client.artifactId>
+                                <jdbc.groupId>hsqldb</jdbc.groupId>
+                                <jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
+                                <jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
+                                <jdbc.driver>org.hsqldb.jdbcDriver</jdbc.driver>
+
+                                <database.host>localhost</database.host>
+                                <database.port>1701</database.port>
+                                <!--<jdbc.url><![CDATA[jdbc:hsqldb:tutorial-service;shutdown=true]]></jdbc.url> -->
+                                <!--<jdbc.url>jdbc:hsqldb:hsql://${database.host}:${database.port}</jdbc.url>-->
+                                <jdbc.url>jdbc:hsqldb:mem:${database.name}</jdbc.url>
+                                <!--<jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar> -->
+                                <jdbc.driver.lib>${settings.localRepository}/com/hsqldb/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
+                                <jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
+
+                                <jdbc.username>sa</jdbc.username>
+                                <jdbc.password></jdbc.password>
+
+                                <hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+                                <jboss.typeMappings>Hypersonic SQL</jboss.typeMappings>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                        <dependencies>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.client.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <scope>provided</scope>
+                                </dependency>
+                        </dependencies>
+                </profile>
+                <profile>
+                        <id>oracle</id>
+                        <properties>
+                                <database>oracle</database>
+                                <database.name>myDBGlobal</database.name>
+                                <!-- Database settings -->
+                                <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+                                <!--<dbunit.schema>SYSTEM</dbunit.schema> -->
+                                <dbunit.schema>NABLA</dbunit.schema>
+                                <!-- Make sure to capitalize the schema name -->
+                                <!--<sql.mappings>Oracle10g</sql.mappings> -->
+                                <sql.mappings>Oracle9i</sql.mappings>
+                                <jdbc.exception.sorter>org.hibernate.dialect.Oracle10gDialect</jdbc.exception.sorter>
+                                <jdbc.groupId>com.oracle</jdbc.groupId>
+                                <jdbc.artifactId>ojdbc14</jdbc.artifactId>
+                                <jdbc.client.artifactId>ojdbc14</jdbc.client.artifactId>
+                                <!-- <jdbc.embedded.artifactId>derby</jdbc.embedded.artifactId> -->
+                                <jdbc.version>10.2.0.2.0</jdbc.version>
+                                <!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}.jar</jdbc.driver.jar> -->
+                                <jdbc.driver.jar>
+                                        <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
+                                TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
+                                </jdbc.driver.jar>
+
+                                <jdbc.driver>oracle.jdbc.OracleDriver</jdbc.driver>
+
+                                <database.host>localhost</database.host>
+                                <database.port>1521</database.port>
+                                <!-- <jdbc.url><![CDATA[jdbc:oracle:thin:@localhost:1521:XE]]></jdbc.url> -->
+                                <jdbc.url><![CDATA[jdbc:oracle:thin:@${database.host}:${database.port}:xe]]></jdbc.url>
+                                <!--
+                                        <jdbc.username>system</jdbc.username>
+                                        <jdbc.password>admin</jdbc.password>
+                                -->
+                                <jdbc.username>sa</jdbc.username>
+                                <jdbc.password></jdbc.password>
+
+                                <hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+                                <jboss.typeMappings>Oracle10g</jboss.typeMappings>
+                                <dataSource.name>jdbc/${application.id}</dataSource.name>
+                        </properties>
+                        <dependencies>
+                                <dependency>
+                                        <groupId>${jdbc.groupId}</groupId>
+                                        <artifactId>${jdbc.client.artifactId}</artifactId>
+                                        <version>${jdbc.version}</version>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
+                                </dependency>
+                        </dependencies>
+                </profile>
+                <profile>
+                        <id>postgresql</id>
+                        <properties>
+                                <hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+                                <jdbc.groupId>postgresql</jdbc.groupId>
+                                <jdbc.artifactId>postgresql</jdbc.artifactId>
+                                <jdbc.version>8.1-407.jdbc3</jdbc.version>
+                                <jdbc.driver>org.postgresql.Driver</jdbc.driver>
+                                <jdbc.url><![CDATA[jdbc:postgresql://localhost/tutorial-service]]></jdbc.url>
+                                <jdbc.username>postgres</jdbc.username>
+                                <jdbc.password>postgres</jdbc.password>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                </profile>
+                <profile>
+                        <!--
+                                You need to enable TCP/IP Connections for SQL Server 2005 after
+                                installing.
+                        -->
+                        <!-- http://www.mattwoodward.com/blog/index.cfm?commentID=211 -->
+                        <id>sqlserver</id>
+                        <properties>
+                                <dbunit.dataTypeFactoryName>org.dbunit.ext.mssql.MsSqlDataTypeFactory</dbunit.dataTypeFactoryName>
+                                <dbunit.operation.type>MSSQL_CLEAN_INSERT</dbunit.operation.type>
+                                <hibernate.dialect>org.hibernate.dialect.SQLServerDialect</hibernate.dialect>
+                                <jdbc.groupId>net.sourceforge.jtds</jdbc.groupId>
+                                <jdbc.artifactId>jtds</jdbc.artifactId>
+                                <jdbc.version>1.2</jdbc.version>
+                                <jdbc.driver>net.sourceforge.jtds.jdbc.Driver</jdbc.driver>
+                                <jdbc.url><![CDATA[jdbc:jtds:sqlserver://localhost:3683/tutorial-service]]></jdbc.url>
+                                <jdbc.username>sa</jdbc.username>
+                                <jdbc.password></jdbc.password>
+                                <dataSource.name>${application.id}</dataSource.name>
+                        </properties>
+                </profile>
+                <!-- ================= END Database Profiles ================= -->
 
                 <profile>
                     <id>sample</id>
                     <activation>
-	            	<property>
-	            		<name>profile.activation</name>
-	            	</property>
-	            </activation>
-			<modules>
-				<module>sample</module>
-			</modules>
-		</profile>
-	</profiles>
+                        <property>
+                                <name>profile.activation</name>
+                        </property>
+                    </activation>
+                        <modules>
+                                <module>sample</module>
+                        </modules>
+                </profile>
+        </profiles>
 
+	<repositories>
+		<repository>
+			<id>server-forge-release</id>
+			<name>External Staging Repository</name>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>server-forge-snapshot</id>
+			<name>External Snapshot Repository</name>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>server-forge-release</id>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+                <pluginRepository>
+                        <id>cloudbees-public-release</id>
+                        <url>http://repository-cloudbees.forge.cloudbees.com/public-release</url>
+                        <snapshots>
+                        	<enabled>false</enabled>
+                        </snapshots>
+                        <releases>
+                        	<enabled>true</enabled>
+                        </releases>
+                </pluginRepository>
+        </pluginRepositories>
 </project>
