@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -915,6 +916,8 @@
 						<artifactId>jdepend-maven-plugin</artifactId>
 						<version>${maven.jdepend.plugin.version}</version>
 					</plugin>
+					
+					<!-- TODO javancss:report does not work -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>javancss-maven-plugin</artifactId>
@@ -2712,6 +2715,8 @@
 					<version>${maven.apache.rat.plugin.version}</version>
 				</plugin>
 				-->
+				
+				<!-- TODO javancss:report does not work -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>javancss-maven-plugin</artifactId>
@@ -2752,13 +2757,12 @@
 						<generateXml>true</generateXml>
 						<generatePdf>true</generatePdf>
 						<generateHistorical>true</generateHistorical>
-						<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>
-						<!--
-						<license><![CDATA[PRPqqDetMlwPVvGmCtUsdXLjuMNpdsmwXSsfaGGrLKrcLGgB
-mk2L08qaG9tluU2sutFUsFMoR2L01lDe91>VJmozfxDyKznn
-qmMPusPnROoMprppqROtSpnnNqRpPNQMNQuXvXUVXwSPnmpm
-UUnprnsuuqmmmmmUUnprnsuuqmmmmmUUEXYiXUUn]]></license>
--->
+						<!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>-->
+						<license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
+mj2L0GvL7ePpomMqqELByruVl2K3>1GMBYKI4nhRWIL2RCC
+QMqOxUMMomNoqMomprpxWNQNrpONOqqqNrXtvUsSxUvrVWU
+STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
+vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 					</configuration>
 				</plugin>
 				<plugin>
