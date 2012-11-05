@@ -16,6 +16,7 @@
         <version>1.0</version>
         <packaging>pom</packaging>
         <description>The Databases pom file is a superpom to centralize all third parties</description>
+        
         <scm>
                 <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/databases</connection>
                 <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/databases</developerConnection>
@@ -23,6 +24,36 @@
                 <tag>HEAD</tag>
         </scm>
 
+	<properties>
+		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
+		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
+		<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>		
+	</properties>
+	
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<extensions>
+			<!-- WebDAV for remote deployment -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>${wagon.webdav.plugin.version}</version>
+			</extension>
+			<extension>
+				<groupId>org.jvnet.wagon-svn</groupId>
+				<artifactId>wagon-svn</artifactId>
+				<version>${wagon.svn.plugin.version}</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>${wagon.ftp.plugin.version}</version>
+			</extension>
+		</extensions>					
+	</build>
+	
         <profiles>
                 <!-- ================= START Database Profiles ================= -->
                 <profile>
@@ -547,6 +578,7 @@
                 </profile>
         </profiles>
 
+	<!--
 	<repositories>
 		<repository>
 			<id>server-forge-release</id>
@@ -598,4 +630,5 @@
                         </releases>
                 </pluginRepository>
         </pluginRepositories>
+        -->
 </project>
