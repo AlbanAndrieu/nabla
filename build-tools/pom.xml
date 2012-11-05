@@ -18,6 +18,7 @@
 	<packaging>jar</packaging>
 	<name>Maven Build Tools Configuration for quality metrics</name>
 	<description>Nabla Maven Config - global configurations for quality metrics such as PMD FindBugs CheckStyle</description>
+        <url>${JOB_URL}</url>	
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/trunk/build-tools</connection>
