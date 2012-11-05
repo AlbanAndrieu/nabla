@@ -1461,7 +1461,7 @@
 		<maven.patch.plugin.version>1.1.1</maven.patch.plugin.version>
 		<maven.one.plugin.version>1.2</maven.one.plugin.version>
 		<maven.findbugs.plugin.version>2.5.2</maven.findbugs.plugin.version>
-		<maven.javancss.plugin.version>2.0-beta-2</maven.javancss.plugin.version>
+		<maven.javancss.plugin.version>2.0</maven.javancss.plugin.version>
 		<maven.jdepend.plugin.version>2.0-beta-2</maven.jdepend.plugin.version>
 		<maven.changes.plugin.version>2.8</maven.changes.plugin.version>
 		<maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
@@ -2980,7 +2980,8 @@ UUnprnsuuqmmmmmUUnprnsuuqmmmmmUUEXYiXUUn]]></license>
 		      <execution>
 			<configuration>
 			  <files>
-			    <file>${home.dir}/filters/project-${environment}.properties</file>
+			    <!--<file>${home.dir}/filters/project-${environment}.properties</file>--> 
+			    <file>${home.dir}/build-tools/src/main/resources/project/project-development.properties</file>			    
 			  </files>
 			</configuration>
 		      </execution>
@@ -5876,4 +5877,56 @@ UUnprnsuuqmmmmmUUnprnsuuqmmmmmUUEXYiXUUn]]></license>
 		<!-- //	Misc -->
 		</dependencies>
 	</dependencyManagement>
+	
+	<repositories>
+		<repository>
+			<id>server-forge-release</id>
+			<name>External Staging Repository</name>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>server-forge-snapshot</id>
+			<name>External Snapshot Repository</name>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>server-forge-release</id>
+			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+                <pluginRepository>
+                        <id>cloudbees-public-release</id>
+                        <url>http://repository-cloudbees.forge.cloudbees.com/public-release</url>
+                        <snapshots>
+                        	<enabled>false</enabled>
+                        </snapshots>
+                        <releases>
+                        	<enabled>true</enabled>
+                        </releases>
+                </pluginRepository>
+        </pluginRepositories>	
 </project>
