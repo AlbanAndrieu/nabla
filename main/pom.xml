@@ -90,7 +90,7 @@
 		<oracle.port>8080</oracle.port>
 		<archiva.port>8010</archiva.port>
 		<continuum.port>8020</continuum.port>
-		<mysql.port>3306</derby.port>
+		<mysql.port>3306</mysql.port>
 		<sonar.port>9000</sonar.port>
 		<sonar.derby.port>1527</sonar.derby.port>
 		<sonar.mysql.port>${mysql.port}</sonar.derby.port>
