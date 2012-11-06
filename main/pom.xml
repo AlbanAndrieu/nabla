@@ -93,7 +93,7 @@
 		<mysql.port>3306</mysql.port>
 		<sonar.port>9000</sonar.port>
 		<sonar.derby.port>1527</sonar.derby.port>
-		<sonar.mysql.port>${mysql.port}</sonar.derby.port>
+		<sonar.mysql.port>${mysql.port}</sonar.mysql.port>
 		<fitness.port>9090</fitness.port>
 		<bugzilla.mysql.port>${mysql.port}</bugzilla.mysql.port>
 
