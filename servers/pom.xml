@@ -14,7 +14,8 @@
 	<name>Servers</name>
 	<packaging>pom</packaging>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
-
+        <url>${JOB_URL}</url>
+        
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
 		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
@@ -107,8 +108,12 @@
     			</build>		
 			<properties>
 				<!-- sonar user admin password admin -->
+				<!--
 				<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
 				<sonar.jdbc.driver>org.apache.derby.jdbc.ClientDriver</sonar.jdbc.driver>
+				-->				
+				<sonar.jdbc.url>jdbc:mysql://localhost:${sonar.mysql.port}/sonar?useUnicode=true&characterEncoding=utf8</sonar.jdbc.url>				
+				<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
 				<sonar.jdbc.defaultTransactionIsolation>1</sonar.jdbc.defaultTransactionIsolation>
 				<!--
 					<sonar.jdbc.url>jdbc:mysql://localhost:3306/sonar</sonar.jdbc.url>
