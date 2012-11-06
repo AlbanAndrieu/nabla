@@ -15,6 +15,7 @@
 	<version>1.0</version>
 	<packaging>pom</packaging>
 	<description>The Main pom file is a superpom to centralize all third parties</description>
+	<url>${JOB_URL}</url>
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/main</connection>
@@ -88,10 +89,12 @@
 		<oracle.port>8080</oracle.port>
 		<archiva.port>8010</archiva.port>
 		<continuum.port>8020</continuum.port>
+		<mysql.port>3306</derby.port>
 		<sonar.port>9000</sonar.port>
 		<sonar.derby.port>1527</sonar.derby.port>
+		<sonar.mysql.port>${mysql.port}</sonar.derby.port>
 		<fitness.port>9090</fitness.port>
-		<bugzilla.mysql.port>3306</bugzilla.mysql.port>
+		<bugzilla.mysql.port>${mysql.port}</bugzilla.mysql.port>
 
 		<apache-continuum.version>1.2.3</apache-continuum.version>
 
@@ -1169,15 +1172,25 @@
 								</plugin>
 
 								<!-- Comment analyser les metriques avec JDepend -->
+								<!-- TODO does not work jdepend:generate -->
 								<plugin>
 									<groupId>org.codehaus.mojo</groupId>
 									<artifactId>jdepend-maven-plugin</artifactId>
 									<version>${maven.jdepend.plugin.version}</version>
 								</plugin>
+								
+								<!-- TODO javancss:report does not work -->
 								<plugin>
 									<groupId>org.codehaus.mojo</groupId>
 									<artifactId>javancss-maven-plugin</artifactId>
 									<version>${maven.javancss.plugin.version}</version>
+									<!--
+        								<configuration>
+        								  <failOnViolation>true</failOnViolation>
+        								  <ccnLimit>12</ccnLimit>
+        								  <ncssLimit>90</ncssLimit>
+        								</configuration>
+        								-->
 								</plugin>
 
 								<!--
