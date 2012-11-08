@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- USED by HUDSON -->
 
@@ -79,10 +79,7 @@ under the License.
    | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.
    |-->
   <pluginGroups>
-    <!-- pluginGroup
-     | Specifies a further group identifier to use for plugin lookup.
-    <pluginGroup>com.your.plugins</pluginGroup>
-    -->
+    <pluginGroup>com.atlassian.maven.plugins</pluginGroup>
   </pluginGroups>
 
   <!-- proxies
