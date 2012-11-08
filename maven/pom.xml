@@ -31,7 +31,7 @@
     </modules>
 
     <properties>    
-    	<invoker.skip>false</invoker.skip>-->
+    	<invoker.skip>false</invoker.skip>
     	<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
       	<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
 	<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
