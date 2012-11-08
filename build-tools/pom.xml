@@ -49,7 +49,8 @@
 	</developers>
 
 	<properties>
-		<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
+		<!--<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>-->
+		<wagon.webdav.jackrabbit.version>1.0-beta-7</wagon.webdav.jackrabbit.version>
 		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
 		<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,11 +76,19 @@
 		</resources>
 		<extensions>
 			<!-- WebDAV for remote deployment -->
+			<!-- not working with maven 3 mvn site
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-webdav</artifactId>
 				<version>${wagon.webdav.plugin.version}</version>
 			</extension>
+			-->
+			<!-- comment to	avoid basic authentication scheme selected -->
+			<extension>
+			       <groupId>org.apache.maven.wagon</groupId>
+			       <artifactId>wagon-webdav-jackrabbit</artifactId>
+			       <version>${wagon.webdav.jackrabbit.version}</version>
+			</extension>    
 			<extension>
 				<groupId>org.jvnet.wagon-svn</groupId>
 				<artifactId>wagon-svn</artifactId>
