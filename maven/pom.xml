@@ -16,7 +16,8 @@
     <packaging>pom</packaging>
     <name>AndroMDA Maven Site Plugins</name>
     <description>The Nabla Maven site plugins</description>
-    <url>http://maven.apache.org/skins/</url>
+    <!--<url>http://maven.apache.org/skins/</url>-->
+    <url>${JOB_URL}</url>    
 
     <scm>
     	<connection>scm:svn:http://alban.googlecode.com/svn/trunk/maven</connection>
@@ -30,6 +31,7 @@
     </modules>
 
     <properties>    
+    	<invoker.skip>false</invoker.skip>-->
     	<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>
       	<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
 	<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
