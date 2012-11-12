@@ -10,7 +10,6 @@
     
     <groupId>com.nabla.project</groupId>
     <artifactId>skin</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
     <name>Nabla Site Skin</name>
     <description>The Nabla site skin</description>
