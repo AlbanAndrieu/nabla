@@ -1,3 +1,4 @@
+#http://www.youtube.com/watch?v=DM_UQVVVtoY
 #http://www.debuntu.org/ldap-server-and-linux-ldap-clients
 
 #remove if you want
@@ -20,3 +21,27 @@ Allow LDAPv2 Protocol? ... No
 #test
 ldapsearch -x -b dc=ldap,dc=nabla,dc=mobi
 ldapsearch -x -h localhost -b "dc=ldap,dc=nabla,dc=mobi" "(objectClass=*)"
+
+#tosee
+#http://www.ghacks.net/2010/09/02/adding-ldap-entries-from-the-command-line/
+
+#Install phpLDAPadmin
+#http://www.ghacks.net/2010/08/30/manage-your-ldap-data-with-phpldapadmin/
+sudo apt-get install php5-ldap 
+sudo cp phpldapadmin-1.2.3.tgz  /var/www/
+sudo tar xvfz phpldapadmin-1.2.3.tgz
+sudo mv phpldapadmin-1.2.3 phpldapadmin
+cd /var/www/phpldapadmin/config
+sudo mv config.php.example config.php
+
+#restart
+sudo /etc/init.d/apache2 restart
+#ou
+sudo service apache2 restart
+
+#login
+cn=admin,dc=ldap,dc=nabla,dc=mobi
+
+add a user albandri with password like the developer workstation
+
+

@@ -10,6 +10,9 @@ sudo apt-get remove libservlet2.5-java
 #WAR
 /usr/share/jenkins/
 
+#JENKINS USER
+tomcat6
+/usr/share/tomcat6/
 /home/kdeveloper/.jenkins
 
 java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010

@@ -80,6 +80,8 @@ under the License.
    |-->
   <pluginGroups>
     <pluginGroup>com.atlassian.maven.plugins</pluginGroup>
+    <pluginGroup>com.sonatype.maven.plugins</pluginGroup>
+    <pluginGroup>org.sonatype.plugins</pluginGroup>
   </pluginGroups>
 
   <!-- proxies
@@ -154,7 +156,16 @@ under the License.
       <privateKey>/path/to/private/key</privateKey>
       <passphrase>optional; leave empty if not used.</passphrase>
     </server>
-        -->
+    -->
+    <server>
+      <id>albandri</id>
+      <username>albandri</username>
+      <password>XXX</password>
+      <passphrase>some_passphrase</passphrase>
+      <filePermissions>664</filePermissions>
+      <directoryPermissions>775</directoryPermissions>
+      <privateKey>${user.home}/.ssh/id_dsa</privateKey>
+    </server>
   </servers>
 
   <!-- mirrors
@@ -199,6 +210,12 @@ under the License.
       <mirrorOf>apache.snapshots</mirrorOf>
     </mirror>    
     -->      
+    <mirror>
+        <!--This sends everything else to /public -->
+        <id>nexus</id>
+        <mirrorOf>*</mirrorOf>
+        <url>http://localhost:8081/nexus/content/groups/public</url>
+    </mirror>
   </mirrors>
 
   <!-- profiles
@@ -308,7 +325,7 @@ under the License.
 		<repository>
 			<id>server-forge-release</id>
 			<name>External Staging Repository</name>
-			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<url>https://repository-nabla.forge.cloudbees.com/release</url>
 			<layout>default</layout>
 			<snapshots>
 				<enabled>false</enabled>
@@ -320,8 +337,7 @@ under the License.
 		<repository>
 			<id>server-forge-snapshot</id>
 			<name>External Snapshot Repository</name>
-			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
-			<layout>default</layout>
+			<url>https://repository-nabla.forge.cloudbees.com/snapshot</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>daily</updatePolicy>
@@ -336,7 +352,7 @@ under the License.
 	<pluginRepositories>
 		<pluginRepository>
 			<id>server-forge-release</id>
-			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<url>https://repository-nabla.forge.cloudbees.com/release</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -366,7 +382,7 @@ under the License.
       	<repository>
       		<id>server-forge-release</id>
       		<name>External Staging Repository</name>
-      		<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+      		<url>https://repository-nabla.forge.cloudbees.com/release</url>
       		<layout>default</layout>
       		<snapshots>
       			<enabled>false</enabled>
@@ -378,7 +394,7 @@ under the License.
       	<repository>
       		<id>server-forge-snapshot</id>
       		<name>External Snapshot Repository</name>
-      		<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
+      		<url>https://repository-nabla.forge.cloudbees.com/snapshot</url>
       		<layout>default</layout>
       		<snapshots>
       			<enabled>true</enabled>
@@ -534,7 +550,7 @@ under the License.
       <pluginRepositories>
       	<pluginRepository>
       		<id>server-forge-release</id>
-      		<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+      		<url>https://repository-nabla.forge.cloudbees.com/release</url>
       		<snapshots>
       			<enabled>false</enabled>
       		</snapshots>
@@ -662,6 +678,38 @@ under the License.
       	-->	
       </pluginRepositories>    
     </profile>
+        <profile>
+            <id>nexus</id>
+            <!--all requests to nexus via the mirror -->
+            <repositories>
+                <repository>
+                    <id>nexus-releases</id>
+                    <url>http://localhost:8081/nexus/content/repositories/releases/</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </repository>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-releases</id>
+                    <url>http://localhost:8081/nexus/content/repositories/releases/</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>nexus-snapshots</id>
+                    <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
  </profiles>
 
   <!-- activeProfiles
@@ -674,6 +722,7 @@ under the License.
   -->
   <activeProfiles>
     <!--<activeProfile>cloudbees</activeProfile>-->
-    <activeProfile>[[PROJECT_USER]]</activeProfile>
+    <!--<activeProfile>[[PROJECT_USER]]</activeProfile>-->
+    <activeProfile>nexus</activeProfile>
   </activeProfiles>  
 </settings>
