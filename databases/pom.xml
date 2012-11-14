@@ -569,7 +569,7 @@
 				<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
 				<sonar.jdbc.driver>org.apache.derby.jdbc.ClientDriver</sonar.jdbc.driver>
 				-->				
-				<sonar.jdbc.url>jdbc:mysql://localhost:${sonar.mysql.port}/sonar?useUnicode=true&characterEncoding=utf8</sonar.jdbc.url>				
+				<sonar.jdbc.url><![CDATA[jdbc:mysql://localhost:${sonar.mysql.port}/sonar?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></sonar.jdbc.url>		
 				<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
 				<sonar.jdbc.defaultTransactionIsolation>1</sonar.jdbc.defaultTransactionIsolation>
 				<!--
