@@ -1313,6 +1313,7 @@
 		<gae.version>1.5.3</gae.version>
 		<gwtp.all.version>0.7</gwtp.all.version>
 		<gwt.seam.version>1.0</gwt.seam.version>
+		<objectify.version>4.0b1</objectify.version>
 		<errai.version>2.0.Beta3</errai.version>
 
 		<selenium.version>0.8.1</selenium.version>
@@ -1474,7 +1475,7 @@
 		<maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
 		<maven.assembly.plugin.version>2.3</maven.assembly.plugin.version>
 		<maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
-		<maven.scm.plugin.version>1.8</maven.scm.plugin.version>
+		<maven.scm.plugin.version>1.8.1</maven.scm.plugin.version>
 		<maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
 		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
@@ -4386,6 +4387,11 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 			  <artifactId>gwt-dev</artifactId>
 			  <version>${gwt.version}</version>
 			</dependency>
+    <dependency>
+      <groupId>com.googlecode.objectify</groupId>
+      <artifactId>objectify</artifactId>
+      <version>${objectify.version}</version>
+    </dependency>
 
 	   <dependency>
 	      <groupId>org.jboss.el</groupId>
