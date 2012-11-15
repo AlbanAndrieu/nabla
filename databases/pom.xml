@@ -265,13 +265,6 @@
                 </profile>
                 <profile>
                         <id>derby</id>
-                        <!--
-                        <activation>
-                                <property>
-                                        <name>!profile.activation</name>
-                                </property>
-                        </activation>
-                        -->
                         <properties>
                                 <database>derby</database>
                                 <database.name>myDBGlobal</database.name>
@@ -358,12 +351,15 @@
                         </dependencies>
                 </profile>
                 <profile>
-                        <id>h2</id>
+                        <id>h2</id>	     		
                         <activation>
+				<activeByDefault>true</activeByDefault>
+				<!--
                                 <property>
                                         <name>!profile.activation</name>
                                 </property>
-                        </activation>
+				-->
+                        </activation>			
                         <properties>
                                 <database>h2</database>
                                 <database.name>myDBGlobal</database.name>

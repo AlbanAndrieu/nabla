@@ -7,11 +7,11 @@
 		<artifactId>business</artifactId>
 		<version>1.0</version>
 	</parent>
+
 	<modelVersion>4.0.0</modelVersion>
         <name>Databases DAO global</name>
         <groupId>com.nabla.project.databases.sample.dao.business.global</groupId>
         <artifactId>global</artifactId>
-	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
         <description>Database-Business-Global Dao : mapping objet-relationnel (ORM)</description>
 	<build>

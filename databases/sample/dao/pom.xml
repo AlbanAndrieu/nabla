@@ -10,7 +10,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.nabla.project.databases.sample.dao</groupId>
   <artifactId>dao</artifactId>
-  <version>1.0</version>
   <packaging>pom</packaging>
   <name>Databases DAO Assembly</name>
   <description>Java DAO Assembly of the databases</description>
