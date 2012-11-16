@@ -6,7 +6,7 @@
 		<groupId>com.nabla.project</groupId>
 		<artifactId>main</artifactId>
 		<version>1.0</version>
-		<relativePath>../main/pom.xml</relativePath>
+		<!--<relativePath>../main/pom.xml</relativePath>-->
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -83,10 +83,11 @@
 		<profile>
 			<id>jboss7</id>
 			<activation>
-				<property>
-					<name>profile.activation</name>
-				</property>
-			</activation>
+                                <property>
+                                        <name>server</name>
+					<value>jboss7</value>
+                                </property>
+		 	</activation>
 			<properties>
 			        <!-- console user myNewUser admin added with add-user.sh -->
 			        <as.version>5</as.version>
@@ -142,10 +143,11 @@
 		<profile>
 			<id>jboss5</id>
 			<activation>
-				<property>
-					<name>!profile.activation</name>
-				</property>
-			</activation>
+                                <property>
+                                        <name>server</name>
+					<value>jboss5</value>
+                                </property>
+		 	</activation>
 			<properties>
 			        <as.version>5</as.version>
 			        <jboss.ear.version>5</jboss.ear.version>
@@ -226,6 +228,12 @@
                 	
 		<profile>
 			<id>jetty6</id>
+			<activation>
+                                <property>
+                                        <name>server</name>
+					<value>jetty6</value>
+                                </property>
+		 	</activation>
 			<properties>
 				<server.home></server.home>
 				<server.name>${product.name}</server.name>
@@ -239,10 +247,11 @@
 		<profile>
 			<id>tomcat7x</id>
 			<activation>
-				<property>
-					<name>profile.activation</name>
-				</property>
-			</activation>			
+                                <property>
+                                        <name>server</name>
+					<value>tomcat7x</value>
+                                </property>
+		 	</activation>		
 			<properties>
 				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
@@ -262,6 +271,12 @@
 		</profile>
 		<profile>
 			<id>tomcat6x</id>
+			<activation>
+                                <property>
+                                        <name>server</name>
+					<value>tomcat6x</value>
+                                </property>
+		 	</activation>	
 			<properties>
 				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
@@ -281,6 +296,12 @@
 		</profile>
 		<profile>
 			<id>glassfish</id>
+			<activation>
+                                <property>
+                                        <name>server</name>
+					<value>glassfish</value>
+                                </property>
+		 	</activation>	
 			<properties>
 				<!--<glassfish.home>${env.J2EE_HOME}</glassfish.home> -->
 				<glassfish.home>C:/Sun/SDK</glassfish.home>
