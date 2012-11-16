@@ -202,18 +202,19 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--
+		<!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
 		<dependency>
-			<groupId>torque</groupId>
-			<artifactId>maven-torque-plugin</artifactId>
-			<version>3.2-rc2</version>
-		</dependency>
-		 -->
+            		<groupId>batik</groupId>
+            		<artifactId>batik-ext</artifactId>
+            		<version>${batik.ext.version}</version>    
+        	</dependency>	
+        	<!--
 		<dependency>
 			<groupId>${jdbc.groupId}</groupId>
 			<artifactId>${jdbc.artifactId}</artifactId>
 			<version>${jdbc.version}</version>
 		</dependency>		 
+		-->
 	</dependencies>
 
 	<!-- ================= Default Properties ================= -->

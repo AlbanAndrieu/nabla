@@ -40,7 +40,13 @@
 			<artifactId>xercesImpl</artifactId>
 			<!-- <version>${xerces.version}</version> -->
 		</dependency>
-
+		<!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
+		<dependency>
+            		<groupId>batik</groupId>
+            		<artifactId>batik-ext</artifactId>
+            		<version>${batik.ext.version}</version>    
+        	</dependency>		
+        	
 		<!-- used by org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver -->
 		<dependency>
 			<groupId>org.springframework</groupId>
