@@ -6,14 +6,13 @@
                 <groupId>com.nabla.project</groupId>
                 <artifactId>dependencies</artifactId>
                 <version>1.0</version>
-                <!--<relativePath>../dependencies/pom.xml</relativePath>-->
+                <relativePath>../dependencies/pom.xml</relativePath>
         </parent>	
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project</groupId>
 	<artifactId>main</artifactId>
 	<name>Main</name>
-	<version>1.0</version>
 	<packaging>pom</packaging>
 	<description>The Main pom file is a superpom to centralize all third parties</description>
 	<url>${JOB_URL}</url>
