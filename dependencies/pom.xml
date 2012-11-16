@@ -1562,6 +1562,9 @@
 		  work with JBoss EAP 6. It requires you have access to	the JBoss EAP 6	maven
 		  repository. -->
 		<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
+		<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
+        	<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M4</org.jboss.bom.jboss.javaee6.with.tools.version>		
+        	<version.org.jboss.spec.jboss.javaee.6.0>${org.jboss.bom.jboss.javaee6.with.tools.version}</version.org.jboss.spec.jboss.javaee.6.0>
 	</properties>
 
 	<build>
@@ -3007,6 +3010,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 				<scope>import</scope>
 			</dependency>
 			-->
+			<!-- TODO use jboss-javaee-6.0-with-tools instead of jboss-javaee-6.0-->
 			<dependency>
 				<groupId>org.hibernate.javax.persistence</groupId>
 				<artifactId>hibernate-jpa-2.0-api</artifactId>
