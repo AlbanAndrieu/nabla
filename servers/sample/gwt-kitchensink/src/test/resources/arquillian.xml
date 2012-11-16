@@ -17,7 +17,7 @@
       <!-- If you want to use the JBOSS_HOME environment variable, just delete the jbossHome property -->
       <configuration>
          <!--<property name="jbossHome">/path/to/jboss/as</property>-->
-         <property name="jbossHome">C:\jboss-as-7.1.1.Final</property>
+         <property name="jbossHome">${server.home}</property>
       </configuration>
    </container>
 

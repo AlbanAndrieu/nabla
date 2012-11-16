@@ -415,6 +415,12 @@
 	</dependencies>
 
 	<build>
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>	
 		<!-- Maven will append the version to the finalName (which is the name 
 			given to the generated war, and hence the context root) -->
 		<finalName>${project.artifactId}</finalName>
@@ -587,8 +593,9 @@
 			</build>
 		</profile>
 
-		<profile>
-			<!-- Run with: mvn clean test -Parq-jbossas-managed -->
+		<!-- Run with: mvn clean test -Parq-jbossas-managed -->
+		<!-- does not work		
+		<profile>			
 			<id>arq-weld-ee-embedded</id>
 			<dependencies>
 				<dependency>
@@ -605,17 +612,26 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		-->
 
+		<!-- Run with: mvn clean test -Parq-jbossas-embedded -->
+		<!-- does not work
+		<profile>			
+			<id>arq-jbossas-embedded</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.as</groupId>
+					<artifactId>jboss-as-arquillian-container-embedded</artifactId>
+					<version>7.0.0.Beta3</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		-->
+		
 		<profile>
 			<!-- We add the JBoss repository as we need the JBoss AS connectors for 
 				Arquillian -->
-			<!-- <repositories> <repository> <id>jboss-public-repository</id> <name>JBoss 
-				Repository</name> <url>http://repository.jboss.org/nexus/content/groups/public</url> 
-				<releases> </releases> <snapshots> <enabled>false</enabled> </snapshots> 
-				</repository> </repositories> <pluginRepositories> <pluginRepository> <id>jboss-public-repository</id> 
-				<name>JBoss Repository</name> <url>http://repository.jboss.org/nexus/content/groups/public</url> 
-				<releases> </releases> <snapshots> <enabled>false</enabled> </snapshots> 
-				</pluginRepository> </pluginRepositories> -->
 			<!-- An optional Arquillian testing profile that executes tests in your 
 				JBoss AS instance -->
 			<!-- This profile will start a new JBoss AS instance, and execute the 
@@ -634,13 +650,6 @@
 		<profile>
 			<!-- We add the JBoss repository as we need the JBoss AS connectors for 
 				Arquillian -->
-			<!-- <repositories> <repository> <id>jboss-public-repository</id> <name>JBoss 
-				Repository</name> <url>http://repository.jboss.org/nexus/content/groups/public</url> 
-				<releases> </releases> <snapshots> <enabled>false</enabled> </snapshots> 
-				</repository> </repositories> <pluginRepositories> <pluginRepository> <id>jboss-public-repository</id> 
-				<name>JBoss Repository</name> <url>http://repository.jboss.org/nexus/content/groups/public</url> 
-				<releases> </releases> <snapshots> <enabled>false</enabled> </snapshots> 
-				</pluginRepository> </pluginRepositories> -->
 			<!-- An optional Arquillian testing profile that executes tests in a remote 
 				JBoss AS instance -->
 			<!-- Run with: mvn clean test -Parq-jbossas-remote -->
@@ -654,6 +663,8 @@
 			</dependencies>
 		</profile>
 
+		<!-- Run with: mvn clean test -Parq-glassfish-embedded -->
+		<!-- does not work
 		<profile>
 			<id>arq-glassfish-embedded</id>
 			<dependencies>
@@ -671,6 +682,7 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		-->
 
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
