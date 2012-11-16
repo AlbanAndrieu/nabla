@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
 	<parent>
 		<groupId>com.nabla.project</groupId>
 		<artifactId>servers</artifactId>
@@ -12,10 +13,9 @@
 	<groupId>com.nabla.project</groupId>
 	<artifactId>customs</artifactId>
 	<name>Customs</name>
-	<version>1.0</version>
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
-        <url>${JOB_URL}</url>	
+	<url>${JOB_URL}</url>	
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/customs</connection>
@@ -36,7 +36,7 @@
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<maven.test.skip>false</maven.test.skip>
-				<maven.test.failure.skip>true</maven.test.failure.skip>
+				<maven.test.failure.skip>false</maven.test.failure.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
 			</properties>
 		</profile>			
