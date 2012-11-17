@@ -82,29 +82,33 @@
             <!-- ================= START Container Profiles ================= -->
           <profile>
                       <id>jboss7</id>
-			<activation>
+                        <activation>
                                 <property>
+                                	<!--
                                         <name>server</name>
-					<value>jboss7</value>
+                                        <value>jboss7</value>
+                                        -->
+                                        <name>!server</name>                                    
                                 </property>
-		 	</activation>
-                  <properties>
+                        </activation>
+                  	<properties>
                                 <!-- console user myNewUser admin added with add-user.sh -->
                                 <as.version>5</as.version>
                                 <jboss.ear.version>7</jboss.ear.version>
                                 <!-- START INFO USE BY MDA -->
-                         <!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
-                                <jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>
-                               <server.home>${jboss.home}</server.home>
+                                <jboss.home>${env.JBOSS_HOME}</jboss.home>
+                                <!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>-->
+                                <!--<jboss.home>/workspace/jboss-as-7.1.1.Final/</jboss.home>-->
+                                <server.home>${jboss.home}</server.home>
                                 <server.name>${product.name}</server.name>
-                             <server.port>${jboss.port}</server.port>
+                                <server.port>${jboss.port}</server.port>
 
-                              <!-- Change this to the host on which your webservice will be deployed -->
+                              	<!-- Change this to the host on which your webservice will be deployed -->
                                 <webservice.host>localhost</webservice.host>
-                           <!-- Change this the port on which your webservice will be deploy -->
-                          <webservice.port>8180</webservice.port>
+                           	<!-- Change this the port on which your webservice will be deploy -->
+                          	<webservice.port>8180</webservice.port>
                                 <!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
-                              <dataSource>java:jboss/datasources/${dataSource.name}</dataSource>
+                              	<dataSource>java:jboss/datasources/${dataSource.name}</dataSource>
                                 <ejb.jndi.mappedname.pattern>java:global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern>
                                 <ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb>
                                 <ejb.jndi.pattern>java:app/core-${project.version}.jar/#{ejbName}</ejb.jndi.pattern>
@@ -114,10 +118,10 @@
                                 <hibernate.cache.provider></hibernate.cache.provider> <!-- must be to org.hibernate.cache.HashtableCacheProvider for openejb junit tests -->
                                 <deploy.url>WRONG use tomcat profile</deploy.url>
 
-                             <!-- END INFO USE BY MDA -->
+                             	<!-- END INFO USE BY MDA -->
                                 <cargo.container>jboss7x</cargo.container>
-                             <cargo.container.home>${jboss.home}</cargo.container.home>
-                             <cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
+                             	<cargo.container.home>${jboss.home}</cargo.container.home>
+                             	<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
                                 <cargo.host>localhost</cargo.host>
                                 <cargo.port>${jboss.port}</cargo.port>
                                 <cargo.wait>false</cargo.wait>
@@ -126,44 +130,44 @@
                                 <jboss.servers.directory>${jboss.home}</jboss.servers.directory>
                                 <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
                                 <!-- for jboss 7.1.1 compile -->
-                               <scope.type>${scope.ear}</scope.type>
+                                <scope.type>${scope.ear}</scope.type>
                                 <!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
-                             <hibernate.core.version>3.6.8.Final</hibernate.core.version>
+                             	<hibernate.core.version>3.6.8.Final</hibernate.core.version>
 
                                 <!-- must be emtpy for non jboss7 target -->
-                                   <!-- uncomment for open ejb to work -->
+                                <!-- uncomment for open ejb to work -->
                                 <!--
-                                   <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
-                            <ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
-                            <hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+                                <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
+                            	<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
+                            	<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
                                 -->
                     </properties>
           </profile>
 
                 <profile>
                       <id>jboss5</id>
-			<activation>
+                        <activation>
                                 <property>
                                         <name>server</name>
-					<value>jboss5</value>
+                                        <value>jboss5</value>
                                 </property>
-		 	</activation>
+                        </activation>
                   <properties>
                                 <as.version>5</as.version>
                                 <jboss.ear.version>5</jboss.ear.version>
-                               <!-- START INFO USE BY MDA -->
-                         <!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
+                                <!-- START INFO USE BY MDA -->
+                         	<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
                                 <jboss.home>C:\jboss-5.1.0.GA</jboss.home>
-                             <server.home>${jboss.home}</server.home>
+                             	<server.home>${jboss.home}</server.home>
                                 <server.name>${product.name}</server.name>
-                             <server.port>${jboss.port}</server.port>
+                             	<server.port>${jboss.port}</server.port>
 
-                              <!-- Change this to the host on which your webservice will be deployed -->
+                              	<!-- Change this to the host on which your webservice will be deployed -->
                                 <webservice.host>localhost</webservice.host>
-                           <!-- Change this the port on which your webservice will be deploy -->
-                          <webservice.port>8180</webservice.port>
+                           	<!-- Change this the port on which your webservice will be deploy -->
+                          	<webservice.port>8180</webservice.port>
                                 <!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
-                              <dataSource>java:/${dataSource.name}</dataSource>
+                                <dataSource>java:/${dataSource.name}</dataSource>
                                 <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
                                 <ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
                                 <ejb.jndi.pattern>${application.context}-ear/#{ejbName}/local</ejb.jndi.pattern>
@@ -173,11 +177,11 @@
                                 <hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
                                 <deploy.url>WRONG use tomcat profile</deploy.url>
 
-                             <!-- END INFO USE BY MDA -->
-                           <!--<cargo.container>jboss4x</cargo.container>-->
+                             	<!-- END INFO USE BY MDA -->
+                           	<!--<cargo.container>jboss4x</cargo.container>-->
                                 <cargo.container>jboss5x</cargo.container>
-                             <cargo.container.home>${jboss.home}</cargo.container.home>
-                             <cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
+                                <cargo.container.home>${jboss.home}</cargo.container.home>
+                              	<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
                                 <cargo.host>localhost</cargo.host>
                                 <cargo.port>${jboss.port}</cargo.port>
                                 <cargo.wait>false</cargo.wait>
@@ -190,19 +194,19 @@
                                 <scope.type>${scope.ear}</scope.type>
                                 <!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
                                 <!--
-                           <hibernate.core.version>3.3.2.GA</hibernate.core.version>
+                           	<hibernate.core.version>3.3.2.GA</hibernate.core.version>
                                 -->
                     </properties>
           </profile>
 
           <profile>
                  <id>jetty6</id>
-			<activation>
+                        <activation>
                                 <property>
                                         <name>server</name>
-					<value>jetty6</value>
+                                        <value>jetty6</value>
                                 </property>
-		 	</activation>                 
+                        </activation>
                  <properties>
                          <server.home></server.home>
                          <server.name>${product.name}</server.name>
@@ -215,12 +219,12 @@
           </profile>
           <profile>
                 <id>tomcat7x</id>
-			<activation>
+                        <activation>
                                 <property>
                                         <name>server</name>
-					<value>tomcat7x</value>
+                                        <value>tomcat7x</value>
                                 </property>
-		 	</activation>	
+                        </activation>
                 <properties>
                           <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
                           <server.home>${tomcat.home}</server.home>
@@ -240,12 +244,12 @@
           </profile>
           <profile>
                 <id>tomcat6x</id>
-			<activation>
+                        <activation>
                                 <property>
                                         <name>server</name>
-					<value>tomcat6x</value>
+                                        <value>tomcat6x</value>
                                 </property>
-		 	</activation>	                
+                        </activation>
                 <properties>
                           <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
                           <server.home>${tomcat.home}</server.home>
@@ -265,12 +269,12 @@
           </profile>
           <profile>
                 <id>glassfish</id>
-			<activation>
+                 <activation>
                                 <property>
                                         <name>server</name>
-					<value>glassfish</value>
+                                        <value>glassfish</value>
                                 </property>
-		 	</activation>	
+                        </activation>
                 <properties>
                            <!--<glassfish.home>${env.J2EE_HOME}</glassfish.home> -->
                            <glassfish.home>C:/Sun/SDK</glassfish.home>
