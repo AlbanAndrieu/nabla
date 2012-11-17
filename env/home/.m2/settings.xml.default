@@ -135,6 +135,12 @@ under the License.
       <username>alban.andrieu@nabla.mobi</username>
       <password>TODO</password>
     </server>
+
+    <server>
+      <id>cloudbees-private-repository</id>
+      <username>nabla</username>
+      <password>TODO</password>
+    </server>
     <server>
       <id>server-forge-release</id>
       <username>nabla</username>
@@ -319,6 +325,13 @@ under the License.
       </properties>
     </profile>    
     -->		
+    <profile>
+      <id>unittest</id>
+      <properties>
+        <maven.test.skip>false</maven.test.skip>
+        <maven.failure.skip>true</maven.failure.skip>
+      </properties>
+    </profile>
     <profile>
       <id>cloudbees</id>
 	<repositories>
@@ -724,5 +737,6 @@ under the License.
     <!--<activeProfile>cloudbees</activeProfile>-->
     <!--<activeProfile>[[PROJECT_USER]]</activeProfile>-->
     <activeProfile>nexus</activeProfile>
+    <activeProfile>unittest</activeProfile>
   </activeProfiles>  
 </settings>
