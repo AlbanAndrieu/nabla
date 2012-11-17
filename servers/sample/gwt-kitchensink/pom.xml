@@ -17,7 +17,7 @@
 
 	<properties>
 	        <application.id>nabla</application.id>
-		<dataSource>java:/jdbc/${dataSource.name}</dataSource>
+		<!--<dataSource>java:/jdbc/${dataSource.name}</dataSource>-->
 		<database.name>nabla</database.name>
 
 		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any 
