@@ -37,6 +37,8 @@
 			<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version> <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version> 
 			<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version> -->
 		<org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version> <!-- TODO check because version is better than main pom -->
+		<!-- TODO remove -->
+		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
 		<!-- TODO SEE https://docs.jboss.org/author/display/ARQ/Apache+OpenEJB+3.1+-+Embedded -->
 	</properties>
 
