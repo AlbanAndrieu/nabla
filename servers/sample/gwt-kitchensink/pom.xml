@@ -39,6 +39,7 @@
 		<org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version> <!-- TODO check because version is better than main pom -->
 		<!-- TODO remove -->
 		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
+		<version.org.jboss.as.arquillian.container>7.1.1.Final</version.org.jboss.as.arquillian.container>
 		<!-- TODO SEE https://docs.jboss.org/author/display/ARQ/Apache+OpenEJB+3.1+-+Embedded -->
 	</properties>
 
