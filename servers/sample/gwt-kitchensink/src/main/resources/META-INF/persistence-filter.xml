@@ -4,10 +4,10 @@
    xsi:schemaLocation="
         http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-   <persistence-unit name="nabla">
+   <persistence-unit name="${application.id}">
       <!-- If you are running in a production environment, add a managed 
          data source, the example data source is just for proofs of concept! -->
-      <jta-data-source>java:/jdbc/nabla</jta-data-source>
+      <jta-data-source>${dataSource}</jta-data-source>
       <class>org.jboss.tools.gwt.kitchensink.client.shared.Member</class>
       <properties>
          <!-- Properties for Hibernate -->

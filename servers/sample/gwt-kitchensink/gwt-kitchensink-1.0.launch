@@ -11,7 +11,7 @@
 <stringAttribute key="org.hibernate.eclipse.launch.CONNECTION_PROFILE_NAME" value="H2 Generic JDBC"/>
 <listAttribute key="org.hibernate.eclipse.launch.FILE_MAPPINGS"/>
 <stringAttribute key="org.hibernate.eclipse.launch.HIBERNATE_VERSION" value="3.6"/>
-<stringAttribute key="org.hibernate.eclipse.launch.PERSISTENCE_UNIT_NAME" value="primary"/>
+<stringAttribute key="org.hibernate.eclipse.launch.PERSISTENCE_UNIT_NAME" value="nabla"/>
 <stringAttribute key="org.hibernate.eclipse.launch.PROPERTY_FILE" value="\gwt-kitchensink-1.0\hibernate-console.properties"/>
 <stringAttribute key="org.hibernate.eclipse.launchDIALECT" value="org.hibernate.dialect.H2Dialect"/>
 </launchConfiguration>
