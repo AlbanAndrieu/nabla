@@ -114,9 +114,12 @@
 	</contributors>
 	<licenses>
 		<license>
+			<!--<name>GNU Lesser General Public License, Version 2.1</name>-->
 			<name>Nabla</name>
-            <!-- TODO remove hard coded LICENSE-1.0.txt -->
-			<url>../build-tools/src/main/resources/project/LICENSE-1.0.txt</url>
+            		<url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+            		<!-- TODO remove hard coded LICENSE-1.0.txt -->
+            		<!--<url>../build-tools/src/main/resources/project/LICENSE-1.0.txt</url>-->
+            		<!--<distribution>repo</distribution>-->
 			<distribution>perso</distribution>
 			<comments>This program is the property of Nabla</comments>
 		</license>
@@ -1563,7 +1566,8 @@
 		  repository. -->
 		<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 		<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-        	<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M4</org.jboss.bom.jboss.javaee6.with.tools.version>		
+        	<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>		
+        	<version.org.jboss.as.arquillian.container>7.1.1.Final</version.org.jboss.as.arquillian.container>
         	<version.org.jboss.spec.jboss.javaee.6.0>${org.jboss.bom.jboss.javaee6.with.tools.version}</version.org.jboss.spec.jboss.javaee.6.0>
 	</properties>
 
