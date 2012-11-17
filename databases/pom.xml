@@ -371,8 +371,11 @@
                         <id>h2</id>	     		
 			<activation>
                                 <property>
+                                	<!--
                                         <name>database</name>
 					<value>h2</value>
+					-->
+                                        <name>!database</name>					
                                 </property>
 		 	</activation>
                         <properties>
