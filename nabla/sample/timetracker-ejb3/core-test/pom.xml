@@ -443,7 +443,7 @@
 					</testResource>
 				</testResources>
 				<filters>
-					<filter>${home.dir}/filters/project-${environment}.properties</filter>
+					<filter>${home.dir}/build-tools/src/main/resources/project/project-development.properties</filter>
 				</filters>   				
 			</build>
 		</profile>			
@@ -576,8 +576,8 @@
 						-->
 					</testResource>			
 				</testResources>
-				<filters>
-					<filter>${home.dir}/filters/${project.parent.artifactId}-${environment}.properties</filter>
+				<filters>				
+					<filter>${home.dir}/build-tools/src/main/resources/project/${project.parent.artifactId}-development.properties</filter>
 				</filters>				
 			</build>
 		</profile>

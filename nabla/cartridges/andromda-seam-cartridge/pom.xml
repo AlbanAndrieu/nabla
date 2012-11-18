@@ -23,6 +23,14 @@
     <!-- TODO it is a copy of andromda-gui-cartridge with a few change in cartridge.xml -->
     
     <dependencies>
+        <dependency>
+        	<groupId>org.andromda.profiles.uml2</groupId>
+          	<artifactId>andromda-profile-shared</artifactId>
+          	<version>${project.version}</version>
+          	<type>xml.zip</type>
+        	<scope>runtime</scope>
+         	<optional>true</optional>
+        </dependency>    
         <!--
         <dependency>
             <groupId>org.andromda.cartridges</groupId>

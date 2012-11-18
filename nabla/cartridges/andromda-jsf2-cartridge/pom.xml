@@ -22,6 +22,14 @@
     </description>
     <dependencies>
         <dependency>
+        	<groupId>org.andromda.profiles.uml2</groupId>
+          	<artifactId>andromda-profile-shared</artifactId>
+          	<version>${project.version}</version>
+          	<type>xml.zip</type>
+        	<scope>runtime</scope>
+         	<optional>true</optional>
+        </dependency>    
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>${project.artifactId}-components</artifactId>
             <version>${project.version}</version>

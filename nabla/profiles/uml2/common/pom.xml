@@ -5,8 +5,8 @@
         <artifactId>uml2</artifactId>
         <version>3.4</version>
     </parent>
-    <packaging>xml.zip</packaging>
     <artifactId>andromda-profile</artifactId>
+    <packaging>xml.zip</packaging>    
     <name>AndroMDA UML 2.0 Common Profile</name>
     
     <scm>
@@ -17,6 +17,14 @@
     </scm>
     
     <dependencies>
+        <dependency>
+            <groupId>org.andromda.metafacades</groupId>
+            <artifactId>andromda-metafacades-uml</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>    
         <dependency>
             <groupId>org.andromda.profiles.uml2</groupId>
             <artifactId>andromda-profile-datatype</artifactId>

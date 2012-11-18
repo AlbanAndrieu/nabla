@@ -145,6 +145,46 @@
     <build>
         <!--<defaultGoal>install</defaultGoal>-->
         <plugins>
+	    <!--
+	      Maven filter properties are	ony visible to resources and can not be
+	      accessed from the POM. This	is where the Properties	Maven Plugin makes
+	      our	life a little easier when dealing with properties that we need to
+	      access inside our POM. It provides goals to	read and write properties
+	      from and to	files, and also	to set system properties. It's main use-case
+	      is loading properties from files instead of	declaring them in pom.xml,
+	      something that comes in handy when dealing with different environments.
+	      The	plugin is configured to	read properties	during the "validate" phase
+	      and	the properties are then	accessible from	the pom.
+	    -->
+	    <!-- TODO DO NOT USE filter for portability purpose -->
+	    <plugin>
+	      <groupId>org.codehaus.mojo</groupId>
+	      <artifactId>properties-maven-plugin</artifactId>
+	      <executions>
+	        <!--
+	        <execution>
+	    <id>p-show-properties</id>
+	    <phase>generate-resources</phase>
+	    <goals>
+	      <goal>write-active-profile-properties</goal>
+	    </goals>
+	    <configuration>
+	      <outputFile>
+	        ${project.build.outputDirectory}/project-${environment}.properties
+	      </outputFile>
+	    </configuration>
+	        </execution>
+	        -->
+	        <execution>
+	    <configuration>
+	      <files>
+	        <!--<file>${home.dir}/filters/project-${environment}.properties</file>--> 
+	        <file>${home.dir}/build-tools/src/main/resources/project/project-development.properties</file>			    
+	      </files>
+	    </configuration>
+	        </execution>
+	      </executions>
+	    </plugin>        
             <!--
             <plugin>
                 <groupId>com.ctp.seam.maven</groupId>

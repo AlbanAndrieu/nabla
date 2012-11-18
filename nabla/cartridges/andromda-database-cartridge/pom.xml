@@ -19,9 +19,9 @@
    <dependencies> 
 	<dependency>
             <groupId>org.andromda.profiles.uml2</groupId>
-            <artifactId>uml2</artifactId>
+            <artifactId>andromda-profile</artifactId>
             <version>${project.version}</version>
-            <type>pom</type>
+            <type>xml.zip</type>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>

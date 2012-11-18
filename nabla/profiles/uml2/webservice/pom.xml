@@ -5,8 +5,8 @@
         <artifactId>uml2</artifactId>
         <version>3.4</version>
     </parent>
-    <packaging>xml.zip</packaging>
     <artifactId>andromda-profile-webservice</artifactId>
+    <packaging>xml.zip</packaging>    
     <name>AndroMDA UML 2.0 WebService Profile</name>
     
     <scm>
