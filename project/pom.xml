@@ -4,9 +4,9 @@
 
         <parent>
                 <groupId>com.nabla.project</groupId>
-                <artifactId>customs</artifactId>
+                <artifactId>servers</artifactId>
                 <version>1.0</version>
-                <!--<relativePath>../customs/pom.xml</relativePath>-->
+                <relativePath>../servers/pom.xml</relativePath>
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
