@@ -12,7 +12,6 @@
 	<groupId>com.nabla.project.core.etl.core.spring</groupId>
 	<artifactId>spring</artifactId>
 	<packaging>jar</packaging>
-<!-- 	<version>1.0</version> -->
 	<name>Etl Core Spring</name>
 	<description>Java core spring of the Etl</description>
 
@@ -29,6 +28,11 @@
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>		
 	</dependencies>
 
 	<build>
