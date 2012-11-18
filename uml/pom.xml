@@ -6,7 +6,7 @@
                 <groupId>com.nabla.project</groupId>
                 <artifactId>project</artifactId>
                 <version>1.0</version>
-                <!--<relativePath>../project/pom.xml</relativePath>-->
+                <relativePath>../project/pom.xml</relativePath>
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
