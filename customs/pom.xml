@@ -75,6 +75,38 @@
         	    </build>
         	</profile>
 		<profile>
+        	    <id>clover.report</id>
+        	    <build>
+        	        <plugins>
+        	            <plugin>
+        	                <groupId>com.atlassian.maven.plugins</groupId>
+        	                <artifactId>maven-clover2-plugin</artifactId>
+        	                <version>${maven.clover.plugin.version}</version>
+        	                <executions>
+        	                    <execution>
+        	                        <id>clover</id>
+        	                        <phase>verify</phase>
+        	                        <goals>
+        	                            <goal>instrument</goal>
+        	                            <goal>check</goal>
+        	                            <goal>clover</goal>
+        	                        </goals>
+        	                    </execution>
+        	                </executions>
+        	            </plugin>
+        	        </plugins>
+        	    </build>
+        	     <reporting>
+        	         <plugins>
+        	             <plugin>
+        	                 <groupId>com.atlassian.maven.plugins</groupId>
+        	                 <artifactId>maven-clover2-plugin</artifactId>
+        	                 <version>${maven.clover.plugin.version}</version>
+        	             </plugin>
+        	         </plugins>
+        	     </reporting>
+        	</profile>        	
+		<profile>
         	    <id>clover.all</id>
         	    <build>
         	        <plugins>
