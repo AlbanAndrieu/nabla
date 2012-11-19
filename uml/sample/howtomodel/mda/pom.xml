@@ -77,7 +77,7 @@
 	</dependencies>
 	<profiles>
          	<profile>
-         	    <id>mda/id>
+         	    <id>mda</id>
          	    <activation>
          	        <property>
          	            <name>!mda</name>
