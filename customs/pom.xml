@@ -40,7 +40,70 @@
 				<maven.test.failure.skip>true</maven.test.failure.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
 			</properties>
-		</profile>			
+		</profile>		
+		<profile>
+        	    <id>clover.optimize</id>
+        	    <build>
+        	        <plugins>
+        	            <plugin>
+        	                <groupId>com.atlassian.maven.plugins</groupId>
+        	                <artifactId>maven-clover2-plugin</artifactId>
+        	                <version>${maven.clover.plugin.version}</version>
+        	                <configuration>
+        	                      <generateHistorical>true</generateHistorical>
+        	                      <snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>
+        	                      <!--<singleCloverDatabase>true</singleCloverDatabase>-->
+        	                </configuration>
+        	                <executions>
+        	                    <execution>
+        	                        <id>clover</id>
+        	                        <goals>
+        	                            <goal>setup</goal>
+        	                            <goal>optimize</goal>
+        	                            <goal>snapshot</goal>
+        	                        </goals>
+        	                    </execution>
+        	                </executions>
+        	            </plugin>
+        	        </plugins>
+        	    </build>
+        	</profile>
+		<profile>
+        	    <id>clover.all</id>
+        	    <build>
+        	        <plugins>
+        	            <plugin>
+        	                <groupId>com.atlassian.maven.plugins</groupId>
+        	                <artifactId>maven-clover2-plugin</artifactId>
+        	                <version>${maven.clover.plugin.version}</version>
+        	                <configuration>
+        	                      <!--<targetPercentage>93%</targetPercentage>-->
+        	                      <generateHistorical>true</generateHistorical>
+        	                      <snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>
+        	                      <!--<singleCloverDatabase>true</singleCloverDatabase>-->
+        	                </configuration>
+        	                <executions>
+        	                    <execution>
+        	                        <id>clover</id>
+        	                        <goals>
+        	                            <goal>setup</goal>
+        	                            <goal>optimize</goal>
+        	                            <goal>snapshot</goal>
+        	                        </goals>
+        	                    </execution>
+        	                    <execution>
+        	                        <phase>verify</phase>
+        	                        <goals>
+        	                            <goal>clover</goal>
+        	                            <goal>log</goal>
+        	                            <goal>check</goal>
+        	                        </goals>
+        	                    </execution>
+        	                </executions>
+        	            </plugin>
+        	        </plugins>
+        	    </build>
+        	</profile>        				
 	</profiles>
 
 </project>
