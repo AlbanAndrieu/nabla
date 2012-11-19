@@ -51,8 +51,14 @@
         	                <version>${maven.clover.plugin.version}</version>
         	                <configuration>
         	                      <generateHistorical>true</generateHistorical>
-        	                      <snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>
-        	                      <!--<singleCloverDatabase>true</singleCloverDatabase>-->
+        	                      <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
+        	                      <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
+        	                      <singleCloverDatabase>true</singleCloverDatabase>
+        	                      <historyDir>${user.home}/history/${project.artifact}</historyDir>
+        	                      <includesAllSourceRoots>true</includesAllSourceRoots>
+        	                      <generatePdf>true</generatePdf>
+  				      <generateXml>true</generateXml>
+  				      <generateHtml>true</generateHtml>
         	                </configuration>
         	                <executions>
         	                    <execution>
@@ -79,8 +85,13 @@
         	                <configuration>
         	                      <!--<targetPercentage>93%</targetPercentage>-->
         	                      <generateHistorical>true</generateHistorical>
-        	                      <snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>
-        	                      <!--<singleCloverDatabase>true</singleCloverDatabase>-->
+        	                      <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
+        	                      <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
+        	                      <singleCloverDatabase>true</singleCloverDatabase>
+        	                      <historyDir>${user.home}/history/${project.artifact}</historyDir>
+        	                      <generatePdf>true</generatePdf>
+  				      <generateXml>true</generateXml>
+  				      <generateHtml>true</generateHtml>        	                      
         	                </configuration>
         	                <executions>
         	                    <execution>
