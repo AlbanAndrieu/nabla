@@ -1,12 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+         
     <parent>
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
     </parent>
+    
+    <modelVersion>4.0.0</modelVersion>    
     <artifactId>war-base</artifactId>
     <packaging>war</packaging>
     <name>[${project.parent.artifactId} :: EJB3 Web Base] - ${project.artifactId} : ${project.version}</name>
@@ -470,9 +472,11 @@
                 <configuration>
                     <!-- the default value is the filter list under build -->
           	    <!-- specifying a filter will override the filter list under build -->
+          	    <!--
           	    <filters>
-          	      <filter>${home.dir}/filters/${project.parent.artifactId}-${environment}.properties</filter>
+          	      <filter>${home.dir}/build-tools/src/main/resources/project/${project.parent.artifactId}-development.properties</filter>
           	    </filters>
+          	    -->
           	    <webResources>
           	      <webResource>
           	        <directory>${basedir}/src/main/webapp/WEB-INF</directory>

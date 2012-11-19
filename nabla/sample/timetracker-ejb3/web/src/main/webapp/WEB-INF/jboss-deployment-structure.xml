@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- See http://community.jboss.org/blogs/marek-novotny/2011/07/15/seam-2-jpa-example-on-jboss-as7,
 https://docs.jboss.org/author/display/AS7/Class+Loading+in+AS7
 This configuration is for the standalone war deployment, not the ear/war bundle

@@ -24,7 +24,7 @@
 		http://jboss.com/products/seam/transaction http://jboss.com/products/seam/jms-2.2.xsd">
 
    <!--
-   <core:init jndi-pattern="@jndiPattern@" debug="@debug@" distributable="false"/>
+   <core:init jndi-pattern="@jndiPattern@" debug="@application.debug@" distributable="false"/>
    
    <core:manager conversation-timeout="120000"
                  concurrent-request-timeout="500"
@@ -33,7 +33,7 @@
    <transaction:ejb-transaction/>
    -->
 
-   <core:init debug="@debug@" jndi-pattern="@jndiPattern@"/>
+   <core:init debug="@application.debug@" jndi-pattern="@jndiPattern@"/>
 
    <core:manager concurrent-request-timeout="500"
                  conversation-timeout="120000"

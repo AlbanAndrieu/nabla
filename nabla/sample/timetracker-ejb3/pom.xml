@@ -323,12 +323,34 @@
     	  you can use as a template for your own JBoss Seam project
     	</application.description>
     	<application.distributable>false</application.distributable>
+    	<application.debug>true</application.debug> <!-- TODO jdkDebug -->
     	<!-- JBoss JNDI Pattern -->
     	<application.jndi.pattern>${ejb.jndi.pattern}</application.jndi.pattern>
     	<!-- OpenEJB JNDI Pattern -->
     	<!--use same propertie as jboss5x profile for openejb to work -->
     	<application.jndi.pattern.test>${ejb.jndi.pattern.test}</application.jndi.pattern.test>    	
 
-    	<application.unpack.modules>false</application.unpack.modules>
+    	<application.unpack.modules>false</application.unpack.modules> <!-- app.unpack.modules=false -->
+    	
+	<hibernate.hbm2ddl>create-drop</hibernate.hbm2ddl> <!-- update -->
+	<hibernate.showsql>true</hibernate.showsql> 
+	<hibernate.default_batch_fetch_size>16</hibernate.default_batch_fetch_size>
+	
+	<!-- see components.properties or components.xml -->
+	<ejbJndiPattern>/#{ejbName}/local</ejbJndiPattern>
+	<seamBootstrapsPu>true</seamBootstrapsPu>
+	<!--<seamEmfRef>\#null</seamEmfRef>-->
+	<seamEmfRef>#entityManagerFactory</seamEmfRef>
+	<!--<puJndiName>java\:comp/env/core-test/pu</puJndiName>-->
+	<puJndiName>#null</puJndiName>
+ 
+	<ds.jndi.name>${application.id}</ds.jndi.name>
+	<!--<pu.transaction-type>RESOURCE_LOCAL</pu.transaction-type>-->
+	<pu.transaction-type>JTA</pu.transaction-type>
+	<pu.name>${application.id}</pu.name>
+	<pu.jta.data.source>${dataSource}</pu.jta.data.source>
+	<pu.hibernate.transaction.manager_lookup_class>org.hibernate.transaction.JBossTransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class> <!-- transactionManagerLookupClass -->
+	<pu.hibernate.transaction.manager_lookup_class.test>org.apache.openejb.hibernate.TransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class.test>
+	<pu.jboss.entity.manager.factory.jndi.name>java:/myEntityManagerFactory</pu.jboss.entity.manager.factory.jndi.name> <!--java:/${application.id}EntityManagerFactory-->
     </properties>
 </project>

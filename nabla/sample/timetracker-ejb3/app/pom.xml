@@ -1,16 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.4</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>app</artifactId>
     <packaging>ear</packaging>
     <name>[${project.parent.artifactId} :: EJB3 Application] - ${project.artifactId} : ${project.version}</name>
+    
+    <!-- TODO jboss tomcat https://repository.jboss.org/nexus/content/groups/public/org/jboss/seam/examples/hibernate-web/2.3.0-SNAPSHOT/hibernate-web-2.3.0-20120313.055246-7.pom -->
+    <!-- TODO for hibernate https://repository.jboss.org/nexus/content/groups/public/org/jboss/seam/examples/2.3.0-SNAPSHOT/examples-2.3.0-20120313.054422-7.pom -->
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -385,6 +390,7 @@
                     <finalName>${application.id}-ear</finalName>
                     <displayName>${application.display.name}</displayName>
                     <description>${application.description}</description>
+                    <version>${as.version}</version>
                     <!--
                     <generateApplicationXml>false</generateApplicationXml>
                     -->
@@ -411,7 +417,7 @@
                         http://maven.apache.org/plugins/maven-ear-plugin/usage.html and:
                         http://maven.apache.org/plugins/maven-ear-plugin/examples/generating-jboss-app.html
                       -->
-                      <version>${as.version}</version><!-- JBoss version -->
+                      <version>${jboss.ear.version}</version><!-- JBoss version -->
 
                       <!--
                       <loader-repository>org.andromda.timetracker:loader=${project.build.finalName}</loader-repository>
@@ -510,6 +516,19 @@
                     <skip>false</skip>
                 </configuration>
             </plugin>            
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>jboss-maven-plugin</artifactId>
+                  <version>${maven.jboss.plugin.version}</version>
+                  <configuration>
+                     <jbossHome>${jboss.home}</jbossHome>
+                     <serverName>${jboss.server}</serverName>
+                     <fileNames>
+                        <param>src/main/config/${application.id}-ds.xml</param>
+                        <param>${project.build.directory}/${project.build.finalName}.war</param>
+                     </fileNames>
+                  </configuration>
+               </plugin>            
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>

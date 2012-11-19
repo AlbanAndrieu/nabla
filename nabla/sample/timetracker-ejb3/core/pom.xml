@@ -1,11 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.andromda.timetracker.ejb3</groupId>
 		<artifactId>timetracker-ejb3</artifactId>
 		<version>3.4</version>
 	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>	
 	<artifactId>core</artifactId>
 	<packaging>ejb</packaging>
 	<name>[${project.parent.artifactId} :: EJB3 Core Business Tier] - ${project.artifactId} : ${project.version}</name>
@@ -954,9 +956,11 @@
 						<filtering>true</filtering>
 					</testResource>
 				</testResources>
+				<!--
 				<filters>
 					<filter>${home.dir}/build-tools/src/main/resources/project/project-development.properties</filter>
 				</filters>
+				-->
 				<!--
 				<plugins>
 					<plugin>
@@ -1086,11 +1090,11 @@
 					<resource>
 						<directory>${basedir}/src/main/resources</directory>
 						<filtering>true</filtering>
-		<includes>
-		        <include>**/*.xml</include>
-		        <include>**/*.properties</include>
-		        <include>**/*.sql</include>
-		</includes>
+						<includes>
+						        <include>**/*.xml</include>
+						        <include>**/*.properties</include>
+						        <include>**/*.sql</include>
+						</includes>
 					</resource>
 					<resource>
 						<directory>${basedir}/src/main/java</directory>
@@ -1125,9 +1129,11 @@
 						-->
 					</testResource>
 				</testResources>
+				<!--
 				<filters>
 					<filter>${home.dir}/build-tools/src/main/resources/project/project-development.properties</filter>
 				</filters>
+				-->
 			</build>
 		</profile>
 		<profile>

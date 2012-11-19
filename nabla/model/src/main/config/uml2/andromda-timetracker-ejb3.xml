@@ -135,7 +135,7 @@
                 <property name="testDialect">${hibernate.dialect}</property>
                 <property name="hibernateVersion">3</property>                   
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
-                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest-->               
+                <property name="hibernateHbm2DDLAuto">${hibernate.hbm2ddl}</property> <!--does not work with unitest-->               
                 <property name="hibernateDialect">${hibernate.dialect}</property>       
                 <property name="persistenceContextUnitName">${application.id}</property>
                 <property name="hibernateQueryUseNamedParameters">true</property>
@@ -202,7 +202,7 @@
             <properties>
 		<property name="entityManagerFactoryJndiName">java:/${application.context}EntityManagerFactory</property>   
 		<property name="jndiNamePrefix">${ejb.jndi.mappedname.pattern}</property>
-		<property name="transactionType">JTA</property>   
+		<property name="transactionType">${pu.transaction-type}</property>   
                 <property name="dataSourceName">${dataSource.name}</property>
                 <property name="entity-beans">${core.generated.dir}</property>
                 <property name="entity-impls">${core.manual.dir}</property>
@@ -242,7 +242,7 @@
                 <!--<property name="hibernateCacheProvider">org.hibernate.cache.EhCacheProvider</property>-->
                 <property name="hibernateCacheProvider">${hibernate.cache.provider}</property>
                 <property name="hibernateTreecacheMbeanObject">jboss.cache:service=EJB3EntityTreeCache</property>
-                <property name="hibernateShowSql">true</property>
+                <property name="hibernateShowSql">${hibernate.showsql}</property>
                 <property name="hibernateFormatSql">true</property>
                 <!--
                 <property name="hibernateJdbcFetchSize">0</property>                
