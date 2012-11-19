@@ -6,6 +6,6 @@ call setenv.bat
 REM call mvn clover2:setup test clover2:aggregate clover2:clover > clover.log
 REM call mvn clover2:setup test clover2:aggregate clover2:clover -Psample > clover.log
 call mvn verify -Pclover.optimize > clover.log
-call mvn verify -Pclover.report > clover.log
+call mvn site -Pclover.report > clover.log
 
 pause
