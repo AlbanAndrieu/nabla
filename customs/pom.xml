@@ -67,7 +67,8 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->
         	                </configuration>
         	                <executions>
         	                    <execution>
-        	                        <id>clover</id>
+        	                        <id>clover-initialization</id>
+        	                        <phase>initialize</phase>
         	                        <goals>
         	                            <goal>setup</goal>
         	                            <goal>optimize</goal>
@@ -89,7 +90,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->
         	                <version>${maven.clover.plugin.version}</version>
         	                <executions>
         	                    <execution>
-        	                        <id>clover</id>
+        	                        <id>clover-reporting</id>
         	                        <phase>verify</phase>
         	                        <goals>
         	                            <goal>instrument</goal>
