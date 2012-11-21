@@ -59,11 +59,11 @@
         	                      <generatePdf>true</generatePdf>
   				      <generateXml>true</generateXml>
   				      <generateHtml>true</generateHtml>
-				      <license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
+				      <!--<license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
 mj2L0GvL7ePpomMqqELByruVl2K3>1GMBYKI4nhRWIL2RCC
 QMqOxUMMomNoqMomprpxWNQNrpONOqqqNrXtvUsSxUvrVWU
 STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
-vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>  				      
+vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->	      
         	                </configuration>
         	                <executions>
         	                    <execution>
@@ -108,11 +108,11 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
         	                 <artifactId>maven-clover2-plugin</artifactId>
         	                 <version>${maven.clover.plugin.version}</version>
         	                 <configuration>
-				      <license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
+				      <!--<license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
 mj2L0GvL7ePpomMqqELByruVl2K3>1GMBYKI4nhRWIL2RCC
 QMqOxUMMomNoqMomprpxWNQNrpONOqqqNrXtvUsSxUvrVWU
 STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
-vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>  				      
+vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->			      
         	                 </configuration>        	                 
         	             </plugin>
         	         </plugins>
@@ -139,7 +139,8 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
         	                </configuration>
         	                <executions>
         	                    <execution>
-        	                        <id>clover</id>
+        	                        <id>clover-initialization</id>
+        	                        <!--<phase>initialize</phase>-->
         	                        <goals>
         	                            <goal>setup</goal>
         	                            <goal>optimize</goal>
@@ -147,8 +148,11 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
         	                        </goals>
         	                    </execution>
         	                    <execution>
+        	                    	<id>clover-reporting</id>
         	                        <phase>verify</phase>
         	                        <goals>
+        	                            <!-- Aggregate results from sub-modules and generate report-->
+                                    	    <!--<goal>aggregate</goal>-->
         	                            <goal>clover</goal>
         	                            <goal>log</goal>
         	                            <goal>check</goal>
