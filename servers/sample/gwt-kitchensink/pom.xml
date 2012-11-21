@@ -653,7 +653,7 @@
         	                <configuration>
         	                    <runTarget>KitchenSink.html</runTarget>
         	                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-        	                    <!--<i18nMessagesBundle>com.atlassian.client.Messages</i18nMessagesBundle>-->
+        	                    <!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
         	                    <!-- Use htmlunit framework simulating Internet Explorer 7 -->
         	                    <!--
         	                    <mode>htmlunit</mode>
@@ -685,11 +685,10 @@
         	                        </goals>
         	                    </execution>
         	                </executions>
-        	                <version>${clover.version}</version>
         	                <configuration>
         	                    <!-- List all server-side packages which has to be instrumented -->
         	                    <includes>
-        	                        <include>com/atlassian/server/**</include>
+        	                        <include>com/nabla/server/**</include>
         	                    </includes>
         	                </configuration>
         	            </plugin>
@@ -729,7 +728,7 @@
         	                <configuration>
         	                    <runTarget>KitchenSink.html</runTarget>
         	                    <hostedWebapp>${webappDirectory}</hostedWebapp>
-        	                    <!--<i18nMessagesBundle>com.atlassian.client.Messages</i18nMessagesBundle>-->
+        	                    <!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
         	                    <!-- Use htmlunit framework simulating Internet Explorer 7 -->
         	                    <!--
         	                    <mode>htmlunit</mode>
@@ -767,7 +766,6 @@
         	                        </goals>
         	                    </execution>
         	                </executions>
-        	                <version>${clover.version}</version>
         	                <configuration>
         	                    <!-- We don't need <includes> section as everything will be instrumented List all server-side packages which has to be instrumented -->
         	                </configuration>
