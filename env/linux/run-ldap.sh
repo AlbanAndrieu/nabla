@@ -43,5 +43,3 @@ sudo service apache2 restart
 cn=admin,dc=ldap,dc=nabla,dc=mobi
 
 add a user albandri with password like the developer workstation
-
-

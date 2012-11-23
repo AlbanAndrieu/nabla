@@ -16,3 +16,4 @@ sudo gedit /workspace/sonar-3.3/conf/sonar.properties
 #check runner is in the path
 sonar-runner -h
 
+user/pass admin/microsoft

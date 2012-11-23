@@ -1,6 +1,10 @@
 #https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
 
-A simple remove of the offending 2.5 package made jenkins happy again.
+#Add in software source :
+http://pkg.jenkins-ci.org/debian
+#Warning do not have htpp!!!!
+
+#A simple remove of the offending 2.5 package made jenkins happy again.
 sudo apt-get remove libservlet2.5-java
 /etc/init.d/jenkins restart
 

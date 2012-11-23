@@ -56,3 +56,5 @@ Everything you need should now be installed and Apache should restart. If Apache
 #cd /workspace/
 #sudo chmod -R 755 atlassian-crowd-2.5.2
 
+http://localhost:8095/crowd/
+crowd user/pass alban.andrieu@nabla.mobi/microsoft
