@@ -68,7 +68,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->
         	                <executions>
         	                    <execution>
         	                        <id>clover-initialization</id>
-        	                        <phase>initialize</phase>
+        	                        <!--<phase>initialize</phase>-->
         	                        <goals>
         	                            <goal>setup</goal>
         	                            <goal>optimize</goal>
