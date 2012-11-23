@@ -306,7 +306,8 @@
 						<additionalConfig>
 							<file>
 								<name>.checkstyle</name>
-								<location>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</location>
+								<!--<location>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</location>-->
+								<location>project/checkstyle_regles_nabla_eclipse.xml</location>
 							</file>
 						</additionalConfig>
 						<!--
@@ -602,8 +603,11 @@
 							<sources>
 								<source>${basedir}/src/generated/main/java</source>
 								<source>${basedir}/src/generated/main/resources</source>
+								<!--
 								<source>${basedir}/src/main/java</source>
 								<source>${basedir}/src/main/resources</source>
+								-->
+								<!--<source>src/main/groovy</source>-->
 								<!--
 								<source>${basedir}/${target.dir}/generated-sources/antlr</source>
 								<source>${basedir}/${target.dir}/generated-sources/main/java</source>
@@ -614,6 +618,18 @@
 							</sources>
 						</configuration>
 					</execution>
+                    			<execution>
+                    			    <id>add-test-source</id>
+                    			    <phase>generate-test-sources</phase>
+                    			    <goals>
+                    			        <goal>add-test-source</goal>
+                    			    </goals>
+                    			    <configuration>
+                    			        <sources>
+                    			            <source>src/test/groovy</source>
+                    			        </sources>
+                    			    </configuration>
+                    			</execution>					
 				</executions>
 			</plugin>
 			<plugin>
@@ -1103,12 +1119,12 @@
 										<docencoding>${project.build.sourceEncoding}</docencoding>
 										<encoding>${project.build.sourceEncoding}</encoding>
 										<includeTestSourceDirectory>true</includeTestSourceDirectory>
-<!--
 										<configLocation>project/checkstyle_checks.xml</configLocation>
 										<headerLocation>project/LICENSE-1.0.txt</headerLocation>
--->
-							<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
-							<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+<!--										
+										<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
+										<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+-->										
 										<propertyExpansion>projectname=nabla</propertyExpansion>
 									</configuration>
 								</plugin>
