@@ -109,11 +109,11 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->
         	                 <artifactId>maven-clover2-plugin</artifactId>
         	                 <version>${maven.clover.plugin.version}</version>
         	                 <configuration>
-				      <!--<license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
+				      <license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
 mj2L0GvL7ePpomMqqELByruVl2K3>1GMBYKI4nhRWIL2RCC
 QMqOxUMMomNoqMomprpxWNQNrpONOqqqNrXtvUsSxUvrVWU
 STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
-vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>-->			      
+vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>		      
         	                 </configuration>        	                 
         	             </plugin>
         	         </plugins>
