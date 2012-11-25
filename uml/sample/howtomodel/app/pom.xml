@@ -100,7 +100,7 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>${maven.ear.plugin.version}</version>
 				<configuration>
-					<generateApplicationXml>true</generateApplicationXml>
+					<generateApplicationXml>false</generateApplicationXml> <!-- TODO set to true (does not work with clover!!!) -->
 					<includeJar>false</includeJar>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<includes>**/*.xml</includes>
