@@ -128,7 +128,7 @@
                         			<jarModule>
 							<groupId>${project.groupId}</groupId>
 							<artifactId>common</artifactId>
-							<includeInApplicationXml>true</includeInApplicationXml>
+							<!--<includeInApplicationXml>true</includeInApplicationXml>-->
 						</jarModule>
 						<ejbModule>
 							<groupId>${project.groupId}</groupId>
