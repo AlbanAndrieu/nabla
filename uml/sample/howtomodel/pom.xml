@@ -1,7 +1,14 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <parent>
+    	<groupId>com.nabla.project.uml.sample</groupId>
+    	<artifactId>sample</artifactId>
+    	<version>1.0</version>
+    </parent>
+                
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.andromda.test</groupId>
     <artifactId>howtomodel</artifactId>
@@ -9,13 +16,7 @@
     <version>1.0</version>
     <name>AndroMDA HowToModel Sample</name>
     <description>The howtomodel Project.</description>
-    
-    <parent>
-    	<groupId>com.nabla.project.uml.sample</groupId>
-    	<artifactId>sample</artifactId>
-    	<version>1.0</version>
-    </parent>
-       
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -480,12 +481,14 @@
 			    	<sources>
 			    		<source>${basedir}/src/generated/main/java</source>
 			    		<source>${basedir}/src/generated/main/resources</source>
+			    		<!--
 			    		<source>${basedir}/src/main/java</source>
 			    		<source>${basedir}/src/main/resources</source>
 			    		<source>${basedir}/target/generated-sources/antlr</source>
 			    		<source>${basedir}/target/generated-sources/main/java</source>
-			    		<!--<source>${basedir}/target/generated-sources/test/java</source> -->
 			    		<source>${basedir}/target/generated-sources/main/resources</source>
+			    		-->
+			    		<!--<source>${basedir}/target/generated-sources/test/java</source> -->
 			    		<!-- <source>${basedir}/target/generated-sources/test/resources</source> -->
 			    	</sources>
 			    </configuration>
@@ -550,10 +553,12 @@
 		    <artifactId>maven-eclipse-plugin</artifactId>
 		    <version>${maven.eclipse.plugin.version}</version>
                     <inherited>true</inherited>
+                    <!--
                     <configuration>
                         <wtpversion>1.5</wtpversion>
                         <buildOutputDirectory>target/classes</buildOutputDirectory>
                     </configuration>
+                    -->
                 </plugin>
                 <plugin>
                     <!-- Automatically attach sources to build artifact as artifact-version-sources.jar and deploy to local repository -->
@@ -588,37 +593,6 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!--
-            <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.0</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <inherited>false</inherited>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>2.2.1</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <message>You need at least Java ${java.version}!</message>
-                                    <version>${java.version}</version>
-                                </requireJavaVersion>
-                                <requirePluginVersions>
-                                    <message>Best Practice is to always define plugin versions!</message>
-                                    <banSnapshots>false</banSnapshots>
-                                    <phases>clean,deploy,site</phases>
-                                </requirePluginVersions>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-clean-plugin</artifactId>
@@ -672,12 +646,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>2.2</version>
-            </plugin>
-            -->
         </plugins>
     </build>
     <modules>
