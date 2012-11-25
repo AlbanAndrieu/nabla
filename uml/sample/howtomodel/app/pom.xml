@@ -100,7 +100,7 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>${maven.ear.plugin.version}</version>
 				<configuration>
-					<generateApplicationXml>false</generateApplicationXml> <!-- TODO set to true (does not work with clover!!!) -->
+					<generateApplicationXml>true</generateApplicationXml>
 					<includeJar>false</includeJar>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<includes>**/*.xml</includes>
@@ -128,7 +128,8 @@
                         			<jarModule>
 							<groupId>${project.groupId}</groupId>
 							<artifactId>common</artifactId>
-							<!--<includeInApplicationXml>true</includeInApplicationXml>-->
+							<includeInApplicationXml>true</includeInApplicationXml>
+							<classifier>clover</classifier>
 						</jarModule>
 						<ejbModule>
 							<groupId>${project.groupId}</groupId>
