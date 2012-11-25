@@ -143,6 +143,7 @@
 						<jarModule>
 							<groupId>${project.groupId}</groupId>
 							<artifactId>workflow</artifactId>
+							<classifier>clover</classifier>
 						</jarModule>
 					</modules>
 					<jboss>
