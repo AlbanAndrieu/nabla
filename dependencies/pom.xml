@@ -355,6 +355,7 @@
 						<version>${maven.clover.plugin.version}</version>
 						<configuration>
 							<generateHistorical>true</generateHistorical>
+							<generateHtml>true</generateHtml>
 							<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>
 						</configuration>
 					</plugin>
@@ -1079,8 +1080,7 @@
 		<scope.type>${scope.ear}</scope.type> <!-- check overrided pom.xml in server -->
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<!--<andromda.version>3.4-SNAPSHOT</andromda.version>-->
-		<andromda.version>3.4</andromda.version>
+		<andromda.version>3.5</andromda.version>
 
 		<tibjms.version>4.2.0</tibjms.version>
 		<!--<tibrv.version>8.1.2</tibrv.version>-->
@@ -1195,6 +1195,7 @@
 		<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
 		<jboss.cache.version>1.4.1.SP9</jboss.cache.version>
 		<jboss.el.version>1.0_02.CR5</jboss.el.version>
+		<jboss.logging.version>3.1.2.GA</jboss.logging.version>
 		<jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
 		<jbossws.client.version>2.0.1.SP2</jbossws.client.version>
 		<el.api.version>2.2.1-b04</el.api.version>
@@ -1271,7 +1272,7 @@
 		<shale.version>1.0.4</shale.version>
 		<sitemesh.version>2.2.1</sitemesh.version>
 		<spring.version>2.5.6</spring.version>
-		<spring3.version>3.0.6.RELEASE</spring3.version>
+		<spring3.version>3.1.3.RELEASE</spring3.version>
 		<!--<spring.jpa.version>2.0.6</spring.jpa.version>-->
 		<springmodules.validation.version>0.8</springmodules.validation.version>
 		<spring.mock.version>2.0.8</spring.mock.version>
@@ -1433,7 +1434,7 @@
 
 		<maven.docbkx.plugin.version>2.0.8</maven.docbkx.plugin.version>
 		<doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
-		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
+		<lifecycle.mapping.version>1.0.0-RC1</lifecycle.mapping.version>
 
 		<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 		<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
@@ -1474,7 +1475,7 @@
 		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
 		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
 		<maven.dependency.plugin.version>2.5.1</maven.dependency.plugin.version>
-		<maven.clover.plugin.version>3.1.7</maven.clover.plugin.version>
+		<maven.clover.plugin.version>3.1.8</maven.clover.plugin.version>
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 		<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 		<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
@@ -1546,7 +1547,7 @@
 		  dependencies from org.jboss.spec will	have their version defined by this
 		  BOM -->
 		<!--<org.jboss.spec.jboss.javaee6.version>2.0.0.Final</org.jboss.spec.jboss.javaee6.version>-->
-		<org.jboss.spec.jboss.javaee6.version>3.0.0.Final</org.jboss.spec.jboss.javaee6.version>
+		<org.jboss.spec.jboss.javaee6.version>3.0.1.Final</org.jboss.spec.jboss.javaee6.version>
 		<!--<org.jboss.spec.jboss.javaee6.version>3.0.1.Final</org.jboss.spec.jboss.javaee6.version>-->
 		<!-- Define the	version	of Tomcat' Java	EE 6 APIs we want to import. Any
 		  dependencies from org.jboss.spec will	have their version defined by this
@@ -1940,6 +1941,7 @@
 					<configuration>
 						<source>${jdkLevel}</source>
 						<target>${jdkLevel}</target>
+						<compilerVersion>${jdkLevel}</compilerVersion>
 						<meminitial>128m</meminitial>
 						<maxmem>512m</maxmem>
 						<fork>${compiler.fork}</fork>
@@ -2786,6 +2788,7 @@
 						<jdk>${jdkLevel}</jdk>
 						<generateXml>true</generateXml>
 						<generatePdf>true</generatePdf>
+						<generateHtml>true</generateHtml>
 						<generateHistorical>true</generateHistorical>
 						<!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>-->
 						<license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
@@ -3378,6 +3381,10 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
 				    </exclusion>
+                        	    <exclusion>
+                        	        <groupId>org.jboss.logging</groupId>
+                        	        <artifactId>jboss-logging</artifactId>
+                        	    </exclusion>				    
 				</exclusions>
 			</dependency>
 	    <dependency>
@@ -3387,7 +3394,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<scope>provided</scope>
 		<!-- Some transitive dependencies of Hibernate 3 are available
 		    in JBoss AS	7 as modules, so we don't include them in WEB-INF/lib, but instead
-		    depend on the modules -->
+		    depend on the modules -->		    
 		<exclusions>
 		  <exclusion>
 		    <groupId>commons-logging</groupId>
@@ -3409,26 +3416,38 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		    <groupId>javax.transaction</groupId>
 		    <artifactId>jta</artifactId>
 		  </exclusion>
-		    <exclusion>
+		  <exclusion>
 			<groupId>asm</groupId>
 			<artifactId>asm</artifactId>
-		    </exclusion>
+		  </exclusion>
 		  <exclusion>
 		    <groupId>javassist</groupId>
 		    <artifactId>javassist</artifactId>
 		  </exclusion>
-		    <exclusion>
+		  <exclusion>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-		    </exclusion>
-		    <exclusion>
+		  </exclusion>
+		  <exclusion>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-		    </exclusion>
+		  </exclusion>
 		  <exclusion>
 		    <groupId>xml-apis</groupId>
 		    <artifactId>xml-apis</artifactId>
 		  </exclusion>
+                  <exclusion>
+                      <groupId>org.jboss.logging</groupId>
+                      <artifactId>jboss-logging</artifactId>
+                  </exclusion>
+                  <exclusion>
+                      <groupId>org.jboss.spec.javax.interceptor</groupId>
+                      <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+                  </exclusion>
+                  <exclusion>
+                      <groupId>org.jboss.spec.javax.transaction</groupId>
+                      <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+                  </exclusion>		  
 		</exclusions>
 	    </dependency>
 	    <!-- https://docs.jboss.org/author/display/ISPN/Using+Infinispan+as+JPA-Hibernate+Second+Level+Cache+Provider -->
@@ -4433,6 +4452,12 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 	      </exclusions>
 	    </dependency>
 
+        	<dependency>
+        	    <groupId>org.jboss.logging</groupId>
+        	    <artifactId>jboss-logging</artifactId>
+        	    <version>${jboss.logging.version}</version>
+        	</dependency>        
+        	
 	    <dependency>
 	      <groupId>org.jbpm</groupId>
 	      <artifactId>jbpm-jpdl</artifactId>
