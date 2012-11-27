@@ -243,12 +243,11 @@
                                                         </includes>
                                                         <excludes>
                                                                 <!-- Allow mvn clean install > install.log -->
-                                                                <exclude>build.log</exclude>
-                                                                <exclude>install.log</exclude>
-                                                                <!--<exclude>andromda.log</exclude> -->
-                                                                <exclude>server.log</exclude>
-                                                                <exclude>site.log</exclude>
-                                                                <exclude>gc.log</exclude>
+                                                                <exclude>**/build.log</exclude>
+                                                                <exclude>**/install.log</exclude>
+                                                                <exclude>**/server.log</exclude>
+                                                                <exclude>**/site.log</exclude>
+                                                                <exclude>**/gc.log</exclude>
                                                         </excludes>
                                                         <followSymlinks>false</followSymlinks>
                                                 </fileset>
