@@ -93,8 +93,8 @@
                         </activation>
                   	<properties>
                                 <!-- console user myNewUser admin added with add-user.sh -->
-                                <as.version>5</as.version>
-                                <jboss.ear.version>7</jboss.ear.version>
+                                <as.version>7</as.version>
+                                <jboss.ear.version>5</jboss.ear.version>
                                 <!-- START INFO USE BY MDA -->
                                 <jboss.home>${env.JBOSS_HOME}</jboss.home>
                                 <!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>-->
@@ -133,6 +133,7 @@
                                 <scope.type>${scope.ear}</scope.type>
                                 <!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
                              	<hibernate.core.version>3.6.8.Final</hibernate.core.version>
+                             	<hibernate.validator.version>4.0.2.GA</hibernate.validator.version><!-- works with hibernate.core.version 3.6.8.GA -->
 
                                 <!-- must be emtpy for non jboss7 target -->
                                 <!-- uncomment for open ejb to work -->
