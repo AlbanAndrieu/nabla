@@ -33,10 +33,22 @@
  */
 package org.andromda.cartridges.gui.metafacades;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.andromda.cartridges.gui.GuiGlobals;
 import org.andromda.cartridges.gui.GuiProfile;
 import org.andromda.cartridges.gui.GuiUtils;
-
+import org.andromda.metafacades.uml.AssociationEndFacade;
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.EventFacade;
@@ -50,25 +62,10 @@ import org.andromda.metafacades.uml.TransitionFacade;
 import org.andromda.metafacades.uml.UMLMetafacadeUtils;
 import org.andromda.metafacades.uml.UMLProfile;
 import org.andromda.metafacades.uml.UseCaseFacade;
-
 import org.andromda.utils.StringUtilsHelper;
-
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-
 import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiParameter.
@@ -1306,10 +1303,10 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
      * @see org.andromda.cartridges.gui.metafacades.GuiParameter#getNavigableAssociationEnds()
      */
     @Override
-    protected Collection<ClassifierFacade> handleGetNavigableAssociationEnds()
+    protected Collection<AssociationEndFacade> handleGetNavigableAssociationEnds()
     {
 
-        Collection<ClassifierFacade> associationEnds = null;
+        Collection<AssociationEndFacade> associationEnds = null;
         ClassifierFacade type = this.getType();
 
         if (type != null)
@@ -1331,7 +1328,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
         }
 
-        return (associationEnds == null) ? new ArrayList<ClassifierFacade>() : associationEnds;
+        return (associationEnds == null) ? new ArrayList<AssociationEndFacade>() : associationEnds;
 
     }
 

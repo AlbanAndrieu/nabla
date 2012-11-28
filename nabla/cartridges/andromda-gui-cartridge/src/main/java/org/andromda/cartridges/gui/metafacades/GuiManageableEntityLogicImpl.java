@@ -1520,7 +1520,7 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
     }
 
     @Override
-    protected Collection<AssociationEndFacade> handleGetRulesSearchData()
+    protected Collection<AssociationEndFacade> handleGetRulesSearchDatas()
     {
 
         final Collection<ManageableEntityAssociationEnd> associationEnds = this.getManageableAssociationEndsEntity();
@@ -1555,7 +1555,7 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
     protected ClassifierFacade handleGetRulesCriteriasSearchValueObject()
     {
 
-        final Collection rulesAssociations = this.getRulesSearchData();
+        final Collection rulesAssociations = this.getRulesSearchDatas();
 
         if (!rulesAssociations.isEmpty())
         {
@@ -1989,7 +1989,7 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
     protected boolean handleIsRule()
     {
 
-        return !this.getRulesSearchData().isEmpty();
+        return !this.getRulesSearchDatas().isEmpty();
 
     }
 
@@ -2309,40 +2309,39 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
     }
 
-    // TODO remove
-    @Override
-    protected AttributeFacade handleGetIdentifierToDelete()
-    {
+    /*    @Override
+     protected AttributeFacade handleGetIdentifierToDelete()
+     {
 
-        // return super.getManageableIdentifier();
-        final AttributeFacade attr = super.getManageableIdentifier();
+     // return super.getManageableIdentifier();
+     final AttributeFacade attr = super.getManageableIdentifier();
 
-        if (attr == null)
-        {
+     if (attr == null)
+     {
 
-            final Collection<GeneralizableElementFacade> parentEntities = this.getAllGeneralizations();
+     final Collection<GeneralizableElementFacade> parentEntities = this.getAllGeneralizations();
 
-            for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
-            {
+     for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
+     {
 
-                final Object parentEntityObject = parentEntityIterator.next();
+     final Object parentEntityObject = parentEntityIterator.next();
 
-                if ((parentEntityObject instanceof Entity) && !((Entity) parentEntityObject).getIdentifiers().isEmpty())
-                {
+     if ((parentEntityObject instanceof Entity) && !((Entity) parentEntityObject).getIdentifiers().isEmpty())
+     {
 
-                    final Object identifier = ((Entity) parentEntityObject).getIdentifiers().iterator().next();
+     final Object identifier = ((Entity) parentEntityObject).getIdentifiers().iterator().next();
 
-                    return ((EntityAttribute) identifier);
+     return ((EntityAttribute) identifier);
 
-                }
+     }
 
-            }
+     }
 
-        }
+     }
 
-        return attr;
+     return attr;
 
-    }
+     }*/
 
     // TODO remove
     @Override
