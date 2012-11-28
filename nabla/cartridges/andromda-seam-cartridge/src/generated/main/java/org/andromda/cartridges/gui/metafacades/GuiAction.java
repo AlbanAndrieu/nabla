@@ -127,7 +127,7 @@ public interface GuiAction
     public String getDocumentationValue();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiAction.errorMessages
      * @return Map
      */
     public Map getErrorMessages();
@@ -284,7 +284,7 @@ public interface GuiAction
     public List getInterUseCaseParameters(GuiFinalState finalState);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiAction.messageKey
      * @return String
      */
     public String getMessageKey();
@@ -403,7 +403,8 @@ public interface GuiAction
     public boolean isDateFieldPresent();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiAction.errorMessagesPresent
      * @return boolean
      */
     public boolean isErrorMessagesPresent();
@@ -470,7 +471,8 @@ public interface GuiAction
     public boolean isMultipartFormData();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiAction.needsFileUpload
      * @return boolean
      */
     public boolean isNeedsFileUpload();

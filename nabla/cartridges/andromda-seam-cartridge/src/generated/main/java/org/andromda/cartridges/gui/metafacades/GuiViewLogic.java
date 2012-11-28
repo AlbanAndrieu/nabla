@@ -145,8 +145,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetFullPath();
 
-    private String fullPath1a;
-    private boolean fullPath1aSet = false;
+    private transient String fullPath1a;
+    private transient boolean fullPath1aSet = false;
 
     /**
      * The full path to this view page.
@@ -154,19 +154,19 @@ public abstract class GuiViewLogic
      */
     public final String getFullPath()
     {
-        String afullPath1a = this.fullPath1a;
+        String fullPath1a = this.fullPath1a;
         if (!this.fullPath1aSet)
         {
             // fullPath has no pre constraints
-            afullPath1a = handleGetFullPath();
+            fullPath1a = handleGetFullPath();
             // fullPath has no post constraints
-            this.fullPath1a = afullPath1a;
+            this.fullPath1a = fullPath1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullPath1aSet = true;
             }
         }
-        return afullPath1a;
+        return fullPath1a;
     }
 
    /**
@@ -175,8 +175,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetTitleKey();
 
-    private String titleKey2a;
-    private boolean titleKey2aSet = false;
+    private transient String titleKey2a;
+    private transient boolean titleKey2aSet = false;
 
     /**
      * A resource message key suited for the page's title.
@@ -184,19 +184,19 @@ public abstract class GuiViewLogic
      */
     public final String getTitleKey()
     {
-        String atitleKey2a = this.titleKey2a;
+        String titleKey2a = this.titleKey2a;
         if (!this.titleKey2aSet)
         {
             // titleKey has no pre constraints
-            atitleKey2a = handleGetTitleKey();
+            titleKey2a = handleGetTitleKey();
             // titleKey has no post constraints
-            this.titleKey2a = atitleKey2a;
+            this.titleKey2a = titleKey2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.titleKey2aSet = true;
             }
         }
-        return atitleKey2a;
+        return titleKey2a;
     }
 
    /**
@@ -205,8 +205,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetTitleValue();
 
-    private String titleValue3a;
-    private boolean titleValue3aSet = false;
+    private transient String titleValue3a;
+    private transient boolean titleValue3aSet = false;
 
     /**
      * A default resource message value suited for the page's title.
@@ -214,19 +214,19 @@ public abstract class GuiViewLogic
      */
     public final String getTitleValue()
     {
-        String atitleValue3a = this.titleValue3a;
+        String titleValue3a = this.titleValue3a;
         if (!this.titleValue3aSet)
         {
             // titleValue has no pre constraints
-            atitleValue3a = handleGetTitleValue();
+            titleValue3a = handleGetTitleValue();
             // titleValue has no post constraints
-            this.titleValue3a = atitleValue3a;
+            this.titleValue3a = titleValue3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.titleValue3aSet = true;
             }
         }
-        return atitleValue3a;
+        return titleValue3a;
     }
 
    /**
@@ -235,8 +235,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey4a;
-    private boolean messageKey4aSet = false;
+    private transient String messageKey4a;
+    private transient boolean messageKey4aSet = false;
 
     /**
      * The default resource message key.
@@ -244,19 +244,19 @@ public abstract class GuiViewLogic
      */
     public final String getMessageKey()
     {
-        String amessageKey4a = this.messageKey4a;
+        String messageKey4a = this.messageKey4a;
         if (!this.messageKey4aSet)
         {
             // messageKey has no pre constraints
-            amessageKey4a = handleGetMessageKey();
+            messageKey4a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey4a = amessageKey4a;
+            this.messageKey4a = messageKey4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey4aSet = true;
             }
         }
-        return amessageKey4a;
+        return messageKey4a;
     }
 
    /**
@@ -265,8 +265,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetDocumentationKey();
 
-    private String documentationKey5a;
-    private boolean documentationKey5aSet = false;
+    private transient String documentationKey5a;
+    private transient boolean documentationKey5aSet = false;
 
     /**
      * A resource message key suited for the page's documentation.
@@ -274,19 +274,19 @@ public abstract class GuiViewLogic
      */
     public final String getDocumentationKey()
     {
-        String adocumentationKey5a = this.documentationKey5a;
+        String documentationKey5a = this.documentationKey5a;
         if (!this.documentationKey5aSet)
         {
             // documentationKey has no pre constraints
-            adocumentationKey5a = handleGetDocumentationKey();
+            documentationKey5a = handleGetDocumentationKey();
             // documentationKey has no post constraints
-            this.documentationKey5a = adocumentationKey5a;
+            this.documentationKey5a = documentationKey5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.documentationKey5aSet = true;
             }
         }
-        return adocumentationKey5a;
+        return documentationKey5a;
     }
 
    /**
@@ -295,8 +295,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetDocumentationValue();
 
-    private String documentationValue6a;
-    private boolean documentationValue6aSet = false;
+    private transient String documentationValue6a;
+    private transient boolean documentationValue6aSet = false;
 
     /**
      * A resource message value suited for the page's documentation.
@@ -304,19 +304,19 @@ public abstract class GuiViewLogic
      */
     public final String getDocumentationValue()
     {
-        String adocumentationValue6a = this.documentationValue6a;
+        String documentationValue6a = this.documentationValue6a;
         if (!this.documentationValue6aSet)
         {
             // documentationValue has no pre constraints
-            adocumentationValue6a = handleGetDocumentationValue();
+            documentationValue6a = handleGetDocumentationValue();
             // documentationValue has no post constraints
-            this.documentationValue6a = adocumentationValue6a;
+            this.documentationValue6a = documentationValue6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.documentationValue6aSet = true;
             }
         }
-        return adocumentationValue6a;
+        return documentationValue6a;
     }
 
    /**
@@ -325,8 +325,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsValidationRequired();
 
-    private boolean validationRequired7a;
-    private boolean validationRequired7aSet = false;
+    private transient boolean validationRequired7a;
+    private transient boolean validationRequired7aSet = false;
 
     /**
      * True if at least one client/server parameter requires validation.
@@ -334,19 +334,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isValidationRequired()
     {
-        boolean avalidationRequired7a = this.validationRequired7a;
+        boolean validationRequired7a = this.validationRequired7a;
         if (!this.validationRequired7aSet)
         {
             // validationRequired has no pre constraints
-            avalidationRequired7a = handleIsValidationRequired();
+            validationRequired7a = handleIsValidationRequired();
             // validationRequired has no post constraints
-            this.validationRequired7a = avalidationRequired7a;
+            this.validationRequired7a = validationRequired7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validationRequired7aSet = true;
             }
         }
-        return avalidationRequired7a;
+        return validationRequired7a;
     }
 
    /**
@@ -355,8 +355,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsDateFieldPresent();
 
-    private boolean dateFieldPresent8a;
-    private boolean dateFieldPresent8aSet = false;
+    private transient boolean dateFieldPresent8a;
+    private transient boolean dateFieldPresent8aSet = false;
 
     /**
      * True if any of the actions have a parameter of type Date.
@@ -364,19 +364,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isDateFieldPresent()
     {
-        boolean adateFieldPresent8a = this.dateFieldPresent8a;
+        boolean dateFieldPresent8a = this.dateFieldPresent8a;
         if (!this.dateFieldPresent8aSet)
         {
             // dateFieldPresent has no pre constraints
-            adateFieldPresent8a = handleIsDateFieldPresent();
+            dateFieldPresent8a = handleIsDateFieldPresent();
             // dateFieldPresent has no post constraints
-            this.dateFieldPresent8a = adateFieldPresent8a;
+            this.dateFieldPresent8a = dateFieldPresent8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dateFieldPresent8aSet = true;
             }
         }
-        return adateFieldPresent8a;
+        return dateFieldPresent8a;
     }
 
    /**
@@ -385,8 +385,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsCalendarRequired();
 
-    private boolean calendarRequired9a;
-    private boolean calendarRequired9aSet = false;
+    private transient boolean calendarRequired9a;
+    private transient boolean calendarRequired9aSet = false;
 
     /**
      * True if this view contains a date field which requires a calendar popup.
@@ -394,19 +394,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isCalendarRequired()
     {
-        boolean acalendarRequired9a = this.calendarRequired9a;
+        boolean calendarRequired9a = this.calendarRequired9a;
         if (!this.calendarRequired9aSet)
         {
             // calendarRequired has no pre constraints
-            acalendarRequired9a = handleIsCalendarRequired();
+            calendarRequired9a = handleIsCalendarRequired();
             // calendarRequired has no post constraints
-            this.calendarRequired9a = acalendarRequired9a;
+            this.calendarRequired9a = calendarRequired9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.calendarRequired9aSet = true;
             }
         }
-        return acalendarRequired9a;
+        return calendarRequired9a;
     }
 
    /**
@@ -415,8 +415,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String onlineHelpKey10a;
-    private boolean onlineHelpKey10aSet = false;
+    private transient String onlineHelpKey10a;
+    private transient boolean onlineHelpKey10aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -425,19 +425,19 @@ public abstract class GuiViewLogic
      */
     public final String getOnlineHelpKey()
     {
-        String aonlineHelpKey10a = this.onlineHelpKey10a;
+        String onlineHelpKey10a = this.onlineHelpKey10a;
         if (!this.onlineHelpKey10aSet)
         {
             // onlineHelpKey has no pre constraints
-            aonlineHelpKey10a = handleGetOnlineHelpKey();
+            onlineHelpKey10a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.onlineHelpKey10a = aonlineHelpKey10a;
+            this.onlineHelpKey10a = onlineHelpKey10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpKey10aSet = true;
             }
         }
-        return aonlineHelpKey10a;
+        return onlineHelpKey10a;
     }
 
    /**
@@ -446,8 +446,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String onlineHelpValue11a;
-    private boolean onlineHelpValue11aSet = false;
+    private transient String onlineHelpValue11a;
+    private transient boolean onlineHelpValue11aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -456,19 +456,19 @@ public abstract class GuiViewLogic
      */
     public final String getOnlineHelpValue()
     {
-        String aonlineHelpValue11a = this.onlineHelpValue11a;
+        String onlineHelpValue11a = this.onlineHelpValue11a;
         if (!this.onlineHelpValue11aSet)
         {
             // onlineHelpValue has no pre constraints
-            aonlineHelpValue11a = handleGetOnlineHelpValue();
+            onlineHelpValue11a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.onlineHelpValue11a = aonlineHelpValue11a;
+            this.onlineHelpValue11a = onlineHelpValue11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpValue11aSet = true;
             }
         }
-        return aonlineHelpValue11a;
+        return onlineHelpValue11a;
     }
 
    /**
@@ -477,8 +477,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String messageValue12a;
-    private boolean messageValue12aSet = false;
+    private transient String messageValue12a;
+    private transient boolean messageValue12aSet = false;
 
     /**
      * A displayable version of this page's name.
@@ -486,19 +486,19 @@ public abstract class GuiViewLogic
      */
     public final String getMessageValue()
     {
-        String amessageValue12a = this.messageValue12a;
+        String messageValue12a = this.messageValue12a;
         if (!this.messageValue12aSet)
         {
             // messageValue has no pre constraints
-            amessageValue12a = handleGetMessageValue();
+            messageValue12a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.messageValue12a = amessageValue12a;
+            this.messageValue12a = messageValue12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageValue12aSet = true;
             }
         }
-        return amessageValue12a;
+        return messageValue12a;
     }
 
    /**
@@ -507,8 +507,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetCssFileName();
 
-    private String cssFileName13a;
-    private boolean cssFileName13aSet = false;
+    private transient String cssFileName13a;
+    private transient boolean cssFileName13aSet = false;
 
     /**
      * The name of the file containing specific styles for this page only.
@@ -516,19 +516,19 @@ public abstract class GuiViewLogic
      */
     public final String getCssFileName()
     {
-        String acssFileName13a = this.cssFileName13a;
+        String cssFileName13a = this.cssFileName13a;
         if (!this.cssFileName13aSet)
         {
             // cssFileName has no pre constraints
-            acssFileName13a = handleGetCssFileName();
+            cssFileName13a = handleGetCssFileName();
             // cssFileName has no post constraints
-            this.cssFileName13a = acssFileName13a;
+            this.cssFileName13a = cssFileName13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cssFileName13aSet = true;
             }
         }
-        return acssFileName13a;
+        return cssFileName13a;
     }
 
    /**
@@ -537,8 +537,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetOnlineHelpActionPath();
 
-    private String onlineHelpActionPath14a;
-    private boolean onlineHelpActionPath14aSet = false;
+    private transient String onlineHelpActionPath14a;
+    private transient boolean onlineHelpActionPath14aSet = false;
 
     /**
      * The full path to this view's online help action.
@@ -546,19 +546,19 @@ public abstract class GuiViewLogic
      */
     public final String getOnlineHelpActionPath()
     {
-        String aonlineHelpActionPath14a = this.onlineHelpActionPath14a;
+        String onlineHelpActionPath14a = this.onlineHelpActionPath14a;
         if (!this.onlineHelpActionPath14aSet)
         {
             // onlineHelpActionPath has no pre constraints
-            aonlineHelpActionPath14a = handleGetOnlineHelpActionPath();
+            onlineHelpActionPath14a = handleGetOnlineHelpActionPath();
             // onlineHelpActionPath has no post constraints
-            this.onlineHelpActionPath14a = aonlineHelpActionPath14a;
+            this.onlineHelpActionPath14a = onlineHelpActionPath14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpActionPath14aSet = true;
             }
         }
-        return aonlineHelpActionPath14a;
+        return onlineHelpActionPath14a;
     }
 
    /**
@@ -567,8 +567,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetOnlineHelpPagePath();
 
-    private String onlineHelpPagePath15a;
-    private boolean onlineHelpPagePath15aSet = false;
+    private transient String onlineHelpPagePath15a;
+    private transient boolean onlineHelpPagePath15aSet = false;
 
     /**
      * The full path to this view's online help page.
@@ -576,19 +576,19 @@ public abstract class GuiViewLogic
      */
     public final String getOnlineHelpPagePath()
     {
-        String aonlineHelpPagePath15a = this.onlineHelpPagePath15a;
+        String onlineHelpPagePath15a = this.onlineHelpPagePath15a;
         if (!this.onlineHelpPagePath15aSet)
         {
             // onlineHelpPagePath has no pre constraints
-            aonlineHelpPagePath15a = handleGetOnlineHelpPagePath();
+            onlineHelpPagePath15a = handleGetOnlineHelpPagePath();
             // onlineHelpPagePath has no post constraints
-            this.onlineHelpPagePath15a = aonlineHelpPagePath15a;
+            this.onlineHelpPagePath15a = onlineHelpPagePath15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpPagePath15aSet = true;
             }
         }
-        return aonlineHelpPagePath15a;
+        return onlineHelpPagePath15a;
     }
 
    /**
@@ -597,28 +597,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsActionGroup();
 
-    private boolean actionGroup16a;
-    private boolean actionGroup16aSet = false;
+    private transient boolean actionGroup16a;
+    private transient boolean actionGroup16aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.actionGroup
      * @return (boolean)handleIsActionGroup()
      */
     public final boolean isActionGroup()
     {
-        boolean aactionGroup16a = this.actionGroup16a;
+        boolean actionGroup16a = this.actionGroup16a;
         if (!this.actionGroup16aSet)
         {
             // actionGroup has no pre constraints
-            aactionGroup16a = handleIsActionGroup();
+            actionGroup16a = handleIsActionGroup();
             // actionGroup has no post constraints
-            this.actionGroup16a = aactionGroup16a;
+            this.actionGroup16a = actionGroup16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionGroup16aSet = true;
             }
         }
-        return aactionGroup16a;
+        return actionGroup16a;
     }
 
    /**
@@ -627,28 +627,28 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetActionGroupName();
 
-    private String actionGroupName17a;
-    private boolean actionGroupName17aSet = false;
+    private transient String actionGroupName17a;
+    private transient boolean actionGroupName17aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.actionGroupName
      * @return (String)handleGetActionGroupName()
      */
     public final String getActionGroupName()
     {
-        String aactionGroupName17a = this.actionGroupName17a;
+        String actionGroupName17a = this.actionGroupName17a;
         if (!this.actionGroupName17aSet)
         {
             // actionGroupName has no pre constraints
-            aactionGroupName17a = handleGetActionGroupName();
+            actionGroupName17a = handleGetActionGroupName();
             // actionGroupName has no post constraints
-            this.actionGroupName17a = aactionGroupName17a;
+            this.actionGroupName17a = actionGroupName17a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionGroupName17aSet = true;
             }
         }
-        return aactionGroupName17a;
+        return actionGroupName17a;
     }
 
    /**
@@ -657,28 +657,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsExpandable();
 
-    private boolean expandable18a;
-    private boolean expandable18aSet = false;
+    private transient boolean expandable18a;
+    private transient boolean expandable18aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.expandable
      * @return (boolean)handleIsExpandable()
      */
     public final boolean isExpandable()
     {
-        boolean aexpandable18a = this.expandable18a;
+        boolean expandable18a = this.expandable18a;
         if (!this.expandable18aSet)
         {
             // expandable has no pre constraints
-            aexpandable18a = handleIsExpandable();
+            expandable18a = handleIsExpandable();
             // expandable has no post constraints
-            this.expandable18a = aexpandable18a;
+            this.expandable18a = expandable18a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.expandable18aSet = true;
             }
         }
-        return aexpandable18a;
+        return expandable18a;
     }
 
    /**
@@ -687,28 +687,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsTabs();
 
-    private boolean tabs19a;
-    private boolean tabs19aSet = false;
+    private transient boolean tabs19a;
+    private transient boolean tabs19aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.tabs
      * @return (boolean)handleIsTabs()
      */
     public final boolean isTabs()
     {
-        boolean atabs19a = this.tabs19a;
+        boolean tabs19a = this.tabs19a;
         if (!this.tabs19aSet)
         {
             // tabs has no pre constraints
-            atabs19a = handleIsTabs();
+            tabs19a = handleIsTabs();
             // tabs has no post constraints
-            this.tabs19a = atabs19a;
+            this.tabs19a = tabs19a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tabs19aSet = true;
             }
         }
-        return atabs19a;
+        return tabs19a;
     }
 
    /**
@@ -717,28 +717,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsTransparent();
 
-    private boolean transparent20a;
-    private boolean transparent20aSet = false;
+    private transient boolean transparent20a;
+    private transient boolean transparent20aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.transparent
      * @return (boolean)handleIsTransparent()
      */
     public final boolean isTransparent()
     {
-        boolean atransparent20a = this.transparent20a;
+        boolean transparent20a = this.transparent20a;
         if (!this.transparent20aSet)
         {
             // transparent has no pre constraints
-            atransparent20a = handleIsTransparent();
+            transparent20a = handleIsTransparent();
             // transparent has no post constraints
-            this.transparent20a = atransparent20a;
+            this.transparent20a = transparent20a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.transparent20aSet = true;
             }
         }
-        return atransparent20a;
+        return transparent20a;
     }
 
    /**
@@ -747,28 +747,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsWindow();
 
-    private boolean window21a;
-    private boolean window21aSet = false;
+    private transient boolean window21a;
+    private transient boolean window21aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.window
      * @return (boolean)handleIsWindow()
      */
     public final boolean isWindow()
     {
-        boolean awindow21a = this.window21a;
+        boolean window21a = this.window21a;
         if (!this.window21aSet)
         {
             // window has no pre constraints
-            awindow21a = handleIsWindow();
+            window21a = handleIsWindow();
             // window has no post constraints
-            this.window21a = awindow21a;
+            this.window21a = window21a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.window21aSet = true;
             }
         }
-        return awindow21a;
+        return window21a;
     }
 
    /**
@@ -777,28 +777,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsToolbar();
 
-    private boolean toolbar22a;
-    private boolean toolbar22aSet = false;
+    private transient boolean toolbar22a;
+    private transient boolean toolbar22aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.toolbar
      * @return (boolean)handleIsToolbar()
      */
     public final boolean isToolbar()
     {
-        boolean atoolbar22a = this.toolbar22a;
+        boolean toolbar22a = this.toolbar22a;
         if (!this.toolbar22aSet)
         {
             // toolbar has no pre constraints
-            atoolbar22a = handleIsToolbar();
+            toolbar22a = handleIsToolbar();
             // toolbar has no post constraints
-            this.toolbar22a = atoolbar22a;
+            this.toolbar22a = toolbar22a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.toolbar22aSet = true;
             }
         }
-        return atoolbar22a;
+        return toolbar22a;
     }
 
    /**
@@ -807,28 +807,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsFilterView();
 
-    private boolean filterView23a;
-    private boolean filterView23aSet = false;
+    private transient boolean filterView23a;
+    private transient boolean filterView23aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.filterView
      * @return (boolean)handleIsFilterView()
      */
     public final boolean isFilterView()
     {
-        boolean afilterView23a = this.filterView23a;
+        boolean filterView23a = this.filterView23a;
         if (!this.filterView23aSet)
         {
             // filterView has no pre constraints
-            afilterView23a = handleIsFilterView();
+            filterView23a = handleIsFilterView();
             // filterView has no post constraints
-            this.filterView23a = afilterView23a;
+            this.filterView23a = filterView23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.filterView23aSet = true;
             }
         }
-        return afilterView23a;
+        return filterView23a;
     }
 
    /**
@@ -837,28 +837,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsMainToolbar();
 
-    private boolean mainToolbar24a;
-    private boolean mainToolbar24aSet = false;
+    private transient boolean mainToolbar24a;
+    private transient boolean mainToolbar24aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.mainToolbar
      * @return (boolean)handleIsMainToolbar()
      */
     public final boolean isMainToolbar()
     {
-        boolean amainToolbar24a = this.mainToolbar24a;
+        boolean mainToolbar24a = this.mainToolbar24a;
         if (!this.mainToolbar24aSet)
         {
             // mainToolbar has no pre constraints
-            amainToolbar24a = handleIsMainToolbar();
+            mainToolbar24a = handleIsMainToolbar();
             // mainToolbar has no post constraints
-            this.mainToolbar24a = amainToolbar24a;
+            this.mainToolbar24a = mainToolbar24a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.mainToolbar24aSet = true;
             }
         }
-        return amainToolbar24a;
+        return mainToolbar24a;
     }
 
    /**
@@ -867,8 +867,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsHeldTable();
 
-    private boolean heldTable25a;
-    private boolean heldTable25aSet = false;
+    private transient boolean heldTable25a;
+    private transient boolean heldTable25aSet = false;
 
     /**
      * Returns true if the view contains only a table.
@@ -876,19 +876,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isHeldTable()
     {
-        boolean aheldTable25a = this.heldTable25a;
+        boolean heldTable25a = this.heldTable25a;
         if (!this.heldTable25aSet)
         {
             // heldTable has no pre constraints
-            aheldTable25a = handleIsHeldTable();
+            heldTable25a = handleIsHeldTable();
             // heldTable has no post constraints
-            this.heldTable25a = aheldTable25a;
+            this.heldTable25a = heldTable25a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.heldTable25aSet = true;
             }
         }
-        return aheldTable25a;
+        return heldTable25a;
     }
 
    /**
@@ -897,8 +897,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsAsynchronous();
 
-    private boolean asynchronous26a;
-    private boolean asynchronous26aSet = false;
+    private transient boolean asynchronous26a;
+    private transient boolean asynchronous26aSet = false;
 
     /**
      * This attribute is true if the view is stereotyped with AsynchronousView
@@ -906,19 +906,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isAsynchronous()
     {
-        boolean aasynchronous26a = this.asynchronous26a;
+        boolean asynchronous26a = this.asynchronous26a;
         if (!this.asynchronous26aSet)
         {
             // asynchronous has no pre constraints
-            aasynchronous26a = handleIsAsynchronous();
+            asynchronous26a = handleIsAsynchronous();
             // asynchronous has no post constraints
-            this.asynchronous26a = aasynchronous26a;
+            this.asynchronous26a = asynchronous26a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.asynchronous26aSet = true;
             }
         }
-        return aasynchronous26a;
+        return asynchronous26a;
     }
 
    /**
@@ -927,8 +927,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetPath();
 
-    private String path27a;
-    private boolean path27aSet = false;
+    private transient String path27a;
+    private transient boolean path27aSet = false;
 
     /**
      * The full path of the view resources (i.e. the JSP page).
@@ -936,19 +936,19 @@ public abstract class GuiViewLogic
      */
     public final String getPath()
     {
-        String apath27a = this.path27a;
+        String path27a = this.path27a;
         if (!this.path27aSet)
         {
             // path has no pre constraints
-            apath27a = handleGetPath();
+            path27a = handleGetPath();
             // path has no post constraints
-            this.path27a = apath27a;
+            this.path27a = path27a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.path27aSet = true;
             }
         }
-        return apath27a;
+        return path27a;
     }
 
    /**
@@ -957,8 +957,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetFullyQualifiedPopulator();
 
-    private String fullyQualifiedPopulator28a;
-    private boolean fullyQualifiedPopulator28aSet = false;
+    private transient String fullyQualifiedPopulator28a;
+    private transient boolean fullyQualifiedPopulator28aSet = false;
 
     /**
      * The fully qualified name of this view's form populator.
@@ -966,19 +966,19 @@ public abstract class GuiViewLogic
      */
     public final String getFullyQualifiedPopulator()
     {
-        String afullyQualifiedPopulator28a = this.fullyQualifiedPopulator28a;
+        String fullyQualifiedPopulator28a = this.fullyQualifiedPopulator28a;
         if (!this.fullyQualifiedPopulator28aSet)
         {
             // fullyQualifiedPopulator has no pre constraints
-            afullyQualifiedPopulator28a = handleGetFullyQualifiedPopulator();
+            fullyQualifiedPopulator28a = handleGetFullyQualifiedPopulator();
             // fullyQualifiedPopulator has no post constraints
-            this.fullyQualifiedPopulator28a = afullyQualifiedPopulator28a;
+            this.fullyQualifiedPopulator28a = fullyQualifiedPopulator28a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedPopulator28aSet = true;
             }
         }
-        return afullyQualifiedPopulator28a;
+        return fullyQualifiedPopulator28a;
     }
 
    /**
@@ -987,8 +987,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetPopulator();
 
-    private String populator29a;
-    private boolean populator29aSet = false;
+    private transient String populator29a;
+    private transient boolean populator29aSet = false;
 
     /**
      * The name of the form populator for this view.
@@ -996,19 +996,19 @@ public abstract class GuiViewLogic
      */
     public final String getPopulator()
     {
-        String apopulator29a = this.populator29a;
+        String populator29a = this.populator29a;
         if (!this.populator29aSet)
         {
             // populator has no pre constraints
-            apopulator29a = handleGetPopulator();
+            populator29a = handleGetPopulator();
             // populator has no post constraints
-            this.populator29a = apopulator29a;
+            this.populator29a = populator29a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.populator29aSet = true;
             }
         }
-        return apopulator29a;
+        return populator29a;
     }
 
    /**
@@ -1017,8 +1017,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetPopulatorPath();
 
-    private String populatorPath30a;
-    private boolean populatorPath30aSet = false;
+    private transient String populatorPath30a;
+    private transient boolean populatorPath30aSet = false;
 
     /**
      * The path to the form populator.
@@ -1026,19 +1026,19 @@ public abstract class GuiViewLogic
      */
     public final String getPopulatorPath()
     {
-        String apopulatorPath30a = this.populatorPath30a;
+        String populatorPath30a = this.populatorPath30a;
         if (!this.populatorPath30aSet)
         {
             // populatorPath has no pre constraints
-            apopulatorPath30a = handleGetPopulatorPath();
+            populatorPath30a = handleGetPopulatorPath();
             // populatorPath has no post constraints
-            this.populatorPath30a = apopulatorPath30a;
+            this.populatorPath30a = populatorPath30a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.populatorPath30aSet = true;
             }
         }
-        return apopulatorPath30a;
+        return populatorPath30a;
     }
 
    /**
@@ -1047,8 +1047,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsPopulatorRequired();
 
-    private boolean populatorRequired31a;
-    private boolean populatorRequired31aSet = false;
+    private transient boolean populatorRequired31a;
+    private transient boolean populatorRequired31aSet = false;
 
     /**
      * Indicates if a populator is required for this view.
@@ -1056,19 +1056,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isPopulatorRequired()
     {
-        boolean apopulatorRequired31a = this.populatorRequired31a;
+        boolean populatorRequired31a = this.populatorRequired31a;
         if (!this.populatorRequired31aSet)
         {
             // populatorRequired has no pre constraints
-            apopulatorRequired31a = handleIsPopulatorRequired();
+            populatorRequired31a = handleIsPopulatorRequired();
             // populatorRequired has no post constraints
-            this.populatorRequired31a = apopulatorRequired31a;
+            this.populatorRequired31a = populatorRequired31a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.populatorRequired31aSet = true;
             }
         }
-        return apopulatorRequired31a;
+        return populatorRequired31a;
     }
 
    /**
@@ -1077,8 +1077,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsPopup();
 
-    private boolean popup32a;
-    private boolean popup32aSet = false;
+    private transient boolean popup32a;
+    private transient boolean popup32aSet = false;
 
     /**
      * Indicates if this view represents a popup.
@@ -1086,19 +1086,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isPopup()
     {
-        boolean apopup32a = this.popup32a;
+        boolean popup32a = this.popup32a;
         if (!this.popup32aSet)
         {
             // popup has no pre constraints
-            apopup32a = handleIsPopup();
+            popup32a = handleIsPopup();
             // popup has no post constraints
-            this.popup32a = apopup32a;
+            this.popup32a = popup32a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.popup32aSet = true;
             }
         }
-        return apopup32a;
+        return popup32a;
     }
 
    /**
@@ -1107,8 +1107,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsNonTableVariablesPresent();
 
-    private boolean nonTableVariablesPresent33a;
-    private boolean nonTableVariablesPresent33aSet = false;
+    private transient boolean nonTableVariablesPresent33a;
+    private transient boolean nonTableVariablesPresent33aSet = false;
 
     /**
      * Indicates whether or not any non-table view variables are present in this view.
@@ -1116,19 +1116,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isNonTableVariablesPresent()
     {
-        boolean anonTableVariablesPresent33a = this.nonTableVariablesPresent33a;
+        boolean nonTableVariablesPresent33a = this.nonTableVariablesPresent33a;
         if (!this.nonTableVariablesPresent33aSet)
         {
             // nonTableVariablesPresent has no pre constraints
-            anonTableVariablesPresent33a = handleIsNonTableVariablesPresent();
+            nonTableVariablesPresent33a = handleIsNonTableVariablesPresent();
             // nonTableVariablesPresent has no post constraints
-            this.nonTableVariablesPresent33a = anonTableVariablesPresent33a;
+            this.nonTableVariablesPresent33a = nonTableVariablesPresent33a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.nonTableVariablesPresent33aSet = true;
             }
         }
-        return anonTableVariablesPresent33a;
+        return nonTableVariablesPresent33a;
     }
 
    /**
@@ -1137,8 +1137,8 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsHasNameOfUseCase();
 
-    private boolean hasNameOfUseCase34a;
-    private boolean hasNameOfUseCase34aSet = false;
+    private transient boolean hasNameOfUseCase34a;
+    private transient boolean hasNameOfUseCase34aSet = false;
 
     /**
      * Indicates whether or not this view has the same name as the use case in which it is
@@ -1147,19 +1147,19 @@ public abstract class GuiViewLogic
      */
     public final boolean isHasNameOfUseCase()
     {
-        boolean ahasNameOfUseCase34a = this.hasNameOfUseCase34a;
+        boolean hasNameOfUseCase34a = this.hasNameOfUseCase34a;
         if (!this.hasNameOfUseCase34aSet)
         {
             // hasNameOfUseCase has no pre constraints
-            ahasNameOfUseCase34a = handleIsHasNameOfUseCase();
+            hasNameOfUseCase34a = handleIsHasNameOfUseCase();
             // hasNameOfUseCase has no post constraints
-            this.hasNameOfUseCase34a = ahasNameOfUseCase34a;
+            this.hasNameOfUseCase34a = hasNameOfUseCase34a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hasNameOfUseCase34aSet = true;
             }
         }
-        return ahasNameOfUseCase34a;
+        return hasNameOfUseCase34a;
     }
 
    /**
@@ -1168,8 +1168,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetFormKey();
 
-    private String formKey35a;
-    private boolean formKey35aSet = false;
+    private transient String formKey35a;
+    private transient boolean formKey35aSet = false;
 
     /**
      * The key that stores the form in which information is passed from one action to another.
@@ -1177,19 +1177,19 @@ public abstract class GuiViewLogic
      */
     public final String getFormKey()
     {
-        String aformKey35a = this.formKey35a;
+        String formKey35a = this.formKey35a;
         if (!this.formKey35aSet)
         {
             // formKey has no pre constraints
-            aformKey35a = handleGetFormKey();
+            formKey35a = handleGetFormKey();
             // formKey has no post constraints
-            this.formKey35a = aformKey35a;
+            this.formKey35a = formKey35a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formKey35aSet = true;
             }
         }
-        return aformKey35a;
+        return formKey35a;
     }
 
    /**
@@ -1198,8 +1198,8 @@ public abstract class GuiViewLogic
     */
     protected abstract String handleGetFromOutcome();
 
-    private String fromOutcome36a;
-    private boolean fromOutcome36aSet = false;
+    private transient String fromOutcome36a;
+    private transient boolean fromOutcome36aSet = false;
 
     /**
      * The name that corresponds to the from-outcome in an navigational rule.
@@ -1207,19 +1207,19 @@ public abstract class GuiViewLogic
      */
     public final String getFromOutcome()
     {
-        String afromOutcome36a = this.fromOutcome36a;
+        String fromOutcome36a = this.fromOutcome36a;
         if (!this.fromOutcome36aSet)
         {
             // fromOutcome has no pre constraints
-            afromOutcome36a = handleGetFromOutcome();
+            fromOutcome36a = handleGetFromOutcome();
             // fromOutcome has no post constraints
-            this.fromOutcome36a = afromOutcome36a;
+            this.fromOutcome36a = fromOutcome36a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fromOutcome36aSet = true;
             }
         }
-        return afromOutcome36a;
+        return fromOutcome36a;
     }
 
    /**
@@ -1228,28 +1228,28 @@ public abstract class GuiViewLogic
     */
     protected abstract boolean handleIsNeedsFileUpload();
 
-    private boolean needsFileUpload37a;
-    private boolean needsFileUpload37aSet = false;
+    private transient boolean needsFileUpload37a;
+    private transient boolean needsFileUpload37aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.needsFileUpload
      * @return (boolean)handleIsNeedsFileUpload()
      */
     public final boolean isNeedsFileUpload()
     {
-        boolean aneedsFileUpload37a = this.needsFileUpload37a;
+        boolean needsFileUpload37a = this.needsFileUpload37a;
         if (!this.needsFileUpload37aSet)
         {
             // needsFileUpload has no pre constraints
-            aneedsFileUpload37a = handleIsNeedsFileUpload();
+            needsFileUpload37a = handleIsNeedsFileUpload();
             // needsFileUpload has no post constraints
-            this.needsFileUpload37a = aneedsFileUpload37a;
+            this.needsFileUpload37a = needsFileUpload37a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.needsFileUpload37aSet = true;
             }
         }
-        return aneedsFileUpload37a;
+        return needsFileUpload37a;
     }
 
    /**
@@ -1258,8 +1258,8 @@ public abstract class GuiViewLogic
     */
     protected abstract List<ModelElementFacade> handleGetForwards();
 
-    private List<ModelElementFacade> forwards38a;
-    private boolean forwards38aSet = false;
+    private transient List<ModelElementFacade> forwards38a;
+    private transient boolean forwards38aSet = false;
 
     /**
      * Gets the forwards which can be targgeted from this view.
@@ -1267,19 +1267,19 @@ public abstract class GuiViewLogic
      */
     public final List<ModelElementFacade> getForwards()
     {
-        List<ModelElementFacade> aforwards38a = this.forwards38a;
+        List<ModelElementFacade> forwards38a = this.forwards38a;
         if (!this.forwards38aSet)
         {
             // forwards has no pre constraints
-            aforwards38a = handleGetForwards();
+            forwards38a = handleGetForwards();
             // forwards has no post constraints
-            this.forwards38a = aforwards38a;
+            this.forwards38a = forwards38a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.forwards38aSet = true;
             }
         }
-        return aforwards38a;
+        return forwards38a;
     }
 
    /**
@@ -1294,11 +1294,11 @@ public abstract class GuiViewLogic
      */
     public final List<GuiParameter> getBackingValueVariables()
     {
-        List<GuiParameter> abackingValueVariables39a = null;
+        List<GuiParameter> backingValueVariables39a = null;
         // backingValueVariables has no pre constraints
-        abackingValueVariables39a = handleGetBackingValueVariables();
+        backingValueVariables39a = handleGetBackingValueVariables();
         // backingValueVariables has no post constraints
-        return abackingValueVariables39a;
+        return backingValueVariables39a;
     }
 
    /**
@@ -1307,8 +1307,8 @@ public abstract class GuiViewLogic
     */
     protected abstract List<GuiAction> handleGetFormActions();
 
-    private List<GuiAction> formActions40a;
-    private boolean formActions40aSet = false;
+    private transient List<GuiAction> formActions40a;
+    private transient boolean formActions40aSet = false;
 
     /**
      * All actions that have forms associated with them.
@@ -1316,19 +1316,19 @@ public abstract class GuiViewLogic
      */
     public final List<GuiAction> getFormActions()
     {
-        List<GuiAction> aformActions40a = this.formActions40a;
+        List<GuiAction> formActions40a = this.formActions40a;
         if (!this.formActions40aSet)
         {
             // formActions has no pre constraints
-            aformActions40a = handleGetFormActions();
+            formActions40a = handleGetFormActions();
             // formActions has no post constraints
-            this.formActions40a = aformActions40a;
+            this.formActions40a = formActions40a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formActions40aSet = true;
             }
         }
-        return aformActions40a;
+        return formActions40a;
     }
 
    /**
@@ -1337,8 +1337,8 @@ public abstract class GuiViewLogic
     */
     protected abstract List<GuiAction> handleGetActionForwards();
 
-    private List<GuiAction> actionForwards41a;
-    private boolean actionForwards41aSet = false;
+    private transient List<GuiAction> actionForwards41a;
+    private transient boolean actionForwards41aSet = false;
 
     /**
      * All those forwards that are actions.
@@ -1346,19 +1346,19 @@ public abstract class GuiViewLogic
      */
     public final List<GuiAction> getActionForwards()
     {
-        List<GuiAction> aactionForwards41a = this.actionForwards41a;
+        List<GuiAction> actionForwards41a = this.actionForwards41a;
         if (!this.actionForwards41aSet)
         {
             // actionForwards has no pre constraints
-            aactionForwards41a = handleGetActionForwards();
+            actionForwards41a = handleGetActionForwards();
             // actionForwards has no post constraints
-            this.actionForwards41a = aactionForwards41a;
+            this.actionForwards41a = actionForwards41a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionForwards41aSet = true;
             }
         }
-        return aactionForwards41a;
+        return actionForwards41a;
     }
 
     // ---------------- business methods ----------------------
@@ -1384,8 +1384,8 @@ public abstract class GuiViewLogic
 
     // ------------- associations ------------------
 
-    private List<GuiAction> getIncomingActions1r;
-    private boolean getIncomingActions1rSet = false;
+    private transient List<GuiAction> getIncomingActions1r;
+    private transient boolean getIncomingActions1rSet = false;
 
     /**
      * The set of pages that are a possible target of the triggering of this action.
@@ -1401,7 +1401,7 @@ public abstract class GuiViewLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getIncomingActions1r = (List<GuiAction>)shieldedResult;
+                getIncomingActions1r = (List<GuiAction>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -1424,11 +1424,15 @@ public abstract class GuiViewLogic
      */
     protected abstract List handleGetIncomingActions();
 
-    private List<GuiForward> getNonActionForwards2r;
-    private boolean getNonActionForwards2rSet = false;
+    private transient List<GuiForward> getNonActionForwards2r;
+    private transient boolean getNonActionForwards2rSet = false;
 
     /**
-     * 
+     * A Gui view represents a page in the web application. A page possibly contains several
+     * conainters and
+     * controls (either buttons or hyperlinks) that call actions. A Gui view allow generation of
+     * EJBs and
+     * XML page descriptors
      * @return (List<GuiForward>)handleGetNonActionForwards()
      */
     public final List<GuiForward> getNonActionForwards()
@@ -1441,7 +1445,7 @@ public abstract class GuiViewLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getNonActionForwards2r = (List<GuiForward>)shieldedResult;
+                getNonActionForwards2r = (List<GuiForward>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -1464,11 +1468,15 @@ public abstract class GuiViewLogic
      */
     protected abstract List handleGetNonActionForwards();
 
-    private List<GuiParameter> getPageVariables3r;
-    private boolean getPageVariables3rSet = false;
+    private transient List<GuiParameter> getPageVariables3r;
+    private transient boolean getPageVariables3rSet = false;
 
     /**
-     * 
+     * A Gui view represents a page in the web application. A page possibly contains several
+     * conainters and
+     * controls (either buttons or hyperlinks) that call actions. A Gui view allow generation of
+     * EJBs and
+     * XML page descriptors
      * @return (List<GuiParameter>)handleGetPageVariables()
      */
     public final List<GuiParameter> getPageVariables()
@@ -1481,7 +1489,7 @@ public abstract class GuiViewLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getPageVariables3r = (List<GuiParameter>)shieldedResult;
+                getPageVariables3r = (List<GuiParameter>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -1615,7 +1623,11 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * A behavioral feature of a classifier that specifies the name, type, parameters, and
+     * constraints for
+     * invoking an associated behavior. May invoke both the execution of method behaviors as well as
+     * other
+     * behavioral responses.
      * @see org.andromda.metafacades.uml.FrontEndActionState#getServiceCalls()
      */
     public List<OperationFacade> getServiceCalls()
@@ -1789,7 +1801,9 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1860,7 +1874,7 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1869,7 +1883,8 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1982,7 +1997,7 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -2000,7 +2015,7 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -2009,7 +2024,7 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -2065,7 +2080,8 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -2101,12 +2117,24 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndView().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndView().isValidIdentifierName();
     }
 
     /**
@@ -2148,7 +2176,11 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * Models a situation during which some (usually implicit) invariant condition holds. The states
+     * of protocol state machines are exposed to the users of their context classifiers. A protocol
+     * state represents an exposed stable situation of its context classifier: when an instance of
+     * the classifier is not processing any operation, users of this instance can always know its
+     * state configuration.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getContainer()
      */
     public StateFacade getContainer()
@@ -2157,7 +2189,10 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getIncomings()
      */
     public Collection<TransitionFacade> getIncomings()
@@ -2166,7 +2201,10 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getOutgoings()
      */
     public Collection<TransitionFacade> getOutgoings()
@@ -2184,7 +2222,11 @@ public abstract class GuiViewLogic
     }
 
     /**
-     * 
+     * State machines can be used to express the behavior of part of a system. Behavior is modeled
+     * as a traversal of a graph of state nodes interconnected by one or more joined transition arcs
+     * that are triggered by the dispatching of series of (event) occurrences. During this
+     * traversal, the state machine executes a series of activities associated with various elements
+     * of the state machine.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getStateMachine()
      */
     public StateMachineFacade getStateMachine()
