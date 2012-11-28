@@ -33,11 +33,10 @@
  */
 package org.andromda.metafacades.uml;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
 
 /**
  * Filters a collection of objects so that the collection contains only those
@@ -50,7 +49,6 @@ import java.util.Collection;
  */
 public abstract class FilteredCollection extends ArrayList implements Predicate
 {
-
     /**
      * Constructor for the FilterCollection object
      *
@@ -58,15 +56,12 @@ public abstract class FilteredCollection extends ArrayList implements Predicate
      */
     public FilteredCollection(Collection collection)
     {
-
         this.addAll(collection);
         CollectionUtils.filter(this, this);
-
     }
 
     /**
      * @see org.apache.commons.collections.Predicate#evaluate(Object)
      */
     public abstract boolean evaluate(Object object);
-
 }

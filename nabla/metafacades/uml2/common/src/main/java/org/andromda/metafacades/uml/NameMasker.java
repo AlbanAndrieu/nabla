@@ -33,11 +33,10 @@
  */
 package org.andromda.metafacades.uml;
 
-import org.andromda.utils.StringUtilsHelper;
-
-import org.apache.commons.lang.StringUtils;
-
 import java.text.Normalizer;
+
+import org.andromda.utils.StringUtilsHelper;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Provides the ability to <code>mask</code> names in a standard manner.
@@ -46,7 +45,6 @@ import java.text.Normalizer;
  */
 public class NameMasker
 {
-
     /**
      * The <code>uppercase</code> mask.
      */
@@ -107,64 +105,39 @@ public class NameMasker
      */
     public static String mask(String name, String mask)
     {
-
         mask = StringUtils.trimToEmpty(mask);
         name = StringUtils.trimToEmpty(name);
-
         if (!mask.equalsIgnoreCase(NONE))
         {
-
             if (mask.equalsIgnoreCase(UPPERCASE))
             {
-
                 name = name.toUpperCase();
-
             } else if (mask.equalsIgnoreCase(UNDERSCORE))
             {
-
                 name = StringUtilsHelper.separate(name, "_");
-
             } else if (mask.equalsIgnoreCase(UPPERUNDERSCORE))
             {
-
                 name = StringUtilsHelper.separate(name, "_").toUpperCase();
-
             } else if (mask.equalsIgnoreCase(LOWERCASE))
             {
-
                 name = name.toLowerCase();
-
             } else if (mask.equalsIgnoreCase(LOWERUNDERSCORE))
             {
-
                 name = StringUtilsHelper.separate(name, "_").toLowerCase();
-
             } else if (mask.equalsIgnoreCase(LOWERCAMELCASE))
             {
-
                 name = StringUtilsHelper.lowerCamelCaseName(name);
-
             } else if (mask.equalsIgnoreCase(UPPERCAMELCASE))
             {
-
                 name = StringUtilsHelper.upperCamelCaseName(name);
-
             } else if (mask.equalsIgnoreCase(NOSPACE))
             {
-
                 name = StringUtils.deleteWhitespace(name);
-
             } else if (mask.equalsIgnoreCase(NOACCENT))
             {
-
                 name = Normalizer.normalize(name, java.text.Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
-
             }
-
         }
-
         return name;
-
     }
-
 }

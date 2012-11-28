@@ -24,13 +24,13 @@ public interface GeneralizationFacade
     public boolean isGeneralizationFacadeMetaType();
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @return GeneralizableElementFacade
      */
     public GeneralizableElementFacade getChild();
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @return GeneralizableElementFacade
      */
     public GeneralizableElementFacade getParent();

@@ -5,7 +5,7 @@
 package org.andromda.metafacades.uml;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.metafacades.uml.Topic
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

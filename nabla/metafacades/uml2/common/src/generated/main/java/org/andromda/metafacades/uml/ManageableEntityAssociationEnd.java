@@ -5,7 +5,7 @@
 package org.andromda.metafacades.uml;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.metafacades.uml.ManageableEntityAssociationEnd
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -20,7 +20,7 @@ public interface ManageableEntityAssociationEnd
     public boolean isManageableEntityAssociationEndMetaType();
 
     /**
-     * 
+     * Represents an attribute of an entity.
      * @return EntityAttribute
      */
     public EntityAttribute getManageableIdentifier();

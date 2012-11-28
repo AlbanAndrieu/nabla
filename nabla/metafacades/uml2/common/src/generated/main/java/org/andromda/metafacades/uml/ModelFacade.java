@@ -56,14 +56,14 @@ public interface ModelFacade
     void validateInvariants(Collection<ModelValidationMessage> validationMessages);
 
     /**
-     * 
+     * Finds the ActivityGraph with the Name.
      * @param name String
      * @return ActivityGraphFacade
      */
     public ActivityGraphFacade findActivityGraphByName(String name);
 
     /**
-     * 
+     * Finds the ActivityGraph with the Name and Stereotype.
      * @param name String
      * @param stereotypeName String
      * @return ActivityGraphFacade
@@ -71,7 +71,7 @@ public interface ModelFacade
     public ActivityGraphFacade findActivityGraphByNameAndStereotype(String name, String stereotypeName);
 
     /**
-     * 
+     * Return the Class belonging to this model with the tagged value or hyperlink.
      * @param tag String
      * @param value String
      * @return ClassifierFacade
@@ -79,21 +79,21 @@ public interface ModelFacade
     public ClassifierFacade findClassWithTaggedValueOrHyperlink(String tag, String value);
 
     /**
-     * 
+     * Finds the FinalState with the Name or Hyperlink.
      * @param useCase UseCaseFacade
      * @return Collection<FinalStateFacade>
      */
     public Collection<FinalStateFacade> findFinalStatesWithNameOrHyperlink(UseCaseFacade useCase);
 
     /**
-     * 
+     * Finds the UseCase with the Name.
      * @param name String
      * @return UseCaseFacade
      */
     public UseCaseFacade findUseCaseByName(String name);
 
     /**
-     * 
+     * Finds the UseGraph with the Name and Stereotype.
      * @param name String
      * @param stereotypeName String
      * @return UseCaseFacade
@@ -101,7 +101,7 @@ public interface ModelFacade
     public UseCaseFacade findUseCaseWithNameAndStereotype(String name, String stereotypeName);
 
     /**
-     * 
+     * Return the UseCase belonging to this model with the tagged value or hyperlink.
      * @param tag String
      * @param value String
      * @return UseCaseFacade
@@ -109,13 +109,13 @@ public interface ModelFacade
     public UseCaseFacade findUseCaseWithTaggedValueOrHyperlink(String tag, String value);
 
     /**
-     * 
+     * Return all ActionStates belonging to this model.
      * @return Collection<ActionStateFacade>
      */
     public Collection<ActionStateFacade> getAllActionStates();
 
     /**
-     * 
+     * Finds all ActionStates with the Stereotype.
      * @param activityGraph ActivityGraphFacade
      * @param stereotypeName String
      * @return Collection<ActionStateFacade>
@@ -123,13 +123,13 @@ public interface ModelFacade
     public Collection<ActionStateFacade> getAllActionStatesWithStereotype(ActivityGraphFacade activityGraph, String stereotypeName);
 
     /**
-     * 
+     * Return all Actors belonging to this model.
      * @return Collection<ActorFacade>
      */
     public Collection<ActorFacade> getAllActors();
 
     /**
-     * 
+     * Return all Classes and Datatypes belonging to this model.
      * @return Collection<ClassifierFacade>
      */
     public Collection<ClassifierFacade> getAllClasses();
@@ -147,13 +147,14 @@ public interface ModelFacade
     public Collection<TransitionFacade> getAllTransitions();
 
     /**
-     * 
+     * Return all UseCases belonging to this model.
      * @return Collection<UseCaseFacade>
      */
     public Collection<UseCaseFacade> getAllUseCases();
 
     /**
-     * 
+     * Return the root package belonging to this model. In UML2, the top level element may be either
+     * a package or a model.
      * @return PackageFacade
      */
     public PackageFacade getRootPackage();

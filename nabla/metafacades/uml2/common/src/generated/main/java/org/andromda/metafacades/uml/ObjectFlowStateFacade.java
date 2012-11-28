@@ -22,7 +22,19 @@ public interface ObjectFlowStateFacade
     public boolean isObjectFlowStateFacadeMetaType();
 
     /**
-     * 
+     * A Classifier is a classification of instances - it describes a set of instances that have
+     * features
+     * in common. Can specify a generalization hierarchy by referencing its general classifiers. It
+     * may be
+     * a Class, DataType, PrimitiveType, Association, Collaboration, UseCase, etc. Can specify a
+     * generalization hierarchy by referencing its general classifiers. Has the capability to own
+     * collaboration uses. These collaboration uses link a collaboration with the classifier to give
+     * a
+     * description of the workings of the classifier. Classifier is defined to be a kind of
+     * templateable
+     * element so that a classifier can be parameterized. It is also defined to be a kind of
+     * parameterable
+     * element so that a classifier can be a formal template parameter.
      * @return ClassifierFacade
      */
     public ClassifierFacade getType();

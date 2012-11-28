@@ -148,19 +148,20 @@ public interface Entity
      * All the attributes of the entity which make up its identifier (primary key).  Will search any
      * super classes as well.  If no identifiers exist, a default identifier will be created if the
      * allowDefaultIdentifiers property is set to true.
-     * @return Collection<EntityAttribute>
+     * @return Collection<ModelElementFacade>
      */
-    public Collection<EntityAttribute> getIdentifiers();
+    public Collection<ModelElementFacade> getIdentifiers();
 
     /**
      * Gets all identifiers for an entity. If 'follow' is true, and if no identifiers can be found
      * on the entity, a search up the inheritance chain will be performed, and the identifiers from
      * the first super class having them will be used.   If no identifiers exist, a default
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
+     * Identifiers can be on attributes or associations (composite primary key).
      * @param follow boolean
-     * @return Collection<EntityAttribute>
+     * @return Collection<ModelElementFacade>
      */
-    public Collection<EntityAttribute> getIdentifiers(boolean follow);
+    public Collection<ModelElementFacade> getIdentifiers(boolean follow);
 
     /**
      * The maximum length a SQL name may be.
@@ -303,7 +304,8 @@ public interface Entity
     public boolean isChild();
 
     /**
-     * 
+     * True if this entity identifier is a composite (consists of multiple key columns, typically
+     * abstracted into an external composite identifier class)
      * @return boolean
      */
     public boolean isCompositeIdentifier();

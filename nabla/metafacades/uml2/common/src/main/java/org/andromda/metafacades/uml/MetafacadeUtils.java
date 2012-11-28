@@ -33,19 +33,16 @@
  */
 package org.andromda.metafacades.uml;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.lang.StringUtils;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import java.text.Collator;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * A class containing utilities for metafacade manipulation.
@@ -56,7 +53,6 @@ import java.util.List;
  */
 public class MetafacadeUtils
 {
-
     /**
      * Checks to see if the element is the specified type and if so casts it to the object and returns it, otherwise it
      * returns null.
@@ -67,25 +63,16 @@ public class MetafacadeUtils
      */
     public static Object getElementAsType(final Object element, final Class type)
     {
-
         Object elementAsType = null;
-
-        if ((element != null) && (type != null))
+        if (element != null && type != null)
         {
-
             final Class elementClass = element.getClass();
-
             if (type.isAssignableFrom(elementClass))
             {
-
                 elementAsType = element;
-
             }
-
         }
-
         return elementAsType;
-
     }
 
     /**
@@ -98,25 +85,17 @@ public class MetafacadeUtils
      */
     public static void filterByStereotype(final Collection modelElements, final String stereotype)
     {
-
         // Should be able to type the Collection as <ModelElementFacade>, but compilation failure results.
         if (StringUtils.isNotBlank(stereotype))
         {
-
             CollectionUtils.filter(modelElements, new Predicate()
             {
-
                 public boolean evaluate(Object object)
                 {
-
                     return ((ModelElementFacade) object).hasStereotype(stereotype);
-
                 }
-
             });
-
         }
-
     }
 
     /**
@@ -128,24 +107,16 @@ public class MetafacadeUtils
      */
     public static void filterByType(final Collection modelElements, final Class type)
     {
-
         if (type != null)
         {
-
             CollectionUtils.filter(modelElements, new Predicate()
             {
-
                 public boolean evaluate(Object object)
                 {
-
                     return type.isAssignableFrom(object.getClass());
-
                 }
-
             });
-
         }
-
     }
 
     /**
@@ -157,24 +128,16 @@ public class MetafacadeUtils
      */
     public static void filterByNotType(final Collection modelElements, final Class type)
     {
-
         if (type != null)
         {
-
             CollectionUtils.filter(modelElements, new Predicate()
             {
-
                 public boolean evaluate(Object object)
                 {
-
                     return !type.isAssignableFrom(object.getClass());
-
                 }
-
             });
-
         }
-
     }
 
     /**
@@ -192,16 +155,11 @@ public class MetafacadeUtils
      */
     public static String toRelationName(final String roleName, final String targetRoleName, final String separator)
     {
-
         if (roleName.compareTo(targetRoleName) <= 0)
         {
-
             return (roleName + separator + targetRoleName);
-
         }
-
         return (targetRoleName + separator + roleName);
-
     }
 
     /**
@@ -211,9 +169,7 @@ public class MetafacadeUtils
      */
     public static void sortByFullyQualifiedName(final List metafacades)
     {
-
         Collections.sort(metafacades, new FullyQualifiedNameComparator());
-
     }
 
     /**
@@ -221,35 +177,20 @@ public class MetafacadeUtils
      */
     private static final class FullyQualifiedNameComparator implements Comparator
     {
-
         private final Collator collator = Collator.getInstance();
 
         /** */
         FullyQualifiedNameComparator()
         {
-
             collator.setStrength(Collator.PRIMARY);
-
         }
 
-        /**
-         * DOCUMENT ME!
-         *
-         * @param objectA DOCUMENT ME!
-         * @param objectB DOCUMENT ME!
-         *
-         * @return DOCUMENT ME!
-         */
         public int compare(final Object objectA, final Object objectB)
         {
-
             final ModelElementFacade a = (ModelElementFacade) objectA;
             final ModelElementFacade b = (ModelElementFacade) objectB;
-
-            return collator.compare((a.getFullyQualifiedName() != null) ? a.getFullyQualifiedName() : "", (b.getFullyQualifiedName() != null) ? b.getFullyQualifiedName() : "");
-
+            return collator.compare(a.getFullyQualifiedName() != null ? a.getFullyQualifiedName() : "", b.getFullyQualifiedName() != null ? b.getFullyQualifiedName() : "");
         }
-
     }
 
     /**
@@ -263,55 +204,36 @@ public class MetafacadeUtils
      */
     public static String getTypedArgumentList(final Collection<ParameterFacade> arguments, final boolean withArgumentNames, final String modifier)
     {
-
         final StringBuilder buffer = new StringBuilder();
         boolean commaNeeded = false;
-
         for (ParameterFacade parameter : arguments)
         {
-
             String type = null;
             ClassifierFacade classifier = parameter.getType();
-
             if (classifier != null)
             {
-
                 // Takes multiplicity and templating into account
                 type = parameter.getGetterSetterTypeName();
-
             }
 
             if (commaNeeded)
             {
-
                 buffer.append(", ");
-
             }
-
             if (StringUtils.isNotBlank(modifier))
             {
-
                 buffer.append(modifier);
                 buffer.append(' ');
-
             }
-
             buffer.append(type);
-
             if (withArgumentNames)
             {
-
                 buffer.append(' ');
                 buffer.append(parameter.getName());
-
             }
-
             commaNeeded = true;
-
         }
-
         return buffer.toString();
-
     }
 
     /**
@@ -326,15 +248,11 @@ public class MetafacadeUtils
      */
     public static String getSignature(final String name, Collection<ParameterFacade> arguments, final boolean withArgumentNames, final String argumentModifier)
     {
-
         final StringBuilder signature = new StringBuilder(name);
-
         signature.append('(');
         signature.append(getTypedArgumentList(arguments, withArgumentNames, argumentModifier));
         signature.append(')');
-
         return signature.toString();
-
     }
 
     private static final String at         = "@";
@@ -351,25 +269,16 @@ public class MetafacadeUtils
      */
     public static String getEmfTaggedValue(String name)
     {
-
         if (name == null)
         {
-
             return name;
-
         }
-
         if (name.startsWith(at))
         {
-
             name = name.substring(1);
-
         }
-
         name = name.replace(period, underscore);
-
         return name;
-
     }
 
     /**
@@ -382,25 +291,16 @@ public class MetafacadeUtils
      */
     public static String getUml14TaggedValue(String name)
     {
-
         if (name == null)
         {
-
             return name;
-
         }
-
         if (!name.startsWith(at))
         {
-
             name = at + name;
-
         }
-
         name = name.replace(underscore, period);
-
         return name;
-
     }
 
     /**
@@ -418,78 +318,56 @@ public class MetafacadeUtils
      */
     public static long calculateDefaultSUID(ClassifierFacade object)
     {
-
         // class name
         StringBuilder buffer = new StringBuilder(object.getName());
 
         // generalizations
         for (GeneralizableElementFacade generalizableElementFacade : object.getAllGeneralizations())
         {
-
             ClassifierFacade classifier = (ClassifierFacade) generalizableElementFacade;
-
             buffer.append(classifier.getName());
-
         }
 
         // declared fields
         for (AttributeFacade attribute : object.getAttributes())
         {
-
             buffer.append(attribute.getName());
             buffer.append(attribute.getVisibility());
             buffer.append(attribute.getType().getName());
-
         }
 
         // operations
         for (OperationFacade operation : object.getOperations())
         {
-
             buffer.append(operation.getName());
             buffer.append(operation.getVisibility());
             buffer.append(operation.getReturnType().getName());
-
             for (final ParameterFacade parameter : operation.getArguments())
             {
-
                 buffer.append(parameter.getName());
                 buffer.append(parameter.getType().getName());
-
             }
-
         }
-
         final String signature = buffer.toString();
 
         long serialVersionUID = 0L;
-
         try
         {
-
             MessageDigest md = MessageDigest.getInstance("SHA");
             byte[] hashBytes = md.digest(signature.getBytes());
 
             long hash = 0;
-
             for (int ctr = Math.min(hashBytes.length, 8) - 1; ctr >= 0; ctr--)
             {
-
                 hash = (hash << 8) | (hashBytes[ctr] & 0xFF);
-
             }
-
             serialVersionUID = hash;
-
         }
         catch (final NoSuchAlgorithmException ignore)
         {
-
             // ignore exception
         }
 
         return serialVersionUID;
-
     }
-
 }

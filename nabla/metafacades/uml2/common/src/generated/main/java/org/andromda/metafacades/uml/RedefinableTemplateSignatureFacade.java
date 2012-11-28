@@ -5,7 +5,9 @@
 package org.andromda.metafacades.uml;
 
 /**
- * 
+ * A signature containing the template parameters for the templated element (Class, operation,
+ * property, etc). A template signature bundles the set of formal template parameters for a
+ * templated element.
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -20,7 +22,7 @@ public interface RedefinableTemplateSignatureFacade
     public boolean isRedefinableTemplateSignatureFacadeMetaType();
 
     /**
-     * 
+     * The Class which is templated.
      * @return ClassifierFacade
      */
     public ClassifierFacade getClassifier();

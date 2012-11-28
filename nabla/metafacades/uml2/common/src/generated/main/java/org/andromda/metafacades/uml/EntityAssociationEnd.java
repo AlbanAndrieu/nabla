@@ -65,6 +65,12 @@ public interface EntityAssociationEnd
     public boolean isForeignIdentifier();
 
     /**
+     * True if this association is an identifier for its entity.
+     * @return boolean
+     */
+    public boolean isIdentifier();
+
+    /**
      * True if the associationEnd is marked with identifiers stereotype, false otherwise.
      * @return boolean
      */

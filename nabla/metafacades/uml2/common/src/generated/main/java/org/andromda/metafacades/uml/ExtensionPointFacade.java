@@ -21,7 +21,9 @@ public interface ExtensionPointFacade
     public boolean isExtensionPointFacadeMetaType();
 
     /**
-     * 
+     * The specification of a set of actions performed by a system, which yields an observable
+     * result that
+     * is, typically, of value for one or more actors or other stakeholders of the system.
      * @return UseCaseFacade
      */
     public UseCaseFacade getUseCase();

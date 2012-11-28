@@ -29,7 +29,7 @@ public interface UseCaseFacade
     public Collection<ExtendFacade> getExtends();
 
     /**
-     * 
+     * The extension points related to this use-case.
      * @return Collection<ExtensionPointFacade>
      */
     public Collection<ExtensionPointFacade> getExtensionPoints();
@@ -41,7 +41,7 @@ public interface UseCaseFacade
     public ActivityGraphFacade getFirstActivityGraph();
 
     /**
-     * 
+     * The included instances related to this use-case.
      * @return Collection<IncludeFacade>
      */
     public Collection<IncludeFacade> getIncludes();

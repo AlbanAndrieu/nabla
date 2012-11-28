@@ -41,7 +41,6 @@ package org.andromda.metafacades.uml;
  */
 public class UMLMetafacadeProperties
 {
-
     /**
      * Stores the property containing the URI to the language mappings file.
      */
@@ -121,6 +120,12 @@ public class UMLMetafacadeProperties
      * @see NameMasker#mask(String, String)
      */
     public static final String ROLE_NAME_MASK                             = "roleNameMask";
+
+    /**
+     * The mask to apply to any model element names
+     * @see NameMasker#mask(String, String)
+     */
+    public static final String MODEL_ELEMENT_NAME_MASK                    = "modelElementNameMask";
 
     /**
      * The mask to apply to any classifier names
@@ -304,5 +309,4 @@ public class UMLMetafacadeProperties
      * Value indicating missing documentation in model elements. Default=false, do not insert todo tags.
      */
     public static final String TODO_FOR_MISSING_DOCUMENTATION             = "toDoForMissingDocumentation";
-
 }

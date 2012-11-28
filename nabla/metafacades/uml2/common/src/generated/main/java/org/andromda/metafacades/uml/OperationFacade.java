@@ -48,19 +48,23 @@ public interface OperationFacade
     public String getArgumentNames();
 
     /**
-     * 
+     * A comma separated list of all types of each argument, in order.
      * @return String
      */
     public String getArgumentTypeNames();
 
     /**
-     * 
+     * Specification of an argument used to pass information into or out of an invocation of a
+     * behavioral
+     * feature. Parameters are allowed to be treated as connectable elements. Parameters have
+     * support for
+     * streaming, exceptions, and parameter sets.
      * @return Collection<ParameterFacade>
      */
     public Collection<ParameterFacade> getArguments();
 
     /**
-     * 
+     * Constructs the operation call with the operation name
      * @return String
      */
     public String getCall();
@@ -126,7 +130,7 @@ public interface OperationFacade
     public ClassifierFacade getOwner();
 
     /**
-     * 
+     * Return all parameters for the operation, including the return parameter.
      * @return Collection<ParameterFacade>
      */
     public Collection<ParameterFacade> getParameters();
@@ -174,13 +178,14 @@ public interface OperationFacade
     public ParameterFacade getReturnParameter();
 
     /**
-     * 
+     * The operation return type parameter.
      * @return ClassifierFacade
      */
     public ClassifierFacade getReturnType();
 
     /**
-     * 
+     * Return the operation signature, including public/protested abstract returnType name plus
+     * argument type and name
      * @return String
      */
     public String getSignature();
@@ -224,7 +229,7 @@ public interface OperationFacade
     public int getUpper();
 
     /**
-     * 
+     * True is the operation is abstract.
      * @return boolean
      */
     public boolean isAbstract();
@@ -290,7 +295,7 @@ public interface OperationFacade
     public boolean isReturnTypePresent();
 
     /**
-     * 
+     * True is the operation is static (only a single instance can be instantiated).
      * @return boolean
      */
     public boolean isStatic();

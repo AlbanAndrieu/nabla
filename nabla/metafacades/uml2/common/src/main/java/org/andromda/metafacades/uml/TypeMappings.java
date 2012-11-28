@@ -35,7 +35,6 @@ package org.andromda.metafacades.uml;
 
 import org.andromda.core.mapping.Mapping;
 import org.andromda.core.mapping.Mappings;
-
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -49,7 +48,6 @@ import org.apache.commons.lang.StringUtils;
  */
 public final class TypeMappings
 {
-
     /**
      * The contained mappings instance.
      */
@@ -62,9 +60,7 @@ public final class TypeMappings
      */
     private TypeMappings(Mappings mappings)
     {
-
         this.mappings = mappings;
-
     }
 
     /**
@@ -74,9 +70,7 @@ public final class TypeMappings
      */
     public void setArraySuffix(String arraySuffix)
     {
-
         this.arraySuffix = arraySuffix;
-
     }
 
     /**
@@ -87,9 +81,7 @@ public final class TypeMappings
      */
     public static TypeMappings getInstance(Mappings mappings)
     {
-
         return new TypeMappings(mappings);
-
     }
 
     /**
@@ -100,9 +92,7 @@ public final class TypeMappings
      */
     public static TypeMappings getInstance(String mappingsUri)
     {
-
         return TypeMappings.getInstance(Mappings.getInstance(mappingsUri));
-
     }
 
     /**
@@ -119,9 +109,7 @@ public final class TypeMappings
      */
     public String getTo(String from)
     {
-
         from = StringUtils.trimToEmpty(from);
-
         String initialFrom = from;
 
         String to = null;
@@ -129,58 +117,38 @@ public final class TypeMappings
         // first we check to see if there's an array
         // type mapping directly defined in the mappings
         Mapping mapping = this.mappings.getMapping(from);
-
-        if ((mapping == null) && (arraySuffix != null))
+        if (mapping == null && arraySuffix != null)
         {
-
             // if there is no mapping, remove the array suffix and
             // check for the mapping without the suffix.
             // if the from has an array suffix, then strip the array off
             // so we can find the mapping
             boolean isArray = from.endsWith(arraySuffix);
-
             if (isArray)
             {
-
                 from = StringUtils.replace(from, arraySuffix, "");
-
             }
-
             mapping = this.mappings.getMapping(from);
-
             if (mapping != null)
             {
-
                 StringBuilder toBuffer = new StringBuilder(mapping.getTo());
-
                 if (isArray)
                 {
-
                     // append the suffix back to the return value;
                     toBuffer.append(arraySuffix);
-
                 }
-
                 to = toBuffer.toString();
-
             }
-
         } else if (mapping != null)
         {
-
             to = mapping.getTo();
-
         }
 
         if (to == null)
         {
-
             to = initialFrom;
-
         }
-
         return StringUtils.trimToEmpty(to);
-
     }
 
     /**
@@ -190,9 +158,6 @@ public final class TypeMappings
      */
     public Mappings getMappings()
     {
-
         return this.mappings;
-
     }
-
 }

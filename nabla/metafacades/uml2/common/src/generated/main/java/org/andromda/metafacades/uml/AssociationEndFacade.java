@@ -199,6 +199,12 @@ public interface AssociationEndFacade
     public boolean isRequired();
 
     /**
+     * Indicates if this associationEnd is 'static', meaning it has a classifier scope.
+     * @return boolean
+     */
+    public boolean isStatic();
+
+    /**
      * UML2: If the association attribute is unique within the Collection type. UML14 always returns
      * false. Unique+Ordered determines the implementation Collection type. Default=false.
      * @return boolean

@@ -5,7 +5,7 @@
 package org.andromda.metafacades.uml;
 
 /**
- * 
+ * Represents a UML Destination for incoming/outgoing messages.
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

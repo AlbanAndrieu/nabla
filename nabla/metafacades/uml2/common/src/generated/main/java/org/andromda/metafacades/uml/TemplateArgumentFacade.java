@@ -54,7 +54,11 @@ public interface TemplateArgumentFacade
     void validateInvariants(Collection<ModelValidationMessage> validationMessages);
 
     /**
-     * 
+     * Represents a model element. It may be an Element or NamedElement. A named element is an
+     * element in a
+     * model that may have a name. An element is a constituent of a model. As such, it has the
+     * capability
+     * of owning other elements.
      * @return ModelElementFacade
      */
     public ModelElementFacade getElement();

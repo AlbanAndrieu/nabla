@@ -120,7 +120,9 @@ public interface ModelElementFacade
     public String getDocumentation(String indent, int lineLength);
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @param indent String
      * @param lineLength int
      * @param htmlStyle boolean
@@ -174,13 +176,14 @@ public interface ModelElementFacade
     public String getLabel();
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @return TypeMappings
      */
     public TypeMappings getLanguageMappings();
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @return ModelFacade
      */
     public ModelFacade getModel();
@@ -258,7 +261,7 @@ public interface ModelElementFacade
     public Collection<StereotypeFacade> getStereotypes();
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @return Collection<TaggedValueFacade>
      */
     public Collection<TaggedValueFacade> getTaggedValues();
@@ -270,14 +273,14 @@ public interface ModelElementFacade
     public Collection<DependencyFacade> getTargetDependencies();
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName
      * @param parameterName String
      * @return Object
      */
     public Object getTemplateParameter(String parameterName);
 
     /**
-     * 
+     * Get the template parameters for this model element
      * @return Collection<TemplateParameterFacade>
      */
     public Collection<TemplateParameterFacade> getTemplateParameters();
@@ -321,7 +324,8 @@ public interface ModelElementFacade
     public boolean hasStereotype(String stereotypeName);
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @return boolean
      */
     public boolean isBindingDependenciesPresent();
@@ -345,10 +349,19 @@ public interface ModelElementFacade
     public boolean isReservedWord();
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @return boolean
      */
     public boolean isTemplateParametersPresent();
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @return boolean
+     */
+    public boolean isValidIdentifierName();
 
     /**
      * Searches for the constraint with the specified 'name' on this model element, and if found

@@ -69,7 +69,7 @@ public interface GeneralizableElementFacade
     public GeneralizableElementFacade getGeneralizationRoot();
 
     /**
-     * 
+     * Return all generalizations (ancestors) from this generalizable element.
      * @return Collection<GeneralizableElementFacade>
      */
     public Collection<GeneralizableElementFacade> getGeneralizations();

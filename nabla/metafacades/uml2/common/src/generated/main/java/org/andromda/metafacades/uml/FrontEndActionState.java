@@ -54,7 +54,7 @@ public interface FrontEndActionState
     public FrontEndForward getForward();
 
     /**
-     * 
+     * All calls deferred to the services by this action state.
      * @return List<OperationFacade>
      */
     public List<OperationFacade> getServiceCalls();

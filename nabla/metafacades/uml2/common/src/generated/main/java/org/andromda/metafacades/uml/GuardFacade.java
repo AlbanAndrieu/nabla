@@ -22,13 +22,17 @@ public interface GuardFacade
     public boolean isGuardFacadeMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.metafacades.uml.GuardFacade.body
      * @return String
      */
     public String getBody();
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound
+     * transition, which takes the state machine from one state configuration to another,
+     * representing the
+     * complete response of the state machine to an occurrence of an event of a particular type.
      * @return TransitionFacade
      */
     public TransitionFacade getTransition();

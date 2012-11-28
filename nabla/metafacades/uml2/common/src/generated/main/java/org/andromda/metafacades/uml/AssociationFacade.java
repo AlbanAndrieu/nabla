@@ -54,7 +54,7 @@ public interface AssociationFacade
     public boolean isAbstract();
 
     /**
-     * 
+     * True if the AssociationFacade is an AssociationClass.
      * @return boolean
      */
     public boolean isAssociationClass();

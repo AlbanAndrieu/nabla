@@ -5,7 +5,7 @@
 package org.andromda.metafacades.uml;
 
 /**
- * 
+ * Represents an argument to an operation. All parameters except for the return parameter.
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

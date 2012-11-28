@@ -159,9 +159,9 @@ public interface ClassifierFacade
 
     /**
      * The other ends of this classifier's association ends which are navigable.
-     * @return Collection<ClassifierFacade>
+     * @return Collection<AssociationEndFacade>
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds();
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds();
 
     /**
      * Get the other ends of this classifier's association ends which are navigable and if 'follow'
@@ -264,7 +264,7 @@ public interface ClassifierFacade
     public boolean isArrayType();
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @return boolean
      */
     public boolean isAssociationClass();

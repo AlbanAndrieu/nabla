@@ -7,7 +7,7 @@ package org.andromda.metafacades.uml;
 import java.util.List;
 
 /**
- * 
+ * An Entity that is Manageable: will produce CRUD operations in the EntityManager implementation.
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -30,19 +30,19 @@ public interface ManageableEntity
     public List<ManageableEntity> getAllManageables();
 
     /**
-     * 
+     * The attribute used as a key link to display values for this entity.
      * @return ManageableEntityAttribute
      */
     public ManageableEntityAttribute getDisplayAttribute();
 
     /**
-     * 
+     * The fully qualified service name of the entity.
      * @return String
      */
     public String getFullyQualifiedManageableServiceName();
 
     /**
-     * 
+     * The associations to other entities from this entity.
      * @return List<ManageableEntityAssociationEnd>
      */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEnds();
@@ -67,31 +67,31 @@ public interface ManageableEntity
     public List<ModelElementFacade> getManageableMembers();
 
     /**
-     * 
+     * The entity package name.
      * @return String
      */
     public String getManageablePackageName();
 
     /**
-     * 
+     * The Package path of the Entity
      * @return String
      */
     public String getManageablePackagePath();
 
     /**
-     * 
+     * The entity accessor (getter) call.
      * @return String
      */
     public String getManageableServiceAccessorCall();
 
     /**
-     * 
+     * The service full path of the entity.
      * @return String
      */
     public String getManageableServiceFullPath();
 
     /**
-     * 
+     * The service name of the entity.
      * @return String
      */
     public String getManageableServiceName();
@@ -109,37 +109,37 @@ public interface ManageableEntity
     public int getPageSize();
 
     /**
-     * 
+     * Other Manageable Entities which reference this entity.
      * @return List<ManageableEntity>
      */
     public List<ManageableEntity> getReferencingManageables();
 
     /**
-     * 
+     * The Actors (Roles) which can manage the Entity.
      * @return List<ActorFacade>
      */
     public List<ActorFacade> getUsers();
 
     /**
-     * 
+     * Create a create operation on the entity manager?
      * @return boolean
      */
     public boolean isCreate();
 
     /**
-     * 
+     * Create a delete operation on the entity manager?
      * @return boolean
      */
     public boolean isDelete();
 
     /**
-     * 
+     * True: Entity is manageable.
      * @return boolean
      */
     public boolean isManageable();
 
     /**
-     * 
+     * Create a read operation on the entity manager?
      * @return boolean
      */
     public boolean isRead();
@@ -151,13 +151,13 @@ public interface ManageableEntity
     public boolean isResolveable();
 
     /**
-     * 
+     * Create an update operation on the entity manager?
      * @return boolean
      */
     public boolean isUpdate();
 
     /**
-     * 
+     * Returns a string with the attributes without wrapper types.
      * @param withTypes boolean
      * @return String
      */
