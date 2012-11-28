@@ -42,7 +42,6 @@ import org.andromda.cartridges.ejb3.EJB3Profile;
  */
 public class EJB3MessageDrivenOperationFacadeLogicImpl extends EJB3MessageDrivenOperationFacadeLogic
 {
-
     private static final long serialVersionUID = 34L;
 
     /**
@@ -52,7 +51,6 @@ public class EJB3MessageDrivenOperationFacadeLogicImpl extends EJB3MessageDriven
     public EJB3MessageDrivenOperationFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -61,9 +59,7 @@ public class EJB3MessageDrivenOperationFacadeLogicImpl extends EJB3MessageDriven
     @Override
     protected boolean handleIsPostConstruct()
     {
-
         return this.hasStereotype(EJB3Profile.STEREOTYPE_POST_CONSTRUCT);
-
     }
 
     /**
@@ -72,9 +68,6 @@ public class EJB3MessageDrivenOperationFacadeLogicImpl extends EJB3MessageDriven
     @Override
     protected boolean handleIsPreDestroy()
     {
-
         return this.hasStereotype(EJB3Profile.STEREOTYPE_PRE_DESTROY);
-
     }
-
 }

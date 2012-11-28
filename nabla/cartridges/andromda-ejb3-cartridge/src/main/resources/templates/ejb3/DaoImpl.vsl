@@ -15,7 +15,7 @@
  */
 #end
 #if ($stringUtils.isNotBlank($entity.packageName))
-package $entity.packageName;
+package ${entity.packageName};
 #end
 
 #set ($superclass = $entity.generalization)
@@ -35,9 +35,11 @@ package $entity.packageName;
 public class $entity.daoImplementationName## no new line
  extends $entity.fullyQualifiedDaoBaseName
 {
-
     private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(${entity.daoImplementationName}.class);
 
+#if ($entity.daoBusinessOperations && $entity.valueObjectReferences.empty)
+    // This entity has no Business Operations and no ValueObject dependency references
+#end
 #foreach ($operation in $entity.daoBusinessOperations)
 #**##set ($returnType = $operation.returnType)
 #**##set ($returnObject = "returnValue")
@@ -85,7 +87,6 @@ public class $entity.daoImplementationName## no new line
 #**##end
     }
 
-
     /**
      * @see ${entity.fullyQualifiedDaoName}${esc.hash}${valueObjectRef.transformationMethodName}($entity.fullyQualifiedEntityName)
      */
@@ -94,7 +95,6 @@ public class $entity.daoImplementationName## no new line
         // ${toDoTag} verify behavior of ${valueObjectRef.transformationMethodName}
         return super.${valueObjectRef.transformationMethodName}(entity);
     }
-
 
     /**
      * Retrieves the entity object that is associated with the specified value object
@@ -116,7 +116,6 @@ public class $entity.daoImplementationName## no new line
         */
     }
 
-
     /**
      * @see ${entity.fullyQualifiedDaoName}${esc.hash}${valueObjectRef.transformationToEntityMethodName}($valueObjectRef.targetElement.fullyQualifiedName)
      */
@@ -127,7 +126,6 @@ public class $entity.daoImplementationName## no new line
         this.${valueObjectRef.transformationToEntityMethodName}($stringUtils.uncapitalize($valueObjectRef.name), entity, true);
         return entity;
     }
-
 
     /**
      * @see ${entity.fullyQualifiedDaoName}${esc.hash}${valueObjectRef.transformationToEntityMethodName}($valueObjectRef.targetElement.fullyQualifiedName, $entity.fullyQualifiedEntityName)

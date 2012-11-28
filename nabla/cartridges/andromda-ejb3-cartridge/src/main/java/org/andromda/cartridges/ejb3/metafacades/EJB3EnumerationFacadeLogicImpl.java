@@ -33,9 +33,8 @@
  */
 package org.andromda.cartridges.ejb3.metafacades;
 
-import org.andromda.metafacades.uml.AttributeFacade;
-
 import java.util.Collection;
+import org.andromda.metafacades.uml.AttributeFacade;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EnumerationFacade.
@@ -44,7 +43,6 @@ import java.util.Collection;
  */
 public class EJB3EnumerationFacadeLogicImpl extends EJB3EnumerationFacadeLogic
 {
-
     private static final long serialVersionUID = 34L;
 
     /**
@@ -54,7 +52,6 @@ public class EJB3EnumerationFacadeLogicImpl extends EJB3EnumerationFacadeLogic
     public EJB3EnumerationFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -63,12 +60,9 @@ public class EJB3EnumerationFacadeLogicImpl extends EJB3EnumerationFacadeLogic
     @Override
     protected String handleGetMemberVariablesAsList(final Collection variables, final boolean includeTypes, final boolean includeNames)
     {
-
-        if ((!includeNames && !includeTypes) || (variables == null))
+        if (!includeNames && !includeTypes || (variables == null))
         {
-
             return "";
-
         }
 
         StringBuilder sb = new StringBuilder();
@@ -76,31 +70,19 @@ public class EJB3EnumerationFacadeLogicImpl extends EJB3EnumerationFacadeLogic
 
         for (Object obj : variables)
         {
-
             final AttributeFacade attr = (AttributeFacade) obj;
-
             sb.append(separator);
             separator = ", ";
-
             if (includeTypes)
             {
-
                 sb.append(attr.getGetterSetterTypeName());
                 sb.append(" ");
-
             }
-
             if (includeNames)
             {
-
                 sb.append(attr.getName());
-
             }
-
         }
-
         return sb.toString();
-
     }
-
 }

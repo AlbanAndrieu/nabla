@@ -40,7 +40,6 @@ package org.andromda.cartridges.ejb3.metafacades;
  */
 public class EJB3MappedSuperclassFacadeLogicImpl extends EJB3MappedSuperclassFacadeLogic
 {
-
     private static final long serialVersionUID = 34L;
 
     /**
@@ -50,7 +49,5 @@ public class EJB3MappedSuperclassFacadeLogicImpl extends EJB3MappedSuperclassFac
     public EJB3MappedSuperclassFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
-
 }

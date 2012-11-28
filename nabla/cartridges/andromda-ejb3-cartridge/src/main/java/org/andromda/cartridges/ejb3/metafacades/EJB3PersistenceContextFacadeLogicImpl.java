@@ -42,7 +42,6 @@ import org.andromda.cartridges.ejb3.EJB3Profile;
  */
 public class EJB3PersistenceContextFacadeLogicImpl extends EJB3PersistenceContextFacadeLogic
 {
-
     private static final long serialVersionUID = 34L;
 
     /**
@@ -52,7 +51,6 @@ public class EJB3PersistenceContextFacadeLogicImpl extends EJB3PersistenceContex
     public EJB3PersistenceContextFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -61,9 +59,7 @@ public class EJB3PersistenceContextFacadeLogicImpl extends EJB3PersistenceContex
     @Override
     protected String handleGetUnitName()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_CONTEXT_UNIT_NAME);
-
     }
 
     /**
@@ -72,9 +68,7 @@ public class EJB3PersistenceContextFacadeLogicImpl extends EJB3PersistenceContex
     @Override
     protected String handleGetContextType()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_CONTEXT_TYPE);
-
     }
 
     /**
@@ -83,9 +77,6 @@ public class EJB3PersistenceContextFacadeLogicImpl extends EJB3PersistenceContex
     @Override
     protected String handleGetDatasource()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_PERSISTENCE_CONTEXT_DATASOURCE);
-
     }
-
 }

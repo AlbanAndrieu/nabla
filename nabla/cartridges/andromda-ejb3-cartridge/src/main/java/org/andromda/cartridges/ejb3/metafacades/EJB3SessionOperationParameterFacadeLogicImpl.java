@@ -42,7 +42,6 @@ import org.andromda.cartridges.ejb3.EJB3Profile;
  */
 public class EJB3SessionOperationParameterFacadeLogicImpl extends EJB3SessionOperationParameterFacadeLogic
 {
-
     private static final long serialVersionUID = 34L;
 
     /**
@@ -52,7 +51,6 @@ public class EJB3SessionOperationParameterFacadeLogicImpl extends EJB3SessionOpe
     public EJB3SessionOperationParameterFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -61,9 +59,7 @@ public class EJB3SessionOperationParameterFacadeLogicImpl extends EJB3SessionOpe
     @Override
     protected boolean handleIsSeamAsynchronousDuration()
     {
-
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_ASYNCHRONOUS_DURATION);
-
     }
 
     /**
@@ -72,9 +68,7 @@ public class EJB3SessionOperationParameterFacadeLogicImpl extends EJB3SessionOpe
     @Override
     protected boolean handleIsSeamAsynchronousExpiration()
     {
-
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_ASYNCHRONOUS_EXPIRATION);
-
     }
 
     /**
@@ -83,9 +77,6 @@ public class EJB3SessionOperationParameterFacadeLogicImpl extends EJB3SessionOpe
     @Override
     protected boolean handleIsSeamAsynchronousIntervalDuration()
     {
-
         return this.hasStereotype(EJB3Profile.STEREOTYPE_SEAM_ASYNCHRONOUS_INTERVAL_DURATION);
-
     }
-
 }

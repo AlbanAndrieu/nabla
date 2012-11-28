@@ -33,14 +33,16 @@
  */
 package org.andromda.cartridges.ejb3.metafacades;
 
+import java.text.MessageFormat;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import org.andromda.cartridges.ejb3.EJB3Globals;
 import org.andromda.cartridges.ejb3.EJB3Profile;
-
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.Role;
-
 import org.apache.commons.collections.Closure;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
@@ -49,12 +51,6 @@ import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
-import java.text.MessageFormat;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3MessageDrivenFacade.
  *
@@ -62,9 +58,7 @@ import java.util.LinkedHashSet;
  */
 public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLogic
 {
-
     private static final long   serialVersionUID                               = 34L;
-
     /**
      * The property which stores the default destination type
      */
@@ -114,7 +108,6 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     public EJB3MessageDrivenFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     //  ---------------- methods -------------------------------
@@ -125,9 +118,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetAcknowledgeMode()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_ACKNOWLEDGE_MODE);
-
     }
 
     /**
@@ -136,18 +127,12 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetDestination()
     {
-
         String destination = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_DESTINATION);
-
         if (StringUtils.isBlank(destination))
         {
-
             destination = (getDestinationType().equalsIgnoreCase(EJB3Globals.MDB_DESTINATION_TYPE_TOPIC) ? "topic/" : "queue/") + getMessageDrivenName();
-
         }
-
         return destination;
-
     }
 
     /**
@@ -156,35 +141,24 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetDestinationType()
     {
-
         String destinationType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_DESTINATION_TYPE);
-
         if (StringUtils.isBlank(destinationType))
         {
-
             destinationType = (String) this.getConfiguredProperty(MESSAGE_DRIVEN_DESTINATION_TYPE);
-
         }
 
         /**
          * Formatting required to replace '_' with '.' and return correct casing
          */
         destinationType = StringUtils.replaceChars(destinationType, '_', '.');
-
         if (destinationType.equalsIgnoreCase(EJB3Globals.MDB_DESTINATION_TYPE_QUEUE))
         {
-
             destinationType = EJB3Globals.MDB_DESTINATION_TYPE_QUEUE;
-
         } else if (destinationType.equalsIgnoreCase(EJB3Globals.MDB_DESTINATION_TYPE_TOPIC))
         {
-
             destinationType = EJB3Globals.MDB_DESTINATION_TYPE_TOPIC;
-
         }
-
         return destinationType;
-
     }
 
     /**
@@ -193,11 +167,8 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetTestPackageName()
     {
-
         String namespacePattern = String.valueOf(this.getConfiguredProperty(MESSAGE_DRIVEN_TEST_PACKAGE_NAME_PATTERN));
-
         return MessageFormat.format(namespacePattern, this.getPackageName());
-
     }
 
     /**
@@ -206,9 +177,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetFullyQualifiedMessageDrivenImplementationName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getMessageDrivenImplementationName(), null);
-
     }
 
     /**
@@ -217,9 +186,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetFullyQualifiedMessageDrivenListenerName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getMessageDrivenListenerName(), null);
-
     }
 
     /**
@@ -228,9 +195,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetFullyQualifiedMessageDrivenName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getMessageDrivenName(), null);
-
     }
 
     /**
@@ -239,9 +204,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetFullyQualifiedMessageDrivenTestName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getTestPackageName(), this.getMessageDrivenTestName(), null);
-
     }
 
     /**
@@ -250,11 +213,9 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetMessageDrivenImplementationName()
     {
-
         String messageDrivenImplNamePattern = (String) this.getConfiguredProperty(MESSAGE_DRIVEN_IMPLEMENTATION_NAME_PATTERN);
 
         return MessageFormat.format(messageDrivenImplNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -263,11 +224,9 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetMessageDrivenListenerName()
     {
-
         String messageDrivenListenerNamePattern = (String) this.getConfiguredProperty(MESSAGE_DRIVEN_LISTENER_NAME_PATTERN);
 
         return MessageFormat.format(messageDrivenListenerNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -276,11 +235,9 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetMessageDrivenName()
     {
-
         String messageDrivenNamePattern = (String) this.getConfiguredProperty(MESSAGE_DRIVEN_NAME_PATTERN);
 
         return MessageFormat.format(messageDrivenNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -289,11 +246,9 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetMessageDrivenTestName()
     {
-
         String messageDrivenTestNamePattern = (String) this.getConfiguredProperty(MESSAGE_DRIVEN_TEST_NAME_PATTERN);
 
         return MessageFormat.format(messageDrivenTestNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -302,9 +257,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetMessageSelector()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_SELECTOR);
-
     }
 
     /**
@@ -313,33 +266,21 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetRunAs()
     {
-
         String runAsRole = null;
         DependencyFacade dependency = (DependencyFacade) CollectionUtils.find(this.getTargetDependencies(), new Predicate()
         {
-
             public boolean evaluate(final Object object)
             {
-
                 DependencyFacade dependency = (DependencyFacade) object;
-
-                return (dependency != null) && (dependency.getSourceElement() != null) && dependency.getSourceElement() instanceof Role && dependency.hasStereotype(EJB3Profile.STEREOTYPE_SECURITY_RUNAS);
-
+                return dependency != null && dependency.getSourceElement() != null && dependency.getSourceElement() instanceof Role && dependency.hasStereotype(EJB3Profile.STEREOTYPE_SECURITY_RUNAS);
             }
-
         });
-
         if (dependency != null)
         {
-
             Role role = (Role) dependency.getSourceElement();
-
             runAsRole = role.getName();
-
         }
-
         return runAsRole;
-
     }
 
     /**
@@ -348,25 +289,16 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetSubscriptionDurability()
     {
-
         String subscriptionDurability = null;
-
         if (this.isDestinationTypeTopic())
         {
-
             subscriptionDurability = String.valueOf(this.getConfiguredProperty(MESSAGE_DRIVEN_TOPIC_SUBSCRIPTION_DURABILITY));
-
             if (this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_DURABILITY) != null)
             {
-
                 subscriptionDurability = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_DURABILITY);
-
             }
-
         }
-
         return subscriptionDurability;
-
     }
 
     /**
@@ -375,9 +307,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsSubscriptionDurable()
     {
-
         return StringUtils.equalsIgnoreCase(this.getSubscriptionDurability(), EJB3Globals.MDB_SUBSCRIPTION_DURABLE) ? true : false;
-
     }
 
     /**
@@ -386,9 +316,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsSubscriptionNonDurable()
     {
-
         return StringUtils.equalsIgnoreCase(this.getSubscriptionDurability(), EJB3Globals.MDB_SUBSCRIPTION_NONDURABLE) ? true : false;
-
     }
 
     /**
@@ -397,11 +325,9 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetDurableSubscriptionId()
     {
-
         String durableSubscriptionIdPattern = (String) this.getConfiguredProperty(MESSAGE_DRIVEN_DURABLE_SUBSCRIPTION_ID_PATTERN);
 
         return MessageFormat.format(durableSubscriptionIdPattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -410,9 +336,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetTransactionManagement()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_TRANSACTION_MANAGEMENT);
-
     }
 
     /**
@@ -421,9 +345,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsTransactionManagementBean()
     {
-
         return StringUtils.equalsIgnoreCase(getTransactionManagement(), EJB3Globals.TRANSACTION_MANAGEMENT_BEAN);
-
     }
 
     /**
@@ -432,9 +354,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetTransactionType()
     {
-
         return EJB3MetafacadeUtils.getTransactionType(this, String.valueOf(this.getConfiguredProperty(EJB3Globals.TRANSACTION_TYPE)));
-
     }
 
     /**
@@ -443,12 +363,9 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected String handleGetAttributesAsList(Collection attributes, boolean includeTypes, boolean includeNames)
     {
-
-        if ((!includeNames && !includeTypes) || (attributes == null))
+        if (!includeNames && !includeTypes || attributes == null)
         {
-
             return "";
-
         }
 
         StringBuilder sb = new StringBuilder();
@@ -456,31 +373,20 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
 
         for (final Iterator it = attributes.iterator(); it.hasNext();)
         {
-
             AttributeFacade attr = (AttributeFacade) it.next();
-
             sb.append(separator);
             separator = ", ";
-
             if (includeTypes)
             {
-
                 sb.append(attr.getGetterSetterTypeName());
                 sb.append(" ");
-
             }
-
             if (includeNames)
             {
-
                 sb.append(attr.getName());
-
             }
-
         }
-
         return sb.toString();
-
     }
 
     /**
@@ -490,9 +396,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     protected Collection handleGetConstants(boolean follow)
     {
-
         return EJB3MetafacadeUtils.getConstants(this, follow);
-
     }
 
     /**
@@ -500,25 +404,16 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     public Collection<DependencyFacade> getServiceReferences()
     {
-
         Collection<DependencyFacade> references = super.getServiceReferences();
-
         CollectionUtils.filter(references, new Predicate()
         {
-
             public boolean evaluate(Object object)
             {
-
                 ModelElementFacade targetElement = ((DependencyFacade) object).getTargetElement();
-
                 return targetElement.hasStereotype(EJB3Profile.STEREOTYPE_SERVICE);
-
             }
-
         });
-
         return references;
-
     }
 
     /**
@@ -527,18 +422,12 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsDestinationTypeQueue()
     {
-
         boolean typeQueue = false;
-
         if (StringUtils.equalsIgnoreCase(this.getDestinationType(), EJB3Globals.MDB_DESTINATION_TYPE_QUEUE))
         {
-
             typeQueue = true;
-
         }
-
         return typeQueue;
-
     }
 
     /**
@@ -547,18 +436,12 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsDestinationTypeTopic()
     {
-
         boolean typeTopic = false;
-
         if (StringUtils.equalsIgnoreCase(this.getDestinationType(), EJB3Globals.MDB_DESTINATION_TYPE_TOPIC))
         {
-
             typeTopic = true;
-
         }
-
         return typeTopic;
-
     }
 
     /**
@@ -566,9 +449,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     protected Collection handleGetEnvironmentEntries(boolean follow)
     {
-
         return EJB3MetafacadeUtils.getEnvironmentEntries(this, follow);
-
     }
 
     /**
@@ -576,19 +457,13 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     protected int handleGetMinimumPoolSize()
     {
-
         int minPoolSize = 0;
         String minPoolSizeStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_MINIMUM_POOL_SIZE);
-
         if (StringUtils.isNotBlank(minPoolSizeStr) && NumberUtils.isDigits(minPoolSizeStr))
         {
-
             minPoolSize = Integer.parseInt(minPoolSizeStr);
-
         }
-
         return minPoolSize;
-
     }
 
     /**
@@ -596,19 +471,13 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     protected int handleGetMaximumPoolSize()
     {
-
         int maxPoolSize = 0;
         String maxPoolSizeStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_MDB_MAXIMUM_POOL_SIZE);
-
         if (StringUtils.isNotBlank(maxPoolSizeStr) && NumberUtils.isDigits(maxPoolSizeStr))
         {
-
             maxPoolSize = Integer.parseInt(maxPoolSizeStr);
-
         }
-
         return maxPoolSize;
-
     }
 
     /**
@@ -617,9 +486,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsListenerEnabled()
     {
-
         return this.hasStereotype(EJB3Profile.STEREOTYPE_LISTENER);
-
     }
 
     /**
@@ -627,56 +494,35 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     protected Collection<DependencyFacade> handleGetInterceptorReferences()
     {
-
         Collection<DependencyFacade> references = this.getSourceDependencies();
-
         CollectionUtils.filter(references, new Predicate()
         {
-
             public boolean evaluate(Object object)
             {
-
                 DependencyFacade dependency = (DependencyFacade) object;
                 ModelElementFacade targetElement = dependency.getTargetElement();
-
-                return ((targetElement != null) && targetElement.hasStereotype(EJB3Profile.STEREOTYPE_INTERCEPTOR));
-
+                return (targetElement != null && targetElement.hasStereotype(EJB3Profile.STEREOTYPE_INTERCEPTOR));
             }
-
         });
         CollectionUtils.transform(references, new Transformer()
         {
-
             public Object transform(final Object object)
             {
-
                 return ((DependencyFacade) object).getTargetElement();
-
             }
-
         });
-
         final Collection<DependencyFacade> interceptors = new LinkedHashSet<DependencyFacade>(references);
-
         CollectionUtils.forAllDo(references, new Closure()
         {
-
             public void execute(Object object)
             {
-
                 if (object instanceof EJB3InterceptorFacade)
                 {
-
                     interceptors.addAll(((EJB3InterceptorFacade) object).getInterceptorReferences());
-
                 }
-
             }
-
         });
-
         return interceptors;
-
     }
 
     /**
@@ -685,19 +531,12 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
     @Override
     protected boolean handleIsExcludeDefaultInterceptors()
     {
-
         boolean excludeDefault = false;
         String excludeDefaultStr = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_SERVICE_INTERCEPTOR_EXCLUDE_DEFAULT);
-
         if (excludeDefaultStr != null)
         {
-
             excludeDefault = BooleanUtils.toBoolean(excludeDefaultStr);
-
         }
-
         return excludeDefault;
-
     }
-
 }

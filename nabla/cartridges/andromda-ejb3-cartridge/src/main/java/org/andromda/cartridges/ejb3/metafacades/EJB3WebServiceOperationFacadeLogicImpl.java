@@ -34,13 +34,10 @@
 package org.andromda.cartridges.ejb3.metafacades;
 
 import org.andromda.cartridges.ejb3.EJB3Profile;
-
 import org.andromda.metafacades.uml.ParameterFacade;
 import org.andromda.metafacades.uml.UMLProfile;
-
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -50,9 +47,7 @@ import org.apache.log4j.Logger;
  */
 public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperationFacadeLogic
 {
-
     private static final long   serialVersionUID = 34L;
-
     /**
      * The logger instance.
      */
@@ -65,7 +60,6 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
     public EJB3WebServiceOperationFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -74,9 +68,7 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
     @Override
     protected boolean handleIsExposed()
     {
-
         return this.getOwner().hasStereotype(UMLProfile.STEREOTYPE_WEBSERVICE) || this.hasStereotype(UMLProfile.STEREOTYPE_WEBSERVICE_OPERATION);
-
     }
 
     /**
@@ -85,9 +77,7 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
     @Override
     protected boolean handleIsOneway()
     {
-
         return BooleanUtils.toBoolean((String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_WEBSERVICE_OPERATION_ONEWAY));
-
     }
 
     /**
@@ -96,15 +86,11 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
     @Override
     protected String handleGetAnnotatedSignature()
     {
-
         final StringBuilder signature = new StringBuilder(this.getName());
-
         signature.append("(");
         signature.append(this.getAnnotatedTypedArgumentList(true, null));
         signature.append(")");
-
         return signature.toString();
-
     }
 
     /**
@@ -114,79 +100,51 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
      */
     private String getAnnotatedTypedArgumentList(final boolean withArgumentNames, final String modifier)
     {
-
         final StringBuilder buffer = new StringBuilder();
         boolean commaNeeded = false;
-
         for (ParameterFacade paramter : this.getArguments())
         {
-
             String type = null;
-
             if (paramter.getType() == null)
             {
-
                 EJB3WebServiceOperationFacadeLogicImpl.logger.error("ERROR! No type specified for parameter --> '" + paramter.getName() + "' on operation --> '" + this.getName() + "', please check your model");
-
             } else
             {
-
                 type = paramter.getGetterSetterTypeName();
-
             }
 
             if (commaNeeded)
             {
-
                 buffer.append(",");
-
             }
-
             buffer.append('\n');
 
             // Add WebParam annotation
             if (withArgumentNames)
             {
-
                 buffer.append("        @javax.jws.WebParam(name = \"");
                 buffer.append(StringUtils.capitalize(paramter.getName())).append("\")");
                 buffer.append(" ");
-
             }
-
             if (StringUtils.isNotBlank(modifier))
             {
-
                 buffer.append(modifier);
                 buffer.append(" ");
-
             }
-
             buffer.append(type);
-
             if (withArgumentNames)
             {
-
                 buffer.append(" ");
                 buffer.append(paramter.getName());
-
             }
-
             commaNeeded = true;
-
         }
-
         buffer.append('\n');
-
         if (commaNeeded)
         {
-
             buffer.append("    ");
-
         }
-
         return buffer.toString();
-
     }
 
     /**
@@ -195,18 +153,12 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
     @Override
     protected String handleGetMethodName()
     {
-
         String methodName = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_WEBSERVICE_OPERATION_NAME);
-
         if (StringUtils.isBlank(methodName))
         {
-
             methodName = StringUtils.capitalize(this.getName());
-
         }
-
         return methodName;
-
     }
 
     /**
@@ -215,9 +167,6 @@ public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperat
     @Override
     protected String handleGetResultName()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_WEBSERVICE_OPERATION_RESULT_NAME);
-
     }
-
 }

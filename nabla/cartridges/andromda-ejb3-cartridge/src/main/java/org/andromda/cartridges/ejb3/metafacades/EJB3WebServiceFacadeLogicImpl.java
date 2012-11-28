@@ -33,18 +33,16 @@
  */
 package org.andromda.cartridges.ejb3.metafacades;
 
+import java.text.MessageFormat;
+
 import org.andromda.cartridges.ejb3.EJB3Globals;
 import org.andromda.cartridges.ejb3.EJB3Profile;
 import org.andromda.cartridges.ejb3.EJB3ScriptHelper;
-
 import org.andromda.metafacades.uml.OperationFacade;
 import org.andromda.metafacades.uml.UMLProfile;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang.StringUtils;
-
-import java.text.MessageFormat;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacade.
@@ -53,9 +51,7 @@ import java.text.MessageFormat;
  */
 public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
 {
-
     private static final long   serialVersionUID                   = 34L;
-
     /**
      * The property which stores the pattern defining the web service interface name.
      */
@@ -129,7 +125,6 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     public EJB3WebServiceFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -138,9 +133,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetFullyQualifiedWebServiceInterfaceName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getWebServiceInterfaceName(), null);
-
     }
 
     /**
@@ -149,11 +142,9 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetWebServiceInterfaceName()
     {
-
         String webServiceInterfaceNamePattern = String.valueOf(this.getConfiguredProperty(WEB_SERVICE_INTERFACE_NAME_PATTERN));
 
         return MessageFormat.format(webServiceInterfaceNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -162,18 +153,12 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetStyle()
     {
-
         String style = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_WEBSERVICE_STYLE);
-
         if (StringUtils.isEmpty(style))
         {
-
             style = String.valueOf(this.getConfiguredProperty(PROPERTY_DEFAULT_STYLE));
-
         }
-
         return style;
-
     }
 
     /**
@@ -182,18 +167,12 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetUse()
     {
-
         String use = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_WEBSERVICE_USE);
-
         if (StringUtils.isEmpty(use))
         {
-
             use = String.valueOf(this.getConfiguredProperty(PROPERTY_DEFAULT_USE));
-
         }
-
         return use;
-
     }
 
     /**
@@ -202,9 +181,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsRpcStyle()
     {
-
         return STYLE_RPC.equalsIgnoreCase(this.getStyle());
-
     }
 
     /**
@@ -213,9 +190,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsDocumentStyle()
     {
-
         return STYLE_DOCUMENT.equalsIgnoreCase(this.getStyle());
-
     }
 
     /**
@@ -224,9 +199,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsEncodedUse()
     {
-
         return USE_ENCODED.equalsIgnoreCase(this.getStyle());
-
     }
 
     /**
@@ -235,9 +208,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsLiteralUse()
     {
-
         return USE_LITERAL.equalsIgnoreCase(this.getStyle());
-
     }
 
     /**
@@ -246,29 +217,19 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsWebServiceOperationsExist()
     {
-
         return CollectionUtils.find(this.getOperations(), new Predicate()
         {
-
             public boolean evaluate(final Object object)
             {
-
                 boolean isWebService = false;
                 final OperationFacade operation = (OperationFacade) object;
-
                 if (operation.hasStereotype(UMLProfile.STEREOTYPE_WEBSERVICE_OPERATION))
                 {
-
                     isWebService = true;
-
                 }
-
                 return isWebService;
-
             }
-
         }) != null;
-
     }
 
     /**
@@ -277,18 +238,12 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetParameterStyle()
     {
-
         String parameterStyle = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_WEBSERVICE_PARAMETER_STYLE);
-
         if (StringUtils.isEmpty(parameterStyle))
         {
-
             parameterStyle = String.valueOf(this.getConfiguredProperty(PROPERTY_DEFAULT_PARAMETER_STYLE));
-
         }
-
         return parameterStyle;
-
     }
 
     /**
@@ -297,9 +252,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsWrappedParameterStyle()
     {
-
         return PARAMETER_STYLE_WRAPPED.equalsIgnoreCase(this.getParameterStyle());
-
     }
 
     /**
@@ -308,9 +261,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected boolean handleIsBareParameterStyle()
     {
-
         return PARAMETER_STYLE_BARE.equalsIgnoreCase(this.getParameterStyle());
-
     }
 
     /**
@@ -319,11 +270,8 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetQName()
     {
-
         String qnameLocalPartPattern = String.valueOf(this.getConfiguredProperty(QNAME_LOCAL_PART_PATTERN));
-
         return MessageFormat.format(qnameLocalPartPattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -332,21 +280,14 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     @Override
     protected String handleGetNamespace()
     {
-
         String packageName = this.getPackageName();
-
         if (this.isReverseNamespace())
         {
-
             packageName = EJB3ScriptHelper.reversePackage(packageName);
-
         }
-
         String namespacePattern = String.valueOf(this.getConfiguredProperty(NAMESPACE_PATTERN));
-
         return MessageFormat.format(namespacePattern, StringUtils.trimToEmpty(StringUtils.substringBeforeLast(packageName, String.valueOf(EJB3Globals.NAMESPACE_DELIMITER))), StringUtils.trimToEmpty(StringUtils
                 .substringAfterLast(packageName, String.valueOf(EJB3Globals.NAMESPACE_DELIMITER))));
-
     }
 
     /**
@@ -356,9 +297,6 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
      */
     protected boolean isReverseNamespace()
     {
-
         return Boolean.valueOf(String.valueOf(this.getConfiguredProperty(REVERSE_NAMESPACE))).booleanValue();
-
     }
-
 }

@@ -33,21 +33,18 @@
  */
 package org.andromda.cartridges.ejb3.metafacades;
 
+import java.text.MessageFormat;
+import java.util.Collection;
+import java.util.List;
 import org.andromda.cartridges.ejb3.EJB3Globals;
 import org.andromda.cartridges.ejb3.EJB3Profile;
-
 import org.andromda.metafacades.uml.EntityAttribute;
-import org.andromda.metafacades.uml.UMLMetafacadeProperties;
-
+import org.andromda.metafacades.uml.ModelElementFacade;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-
-import java.text.MessageFormat;
-
-import java.util.Collection;
-import java.util.List;
+import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.
@@ -56,9 +53,7 @@ import java.util.List;
  */
 public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFacadeLogic
 {
-
     private static final long  serialVersionUID                     = 34L;
-
     /**
      * The property which stores the pattern defining the manageable create exception name.
      */
@@ -98,7 +93,6 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     public EJB3ManageableEntityFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -107,11 +101,9 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetManageableServiceCreateExceptionName()
     {
-
         String exceptionNamePattern = (String) this.getConfiguredProperty(CREATE_EXCEPTION_NAME_PATTERN);
 
         return MessageFormat.format(exceptionNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -120,9 +112,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetFullyQualifiedManageableServiceCreateExceptionName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getManageablePackageName(), this.getManageableServiceCreateExceptionName(), null);
-
     }
 
     /**
@@ -131,11 +121,9 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetManageableServiceReadExceptionName()
     {
-
         String exceptionNamePattern = (String) this.getConfiguredProperty(READ_EXCEPTION_NAME_PATTERN);
 
         return MessageFormat.format(exceptionNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -144,9 +132,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetFullyQualifiedManageableServiceReadExceptionName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getManageablePackageName(), this.getManageableServiceReadExceptionName(), null);
-
     }
 
     /**
@@ -155,11 +141,9 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetManageableServiceUpdateExceptionName()
     {
-
         String exceptionNamePattern = (String) this.getConfiguredProperty(UPDATE_EXCEPTION_NAME_PATTERN);
 
         return MessageFormat.format(exceptionNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -168,9 +152,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetFullyQualifiedManageableServiceUpdateExceptionName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getManageablePackageName(), this.getManageableServiceUpdateExceptionName(), null);
-
     }
 
     /**
@@ -179,11 +161,9 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetManageableServiceDeleteExceptionName()
     {
-
         String exceptionNamePattern = (String) this.getConfiguredProperty(DELETE_EXCEPTION_NAME_PATTERN);
 
         return MessageFormat.format(exceptionNamePattern, StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -192,9 +172,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetFullyQualifiedManageableServiceDeleteExceptionName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getManageablePackageName(), this.getManageableServiceDeleteExceptionName(), null);
-
     }
 
     /**
@@ -203,9 +181,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetDefaultPersistenceContextUnitName()
     {
-
         return StringUtils.trimToEmpty(ObjectUtils.toString(this.getConfiguredProperty(EJB3Globals.PERSISTENCE_CONTEXT_UNIT_NAME)));
-
     }
 
     /**
@@ -214,125 +190,116 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetJndiNamePrefix()
     {
-
         return this.isConfiguredProperty(SERVICE_JNDI_NAME_PREFIX) ? ObjectUtils.toString(this.getConfiguredProperty(SERVICE_JNDI_NAME_PREFIX)) : null;
-
     }
 
     /**
      * @see EJB3SessionFacadeLogic#handleGetJndiNameRemote()
      */
-
     /*
-       @Override
-       protected String handleGetJndiNameRemote()
+    @Override
+    protected String handleGetJndiNameRemote()
+    {
+       String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_REMOTE);
+       if (StringUtils.isNotBlank(jndiName))
        {
-           String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_REMOTE);
-           if (StringUtils.isNotBlank(jndiName))
-           {
-               jndiName = this.getJndiNamePrefix() + "/" + jndiName;
-           }
-           return jndiName;
+           jndiName = this.getJndiNamePrefix() + "/" + jndiName;
        }
+       return jndiName;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleGetJndiNameLocal()
      */
-
     /*
-       @Override
-       protected String handleGetJndiNameLocal()
+    @Override
+    protected String handleGetJndiNameLocal()
+    {
+       String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_Local);
+       if (StringUtils.isNotBlank(jndiName))
        {
-           String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_Local);
-           if (StringUtils.isNotBlank(jndiName))
-           {
-               jndiName = this.getJndiNamePrefix() + "/" + jndiName;
-           }
-           return jndiName;
+           jndiName = this.getJndiNamePrefix() + "/" + jndiName;
        }
+       return jndiName;
+    }
      */
 
     /**
      * @see EJB3SessionFacade#isStateful()
      */
-
     /*
-       @Override
-       protected boolean handleIsStateful()
+    @Override
+    protected boolean handleIsStateful()
+    {
+       boolean isStateful = false;
+       String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
+       if (StringUtils.isBlank(sessionType))
        {
-           boolean isStateful = false;
-           String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
-           if (StringUtils.isBlank(sessionType))
-           {
-               isStateful = !isStateless();
-           }
-           else
-           {
-               isStateful = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATEFUL);
-           }
-           return isStateful;
+           isStateful = !isStateless();
        }
+       else
+       {
+           isStateful = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATEFUL);
+       }
+       return isStateful;
+    }
      */
 
     /**
      * @see EJB3SessionFacade#isStateless()
      */
-
     //@Override
     //protected boolean handleIsStateless()
     /*
-       protected boolean isStateless()
-       {
-           boolean isStateless = false;
-           String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
-           if (StringUtils.isBlank(sessionType))
-           {
-               isStateless =
-                   this.getAllInstanceAttributes() == null ||
-                       this.filterSeamAttributes(this.getAllInstanceAttributes()).isEmpty();
-           }
-           else
-           {
-               isStateless = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATELESS);
-           }
-           return isStateless;
-       }
+    protected boolean isStateless()
+    {
+        boolean isStateless = false;
+        String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
+        if (StringUtils.isBlank(sessionType))
+        {
+            isStateless =
+                this.getAllInstanceAttributes() == null ||
+                    this.filterSeamAttributes(this.getAllInstanceAttributes()).isEmpty();
+        }
+        else
+        {
+            isStateless = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATELESS);
+        }
+        return isStateless;
+    }
      */
 
     /**
      * @see EJB3SessionFacade#getType()
      */
-
     /*
-       @Override
-       protected String handleGetType()
+    @Override
+    protected String handleGetType()
+    {
+       String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
+       if (StringUtils.isBlank(sessionType))
        {
-           String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
-           if (StringUtils.isBlank(sessionType))
+           sessionType = "Stateful";
+           if (this.isStateless())
            {
-               sessionType = "Stateful";
-               if (this.isStateless())
-               {
-                   sessionType = "Stateless";
-               }
+               sessionType = "Stateless";
            }
-           return sessionType;
        }
+       return sessionType;
+    }
      */
 
     /**
      * @see EJB3SessionFacade#getViewType()
      */
-
     /*
-       @Override
-       protected String handleGetViewType()
-       {
-           String viewType = EJB3MetafacadeUtils.getViewType(this,
-                   String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+    @Override
+    protected String handleGetViewType()
+    {
+       String viewType = EJB3MetafacadeUtils.getViewType(this,
+               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
      */
-
     /**
      * Check all session bean operations.
      * If session view type is remote, check for operations with view type local and return both.
@@ -342,195 +309,187 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      * NOTE: do not invoke viewType on EJB3SessionOperationFacade to avoid cyclic dependency and throwing
      * StackOverFlowError.
      */
-
     /*
-       if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL))
-       {
-           boolean operationWithRemoteViewExists =
-               CollectionUtils.exists(
-                       this.getBusinessOperations(),
-                       new Predicate()
+    if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL))
+    {
+       boolean operationWithRemoteViewExists =
+           CollectionUtils.exists(
+                   this.getBusinessOperations(),
+                   new Predicate()
+                   {
+                       public boolean evaluate(Object object)
                        {
-                           public boolean evaluate(Object object)
+                           EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
+                           String operationViewType =
+                               String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
+                           if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) ||
+                                   operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
                            {
-                               EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
-                               String operationViewType =
-                                   String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
-                               if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) ||
-                                       operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
-                               {
-                                   return true;
-                               }
-                               else
-                               {
-                                   return false;
-                               }
+                               return true;
                            }
-                       });
-           viewType = (operationWithRemoteViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
-       }
-       else if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE))
-       {
-           boolean operationWithLocalViewExists =
-               CollectionUtils.exists(
-                       this.getBusinessOperations(),
-                       new Predicate()
+                           else
+                           {
+                               return false;
+                           }
+                       }
+                   });
+       viewType = (operationWithRemoteViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
+    }
+    else if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE))
+    {
+       boolean operationWithLocalViewExists =
+           CollectionUtils.exists(
+                   this.getBusinessOperations(),
+                   new Predicate()
+                   {
+                       public boolean evaluate(Object object)
                        {
-                           public boolean evaluate(Object object)
+                           EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
+                           String operationViewType =
+                               String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
+                           if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) ||
+                                   operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
                            {
-                               EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
-                               String operationViewType =
-                                   String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
-                               if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) ||
-                                       operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
-                               {
-                                   return true;
-                               }
-                               else
-                               {
-                                   return false;
-                               }
+                               return true;
                            }
-                       });
-           viewType = (operationWithLocalViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
-       }
-       return viewType;
-       }
+                           else
+                           {
+                               return false;
+                           }
+                       }
+                   });
+       viewType = (operationWithLocalViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
+    }
+    return viewType;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeLocal()
      */
-
     /*
-       @Override
-       protected boolean handleIsViewTypeLocal()
+    @Override
+    protected boolean handleIsViewTypeLocal()
+    {
+       boolean isLocal = false;
+       if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) || this.isViewTypeBoth() ||
+               this.isSeamComponent())
        {
-           boolean isLocal = false;
-           if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) || this.isViewTypeBoth() ||
-                   this.isSeamComponent())
-           {
-               isLocal = true;
-           }
-           return isLocal;
+           isLocal = true;
        }
+       return isLocal;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeRemote()
      */
-
     /*
-       @Override
-       protected boolean handleIsViewTypeRemote()
+    @Override
+    protected boolean handleIsViewTypeRemote()
+    {
+       boolean isRemote = false;
+       if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) || this.isViewTypeBoth())
        {
-           boolean isRemote = false;
-           if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) || this.isViewTypeBoth())
-           {
-               isRemote = true;
-           }
-           return isRemote;
+           isRemote = true;
        }
+       return isRemote;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeBoth()
      */
-
     /*
-       @Override
-       protected boolean handleIsViewTypeBoth()
+    @Override
+    protected boolean handleIsViewTypeBoth()
+    {
+       boolean isBoth = false;
+       if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
        {
-           boolean isBoth = false;
-           if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
-           {
-               isBoth = true;
-           }
-           return isBoth;
+           isBoth = true;
        }
+       return isBoth;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeStrictlyLocal()
      */
-
     /*
-       @Override
-       protected boolean handleIsViewTypeStrictlyLocal()
+    @Override
+    protected boolean handleIsViewTypeStrictlyLocal()
+    {
+
+       boolean isViewTypeStrictlyLocal = false;
+       String viewType = EJB3MetafacadeUtils.getViewType(this,
+               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+       if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_LOCAL) ||
+               StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
        {
-           boolean isViewTypeStrictlyLocal = false;
-           String viewType = EJB3MetafacadeUtils.getViewType(this,
-                   String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
-           if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_LOCAL) ||
-                   StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
-           {
-               isViewTypeStrictlyLocal = true;
-           }
-           return isViewTypeStrictlyLocal;
+           isViewTypeStrictlyLocal = true;
        }
+       return isViewTypeStrictlyLocal;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeStrictlyRemote()
      */
-
     /*
-       @Override
-       protected boolean handleIsViewTypeStrictlyRemote()
+    @Override
+    protected boolean handleIsViewTypeStrictlyRemote()
+    {
+       boolean isViewTypeStrictlyRemote = false;
+       String viewType = EJB3MetafacadeUtils.getViewType(this,
+               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+       if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_REMOTE) ||
+               StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
        {
-           boolean isViewTypeStrictlyRemote = false;
-           String viewType = EJB3MetafacadeUtils.getViewType(this,
-                   String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
-           if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_REMOTE) ||
-                   StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
-           {
-               isViewTypeStrictlyRemote = true;
-           }
-           return isViewTypeStrictlyRemote;
+           isViewTypeStrictlyRemote = true;
        }
+       return isViewTypeStrictlyRemote;
+    }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeStrictlyBoth()
      */
-
     /*
-       @Override
-       protected boolean handleIsViewTypeStrictlyBoth()
+    @Override
+    protected boolean handleIsViewTypeStrictlyBoth()
+    {
+       boolean isViewTypeStrictlyBoth = false;
+       String viewType = EJB3MetafacadeUtils.getViewType(this,
+               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+       if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
        {
-           boolean isViewTypeStrictlyBoth = false;
-           String viewType = EJB3MetafacadeUtils.getViewType(this,
-                   String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
-           if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
-           {
-               isViewTypeStrictlyBoth = true;
-           }
-           return isViewTypeStrictlyBoth;
+           isViewTypeStrictlyBoth = true;
        }
+       return isViewTypeStrictlyBoth;
+    }
      */
 
     /**
      * @see EJB3SessionFacade#getHomeInterfaceName()
      */
-
     /*
-       @Override
-       protected String handleGetHomeInterfaceName()
-       {
-           return EJB3MetafacadeUtils.getHomeInterfaceName(this);
-       }
+    @Override
+    protected String handleGetHomeInterfaceName()
+    {
+       return EJB3MetafacadeUtils.getHomeInterfaceName(this);
+    }
      */
 
     /**
      * @see EJB3SessionFacade#getTransactionType()
      */
-
     /*
-       @Override
-       protected String handleGetTransactionType()
-       {
-           return EJB3MetafacadeUtils.getTransactionType(this, null);
-       }
+    @Override
+    protected String handleGetTransactionType()
+    {
+       return EJB3MetafacadeUtils.getTransactionType(this, null);
+    }
      */
 
     /**
@@ -538,9 +497,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     private String getNamespaceProperty()
     {
-
         return (String) getConfiguredProperty(UMLMetafacadeProperties.NAMESPACE_SEPARATOR);
-
     }
 
     /**
@@ -548,9 +505,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetDaoReferenceName()
     {
-
         return StringUtils.uncapitalize(getName()) + "Dao";
-
     }
 
     /**
@@ -558,9 +513,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableDaoName()
     {
-
         return getName() + "ManageableDao";
-
     }
 
     /**
@@ -568,9 +521,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetFullyQualifiedManageableDaoName()
     {
-
         return getManageablePackageName() + getNamespaceProperty() + getManageableDaoName();
-
     }
 
     /**
@@ -578,9 +529,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableDaoFullPath()
     {
-
         return StringUtils.replace(this.getFullyQualifiedManageableDaoName(), getNamespaceProperty(), "/");
-
     }
 
     /**
@@ -588,9 +537,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableDaoBaseName()
     {
-
         return getManageableDaoName() + "Base";
-
     }
 
     /**
@@ -598,9 +545,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetFullyQualifiedManageableDaoBaseName()
     {
-
         return getManageablePackageName() + getNamespaceProperty() + getManageableDaoBaseName();
-
     }
 
     /**
@@ -608,9 +553,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableDaoBaseFullPath()
     {
-
         return StringUtils.replace(this.getFullyQualifiedManageableDaoBaseName(), this.getNamespaceProperty(), "/");
-
     }
 
     /**
@@ -619,11 +562,9 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetManageableServiceBaseName()
     {
-
         String exceptionNamePattern = (String) this.getConfiguredProperty(MANAGEABLE_SERVICE_BASE_NAME_PATTERN);
 
         return MessageFormat.format(exceptionNamePattern, StringUtils.trimToEmpty(this.getManageableServiceName()));
-
     }
 
     /**
@@ -632,9 +573,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetFullyQualifiedManageableServiceBaseName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getManageablePackageName(), this.getManageableServiceBaseName(), null);
-
     }
 
     /**
@@ -642,9 +581,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableServiceBaseFullPath()
     {
-
         return StringUtils.replace(this.getFullyQualifiedManageableServiceBaseName(), this.getNamespaceProperty(), "/");
-
     }
 
     /**
@@ -652,9 +589,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableValueObjectFullPath()
     {
-
         return StringUtils.replace(this.getFullyQualifiedManageableValueObjectName(), this.getNamespaceProperty(), "/");
-
     }
 
     /**
@@ -662,9 +597,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetManageableValueObjectClassName()
     {
-
         return getName() + this.getConfiguredProperty(EJB3Globals.CRUD_VALUE_OBJECT_SUFFIX);
-
     }
 
     /**
@@ -672,9 +605,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      */
     protected String handleGetFullyQualifiedManageableValueObjectName()
     {
-
         return getManageablePackageName() + getNamespaceProperty() + getManageableValueObjectClassName();
-
     }
 
     /**
@@ -683,31 +614,23 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     protected String handleGetManageableRolesAllowed()
     {
-
         StringBuilder rolesAllowed = null;
         String[] roles = StringUtils.split(StringUtils.trimToEmpty(ObjectUtils.toString(this.getConfiguredProperty(EJB3Globals.MANAGEABLE_ROLES_ALLOWED))), ',');
         String separator = "";
 
         for (int i = 0; i < roles.length; i++)
         {
-
             if (rolesAllowed == null)
             {
-
                 rolesAllowed = new StringBuilder();
-
             }
-
             rolesAllowed.append(separator);
             rolesAllowed.append('"');
             rolesAllowed.append(roles[i]);
             rolesAllowed.append('"');
             separator = ", ";
-
         }
-
-        return (rolesAllowed != null) ? rolesAllowed.toString() : null;
-
+        return rolesAllowed != null ? rolesAllowed.toString() : null;
     }
 
     /**
@@ -733,9 +656,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     public List getAllInstanceAttributes()
     {
-
         return EJB3MetafacadeUtils.getAllInstanceAttributes(this);
-
     }
 
     /**
@@ -747,9 +668,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     public List getInheritedInstanceAttributes()
     {
-
         return EJB3MetafacadeUtils.getInheritedInstanceAttributes(this);
-
     }
 
     /**
@@ -761,32 +680,19 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
     @Override
     public Collection getInstanceAttributes(final boolean follow, final boolean withIdentifiers)
     {
-
         final Collection attributes = this.getAttributes(follow, withIdentifiers);
-
         CollectionUtils.filter(attributes, new Predicate()
         {
-
             public boolean evaluate(final Object object)
             {
-
                 boolean valid = true;
-
                 if (object instanceof EntityAttribute)
                 {
-
                     valid = !((EntityAttribute) object).isStatic();
-
                 }
-
                 return valid;
-
             }
-
         });
-
         return attributes;
-
     }
-
 }

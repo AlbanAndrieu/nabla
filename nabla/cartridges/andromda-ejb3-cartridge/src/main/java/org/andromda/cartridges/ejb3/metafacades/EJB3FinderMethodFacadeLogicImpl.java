@@ -33,15 +33,12 @@
  */
 package org.andromda.cartridges.ejb3.metafacades;
 
+import java.util.Collection;
 import org.andromda.cartridges.ejb3.EJB3Profile;
-
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.ParameterFacade;
-
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-
-import java.util.Collection;
 
 /**
  * <p/>
@@ -53,9 +50,7 @@ import java.util.Collection;
  */
 public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
 {
-
     private static final long   serialVersionUID           = 34L;
-
     /**
      * Stores whether or not named parameters should be used in EJB queries.
      */
@@ -70,7 +65,6 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     public EJB3FinderMethodFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     // --------------- methods ---------------------
@@ -85,16 +79,11 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
      */
     private String getTranslatedQuery()
     {
-
         if (this.translatedQuery == null)
         {
-
             this.translatedQuery = super.getQuery("query.Hibernate-QL");
-
         }
-
         return this.translatedQuery;
-
     }
 
     /**
@@ -103,9 +92,7 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     @Override
     protected String handleGetQuery()
     {
-
         return this.getQuery((EJB3EntityFacade) null);
-
     }
 
     /**
@@ -114,9 +101,7 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     @Override
     protected String handleGetTransactionType()
     {
-
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_TRANSACTION_TYPE, true);
-
     }
 
     /**
@@ -125,9 +110,7 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     @Override
     protected boolean handleIsUseNamedParameters()
     {
-
         return BooleanUtils.toBoolean(String.valueOf(this.getConfiguredProperty(QUERY_USE_NAMED_PARAMETERS)));
-
     }
 
     /**
@@ -136,19 +119,13 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     @Override
     protected boolean handleIsUseQueryCache()
     {
-
         boolean queryCacheEnabled = ((EJB3EntityFacade) this.getOwner()).isUseQueryCache();
         String queryCacheEnabledStr = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_USE_QUERY_CACHE);
-
         if (StringUtils.isNotBlank(queryCacheEnabledStr))
         {
-
             queryCacheEnabled = BooleanUtils.toBoolean(queryCacheEnabledStr);
-
         }
-
         return queryCacheEnabled;
-
     }
 
     /**
@@ -157,7 +134,6 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     @Override
     protected String handleGetQuery(final EJB3EntityFacade entity)
     {
-
         // first see if we can retrieve the query from the super class as an OCL
         // translation
         String queryString = this.getTranslatedQuery();
@@ -167,94 +143,58 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
         // otherwise see if there is a query stored as a tagged value
         if (StringUtils.isEmpty(queryString))
         {
-
             Object value = this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_QUERY);
-
             queryString = (String) value;
-
             if (queryString != null)
             {
-
                 // remove any excess whitespace
                 queryString = queryString.replaceAll("[$\\s]+", " ");
-
             }
-
         }
 
         // if there wasn't any stored query, create one by default.
         if (StringUtils.isEmpty(queryString))
         {
-
             ModelElementFacade owner;
-
             if (entity == null)
             {
-
                 owner = this.getOwner();
-
             } else
             {
-
                 owner = entity;
-
             }
-
             String variableName = StringUtils.uncapitalize(owner.getName());
-
             queryString = "from " + owner.getName() + " as " + variableName;
-
             Collection<ParameterFacade> arguments = this.getArguments();
-
             //int size = this.getArguments().size();
-            if ((arguments != null) && !arguments.isEmpty())
+            if (arguments != null && !arguments.isEmpty())
             {
-
                 for (ParameterFacade facade : arguments)
                 {
-
                     EJB3FinderMethodArgumentFacade argument = (EJB3FinderMethodArgumentFacade) facade;
-
                     if (!argument.isFirstResult() && !argument.isMaxResults())
                     {
-
                         if (!whereClauseExists)
                         {
-
                             queryString += " where";
                             whereClauseExists = true;
-
                         }
-
                         String parameter = "?";
-
                         if (this.isUseNamedParameters())
                         {
-
                             parameter = ':' + argument.getName();
-
                         }
-
-                        queryString += (' ' + variableName + '.' + argument.getName() + " = " + parameter + " and");
-
+                        queryString += ' ' + variableName + '.' + argument.getName() + " = " + parameter + " and";
                     }
-
                 }
-
                 if (this.getArguments().size() > 1)
                 {
-
                     // Remove the final ' and'
                     queryString = queryString.substring(0, queryString.length() - 4);
-
                 }
-
             }
-
         }
-
         return queryString;
-
     }
 
     /**
@@ -263,19 +203,12 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
     @Override
     protected boolean handleIsNamedQuery()
     {
-
         boolean isNamedQuery = true;
         final String query = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_QUERY);
-
         if (StringUtils.isNotBlank(query))
         {
-
             isNamedQuery = false;
-
         }
-
         return isNamedQuery;
-
     }
-
 }

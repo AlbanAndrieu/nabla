@@ -34,7 +34,6 @@
 package org.andromda.cartridges.ejb3.metafacades;
 
 import org.andromda.metafacades.uml.ClassifierFacade;
-
 import org.andromda.utils.StringUtilsHelper;
 
 /**
@@ -44,7 +43,6 @@ import org.andromda.utils.StringUtilsHelper;
  */
 public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3ManageableEntityAssociationEndFacadeLogic
 {
-
     private static final long serialVersionUID = 34L;
 
     /**
@@ -56,7 +54,6 @@ public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3Manag
     public EJB3ManageableEntityAssociationEndFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -65,9 +62,7 @@ public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3Manag
      */
     protected String handleGetDaoName()
     {
-
         return StringUtilsHelper.lowerCamelCaseName(this.getName()) + "Dao";
-
     }
 
     /**
@@ -76,22 +71,16 @@ public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3Manag
      */
     protected String handleGetDaoReferenceName()
     {
-
         String referenceName = null;
 
         final ClassifierFacade type = this.getType();
-
         if (type instanceof EJB3EntityFacade)
         {
-
             final EJB3EntityFacade entity = (EJB3EntityFacade) type;
-
             referenceName = entity.getBeanName(false);
-
         }
 
         return referenceName;
-
     }
 
     /**
@@ -100,9 +89,7 @@ public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3Manag
      */
     protected String handleGetDaoGetterName()
     {
-
         return this.getGetterName() + "Dao";
-
     }
 
     /**
@@ -111,9 +98,7 @@ public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3Manag
      */
     protected String handleGetDaoSetterName()
     {
-
         return this.getSetterName() + "Dao";
-
     }
 
 }
