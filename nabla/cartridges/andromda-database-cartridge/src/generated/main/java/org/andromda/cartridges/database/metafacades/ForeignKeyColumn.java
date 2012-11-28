@@ -7,7 +7,7 @@ package org.andromda.cartridges.database.metafacades;
 import org.andromda.metafacades.uml.EntityAssociationEnd;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.database.metafacades.ForeignKeyColumn
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -22,7 +22,7 @@ public interface ForeignKeyColumn
     public boolean isForeignKeyColumnMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for AssociationTable
      * @return AssociationTable
      */
     public AssociationTable getAssociationTable();

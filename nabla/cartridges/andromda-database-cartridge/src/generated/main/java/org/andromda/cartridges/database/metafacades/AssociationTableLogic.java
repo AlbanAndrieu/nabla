@@ -27,7 +27,7 @@ import org.andromda.metafacades.uml.TypeMappings;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.database.metafacades.AssociationTable
  * MetafacadeLogic for AssociationTable
  *
  * @see AssociationTable
@@ -132,8 +132,8 @@ public abstract class AssociationTableLogic
     */
     protected abstract String handleGetPrimaryKeyColumns();
 
-    private String primaryKeyColumns1a;
-    private boolean primaryKeyColumns1aSet = false;
+    private transient String primaryKeyColumns1a;
+    private transient boolean primaryKeyColumns1aSet = false;
 
     /**
      * A comma seperated list of primary key columns.
@@ -141,19 +141,19 @@ public abstract class AssociationTableLogic
      */
     public final String getPrimaryKeyColumns()
     {
-        String aprimaryKeyColumns1a = this.primaryKeyColumns1a;
+        String primaryKeyColumns1a = this.primaryKeyColumns1a;
         if (!this.primaryKeyColumns1aSet)
         {
             // primaryKeyColumns has no pre constraints
-            aprimaryKeyColumns1a = handleGetPrimaryKeyColumns();
+            primaryKeyColumns1a = handleGetPrimaryKeyColumns();
             // primaryKeyColumns has no post constraints
-            this.primaryKeyColumns1a = aprimaryKeyColumns1a;
+            this.primaryKeyColumns1a = primaryKeyColumns1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.primaryKeyColumns1aSet = true;
             }
         }
-        return aprimaryKeyColumns1a;
+        return primaryKeyColumns1a;
     }
 
    /**
@@ -162,8 +162,8 @@ public abstract class AssociationTableLogic
     */
     protected abstract String handleGetPrimaryKeyConstraintName();
 
-    private String primaryKeyConstraintName2a;
-    private boolean primaryKeyConstraintName2aSet = false;
+    private transient String primaryKeyConstraintName2a;
+    private transient boolean primaryKeyConstraintName2aSet = false;
 
     /**
      * The name of the primary key constraint for this table.
@@ -171,19 +171,19 @@ public abstract class AssociationTableLogic
      */
     public final String getPrimaryKeyConstraintName()
     {
-        String aprimaryKeyConstraintName2a = this.primaryKeyConstraintName2a;
+        String primaryKeyConstraintName2a = this.primaryKeyConstraintName2a;
         if (!this.primaryKeyConstraintName2aSet)
         {
             // primaryKeyConstraintName has no pre constraints
-            aprimaryKeyConstraintName2a = handleGetPrimaryKeyConstraintName();
+            primaryKeyConstraintName2a = handleGetPrimaryKeyConstraintName();
             // primaryKeyConstraintName has no post constraints
-            this.primaryKeyConstraintName2a = aprimaryKeyConstraintName2a;
+            this.primaryKeyConstraintName2a = primaryKeyConstraintName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.primaryKeyConstraintName2aSet = true;
             }
         }
-        return aprimaryKeyConstraintName2a;
+        return primaryKeyConstraintName2a;
     }
 
    /**
@@ -192,8 +192,8 @@ public abstract class AssociationTableLogic
     */
     protected abstract boolean handleIsForeignKeyColumnsPresent();
 
-    private boolean foreignKeyColumnsPresent3a;
-    private boolean foreignKeyColumnsPresent3aSet = false;
+    private transient boolean foreignKeyColumnsPresent3a;
+    private transient boolean foreignKeyColumnsPresent3aSet = false;
 
     /**
      * Are there foreign key columns present in this table?
@@ -201,28 +201,28 @@ public abstract class AssociationTableLogic
      */
     public final boolean isForeignKeyColumnsPresent()
     {
-        boolean aforeignKeyColumnsPresent3a = this.foreignKeyColumnsPresent3a;
+        boolean foreignKeyColumnsPresent3a = this.foreignKeyColumnsPresent3a;
         if (!this.foreignKeyColumnsPresent3aSet)
         {
             // foreignKeyColumnsPresent has no pre constraints
-            aforeignKeyColumnsPresent3a = handleIsForeignKeyColumnsPresent();
+            foreignKeyColumnsPresent3a = handleIsForeignKeyColumnsPresent();
             // foreignKeyColumnsPresent has no post constraints
-            this.foreignKeyColumnsPresent3a = aforeignKeyColumnsPresent3a;
+            this.foreignKeyColumnsPresent3a = foreignKeyColumnsPresent3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.foreignKeyColumnsPresent3aSet = true;
             }
         }
-        return aforeignKeyColumnsPresent3a;
+        return foreignKeyColumnsPresent3a;
     }
 
     // ------------- associations ------------------
 
-    private Collection<ForeignKeyColumn> getForeignKeyColumns1r;
-    private boolean getForeignKeyColumns1rSet = false;
+    private transient Collection<ForeignKeyColumn> getForeignKeyColumns1r;
+    private transient boolean getForeignKeyColumns1rSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.database.metafacades.AssociationTable
      * @return (Collection<ForeignKeyColumn>)handleGetForeignKeyColumns()
      */
     public final Collection<ForeignKeyColumn> getForeignKeyColumns()
@@ -235,7 +235,7 @@ public abstract class AssociationTableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getForeignKeyColumns1r = (Collection<ForeignKeyColumn>)shieldedResult;
+                getForeignKeyColumns1r = (Collection<ForeignKeyColumn>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -342,7 +342,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * True if the AssociationFacade is an AssociationClass.
      * @see org.andromda.metafacades.uml.AssociationFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -486,7 +486,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * Return all generalizations (ancestors) from this generalizable element.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -586,7 +586,9 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -657,7 +659,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -666,7 +668,8 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -779,7 +782,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -797,7 +800,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -806,7 +809,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -862,7 +865,8 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -898,12 +902,24 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntityAssociation().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntityAssociation().isValidIdentifierName();
     }
 
     /**

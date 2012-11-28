@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.andromda.metafacades.uml.EntityAssociation;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.database.metafacades.AssociationTable
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

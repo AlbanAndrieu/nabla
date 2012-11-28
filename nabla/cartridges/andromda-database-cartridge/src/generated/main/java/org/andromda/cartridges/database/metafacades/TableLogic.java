@@ -17,7 +17,6 @@ import org.andromda.metafacades.uml.ConstraintFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.Entity;
 import org.andromda.metafacades.uml.EntityAssociationEnd;
-import org.andromda.metafacades.uml.EntityAttribute;
 import org.andromda.metafacades.uml.EntityQueryOperation;
 import org.andromda.metafacades.uml.GeneralizableElementFacade;
 import org.andromda.metafacades.uml.GeneralizationFacade;
@@ -33,7 +32,7 @@ import org.andromda.metafacades.uml.TypeMappings;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * TODO: Model Documentation for Table
  * MetafacadeLogic for Table
  *
  * @see Table
@@ -138,8 +137,8 @@ public abstract class TableLogic
     */
     protected abstract int handleGetDummyLoadSize();
 
-    private int dummyLoadSize1a;
-    private boolean dummyLoadSize1aSet = false;
+    private transient int dummyLoadSize1a;
+    private transient boolean dummyLoadSize1aSet = false;
 
     /**
      * The number of rows to insert to create the dummy load for this table.
@@ -147,19 +146,19 @@ public abstract class TableLogic
      */
     public final int getDummyLoadSize()
     {
-        int adummyLoadSize1a = this.dummyLoadSize1a;
+        int dummyLoadSize1a = this.dummyLoadSize1a;
         if (!this.dummyLoadSize1aSet)
         {
             // dummyLoadSize has no pre constraints
-            adummyLoadSize1a = handleGetDummyLoadSize();
+            dummyLoadSize1a = handleGetDummyLoadSize();
             // dummyLoadSize has no post constraints
-            this.dummyLoadSize1a = adummyLoadSize1a;
+            this.dummyLoadSize1a = dummyLoadSize1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dummyLoadSize1aSet = true;
             }
         }
-        return adummyLoadSize1a;
+        return dummyLoadSize1a;
     }
 
    /**
@@ -168,8 +167,8 @@ public abstract class TableLogic
     */
     protected abstract boolean handleIsForeignKeyColumnsPresent();
 
-    private boolean foreignKeyColumnsPresent2a;
-    private boolean foreignKeyColumnsPresent2aSet = false;
+    private transient boolean foreignKeyColumnsPresent2a;
+    private transient boolean foreignKeyColumnsPresent2aSet = false;
 
     /**
      * Are there foreign key columns present in this table ?
@@ -177,19 +176,19 @@ public abstract class TableLogic
      */
     public final boolean isForeignKeyColumnsPresent()
     {
-        boolean aforeignKeyColumnsPresent2a = this.foreignKeyColumnsPresent2a;
+        boolean foreignKeyColumnsPresent2a = this.foreignKeyColumnsPresent2a;
         if (!this.foreignKeyColumnsPresent2aSet)
         {
             // foreignKeyColumnsPresent has no pre constraints
-            aforeignKeyColumnsPresent2a = handleIsForeignKeyColumnsPresent();
+            foreignKeyColumnsPresent2a = handleIsForeignKeyColumnsPresent();
             // foreignKeyColumnsPresent has no post constraints
-            this.foreignKeyColumnsPresent2a = aforeignKeyColumnsPresent2a;
+            this.foreignKeyColumnsPresent2a = foreignKeyColumnsPresent2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.foreignKeyColumnsPresent2aSet = true;
             }
         }
-        return aforeignKeyColumnsPresent2a;
+        return foreignKeyColumnsPresent2a;
     }
 
    /**
@@ -198,8 +197,8 @@ public abstract class TableLogic
     */
     protected abstract String handleGetPrimaryKeyConstraintName();
 
-    private String primaryKeyConstraintName3a;
-    private boolean primaryKeyConstraintName3aSet = false;
+    private transient String primaryKeyConstraintName3a;
+    private transient boolean primaryKeyConstraintName3aSet = false;
 
     /**
      * The name of the primary key constraint for this table.
@@ -207,25 +206,25 @@ public abstract class TableLogic
      */
     public final String getPrimaryKeyConstraintName()
     {
-        String aprimaryKeyConstraintName3a = this.primaryKeyConstraintName3a;
+        String primaryKeyConstraintName3a = this.primaryKeyConstraintName3a;
         if (!this.primaryKeyConstraintName3aSet)
         {
             // primaryKeyConstraintName has no pre constraints
-            aprimaryKeyConstraintName3a = handleGetPrimaryKeyConstraintName();
+            primaryKeyConstraintName3a = handleGetPrimaryKeyConstraintName();
             // primaryKeyConstraintName has no post constraints
-            this.primaryKeyConstraintName3a = aprimaryKeyConstraintName3a;
+            this.primaryKeyConstraintName3a = primaryKeyConstraintName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.primaryKeyConstraintName3aSet = true;
             }
         }
-        return aprimaryKeyConstraintName3a;
+        return primaryKeyConstraintName3a;
     }
 
     // ------------- associations ------------------
 
-    private Collection<Table> getImportingTables1r;
-    private boolean getImportingTables1rSet = false;
+    private transient Collection<Table> getImportingTables1r;
+    private transient boolean getImportingTables1rSet = false;
 
     /**
      * Those tables that are being imported by this table, using foreign-keys.
@@ -241,7 +240,7 @@ public abstract class TableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getImportingTables1r = (Collection<Table>)shieldedResult;
+                getImportingTables1r = (Collection<Table>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -264,8 +263,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetImportingTables();
 
-    private Collection<Table> getImportedTables2r;
-    private boolean getImportedTables2rSet = false;
+    private transient Collection<Table> getImportedTables2r;
+    private transient boolean getImportedTables2rSet = false;
 
     /**
      * Those tables that are importing this table using foreign-keys.
@@ -281,7 +280,7 @@ public abstract class TableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getImportedTables2r = (Collection<Table>)shieldedResult;
+                getImportedTables2r = (Collection<Table>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -304,8 +303,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetImportedTables();
 
-    private Collection<Column> getIdentifierForeignKeyColumns3r;
-    private boolean getIdentifierForeignKeyColumns3rSet = false;
+    private transient Collection<Column> getIdentifierForeignKeyColumns3r;
+    private transient boolean getIdentifierForeignKeyColumns3rSet = false;
 
     /**
      * The table imported when this column plays a primary key that's a foreign key.
@@ -321,7 +320,7 @@ public abstract class TableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getIdentifierForeignKeyColumns3r = (Collection<Column>)shieldedResult;
+                getIdentifierForeignKeyColumns3r = (Collection<Column>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -344,11 +343,11 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetIdentifierForeignKeyColumns();
 
-    private Collection<Column> getColumns4r;
-    private boolean getColumns4rSet = false;
+    private transient Collection<Column> getColumns4r;
+    private transient boolean getColumns4rSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for Table
      * @return (Collection<Column>)handleGetColumns()
      */
     public final Collection<Column> getColumns()
@@ -361,7 +360,7 @@ public abstract class TableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getColumns4r = (Collection<Column>)shieldedResult;
+                getColumns4r = (Collection<Column>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -384,11 +383,11 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetColumns();
 
-    private Column getPrimaryKeyColumn5r;
-    private boolean getPrimaryKeyColumn5rSet = false;
+    private transient Column getPrimaryKeyColumn5r;
+    private transient boolean getPrimaryKeyColumn5rSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for Table
      * @return (Column)handleGetPrimaryKeyColumn()
      */
     public final Column getPrimaryKeyColumn()
@@ -401,7 +400,7 @@ public abstract class TableLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getPrimaryKeyColumn5r = (Column)shieldedResult;
+                getPrimaryKeyColumn5r = (Column) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -424,8 +423,8 @@ public abstract class TableLogic
      */
     protected abstract Object handleGetPrimaryKeyColumn();
 
-    private Collection<Column> getNonForeignKeyColumns6r;
-    private boolean getNonForeignKeyColumns6rSet = false;
+    private transient Collection<Column> getNonForeignKeyColumns6r;
+    private transient boolean getNonForeignKeyColumns6rSet = false;
 
     /**
      * The set of tables that are importing this primary key column using foreign-keys.
@@ -441,7 +440,7 @@ public abstract class TableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getNonForeignKeyColumns6r = (Collection<Column>)shieldedResult;
+                getNonForeignKeyColumns6r = (Collection<Column>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -464,8 +463,8 @@ public abstract class TableLogic
      */
     protected abstract Collection handleGetNonForeignKeyColumns();
 
-    private Collection<ForeignKeyColumn> getForeignKeyColumns8r;
-    private boolean getForeignKeyColumns8rSet = false;
+    private transient Collection<ForeignKeyColumn> getForeignKeyColumns8r;
+    private transient boolean getForeignKeyColumns8rSet = false;
 
     /**
      * This foreign-key column's table.
@@ -481,7 +480,7 @@ public abstract class TableLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getForeignKeyColumns8r = (Collection<ForeignKeyColumn>)shieldedResult;
+                getForeignKeyColumns8r = (Collection<ForeignKeyColumn>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -728,7 +727,7 @@ public abstract class TableLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperEntity().getNavigableConnectingEnds();
     }
@@ -874,7 +873,7 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -1256,7 +1255,7 @@ public abstract class TableLogic
      * allowDefaultIdentifiers property is set to true.
      * @see Entity#getIdentifiers()
      */
-    public Collection<EntityAttribute> getIdentifiers()
+    public Collection<ModelElementFacade> getIdentifiers()
     {
         return this.getSuperEntity().getIdentifiers();
     }
@@ -1266,9 +1265,10 @@ public abstract class TableLogic
      * on the entity, a search up the inheritance chain will be performed, and the identifiers from
      * the first super class having them will be used.   If no identifiers exist, a default
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
+     * Identifiers can be on attributes or associations (composite primary key).
      * @see Entity#getIdentifiers(boolean follow)
      */
-    public Collection<EntityAttribute> getIdentifiers(boolean follow)
+    public Collection<ModelElementFacade> getIdentifiers(boolean follow)
     {
         return this.getSuperEntity().getIdentifiers(follow);
     }
@@ -1444,7 +1444,8 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * True if this entity identifier is a composite (consists of multiple key columns, typically
+     * abstracted into an external composite identifier class)
      * @see Entity#isCompositeIdentifier()
      */
     public boolean isCompositeIdentifier()
@@ -1557,7 +1558,7 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * Return all generalizations (ancestors) from this generalizable element.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -1657,7 +1658,9 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1728,7 +1731,7 @@ public abstract class TableLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1737,7 +1740,8 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1850,7 +1854,7 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1868,7 +1872,7 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1877,7 +1881,7 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1933,7 +1937,8 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1969,12 +1974,24 @@ public abstract class TableLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntity().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntity().isValidIdentifierName();
     }
 
     /**

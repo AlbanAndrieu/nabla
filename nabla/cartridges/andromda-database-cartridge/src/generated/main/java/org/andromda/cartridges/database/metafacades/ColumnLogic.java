@@ -134,8 +134,8 @@ public abstract class ColumnLogic
     */
     protected abstract boolean handleIsPrimaryKey();
 
-    private boolean primaryKey1a;
-    private boolean primaryKey1aSet = false;
+    private transient boolean primaryKey1a;
+    private transient boolean primaryKey1aSet = false;
 
     /**
      * Denotes whether or not this column represents the primary key for its table.
@@ -143,19 +143,19 @@ public abstract class ColumnLogic
      */
     public final boolean isPrimaryKey()
     {
-        boolean aprimaryKey1a = this.primaryKey1a;
+        boolean primaryKey1a = this.primaryKey1a;
         if (!this.primaryKey1aSet)
         {
             // primaryKey has no pre constraints
-            aprimaryKey1a = handleIsPrimaryKey();
+            primaryKey1a = handleIsPrimaryKey();
             // primaryKey has no post constraints
-            this.primaryKey1a = aprimaryKey1a;
+            this.primaryKey1a = primaryKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.primaryKey1aSet = true;
             }
         }
-        return aprimaryKey1a;
+        return primaryKey1a;
     }
 
    /**
@@ -164,8 +164,8 @@ public abstract class ColumnLogic
     */
     protected abstract String handleGetTableName();
 
-    private String tableName2a;
-    private boolean tableName2aSet = false;
+    private transient String tableName2a;
+    private transient boolean tableName2aSet = false;
 
     /**
      * The name of the table that owns this column.  The only time this is used is when the primary
@@ -174,19 +174,19 @@ public abstract class ColumnLogic
      */
     public final String getTableName()
     {
-        String atableName2a = this.tableName2a;
+        String tableName2a = this.tableName2a;
         if (!this.tableName2aSet)
         {
             // tableName has no pre constraints
-            atableName2a = handleGetTableName();
+            tableName2a = handleGetTableName();
             // tableName has no post constraints
-            this.tableName2a = atableName2a;
+            this.tableName2a = tableName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableName2aSet = true;
             }
         }
-        return atableName2a;
+        return tableName2a;
     }
 
    /**
@@ -195,8 +195,8 @@ public abstract class ColumnLogic
     */
     protected abstract String handleGetConstraintName();
 
-    private String constraintName3a;
-    private boolean constraintName3aSet = false;
+    private transient String constraintName3a;
+    private transient boolean constraintName3aSet = false;
 
     /**
      * The name of the constraint when this column plays a foreign key (when the primary key plays a
@@ -205,19 +205,19 @@ public abstract class ColumnLogic
      */
     public final String getConstraintName()
     {
-        String aconstraintName3a = this.constraintName3a;
+        String constraintName3a = this.constraintName3a;
         if (!this.constraintName3aSet)
         {
             // constraintName has no pre constraints
-            aconstraintName3a = handleGetConstraintName();
+            constraintName3a = handleGetConstraintName();
             // constraintName has no post constraints
-            this.constraintName3a = aconstraintName3a;
+            this.constraintName3a = constraintName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.constraintName3aSet = true;
             }
         }
-        return aconstraintName3a;
+        return constraintName3a;
     }
 
    /**
@@ -226,8 +226,8 @@ public abstract class ColumnLogic
     */
     protected abstract boolean handleIsCascadeDelete();
 
-    private boolean cascadeDelete4a;
-    private boolean cascadeDelete4aSet = false;
+    private transient boolean cascadeDelete4a;
+    private transient boolean cascadeDelete4aSet = false;
 
     /**
      * Denotes whether or not a row of this column's table needs to be deleted if the entity to
@@ -236,19 +236,19 @@ public abstract class ColumnLogic
      */
     public final boolean isCascadeDelete()
     {
-        boolean acascadeDelete4a = this.cascadeDelete4a;
+        boolean cascadeDelete4a = this.cascadeDelete4a;
         if (!this.cascadeDelete4aSet)
         {
             // cascadeDelete has no pre constraints
-            acascadeDelete4a = handleIsCascadeDelete();
+            cascadeDelete4a = handleIsCascadeDelete();
             // cascadeDelete has no post constraints
-            this.cascadeDelete4a = acascadeDelete4a;
+            this.cascadeDelete4a = cascadeDelete4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cascadeDelete4aSet = true;
             }
         }
-        return acascadeDelete4a;
+        return cascadeDelete4a;
     }
 
     // ---------------- business methods ----------------------
@@ -264,6 +264,8 @@ public abstract class ColumnLogic
     /**
      * Return the dummy load value for the specified index.
      * @param index int
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.database.metafacades.Column.getDummyLoadValue(index)
      * @return handleGetDummyLoadValue(index)
      */
     public String getDummyLoadValue(int index)
@@ -276,8 +278,8 @@ public abstract class ColumnLogic
 
     // ------------- associations ------------------
 
-    private Collection<ForeignKeyColumn> getExportedColumns1r;
-    private boolean getExportedColumns1rSet = false;
+    private transient Collection<ForeignKeyColumn> getExportedColumns1r;
+    private transient boolean getExportedColumns1rSet = false;
 
     /**
      * The primary key column that is imported by this foreign key.
@@ -293,7 +295,7 @@ public abstract class ColumnLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getExportedColumns1r = (Collection<ForeignKeyColumn>)shieldedResult;
+                getExportedColumns1r = (Collection<ForeignKeyColumn>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -316,11 +318,17 @@ public abstract class ColumnLogic
      */
     protected abstract Collection handleGetExportedColumns();
 
-    private Table getImportedTable2r;
-    private boolean getImportedTable2rSet = false;
+    private transient Table getImportedTable2r;
+    private transient boolean getImportedTable2rSet = false;
 
     /**
-     * 
+     * This column is used for all types of columns possible in a database table, such qs primary
+     * key
+     * columns and data columns.  Most of the time this column doesn't represent a foreign key
+     * column
+     * (except in the case where the foreignIdentifier flag is set on the own entity in which case
+     * the
+     * primary key can play the foreign key as well).
      * @return (Table)handleGetImportedTable()
      */
     public final Table getImportedTable()
@@ -333,7 +341,7 @@ public abstract class ColumnLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getImportedTable2r = (Table)shieldedResult;
+                getImportedTable2r = (Table) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -356,11 +364,17 @@ public abstract class ColumnLogic
      */
     protected abstract Object handleGetImportedTable();
 
-    private Table getTable3r;
-    private boolean getTable3rSet = false;
+    private transient Table getTable3r;
+    private transient boolean getTable3rSet = false;
 
     /**
-     * 
+     * This column is used for all types of columns possible in a database table, such qs primary
+     * key
+     * columns and data columns.  Most of the time this column doesn't represent a foreign key
+     * column
+     * (except in the case where the foreignIdentifier flag is set on the own entity in which case
+     * the
+     * primary key can play the foreign key as well).
      * @return (Table)handleGetTable()
      */
     public final Table getTable()
@@ -373,7 +387,7 @@ public abstract class ColumnLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getTable3r = (Table)shieldedResult;
+                getTable3r = (Table) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -396,8 +410,8 @@ public abstract class ColumnLogic
      */
     protected abstract Object handleGetTable();
 
-    private Collection<Table> getImportingTables4r;
-    private boolean getImportingTables4rSet = false;
+    private transient Collection<Table> getImportingTables4r;
+    private transient boolean getImportingTables4rSet = false;
 
     /**
      * The columns that are part of this table and are not a primary-key column nor a foreign-key
@@ -414,7 +428,7 @@ public abstract class ColumnLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getImportingTables4r = (Collection<Table>)shieldedResult;
+                getImportingTables4r = (Collection<Table>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -885,7 +899,9 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -956,7 +972,7 @@ public abstract class ColumnLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -965,7 +981,8 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1078,7 +1095,7 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1096,7 +1113,7 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1105,7 +1122,7 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1161,7 +1178,8 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1197,12 +1215,24 @@ public abstract class ColumnLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntityAttribute().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntityAttribute().isValidIdentifierName();
     }
 
     /**

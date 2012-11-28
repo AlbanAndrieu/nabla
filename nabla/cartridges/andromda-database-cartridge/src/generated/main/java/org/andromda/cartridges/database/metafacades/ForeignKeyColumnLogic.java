@@ -26,7 +26,7 @@ import org.andromda.metafacades.uml.TypeMappings;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.database.metafacades.ForeignKeyColumn
  * MetafacadeLogic for ForeignKeyColumn
  *
  * @see ForeignKeyColumn
@@ -131,8 +131,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract boolean handleIsCascadeDelete();
 
-    private boolean cascadeDelete1a;
-    private boolean cascadeDelete1aSet = false;
+    private transient boolean cascadeDelete1a;
+    private transient boolean cascadeDelete1aSet = false;
 
     /**
      * Denotes whether or not a row of this column's table needs to be deleted if the importing key
@@ -141,19 +141,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final boolean isCascadeDelete()
     {
-        boolean acascadeDelete1a = this.cascadeDelete1a;
+        boolean cascadeDelete1a = this.cascadeDelete1a;
         if (!this.cascadeDelete1aSet)
         {
             // cascadeDelete has no pre constraints
-            acascadeDelete1a = handleIsCascadeDelete();
+            cascadeDelete1a = handleIsCascadeDelete();
             // cascadeDelete has no post constraints
-            this.cascadeDelete1a = acascadeDelete1a;
+            this.cascadeDelete1a = cascadeDelete1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cascadeDelete1aSet = true;
             }
         }
-        return acascadeDelete1a;
+        return cascadeDelete1a;
     }
 
    /**
@@ -162,8 +162,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract String handleGetConstraintName();
 
-    private String constraintName2a;
-    private boolean constraintName2aSet = false;
+    private transient String constraintName2a;
+    private transient boolean constraintName2aSet = false;
 
     /**
      * The name of the foreign key constraint.
@@ -171,19 +171,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final String getConstraintName()
     {
-        String aconstraintName2a = this.constraintName2a;
+        String constraintName2a = this.constraintName2a;
         if (!this.constraintName2aSet)
         {
             // constraintName has no pre constraints
-            aconstraintName2a = handleGetConstraintName();
+            constraintName2a = handleGetConstraintName();
             // constraintName has no post constraints
-            this.constraintName2a = aconstraintName2a;
+            this.constraintName2a = constraintName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.constraintName2aSet = true;
             }
         }
-        return aconstraintName2a;
+        return constraintName2a;
     }
 
    /**
@@ -192,8 +192,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract String handleGetIndexName();
 
-    private String indexName3a;
-    private boolean indexName3aSet = false;
+    private transient String indexName3a;
+    private transient boolean indexName3aSet = false;
 
     /**
      * The name of the index for this foreign-key column.
@@ -201,19 +201,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final String getIndexName()
     {
-        String aindexName3a = this.indexName3a;
+        String indexName3a = this.indexName3a;
         if (!this.indexName3aSet)
         {
             // indexName has no pre constraints
-            aindexName3a = handleGetIndexName();
+            indexName3a = handleGetIndexName();
             // indexName has no post constraints
-            this.indexName3a = aindexName3a;
+            this.indexName3a = indexName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.indexName3aSet = true;
             }
         }
-        return aindexName3a;
+        return indexName3a;
     }
 
    /**
@@ -222,8 +222,8 @@ public abstract class ForeignKeyColumnLogic
     */
     protected abstract String handleGetTableName();
 
-    private String tableName4a;
-    private boolean tableName4aSet = false;
+    private transient String tableName4a;
+    private transient boolean tableName4aSet = false;
 
     /**
      * The name of the table tha stores the foreign key.
@@ -231,19 +231,19 @@ public abstract class ForeignKeyColumnLogic
      */
     public final String getTableName()
     {
-        String atableName4a = this.tableName4a;
+        String tableName4a = this.tableName4a;
         if (!this.tableName4aSet)
         {
             // tableName has no pre constraints
-            atableName4a = handleGetTableName();
+            tableName4a = handleGetTableName();
             // tableName has no post constraints
-            this.tableName4a = atableName4a;
+            this.tableName4a = tableName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableName4aSet = true;
             }
         }
-        return atableName4a;
+        return tableName4a;
     }
 
     // ---------------- business methods ----------------------
@@ -259,6 +259,8 @@ public abstract class ForeignKeyColumnLogic
     /**
      * Returns the dummy load value for the specified index.
      * @param index int
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.database.metafacades.ForeignKeyColumn.getDummyLoadValue(index)
      * @return handleGetDummyLoadValue(index)
      */
     public String getDummyLoadValue(int index)
@@ -271,8 +273,8 @@ public abstract class ForeignKeyColumnLogic
 
     // ------------- associations ------------------
 
-    private Table getTable1r;
-    private boolean getTable1rSet = false;
+    private transient Table getTable1r;
+    private transient boolean getTable1rSet = false;
 
     /**
      * The foreign-key columns that are part of this table.
@@ -288,7 +290,7 @@ public abstract class ForeignKeyColumnLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getTable1r = (Table)shieldedResult;
+                getTable1r = (Table) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -311,8 +313,8 @@ public abstract class ForeignKeyColumnLogic
      */
     protected abstract Object handleGetTable();
 
-    private Column getImportedPrimaryKeyColumn2r;
-    private boolean getImportedPrimaryKeyColumn2rSet = false;
+    private transient Column getImportedPrimaryKeyColumn2r;
+    private transient boolean getImportedPrimaryKeyColumn2rSet = false;
 
     /**
      * The foreign-key columns importing this table.
@@ -328,7 +330,7 @@ public abstract class ForeignKeyColumnLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getImportedPrimaryKeyColumn2r = (Column)shieldedResult;
+                getImportedPrimaryKeyColumn2r = (Column) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -351,11 +353,11 @@ public abstract class ForeignKeyColumnLogic
      */
     protected abstract Object handleGetImportedPrimaryKeyColumn();
 
-    private Table getImportedTable3r;
-    private boolean getImportedTable3rSet = false;
+    private transient Table getImportedTable3r;
+    private transient boolean getImportedTable3rSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.database.metafacades.ForeignKeyColumn
      * @return (Table)handleGetImportedTable()
      */
     public final Table getImportedTable()
@@ -368,7 +370,7 @@ public abstract class ForeignKeyColumnLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getImportedTable3r = (Table)shieldedResult;
+                getImportedTable3r = (Table) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -391,8 +393,8 @@ public abstract class ForeignKeyColumnLogic
      */
     protected abstract Object handleGetImportedTable();
 
-    private AssociationTable getAssociationTable4r;
-    private boolean getAssociationTable4rSet = false;
+    private transient AssociationTable getAssociationTable4r;
+    private transient boolean getAssociationTable4rSet = false;
 
     /**
      * The foreign-key columns that are part of this association table.
@@ -408,7 +410,7 @@ public abstract class ForeignKeyColumnLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getAssociationTable4r = (AssociationTable)shieldedResult;
+                getAssociationTable4r = (AssociationTable) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -716,6 +718,15 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
+     * Indicates if this associationEnd is 'static', meaning it has a classifier scope.
+     * @see AssociationEndFacade#isStatic()
+     */
+    public boolean isStatic()
+    {
+        return this.getSuperEntityAssociationEnd().isStatic();
+    }
+
+    /**
      * UML2: If the association attribute is unique within the Collection type. UML14 always returns
      * false. Unique+Ordered determines the implementation Collection type. Default=false.
      * @see AssociationEndFacade#isUnique()
@@ -789,6 +800,15 @@ public abstract class ForeignKeyColumnLogic
     public boolean isForeignIdentifier()
     {
         return this.getSuperEntityAssociationEnd().isForeignIdentifier();
+    }
+
+    /**
+     * True if this association is an identifier for its entity.
+     * @see EntityAssociationEnd#isIdentifier()
+     */
+    public boolean isIdentifier()
+    {
+        return this.getSuperEntityAssociationEnd().isIdentifier();
     }
 
     /**
@@ -892,7 +912,9 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -963,7 +985,7 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -972,7 +994,8 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1085,7 +1108,7 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1103,7 +1126,7 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1112,7 +1135,7 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1168,7 +1191,8 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1204,12 +1228,24 @@ public abstract class ForeignKeyColumnLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntityAssociationEnd().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntityAssociationEnd().isValidIdentifierName();
     }
 
     /**
