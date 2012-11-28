@@ -9,7 +9,7 @@
     
     <modelVersion>4.0.0</modelVersion>    
     <artifactId>andromda-metafacades-uml</artifactId>
-    <version>3.4</version>
+    <version>3.5</version>
     <packaging>jar</packaging>
     <name>AndroMDA UML Common Metafacades</name>
     <description>
@@ -25,12 +25,6 @@
         
     <build>
         <plugins>
-            <!--
-            <plugin>
-                <groupId>org.andromda.maven.plugins</groupId>
-                <artifactId>andromda-bootstrap-plugin</artifactId>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-model-archiver-plugin</artifactId>
@@ -40,9 +34,10 @@
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-bootstrap-install-plugin</artifactId>
             </plugin>
-            -->
-            <!--plugin>
-                <artifactId>maven-install-plugin</artifactId>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-install-plugin</artifactId>
+		<version>${maven.install.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>install_metafacades_uml</id>
@@ -58,7 +53,8 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin-->
+            </plugin>
+            -->            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -98,4 +94,22 @@
             </resource>
         </resources>
     </build>
+        <profiles>
+           <profile>
+               <id>mda</id>
+               <activation>
+                   <property>
+                       <name>!mda</name>
+                   </property>
+               </activation>            
+               <build>
+                   <plugins>   
+            		<plugin>
+            		    <groupId>org.andromda.maven.plugins</groupId>
+            		    <artifactId>andromda-bootstrap-plugin</artifactId>
+            		</plugin>            
+                   </plugins>
+               </build>
+           </profile>
+       </profiles>           
 </project>

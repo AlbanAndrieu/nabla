@@ -44,7 +44,6 @@ import org.andromda.core.profile.Profile;
  */
 public class UMLProfile
 {
-
     /* ----------------- Stereotypes -------------------- */
 
     /**
@@ -211,12 +210,12 @@ public class UMLProfile
     public static final String   STEREOTYPE_TOPIC                                       = profile.get("TOPIC");
 
     /**
-     * 'docOnly' Modeled component is for documentation only. Do not generate code.
+     * 'DocOnly' Modeled component is for documentation only. Do not generate code.
      */
     public static final String   STEREOTYPE_DOC_ONLY                                    = profile.get("DOC_ONLY");
 
     /**
-     * 'future' Modeled component will be developed in the Future. Do not generate code.
+     * 'Future' Modeled component will be developed in the Future. Do not generate code.
      */
     public static final String   STEREOTYPE_FUTURE                                      = profile.get("FUTURE");
 
@@ -301,6 +300,12 @@ public class UMLProfile
      * Used on an association end to denote to name of the foreign key constraint to use in the database.
      */
     public static final String   TAGGEDVALUE_PERSISTENCE_FOREIGN_KEY_CONSTRAINT_NAME    = profile.get("PERSISTENCE_FOREIGN_KEY_CONSTRAINT_NAME");
+
+    /**
+     * 'andromda_persistence_joincolumn_order' Specifies the order of columns in JoinColumn annotations
+     * which must match the FK column order for the association, delimited by , or ; or |
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_JOINCOLUMN_ORDER               = profile.get("PERSISTENCE_JOINCOLUMN_ORDER");
 
     /**
      * 'andromda_persistence_enumeration_member_variable'
@@ -512,7 +517,6 @@ public class UMLProfile
      * specialize this type. Default=datatype::boolean
      */
     public static final String   BOOLEAN_TYPE_NAME                                      = profile.get("BOOLEAN_TYPE");
-
     /**
      * Used to identify a character type in the model, any other type that will be identified as a character type must
      * specialize this type. Default=datatype::Character
@@ -572,5 +576,4 @@ public class UMLProfile
      * specialize this type. Default=datatype::Long
      */
     public static final String   LONG_TYPE_NAME                                         = profile.get("LONG_TYPE");
-
 }

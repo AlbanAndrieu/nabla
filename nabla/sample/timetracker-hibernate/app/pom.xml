@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.andromda.timetracker.hibernate</groupId>
         <artifactId>timetracker-hibernate</artifactId>
-        <version>3.4</version>
+        <version>3.5</version>
     </parent>
     <artifactId>app</artifactId>
     <packaging>ear</packaging>

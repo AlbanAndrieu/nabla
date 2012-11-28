@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
-  name="Common">
-  
+ name="UML Metafacades">
     <skin>
       <groupId>com.nabla.project</groupId>
       <artifactId>skin</artifactId>
@@ -49,7 +48,8 @@
         <links>
             <item name="Nabla" href="http://www.maven.nabla.mobi/project" />
             <item name="Nabla Code" href="http://code.google.com/p/alban" />
-	    <!--<item name="FR" href="/fr/index.html" />-->
+            <item name="UML Common Metafacades" href="/index.html"/>
+            <!--<item name="FR" href="/fr/index.html" />-->
         </links>
         <menu ref="parent"/>
         <menu name="Overview">

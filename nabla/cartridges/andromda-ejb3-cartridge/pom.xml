@@ -10,7 +10,7 @@
 
         <modelVersion>4.0.0</modelVersion>
         <artifactId>andromda-ejb3-cartridge</artifactId>
-        <version>3.4</version>
+        <version>3.5</version>
         <packaging>jar</packaging>
         <name>AndroMDA EJB3 Cartridge</name>
         <description>Produces EJB 3.0 persistence layer from a model.</description>
@@ -71,8 +71,16 @@
                                         <groupId>org.apache.xalan</groupId>
                                         <artifactId>xalan</artifactId>
                                 </exclusion>
+                		<exclusion>
+                		    	<groupId>org.jboss.spec.javax.interceptor</groupId>
+                		    	<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+                		</exclusion>                                
                         </exclusions>
                 </dependency>
+        	<dependency>
+        	    <groupId>org.jboss.logging</groupId>
+        	    <artifactId>jboss-logging</artifactId>
+        	</dependency>                
                 <!-- version 2.7.1-1.jbossorg referenced by jboss-javaee-web-6.0 not in
                         maven central -->
                 <dependency>
@@ -97,20 +105,33 @@
                                 </exclusion>
                         </exclusions>
                 </dependency>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!-- We need this to compile the generated test model sources -->
+                <!--dependency>
+                    <groupId>org.jboss.microcontainer</groupId>
+                    <artifactId>jboss-ejb3-all</artifactId>
+                    <version>alpha_9</version>
+                    <scope>test</scope>
+                </dependency-->
+                <dependency>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>4.3.0.Final</version>
+                    <scope>test</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.jboss.logging</groupId>
+                            <artifactId>jboss-logging</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>                
         </dependencies>
         <build>
                 <plugins>
-                        <plugin>
-                                <groupId>org.andromda.maven.plugins</groupId>
-                                <artifactId>andromda-maven-plugin</artifactId>
-                                <dependencies>
-                                        <dependency>
-                                                <groupId>org.andromda.cartridges</groupId>
-                                                <artifactId>andromda-meta-cartridge</artifactId>
-                                                <version>${andromda.version}</version>
-                                        </dependency>
-                                </dependencies>
-                        </plugin>
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-source-plugin</artifactId>
@@ -128,25 +149,6 @@
                                 <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>xml-maven-plugin</artifactId>
                                 <version>${maven.xml.plugin.version}</version>
-                        </plugin>
-                        <plugin>
-                                <groupId>org.andromda.maven.plugins.site</groupId>
-                                <artifactId>andromda-site-cartridge-plugin</artifactId>
-                                <version>${andromda.version}</version>
-                                <executions>
-                                        <execution>
-                                                <id>cartridge-howto-artifacts</id>
-                                                <goals>
-                                                        <goal>generate-cartridge-howto-artifacts</goal>
-                                                </goals>
-                                        </execution>
-                                </executions>
-                                <!-- http://www.andromda.org/docs/andromda-maven-plugins/andromda-site-plugins/andromda-site-cartridge-plugin/generate-cartridge-howto-artifacts-mojo.html -->
-                                <configuration>
-                                        <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/howto/andromda.xml</configurationUri>
-                                        <howtoCartridgePicturesOutputDirectory>${project.basedir}/${target.dir}/site/images</howtoCartridgePicturesOutputDirectory>
-                                        <modelOutputHistory>${project.basedir}/../tmp-ejb3/history</modelOutputHistory>
-                                </configuration>
                         </plugin>
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
@@ -192,6 +194,49 @@
                 <test.output.dir>${project.basedir}/../tmp-ejb3/cartridge-test/actualUML2</test.output.dir>
         </properties>
         <profiles>
+           <profile>
+               <id>mda</id>
+               <activation>
+                   <property>
+                       <name>!mda</name>
+                   </property>
+               </activation>            
+               <build>
+                   <plugins>   
+                           <plugin>
+                                   <groupId>org.andromda.maven.plugins</groupId>
+                                   <artifactId>andromda-maven-plugin</artifactId>
+                                   <version>${andromda.version}</version>
+                                   <dependencies>
+                                           <dependency>
+                                                   <groupId>org.andromda.cartridges</groupId>
+                                                   <artifactId>andromda-meta-cartridge</artifactId>
+                                                   <version>${andromda.version}</version>
+                                           </dependency>
+                                   </dependencies>
+                           </plugin>                        
+                           <plugin>
+                                   <groupId>org.andromda.maven.plugins.site</groupId>
+                                   <artifactId>andromda-site-cartridge-plugin</artifactId>
+                                   <version>${andromda.version}</version>
+                                   <executions>
+                                           <execution>
+                                                   <id>cartridge-howto-artifacts</id>
+                                                   <goals>
+                                                           <goal>generate-cartridge-howto-artifacts</goal>
+                                                   </goals>
+                                           </execution>
+                                   </executions>
+                                   <!-- http://www.andromda.org/docs/andromda-maven-plugins/andromda-site-plugins/andromda-site-cartridge-plugin/generate-cartridge-howto-artifacts-mojo.html -->
+                                   <configuration>
+                                           <configurationUri>file:${project.basedir}/src/main/config/${uml.type}/howto/andromda.xml</configurationUri>
+                                           <howtoCartridgePicturesOutputDirectory>${project.basedir}/${target.dir}/site/images</howtoCartridgePicturesOutputDirectory>
+                                           <modelOutputHistory>${project.basedir}/../tmp-ejb3/history</modelOutputHistory>
+                                   </configuration>
+                           </plugin>             
+                   </plugins>
+               </build>
+           </profile>           
            <profile>
                <id>andromda-test</id>
                <!--

@@ -75,7 +75,7 @@
                     </executions>
                     <configuration>
                         <buildSourceDirectory>${project.basedir}/target/src</buildSourceDirectory>
-                        <lastModifiedCheck>true</lastModifiedCheck>
+                        <lastModifiedCheck>${lastModifiedCheck}</lastModifiedCheck>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -91,7 +91,7 @@
                     </executions>
                     <configuration>
                         <buildSourceDirectory>${project.basedir}/target/src</buildSourceDirectory>
-                        <lastModifiedCheck>true</lastModifiedCheck>
+                        <lastModifiedCheck>${lastModifiedCheck}</lastModifiedCheck>
                     </configuration>
                 </plugin>
                 <plugin>

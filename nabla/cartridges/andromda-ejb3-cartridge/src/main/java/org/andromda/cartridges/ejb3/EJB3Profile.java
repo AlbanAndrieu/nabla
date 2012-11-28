@@ -34,7 +34,6 @@
 package org.andromda.cartridges.ejb3;
 
 import org.andromda.core.profile.Profile;
-
 import org.andromda.metafacades.uml.UMLProfile;
 
 /**
@@ -44,7 +43,6 @@ import org.andromda.metafacades.uml.UMLProfile;
  */
 public class EJB3Profile extends UMLProfile
 {
-
     /**
      * The Profile instance from which we retrieve the mapped profile names.
      */
@@ -709,7 +707,7 @@ public class EJB3Profile extends UMLProfile
 
     /**
      * 'andromda_service_security_realm'
-     * The tagged value representing the security domain to sepecify at
+     * The tagged value representing the security domain to specify at
      * the session bean class level.
      */
     public static final String   TAGGEDVALUE_EJB_SECURITY_REALM                                    = profile.get("SECURITY_REALM");
@@ -822,6 +820,12 @@ public class EJB3Profile extends UMLProfile
      * Defines the cache type for a relationship collection.
      */
     public static final String   TAGGEDVALUE_HIBERNATE_ASSOCIATION_CACHE                           = profile.get("ASSOCIATION_CACHE");
+
+    /**
+     * 'andromda_persistence_associationEnd_primary'
+     * Defines the owning side of a bidirectional navigable relationship.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_ASSOCIATION_END_PRIMARY                   = profile.get("ASSOCIATION_END_PRIMARY");
 
     /**
      * 'andromda_hibernate_cascade'
@@ -1244,5 +1248,4 @@ public class EJB3Profile extends UMLProfile
      * The DataModelSelector class.
      */
     public static final String   TAGGEDVALUE_SEAM_DATA_DATASELECTOR_CLASS                          = profile.get("SEAM_DATA_DATASELECTOR_CLASS");
-
 }

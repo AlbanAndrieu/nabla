@@ -40,7 +40,6 @@ package org.andromda.cartridges.ejb3;
  */
 public class EJB3Globals
 {
-
     /**
      * The property that stores the default EJB transaction type.
      */
@@ -323,7 +322,6 @@ public class EJB3Globals
     /**
      * The service base class suffix.
      */
-
     //static final String SERVICE_BASE_SUFFIX = "Base";
 
     /**
@@ -335,5 +333,4 @@ public class EJB3Globals
      * The bean name target suffix
      */
     public static final String BEAN_NAME_TARGET_SUFFIX                    = "Target";
-
 }

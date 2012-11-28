@@ -131,7 +131,6 @@
                 <module>sample</module>
             </modules>
         </profile>
-        <!--
         <profile>
             <id>no-cartridges</id>
             <activation>
@@ -143,16 +142,13 @@
                 <module>profiles</module>
             </modules>
         </profile>
-        -->
         <profile>
             <id>default</id>
-            <!--
             <activation>
                 <property>
                     <name>!no-cartridges</name>
                 </property>
             </activation>
-            -->
             <modules>
                 <module>metafacades</module>
                 <module>profiles</module>

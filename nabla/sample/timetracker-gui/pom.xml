@@ -6,7 +6,7 @@
     <groupId>org.andromda.timetracker.gui</groupId>
     <artifactId>timetracker-gui</artifactId>
     <packaging>pom</packaging>
-    <version>3.4</version>
+    <version>3.5</version>
     <name>TimeTracker GUI</name>
     <description>The TimeTracker GUI Project.</description>
     

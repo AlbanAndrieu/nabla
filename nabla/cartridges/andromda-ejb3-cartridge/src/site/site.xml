@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/DECORATION/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.1.0 http://maven.apache.org/xsd/decoration-1.1.0.xsd"
-  name="AndroMDA EJB3 Cartridge">
-  
+ name="EJB3 Cartridge Plugin">
     <skin>
       <groupId>com.nabla.project</groupId>
       <artifactId>skin</artifactId>
@@ -59,15 +58,15 @@
         
     	<menu name="Overview">
             <item name="About EJB3 Cartridge" href="index.html"/>
-    	    <item name="Getting Started Guide" href="startup.html"/>
+    	    <!--<item name="Getting Started Guide" href="startup.html"/>-->
             <item name="Installation" href="installation.html"/>
             <item name="New Project" href="project.html"/>
             <item name="Samples" href="samples.html"/>
-    	</menu>
-    	<menu name="Model">
-    	    <item name="Profile" href="profile.html"/>
-    	    <item name="Namespace" href="namespace.html"/>
-    	</menu>
+        </menu>
+        <menu name="Model">
+            <item name="Profile" href="profile.html"/>
+            <item name="Namespace" href="namespace.html"/>
+        </menu>
         <menu name="How-to">
             <item name="Introduction" href="howto.html"/>
             <item name="Entity" href="howto1.html"/>

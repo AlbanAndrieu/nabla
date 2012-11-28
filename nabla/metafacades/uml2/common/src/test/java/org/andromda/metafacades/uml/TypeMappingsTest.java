@@ -34,7 +34,6 @@
 package org.andromda.metafacades.uml;
 
 import junit.framework.TestCase;
-
 import org.andromda.core.mapping.Mapping;
 import org.andromda.core.mapping.Mappings;
 
@@ -45,7 +44,6 @@ import org.andromda.core.mapping.Mappings;
  */
 public class TypeMappingsTest extends TestCase
 {
-
     /**
      * Constructor for MappingsTest.
      *
@@ -54,20 +52,30 @@ public class TypeMappingsTest extends TestCase
     public TypeMappingsTest(String name)
     {
         super(name);
-
     }
 
     private static final String TO_1         = "base64Binary";
+
     private static final String FROM_1       = "datatype.Blob";
+
     private static final String FROM_2       = "datatype.byte[]";
+
     private static final String FROM_3       = "datatype.Byte[]";
+
     private static final String FROM_4       = "datatype.Clob";
+
     private static final String TO_2         = "java.lang.String";
+
     private static final String FROM_5       = "datatype.String";
+
     private static final String NOT_MAPPED_1 = "datatype.byte";
+
     private static final String NOT_MAPPED_2 = "datatype.String[]";
+
     private static final String ARRAY_SUFFIX = "[]";
+
     private static final String TO_3         = "Class<? extends ToType>";
+
     private static final String FROM_6       = "Class<? extends FromType>";
 
     /**
@@ -75,17 +83,14 @@ public class TypeMappingsTest extends TestCase
      */
     public void testGetTo()
     {
-
         Mappings mappings1 = new Mappings();
         Mapping mapping1 = new Mapping();
-
         mapping1.setTo(TO_1);
         mapping1.addFrom(FROM_1);
         mapping1.addFrom(FROM_2);
         mapping1.addFrom(FROM_3);
         mapping1.addFrom(FROM_4);
         mappings1.addMapping(mapping1);
-
         TypeMappings typeMappings1 = TypeMappings.getInstance(mappings1);
 
         // make sure the to == from when passing in a mappings1 that don't exist
@@ -102,13 +107,10 @@ public class TypeMappingsTest extends TestCase
 
         Mappings mappings2 = new Mappings();
         Mapping mapping2 = new Mapping();
-
         mapping2.setTo(TO_2);
         mapping2.addFrom(FROM_5);
         mappings2.addMapping(mapping2);
-
         TypeMappings typeMappings2 = TypeMappings.getInstance(mappings2);
-
         typeMappings2.setArraySuffix(ARRAY_SUFFIX);
 
         assertEquals(TO_2, typeMappings2.getTo(FROM_5));
@@ -116,16 +118,11 @@ public class TypeMappingsTest extends TestCase
 
         Mappings mappings3 = new Mappings();
         Mapping mapping3 = new Mapping();
-
         mapping3.setTo(TO_3);
         mapping3.addFrom(FROM_6);
         mappings3.addMapping(mapping3);
-
         TypeMappings typeMappings3 = TypeMappings.getInstance(mappings3);
-
         // make sure whitespace isn't deleted, only trimmed (Java generics would fail compilation otherwise for example)
         assertEquals(TO_3, typeMappings3.getTo(FROM_6));
-
     }
-
 }

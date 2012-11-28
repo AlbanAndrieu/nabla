@@ -33,12 +33,10 @@
  */
 package org.andromda.cartridges.ejb3.metafacades;
 
+import java.text.MessageFormat;
 import org.andromda.metafacades.uml.UMLProfile;
-
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-
-import java.text.MessageFormat;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EmbeddedValueFacade.
@@ -47,9 +45,7 @@ import java.text.MessageFormat;
  */
 public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLogic
 {
-
     private static final long serialVersionUID                           = 34L;
-
     /**
      * The property which stores the pattern defining the embedded value
      * implementation name.
@@ -63,7 +59,6 @@ public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLog
     public EJB3EmbeddedValueFacadeLogicImpl(final Object metaObject, final String context)
     {
         super(metaObject, context);
-
     }
 
     /**
@@ -72,19 +67,13 @@ public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLog
     @Override
     protected boolean handleIsImmutable()
     {
-
         boolean immutable = false;
         Object value = this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_IMMUTABLE);
-
         if (value != null)
         {
-
             immutable = Boolean.valueOf(ObjectUtils.toString(value)).booleanValue();
-
         }
-
         return immutable;
-
     }
 
     /**
@@ -93,9 +82,7 @@ public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLog
     @Override
     protected String handleGetImplementationName()
     {
-
         return MessageFormat.format(this.getImplementationNamePattern(), StringUtils.trimToEmpty(this.getName()));
-
     }
 
     /**
@@ -105,9 +92,7 @@ public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLog
      */
     private String getImplementationNamePattern()
     {
-
         return String.valueOf(this.getConfiguredProperty(EMBEDDED_VALUE_IMPLEMENTATION_NAME_PATTERN));
-
     }
 
     /**
@@ -116,9 +101,6 @@ public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLog
     @Override
     protected String handleGetFullyQualifiedImplementationName()
     {
-
         return EJB3MetafacadeUtils.getFullyQualifiedName(this.getPackageName(), this.getImplementationName(), null);
-
     }
-
 }

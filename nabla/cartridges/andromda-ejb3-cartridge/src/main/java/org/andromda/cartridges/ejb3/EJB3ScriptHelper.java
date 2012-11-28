@@ -33,17 +33,15 @@
  */
 package org.andromda.cartridges.ejb3;
 
-import org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade;
-
-import org.andromda.metafacades.uml.ModelElementFacade;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.StringTokenizer;
+import org.andromda.cartridges.ejb3.metafacades.EJB3AssociationEndFacade;
+import org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade;
+import org.andromda.metafacades.uml.ModelElementFacade;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Transform class for the EJB3 cartridge.
@@ -55,7 +53,6 @@ import java.util.StringTokenizer;
  */
 public class EJB3ScriptHelper
 {
-
     /**
      * Create a collection of String objects representing the argument names.
      *
@@ -64,19 +61,13 @@ public class EJB3ScriptHelper
      */
     public Collection<String> getArgumentsAsList(final String args)
     {
-
         StringTokenizer st = new StringTokenizer(args, ",");
         Collection<String> retval = new ArrayList<String>(st.countTokens());
-
         while (st.hasMoreTokens())
         {
-
             retval.add(st.nextToken().trim());
-
         }
-
         return retval;
-
     }
 
     /**
@@ -88,28 +79,21 @@ public class EJB3ScriptHelper
      */
     public Collection<ModelElementFacade> filterByVisibility(final Collection<ModelElementFacade> list, final String visibility)
     {
-
         return CollectionUtils.select(list, new Predicate()
         {
-
             public boolean evaluate(final Object pObj)
             {
-
                 ModelElementFacade elem = (ModelElementFacade) pObj;
-
                 return visibility.equals(elem.getVisibility());
-
             }
-
         });
-
     }
 
     /**
      * Filter a list of EntityAttributes by removing all non-updatable attributes.
      * This filter currently removes all attributes that are of stereotype Version
      * It also removes identifier attributes for an entity with a composite primary key class
-     * or if the identifier attribute have a specified generator.
+     * or if the identifier attribute has a specified generator.
      *
      * @param list The original list
      * @param isCompositePKPresent True if entity has a composite primary key
@@ -117,21 +101,55 @@ public class EJB3ScriptHelper
      */
     public Collection<EJB3EntityAttributeFacade> filterUpdatableAttributes(final Collection<EJB3EntityAttributeFacade> list, final boolean isCompositePKPresent)
     {
-
         return CollectionUtils.select(list, new Predicate()
         {
-
             public boolean evaluate(final Object pObj)
             {
-
-                EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
-
-                return !attr.isVersion() && ((isCompositePKPresent && !attr.isIdentifier()) || ((!isCompositePKPresent && (attr.isIdentifier() && attr.isGeneratorTypeNone())) || !attr.isIdentifier()));
-
+                if (pObj instanceof EJB3EntityAttributeFacade)
+                {
+                    EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
+                    return !attr.isVersion() && ((isCompositePKPresent && !attr.isIdentifier()) || (!isCompositePKPresent && (attr.isIdentifier() && attr.isGeneratorTypeNone()) || !attr.isIdentifier()));
+                } else
+                {
+                    System.out.println("NOT EJB3EntityAttributeFacade: " + pObj);
+                    return false;
+                }
             }
-
         });
+    }
 
+    /**
+     * Filter a list of EntityAttributes by removing all audit attributes.
+     * This filter currently removes all attributes that are of stereotype Version
+     * It also removes identifier attributes for an entity with a composite primary key class
+     * or if the identifier attribute have a specified generator.
+     *
+     * @param list The original list
+     * @param jpaFramework If using a JPA auditing framework. Filter none if not using it.
+     * @return Collection A list of EntityAttributes from the original list that are updatable
+     */
+    public Collection<EJB3EntityAttributeFacade> filterAuditAttributes(final Collection<EJB3EntityAttributeFacade> list, final boolean jpaFramework)
+    {
+        return CollectionUtils.select(list, new Predicate()
+        {
+            public boolean evaluate(final Object pObj)
+            {
+                // returns true if attribute should not be filtered out
+                if (pObj instanceof EJB3EntityAttributeFacade)
+                {
+                    EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
+                    /*System.out.println(attr.getOwner().getName() + " jpa=" + jpaFramework + " attr=" + attr.getName()
+                        + " return=" + (!jpaFramework || !(attr.getName().equals("createDate")
+                                || attr.getName().equals("createdBy") || attr.getName().equals("updateDate")
+                                || attr.getName().equals("updatedBy"))));*/
+                    return (!jpaFramework || !(attr.getName().equals("createDate") || attr.getName().equals("createdBy") || attr.getName().equals("updateDate") || attr.getName().equals("updatedBy")));
+                } else
+                {
+                    //System.out.println("NOT EJB3EntityAttributeFacade: " + pObj);
+                    return false;
+                }
+            }
+        });
     }
 
     /**
@@ -146,22 +164,58 @@ public class EJB3ScriptHelper
      */
     public Collection<EJB3EntityAttributeFacade> filterRequiredAttributes(final Collection<EJB3EntityAttributeFacade> list, final boolean isCompositePKPresent)
     {
-
         return CollectionUtils.select(list, new Predicate()
         {
-
             public boolean evaluate(final Object pObj)
             {
-
-                EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
-
-                return !attr.isVersion() && attr.isRequired()
-                        && ((isCompositePKPresent && !attr.isIdentifier()) || (!isCompositePKPresent && (!attr.isIdentifier() || (attr.isIdentifier() && attr.isGeneratorTypeNone()))));
-
+                if (pObj instanceof EJB3EntityAttributeFacade)
+                {
+                    // Wrapped primitive may be set to column nullable = false to override nullable datatype
+                    EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
+                    return !attr.isVersion() && !attr.isColumnNullable() && (!attr.isIdentifier() || (!isCompositePKPresent && attr.isGeneratorTypeNone())
+                    /*((isCompositePKPresent && !attr.isIdentifier()) ||
+                    (!isCompositePKPresent && (!attr.isIdentifier() ||
+                        (attr.isGeneratorTypeNone()))*/
+                    );
+                } else
+                {
+                    System.out.println("NOT EJB3EntityAttributeFacade: " + pObj);
+                    return false;
+                }
             }
-
         });
+    }
 
+    /**
+     * Filter a list of EntityAssociationEnds by removing all non-required AssociationEnds.
+     * It also removes identifier AssociationEnds for an entity with a composite primary key class
+     *
+     * @param list The original list
+     * @param isCompositePKPresent True if entity has a composite primary key
+     * @return Collection A list of EntityAssociationEnds from the original list that are updatable
+     */
+    public Collection<EJB3AssociationEndFacade> filterRequiredAssociations(final Collection<EJB3AssociationEndFacade> list, final boolean isCompositePKPresent)
+    {
+        return CollectionUtils.select(list, new Predicate()
+        {
+            public boolean evaluate(final Object pObj)
+            {
+                if (pObj instanceof EJB3AssociationEndFacade)
+                {
+                    EJB3AssociationEndFacade assoc = (EJB3AssociationEndFacade) pObj;
+                    return assoc.getOtherEnd().isRequired() || assoc.isIdentifier();
+                    /*return attr.isRequired() &&
+                        ((isCompositePKPresent && !attr.isIdentifier()) ||
+                        (!isCompositePKPresent && (!attr.isIdentifier() ||
+                            (attr.isIdentifier()))
+                        ));*/
+                } else
+                {
+                    System.out.println("NOT EJB3AssociationEndFacade: " + pObj);
+                    return false;
+                }
+            }
+        });
     }
 
     /**
@@ -173,9 +227,7 @@ public class EJB3ScriptHelper
      */
     public String toUnderscoreName(final String name)
     {
-
         return StringUtils.replaceChars(name, '.', '_');
-
     }
 
     private static final String BACKSLASH = "\"";
@@ -189,14 +241,10 @@ public class EJB3ScriptHelper
      */
     public String removeQuotationmarks(final String pValue)
     {
-
         String result = StringUtils.removeStart(pValue, BACKSLASH);
-
         result = StringUtils.removeEnd(result, BACKSLASH);
         result = StringUtils.removeStart(result, QUOTE);
-
         return StringUtils.removeEnd(result, QUOTE);
-
     }
 
     private static final String COMMA = ", ";
@@ -210,29 +258,22 @@ public class EJB3ScriptHelper
      */
     public String getInterceptorsAsList(final Collection<ModelElementFacade> interceptors, final String prepend)
     {
-
         StringBuilder sb = new StringBuilder();
         String separator = "";
 
         if (StringUtils.isNotBlank(prepend))
         {
-
             sb.append(prepend);
             separator = COMMA;
-
         }
 
         for (ModelElementFacade interceptor : interceptors)
         {
-
             sb.append(separator);
             separator = COMMA;
             sb.append(interceptor.getFullyQualifiedName()).append(".class");
-
         }
-
         return sb.toString();
-
     }
 
     /**
@@ -243,9 +284,6 @@ public class EJB3ScriptHelper
      */
     public static String reversePackage(final String packageName)
     {
-
         return StringUtils.reverseDelimited(packageName, EJB3Globals.NAMESPACE_DELIMITER);
-
     }
-
 }

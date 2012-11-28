@@ -6,7 +6,7 @@
     <groupId>org.andromda.timetracker.hibernate</groupId>
     <artifactId>timetracker-hibernate</artifactId>
     <packaging>pom</packaging>
-    <version>3.4</version>
+    <version>3.5</version>
     <name>TimeTracker Hibernate</name>
     <description>The TimeTracker Hibernate Project.</description>
     
