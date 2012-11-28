@@ -1,7 +1,8 @@
 cls
 
 call setenv.bat
-call mvn clean site -Pmaven-2-site,sample > site.log
+rem call mvn site -Psample,integration,arq-jbossas-managed -Dserver=jboss7 -Ddatabase=h2 > site.log
+call mvn site -Psample,integration,arq-jbossas-managed > site.log
 call mvn site:deploy
 
 pause

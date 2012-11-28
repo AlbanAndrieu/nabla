@@ -19,8 +19,8 @@ call mvn source:test-jar > source-test.log
 call mvn javadoc:javadoc > javadoc.log
 call mvn jxr:jxr > jxr.log
 call mvn jxr:test-jxr > jxr-test.log
-call mvn eclipse:clean > eclipse-clean.log
-call mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders > eclipse.log
+call mvn eclipse:clean -P!mda,sample > eclipse-clean.log
+call mvn eclipse:eclipse -P!mda,sample -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders > eclipse.log
 call mvn rat:check > rat.log
 call mvn doap:generate > doap.log
 
