@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.andromda.timetracker.ejb3</groupId>
         <artifactId>timetracker-ejb3</artifactId>
-        <version>3.4</version>
+        <version>3.5</version>
     </parent>
     
     <modelVersion>4.0.0</modelVersion>    
@@ -20,7 +20,7 @@
             <artifactId>andromda-profile</artifactId>
             <version>${andromda.version}</version>
             <type>xml.zip</type>
-            <scope>runtime</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
@@ -85,7 +85,7 @@
             <groupId>org.andromda.metafacades</groupId>
             <artifactId>andromda-metafacades-emf-uml2</artifactId>
             <version>${andromda.version}</version>
-            <scope>runtime</scope>
+            <scope>provided</scope>
         </dependency>
         -->
 
@@ -94,7 +94,7 @@
             <groupId>org.andromda.metafacades</groupId>
             <artifactId>andromda-metafacades-emf-uml22</artifactId>
             <version>${andromda.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
