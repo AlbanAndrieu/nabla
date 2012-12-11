@@ -276,6 +276,7 @@
 						<buildOutputDirectory>${target.dir}/classes</buildOutputDirectory>
 						<addVersionToProjectName>true</addVersionToProjectName>
 						<outputDirectory>${basedir}/classes</outputDirectory>
+						<workspace>${basedir}</workspace>
 						<additionalProjectnatures>
 							<!--
 								<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
@@ -306,9 +307,17 @@
 						<additionalConfig>
 							<file>
 								<name>.checkstyle</name>
-								<!--<location>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</location>-->
-								<location>project/checkstyle_regles_nabla_eclipse.xml</location>
+								<!--redirect to to checkstyle_regles_nabla_eclipse.xml (must be imported by hand in eclipse -->
+								<location>project/maven-checkstyle.xml</location>
 							</file>
+ 							<file>
+              							<name>.settings/org.eclipse.jdt.ui.prefs</name>
+              							<location>project/org.eclipse.jdt.ui.prefs</location>
+              						</file>
+              						<file>
+              							<name>.settings/org.eclipse.jdt.core.prefs</name>
+              							<location>project/org.eclipse.jdt.core.prefs</location>
+              						</file>					
 						</additionalConfig>
 						<!--
 							<additionalProjectFacets> <jst.jsf>1.1</jst.jsf>
@@ -316,7 +325,8 @@
 							<jst.web.xdoclet>1.2.3</jst.web.xdoclet>
 							</additionalProjectFacets> <workspace>${basedir}</workspace>
 						-->
-						<workspaceCodeStylesURL>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml</workspaceCodeStylesURL>
+						<!--<workspaceCodeStylesURL>http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml</workspaceCodeStylesURL>-->
+						<!--DOES NOT WORK<workspaceCodeStylesURL>/project/jalopy_regles_nabla_eclipse.xml</workspaceCodeStylesURL>-->
 						<sourceExcludes>
 							<sourceExclude>**/.svn/**</sourceExclude>
 							<sourceExclude>**/.ref</sourceExclude>
@@ -1258,6 +1268,7 @@
 										<jdk>${jdkLevel}</jdk>
 										<generateXml>true</generateXml>
 										<generatePdf>true</generatePdf>
+										<generateHtml>true</generateHtml>
 										<generateHistorical>true</generateHistorical>
 									</configuration>
 								</plugin>
