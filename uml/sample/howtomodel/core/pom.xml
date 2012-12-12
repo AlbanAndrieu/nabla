@@ -88,6 +88,10 @@
             <artifactId>ejb3-persistence</artifactId>
         </dependency-->
         <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+        </dependency>                
+        <dependency>
                 <groupId>jboss</groupId>
 		<artifactId>jboss-annotations-ejb3</artifactId>
 		</dependency>
@@ -111,7 +115,6 @@
 			<version>${jbossws.client.version}</version>
 			<scope>provided</scope>
 		</dependency>
-    		
 		<dependency>
 			<groupId>org.jboss.microcontainer</groupId>
 			<artifactId>hibernate-all</artifactId>
@@ -158,6 +161,7 @@
       		  <version>1.0RC2</version>
       		</dependency>
       		-->
+      		
       		<!--    
 		<dependency>
 			<groupId>org.jboss.ws.native</groupId>
