@@ -747,6 +747,10 @@ public class UMLMetafacadeUtils
                 }
                 facade = attr.getType();
             }
+            if (logger.isDebugEnabled())
+            {
+                logger.debug("name=" + name + " typeName=" + typeName + " useMany=" + useMany + " facade=" + facade + " type=" + type);
+            }
             // TODO: Make this work for attribute types other than String.
             if (parent != null && StringUtils.isEmpty(defaultValue) && ("String".equals(typeName) || "java.lang.String".equals(typeName)))
             {
@@ -807,9 +811,22 @@ public class UMLMetafacadeUtils
                     logger.debug("EnumerationFacade=" + facade + " type=" + type + " literals=" + literals.size() + " default=" + defaultValue);
                 }
             }
+            if (facade != null && facade.findTaggedValue("andromda_persistence_lob_type") != null)
+            {
+                typeName = String.valueOf(facade.findTaggedValue("andromda_persistence_lob_type"));
+                if (logger.isDebugEnabled())
+                {
+                    logger.debug("andromda_persistence_lob_type=" + typeName);
+                }
+                // LOB Types have a different datatype than the underlying declared type
+            }
             if (type != null && type.findTaggedValue("andromda_persistence_lob_type") != null)
             {
                 typeName = String.valueOf(type.findTaggedValue("andromda_persistence_lob_type"));
+                if (logger.isDebugEnabled())
+                {
+                    logger.debug("andromda_persistence_lob_type=" + typeName);
+                }
                 // LOB Types have a different datatype than the underlying declared type
             }
             if (useMany && (isMany == null || isMany.booleanValue()) && !typeName.endsWith("[]"))
@@ -884,7 +901,7 @@ public class UMLMetafacadeUtils
             } else if ("Short".equals(typeName) || "java.lang.Short".equals(typeName) || "Integer".equals(typeName) || "java.lang.Integer".equals(typeName) || "Long".equals(typeName) || "java.lang.Long".equals(typeName)
                     || "Float".equals(typeName) || "java.lang.Float".equals(typeName) || "Double".equals(typeName) || "java.lang.Double".equals(typeName) || "java.math.BigDecimal".equals(typeName))
             {
-                rtn = (!StringUtils.isEmpty(defaultValue) ? typeName + ".valueOf(" + defaultValue + ")" : typeName + ".valueOf(1)");
+                rtn = (!StringUtils.isEmpty(defaultValue) ? typeName + ".valueOf(" + defaultValue + ")" : typeName + ".valueOf(\"1\")");
             } else if ("java.math.BigInteger".equals(typeName))
             {
                 rtn = (!StringUtils.isEmpty(defaultValue) ? "java.math.BigInteger.valueOf(" + defaultValue + ')' : "java.math.BigInteger.valueOf(1)");
