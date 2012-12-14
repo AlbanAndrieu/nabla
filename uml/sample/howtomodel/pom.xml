@@ -593,6 +593,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-clean-plugin</artifactId>
@@ -607,12 +608,11 @@
                                 <include>**/*.bak</include>
                             </includes>
                             <excludes>
-                                <!-- Allow mvn clean install > install.log -->
-                                <exclude>build.log</exclude>
-                                <exclude>install.log</exclude>
-                                <!--<exclude>andromda.log</exclude>-->                                          
-                                <exclude>server.log</exclude>
-                                <exclude>site.log</exclude>
+                                <exclude>**/build.log</exclude>
+                                <exclude>**/install.log</exclude>
+                                <exclude>**/server.log</exclude>
+                                <exclude>**/site.log</exclude>
+                                <exclude>**/gc.log</exclude>
                             </excludes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
@@ -624,13 +624,14 @@
 		<artifactId>maven-compiler-plugin</artifactId>
 		<version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>${jdkLevel}</source>
+                    <target>${jdkLevel}</target>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <!-- Automatically attach sources to build artifact as artifact-version-sources.jar and deploy to local repository -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -676,13 +677,21 @@
         <module>app</module>
     </modules>
     <properties>
-        <!--<andromda.version>3.4-SNAPSHOT</andromda.version>-->
-        <java.version>1.6</java.version>
+        <!--
+        <andromda.version>3.4</andromda.version>
+        <jdkLevel>1.6</jdkLevel>
         <downloadSources>true</downloadSources>
         <createChecksum>true</createChecksum>
         <uniqueVersion>false</uniqueVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        -->
         <stagingDirectory>${basedir}/target/site</stagingDirectory>
+        <!-- TODO remove force hibernate version -->
+        <hibernate.core.version>4.1.8.Final</hibernate.core.version>
+        <hibernate.entitymanager.version>4.1.8.Final</hibernate.entitymanager.version>
+        <hibernate.validator.version>4.3.0.Final</hibernate.validator.version>
+        <hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
+        <hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version>
         <!--
             Change this to generate to the correct MDA database mappings,
             For MySql use: MySQL

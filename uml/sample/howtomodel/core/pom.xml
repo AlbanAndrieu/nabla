@@ -56,11 +56,25 @@
 			<groupId>jboss</groupId>
 			<artifactId>jboss-ejb3x</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<version>${hibernate.annotations.version}</version>
 		</dependency>
+		-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>        
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>		
         <!--dependency>
             <groupId>hibernate-entitymanager</groupId>
             <artifactId>ejb3-persistence</artifactId>
@@ -191,7 +205,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		-->		
+		-->
+        	<dependency>
+        	    <groupId>commons-io</groupId>
+        	    <artifactId>commons-io</artifactId>
+        	    <scope>test</scope>
+        	</dependency>		
 	</dependencies>
 	<build>
 		<plugins>

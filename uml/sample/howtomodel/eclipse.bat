@@ -52,9 +52,9 @@ mkdir core\src\test\java
 mkdir web\src\generated\main\java
 mkdir web\src\main\java
 
-mkdir webservice\src\generated\main\java
-mkdir webservice\src\main\java
-mkdir webservice\src\test\java
+@REM mkdir webservice\src\generated\main\java
+@REM mkdir webservice\src\main\java
+@REM mkdir webservice\src\test\java
 
 mkdir workflow\src\generated\main\java
 mkdir workflow\src\main\java
@@ -62,6 +62,6 @@ mkdir workflow\src\main\java
 rename ..\.project old.project
 rename ..\.classpath old.classpath
 
-call mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true
+call mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true > eclipse.log
 
 pause
