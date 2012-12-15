@@ -132,7 +132,7 @@ public abstract class ${service.serviceBaseName}## no new line
     /**
      * Inject DAO ${daoReference.daoName}
      */
-###if ($service.seamComponent)
+###if ($service.seamComponent)    
 ##    @org.jboss.seam.annotations.In(create = true, required = true)
 ###else
 #set ($jndiNamePrefix = $daoReference.jndiNamePrefix)

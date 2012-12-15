@@ -17,7 +17,6 @@ import org.andromda.metafacades.uml.ConstraintFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.Entity;
 import org.andromda.metafacades.uml.EntityAssociationEnd;
-import org.andromda.metafacades.uml.EntityAttribute;
 import org.andromda.metafacades.uml.EntityQueryOperation;
 import org.andromda.metafacades.uml.GeneralizableElementFacade;
 import org.andromda.metafacades.uml.GeneralizationFacade;
@@ -142,8 +141,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsSyntheticCreateMethodAllowed();
 
-    private boolean syntheticCreateMethodAllowed1a;
-    private boolean syntheticCreateMethodAllowed1aSet = false;
+    private transient boolean syntheticCreateMethodAllowed1a;
+    private transient boolean syntheticCreateMethodAllowed1aSet = false;
 
     /**
      * Whether or not to allow a synthetic (auto generated) create method.
@@ -151,19 +150,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isSyntheticCreateMethodAllowed()
     {
-        boolean asyntheticCreateMethodAllowed1a = this.syntheticCreateMethodAllowed1a;
+        boolean syntheticCreateMethodAllowed1a = this.syntheticCreateMethodAllowed1a;
         if (!this.syntheticCreateMethodAllowed1aSet)
         {
             // syntheticCreateMethodAllowed has no pre constraints
-            asyntheticCreateMethodAllowed1a = handleIsSyntheticCreateMethodAllowed();
+            syntheticCreateMethodAllowed1a = handleIsSyntheticCreateMethodAllowed();
             // syntheticCreateMethodAllowed has no post constraints
-            this.syntheticCreateMethodAllowed1a = asyntheticCreateMethodAllowed1a;
+            this.syntheticCreateMethodAllowed1a = syntheticCreateMethodAllowed1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.syntheticCreateMethodAllowed1aSet = true;
             }
         }
-        return asyntheticCreateMethodAllowed1a;
+        return syntheticCreateMethodAllowed1a;
     }
 
    /**
@@ -172,8 +171,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract Collection handleGetAllEntityRelations();
 
-    private Collection allEntityRelations2a;
-    private boolean allEntityRelations2aSet = false;
+    private transient Collection allEntityRelations2a;
+    private transient boolean allEntityRelations2aSet = false;
 
     /**
      * Find all associations that define relations to other entities.
@@ -199,19 +198,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final Collection getAllEntityRelations()
     {
-        Collection aallEntityRelations2a = this.allEntityRelations2a;
+        Collection allEntityRelations2a = this.allEntityRelations2a;
         if (!this.allEntityRelations2aSet)
         {
             // allEntityRelations has no pre constraints
-            aallEntityRelations2a = handleGetAllEntityRelations();
+            allEntityRelations2a = handleGetAllEntityRelations();
             // allEntityRelations has no post constraints
-            this.allEntityRelations2a = aallEntityRelations2a;
+            this.allEntityRelations2a = allEntityRelations2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.allEntityRelations2aSet = true;
             }
         }
-        return aallEntityRelations2a;
+        return allEntityRelations2a;
     }
 
    /**
@@ -220,28 +219,29 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetJndiName();
 
-    private String jndiName3a;
-    private boolean jndiName3aSet = false;
+    private transient String jndiName3a;
+    private transient boolean jndiName3aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.jndiName
      * @return (String)handleGetJndiName()
      */
     public final String getJndiName()
     {
-        String ajndiName3a = this.jndiName3a;
+        String jndiName3a = this.jndiName3a;
         if (!this.jndiName3aSet)
         {
             // jndiName has no pre constraints
-            ajndiName3a = handleGetJndiName();
+            jndiName3a = handleGetJndiName();
             // jndiName has no post constraints
-            this.jndiName3a = ajndiName3a;
+            this.jndiName3a = jndiName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.jndiName3aSet = true;
             }
         }
-        return ajndiName3a;
+        return jndiName3a;
     }
 
    /**
@@ -250,8 +250,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetViewType();
 
-    private String viewType4a;
-    private boolean viewType4aSet = false;
+    private transient String viewType4a;
+    private transient boolean viewType4aSet = false;
 
     /**
      * A string indicating whether the Bean is a local or remotely accessable bean.
@@ -259,19 +259,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getViewType()
     {
-        String aviewType4a = this.viewType4a;
+        String viewType4a = this.viewType4a;
         if (!this.viewType4aSet)
         {
             // viewType has no pre constraints
-            aviewType4a = handleGetViewType();
+            viewType4a = handleGetViewType();
             // viewType has no post constraints
-            this.viewType4a = aviewType4a;
+            this.viewType4a = viewType4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.viewType4aSet = true;
             }
         }
-        return aviewType4a;
+        return viewType4a;
     }
 
    /**
@@ -280,8 +280,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract List handleGetAllInstanceAttributes();
 
-    private List allInstanceAttributes5a;
-    private boolean allInstanceAttributes5aSet = false;
+    private transient List allInstanceAttributes5a;
+    private transient boolean allInstanceAttributes5aSet = false;
 
     /**
      * All instanceAttributes for this entity. The list includes the instanceAttributes that are
@@ -291,19 +291,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final List getAllInstanceAttributes()
     {
-        List aallInstanceAttributes5a = this.allInstanceAttributes5a;
+        List allInstanceAttributes5a = this.allInstanceAttributes5a;
         if (!this.allInstanceAttributes5aSet)
         {
             // allInstanceAttributes has no pre constraints
-            aallInstanceAttributes5a = handleGetAllInstanceAttributes();
+            allInstanceAttributes5a = handleGetAllInstanceAttributes();
             // allInstanceAttributes has no post constraints
-            this.allInstanceAttributes5a = aallInstanceAttributes5a;
+            this.allInstanceAttributes5a = allInstanceAttributes5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.allInstanceAttributes5aSet = true;
             }
         }
-        return aallInstanceAttributes5a;
+        return allInstanceAttributes5a;
     }
 
    /**
@@ -312,8 +312,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract List handleGetInheritedInstanceAttributes();
 
-    private List inheritedInstanceAttributes6a;
-    private boolean inheritedInstanceAttributes6aSet = false;
+    private transient List inheritedInstanceAttributes6a;
+    private transient boolean inheritedInstanceAttributes6aSet = false;
 
     /**
      * All inherited instanceAttributes this class.  The instanceAttributes are grouped by the class
@@ -323,19 +323,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final List getInheritedInstanceAttributes()
     {
-        List ainheritedInstanceAttributes6a = this.inheritedInstanceAttributes6a;
+        List inheritedInstanceAttributes6a = this.inheritedInstanceAttributes6a;
         if (!this.inheritedInstanceAttributes6aSet)
         {
             // inheritedInstanceAttributes has no pre constraints
-            ainheritedInstanceAttributes6a = handleGetInheritedInstanceAttributes();
+            inheritedInstanceAttributes6a = handleGetInheritedInstanceAttributes();
             // inheritedInstanceAttributes has no post constraints
-            this.inheritedInstanceAttributes6a = ainheritedInstanceAttributes6a;
+            this.inheritedInstanceAttributes6a = inheritedInstanceAttributes6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inheritedInstanceAttributes6aSet = true;
             }
         }
-        return ainheritedInstanceAttributes6a;
+        return inheritedInstanceAttributes6a;
     }
 
    /**
@@ -344,8 +344,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetHomeInterfaceName();
 
-    private String homeInterfaceName7a;
-    private boolean homeInterfaceName7aSet = false;
+    private transient String homeInterfaceName7a;
+    private transient boolean homeInterfaceName7aSet = false;
 
     /**
      * A String representing the name of a home interface for this entity EJB.
@@ -353,19 +353,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getHomeInterfaceName()
     {
-        String ahomeInterfaceName7a = this.homeInterfaceName7a;
+        String homeInterfaceName7a = this.homeInterfaceName7a;
         if (!this.homeInterfaceName7aSet)
         {
             // homeInterfaceName has no pre constraints
-            ahomeInterfaceName7a = handleGetHomeInterfaceName();
+            homeInterfaceName7a = handleGetHomeInterfaceName();
             // homeInterfaceName has no post constraints
-            this.homeInterfaceName7a = ahomeInterfaceName7a;
+            this.homeInterfaceName7a = homeInterfaceName7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.homeInterfaceName7aSet = true;
             }
         }
-        return ahomeInterfaceName7a;
+        return homeInterfaceName7a;
     }
 
    /**
@@ -374,28 +374,29 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract Collection handleGetValueDependencies();
 
-    private Collection valueDependencies8a;
-    private boolean valueDependencies8aSet = false;
+    private transient Collection valueDependencies8a;
+    private transient boolean valueDependencies8aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.valueDependencies
      * @return (Collection)handleGetValueDependencies()
      */
     public final Collection getValueDependencies()
     {
-        Collection avalueDependencies8a = this.valueDependencies8a;
+        Collection valueDependencies8a = this.valueDependencies8a;
         if (!this.valueDependencies8aSet)
         {
             // valueDependencies has no pre constraints
-            avalueDependencies8a = handleGetValueDependencies();
+            valueDependencies8a = handleGetValueDependencies();
             // valueDependencies has no post constraints
-            this.valueDependencies8a = avalueDependencies8a;
+            this.valueDependencies8a = valueDependencies8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.valueDependencies8aSet = true;
             }
         }
-        return avalueDependencies8a;
+        return valueDependencies8a;
     }
 
    /**
@@ -404,28 +405,29 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract Collection handleGetEntityRelations();
 
-    private Collection entityRelations9a;
-    private boolean entityRelations9aSet = false;
+    private transient Collection entityRelations9a;
+    private transient boolean entityRelations9aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.entityRelations
      * @return (Collection)handleGetEntityRelations()
      */
     public final Collection getEntityRelations()
     {
-        Collection aentityRelations9a = this.entityRelations9a;
+        Collection entityRelations9a = this.entityRelations9a;
         if (!this.entityRelations9aSet)
         {
             // entityRelations has no pre constraints
-            aentityRelations9a = handleGetEntityRelations();
+            entityRelations9a = handleGetEntityRelations();
             // entityRelations has no post constraints
-            this.entityRelations9a = aentityRelations9a;
+            this.entityRelations9a = entityRelations9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityRelations9aSet = true;
             }
         }
-        return aentityRelations9a;
+        return entityRelations9a;
     }
 
    /**
@@ -434,8 +436,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetEntityListenerName();
 
-    private String entityListenerName10a;
-    private boolean entityListenerName10aSet = false;
+    private transient String entityListenerName10a;
+    private transient boolean entityListenerName10aSet = false;
 
     /**
      * Entity listener class name for callback methods.
@@ -443,19 +445,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getEntityListenerName()
     {
-        String aentityListenerName10a = this.entityListenerName10a;
+        String entityListenerName10a = this.entityListenerName10a;
         if (!this.entityListenerName10aSet)
         {
             // entityListenerName has no pre constraints
-            aentityListenerName10a = handleGetEntityListenerName();
+            entityListenerName10a = handleGetEntityListenerName();
             // entityListenerName has no post constraints
-            this.entityListenerName10a = aentityListenerName10a;
+            this.entityListenerName10a = entityListenerName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityListenerName10aSet = true;
             }
         }
-        return aentityListenerName10a;
+        return entityListenerName10a;
     }
 
    /**
@@ -464,8 +466,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetEntityEmbeddableName();
 
-    private String entityEmbeddableName11a;
-    private boolean entityEmbeddableName11aSet = false;
+    private transient String entityEmbeddableName11a;
+    private transient boolean entityEmbeddableName11aSet = false;
 
     /**
      * Entity embeddable super class name this entity inherits from.
@@ -473,19 +475,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getEntityEmbeddableName()
     {
-        String aentityEmbeddableName11a = this.entityEmbeddableName11a;
+        String entityEmbeddableName11a = this.entityEmbeddableName11a;
         if (!this.entityEmbeddableName11aSet)
         {
             // entityEmbeddableName has no pre constraints
-            aentityEmbeddableName11a = handleGetEntityEmbeddableName();
+            entityEmbeddableName11a = handleGetEntityEmbeddableName();
             // entityEmbeddableName has no post constraints
-            this.entityEmbeddableName11a = aentityEmbeddableName11a;
+            this.entityEmbeddableName11a = entityEmbeddableName11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityEmbeddableName11aSet = true;
             }
         }
-        return aentityEmbeddableName11a;
+        return entityEmbeddableName11a;
     }
 
    /**
@@ -494,8 +496,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedEntityListenerName();
 
-    private String fullyQualifiedEntityListenerName12a;
-    private boolean fullyQualifiedEntityListenerName12aSet = false;
+    private transient String fullyQualifiedEntityListenerName12a;
+    private transient boolean fullyQualifiedEntityListenerName12aSet = false;
 
     /**
      * Fully qualified name of the Entity listner class holding entity callback methods.
@@ -503,19 +505,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedEntityListenerName()
     {
-        String afullyQualifiedEntityListenerName12a = this.fullyQualifiedEntityListenerName12a;
+        String fullyQualifiedEntityListenerName12a = this.fullyQualifiedEntityListenerName12a;
         if (!this.fullyQualifiedEntityListenerName12aSet)
         {
             // fullyQualifiedEntityListenerName has no pre constraints
-            afullyQualifiedEntityListenerName12a = handleGetFullyQualifiedEntityListenerName();
+            fullyQualifiedEntityListenerName12a = handleGetFullyQualifiedEntityListenerName();
             // fullyQualifiedEntityListenerName has no post constraints
-            this.fullyQualifiedEntityListenerName12a = afullyQualifiedEntityListenerName12a;
+            this.fullyQualifiedEntityListenerName12a = fullyQualifiedEntityListenerName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedEntityListenerName12aSet = true;
             }
         }
-        return afullyQualifiedEntityListenerName12a;
+        return fullyQualifiedEntityListenerName12a;
     }
 
    /**
@@ -524,8 +526,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedEntityEmbeddableName();
 
-    private String fullyQualifiedEntityEmbeddableName13a;
-    private boolean fullyQualifiedEntityEmbeddableName13aSet = false;
+    private transient String fullyQualifiedEntityEmbeddableName13a;
+    private transient boolean fullyQualifiedEntityEmbeddableName13aSet = false;
 
     /**
      * The fully qualified name of the embeddable super class of this entity.
@@ -533,19 +535,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedEntityEmbeddableName()
     {
-        String afullyQualifiedEntityEmbeddableName13a = this.fullyQualifiedEntityEmbeddableName13a;
+        String fullyQualifiedEntityEmbeddableName13a = this.fullyQualifiedEntityEmbeddableName13a;
         if (!this.fullyQualifiedEntityEmbeddableName13aSet)
         {
             // fullyQualifiedEntityEmbeddableName has no pre constraints
-            afullyQualifiedEntityEmbeddableName13a = handleGetFullyQualifiedEntityEmbeddableName();
+            fullyQualifiedEntityEmbeddableName13a = handleGetFullyQualifiedEntityEmbeddableName();
             // fullyQualifiedEntityEmbeddableName has no post constraints
-            this.fullyQualifiedEntityEmbeddableName13a = afullyQualifiedEntityEmbeddableName13a;
+            this.fullyQualifiedEntityEmbeddableName13a = fullyQualifiedEntityEmbeddableName13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedEntityEmbeddableName13aSet = true;
             }
         }
-        return afullyQualifiedEntityEmbeddableName13a;
+        return fullyQualifiedEntityEmbeddableName13a;
     }
 
    /**
@@ -554,8 +556,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDefaultCascadeType();
 
-    private String defaultCascadeType14a;
-    private boolean defaultCascadeType14aSet = false;
+    private transient String defaultCascadeType14a;
+    private transient boolean defaultCascadeType14aSet = false;
 
     /**
      * Returns the default entity cascadable property attribute looked up in the namespace
@@ -564,19 +566,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDefaultCascadeType()
     {
-        String adefaultCascadeType14a = this.defaultCascadeType14a;
+        String defaultCascadeType14a = this.defaultCascadeType14a;
         if (!this.defaultCascadeType14aSet)
         {
             // defaultCascadeType has no pre constraints
-            adefaultCascadeType14a = handleGetDefaultCascadeType();
+            defaultCascadeType14a = handleGetDefaultCascadeType();
             // defaultCascadeType has no post constraints
-            this.defaultCascadeType14a = adefaultCascadeType14a;
+            this.defaultCascadeType14a = defaultCascadeType14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.defaultCascadeType14aSet = true;
             }
         }
-        return adefaultCascadeType14a;
+        return defaultCascadeType14a;
     }
 
    /**
@@ -585,8 +587,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDiscriminatorColumn();
 
-    private String discriminatorColumn15a;
-    private boolean discriminatorColumn15aSet = false;
+    private transient String discriminatorColumn15a;
+    private transient boolean discriminatorColumn15aSet = false;
 
     /**
      * The name of the discriminator column.  Default is TYPE if this is missing.
@@ -594,19 +596,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDiscriminatorColumn()
     {
-        String adiscriminatorColumn15a = this.discriminatorColumn15a;
+        String discriminatorColumn15a = this.discriminatorColumn15a;
         if (!this.discriminatorColumn15aSet)
         {
             // discriminatorColumn has no pre constraints
-            adiscriminatorColumn15a = handleGetDiscriminatorColumn();
+            discriminatorColumn15a = handleGetDiscriminatorColumn();
             // discriminatorColumn has no post constraints
-            this.discriminatorColumn15a = adiscriminatorColumn15a;
+            this.discriminatorColumn15a = discriminatorColumn15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.discriminatorColumn15aSet = true;
             }
         }
-        return adiscriminatorColumn15a;
+        return discriminatorColumn15a;
     }
 
    /**
@@ -615,8 +617,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDiscriminatorColumnDefinition();
 
-    private String discriminatorColumnDefinition16a;
-    private boolean discriminatorColumnDefinition16aSet = false;
+    private transient String discriminatorColumnDefinition16a;
+    private transient boolean discriminatorColumnDefinition16aSet = false;
 
     /**
      * The SQL used when generating the DDL for the discriminator column.
@@ -624,19 +626,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDiscriminatorColumnDefinition()
     {
-        String adiscriminatorColumnDefinition16a = this.discriminatorColumnDefinition16a;
+        String discriminatorColumnDefinition16a = this.discriminatorColumnDefinition16a;
         if (!this.discriminatorColumnDefinition16aSet)
         {
             // discriminatorColumnDefinition has no pre constraints
-            adiscriminatorColumnDefinition16a = handleGetDiscriminatorColumnDefinition();
+            discriminatorColumnDefinition16a = handleGetDiscriminatorColumnDefinition();
             // discriminatorColumnDefinition has no post constraints
-            this.discriminatorColumnDefinition16a = adiscriminatorColumnDefinition16a;
+            this.discriminatorColumnDefinition16a = discriminatorColumnDefinition16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.discriminatorColumnDefinition16aSet = true;
             }
         }
-        return adiscriminatorColumnDefinition16a;
+        return discriminatorColumnDefinition16a;
     }
 
    /**
@@ -645,8 +647,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract int handleGetDiscriminatorLength();
 
-    private int discriminatorLength17a;
-    private boolean discriminatorLength17aSet = false;
+    private transient int discriminatorLength17a;
+    private transient boolean discriminatorLength17aSet = false;
 
     /**
      * The standard length of a discriminator value.  Default is 10.
@@ -654,19 +656,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final int getDiscriminatorLength()
     {
-        int adiscriminatorLength17a = this.discriminatorLength17a;
+        int discriminatorLength17a = this.discriminatorLength17a;
         if (!this.discriminatorLength17aSet)
         {
             // discriminatorLength has no pre constraints
-            adiscriminatorLength17a = handleGetDiscriminatorLength();
+            discriminatorLength17a = handleGetDiscriminatorLength();
             // discriminatorLength has no post constraints
-            this.discriminatorLength17a = adiscriminatorLength17a;
+            this.discriminatorLength17a = discriminatorLength17a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.discriminatorLength17aSet = true;
             }
         }
-        return adiscriminatorLength17a;
+        return discriminatorLength17a;
     }
 
    /**
@@ -675,8 +677,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDiscriminatorType();
 
-    private String discriminatorType18a;
-    private boolean discriminatorType18aSet = false;
+    private transient String discriminatorType18a;
+    private transient boolean discriminatorType18aSet = false;
 
     /**
      * The type of the entity discriminator column.  Default is STRING.
@@ -684,19 +686,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDiscriminatorType()
     {
-        String adiscriminatorType18a = this.discriminatorType18a;
+        String discriminatorType18a = this.discriminatorType18a;
         if (!this.discriminatorType18aSet)
         {
             // discriminatorType has no pre constraints
-            adiscriminatorType18a = handleGetDiscriminatorType();
+            discriminatorType18a = handleGetDiscriminatorType();
             // discriminatorType has no post constraints
-            this.discriminatorType18a = adiscriminatorType18a;
+            this.discriminatorType18a = discriminatorType18a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.discriminatorType18aSet = true;
             }
         }
-        return adiscriminatorType18a;
+        return discriminatorType18a;
     }
 
    /**
@@ -705,8 +707,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDiscriminatorValue();
 
-    private String discriminatorValue19a;
-    private boolean discriminatorValue19aSet = false;
+    private transient String discriminatorValue19a;
+    private transient boolean discriminatorValue19aSet = false;
 
     /**
      * The value indicating the row in an entity of the annotated entity type.
@@ -714,19 +716,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDiscriminatorValue()
     {
-        String adiscriminatorValue19a = this.discriminatorValue19a;
+        String discriminatorValue19a = this.discriminatorValue19a;
         if (!this.discriminatorValue19aSet)
         {
             // discriminatorValue has no pre constraints
-            adiscriminatorValue19a = handleGetDiscriminatorValue();
+            discriminatorValue19a = handleGetDiscriminatorValue();
             // discriminatorValue has no post constraints
-            this.discriminatorValue19a = adiscriminatorValue19a;
+            this.discriminatorValue19a = discriminatorValue19a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.discriminatorValue19aSet = true;
             }
         }
-        return adiscriminatorValue19a;
+        return discriminatorValue19a;
     }
 
    /**
@@ -735,8 +737,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsInheritanceSingleTable();
 
-    private boolean inheritanceSingleTable20a;
-    private boolean inheritanceSingleTable20aSet = false;
+    private transient boolean inheritanceSingleTable20a;
+    private transient boolean inheritanceSingleTable20aSet = false;
 
     /**
      * Return true if the entity inheritance strategy as specified by the tagged value
@@ -745,19 +747,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isInheritanceSingleTable()
     {
-        boolean ainheritanceSingleTable20a = this.inheritanceSingleTable20a;
+        boolean inheritanceSingleTable20a = this.inheritanceSingleTable20a;
         if (!this.inheritanceSingleTable20aSet)
         {
             // inheritanceSingleTable has no pre constraints
-            ainheritanceSingleTable20a = handleIsInheritanceSingleTable();
+            inheritanceSingleTable20a = handleIsInheritanceSingleTable();
             // inheritanceSingleTable has no post constraints
-            this.inheritanceSingleTable20a = ainheritanceSingleTable20a;
+            this.inheritanceSingleTable20a = inheritanceSingleTable20a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inheritanceSingleTable20aSet = true;
             }
         }
-        return ainheritanceSingleTable20a;
+        return inheritanceSingleTable20a;
     }
 
    /**
@@ -766,8 +768,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetInheritanceStrategy();
 
-    private String inheritanceStrategy21a;
-    private boolean inheritanceStrategy21aSet = false;
+    private transient String inheritanceStrategy21a;
+    private transient boolean inheritanceStrategy21aSet = false;
 
     /**
      * Return the value of the andromda_persistence_inheritance tagged value which is an enumeration
@@ -776,19 +778,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getInheritanceStrategy()
     {
-        String ainheritanceStrategy21a = this.inheritanceStrategy21a;
+        String inheritanceStrategy21a = this.inheritanceStrategy21a;
         if (!this.inheritanceStrategy21aSet)
         {
             // inheritanceStrategy has no pre constraints
-            ainheritanceStrategy21a = handleGetInheritanceStrategy();
+            inheritanceStrategy21a = handleGetInheritanceStrategy();
             // inheritanceStrategy has no post constraints
-            this.inheritanceStrategy21a = ainheritanceStrategy21a;
+            this.inheritanceStrategy21a = inheritanceStrategy21a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inheritanceStrategy21aSet = true;
             }
         }
-        return ainheritanceStrategy21a;
+        return inheritanceStrategy21a;
     }
 
    /**
@@ -797,8 +799,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsInheritanceTablePerClass();
 
-    private boolean inheritanceTablePerClass22a;
-    private boolean inheritanceTablePerClass22aSet = false;
+    private transient boolean inheritanceTablePerClass22a;
+    private transient boolean inheritanceTablePerClass22aSet = false;
 
     /**
      * Return true if the entity inheritance strategy as specified by the tagged value
@@ -807,19 +809,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isInheritanceTablePerClass()
     {
-        boolean ainheritanceTablePerClass22a = this.inheritanceTablePerClass22a;
+        boolean inheritanceTablePerClass22a = this.inheritanceTablePerClass22a;
         if (!this.inheritanceTablePerClass22aSet)
         {
             // inheritanceTablePerClass has no pre constraints
-            ainheritanceTablePerClass22a = handleIsInheritanceTablePerClass();
+            inheritanceTablePerClass22a = handleIsInheritanceTablePerClass();
             // inheritanceTablePerClass has no post constraints
-            this.inheritanceTablePerClass22a = ainheritanceTablePerClass22a;
+            this.inheritanceTablePerClass22a = inheritanceTablePerClass22a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inheritanceTablePerClass22aSet = true;
             }
         }
-        return ainheritanceTablePerClass22a;
+        return inheritanceTablePerClass22a;
     }
 
    /**
@@ -828,8 +830,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsInheritanceJoined();
 
-    private boolean inheritanceJoined23a;
-    private boolean inheritanceJoined23aSet = false;
+    private transient boolean inheritanceJoined23a;
+    private transient boolean inheritanceJoined23aSet = false;
 
     /**
      * Return true if the entity inheritance strategy as specified by the tagged value
@@ -838,19 +840,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isInheritanceJoined()
     {
-        boolean ainheritanceJoined23a = this.inheritanceJoined23a;
+        boolean inheritanceJoined23a = this.inheritanceJoined23a;
         if (!this.inheritanceJoined23aSet)
         {
             // inheritanceJoined has no pre constraints
-            ainheritanceJoined23a = handleIsInheritanceJoined();
+            inheritanceJoined23a = handleIsInheritanceJoined();
             // inheritanceJoined has no post constraints
-            this.inheritanceJoined23a = ainheritanceJoined23a;
+            this.inheritanceJoined23a = inheritanceJoined23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inheritanceJoined23aSet = true;
             }
         }
-        return ainheritanceJoined23a;
+        return inheritanceJoined23a;
     }
 
    /**
@@ -859,8 +861,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsRequiresSpecializationMapping();
 
-    private boolean requiresSpecializationMapping24a;
-    private boolean requiresSpecializationMapping24aSet = false;
+    private transient boolean requiresSpecializationMapping24a;
+    private transient boolean requiresSpecializationMapping24aSet = false;
 
     /**
      * Returns true if the entity requires specialization mapping.  The Inheritance annotation is
@@ -869,19 +871,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isRequiresSpecializationMapping()
     {
-        boolean arequiresSpecializationMapping24a = this.requiresSpecializationMapping24a;
+        boolean requiresSpecializationMapping24a = this.requiresSpecializationMapping24a;
         if (!this.requiresSpecializationMapping24aSet)
         {
             // requiresSpecializationMapping has no pre constraints
-            arequiresSpecializationMapping24a = handleIsRequiresSpecializationMapping();
+            requiresSpecializationMapping24a = handleIsRequiresSpecializationMapping();
             // requiresSpecializationMapping has no post constraints
-            this.requiresSpecializationMapping24a = arequiresSpecializationMapping24a;
+            this.requiresSpecializationMapping24a = requiresSpecializationMapping24a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.requiresSpecializationMapping24aSet = true;
             }
         }
-        return arequiresSpecializationMapping24a;
+        return requiresSpecializationMapping24a;
     }
 
    /**
@@ -890,8 +892,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsRequiresGeneralizationMapping();
 
-    private boolean requiresGeneralizationMapping25a;
-    private boolean requiresGeneralizationMapping25aSet = false;
+    private transient boolean requiresGeneralizationMapping25a;
+    private transient boolean requiresGeneralizationMapping25aSet = false;
 
     /**
      * Returns true if the entity requires generalization mapping.  The Inheritance annotation is
@@ -900,19 +902,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isRequiresGeneralizationMapping()
     {
-        boolean arequiresGeneralizationMapping25a = this.requiresGeneralizationMapping25a;
+        boolean requiresGeneralizationMapping25a = this.requiresGeneralizationMapping25a;
         if (!this.requiresGeneralizationMapping25aSet)
         {
             // requiresGeneralizationMapping has no pre constraints
-            arequiresGeneralizationMapping25a = handleIsRequiresGeneralizationMapping();
+            requiresGeneralizationMapping25a = handleIsRequiresGeneralizationMapping();
             // requiresGeneralizationMapping has no post constraints
-            this.requiresGeneralizationMapping25a = arequiresGeneralizationMapping25a;
+            this.requiresGeneralizationMapping25a = requiresGeneralizationMapping25a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.requiresGeneralizationMapping25aSet = true;
             }
         }
-        return arequiresGeneralizationMapping25a;
+        return requiresGeneralizationMapping25a;
     }
 
    /**
@@ -921,8 +923,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetEntityImplementationName();
 
-    private String entityImplementationName26a;
-    private boolean entityImplementationName26aSet = false;
+    private transient String entityImplementationName26a;
+    private transient boolean entityImplementationName26aSet = false;
 
     /**
      * The name of the implementation class.
@@ -930,19 +932,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getEntityImplementationName()
     {
-        String aentityImplementationName26a = this.entityImplementationName26a;
+        String entityImplementationName26a = this.entityImplementationName26a;
         if (!this.entityImplementationName26aSet)
         {
             // entityImplementationName has no pre constraints
-            aentityImplementationName26a = handleGetEntityImplementationName();
+            entityImplementationName26a = handleGetEntityImplementationName();
             // entityImplementationName has no post constraints
-            this.entityImplementationName26a = aentityImplementationName26a;
+            this.entityImplementationName26a = entityImplementationName26a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityImplementationName26aSet = true;
             }
         }
-        return aentityImplementationName26a;
+        return entityImplementationName26a;
     }
 
    /**
@@ -951,8 +953,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedEntityImplementationName();
 
-    private String fullyQualifiedEntityImplementationName27a;
-    private boolean fullyQualifiedEntityImplementationName27aSet = false;
+    private transient String fullyQualifiedEntityImplementationName27a;
+    private transient boolean fullyQualifiedEntityImplementationName27aSet = false;
 
     /**
      * Fully qualified name of the Entity implementation class.
@@ -960,19 +962,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedEntityImplementationName()
     {
-        String afullyQualifiedEntityImplementationName27a = this.fullyQualifiedEntityImplementationName27a;
+        String fullyQualifiedEntityImplementationName27a = this.fullyQualifiedEntityImplementationName27a;
         if (!this.fullyQualifiedEntityImplementationName27aSet)
         {
             // fullyQualifiedEntityImplementationName has no pre constraints
-            afullyQualifiedEntityImplementationName27a = handleGetFullyQualifiedEntityImplementationName();
+            fullyQualifiedEntityImplementationName27a = handleGetFullyQualifiedEntityImplementationName();
             // fullyQualifiedEntityImplementationName has no post constraints
-            this.fullyQualifiedEntityImplementationName27a = afullyQualifiedEntityImplementationName27a;
+            this.fullyQualifiedEntityImplementationName27a = fullyQualifiedEntityImplementationName27a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedEntityImplementationName27aSet = true;
             }
         }
-        return afullyQualifiedEntityImplementationName27a;
+        return fullyQualifiedEntityImplementationName27a;
     }
 
    /**
@@ -981,8 +983,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetEntityName();
 
-    private String entityName28a;
-    private boolean entityName28aSet = false;
+    private transient String entityName28a;
+    private transient boolean entityName28aSet = false;
 
     /**
      * The named used for the EJB3 entity.
@@ -990,19 +992,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getEntityName()
     {
-        String aentityName28a = this.entityName28a;
+        String entityName28a = this.entityName28a;
         if (!this.entityName28aSet)
         {
             // entityName has no pre constraints
-            aentityName28a = handleGetEntityName();
+            entityName28a = handleGetEntityName();
             // entityName has no post constraints
-            this.entityName28a = aentityName28a;
+            this.entityName28a = entityName28a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityName28aSet = true;
             }
         }
-        return aentityName28a;
+        return entityName28a;
     }
 
    /**
@@ -1011,8 +1013,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedEntityName();
 
-    private String fullyQualifiedEntityName29a;
-    private boolean fullyQualifiedEntityName29aSet = false;
+    private transient String fullyQualifiedEntityName29a;
+    private transient boolean fullyQualifiedEntityName29aSet = false;
 
     /**
      * The fully qualified name of the EJB3 entity.
@@ -1020,19 +1022,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedEntityName()
     {
-        String afullyQualifiedEntityName29a = this.fullyQualifiedEntityName29a;
+        String fullyQualifiedEntityName29a = this.fullyQualifiedEntityName29a;
         if (!this.fullyQualifiedEntityName29aSet)
         {
             // fullyQualifiedEntityName has no pre constraints
-            afullyQualifiedEntityName29a = handleGetFullyQualifiedEntityName();
+            fullyQualifiedEntityName29a = handleGetFullyQualifiedEntityName();
             // fullyQualifiedEntityName has no post constraints
-            this.fullyQualifiedEntityName29a = afullyQualifiedEntityName29a;
+            this.fullyQualifiedEntityName29a = fullyQualifiedEntityName29a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedEntityName29aSet = true;
             }
         }
-        return afullyQualifiedEntityName29a;
+        return fullyQualifiedEntityName29a;
     }
 
    /**
@@ -1041,8 +1043,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsEmbeddableSuperclass();
 
-    private boolean embeddableSuperclass30a;
-    private boolean embeddableSuperclass30aSet = false;
+    private transient boolean embeddableSuperclass30a;
+    private transient boolean embeddableSuperclass30aSet = false;
 
     /**
      * Determines if this entity is an mapped/embeddable super class.
@@ -1050,19 +1052,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isEmbeddableSuperclass()
     {
-        boolean aembeddableSuperclass30a = this.embeddableSuperclass30a;
+        boolean embeddableSuperclass30a = this.embeddableSuperclass30a;
         if (!this.embeddableSuperclass30aSet)
         {
             // embeddableSuperclass has no pre constraints
-            aembeddableSuperclass30a = handleIsEmbeddableSuperclass();
+            embeddableSuperclass30a = handleIsEmbeddableSuperclass();
             // embeddableSuperclass has no post constraints
-            this.embeddableSuperclass30a = aembeddableSuperclass30a;
+            this.embeddableSuperclass30a = embeddableSuperclass30a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.embeddableSuperclass30aSet = true;
             }
         }
-        return aembeddableSuperclass30a;
+        return embeddableSuperclass30a;
     }
 
    /**
@@ -1071,8 +1073,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsGenericFinders();
 
-    private boolean genericFinders31a;
-    private boolean genericFinders31aSet = false;
+    private transient boolean genericFinders31a;
+    private transient boolean genericFinders31aSet = false;
 
     /**
      * Returns true if the generic finder property is true.  This will create generic finder static
@@ -1081,19 +1083,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isGenericFinders()
     {
-        boolean agenericFinders31a = this.genericFinders31a;
+        boolean genericFinders31a = this.genericFinders31a;
         if (!this.genericFinders31aSet)
         {
             // genericFinders has no pre constraints
-            agenericFinders31a = handleIsGenericFinders();
+            genericFinders31a = handleIsGenericFinders();
             // genericFinders has no post constraints
-            this.genericFinders31a = agenericFinders31a;
+            this.genericFinders31a = genericFinders31a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.genericFinders31aSet = true;
             }
         }
-        return agenericFinders31a;
+        return genericFinders31a;
     }
 
    /**
@@ -1102,8 +1104,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsCompositePrimaryKeyPresent();
 
-    private boolean compositePrimaryKeyPresent32a;
-    private boolean compositePrimaryKeyPresent32aSet = false;
+    private transient boolean compositePrimaryKeyPresent32a;
+    private transient boolean compositePrimaryKeyPresent32aSet = false;
 
     /**
      * Returns true if a composite primary key exists for this entity bean.  A composite primary key
@@ -1112,19 +1114,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isCompositePrimaryKeyPresent()
     {
-        boolean acompositePrimaryKeyPresent32a = this.compositePrimaryKeyPresent32a;
+        boolean compositePrimaryKeyPresent32a = this.compositePrimaryKeyPresent32a;
         if (!this.compositePrimaryKeyPresent32aSet)
         {
             // compositePrimaryKeyPresent has no pre constraints
-            acompositePrimaryKeyPresent32a = handleIsCompositePrimaryKeyPresent();
+            compositePrimaryKeyPresent32a = handleIsCompositePrimaryKeyPresent();
             // compositePrimaryKeyPresent has no post constraints
-            this.compositePrimaryKeyPresent32a = acompositePrimaryKeyPresent32a;
+            this.compositePrimaryKeyPresent32a = compositePrimaryKeyPresent32a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.compositePrimaryKeyPresent32aSet = true;
             }
         }
-        return acompositePrimaryKeyPresent32a;
+        return compositePrimaryKeyPresent32a;
     }
 
    /**
@@ -1133,8 +1135,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedEntityCompositePrimaryKeyName();
 
-    private String fullyQualifiedEntityCompositePrimaryKeyName33a;
-    private boolean fullyQualifiedEntityCompositePrimaryKeyName33aSet = false;
+    private transient String fullyQualifiedEntityCompositePrimaryKeyName33a;
+    private transient boolean fullyQualifiedEntityCompositePrimaryKeyName33aSet = false;
 
     /**
      * The fully qualified name of the composite primary key class of this entity.
@@ -1142,19 +1144,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedEntityCompositePrimaryKeyName()
     {
-        String afullyQualifiedEntityCompositePrimaryKeyName33a = this.fullyQualifiedEntityCompositePrimaryKeyName33a;
+        String fullyQualifiedEntityCompositePrimaryKeyName33a = this.fullyQualifiedEntityCompositePrimaryKeyName33a;
         if (!this.fullyQualifiedEntityCompositePrimaryKeyName33aSet)
         {
             // fullyQualifiedEntityCompositePrimaryKeyName has no pre constraints
-            afullyQualifiedEntityCompositePrimaryKeyName33a = handleGetFullyQualifiedEntityCompositePrimaryKeyName();
+            fullyQualifiedEntityCompositePrimaryKeyName33a = handleGetFullyQualifiedEntityCompositePrimaryKeyName();
             // fullyQualifiedEntityCompositePrimaryKeyName has no post constraints
-            this.fullyQualifiedEntityCompositePrimaryKeyName33a = afullyQualifiedEntityCompositePrimaryKeyName33a;
+            this.fullyQualifiedEntityCompositePrimaryKeyName33a = fullyQualifiedEntityCompositePrimaryKeyName33a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedEntityCompositePrimaryKeyName33aSet = true;
             }
         }
-        return afullyQualifiedEntityCompositePrimaryKeyName33a;
+        return fullyQualifiedEntityCompositePrimaryKeyName33a;
     }
 
    /**
@@ -1163,8 +1165,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetEntityCompositePrimaryKeyName();
 
-    private String entityCompositePrimaryKeyName34a;
-    private boolean entityCompositePrimaryKeyName34aSet = false;
+    private transient String entityCompositePrimaryKeyName34a;
+    private transient boolean entityCompositePrimaryKeyName34aSet = false;
 
     /**
      * Entity composite primary key class name for this entity.
@@ -1172,19 +1174,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getEntityCompositePrimaryKeyName()
     {
-        String aentityCompositePrimaryKeyName34a = this.entityCompositePrimaryKeyName34a;
+        String entityCompositePrimaryKeyName34a = this.entityCompositePrimaryKeyName34a;
         if (!this.entityCompositePrimaryKeyName34aSet)
         {
             // entityCompositePrimaryKeyName has no pre constraints
-            aentityCompositePrimaryKeyName34a = handleGetEntityCompositePrimaryKeyName();
+            entityCompositePrimaryKeyName34a = handleGetEntityCompositePrimaryKeyName();
             // entityCompositePrimaryKeyName has no post constraints
-            this.entityCompositePrimaryKeyName34a = aentityCompositePrimaryKeyName34a;
+            this.entityCompositePrimaryKeyName34a = entityCompositePrimaryKeyName34a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityCompositePrimaryKeyName34aSet = true;
             }
         }
-        return aentityCompositePrimaryKeyName34a;
+        return entityCompositePrimaryKeyName34a;
     }
 
    /**
@@ -1193,8 +1195,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsEmbeddableSuperclassGeneralizationExists();
 
-    private boolean embeddableSuperclassGeneralizationExists35a;
-    private boolean embeddableSuperclassGeneralizationExists35aSet = false;
+    private transient boolean embeddableSuperclassGeneralizationExists35a;
+    private transient boolean embeddableSuperclassGeneralizationExists35aSet = false;
 
     /**
      * Returns true if this entity is a subclass of an mapped/embeddable super class.  You cannot
@@ -1205,19 +1207,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isEmbeddableSuperclassGeneralizationExists()
     {
-        boolean aembeddableSuperclassGeneralizationExists35a = this.embeddableSuperclassGeneralizationExists35a;
+        boolean embeddableSuperclassGeneralizationExists35a = this.embeddableSuperclassGeneralizationExists35a;
         if (!this.embeddableSuperclassGeneralizationExists35aSet)
         {
             // embeddableSuperclassGeneralizationExists has no pre constraints
-            aembeddableSuperclassGeneralizationExists35a = handleIsEmbeddableSuperclassGeneralizationExists();
+            embeddableSuperclassGeneralizationExists35a = handleIsEmbeddableSuperclassGeneralizationExists();
             // embeddableSuperclassGeneralizationExists has no post constraints
-            this.embeddableSuperclassGeneralizationExists35a = aembeddableSuperclassGeneralizationExists35a;
+            this.embeddableSuperclassGeneralizationExists35a = embeddableSuperclassGeneralizationExists35a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.embeddableSuperclassGeneralizationExists35aSet = true;
             }
         }
-        return aembeddableSuperclassGeneralizationExists35a;
+        return embeddableSuperclassGeneralizationExists35a;
     }
 
    /**
@@ -1226,8 +1228,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsListenerEnabled();
 
-    private boolean listenerEnabled36a;
-    private boolean listenerEnabled36aSet = false;
+    private transient boolean listenerEnabled36a;
+    private transient boolean listenerEnabled36aSet = false;
 
     /**
      * Returns true if this entity bean has the stereotype Listener.  False otherwise.
@@ -1235,19 +1237,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isListenerEnabled()
     {
-        boolean alistenerEnabled36a = this.listenerEnabled36a;
+        boolean listenerEnabled36a = this.listenerEnabled36a;
         if (!this.listenerEnabled36aSet)
         {
             // listenerEnabled has no pre constraints
-            alistenerEnabled36a = handleIsListenerEnabled();
+            listenerEnabled36a = handleIsListenerEnabled();
             // listenerEnabled has no post constraints
-            this.listenerEnabled36a = alistenerEnabled36a;
+            this.listenerEnabled36a = listenerEnabled36a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.listenerEnabled36aSet = true;
             }
         }
-        return alistenerEnabled36a;
+        return listenerEnabled36a;
     }
 
    /**
@@ -1256,8 +1258,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsFinderFindAllExists();
 
-    private boolean finderFindAllExists37a;
-    private boolean finderFindAllExists37aSet = false;
+    private transient boolean finderFindAllExists37a;
+    private transient boolean finderFindAllExists37aSet = false;
 
     /**
      * Returns true if the findAll finder method (specified as a query method) has been modelled.
@@ -1265,19 +1267,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isFinderFindAllExists()
     {
-        boolean afinderFindAllExists37a = this.finderFindAllExists37a;
+        boolean finderFindAllExists37a = this.finderFindAllExists37a;
         if (!this.finderFindAllExists37aSet)
         {
             // finderFindAllExists has no pre constraints
-            afinderFindAllExists37a = handleIsFinderFindAllExists();
+            finderFindAllExists37a = handleIsFinderFindAllExists();
             // finderFindAllExists has no post constraints
-            this.finderFindAllExists37a = afinderFindAllExists37a;
+            this.finderFindAllExists37a = finderFindAllExists37a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.finderFindAllExists37aSet = true;
             }
         }
-        return afinderFindAllExists37a;
+        return finderFindAllExists37a;
     }
 
    /**
@@ -1286,8 +1288,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsFinderFindByPrimaryKeyExists();
 
-    private boolean finderFindByPrimaryKeyExists38a;
-    private boolean finderFindByPrimaryKeyExists38aSet = false;
+    private transient boolean finderFindByPrimaryKeyExists38a;
+    private transient boolean finderFindByPrimaryKeyExists38aSet = false;
 
     /**
      * Returns true if the finder findByPrimaryKey has been modelled.
@@ -1295,19 +1297,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isFinderFindByPrimaryKeyExists()
     {
-        boolean afinderFindByPrimaryKeyExists38a = this.finderFindByPrimaryKeyExists38a;
+        boolean finderFindByPrimaryKeyExists38a = this.finderFindByPrimaryKeyExists38a;
         if (!this.finderFindByPrimaryKeyExists38aSet)
         {
             // finderFindByPrimaryKeyExists has no pre constraints
-            afinderFindByPrimaryKeyExists38a = handleIsFinderFindByPrimaryKeyExists();
+            finderFindByPrimaryKeyExists38a = handleIsFinderFindByPrimaryKeyExists();
             // finderFindByPrimaryKeyExists has no post constraints
-            this.finderFindByPrimaryKeyExists38a = afinderFindByPrimaryKeyExists38a;
+            this.finderFindByPrimaryKeyExists38a = finderFindByPrimaryKeyExists38a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.finderFindByPrimaryKeyExists38aSet = true;
             }
         }
-        return afinderFindByPrimaryKeyExists38a;
+        return finderFindByPrimaryKeyExists38a;
     }
 
    /**
@@ -1316,8 +1318,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsManageable();
 
-    private boolean manageable39a;
-    private boolean manageable39aSet = false;
+    private transient boolean manageable39a;
+    private transient boolean manageable39aSet = false;
 
     /**
      * Returns true if this entity is assigned the Manageable stereotype.  False otherwise.
@@ -1325,19 +1327,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isManageable()
     {
-        boolean amanageable39a = this.manageable39a;
+        boolean manageable39a = this.manageable39a;
         if (!this.manageable39aSet)
         {
             // manageable has no pre constraints
-            amanageable39a = handleIsManageable();
+            manageable39a = handleIsManageable();
             // manageable has no post constraints
-            this.manageable39a = amanageable39a;
+            this.manageable39a = manageable39a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageable39aSet = true;
             }
         }
-        return amanageable39a;
+        return manageable39a;
     }
 
    /**
@@ -1346,8 +1348,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetCacheType();
 
-    private String cacheType40a;
-    private boolean cacheType40aSet = false;
+    private transient String cacheType40a;
+    private transient boolean cacheType40aSet = false;
 
     /**
      * Provides the cache policy for the entity.
@@ -1356,19 +1358,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getCacheType()
     {
-        String acacheType40a = this.cacheType40a;
+        String cacheType40a = this.cacheType40a;
         if (!this.cacheType40aSet)
         {
             // cacheType has no pre constraints
-            acacheType40a = handleGetCacheType();
+            cacheType40a = handleGetCacheType();
             // cacheType has no post constraints
-            this.cacheType40a = acacheType40a;
+            this.cacheType40a = cacheType40a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cacheType40aSet = true;
             }
         }
-        return acacheType40a;
+        return cacheType40a;
     }
 
    /**
@@ -1377,8 +1379,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsCacheEnabled();
 
-    private boolean cacheEnabled41a;
-    private boolean cacheEnabled41aSet = false;
+    private transient boolean cacheEnabled41a;
+    private transient boolean cacheEnabled41aSet = false;
 
     /**
      * Returns true if caching has been enabled via namespace property hibernateEnableCache.
@@ -1386,19 +1388,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isCacheEnabled()
     {
-        boolean acacheEnabled41a = this.cacheEnabled41a;
+        boolean cacheEnabled41a = this.cacheEnabled41a;
         if (!this.cacheEnabled41aSet)
         {
             // cacheEnabled has no pre constraints
-            acacheEnabled41a = handleIsCacheEnabled();
+            cacheEnabled41a = handleIsCacheEnabled();
             // cacheEnabled has no post constraints
-            this.cacheEnabled41a = acacheEnabled41a;
+            this.cacheEnabled41a = cacheEnabled41a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cacheEnabled41aSet = true;
             }
         }
-        return acacheEnabled41a;
+        return cacheEnabled41a;
     }
 
    /**
@@ -1407,8 +1409,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsUseDefaultCacheRegion();
 
-    private boolean useDefaultCacheRegion42a;
-    private boolean useDefaultCacheRegion42aSet = false;
+    private transient boolean useDefaultCacheRegion42a;
+    private transient boolean useDefaultCacheRegion42aSet = false;
 
     /**
      * Return true if a unique cache region is NOT required for entities and queries.  This means we
@@ -1418,19 +1420,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isUseDefaultCacheRegion()
     {
-        boolean auseDefaultCacheRegion42a = this.useDefaultCacheRegion42a;
+        boolean useDefaultCacheRegion42a = this.useDefaultCacheRegion42a;
         if (!this.useDefaultCacheRegion42aSet)
         {
             // useDefaultCacheRegion has no pre constraints
-            auseDefaultCacheRegion42a = handleIsUseDefaultCacheRegion();
+            useDefaultCacheRegion42a = handleIsUseDefaultCacheRegion();
             // useDefaultCacheRegion has no post constraints
-            this.useDefaultCacheRegion42a = auseDefaultCacheRegion42a;
+            this.useDefaultCacheRegion42a = useDefaultCacheRegion42a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.useDefaultCacheRegion42aSet = true;
             }
         }
-        return auseDefaultCacheRegion42a;
+        return useDefaultCacheRegion42a;
     }
 
    /**
@@ -1439,8 +1441,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDaoName();
 
-    private String daoName43a;
-    private boolean daoName43aSet = false;
+    private transient String daoName43a;
+    private transient boolean daoName43aSet = false;
 
     /**
      * The name of the DAO for the specified entity.
@@ -1448,19 +1450,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDaoName()
     {
-        String adaoName43a = this.daoName43a;
+        String daoName43a = this.daoName43a;
         if (!this.daoName43aSet)
         {
             // daoName has no pre constraints
-            adaoName43a = handleGetDaoName();
+            daoName43a = handleGetDaoName();
             // daoName has no post constraints
-            this.daoName43a = adaoName43a;
+            this.daoName43a = daoName43a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoName43aSet = true;
             }
         }
-        return adaoName43a;
+        return daoName43a;
     }
 
    /**
@@ -1469,8 +1471,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedDaoName();
 
-    private String fullyQualifiedDaoName44a;
-    private boolean fullyQualifiedDaoName44aSet = false;
+    private transient String fullyQualifiedDaoName44a;
+    private transient boolean fullyQualifiedDaoName44aSet = false;
 
     /**
      * The fully qualified name of the DAO.
@@ -1478,19 +1480,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedDaoName()
     {
-        String afullyQualifiedDaoName44a = this.fullyQualifiedDaoName44a;
+        String fullyQualifiedDaoName44a = this.fullyQualifiedDaoName44a;
         if (!this.fullyQualifiedDaoName44aSet)
         {
             // fullyQualifiedDaoName has no pre constraints
-            afullyQualifiedDaoName44a = handleGetFullyQualifiedDaoName();
+            fullyQualifiedDaoName44a = handleGetFullyQualifiedDaoName();
             // fullyQualifiedDaoName has no post constraints
-            this.fullyQualifiedDaoName44a = afullyQualifiedDaoName44a;
+            this.fullyQualifiedDaoName44a = fullyQualifiedDaoName44a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedDaoName44aSet = true;
             }
         }
-        return afullyQualifiedDaoName44a;
+        return fullyQualifiedDaoName44a;
     }
 
    /**
@@ -1499,8 +1501,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDaoImplementationName();
 
-    private String daoImplementationName45a;
-    private boolean daoImplementationName45aSet = false;
+    private transient String daoImplementationName45a;
+    private transient boolean daoImplementationName45aSet = false;
 
     /**
      * The DAO implementation class name.
@@ -1508,19 +1510,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDaoImplementationName()
     {
-        String adaoImplementationName45a = this.daoImplementationName45a;
+        String daoImplementationName45a = this.daoImplementationName45a;
         if (!this.daoImplementationName45aSet)
         {
             // daoImplementationName has no pre constraints
-            adaoImplementationName45a = handleGetDaoImplementationName();
+            daoImplementationName45a = handleGetDaoImplementationName();
             // daoImplementationName has no post constraints
-            this.daoImplementationName45a = adaoImplementationName45a;
+            this.daoImplementationName45a = daoImplementationName45a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoImplementationName45aSet = true;
             }
         }
-        return adaoImplementationName45a;
+        return daoImplementationName45a;
     }
 
    /**
@@ -1529,8 +1531,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedDaoImplementationName();
 
-    private String fullyQualifiedDaoImplementationName46a;
-    private boolean fullyQualifiedDaoImplementationName46aSet = false;
+    private transient String fullyQualifiedDaoImplementationName46a;
+    private transient boolean fullyQualifiedDaoImplementationName46aSet = false;
 
     /**
      * The fully qualified name of the DAO implemetation.
@@ -1538,19 +1540,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedDaoImplementationName()
     {
-        String afullyQualifiedDaoImplementationName46a = this.fullyQualifiedDaoImplementationName46a;
+        String fullyQualifiedDaoImplementationName46a = this.fullyQualifiedDaoImplementationName46a;
         if (!this.fullyQualifiedDaoImplementationName46aSet)
         {
             // fullyQualifiedDaoImplementationName has no pre constraints
-            afullyQualifiedDaoImplementationName46a = handleGetFullyQualifiedDaoImplementationName();
+            fullyQualifiedDaoImplementationName46a = handleGetFullyQualifiedDaoImplementationName();
             // fullyQualifiedDaoImplementationName has no post constraints
-            this.fullyQualifiedDaoImplementationName46a = afullyQualifiedDaoImplementationName46a;
+            this.fullyQualifiedDaoImplementationName46a = fullyQualifiedDaoImplementationName46a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedDaoImplementationName46aSet = true;
             }
         }
-        return afullyQualifiedDaoImplementationName46a;
+        return fullyQualifiedDaoImplementationName46a;
     }
 
    /**
@@ -1559,8 +1561,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDaoBaseName();
 
-    private String daoBaseName47a;
-    private boolean daoBaseName47aSet = false;
+    private transient String daoBaseName47a;
+    private transient boolean daoBaseName47aSet = false;
 
     /**
      * The DAO base class name.  This is the abstract DAO that containsCRUD operations as well as
@@ -1569,19 +1571,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDaoBaseName()
     {
-        String adaoBaseName47a = this.daoBaseName47a;
+        String daoBaseName47a = this.daoBaseName47a;
         if (!this.daoBaseName47aSet)
         {
             // daoBaseName has no pre constraints
-            adaoBaseName47a = handleGetDaoBaseName();
+            daoBaseName47a = handleGetDaoBaseName();
             // daoBaseName has no post constraints
-            this.daoBaseName47a = adaoBaseName47a;
+            this.daoBaseName47a = daoBaseName47a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoBaseName47aSet = true;
             }
         }
-        return adaoBaseName47a;
+        return daoBaseName47a;
     }
 
    /**
@@ -1590,8 +1592,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedDaoBaseName();
 
-    private String fullyQualifiedDaoBaseName48a;
-    private boolean fullyQualifiedDaoBaseName48aSet = false;
+    private transient String fullyQualifiedDaoBaseName48a;
+    private transient boolean fullyQualifiedDaoBaseName48aSet = false;
 
     /**
      * The fully qualified name of the base DAO.
@@ -1599,19 +1601,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedDaoBaseName()
     {
-        String afullyQualifiedDaoBaseName48a = this.fullyQualifiedDaoBaseName48a;
+        String fullyQualifiedDaoBaseName48a = this.fullyQualifiedDaoBaseName48a;
         if (!this.fullyQualifiedDaoBaseName48aSet)
         {
             // fullyQualifiedDaoBaseName has no pre constraints
-            afullyQualifiedDaoBaseName48a = handleGetFullyQualifiedDaoBaseName();
+            fullyQualifiedDaoBaseName48a = handleGetFullyQualifiedDaoBaseName();
             // fullyQualifiedDaoBaseName has no post constraints
-            this.fullyQualifiedDaoBaseName48a = afullyQualifiedDaoBaseName48a;
+            this.fullyQualifiedDaoBaseName48a = fullyQualifiedDaoBaseName48a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedDaoBaseName48aSet = true;
             }
         }
-        return afullyQualifiedDaoBaseName48a;
+        return fullyQualifiedDaoBaseName48a;
     }
 
    /**
@@ -1620,8 +1622,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsDaoBusinessOperationsPresent();
 
-    private boolean daoBusinessOperationsPresent49a;
-    private boolean daoBusinessOperationsPresent49aSet = false;
+    private transient boolean daoBusinessOperationsPresent49a;
+    private transient boolean daoBusinessOperationsPresent49aSet = false;
 
     /**
      * Indicates whether or not any business DAO operations are present.
@@ -1629,19 +1631,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isDaoBusinessOperationsPresent()
     {
-        boolean adaoBusinessOperationsPresent49a = this.daoBusinessOperationsPresent49a;
+        boolean daoBusinessOperationsPresent49a = this.daoBusinessOperationsPresent49a;
         if (!this.daoBusinessOperationsPresent49aSet)
         {
             // daoBusinessOperationsPresent has no pre constraints
-            adaoBusinessOperationsPresent49a = handleIsDaoBusinessOperationsPresent();
+            daoBusinessOperationsPresent49a = handleIsDaoBusinessOperationsPresent();
             // daoBusinessOperationsPresent has no post constraints
-            this.daoBusinessOperationsPresent49a = adaoBusinessOperationsPresent49a;
+            this.daoBusinessOperationsPresent49a = daoBusinessOperationsPresent49a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoBusinessOperationsPresent49aSet = true;
             }
         }
-        return adaoBusinessOperationsPresent49a;
+        return daoBusinessOperationsPresent49a;
     }
 
    /**
@@ -1650,8 +1652,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsDaoImplementationRequired();
 
-    private boolean daoImplementationRequired50a;
-    private boolean daoImplementationRequired50aSet = false;
+    private transient boolean daoImplementationRequired50a;
+    private transient boolean daoImplementationRequired50aSet = false;
 
     /**
      * True if an implementation is required for the dao class, this is the case when there are
@@ -1660,19 +1662,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isDaoImplementationRequired()
     {
-        boolean adaoImplementationRequired50a = this.daoImplementationRequired50a;
+        boolean daoImplementationRequired50a = this.daoImplementationRequired50a;
         if (!this.daoImplementationRequired50aSet)
         {
             // daoImplementationRequired has no pre constraints
-            adaoImplementationRequired50a = handleIsDaoImplementationRequired();
+            daoImplementationRequired50a = handleIsDaoImplementationRequired();
             // daoImplementationRequired has no post constraints
-            this.daoImplementationRequired50a = adaoImplementationRequired50a;
+            this.daoImplementationRequired50a = daoImplementationRequired50a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoImplementationRequired50aSet = true;
             }
         }
-        return adaoImplementationRequired50a;
+        return daoImplementationRequired50a;
     }
 
    /**
@@ -1681,8 +1683,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDaoNoTransformationConstantName();
 
-    private String daoNoTransformationConstantName51a;
-    private boolean daoNoTransformationConstantName51aSet = false;
+    private transient String daoNoTransformationConstantName51a;
+    private transient boolean daoNoTransformationConstantName51aSet = false;
 
     /**
      * The constant name denoting no transformation is to be applied.
@@ -1690,19 +1692,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDaoNoTransformationConstantName()
     {
-        String adaoNoTransformationConstantName51a = this.daoNoTransformationConstantName51a;
+        String daoNoTransformationConstantName51a = this.daoNoTransformationConstantName51a;
         if (!this.daoNoTransformationConstantName51aSet)
         {
             // daoNoTransformationConstantName has no pre constraints
-            adaoNoTransformationConstantName51a = handleGetDaoNoTransformationConstantName();
+            daoNoTransformationConstantName51a = handleGetDaoNoTransformationConstantName();
             // daoNoTransformationConstantName has no post constraints
-            this.daoNoTransformationConstantName51a = adaoNoTransformationConstantName51a;
+            this.daoNoTransformationConstantName51a = daoNoTransformationConstantName51a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoNoTransformationConstantName51aSet = true;
             }
         }
-        return adaoNoTransformationConstantName51a;
+        return daoNoTransformationConstantName51a;
     }
 
    /**
@@ -1711,8 +1713,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDefaultPersistenceContextUnitName();
 
-    private String defaultPersistenceContextUnitName52a;
-    private boolean defaultPersistenceContextUnitName52aSet = false;
+    private transient String defaultPersistenceContextUnitName52a;
+    private transient boolean defaultPersistenceContextUnitName52aSet = false;
 
     /**
      * Returns the default persistence context unit name for the injected EntityManger for the
@@ -1722,19 +1724,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDefaultPersistenceContextUnitName()
     {
-        String adefaultPersistenceContextUnitName52a = this.defaultPersistenceContextUnitName52a;
+        String defaultPersistenceContextUnitName52a = this.defaultPersistenceContextUnitName52a;
         if (!this.defaultPersistenceContextUnitName52aSet)
         {
             // defaultPersistenceContextUnitName has no pre constraints
-            adefaultPersistenceContextUnitName52a = handleGetDefaultPersistenceContextUnitName();
+            defaultPersistenceContextUnitName52a = handleGetDefaultPersistenceContextUnitName();
             // defaultPersistenceContextUnitName has no post constraints
-            this.defaultPersistenceContextUnitName52a = adefaultPersistenceContextUnitName52a;
+            this.defaultPersistenceContextUnitName52a = defaultPersistenceContextUnitName52a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.defaultPersistenceContextUnitName52aSet = true;
             }
         }
-        return adefaultPersistenceContextUnitName52a;
+        return defaultPersistenceContextUnitName52a;
     }
 
    /**
@@ -1743,8 +1745,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetDaoDefaultExceptionName();
 
-    private String daoDefaultExceptionName53a;
-    private boolean daoDefaultExceptionName53aSet = false;
+    private transient String daoDefaultExceptionName53a;
+    private transient boolean daoDefaultExceptionName53aSet = false;
 
     /**
      * Returns the default DAO exception name.
@@ -1752,19 +1754,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getDaoDefaultExceptionName()
     {
-        String adaoDefaultExceptionName53a = this.daoDefaultExceptionName53a;
+        String daoDefaultExceptionName53a = this.daoDefaultExceptionName53a;
         if (!this.daoDefaultExceptionName53aSet)
         {
             // daoDefaultExceptionName has no pre constraints
-            adaoDefaultExceptionName53a = handleGetDaoDefaultExceptionName();
+            daoDefaultExceptionName53a = handleGetDaoDefaultExceptionName();
             // daoDefaultExceptionName has no post constraints
-            this.daoDefaultExceptionName53a = adaoDefaultExceptionName53a;
+            this.daoDefaultExceptionName53a = daoDefaultExceptionName53a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoDefaultExceptionName53aSet = true;
             }
         }
-        return adaoDefaultExceptionName53a;
+        return daoDefaultExceptionName53a;
     }
 
    /**
@@ -1773,8 +1775,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedDaoDefaultExceptionName();
 
-    private String fullyQualifiedDaoDefaultExceptionName54a;
-    private boolean fullyQualifiedDaoDefaultExceptionName54aSet = false;
+    private transient String fullyQualifiedDaoDefaultExceptionName54a;
+    private transient boolean fullyQualifiedDaoDefaultExceptionName54aSet = false;
 
     /**
      * Returns the fully qualified default DAO exception name.
@@ -1782,19 +1784,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getFullyQualifiedDaoDefaultExceptionName()
     {
-        String afullyQualifiedDaoDefaultExceptionName54a = this.fullyQualifiedDaoDefaultExceptionName54a;
+        String fullyQualifiedDaoDefaultExceptionName54a = this.fullyQualifiedDaoDefaultExceptionName54a;
         if (!this.fullyQualifiedDaoDefaultExceptionName54aSet)
         {
             // fullyQualifiedDaoDefaultExceptionName has no pre constraints
-            afullyQualifiedDaoDefaultExceptionName54a = handleGetFullyQualifiedDaoDefaultExceptionName();
+            fullyQualifiedDaoDefaultExceptionName54a = handleGetFullyQualifiedDaoDefaultExceptionName();
             // fullyQualifiedDaoDefaultExceptionName has no post constraints
-            this.fullyQualifiedDaoDefaultExceptionName54a = afullyQualifiedDaoDefaultExceptionName54a;
+            this.fullyQualifiedDaoDefaultExceptionName54a = fullyQualifiedDaoDefaultExceptionName54a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedDaoDefaultExceptionName54aSet = true;
             }
         }
-        return afullyQualifiedDaoDefaultExceptionName54a;
+        return fullyQualifiedDaoDefaultExceptionName54a;
     }
 
    /**
@@ -1803,8 +1805,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsEntityImplementationRequired();
 
-    private boolean entityImplementationRequired55a;
-    private boolean entityImplementationRequired55aSet = false;
+    private transient boolean entityImplementationRequired55a;
+    private transient boolean entityImplementationRequired55aSet = false;
 
     /**
      * True if an entity implementation is required for the entity class, this is the case when
@@ -1813,19 +1815,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isEntityImplementationRequired()
     {
-        boolean aentityImplementationRequired55a = this.entityImplementationRequired55a;
+        boolean entityImplementationRequired55a = this.entityImplementationRequired55a;
         if (!this.entityImplementationRequired55aSet)
         {
             // entityImplementationRequired has no pre constraints
-            aentityImplementationRequired55a = handleIsEntityImplementationRequired();
+            entityImplementationRequired55a = handleIsEntityImplementationRequired();
             // entityImplementationRequired has no post constraints
-            this.entityImplementationRequired55a = aentityImplementationRequired55a;
+            this.entityImplementationRequired55a = entityImplementationRequired55a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.entityImplementationRequired55aSet = true;
             }
         }
-        return aentityImplementationRequired55a;
+        return entityImplementationRequired55a;
     }
 
    /**
@@ -1834,8 +1836,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsSecurityEnabled();
 
-    private boolean securityEnabled56a;
-    private boolean securityEnabled56aSet = false;
+    private transient boolean securityEnabled56a;
+    private transient boolean securityEnabled56aSet = false;
 
     /**
      * Returns true if the security realm is specified.  This will generate the security setting for
@@ -1844,19 +1846,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isSecurityEnabled()
     {
-        boolean asecurityEnabled56a = this.securityEnabled56a;
+        boolean securityEnabled56a = this.securityEnabled56a;
         if (!this.securityEnabled56aSet)
         {
             // securityEnabled has no pre constraints
-            asecurityEnabled56a = handleIsSecurityEnabled();
+            securityEnabled56a = handleIsSecurityEnabled();
             // securityEnabled has no post constraints
-            this.securityEnabled56a = asecurityEnabled56a;
+            this.securityEnabled56a = securityEnabled56a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.securityEnabled56aSet = true;
             }
         }
-        return asecurityEnabled56a;
+        return securityEnabled56a;
     }
 
    /**
@@ -1865,8 +1867,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetRolesAllowed();
 
-    private String rolesAllowed57a;
-    private boolean rolesAllowed57aSet = false;
+    private transient String rolesAllowed57a;
+    private transient boolean rolesAllowed57aSet = false;
 
     /**
      * Returns the comma separated list of roles allowd to execute DAO operations.  This is defined
@@ -1875,19 +1877,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getRolesAllowed()
     {
-        String arolesAllowed57a = this.rolesAllowed57a;
+        String rolesAllowed57a = this.rolesAllowed57a;
         if (!this.rolesAllowed57aSet)
         {
             // rolesAllowed has no pre constraints
-            arolesAllowed57a = handleGetRolesAllowed();
+            rolesAllowed57a = handleGetRolesAllowed();
             // rolesAllowed has no post constraints
-            this.rolesAllowed57a = arolesAllowed57a;
+            this.rolesAllowed57a = rolesAllowed57a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.rolesAllowed57aSet = true;
             }
         }
-        return arolesAllowed57a;
+        return rolesAllowed57a;
     }
 
    /**
@@ -1896,8 +1898,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetSecurityRealm();
 
-    private String securityRealm58a;
-    private boolean securityRealm58aSet = false;
+    private transient String securityRealm58a;
+    private transient boolean securityRealm58aSet = false;
 
     /**
      * Returns the security domain value.  Specified using the securityRealm namespace property or
@@ -1906,19 +1908,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getSecurityRealm()
     {
-        String asecurityRealm58a = this.securityRealm58a;
+        String securityRealm58a = this.securityRealm58a;
         if (!this.securityRealm58aSet)
         {
             // securityRealm has no pre constraints
-            asecurityRealm58a = handleGetSecurityRealm();
+            securityRealm58a = handleGetSecurityRealm();
             // securityRealm has no post constraints
-            this.securityRealm58a = asecurityRealm58a;
+            this.securityRealm58a = securityRealm58a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.securityRealm58aSet = true;
             }
         }
-        return asecurityRealm58a;
+        return securityRealm58a;
     }
 
    /**
@@ -1927,8 +1929,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsUseQueryCache();
 
-    private boolean useQueryCache59a;
-    private boolean useQueryCache59aSet = false;
+    private transient boolean useQueryCache59a;
+    private transient boolean useQueryCache59aSet = false;
 
     /**
      * Returns true if the application wide namespace property hibernateUseQueryCache is enabled. 
@@ -1937,19 +1939,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isUseQueryCache()
     {
-        boolean auseQueryCache59a = this.useQueryCache59a;
+        boolean useQueryCache59a = this.useQueryCache59a;
         if (!this.useQueryCache59aSet)
         {
             // useQueryCache has no pre constraints
-            auseQueryCache59a = handleIsUseQueryCache();
+            useQueryCache59a = handleIsUseQueryCache();
             // useQueryCache has no post constraints
-            this.useQueryCache59a = auseQueryCache59a;
+            this.useQueryCache59a = useQueryCache59a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.useQueryCache59aSet = true;
             }
         }
-        return auseQueryCache59a;
+        return useQueryCache59a;
     }
 
    /**
@@ -1958,8 +1960,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract boolean handleIsSeamComponent();
 
-    private boolean seamComponent60a;
-    private boolean seamComponent60aSet = false;
+    private transient boolean seamComponent60a;
+    private transient boolean seamComponent60aSet = false;
 
     /**
      * Returns true if this entity has the <<Seam>> stereotype modelled indicating it is a Seam
@@ -1968,19 +1970,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final boolean isSeamComponent()
     {
-        boolean aseamComponent60a = this.seamComponent60a;
+        boolean seamComponent60a = this.seamComponent60a;
         if (!this.seamComponent60aSet)
         {
             // seamComponent has no pre constraints
-            aseamComponent60a = handleIsSeamComponent();
+            seamComponent60a = handleIsSeamComponent();
             // seamComponent has no post constraints
-            this.seamComponent60a = aseamComponent60a;
+            this.seamComponent60a = seamComponent60a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamComponent60aSet = true;
             }
         }
-        return aseamComponent60a;
+        return seamComponent60a;
     }
 
    /**
@@ -1989,8 +1991,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetSeamComponentScopeType();
 
-    private String seamComponentScopeType61a;
-    private boolean seamComponentScopeType61aSet = false;
+    private transient String seamComponentScopeType61a;
+    private transient boolean seamComponentScopeType61aSet = false;
 
     /**
      * Returns the seam component scope type if one is specified.
@@ -1998,19 +2000,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getSeamComponentScopeType()
     {
-        String aseamComponentScopeType61a = this.seamComponentScopeType61a;
+        String seamComponentScopeType61a = this.seamComponentScopeType61a;
         if (!this.seamComponentScopeType61aSet)
         {
             // seamComponentScopeType has no pre constraints
-            aseamComponentScopeType61a = handleGetSeamComponentScopeType();
+            seamComponentScopeType61a = handleGetSeamComponentScopeType();
             // seamComponentScopeType has no post constraints
-            this.seamComponentScopeType61a = aseamComponentScopeType61a;
+            this.seamComponentScopeType61a = seamComponentScopeType61a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamComponentScopeType61aSet = true;
             }
         }
-        return aseamComponentScopeType61a;
+        return seamComponentScopeType61a;
     }
 
    /**
@@ -2019,8 +2021,8 @@ public abstract class EJB3EntityFacadeLogic
     */
     protected abstract String handleGetSeamComponentName();
 
-    private String seamComponentName62a;
-    private boolean seamComponentName62aSet = false;
+    private transient String seamComponentName62a;
+    private transient boolean seamComponentName62aSet = false;
 
     /**
      * Returns the Seam component name for the class.
@@ -2028,19 +2030,19 @@ public abstract class EJB3EntityFacadeLogic
      */
     public final String getSeamComponentName()
     {
-        String aseamComponentName62a = this.seamComponentName62a;
+        String seamComponentName62a = this.seamComponentName62a;
         if (!this.seamComponentName62aSet)
         {
             // seamComponentName has no pre constraints
-            aseamComponentName62a = handleGetSeamComponentName();
+            seamComponentName62a = handleGetSeamComponentName();
             // seamComponentName has no post constraints
-            this.seamComponentName62a = aseamComponentName62a;
+            this.seamComponentName62a = seamComponentName62a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamComponentName62aSet = true;
             }
         }
-        return aseamComponentName62a;
+        return seamComponentName62a;
     }
 
     // ---------------- business methods ----------------------
@@ -2151,15 +2153,19 @@ public abstract class EJB3EntityFacadeLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isOperationPresent
      * @param op
      * @return boolean
      */
     protected abstract boolean handleIsOperationPresent(String op);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isOperationPresent
      * @param op String
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isOperationPresent(op)
      * @return handleIsOperationPresent(op)
      */
     public boolean isOperationPresent(String op)
@@ -2172,15 +2178,19 @@ public abstract class EJB3EntityFacadeLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isAttributePresent
      * @param att
      * @return boolean
      */
     protected abstract boolean handleIsAttributePresent(String att);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isAttributePresent
      * @param att String
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isAttributePresent(att)
      * @return handleIsAttributePresent(att)
      */
     public boolean isAttributePresent(String att)
@@ -2193,15 +2203,19 @@ public abstract class EJB3EntityFacadeLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isIdentifierPresent
      * @param id
      * @return boolean
      */
     protected abstract boolean handleIsIdentifierPresent(String id);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isIdentifierPresent
      * @param id String
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isIdentifierPresent(id)
      * @return handleIsIdentifierPresent(id)
      */
     public boolean isIdentifierPresent(String id)
@@ -2214,13 +2228,15 @@ public abstract class EJB3EntityFacadeLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.getSqlType
      * @return String
      */
     protected abstract String handleGetSqlType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.getSqlType
      * @return handleGetSqlType()
      */
     public String getSqlType()
@@ -2281,6 +2297,8 @@ public abstract class EJB3EntityFacadeLogic
      * Retrieves the values object references for this entity.  If <code>follow</code> is true, then
      * all value object references (including those that were inherited) will be retrieved.
      * @param follow boolean
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.getValueObjectReferences(follow)
      * @return handleGetValueObjectReferences(follow)
      */
     public Collection getValueObjectReferences(boolean follow)
@@ -2404,11 +2422,11 @@ public abstract class EJB3EntityFacadeLogic
 
     // ------------- associations ------------------
 
-    private EJB3EntityFacade getRoot1r;
-    private boolean getRoot1rSet = false;
+    private transient EJB3EntityFacade getRoot1r;
+    private transient boolean getRoot1rSet = false;
 
     /**
-     * 
+     * Represents an entity EJB.
      * @return (EJB3EntityFacade)handleGetRoot()
      */
     public final EJB3EntityFacade getRoot()
@@ -2421,7 +2439,7 @@ public abstract class EJB3EntityFacadeLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getRoot1r = (EJB3EntityFacade)shieldedResult;
+                getRoot1r = (EJB3EntityFacade) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2445,7 +2463,7 @@ public abstract class EJB3EntityFacadeLogic
     protected abstract Object handleGetRoot();
 
     /**
-     * 
+     * Represents an entity EJB.
      * @return (Collection<DependencyFacade>)handleGetValueObjectReferences()
      */
     public final Collection<DependencyFacade> getValueObjectReferences()
@@ -2456,7 +2474,7 @@ public abstract class EJB3EntityFacadeLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getValueObjectReferences2r = (Collection<DependencyFacade>)shieldedResult;
+            getValueObjectReferences2r = (Collection<DependencyFacade>) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -2474,7 +2492,7 @@ public abstract class EJB3EntityFacadeLogic
     protected abstract Collection handleGetValueObjectReferences();
 
     /**
-     * 
+     * Represents an entity EJB.
      * @return (AttributeFacade)handleGetManageableDisplayAttribute()
      */
     public final AttributeFacade getManageableDisplayAttribute()
@@ -2485,7 +2503,7 @@ public abstract class EJB3EntityFacadeLogic
         MetafacadeBase shieldedResult = this.shieldedElement(result);
         try
         {
-            getManageableDisplayAttribute3r = (AttributeFacade)shieldedResult;
+            getManageableDisplayAttribute3r = (AttributeFacade) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -2503,7 +2521,7 @@ public abstract class EJB3EntityFacadeLogic
     protected abstract Object handleGetManageableDisplayAttribute();
 
     /**
-     * 
+     * Represents an entity EJB.
      * @return (Collection<DependencyFacade>)handleGetAllValueObjectReferences()
      */
     public final Collection<DependencyFacade> getAllValueObjectReferences()
@@ -2514,7 +2532,7 @@ public abstract class EJB3EntityFacadeLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getAllValueObjectReferences4r = (Collection<DependencyFacade>)shieldedResult;
+            getAllValueObjectReferences4r = (Collection<DependencyFacade>) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -2531,11 +2549,11 @@ public abstract class EJB3EntityFacadeLogic
      */
     protected abstract Collection handleGetAllValueObjectReferences();
 
-    private Collection<EJB3OperationFacade> getDaoBusinessOperations5r;
-    private boolean getDaoBusinessOperations5rSet = false;
+    private transient Collection<EJB3OperationFacade> getDaoBusinessOperations5r;
+    private transient boolean getDaoBusinessOperations5rSet = false;
 
     /**
-     * 
+     * Represents an entity EJB.
      * @return (Collection<EJB3OperationFacade>)handleGetDaoBusinessOperations()
      */
     public final Collection<EJB3OperationFacade> getDaoBusinessOperations()
@@ -2548,7 +2566,7 @@ public abstract class EJB3EntityFacadeLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getDaoBusinessOperations5r = (Collection<EJB3OperationFacade>)shieldedResult;
+                getDaoBusinessOperations5r = (Collection<EJB3OperationFacade>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2572,7 +2590,7 @@ public abstract class EJB3EntityFacadeLogic
     protected abstract Collection handleGetDaoBusinessOperations();
 
     /**
-     * 
+     * Represents an entity EJB.
      * @return (Collection<Role>)handleGetNonRunAsRoles()
      */
     public final Collection<Role> getNonRunAsRoles()
@@ -2583,7 +2601,7 @@ public abstract class EJB3EntityFacadeLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getNonRunAsRoles6r = (Collection<Role>)shieldedResult;
+            getNonRunAsRoles6r = (Collection<Role>) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -2600,16 +2618,16 @@ public abstract class EJB3EntityFacadeLogic
      */
     protected abstract Collection handleGetNonRunAsRoles();
 
-    private EJB3EntityAttributeFacade getIdentifier7r;
-    private boolean getIdentifier7rSet = false;
+    private transient ModelElementFacade getIdentifier7r;
+    private transient boolean getIdentifier7rSet = false;
 
     /**
-     * 
-     * @return (EJB3EntityAttributeFacade)handleGetIdentifier()
+     * Represents an entity EJB.
+     * @return (ModelElementFacade)handleGetIdentifier()
      */
-    public final EJB3EntityAttributeFacade getIdentifier()
+    public final ModelElementFacade getIdentifier()
     {
-        EJB3EntityAttributeFacade getIdentifier7r = this.getIdentifier7r;
+        ModelElementFacade getIdentifier7r = this.getIdentifier7r;
         if (!this.getIdentifier7rSet)
         {
             // eJB3EntityFacade has no pre constraints
@@ -2617,12 +2635,12 @@ public abstract class EJB3EntityFacadeLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getIdentifier7r = (EJB3EntityAttributeFacade)shieldedResult;
+                getIdentifier7r = (ModelElementFacade) shieldedResult;
             }
             catch (ClassCastException ex)
             {
                 // Bad things happen if the metafacade type mapping in metafacades.xml is wrong - Warn
-                EJB3EntityFacadeLogic.LOGGER.warn("incorrect metafacade cast for EJB3EntityFacadeLogic.getIdentifier EJB3EntityAttributeFacade " + result + ": " + shieldedResult);
+                EJB3EntityFacadeLogic.LOGGER.warn("incorrect metafacade cast for EJB3EntityFacadeLogic.getIdentifier ModelElementFacade " + result + ": " + shieldedResult);
             }
             // eJB3EntityFacade has no post constraints
             this.getIdentifier7r = getIdentifier7r;
@@ -2864,7 +2882,7 @@ public abstract class EJB3EntityFacadeLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperEntity().getNavigableConnectingEnds();
     }
@@ -3010,7 +3028,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -3392,7 +3410,7 @@ public abstract class EJB3EntityFacadeLogic
      * allowDefaultIdentifiers property is set to true.
      * @see Entity#getIdentifiers()
      */
-    public Collection<EntityAttribute> getIdentifiers()
+    public Collection<ModelElementFacade> getIdentifiers()
     {
         return this.getSuperEntity().getIdentifiers();
     }
@@ -3402,9 +3420,10 @@ public abstract class EJB3EntityFacadeLogic
      * on the entity, a search up the inheritance chain will be performed, and the identifiers from
      * the first super class having them will be used.   If no identifiers exist, a default
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
+     * Identifiers can be on attributes or associations (composite primary key).
      * @see Entity#getIdentifiers(boolean follow)
      */
-    public Collection<EntityAttribute> getIdentifiers(boolean follow)
+    public Collection<ModelElementFacade> getIdentifiers(boolean follow)
     {
         return this.getSuperEntity().getIdentifiers(follow);
     }
@@ -3580,7 +3599,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Entity.compositeIdentifier
      * @see Entity#isCompositeIdentifier()
      */
     public boolean isCompositeIdentifier()
@@ -3693,7 +3712,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -3793,7 +3812,9 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -3864,7 +3885,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -3873,7 +3894,8 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -3986,7 +4008,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -4004,7 +4026,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -4013,7 +4035,7 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -4069,7 +4091,8 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -4105,12 +4128,24 @@ public abstract class EJB3EntityFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntity().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntity().isValidIdentifierName();
     }
 
     /**
@@ -4180,7 +4215,7 @@ public abstract class EJB3EntityFacadeLogic
 inv: generalization -> notEmpty()
 implies (generalization.oclIsKindOf(EJB3EntityFacade) or generalization.oclIsKindOf(EJB3MappedSuperclassFacade))</p>
      * <p><b>Constraint:</b> org::andromda::cartridges::ejb3::metafacades::EJB3EntityFacade::entity must have at least one identifier</p>
-     * <p><b>Error:</b> </p>
+     * <p><b>Error:</b> TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.constraints.entity must have at least one identifier</p>
      * <p><b>OCL:</b> context EJB3EntityFacade
 inv: identifiersPresent</p>
      * @param validationMessages Collection<ModelValidationMessage>
@@ -4225,7 +4260,7 @@ inv: identifiersPresent</p>
                     new ModelValidationMessage(
                         (MetafacadeBase)contextElement ,
                         "org::andromda::cartridges::ejb3::metafacades::EJB3EntityFacade::entity must have at least one identifier",
-                        ""));
+                        "TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.constraints.entity must have at least one identifier"));
             }
         }
         catch (Throwable th)

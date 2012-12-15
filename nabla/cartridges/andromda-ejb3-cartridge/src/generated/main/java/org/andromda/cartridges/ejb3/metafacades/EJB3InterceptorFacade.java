@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.andromda.metafacades.uml.Service;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3InterceptorFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

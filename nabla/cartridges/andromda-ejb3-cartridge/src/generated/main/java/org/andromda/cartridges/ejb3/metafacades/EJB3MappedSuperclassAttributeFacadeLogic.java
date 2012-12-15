@@ -8,7 +8,8 @@ import java.util.Collection;
 import org.andromda.core.metafacade.ModelValidationMessage;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3MappedSuperclassAttributeFacade
  * MetafacadeLogic for EJB3MappedSuperclassAttributeFacade
  *
  * @see EJB3MappedSuperclassAttributeFacade

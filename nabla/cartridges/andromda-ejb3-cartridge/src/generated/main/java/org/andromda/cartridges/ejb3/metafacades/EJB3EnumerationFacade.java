@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.andromda.metafacades.uml.EnumerationFacade;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3EnumerationFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

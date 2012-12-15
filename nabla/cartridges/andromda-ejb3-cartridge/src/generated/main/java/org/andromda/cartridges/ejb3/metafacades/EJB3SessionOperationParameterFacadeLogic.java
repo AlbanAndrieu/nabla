@@ -25,7 +25,8 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3SessionOperationParameterFacade
  * MetafacadeLogic for EJB3SessionOperationParameterFacade
  *
  * @see EJB3SessionOperationParameterFacade
@@ -125,8 +126,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronousDuration();
 
-    private boolean seamAsynchronousDuration1a;
-    private boolean seamAsynchronousDuration1aSet = false;
+    private transient boolean seamAsynchronousDuration1a;
+    private transient boolean seamAsynchronousDuration1aSet = false;
 
     /**
      * Specifies that a parameter of the asynchronous call is the duration before the call is
@@ -135,19 +136,19 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      */
     public final boolean isSeamAsynchronousDuration()
     {
-        boolean aseamAsynchronousDuration1a = this.seamAsynchronousDuration1a;
+        boolean seamAsynchronousDuration1a = this.seamAsynchronousDuration1a;
         if (!this.seamAsynchronousDuration1aSet)
         {
             // seamAsynchronousDuration has no pre constraints
-            aseamAsynchronousDuration1a = handleIsSeamAsynchronousDuration();
+            seamAsynchronousDuration1a = handleIsSeamAsynchronousDuration();
             // seamAsynchronousDuration has no post constraints
-            this.seamAsynchronousDuration1a = aseamAsynchronousDuration1a;
+            this.seamAsynchronousDuration1a = seamAsynchronousDuration1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamAsynchronousDuration1aSet = true;
             }
         }
-        return aseamAsynchronousDuration1a;
+        return seamAsynchronousDuration1a;
     }
 
    /**
@@ -156,8 +157,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronousExpiration();
 
-    private boolean seamAsynchronousExpiration2a;
-    private boolean seamAsynchronousExpiration2aSet = false;
+    private transient boolean seamAsynchronousExpiration2a;
+    private transient boolean seamAsynchronousExpiration2aSet = false;
 
     /**
      * Specifies that a parameter of the asynchronous call is the datetime at which the call is
@@ -166,19 +167,19 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      */
     public final boolean isSeamAsynchronousExpiration()
     {
-        boolean aseamAsynchronousExpiration2a = this.seamAsynchronousExpiration2a;
+        boolean seamAsynchronousExpiration2a = this.seamAsynchronousExpiration2a;
         if (!this.seamAsynchronousExpiration2aSet)
         {
             // seamAsynchronousExpiration has no pre constraints
-            aseamAsynchronousExpiration2a = handleIsSeamAsynchronousExpiration();
+            seamAsynchronousExpiration2a = handleIsSeamAsynchronousExpiration();
             // seamAsynchronousExpiration has no post constraints
-            this.seamAsynchronousExpiration2a = aseamAsynchronousExpiration2a;
+            this.seamAsynchronousExpiration2a = seamAsynchronousExpiration2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamAsynchronousExpiration2aSet = true;
             }
         }
-        return aseamAsynchronousExpiration2a;
+        return seamAsynchronousExpiration2a;
     }
 
    /**
@@ -187,8 +188,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     */
     protected abstract boolean handleIsSeamAsynchronousIntervalDuration();
 
-    private boolean seamAsynchronousIntervalDuration3a;
-    private boolean seamAsynchronousIntervalDuration3aSet = false;
+    private transient boolean seamAsynchronousIntervalDuration3a;
+    private transient boolean seamAsynchronousIntervalDuration3aSet = false;
 
     /**
      * Specifies that an asynchronous method call recurs, and that the annotationed parameter is
@@ -197,19 +198,19 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
      */
     public final boolean isSeamAsynchronousIntervalDuration()
     {
-        boolean aseamAsynchronousIntervalDuration3a = this.seamAsynchronousIntervalDuration3a;
+        boolean seamAsynchronousIntervalDuration3a = this.seamAsynchronousIntervalDuration3a;
         if (!this.seamAsynchronousIntervalDuration3aSet)
         {
             // seamAsynchronousIntervalDuration has no pre constraints
-            aseamAsynchronousIntervalDuration3a = handleIsSeamAsynchronousIntervalDuration();
+            seamAsynchronousIntervalDuration3a = handleIsSeamAsynchronousIntervalDuration();
             // seamAsynchronousIntervalDuration has no post constraints
-            this.seamAsynchronousIntervalDuration3a = aseamAsynchronousIntervalDuration3a;
+            this.seamAsynchronousIntervalDuration3a = seamAsynchronousIntervalDuration3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamAsynchronousIntervalDuration3aSet = true;
             }
         }
-        return aseamAsynchronousIntervalDuration3a;
+        return seamAsynchronousIntervalDuration3a;
     }
 
     /**
@@ -314,7 +315,9 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -385,7 +388,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -394,7 +397,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -507,7 +511,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -525,7 +529,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -534,7 +538,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -590,7 +594,8 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -626,12 +631,24 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperParameterFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperParameterFacade().isValidIdentifierName();
     }
 
     /**
@@ -664,7 +681,7 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for ParameterFacade.defaultValue
      * @see ParameterFacade#getDefaultValue()
      */
     public String getDefaultValue()
@@ -750,7 +767,15 @@ public abstract class EJB3SessionOperationParameterFacadeLogic
     }
 
     /**
-     * 
+     * A Classifier is a classification of instances - it describes a set of instances that have
+     * features in common. Can specify a generalization hierarchy by referencing its general
+     * classifiers. It may be a Class, DataType, PrimitiveType, Association, Collaboration, UseCase,
+     * etc. Can specify a generalization hierarchy by referencing its general classifiers. Has the
+     * capability to own collaboration uses. These collaboration uses link a collaboration with the
+     * classifier to give a description of the workings of the classifier. Classifier is defined to
+     * be a kind of templateable element so that a classifier can be parameterized. It is also
+     * defined to be a kind of parameterable element so that a classifier can be a formal template
+     * parameter.
      * @see ParameterFacade#getType()
      */
     public ClassifierFacade getType()

@@ -128,8 +128,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     */
     protected abstract String handleGetUnitName();
 
-    private String unitName1a;
-    private boolean unitName1aSet = false;
+    private transient String unitName1a;
+    private transient boolean unitName1aSet = false;
 
     /**
      * Returns the persistence context unit name for the injected EntityManger.  This looks up the
@@ -139,19 +139,19 @@ public abstract class EJB3PersistenceContextFacadeLogic
      */
     public final String getUnitName()
     {
-        String aunitName1a = this.unitName1a;
+        String unitName1a = this.unitName1a;
         if (!this.unitName1aSet)
         {
             // unitName has no pre constraints
-            aunitName1a = handleGetUnitName();
+            unitName1a = handleGetUnitName();
             // unitName has no post constraints
-            this.unitName1a = aunitName1a;
+            this.unitName1a = unitName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.unitName1aSet = true;
             }
         }
-        return aunitName1a;
+        return unitName1a;
     }
 
    /**
@@ -160,8 +160,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     */
     protected abstract String handleGetContextType();
 
-    private String contextType2a;
-    private boolean contextType2aSet = false;
+    private transient String contextType2a;
+    private transient boolean contextType2aSet = false;
 
     /**
      * Specifies whether the persistence context for this EntityManager is transaction scoped or
@@ -171,19 +171,19 @@ public abstract class EJB3PersistenceContextFacadeLogic
      */
     public final String getContextType()
     {
-        String acontextType2a = this.contextType2a;
+        String contextType2a = this.contextType2a;
         if (!this.contextType2aSet)
         {
             // contextType has no pre constraints
-            acontextType2a = handleGetContextType();
+            contextType2a = handleGetContextType();
             // contextType has no post constraints
-            this.contextType2a = acontextType2a;
+            this.contextType2a = contextType2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.contextType2aSet = true;
             }
         }
-        return acontextType2a;
+        return contextType2a;
     }
 
    /**
@@ -192,8 +192,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     */
     protected abstract String handleGetDatasource();
 
-    private String datasource3a;
-    private boolean datasource3aSet = false;
+    private transient String datasource3a;
+    private transient boolean datasource3aSet = false;
 
     /**
      * Returns the datasource specified via the andromda.service.persistence.context.datasource tag
@@ -202,19 +202,19 @@ public abstract class EJB3PersistenceContextFacadeLogic
      */
     public final String getDatasource()
     {
-        String adatasource3a = this.datasource3a;
+        String datasource3a = this.datasource3a;
         if (!this.datasource3aSet)
         {
             // datasource has no pre constraints
-            adatasource3a = handleGetDatasource();
+            datasource3a = handleGetDatasource();
             // datasource has no post constraints
-            this.datasource3a = adatasource3a;
+            this.datasource3a = datasource3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.datasource3aSet = true;
             }
         }
-        return adatasource3a;
+        return datasource3a;
     }
 
     /**
@@ -432,7 +432,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperClassifierFacade().getNavigableConnectingEnds();
     }
@@ -578,7 +578,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -862,7 +862,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -962,7 +962,9 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1033,7 +1035,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1042,7 +1044,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1155,7 +1158,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1173,7 +1176,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1182,7 +1185,7 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1238,7 +1241,8 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1274,12 +1278,24 @@ public abstract class EJB3PersistenceContextFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperClassifierFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperClassifierFacade().isValidIdentifierName();
     }
 
     /**

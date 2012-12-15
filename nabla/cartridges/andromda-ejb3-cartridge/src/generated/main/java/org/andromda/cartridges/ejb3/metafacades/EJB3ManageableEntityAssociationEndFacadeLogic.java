@@ -26,7 +26,8 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade
  * MetafacadeLogic for EJB3ManageableEntityAssociationEndFacade
  *
  * @see EJB3ManageableEntityAssociationEndFacade
@@ -153,28 +154,29 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoSetterName();
 
-    private String daoSetterName1a;
-    private boolean daoSetterName1aSet = false;
+    private transient String daoSetterName1a;
+    private transient boolean daoSetterName1aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoSetterName
      * @return (String)handleGetDaoSetterName()
      */
     public final String getDaoSetterName()
     {
-        String adaoSetterName1a = this.daoSetterName1a;
+        String daoSetterName1a = this.daoSetterName1a;
         if (!this.daoSetterName1aSet)
         {
             // daoSetterName has no pre constraints
-            adaoSetterName1a = handleGetDaoSetterName();
+            daoSetterName1a = handleGetDaoSetterName();
             // daoSetterName has no post constraints
-            this.daoSetterName1a = adaoSetterName1a;
+            this.daoSetterName1a = daoSetterName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoSetterName1aSet = true;
             }
         }
-        return adaoSetterName1a;
+        return daoSetterName1a;
     }
 
    /**
@@ -183,28 +185,29 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoReferenceName();
 
-    private String daoReferenceName2a;
-    private boolean daoReferenceName2aSet = false;
+    private transient String daoReferenceName2a;
+    private transient boolean daoReferenceName2aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoReferenceName
      * @return (String)handleGetDaoReferenceName()
      */
     public final String getDaoReferenceName()
     {
-        String adaoReferenceName2a = this.daoReferenceName2a;
+        String daoReferenceName2a = this.daoReferenceName2a;
         if (!this.daoReferenceName2aSet)
         {
             // daoReferenceName has no pre constraints
-            adaoReferenceName2a = handleGetDaoReferenceName();
+            daoReferenceName2a = handleGetDaoReferenceName();
             // daoReferenceName has no post constraints
-            this.daoReferenceName2a = adaoReferenceName2a;
+            this.daoReferenceName2a = daoReferenceName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoReferenceName2aSet = true;
             }
         }
-        return adaoReferenceName2a;
+        return daoReferenceName2a;
     }
 
    /**
@@ -213,28 +216,29 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoName();
 
-    private String daoName3a;
-    private boolean daoName3aSet = false;
+    private transient String daoName3a;
+    private transient boolean daoName3aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoName
      * @return (String)handleGetDaoName()
      */
     public final String getDaoName()
     {
-        String adaoName3a = this.daoName3a;
+        String daoName3a = this.daoName3a;
         if (!this.daoName3aSet)
         {
             // daoName has no pre constraints
-            adaoName3a = handleGetDaoName();
+            daoName3a = handleGetDaoName();
             // daoName has no post constraints
-            this.daoName3a = adaoName3a;
+            this.daoName3a = daoName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoName3aSet = true;
             }
         }
-        return adaoName3a;
+        return daoName3a;
     }
 
    /**
@@ -243,28 +247,29 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     */
     protected abstract String handleGetDaoGetterName();
 
-    private String daoGetterName4a;
-    private boolean daoGetterName4aSet = false;
+    private transient String daoGetterName4a;
+    private transient boolean daoGetterName4aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoGetterName
      * @return (String)handleGetDaoGetterName()
      */
     public final String getDaoGetterName()
     {
-        String adaoGetterName4a = this.daoGetterName4a;
+        String daoGetterName4a = this.daoGetterName4a;
         if (!this.daoGetterName4aSet)
         {
             // daoGetterName has no pre constraints
-            adaoGetterName4a = handleGetDaoGetterName();
+            daoGetterName4a = handleGetDaoGetterName();
             // daoGetterName has no post constraints
-            this.daoGetterName4a = adaoGetterName4a;
+            this.daoGetterName4a = daoGetterName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoGetterName4aSet = true;
             }
         }
-        return adaoGetterName4a;
+        return daoGetterName4a;
     }
 
     /**
@@ -314,7 +319,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
 
     // ----------- delegates to ManageableEntityAssociationEnd ------------
     /**
-     * 
+     * Represents an attribute of an entity.
      * @see ManageableEntityAssociationEnd#getManageableIdentifier()
      */
     public EntityAttribute getManageableIdentifier()
@@ -918,6 +923,15 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
+     * Indicates if this associationEnd is 'static', meaning it has a classifier scope.
+     * @see AssociationEndFacade#isStatic()
+     */
+    public boolean isStatic()
+    {
+        return this.getSuperEJB3AssociationEndFacade().isStatic();
+    }
+
+    /**
      * UML2: If the association attribute is unique within the Collection type. UML14 always returns
      * false. Unique+Ordered determines the implementation Collection type. Default=false.
      * @see AssociationEndFacade#isUnique()
@@ -991,6 +1005,15 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     public boolean isForeignIdentifier()
     {
         return this.getSuperEJB3AssociationEndFacade().isForeignIdentifier();
+    }
+
+    /**
+     * True if this association is an identifier for its entity.
+     * @see org.andromda.metafacades.uml.EntityAssociationEnd#isIdentifier()
+     */
+    public boolean isIdentifier()
+    {
+        return this.getSuperEJB3AssociationEndFacade().isIdentifier();
     }
 
     /**
@@ -1094,7 +1117,9 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1165,7 +1190,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1174,7 +1199,8 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1287,7 +1313,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1305,7 +1331,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1314,7 +1340,7 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1370,7 +1396,8 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1406,12 +1433,24 @@ public abstract class EJB3ManageableEntityAssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEJB3AssociationEndFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEJB3AssociationEndFacade().isValidIdentifierName();
     }
 
     /**

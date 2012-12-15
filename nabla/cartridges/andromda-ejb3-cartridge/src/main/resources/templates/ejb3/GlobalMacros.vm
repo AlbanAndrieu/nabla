@@ -170,8 +170,15 @@
     /**
      * @see Comparable${esc.hash}compareTo
      */
-#if ($javaVersion.compareTo("1.6")>-1)
+#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+    ##//$class.requiresGeneralizationMapping - !$class.generalization.interface - !$class.generalization.abstract
+    ##//$class.embeddableSuperclassGeneralizationExists - $class.generalization.entityImplementationRequired
+#if($entity.requiresGeneralizationMapping && !$entity.generalization.interface && !$entity.generalization.abstract)
+##if($class.embeddableSuperclassGeneralizationExists && $class.generalization.entityImplementationRequired)
+    ##//@Override
+#else
     @Override
+#end
 #end
     public int compareTo($className o)
     {

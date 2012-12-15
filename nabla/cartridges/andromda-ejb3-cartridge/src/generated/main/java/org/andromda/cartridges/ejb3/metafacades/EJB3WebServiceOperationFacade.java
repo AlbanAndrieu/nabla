@@ -5,7 +5,8 @@
 package org.andromda.cartridges.ejb3.metafacades;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceOperationFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

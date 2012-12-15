@@ -9,7 +9,7 @@ import org.andromda.metafacades.uml.Role;
 import org.andromda.metafacades.uml.ServiceOperation;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3SessionOperationFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -177,7 +177,7 @@ public interface EJB3SessionOperationFacade
     /**
      * Returns a parameter string for the org.jboss.seam.annotations.Rollback annotation. Supported
      * parameters:
-     * * ifOutcome * the JSF outcomes that cause a transaction rollback (no outcomes is interpreted
+     * * ifOutcome - the JSF outcomes that cause a transaction rollback (no outcomes is interpreted
      * to mean any outcome).
      * @return String
      */

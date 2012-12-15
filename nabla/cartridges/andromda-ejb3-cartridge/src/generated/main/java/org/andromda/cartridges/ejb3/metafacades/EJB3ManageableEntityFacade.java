@@ -7,7 +7,7 @@ package org.andromda.cartridges.ejb3.metafacades;
 import org.andromda.metafacades.uml.ManageableEntity;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -22,19 +22,22 @@ public interface EJB3ManageableEntityFacade
     public boolean isEJB3ManageableEntityFacadeMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.daoReferenceName
      * @return String
      */
     public String getDaoReferenceName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.fullyQualifiedManageableDaoBaseName
      * @return String
      */
     public String getFullyQualifiedManageableDaoBaseName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.fullyQualifiedManageableDaoName
      * @return String
      */
     public String getFullyQualifiedManageableDaoName();
@@ -71,7 +74,8 @@ public interface EJB3ManageableEntityFacade
     public String getFullyQualifiedManageableServiceUpdateExceptionName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.fullyQualifiedManageableValueObjectName
      * @return String
      */
     public String getFullyQualifiedManageableValueObjectName();
@@ -86,25 +90,29 @@ public interface EJB3ManageableEntityFacade
     public String getJndiNamePrefix();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoBaseFullPath
      * @return String
      */
     public String getManageableDaoBaseFullPath();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoBaseName
      * @return String
      */
     public String getManageableDaoBaseName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoFullPath
      * @return String
      */
     public String getManageableDaoFullPath();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoName
      * @return String
      */
     public String getManageableDaoName();
@@ -154,13 +162,15 @@ public interface EJB3ManageableEntityFacade
     public String getManageableServiceUpdateExceptionName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableValueObjectClassName
      * @return String
      */
     public String getManageableValueObjectClassName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableValueObjectFullPath
      * @return String
      */
     public String getManageableValueObjectFullPath();

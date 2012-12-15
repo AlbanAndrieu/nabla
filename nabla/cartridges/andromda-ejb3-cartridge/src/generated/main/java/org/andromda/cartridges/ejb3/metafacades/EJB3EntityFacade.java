@@ -9,6 +9,7 @@ import java.util.List;
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.Entity;
+import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.Role;
 
 /**
@@ -224,7 +225,8 @@ public interface EJB3EntityFacade
     public String getEntityName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.entityRelations
      * @return Collection
      */
     public Collection getEntityRelations();
@@ -300,10 +302,14 @@ public interface EJB3EntityFacade
     public String getHomeInterfaceName();
 
     /**
-     * Returns the attribute identifier.
-     * @return EJB3EntityAttributeFacade
+     * Represents a model element. It may be an Element or NamedElement. A named element is an
+     * element in a
+     * model that may have a name. An element is a constituent of a model. As such, it has the
+     * capability
+     * of owning other elements.
+     * @return ModelElementFacade
      */
-    public EJB3EntityAttributeFacade getIdentifier();
+    public ModelElementFacade getIdentifier();
 
     /**
      * Return the value of the andromda_persistence_inheritance tagged value which is an enumeration
@@ -351,19 +357,39 @@ public interface EJB3EntityFacade
     public Collection getInstanceAttributes(boolean follow, boolean withIdentifiers);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.jndiName
      * @return String
      */
     public String getJndiName();
 
     /**
-     * 
+     * Represents an attribute on a classifier. UML2 maps both Attributes and AssociationEnds to
+     * Property.
+     * A property is a structural feature of a classifier that characterizes instances of the
+     * classifier. A
+     * property related by ownedAttribute to a classifier (other than an association) represents an
+     * attribute and might also represent an association end. It relates an instance of the class to
+     * a
+     * value or set of values of the type of the attribute. A property represents a set of instances
+     * that
+     * are owned by a containing classifier instance. Property represents a declared state of one or
+     * more
+     * instances in terms of a named relationship to a value or values. When a property is an
+     * attribute of
+     * a classifier, the value or values are related to the instance of the classifier by being held
+     * in
+     * slots of the instance. The range of valid values represented by the property can be
+     * controlled by
+     * setting the property's type.
      * @return AttributeFacade
      */
     public AttributeFacade getManageableDisplayAttribute();
 
     /**
-     * 
+     * Represents a role a user may play within a system.  Provides access to things such as
+     * services and
+     * service operations.
      * @return Collection<Role>
      */
     public Collection<Role> getNonRunAsRoles();
@@ -410,13 +436,15 @@ public interface EJB3EntityFacade
     public Collection getSelectMethods(boolean follow);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.getSqlType
      * @return String
      */
     public String getSqlType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.valueDependencies
      * @return Collection
      */
     public Collection getValueDependencies();
@@ -442,7 +470,8 @@ public interface EJB3EntityFacade
     public String getViewType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isAttributePresent
      * @param att String
      * @return boolean
      */
@@ -516,7 +545,8 @@ public interface EJB3EntityFacade
     public boolean isGenericFinders();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isIdentifierPresent
      * @param id String
      * @return boolean
      */
@@ -556,7 +586,8 @@ public interface EJB3EntityFacade
     public boolean isManageable();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isOperationPresent
      * @param op String
      * @return boolean
      */

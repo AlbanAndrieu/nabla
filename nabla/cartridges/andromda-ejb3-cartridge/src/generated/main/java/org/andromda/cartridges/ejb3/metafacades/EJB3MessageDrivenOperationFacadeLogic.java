@@ -28,7 +28,8 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3MessageDrivenOperationFacade
  * MetafacadeLogic for EJB3MessageDrivenOperationFacade
  *
  * @see EJB3MessageDrivenOperationFacade
@@ -128,8 +129,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     */
     protected abstract boolean handleIsPostConstruct();
 
-    private boolean postConstruct1a;
-    private boolean postConstruct1aSet = false;
+    private transient boolean postConstruct1a;
+    private transient boolean postConstruct1aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PostConstruct>> stereotype.
@@ -138,19 +139,19 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      */
     public final boolean isPostConstruct()
     {
-        boolean apostConstruct1a = this.postConstruct1a;
+        boolean postConstruct1a = this.postConstruct1a;
         if (!this.postConstruct1aSet)
         {
             // postConstruct has no pre constraints
-            apostConstruct1a = handleIsPostConstruct();
+            postConstruct1a = handleIsPostConstruct();
             // postConstruct has no post constraints
-            this.postConstruct1a = apostConstruct1a;
+            this.postConstruct1a = postConstruct1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.postConstruct1aSet = true;
             }
         }
-        return apostConstruct1a;
+        return postConstruct1a;
     }
 
    /**
@@ -159,8 +160,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     */
     protected abstract boolean handleIsPreDestroy();
 
-    private boolean preDestroy2a;
-    private boolean preDestroy2aSet = false;
+    private transient boolean preDestroy2a;
+    private transient boolean preDestroy2aSet = false;
 
     /**
      * Returns true if the associated operation has the <<PreDestroy>> stereotype.
@@ -169,19 +170,19 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
      */
     public final boolean isPreDestroy()
     {
-        boolean apreDestroy2a = this.preDestroy2a;
+        boolean preDestroy2a = this.preDestroy2a;
         if (!this.preDestroy2aSet)
         {
             // preDestroy has no pre constraints
-            apreDestroy2a = handleIsPreDestroy();
+            preDestroy2a = handleIsPreDestroy();
             // preDestroy has no post constraints
-            this.preDestroy2a = apreDestroy2a;
+            this.preDestroy2a = preDestroy2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.preDestroy2aSet = true;
             }
         }
-        return apreDestroy2a;
+        return preDestroy2a;
     }
 
     /**
@@ -295,7 +296,9 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -366,7 +369,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -375,7 +378,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -488,7 +492,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -506,7 +510,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -515,7 +519,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -571,7 +575,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -607,12 +612,24 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperServiceOperation().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperServiceOperation().isValidIdentifierName();
     }
 
     /**
@@ -675,7 +692,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * A comma separated list of all types of each argument, in order.
      * @see OperationFacade#getArgumentTypeNames()
      */
     public String getArgumentTypeNames()
@@ -684,7 +701,9 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Specification of an argument used to pass information into or out of an invocation of a
+     * behavioral feature. Parameters are allowed to be treated as connectable elements. Parameters
+     * have support for streaming, exceptions, and parameter sets.
      * @see OperationFacade#getArguments()
      */
     public Collection<ParameterFacade> getArguments()
@@ -693,7 +712,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Constructs the operation call with the operation name.
      * @see OperationFacade#getCall()
      */
     public String getCall()
@@ -788,7 +807,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Return all parameters for the operation, including the return parameter.
      * @see OperationFacade#getParameters()
      */
     public Collection<ParameterFacade> getParameters()
@@ -860,7 +879,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * The operation return type parameter.
      * @see OperationFacade#getReturnType()
      */
     public ClassifierFacade getReturnType()
@@ -869,7 +888,8 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * Return the operation signature, including public/protested abstract returnType name plus
+     * argument type and name.
      * @see OperationFacade#getSignature()
      */
     public String getSignature()
@@ -928,7 +948,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * True is the operation is abstract.
      * @see OperationFacade#isAbstract()
      */
     public boolean isAbstract()
@@ -1024,7 +1044,7 @@ public abstract class EJB3MessageDrivenOperationFacadeLogic
     }
 
     /**
-     * 
+     * True is the operation is static (only a single instance can be instantiated).
      * @see OperationFacade#isStatic()
      */
     public boolean isStatic()

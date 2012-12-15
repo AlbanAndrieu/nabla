@@ -17,7 +17,6 @@ import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.ConstraintFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.EntityAssociationEnd;
-import org.andromda.metafacades.uml.EntityAttribute;
 import org.andromda.metafacades.uml.EntityQueryOperation;
 import org.andromda.metafacades.uml.GeneralizableElementFacade;
 import org.andromda.metafacades.uml.GeneralizationFacade;
@@ -36,7 +35,7 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade
  * MetafacadeLogic for EJB3ManageableEntityFacade
  *
  * @see EJB3ManageableEntityFacade
@@ -163,8 +162,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedManageableServiceCreateExceptionName();
 
-    private String fullyQualifiedManageableServiceCreateExceptionName1a;
-    private boolean fullyQualifiedManageableServiceCreateExceptionName1aSet = false;
+    private transient String fullyQualifiedManageableServiceCreateExceptionName1a;
+    private transient boolean fullyQualifiedManageableServiceCreateExceptionName1aSet = false;
 
     /**
      * Returns the fully qualified name of the application create exception.
@@ -172,19 +171,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getFullyQualifiedManageableServiceCreateExceptionName()
     {
-        String afullyQualifiedManageableServiceCreateExceptionName1a = this.fullyQualifiedManageableServiceCreateExceptionName1a;
+        String fullyQualifiedManageableServiceCreateExceptionName1a = this.fullyQualifiedManageableServiceCreateExceptionName1a;
         if (!this.fullyQualifiedManageableServiceCreateExceptionName1aSet)
         {
             // fullyQualifiedManageableServiceCreateExceptionName has no pre constraints
-            afullyQualifiedManageableServiceCreateExceptionName1a = handleGetFullyQualifiedManageableServiceCreateExceptionName();
+            fullyQualifiedManageableServiceCreateExceptionName1a = handleGetFullyQualifiedManageableServiceCreateExceptionName();
             // fullyQualifiedManageableServiceCreateExceptionName has no post constraints
-            this.fullyQualifiedManageableServiceCreateExceptionName1a = afullyQualifiedManageableServiceCreateExceptionName1a;
+            this.fullyQualifiedManageableServiceCreateExceptionName1a = fullyQualifiedManageableServiceCreateExceptionName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedManageableServiceCreateExceptionName1aSet = true;
             }
         }
-        return afullyQualifiedManageableServiceCreateExceptionName1a;
+        return fullyQualifiedManageableServiceCreateExceptionName1a;
     }
 
    /**
@@ -193,8 +192,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedManageableServiceReadExceptionName();
 
-    private String fullyQualifiedManageableServiceReadExceptionName2a;
-    private boolean fullyQualifiedManageableServiceReadExceptionName2aSet = false;
+    private transient String fullyQualifiedManageableServiceReadExceptionName2a;
+    private transient boolean fullyQualifiedManageableServiceReadExceptionName2aSet = false;
 
     /**
      * Returns the fully qualified name of the application read exception.
@@ -202,19 +201,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getFullyQualifiedManageableServiceReadExceptionName()
     {
-        String afullyQualifiedManageableServiceReadExceptionName2a = this.fullyQualifiedManageableServiceReadExceptionName2a;
+        String fullyQualifiedManageableServiceReadExceptionName2a = this.fullyQualifiedManageableServiceReadExceptionName2a;
         if (!this.fullyQualifiedManageableServiceReadExceptionName2aSet)
         {
             // fullyQualifiedManageableServiceReadExceptionName has no pre constraints
-            afullyQualifiedManageableServiceReadExceptionName2a = handleGetFullyQualifiedManageableServiceReadExceptionName();
+            fullyQualifiedManageableServiceReadExceptionName2a = handleGetFullyQualifiedManageableServiceReadExceptionName();
             // fullyQualifiedManageableServiceReadExceptionName has no post constraints
-            this.fullyQualifiedManageableServiceReadExceptionName2a = afullyQualifiedManageableServiceReadExceptionName2a;
+            this.fullyQualifiedManageableServiceReadExceptionName2a = fullyQualifiedManageableServiceReadExceptionName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedManageableServiceReadExceptionName2aSet = true;
             }
         }
-        return afullyQualifiedManageableServiceReadExceptionName2a;
+        return fullyQualifiedManageableServiceReadExceptionName2a;
     }
 
    /**
@@ -223,8 +222,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedManageableServiceUpdateExceptionName();
 
-    private String fullyQualifiedManageableServiceUpdateExceptionName3a;
-    private boolean fullyQualifiedManageableServiceUpdateExceptionName3aSet = false;
+    private transient String fullyQualifiedManageableServiceUpdateExceptionName3a;
+    private transient boolean fullyQualifiedManageableServiceUpdateExceptionName3aSet = false;
 
     /**
      * Returns the fully qualified update application exception name.
@@ -232,19 +231,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getFullyQualifiedManageableServiceUpdateExceptionName()
     {
-        String afullyQualifiedManageableServiceUpdateExceptionName3a = this.fullyQualifiedManageableServiceUpdateExceptionName3a;
+        String fullyQualifiedManageableServiceUpdateExceptionName3a = this.fullyQualifiedManageableServiceUpdateExceptionName3a;
         if (!this.fullyQualifiedManageableServiceUpdateExceptionName3aSet)
         {
             // fullyQualifiedManageableServiceUpdateExceptionName has no pre constraints
-            afullyQualifiedManageableServiceUpdateExceptionName3a = handleGetFullyQualifiedManageableServiceUpdateExceptionName();
+            fullyQualifiedManageableServiceUpdateExceptionName3a = handleGetFullyQualifiedManageableServiceUpdateExceptionName();
             // fullyQualifiedManageableServiceUpdateExceptionName has no post constraints
-            this.fullyQualifiedManageableServiceUpdateExceptionName3a = afullyQualifiedManageableServiceUpdateExceptionName3a;
+            this.fullyQualifiedManageableServiceUpdateExceptionName3a = fullyQualifiedManageableServiceUpdateExceptionName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedManageableServiceUpdateExceptionName3aSet = true;
             }
         }
-        return afullyQualifiedManageableServiceUpdateExceptionName3a;
+        return fullyQualifiedManageableServiceUpdateExceptionName3a;
     }
 
    /**
@@ -253,8 +252,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedManageableServiceDeleteExceptionName();
 
-    private String fullyQualifiedManageableServiceDeleteExceptionName4a;
-    private boolean fullyQualifiedManageableServiceDeleteExceptionName4aSet = false;
+    private transient String fullyQualifiedManageableServiceDeleteExceptionName4a;
+    private transient boolean fullyQualifiedManageableServiceDeleteExceptionName4aSet = false;
 
     /**
      * Returns the fully qualified delete application exception name.
@@ -262,19 +261,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getFullyQualifiedManageableServiceDeleteExceptionName()
     {
-        String afullyQualifiedManageableServiceDeleteExceptionName4a = this.fullyQualifiedManageableServiceDeleteExceptionName4a;
+        String fullyQualifiedManageableServiceDeleteExceptionName4a = this.fullyQualifiedManageableServiceDeleteExceptionName4a;
         if (!this.fullyQualifiedManageableServiceDeleteExceptionName4aSet)
         {
             // fullyQualifiedManageableServiceDeleteExceptionName has no pre constraints
-            afullyQualifiedManageableServiceDeleteExceptionName4a = handleGetFullyQualifiedManageableServiceDeleteExceptionName();
+            fullyQualifiedManageableServiceDeleteExceptionName4a = handleGetFullyQualifiedManageableServiceDeleteExceptionName();
             // fullyQualifiedManageableServiceDeleteExceptionName has no post constraints
-            this.fullyQualifiedManageableServiceDeleteExceptionName4a = afullyQualifiedManageableServiceDeleteExceptionName4a;
+            this.fullyQualifiedManageableServiceDeleteExceptionName4a = fullyQualifiedManageableServiceDeleteExceptionName4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedManageableServiceDeleteExceptionName4aSet = true;
             }
         }
-        return afullyQualifiedManageableServiceDeleteExceptionName4a;
+        return fullyQualifiedManageableServiceDeleteExceptionName4a;
     }
 
    /**
@@ -283,8 +282,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetJndiNamePrefix();
 
-    private String jndiNamePrefix5a;
-    private boolean jndiNamePrefix5aSet = false;
+    private transient String jndiNamePrefix5a;
+    private transient boolean jndiNamePrefix5aSet = false;
 
     /**
      * Returns the JNDI name prefix for this menageable session bean.  This is set using the
@@ -295,19 +294,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getJndiNamePrefix()
     {
-        String ajndiNamePrefix5a = this.jndiNamePrefix5a;
+        String jndiNamePrefix5a = this.jndiNamePrefix5a;
         if (!this.jndiNamePrefix5aSet)
         {
             // jndiNamePrefix has no pre constraints
-            ajndiNamePrefix5a = handleGetJndiNamePrefix();
+            jndiNamePrefix5a = handleGetJndiNamePrefix();
             // jndiNamePrefix has no post constraints
-            this.jndiNamePrefix5a = ajndiNamePrefix5a;
+            this.jndiNamePrefix5a = jndiNamePrefix5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.jndiNamePrefix5aSet = true;
             }
         }
-        return ajndiNamePrefix5a;
+        return jndiNamePrefix5a;
     }
 
    /**
@@ -316,8 +315,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableServiceBaseName();
 
-    private String manageableServiceBaseName6a;
-    private boolean manageableServiceBaseName6aSet = false;
+    private transient String manageableServiceBaseName6a;
+    private transient boolean manageableServiceBaseName6aSet = false;
 
     /**
      * Returns the manageable service base class name.  This is the manageable session bean
@@ -326,19 +325,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableServiceBaseName()
     {
-        String amanageableServiceBaseName6a = this.manageableServiceBaseName6a;
+        String manageableServiceBaseName6a = this.manageableServiceBaseName6a;
         if (!this.manageableServiceBaseName6aSet)
         {
             // manageableServiceBaseName has no pre constraints
-            amanageableServiceBaseName6a = handleGetManageableServiceBaseName();
+            manageableServiceBaseName6a = handleGetManageableServiceBaseName();
             // manageableServiceBaseName has no post constraints
-            this.manageableServiceBaseName6a = amanageableServiceBaseName6a;
+            this.manageableServiceBaseName6a = manageableServiceBaseName6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableServiceBaseName6aSet = true;
             }
         }
-        return amanageableServiceBaseName6a;
+        return manageableServiceBaseName6a;
     }
 
    /**
@@ -347,8 +346,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableServiceBaseFullPath();
 
-    private String manageableServiceBaseFullPath7a;
-    private boolean manageableServiceBaseFullPath7aSet = false;
+    private transient String manageableServiceBaseFullPath7a;
+    private transient boolean manageableServiceBaseFullPath7aSet = false;
 
     /**
      * Returns the manageable service base class fully qualified path used to set the template
@@ -357,19 +356,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableServiceBaseFullPath()
     {
-        String amanageableServiceBaseFullPath7a = this.manageableServiceBaseFullPath7a;
+        String manageableServiceBaseFullPath7a = this.manageableServiceBaseFullPath7a;
         if (!this.manageableServiceBaseFullPath7aSet)
         {
             // manageableServiceBaseFullPath has no pre constraints
-            amanageableServiceBaseFullPath7a = handleGetManageableServiceBaseFullPath();
+            manageableServiceBaseFullPath7a = handleGetManageableServiceBaseFullPath();
             // manageableServiceBaseFullPath has no post constraints
-            this.manageableServiceBaseFullPath7a = amanageableServiceBaseFullPath7a;
+            this.manageableServiceBaseFullPath7a = manageableServiceBaseFullPath7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableServiceBaseFullPath7aSet = true;
             }
         }
-        return amanageableServiceBaseFullPath7a;
+        return manageableServiceBaseFullPath7a;
     }
 
    /**
@@ -378,8 +377,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedManageableServiceBaseName();
 
-    private String fullyQualifiedManageableServiceBaseName8a;
-    private boolean fullyQualifiedManageableServiceBaseName8aSet = false;
+    private transient String fullyQualifiedManageableServiceBaseName8a;
+    private transient boolean fullyQualifiedManageableServiceBaseName8aSet = false;
 
     /**
      * Returns the fully qualified manageable service base class name that contains the
@@ -388,19 +387,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getFullyQualifiedManageableServiceBaseName()
     {
-        String afullyQualifiedManageableServiceBaseName8a = this.fullyQualifiedManageableServiceBaseName8a;
+        String fullyQualifiedManageableServiceBaseName8a = this.fullyQualifiedManageableServiceBaseName8a;
         if (!this.fullyQualifiedManageableServiceBaseName8aSet)
         {
             // fullyQualifiedManageableServiceBaseName has no pre constraints
-            afullyQualifiedManageableServiceBaseName8a = handleGetFullyQualifiedManageableServiceBaseName();
+            fullyQualifiedManageableServiceBaseName8a = handleGetFullyQualifiedManageableServiceBaseName();
             // fullyQualifiedManageableServiceBaseName has no post constraints
-            this.fullyQualifiedManageableServiceBaseName8a = afullyQualifiedManageableServiceBaseName8a;
+            this.fullyQualifiedManageableServiceBaseName8a = fullyQualifiedManageableServiceBaseName8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedManageableServiceBaseName8aSet = true;
             }
         }
-        return afullyQualifiedManageableServiceBaseName8a;
+        return fullyQualifiedManageableServiceBaseName8a;
     }
 
    /**
@@ -409,8 +408,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableServiceCreateExceptionName();
 
-    private String manageableServiceCreateExceptionName9a;
-    private boolean manageableServiceCreateExceptionName9aSet = false;
+    private transient String manageableServiceCreateExceptionName9a;
+    private transient boolean manageableServiceCreateExceptionName9aSet = false;
 
     /**
      * Returns the manageable service create exception name.
@@ -418,19 +417,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableServiceCreateExceptionName()
     {
-        String amanageableServiceCreateExceptionName9a = this.manageableServiceCreateExceptionName9a;
+        String manageableServiceCreateExceptionName9a = this.manageableServiceCreateExceptionName9a;
         if (!this.manageableServiceCreateExceptionName9aSet)
         {
             // manageableServiceCreateExceptionName has no pre constraints
-            amanageableServiceCreateExceptionName9a = handleGetManageableServiceCreateExceptionName();
+            manageableServiceCreateExceptionName9a = handleGetManageableServiceCreateExceptionName();
             // manageableServiceCreateExceptionName has no post constraints
-            this.manageableServiceCreateExceptionName9a = amanageableServiceCreateExceptionName9a;
+            this.manageableServiceCreateExceptionName9a = manageableServiceCreateExceptionName9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableServiceCreateExceptionName9aSet = true;
             }
         }
-        return amanageableServiceCreateExceptionName9a;
+        return manageableServiceCreateExceptionName9a;
     }
 
    /**
@@ -439,8 +438,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableServiceReadExceptionName();
 
-    private String manageableServiceReadExceptionName10a;
-    private boolean manageableServiceReadExceptionName10aSet = false;
+    private transient String manageableServiceReadExceptionName10a;
+    private transient boolean manageableServiceReadExceptionName10aSet = false;
 
     /**
      * Returns the manageable service read exception name.
@@ -448,19 +447,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableServiceReadExceptionName()
     {
-        String amanageableServiceReadExceptionName10a = this.manageableServiceReadExceptionName10a;
+        String manageableServiceReadExceptionName10a = this.manageableServiceReadExceptionName10a;
         if (!this.manageableServiceReadExceptionName10aSet)
         {
             // manageableServiceReadExceptionName has no pre constraints
-            amanageableServiceReadExceptionName10a = handleGetManageableServiceReadExceptionName();
+            manageableServiceReadExceptionName10a = handleGetManageableServiceReadExceptionName();
             // manageableServiceReadExceptionName has no post constraints
-            this.manageableServiceReadExceptionName10a = amanageableServiceReadExceptionName10a;
+            this.manageableServiceReadExceptionName10a = manageableServiceReadExceptionName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableServiceReadExceptionName10aSet = true;
             }
         }
-        return amanageableServiceReadExceptionName10a;
+        return manageableServiceReadExceptionName10a;
     }
 
    /**
@@ -469,8 +468,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableServiceUpdateExceptionName();
 
-    private String manageableServiceUpdateExceptionName11a;
-    private boolean manageableServiceUpdateExceptionName11aSet = false;
+    private transient String manageableServiceUpdateExceptionName11a;
+    private transient boolean manageableServiceUpdateExceptionName11aSet = false;
 
     /**
      * Returns the manageable service update exception name.
@@ -478,19 +477,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableServiceUpdateExceptionName()
     {
-        String amanageableServiceUpdateExceptionName11a = this.manageableServiceUpdateExceptionName11a;
+        String manageableServiceUpdateExceptionName11a = this.manageableServiceUpdateExceptionName11a;
         if (!this.manageableServiceUpdateExceptionName11aSet)
         {
             // manageableServiceUpdateExceptionName has no pre constraints
-            amanageableServiceUpdateExceptionName11a = handleGetManageableServiceUpdateExceptionName();
+            manageableServiceUpdateExceptionName11a = handleGetManageableServiceUpdateExceptionName();
             // manageableServiceUpdateExceptionName has no post constraints
-            this.manageableServiceUpdateExceptionName11a = amanageableServiceUpdateExceptionName11a;
+            this.manageableServiceUpdateExceptionName11a = manageableServiceUpdateExceptionName11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableServiceUpdateExceptionName11aSet = true;
             }
         }
-        return amanageableServiceUpdateExceptionName11a;
+        return manageableServiceUpdateExceptionName11a;
     }
 
    /**
@@ -499,8 +498,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableServiceDeleteExceptionName();
 
-    private String manageableServiceDeleteExceptionName12a;
-    private boolean manageableServiceDeleteExceptionName12aSet = false;
+    private transient String manageableServiceDeleteExceptionName12a;
+    private transient boolean manageableServiceDeleteExceptionName12aSet = false;
 
     /**
      * Returns the manageable service delete exception name.
@@ -508,19 +507,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableServiceDeleteExceptionName()
     {
-        String amanageableServiceDeleteExceptionName12a = this.manageableServiceDeleteExceptionName12a;
+        String manageableServiceDeleteExceptionName12a = this.manageableServiceDeleteExceptionName12a;
         if (!this.manageableServiceDeleteExceptionName12aSet)
         {
             // manageableServiceDeleteExceptionName has no pre constraints
-            amanageableServiceDeleteExceptionName12a = handleGetManageableServiceDeleteExceptionName();
+            manageableServiceDeleteExceptionName12a = handleGetManageableServiceDeleteExceptionName();
             // manageableServiceDeleteExceptionName has no post constraints
-            this.manageableServiceDeleteExceptionName12a = amanageableServiceDeleteExceptionName12a;
+            this.manageableServiceDeleteExceptionName12a = manageableServiceDeleteExceptionName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableServiceDeleteExceptionName12aSet = true;
             }
         }
-        return amanageableServiceDeleteExceptionName12a;
+        return manageableServiceDeleteExceptionName12a;
     }
 
    /**
@@ -529,8 +528,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableRolesAllowed();
 
-    private String manageableRolesAllowed13a;
-    private boolean manageableRolesAllowed13aSet = false;
+    private transient String manageableRolesAllowed13a;
+    private transient boolean manageableRolesAllowed13aSet = false;
 
     /**
      * Returns the comma separated list of roles which are used to secure manageable service beans.
@@ -538,139 +537,19 @@ public abstract class EJB3ManageableEntityFacadeLogic
      */
     public final String getManageableRolesAllowed()
     {
-        String amanageableRolesAllowed13a = this.manageableRolesAllowed13a;
+        String manageableRolesAllowed13a = this.manageableRolesAllowed13a;
         if (!this.manageableRolesAllowed13aSet)
         {
             // manageableRolesAllowed has no pre constraints
-            amanageableRolesAllowed13a = handleGetManageableRolesAllowed();
+            manageableRolesAllowed13a = handleGetManageableRolesAllowed();
             // manageableRolesAllowed has no post constraints
-            this.manageableRolesAllowed13a = amanageableRolesAllowed13a;
+            this.manageableRolesAllowed13a = manageableRolesAllowed13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableRolesAllowed13aSet = true;
             }
         }
-        return amanageableRolesAllowed13a;
-    }
-
-   /**
-    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoBaseFullPath()
-    * @return String
-    */
-    protected abstract String handleGetManageableDaoBaseFullPath();
-
-    private String manageableDaoBaseFullPath14a;
-    private boolean manageableDaoBaseFullPath14aSet = false;
-
-    /**
-     * 
-     * @return (String)handleGetManageableDaoBaseFullPath()
-     */
-    public final String getManageableDaoBaseFullPath()
-    {
-        String amanageableDaoBaseFullPath14a = this.manageableDaoBaseFullPath14a;
-        if (!this.manageableDaoBaseFullPath14aSet)
-        {
-            // manageableDaoBaseFullPath has no pre constraints
-            amanageableDaoBaseFullPath14a = handleGetManageableDaoBaseFullPath();
-            // manageableDaoBaseFullPath has no post constraints
-            this.manageableDaoBaseFullPath14a = amanageableDaoBaseFullPath14a;
-            if (isMetafacadePropertyCachingEnabled())
-            {
-                this.manageableDaoBaseFullPath14aSet = true;
-            }
-        }
-        return amanageableDaoBaseFullPath14a;
-    }
-
-   /**
-    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoBaseName()
-    * @return String
-    */
-    protected abstract String handleGetManageableDaoBaseName();
-
-    private String manageableDaoBaseName15a;
-    private boolean manageableDaoBaseName15aSet = false;
-
-    /**
-     * 
-     * @return (String)handleGetManageableDaoBaseName()
-     */
-    public final String getManageableDaoBaseName()
-    {
-        String amanageableDaoBaseName15a = this.manageableDaoBaseName15a;
-        if (!this.manageableDaoBaseName15aSet)
-        {
-            // manageableDaoBaseName has no pre constraints
-            amanageableDaoBaseName15a = handleGetManageableDaoBaseName();
-            // manageableDaoBaseName has no post constraints
-            this.manageableDaoBaseName15a = amanageableDaoBaseName15a;
-            if (isMetafacadePropertyCachingEnabled())
-            {
-                this.manageableDaoBaseName15aSet = true;
-            }
-        }
-        return amanageableDaoBaseName15a;
-    }
-
-   /**
-    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoFullPath()
-    * @return String
-    */
-    protected abstract String handleGetManageableDaoFullPath();
-
-    private String manageableDaoFullPath16a;
-    private boolean manageableDaoFullPath16aSet = false;
-
-    /**
-     * 
-     * @return (String)handleGetManageableDaoFullPath()
-     */
-    public final String getManageableDaoFullPath()
-    {
-        String amanageableDaoFullPath16a = this.manageableDaoFullPath16a;
-        if (!this.manageableDaoFullPath16aSet)
-        {
-            // manageableDaoFullPath has no pre constraints
-            amanageableDaoFullPath16a = handleGetManageableDaoFullPath();
-            // manageableDaoFullPath has no post constraints
-            this.manageableDaoFullPath16a = amanageableDaoFullPath16a;
-            if (isMetafacadePropertyCachingEnabled())
-            {
-                this.manageableDaoFullPath16aSet = true;
-            }
-        }
-        return amanageableDaoFullPath16a;
-    }
-
-   /**
-    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoName()
-    * @return String
-    */
-    protected abstract String handleGetManageableDaoName();
-
-    private String manageableDaoName17a;
-    private boolean manageableDaoName17aSet = false;
-
-    /**
-     * 
-     * @return (String)handleGetManageableDaoName()
-     */
-    public final String getManageableDaoName()
-    {
-        String amanageableDaoName17a = this.manageableDaoName17a;
-        if (!this.manageableDaoName17aSet)
-        {
-            // manageableDaoName has no pre constraints
-            amanageableDaoName17a = handleGetManageableDaoName();
-            // manageableDaoName has no post constraints
-            this.manageableDaoName17a = amanageableDaoName17a;
-            if (isMetafacadePropertyCachingEnabled())
-            {
-                this.manageableDaoName17aSet = true;
-            }
-        }
-        return amanageableDaoName17a;
+        return manageableRolesAllowed13a;
     }
 
    /**
@@ -679,28 +558,29 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableValueObjectClassName();
 
-    private String manageableValueObjectClassName18a;
-    private boolean manageableValueObjectClassName18aSet = false;
+    private transient String manageableValueObjectClassName14a;
+    private transient boolean manageableValueObjectClassName14aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableValueObjectClassName
      * @return (String)handleGetManageableValueObjectClassName()
      */
     public final String getManageableValueObjectClassName()
     {
-        String amanageableValueObjectClassName18a = this.manageableValueObjectClassName18a;
-        if (!this.manageableValueObjectClassName18aSet)
+        String manageableValueObjectClassName14a = this.manageableValueObjectClassName14a;
+        if (!this.manageableValueObjectClassName14aSet)
         {
             // manageableValueObjectClassName has no pre constraints
-            amanageableValueObjectClassName18a = handleGetManageableValueObjectClassName();
+            manageableValueObjectClassName14a = handleGetManageableValueObjectClassName();
             // manageableValueObjectClassName has no post constraints
-            this.manageableValueObjectClassName18a = amanageableValueObjectClassName18a;
+            this.manageableValueObjectClassName14a = manageableValueObjectClassName14a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.manageableValueObjectClassName18aSet = true;
+                this.manageableValueObjectClassName14aSet = true;
             }
         }
-        return amanageableValueObjectClassName18a;
+        return manageableValueObjectClassName14a;
     }
 
    /**
@@ -709,88 +589,29 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetManageableValueObjectFullPath();
 
-    private String manageableValueObjectFullPath19a;
-    private boolean manageableValueObjectFullPath19aSet = false;
+    private transient String manageableValueObjectFullPath15a;
+    private transient boolean manageableValueObjectFullPath15aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableValueObjectFullPath
      * @return (String)handleGetManageableValueObjectFullPath()
      */
     public final String getManageableValueObjectFullPath()
     {
-        String amanageableValueObjectFullPath19a = this.manageableValueObjectFullPath19a;
-        if (!this.manageableValueObjectFullPath19aSet)
+        String manageableValueObjectFullPath15a = this.manageableValueObjectFullPath15a;
+        if (!this.manageableValueObjectFullPath15aSet)
         {
             // manageableValueObjectFullPath has no pre constraints
-            amanageableValueObjectFullPath19a = handleGetManageableValueObjectFullPath();
+            manageableValueObjectFullPath15a = handleGetManageableValueObjectFullPath();
             // manageableValueObjectFullPath has no post constraints
-            this.manageableValueObjectFullPath19a = amanageableValueObjectFullPath19a;
+            this.manageableValueObjectFullPath15a = manageableValueObjectFullPath15a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.manageableValueObjectFullPath19aSet = true;
+                this.manageableValueObjectFullPath15aSet = true;
             }
         }
-        return amanageableValueObjectFullPath19a;
-    }
-
-   /**
-    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getFullyQualifiedManageableDaoBaseName()
-    * @return String
-    */
-    protected abstract String handleGetFullyQualifiedManageableDaoBaseName();
-
-    private String fullyQualifiedManageableDaoBaseName20a;
-    private boolean fullyQualifiedManageableDaoBaseName20aSet = false;
-
-    /**
-     * 
-     * @return (String)handleGetFullyQualifiedManageableDaoBaseName()
-     */
-    public final String getFullyQualifiedManageableDaoBaseName()
-    {
-        String afullyQualifiedManageableDaoBaseName20a = this.fullyQualifiedManageableDaoBaseName20a;
-        if (!this.fullyQualifiedManageableDaoBaseName20aSet)
-        {
-            // fullyQualifiedManageableDaoBaseName has no pre constraints
-            afullyQualifiedManageableDaoBaseName20a = handleGetFullyQualifiedManageableDaoBaseName();
-            // fullyQualifiedManageableDaoBaseName has no post constraints
-            this.fullyQualifiedManageableDaoBaseName20a = afullyQualifiedManageableDaoBaseName20a;
-            if (isMetafacadePropertyCachingEnabled())
-            {
-                this.fullyQualifiedManageableDaoBaseName20aSet = true;
-            }
-        }
-        return afullyQualifiedManageableDaoBaseName20a;
-    }
-
-   /**
-    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getFullyQualifiedManageableDaoName()
-    * @return String
-    */
-    protected abstract String handleGetFullyQualifiedManageableDaoName();
-
-    private String fullyQualifiedManageableDaoName21a;
-    private boolean fullyQualifiedManageableDaoName21aSet = false;
-
-    /**
-     * 
-     * @return (String)handleGetFullyQualifiedManageableDaoName()
-     */
-    public final String getFullyQualifiedManageableDaoName()
-    {
-        String afullyQualifiedManageableDaoName21a = this.fullyQualifiedManageableDaoName21a;
-        if (!this.fullyQualifiedManageableDaoName21aSet)
-        {
-            // fullyQualifiedManageableDaoName has no pre constraints
-            afullyQualifiedManageableDaoName21a = handleGetFullyQualifiedManageableDaoName();
-            // fullyQualifiedManageableDaoName has no post constraints
-            this.fullyQualifiedManageableDaoName21a = afullyQualifiedManageableDaoName21a;
-            if (isMetafacadePropertyCachingEnabled())
-            {
-                this.fullyQualifiedManageableDaoName21aSet = true;
-            }
-        }
-        return afullyQualifiedManageableDaoName21a;
+        return manageableValueObjectFullPath15a;
     }
 
    /**
@@ -799,28 +620,215 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedManageableValueObjectName();
 
-    private String fullyQualifiedManageableValueObjectName22a;
-    private boolean fullyQualifiedManageableValueObjectName22aSet = false;
+    private transient String fullyQualifiedManageableValueObjectName16a;
+    private transient boolean fullyQualifiedManageableValueObjectName16aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.fullyQualifiedManageableValueObjectName
      * @return (String)handleGetFullyQualifiedManageableValueObjectName()
      */
     public final String getFullyQualifiedManageableValueObjectName()
     {
-        String afullyQualifiedManageableValueObjectName22a = this.fullyQualifiedManageableValueObjectName22a;
-        if (!this.fullyQualifiedManageableValueObjectName22aSet)
+        String fullyQualifiedManageableValueObjectName16a = this.fullyQualifiedManageableValueObjectName16a;
+        if (!this.fullyQualifiedManageableValueObjectName16aSet)
         {
             // fullyQualifiedManageableValueObjectName has no pre constraints
-            afullyQualifiedManageableValueObjectName22a = handleGetFullyQualifiedManageableValueObjectName();
+            fullyQualifiedManageableValueObjectName16a = handleGetFullyQualifiedManageableValueObjectName();
             // fullyQualifiedManageableValueObjectName has no post constraints
-            this.fullyQualifiedManageableValueObjectName22a = afullyQualifiedManageableValueObjectName22a;
+            this.fullyQualifiedManageableValueObjectName16a = fullyQualifiedManageableValueObjectName16a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.fullyQualifiedManageableValueObjectName22aSet = true;
+                this.fullyQualifiedManageableValueObjectName16aSet = true;
             }
         }
-        return afullyQualifiedManageableValueObjectName22a;
+        return fullyQualifiedManageableValueObjectName16a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getFullyQualifiedManageableDaoBaseName()
+    * @return String
+    */
+    protected abstract String handleGetFullyQualifiedManageableDaoBaseName();
+
+    private transient String fullyQualifiedManageableDaoBaseName17a;
+    private transient boolean fullyQualifiedManageableDaoBaseName17aSet = false;
+
+    /**
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.fullyQualifiedManageableDaoBaseName
+     * @return (String)handleGetFullyQualifiedManageableDaoBaseName()
+     */
+    public final String getFullyQualifiedManageableDaoBaseName()
+    {
+        String fullyQualifiedManageableDaoBaseName17a = this.fullyQualifiedManageableDaoBaseName17a;
+        if (!this.fullyQualifiedManageableDaoBaseName17aSet)
+        {
+            // fullyQualifiedManageableDaoBaseName has no pre constraints
+            fullyQualifiedManageableDaoBaseName17a = handleGetFullyQualifiedManageableDaoBaseName();
+            // fullyQualifiedManageableDaoBaseName has no post constraints
+            this.fullyQualifiedManageableDaoBaseName17a = fullyQualifiedManageableDaoBaseName17a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.fullyQualifiedManageableDaoBaseName17aSet = true;
+            }
+        }
+        return fullyQualifiedManageableDaoBaseName17a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getFullyQualifiedManageableDaoName()
+    * @return String
+    */
+    protected abstract String handleGetFullyQualifiedManageableDaoName();
+
+    private transient String fullyQualifiedManageableDaoName18a;
+    private transient boolean fullyQualifiedManageableDaoName18aSet = false;
+
+    /**
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.fullyQualifiedManageableDaoName
+     * @return (String)handleGetFullyQualifiedManageableDaoName()
+     */
+    public final String getFullyQualifiedManageableDaoName()
+    {
+        String fullyQualifiedManageableDaoName18a = this.fullyQualifiedManageableDaoName18a;
+        if (!this.fullyQualifiedManageableDaoName18aSet)
+        {
+            // fullyQualifiedManageableDaoName has no pre constraints
+            fullyQualifiedManageableDaoName18a = handleGetFullyQualifiedManageableDaoName();
+            // fullyQualifiedManageableDaoName has no post constraints
+            this.fullyQualifiedManageableDaoName18a = fullyQualifiedManageableDaoName18a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.fullyQualifiedManageableDaoName18aSet = true;
+            }
+        }
+        return fullyQualifiedManageableDaoName18a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoName()
+    * @return String
+    */
+    protected abstract String handleGetManageableDaoName();
+
+    private transient String manageableDaoName19a;
+    private transient boolean manageableDaoName19aSet = false;
+
+    /**
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoName
+     * @return (String)handleGetManageableDaoName()
+     */
+    public final String getManageableDaoName()
+    {
+        String manageableDaoName19a = this.manageableDaoName19a;
+        if (!this.manageableDaoName19aSet)
+        {
+            // manageableDaoName has no pre constraints
+            manageableDaoName19a = handleGetManageableDaoName();
+            // manageableDaoName has no post constraints
+            this.manageableDaoName19a = manageableDaoName19a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.manageableDaoName19aSet = true;
+            }
+        }
+        return manageableDaoName19a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoFullPath()
+    * @return String
+    */
+    protected abstract String handleGetManageableDaoFullPath();
+
+    private transient String manageableDaoFullPath20a;
+    private transient boolean manageableDaoFullPath20aSet = false;
+
+    /**
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoFullPath
+     * @return (String)handleGetManageableDaoFullPath()
+     */
+    public final String getManageableDaoFullPath()
+    {
+        String manageableDaoFullPath20a = this.manageableDaoFullPath20a;
+        if (!this.manageableDaoFullPath20aSet)
+        {
+            // manageableDaoFullPath has no pre constraints
+            manageableDaoFullPath20a = handleGetManageableDaoFullPath();
+            // manageableDaoFullPath has no post constraints
+            this.manageableDaoFullPath20a = manageableDaoFullPath20a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.manageableDaoFullPath20aSet = true;
+            }
+        }
+        return manageableDaoFullPath20a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoBaseName()
+    * @return String
+    */
+    protected abstract String handleGetManageableDaoBaseName();
+
+    private transient String manageableDaoBaseName21a;
+    private transient boolean manageableDaoBaseName21aSet = false;
+
+    /**
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoBaseName
+     * @return (String)handleGetManageableDaoBaseName()
+     */
+    public final String getManageableDaoBaseName()
+    {
+        String manageableDaoBaseName21a = this.manageableDaoBaseName21a;
+        if (!this.manageableDaoBaseName21aSet)
+        {
+            // manageableDaoBaseName has no pre constraints
+            manageableDaoBaseName21a = handleGetManageableDaoBaseName();
+            // manageableDaoBaseName has no post constraints
+            this.manageableDaoBaseName21a = manageableDaoBaseName21a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.manageableDaoBaseName21aSet = true;
+            }
+        }
+        return manageableDaoBaseName21a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade#getManageableDaoBaseFullPath()
+    * @return String
+    */
+    protected abstract String handleGetManageableDaoBaseFullPath();
+
+    private transient String manageableDaoBaseFullPath22a;
+    private transient boolean manageableDaoBaseFullPath22aSet = false;
+
+    /**
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.manageableDaoBaseFullPath
+     * @return (String)handleGetManageableDaoBaseFullPath()
+     */
+    public final String getManageableDaoBaseFullPath()
+    {
+        String manageableDaoBaseFullPath22a = this.manageableDaoBaseFullPath22a;
+        if (!this.manageableDaoBaseFullPath22aSet)
+        {
+            // manageableDaoBaseFullPath has no pre constraints
+            manageableDaoBaseFullPath22a = handleGetManageableDaoBaseFullPath();
+            // manageableDaoBaseFullPath has no post constraints
+            this.manageableDaoBaseFullPath22a = manageableDaoBaseFullPath22a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.manageableDaoBaseFullPath22aSet = true;
+            }
+        }
+        return manageableDaoBaseFullPath22a;
     }
 
    /**
@@ -829,28 +837,29 @@ public abstract class EJB3ManageableEntityFacadeLogic
     */
     protected abstract String handleGetDaoReferenceName();
 
-    private String daoReferenceName23a;
-    private boolean daoReferenceName23aSet = false;
+    private transient String daoReferenceName23a;
+    private transient boolean daoReferenceName23aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.daoReferenceName
      * @return (String)handleGetDaoReferenceName()
      */
     public final String getDaoReferenceName()
     {
-        String adaoReferenceName23a = this.daoReferenceName23a;
+        String daoReferenceName23a = this.daoReferenceName23a;
         if (!this.daoReferenceName23aSet)
         {
             // daoReferenceName has no pre constraints
-            adaoReferenceName23a = handleGetDaoReferenceName();
+            daoReferenceName23a = handleGetDaoReferenceName();
             // daoReferenceName has no post constraints
-            this.daoReferenceName23a = adaoReferenceName23a;
+            this.daoReferenceName23a = daoReferenceName23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.daoReferenceName23aSet = true;
             }
         }
-        return adaoReferenceName23a;
+        return daoReferenceName23a;
     }
 
     /**
@@ -1177,7 +1186,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.entityRelations
      * @see EJB3EntityFacade#getEntityRelations()
      */
     public Collection getEntityRelations()
@@ -1288,10 +1298,14 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * Returns the attribute identifier.
+     * Represents a model element. It may be an Element or NamedElement. A named element is an
+     * element in a
+     * model that may have a name. An element is a constituent of a model. As such, it has the
+     * capability
+     * of owning other elements.
      * @see EJB3EntityFacade#getIdentifier()
      */
-    public EJB3EntityAttributeFacade getIdentifier()
+    public ModelElementFacade getIdentifier()
     {
         return this.getSuperEJB3EntityFacade().getIdentifier();
     }
@@ -1351,7 +1365,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.jndiName
      * @see EJB3EntityFacade#getJndiName()
      */
     public String getJndiName()
@@ -1360,7 +1375,24 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Represents an attribute on a classifier. UML2 maps both Attributes and AssociationEnds to
+     * Property.
+     * A property is a structural feature of a classifier that characterizes instances of the
+     * classifier. A
+     * property related by ownedAttribute to a classifier (other than an association) represents an
+     * attribute and might also represent an association end. It relates an instance of the class to
+     * a
+     * value or set of values of the type of the attribute. A property represents a set of instances
+     * that
+     * are owned by a containing classifier instance. Property represents a declared state of one or
+     * more
+     * instances in terms of a named relationship to a value or values. When a property is an
+     * attribute of
+     * a classifier, the value or values are related to the instance of the classifier by being held
+     * in
+     * slots of the instance. The range of valid values represented by the property can be
+     * controlled by
+     * setting the property's type.
      * @see EJB3EntityFacade#getManageableDisplayAttribute()
      */
     public AttributeFacade getManageableDisplayAttribute()
@@ -1369,7 +1401,9 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Represents a role a user may play within a system.  Provides access to things such as
+     * services and
+     * service operations.
      * @see EJB3EntityFacade#getNonRunAsRoles()
      */
     public Collection<Role> getNonRunAsRoles()
@@ -1436,7 +1470,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.getSqlType
      * @see EJB3EntityFacade#getSqlType()
      */
     public String getSqlType()
@@ -1445,7 +1480,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.valueDependencies
      * @see EJB3EntityFacade#getValueDependencies()
      */
     public Collection getValueDependencies()
@@ -1482,7 +1518,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isAttributePresent
      * @see EJB3EntityFacade#isAttributePresent(String att)
      */
     public boolean isAttributePresent(String att)
@@ -1588,7 +1625,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isIdentifierPresent
      * @see EJB3EntityFacade#isIdentifierPresent(String id)
      */
     public boolean isIdentifierPresent(String id)
@@ -1645,7 +1683,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * EJB3EntityFacade.isOperationPresent
      * @see EJB3EntityFacade#isOperationPresent(String op)
      */
     public boolean isOperationPresent(String op)
@@ -1910,7 +1949,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperEJB3EntityFacade().getNavigableConnectingEnds();
     }
@@ -2056,7 +2095,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -2438,7 +2477,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
      * allowDefaultIdentifiers property is set to true.
      * @see org.andromda.metafacades.uml.Entity#getIdentifiers()
      */
-    public Collection<EntityAttribute> getIdentifiers()
+    public Collection<ModelElementFacade> getIdentifiers()
     {
         return this.getSuperEJB3EntityFacade().getIdentifiers();
     }
@@ -2448,9 +2487,10 @@ public abstract class EJB3ManageableEntityFacadeLogic
      * on the entity, a search up the inheritance chain will be performed, and the identifiers from
      * the first super class having them will be used.   If no identifiers exist, a default
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
+     * Identifiers can be on attributes or associations (composite primary key).
      * @see org.andromda.metafacades.uml.Entity#getIdentifiers(boolean follow)
      */
-    public Collection<EntityAttribute> getIdentifiers(boolean follow)
+    public Collection<ModelElementFacade> getIdentifiers(boolean follow)
     {
         return this.getSuperEJB3EntityFacade().getIdentifiers(follow);
     }
@@ -2626,7 +2666,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.metafacades.uml.Entity.compositeIdentifier
      * @see org.andromda.metafacades.uml.Entity#isCompositeIdentifier()
      */
     public boolean isCompositeIdentifier()
@@ -2739,7 +2779,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -2839,7 +2879,9 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -2910,7 +2952,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -2919,7 +2961,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -3032,7 +3075,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -3050,7 +3093,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -3059,7 +3102,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -3115,7 +3158,8 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -3151,12 +3195,24 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEJB3EntityFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEJB3EntityFacade().isValidIdentifierName();
     }
 
     /**
@@ -3201,7 +3257,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The attribute used as a key link to display values for this entity.
      * @see ManageableEntity#getDisplayAttribute()
      */
     public ManageableEntityAttribute getDisplayAttribute()
@@ -3210,7 +3266,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The fully qualified service name of the entity.
      * @see ManageableEntity#getFullyQualifiedManageableServiceName()
      */
     public String getFullyQualifiedManageableServiceName()
@@ -3219,7 +3275,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The associations to other entities from this entity.
      * @see ManageableEntity#getManageableAssociationEnds()
      */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEnds()
@@ -3256,7 +3312,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The entity package name.
      * @see ManageableEntity#getManageablePackageName()
      */
     public String getManageablePackageName()
@@ -3265,7 +3321,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The Package path of the Entity.
      * @see ManageableEntity#getManageablePackagePath()
      */
     public String getManageablePackagePath()
@@ -3274,7 +3330,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The entity accessor (getter) call.
      * @see ManageableEntity#getManageableServiceAccessorCall()
      */
     public String getManageableServiceAccessorCall()
@@ -3283,7 +3339,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The service full path of the entity.
      * @see ManageableEntity#getManageableServiceFullPath()
      */
     public String getManageableServiceFullPath()
@@ -3292,7 +3348,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The service name of the entity.
      * @see ManageableEntity#getManageableServiceName()
      */
     public String getManageableServiceName()
@@ -3319,7 +3375,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Other Manageable Entities which reference this entity.
      * @see ManageableEntity#getReferencingManageables()
      */
     public List<ManageableEntity> getReferencingManageables()
@@ -3328,7 +3384,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * The Actors (Roles) which can manage the Entity.
      * @see ManageableEntity#getUsers()
      */
     public List<ActorFacade> getUsers()
@@ -3337,7 +3393,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Create a create operation on the entity manager?
      * @see ManageableEntity#isCreate()
      */
     public boolean isCreate()
@@ -3346,7 +3402,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Create a delete operation on the entity manager?
      * @see ManageableEntity#isDelete()
      */
     public boolean isDelete()
@@ -3355,7 +3411,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Create a read operation on the entity manager?
      * @see ManageableEntity#isRead()
      */
     public boolean isRead()
@@ -3373,7 +3429,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Create an update operation on the entity manager?
      * @see ManageableEntity#isUpdate()
      */
     public boolean isUpdate()
@@ -3382,7 +3438,7 @@ public abstract class EJB3ManageableEntityFacadeLogic
     }
 
     /**
-     * 
+     * Returns a string with the attributes without wrapper types.
      * @see ManageableEntity#listManageableMembers(boolean withTypes)
      */
     public String listManageableMembers(boolean withTypes)

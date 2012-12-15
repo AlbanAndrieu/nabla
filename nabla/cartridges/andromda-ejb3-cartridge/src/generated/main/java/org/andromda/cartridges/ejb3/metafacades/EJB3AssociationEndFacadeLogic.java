@@ -125,8 +125,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetFetchType();
 
-    private String fetchType1a;
-    private boolean fetchType1aSet = false;
+    private transient String fetchType1a;
+    private transient boolean fetchType1aSet = false;
 
     /**
      * Get the fetch type for this association end(CMR).
@@ -140,19 +140,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getFetchType()
     {
-        String afetchType1a = this.fetchType1a;
+        String fetchType1a = this.fetchType1a;
         if (!this.fetchType1aSet)
         {
             // fetchType has no pre constraints
-            afetchType1a = handleGetFetchType();
+            fetchType1a = handleGetFetchType();
             // fetchType has no post constraints
-            this.fetchType1a = afetchType1a;
+            this.fetchType1a = fetchType1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fetchType1aSet = true;
             }
         }
-        return afetchType1a;
+        return fetchType1a;
     }
 
    /**
@@ -161,8 +161,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsOwning();
 
-    private boolean owning2a;
-    private boolean owning2aSet = false;
+    private transient boolean owning2a;
+    private transient boolean owning2aSet = false;
 
     /**
      * Determines if this association end if the owning side.  Used in one-to-one and many-to-many
@@ -171,19 +171,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isOwning()
     {
-        boolean aowning2a = this.owning2a;
+        boolean owning2a = this.owning2a;
         if (!this.owning2aSet)
         {
             // owning has no pre constraints
-            aowning2a = handleIsOwning();
+            owning2a = handleIsOwning();
             // owning has no post constraints
-            this.owning2a = aowning2a;
+            this.owning2a = owning2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.owning2aSet = true;
             }
         }
-        return aowning2a;
+        return owning2a;
     }
 
    /**
@@ -192,8 +192,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsOptional();
 
-    private boolean optional3a;
-    private boolean optional3aSet = false;
+    private transient boolean optional3a;
+    private transient boolean optional3aSet = false;
 
     /**
      * Sets the optional attribute on the annotation to determine if a null value is allowed.  If
@@ -204,19 +204,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isOptional()
     {
-        boolean aoptional3a = this.optional3a;
+        boolean optional3a = this.optional3a;
         if (!this.optional3aSet)
         {
             // optional has no pre constraints
-            aoptional3a = handleIsOptional();
+            optional3a = handleIsOptional();
             // optional has no post constraints
-            this.optional3a = aoptional3a;
+            this.optional3a = optional3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.optional3aSet = true;
             }
         }
-        return aoptional3a;
+        return optional3a;
     }
 
    /**
@@ -225,8 +225,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetOrderByClause();
 
-    private String orderByClause4a;
-    private boolean orderByClause4aSet = false;
+    private transient String orderByClause4a;
+    private transient boolean orderByClause4aSet = false;
 
     /**
      * The order by clause set to order the returning Collection object on the many side of an
@@ -235,19 +235,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getOrderByClause()
     {
-        String aorderByClause4a = this.orderByClause4a;
+        String orderByClause4a = this.orderByClause4a;
         if (!this.orderByClause4aSet)
         {
             // orderByClause has no pre constraints
-            aorderByClause4a = handleGetOrderByClause();
+            orderByClause4a = handleGetOrderByClause();
             // orderByClause has no post constraints
-            this.orderByClause4a = aorderByClause4a;
+            this.orderByClause4a = orderByClause4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.orderByClause4aSet = true;
             }
         }
-        return aorderByClause4a;
+        return orderByClause4a;
     }
 
    /**
@@ -256,8 +256,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetColumnDefinition();
 
-    private String columnDefinition5a;
-    private boolean columnDefinition5aSet = false;
+    private transient String columnDefinition5a;
+    private transient boolean columnDefinition5aSet = false;
 
     /**
      * Defines the column definition DDL used when creating table schema - use to override default
@@ -266,19 +266,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getColumnDefinition()
     {
-        String acolumnDefinition5a = this.columnDefinition5a;
+        String columnDefinition5a = this.columnDefinition5a;
         if (!this.columnDefinition5aSet)
         {
             // columnDefinition has no pre constraints
-            acolumnDefinition5a = handleGetColumnDefinition();
+            columnDefinition5a = handleGetColumnDefinition();
             // columnDefinition has no post constraints
-            this.columnDefinition5a = acolumnDefinition5a;
+            this.columnDefinition5a = columnDefinition5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.columnDefinition5aSet = true;
             }
         }
-        return acolumnDefinition5a;
+        return columnDefinition5a;
     }
 
    /**
@@ -287,8 +287,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsEager();
 
-    private boolean eager6a;
-    private boolean eager6aSet = false;
+    private transient boolean eager6a;
+    private transient boolean eager6aSet = false;
 
     /**
      * Determine if the fetch type for this entity relationship end is eager loading.
@@ -296,19 +296,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isEager()
     {
-        boolean aeager6a = this.eager6a;
+        boolean eager6a = this.eager6a;
         if (!this.eager6aSet)
         {
             // eager has no pre constraints
-            aeager6a = handleIsEager();
+            eager6a = handleIsEager();
             // eager has no post constraints
-            this.eager6a = aeager6a;
+            this.eager6a = eager6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.eager6aSet = true;
             }
         }
-        return aeager6a;
+        return eager6a;
     }
 
    /**
@@ -317,8 +317,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsLazy();
 
-    private boolean lazy7a;
-    private boolean lazy7aSet = false;
+    private transient boolean lazy7a;
+    private transient boolean lazy7aSet = false;
 
     /**
      * Determine if the fetch type for this entity relationship end is lazy loading.
@@ -326,19 +326,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isLazy()
     {
-        boolean alazy7a = this.lazy7a;
+        boolean lazy7a = this.lazy7a;
         if (!this.lazy7aSet)
         {
             // lazy has no pre constraints
-            alazy7a = handleIsLazy();
+            lazy7a = handleIsLazy();
             // lazy has no post constraints
-            this.lazy7a = alazy7a;
+            this.lazy7a = lazy7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.lazy7aSet = true;
             }
         }
-        return alazy7a;
+        return lazy7a;
     }
 
    /**
@@ -347,8 +347,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCascadeType();
 
-    private String cascadeType8a;
-    private boolean cascadeType8aSet = false;
+    private transient String cascadeType8a;
+    private transient boolean cascadeType8aSet = false;
 
     /**
      * Return the cascade type attributes as an array of this association end or null if no relevant
@@ -357,19 +357,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCascadeType()
     {
-        String acascadeType8a = this.cascadeType8a;
+        String cascadeType8a = this.cascadeType8a;
         if (!this.cascadeType8aSet)
         {
             // cascadeType has no pre constraints
-            acascadeType8a = handleGetCascadeType();
+            cascadeType8a = handleGetCascadeType();
             // cascadeType has no post constraints
-            this.cascadeType8a = acascadeType8a;
+            this.cascadeType8a = cascadeType8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cascadeType8aSet = true;
             }
         }
-        return acascadeType8a;
+        return cascadeType8a;
     }
 
    /**
@@ -378,8 +378,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCompositionCascadeType();
 
-    private String compositionCascadeType9a;
-    private boolean compositionCascadeType9aSet = false;
+    private transient String compositionCascadeType9a;
+    private transient boolean compositionCascadeType9aSet = false;
 
     /**
      * Returns the default cascade property specified for UML composition.
@@ -387,19 +387,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCompositionCascadeType()
     {
-        String acompositionCascadeType9a = this.compositionCascadeType9a;
+        String compositionCascadeType9a = this.compositionCascadeType9a;
         if (!this.compositionCascadeType9aSet)
         {
             // compositionCascadeType has no pre constraints
-            acompositionCascadeType9a = handleGetCompositionCascadeType();
+            compositionCascadeType9a = handleGetCompositionCascadeType();
             // compositionCascadeType has no post constraints
-            this.compositionCascadeType9a = acompositionCascadeType9a;
+            this.compositionCascadeType9a = compositionCascadeType9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.compositionCascadeType9aSet = true;
             }
         }
-        return acompositionCascadeType9a;
+        return compositionCascadeType9a;
     }
 
    /**
@@ -408,8 +408,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetAggregationCascadeType();
 
-    private String aggregationCascadeType10a;
-    private boolean aggregationCascadeType10aSet = false;
+    private transient String aggregationCascadeType10a;
+    private transient boolean aggregationCascadeType10aSet = false;
 
     /**
      * Returns the default cascade property specified for UML aggregation.
@@ -417,19 +417,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getAggregationCascadeType()
     {
-        String aaggregationCascadeType10a = this.aggregationCascadeType10a;
+        String aggregationCascadeType10a = this.aggregationCascadeType10a;
         if (!this.aggregationCascadeType10aSet)
         {
             // aggregationCascadeType has no pre constraints
-            aaggregationCascadeType10a = handleGetAggregationCascadeType();
+            aggregationCascadeType10a = handleGetAggregationCascadeType();
             // aggregationCascadeType has no post constraints
-            this.aggregationCascadeType10a = aaggregationCascadeType10a;
+            this.aggregationCascadeType10a = aggregationCascadeType10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.aggregationCascadeType10aSet = true;
             }
         }
-        return aaggregationCascadeType10a;
+        return aggregationCascadeType10a;
     }
 
    /**
@@ -438,8 +438,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCollectionType();
 
-    private String collectionType11a;
-    private boolean collectionType11aSet = false;
+    private transient String collectionType11a;
+    private transient boolean collectionType11aSet = false;
 
     /**
      * Returns the collection type defined on this association end using the
@@ -451,19 +451,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCollectionType()
     {
-        String acollectionType11a = this.collectionType11a;
+        String collectionType11a = this.collectionType11a;
         if (!this.collectionType11aSet)
         {
             // collectionType has no pre constraints
-            acollectionType11a = handleGetCollectionType();
+            collectionType11a = handleGetCollectionType();
             // collectionType has no post constraints
-            this.collectionType11a = acollectionType11a;
+            this.collectionType11a = collectionType11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionType11aSet = true;
             }
         }
-        return acollectionType11a;
+        return collectionType11a;
     }
 
    /**
@@ -472,8 +472,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsMap();
 
-    private boolean map12a;
-    private boolean map12aSet = false;
+    private transient boolean map12a;
+    private transient boolean map12aSet = false;
 
     /**
      * Returns true if the collection type is a map.  This will only be the case if the association
@@ -482,19 +482,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isMap()
     {
-        boolean amap12a = this.map12a;
+        boolean map12a = this.map12a;
         if (!this.map12aSet)
         {
             // map has no pre constraints
-            amap12a = handleIsMap();
+            map12a = handleIsMap();
             // map has no post constraints
-            this.map12a = amap12a;
+            this.map12a = map12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.map12aSet = true;
             }
         }
-        return amap12a;
+        return map12a;
     }
 
    /**
@@ -503,8 +503,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsList();
 
-    private boolean list13a;
-    private boolean list13aSet = false;
+    private transient boolean list13a;
+    private transient boolean list13aSet = false;
 
     /**
      * Returns true if the collection type is a list.  This will only be the case if the association
@@ -513,19 +513,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isList()
     {
-        boolean alist13a = this.list13a;
+        boolean list13a = this.list13a;
         if (!this.list13aSet)
         {
             // list has no pre constraints
-            alist13a = handleIsList();
+            list13a = handleIsList();
             // list has no post constraints
-            this.list13a = alist13a;
+            this.list13a = list13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.list13aSet = true;
             }
         }
-        return alist13a;
+        return list13a;
     }
 
    /**
@@ -534,8 +534,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsSet();
 
-    private boolean set14a;
-    private boolean set14aSet = false;
+    private transient boolean set14a;
+    private transient boolean set14aSet = false;
 
     /**
      * Returns true if the collection type is a set.  This will only be the case if the association
@@ -544,19 +544,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isSet()
     {
-        boolean aset14a = this.set14a;
+        boolean set14a = this.set14a;
         if (!this.set14aSet)
         {
             // set has no pre constraints
-            aset14a = handleIsSet();
+            set14a = handleIsSet();
             // set has no post constraints
-            this.set14a = aset14a;
+            this.set14a = set14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.set14aSet = true;
             }
         }
-        return aset14a;
+        return set14a;
     }
 
    /**
@@ -565,8 +565,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetLabelName();
 
-    private String labelName15a;
-    private boolean labelName15aSet = false;
+    private transient String labelName15a;
+    private transient boolean labelName15aSet = false;
 
     /**
      * Returns the label name for the association end used as the display attribute for manageable
@@ -575,19 +575,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getLabelName()
     {
-        String alabelName15a = this.labelName15a;
+        String labelName15a = this.labelName15a;
         if (!this.labelName15aSet)
         {
             // labelName has no pre constraints
-            alabelName15a = handleGetLabelName();
+            labelName15a = handleGetLabelName();
             // labelName has no post constraints
-            this.labelName15a = alabelName15a;
+            this.labelName15a = labelName15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.labelName15aSet = true;
             }
         }
-        return alabelName15a;
+        return labelName15a;
     }
 
    /**
@@ -596,8 +596,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetGetterLabelName();
 
-    private String getterLabelName16a;
-    private boolean getterLabelName16aSet = false;
+    private transient String getterLabelName16a;
+    private transient boolean getterLabelName16aSet = false;
 
     /**
      * Returns the getter name for the label name of the display attribute of the manageable entity.
@@ -605,19 +605,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getGetterLabelName()
     {
-        String agetterLabelName16a = this.getterLabelName16a;
+        String getterLabelName16a = this.getterLabelName16a;
         if (!this.getterLabelName16aSet)
         {
             // getterLabelName has no pre constraints
-            agetterLabelName16a = handleGetGetterLabelName();
+            getterLabelName16a = handleGetGetterLabelName();
             // getterLabelName has no post constraints
-            this.getterLabelName16a = agetterLabelName16a;
+            this.getterLabelName16a = getterLabelName16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.getterLabelName16aSet = true;
             }
         }
-        return agetterLabelName16a;
+        return getterLabelName16a;
     }
 
    /**
@@ -626,8 +626,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetSetterLabelName();
 
-    private String setterLabelName17a;
-    private boolean setterLabelName17aSet = false;
+    private transient String setterLabelName17a;
+    private transient boolean setterLabelName17aSet = false;
 
     /**
      * Returns the setter name for the label name of the display attribute of the manageable entity.
@@ -635,19 +635,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getSetterLabelName()
     {
-        String asetterLabelName17a = this.setterLabelName17a;
+        String setterLabelName17a = this.setterLabelName17a;
         if (!this.setterLabelName17aSet)
         {
             // setterLabelName has no pre constraints
-            asetterLabelName17a = handleGetSetterLabelName();
+            setterLabelName17a = handleGetSetterLabelName();
             // setterLabelName has no post constraints
-            this.setterLabelName17a = asetterLabelName17a;
+            this.setterLabelName17a = setterLabelName17a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.setterLabelName17aSet = true;
             }
         }
-        return asetterLabelName17a;
+        return setterLabelName17a;
     }
 
    /**
@@ -656,8 +656,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCacheType();
 
-    private String cacheType18a;
-    private boolean cacheType18aSet = false;
+    private transient String cacheType18a;
+    private transient boolean cacheType18aSet = false;
 
     /**
      * Provides the cache policy for the entity association Collection.
@@ -666,19 +666,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCacheType()
     {
-        String acacheType18a = this.cacheType18a;
+        String cacheType18a = this.cacheType18a;
         if (!this.cacheType18aSet)
         {
             // cacheType has no pre constraints
-            acacheType18a = handleGetCacheType();
+            cacheType18a = handleGetCacheType();
             // cacheType has no post constraints
-            this.cacheType18a = acacheType18a;
+            this.cacheType18a = cacheType18a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.cacheType18aSet = true;
             }
         }
-        return acacheType18a;
+        return cacheType18a;
     }
 
    /**
@@ -687,8 +687,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsAssociationCacheEnabled();
 
-    private boolean associationCacheEnabled19a;
-    private boolean associationCacheEnabled19aSet = false;
+    private transient boolean associationCacheEnabled19a;
+    private transient boolean associationCacheEnabled19aSet = false;
 
     /**
      * Returns true if association caching has been enabled via namespace property
@@ -697,19 +697,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isAssociationCacheEnabled()
     {
-        boolean aassociationCacheEnabled19a = this.associationCacheEnabled19a;
+        boolean associationCacheEnabled19a = this.associationCacheEnabled19a;
         if (!this.associationCacheEnabled19aSet)
         {
             // associationCacheEnabled has no pre constraints
-            aassociationCacheEnabled19a = handleIsAssociationCacheEnabled();
+            associationCacheEnabled19a = handleIsAssociationCacheEnabled();
             // associationCacheEnabled has no post constraints
-            this.associationCacheEnabled19a = aassociationCacheEnabled19a;
+            this.associationCacheEnabled19a = associationCacheEnabled19a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.associationCacheEnabled19aSet = true;
             }
         }
-        return aassociationCacheEnabled19a;
+        return associationCacheEnabled19a;
     }
 
    /**
@@ -718,8 +718,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCollectionTypeImplementation();
 
-    private String collectionTypeImplementation20a;
-    private boolean collectionTypeImplementation20aSet = false;
+    private transient String collectionTypeImplementation20a;
+    private transient boolean collectionTypeImplementation20aSet = false;
 
     /**
      * The actual implementation of the collection type.
@@ -727,19 +727,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCollectionTypeImplementation()
     {
-        String acollectionTypeImplementation20a = this.collectionTypeImplementation20a;
+        String collectionTypeImplementation20a = this.collectionTypeImplementation20a;
         if (!this.collectionTypeImplementation20aSet)
         {
             // collectionTypeImplementation has no pre constraints
-            acollectionTypeImplementation20a = handleGetCollectionTypeImplementation();
+            collectionTypeImplementation20a = handleGetCollectionTypeImplementation();
             // collectionTypeImplementation has no post constraints
-            this.collectionTypeImplementation20a = acollectionTypeImplementation20a;
+            this.collectionTypeImplementation20a = collectionTypeImplementation20a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionTypeImplementation20aSet = true;
             }
         }
-        return acollectionTypeImplementation20a;
+        return collectionTypeImplementation20a;
     }
 
    /**
@@ -748,8 +748,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsCollection();
 
-    private boolean collection21a;
-    private boolean collection21aSet = false;
+    private transient boolean collection21a;
+    private transient boolean collection21aSet = false;
 
     /**
      * Returns true if the collection type is a collection.  This will only be the case if the
@@ -758,19 +758,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isCollection()
     {
-        boolean acollection21a = this.collection21a;
+        boolean collection21a = this.collection21a;
         if (!this.collection21aSet)
         {
             // collection has no pre constraints
-            acollection21a = handleIsCollection();
+            collection21a = handleIsCollection();
             // collection has no post constraints
-            this.collection21a = acollection21a;
+            this.collection21a = collection21a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collection21aSet = true;
             }
         }
-        return acollection21a;
+        return collection21a;
     }
 
    /**
@@ -779,8 +779,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCollectionIndexType();
 
-    private String collectionIndexType22a;
-    private boolean collectionIndexType22aSet = false;
+    private transient String collectionIndexType22a;
+    private transient boolean collectionIndexType22aSet = false;
 
     /**
      * this will only apply for Maps; it will return the type of the attribute specified on the
@@ -789,19 +789,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCollectionIndexType()
     {
-        String acollectionIndexType22a = this.collectionIndexType22a;
+        String collectionIndexType22a = this.collectionIndexType22a;
         if (!this.collectionIndexType22aSet)
         {
             // collectionIndexType has no pre constraints
-            acollectionIndexType22a = handleGetCollectionIndexType();
+            collectionIndexType22a = handleGetCollectionIndexType();
             // collectionIndexType has no post constraints
-            this.collectionIndexType22a = acollectionIndexType22a;
+            this.collectionIndexType22a = collectionIndexType22a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionIndexType22aSet = true;
             }
         }
-        return acollectionIndexType22a;
+        return collectionIndexType22a;
     }
 
    /**
@@ -810,8 +810,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCollectionIndexName();
 
-    private String collectionIndexName23a;
-    private boolean collectionIndexName23aSet = false;
+    private transient String collectionIndexName23a;
+    private transient boolean collectionIndexName23aSet = false;
 
     /**
      * Returns the association end collection index name.
@@ -819,19 +819,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCollectionIndexName()
     {
-        String acollectionIndexName23a = this.collectionIndexName23a;
+        String collectionIndexName23a = this.collectionIndexName23a;
         if (!this.collectionIndexName23aSet)
         {
             // collectionIndexName has no pre constraints
-            acollectionIndexName23a = handleGetCollectionIndexName();
+            collectionIndexName23a = handleGetCollectionIndexName();
             // collectionIndexName has no post constraints
-            this.collectionIndexName23a = acollectionIndexName23a;
+            this.collectionIndexName23a = collectionIndexName23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionIndexName23aSet = true;
             }
         }
-        return acollectionIndexName23a;
+        return collectionIndexName23a;
     }
 
    /**
@@ -840,8 +840,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetDefaultCollectionInterface();
 
-    private String defaultCollectionInterface24a;
-    private boolean defaultCollectionInterface24aSet = false;
+    private transient String defaultCollectionInterface24a;
+    private transient boolean defaultCollectionInterface24aSet = false;
 
     /**
      * Returns the default collection interface from namespace descriptor.
@@ -849,19 +849,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getDefaultCollectionInterface()
     {
-        String adefaultCollectionInterface24a = this.defaultCollectionInterface24a;
+        String defaultCollectionInterface24a = this.defaultCollectionInterface24a;
         if (!this.defaultCollectionInterface24aSet)
         {
             // defaultCollectionInterface has no pre constraints
-            adefaultCollectionInterface24a = handleGetDefaultCollectionInterface();
+            defaultCollectionInterface24a = handleGetDefaultCollectionInterface();
             // defaultCollectionInterface has no post constraints
-            this.defaultCollectionInterface24a = adefaultCollectionInterface24a;
+            this.defaultCollectionInterface24a = defaultCollectionInterface24a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.defaultCollectionInterface24aSet = true;
             }
         }
-        return adefaultCollectionInterface24a;
+        return defaultCollectionInterface24a;
     }
 
    /**
@@ -870,8 +870,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsCollectionInterfaceSortedSet();
 
-    private boolean collectionInterfaceSortedSet25a;
-    private boolean collectionInterfaceSortedSet25aSet = false;
+    private transient boolean collectionInterfaceSortedSet25a;
+    private transient boolean collectionInterfaceSortedSet25aSet = false;
 
     /**
      * Returns true if the collection interface for this association end is java.util.SortedSet.
@@ -879,19 +879,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isCollectionInterfaceSortedSet()
     {
-        boolean acollectionInterfaceSortedSet25a = this.collectionInterfaceSortedSet25a;
+        boolean collectionInterfaceSortedSet25a = this.collectionInterfaceSortedSet25a;
         if (!this.collectionInterfaceSortedSet25aSet)
         {
             // collectionInterfaceSortedSet has no pre constraints
-            acollectionInterfaceSortedSet25a = handleIsCollectionInterfaceSortedSet();
+            collectionInterfaceSortedSet25a = handleIsCollectionInterfaceSortedSet();
             // collectionInterfaceSortedSet has no post constraints
-            this.collectionInterfaceSortedSet25a = acollectionInterfaceSortedSet25a;
+            this.collectionInterfaceSortedSet25a = collectionInterfaceSortedSet25a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionInterfaceSortedSet25aSet = true;
             }
         }
-        return acollectionInterfaceSortedSet25a;
+        return collectionInterfaceSortedSet25a;
     }
 
    /**
@@ -900,8 +900,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetCollectionTypeImplemenationClass();
 
-    private String collectionTypeImplemenationClass26a;
-    private boolean collectionTypeImplemenationClass26aSet = false;
+    private transient String collectionTypeImplemenationClass26a;
+    private transient boolean collectionTypeImplemenationClass26aSet = false;
 
     /**
      * The fully qualified class name of the collection implementation type.
@@ -909,19 +909,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getCollectionTypeImplemenationClass()
     {
-        String acollectionTypeImplemenationClass26a = this.collectionTypeImplemenationClass26a;
+        String collectionTypeImplemenationClass26a = this.collectionTypeImplemenationClass26a;
         if (!this.collectionTypeImplemenationClass26aSet)
         {
             // collectionTypeImplemenationClass has no pre constraints
-            acollectionTypeImplemenationClass26a = handleGetCollectionTypeImplemenationClass();
+            collectionTypeImplemenationClass26a = handleGetCollectionTypeImplemenationClass();
             // collectionTypeImplemenationClass has no post constraints
-            this.collectionTypeImplemenationClass26a = acollectionTypeImplemenationClass26a;
+            this.collectionTypeImplemenationClass26a = collectionTypeImplemenationClass26a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionTypeImplemenationClass26aSet = true;
             }
         }
-        return acollectionTypeImplemenationClass26a;
+        return collectionTypeImplemenationClass26a;
     }
 
    /**
@@ -930,8 +930,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract String handleGetHibernateCascadeType();
 
-    private String hibernateCascadeType27a;
-    private boolean hibernateCascadeType27aSet = false;
+    private transient String hibernateCascadeType27a;
+    private transient boolean hibernateCascadeType27aSet = false;
 
     /**
      * Returns the Hibernate cascade attribute of this association end.
@@ -939,19 +939,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final String getHibernateCascadeType()
     {
-        String ahibernateCascadeType27a = this.hibernateCascadeType27a;
+        String hibernateCascadeType27a = this.hibernateCascadeType27a;
         if (!this.hibernateCascadeType27aSet)
         {
             // hibernateCascadeType has no pre constraints
-            ahibernateCascadeType27a = handleGetHibernateCascadeType();
+            hibernateCascadeType27a = handleGetHibernateCascadeType();
             // hibernateCascadeType has no post constraints
-            this.hibernateCascadeType27a = ahibernateCascadeType27a;
+            this.hibernateCascadeType27a = hibernateCascadeType27a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hibernateCascadeType27aSet = true;
             }
         }
-        return ahibernateCascadeType27a;
+        return hibernateCascadeType27a;
     }
 
    /**
@@ -960,8 +960,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsHibernateCascadeExists();
 
-    private boolean hibernateCascadeExists28a;
-    private boolean hibernateCascadeExists28aSet = false;
+    private transient boolean hibernateCascadeExists28a;
+    private transient boolean hibernateCascadeExists28aSet = false;
 
     /**
      * Returns true if a Hibernate cascade attribute is defined for this association end.
@@ -969,19 +969,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isHibernateCascadeExists()
     {
-        boolean ahibernateCascadeExists28a = this.hibernateCascadeExists28a;
+        boolean hibernateCascadeExists28a = this.hibernateCascadeExists28a;
         if (!this.hibernateCascadeExists28aSet)
         {
             // hibernateCascadeExists has no pre constraints
-            ahibernateCascadeExists28a = handleIsHibernateCascadeExists();
+            hibernateCascadeExists28a = handleIsHibernateCascadeExists();
             // hibernateCascadeExists has no post constraints
-            this.hibernateCascadeExists28a = ahibernateCascadeExists28a;
+            this.hibernateCascadeExists28a = hibernateCascadeExists28a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hibernateCascadeExists28aSet = true;
             }
         }
-        return ahibernateCascadeExists28a;
+        return hibernateCascadeExists28a;
     }
 
    /**
@@ -990,8 +990,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     */
     protected abstract boolean handleIsForeignKeyConstraintDefined();
 
-    private boolean foreignKeyConstraintDefined29a;
-    private boolean foreignKeyConstraintDefined29aSet = false;
+    private transient boolean foreignKeyConstraintDefined29a;
+    private transient boolean foreignKeyConstraintDefined29aSet = false;
 
     /**
      * Returns true if a foreign key constraint has been defined explicityly by the user.  Otherwise
@@ -1003,19 +1003,19 @@ public abstract class EJB3AssociationEndFacadeLogic
      */
     public final boolean isForeignKeyConstraintDefined()
     {
-        boolean aforeignKeyConstraintDefined29a = this.foreignKeyConstraintDefined29a;
+        boolean foreignKeyConstraintDefined29a = this.foreignKeyConstraintDefined29a;
         if (!this.foreignKeyConstraintDefined29aSet)
         {
             // foreignKeyConstraintDefined has no pre constraints
-            aforeignKeyConstraintDefined29a = handleIsForeignKeyConstraintDefined();
+            foreignKeyConstraintDefined29a = handleIsForeignKeyConstraintDefined();
             // foreignKeyConstraintDefined has no post constraints
-            this.foreignKeyConstraintDefined29a = aforeignKeyConstraintDefined29a;
+            this.foreignKeyConstraintDefined29a = foreignKeyConstraintDefined29a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.foreignKeyConstraintDefined29aSet = true;
             }
         }
-        return aforeignKeyConstraintDefined29a;
+        return foreignKeyConstraintDefined29a;
     }
 
     // ---------------- business methods ----------------------
@@ -1031,6 +1031,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     /**
      * Returns true if the tagged value with the specified name exists for the association end.
      * @param name String
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3AssociationEndFacade.hasTaggedValue(name)
      * @return handleHasTaggedValue(name)
      */
     public boolean hasTaggedValue(String name)
@@ -1102,6 +1104,8 @@ public abstract class EJB3AssociationEndFacadeLogic
      * Returns the name of the foreign key to use for name property of JoinColumn/InverseJoinColumn
      * used in JoinTable for One-To-Many and Many-To-Many relationships.
      * @param suffix String
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3AssociationEndFacade.getForeignKeyName(suffix)
      * @return handleGetForeignKeyName(suffix)
      */
     public String getForeignKeyName(String suffix)
@@ -1397,6 +1401,15 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
+     * Indicates if this associationEnd is 'static', meaning it has a classifier scope.
+     * @see AssociationEndFacade#isStatic()
+     */
+    public boolean isStatic()
+    {
+        return this.getSuperEntityAssociationEnd().isStatic();
+    }
+
+    /**
      * UML2: If the association attribute is unique within the Collection type. UML14 always returns
      * false. Unique+Ordered determines the implementation Collection type. Default=false.
      * @see AssociationEndFacade#isUnique()
@@ -1470,6 +1483,15 @@ public abstract class EJB3AssociationEndFacadeLogic
     public boolean isForeignIdentifier()
     {
         return this.getSuperEntityAssociationEnd().isForeignIdentifier();
+    }
+
+    /**
+     * True if this association is an identifier for its entity.
+     * @see EntityAssociationEnd#isIdentifier()
+     */
+    public boolean isIdentifier()
+    {
+        return this.getSuperEntityAssociationEnd().isIdentifier();
     }
 
     /**
@@ -1573,7 +1595,9 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1644,7 +1668,7 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1653,7 +1677,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1766,7 +1791,7 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1784,7 +1809,7 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1793,7 +1818,7 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1849,7 +1874,8 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1885,12 +1911,24 @@ public abstract class EJB3AssociationEndFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntityAssociationEnd().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntityAssociationEnd().isValidIdentifierName();
     }
 
     /**

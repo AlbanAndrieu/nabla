@@ -7,7 +7,8 @@ package org.andromda.cartridges.ejb3.metafacades;
 import org.andromda.metafacades.uml.ManageableEntityAssociationEnd;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -22,25 +23,29 @@ public interface EJB3ManageableEntityAssociationEndFacade
     public boolean isEJB3ManageableEntityAssociationEndFacadeMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoGetterName
      * @return String
      */
     public String getDaoGetterName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoName
      * @return String
      */
     public String getDaoName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoReferenceName
      * @return String
      */
     public String getDaoReferenceName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.daoSetterName
      * @return String
      */
     public String getDaoSetterName();

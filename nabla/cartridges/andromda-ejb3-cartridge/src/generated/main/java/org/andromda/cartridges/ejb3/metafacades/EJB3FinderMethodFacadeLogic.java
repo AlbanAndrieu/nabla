@@ -125,8 +125,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract String handleGetQuery();
 
-    private String query1a;
-    private boolean query1aSet = false;
+    private transient String query1a;
+    private transient boolean query1aSet = false;
 
     /**
      * The query string for this EJB entity finder.
@@ -134,19 +134,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final String getQuery()
     {
-        String aquery1a = this.query1a;
+        String query1a = this.query1a;
         if (!this.query1aSet)
         {
             // query has no pre constraints
-            aquery1a = handleGetQuery();
+            query1a = handleGetQuery();
             // query has no post constraints
-            this.query1a = aquery1a;
+            this.query1a = query1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.query1aSet = true;
             }
         }
-        return aquery1a;
+        return query1a;
     }
 
    /**
@@ -155,8 +155,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract String handleGetTransactionType();
 
-    private String transactionType2a;
-    private boolean transactionType2aSet = false;
+    private transient String transactionType2a;
+    private transient boolean transactionType2aSet = false;
 
     /**
      * Gets the transaction type for this finder (i.e. REQUIRED, etc)
@@ -164,19 +164,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final String getTransactionType()
     {
-        String atransactionType2a = this.transactionType2a;
+        String transactionType2a = this.transactionType2a;
         if (!this.transactionType2aSet)
         {
             // transactionType has no pre constraints
-            atransactionType2a = handleGetTransactionType();
+            transactionType2a = handleGetTransactionType();
             // transactionType has no post constraints
-            this.transactionType2a = atransactionType2a;
+            this.transactionType2a = transactionType2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.transactionType2aSet = true;
             }
         }
-        return atransactionType2a;
+        return transactionType2a;
     }
 
    /**
@@ -185,8 +185,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract boolean handleIsUseNamedParameters();
 
-    private boolean useNamedParameters3a;
-    private boolean useNamedParameters3aSet = false;
+    private transient boolean useNamedParameters3a;
+    private transient boolean useNamedParameters3aSet = false;
 
     /**
      * Indicates whether or not the query parameters used for the body of the finder should be named
@@ -195,19 +195,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final boolean isUseNamedParameters()
     {
-        boolean auseNamedParameters3a = this.useNamedParameters3a;
+        boolean useNamedParameters3a = this.useNamedParameters3a;
         if (!this.useNamedParameters3aSet)
         {
             // useNamedParameters has no pre constraints
-            auseNamedParameters3a = handleIsUseNamedParameters();
+            useNamedParameters3a = handleIsUseNamedParameters();
             // useNamedParameters has no post constraints
-            this.useNamedParameters3a = auseNamedParameters3a;
+            this.useNamedParameters3a = useNamedParameters3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.useNamedParameters3aSet = true;
             }
         }
-        return auseNamedParameters3a;
+        return useNamedParameters3a;
     }
 
    /**
@@ -216,8 +216,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract boolean handleIsUseQueryCache();
 
-    private boolean useQueryCache4a;
-    private boolean useQueryCache4aSet = false;
+    private transient boolean useQueryCache4a;
+    private transient boolean useQueryCache4aSet = false;
 
     /**
      * Returns true if this query has the andromda_ejb_query_useCache tagged value true or the
@@ -226,19 +226,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final boolean isUseQueryCache()
     {
-        boolean auseQueryCache4a = this.useQueryCache4a;
+        boolean useQueryCache4a = this.useQueryCache4a;
         if (!this.useQueryCache4aSet)
         {
             // useQueryCache has no pre constraints
-            auseQueryCache4a = handleIsUseQueryCache();
+            useQueryCache4a = handleIsUseQueryCache();
             // useQueryCache has no post constraints
-            this.useQueryCache4a = auseQueryCache4a;
+            this.useQueryCache4a = useQueryCache4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.useQueryCache4aSet = true;
             }
         }
-        return auseQueryCache4a;
+        return useQueryCache4a;
     }
 
    /**
@@ -247,8 +247,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     */
     protected abstract boolean handleIsNamedQuery();
 
-    private boolean namedQuery5a;
-    private boolean namedQuery5aSet = false;
+    private transient boolean namedQuery5a;
+    private transient boolean namedQuery5aSet = false;
 
     /**
      * Returns true if query is specified using OCL or created by AndroMDA itself.  Return false if
@@ -257,19 +257,19 @@ public abstract class EJB3FinderMethodFacadeLogic
      */
     public final boolean isNamedQuery()
     {
-        boolean anamedQuery5a = this.namedQuery5a;
+        boolean namedQuery5a = this.namedQuery5a;
         if (!this.namedQuery5aSet)
         {
             // namedQuery has no pre constraints
-            anamedQuery5a = handleIsNamedQuery();
+            namedQuery5a = handleIsNamedQuery();
             // namedQuery has no post constraints
-            this.namedQuery5a = anamedQuery5a;
+            this.namedQuery5a = namedQuery5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.namedQuery5aSet = true;
             }
         }
-        return anamedQuery5a;
+        return namedQuery5a;
     }
 
     // ---------------- business methods ----------------------
@@ -420,7 +420,9 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -491,7 +493,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -500,7 +502,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -613,7 +616,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -631,7 +634,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -640,7 +643,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -696,7 +699,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -732,12 +736,24 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEntityQueryOperation().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEntityQueryOperation().isValidIdentifierName();
     }
 
     /**
@@ -800,7 +816,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * A comma separated list of all types of each argument, in order.
      * @see OperationFacade#getArgumentTypeNames()
      */
     public String getArgumentTypeNames()
@@ -809,7 +825,9 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Specification of an argument used to pass information into or out of an invocation of a
+     * behavioral feature. Parameters are allowed to be treated as connectable elements. Parameters
+     * have support for streaming, exceptions, and parameter sets.
      * @see OperationFacade#getArguments()
      */
     public Collection<ParameterFacade> getArguments()
@@ -818,7 +836,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Constructs the operation call with the operation name.
      * @see OperationFacade#getCall()
      */
     public String getCall()
@@ -913,7 +931,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Return all parameters for the operation, including the return parameter.
      * @see OperationFacade#getParameters()
      */
     public Collection<ParameterFacade> getParameters()
@@ -985,7 +1003,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * The operation return type parameter.
      * @see OperationFacade#getReturnType()
      */
     public ClassifierFacade getReturnType()
@@ -994,7 +1012,8 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * Return the operation signature, including public/protested abstract returnType name plus
+     * argument type and name.
      * @see OperationFacade#getSignature()
      */
     public String getSignature()
@@ -1053,7 +1072,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * True is the operation is abstract.
      * @see OperationFacade#isAbstract()
      */
     public boolean isAbstract()
@@ -1149,7 +1168,7 @@ public abstract class EJB3FinderMethodFacadeLogic
     }
 
     /**
-     * 
+     * True is the operation is static (only a single instance can be instantiated).
      * @see OperationFacade#isStatic()
      */
     public boolean isStatic()

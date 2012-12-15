@@ -5,7 +5,7 @@
 package org.andromda.cartridges.ejb3.metafacades;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -97,7 +97,8 @@ public interface EJB3WebServiceFacade
     public boolean isRpcStyle();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacade.webServiceOperationsExist
      * @return boolean
      */
     public boolean isWebServiceOperationsExist();

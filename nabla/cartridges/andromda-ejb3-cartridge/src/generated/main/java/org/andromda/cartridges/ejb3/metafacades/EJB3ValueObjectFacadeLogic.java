@@ -129,8 +129,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     */
     protected abstract boolean handleIsSeamComponent();
 
-    private boolean seamComponent1a;
-    private boolean seamComponent1aSet = false;
+    private transient boolean seamComponent1a;
+    private transient boolean seamComponent1aSet = false;
 
     /**
      * Returns true if this value object has the <<Seam>> stereotype modeled indicating it is a Seam
@@ -139,19 +139,19 @@ public abstract class EJB3ValueObjectFacadeLogic
      */
     public final boolean isSeamComponent()
     {
-        boolean aseamComponent1a = this.seamComponent1a;
+        boolean seamComponent1a = this.seamComponent1a;
         if (!this.seamComponent1aSet)
         {
             // seamComponent has no pre constraints
-            aseamComponent1a = handleIsSeamComponent();
+            seamComponent1a = handleIsSeamComponent();
             // seamComponent has no post constraints
-            this.seamComponent1a = aseamComponent1a;
+            this.seamComponent1a = seamComponent1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamComponent1aSet = true;
             }
         }
-        return aseamComponent1a;
+        return seamComponent1a;
     }
 
    /**
@@ -160,8 +160,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     */
     protected abstract String handleGetSeamComponentName();
 
-    private String seamComponentName2a;
-    private boolean seamComponentName2aSet = false;
+    private transient String seamComponentName2a;
+    private transient boolean seamComponentName2aSet = false;
 
     /**
      * Returns the Seam component name for the class.
@@ -169,19 +169,19 @@ public abstract class EJB3ValueObjectFacadeLogic
      */
     public final String getSeamComponentName()
     {
-        String aseamComponentName2a = this.seamComponentName2a;
+        String seamComponentName2a = this.seamComponentName2a;
         if (!this.seamComponentName2aSet)
         {
             // seamComponentName has no pre constraints
-            aseamComponentName2a = handleGetSeamComponentName();
+            seamComponentName2a = handleGetSeamComponentName();
             // seamComponentName has no post constraints
-            this.seamComponentName2a = aseamComponentName2a;
+            this.seamComponentName2a = seamComponentName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamComponentName2aSet = true;
             }
         }
-        return aseamComponentName2a;
+        return seamComponentName2a;
     }
 
    /**
@@ -190,8 +190,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     */
     protected abstract String handleGetSeamComponentScopeType();
 
-    private String seamComponentScopeType3a;
-    private boolean seamComponentScopeType3aSet = false;
+    private transient String seamComponentScopeType3a;
+    private transient boolean seamComponentScopeType3aSet = false;
 
     /**
      * Returns the seam component scope type if one is specified.
@@ -199,19 +199,19 @@ public abstract class EJB3ValueObjectFacadeLogic
      */
     public final String getSeamComponentScopeType()
     {
-        String aseamComponentScopeType3a = this.seamComponentScopeType3a;
+        String seamComponentScopeType3a = this.seamComponentScopeType3a;
         if (!this.seamComponentScopeType3aSet)
         {
             // seamComponentScopeType has no pre constraints
-            aseamComponentScopeType3a = handleGetSeamComponentScopeType();
+            seamComponentScopeType3a = handleGetSeamComponentScopeType();
             // seamComponentScopeType has no post constraints
-            this.seamComponentScopeType3a = aseamComponentScopeType3a;
+            this.seamComponentScopeType3a = seamComponentScopeType3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.seamComponentScopeType3aSet = true;
             }
         }
-        return aseamComponentScopeType3a;
+        return seamComponentScopeType3a;
     }
 
     /**
@@ -438,7 +438,7 @@ public abstract class EJB3ValueObjectFacadeLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperValueObject().getNavigableConnectingEnds();
     }
@@ -584,7 +584,7 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -868,7 +868,7 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -968,7 +968,9 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1039,7 +1041,7 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1048,7 +1050,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1161,7 +1164,7 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1179,7 +1182,7 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1188,7 +1191,7 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1244,7 +1247,8 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1280,12 +1284,24 @@ public abstract class EJB3ValueObjectFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperValueObject().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperValueObject().isValidIdentifierName();
     }
 
     /**

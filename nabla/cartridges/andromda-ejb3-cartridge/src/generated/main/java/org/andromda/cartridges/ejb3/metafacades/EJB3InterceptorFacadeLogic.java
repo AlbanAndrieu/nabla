@@ -31,7 +31,7 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3InterceptorFacade
  * MetafacadeLogic for EJB3InterceptorFacade
  *
  * @see EJB3InterceptorFacade
@@ -131,8 +131,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract String handleGetInterceptorName();
 
-    private String interceptorName1a;
-    private boolean interceptorName1aSet = false;
+    private transient String interceptorName1a;
+    private transient boolean interceptorName1aSet = false;
 
     /**
      * Returns the interceptor class name.
@@ -140,19 +140,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final String getInterceptorName()
     {
-        String ainterceptorName1a = this.interceptorName1a;
+        String interceptorName1a = this.interceptorName1a;
         if (!this.interceptorName1aSet)
         {
             // interceptorName has no pre constraints
-            ainterceptorName1a = handleGetInterceptorName();
+            interceptorName1a = handleGetInterceptorName();
             // interceptorName has no post constraints
-            this.interceptorName1a = ainterceptorName1a;
+            this.interceptorName1a = interceptorName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.interceptorName1aSet = true;
             }
         }
-        return ainterceptorName1a;
+        return interceptorName1a;
     }
 
    /**
@@ -161,8 +161,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedInterceptorName();
 
-    private String fullyQualifiedInterceptorName2a;
-    private boolean fullyQualifiedInterceptorName2aSet = false;
+    private transient String fullyQualifiedInterceptorName2a;
+    private transient boolean fullyQualifiedInterceptorName2aSet = false;
 
     /**
      * Returns the fully qualified interceptor class name.
@@ -170,19 +170,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final String getFullyQualifiedInterceptorName()
     {
-        String afullyQualifiedInterceptorName2a = this.fullyQualifiedInterceptorName2a;
+        String fullyQualifiedInterceptorName2a = this.fullyQualifiedInterceptorName2a;
         if (!this.fullyQualifiedInterceptorName2aSet)
         {
             // fullyQualifiedInterceptorName has no pre constraints
-            afullyQualifiedInterceptorName2a = handleGetFullyQualifiedInterceptorName();
+            fullyQualifiedInterceptorName2a = handleGetFullyQualifiedInterceptorName();
             // fullyQualifiedInterceptorName has no post constraints
-            this.fullyQualifiedInterceptorName2a = afullyQualifiedInterceptorName2a;
+            this.fullyQualifiedInterceptorName2a = fullyQualifiedInterceptorName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedInterceptorName2aSet = true;
             }
         }
-        return afullyQualifiedInterceptorName2a;
+        return fullyQualifiedInterceptorName2a;
     }
 
    /**
@@ -191,8 +191,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract Collection handleGetInterceptorReferences();
 
-    private Collection interceptorReferences3a;
-    private boolean interceptorReferences3aSet = false;
+    private transient Collection interceptorReferences3a;
+    private transient boolean interceptorReferences3aSet = false;
 
     /**
      * Returns the Collection of target elements from this interceptor class where  the target class
@@ -201,19 +201,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final Collection getInterceptorReferences()
     {
-        Collection ainterceptorReferences3a = this.interceptorReferences3a;
+        Collection interceptorReferences3a = this.interceptorReferences3a;
         if (!this.interceptorReferences3aSet)
         {
             // interceptorReferences has no pre constraints
-            ainterceptorReferences3a = handleGetInterceptorReferences();
+            interceptorReferences3a = handleGetInterceptorReferences();
             // interceptorReferences has no post constraints
-            this.interceptorReferences3a = ainterceptorReferences3a;
+            this.interceptorReferences3a = interceptorReferences3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.interceptorReferences3aSet = true;
             }
         }
-        return ainterceptorReferences3a;
+        return interceptorReferences3a;
     }
 
    /**
@@ -222,8 +222,8 @@ public abstract class EJB3InterceptorFacadeLogic
     */
     protected abstract boolean handleIsDefaultInterceptor();
 
-    private boolean defaultInterceptor4a;
-    private boolean defaultInterceptor4aSet = false;
+    private transient boolean defaultInterceptor4a;
+    private transient boolean defaultInterceptor4aSet = false;
 
     /**
      * Returns true if this interceptor is a default interceptor.
@@ -231,19 +231,19 @@ public abstract class EJB3InterceptorFacadeLogic
      */
     public final boolean isDefaultInterceptor()
     {
-        boolean adefaultInterceptor4a = this.defaultInterceptor4a;
+        boolean defaultInterceptor4a = this.defaultInterceptor4a;
         if (!this.defaultInterceptor4aSet)
         {
             // defaultInterceptor has no pre constraints
-            adefaultInterceptor4a = handleIsDefaultInterceptor();
+            defaultInterceptor4a = handleIsDefaultInterceptor();
             // defaultInterceptor has no post constraints
-            this.defaultInterceptor4a = adefaultInterceptor4a;
+            this.defaultInterceptor4a = defaultInterceptor4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.defaultInterceptor4aSet = true;
             }
         }
-        return adefaultInterceptor4a;
+        return defaultInterceptor4a;
     }
 
     /**
@@ -470,7 +470,7 @@ public abstract class EJB3InterceptorFacadeLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperService().getNavigableConnectingEnds();
     }
@@ -616,7 +616,7 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -900,7 +900,7 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -1000,7 +1000,9 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1071,7 +1073,7 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1080,7 +1082,8 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1193,7 +1196,7 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1211,7 +1214,7 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1220,7 +1223,7 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1276,7 +1279,8 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1312,12 +1316,24 @@ public abstract class EJB3InterceptorFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperService().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperService().isValidIdentifierName();
     }
 
     /**

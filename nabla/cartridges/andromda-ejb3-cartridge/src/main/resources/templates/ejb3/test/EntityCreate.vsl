@@ -115,8 +115,9 @@ public class ${entity.entityName}Create
 #foreach ($property in $properties)
 ##        // $property.type.fullyQualifiedName $property.fullyQualifiedName transient=$property.transient identifier=$property.identifier usingAssignedIdentifier=$entity.usingAssignedIdentifier many=$property.many property=$property type=$property.type
 ##        // Transient=$property.hasStereotype("Transient") stereotypes=$property.stereotypeNames.size() #foreach($name in $property.stereotypeNames)$name #end
-#if (!$property.transient && !$property.readOnly && !$property.identifier)
+#if (!$property.transient && !$property.readOnly && !$property.identifier && !$property.isStatic())
         // Updatable property
+        //#if (!$property.transient && $property.version)public#else#**#private#end #if ($stringUtils.isNotBlank($property.lobType))${property.lobType}#else${property.getterSetterTypeName}#end $property.name;
        #if ($property.type.abstract) //#end entity.${property.setterName}($umlUtils.createConstructor($property, $property.many, $entity));
 #end
 #end
@@ -166,7 +167,17 @@ public class ${entity.entityName}Create
      * @param em EntityManager used to findAll
      * @return ${entity.entityName}
      */
-    public static List<${entity.entityName}> findAll(EntityManager em)
+#if($entity.requiresGeneralizationMapping && !$entity.generalization.interface && !$entity.generalization.abstract)
+    @SuppressWarnings({"rawtypes", "unchecked"})
+#end
+    public static List## no newline
+#if($entity.requiresGeneralizationMapping && !$entity.generalization.interface && !$entity.generalization.abstract)
+##if($entity.embeddableSuperclassGeneralizationExists && $entity.generalization.entityImplementationRequired)
+## no newline
+#else
+<${entity.entityName}>## no newline
+#end
+ findAll(EntityManager em)
     {
         //EntityManager em = JPAJUnitAncestor.createEntityManager();
         TypedQuery<${entity.entityName}> query = em.createNamedQuery("${entity.entityName}.findAll", ${entity.entityName}.class);

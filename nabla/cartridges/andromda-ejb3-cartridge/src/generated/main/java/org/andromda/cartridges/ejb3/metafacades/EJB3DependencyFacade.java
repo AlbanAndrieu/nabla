@@ -7,7 +7,7 @@ package org.andromda.cartridges.ejb3.metafacades;
 import org.andromda.metafacades.uml.DependencyFacade;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3DependencyFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -40,7 +40,8 @@ public interface EJB3DependencyFacade
     public String getDaoSetterName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.ejb3.metafacades.EJB3DependencyFacade.transformationAnonymousName
      * @return String
      */
     public String getTransformationAnonymousName();

@@ -7,7 +7,8 @@ package org.andromda.cartridges.ejb3.metafacades;
 import org.andromda.metafacades.uml.ParameterFacade;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3SessionOperationParameterFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

@@ -28,7 +28,7 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3EmbeddedValueFacade
  * MetafacadeLogic for EJB3EmbeddedValueFacade
  *
  * @see EJB3EmbeddedValueFacade
@@ -128,8 +128,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     */
     protected abstract boolean handleIsImmutable();
 
-    private boolean immutable1a;
-    private boolean immutable1aSet = false;
+    private transient boolean immutable1a;
+    private transient boolean immutable1aSet = false;
 
     /**
      * Returns true if the embedded value object is immutable.
@@ -137,19 +137,19 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      */
     public final boolean isImmutable()
     {
-        boolean aimmutable1a = this.immutable1a;
+        boolean immutable1a = this.immutable1a;
         if (!this.immutable1aSet)
         {
             // immutable has no pre constraints
-            aimmutable1a = handleIsImmutable();
+            immutable1a = handleIsImmutable();
             // immutable has no post constraints
-            this.immutable1a = aimmutable1a;
+            this.immutable1a = immutable1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.immutable1aSet = true;
             }
         }
-        return aimmutable1a;
+        return immutable1a;
     }
 
    /**
@@ -158,8 +158,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     */
     protected abstract String handleGetImplementationName();
 
-    private String implementationName2a;
-    private boolean implementationName2aSet = false;
+    private transient String implementationName2a;
+    private transient boolean implementationName2aSet = false;
 
     /**
      * Returns the name of the implementation class.
@@ -167,19 +167,19 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      */
     public final String getImplementationName()
     {
-        String aimplementationName2a = this.implementationName2a;
+        String implementationName2a = this.implementationName2a;
         if (!this.implementationName2aSet)
         {
             // implementationName has no pre constraints
-            aimplementationName2a = handleGetImplementationName();
+            implementationName2a = handleGetImplementationName();
             // implementationName has no post constraints
-            this.implementationName2a = aimplementationName2a;
+            this.implementationName2a = implementationName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.implementationName2aSet = true;
             }
         }
-        return aimplementationName2a;
+        return implementationName2a;
     }
 
    /**
@@ -188,8 +188,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     */
     protected abstract String handleGetFullyQualifiedImplementationName();
 
-    private String fullyQualifiedImplementationName3a;
-    private boolean fullyQualifiedImplementationName3aSet = false;
+    private transient String fullyQualifiedImplementationName3a;
+    private transient boolean fullyQualifiedImplementationName3aSet = false;
 
     /**
      * Returns the fully qualified name of the embeddable value implementation class.
@@ -197,19 +197,19 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      */
     public final String getFullyQualifiedImplementationName()
     {
-        String afullyQualifiedImplementationName3a = this.fullyQualifiedImplementationName3a;
+        String fullyQualifiedImplementationName3a = this.fullyQualifiedImplementationName3a;
         if (!this.fullyQualifiedImplementationName3aSet)
         {
             // fullyQualifiedImplementationName has no pre constraints
-            afullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
+            fullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
             // fullyQualifiedImplementationName has no post constraints
-            this.fullyQualifiedImplementationName3a = afullyQualifiedImplementationName3a;
+            this.fullyQualifiedImplementationName3a = fullyQualifiedImplementationName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedImplementationName3aSet = true;
             }
         }
-        return afullyQualifiedImplementationName3a;
+        return fullyQualifiedImplementationName3a;
     }
 
     /**
@@ -427,7 +427,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperClassifierFacade().getNavigableConnectingEnds();
     }
@@ -573,7 +573,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -857,7 +857,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -957,7 +957,9 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1028,7 +1030,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1037,7 +1039,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1150,7 +1153,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1168,7 +1171,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1177,7 +1180,7 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1233,7 +1236,8 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1269,12 +1273,24 @@ public abstract class EJB3EmbeddedValueFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperClassifierFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperClassifierFacade().isValidIdentifierName();
     }
 
     /**

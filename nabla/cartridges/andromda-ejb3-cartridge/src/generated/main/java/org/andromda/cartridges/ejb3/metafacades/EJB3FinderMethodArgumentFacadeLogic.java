@@ -125,8 +125,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract String handleGetTemporalType();
 
-    private String temporalType1a;
-    private boolean temporalType1aSet = false;
+    private transient String temporalType1a;
+    private transient boolean temporalType1aSet = false;
 
     /**
      * Returns the temporal type value set via tagged value on finder method parameters if one
@@ -136,19 +136,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final String getTemporalType()
     {
-        String atemporalType1a = this.temporalType1a;
+        String temporalType1a = this.temporalType1a;
         if (!this.temporalType1aSet)
         {
             // temporalType has no pre constraints
-            atemporalType1a = handleGetTemporalType();
+            temporalType1a = handleGetTemporalType();
             // temporalType has no post constraints
-            this.temporalType1a = atemporalType1a;
+            this.temporalType1a = temporalType1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.temporalType1aSet = true;
             }
         }
-        return atemporalType1a;
+        return temporalType1a;
     }
 
    /**
@@ -157,8 +157,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsFirstResult();
 
-    private boolean firstResult2a;
-    private boolean firstResult2aSet = false;
+    private transient boolean firstResult2a;
+    private transient boolean firstResult2aSet = false;
 
     /**
      * Returns true if FirstResult stereotype is applied to this finder method parameter.
@@ -166,19 +166,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isFirstResult()
     {
-        boolean afirstResult2a = this.firstResult2a;
+        boolean firstResult2a = this.firstResult2a;
         if (!this.firstResult2aSet)
         {
             // firstResult has no pre constraints
-            afirstResult2a = handleIsFirstResult();
+            firstResult2a = handleIsFirstResult();
             // firstResult has no post constraints
-            this.firstResult2a = afirstResult2a;
+            this.firstResult2a = firstResult2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.firstResult2aSet = true;
             }
         }
-        return afirstResult2a;
+        return firstResult2a;
     }
 
    /**
@@ -187,8 +187,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsMaxResults();
 
-    private boolean maxResults3a;
-    private boolean maxResults3aSet = false;
+    private transient boolean maxResults3a;
+    private transient boolean maxResults3aSet = false;
 
     /**
      * Returns true if MaxResults stereotype is applied to this finder method parameter.
@@ -196,19 +196,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isMaxResults()
     {
-        boolean amaxResults3a = this.maxResults3a;
+        boolean maxResults3a = this.maxResults3a;
         if (!this.maxResults3aSet)
         {
             // maxResults has no pre constraints
-            amaxResults3a = handleIsMaxResults();
+            maxResults3a = handleIsMaxResults();
             // maxResults has no post constraints
-            this.maxResults3a = amaxResults3a;
+            this.maxResults3a = maxResults3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.maxResults3aSet = true;
             }
         }
-        return amaxResults3a;
+        return maxResults3a;
     }
 
    /**
@@ -217,8 +217,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsEnumerationTypeOrdinal();
 
-    private boolean enumerationTypeOrdinal4a;
-    private boolean enumerationTypeOrdinal4aSet = false;
+    private transient boolean enumerationTypeOrdinal4a;
+    private transient boolean enumerationTypeOrdinal4aSet = false;
 
     /**
      * Returns true if this parameter is of type enum and has ordinal values.
@@ -226,19 +226,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isEnumerationTypeOrdinal()
     {
-        boolean aenumerationTypeOrdinal4a = this.enumerationTypeOrdinal4a;
+        boolean enumerationTypeOrdinal4a = this.enumerationTypeOrdinal4a;
         if (!this.enumerationTypeOrdinal4aSet)
         {
             // enumerationTypeOrdinal has no pre constraints
-            aenumerationTypeOrdinal4a = handleIsEnumerationTypeOrdinal();
+            enumerationTypeOrdinal4a = handleIsEnumerationTypeOrdinal();
             // enumerationTypeOrdinal has no post constraints
-            this.enumerationTypeOrdinal4a = aenumerationTypeOrdinal4a;
+            this.enumerationTypeOrdinal4a = enumerationTypeOrdinal4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.enumerationTypeOrdinal4aSet = true;
             }
         }
-        return aenumerationTypeOrdinal4a;
+        return enumerationTypeOrdinal4a;
     }
 
    /**
@@ -247,8 +247,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     */
     protected abstract boolean handleIsEnumerationTypeString();
 
-    private boolean enumerationTypeString5a;
-    private boolean enumerationTypeString5aSet = false;
+    private transient boolean enumerationTypeString5a;
+    private transient boolean enumerationTypeString5aSet = false;
 
     /**
      * Returns true if this parameter is of type enum and has string values.
@@ -256,19 +256,19 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
      */
     public final boolean isEnumerationTypeString()
     {
-        boolean aenumerationTypeString5a = this.enumerationTypeString5a;
+        boolean enumerationTypeString5a = this.enumerationTypeString5a;
         if (!this.enumerationTypeString5aSet)
         {
             // enumerationTypeString has no pre constraints
-            aenumerationTypeString5a = handleIsEnumerationTypeString();
+            enumerationTypeString5a = handleIsEnumerationTypeString();
             // enumerationTypeString has no post constraints
-            this.enumerationTypeString5a = aenumerationTypeString5a;
+            this.enumerationTypeString5a = enumerationTypeString5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.enumerationTypeString5aSet = true;
             }
         }
-        return aenumerationTypeString5a;
+        return enumerationTypeString5a;
     }
 
     /**
@@ -373,7 +373,9 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -444,7 +446,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -453,7 +455,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -566,7 +569,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -584,7 +587,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -593,7 +596,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -649,7 +652,8 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -685,12 +689,24 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperParameterFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperParameterFacade().isValidIdentifierName();
     }
 
     /**
@@ -723,7 +739,7 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for ParameterFacade.defaultValue
      * @see ParameterFacade#getDefaultValue()
      */
     public String getDefaultValue()
@@ -809,7 +825,15 @@ public abstract class EJB3FinderMethodArgumentFacadeLogic
     }
 
     /**
-     * 
+     * A Classifier is a classification of instances - it describes a set of instances that have
+     * features in common. Can specify a generalization hierarchy by referencing its general
+     * classifiers. It may be a Class, DataType, PrimitiveType, Association, Collaboration, UseCase,
+     * etc. Can specify a generalization hierarchy by referencing its general classifiers. Has the
+     * capability to own collaboration uses. These collaboration uses link a collaboration with the
+     * classifier to give a description of the workings of the classifier. Classifier is defined to
+     * be a kind of templateable element so that a classifier can be parameterized. It is also
+     * defined to be a kind of parameterable element so that a classifier can be a formal template
+     * parameter.
      * @see ParameterFacade#getType()
      */
     public ClassifierFacade getType()

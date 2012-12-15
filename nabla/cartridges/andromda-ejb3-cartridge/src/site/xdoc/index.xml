@@ -8,8 +8,8 @@
     <body>
         <section name="AndroMDA EJB3 Cartridge">
             <p>
-                The purpose of this cartridge is to generate EJB 3.0 compliant persistence tier, fronted by
-                Session EJB business object facades.  To learn how to use this cartridge you can follow the, 
+                The purpose of this cartridge is to generate EJB 3.0 JPA2 compliant persistence tier, fronted by
+                Session EJB business object facades.  To learn how to use this cartridge you can follow the
                 howtos, reference the profile and namespace properties and try the examples in the howto yourself.
                 You do not need to navigate the howtos sequentially.
             </p>
@@ -18,9 +18,9 @@
                 sections to discover how to fine-tune and configure this cartridge.
             </p>
             <p>
-            	It is recommended to use the AndroMDA Application Generator to create your template project.
-            	This will create a template Maven 2 project for you.  The generator now has the ability to
-            	create EJB 3.0 projects.
+                It is recommended to use the AndroMDA Application Generator to create your template project.
+                This will create a template Maven 2 project for you.  The generator now has the ability to
+                create EJB 3.0 projects.
             </p>
             <p>
                 If you encounter any problems or require further help, visit the <b>EJB Cartridge</b> AndroMDA

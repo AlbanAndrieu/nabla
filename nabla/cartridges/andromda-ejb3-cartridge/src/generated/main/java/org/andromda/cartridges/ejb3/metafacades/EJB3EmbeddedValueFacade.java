@@ -7,7 +7,7 @@ package org.andromda.cartridges.ejb3.metafacades;
 import org.andromda.metafacades.uml.ClassifierFacade;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.ejb3.metafacades.EJB3EmbeddedValueFacade
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
