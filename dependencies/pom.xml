@@ -1062,9 +1062,12 @@
 		<!--<deploy.dir>${home.dir}/fullsite</deploy.dir>-->
 
 		<!-- TODO overrided in filter -->
-		<jdkLevel>1.6</jdkLevel>
+		<jdkLevel>1.7</jdkLevel>
 		<jdkDebug>true</jdkDebug>
 		<jdkOptimize>false</jdkOptimize>
+
+		<java.runtime.version>${jdkLevel}</java.runtime.version>
+		<java.source.version>${jdkLevel}</java.source.version>
 
 		<!--<maven.version>2.2.1</maven.version>-->
 		<maven.version>3.0.4</maven.version>
@@ -1474,7 +1477,7 @@
 		<maven.scm.plugin.version>1.8.1</maven.scm.plugin.version>
 		<maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
 		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
-		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
+		<maven.compiler.plugin.version>3.0</maven.compiler.plugin.version>
 		<maven.dependency.plugin.version>2.5.1</maven.dependency.plugin.version>
 		<maven.clover.plugin.version>3.1.8</maven.clover.plugin.version>
 		<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
@@ -1953,9 +1956,9 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${maven.compiler.plugin.version}</version>
 					<configuration>
-						<source>${jdkLevel}</source>
-						<target>${jdkLevel}</target>
-						<compilerVersion>${jdkLevel}</compilerVersion>
+						<source>${java.source.version}</source>
+						<target>${java.runtime.version}</target>
+						<compilerVersion>${java.source.version}</compilerVersion>
 						<meminitial>128m</meminitial>
 						<maxmem>512m</maxmem>
 						<fork>${compiler.fork}</fork>
@@ -2032,13 +2035,13 @@
 								<rules>
 									<requireMavenVersion>
 										<!-- minimum version is	2.0.7, higher versions allowed -->
-										<version>[${maven.version},)</version>
+										<version>[${maven.version},]</version>
 									</requireMavenVersion>
 
 									<requireJavaVersion>
 										<message>You need at least Java	${jdkLevel}!</message>
 										<!-- minimum version is	1.5, higher versions allowed -->
-										<version>[${jdkLevel},)</version>
+										<version>[${jdkLevel},]</version>
 										<!-- <version>[1.6.0,]</version> -->
 									</requireJavaVersion>
 									<DependencyConvergence/>
