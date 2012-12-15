@@ -24,26 +24,29 @@ public interface GuiValidableEntity
     public boolean isGuiValidableEntityMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.eachValidableObjectReferenceIsValid
      * @return boolean
      */
     public boolean eachValidableObjectReferenceIsValid();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.getIdentifierForValidableObjectReference
      * @param businessObjectName String
      * @return String
      */
     public String getIdentifierForValidableObjectReference(String businessObjectName);
 
     /**
-     * 
+     * Represents a persistent entity.
      * @return List<Entity>
      */
     public List<Entity> getValidableObjectReferences();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.validationNameSuffix
      * @return String
      */
     public String getValidationNameSuffix();

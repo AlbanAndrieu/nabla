@@ -11,7 +11,8 @@ import org.andromda.metafacades.uml.ManageableEntityAttribute;
 import org.andromda.metafacades.uml.ParameterFacade;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * GuiManageableEntityAttribute
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -26,38 +27,44 @@ public interface GuiManageableEntityAttribute
     public boolean isGuiManageableEntityAttributeMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getAllSourceCoherencyValues
      * @return Collection
      */
     public Collection getAllSourceCoherencyValues();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getAllTargetCoherencyValues
      * @return Collection
      */
     public Collection getAllTargetCoherencyValues();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.backingListName
      * @return String
      */
     public String getBackingListName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.choiceType
      * @return String
      */
     public String getChoiceType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getCoherencyStateWhenActivated
      * @param targetElement GuiManageableEntityAttribute
      * @return String
      */
     public String getCoherencyStateWhenActivated(GuiManageableEntityAttribute targetElement);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getCoherencyStateWhenDeactivated
      * @param targetElement GuiManageableEntityAttribute
      * @return String
      */
@@ -71,43 +78,50 @@ public interface GuiManageableEntityAttribute
     public String getDateFormat();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.dateFormatter
      * @return String
      */
     public String getDateFormatter();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.defaultDateFormat
      * @return String
      */
     public String getDefaultDateFormat();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.defaultTimeFormat
      * @return String
      */
     public String getDefaultTimeFormat();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.dictionaryReturnType
      * @return String
      */
     public String getDictionaryReturnType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.displayName
      * @return String
      */
     public String getDisplayName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.dummyValue
      * @return String
      */
     public String getDummyValue();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.fieldSize
      * @return int
      */
     public int getFieldSize();
@@ -128,25 +142,29 @@ public interface GuiManageableEntityAttribute
     public String getFormPropertyName(ParameterFacade ownerParameter);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.format
      * @return String
      */
     public String getFormat();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.functionalCoherency
      * @return String
      */
     public String getFunctionalCoherency();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputTableIdentifierColumns
      * @return String
      */
     public String getInputTableIdentifierColumns();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.labelListName
      * @return String
      */
     public String getLabelListName();
@@ -158,19 +176,22 @@ public interface GuiManageableEntityAttribute
     public String getMaxLength();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.messageKey
      * @return String
      */
     public String getMessageKey();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.messageValue
      * @return String
      */
     public String getMessageValue();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.numericFormat
      * @return String
      */
     public String getNumericFormat();
@@ -190,20 +211,23 @@ public interface GuiManageableEntityAttribute
     public String getOnlineHelpValue();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getSourceCoherencyValue
      * @param dependency DependencyFacade
      * @return Object
      */
     public Object getSourceCoherencyValue(DependencyFacade dependency);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute
      * @return List<GuiManageableEntityAttribute>
      */
     public List<GuiManageableEntityAttribute> getStateCoherencies();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getTargetCoherencyValues
      * @param sourceElement GuiManageableEntityAttribute
      * @param sourceValue Object
      * @return Collection
@@ -211,19 +235,22 @@ public interface GuiManageableEntityAttribute
     public Collection getTargetCoherencyValues(GuiManageableEntityAttribute sourceElement, Object sourceValue);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.timeFormatter
      * @return String
      */
     public String getTimeFormatter();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.validWhen
      * @return String
      */
     public String getValidWhen();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.getValidatorArgs
      * @param validatorType String
      * @return Collection
      */
@@ -242,25 +269,29 @@ public interface GuiManageableEntityAttribute
     public Collection getValidatorVars();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute
      * @return List<GuiManageableEntityAttribute>
      */
     public List<GuiManageableEntityAttribute> getValueCoherencySources();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute
      * @return List<GuiManageableEntityAttribute>
      */
     public List<GuiManageableEntityAttribute> getValueCoherencyTargets();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.valueListDummyValue
      * @return String
      */
     public String getValueListDummyValue();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.valueListName
      * @return String
      */
     public String getValueListName();
@@ -272,37 +303,43 @@ public interface GuiManageableEntityAttribute
     public String getWidgetType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.coherencySource
      * @return boolean
      */
     public boolean isCoherencySource();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.coherencyTarget
      * @return boolean
      */
     public boolean isCoherencyTarget();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.dealId
      * @return boolean
      */
     public boolean isDealId();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.dealType
      * @return boolean
      */
     public boolean isDealType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.equalValidator
      * @return boolean
      */
     public boolean isEqualValidator();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.filterElement
      * @return boolean
      */
     public boolean isFilterElement();
@@ -314,73 +351,85 @@ public interface GuiManageableEntityAttribute
     public boolean isHidden();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputCheckbox
      * @return boolean
      */
     public boolean isInputCheckbox();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputFile
      * @return boolean
      */
     public boolean isInputFile();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputHidden
      * @return boolean
      */
     public boolean isInputHidden();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputMultibox
      * @return boolean
      */
     public boolean isInputMultibox();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputRadio
      * @return boolean
      */
     public boolean isInputRadio();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputSecret
      * @return boolean
      */
     public boolean isInputSecret();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputSelect
      * @return boolean
      */
     public boolean isInputSelect();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputTable
      * @return boolean
      */
     public boolean isInputTable();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputText
      * @return boolean
      */
     public boolean isInputText();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputTextarea
      * @return boolean
      */
     public boolean isInputTextarea();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.inputTypePresent
      * @return boolean
      */
     public boolean isInputTypePresent();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.mandatory
      * @return boolean
      */
     public boolean isMandatory();
@@ -393,13 +442,15 @@ public interface GuiManageableEntityAttribute
     public boolean isNeedsFileUpload();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.plaintext
      * @return boolean
      */
     public boolean isPlaintext();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.readOnlyForUpdate
      * @return boolean
      */
     public boolean isReadOnlyForUpdate();
@@ -425,7 +476,8 @@ public interface GuiManageableEntityAttribute
     public boolean isValidationRequired();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntityAttribute.mustBeDeactivated
      * @param targetElement GuiManageableEntityAttribute
      * @param sourceValue Object
      * @return boolean

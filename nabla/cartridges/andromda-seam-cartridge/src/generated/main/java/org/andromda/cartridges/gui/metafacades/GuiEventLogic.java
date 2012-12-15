@@ -128,8 +128,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey1a;
-    private boolean messageKey1aSet = false;
+    private transient String messageKey1a;
+    private transient boolean messageKey1aSet = false;
 
     /**
      * The resource message key for this trigger.
@@ -137,19 +137,19 @@ public abstract class GuiEventLogic
      */
     public final String getMessageKey()
     {
-        String amessageKey1a = this.messageKey1a;
+        String messageKey1a = this.messageKey1a;
         if (!this.messageKey1aSet)
         {
             // messageKey has no pre constraints
-            amessageKey1a = handleGetMessageKey();
+            messageKey1a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey1a = amessageKey1a;
+            this.messageKey1a = messageKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey1aSet = true;
             }
         }
-        return amessageKey1a;
+        return messageKey1a;
     }
 
    /**
@@ -158,8 +158,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String messageValue2a;
-    private boolean messageValue2aSet = false;
+    private transient String messageValue2a;
+    private transient boolean messageValue2aSet = false;
 
     /**
      * The resource message value  for this trigger, this would be the button label or hyperlink
@@ -168,19 +168,19 @@ public abstract class GuiEventLogic
      */
     public final String getMessageValue()
     {
-        String amessageValue2a = this.messageValue2a;
+        String messageValue2a = this.messageValue2a;
         if (!this.messageValue2aSet)
         {
             // messageValue has no pre constraints
-            amessageValue2a = handleGetMessageValue();
+            messageValue2a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.messageValue2a = amessageValue2a;
+            this.messageValue2a = messageValue2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageValue2aSet = true;
             }
         }
-        return amessageValue2a;
+        return messageValue2a;
     }
 
    /**
@@ -189,8 +189,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetResetMessageKey();
 
-    private String resetMessageKey3a;
-    private boolean resetMessageKey3aSet = false;
+    private transient String resetMessageKey3a;
+    private transient boolean resetMessageKey3aSet = false;
 
     /**
      * The resource message key for the reset button.
@@ -198,19 +198,19 @@ public abstract class GuiEventLogic
      */
     public final String getResetMessageKey()
     {
-        String aresetMessageKey3a = this.resetMessageKey3a;
+        String resetMessageKey3a = this.resetMessageKey3a;
         if (!this.resetMessageKey3aSet)
         {
             // resetMessageKey has no pre constraints
-            aresetMessageKey3a = handleGetResetMessageKey();
+            resetMessageKey3a = handleGetResetMessageKey();
             // resetMessageKey has no post constraints
-            this.resetMessageKey3a = aresetMessageKey3a;
+            this.resetMessageKey3a = resetMessageKey3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetMessageKey3aSet = true;
             }
         }
-        return aresetMessageKey3a;
+        return resetMessageKey3a;
     }
 
    /**
@@ -219,8 +219,8 @@ public abstract class GuiEventLogic
     */
     protected abstract String handleGetResetMessageValue();
 
-    private String resetMessageValue4a;
-    private boolean resetMessageValue4aSet = false;
+    private transient String resetMessageValue4a;
+    private transient boolean resetMessageValue4aSet = false;
 
     /**
      * The default value for the reset button's message.
@@ -228,19 +228,19 @@ public abstract class GuiEventLogic
      */
     public final String getResetMessageValue()
     {
-        String aresetMessageValue4a = this.resetMessageValue4a;
+        String resetMessageValue4a = this.resetMessageValue4a;
         if (!this.resetMessageValue4aSet)
         {
             // resetMessageValue has no pre constraints
-            aresetMessageValue4a = handleGetResetMessageValue();
+            resetMessageValue4a = handleGetResetMessageValue();
             // resetMessageValue has no post constraints
-            this.resetMessageValue4a = aresetMessageValue4a;
+            this.resetMessageValue4a = resetMessageValue4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetMessageValue4aSet = true;
             }
         }
-        return aresetMessageValue4a;
+        return resetMessageValue4a;
     }
 
     /**
@@ -417,7 +417,9 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -488,7 +490,7 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -497,7 +499,8 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -610,7 +613,7 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -628,7 +631,7 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -637,7 +640,7 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -693,7 +696,8 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -729,12 +733,24 @@ public abstract class GuiEventLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndEvent().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndEvent().isValidIdentifierName();
     }
 
     /**

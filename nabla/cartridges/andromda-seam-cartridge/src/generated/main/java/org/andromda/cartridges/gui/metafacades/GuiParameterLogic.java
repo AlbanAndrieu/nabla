@@ -141,8 +141,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey1a;
-    private boolean messageKey1aSet = false;
+    private transient String messageKey1a;
+    private transient boolean messageKey1aSet = false;
 
     /**
      * The default message key for this parameter.
@@ -150,19 +150,19 @@ public abstract class GuiParameterLogic
      */
     public final String getMessageKey()
     {
-        String amessageKey1a = this.messageKey1a;
+        String messageKey1a = this.messageKey1a;
         if (!this.messageKey1aSet)
         {
             // messageKey has no pre constraints
-            amessageKey1a = handleGetMessageKey();
+            messageKey1a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey1a = amessageKey1a;
+            this.messageKey1a = messageKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey1aSet = true;
             }
         }
-        return amessageKey1a;
+        return messageKey1a;
     }
 
    /**
@@ -171,8 +171,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String messageValue2a;
-    private boolean messageValue2aSet = false;
+    private transient String messageValue2a;
+    private transient boolean messageValue2aSet = false;
 
     /**
      * The default message value for this parameter.
@@ -180,19 +180,19 @@ public abstract class GuiParameterLogic
      */
     public final String getMessageValue()
     {
-        String amessageValue2a = this.messageValue2a;
+        String messageValue2a = this.messageValue2a;
         if (!this.messageValue2aSet)
         {
             // messageValue has no pre constraints
-            amessageValue2a = handleGetMessageValue();
+            messageValue2a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.messageValue2a = amessageValue2a;
+            this.messageValue2a = messageValue2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageValue2aSet = true;
             }
         }
-        return amessageValue2a;
+        return messageValue2a;
     }
 
    /**
@@ -201,28 +201,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTitleKey();
 
-    private String titleKey3a;
-    private boolean titleKey3aSet = false;
+    private transient String titleKey3a;
+    private transient boolean titleKey3aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.titleKey
      * @return (String)handleGetTitleKey()
      */
     public final String getTitleKey()
     {
-        String atitleKey3a = this.titleKey3a;
+        String titleKey3a = this.titleKey3a;
         if (!this.titleKey3aSet)
         {
             // titleKey has no pre constraints
-            atitleKey3a = handleGetTitleKey();
+            titleKey3a = handleGetTitleKey();
             // titleKey has no post constraints
-            this.titleKey3a = atitleKey3a;
+            this.titleKey3a = titleKey3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.titleKey3aSet = true;
             }
         }
-        return atitleKey3a;
+        return titleKey3a;
     }
 
    /**
@@ -231,28 +231,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTitleValue();
 
-    private String titleValue4a;
-    private boolean titleValue4aSet = false;
+    private transient String titleValue4a;
+    private transient boolean titleValue4aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.titleValue
      * @return (String)handleGetTitleValue()
      */
     public final String getTitleValue()
     {
-        String atitleValue4a = this.titleValue4a;
+        String titleValue4a = this.titleValue4a;
         if (!this.titleValue4aSet)
         {
             // titleValue has no pre constraints
-            atitleValue4a = handleGetTitleValue();
+            titleValue4a = handleGetTitleValue();
             // titleValue has no post constraints
-            this.titleValue4a = atitleValue4a;
+            this.titleValue4a = titleValue4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.titleValue4aSet = true;
             }
         }
-        return atitleValue4a;
+        return titleValue4a;
     }
 
    /**
@@ -261,8 +261,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsMultiple();
 
-    private boolean multiple5a;
-    private boolean multiple5aSet = false;
+    private transient boolean multiple5a;
+    private transient boolean multiple5aSet = false;
 
     /**
      * True if this parameter is either an array type or Collection type.
@@ -270,19 +270,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isMultiple()
     {
-        boolean amultiple5a = this.multiple5a;
+        boolean multiple5a = this.multiple5a;
         if (!this.multiple5aSet)
         {
             // multiple has no pre constraints
-            amultiple5a = handleIsMultiple();
+            multiple5a = handleIsMultiple();
             // multiple has no post constraints
-            this.multiple5a = amultiple5a;
+            this.multiple5a = multiple5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.multiple5aSet = true;
             }
         }
-        return amultiple5a;
+        return multiple5a;
     }
 
    /**
@@ -291,8 +291,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetBackingListName();
 
-    private String backingListName6a;
-    private boolean backingListName6aSet = false;
+    private transient String backingListName6a;
+    private transient boolean backingListName6aSet = false;
 
     /**
      * The backing list name for this parameter. This is useful if you want to be able to select the
@@ -301,19 +301,19 @@ public abstract class GuiParameterLogic
      */
     public final String getBackingListName()
     {
-        String abackingListName6a = this.backingListName6a;
+        String backingListName6a = this.backingListName6a;
         if (!this.backingListName6aSet)
         {
             // backingListName has no pre constraints
-            abackingListName6a = handleGetBackingListName();
+            backingListName6a = handleGetBackingListName();
             // backingListName has no post constraints
-            this.backingListName6a = abackingListName6a;
+            this.backingListName6a = backingListName6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.backingListName6aSet = true;
             }
         }
-        return abackingListName6a;
+        return backingListName6a;
     }
 
    /**
@@ -322,8 +322,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsResetRequired();
 
-    private boolean resetRequired7a;
-    private boolean resetRequired7aSet = false;
+    private transient boolean resetRequired7a;
+    private transient boolean resetRequired7aSet = false;
 
     /**
      * True if the value of this parameter must be reset between requests (Gui requires this for
@@ -332,19 +332,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isResetRequired()
     {
-        boolean aresetRequired7a = this.resetRequired7a;
+        boolean resetRequired7a = this.resetRequired7a;
         if (!this.resetRequired7aSet)
         {
             // resetRequired has no pre constraints
-            aresetRequired7a = handleIsResetRequired();
+            resetRequired7a = handleIsResetRequired();
             // resetRequired has no post constraints
-            this.resetRequired7a = aresetRequired7a;
+            this.resetRequired7a = resetRequired7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetRequired7aSet = true;
             }
         }
-        return aresetRequired7a;
+        return resetRequired7a;
     }
 
    /**
@@ -353,8 +353,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetNullValue();
 
-    private String nullValue8a;
-    private boolean nullValue8aSet = false;
+    private transient String nullValue8a;
+    private transient boolean nullValue8aSet = false;
 
     /**
      * The null value for the type of this parameter. For decimals this would be zero, for booleans
@@ -363,19 +363,19 @@ public abstract class GuiParameterLogic
      */
     public final String getNullValue()
     {
-        String anullValue8a = this.nullValue8a;
+        String nullValue8a = this.nullValue8a;
         if (!this.nullValue8aSet)
         {
             // nullValue has no pre constraints
-            anullValue8a = handleGetNullValue();
+            nullValue8a = handleGetNullValue();
             // nullValue has no post constraints
-            this.nullValue8a = anullValue8a;
+            this.nullValue8a = nullValue8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.nullValue8aSet = true;
             }
         }
-        return anullValue8a;
+        return nullValue8a;
     }
 
    /**
@@ -384,8 +384,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetWidgetType();
 
-    private String widgetType9a;
-    private boolean widgetType9aSet = false;
+    private transient String widgetType9a;
+    private transient boolean widgetType9aSet = false;
 
     /**
      * The widget type for this parameter, this value is the tagname for the Gui HTML taglib. This
@@ -394,19 +394,19 @@ public abstract class GuiParameterLogic
      */
     public final String getWidgetType()
     {
-        String awidgetType9a = this.widgetType9a;
+        String widgetType9a = this.widgetType9a;
         if (!this.widgetType9aSet)
         {
             // widgetType has no pre constraints
-            awidgetType9a = handleGetWidgetType();
+            widgetType9a = handleGetWidgetType();
             // widgetType has no post constraints
-            this.widgetType9a = awidgetType9a;
+            this.widgetType9a = widgetType9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.widgetType9aSet = true;
             }
         }
-        return awidgetType9a;
+        return widgetType9a;
     }
 
    /**
@@ -415,8 +415,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetResetValue();
 
-    private String resetValue10a;
-    private boolean resetValue10aSet = false;
+    private transient String resetValue10a;
+    private transient boolean resetValue10aSet = false;
 
     /**
      * The reset value for this parameter. The reset value is the non-null value to which this
@@ -426,19 +426,19 @@ public abstract class GuiParameterLogic
      */
     public final String getResetValue()
     {
-        String aresetValue10a = this.resetValue10a;
+        String resetValue10a = this.resetValue10a;
         if (!this.resetValue10aSet)
         {
             // resetValue has no pre constraints
-            aresetValue10a = handleGetResetValue();
+            resetValue10a = handleGetResetValue();
             // resetValue has no post constraints
-            this.resetValue10a = aresetValue10a;
+            this.resetValue10a = resetValue10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetValue10aSet = true;
             }
         }
-        return aresetValue10a;
+        return resetValue10a;
     }
 
    /**
@@ -447,8 +447,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsReadOnly();
 
-    private boolean readOnly11a;
-    private boolean readOnly11aSet = false;
+    private transient boolean readOnly11a;
+    private transient boolean readOnly11aSet = false;
 
     /**
      * True if this parameter cannot be changed by the user, false otherwise.
@@ -456,19 +456,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isReadOnly()
     {
-        boolean areadOnly11a = this.readOnly11a;
+        boolean readOnly11a = this.readOnly11a;
         if (!this.readOnly11aSet)
         {
             // readOnly has no pre constraints
-            areadOnly11a = handleIsReadOnly();
+            readOnly11a = handleIsReadOnly();
             // readOnly has no post constraints
-            this.readOnly11a = areadOnly11a;
+            this.readOnly11a = readOnly11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.readOnly11aSet = true;
             }
         }
-        return areadOnly11a;
+        return readOnly11a;
     }
 
    /**
@@ -477,8 +477,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetValueListResetValue();
 
-    private String valueListResetValue12a;
-    private boolean valueListResetValue12aSet = false;
+    private transient String valueListResetValue12a;
+    private transient boolean valueListResetValue12aSet = false;
 
     /**
      * The reset value for this parameter's value list. Only makes sense if this parameter is
@@ -487,19 +487,19 @@ public abstract class GuiParameterLogic
      */
     public final String getValueListResetValue()
     {
-        String avalueListResetValue12a = this.valueListResetValue12a;
+        String valueListResetValue12a = this.valueListResetValue12a;
         if (!this.valueListResetValue12aSet)
         {
             // valueListResetValue has no pre constraints
-            avalueListResetValue12a = handleGetValueListResetValue();
+            valueListResetValue12a = handleGetValueListResetValue();
             // valueListResetValue has no post constraints
-            this.valueListResetValue12a = avalueListResetValue12a;
+            this.valueListResetValue12a = valueListResetValue12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.valueListResetValue12aSet = true;
             }
         }
-        return avalueListResetValue12a;
+        return valueListResetValue12a;
     }
 
    /**
@@ -508,8 +508,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Collection handleGetValidatorTypes();
 
-    private Collection validatorTypes13a;
-    private boolean validatorTypes13aSet = false;
+    private transient Collection validatorTypes13a;
+    private transient boolean validatorTypes13aSet = false;
 
     /**
      * A collection of all the validator types for this parameter. Use this value in conjunction
@@ -518,19 +518,19 @@ public abstract class GuiParameterLogic
      */
     public final Collection getValidatorTypes()
     {
-        Collection avalidatorTypes13a = this.validatorTypes13a;
+        Collection validatorTypes13a = this.validatorTypes13a;
         if (!this.validatorTypes13aSet)
         {
             // validatorTypes has no pre constraints
-            avalidatorTypes13a = handleGetValidatorTypes();
+            validatorTypes13a = handleGetValidatorTypes();
             // validatorTypes has no post constraints
-            this.validatorTypes13a = avalidatorTypes13a;
+            this.validatorTypes13a = validatorTypes13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validatorTypes13aSet = true;
             }
         }
-        return avalidatorTypes13a;
+        return validatorTypes13a;
     }
 
    /**
@@ -539,8 +539,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetValidatorMsgKey();
 
-    private String validatorMsgKey14a;
-    private boolean validatorMsgKey14aSet = false;
+    private transient String validatorMsgKey14a;
+    private transient boolean validatorMsgKey14aSet = false;
 
     /**
      * The message key for this parameter, equivalent to getMessageKey().
@@ -548,19 +548,19 @@ public abstract class GuiParameterLogic
      */
     public final String getValidatorMsgKey()
     {
-        String avalidatorMsgKey14a = this.validatorMsgKey14a;
+        String validatorMsgKey14a = this.validatorMsgKey14a;
         if (!this.validatorMsgKey14aSet)
         {
             // validatorMsgKey has no pre constraints
-            avalidatorMsgKey14a = handleGetValidatorMsgKey();
+            validatorMsgKey14a = handleGetValidatorMsgKey();
             // validatorMsgKey has no post constraints
-            this.validatorMsgKey14a = avalidatorMsgKey14a;
+            this.validatorMsgKey14a = validatorMsgKey14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validatorMsgKey14aSet = true;
             }
         }
-        return avalidatorMsgKey14a;
+        return validatorMsgKey14a;
     }
 
    /**
@@ -569,8 +569,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Collection handleGetValidatorVars();
 
-    private Collection validatorVars15a;
-    private boolean validatorVars15aSet = false;
+    private transient Collection validatorVars15a;
+    private transient boolean validatorVars15aSet = false;
 
     /**
      * The validator arguments.
@@ -578,19 +578,19 @@ public abstract class GuiParameterLogic
      */
     public final Collection getValidatorVars()
     {
-        Collection avalidatorVars15a = this.validatorVars15a;
+        Collection validatorVars15a = this.validatorVars15a;
         if (!this.validatorVars15aSet)
         {
             // validatorVars has no pre constraints
-            avalidatorVars15a = handleGetValidatorVars();
+            validatorVars15a = handleGetValidatorVars();
             // validatorVars has no post constraints
-            this.validatorVars15a = avalidatorVars15a;
+            this.validatorVars15a = validatorVars15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validatorVars15aSet = true;
             }
         }
-        return avalidatorVars15a;
+        return validatorVars15a;
     }
 
    /**
@@ -599,8 +599,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetValidWhen();
 
-    private String validWhen16a;
-    private boolean validWhen16aSet = false;
+    private transient String validWhen16a;
+    private transient boolean validWhen16aSet = false;
 
     /**
      * The validator's 'validwhen' value, this is useful when the validation of a parameter depends
@@ -609,19 +609,19 @@ public abstract class GuiParameterLogic
      */
     public final String getValidWhen()
     {
-        String avalidWhen16a = this.validWhen16a;
+        String validWhen16a = this.validWhen16a;
         if (!this.validWhen16aSet)
         {
             // validWhen has no pre constraints
-            avalidWhen16a = handleGetValidWhen();
+            validWhen16a = handleGetValidWhen();
             // validWhen has no post constraints
-            this.validWhen16a = avalidWhen16a;
+            this.validWhen16a = validWhen16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validWhen16aSet = true;
             }
         }
-        return avalidWhen16a;
+        return validWhen16a;
     }
 
    /**
@@ -630,8 +630,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract List handleGetOptionKeys();
 
-    private List optionKeys17a;
-    private boolean optionKeys17aSet = false;
+    private transient List optionKeys17a;
+    private transient boolean optionKeys17aSet = false;
 
     /**
      * If this parameter is a choice between radio buttons, then you may use this method to retrieve
@@ -641,19 +641,19 @@ public abstract class GuiParameterLogic
      */
     public final List getOptionKeys()
     {
-        List aoptionKeys17a = this.optionKeys17a;
+        List optionKeys17a = this.optionKeys17a;
         if (!this.optionKeys17aSet)
         {
             // optionKeys has no pre constraints
-            aoptionKeys17a = handleGetOptionKeys();
+            optionKeys17a = handleGetOptionKeys();
             // optionKeys has no post constraints
-            this.optionKeys17a = aoptionKeys17a;
+            this.optionKeys17a = optionKeys17a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.optionKeys17aSet = true;
             }
         }
-        return aoptionKeys17a;
+        return optionKeys17a;
     }
 
    /**
@@ -662,8 +662,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract int handleGetTableMaxRows();
 
-    private int tableMaxRows18a;
-    private boolean tableMaxRows18aSet = false;
+    private transient int tableMaxRows18a;
+    private transient boolean tableMaxRows18aSet = false;
 
     /**
      * The maximum number of rows to be displayed in the table at the same time. This is also known
@@ -673,19 +673,19 @@ public abstract class GuiParameterLogic
      */
     public final int getTableMaxRows()
     {
-        int atableMaxRows18a = this.tableMaxRows18a;
+        int tableMaxRows18a = this.tableMaxRows18a;
         if (!this.tableMaxRows18aSet)
         {
             // tableMaxRows has no pre constraints
-            atableMaxRows18a = handleGetTableMaxRows();
+            tableMaxRows18a = handleGetTableMaxRows();
             // tableMaxRows has no post constraints
-            this.tableMaxRows18a = atableMaxRows18a;
+            this.tableMaxRows18a = tableMaxRows18a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableMaxRows18aSet = true;
             }
         }
-        return atableMaxRows18a;
+        return tableMaxRows18a;
     }
 
    /**
@@ -694,8 +694,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTableExportable();
 
-    private boolean tableExportable19a;
-    private boolean tableExportable19aSet = false;
+    private transient boolean tableExportable19a;
+    private transient boolean tableExportable19aSet = false;
 
     /**
      * True if it is possible to export the table data to XML, CSV, PDF or Excel format.
@@ -703,19 +703,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isTableExportable()
     {
-        boolean atableExportable19a = this.tableExportable19a;
+        boolean tableExportable19a = this.tableExportable19a;
         if (!this.tableExportable19aSet)
         {
             // tableExportable has no pre constraints
-            atableExportable19a = handleIsTableExportable();
+            tableExportable19a = handleIsTableExportable();
             // tableExportable has no post constraints
-            this.tableExportable19a = atableExportable19a;
+            this.tableExportable19a = tableExportable19a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableExportable19aSet = true;
             }
         }
-        return atableExportable19a;
+        return tableExportable19a;
     }
 
    /**
@@ -724,8 +724,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTableSortable();
 
-    private boolean tableSortable20a;
-    private boolean tableSortable20aSet = false;
+    private transient boolean tableSortable20a;
+    private transient boolean tableSortable20aSet = false;
 
     /**
      * True if it is possible to sort the columns of the table.
@@ -733,19 +733,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isTableSortable()
     {
-        boolean atableSortable20a = this.tableSortable20a;
+        boolean tableSortable20a = this.tableSortable20a;
         if (!this.tableSortable20aSet)
         {
             // tableSortable has no pre constraints
-            atableSortable20a = handleIsTableSortable();
+            tableSortable20a = handleIsTableSortable();
             // tableSortable has no post constraints
-            this.tableSortable20a = atableSortable20a;
+            this.tableSortable20a = tableSortable20a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableSortable20aSet = true;
             }
         }
-        return atableSortable20a;
+        return tableSortable20a;
     }
 
    /**
@@ -754,8 +754,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableExportTypes();
 
-    private String tableExportTypes21a;
-    private boolean tableExportTypes21aSet = false;
+    private transient String tableExportTypes21a;
+    private transient boolean tableExportTypes21aSet = false;
 
     /**
      * Tthe available types of export in a single String instance.
@@ -763,19 +763,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableExportTypes()
     {
-        String atableExportTypes21a = this.tableExportTypes21a;
+        String tableExportTypes21a = this.tableExportTypes21a;
         if (!this.tableExportTypes21aSet)
         {
             // tableExportTypes has no pre constraints
-            atableExportTypes21a = handleGetTableExportTypes();
+            tableExportTypes21a = handleGetTableExportTypes();
             // tableExportTypes has no post constraints
-            this.tableExportTypes21a = atableExportTypes21a;
+            this.tableExportTypes21a = tableExportTypes21a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableExportTypes21aSet = true;
             }
         }
-        return atableExportTypes21a;
+        return tableExportTypes21a;
     }
 
    /**
@@ -784,8 +784,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsValidationRequired();
 
-    private boolean validationRequired22a;
-    private boolean validationRequired22aSet = false;
+    private transient boolean validationRequired22a;
+    private transient boolean validationRequired22aSet = false;
 
     /**
      * True if this parameter requires some kind of validation. This means the collection of
@@ -794,19 +794,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isValidationRequired()
     {
-        boolean avalidationRequired22a = this.validationRequired22a;
+        boolean validationRequired22a = this.validationRequired22a;
         if (!this.validationRequired22aSet)
         {
             // validationRequired has no pre constraints
-            avalidationRequired22a = handleIsValidationRequired();
+            validationRequired22a = handleIsValidationRequired();
             // validationRequired has no post constraints
-            this.validationRequired22a = avalidationRequired22a;
+            this.validationRequired22a = validationRequired22a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validationRequired22aSet = true;
             }
         }
-        return avalidationRequired22a;
+        return validationRequired22a;
     }
 
    /**
@@ -815,8 +815,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsDate();
 
-    private boolean date23a;
-    private boolean date23aSet = false;
+    private transient boolean date23a;
+    private transient boolean date23aSet = false;
 
     /**
      * True if the type of this parameter represents a date. This is equivalent to
@@ -825,19 +825,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isDate()
     {
-        boolean adate23a = this.date23a;
+        boolean date23a = this.date23a;
         if (!this.date23aSet)
         {
             // date has no pre constraints
-            adate23a = handleIsDate();
+            date23a = handleIsDate();
             // date has no post constraints
-            this.date23a = adate23a;
+            this.date23a = date23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.date23aSet = true;
             }
         }
-        return adate23a;
+        return date23a;
     }
 
    /**
@@ -846,8 +846,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetDateFormat();
 
-    private String dateFormat24a;
-    private boolean dateFormat24aSet = false;
+    private transient String dateFormat24a;
+    private transient boolean dateFormat24aSet = false;
 
     /**
      * If this parameter represents a date this method will return the format in which it must be
@@ -857,19 +857,19 @@ public abstract class GuiParameterLogic
      */
     public final String getDateFormat()
     {
-        String adateFormat24a = this.dateFormat24a;
+        String dateFormat24a = this.dateFormat24a;
         if (!this.dateFormat24aSet)
         {
             // dateFormat has no pre constraints
-            adateFormat24a = handleGetDateFormat();
+            dateFormat24a = handleGetDateFormat();
             // dateFormat has no post constraints
-            this.dateFormat24a = adateFormat24a;
+            this.dateFormat24a = dateFormat24a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dateFormat24aSet = true;
             }
         }
-        return adateFormat24a;
+        return dateFormat24a;
     }
 
    /**
@@ -878,8 +878,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsStrictDateFormat();
 
-    private boolean strictDateFormat25a;
-    private boolean strictDateFormat25aSet = false;
+    private transient boolean strictDateFormat25a;
+    private transient boolean strictDateFormat25aSet = false;
 
     /**
      * True if the date format is to be strictly respected. Otherwise the dateformatter used for the
@@ -888,19 +888,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isStrictDateFormat()
     {
-        boolean astrictDateFormat25a = this.strictDateFormat25a;
+        boolean strictDateFormat25a = this.strictDateFormat25a;
         if (!this.strictDateFormat25aSet)
         {
             // strictDateFormat has no pre constraints
-            astrictDateFormat25a = handleIsStrictDateFormat();
+            strictDateFormat25a = handleIsStrictDateFormat();
             // strictDateFormat has no post constraints
-            this.strictDateFormat25a = astrictDateFormat25a;
+            this.strictDateFormat25a = strictDateFormat25a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.strictDateFormat25aSet = true;
             }
         }
-        return astrictDateFormat25a;
+        return strictDateFormat25a;
     }
 
    /**
@@ -909,8 +909,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsCalendarRequired();
 
-    private boolean calendarRequired26a;
-    private boolean calendarRequired26aSet = false;
+    private transient boolean calendarRequired26a;
+    private transient boolean calendarRequired26aSet = false;
 
     /**
      * True if this parameter is a date and it requires a calendar popup.
@@ -918,19 +918,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isCalendarRequired()
     {
-        boolean acalendarRequired26a = this.calendarRequired26a;
+        boolean calendarRequired26a = this.calendarRequired26a;
         if (!this.calendarRequired26aSet)
         {
             // calendarRequired has no pre constraints
-            acalendarRequired26a = handleIsCalendarRequired();
+            calendarRequired26a = handleIsCalendarRequired();
             // calendarRequired has no post constraints
-            this.calendarRequired26a = acalendarRequired26a;
+            this.calendarRequired26a = calendarRequired26a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.calendarRequired26aSet = true;
             }
         }
-        return acalendarRequired26a;
+        return calendarRequired26a;
     }
 
    /**
@@ -939,8 +939,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableDecoratorPackageName();
 
-    private String tableDecoratorPackageName27a;
-    private boolean tableDecoratorPackageName27aSet = false;
+    private transient String tableDecoratorPackageName27a;
+    private transient boolean tableDecoratorPackageName27aSet = false;
 
     /**
      * The package name of the decorator to use for the table.
@@ -948,19 +948,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableDecoratorPackageName()
     {
-        String atableDecoratorPackageName27a = this.tableDecoratorPackageName27a;
+        String tableDecoratorPackageName27a = this.tableDecoratorPackageName27a;
         if (!this.tableDecoratorPackageName27aSet)
         {
             // tableDecoratorPackageName has no pre constraints
-            atableDecoratorPackageName27a = handleGetTableDecoratorPackageName();
+            tableDecoratorPackageName27a = handleGetTableDecoratorPackageName();
             // tableDecoratorPackageName has no post constraints
-            this.tableDecoratorPackageName27a = atableDecoratorPackageName27a;
+            this.tableDecoratorPackageName27a = tableDecoratorPackageName27a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableDecoratorPackageName27aSet = true;
             }
         }
-        return atableDecoratorPackageName27a;
+        return tableDecoratorPackageName27a;
     }
 
    /**
@@ -969,8 +969,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableDecoratorClassName();
 
-    private String tableDecoratorClassName28a;
-    private boolean tableDecoratorClassName28aSet = false;
+    private transient String tableDecoratorClassName28a;
+    private transient boolean tableDecoratorClassName28aSet = false;
 
     /**
      * The class name of the decorator to use for the table.
@@ -978,19 +978,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableDecoratorClassName()
     {
-        String atableDecoratorClassName28a = this.tableDecoratorClassName28a;
+        String tableDecoratorClassName28a = this.tableDecoratorClassName28a;
         if (!this.tableDecoratorClassName28aSet)
         {
             // tableDecoratorClassName has no pre constraints
-            atableDecoratorClassName28a = handleGetTableDecoratorClassName();
+            tableDecoratorClassName28a = handleGetTableDecoratorClassName();
             // tableDecoratorClassName has no post constraints
-            this.tableDecoratorClassName28a = atableDecoratorClassName28a;
+            this.tableDecoratorClassName28a = tableDecoratorClassName28a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableDecoratorClassName28aSet = true;
             }
         }
-        return atableDecoratorClassName28a;
+        return tableDecoratorClassName28a;
     }
 
    /**
@@ -999,8 +999,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableDecoratorFullPath();
 
-    private String tableDecoratorFullPath29a;
-    private boolean tableDecoratorFullPath29aSet = false;
+    private transient String tableDecoratorFullPath29a;
+    private transient boolean tableDecoratorFullPath29aSet = false;
 
     /**
      * The full path to the decorator class.
@@ -1008,19 +1008,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableDecoratorFullPath()
     {
-        String atableDecoratorFullPath29a = this.tableDecoratorFullPath29a;
+        String tableDecoratorFullPath29a = this.tableDecoratorFullPath29a;
         if (!this.tableDecoratorFullPath29aSet)
         {
             // tableDecoratorFullPath has no pre constraints
-            atableDecoratorFullPath29a = handleGetTableDecoratorFullPath();
+            tableDecoratorFullPath29a = handleGetTableDecoratorFullPath();
             // tableDecoratorFullPath has no post constraints
-            this.tableDecoratorFullPath29a = atableDecoratorFullPath29a;
+            this.tableDecoratorFullPath29a = tableDecoratorFullPath29a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableDecoratorFullPath29aSet = true;
             }
         }
-        return atableDecoratorFullPath29a;
+        return tableDecoratorFullPath29a;
     }
 
    /**
@@ -1029,8 +1029,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract List handleGetOptionValues();
 
-    private List optionValues30a;
-    private boolean optionValues30aSet = false;
+    private transient List optionValues30a;
+    private transient boolean optionValues30aSet = false;
 
     /**
      * The values for the options. Only makes sense when the widget type is radiobutton. The
@@ -1039,19 +1039,19 @@ public abstract class GuiParameterLogic
      */
     public final List getOptionValues()
     {
-        List aoptionValues30a = this.optionValues30a;
+        List optionValues30a = this.optionValues30a;
         if (!this.optionValues30aSet)
         {
             // optionValues has no pre constraints
-            aoptionValues30a = handleGetOptionValues();
+            optionValues30a = handleGetOptionValues();
             // optionValues has no post constraints
-            this.optionValues30a = aoptionValues30a;
+            this.optionValues30a = optionValues30a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.optionValues30aSet = true;
             }
         }
-        return aoptionValues30a;
+        return optionValues30a;
     }
 
    /**
@@ -1060,8 +1060,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract int handleGetOptionCount();
 
-    private int optionCount31a;
-    private boolean optionCount31aSet = false;
+    private transient int optionCount31a;
+    private transient boolean optionCount31aSet = false;
 
     /**
      * In case this parameter represents an option set using radiobuttons, this attribute is a
@@ -1070,19 +1070,19 @@ public abstract class GuiParameterLogic
      */
     public final int getOptionCount()
     {
-        int aoptionCount31a = this.optionCount31a;
+        int optionCount31a = this.optionCount31a;
         if (!this.optionCount31aSet)
         {
             // optionCount has no pre constraints
-            aoptionCount31a = handleGetOptionCount();
+            optionCount31a = handleGetOptionCount();
             // optionCount has no post constraints
-            this.optionCount31a = aoptionCount31a;
+            this.optionCount31a = optionCount31a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.optionCount31aSet = true;
             }
         }
-        return aoptionCount31a;
+        return optionCount31a;
     }
 
    /**
@@ -1091,8 +1091,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetDocumentationKey();
 
-    private String documentationKey32a;
-    private boolean documentationKey32aSet = false;
+    private transient String documentationKey32a;
+    private transient boolean documentationKey32aSet = false;
 
     /**
      * The key to lookup the documentation for this parameter.
@@ -1100,19 +1100,19 @@ public abstract class GuiParameterLogic
      */
     public final String getDocumentationKey()
     {
-        String adocumentationKey32a = this.documentationKey32a;
+        String documentationKey32a = this.documentationKey32a;
         if (!this.documentationKey32aSet)
         {
             // documentationKey has no pre constraints
-            adocumentationKey32a = handleGetDocumentationKey();
+            documentationKey32a = handleGetDocumentationKey();
             // documentationKey has no post constraints
-            this.documentationKey32a = adocumentationKey32a;
+            this.documentationKey32a = documentationKey32a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.documentationKey32aSet = true;
             }
         }
-        return adocumentationKey32a;
+        return documentationKey32a;
     }
 
    /**
@@ -1121,8 +1121,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetDocumentationValue();
 
-    private String documentationValue33a;
-    private boolean documentationValue33aSet = false;
+    private transient String documentationValue33a;
+    private transient boolean documentationValue33aSet = false;
 
     /**
      * The documentation for this parameter, formatted to be inserted into a resource bundle.
@@ -1130,19 +1130,19 @@ public abstract class GuiParameterLogic
      */
     public final String getDocumentationValue()
     {
-        String adocumentationValue33a = this.documentationValue33a;
+        String documentationValue33a = this.documentationValue33a;
         if (!this.documentationValue33aSet)
         {
             // documentationValue has no pre constraints
-            adocumentationValue33a = handleGetDocumentationValue();
+            documentationValue33a = handleGetDocumentationValue();
             // documentationValue has no post constraints
-            this.documentationValue33a = adocumentationValue33a;
+            this.documentationValue33a = documentationValue33a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.documentationValue33aSet = true;
             }
         }
-        return adocumentationValue33a;
+        return documentationValue33a;
     }
 
    /**
@@ -1151,8 +1151,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String onlineHelpKey34a;
-    private boolean onlineHelpKey34aSet = false;
+    private transient String onlineHelpKey34a;
+    private transient boolean onlineHelpKey34aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -1161,19 +1161,19 @@ public abstract class GuiParameterLogic
      */
     public final String getOnlineHelpKey()
     {
-        String aonlineHelpKey34a = this.onlineHelpKey34a;
+        String onlineHelpKey34a = this.onlineHelpKey34a;
         if (!this.onlineHelpKey34aSet)
         {
             // onlineHelpKey has no pre constraints
-            aonlineHelpKey34a = handleGetOnlineHelpKey();
+            onlineHelpKey34a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.onlineHelpKey34a = aonlineHelpKey34a;
+            this.onlineHelpKey34a = onlineHelpKey34a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpKey34aSet = true;
             }
         }
-        return aonlineHelpKey34a;
+        return onlineHelpKey34a;
     }
 
    /**
@@ -1182,8 +1182,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String onlineHelpValue35a;
-    private boolean onlineHelpValue35aSet = false;
+    private transient String onlineHelpValue35a;
+    private transient boolean onlineHelpValue35aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -1192,19 +1192,19 @@ public abstract class GuiParameterLogic
      */
     public final String getOnlineHelpValue()
     {
-        String aonlineHelpValue35a = this.onlineHelpValue35a;
+        String onlineHelpValue35a = this.onlineHelpValue35a;
         if (!this.onlineHelpValue35aSet)
         {
             // onlineHelpValue has no pre constraints
-            aonlineHelpValue35a = handleGetOnlineHelpValue();
+            onlineHelpValue35a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.onlineHelpValue35a = aonlineHelpValue35a;
+            this.onlineHelpValue35a = onlineHelpValue35a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpValue35aSet = true;
             }
         }
-        return aonlineHelpValue35a;
+        return onlineHelpValue35a;
     }
 
    /**
@@ -1213,8 +1213,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsSelectable();
 
-    private boolean selectable36a;
-    private boolean selectable36aSet = false;
+    private transient boolean selectable36a;
+    private transient boolean selectable36aSet = false;
 
     /**
      * Whether or not this parameter is selectable. In case this would be true this parameter always
@@ -1223,19 +1223,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isSelectable()
     {
-        boolean aselectable36a = this.selectable36a;
+        boolean selectable36a = this.selectable36a;
         if (!this.selectable36aSet)
         {
             // selectable has no pre constraints
-            aselectable36a = handleIsSelectable();
+            selectable36a = handleIsSelectable();
             // selectable has no post constraints
-            this.selectable36a = aselectable36a;
+            this.selectable36a = selectable36a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.selectable36aSet = true;
             }
         }
-        return aselectable36a;
+        return selectable36a;
     }
 
    /**
@@ -1244,8 +1244,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetValueListName();
 
-    private String valueListName37a;
-    private boolean valueListName37aSet = false;
+    private transient String valueListName37a;
+    private transient boolean valueListName37aSet = false;
 
     /**
      * The name of the list holding the values for this parameter. Only makes sense when the
@@ -1254,19 +1254,19 @@ public abstract class GuiParameterLogic
      */
     public final String getValueListName()
     {
-        String avalueListName37a = this.valueListName37a;
+        String valueListName37a = this.valueListName37a;
         if (!this.valueListName37aSet)
         {
             // valueListName has no pre constraints
-            avalueListName37a = handleGetValueListName();
+            valueListName37a = handleGetValueListName();
             // valueListName has no post constraints
-            this.valueListName37a = avalueListName37a;
+            this.valueListName37a = valueListName37a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.valueListName37aSet = true;
             }
         }
-        return avalueListName37a;
+        return valueListName37a;
     }
 
    /**
@@ -1275,8 +1275,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetLabelListName();
 
-    private String labelListName38a;
-    private boolean labelListName38aSet = false;
+    private transient String labelListName38a;
+    private transient boolean labelListName38aSet = false;
 
     /**
      * The name of the list holding the labels for this parameter. Only makes sense when the
@@ -1285,19 +1285,19 @@ public abstract class GuiParameterLogic
      */
     public final String getLabelListName()
     {
-        String alabelListName38a = this.labelListName38a;
+        String labelListName38a = this.labelListName38a;
         if (!this.labelListName38aSet)
         {
             // labelListName has no pre constraints
-            alabelListName38a = handleGetLabelListName();
+            labelListName38a = handleGetLabelListName();
             // labelListName has no post constraints
-            this.labelListName38a = alabelListName38a;
+            this.labelListName38a = labelListName38a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.labelListName38aSet = true;
             }
         }
-        return alabelListName38a;
+        return labelListName38a;
     }
 
    /**
@@ -1306,8 +1306,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetCollectionImplementationType();
 
-    private String collectionImplementationType39a;
-    private boolean collectionImplementationType39aSet = false;
+    private transient String collectionImplementationType39a;
+    private transient boolean collectionImplementationType39aSet = false;
 
     /**
      * If this parameter is a collection type, this property will represent the fully qualified name
@@ -1317,19 +1317,19 @@ public abstract class GuiParameterLogic
      */
     public final String getCollectionImplementationType()
     {
-        String acollectionImplementationType39a = this.collectionImplementationType39a;
+        String collectionImplementationType39a = this.collectionImplementationType39a;
         if (!this.collectionImplementationType39aSet)
         {
             // collectionImplementationType has no pre constraints
-            acollectionImplementationType39a = handleGetCollectionImplementationType();
+            collectionImplementationType39a = handleGetCollectionImplementationType();
             // collectionImplementationType has no post constraints
-            this.collectionImplementationType39a = acollectionImplementationType39a;
+            this.collectionImplementationType39a = collectionImplementationType39a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.collectionImplementationType39aSet = true;
             }
         }
-        return acollectionImplementationType39a;
+        return collectionImplementationType39a;
     }
 
    /**
@@ -1338,8 +1338,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetMultiboxPropertyName();
 
-    private String multiboxPropertyName40a;
-    private boolean multiboxPropertyName40aSet = false;
+    private transient String multiboxPropertyName40a;
+    private transient boolean multiboxPropertyName40aSet = false;
 
     /**
      * The name of the array to be used for the multibox, this only makes sense when this parameter
@@ -1348,19 +1348,19 @@ public abstract class GuiParameterLogic
      */
     public final String getMultiboxPropertyName()
     {
-        String amultiboxPropertyName40a = this.multiboxPropertyName40a;
+        String multiboxPropertyName40a = this.multiboxPropertyName40a;
         if (!this.multiboxPropertyName40aSet)
         {
             // multiboxPropertyName has no pre constraints
-            amultiboxPropertyName40a = handleGetMultiboxPropertyName();
+            multiboxPropertyName40a = handleGetMultiboxPropertyName();
             // multiboxPropertyName has no post constraints
-            this.multiboxPropertyName40a = amultiboxPropertyName40a;
+            this.multiboxPropertyName40a = multiboxPropertyName40a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.multiboxPropertyName40aSet = true;
             }
         }
-        return amultiboxPropertyName40a;
+        return multiboxPropertyName40a;
     }
 
    /**
@@ -1369,8 +1369,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsShouldReset();
 
-    private boolean shouldReset41a;
-    private boolean shouldReset41aSet = false;
+    private transient boolean shouldReset41a;
+    private transient boolean shouldReset41aSet = false;
 
     /**
      * Whether or not this parameter should be reset between requests.  This is different than
@@ -1379,19 +1379,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isShouldReset()
     {
-        boolean ashouldReset41a = this.shouldReset41a;
+        boolean shouldReset41a = this.shouldReset41a;
         if (!this.shouldReset41aSet)
         {
             // shouldReset has no pre constraints
-            ashouldReset41a = handleIsShouldReset();
+            shouldReset41a = handleIsShouldReset();
             // shouldReset has no post constraints
-            this.shouldReset41a = ashouldReset41a;
+            this.shouldReset41a = shouldReset41a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.shouldReset41aSet = true;
             }
         }
-        return ashouldReset41a;
+        return shouldReset41a;
     }
 
    /**
@@ -1400,8 +1400,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetResetName();
 
-    private String resetName42a;
-    private boolean resetName42aSet = false;
+    private transient String resetName42a;
+    private transient boolean resetName42aSet = false;
 
     /**
      * The name of the operation that resets this parameter to its original value.
@@ -1409,19 +1409,19 @@ public abstract class GuiParameterLogic
      */
     public final String getResetName()
     {
-        String aresetName42a = this.resetName42a;
+        String resetName42a = this.resetName42a;
         if (!this.resetName42aSet)
         {
             // resetName has no pre constraints
-            aresetName42a = handleGetResetName();
+            resetName42a = handleGetResetName();
             // resetName has no post constraints
-            this.resetName42a = aresetName42a;
+            this.resetName42a = resetName42a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetName42aSet = true;
             }
         }
-        return aresetName42a;
+        return resetName42a;
     }
 
    /**
@@ -1430,28 +1430,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsFile();
 
-    private boolean file43a;
-    private boolean file43aSet = false;
+    private transient boolean file43a;
+    private transient boolean file43aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.file
      * @return (boolean)handleIsFile()
      */
     public final boolean isFile()
     {
-        boolean afile43a = this.file43a;
+        boolean file43a = this.file43a;
         if (!this.file43aSet)
         {
             // file has no pre constraints
-            afile43a = handleIsFile();
+            file43a = handleIsFile();
             // file has no post constraints
-            this.file43a = afile43a;
+            this.file43a = file43a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.file43aSet = true;
             }
         }
-        return afile43a;
+        return file43a;
     }
 
    /**
@@ -1460,8 +1460,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsPassword();
 
-    private boolean password44a;
-    private boolean password44aSet = false;
+    private transient boolean password44a;
+    private transient boolean password44aSet = false;
 
     /**
      * True if this parameter represents a password field.
@@ -1469,19 +1469,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isPassword()
     {
-        boolean apassword44a = this.password44a;
+        boolean password44a = this.password44a;
         if (!this.password44aSet)
         {
             // password has no pre constraints
-            apassword44a = handleIsPassword();
+            password44a = handleIsPassword();
             // password has no post constraints
-            this.password44a = apassword44a;
+            this.password44a = password44a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.password44aSet = true;
             }
         }
-        return apassword44a;
+        return password44a;
     }
 
    /**
@@ -1490,28 +1490,29 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTableDecoratorRequired();
 
-    private boolean tableDecoratorRequired45a;
-    private boolean tableDecoratorRequired45aSet = false;
+    private transient boolean tableDecoratorRequired45a;
+    private transient boolean tableDecoratorRequired45aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.tableDecoratorRequired
      * @return (boolean)handleIsTableDecoratorRequired()
      */
     public final boolean isTableDecoratorRequired()
     {
-        boolean atableDecoratorRequired45a = this.tableDecoratorRequired45a;
+        boolean tableDecoratorRequired45a = this.tableDecoratorRequired45a;
         if (!this.tableDecoratorRequired45aSet)
         {
             // tableDecoratorRequired has no pre constraints
-            atableDecoratorRequired45a = handleIsTableDecoratorRequired();
+            tableDecoratorRequired45a = handleIsTableDecoratorRequired();
             // tableDecoratorRequired has no post constraints
-            this.tableDecoratorRequired45a = atableDecoratorRequired45a;
+            this.tableDecoratorRequired45a = tableDecoratorRequired45a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableDecoratorRequired45aSet = true;
             }
         }
-        return atableDecoratorRequired45a;
+        return tableDecoratorRequired45a;
     }
 
    /**
@@ -1520,8 +1521,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableDecoratorFullyQualifiedName();
 
-    private String tableDecoratorFullyQualifiedName46a;
-    private boolean tableDecoratorFullyQualifiedName46aSet = false;
+    private transient String tableDecoratorFullyQualifiedName46a;
+    private transient boolean tableDecoratorFullyQualifiedName46aSet = false;
 
     /**
      * The complete table decorator classname.
@@ -1529,19 +1530,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableDecoratorFullyQualifiedName()
     {
-        String atableDecoratorFullyQualifiedName46a = this.tableDecoratorFullyQualifiedName46a;
+        String tableDecoratorFullyQualifiedName46a = this.tableDecoratorFullyQualifiedName46a;
         if (!this.tableDecoratorFullyQualifiedName46aSet)
         {
             // tableDecoratorFullyQualifiedName has no pre constraints
-            atableDecoratorFullyQualifiedName46a = handleGetTableDecoratorFullyQualifiedName();
+            tableDecoratorFullyQualifiedName46a = handleGetTableDecoratorFullyQualifiedName();
             // tableDecoratorFullyQualifiedName has no post constraints
-            this.tableDecoratorFullyQualifiedName46a = atableDecoratorFullyQualifiedName46a;
+            this.tableDecoratorFullyQualifiedName46a = tableDecoratorFullyQualifiedName46a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableDecoratorFullyQualifiedName46aSet = true;
             }
         }
-        return atableDecoratorFullyQualifiedName46a;
+        return tableDecoratorFullyQualifiedName46a;
     }
 
    /**
@@ -1550,8 +1551,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTableHyperlinkColumn();
 
-    private boolean tableHyperlinkColumn47a;
-    private boolean tableHyperlinkColumn47aSet = false;
+    private transient boolean tableHyperlinkColumn47a;
+    private transient boolean tableHyperlinkColumn47aSet = false;
 
     /**
      * True if this parameter represents a table column into which an hyperlink must be rendered.
@@ -1561,19 +1562,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isTableHyperlinkColumn()
     {
-        boolean atableHyperlinkColumn47a = this.tableHyperlinkColumn47a;
+        boolean tableHyperlinkColumn47a = this.tableHyperlinkColumn47a;
         if (!this.tableHyperlinkColumn47aSet)
         {
             // tableHyperlinkColumn has no pre constraints
-            atableHyperlinkColumn47a = handleIsTableHyperlinkColumn();
+            tableHyperlinkColumn47a = handleIsTableHyperlinkColumn();
             // tableHyperlinkColumn has no post constraints
-            this.tableHyperlinkColumn47a = atableHyperlinkColumn47a;
+            this.tableHyperlinkColumn47a = tableHyperlinkColumn47a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableHyperlinkColumn47aSet = true;
             }
         }
-        return atableHyperlinkColumn47a;
+        return tableHyperlinkColumn47a;
     }
 
    /**
@@ -1582,8 +1583,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTableFormActionSharingWidgets();
 
-    private boolean tableFormActionSharingWidgets48a;
-    private boolean tableFormActionSharingWidgets48aSet = false;
+    private transient boolean tableFormActionSharingWidgets48a;
+    private transient boolean tableFormActionSharingWidgets48aSet = false;
 
     /**
      * True if this table has form actions that share the column widgets. It is not allowed to have
@@ -1592,19 +1593,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isTableFormActionSharingWidgets()
     {
-        boolean atableFormActionSharingWidgets48a = this.tableFormActionSharingWidgets48a;
+        boolean tableFormActionSharingWidgets48a = this.tableFormActionSharingWidgets48a;
         if (!this.tableFormActionSharingWidgets48aSet)
         {
             // tableFormActionSharingWidgets has no pre constraints
-            atableFormActionSharingWidgets48a = handleIsTableFormActionSharingWidgets();
+            tableFormActionSharingWidgets48a = handleIsTableFormActionSharingWidgets();
             // tableFormActionSharingWidgets has no post constraints
-            this.tableFormActionSharingWidgets48a = atableFormActionSharingWidgets48a;
+            this.tableFormActionSharingWidgets48a = tableFormActionSharingWidgets48a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableFormActionSharingWidgets48aSet = true;
             }
         }
-        return atableFormActionSharingWidgets48a;
+        return tableFormActionSharingWidgets48a;
     }
 
    /**
@@ -1613,28 +1614,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetStyleId();
 
-    private String styleId49a;
-    private boolean styleId49aSet = false;
+    private transient String styleId49a;
+    private transient boolean styleId49aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.styleId
      * @return (String)handleGetStyleId()
      */
     public final String getStyleId()
     {
-        String astyleId49a = this.styleId49a;
+        String styleId49a = this.styleId49a;
         if (!this.styleId49aSet)
         {
             // styleId has no pre constraints
-            astyleId49a = handleGetStyleId();
+            styleId49a = handleGetStyleId();
             // styleId has no post constraints
-            this.styleId49a = astyleId49a;
+            this.styleId49a = styleId49a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.styleId49aSet = true;
             }
         }
-        return astyleId49a;
+        return styleId49a;
     }
 
    /**
@@ -1643,8 +1644,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsSortableBy();
 
-    private boolean sortableBy50a;
-    private boolean sortableBy50aSet = false;
+    private transient boolean sortableBy50a;
+    private transient boolean sortableBy50aSet = false;
 
     /**
      * Indicates if a table can be sorted by this parameter.
@@ -1652,19 +1653,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isSortableBy()
     {
-        boolean asortableBy50a = this.sortableBy50a;
+        boolean sortableBy50a = this.sortableBy50a;
         if (!this.sortableBy50aSet)
         {
             // sortableBy has no pre constraints
-            asortableBy50a = handleIsSortableBy();
+            sortableBy50a = handleIsSortableBy();
             // sortableBy has no post constraints
-            this.sortableBy50a = asortableBy50a;
+            this.sortableBy50a = sortableBy50a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.sortableBy50aSet = true;
             }
         }
-        return asortableBy50a;
+        return sortableBy50a;
     }
 
    /**
@@ -1673,8 +1674,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTimeFormat();
 
-    private String timeFormat51a;
-    private boolean timeFormat51aSet = false;
+    private transient String timeFormat51a;
+    private transient boolean timeFormat51aSet = false;
 
     /**
      * The time format for this parameter (if this parameter stores time).
@@ -1682,19 +1683,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTimeFormat()
     {
-        String atimeFormat51a = this.timeFormat51a;
+        String timeFormat51a = this.timeFormat51a;
         if (!this.timeFormat51aSet)
         {
             // timeFormat has no pre constraints
-            atimeFormat51a = handleGetTimeFormat();
+            timeFormat51a = handleGetTimeFormat();
             // timeFormat has no post constraints
-            this.timeFormat51a = atimeFormat51a;
+            this.timeFormat51a = timeFormat51a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.timeFormat51aSet = true;
             }
         }
-        return atimeFormat51a;
+        return timeFormat51a;
     }
 
    /**
@@ -1703,8 +1704,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTime();
 
-    private boolean time52a;
-    private boolean time52aSet = false;
+    private transient boolean time52a;
+    private transient boolean time52aSet = false;
 
     /**
      * Indicates if this parameter's type represents a time.
@@ -1712,19 +1713,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isTime()
     {
-        boolean atime52a = this.time52a;
+        boolean time52a = this.time52a;
         if (!this.time52aSet)
         {
             // time has no pre constraints
-            atime52a = handleIsTime();
+            time52a = handleIsTime();
             // time has no post constraints
-            this.time52a = atime52a;
+            this.time52a = time52a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.time52aSet = true;
             }
         }
-        return atime52a;
+        return time52a;
     }
 
    /**
@@ -1733,8 +1734,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsAllGlobalTableActionsHaveSameParameter();
 
-    private boolean allGlobalTableActionsHaveSameParameter53a;
-    private boolean allGlobalTableActionsHaveSameParameter53aSet = false;
+    private transient boolean allGlobalTableActionsHaveSameParameter53a;
+    private transient boolean allGlobalTableActionsHaveSameParameter53aSet = false;
 
     /**
      * This property is used in model validation. It denotes whether all actions targetting this
@@ -1744,19 +1745,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isAllGlobalTableActionsHaveSameParameter()
     {
-        boolean aallGlobalTableActionsHaveSameParameter53a = this.allGlobalTableActionsHaveSameParameter53a;
+        boolean allGlobalTableActionsHaveSameParameter53a = this.allGlobalTableActionsHaveSameParameter53a;
         if (!this.allGlobalTableActionsHaveSameParameter53aSet)
         {
             // allGlobalTableActionsHaveSameParameter has no pre constraints
-            aallGlobalTableActionsHaveSameParameter53a = handleIsAllGlobalTableActionsHaveSameParameter();
+            allGlobalTableActionsHaveSameParameter53a = handleIsAllGlobalTableActionsHaveSameParameter();
             // allGlobalTableActionsHaveSameParameter has no post constraints
-            this.allGlobalTableActionsHaveSameParameter53a = aallGlobalTableActionsHaveSameParameter53a;
+            this.allGlobalTableActionsHaveSameParameter53a = allGlobalTableActionsHaveSameParameter53a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.allGlobalTableActionsHaveSameParameter53aSet = true;
             }
         }
-        return aallGlobalTableActionsHaveSameParameter53a;
+        return allGlobalTableActionsHaveSameParameter53a;
     }
 
    /**
@@ -1765,8 +1766,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Integer handleGetFieldRowCount();
 
-    private Integer fieldRowCount54a;
-    private boolean fieldRowCount54aSet = false;
+    private transient Integer fieldRowCount54a;
+    private transient boolean fieldRowCount54aSet = false;
 
     /**
      * The number of rows for this field, null if default browser value is desired.
@@ -1774,19 +1775,19 @@ public abstract class GuiParameterLogic
      */
     public final Integer getFieldRowCount()
     {
-        Integer afieldRowCount54a = this.fieldRowCount54a;
+        Integer fieldRowCount54a = this.fieldRowCount54a;
         if (!this.fieldRowCount54aSet)
         {
             // fieldRowCount has no pre constraints
-            afieldRowCount54a = handleGetFieldRowCount();
+            fieldRowCount54a = handleGetFieldRowCount();
             // fieldRowCount has no post constraints
-            this.fieldRowCount54a = afieldRowCount54a;
+            this.fieldRowCount54a = fieldRowCount54a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fieldRowCount54aSet = true;
             }
         }
-        return afieldRowCount54a;
+        return fieldRowCount54a;
     }
 
    /**
@@ -1795,8 +1796,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Integer handleGetFieldColumnCount();
 
-    private Integer fieldColumnCount55a;
-    private boolean fieldColumnCount55aSet = false;
+    private transient Integer fieldColumnCount55a;
+    private transient boolean fieldColumnCount55aSet = false;
 
     /**
      * The number of columns for this field, null if default browser value is desired.
@@ -1804,19 +1805,19 @@ public abstract class GuiParameterLogic
      */
     public final Integer getFieldColumnCount()
     {
-        Integer afieldColumnCount55a = this.fieldColumnCount55a;
+        Integer fieldColumnCount55a = this.fieldColumnCount55a;
         if (!this.fieldColumnCount55aSet)
         {
             // fieldColumnCount has no pre constraints
-            afieldColumnCount55a = handleGetFieldColumnCount();
+            fieldColumnCount55a = handleGetFieldColumnCount();
             // fieldColumnCount has no post constraints
-            this.fieldColumnCount55a = afieldColumnCount55a;
+            this.fieldColumnCount55a = fieldColumnCount55a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fieldColumnCount55aSet = true;
             }
         }
-        return afieldColumnCount55a;
+        return fieldColumnCount55a;
     }
 
    /**
@@ -1825,28 +1826,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsCombobox();
 
-    private boolean combobox56a;
-    private boolean combobox56aSet = false;
+    private transient boolean combobox56a;
+    private transient boolean combobox56aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.combobox
      * @return (boolean)handleIsCombobox()
      */
     public final boolean isCombobox()
     {
-        boolean acombobox56a = this.combobox56a;
+        boolean combobox56a = this.combobox56a;
         if (!this.combobox56aSet)
         {
             // combobox has no pre constraints
-            acombobox56a = handleIsCombobox();
+            combobox56a = handleIsCombobox();
             // combobox has no post constraints
-            this.combobox56a = acombobox56a;
+            this.combobox56a = combobox56a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.combobox56aSet = true;
             }
         }
-        return acombobox56a;
+        return combobox56a;
     }
 
    /**
@@ -1855,28 +1856,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsCheckbox();
 
-    private boolean checkbox57a;
-    private boolean checkbox57aSet = false;
+    private transient boolean checkbox57a;
+    private transient boolean checkbox57aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.checkbox
      * @return (boolean)handleIsCheckbox()
      */
     public final boolean isCheckbox()
     {
-        boolean acheckbox57a = this.checkbox57a;
+        boolean checkbox57a = this.checkbox57a;
         if (!this.checkbox57aSet)
         {
             // checkbox has no pre constraints
-            acheckbox57a = handleIsCheckbox();
+            checkbox57a = handleIsCheckbox();
             // checkbox has no post constraints
-            this.checkbox57a = acheckbox57a;
+            this.checkbox57a = checkbox57a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.checkbox57aSet = true;
             }
         }
-        return acheckbox57a;
+        return checkbox57a;
     }
 
    /**
@@ -1885,28 +1886,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTextField();
 
-    private boolean textField58a;
-    private boolean textField58aSet = false;
+    private transient boolean textField58a;
+    private transient boolean textField58aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.textField
      * @return (boolean)handleIsTextField()
      */
     public final boolean isTextField()
     {
-        boolean atextField58a = this.textField58a;
+        boolean textField58a = this.textField58a;
         if (!this.textField58aSet)
         {
             // textField has no pre constraints
-            atextField58a = handleIsTextField();
+            textField58a = handleIsTextField();
             // textField has no post constraints
-            this.textField58a = atextField58a;
+            this.textField58a = textField58a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.textField58aSet = true;
             }
         }
-        return atextField58a;
+        return textField58a;
     }
 
    /**
@@ -1915,28 +1916,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsTextArea();
 
-    private boolean textArea59a;
-    private boolean textArea59aSet = false;
+    private transient boolean textArea59a;
+    private transient boolean textArea59aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.textArea
      * @return (boolean)handleIsTextArea()
      */
     public final boolean isTextArea()
     {
-        boolean atextArea59a = this.textArea59a;
+        boolean textArea59a = this.textArea59a;
         if (!this.textArea59aSet)
         {
             // textArea has no pre constraints
-            atextArea59a = handleIsTextArea();
+            textArea59a = handleIsTextArea();
             // textArea has no post constraints
-            this.textArea59a = atextArea59a;
+            this.textArea59a = textArea59a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.textArea59aSet = true;
             }
         }
-        return atextArea59a;
+        return textArea59a;
     }
 
    /**
@@ -1945,28 +1946,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsMultibox();
 
-    private boolean multibox60a;
-    private boolean multibox60aSet = false;
+    private transient boolean multibox60a;
+    private transient boolean multibox60aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.multibox
      * @return (boolean)handleIsMultibox()
      */
     public final boolean isMultibox()
     {
-        boolean amultibox60a = this.multibox60a;
+        boolean multibox60a = this.multibox60a;
         if (!this.multibox60aSet)
         {
             // multibox has no pre constraints
-            amultibox60a = handleIsMultibox();
+            multibox60a = handleIsMultibox();
             // multibox has no post constraints
-            this.multibox60a = amultibox60a;
+            this.multibox60a = multibox60a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.multibox60aSet = true;
             }
         }
-        return amultibox60a;
+        return multibox60a;
     }
 
    /**
@@ -1975,28 +1976,29 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsRadioButton();
 
-    private boolean radioButton61a;
-    private boolean radioButton61aSet = false;
+    private transient boolean radioButton61a;
+    private transient boolean radioButton61aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.radioButton
      * @return (boolean)handleIsRadioButton()
      */
     public final boolean isRadioButton()
     {
-        boolean aradioButton61a = this.radioButton61a;
+        boolean radioButton61a = this.radioButton61a;
         if (!this.radioButton61aSet)
         {
             // radioButton has no pre constraints
-            aradioButton61a = handleIsRadioButton();
+            radioButton61a = handleIsRadioButton();
             // radioButton has no post constraints
-            this.radioButton61a = aradioButton61a;
+            this.radioButton61a = radioButton61a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.radioButton61aSet = true;
             }
         }
-        return aradioButton61a;
+        return radioButton61a;
     }
 
    /**
@@ -2005,28 +2007,29 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsHiddenField();
 
-    private boolean hiddenField62a;
-    private boolean hiddenField62aSet = false;
+    private transient boolean hiddenField62a;
+    private transient boolean hiddenField62aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.hiddenField
      * @return (boolean)handleIsHiddenField()
      */
     public final boolean isHiddenField()
     {
-        boolean ahiddenField62a = this.hiddenField62a;
+        boolean hiddenField62a = this.hiddenField62a;
         if (!this.hiddenField62aSet)
         {
             // hiddenField has no pre constraints
-            ahiddenField62a = handleIsHiddenField();
+            hiddenField62a = handleIsHiddenField();
             // hiddenField has no post constraints
-            this.hiddenField62a = ahiddenField62a;
+            this.hiddenField62a = hiddenField62a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hiddenField62aSet = true;
             }
         }
-        return ahiddenField62a;
+        return hiddenField62a;
     }
 
    /**
@@ -2035,28 +2038,28 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsHyperlink();
 
-    private boolean hyperlink63a;
-    private boolean hyperlink63aSet = false;
+    private transient boolean hyperlink63a;
+    private transient boolean hyperlink63aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.hyperlink
      * @return (boolean)handleIsHyperlink()
      */
     public final boolean isHyperlink()
     {
-        boolean ahyperlink63a = this.hyperlink63a;
+        boolean hyperlink63a = this.hyperlink63a;
         if (!this.hyperlink63aSet)
         {
             // hyperlink has no pre constraints
-            ahyperlink63a = handleIsHyperlink();
+            hyperlink63a = handleIsHyperlink();
             // hyperlink has no post constraints
-            this.hyperlink63a = ahyperlink63a;
+            this.hyperlink63a = hyperlink63a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hyperlink63aSet = true;
             }
         }
-        return ahyperlink63a;
+        return hyperlink63a;
     }
 
    /**
@@ -2065,8 +2068,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsSafeNamePresent();
 
-    private boolean safeNamePresent64a;
-    private boolean safeNamePresent64aSet = false;
+    private transient boolean safeNamePresent64a;
+    private transient boolean safeNamePresent64aSet = false;
 
     /**
      * True if this parameter has a name that can properly be handled by Jakarta commons (this lib
@@ -2075,19 +2078,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isSafeNamePresent()
     {
-        boolean asafeNamePresent64a = this.safeNamePresent64a;
+        boolean safeNamePresent64a = this.safeNamePresent64a;
         if (!this.safeNamePresent64aSet)
         {
             // safeNamePresent has no pre constraints
-            asafeNamePresent64a = handleIsSafeNamePresent();
+            safeNamePresent64a = handleIsSafeNamePresent();
             // safeNamePresent has no post constraints
-            this.safeNamePresent64a = asafeNamePresent64a;
+            this.safeNamePresent64a = safeNamePresent64a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.safeNamePresent64aSet = true;
             }
         }
-        return asafeNamePresent64a;
+        return safeNamePresent64a;
     }
 
    /**
@@ -2096,28 +2099,29 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsMultiSelection();
 
-    private boolean multiSelection65a;
-    private boolean multiSelection65aSet = false;
+    private transient boolean multiSelection65a;
+    private transient boolean multiSelection65aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.multiSelection
      * @return (boolean)handleIsMultiSelection()
      */
     public final boolean isMultiSelection()
     {
-        boolean amultiSelection65a = this.multiSelection65a;
+        boolean multiSelection65a = this.multiSelection65a;
         if (!this.multiSelection65aSet)
         {
             // multiSelection has no pre constraints
-            amultiSelection65a = handleIsMultiSelection();
+            multiSelection65a = handleIsMultiSelection();
             // multiSelection has no post constraints
-            this.multiSelection65a = amultiSelection65a;
+            this.multiSelection65a = multiSelection65a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.multiSelection65aSet = true;
             }
         }
-        return amultiSelection65a;
+        return multiSelection65a;
     }
 
    /**
@@ -2126,8 +2130,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetFormat();
 
-    private String format66a;
-    private boolean format66aSet = false;
+    private transient String format66a;
+    private transient boolean format66aSet = false;
 
     /**
      * If this parameter represents a date or time this method will return the format in which it
@@ -2137,19 +2141,19 @@ public abstract class GuiParameterLogic
      */
     public final String getFormat()
     {
-        String aformat66a = this.format66a;
+        String format66a = this.format66a;
         if (!this.format66aSet)
         {
             // format has no pre constraints
-            aformat66a = handleGetFormat();
+            format66a = handleGetFormat();
             // format has no post constraints
-            this.format66a = aformat66a;
+            this.format66a = format66a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.format66aSet = true;
             }
         }
-        return aformat66a;
+        return format66a;
     }
 
    /**
@@ -2158,8 +2162,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetDateFormatter();
 
-    private String dateFormatter67a;
-    private boolean dateFormatter67aSet = false;
+    private transient String dateFormatter67a;
+    private transient boolean dateFormatter67aSet = false;
 
     /**
      * The name of the date formatter for this parameter (if this parameter represents a date).
@@ -2167,19 +2171,19 @@ public abstract class GuiParameterLogic
      */
     public final String getDateFormatter()
     {
-        String adateFormatter67a = this.dateFormatter67a;
+        String dateFormatter67a = this.dateFormatter67a;
         if (!this.dateFormatter67aSet)
         {
             // dateFormatter has no pre constraints
-            adateFormatter67a = handleGetDateFormatter();
+            dateFormatter67a = handleGetDateFormatter();
             // dateFormatter has no post constraints
-            this.dateFormatter67a = adateFormatter67a;
+            this.dateFormatter67a = dateFormatter67a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dateFormatter67aSet = true;
             }
         }
-        return adateFormatter67a;
+        return dateFormatter67a;
     }
 
    /**
@@ -2188,8 +2192,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTimeFormatter();
 
-    private String timeFormatter68a;
-    private boolean timeFormatter68aSet = false;
+    private transient String timeFormatter68a;
+    private transient boolean timeFormatter68aSet = false;
 
     /**
      * The name of the time formatter (if this parameter represents a time).
@@ -2197,19 +2201,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTimeFormatter()
     {
-        String atimeFormatter68a = this.timeFormatter68a;
+        String timeFormatter68a = this.timeFormatter68a;
         if (!this.timeFormatter68aSet)
         {
             // timeFormatter has no pre constraints
-            atimeFormatter68a = handleGetTimeFormatter();
+            timeFormatter68a = handleGetTimeFormatter();
             // timeFormatter has no post constraints
-            this.timeFormatter68a = atimeFormatter68a;
+            this.timeFormatter68a = timeFormatter68a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.timeFormatter68aSet = true;
             }
         }
-        return atimeFormatter68a;
+        return timeFormatter68a;
     }
 
    /**
@@ -2218,8 +2222,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputCheckbox();
 
-    private boolean inputCheckbox69a;
-    private boolean inputCheckbox69aSet = false;
+    private transient boolean inputCheckbox69a;
+    private transient boolean inputCheckbox69aSet = false;
 
     /**
      * Indicates if this parameter represents a checkbox widget.
@@ -2227,19 +2231,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputCheckbox()
     {
-        boolean ainputCheckbox69a = this.inputCheckbox69a;
+        boolean inputCheckbox69a = this.inputCheckbox69a;
         if (!this.inputCheckbox69aSet)
         {
             // inputCheckbox has no pre constraints
-            ainputCheckbox69a = handleIsInputCheckbox();
+            inputCheckbox69a = handleIsInputCheckbox();
             // inputCheckbox has no post constraints
-            this.inputCheckbox69a = ainputCheckbox69a;
+            this.inputCheckbox69a = inputCheckbox69a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputCheckbox69aSet = true;
             }
         }
-        return ainputCheckbox69a;
+        return inputCheckbox69a;
     }
 
    /**
@@ -2248,8 +2252,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputTextarea();
 
-    private boolean inputTextarea70a;
-    private boolean inputTextarea70aSet = false;
+    private transient boolean inputTextarea70a;
+    private transient boolean inputTextarea70aSet = false;
 
     /**
      * Indicates if this parameter represents as an input text area widget.
@@ -2257,19 +2261,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputTextarea()
     {
-        boolean ainputTextarea70a = this.inputTextarea70a;
+        boolean inputTextarea70a = this.inputTextarea70a;
         if (!this.inputTextarea70aSet)
         {
             // inputTextarea has no pre constraints
-            ainputTextarea70a = handleIsInputTextarea();
+            inputTextarea70a = handleIsInputTextarea();
             // inputTextarea has no post constraints
-            this.inputTextarea70a = ainputTextarea70a;
+            this.inputTextarea70a = inputTextarea70a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputTextarea70aSet = true;
             }
         }
-        return ainputTextarea70a;
+        return inputTextarea70a;
     }
 
    /**
@@ -2278,8 +2282,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputSelect();
 
-    private boolean inputSelect71a;
-    private boolean inputSelect71aSet = false;
+    private transient boolean inputSelect71a;
+    private transient boolean inputSelect71aSet = false;
 
     /**
      * Indicates whether or not this parameter represents an input select widget.
@@ -2287,19 +2291,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputSelect()
     {
-        boolean ainputSelect71a = this.inputSelect71a;
+        boolean inputSelect71a = this.inputSelect71a;
         if (!this.inputSelect71aSet)
         {
             // inputSelect has no pre constraints
-            ainputSelect71a = handleIsInputSelect();
+            inputSelect71a = handleIsInputSelect();
             // inputSelect has no post constraints
-            this.inputSelect71a = ainputSelect71a;
+            this.inputSelect71a = inputSelect71a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputSelect71aSet = true;
             }
         }
-        return ainputSelect71a;
+        return inputSelect71a;
     }
 
    /**
@@ -2308,8 +2312,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputSecret();
 
-    private boolean inputSecret72a;
-    private boolean inputSecret72aSet = false;
+    private transient boolean inputSecret72a;
+    private transient boolean inputSecret72aSet = false;
 
     /**
      * Indicates whether or not this parameter represents an input "secret" widget (i.e. password).
@@ -2317,19 +2321,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputSecret()
     {
-        boolean ainputSecret72a = this.inputSecret72a;
+        boolean inputSecret72a = this.inputSecret72a;
         if (!this.inputSecret72aSet)
         {
             // inputSecret has no pre constraints
-            ainputSecret72a = handleIsInputSecret();
+            inputSecret72a = handleIsInputSecret();
             // inputSecret has no post constraints
-            this.inputSecret72a = ainputSecret72a;
+            this.inputSecret72a = inputSecret72a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputSecret72aSet = true;
             }
         }
-        return ainputSecret72a;
+        return inputSecret72a;
     }
 
    /**
@@ -2338,8 +2342,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputHidden();
 
-    private boolean inputHidden73a;
-    private boolean inputHidden73aSet = false;
+    private transient boolean inputHidden73a;
+    private transient boolean inputHidden73aSet = false;
 
     /**
      * Indicates whether or not this parameter represents a hidden input widget.
@@ -2347,19 +2351,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputHidden()
     {
-        boolean ainputHidden73a = this.inputHidden73a;
+        boolean inputHidden73a = this.inputHidden73a;
         if (!this.inputHidden73aSet)
         {
             // inputHidden has no pre constraints
-            ainputHidden73a = handleIsInputHidden();
+            inputHidden73a = handleIsInputHidden();
             // inputHidden has no post constraints
-            this.inputHidden73a = ainputHidden73a;
+            this.inputHidden73a = inputHidden73a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputHidden73aSet = true;
             }
         }
-        return ainputHidden73a;
+        return inputHidden73a;
     }
 
    /**
@@ -2368,8 +2372,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsPlaintext();
 
-    private boolean plaintext74a;
-    private boolean plaintext74aSet = false;
+    private transient boolean plaintext74a;
+    private transient boolean plaintext74aSet = false;
 
     /**
      * Indicates whether or not this field should be rendered as plain text (not as a widget).
@@ -2377,19 +2381,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isPlaintext()
     {
-        boolean aplaintext74a = this.plaintext74a;
+        boolean plaintext74a = this.plaintext74a;
         if (!this.plaintext74aSet)
         {
             // plaintext has no pre constraints
-            aplaintext74a = handleIsPlaintext();
+            plaintext74a = handleIsPlaintext();
             // plaintext has no post constraints
-            this.plaintext74a = aplaintext74a;
+            this.plaintext74a = plaintext74a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.plaintext74aSet = true;
             }
         }
-        return aplaintext74a;
+        return plaintext74a;
     }
 
    /**
@@ -2398,8 +2402,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputRadio();
 
-    private boolean inputRadio75a;
-    private boolean inputRadio75aSet = false;
+    private transient boolean inputRadio75a;
+    private transient boolean inputRadio75aSet = false;
 
     /**
      * Indicates whether or not this parameter should be rendered as an input radio widget.
@@ -2407,19 +2411,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputRadio()
     {
-        boolean ainputRadio75a = this.inputRadio75a;
+        boolean inputRadio75a = this.inputRadio75a;
         if (!this.inputRadio75aSet)
         {
             // inputRadio has no pre constraints
-            ainputRadio75a = handleIsInputRadio();
+            inputRadio75a = handleIsInputRadio();
             // inputRadio has no post constraints
-            this.inputRadio75a = ainputRadio75a;
+            this.inputRadio75a = inputRadio75a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputRadio75aSet = true;
             }
         }
-        return ainputRadio75a;
+        return inputRadio75a;
     }
 
    /**
@@ -2428,8 +2432,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputText();
 
-    private boolean inputText76a;
-    private boolean inputText76aSet = false;
+    private transient boolean inputText76a;
+    private transient boolean inputText76aSet = false;
 
     /**
      * Indicates whether or not this parameter should be rendered as a text input widget.
@@ -2437,19 +2441,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputText()
     {
-        boolean ainputText76a = this.inputText76a;
+        boolean inputText76a = this.inputText76a;
         if (!this.inputText76aSet)
         {
             // inputText has no pre constraints
-            ainputText76a = handleIsInputText();
+            inputText76a = handleIsInputText();
             // inputText has no post constraints
-            this.inputText76a = ainputText76a;
+            this.inputText76a = inputText76a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputText76aSet = true;
             }
         }
-        return ainputText76a;
+        return inputText76a;
     }
 
    /**
@@ -2458,8 +2462,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetDummyValue();
 
-    private String dummyValue77a;
-    private boolean dummyValue77aSet = false;
+    private transient String dummyValue77a;
+    private transient boolean dummyValue77aSet = false;
 
     /**
      * The dummy value for this parameter. The dummy value is used for setting the dummy information
@@ -2468,19 +2472,19 @@ public abstract class GuiParameterLogic
      */
     public final String getDummyValue()
     {
-        String adummyValue77a = this.dummyValue77a;
+        String dummyValue77a = this.dummyValue77a;
         if (!this.dummyValue77aSet)
         {
             // dummyValue has no pre constraints
-            adummyValue77a = handleGetDummyValue();
+            dummyValue77a = handleGetDummyValue();
             // dummyValue has no post constraints
-            this.dummyValue77a = adummyValue77a;
+            this.dummyValue77a = dummyValue77a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dummyValue77aSet = true;
             }
         }
-        return adummyValue77a;
+        return dummyValue77a;
     }
 
    /**
@@ -2489,8 +2493,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetValueListDummyValue();
 
-    private String valueListDummyValue78a;
-    private boolean valueListDummyValue78aSet = false;
+    private transient String valueListDummyValue78a;
+    private transient boolean valueListDummyValue78aSet = false;
 
     /**
      * The dummy value for a value list.
@@ -2498,19 +2502,19 @@ public abstract class GuiParameterLogic
      */
     public final String getValueListDummyValue()
     {
-        String avalueListDummyValue78a = this.valueListDummyValue78a;
+        String valueListDummyValue78a = this.valueListDummyValue78a;
         if (!this.valueListDummyValue78aSet)
         {
             // valueListDummyValue has no pre constraints
-            avalueListDummyValue78a = handleGetValueListDummyValue();
+            valueListDummyValue78a = handleGetValueListDummyValue();
             // valueListDummyValue has no post constraints
-            this.valueListDummyValue78a = avalueListDummyValue78a;
+            this.valueListDummyValue78a = valueListDummyValue78a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.valueListDummyValue78aSet = true;
             }
         }
-        return avalueListDummyValue78a;
+        return valueListDummyValue78a;
     }
 
    /**
@@ -2519,8 +2523,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableSortColumnProperty();
 
-    private String tableSortColumnProperty79a;
-    private boolean tableSortColumnProperty79aSet = false;
+    private transient String tableSortColumnProperty79a;
+    private transient boolean tableSortColumnProperty79aSet = false;
 
     /**
      * The name of the property storing the column to sort by if this parameter represents a table.
@@ -2528,19 +2532,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableSortColumnProperty()
     {
-        String atableSortColumnProperty79a = this.tableSortColumnProperty79a;
+        String tableSortColumnProperty79a = this.tableSortColumnProperty79a;
         if (!this.tableSortColumnProperty79aSet)
         {
             // tableSortColumnProperty has no pre constraints
-            atableSortColumnProperty79a = handleGetTableSortColumnProperty();
+            tableSortColumnProperty79a = handleGetTableSortColumnProperty();
             // tableSortColumnProperty has no post constraints
-            this.tableSortColumnProperty79a = atableSortColumnProperty79a;
+            this.tableSortColumnProperty79a = tableSortColumnProperty79a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableSortColumnProperty79aSet = true;
             }
         }
-        return atableSortColumnProperty79a;
+        return tableSortColumnProperty79a;
     }
 
    /**
@@ -2549,8 +2553,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetTableSortAscendingProperty();
 
-    private String tableSortAscendingProperty80a;
-    private boolean tableSortAscendingProperty80aSet = false;
+    private transient String tableSortAscendingProperty80a;
+    private transient boolean tableSortAscendingProperty80aSet = false;
 
     /**
      * The name of the property that Indicates whether or not the table should be sorted ascending
@@ -2559,19 +2563,19 @@ public abstract class GuiParameterLogic
      */
     public final String getTableSortAscendingProperty()
     {
-        String atableSortAscendingProperty80a = this.tableSortAscendingProperty80a;
+        String tableSortAscendingProperty80a = this.tableSortAscendingProperty80a;
         if (!this.tableSortAscendingProperty80aSet)
         {
             // tableSortAscendingProperty has no pre constraints
-            atableSortAscendingProperty80a = handleGetTableSortAscendingProperty();
+            tableSortAscendingProperty80a = handleGetTableSortAscendingProperty();
             // tableSortAscendingProperty has no post constraints
-            this.tableSortAscendingProperty80a = atableSortAscendingProperty80a;
+            this.tableSortAscendingProperty80a = tableSortAscendingProperty80a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableSortAscendingProperty80aSet = true;
             }
         }
-        return atableSortAscendingProperty80a;
+        return tableSortAscendingProperty80a;
     }
 
    /**
@@ -2580,8 +2584,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetFormAttributeSetProperty();
 
-    private String formAttributeSetProperty81a;
-    private boolean formAttributeSetProperty81aSet = false;
+    private transient String formAttributeSetProperty81a;
+    private transient boolean formAttributeSetProperty81aSet = false;
 
     /**
      * The name of the property used for indicating whether or not a form attribute has been set at
@@ -2590,19 +2594,19 @@ public abstract class GuiParameterLogic
      */
     public final String getFormAttributeSetProperty()
     {
-        String aformAttributeSetProperty81a = this.formAttributeSetProperty81a;
+        String formAttributeSetProperty81a = this.formAttributeSetProperty81a;
         if (!this.formAttributeSetProperty81aSet)
         {
             // formAttributeSetProperty has no pre constraints
-            aformAttributeSetProperty81a = handleGetFormAttributeSetProperty();
+            formAttributeSetProperty81a = handleGetFormAttributeSetProperty();
             // formAttributeSetProperty has no post constraints
-            this.formAttributeSetProperty81a = aformAttributeSetProperty81a;
+            this.formAttributeSetProperty81a = formAttributeSetProperty81a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formAttributeSetProperty81aSet = true;
             }
         }
-        return aformAttributeSetProperty81a;
+        return formAttributeSetProperty81a;
     }
 
    /**
@@ -2611,8 +2615,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputFile();
 
-    private boolean inputFile82a;
-    private boolean inputFile82aSet = false;
+    private transient boolean inputFile82a;
+    private transient boolean inputFile82aSet = false;
 
     /**
      * Indicates whether or not this is a file input type.
@@ -2620,19 +2624,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputFile()
     {
-        boolean ainputFile82a = this.inputFile82a;
+        boolean inputFile82a = this.inputFile82a;
         if (!this.inputFile82aSet)
         {
             // inputFile has no pre constraints
-            ainputFile82a = handleIsInputFile();
+            inputFile82a = handleIsInputFile();
             // inputFile has no post constraints
-            this.inputFile82a = ainputFile82a;
+            this.inputFile82a = inputFile82a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputFile82aSet = true;
             }
         }
-        return ainputFile82a;
+        return inputFile82a;
     }
 
    /**
@@ -2641,8 +2645,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputMultibox();
 
-    private boolean inputMultibox83a;
-    private boolean inputMultibox83aSet = false;
+    private transient boolean inputMultibox83a;
+    private transient boolean inputMultibox83aSet = false;
 
     /**
      * Indicates whether or not this type represents an input multibox.
@@ -2650,19 +2654,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputMultibox()
     {
-        boolean ainputMultibox83a = this.inputMultibox83a;
+        boolean inputMultibox83a = this.inputMultibox83a;
         if (!this.inputMultibox83aSet)
         {
             // inputMultibox has no pre constraints
-            ainputMultibox83a = handleIsInputMultibox();
+            inputMultibox83a = handleIsInputMultibox();
             // inputMultibox has no post constraints
-            this.inputMultibox83a = ainputMultibox83a;
+            this.inputMultibox83a = inputMultibox83a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputMultibox83aSet = true;
             }
         }
-        return ainputMultibox83a;
+        return inputMultibox83a;
     }
 
    /**
@@ -2671,8 +2675,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsReset();
 
-    private boolean reset84a;
-    private boolean reset84aSet = false;
+    private transient boolean reset84a;
+    private transient boolean reset84aSet = false;
 
     /**
      * Indicates if this parameter's value should be reset or not after an action has been performed
@@ -2681,19 +2685,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isReset()
     {
-        boolean areset84a = this.reset84a;
+        boolean reset84a = this.reset84a;
         if (!this.reset84aSet)
         {
             // reset has no pre constraints
-            areset84a = handleIsReset();
+            reset84a = handleIsReset();
             // reset has no post constraints
-            this.reset84a = areset84a;
+            this.reset84a = reset84a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.reset84aSet = true;
             }
         }
-        return areset84a;
+        return reset84a;
     }
 
    /**
@@ -2702,8 +2706,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsComplex();
 
-    private boolean complex85a;
-    private boolean complex85aSet = false;
+    private transient boolean complex85a;
+    private transient boolean complex85aSet = false;
 
     /**
      * Indicates if this parameter is 'complex', that is: its of a complex type (has at least one
@@ -2712,19 +2716,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isComplex()
     {
-        boolean acomplex85a = this.complex85a;
+        boolean complex85a = this.complex85a;
         if (!this.complex85aSet)
         {
             // complex has no pre constraints
-            acomplex85a = handleIsComplex();
+            complex85a = handleIsComplex();
             // complex has no post constraints
-            this.complex85a = acomplex85a;
+            this.complex85a = complex85a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.complex85aSet = true;
             }
         }
-        return acomplex85a;
+        return complex85a;
     }
 
    /**
@@ -2733,8 +2737,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Collection handleGetAttributes();
 
-    private Collection attributes86a;
-    private boolean attributes86aSet = false;
+    private transient Collection attributes86a;
+    private transient boolean attributes86aSet = false;
 
     /**
      * All attributes belonging to this parameter's type.
@@ -2742,19 +2746,19 @@ public abstract class GuiParameterLogic
      */
     public final Collection getAttributes()
     {
-        Collection aattributes86a = this.attributes86a;
+        Collection attributes86a = this.attributes86a;
         if (!this.attributes86aSet)
         {
             // attributes has no pre constraints
-            aattributes86a = handleGetAttributes();
+            attributes86a = handleGetAttributes();
             // attributes has no post constraints
-            this.attributes86a = aattributes86a;
+            this.attributes86a = attributes86a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.attributes86aSet = true;
             }
         }
-        return aattributes86a;
+        return attributes86a;
     }
 
    /**
@@ -2763,8 +2767,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Collection handleGetNavigableAssociationEnds();
 
-    private Collection navigableAssociationEnds87a;
-    private boolean navigableAssociationEnds87aSet = false;
+    private transient Collection navigableAssociationEnds87a;
+    private transient boolean navigableAssociationEnds87aSet = false;
 
     /**
      * All navigation association ends belonging to this parameter's type.
@@ -2772,19 +2776,19 @@ public abstract class GuiParameterLogic
      */
     public final Collection getNavigableAssociationEnds()
     {
-        Collection anavigableAssociationEnds87a = this.navigableAssociationEnds87a;
+        Collection navigableAssociationEnds87a = this.navigableAssociationEnds87a;
         if (!this.navigableAssociationEnds87aSet)
         {
             // navigableAssociationEnds has no pre constraints
-            anavigableAssociationEnds87a = handleGetNavigableAssociationEnds();
+            navigableAssociationEnds87a = handleGetNavigableAssociationEnds();
             // navigableAssociationEnds has no post constraints
-            this.navigableAssociationEnds87a = anavigableAssociationEnds87a;
+            this.navigableAssociationEnds87a = navigableAssociationEnds87a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.navigableAssociationEnds87aSet = true;
             }
         }
-        return anavigableAssociationEnds87a;
+        return navigableAssociationEnds87a;
     }
 
    /**
@@ -2793,8 +2797,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsEqualValidator();
 
-    private boolean equalValidator88a;
-    private boolean equalValidator88aSet = false;
+    private transient boolean equalValidator88a;
+    private transient boolean equalValidator88aSet = false;
 
     /**
      * Indicates whether or not this parameter uses the equal validator.
@@ -2802,19 +2806,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isEqualValidator()
     {
-        boolean aequalValidator88a = this.equalValidator88a;
+        boolean equalValidator88a = this.equalValidator88a;
         if (!this.equalValidator88aSet)
         {
             // equalValidator has no pre constraints
-            aequalValidator88a = handleIsEqualValidator();
+            equalValidator88a = handleIsEqualValidator();
             // equalValidator has no post constraints
-            this.equalValidator88a = aequalValidator88a;
+            this.equalValidator88a = equalValidator88a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.equalValidator88aSet = true;
             }
         }
-        return aequalValidator88a;
+        return equalValidator88a;
     }
 
    /**
@@ -2823,8 +2827,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetBackingValueName();
 
-    private String backingValueName89a;
-    private boolean backingValueName89aSet = false;
+    private transient String backingValueName89a;
+    private transient boolean backingValueName89aSet = false;
 
     /**
      * The name of the backing value for this parameter (only used with collections and arrays that
@@ -2833,19 +2837,19 @@ public abstract class GuiParameterLogic
      */
     public final String getBackingValueName()
     {
-        String abackingValueName89a = this.backingValueName89a;
+        String backingValueName89a = this.backingValueName89a;
         if (!this.backingValueName89aSet)
         {
             // backingValueName has no pre constraints
-            abackingValueName89a = handleGetBackingValueName();
+            backingValueName89a = handleGetBackingValueName();
             // backingValueName has no post constraints
-            this.backingValueName89a = abackingValueName89a;
+            this.backingValueName89a = backingValueName89a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.backingValueName89aSet = true;
             }
         }
-        return abackingValueName89a;
+        return backingValueName89a;
     }
 
    /**
@@ -2854,8 +2858,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsInputTable();
 
-    private boolean inputTable90a;
-    private boolean inputTable90aSet = false;
+    private transient boolean inputTable90a;
+    private transient boolean inputTable90aSet = false;
 
     /**
      * Indicates whether or not this is an table input type.
@@ -2863,19 +2867,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isInputTable()
     {
-        boolean ainputTable90a = this.inputTable90a;
+        boolean inputTable90a = this.inputTable90a;
         if (!this.inputTable90aSet)
         {
             // inputTable has no pre constraints
-            ainputTable90a = handleIsInputTable();
+            inputTable90a = handleIsInputTable();
             // inputTable has no post constraints
-            this.inputTable90a = ainputTable90a;
+            this.inputTable90a = inputTable90a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputTable90aSet = true;
             }
         }
-        return ainputTable90a;
+        return inputTable90a;
     }
 
    /**
@@ -2884,8 +2888,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsBackingValueRequired();
 
-    private boolean backingValueRequired91a;
-    private boolean backingValueRequired91aSet = false;
+    private transient boolean backingValueRequired91a;
+    private transient boolean backingValueRequired91aSet = false;
 
     /**
      * Indicates if a backing value is required for this parameter.
@@ -2893,19 +2897,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isBackingValueRequired()
     {
-        boolean abackingValueRequired91a = this.backingValueRequired91a;
+        boolean backingValueRequired91a = this.backingValueRequired91a;
         if (!this.backingValueRequired91aSet)
         {
             // backingValueRequired has no pre constraints
-            abackingValueRequired91a = handleIsBackingValueRequired();
+            backingValueRequired91a = handleIsBackingValueRequired();
             // backingValueRequired has no post constraints
-            this.backingValueRequired91a = abackingValueRequired91a;
+            this.backingValueRequired91a = backingValueRequired91a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.backingValueRequired91aSet = true;
             }
         }
-        return abackingValueRequired91a;
+        return backingValueRequired91a;
     }
 
    /**
@@ -2914,8 +2918,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetInputTableIdentifierColumns();
 
-    private String inputTableIdentifierColumns92a;
-    private boolean inputTableIdentifierColumns92aSet = false;
+    private transient String inputTableIdentifierColumns92a;
+    private transient boolean inputTableIdentifierColumns92aSet = false;
 
     /**
      * A comma separated list of the input table identifier columns (these are the columns that
@@ -2924,19 +2928,19 @@ public abstract class GuiParameterLogic
      */
     public final String getInputTableIdentifierColumns()
     {
-        String ainputTableIdentifierColumns92a = this.inputTableIdentifierColumns92a;
+        String inputTableIdentifierColumns92a = this.inputTableIdentifierColumns92a;
         if (!this.inputTableIdentifierColumns92aSet)
         {
             // inputTableIdentifierColumns has no pre constraints
-            ainputTableIdentifierColumns92a = handleGetInputTableIdentifierColumns();
+            inputTableIdentifierColumns92a = handleGetInputTableIdentifierColumns();
             // inputTableIdentifierColumns has no post constraints
-            this.inputTableIdentifierColumns92a = ainputTableIdentifierColumns92a;
+            this.inputTableIdentifierColumns92a = inputTableIdentifierColumns92a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.inputTableIdentifierColumns92aSet = true;
             }
         }
-        return ainputTableIdentifierColumns92a;
+        return inputTableIdentifierColumns92a;
     }
 
    /**
@@ -2945,8 +2949,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract boolean handleIsPageableTable();
 
-    private boolean pageableTable93a;
-    private boolean pageableTable93aSet = false;
+    private transient boolean pageableTable93a;
+    private transient boolean pageableTable93aSet = false;
 
     /**
      * Whether or not the parameter is a "pageable table", that is a table that supports paging
@@ -2955,19 +2959,19 @@ public abstract class GuiParameterLogic
      */
     public final boolean isPageableTable()
     {
-        boolean apageableTable93a = this.pageableTable93a;
+        boolean pageableTable93a = this.pageableTable93a;
         if (!this.pageableTable93aSet)
         {
             // pageableTable has no pre constraints
-            apageableTable93a = handleIsPageableTable();
+            pageableTable93a = handleIsPageableTable();
             // pageableTable has no post constraints
-            this.pageableTable93a = apageableTable93a;
+            this.pageableTable93a = pageableTable93a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.pageableTable93aSet = true;
             }
         }
-        return apageableTable93a;
+        return pageableTable93a;
     }
 
    /**
@@ -2976,8 +2980,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract String handleGetMaxLength();
 
-    private String maxLength94a;
-    private boolean maxLength94aSet = false;
+    private transient String maxLength94a;
+    private transient boolean maxLength94aSet = false;
 
     /**
      * The max length allowed in the input component
@@ -2985,19 +2989,19 @@ public abstract class GuiParameterLogic
      */
     public final String getMaxLength()
     {
-        String amaxLength94a = this.maxLength94a;
+        String maxLength94a = this.maxLength94a;
         if (!this.maxLength94aSet)
         {
             // maxLength has no pre constraints
-            amaxLength94a = handleGetMaxLength();
+            maxLength94a = handleGetMaxLength();
             // maxLength has no post constraints
-            this.maxLength94a = amaxLength94a;
+            this.maxLength94a = maxLength94a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.maxLength94aSet = true;
             }
         }
-        return amaxLength94a;
+        return maxLength94a;
     }
 
    /**
@@ -3006,8 +3010,8 @@ public abstract class GuiParameterLogic
     */
     protected abstract Collection handleGetAnnotations();
 
-    private Collection annotations95a;
-    private boolean annotations95aSet = false;
+    private transient Collection annotations95a;
+    private transient boolean annotations95aSet = false;
 
     /**
      * All the annotations for this parameter.
@@ -3015,19 +3019,19 @@ public abstract class GuiParameterLogic
      */
     public final Collection getAnnotations()
     {
-        Collection aannotations95a = this.annotations95a;
+        Collection annotations95a = this.annotations95a;
         if (!this.annotations95aSet)
         {
             // annotations has no pre constraints
-            aannotations95a = handleGetAnnotations();
+            annotations95a = handleGetAnnotations();
             // annotations has no post constraints
-            this.annotations95a = aannotations95a;
+            this.annotations95a = annotations95a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.annotations95aSet = true;
             }
         }
-        return aannotations95a;
+        return annotations95a;
     }
 
     // ---------------- business methods ----------------------
@@ -3043,6 +3047,8 @@ public abstract class GuiParameterLogic
     /**
      * Returns the arguments for this parameter's validators.
      * @param validatorType String
+     * TODO: Model Documentation for
+     * GuiParameter.getValidatorArgs(validatorType)
      * @return handleGetValidatorArgs(validatorType)
      */
     public Collection getValidatorArgs(String validatorType)
@@ -3066,6 +3072,8 @@ public abstract class GuiParameterLogic
      * Returns the resource bundle key for this table's column, only returns a value when this
      * parameter is a table.
      * @param columnName String
+     * TODO: Model Documentation for
+     * GuiParameter.getTableColumnMessageKey(columnName)
      * @return handleGetTableColumnMessageKey(columnName)
      */
     public String getTableColumnMessageKey(String columnName)
@@ -3089,6 +3097,8 @@ public abstract class GuiParameterLogic
      * Returns the resource bundle value for this table's column, only returns a value when this
      * parameter is a table.
      * @param columnName String
+     * TODO: Model Documentation for
+     * GuiParameter.getTableColumnMessageValue(columnName)
      * @return handleGetTableColumnMessageValue(columnName)
      */
     public String getTableColumnMessageValue(String columnName)
@@ -3112,6 +3122,8 @@ public abstract class GuiParameterLogic
      * Those actions that are targetting this table's columns, only makes sense when this parameter
      * represents a table page-variable.
      * @param columnName String
+     * TODO: Model Documentation for
+     * GuiParameter.getTableColumnActions(columnName)
      * @return handleGetTableColumnActions(columnName)
      */
     public List getTableColumnActions(String columnName)
@@ -3124,15 +3136,17 @@ public abstract class GuiParameterLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for GuiParameter.toPhrase
      * @param string
      * @return String
      */
     protected abstract String handleToPhrase(String string);
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.toPhrase
      * @param string String
+     * TODO: Model Documentation for
+     * GuiParameter.toPhrase(string)
      * @return handleToPhrase(string)
      */
     public String toPhrase(String string)
@@ -3145,11 +3159,13 @@ public abstract class GuiParameterLogic
 
     // ------------- associations ------------------
 
-    private GuiAction getGuiAction1r;
-    private boolean getGuiAction1rSet = false;
+    private transient GuiAction getGuiAction1r;
+    private transient boolean getGuiAction1rSet = false;
 
     /**
-     * 
+     * A Gui parameter is an object communicated between the client and the server. Typically form
+     * beans
+     * encapsulate such parameters.
      * @return (GuiAction)handleGetGuiAction()
      */
     public final GuiAction getGuiAction()
@@ -3162,7 +3178,7 @@ public abstract class GuiParameterLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getGuiAction1r = (GuiAction)shieldedResult;
+                getGuiAction1r = (GuiAction) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3185,11 +3201,13 @@ public abstract class GuiParameterLogic
      */
     protected abstract Object handleGetGuiAction();
 
-    private GuiView getGuiView2r;
-    private boolean getGuiView2rSet = false;
+    private transient GuiView getGuiView2r;
+    private transient boolean getGuiView2rSet = false;
 
     /**
-     * 
+     * A Gui parameter is an object communicated between the client and the server. Typically form
+     * beans
+     * encapsulate such parameters.
      * @return (GuiView)handleGetGuiView()
      */
     public final GuiView getGuiView()
@@ -3202,7 +3220,7 @@ public abstract class GuiParameterLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getGuiView2r = (GuiView)shieldedResult;
+                getGuiView2r = (GuiView) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3225,11 +3243,13 @@ public abstract class GuiParameterLogic
      */
     protected abstract Object handleGetGuiView();
 
-    private Collection<GuiAction> getTableGlobalActions3r;
-    private boolean getTableGlobalActions3rSet = false;
+    private transient Collection<GuiAction> getTableGlobalActions3r;
+    private transient boolean getTableGlobalActions3rSet = false;
 
     /**
-     * 
+     * A Gui parameter is an object communicated between the client and the server. Typically form
+     * beans
+     * encapsulate such parameters.
      * @return (Collection<GuiAction>)handleGetTableGlobalActions()
      */
     public final Collection<GuiAction> getTableGlobalActions()
@@ -3242,7 +3262,7 @@ public abstract class GuiParameterLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getTableGlobalActions3r = (Collection<GuiAction>)shieldedResult;
+                getTableGlobalActions3r = (Collection<GuiAction>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3265,8 +3285,8 @@ public abstract class GuiParameterLogic
      */
     protected abstract Collection handleGetTableGlobalActions();
 
-    private List<GuiAction> getTableHyperlinkActions4r;
-    private boolean getTableHyperlinkActions4rSet = false;
+    private transient List<GuiAction> getTableHyperlinkActions4r;
+    private transient boolean getTableHyperlinkActions4rSet = false;
 
     /**
      * If the action is a table link then this property represents the table to which is being
@@ -3283,7 +3303,7 @@ public abstract class GuiParameterLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getTableHyperlinkActions4r = (List<GuiAction>)shieldedResult;
+                getTableHyperlinkActions4r = (List<GuiAction>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3306,11 +3326,13 @@ public abstract class GuiParameterLogic
      */
     protected abstract List handleGetTableHyperlinkActions();
 
-    private GuiParameter getTableGlobalActionParameter5r;
-    private boolean getTableGlobalActionParameter5rSet = false;
+    private transient GuiParameter getTableGlobalActionParameter5r;
+    private transient boolean getTableGlobalActionParameter5rSet = false;
 
     /**
-     * 
+     * A Gui parameter is an object communicated between the client and the server. Typically form
+     * beans
+     * encapsulate such parameters.
      * @return (GuiParameter)handleGetTableGlobalActionParameter()
      */
     public final GuiParameter getTableGlobalActionParameter()
@@ -3323,7 +3345,7 @@ public abstract class GuiParameterLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getTableGlobalActionParameter5r = (GuiParameter)shieldedResult;
+                getTableGlobalActionParameter5r = (GuiParameter) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3346,11 +3368,13 @@ public abstract class GuiParameterLogic
      */
     protected abstract Object handleGetTableGlobalActionParameter();
 
-    private List<GuiParameter> getFormFields6r;
-    private boolean getFormFields6rSet = false;
+    private transient List<GuiParameter> getFormFields6r;
+    private transient boolean getFormFields6rSet = false;
 
     /**
-     * 
+     * A Gui parameter is an object communicated between the client and the server. Typically form
+     * beans
+     * encapsulate such parameters.
      * @return (List<GuiParameter>)handleGetFormFields()
      */
     public final List<GuiParameter> getFormFields()
@@ -3363,7 +3387,7 @@ public abstract class GuiParameterLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getFormFields6r = (List<GuiParameter>)shieldedResult;
+                getFormFields6r = (List<GuiParameter>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3386,8 +3410,8 @@ public abstract class GuiParameterLogic
      */
     protected abstract List handleGetFormFields();
 
-    private List<GuiAction> getTableFormActions7r;
-    private boolean getTableFormActions7rSet = false;
+    private transient List<GuiAction> getTableFormActions7r;
+    private transient boolean getTableFormActions7rSet = false;
 
     /**
      * Returns all parameters transported in this action.
@@ -3403,7 +3427,7 @@ public abstract class GuiParameterLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getTableFormActions7r = (List<GuiAction>)shieldedResult;
+                getTableFormActions7r = (List<GuiAction>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3632,7 +3656,9 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -3703,7 +3729,7 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -3712,7 +3738,8 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -3825,7 +3852,7 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -3843,7 +3870,7 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -3852,7 +3879,7 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -3908,7 +3935,8 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -3944,12 +3972,24 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndParameter().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndParameter().isValidIdentifierName();
     }
 
     /**
@@ -3982,7 +4022,7 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.metafacades.uml.ParameterFacade.defaultValue
      * @see org.andromda.metafacades.uml.ParameterFacade#getDefaultValue()
      */
     public String getDefaultValue()
@@ -4068,7 +4108,15 @@ public abstract class GuiParameterLogic
     }
 
     /**
-     * 
+     * A Classifier is a classification of instances - it describes a set of instances that have
+     * features in common. Can specify a generalization hierarchy by referencing its general
+     * classifiers. It may be a Class, DataType, PrimitiveType, Association, Collaboration, UseCase,
+     * etc. Can specify a generalization hierarchy by referencing its general classifiers. Has the
+     * capability to own collaboration uses. These collaboration uses link a collaboration with the
+     * classifier to give a description of the workings of the classifier. Classifier is defined to
+     * be a kind of templateable element so that a classifier can be parameterized. It is also
+     * defined to be a kind of parameterable element so that a classifier can be a formal template
+     * parameter.
      * @see org.andromda.metafacades.uml.ParameterFacade#getType()
      */
     public ClassifierFacade getType()

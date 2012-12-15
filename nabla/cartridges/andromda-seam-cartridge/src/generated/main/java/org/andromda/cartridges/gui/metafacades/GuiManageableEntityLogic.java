@@ -18,7 +18,6 @@ import org.andromda.metafacades.uml.ConstraintFacade;
 import org.andromda.metafacades.uml.DependencyFacade;
 import org.andromda.metafacades.uml.Entity;
 import org.andromda.metafacades.uml.EntityAssociationEnd;
-import org.andromda.metafacades.uml.EntityAttribute;
 import org.andromda.metafacades.uml.EntityQueryOperation;
 import org.andromda.metafacades.uml.GeneralizableElementFacade;
 import org.andromda.metafacades.uml.GeneralizationFacade;
@@ -42,7 +41,7 @@ import org.andromda.translation.ocl.validation.OCLResultEnsurer;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * TODO: Model Documentation for GuiManageableEntity
  * MetafacadeLogic for GuiManageableEntity
  *
  * @see GuiManageableEntity
@@ -147,28 +146,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPageName();
 
-    private String pageName1a;
-    private boolean pageName1aSet = false;
+    private transient String pageName1a;
+    private transient boolean pageName1aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.pageName
      * @return (String)handleGetPageName()
      */
     public final String getPageName()
     {
-        String apageName1a = this.pageName1a;
+        String pageName1a = this.pageName1a;
         if (!this.pageName1aSet)
         {
             // pageName has no pre constraints
-            apageName1a = handleGetPageName();
+            pageName1a = handleGetPageName();
             // pageName has no post constraints
-            this.pageName1a = apageName1a;
+            this.pageName1a = pageName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.pageName1aSet = true;
             }
         }
-        return apageName1a;
+        return pageName1a;
     }
 
    /**
@@ -177,28 +177,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPageFullPath();
 
-    private String pageFullPath2a;
-    private boolean pageFullPath2aSet = false;
+    private transient String pageFullPath2a;
+    private transient boolean pageFullPath2aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.pageFullPath
      * @return (String)handleGetPageFullPath()
      */
     public final String getPageFullPath()
     {
-        String apageFullPath2a = this.pageFullPath2a;
+        String pageFullPath2a = this.pageFullPath2a;
         if (!this.pageFullPath2aSet)
         {
             // pageFullPath has no pre constraints
-            apageFullPath2a = handleGetPageFullPath();
+            pageFullPath2a = handleGetPageFullPath();
             // pageFullPath has no post constraints
-            this.pageFullPath2a = apageFullPath2a;
+            this.pageFullPath2a = pageFullPath2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.pageFullPath2aSet = true;
             }
         }
-        return apageFullPath2a;
+        return pageFullPath2a;
     }
 
    /**
@@ -207,28 +208,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPageTitleKey();
 
-    private String pageTitleKey3a;
-    private boolean pageTitleKey3aSet = false;
+    private transient String pageTitleKey3a;
+    private transient boolean pageTitleKey3aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.pageTitleKey
      * @return (String)handleGetPageTitleKey()
      */
     public final String getPageTitleKey()
     {
-        String apageTitleKey3a = this.pageTitleKey3a;
+        String pageTitleKey3a = this.pageTitleKey3a;
         if (!this.pageTitleKey3aSet)
         {
             // pageTitleKey has no pre constraints
-            apageTitleKey3a = handleGetPageTitleKey();
+            pageTitleKey3a = handleGetPageTitleKey();
             // pageTitleKey has no post constraints
-            this.pageTitleKey3a = apageTitleKey3a;
+            this.pageTitleKey3a = pageTitleKey3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.pageTitleKey3aSet = true;
             }
         }
-        return apageTitleKey3a;
+        return pageTitleKey3a;
     }
 
    /**
@@ -237,28 +239,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPageTitleValue();
 
-    private String pageTitleValue4a;
-    private boolean pageTitleValue4aSet = false;
+    private transient String pageTitleValue4a;
+    private transient boolean pageTitleValue4aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.pageTitleValue
      * @return (String)handleGetPageTitleValue()
      */
     public final String getPageTitleValue()
     {
-        String apageTitleValue4a = this.pageTitleValue4a;
+        String pageTitleValue4a = this.pageTitleValue4a;
         if (!this.pageTitleValue4aSet)
         {
             // pageTitleValue has no pre constraints
-            apageTitleValue4a = handleGetPageTitleValue();
+            pageTitleValue4a = handleGetPageTitleValue();
             // pageTitleValue has no post constraints
-            this.pageTitleValue4a = apageTitleValue4a;
+            this.pageTitleValue4a = pageTitleValue4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.pageTitleValue4aSet = true;
             }
         }
-        return apageTitleValue4a;
+        return pageTitleValue4a;
     }
 
    /**
@@ -267,28 +270,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetListName();
 
-    private String listName5a;
-    private boolean listName5aSet = false;
+    private transient String listName5a;
+    private transient boolean listName5aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.listName
      * @return (String)handleGetListName()
      */
     public final String getListName()
     {
-        String alistName5a = this.listName5a;
+        String listName5a = this.listName5a;
         if (!this.listName5aSet)
         {
             // listName has no pre constraints
-            alistName5a = handleGetListName();
+            listName5a = handleGetListName();
             // listName has no post constraints
-            this.listName5a = alistName5a;
+            this.listName5a = listName5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.listName5aSet = true;
             }
         }
-        return alistName5a;
+        return listName5a;
     }
 
    /**
@@ -297,28 +301,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetExceptionKey();
 
-    private String exceptionKey6a;
-    private boolean exceptionKey6aSet = false;
+    private transient String exceptionKey6a;
+    private transient boolean exceptionKey6aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.exceptionKey
      * @return (String)handleGetExceptionKey()
      */
     public final String getExceptionKey()
     {
-        String aexceptionKey6a = this.exceptionKey6a;
+        String exceptionKey6a = this.exceptionKey6a;
         if (!this.exceptionKey6aSet)
         {
             // exceptionKey has no pre constraints
-            aexceptionKey6a = handleGetExceptionKey();
+            exceptionKey6a = handleGetExceptionKey();
             // exceptionKey has no post constraints
-            this.exceptionKey6a = aexceptionKey6a;
+            this.exceptionKey6a = exceptionKey6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exceptionKey6aSet = true;
             }
         }
-        return aexceptionKey6a;
+        return exceptionKey6a;
     }
 
    /**
@@ -327,28 +332,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetActionType();
 
-    private String actionType7a;
-    private boolean actionType7aSet = false;
+    private transient String actionType7a;
+    private transient boolean actionType7aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.actionType
      * @return (String)handleGetActionType()
      */
     public final String getActionType()
     {
-        String aactionType7a = this.actionType7a;
+        String actionType7a = this.actionType7a;
         if (!this.actionType7aSet)
         {
             // actionType has no pre constraints
-            aactionType7a = handleGetActionType();
+            actionType7a = handleGetActionType();
             // actionType has no post constraints
-            this.actionType7a = aactionType7a;
+            this.actionType7a = actionType7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionType7aSet = true;
             }
         }
-        return aactionType7a;
+        return actionType7a;
     }
 
    /**
@@ -357,28 +363,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetActionFullPath();
 
-    private String actionFullPath8a;
-    private boolean actionFullPath8aSet = false;
+    private transient String actionFullPath8a;
+    private transient boolean actionFullPath8aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.actionFullPath
      * @return (String)handleGetActionFullPath()
      */
     public final String getActionFullPath()
     {
-        String aactionFullPath8a = this.actionFullPath8a;
+        String actionFullPath8a = this.actionFullPath8a;
         if (!this.actionFullPath8aSet)
         {
             // actionFullPath has no pre constraints
-            aactionFullPath8a = handleGetActionFullPath();
+            actionFullPath8a = handleGetActionFullPath();
             // actionFullPath has no post constraints
-            this.actionFullPath8a = aactionFullPath8a;
+            this.actionFullPath8a = actionFullPath8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionFullPath8aSet = true;
             }
         }
-        return aactionFullPath8a;
+        return actionFullPath8a;
     }
 
    /**
@@ -387,28 +394,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetActionPath();
 
-    private String actionPath9a;
-    private boolean actionPath9aSet = false;
+    private transient String actionPath9a;
+    private transient boolean actionPath9aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.actionPath
      * @return (String)handleGetActionPath()
      */
     public final String getActionPath()
     {
-        String aactionPath9a = this.actionPath9a;
+        String actionPath9a = this.actionPath9a;
         if (!this.actionPath9aSet)
         {
             // actionPath has no pre constraints
-            aactionPath9a = handleGetActionPath();
+            actionPath9a = handleGetActionPath();
             // actionPath has no post constraints
-            this.actionPath9a = aactionPath9a;
+            this.actionPath9a = actionPath9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionPath9aSet = true;
             }
         }
-        return aactionPath9a;
+        return actionPath9a;
     }
 
    /**
@@ -417,28 +425,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetActionClassName();
 
-    private String actionClassName10a;
-    private boolean actionClassName10aSet = false;
+    private transient String actionClassName10a;
+    private transient boolean actionClassName10aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.actionClassName
      * @return (String)handleGetActionClassName()
      */
     public final String getActionClassName()
     {
-        String aactionClassName10a = this.actionClassName10a;
+        String actionClassName10a = this.actionClassName10a;
         if (!this.actionClassName10aSet)
         {
             // actionClassName has no pre constraints
-            aactionClassName10a = handleGetActionClassName();
+            actionClassName10a = handleGetActionClassName();
             // actionClassName has no post constraints
-            this.actionClassName10a = aactionClassName10a;
+            this.actionClassName10a = actionClassName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionClassName10aSet = true;
             }
         }
-        return aactionClassName10a;
+        return actionClassName10a;
     }
 
    /**
@@ -447,28 +456,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetExceptionPath();
 
-    private String exceptionPath11a;
-    private boolean exceptionPath11aSet = false;
+    private transient String exceptionPath11a;
+    private transient boolean exceptionPath11aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.exceptionPath
      * @return (String)handleGetExceptionPath()
      */
     public final String getExceptionPath()
     {
-        String aexceptionPath11a = this.exceptionPath11a;
+        String exceptionPath11a = this.exceptionPath11a;
         if (!this.exceptionPath11aSet)
         {
             // exceptionPath has no pre constraints
-            aexceptionPath11a = handleGetExceptionPath();
+            exceptionPath11a = handleGetExceptionPath();
             // exceptionPath has no post constraints
-            this.exceptionPath11a = aexceptionPath11a;
+            this.exceptionPath11a = exceptionPath11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exceptionPath11aSet = true;
             }
         }
-        return aexceptionPath11a;
+        return exceptionPath11a;
     }
 
    /**
@@ -477,28 +487,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetListGetterName();
 
-    private String listGetterName12a;
-    private boolean listGetterName12aSet = false;
+    private transient String listGetterName12a;
+    private transient boolean listGetterName12aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.listGetterName
      * @return (String)handleGetListGetterName()
      */
     public final String getListGetterName()
     {
-        String alistGetterName12a = this.listGetterName12a;
+        String listGetterName12a = this.listGetterName12a;
         if (!this.listGetterName12aSet)
         {
             // listGetterName has no pre constraints
-            alistGetterName12a = handleGetListGetterName();
+            listGetterName12a = handleGetListGetterName();
             // listGetterName has no post constraints
-            this.listGetterName12a = alistGetterName12a;
+            this.listGetterName12a = listGetterName12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.listGetterName12aSet = true;
             }
         }
-        return alistGetterName12a;
+        return listGetterName12a;
     }
 
    /**
@@ -507,28 +518,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetListSetterName();
 
-    private String listSetterName13a;
-    private boolean listSetterName13aSet = false;
+    private transient String listSetterName13a;
+    private transient boolean listSetterName13aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.listSetterName
      * @return (String)handleGetListSetterName()
      */
     public final String getListSetterName()
     {
-        String alistSetterName13a = this.listSetterName13a;
+        String listSetterName13a = this.listSetterName13a;
         if (!this.listSetterName13aSet)
         {
             // listSetterName has no pre constraints
-            alistSetterName13a = handleGetListSetterName();
+            listSetterName13a = handleGetListSetterName();
             // listSetterName has no post constraints
-            this.listSetterName13a = alistSetterName13a;
+            this.listSetterName13a = listSetterName13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.listSetterName13aSet = true;
             }
         }
-        return alistSetterName13a;
+        return listSetterName13a;
     }
 
    /**
@@ -537,28 +549,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetActionParameter();
 
-    private String actionParameter14a;
-    private boolean actionParameter14aSet = false;
+    private transient String actionParameter14a;
+    private transient boolean actionParameter14aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.actionParameter
      * @return (String)handleGetActionParameter()
      */
     public final String getActionParameter()
     {
-        String aactionParameter14a = this.actionParameter14a;
+        String actionParameter14a = this.actionParameter14a;
         if (!this.actionParameter14aSet)
         {
             // actionParameter has no pre constraints
-            aactionParameter14a = handleGetActionParameter();
+            actionParameter14a = handleGetActionParameter();
             // actionParameter has no post constraints
-            this.actionParameter14a = aactionParameter14a;
+            this.actionParameter14a = actionParameter14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionParameter14aSet = true;
             }
         }
-        return aactionParameter14a;
+        return actionParameter14a;
     }
 
    /**
@@ -567,8 +580,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsTableExportable();
 
-    private boolean tableExportable15a;
-    private boolean tableExportable15aSet = false;
+    private transient boolean tableExportable15a;
+    private transient boolean tableExportable15aSet = false;
 
     /**
      * True if it is possible to export the table data to XML, CSV, PDF or Excel format.
@@ -576,19 +589,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isTableExportable()
     {
-        boolean atableExportable15a = this.tableExportable15a;
+        boolean tableExportable15a = this.tableExportable15a;
         if (!this.tableExportable15aSet)
         {
             // tableExportable has no pre constraints
-            atableExportable15a = handleIsTableExportable();
+            tableExportable15a = handleIsTableExportable();
             // tableExportable has no post constraints
-            this.tableExportable15a = atableExportable15a;
+            this.tableExportable15a = tableExportable15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableExportable15aSet = true;
             }
         }
-        return atableExportable15a;
+        return tableExportable15a;
     }
 
    /**
@@ -597,8 +610,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetTableExportTypes();
 
-    private String tableExportTypes16a;
-    private boolean tableExportTypes16aSet = false;
+    private transient String tableExportTypes16a;
+    private transient boolean tableExportTypes16aSet = false;
 
     /**
      * Tthe available types of export in a single String instance.
@@ -606,19 +619,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getTableExportTypes()
     {
-        String atableExportTypes16a = this.tableExportTypes16a;
+        String tableExportTypes16a = this.tableExportTypes16a;
         if (!this.tableExportTypes16aSet)
         {
             // tableExportTypes has no pre constraints
-            atableExportTypes16a = handleGetTableExportTypes();
+            tableExportTypes16a = handleGetTableExportTypes();
             // tableExportTypes has no post constraints
-            this.tableExportTypes16a = atableExportTypes16a;
+            this.tableExportTypes16a = tableExportTypes16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableExportTypes16aSet = true;
             }
         }
-        return atableExportTypes16a;
+        return tableExportTypes16a;
     }
 
    /**
@@ -627,8 +640,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract int handleGetTableMaxRows();
 
-    private int tableMaxRows17a;
-    private boolean tableMaxRows17aSet = false;
+    private transient int tableMaxRows17a;
+    private transient boolean tableMaxRows17aSet = false;
 
     /**
      * The maximum number of rows to be displayed in the table at the same time. This is also known
@@ -638,19 +651,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final int getTableMaxRows()
     {
-        int atableMaxRows17a = this.tableMaxRows17a;
+        int tableMaxRows17a = this.tableMaxRows17a;
         if (!this.tableMaxRows17aSet)
         {
             // tableMaxRows has no pre constraints
-            atableMaxRows17a = handleGetTableMaxRows();
+            tableMaxRows17a = handleGetTableMaxRows();
             // tableMaxRows has no post constraints
-            this.tableMaxRows17a = atableMaxRows17a;
+            this.tableMaxRows17a = tableMaxRows17a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableMaxRows17aSet = true;
             }
         }
-        return atableMaxRows17a;
+        return tableMaxRows17a;
     }
 
    /**
@@ -659,8 +672,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsTableSortable();
 
-    private boolean tableSortable18a;
-    private boolean tableSortable18aSet = false;
+    private transient boolean tableSortable18a;
+    private transient boolean tableSortable18aSet = false;
 
     /**
      * True if it is possible to sort the columns of the table.
@@ -668,19 +681,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isTableSortable()
     {
-        boolean atableSortable18a = this.tableSortable18a;
+        boolean tableSortable18a = this.tableSortable18a;
         if (!this.tableSortable18aSet)
         {
             // tableSortable has no pre constraints
-            atableSortable18a = handleIsTableSortable();
+            tableSortable18a = handleIsTableSortable();
             // tableSortable has no post constraints
-            this.tableSortable18a = atableSortable18a;
+            this.tableSortable18a = tableSortable18a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableSortable18aSet = true;
             }
         }
-        return atableSortable18a;
+        return tableSortable18a;
     }
 
    /**
@@ -689,8 +702,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsMultipartFormData();
 
-    private boolean multipartFormData19a;
-    private boolean multipartFormData19aSet = false;
+    private transient boolean multipartFormData19a;
+    private transient boolean multipartFormData19aSet = false;
 
     /**
      * True is this action is supposed to be rendered as enctype="multipart/form-data" on the page
@@ -699,19 +712,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isMultipartFormData()
     {
-        boolean amultipartFormData19a = this.multipartFormData19a;
+        boolean multipartFormData19a = this.multipartFormData19a;
         if (!this.multipartFormData19aSet)
         {
             // multipartFormData has no pre constraints
-            amultipartFormData19a = handleIsMultipartFormData();
+            multipartFormData19a = handleIsMultipartFormData();
             // multipartFormData has no post constraints
-            this.multipartFormData19a = amultipartFormData19a;
+            this.multipartFormData19a = multipartFormData19a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.multipartFormData19aSet = true;
             }
         }
-        return amultipartFormData19a;
+        return multipartFormData19a;
     }
 
    /**
@@ -720,28 +733,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Collection handleGetPreconditions();
 
-    private Collection preconditions20a;
-    private boolean preconditions20aSet = false;
+    private transient Collection preconditions20a;
+    private transient boolean preconditions20aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.preconditions
      * @return (Collection)handleGetPreconditions()
      */
     public final Collection getPreconditions()
     {
-        Collection apreconditions20a = this.preconditions20a;
+        Collection preconditions20a = this.preconditions20a;
         if (!this.preconditions20aSet)
         {
             // preconditions has no pre constraints
-            apreconditions20a = handleGetPreconditions();
+            preconditions20a = handleGetPreconditions();
             // preconditions has no post constraints
-            this.preconditions20a = apreconditions20a;
+            this.preconditions20a = preconditions20a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.preconditions20aSet = true;
             }
         }
-        return apreconditions20a;
+        return preconditions20a;
     }
 
    /**
@@ -750,28 +764,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Collection handleGetCreatePreconditions();
 
-    private Collection createPreconditions21a;
-    private boolean createPreconditions21aSet = false;
+    private transient Collection createPreconditions21a;
+    private transient boolean createPreconditions21aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.createPreconditions
      * @return (Collection)handleGetCreatePreconditions()
      */
     public final Collection getCreatePreconditions()
     {
-        Collection acreatePreconditions21a = this.createPreconditions21a;
+        Collection createPreconditions21a = this.createPreconditions21a;
         if (!this.createPreconditions21aSet)
         {
             // createPreconditions has no pre constraints
-            acreatePreconditions21a = handleGetCreatePreconditions();
+            createPreconditions21a = handleGetCreatePreconditions();
             // createPreconditions has no post constraints
-            this.createPreconditions21a = acreatePreconditions21a;
+            this.createPreconditions21a = createPreconditions21a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.createPreconditions21aSet = true;
             }
         }
-        return acreatePreconditions21a;
+        return createPreconditions21a;
     }
 
    /**
@@ -780,28 +795,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Collection handleGetUpdatePreconditions();
 
-    private Collection updatePreconditions22a;
-    private boolean updatePreconditions22aSet = false;
+    private transient Collection updatePreconditions22a;
+    private transient boolean updatePreconditions22aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.updatePreconditions
      * @return (Collection)handleGetUpdatePreconditions()
      */
     public final Collection getUpdatePreconditions()
     {
-        Collection aupdatePreconditions22a = this.updatePreconditions22a;
+        Collection updatePreconditions22a = this.updatePreconditions22a;
         if (!this.updatePreconditions22aSet)
         {
             // updatePreconditions has no pre constraints
-            aupdatePreconditions22a = handleGetUpdatePreconditions();
+            updatePreconditions22a = handleGetUpdatePreconditions();
             // updatePreconditions has no post constraints
-            this.updatePreconditions22a = aupdatePreconditions22a;
+            this.updatePreconditions22a = updatePreconditions22a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.updatePreconditions22aSet = true;
             }
         }
-        return aupdatePreconditions22a;
+        return updatePreconditions22a;
     }
 
    /**
@@ -810,28 +826,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Collection handleGetDeletePreconditions();
 
-    private Collection deletePreconditions23a;
-    private boolean deletePreconditions23aSet = false;
+    private transient Collection deletePreconditions23a;
+    private transient boolean deletePreconditions23aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.deletePreconditions
      * @return (Collection)handleGetDeletePreconditions()
      */
     public final Collection getDeletePreconditions()
     {
-        Collection adeletePreconditions23a = this.deletePreconditions23a;
+        Collection deletePreconditions23a = this.deletePreconditions23a;
         if (!this.deletePreconditions23aSet)
         {
             // deletePreconditions has no pre constraints
-            adeletePreconditions23a = handleGetDeletePreconditions();
+            deletePreconditions23a = handleGetDeletePreconditions();
             // deletePreconditions has no post constraints
-            this.deletePreconditions23a = adeletePreconditions23a;
+            this.deletePreconditions23a = deletePreconditions23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.deletePreconditions23aSet = true;
             }
         }
-        return adeletePreconditions23a;
+        return deletePreconditions23a;
     }
 
    /**
@@ -840,28 +857,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsRegroupMandatoryFields();
 
-    private boolean regroupMandatoryFields24a;
-    private boolean regroupMandatoryFields24aSet = false;
+    private transient boolean regroupMandatoryFields24a;
+    private transient boolean regroupMandatoryFields24aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.regroupMandatoryFields
      * @return (boolean)handleIsRegroupMandatoryFields()
      */
     public final boolean isRegroupMandatoryFields()
     {
-        boolean aregroupMandatoryFields24a = this.regroupMandatoryFields24a;
+        boolean regroupMandatoryFields24a = this.regroupMandatoryFields24a;
         if (!this.regroupMandatoryFields24aSet)
         {
             // regroupMandatoryFields has no pre constraints
-            aregroupMandatoryFields24a = handleIsRegroupMandatoryFields();
+            regroupMandatoryFields24a = handleIsRegroupMandatoryFields();
             // regroupMandatoryFields has no post constraints
-            this.regroupMandatoryFields24a = aregroupMandatoryFields24a;
+            this.regroupMandatoryFields24a = regroupMandatoryFields24a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.regroupMandatoryFields24aSet = true;
             }
         }
-        return aregroupMandatoryFields24a;
+        return regroupMandatoryFields24a;
     }
 
    /**
@@ -870,28 +888,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetDisplayName();
 
-    private String displayName25a;
-    private boolean displayName25aSet = false;
+    private transient String displayName25a;
+    private transient boolean displayName25aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.displayName
      * @return (String)handleGetDisplayName()
      */
     public final String getDisplayName()
     {
-        String adisplayName25a = this.displayName25a;
+        String displayName25a = this.displayName25a;
         if (!this.displayName25aSet)
         {
             // displayName has no pre constraints
-            adisplayName25a = handleGetDisplayName();
+            displayName25a = handleGetDisplayName();
             // displayName has no post constraints
-            this.displayName25a = adisplayName25a;
+            this.displayName25a = displayName25a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.displayName25aSet = true;
             }
         }
-        return adisplayName25a;
+        return displayName25a;
     }
 
    /**
@@ -900,8 +919,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsVersionable();
 
-    private boolean versionable26a;
-    private boolean versionable26aSet = false;
+    private transient boolean versionable26a;
+    private transient boolean versionable26aSet = false;
 
     /**
      * True if the manageable entity carries Versionable stereotype (Versionable object)
@@ -909,19 +928,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isVersionable()
     {
-        boolean aversionable26a = this.versionable26a;
+        boolean versionable26a = this.versionable26a;
         if (!this.versionable26aSet)
         {
             // versionable has no pre constraints
-            aversionable26a = handleIsVersionable();
+            versionable26a = handleIsVersionable();
             // versionable has no post constraints
-            this.versionable26a = aversionable26a;
+            this.versionable26a = versionable26a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.versionable26aSet = true;
             }
         }
-        return aversionable26a;
+        return versionable26a;
     }
 
    /**
@@ -930,58 +949,59 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsVersionableRefExists();
 
-    private boolean versionableRefExists27a;
-    private boolean versionableRefExists27aSet = false;
+    private transient boolean versionableRefExists27a;
+    private transient boolean versionableRefExists27aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.versionableRefExists
      * @return (boolean)handleIsVersionableRefExists()
      */
     public final boolean isVersionableRefExists()
     {
-        boolean aversionableRefExists27a = this.versionableRefExists27a;
+        boolean versionableRefExists27a = this.versionableRefExists27a;
         if (!this.versionableRefExists27aSet)
         {
             // versionableRefExists has no pre constraints
-            aversionableRefExists27a = handleIsVersionableRefExists();
+            versionableRefExists27a = handleIsVersionableRefExists();
             // versionableRefExists has no post constraints
-            this.versionableRefExists27a = aversionableRefExists27a;
+            this.versionableRefExists27a = versionableRefExists27a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.versionableRefExists27aSet = true;
             }
         }
-        return aversionableRefExists27a;
+        return versionableRefExists27a;
     }
 
    /**
-    * @see GuiManageableEntity#getRulesSearchData()
+    * @see GuiManageableEntity#getRulesSearchDatas()
     * @return Collection
     */
-    protected abstract Collection handleGetRulesSearchData();
+    protected abstract Collection handleGetRulesSearchDatas();
 
-    private Collection rulesSearchData28a;
-    private boolean rulesSearchData28aSet = false;
+    private transient Collection rulesSearchDatas28a;
+    private transient boolean rulesSearchDatas28aSet = false;
 
     /**
      * To retrieve all associations which end is a RulesSearchData stereotyped class.
-     * @return (Collection)handleGetRulesSearchData()
+     * @return (Collection)handleGetRulesSearchDatas()
      */
-    public final Collection getRulesSearchData()
+    public final Collection getRulesSearchDatas()
     {
-        Collection arulesSearchData28a = this.rulesSearchData28a;
-        if (!this.rulesSearchData28aSet)
+        Collection rulesSearchDatas28a = this.rulesSearchDatas28a;
+        if (!this.rulesSearchDatas28aSet)
         {
-            // rulesSearchData has no pre constraints
-            arulesSearchData28a = handleGetRulesSearchData();
-            // rulesSearchData has no post constraints
-            this.rulesSearchData28a = arulesSearchData28a;
+            // rulesSearchDatas has no pre constraints
+            rulesSearchDatas28a = handleGetRulesSearchDatas();
+            // rulesSearchDatas has no post constraints
+            this.rulesSearchDatas28a = rulesSearchDatas28a;
             if (isMetafacadePropertyCachingEnabled())
             {
-                this.rulesSearchData28aSet = true;
+                this.rulesSearchDatas28aSet = true;
             }
         }
-        return arulesSearchData28a;
+        return rulesSearchDatas28a;
     }
 
    /**
@@ -990,8 +1010,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract ClassifierFacade handleGetRulesCriteriasSearchValueObject();
 
-    private ClassifierFacade rulesCriteriasSearchValueObject29a;
-    private boolean rulesCriteriasSearchValueObject29aSet = false;
+    private transient ClassifierFacade rulesCriteriasSearchValueObject29a;
+    private transient boolean rulesCriteriasSearchValueObject29aSet = false;
 
     /**
      * To retrieve corresponding criterias search data represented by a typical value object
@@ -999,19 +1019,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final ClassifierFacade getRulesCriteriasSearchValueObject()
     {
-        ClassifierFacade arulesCriteriasSearchValueObject29a = this.rulesCriteriasSearchValueObject29a;
+        ClassifierFacade rulesCriteriasSearchValueObject29a = this.rulesCriteriasSearchValueObject29a;
         if (!this.rulesCriteriasSearchValueObject29aSet)
         {
             // rulesCriteriasSearchValueObject has no pre constraints
-            arulesCriteriasSearchValueObject29a = handleGetRulesCriteriasSearchValueObject();
+            rulesCriteriasSearchValueObject29a = handleGetRulesCriteriasSearchValueObject();
             // rulesCriteriasSearchValueObject has no post constraints
-            this.rulesCriteriasSearchValueObject29a = arulesCriteriasSearchValueObject29a;
+            this.rulesCriteriasSearchValueObject29a = rulesCriteriasSearchValueObject29a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.rulesCriteriasSearchValueObject29aSet = true;
             }
         }
-        return arulesCriteriasSearchValueObject29a;
+        return rulesCriteriasSearchValueObject29a;
     }
 
    /**
@@ -1020,28 +1040,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsInsertable();
 
-    private boolean insertable30a;
-    private boolean insertable30aSet = false;
+    private transient boolean insertable30a;
+    private transient boolean insertable30aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.insertable
      * @return (boolean)handleIsInsertable()
      */
     public final boolean isInsertable()
     {
-        boolean ainsertable30a = this.insertable30a;
+        boolean insertable30a = this.insertable30a;
         if (!this.insertable30aSet)
         {
             // insertable has no pre constraints
-            ainsertable30a = handleIsInsertable();
+            insertable30a = handleIsInsertable();
             // insertable has no post constraints
-            this.insertable30a = ainsertable30a;
+            this.insertable30a = insertable30a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.insertable30aSet = true;
             }
         }
-        return ainsertable30a;
+        return insertable30a;
     }
 
    /**
@@ -1050,28 +1071,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsUpdatable();
 
-    private boolean updatable31a;
-    private boolean updatable31aSet = false;
+    private transient boolean updatable31a;
+    private transient boolean updatable31aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.updatable
      * @return (boolean)handleIsUpdatable()
      */
     public final boolean isUpdatable()
     {
-        boolean aupdatable31a = this.updatable31a;
+        boolean updatable31a = this.updatable31a;
         if (!this.updatable31aSet)
         {
             // updatable has no pre constraints
-            aupdatable31a = handleIsUpdatable();
+            updatable31a = handleIsUpdatable();
             // updatable has no post constraints
-            this.updatable31a = aupdatable31a;
+            this.updatable31a = updatable31a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.updatable31aSet = true;
             }
         }
-        return aupdatable31a;
+        return updatable31a;
     }
 
    /**
@@ -1080,28 +1102,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsRemovable();
 
-    private boolean removable32a;
-    private boolean removable32aSet = false;
+    private transient boolean removable32a;
+    private transient boolean removable32aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.removable
      * @return (boolean)handleIsRemovable()
      */
     public final boolean isRemovable()
     {
-        boolean aremovable32a = this.removable32a;
+        boolean removable32a = this.removable32a;
         if (!this.removable32aSet)
         {
             // removable has no pre constraints
-            aremovable32a = handleIsRemovable();
+            removable32a = handleIsRemovable();
             // removable has no post constraints
-            this.removable32a = aremovable32a;
+            this.removable32a = removable32a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.removable32aSet = true;
             }
         }
-        return aremovable32a;
+        return removable32a;
     }
 
    /**
@@ -1110,8 +1133,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsFiltered();
 
-    private boolean filtered33a;
-    private boolean filtered33aSet = false;
+    private transient boolean filtered33a;
+    private transient boolean filtered33aSet = false;
 
     /**
      * True if the Manageable Entity has at least one filter element (attribute or association).
@@ -1120,19 +1143,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isFiltered()
     {
-        boolean afiltered33a = this.filtered33a;
+        boolean filtered33a = this.filtered33a;
         if (!this.filtered33aSet)
         {
             // filtered has no pre constraints
-            afiltered33a = handleIsFiltered();
+            filtered33a = handleIsFiltered();
             // filtered has no post constraints
-            this.filtered33a = afiltered33a;
+            this.filtered33a = filtered33a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.filtered33aSet = true;
             }
         }
-        return afiltered33a;
+        return filtered33a;
     }
 
    /**
@@ -1141,8 +1164,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsPopEdition();
 
-    private boolean popEdition34a;
-    private boolean popEdition34aSet = false;
+    private transient boolean popEdition34a;
+    private transient boolean popEdition34aSet = false;
 
     /**
      * Defines whether or not the manageable entity edition form will be displayed in a pop-up
@@ -1150,19 +1173,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isPopEdition()
     {
-        boolean apopEdition34a = this.popEdition34a;
+        boolean popEdition34a = this.popEdition34a;
         if (!this.popEdition34aSet)
         {
             // popEdition has no pre constraints
-            apopEdition34a = handleIsPopEdition();
+            popEdition34a = handleIsPopEdition();
             // popEdition has no post constraints
-            this.popEdition34a = apopEdition34a;
+            this.popEdition34a = popEdition34a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.popEdition34aSet = true;
             }
         }
-        return apopEdition34a;
+        return popEdition34a;
     }
 
    /**
@@ -1171,28 +1194,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsExportable();
 
-    private boolean exportable35a;
-    private boolean exportable35aSet = false;
+    private transient boolean exportable35a;
+    private transient boolean exportable35aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.exportable
      * @return (boolean)handleIsExportable()
      */
     public final boolean isExportable()
     {
-        boolean aexportable35a = this.exportable35a;
+        boolean exportable35a = this.exportable35a;
         if (!this.exportable35aSet)
         {
             // exportable has no pre constraints
-            aexportable35a = handleIsExportable();
+            exportable35a = handleIsExportable();
             // exportable has no post constraints
-            this.exportable35a = aexportable35a;
+            this.exportable35a = exportable35a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exportable35aSet = true;
             }
         }
-        return aexportable35a;
+        return exportable35a;
     }
 
    /**
@@ -1201,28 +1225,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsClonable();
 
-    private boolean clonable36a;
-    private boolean clonable36aSet = false;
+    private transient boolean clonable36a;
+    private transient boolean clonable36aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.clonable
      * @return (boolean)handleIsClonable()
      */
     public final boolean isClonable()
     {
-        boolean aclonable36a = this.clonable36a;
+        boolean clonable36a = this.clonable36a;
         if (!this.clonable36aSet)
         {
             // clonable has no pre constraints
-            aclonable36a = handleIsClonable();
+            clonable36a = handleIsClonable();
             // clonable has no post constraints
-            this.clonable36a = aclonable36a;
+            this.clonable36a = clonable36a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.clonable36aSet = true;
             }
         }
-        return aclonable36a;
+        return clonable36a;
     }
 
    /**
@@ -1231,28 +1256,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsSortable();
 
-    private boolean sortable37a;
-    private boolean sortable37aSet = false;
+    private transient boolean sortable37a;
+    private transient boolean sortable37aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.sortable
      * @return (boolean)handleIsSortable()
      */
     public final boolean isSortable()
     {
-        boolean asortable37a = this.sortable37a;
+        boolean sortable37a = this.sortable37a;
         if (!this.sortable37aSet)
         {
             // sortable has no pre constraints
-            asortable37a = handleIsSortable();
+            sortable37a = handleIsSortable();
             // sortable has no post constraints
-            this.sortable37a = asortable37a;
+            this.sortable37a = sortable37a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.sortable37aSet = true;
             }
         }
-        return asortable37a;
+        return sortable37a;
     }
 
    /**
@@ -1261,28 +1287,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsHasHelp();
 
-    private boolean hasHelp38a;
-    private boolean hasHelp38aSet = false;
+    private transient boolean hasHelp38a;
+    private transient boolean hasHelp38aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.hasHelp
      * @return (boolean)handleIsHasHelp()
      */
     public final boolean isHasHelp()
     {
-        boolean ahasHelp38a = this.hasHelp38a;
+        boolean hasHelp38a = this.hasHelp38a;
         if (!this.hasHelp38aSet)
         {
             // hasHelp has no pre constraints
-            ahasHelp38a = handleIsHasHelp();
+            hasHelp38a = handleIsHasHelp();
             // hasHelp has no post constraints
-            this.hasHelp38a = ahasHelp38a;
+            this.hasHelp38a = hasHelp38a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hasHelp38aSet = true;
             }
         }
-        return ahasHelp38a;
+        return hasHelp38a;
     }
 
    /**
@@ -1291,8 +1318,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsFilterable();
 
-    private boolean filterable39a;
-    private boolean filterable39aSet = false;
+    private transient boolean filterable39a;
+    private transient boolean filterable39aSet = false;
 
     /**
      * Defines whether or not the manageable entity is filterable (advanced search)
@@ -1300,19 +1327,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isFilterable()
     {
-        boolean afilterable39a = this.filterable39a;
+        boolean filterable39a = this.filterable39a;
         if (!this.filterable39aSet)
         {
             // filterable has no pre constraints
-            afilterable39a = handleIsFilterable();
+            filterable39a = handleIsFilterable();
             // filterable has no post constraints
-            this.filterable39a = afilterable39a;
+            this.filterable39a = filterable39a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.filterable39aSet = true;
             }
         }
-        return afilterable39a;
+        return filterable39a;
     }
 
    /**
@@ -1321,8 +1348,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsHasCustom();
 
-    private boolean hasCustom40a;
-    private boolean hasCustom40aSet = false;
+    private transient boolean hasCustom40a;
+    private transient boolean hasCustom40aSet = false;
 
     /**
      * True if the Manageable Entity has children that must be handled. Usefull for Rules.
@@ -1330,19 +1357,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isHasCustom()
     {
-        boolean ahasCustom40a = this.hasCustom40a;
+        boolean hasCustom40a = this.hasCustom40a;
         if (!this.hasCustom40aSet)
         {
             // hasCustom has no pre constraints
-            ahasCustom40a = handleIsHasCustom();
+            hasCustom40a = handleIsHasCustom();
             // hasCustom has no post constraints
-            this.hasCustom40a = ahasCustom40a;
+            this.hasCustom40a = hasCustom40a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hasCustom40aSet = true;
             }
         }
-        return ahasCustom40a;
+        return hasCustom40a;
     }
 
    /**
@@ -1351,8 +1378,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsIsCustom();
 
-    private boolean isCustom41a;
-    private boolean isCustom41aSet = false;
+    private transient boolean isCustom41a;
+    private transient boolean isCustom41aSet = false;
 
     /**
      * True if it is a custom manageable. In this case, it is related to another Manageable, and it
@@ -1361,19 +1388,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isIsCustom()
     {
-        boolean aisCustom41a = this.isCustom41a;
+        boolean isCustom41a = this.isCustom41a;
         if (!this.isCustom41aSet)
         {
             // isCustom has no pre constraints
-            aisCustom41a = handleIsIsCustom();
+            isCustom41a = handleIsIsCustom();
             // isCustom has no post constraints
-            this.isCustom41a = aisCustom41a;
+            this.isCustom41a = isCustom41a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.isCustom41aSet = true;
             }
         }
-        return aisCustom41a;
+        return isCustom41a;
     }
 
    /**
@@ -1382,28 +1409,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsEditable();
 
-    private boolean editable42a;
-    private boolean editable42aSet = false;
+    private transient boolean editable42a;
+    private transient boolean editable42aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.editable
      * @return (boolean)handleIsEditable()
      */
     public final boolean isEditable()
     {
-        boolean aeditable42a = this.editable42a;
+        boolean editable42a = this.editable42a;
         if (!this.editable42aSet)
         {
             // editable has no pre constraints
-            aeditable42a = handleIsEditable();
+            editable42a = handleIsEditable();
             // editable has no post constraints
-            this.editable42a = aeditable42a;
+            this.editable42a = editable42a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.editable42aSet = true;
             }
         }
-        return aeditable42a;
+        return editable42a;
     }
 
    /**
@@ -1412,28 +1440,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsHasMaximumListSize();
 
-    private boolean hasMaximumListSize43a;
-    private boolean hasMaximumListSize43aSet = false;
+    private transient boolean hasMaximumListSize43a;
+    private transient boolean hasMaximumListSize43aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.hasMaximumListSize
      * @return (boolean)handleIsHasMaximumListSize()
      */
     public final boolean isHasMaximumListSize()
     {
-        boolean ahasMaximumListSize43a = this.hasMaximumListSize43a;
+        boolean hasMaximumListSize43a = this.hasMaximumListSize43a;
         if (!this.hasMaximumListSize43aSet)
         {
             // hasMaximumListSize has no pre constraints
-            ahasMaximumListSize43a = handleIsHasMaximumListSize();
+            hasMaximumListSize43a = handleIsHasMaximumListSize();
             // hasMaximumListSize has no post constraints
-            this.hasMaximumListSize43a = ahasMaximumListSize43a;
+            this.hasMaximumListSize43a = hasMaximumListSize43a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hasMaximumListSize43aSet = true;
             }
         }
-        return ahasMaximumListSize43a;
+        return hasMaximumListSize43a;
     }
 
    /**
@@ -1442,28 +1471,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetSecurityName();
 
-    private String securityName44a;
-    private boolean securityName44aSet = false;
+    private transient String securityName44a;
+    private transient boolean securityName44aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.securityName
      * @return (String)handleGetSecurityName()
      */
     public final String getSecurityName()
     {
-        String asecurityName44a = this.securityName44a;
+        String securityName44a = this.securityName44a;
         if (!this.securityName44aSet)
         {
             // securityName has no pre constraints
-            asecurityName44a = handleGetSecurityName();
+            securityName44a = handleGetSecurityName();
             // securityName has no post constraints
-            this.securityName44a = asecurityName44a;
+            this.securityName44a = securityName44a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.securityName44aSet = true;
             }
         }
-        return asecurityName44a;
+        return securityName44a;
     }
 
    /**
@@ -1472,28 +1502,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsFilterLoadingShortcut();
 
-    private boolean filterLoadingShortcut45a;
-    private boolean filterLoadingShortcut45aSet = false;
+    private transient boolean filterLoadingShortcut45a;
+    private transient boolean filterLoadingShortcut45aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.filterLoadingShortcut
      * @return (boolean)handleIsFilterLoadingShortcut()
      */
     public final boolean isFilterLoadingShortcut()
     {
-        boolean afilterLoadingShortcut45a = this.filterLoadingShortcut45a;
+        boolean filterLoadingShortcut45a = this.filterLoadingShortcut45a;
         if (!this.filterLoadingShortcut45aSet)
         {
             // filterLoadingShortcut has no pre constraints
-            afilterLoadingShortcut45a = handleIsFilterLoadingShortcut();
+            filterLoadingShortcut45a = handleIsFilterLoadingShortcut();
             // filterLoadingShortcut has no post constraints
-            this.filterLoadingShortcut45a = afilterLoadingShortcut45a;
+            this.filterLoadingShortcut45a = filterLoadingShortcut45a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.filterLoadingShortcut45aSet = true;
             }
         }
-        return afilterLoadingShortcut45a;
+        return filterLoadingShortcut45a;
     }
 
    /**
@@ -1502,28 +1533,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetEjbInterfaceName();
 
-    private String ejbInterfaceName46a;
-    private boolean ejbInterfaceName46aSet = false;
+    private transient String ejbInterfaceName46a;
+    private transient boolean ejbInterfaceName46aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.ejbInterfaceName
      * @return (String)handleGetEjbInterfaceName()
      */
     public final String getEjbInterfaceName()
     {
-        String aejbInterfaceName46a = this.ejbInterfaceName46a;
+        String ejbInterfaceName46a = this.ejbInterfaceName46a;
         if (!this.ejbInterfaceName46aSet)
         {
             // ejbInterfaceName has no pre constraints
-            aejbInterfaceName46a = handleGetEjbInterfaceName();
+            ejbInterfaceName46a = handleGetEjbInterfaceName();
             // ejbInterfaceName has no post constraints
-            this.ejbInterfaceName46a = aejbInterfaceName46a;
+            this.ejbInterfaceName46a = ejbInterfaceName46a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.ejbInterfaceName46aSet = true;
             }
         }
-        return aejbInterfaceName46a;
+        return ejbInterfaceName46a;
     }
 
    /**
@@ -1532,8 +1564,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsHasCustomSorters();
 
-    private boolean hasCustomSorters47a;
-    private boolean hasCustomSorters47aSet = false;
+    private transient boolean hasCustomSorters47a;
+    private transient boolean hasCustomSorters47aSet = false;
 
     /**
      * Returns true if tagged value associated to custom sorters (K+TP Rule entity) is set to true
@@ -1542,19 +1574,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isHasCustomSorters()
     {
-        boolean ahasCustomSorters47a = this.hasCustomSorters47a;
+        boolean hasCustomSorters47a = this.hasCustomSorters47a;
         if (!this.hasCustomSorters47aSet)
         {
             // hasCustomSorters has no pre constraints
-            ahasCustomSorters47a = handleIsHasCustomSorters();
+            hasCustomSorters47a = handleIsHasCustomSorters();
             // hasCustomSorters has no post constraints
-            this.hasCustomSorters47a = ahasCustomSorters47a;
+            this.hasCustomSorters47a = hasCustomSorters47a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hasCustomSorters47aSet = true;
             }
         }
-        return ahasCustomSorters47a;
+        return hasCustomSorters47a;
     }
 
    /**
@@ -1563,8 +1595,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsReferencable();
 
-    private boolean referencable48a;
-    private boolean referencable48aSet = false;
+    private transient boolean referencable48a;
+    private transient boolean referencable48aSet = false;
 
     /**
      * Defines whether or not the manageable entity is referencable (sub blotter with drill down
@@ -1573,19 +1605,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isReferencable()
     {
-        boolean areferencable48a = this.referencable48a;
+        boolean referencable48a = this.referencable48a;
         if (!this.referencable48aSet)
         {
             // referencable has no pre constraints
-            areferencable48a = handleIsReferencable();
+            referencable48a = handleIsReferencable();
             // referencable has no post constraints
-            this.referencable48a = areferencable48a;
+            this.referencable48a = referencable48a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.referencable48aSet = true;
             }
         }
-        return areferencable48a;
+        return referencable48a;
     }
 
    /**
@@ -1594,8 +1626,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsRealTimeData();
 
-    private boolean realTimeData49a;
-    private boolean realTimeData49aSet = false;
+    private transient boolean realTimeData49a;
+    private transient boolean realTimeData49aSet = false;
 
     /**
      * true if Manageable Entity carries RealTimeData stereotype
@@ -1603,19 +1635,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isRealTimeData()
     {
-        boolean arealTimeData49a = this.realTimeData49a;
+        boolean realTimeData49a = this.realTimeData49a;
         if (!this.realTimeData49aSet)
         {
             // realTimeData has no pre constraints
-            arealTimeData49a = handleIsRealTimeData();
+            realTimeData49a = handleIsRealTimeData();
             // realTimeData has no post constraints
-            this.realTimeData49a = arealTimeData49a;
+            this.realTimeData49a = realTimeData49a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.realTimeData49aSet = true;
             }
         }
-        return arealTimeData49a;
+        return realTimeData49a;
     }
 
    /**
@@ -1624,8 +1656,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsValidable();
 
-    private boolean validable50a;
-    private boolean validable50aSet = false;
+    private transient boolean validable50a;
+    private transient boolean validable50aSet = false;
 
     /**
      * True if the manageable entity carries Validable stereotype (Validable object)
@@ -1633,19 +1665,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isValidable()
     {
-        boolean avalidable50a = this.validable50a;
+        boolean validable50a = this.validable50a;
         if (!this.validable50aSet)
         {
             // validable has no pre constraints
-            avalidable50a = handleIsValidable();
+            validable50a = handleIsValidable();
             // validable has no post constraints
-            this.validable50a = avalidable50a;
+            this.validable50a = validable50a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validable50aSet = true;
             }
         }
-        return avalidable50a;
+        return validable50a;
     }
 
    /**
@@ -1654,28 +1686,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsExternalOrganizationExists();
 
-    private boolean externalOrganizationExists51a;
-    private boolean externalOrganizationExists51aSet = false;
+    private transient boolean externalOrganizationExists51a;
+    private transient boolean externalOrganizationExists51aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.externalOrganizationExists
      * @return (boolean)handleIsExternalOrganizationExists()
      */
     public final boolean isExternalOrganizationExists()
     {
-        boolean aexternalOrganizationExists51a = this.externalOrganizationExists51a;
+        boolean externalOrganizationExists51a = this.externalOrganizationExists51a;
         if (!this.externalOrganizationExists51aSet)
         {
             // externalOrganizationExists has no pre constraints
-            aexternalOrganizationExists51a = handleIsExternalOrganizationExists();
+            externalOrganizationExists51a = handleIsExternalOrganizationExists();
             // externalOrganizationExists has no post constraints
-            this.externalOrganizationExists51a = aexternalOrganizationExists51a;
+            this.externalOrganizationExists51a = externalOrganizationExists51a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.externalOrganizationExists51aSet = true;
             }
         }
-        return aexternalOrganizationExists51a;
+        return externalOrganizationExists51a;
     }
 
    /**
@@ -1684,28 +1717,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Object handleGetManageableExternalOrganization();
 
-    private Object manageableExternalOrganization52a;
-    private boolean manageableExternalOrganization52aSet = false;
+    private transient Object manageableExternalOrganization52a;
+    private transient boolean manageableExternalOrganization52aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.manageableExternalOrganization
      * @return (Object)handleGetManageableExternalOrganization()
      */
     public final Object getManageableExternalOrganization()
     {
-        Object amanageableExternalOrganization52a = this.manageableExternalOrganization52a;
+        Object manageableExternalOrganization52a = this.manageableExternalOrganization52a;
         if (!this.manageableExternalOrganization52aSet)
         {
             // manageableExternalOrganization has no pre constraints
-            amanageableExternalOrganization52a = handleGetManageableExternalOrganization();
+            manageableExternalOrganization52a = handleGetManageableExternalOrganization();
             // manageableExternalOrganization has no post constraints
-            this.manageableExternalOrganization52a = amanageableExternalOrganization52a;
+            this.manageableExternalOrganization52a = manageableExternalOrganization52a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableExternalOrganization52aSet = true;
             }
         }
-        return amanageableExternalOrganization52a;
+        return manageableExternalOrganization52a;
     }
 
    /**
@@ -1714,8 +1748,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsShowDeal();
 
-    private boolean showDeal53a;
-    private boolean showDeal53aSet = false;
+    private transient boolean showDeal53a;
+    private transient boolean showDeal53aSet = false;
 
     /**
      * is True if Manageable entity has the corresponding tagged value set to true
@@ -1723,19 +1757,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isShowDeal()
     {
-        boolean ashowDeal53a = this.showDeal53a;
+        boolean showDeal53a = this.showDeal53a;
         if (!this.showDeal53aSet)
         {
             // showDeal has no pre constraints
-            ashowDeal53a = handleIsShowDeal();
+            showDeal53a = handleIsShowDeal();
             // showDeal has no post constraints
-            this.showDeal53a = ashowDeal53a;
+            this.showDeal53a = showDeal53a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.showDeal53aSet = true;
             }
         }
-        return ashowDeal53a;
+        return showDeal53a;
     }
 
    /**
@@ -1744,28 +1778,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsUseTemplating();
 
-    private boolean useTemplating54a;
-    private boolean useTemplating54aSet = false;
+    private transient boolean useTemplating54a;
+    private transient boolean useTemplating54aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.useTemplating
      * @return (boolean)handleIsUseTemplating()
      */
     public final boolean isUseTemplating()
     {
-        boolean auseTemplating54a = this.useTemplating54a;
+        boolean useTemplating54a = this.useTemplating54a;
         if (!this.useTemplating54aSet)
         {
             // useTemplating has no pre constraints
-            auseTemplating54a = handleIsUseTemplating();
+            useTemplating54a = handleIsUseTemplating();
             // useTemplating has no post constraints
-            this.useTemplating54a = auseTemplating54a;
+            this.useTemplating54a = useTemplating54a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.useTemplating54aSet = true;
             }
         }
-        return auseTemplating54a;
+        return useTemplating54a;
     }
 
    /**
@@ -1774,8 +1809,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsRule();
 
-    private boolean rule55a;
-    private boolean rule55aSet = false;
+    private transient boolean rule55a;
+    private transient boolean rule55aSet = false;
 
     /**
      * true if Manageable entity is a K+TP Rule
@@ -1783,19 +1818,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isRule()
     {
-        boolean arule55a = this.rule55a;
+        boolean rule55a = this.rule55a;
         if (!this.rule55aSet)
         {
             // rule has no pre constraints
-            arule55a = handleIsRule();
+            rule55a = handleIsRule();
             // rule has no post constraints
-            this.rule55a = arule55a;
+            this.rule55a = rule55a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.rule55aSet = true;
             }
         }
-        return arule55a;
+        return rule55a;
     }
 
    /**
@@ -1804,8 +1839,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsInterceptable();
 
-    private boolean interceptable56a;
-    private boolean interceptable56aSet = false;
+    private transient boolean interceptable56a;
+    private transient boolean interceptable56aSet = false;
 
     /**
      * True if the manageable entity carries Interceptable stereotype (Interceptable object)
@@ -1813,19 +1848,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final boolean isInterceptable()
     {
-        boolean ainterceptable56a = this.interceptable56a;
+        boolean interceptable56a = this.interceptable56a;
         if (!this.interceptable56aSet)
         {
             // interceptable has no pre constraints
-            ainterceptable56a = handleIsInterceptable();
+            interceptable56a = handleIsInterceptable();
             // interceptable has no post constraints
-            this.interceptable56a = ainterceptable56a;
+            this.interceptable56a = interceptable56a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.interceptable56aSet = true;
             }
         }
-        return ainterceptable56a;
+        return interceptable56a;
     }
 
    /**
@@ -1834,28 +1869,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetViewName();
 
-    private String viewName57a;
-    private boolean viewName57aSet = false;
+    private transient String viewName57a;
+    private transient boolean viewName57aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.viewName
      * @return (String)handleGetViewName()
      */
     public final String getViewName()
     {
-        String aviewName57a = this.viewName57a;
+        String viewName57a = this.viewName57a;
         if (!this.viewName57aSet)
         {
             // viewName has no pre constraints
-            aviewName57a = handleGetViewName();
+            viewName57a = handleGetViewName();
             // viewName has no post constraints
-            this.viewName57a = aviewName57a;
+            this.viewName57a = viewName57a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.viewName57aSet = true;
             }
         }
-        return aviewName57a;
+        return viewName57a;
     }
 
    /**
@@ -1864,28 +1900,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetViewTitleKey();
 
-    private String viewTitleKey58a;
-    private boolean viewTitleKey58aSet = false;
+    private transient String viewTitleKey58a;
+    private transient boolean viewTitleKey58aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.viewTitleKey
      * @return (String)handleGetViewTitleKey()
      */
     public final String getViewTitleKey()
     {
-        String aviewTitleKey58a = this.viewTitleKey58a;
+        String viewTitleKey58a = this.viewTitleKey58a;
         if (!this.viewTitleKey58aSet)
         {
             // viewTitleKey has no pre constraints
-            aviewTitleKey58a = handleGetViewTitleKey();
+            viewTitleKey58a = handleGetViewTitleKey();
             // viewTitleKey has no post constraints
-            this.viewTitleKey58a = aviewTitleKey58a;
+            this.viewTitleKey58a = viewTitleKey58a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.viewTitleKey58aSet = true;
             }
         }
-        return aviewTitleKey58a;
+        return viewTitleKey58a;
     }
 
    /**
@@ -1894,28 +1931,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetViewTitleValue();
 
-    private String viewTitleValue59a;
-    private boolean viewTitleValue59aSet = false;
+    private transient String viewTitleValue59a;
+    private transient boolean viewTitleValue59aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.viewTitleValue
      * @return (String)handleGetViewTitleValue()
      */
     public final String getViewTitleValue()
     {
-        String aviewTitleValue59a = this.viewTitleValue59a;
+        String viewTitleValue59a = this.viewTitleValue59a;
         if (!this.viewTitleValue59aSet)
         {
             // viewTitleValue has no pre constraints
-            aviewTitleValue59a = handleGetViewTitleValue();
+            viewTitleValue59a = handleGetViewTitleValue();
             // viewTitleValue has no post constraints
-            this.viewTitleValue59a = aviewTitleValue59a;
+            this.viewTitleValue59a = viewTitleValue59a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.viewTitleValue59aSet = true;
             }
         }
-        return aviewTitleValue59a;
+        return viewTitleValue59a;
     }
 
    /**
@@ -1924,28 +1962,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetFormBeanType();
 
-    private String formBeanType60a;
-    private boolean formBeanType60aSet = false;
+    private transient String formBeanType60a;
+    private transient boolean formBeanType60aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.formBeanType
      * @return (String)handleGetFormBeanType()
      */
     public final String getFormBeanType()
     {
-        String aformBeanType60a = this.formBeanType60a;
+        String formBeanType60a = this.formBeanType60a;
         if (!this.formBeanType60aSet)
         {
             // formBeanType has no pre constraints
-            aformBeanType60a = handleGetFormBeanType();
+            formBeanType60a = handleGetFormBeanType();
             // formBeanType has no post constraints
-            this.formBeanType60a = aformBeanType60a;
+            this.formBeanType60a = formBeanType60a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanType60aSet = true;
             }
         }
-        return aformBeanType60a;
+        return formBeanType60a;
     }
 
    /**
@@ -1954,28 +1993,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetFormBeanName();
 
-    private String formBeanName61a;
-    private boolean formBeanName61aSet = false;
+    private transient String formBeanName61a;
+    private transient boolean formBeanName61aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.formBeanName
      * @return (String)handleGetFormBeanName()
      */
     public final String getFormBeanName()
     {
-        String aformBeanName61a = this.formBeanName61a;
+        String formBeanName61a = this.formBeanName61a;
         if (!this.formBeanName61aSet)
         {
             // formBeanName has no pre constraints
-            aformBeanName61a = handleGetFormBeanName();
+            formBeanName61a = handleGetFormBeanName();
             // formBeanName has no post constraints
-            this.formBeanName61a = aformBeanName61a;
+            this.formBeanName61a = formBeanName61a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanName61aSet = true;
             }
         }
-        return aformBeanName61a;
+        return formBeanName61a;
     }
 
    /**
@@ -1984,28 +2024,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsPreload();
 
-    private boolean preload62a;
-    private boolean preload62aSet = false;
+    private transient boolean preload62a;
+    private transient boolean preload62aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.preload
      * @return (boolean)handleIsPreload()
      */
     public final boolean isPreload()
     {
-        boolean apreload62a = this.preload62a;
+        boolean preload62a = this.preload62a;
         if (!this.preload62aSet)
         {
             // preload has no pre constraints
-            apreload62a = handleIsPreload();
+            preload62a = handleIsPreload();
             // preload has no post constraints
-            this.preload62a = apreload62a;
+            this.preload62a = preload62a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.preload62aSet = true;
             }
         }
-        return apreload62a;
+        return preload62a;
     }
 
    /**
@@ -2014,28 +2055,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetFormBeanClassName();
 
-    private String formBeanClassName63a;
-    private boolean formBeanClassName63aSet = false;
+    private transient String formBeanClassName63a;
+    private transient boolean formBeanClassName63aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.formBeanClassName
      * @return (String)handleGetFormBeanClassName()
      */
     public final String getFormBeanClassName()
     {
-        String aformBeanClassName63a = this.formBeanClassName63a;
+        String formBeanClassName63a = this.formBeanClassName63a;
         if (!this.formBeanClassName63aSet)
         {
             // formBeanClassName has no pre constraints
-            aformBeanClassName63a = handleGetFormBeanClassName();
+            formBeanClassName63a = handleGetFormBeanClassName();
             // formBeanClassName has no post constraints
-            this.formBeanClassName63a = aformBeanClassName63a;
+            this.formBeanClassName63a = formBeanClassName63a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanClassName63aSet = true;
             }
         }
-        return aformBeanClassName63a;
+        return formBeanClassName63a;
     }
 
    /**
@@ -2044,28 +2086,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetFormBeanFullPath();
 
-    private String formBeanFullPath64a;
-    private boolean formBeanFullPath64aSet = false;
+    private transient String formBeanFullPath64a;
+    private transient boolean formBeanFullPath64aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.formBeanFullPath
      * @return (String)handleGetFormBeanFullPath()
      */
     public final String getFormBeanFullPath()
     {
-        String aformBeanFullPath64a = this.formBeanFullPath64a;
+        String formBeanFullPath64a = this.formBeanFullPath64a;
         if (!this.formBeanFullPath64aSet)
         {
             // formBeanFullPath has no pre constraints
-            aformBeanFullPath64a = handleGetFormBeanFullPath();
+            formBeanFullPath64a = handleGetFormBeanFullPath();
             // formBeanFullPath has no post constraints
-            this.formBeanFullPath64a = aformBeanFullPath64a;
+            this.formBeanFullPath64a = formBeanFullPath64a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanFullPath64aSet = true;
             }
         }
-        return aformBeanFullPath64a;
+        return formBeanFullPath64a;
     }
 
    /**
@@ -2074,28 +2117,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey65a;
-    private boolean messageKey65aSet = false;
+    private transient String messageKey65a;
+    private transient boolean messageKey65aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.messageKey
      * @return (String)handleGetMessageKey()
      */
     public final String getMessageKey()
     {
-        String amessageKey65a = this.messageKey65a;
+        String messageKey65a = this.messageKey65a;
         if (!this.messageKey65aSet)
         {
             // messageKey has no pre constraints
-            amessageKey65a = handleGetMessageKey();
+            messageKey65a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey65a = amessageKey65a;
+            this.messageKey65a = messageKey65a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey65aSet = true;
             }
         }
-        return amessageKey65a;
+        return messageKey65a;
     }
 
    /**
@@ -2104,28 +2148,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String messageValue66a;
-    private boolean messageValue66aSet = false;
+    private transient String messageValue66a;
+    private transient boolean messageValue66aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.messageValue
      * @return (String)handleGetMessageValue()
      */
     public final String getMessageValue()
     {
-        String amessageValue66a = this.messageValue66a;
+        String messageValue66a = this.messageValue66a;
         if (!this.messageValue66aSet)
         {
             // messageValue has no pre constraints
-            amessageValue66a = handleGetMessageValue();
+            messageValue66a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.messageValue66a = amessageValue66a;
+            this.messageValue66a = messageValue66a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageValue66aSet = true;
             }
         }
-        return amessageValue66a;
+        return messageValue66a;
     }
 
    /**
@@ -2134,8 +2179,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String onlineHelpKey67a;
-    private boolean onlineHelpKey67aSet = false;
+    private transient String onlineHelpKey67a;
+    private transient boolean onlineHelpKey67aSet = false;
 
     /**
      * The key to lookup the online help documentation.
@@ -2143,19 +2188,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getOnlineHelpKey()
     {
-        String aonlineHelpKey67a = this.onlineHelpKey67a;
+        String onlineHelpKey67a = this.onlineHelpKey67a;
         if (!this.onlineHelpKey67aSet)
         {
             // onlineHelpKey has no pre constraints
-            aonlineHelpKey67a = handleGetOnlineHelpKey();
+            onlineHelpKey67a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.onlineHelpKey67a = aonlineHelpKey67a;
+            this.onlineHelpKey67a = onlineHelpKey67a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpKey67aSet = true;
             }
         }
-        return aonlineHelpKey67a;
+        return onlineHelpKey67a;
     }
 
    /**
@@ -2164,8 +2209,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String onlineHelpValue68a;
-    private boolean onlineHelpValue68aSet = false;
+    private transient String onlineHelpValue68a;
+    private transient boolean onlineHelpValue68aSet = false;
 
     /**
      * The online help documentation. The format is HTML without any style.
@@ -2173,19 +2218,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getOnlineHelpValue()
     {
-        String aonlineHelpValue68a = this.onlineHelpValue68a;
+        String onlineHelpValue68a = this.onlineHelpValue68a;
         if (!this.onlineHelpValue68aSet)
         {
             // onlineHelpValue has no pre constraints
-            aonlineHelpValue68a = handleGetOnlineHelpValue();
+            onlineHelpValue68a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.onlineHelpValue68a = aonlineHelpValue68a;
+            this.onlineHelpValue68a = onlineHelpValue68a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpValue68aSet = true;
             }
         }
-        return aonlineHelpValue68a;
+        return onlineHelpValue68a;
     }
 
    /**
@@ -2194,8 +2239,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetOnlineHelpActionPath();
 
-    private String onlineHelpActionPath69a;
-    private boolean onlineHelpActionPath69aSet = false;
+    private transient String onlineHelpActionPath69a;
+    private transient boolean onlineHelpActionPath69aSet = false;
 
     /**
      * The full path to this entity's online help action. The returned String does not have a suffix
@@ -2204,19 +2249,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getOnlineHelpActionPath()
     {
-        String aonlineHelpActionPath69a = this.onlineHelpActionPath69a;
+        String onlineHelpActionPath69a = this.onlineHelpActionPath69a;
         if (!this.onlineHelpActionPath69aSet)
         {
             // onlineHelpActionPath has no pre constraints
-            aonlineHelpActionPath69a = handleGetOnlineHelpActionPath();
+            onlineHelpActionPath69a = handleGetOnlineHelpActionPath();
             // onlineHelpActionPath has no post constraints
-            this.onlineHelpActionPath69a = aonlineHelpActionPath69a;
+            this.onlineHelpActionPath69a = onlineHelpActionPath69a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpActionPath69aSet = true;
             }
         }
-        return aonlineHelpActionPath69a;
+        return onlineHelpActionPath69a;
     }
 
    /**
@@ -2225,8 +2270,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetOnlineHelpPagePath();
 
-    private String onlineHelpPagePath70a;
-    private boolean onlineHelpPagePath70aSet = false;
+    private transient String onlineHelpPagePath70a;
+    private transient boolean onlineHelpPagePath70aSet = false;
 
     /**
      * The full path to this entitiy's online help page. The returned String does not have a suffix
@@ -2235,19 +2280,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getOnlineHelpPagePath()
     {
-        String aonlineHelpPagePath70a = this.onlineHelpPagePath70a;
+        String onlineHelpPagePath70a = this.onlineHelpPagePath70a;
         if (!this.onlineHelpPagePath70aSet)
         {
             // onlineHelpPagePath has no pre constraints
-            aonlineHelpPagePath70a = handleGetOnlineHelpPagePath();
+            onlineHelpPagePath70a = handleGetOnlineHelpPagePath();
             // onlineHelpPagePath has no post constraints
-            this.onlineHelpPagePath70a = aonlineHelpPagePath70a;
+            this.onlineHelpPagePath70a = onlineHelpPagePath70a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpPagePath70aSet = true;
             }
         }
-        return aonlineHelpPagePath70a;
+        return onlineHelpPagePath70a;
     }
 
    /**
@@ -2256,8 +2301,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetControllerType();
 
-    private String controllerType71a;
-    private boolean controllerType71aSet = false;
+    private transient String controllerType71a;
+    private transient boolean controllerType71aSet = false;
 
     /**
      * Fully qualified name of this manageable controller.
@@ -2265,19 +2310,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getControllerType()
     {
-        String acontrollerType71a = this.controllerType71a;
+        String controllerType71a = this.controllerType71a;
         if (!this.controllerType71aSet)
         {
             // controllerType has no pre constraints
-            acontrollerType71a = handleGetControllerType();
+            controllerType71a = handleGetControllerType();
             // controllerType has no post constraints
-            this.controllerType71a = acontrollerType71a;
+            this.controllerType71a = controllerType71a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.controllerType71aSet = true;
             }
         }
-        return acontrollerType71a;
+        return controllerType71a;
     }
 
    /**
@@ -2286,8 +2331,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetControllerBeanName();
 
-    private String controllerBeanName72a;
-    private boolean controllerBeanName72aSet = false;
+    private transient String controllerBeanName72a;
+    private transient boolean controllerBeanName72aSet = false;
 
     /**
      * The bean name of this manageable controller (this is what is stored in the JSF configuration
@@ -2296,19 +2341,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getControllerBeanName()
     {
-        String acontrollerBeanName72a = this.controllerBeanName72a;
+        String controllerBeanName72a = this.controllerBeanName72a;
         if (!this.controllerBeanName72aSet)
         {
             // controllerBeanName has no pre constraints
-            acontrollerBeanName72a = handleGetControllerBeanName();
+            controllerBeanName72a = handleGetControllerBeanName();
             // controllerBeanName has no post constraints
-            this.controllerBeanName72a = acontrollerBeanName72a;
+            this.controllerBeanName72a = controllerBeanName72a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.controllerBeanName72aSet = true;
             }
         }
-        return acontrollerBeanName72a;
+        return controllerBeanName72a;
     }
 
    /**
@@ -2317,8 +2362,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetControllerFullPath();
 
-    private String controllerFullPath73a;
-    private boolean controllerFullPath73aSet = false;
+    private transient String controllerFullPath73a;
+    private transient boolean controllerFullPath73aSet = false;
 
     /**
      * Full path of this manageable controller.
@@ -2326,19 +2371,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getControllerFullPath()
     {
-        String acontrollerFullPath73a = this.controllerFullPath73a;
+        String controllerFullPath73a = this.controllerFullPath73a;
         if (!this.controllerFullPath73aSet)
         {
             // controllerFullPath has no pre constraints
-            acontrollerFullPath73a = handleGetControllerFullPath();
+            controllerFullPath73a = handleGetControllerFullPath();
             // controllerFullPath has no post constraints
-            this.controllerFullPath73a = acontrollerFullPath73a;
+            this.controllerFullPath73a = controllerFullPath73a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.controllerFullPath73aSet = true;
             }
         }
-        return acontrollerFullPath73a;
+        return controllerFullPath73a;
     }
 
    /**
@@ -2347,8 +2392,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetControllerName();
 
-    private String controllerName74a;
-    private boolean controllerName74aSet = false;
+    private transient String controllerName74a;
+    private transient boolean controllerName74aSet = false;
 
     /**
      * Manageable controller class name.
@@ -2356,19 +2401,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getControllerName()
     {
-        String acontrollerName74a = this.controllerName74a;
+        String controllerName74a = this.controllerName74a;
         if (!this.controllerName74aSet)
         {
             // controllerName has no pre constraints
-            acontrollerName74a = handleGetControllerName();
+            controllerName74a = handleGetControllerName();
             // controllerName has no post constraints
-            this.controllerName74a = acontrollerName74a;
+            this.controllerName74a = controllerName74a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.controllerName74aSet = true;
             }
         }
-        return acontrollerName74a;
+        return controllerName74a;
     }
 
    /**
@@ -2377,28 +2422,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetValueObjectClassName();
 
-    private String valueObjectClassName75a;
-    private boolean valueObjectClassName75aSet = false;
+    private transient String valueObjectClassName75a;
+    private transient boolean valueObjectClassName75aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.valueObjectClassName
      * @return (String)handleGetValueObjectClassName()
      */
     public final String getValueObjectClassName()
     {
-        String avalueObjectClassName75a = this.valueObjectClassName75a;
+        String valueObjectClassName75a = this.valueObjectClassName75a;
         if (!this.valueObjectClassName75aSet)
         {
             // valueObjectClassName has no pre constraints
-            avalueObjectClassName75a = handleGetValueObjectClassName();
+            valueObjectClassName75a = handleGetValueObjectClassName();
             // valueObjectClassName has no post constraints
-            this.valueObjectClassName75a = avalueObjectClassName75a;
+            this.valueObjectClassName75a = valueObjectClassName75a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.valueObjectClassName75aSet = true;
             }
         }
-        return avalueObjectClassName75a;
+        return valueObjectClassName75a;
     }
 
    /**
@@ -2407,8 +2453,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetFormSerialVersionUID();
 
-    private String formSerialVersionUID76a;
-    private boolean formSerialVersionUID76aSet = false;
+    private transient String formSerialVersionUID76a;
+    private transient boolean formSerialVersionUID76aSet = false;
 
     /**
      * The calcuated serial version UID for this action's form.
@@ -2416,19 +2462,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getFormSerialVersionUID()
     {
-        String aformSerialVersionUID76a = this.formSerialVersionUID76a;
+        String formSerialVersionUID76a = this.formSerialVersionUID76a;
         if (!this.formSerialVersionUID76aSet)
         {
             // formSerialVersionUID has no pre constraints
-            aformSerialVersionUID76a = handleGetFormSerialVersionUID();
+            formSerialVersionUID76a = handleGetFormSerialVersionUID();
             // formSerialVersionUID has no post constraints
-            this.formSerialVersionUID76a = aformSerialVersionUID76a;
+            this.formSerialVersionUID76a = formSerialVersionUID76a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formSerialVersionUID76aSet = true;
             }
         }
-        return aformSerialVersionUID76a;
+        return formSerialVersionUID76a;
     }
 
    /**
@@ -2437,8 +2483,8 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetActionSerialVersionUID();
 
-    private String actionSerialVersionUID77a;
-    private boolean actionSerialVersionUID77aSet = false;
+    private transient String actionSerialVersionUID77a;
+    private transient boolean actionSerialVersionUID77aSet = false;
 
     /**
      * The calcuated serial version UID for this manageable actions.
@@ -2446,19 +2492,19 @@ public abstract class GuiManageableEntityLogic
      */
     public final String getActionSerialVersionUID()
     {
-        String aactionSerialVersionUID77a = this.actionSerialVersionUID77a;
+        String actionSerialVersionUID77a = this.actionSerialVersionUID77a;
         if (!this.actionSerialVersionUID77aSet)
         {
             // actionSerialVersionUID has no pre constraints
-            aactionSerialVersionUID77a = handleGetActionSerialVersionUID();
+            actionSerialVersionUID77a = handleGetActionSerialVersionUID();
             // actionSerialVersionUID has no post constraints
-            this.actionSerialVersionUID77a = aactionSerialVersionUID77a;
+            this.actionSerialVersionUID77a = actionSerialVersionUID77a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionSerialVersionUID77aSet = true;
             }
         }
-        return aactionSerialVersionUID77a;
+        return actionSerialVersionUID77a;
     }
 
    /**
@@ -2467,28 +2513,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPopulatorName();
 
-    private String populatorName78a;
-    private boolean populatorName78aSet = false;
+    private transient String populatorName78a;
+    private transient boolean populatorName78aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.populatorName
      * @return (String)handleGetPopulatorName()
      */
     public final String getPopulatorName()
     {
-        String apopulatorName78a = this.populatorName78a;
+        String populatorName78a = this.populatorName78a;
         if (!this.populatorName78aSet)
         {
             // populatorName has no pre constraints
-            apopulatorName78a = handleGetPopulatorName();
+            populatorName78a = handleGetPopulatorName();
             // populatorName has no post constraints
-            this.populatorName78a = apopulatorName78a;
+            this.populatorName78a = populatorName78a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.populatorName78aSet = true;
             }
         }
-        return apopulatorName78a;
+        return populatorName78a;
     }
 
    /**
@@ -2497,28 +2544,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPopulatorFullPath();
 
-    private String populatorFullPath79a;
-    private boolean populatorFullPath79aSet = false;
+    private transient String populatorFullPath79a;
+    private transient boolean populatorFullPath79aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.populatorFullPath
      * @return (String)handleGetPopulatorFullPath()
      */
     public final String getPopulatorFullPath()
     {
-        String apopulatorFullPath79a = this.populatorFullPath79a;
+        String populatorFullPath79a = this.populatorFullPath79a;
         if (!this.populatorFullPath79aSet)
         {
             // populatorFullPath has no pre constraints
-            apopulatorFullPath79a = handleGetPopulatorFullPath();
+            populatorFullPath79a = handleGetPopulatorFullPath();
             // populatorFullPath has no post constraints
-            this.populatorFullPath79a = apopulatorFullPath79a;
+            this.populatorFullPath79a = populatorFullPath79a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.populatorFullPath79aSet = true;
             }
         }
-        return apopulatorFullPath79a;
+        return populatorFullPath79a;
     }
 
    /**
@@ -2527,28 +2575,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetPopulatorType();
 
-    private String populatorType80a;
-    private boolean populatorType80aSet = false;
+    private transient String populatorType80a;
+    private transient boolean populatorType80aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.populatorType
      * @return (String)handleGetPopulatorType()
      */
     public final String getPopulatorType()
     {
-        String apopulatorType80a = this.populatorType80a;
+        String populatorType80a = this.populatorType80a;
         if (!this.populatorType80aSet)
         {
             // populatorType has no pre constraints
-            apopulatorType80a = handleGetPopulatorType();
+            populatorType80a = handleGetPopulatorType();
             // populatorType has no post constraints
-            this.populatorType80a = apopulatorType80a;
+            this.populatorType80a = populatorType80a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.populatorType80aSet = true;
             }
         }
-        return apopulatorType80a;
+        return populatorType80a;
     }
 
    /**
@@ -2557,28 +2606,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetViewFullPath();
 
-    private String viewFullPath81a;
-    private boolean viewFullPath81aSet = false;
+    private transient String viewFullPath81a;
+    private transient boolean viewFullPath81aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.viewFullPath
      * @return (String)handleGetViewFullPath()
      */
     public final String getViewFullPath()
     {
-        String aviewFullPath81a = this.viewFullPath81a;
+        String viewFullPath81a = this.viewFullPath81a;
         if (!this.viewFullPath81aSet)
         {
             // viewFullPath has no pre constraints
-            aviewFullPath81a = handleGetViewFullPath();
+            viewFullPath81a = handleGetViewFullPath();
             // viewFullPath has no post constraints
-            this.viewFullPath81a = aviewFullPath81a;
+            this.viewFullPath81a = viewFullPath81a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.viewFullPath81aSet = true;
             }
         }
-        return aviewFullPath81a;
+        return viewFullPath81a;
     }
 
    /**
@@ -2587,28 +2637,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsValidationRequired();
 
-    private boolean validationRequired82a;
-    private boolean validationRequired82aSet = false;
+    private transient boolean validationRequired82a;
+    private transient boolean validationRequired82aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.validationRequired
      * @return (boolean)handleIsValidationRequired()
      */
     public final boolean isValidationRequired()
     {
-        boolean avalidationRequired82a = this.validationRequired82a;
+        boolean validationRequired82a = this.validationRequired82a;
         if (!this.validationRequired82aSet)
         {
             // validationRequired has no pre constraints
-            avalidationRequired82a = handleIsValidationRequired();
+            validationRequired82a = handleIsValidationRequired();
             // validationRequired has no post constraints
-            this.validationRequired82a = avalidationRequired82a;
+            this.validationRequired82a = validationRequired82a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validationRequired82aSet = true;
             }
         }
-        return avalidationRequired82a;
+        return validationRequired82a;
     }
 
    /**
@@ -2617,28 +2668,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetSearchFormBeanName();
 
-    private String searchFormBeanName83a;
-    private boolean searchFormBeanName83aSet = false;
+    private transient String searchFormBeanName83a;
+    private transient boolean searchFormBeanName83aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.searchFormBeanName
      * @return (String)handleGetSearchFormBeanName()
      */
     public final String getSearchFormBeanName()
     {
-        String asearchFormBeanName83a = this.searchFormBeanName83a;
+        String searchFormBeanName83a = this.searchFormBeanName83a;
         if (!this.searchFormBeanName83aSet)
         {
             // searchFormBeanName has no pre constraints
-            asearchFormBeanName83a = handleGetSearchFormBeanName();
+            searchFormBeanName83a = handleGetSearchFormBeanName();
             // searchFormBeanName has no post constraints
-            this.searchFormBeanName83a = asearchFormBeanName83a;
+            this.searchFormBeanName83a = searchFormBeanName83a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.searchFormBeanName83aSet = true;
             }
         }
-        return asearchFormBeanName83a;
+        return searchFormBeanName83a;
     }
 
    /**
@@ -2647,28 +2699,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetSearchFormBeanType();
 
-    private String searchFormBeanType84a;
-    private boolean searchFormBeanType84aSet = false;
+    private transient String searchFormBeanType84a;
+    private transient boolean searchFormBeanType84aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.searchFormBeanType
      * @return (String)handleGetSearchFormBeanType()
      */
     public final String getSearchFormBeanType()
     {
-        String asearchFormBeanType84a = this.searchFormBeanType84a;
+        String searchFormBeanType84a = this.searchFormBeanType84a;
         if (!this.searchFormBeanType84aSet)
         {
             // searchFormBeanType has no pre constraints
-            asearchFormBeanType84a = handleGetSearchFormBeanType();
+            searchFormBeanType84a = handleGetSearchFormBeanType();
             // searchFormBeanType has no post constraints
-            this.searchFormBeanType84a = asearchFormBeanType84a;
+            this.searchFormBeanType84a = searchFormBeanType84a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.searchFormBeanType84aSet = true;
             }
         }
-        return asearchFormBeanType84a;
+        return searchFormBeanType84a;
     }
 
    /**
@@ -2677,28 +2730,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetSearchFormBeanFullPath();
 
-    private String searchFormBeanFullPath85a;
-    private boolean searchFormBeanFullPath85aSet = false;
+    private transient String searchFormBeanFullPath85a;
+    private transient boolean searchFormBeanFullPath85aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.searchFormBeanFullPath
      * @return (String)handleGetSearchFormBeanFullPath()
      */
     public final String getSearchFormBeanFullPath()
     {
-        String asearchFormBeanFullPath85a = this.searchFormBeanFullPath85a;
+        String searchFormBeanFullPath85a = this.searchFormBeanFullPath85a;
         if (!this.searchFormBeanFullPath85aSet)
         {
             // searchFormBeanFullPath has no pre constraints
-            asearchFormBeanFullPath85a = handleGetSearchFormBeanFullPath();
+            searchFormBeanFullPath85a = handleGetSearchFormBeanFullPath();
             // searchFormBeanFullPath has no post constraints
-            this.searchFormBeanFullPath85a = asearchFormBeanFullPath85a;
+            this.searchFormBeanFullPath85a = searchFormBeanFullPath85a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.searchFormBeanFullPath85aSet = true;
             }
         }
-        return asearchFormBeanFullPath85a;
+        return searchFormBeanFullPath85a;
     }
 
    /**
@@ -2707,28 +2761,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetSearchFormBeanClassName();
 
-    private String searchFormBeanClassName86a;
-    private boolean searchFormBeanClassName86aSet = false;
+    private transient String searchFormBeanClassName86a;
+    private transient boolean searchFormBeanClassName86aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.searchFormBeanClassName
      * @return (String)handleGetSearchFormBeanClassName()
      */
     public final String getSearchFormBeanClassName()
     {
-        String asearchFormBeanClassName86a = this.searchFormBeanClassName86a;
+        String searchFormBeanClassName86a = this.searchFormBeanClassName86a;
         if (!this.searchFormBeanClassName86aSet)
         {
             // searchFormBeanClassName has no pre constraints
-            asearchFormBeanClassName86a = handleGetSearchFormBeanClassName();
+            searchFormBeanClassName86a = handleGetSearchFormBeanClassName();
             // searchFormBeanClassName has no post constraints
-            this.searchFormBeanClassName86a = asearchFormBeanClassName86a;
+            this.searchFormBeanClassName86a = searchFormBeanClassName86a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.searchFormBeanClassName86aSet = true;
             }
         }
-        return asearchFormBeanClassName86a;
+        return searchFormBeanClassName86a;
     }
 
    /**
@@ -2737,28 +2792,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Collection handleGetManageableSearchAttributes();
 
-    private Collection manageableSearchAttributes87a;
-    private boolean manageableSearchAttributes87aSet = false;
+    private transient Collection manageableSearchAttributes87a;
+    private transient boolean manageableSearchAttributes87aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.manageableSearchAttributes
      * @return (Collection)handleGetManageableSearchAttributes()
      */
     public final Collection getManageableSearchAttributes()
     {
-        Collection amanageableSearchAttributes87a = this.manageableSearchAttributes87a;
+        Collection manageableSearchAttributes87a = this.manageableSearchAttributes87a;
         if (!this.manageableSearchAttributes87aSet)
         {
             // manageableSearchAttributes has no pre constraints
-            amanageableSearchAttributes87a = handleGetManageableSearchAttributes();
+            manageableSearchAttributes87a = handleGetManageableSearchAttributes();
             // manageableSearchAttributes has no post constraints
-            this.manageableSearchAttributes87a = amanageableSearchAttributes87a;
+            this.manageableSearchAttributes87a = manageableSearchAttributes87a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableSearchAttributes87aSet = true;
             }
         }
-        return amanageableSearchAttributes87a;
+        return manageableSearchAttributes87a;
     }
 
    /**
@@ -2767,28 +2823,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract Collection handleGetManageableSearchAssociationEnds();
 
-    private Collection manageableSearchAssociationEnds88a;
-    private boolean manageableSearchAssociationEnds88aSet = false;
+    private transient Collection manageableSearchAssociationEnds88a;
+    private transient boolean manageableSearchAssociationEnds88aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.manageableSearchAssociationEnds
      * @return (Collection)handleGetManageableSearchAssociationEnds()
      */
     public final Collection getManageableSearchAssociationEnds()
     {
-        Collection amanageableSearchAssociationEnds88a = this.manageableSearchAssociationEnds88a;
+        Collection manageableSearchAssociationEnds88a = this.manageableSearchAssociationEnds88a;
         if (!this.manageableSearchAssociationEnds88aSet)
         {
             // manageableSearchAssociationEnds has no pre constraints
-            amanageableSearchAssociationEnds88a = handleGetManageableSearchAssociationEnds();
+            manageableSearchAssociationEnds88a = handleGetManageableSearchAssociationEnds();
             // manageableSearchAssociationEnds has no post constraints
-            this.manageableSearchAssociationEnds88a = amanageableSearchAssociationEnds88a;
+            this.manageableSearchAssociationEnds88a = manageableSearchAssociationEnds88a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.manageableSearchAssociationEnds88aSet = true;
             }
         }
-        return amanageableSearchAssociationEnds88a;
+        return manageableSearchAssociationEnds88a;
     }
 
    /**
@@ -2797,28 +2854,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsNeedsFileUpload();
 
-    private boolean needsFileUpload89a;
-    private boolean needsFileUpload89aSet = false;
+    private transient boolean needsFileUpload89a;
+    private transient boolean needsFileUpload89aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.needsFileUpload
      * @return (boolean)handleIsNeedsFileUpload()
      */
     public final boolean isNeedsFileUpload()
     {
-        boolean aneedsFileUpload89a = this.needsFileUpload89a;
+        boolean needsFileUpload89a = this.needsFileUpload89a;
         if (!this.needsFileUpload89aSet)
         {
             // needsFileUpload has no pre constraints
-            aneedsFileUpload89a = handleIsNeedsFileUpload();
+            needsFileUpload89a = handleIsNeedsFileUpload();
             // needsFileUpload has no post constraints
-            this.needsFileUpload89a = aneedsFileUpload89a;
+            this.needsFileUpload89a = needsFileUpload89a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.needsFileUpload89aSet = true;
             }
         }
-        return aneedsFileUpload89a;
+        return needsFileUpload89a;
     }
 
    /**
@@ -2827,28 +2885,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetConverterFullPath();
 
-    private String converterFullPath90a;
-    private boolean converterFullPath90aSet = false;
+    private transient String converterFullPath90a;
+    private transient boolean converterFullPath90aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.converterFullPath
      * @return (String)handleGetConverterFullPath()
      */
     public final String getConverterFullPath()
     {
-        String aconverterFullPath90a = this.converterFullPath90a;
+        String converterFullPath90a = this.converterFullPath90a;
         if (!this.converterFullPath90aSet)
         {
             // converterFullPath has no pre constraints
-            aconverterFullPath90a = handleGetConverterFullPath();
+            converterFullPath90a = handleGetConverterFullPath();
             // converterFullPath has no post constraints
-            this.converterFullPath90a = aconverterFullPath90a;
+            this.converterFullPath90a = converterFullPath90a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.converterFullPath90aSet = true;
             }
         }
-        return aconverterFullPath90a;
+        return converterFullPath90a;
     }
 
    /**
@@ -2857,28 +2916,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetConverterType();
 
-    private String converterType91a;
-    private boolean converterType91aSet = false;
+    private transient String converterType91a;
+    private transient boolean converterType91aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.converterType
      * @return (String)handleGetConverterType()
      */
     public final String getConverterType()
     {
-        String aconverterType91a = this.converterType91a;
+        String converterType91a = this.converterType91a;
         if (!this.converterType91aSet)
         {
             // converterType has no pre constraints
-            aconverterType91a = handleGetConverterType();
+            converterType91a = handleGetConverterType();
             // converterType has no post constraints
-            this.converterType91a = aconverterType91a;
+            this.converterType91a = converterType91a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.converterType91aSet = true;
             }
         }
-        return aconverterType91a;
+        return converterType91a;
     }
 
    /**
@@ -2887,28 +2947,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetConverterClassName();
 
-    private String converterClassName92a;
-    private boolean converterClassName92aSet = false;
+    private transient String converterClassName92a;
+    private transient boolean converterClassName92aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.converterClassName
      * @return (String)handleGetConverterClassName()
      */
     public final String getConverterClassName()
     {
-        String aconverterClassName92a = this.converterClassName92a;
+        String converterClassName92a = this.converterClassName92a;
         if (!this.converterClassName92aSet)
         {
             // converterClassName has no pre constraints
-            aconverterClassName92a = handleGetConverterClassName();
+            converterClassName92a = handleGetConverterClassName();
             // converterClassName has no post constraints
-            this.converterClassName92a = aconverterClassName92a;
+            this.converterClassName92a = converterClassName92a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.converterClassName92aSet = true;
             }
         }
-        return aconverterClassName92a;
+        return converterClassName92a;
     }
 
    /**
@@ -2917,28 +2978,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract String handleGetOdsExportFullPath();
 
-    private String odsExportFullPath93a;
-    private boolean odsExportFullPath93aSet = false;
+    private transient String odsExportFullPath93a;
+    private transient boolean odsExportFullPath93aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.odsExportFullPath
      * @return (String)handleGetOdsExportFullPath()
      */
     public final String getOdsExportFullPath()
     {
-        String aodsExportFullPath93a = this.odsExportFullPath93a;
+        String odsExportFullPath93a = this.odsExportFullPath93a;
         if (!this.odsExportFullPath93aSet)
         {
             // odsExportFullPath has no pre constraints
-            aodsExportFullPath93a = handleGetOdsExportFullPath();
+            odsExportFullPath93a = handleGetOdsExportFullPath();
             // odsExportFullPath has no post constraints
-            this.odsExportFullPath93a = aodsExportFullPath93a;
+            this.odsExportFullPath93a = odsExportFullPath93a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.odsExportFullPath93aSet = true;
             }
         }
-        return aodsExportFullPath93a;
+        return odsExportFullPath93a;
     }
 
    /**
@@ -2947,28 +3009,29 @@ public abstract class GuiManageableEntityLogic
     */
     protected abstract boolean handleIsNeedsUserInterface();
 
-    private boolean needsUserInterface94a;
-    private boolean needsUserInterface94aSet = false;
+    private transient boolean needsUserInterface94a;
+    private transient boolean needsUserInterface94aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.needsUserInterface
      * @return (boolean)handleIsNeedsUserInterface()
      */
     public final boolean isNeedsUserInterface()
     {
-        boolean aneedsUserInterface94a = this.needsUserInterface94a;
+        boolean needsUserInterface94a = this.needsUserInterface94a;
         if (!this.needsUserInterface94aSet)
         {
             // needsUserInterface has no pre constraints
-            aneedsUserInterface94a = handleIsNeedsUserInterface();
+            needsUserInterface94a = handleIsNeedsUserInterface();
             // needsUserInterface has no post constraints
-            this.needsUserInterface94a = aneedsUserInterface94a;
+            this.needsUserInterface94a = needsUserInterface94a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.needsUserInterface94aSet = true;
             }
         }
-        return aneedsUserInterface94a;
+        return needsUserInterface94a;
     }
 
    /**
@@ -2978,29 +3041,32 @@ public abstract class GuiManageableEntityLogic
     protected abstract Collection<Role> handleGetRoles();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.roles
      * @return (Collection<Role>)handleGetRoles()
      */
     public final Collection<Role> getRoles()
     {
-        Collection<Role> aroles95a = null;
+        Collection<Role> roles95a = null;
         // roles has no pre constraints
-        aroles95a = handleGetRoles();
+        roles95a = handleGetRoles();
         // roles has no post constraints
-        return aroles95a;
+        return roles95a;
     }
 
     // ---------------- business methods ----------------------
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.hasCustomUsecases
      * @return boolean
      */
     protected abstract boolean handleHasCustomUsecases();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.hasCustomUsecases
      * @return handleHasCustomUsecases()
      */
     public boolean hasCustomUsecases()
@@ -3013,13 +3079,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCases
      * @return Collection
      */
     protected abstract Collection handleGetCustomUseCases();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCases
      * @return handleGetCustomUseCases()
      */
     public Collection getCustomUseCases()
@@ -3032,15 +3100,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getIdentifierForBusinessObjectReference
      * @param businessObjectName
      * @return String
      */
     protected abstract String handleGetIdentifierForBusinessObjectReference(String businessObjectName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getIdentifierForBusinessObjectReference
      * @param businessObjectName String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getIdentifierForBusinessObjectReference(businessObjectName)
      * @return handleGetIdentifierForBusinessObjectReference(businessObjectName)
      */
     public String getIdentifierForBusinessObjectReference(String businessObjectName)
@@ -3053,13 +3125,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.eachBusinessObjectReferenceIsValid
      * @return boolean
      */
     protected abstract boolean handleEachBusinessObjectReferenceIsValid();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.eachBusinessObjectReferenceIsValid
      * @return handleEachBusinessObjectReferenceIsValid()
      */
     public boolean eachBusinessObjectReferenceIsValid()
@@ -3072,15 +3146,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCaseActionType
      * @param customUseCaseName
      * @return String
      */
     protected abstract String handleGetCustomUseCaseActionType(String customUseCaseName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCaseActionType
      * @param customUseCaseName String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCaseActionType(customUseCaseName)
      * @return handleGetCustomUseCaseActionType(customUseCaseName)
      */
     public String getCustomUseCaseActionType(String customUseCaseName)
@@ -3093,15 +3171,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCaseDisplayType
      * @param customUseCaseName
      * @return String
      */
     protected abstract String handleGetCustomUseCaseDisplayType(String customUseCaseName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCaseDisplayType
      * @param customUseCaseName String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCustomUseCaseDisplayType(customUseCaseName)
      * @return handleGetCustomUseCaseDisplayType(customUseCaseName)
      */
     public String getCustomUseCaseDisplayType(String customUseCaseName)
@@ -3114,15 +3196,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.serviceNameExists
      * @param serviceName
      * @return boolean
      */
     protected abstract boolean handleServiceNameExists(String serviceName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.serviceNameExists
      * @param serviceName String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.serviceNameExists(serviceName)
      * @return handleServiceNameExists(serviceName)
      */
     public boolean serviceNameExists(String serviceName)
@@ -3135,13 +3221,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getExternalUseCases
      * @return Collection
      */
     protected abstract Collection handleGetExternalUseCases();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getExternalUseCases
      * @return handleGetExternalUseCases()
      */
     public Collection getExternalUseCases()
@@ -3154,32 +3242,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
-     * @return AttributeFacade
-     */
-    protected abstract AttributeFacade handleGetIdentifierToDelete();
-
-    /**
-     * 
-     * @return handleGetIdentifierToDelete()
-     */
-    public AttributeFacade getIdentifierToDelete()
-    {
-        // getIdentifierToDelete has no pre constraints
-        AttributeFacade returnValue = handleGetIdentifierToDelete();
-        // getIdentifierToDelete has no post constraints
-        return returnValue;
-    }
-
-    /**
-     * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getManageableGeneralizationToDelete
      * @return ManageableEntity
      */
     protected abstract ManageableEntity handleGetManageableGeneralizationToDelete();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getManageableGeneralizationToDelete
      * @return handleGetManageableGeneralizationToDelete()
      */
     public ManageableEntity getManageableGeneralizationToDelete()
@@ -3192,15 +3263,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.isAttributeOrAssociation
      * @param name
      * @return boolean
      */
     protected abstract boolean handleIsAttributeOrAssociation(String name);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.isAttributeOrAssociation
      * @param name String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.isAttributeOrAssociation(name)
      * @return handleIsAttributeOrAssociation(name)
      */
     public boolean isAttributeOrAssociation(String name)
@@ -3213,15 +3288,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getAttributeNameByDisplayName
      * @param displayName
      * @return String
      */
     protected abstract String handleGetAttributeNameByDisplayName(String displayName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getAttributeNameByDisplayName
      * @param displayName String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getAttributeNameByDisplayName(displayName)
      * @return handleGetAttributeNameByDisplayName(displayName)
      */
     public String getAttributeNameByDisplayName(String displayName)
@@ -3234,15 +3313,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getAttributeTypeByDisplayName
      * @param displayName
      * @return String
      */
     protected abstract String handleGetAttributeTypeByDisplayName(String displayName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getAttributeTypeByDisplayName
      * @param displayName String
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getAttributeTypeByDisplayName(displayName)
      * @return handleGetAttributeTypeByDisplayName(displayName)
      */
     public String getAttributeTypeByDisplayName(String displayName)
@@ -3276,13 +3359,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getShowDealDealId
      * @return AttributeFacade
      */
     protected abstract AttributeFacade handleGetShowDealDealId();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getShowDealDealId
      * @return handleGetShowDealDealId()
      */
     public AttributeFacade getShowDealDealId()
@@ -3295,13 +3380,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getShowDealDealType
      * @return AttributeFacade
      */
     protected abstract AttributeFacade handleGetShowDealDealType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getShowDealDealType
      * @return handleGetShowDealDealType()
      */
     public AttributeFacade getShowDealDealType()
@@ -3314,15 +3401,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCorrespondingVOAttr
      * @param manageableAttr
      * @return AttributeFacade
      */
     protected abstract AttributeFacade handleGetCorrespondingVOAttr(GuiManageableEntityAttribute manageableAttr);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCorrespondingVOAttr
      * @param manageableAttr GuiManageableEntityAttribute
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCorrespondingVOAttr(manageableAttr)
      * @return handleGetCorrespondingVOAttr(manageableAttr)
      */
     public AttributeFacade getCorrespondingVOAttr(GuiManageableEntityAttribute manageableAttr)
@@ -3335,15 +3426,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCorrespondingRuleVOAttr
      * @param association
      * @return AttributeFacade
      */
     protected abstract AttributeFacade handleGetCorrespondingRuleVOAttr(GuiManageableEntityAssociationEnd association);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCorrespondingRuleVOAttr
      * @param association GuiManageableEntityAssociationEnd
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getCorrespondingRuleVOAttr(association)
      * @return handleGetCorrespondingRuleVOAttr(association)
      */
     public AttributeFacade getCorrespondingRuleVOAttr(GuiManageableEntityAssociationEnd association)
@@ -3356,15 +3451,19 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.isSearchable
      * @param element
      * @return boolean
      */
     protected abstract boolean handleIsSearchable(Object element);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.isSearchable
      * @param element Object
+     * TODO: Model Documentation for
+     * GuiManageableEntity.isSearchable(element)
      * @return handleIsSearchable(element)
      */
     public boolean isSearchable(Object element)
@@ -3377,13 +3476,15 @@ public abstract class GuiManageableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getActionRoles
      * @return String
      */
     protected abstract String handleGetActionRoles();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiManageableEntity.getActionRoles
      * @return handleGetActionRoles()
      */
     public String getActionRoles()
@@ -3397,7 +3498,7 @@ public abstract class GuiManageableEntityLogic
     // ------------- associations ------------------
 
     /**
-     * 
+     * TODO: Model Documentation for GuiManageableEntity
      * @return (Entity)handleGetVersionableEntityReference()
      */
     public final Entity getVersionableEntityReference()
@@ -3408,7 +3509,7 @@ public abstract class GuiManageableEntityLogic
         MetafacadeBase shieldedResult = this.shieldedElement(result);
         try
         {
-            getVersionableEntityReference1r = (Entity)shieldedResult;
+            getVersionableEntityReference1r = (Entity) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -3426,7 +3527,7 @@ public abstract class GuiManageableEntityLogic
     protected abstract Object handleGetVersionableEntityReference();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiManageableEntity
      * @return (GuiManageableEntity)handleGetCustomOwner()
      */
     public final GuiManageableEntity getCustomOwner()
@@ -3437,7 +3538,7 @@ public abstract class GuiManageableEntityLogic
         MetafacadeBase shieldedResult = this.shieldedElement(result);
         try
         {
-            getCustomOwner2r = (GuiManageableEntity)shieldedResult;
+            getCustomOwner2r = (GuiManageableEntity) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -3455,7 +3556,7 @@ public abstract class GuiManageableEntityLogic
     protected abstract Object handleGetCustomOwner();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiManageableEntity
      * @return (List<GuiManageableEntity>)handleGetCustomEntityReferences()
      */
     public final List<GuiManageableEntity> getCustomEntityReferences()
@@ -3466,7 +3567,7 @@ public abstract class GuiManageableEntityLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getCustomEntityReferences3r = (List<GuiManageableEntity>)shieldedResult;
+            getCustomEntityReferences3r = (List<GuiManageableEntity>) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -3483,11 +3584,11 @@ public abstract class GuiManageableEntityLogic
      */
     protected abstract List handleGetCustomEntityReferences();
 
-    private List<Entity> getBusinessObjectReferences4r;
-    private boolean getBusinessObjectReferences4rSet = false;
+    private transient List<Entity> getBusinessObjectReferences4r;
+    private transient boolean getBusinessObjectReferences4rSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for GuiManageableEntity
      * @return (List<Entity>)handleGetBusinessObjectReferences()
      */
     public final List<Entity> getBusinessObjectReferences()
@@ -3500,7 +3601,7 @@ public abstract class GuiManageableEntityLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getBusinessObjectReferences4r = (List<Entity>)shieldedResult;
+                getBusinessObjectReferences4r = (List<Entity>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -3756,7 +3857,7 @@ public abstract class GuiManageableEntityLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperManageableEntity().getNavigableConnectingEnds();
     }
@@ -3902,7 +4003,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -4284,7 +4385,7 @@ public abstract class GuiManageableEntityLogic
      * allowDefaultIdentifiers property is set to true.
      * @see Entity#getIdentifiers()
      */
-    public Collection<EntityAttribute> getIdentifiers()
+    public Collection<ModelElementFacade> getIdentifiers()
     {
         return this.getSuperManageableEntity().getIdentifiers();
     }
@@ -4294,9 +4395,10 @@ public abstract class GuiManageableEntityLogic
      * on the entity, a search up the inheritance chain will be performed, and the identifiers from
      * the first super class having them will be used.   If no identifiers exist, a default
      * identifier will be created if the allowDefaultIdentifiers property is set to true.
+     * Identifiers can be on attributes or associations (composite primary key).
      * @see Entity#getIdentifiers(boolean follow)
      */
-    public Collection<EntityAttribute> getIdentifiers(boolean follow)
+    public Collection<ModelElementFacade> getIdentifiers(boolean follow)
     {
         return this.getSuperManageableEntity().getIdentifiers(follow);
     }
@@ -4472,7 +4574,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Entity.compositeIdentifier
      * @see Entity#isCompositeIdentifier()
      */
     public boolean isCompositeIdentifier()
@@ -4585,7 +4687,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -4614,7 +4716,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The attribute used as a key link to display values for this entity.
      * @see ManageableEntity#getDisplayAttribute()
      */
     public ManageableEntityAttribute getDisplayAttribute()
@@ -4623,7 +4725,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The fully qualified service name of the entity.
      * @see ManageableEntity#getFullyQualifiedManageableServiceName()
      */
     public String getFullyQualifiedManageableServiceName()
@@ -4632,7 +4734,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The associations to other entities from this entity.
      * @see ManageableEntity#getManageableAssociationEnds()
      */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEnds()
@@ -4669,7 +4771,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The entity package name.
      * @see ManageableEntity#getManageablePackageName()
      */
     public String getManageablePackageName()
@@ -4678,7 +4780,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The Package path of the Entity.
      * @see ManageableEntity#getManageablePackagePath()
      */
     public String getManageablePackagePath()
@@ -4687,7 +4789,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The entity accessor (getter) call.
      * @see ManageableEntity#getManageableServiceAccessorCall()
      */
     public String getManageableServiceAccessorCall()
@@ -4696,7 +4798,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The service full path of the entity.
      * @see ManageableEntity#getManageableServiceFullPath()
      */
     public String getManageableServiceFullPath()
@@ -4705,7 +4807,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The service name of the entity.
      * @see ManageableEntity#getManageableServiceName()
      */
     public String getManageableServiceName()
@@ -4732,7 +4834,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Other Manageable Entities which reference this entity.
      * @see ManageableEntity#getReferencingManageables()
      */
     public List<ManageableEntity> getReferencingManageables()
@@ -4741,7 +4843,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * The Actors (Roles) which can manage the Entity.
      * @see ManageableEntity#getUsers()
      */
     public List<ActorFacade> getUsers()
@@ -4750,7 +4852,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Create a create operation on the entity manager?
      * @see ManageableEntity#isCreate()
      */
     public boolean isCreate()
@@ -4759,7 +4861,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Create a delete operation on the entity manager?
      * @see ManageableEntity#isDelete()
      */
     public boolean isDelete()
@@ -4768,7 +4870,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * True: Entity is manageable.
      * @see ManageableEntity#isManageable()
      */
     public boolean isManageable()
@@ -4777,7 +4879,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Create a read operation on the entity manager?
      * @see ManageableEntity#isRead()
      */
     public boolean isRead()
@@ -4795,7 +4897,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Create an update operation on the entity manager?
      * @see ManageableEntity#isUpdate()
      */
     public boolean isUpdate()
@@ -4804,7 +4906,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Returns a string with the attributes without wrapper types.
      * @see ManageableEntity#listManageableMembers(boolean withTypes)
      */
     public String listManageableMembers(boolean withTypes)
@@ -4904,7 +5006,9 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -4975,7 +5079,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -4984,7 +5088,8 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -5097,7 +5202,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -5115,7 +5220,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -5124,7 +5229,7 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -5180,7 +5285,8 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -5216,12 +5322,24 @@ public abstract class GuiManageableEntityLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperManageableEntity().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperManageableEntity().isValidIdentifierName();
     }
 
     /**

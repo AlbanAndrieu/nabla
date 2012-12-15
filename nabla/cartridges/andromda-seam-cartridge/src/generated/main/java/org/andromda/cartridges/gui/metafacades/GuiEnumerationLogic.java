@@ -129,8 +129,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetConverterName();
 
-    private String converterName1a;
-    private boolean converterName1aSet = false;
+    private transient String converterName1a;
+    private transient boolean converterName1aSet = false;
 
     /**
      * The converter name used for this enumeration.
@@ -138,19 +138,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getConverterName()
     {
-        String aconverterName1a = this.converterName1a;
+        String converterName1a = this.converterName1a;
         if (!this.converterName1aSet)
         {
             // converterName has no pre constraints
-            aconverterName1a = handleGetConverterName();
+            converterName1a = handleGetConverterName();
             // converterName has no post constraints
-            this.converterName1a = aconverterName1a;
+            this.converterName1a = converterName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.converterName1aSet = true;
             }
         }
-        return aconverterName1a;
+        return converterName1a;
     }
 
    /**
@@ -159,8 +159,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetFullyQualifiedConverterName();
 
-    private String fullyQualifiedConverterName2a;
-    private boolean fullyQualifiedConverterName2aSet = false;
+    private transient String fullyQualifiedConverterName2a;
+    private transient boolean fullyQualifiedConverterName2aSet = false;
 
     /**
      * The fully qualified converter name for this enumeration.
@@ -168,19 +168,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getFullyQualifiedConverterName()
     {
-        String afullyQualifiedConverterName2a = this.fullyQualifiedConverterName2a;
+        String fullyQualifiedConverterName2a = this.fullyQualifiedConverterName2a;
         if (!this.fullyQualifiedConverterName2aSet)
         {
             // fullyQualifiedConverterName has no pre constraints
-            afullyQualifiedConverterName2a = handleGetFullyQualifiedConverterName();
+            fullyQualifiedConverterName2a = handleGetFullyQualifiedConverterName();
             // fullyQualifiedConverterName has no post constraints
-            this.fullyQualifiedConverterName2a = afullyQualifiedConverterName2a;
+            this.fullyQualifiedConverterName2a = fullyQualifiedConverterName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedConverterName2aSet = true;
             }
         }
-        return afullyQualifiedConverterName2a;
+        return fullyQualifiedConverterName2a;
     }
 
    /**
@@ -189,8 +189,8 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetConverterPath();
 
-    private String converterPath3a;
-    private boolean converterPath3aSet = false;
+    private transient String converterPath3a;
+    private transient boolean converterPath3aSet = false;
 
     /**
      * The path to the converter file.
@@ -198,19 +198,19 @@ public abstract class GuiEnumerationLogic
      */
     public final String getConverterPath()
     {
-        String aconverterPath3a = this.converterPath3a;
+        String converterPath3a = this.converterPath3a;
         if (!this.converterPath3aSet)
         {
             // converterPath has no pre constraints
-            aconverterPath3a = handleGetConverterPath();
+            converterPath3a = handleGetConverterPath();
             // converterPath has no post constraints
-            this.converterPath3a = aconverterPath3a;
+            this.converterPath3a = converterPath3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.converterPath3aSet = true;
             }
         }
-        return aconverterPath3a;
+        return converterPath3a;
     }
 
    /**
@@ -219,28 +219,29 @@ public abstract class GuiEnumerationLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey4a;
-    private boolean messageKey4aSet = false;
+    private transient String messageKey4a;
+    private transient boolean messageKey4aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiEnumeration.messageKey
      * @return (String)handleGetMessageKey()
      */
     public final String getMessageKey()
     {
-        String amessageKey4a = this.messageKey4a;
+        String messageKey4a = this.messageKey4a;
         if (!this.messageKey4aSet)
         {
             // messageKey has no pre constraints
-            amessageKey4a = handleGetMessageKey();
+            messageKey4a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey4a = amessageKey4a;
+            this.messageKey4a = messageKey4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey4aSet = true;
             }
         }
-        return amessageKey4a;
+        return messageKey4a;
     }
 
     /**
@@ -467,7 +468,7 @@ public abstract class GuiEnumerationLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperEnumerationFacade().getNavigableConnectingEnds();
     }
@@ -613,7 +614,7 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -954,7 +955,7 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -1054,7 +1055,9 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1125,7 +1128,7 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1134,7 +1137,8 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1247,7 +1251,7 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1265,7 +1269,7 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1274,7 +1278,7 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1330,7 +1334,8 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1366,12 +1371,24 @@ public abstract class GuiEnumerationLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperEnumerationFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperEnumerationFacade().isValidIdentifierName();
     }
 
     /**

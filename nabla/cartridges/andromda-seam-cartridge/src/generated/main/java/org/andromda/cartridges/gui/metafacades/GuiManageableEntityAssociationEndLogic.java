@@ -29,7 +29,8 @@ import org.andromda.translation.ocl.validation.OCLResultEnsurer;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd
  * MetafacadeLogic for GuiManageableEntityAssociationEnd
  *
  * @see GuiManageableEntityAssociationEnd
@@ -134,8 +135,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsSafeNamePresent();
 
-    private boolean safeNamePresent1a;
-    private boolean safeNamePresent1aSet = false;
+    private transient boolean safeNamePresent1a;
+    private transient boolean safeNamePresent1aSet = false;
 
     /**
      * True if this parameter has a name that can properly be handled by Jakarta commons (this lib
@@ -144,19 +145,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isSafeNamePresent()
     {
-        boolean asafeNamePresent1a = this.safeNamePresent1a;
+        boolean safeNamePresent1a = this.safeNamePresent1a;
         if (!this.safeNamePresent1aSet)
         {
             // safeNamePresent has no pre constraints
-            asafeNamePresent1a = handleIsSafeNamePresent();
+            safeNamePresent1a = handleIsSafeNamePresent();
             // safeNamePresent has no post constraints
-            this.safeNamePresent1a = asafeNamePresent1a;
+            this.safeNamePresent1a = safeNamePresent1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.safeNamePresent1aSet = true;
             }
         }
-        return asafeNamePresent1a;
+        return safeNamePresent1a;
     }
 
    /**
@@ -165,28 +166,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsFilterElement();
 
-    private boolean filterElement2a;
-    private boolean filterElement2aSet = false;
+    private transient boolean filterElement2a;
+    private transient boolean filterElement2aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.filterElement
      * @return (boolean)handleIsFilterElement()
      */
     public final boolean isFilterElement()
     {
-        boolean afilterElement2a = this.filterElement2a;
+        boolean filterElement2a = this.filterElement2a;
         if (!this.filterElement2aSet)
         {
             // filterElement has no pre constraints
-            afilterElement2a = handleIsFilterElement();
+            filterElement2a = handleIsFilterElement();
             // filterElement has no post constraints
-            this.filterElement2a = afilterElement2a;
+            this.filterElement2a = filterElement2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.filterElement2aSet = true;
             }
         }
-        return afilterElement2a;
+        return filterElement2a;
     }
 
    /**
@@ -195,28 +197,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetDisplayName();
 
-    private String displayName3a;
-    private boolean displayName3aSet = false;
+    private transient String displayName3a;
+    private transient boolean displayName3aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.displayName
      * @return (String)handleGetDisplayName()
      */
     public final String getDisplayName()
     {
-        String adisplayName3a = this.displayName3a;
+        String displayName3a = this.displayName3a;
         if (!this.displayName3aSet)
         {
             // displayName has no pre constraints
-            adisplayName3a = handleGetDisplayName();
+            displayName3a = handleGetDisplayName();
             // displayName has no post constraints
-            this.displayName3a = adisplayName3a;
+            this.displayName3a = displayName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.displayName3aSet = true;
             }
         }
-        return adisplayName3a;
+        return displayName3a;
     }
 
    /**
@@ -225,28 +228,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetFunctionalCoherency();
 
-    private String functionalCoherency4a;
-    private boolean functionalCoherency4aSet = false;
+    private transient String functionalCoherency4a;
+    private transient boolean functionalCoherency4aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.functionalCoherency
      * @return (String)handleGetFunctionalCoherency()
      */
     public final String getFunctionalCoherency()
     {
-        String afunctionalCoherency4a = this.functionalCoherency4a;
+        String functionalCoherency4a = this.functionalCoherency4a;
         if (!this.functionalCoherency4aSet)
         {
             // functionalCoherency has no pre constraints
-            afunctionalCoherency4a = handleGetFunctionalCoherency();
+            functionalCoherency4a = handleGetFunctionalCoherency();
             // functionalCoherency has no post constraints
-            this.functionalCoherency4a = afunctionalCoherency4a;
+            this.functionalCoherency4a = functionalCoherency4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.functionalCoherency4aSet = true;
             }
         }
-        return afunctionalCoherency4a;
+        return functionalCoherency4a;
     }
 
    /**
@@ -255,28 +259,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetDictionaryReturnType();
 
-    private String dictionaryReturnType5a;
-    private boolean dictionaryReturnType5aSet = false;
+    private transient String dictionaryReturnType5a;
+    private transient boolean dictionaryReturnType5aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.dictionaryReturnType
      * @return (String)handleGetDictionaryReturnType()
      */
     public final String getDictionaryReturnType()
     {
-        String adictionaryReturnType5a = this.dictionaryReturnType5a;
+        String dictionaryReturnType5a = this.dictionaryReturnType5a;
         if (!this.dictionaryReturnType5aSet)
         {
             // dictionaryReturnType has no pre constraints
-            adictionaryReturnType5a = handleGetDictionaryReturnType();
+            dictionaryReturnType5a = handleGetDictionaryReturnType();
             // dictionaryReturnType has no post constraints
-            this.dictionaryReturnType5a = adictionaryReturnType5a;
+            this.dictionaryReturnType5a = dictionaryReturnType5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dictionaryReturnType5aSet = true;
             }
         }
-        return adictionaryReturnType5a;
+        return dictionaryReturnType5a;
     }
 
    /**
@@ -285,8 +290,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsMandatory();
 
-    private boolean mandatory6a;
-    private boolean mandatory6aSet = false;
+    private transient boolean mandatory6a;
+    private transient boolean mandatory6aSet = false;
 
     /**
      * Denotes a mandatory field (help group must have a value)
@@ -294,19 +299,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final boolean isMandatory()
     {
-        boolean amandatory6a = this.mandatory6a;
+        boolean mandatory6a = this.mandatory6a;
         if (!this.mandatory6aSet)
         {
             // mandatory has no pre constraints
-            amandatory6a = handleIsMandatory();
+            mandatory6a = handleIsMandatory();
             // mandatory has no post constraints
-            this.mandatory6a = amandatory6a;
+            this.mandatory6a = mandatory6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.mandatory6aSet = true;
             }
         }
-        return amandatory6a;
+        return mandatory6a;
     }
 
    /**
@@ -315,28 +320,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsSimpleDisplay();
 
-    private boolean simpleDisplay7a;
-    private boolean simpleDisplay7aSet = false;
+    private transient boolean simpleDisplay7a;
+    private transient boolean simpleDisplay7aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.simpleDisplay
      * @return (boolean)handleIsSimpleDisplay()
      */
     public final boolean isSimpleDisplay()
     {
-        boolean asimpleDisplay7a = this.simpleDisplay7a;
+        boolean simpleDisplay7a = this.simpleDisplay7a;
         if (!this.simpleDisplay7aSet)
         {
             // simpleDisplay has no pre constraints
-            asimpleDisplay7a = handleIsSimpleDisplay();
+            simpleDisplay7a = handleIsSimpleDisplay();
             // simpleDisplay has no post constraints
-            this.simpleDisplay7a = asimpleDisplay7a;
+            this.simpleDisplay7a = simpleDisplay7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.simpleDisplay7aSet = true;
             }
         }
-        return asimpleDisplay7a;
+        return simpleDisplay7a;
     }
 
    /**
@@ -345,28 +351,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract boolean handleIsReadOnlyForUpdate();
 
-    private boolean readOnlyForUpdate8a;
-    private boolean readOnlyForUpdate8aSet = false;
+    private transient boolean readOnlyForUpdate8a;
+    private transient boolean readOnlyForUpdate8aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.readOnlyForUpdate
      * @return (boolean)handleIsReadOnlyForUpdate()
      */
     public final boolean isReadOnlyForUpdate()
     {
-        boolean areadOnlyForUpdate8a = this.readOnlyForUpdate8a;
+        boolean readOnlyForUpdate8a = this.readOnlyForUpdate8a;
         if (!this.readOnlyForUpdate8aSet)
         {
             // readOnlyForUpdate has no pre constraints
-            areadOnlyForUpdate8a = handleIsReadOnlyForUpdate();
+            readOnlyForUpdate8a = handleIsReadOnlyForUpdate();
             // readOnlyForUpdate has no post constraints
-            this.readOnlyForUpdate8a = areadOnlyForUpdate8a;
+            this.readOnlyForUpdate8a = readOnlyForUpdate8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.readOnlyForUpdate8aSet = true;
             }
         }
-        return areadOnlyForUpdate8a;
+        return readOnlyForUpdate8a;
     }
 
    /**
@@ -375,28 +382,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetWidgetType();
 
-    private String widgetType9a;
-    private boolean widgetType9aSet = false;
+    private transient String widgetType9a;
+    private transient boolean widgetType9aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.widgetType
      * @return (String)handleGetWidgetType()
      */
     public final String getWidgetType()
     {
-        String awidgetType9a = this.widgetType9a;
+        String widgetType9a = this.widgetType9a;
         if (!this.widgetType9aSet)
         {
             // widgetType has no pre constraints
-            awidgetType9a = handleGetWidgetType();
+            widgetType9a = handleGetWidgetType();
             // widgetType has no post constraints
-            this.widgetType9a = awidgetType9a;
+            this.widgetType9a = widgetType9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.widgetType9aSet = true;
             }
         }
-        return awidgetType9a;
+        return widgetType9a;
     }
 
    /**
@@ -405,28 +413,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey10a;
-    private boolean messageKey10aSet = false;
+    private transient String messageKey10a;
+    private transient boolean messageKey10aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.messageKey
      * @return (String)handleGetMessageKey()
      */
     public final String getMessageKey()
     {
-        String amessageKey10a = this.messageKey10a;
+        String messageKey10a = this.messageKey10a;
         if (!this.messageKey10aSet)
         {
             // messageKey has no pre constraints
-            amessageKey10a = handleGetMessageKey();
+            messageKey10a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey10a = amessageKey10a;
+            this.messageKey10a = messageKey10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey10aSet = true;
             }
         }
-        return amessageKey10a;
+        return messageKey10a;
     }
 
    /**
@@ -435,28 +444,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetMessageValue();
 
-    private String messageValue11a;
-    private boolean messageValue11aSet = false;
+    private transient String messageValue11a;
+    private transient boolean messageValue11aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.messageValue
      * @return (String)handleGetMessageValue()
      */
     public final String getMessageValue()
     {
-        String amessageValue11a = this.messageValue11a;
+        String messageValue11a = this.messageValue11a;
         if (!this.messageValue11aSet)
         {
             // messageValue has no pre constraints
-            amessageValue11a = handleGetMessageValue();
+            messageValue11a = handleGetMessageValue();
             // messageValue has no post constraints
-            this.messageValue11a = amessageValue11a;
+            this.messageValue11a = messageValue11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageValue11aSet = true;
             }
         }
-        return amessageValue11a;
+        return messageValue11a;
     }
 
    /**
@@ -465,8 +475,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String onlineHelpKey12a;
-    private boolean onlineHelpKey12aSet = false;
+    private transient String onlineHelpKey12a;
+    private transient boolean onlineHelpKey12aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -475,19 +485,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getOnlineHelpKey()
     {
-        String aonlineHelpKey12a = this.onlineHelpKey12a;
+        String onlineHelpKey12a = this.onlineHelpKey12a;
         if (!this.onlineHelpKey12aSet)
         {
             // onlineHelpKey has no pre constraints
-            aonlineHelpKey12a = handleGetOnlineHelpKey();
+            onlineHelpKey12a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.onlineHelpKey12a = aonlineHelpKey12a;
+            this.onlineHelpKey12a = onlineHelpKey12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpKey12aSet = true;
             }
         }
-        return aonlineHelpKey12a;
+        return onlineHelpKey12a;
     }
 
    /**
@@ -496,8 +506,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String onlineHelpValue13a;
-    private boolean onlineHelpValue13aSet = false;
+    private transient String onlineHelpValue13a;
+    private transient boolean onlineHelpValue13aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -506,19 +516,19 @@ public abstract class GuiManageableEntityAssociationEndLogic
      */
     public final String getOnlineHelpValue()
     {
-        String aonlineHelpValue13a = this.onlineHelpValue13a;
+        String onlineHelpValue13a = this.onlineHelpValue13a;
         if (!this.onlineHelpValue13aSet)
         {
             // onlineHelpValue has no pre constraints
-            aonlineHelpValue13a = handleGetOnlineHelpValue();
+            onlineHelpValue13a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.onlineHelpValue13a = aonlineHelpValue13a;
+            this.onlineHelpValue13a = onlineHelpValue13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpValue13aSet = true;
             }
         }
-        return aonlineHelpValue13a;
+        return onlineHelpValue13a;
     }
 
    /**
@@ -527,28 +537,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetBackingListName();
 
-    private String backingListName14a;
-    private boolean backingListName14aSet = false;
+    private transient String backingListName14a;
+    private transient boolean backingListName14aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.backingListName
      * @return (String)handleGetBackingListName()
      */
     public final String getBackingListName()
     {
-        String abackingListName14a = this.backingListName14a;
+        String backingListName14a = this.backingListName14a;
         if (!this.backingListName14aSet)
         {
             // backingListName has no pre constraints
-            abackingListName14a = handleGetBackingListName();
+            backingListName14a = handleGetBackingListName();
             // backingListName has no post constraints
-            this.backingListName14a = abackingListName14a;
+            this.backingListName14a = backingListName14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.backingListName14aSet = true;
             }
         }
-        return abackingListName14a;
+        return backingListName14a;
     }
 
    /**
@@ -557,28 +568,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetValueListName();
 
-    private String valueListName15a;
-    private boolean valueListName15aSet = false;
+    private transient String valueListName15a;
+    private transient boolean valueListName15aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.valueListName
      * @return (String)handleGetValueListName()
      */
     public final String getValueListName()
     {
-        String avalueListName15a = this.valueListName15a;
+        String valueListName15a = this.valueListName15a;
         if (!this.valueListName15aSet)
         {
             // valueListName has no pre constraints
-            avalueListName15a = handleGetValueListName();
+            valueListName15a = handleGetValueListName();
             // valueListName has no post constraints
-            this.valueListName15a = avalueListName15a;
+            this.valueListName15a = valueListName15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.valueListName15aSet = true;
             }
         }
-        return avalueListName15a;
+        return valueListName15a;
     }
 
    /**
@@ -587,28 +599,29 @@ public abstract class GuiManageableEntityAssociationEndLogic
     */
     protected abstract String handleGetLabelListName();
 
-    private String labelListName16a;
-    private boolean labelListName16aSet = false;
+    private transient String labelListName16a;
+    private transient boolean labelListName16aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.labelListName
      * @return (String)handleGetLabelListName()
      */
     public final String getLabelListName()
     {
-        String alabelListName16a = this.labelListName16a;
+        String labelListName16a = this.labelListName16a;
         if (!this.labelListName16aSet)
         {
             // labelListName has no pre constraints
-            alabelListName16a = handleGetLabelListName();
+            labelListName16a = handleGetLabelListName();
             // labelListName has no post constraints
-            this.labelListName16a = alabelListName16a;
+            this.labelListName16a = labelListName16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.labelListName16aSet = true;
             }
         }
-        return alabelListName16a;
+        return labelListName16a;
     }
 
     // ---------------- business methods ----------------------
@@ -932,6 +945,15 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
+     * Indicates if this associationEnd is 'static', meaning it has a classifier scope.
+     * @see AssociationEndFacade#isStatic()
+     */
+    public boolean isStatic()
+    {
+        return this.getSuperManageableEntityAssociationEnd().isStatic();
+    }
+
+    /**
      * UML2: If the association attribute is unique within the Collection type. UML14 always returns
      * false. Unique+Ordered determines the implementation Collection type. Default=false.
      * @see AssociationEndFacade#isUnique()
@@ -1008,6 +1030,15 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
+     * True if this association is an identifier for its entity.
+     * @see org.andromda.metafacades.uml.EntityAssociationEnd#isIdentifier()
+     */
+    public boolean isIdentifier()
+    {
+        return this.getSuperManageableEntityAssociationEnd().isIdentifier();
+    }
+
+    /**
      * True if the associationEnd is marked with identifiers stereotype, false otherwise.
      * @see org.andromda.metafacades.uml.EntityAssociationEnd#isIdentifiersPresent()
      */
@@ -1026,7 +1057,7 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * Represents an attribute of an entity.
      * @see ManageableEntityAssociationEnd#getManageableIdentifier()
      */
     public EntityAttribute getManageableIdentifier()
@@ -1126,7 +1157,9 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1197,7 +1230,7 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1206,7 +1239,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1319,7 +1353,7 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1337,7 +1371,7 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1346,7 +1380,7 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1402,7 +1436,8 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1438,12 +1473,24 @@ public abstract class GuiManageableEntityAssociationEndLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperManageableEntityAssociationEnd().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperManageableEntityAssociationEnd().isValidIdentifierName();
     }
 
     /**

@@ -23,7 +23,7 @@ public interface GuiPortletPreferences
     public boolean isGuiPortletPreferencesMetaType();
 
     /**
-     * 
+     * A Gui use-case represents a set of related client/server requests and communication.
      * @return GuiUseCase
      */
     public GuiUseCase getUseCase();

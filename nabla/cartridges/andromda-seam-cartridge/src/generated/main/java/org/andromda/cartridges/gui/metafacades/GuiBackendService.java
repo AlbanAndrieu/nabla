@@ -7,7 +7,7 @@ package org.andromda.cartridges.gui.metafacades;
 import org.andromda.metafacades.uml.Service;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiBackendService
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

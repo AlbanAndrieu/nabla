@@ -227,7 +227,11 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * A behavioral feature of a classifier that specifies the name, type, parameters, and
+     * constraints for
+     * invoking an associated behavior. May invoke both the execution of method behaviors as well as
+     * other
+     * behavioral responses.
      * @see FrontEndActionState#getServiceCalls()
      */
     public List<OperationFacade> getServiceCalls()
@@ -337,7 +341,9 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -408,7 +414,7 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -417,7 +423,8 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -530,7 +537,7 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -548,7 +555,7 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -557,7 +564,7 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -613,7 +620,8 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -649,12 +657,24 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndActionState().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndActionState().isValidIdentifierName();
     }
 
     /**
@@ -696,7 +716,11 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * Models a situation during which some (usually implicit) invariant condition holds. The states
+     * of protocol state machines are exposed to the users of their context classifiers. A protocol
+     * state represents an exposed stable situation of its context classifier: when an instance of
+     * the classifier is not processing any operation, users of this instance can always know its
+     * state configuration.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getContainer()
      */
     public StateFacade getContainer()
@@ -705,7 +729,10 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getIncomings()
      */
     public Collection<TransitionFacade> getIncomings()
@@ -714,7 +741,10 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getOutgoings()
      */
     public Collection<TransitionFacade> getOutgoings()
@@ -732,7 +762,11 @@ public abstract class GuiActionStateLogic
     }
 
     /**
-     * 
+     * State machines can be used to express the behavior of part of a system. Behavior is modeled
+     * as a traversal of a graph of state nodes interconnected by one or more joined transition arcs
+     * that are triggered by the dispatching of series of (event) occurrences. During this
+     * traversal, the state machine executes a series of activities associated with various elements
+     * of the state machine.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getStateMachine()
      */
     public StateMachineFacade getStateMachine()

@@ -7,7 +7,8 @@ package org.andromda.cartridges.gui.metafacades;
 import org.andromda.metafacades.uml.ManageableEntityAssociationEnd;
 
 /**
- * 
+ * TODO: Model Documentation for
+ * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -22,43 +23,50 @@ public interface GuiManageableEntityAssociationEnd
     public boolean isGuiManageableEntityAssociationEndMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.backingListName
      * @return String
      */
     public String getBackingListName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.dictionaryReturnType
      * @return String
      */
     public String getDictionaryReturnType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.displayName
      * @return String
      */
     public String getDisplayName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.functionalCoherency
      * @return String
      */
     public String getFunctionalCoherency();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.labelListName
      * @return String
      */
     public String getLabelListName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.messageKey
      * @return String
      */
     public String getMessageKey();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.messageValue
      * @return String
      */
     public String getMessageValue();
@@ -87,19 +95,22 @@ public interface GuiManageableEntityAssociationEnd
     public String getOtherEndReferenceColumnName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.valueListName
      * @return String
      */
     public String getValueListName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.widgetType
      * @return String
      */
     public String getWidgetType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.filterElement
      * @return boolean
      */
     public boolean isFilterElement();
@@ -111,7 +122,8 @@ public interface GuiManageableEntityAssociationEnd
     public boolean isMandatory();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.readOnlyForUpdate
      * @return boolean
      */
     public boolean isReadOnlyForUpdate();
@@ -124,7 +136,8 @@ public interface GuiManageableEntityAssociationEnd
     public boolean isSafeNamePresent();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.simpleDisplay
      * @return boolean
      */
     public boolean isSimpleDisplay();
