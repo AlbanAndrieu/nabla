@@ -148,14 +148,18 @@ public final class Chronometer
     /**
      * DOCUMENT ME!
      *
-     * @param arg DOCUMENT ME!
+     * @param args DOCUMENT ME!
      */
-    public static void main(String arg[])
+    public static void main(String... args)
     {
 
         try
         {
 
+            for (String arg : args) {
+                System.out.println(arg);
+            }
+            
             Chronometer chronometer = new Chronometer();
 
             chronometer.start();
