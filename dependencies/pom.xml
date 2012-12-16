@@ -218,7 +218,7 @@
 			<properties>
 				<maven.test.skip>false</maven.test.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
-			</properties>				
+			</properties>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -356,7 +356,7 @@
 						<configuration>
 							<generateHistorical>true</generateHistorical>
 							<generateHtml>true</generateHtml>
-							<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>
+							<snapshot>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.snapshot</snapshot>
 						</configuration>
 					</plugin>
 
@@ -910,7 +910,7 @@
 						<artifactId>jdepend-maven-plugin</artifactId>
 						<version>${maven.jdepend.plugin.version}</version>
 					</plugin>
-					
+
 					<!-- TODO javancss:report does not work -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -1563,7 +1563,7 @@
 		  repository. -->
 		<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 		<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-        	<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>		
+        	<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
         	<version.org.jboss.as.arquillian.container>7.1.1.Final</version.org.jboss.as.arquillian.container>
         	<version.org.jboss.spec.jboss.javaee.6.0>${org.jboss.bom.jboss.javaee6.with.tools.version}</version.org.jboss.spec.jboss.javaee.6.0>
 	</properties>
@@ -1873,7 +1873,7 @@
 									<action>
 										<ignore></ignore>
 									</action>
-								</pluginExecution>								
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -2042,7 +2042,7 @@
 										<message>You need at least Java	${jdkLevel}!</message>
 										<!-- minimum version is	1.5, higher versions allowed -->
 										<version>[${jdkLevel},]</version>
-										<!-- <version>[1.6.0,]</version> -->
+										<!--<version>[1.6.0,]</version>-->
 									</requireJavaVersion>
 									<DependencyConvergence/>
 									<requirePluginVersions>
@@ -2146,7 +2146,8 @@
 						<!--<forkMode>never</forkMode>-->
 						<forkMode>once</forkMode>
 						<!--<forkMode>pertest</forkMode>-->
-			<!--<forkMode>always</forkMode>-->
+						<!--<forkMode>always</forkMode>-->
+						<useSystemClassLoader>true</useSystemClassLoader>
 						<useManifestOnlyJar>false</useManifestOnlyJar>
 						<!-- shows total/fail/error summaries on stdout: -->
 						<printSummary>true</printSummary>
@@ -2520,7 +2521,7 @@
                 			            <verbose>true</verbose>
                 			        </configuration>
                 			    </execution>
-                			</executions>					
+                			</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -2747,7 +2748,7 @@
 					<artifactId>maven-changes-plugin</artifactId>
 					<version>${maven.changes.plugin.version}</version>
 				</plugin>
-				
+
 				<!-- TODO does not work jdepend:generate -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -2761,7 +2762,7 @@
 					<version>${maven.apache.rat.plugin.version}</version>
 				</plugin>
 				-->
-				
+
 				<!-- TODO javancss:report does not work -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -2795,7 +2796,7 @@
 					<version>${maven.dependency.plugin.version}</version>
                         		<configuration>
                         		    <ignoreNonCompile>true</ignoreNonCompile>
-                        		</configuration>					
+                        		</configuration>
 				</plugin>
 				<plugin>
 					<groupId>com.atlassian.maven.plugins</groupId>
@@ -3401,7 +3402,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
                         	    <exclusion>
                         	        <groupId>org.jboss.logging</groupId>
                         	        <artifactId>jboss-logging</artifactId>
-                        	    </exclusion>				    
+                        	    </exclusion>
 				</exclusions>
 			</dependency>
 	    <dependency>
@@ -3411,7 +3412,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<scope>provided</scope>
 		<!-- Some transitive dependencies of Hibernate 3 are available
 		    in JBoss AS	7 as modules, so we don't include them in WEB-INF/lib, but instead
-		    depend on the modules -->		    
+		    depend on the modules -->
 		<exclusions>
 		  <exclusion>
 		    <groupId>commons-logging</groupId>
@@ -3464,7 +3465,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
                   <exclusion>
                       <groupId>org.jboss.spec.javax.transaction</groupId>
                       <artifactId>jboss-transaction-api_1.1_spec</artifactId>
-                  </exclusion>		  
+                  </exclusion>
 		</exclusions>
 	    </dependency>
 	    <!-- https://docs.jboss.org/author/display/ISPN/Using+Infinispan+as+JPA-Hibernate+Second+Level+Cache+Provider -->
@@ -4473,8 +4474,8 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
         	    <groupId>org.jboss.logging</groupId>
         	    <artifactId>jboss-logging</artifactId>
         	    <version>${jboss.logging.version}</version>
-        	</dependency>        
-        	
+        	</dependency>
+
 	    <dependency>
 	      <groupId>org.jbpm</groupId>
 	      <artifactId>jbpm-jpdl</artifactId>
@@ -5320,7 +5321,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<version>${ilog-elixir.version}</version>
 		<type>swc</type>
 	    </dependency>
-	    -->	    
+	    -->
 	    <dependency>
 		<groupId>flexlib</groupId>
 		<artifactId>flexlib</artifactId>
@@ -5926,7 +5927,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<!-- //	Misc -->
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<repositories>
 		<repository>
 			<id>server-forge-release</id>
@@ -5977,5 +5978,5 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
                         	<enabled>true</enabled>
                         </releases>
                 </pluginRepository>
-        </pluginRepositories>	
+        </pluginRepositories>
 </project>
