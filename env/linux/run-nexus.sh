@@ -9,6 +9,9 @@ sudo ln -s nexus-2.2-01 nexus
 cd /etc/init.d
 sudo ln -s /usr/local/nexus/bin/nexus nexus
 
+sudo update-rc.d nexus defaults 06 94
+ls -l /etc/rc?.d/*nexus
+
 sudo adduser nexus
 sudo addgroup data
 sudo adduser nexus data
@@ -22,7 +25,7 @@ sudo chown -R nexus.data nexus-2.2-01
 ./bin/nexus console
 
 #http://www.sonatype.com/books/nexus-book/reference/install-sect-running.html
-default login/password is admin/admin123
+default login/password is admin/admin123/microsoft
 
 #https://docs.sonatype.org/display/Nexus/Nexus+Crowd+Plugin+(Community+Version)
 cd /usr/local/sonatype-work/nexus/plugin-repository
@@ -34,4 +37,8 @@ sudo mv ~/Downloads/nexus-crowd-plugin-2.1.2-SNAPSHOT .
 sudo chown -R nexus.data nexus-crowd-plugin-*/
 
 ./bin/nexus start
+
+sudo update-rc.d -f nexus remove
+sudo update-rc.d nexus defaults 10 90
+sudo service nexus start
 

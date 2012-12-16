@@ -35,6 +35,12 @@ gedit build.properties
 #https://confluence.atlassian.com/display/CROWD/Setting+Crowd+to+Run+Automatically+and+Use+an+Unprivileged+System+User+on+UNIX
 sudo ln -s /workspace/atlassian-crowd-2.5.2/crowd.init.d crowd
 
+sudo update-rc.d crowd defaults 05 95
+ls -l /etc/rc?.d/*crowd
+
+TODO
+http://www.antelink.com/blog/tutorial-secure-installation-crowd.html
+
 sudo service crowd start
 TODO https://confluence.atlassian.com/display/CROWD/Installing+Crowd+and+CrowdID
 

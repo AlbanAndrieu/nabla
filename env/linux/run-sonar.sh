@@ -17,3 +17,7 @@ sudo gedit /workspace/sonar-3.3/conf/sonar.properties
 sonar-runner -h
 
 user/pass admin/microsoft
+
+sudo update-rc.d -f sonar remove
+sudo update-rc.d sonar defaults 35 65
+ls -l /etc/rc?.d/*sonar
