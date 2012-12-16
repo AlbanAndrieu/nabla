@@ -53,7 +53,7 @@ public class ChronometerTest extends TestCase
      * DOCUMENT ME!
      */
     public static Logger logger      = Logger.getLogger(ChronometerTest.class);
-    Chronometer          chronometer = new Chronometer();
+    public static Chronometer          chronometer = new Chronometer();
 
     protected void setUp() throws Exception
     {
