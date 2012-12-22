@@ -7,7 +7,7 @@
         <!-- Comma separated list of cartridges to be processed by namespace name, such as java,webservice. Empty = true = process all -->
         <property name="cartridgeFilter">${filter}</property>
         <!-- Debug andromda processing using example log4j.xml file -->
-        <property name="loggingConfigurationUri">file:${project.basedir}/log4j.xml</property>
+        <!--<property name="loggingConfigurationUri">file:${project.basedir}/log4j.xml</property>-->
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes.
     To start server from mda directory: mvn andromda:start-server.
