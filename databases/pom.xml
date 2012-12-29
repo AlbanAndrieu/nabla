@@ -317,14 +317,19 @@
                                 <!-- ;shutdown=true -->
                                 <!-- <jdbc.client.url><![CDATA[jdbc:derby://${database.host}:${database.port}/myDB]]></jdbc.client.url> -->
                                 <!-- jdbc:mysql://localhost:3306/myDB -->
-                                <jdbc.username>user</jdbc.username>
-                                <jdbc.password>user</jdbc.password>
+
                                 <!-- jdbc:mysql://localhost:3306/myDB -->
                                 <!-- create database in C:/tmp -->
                                 <jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
                                 <jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
                                 <jdbc.url>${jdbc.embedded.url}</jdbc.url>
+                                
+                                <jdbc.driver.lib>${settings.localRepository}/org/apache/derby/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
+                                <jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
 
+                                <jdbc.username>user</jdbc.username>
+                                <jdbc.password>user</jdbc.password>
+                                
                                 <hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
                                 <jboss.typeMappings>Derby</jboss.typeMappings>
                                 <dataSource.name>${application.id}</dataSource.name>
