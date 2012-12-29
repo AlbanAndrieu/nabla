@@ -16,6 +16,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>common</artifactId>
 			<version>${project.version}</version>
+			<classifier></classifier>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -33,6 +34,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>workflow</artifactId>
 			<version>${project.version}</version>
+			<classifier></classifier>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -129,6 +131,7 @@
 							<groupId>${project.groupId}</groupId>
 							<artifactId>common</artifactId>
 							<includeInApplicationXml>true</includeInApplicationXml>
+							<classifier></classifier>
 						</jarModule>
 						<ejbModule>
 							<groupId>${project.groupId}</groupId>
@@ -142,6 +145,7 @@
 						<jarModule>
 							<groupId>${project.groupId}</groupId>
 							<artifactId>workflow</artifactId>
+							<classifier></classifier>
 						</jarModule>
 					</modules>
 					<jboss>
