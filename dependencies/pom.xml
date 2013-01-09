@@ -2136,7 +2136,7 @@
 						<!-- Enable or disable JUnit tests -->
 						<skip>${maven.test.skip}</skip>
 						<linkXRef>true</linkXRef>
-						<argLine>-Xms64m -Xmx256m</argLine>
+						<argLine>-Xms64m -Xmx256m -Djava.awt.headless=true</argLine>
 						<excludes>
 							<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
 						</excludes>
@@ -5322,6 +5322,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<type>swc</type>
 	    </dependency>
 	    -->
+	    <!--
 	    <dependency>
 		<groupId>flexlib</groupId>
 		<artifactId>flexlib</artifactId>
@@ -5329,6 +5330,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<classifier>flex4</classifier>
 		<type>swc</type>
 	    </dependency>
+	    -->
 	    <!-- // BlaseDS/Flex -->
 
 	    <!-- Caucho	Hessian	-->
@@ -5653,11 +5655,12 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 	    </dependency>
 
 		<!-- 3rd Parties: Commercial 3rd parties -->
+		<!-- 
 		<dependency>
 		    <groupId>com.tibco.tibjms</groupId>
 		    <artifactId>tibjms</artifactId>
 		    <version>${tibjms.version}</version>
-		</dependency>
+		</dependency>		
 		<dependency>
 			<groupId>com.tibco</groupId>
 			<artifactId>tibrv</artifactId>
@@ -5673,9 +5676,9 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		    <artifactId>jconnect</artifactId>
 		    <version>${jconnect.version}</version>
 		</dependency>
+		-->
 		<!-- //	3rd Parties -->
 
-		<!-- Guice -->
 		<dependency>
 		    <groupId>com.google.inject</groupId>
 		    <artifactId>guice</artifactId>
@@ -5842,11 +5845,13 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		    <artifactId>guava</artifactId>
 		    <version>${guava.version}</version>
 		</dependency>
+		<!--
 		<dependency>
 		    <groupId>com.pmease</groupId>
 		    <artifactId>xmt</artifactId>
 		    <version>${xmt.version}</version>
 		</dependency>
+		-->
 		<dependency>
 		    <groupId>com.thoughtworks.xstream</groupId>
 		    <artifactId>xstream</artifactId>
