@@ -88,6 +88,7 @@
                 <jenkins.port>${tomcat.port}</jenkins.port>
 		<oracle.port>8080</oracle.port>
 		<archiva.port>8010</archiva.port>
+		<nexus.port>8081</nexus.port>
 		<continuum.port>8020</continuum.port>
 		<mysql.port>3306</mysql.port>
 		<sonar.port>9000</sonar.port>
@@ -1259,7 +1260,6 @@
 									<version>${maven.dashboard.plugin.version}</version>
 								</plugin>
 -->
-<!--
 								<plugin>
 									<groupId>com.atlassian.maven.plugins</groupId>
 									<artifactId>maven-clover2-plugin</artifactId>
@@ -1268,11 +1268,9 @@
 										<jdk>${jdkLevel}</jdk>
 										<generateXml>true</generateXml>
 										<generatePdf>true</generatePdf>
-										<generateHtml>true</generateHtml>
 										<generateHistorical>true</generateHistorical>
-									</configuration>
+									</configuration>	
 								</plugin>
--->								
 							</reportPlugins>
 						</configuration>
 						<dependencies>
