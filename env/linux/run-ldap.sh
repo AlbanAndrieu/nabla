@@ -43,3 +43,10 @@ sudo service apache2 restart
 cn=admin,dc=ldap,dc=nabla,dc=mobi
 
 add a user albandri with password like the developer workstation
+
+#Connect ldap to google
+#http://support.google.com/a/bin/answer.py?hl=fr&answer=106368
+cd /opt/GoogleAppsDirSync
+sudo ./config-manager
+4/hITCFu3OkXtq96da9ysrgsMaFLlx.Eh-a-J3Bu7gXOl05ti8ZT3aRT0JKdgI
+

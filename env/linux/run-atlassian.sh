@@ -1,3 +1,7 @@
+sudo service crowd start
+http://localhost:8095/crowd/
+user : alban.andrieu@nabla.mobi
+
 sudo adduser crowd
 #pass microsoft
 

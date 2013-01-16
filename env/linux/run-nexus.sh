@@ -42,3 +42,5 @@ sudo update-rc.d -f nexus remove
 sudo update-rc.d nexus defaults 10 90
 sudo service nexus start
 
+java -jar /workspace/users/albandri10/Downloads/application-check-1.21.3.jar 
+
