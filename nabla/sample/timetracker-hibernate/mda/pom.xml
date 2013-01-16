@@ -269,6 +269,7 @@
                 <version>${maven.clean.plugin.version}</version>
                 <configuration>
                    <filesets>
+                       <!--
                        <fileset>
                            <directory>${mda.generated.dir}</directory>
                            <includes>
@@ -277,6 +278,7 @@
                                <include>**/*.java</include>
                            </includes>
                        </fileset>
+                       -->
                        <fileset>
                            <directory>${common.generated.dir}</directory>
                            <includes>
