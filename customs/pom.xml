@@ -15,7 +15,7 @@
 	<name>Customs</name>
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
-	<url>${JOB_URL}</url>	
+        <url>${JOB_URL}</url>
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/customs</connection>

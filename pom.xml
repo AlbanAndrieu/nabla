@@ -157,14 +157,12 @@
 					<id>server-releases</id>
 					<name>External Staging Repository</name>
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
-					<uniqueVersion>false</uniqueVersion>
 				</repository>
 				-->
 				<repository>
 					<id>server-forge-release</id>
 					<name>External Staging Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
-					<uniqueVersion>true</uniqueVersion>
 				</repository>
 
 				<!--
@@ -172,14 +170,12 @@
 					<id>server-snapshots</id>
 					<name>External Snapshot Repository</name>
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-					<uniqueVersion>false</uniqueVersion>
 				</snapshotRepository>
 				-->
 				<snapshotRepository>
 					<id>server-forge-snapshot</id>
 					<name>External Snapshot Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
-					<uniqueVersion>true</uniqueVersion>
 				</snapshotRepository>
 				<site>
 					<id>website</id>
@@ -205,7 +201,7 @@
 		<repository>
 			<id>server-forge-release</id>
 			<name>External Staging Repository</name>
-			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<url>https://repository-nabla.forge.cloudbees.com/release</url>
 			<layout>default</layout>
 			<snapshots>
 				<enabled>false</enabled>
@@ -217,8 +213,7 @@
 		<repository>
 			<id>server-forge-snapshot</id>
 			<name>External Snapshot Repository</name>
-			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
-			<layout>default</layout>
+			<url>https://repository-nabla.forge.cloudbees.com/snapshot</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>daily</updatePolicy>
@@ -373,7 +368,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>server-forge-release</id>
-			<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
+			<url>https://repository-nabla.forge.cloudbees.com/release</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
