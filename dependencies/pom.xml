@@ -1065,6 +1065,7 @@
 		<jdkLevel>1.7</jdkLevel>
 		<jdkDebug>true</jdkDebug>
 		<jdkOptimize>false</jdkOptimize>
+		<fork>false</fork>
 
 		<java.runtime.version>${jdkLevel}</java.runtime.version>
 		<java.source.version>${jdkLevel}</java.source.version>
@@ -1961,7 +1962,7 @@
 						<compilerVersion>${java.source.version}</compilerVersion>
 						<meminitial>128m</meminitial>
 						<maxmem>512m</maxmem>
-						<fork>${compiler.fork}</fork>
+						<fork>${fork}</fork>
 						<debug>${jdkDebug}</debug>
 						<optimize>${jdkOptimize}</optimize>
 						<showDeprecation>true</showDeprecation>
@@ -2709,7 +2710,9 @@
 						<findbugsXmlOutput>true</findbugsXmlOutput>
 						<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
 						<xmlOutput>true</xmlOutput>
-						<threshold>Normal</threshold>
+						<fork>${fork}</fork>
+						<!--<threshold>Normal</threshold>-->
+						<threshold>High</threshold>
 						<effort>Default</effort>
 						<failOnError>false</failOnError>
 						<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
