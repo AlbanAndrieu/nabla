@@ -204,12 +204,19 @@ public class EntityMetafacadeUtils
     public static List<Entity> sortEntities(final Collection<Entity> entities, boolean ascending)
     {
         // Initially holds entities with no outgoing relations. Add related entities to the end
+        // Multiple andromda invocations - entity list is cached - check size
         List<Entity> sorted = new ArrayList<Entity>();
-        if (sortedEntities != null && !sortedEntities.isEmpty())
+        if (sortedEntities == null)
+        {
+            sortedEntities = new ArrayList<Entity>();
+        }
+        if (entities == null || entities.isEmpty() || (sortedEntities != null && !sortedEntities.isEmpty() && sortedEntities.size() == entities.size() && sortedEntities.contains(entities.iterator().next())))
         {
             sorted = sortedEntities;
-        } else if (entities != null)
+        } else
         {
+            // Clear left-over entities from last time.
+            sortedEntities.clear();
             // Move entities into the sorted list step by step
             List<Entity> toBeMoved = new ArrayList<Entity>();
             List<Entity> unsorted = new ArrayList<Entity>();
