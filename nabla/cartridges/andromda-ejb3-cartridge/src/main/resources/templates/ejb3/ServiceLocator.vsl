@@ -146,6 +146,7 @@ ${service.serviceInterfaceName}## no new line
      * Gets the remote interface {@link ${service.fullyQualifiedServiceRemoteInterfaceName}}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return $service.fullyQualifiedServiceRemoteInterfaceName
      * @throws javax.naming.NamingException failure to lookup remote service interface.
      */
     public final $service.fullyQualifiedServiceRemoteInterfaceName get_${transform.toUnderscoreName(${service.fullyQualifiedServiceName})}_Remote(java.util.Properties env)## no new line
@@ -162,6 +163,7 @@ ${service.serviceInterfaceName}## no new line
      * Gets the local interface {@link ${service.fullyQualifiedServiceLocalInterfaceName}}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return $service.fullyQualifiedServiceRemoteInterfaceName
      * @throws javax.naming.NamingException failure to lookup local service interface.
      */
     public final $service.fullyQualifiedServiceLocalInterfaceName get_${transform.toUnderscoreName(${service.fullyQualifiedServiceName})}_Local(java.util.Properties env)## no new line
@@ -179,6 +181,7 @@ ${service.serviceInterfaceName}## no new line
      * Gets an instance of the given service.
      *
      * @param serviceName lookup this service from the context.
+     * @return Object getService(serviceName, null)
      * @throws javax.naming.NamingException failure to lookup remote service interface.
      */
     public final Object getService(String serviceName)## no new line
@@ -192,6 +195,7 @@ ${service.serviceInterfaceName}## no new line
      *
      * @param serviceName lookup this service from the context.
      * @param env the Context environment properties.  Null represents no properties.
+     * @return Object getContext(env).lookup(serviceName)
      * @throws javax.naming.NamingException failure to lookup remote service interface.
      */
     public final Object getService(String serviceName, java.util.Properties env)## no new line

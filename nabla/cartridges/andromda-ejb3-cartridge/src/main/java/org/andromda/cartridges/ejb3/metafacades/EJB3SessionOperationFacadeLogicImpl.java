@@ -82,7 +82,7 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
     protected String handleGetViewType()
     {
         String viewType = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE);
-        if (StringUtils.isEmpty(viewType))
+        if (StringUtils.isBlank(viewType))
         {
             EJB3SessionFacade sessionFacade = (EJB3SessionFacade) this.getOwner();
             if (StringUtils.isNotBlank(sessionFacade.getViewType()))

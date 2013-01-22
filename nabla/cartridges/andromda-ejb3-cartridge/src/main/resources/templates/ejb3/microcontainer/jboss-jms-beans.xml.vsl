@@ -42,7 +42,6 @@
       <property name="serializable">false</property>
    </bean>
 
-
    <bean name="jboss.mq:service=PersistenceManager" class="org.jboss.mq.kernel.JDBC2PersistenceManager">
       <property name="transactionManager">
          <inject bean="TransactionManager"/>
@@ -147,7 +146,6 @@
 
       </property>
    </bean>
-
 
    <bean name="BasicQueueParameters" class="org.jboss.mq.server.BasicQueueParameters"/>
 

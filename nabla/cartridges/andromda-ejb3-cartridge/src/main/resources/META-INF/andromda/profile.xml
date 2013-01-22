@@ -1126,50 +1126,50 @@
                     <value>false</value>
                 </allowedValues>
             </element>
-                        <element name="COLUMN_EMPTYABLE">
-                            <documentation>
-                                Specifies whether the underlying column
-                                for the entity attribute may be empty.
-                            </documentation>
-                            <value>
-                                andromda_persistence_column_emptyable
-                            </value>
-                            <appliedOnElement>
-                                Entity Attribute
-                            </appliedOnElement>
-                            <allowedValues>
-                                <value>true</value>
-                                <value>false</value>
-                            </allowedValues>
-                        </element>
+			<element name="COLUMN_EMPTYABLE">
+			    <documentation>
+			        Specifies whether the underlying column
+			        for the entity attribute may be empty.
+			    </documentation>
+			    <value>
+			        andromda_persistence_column_emptyable
+			    </value>
+			    <appliedOnElement>
+			        Entity Attribute
+			    </appliedOnElement>
+			    <allowedValues>
+			        <value>true</value>
+			        <value>false</value>
+			    </allowedValues>
+			</element>
                         <element name="COLUMN_EMAILABLE">
-                            <documentation>
-                                Specifies whether the underlying column
-                                for the entity attribute may be an email.
-                            </documentation>
-                            <value>
-                                andromda_persistence_column_emailable
-                            </value>
-                            <appliedOnElement>
-                                Entity Attribute
-                            </appliedOnElement>
-                            <allowedValues>
-                                <value>true</value>
-                                <value>false</value>
-                            </allowedValues>
-                        </element>
+			    <documentation>
+			        Specifies whether the underlying column
+			        for the entity attribute may be an email.
+			    </documentation>
+			    <value>
+			        andromda_persistence_column_emailable
+			    </value>
+			    <appliedOnElement>
+			        Entity Attribute
+			    </appliedOnElement>
+			    <allowedValues>
+			        <value>true</value>
+			        <value>false</value>
+			    </allowedValues>
+			</element>
                         <element name="COLUMN_PATTERNABLE">
-                            <documentation>
-                                Specifies whether the underlying column
-                                for the entity attribute may be validate by a specific pattern.
-                            </documentation>
-                            <value>
-                                andromda_validation_pattern
-                            </value>
-                            <appliedOnElement>
-                                Entity Attribute
-                            </appliedOnElement>
-                        </element>
+			    <documentation>
+			        Specifies whether the underlying column
+			        for the entity attribute may be validate by a specific pattern.
+			    </documentation>
+			    <value>
+			        andromda_validation_pattern
+			    </value>
+			    <appliedOnElement>
+			        Entity Attribute
+			    </appliedOnElement>
+			</element>									
             <element name="COLUMN_MINLENGTH">
                             <documentation>
                                 Specifies whether the underlying column

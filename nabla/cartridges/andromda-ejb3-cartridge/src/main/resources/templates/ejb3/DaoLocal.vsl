@@ -105,19 +105,25 @@ public interface $entity.daoName## no new line
 
 #end
 #set ($identifiers = $entity.identifiers)
+##set ($identifiers = $entityUtils.getIdentifierAttributes($entity, true))
 #if (!$entity.identifiers.empty)
 #set ($identifier = $identifiers.iterator().next())
 #end
 #set ($argumentName = $stringUtils.uncapitalize($entity.name))
     /**
      * Loads an instance of $entity.fullyQualifiedEntityName from the persistent store.
+##if ($entity.compositePrimaryKeyPresent)
 #foreach ($identifier in $identifiers)
      * @param $identifier.name $identifier.type.fullyQualifiedName identifier part of the composite PK of the entity to load.
 #end
+##else
+##     * @param $identifier.name the identifier of the entity to load.
+##end
      * @return $rootEntityType
      * @throws ${entity.fullyQualifiedDaoDefaultExceptionName}
      */
-    public $rootEntityType load(#foreach ($identifier in $identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $identifiers.size()), #end#end)## no new line
+    public $rootEntityType load(#foreach ($identifier in $entity.identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $entity.identifiers.size()), #end#end)## no new line
+    ##public $rootEntityType load(#foreach ($identifier in $identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $identifiers.size()), #end#end)
  throws ${entity.fullyQualifiedDaoDefaultExceptionName};
 
     /**
@@ -135,7 +141,8 @@ public interface $entity.daoName## no new line
      * @return either the entity or the object transformed from the entity.
      * @throws ${entity.fullyQualifiedDaoDefaultExceptionName}
      */
-    public Object load(int transform,#foreach ($identifier in $identifiers) $identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $identifiers.size()),#end#end)## no new line
+    public Object load(int transform,#foreach ($identifier in $entity.identifiers) $identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $entity.identifiers.size()),#end#end)## no new line
+    ##public Object load(int transform,#foreach ($identifier in $identifiers) $identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $identifiers.size()),#end#end)
  throws ${entity.fullyQualifiedDaoDefaultExceptionName};
 
     /**
@@ -345,7 +352,8 @@ public interface $entity.daoName## no new line
 #end
      * @throws ${entity.fullyQualifiedDaoDefaultExceptionName}
      */
-    public void remove(#foreach ($identifier in $identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $identifiers.size()), #end#end)## no new line
+    public void remove(#foreach ($identifier in $entity.identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $entity.identifiers.size()), #end#end)## no new line
+    ##public void remove(#foreach ($identifier in $identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $identifiers.size()), #end#end)
  throws ${entity.fullyQualifiedDaoDefaultExceptionName};
 
     /**
@@ -380,9 +388,9 @@ $operation.getDocumentation("     * ")
 #end
 
     /**
-     *   Does the same thing as {@link ${esc.hash}${operation.getSignature(false)}} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link ${esc.hash}${operation.getSignature(false)}}.
+     * Does the same thing as {@link ${esc.hash}${operation.getSignature(false)}} with an
+     * additional argument called <code>queryString</code>.
+     * @param queryString String allows you to override the query string defined in {@link ${esc.hash}${operation.getSignature(false)}}
 #foreach($argument in $operation.arguments)
      * @param $argument.name
 #end
@@ -406,13 +414,14 @@ $operation.getDocumentation("     * ")
 #set ($returnType = "Object")
 #**##end
     /**
-     *   Does the same thing as {@link ${esc.hash}${operation.getSignature(false)}} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>$entity.daoNoTransformationConstantName</code> then
-     *   finder results will <strong>NOT</strong> be transformed during retrieval.
-     *   If this flag is any of the other constants defined here
-     *   then finder results <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
+     * Does the same thing as {@link ${esc.hash}${operation.getSignature(false)}} with an
+     * additional flag called <code>transform</code>.  If this flag is set to <code>$entity.daoNoTransformationConstantName</code> then
+     * finder results will <strong>NOT</strong> be transformed during retrieval.
+     * If this flag is any of the other constants defined here
+     * then finder results <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example).  By default, transformation does
+     * not occur.
+     * @param transform int Transform finder results during retrieval
 #foreach($argument in $operation.arguments)
      * @param $argument.name
 #end
@@ -433,9 +442,22 @@ $operation.getDocumentation("     * ")
 #**##end
 
     /**
-     *   Does the same thing as {@link ${esc.hash}${operation.name}(boolean#if(!$operation.arguments.empty), ${operation.argumentTypeNames}#end)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link ${esc.hash}${operation.name}(int#if(!$operation.arguments.empty), ${operation.typedArgumentList}#end)}.
+     * Does the same thing as {@link ${esc.hash}${operation.name}(int#if(!$operation.arguments.empty), ${operation.argumentTypeNames}#end)} with an
+     * additional argument called <code>queryString</code>.  This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link ${esc.hash}${operation.name}(int#if(!$operation.arguments.empty), ${operation.argumentTypeNames}#end)}.
+     * @param transform int Transform finder results during retrieval
+     * @param queryString String allows you to override the query string defined in {@link ${esc.hash}${operation.getSignature(false)}}
+#foreach($argument in $operation.arguments)
+     * @param $argument.name
+#end
+#if ($operation.returnTypePresent)
+     * @return $returnType
+#end
+#if ($operation.exceptionsPresent)
+     * @throws $operation.exceptionList, ${entity.fullyQualifiedDaoDefaultExceptionName}
+#else
+     * @throws ${entity.fullyQualifiedDaoDefaultExceptionName}
+#end
      */
     $operation.visibility#if ($operation.returnTypePresent) $returnType#else void#end ${operation.name}(int transform, String queryString#if(!$operation.arguments.empty), ${operation.typedArgumentList}#end)## no new line
 #**##if ($operation.exceptionsPresent)

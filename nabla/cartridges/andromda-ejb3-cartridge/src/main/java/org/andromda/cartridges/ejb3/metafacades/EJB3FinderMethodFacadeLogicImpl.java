@@ -141,10 +141,9 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
         boolean whereClauseExists = false;
 
         // otherwise see if there is a query stored as a tagged value
-        if (StringUtils.isEmpty(queryString))
+        if (StringUtils.isBlank(queryString))
         {
-            Object value = this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_QUERY);
-            queryString = (String) value;
+            queryString = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_QUERY);
             if (queryString != null)
             {
                 // remove any excess whitespace
@@ -153,7 +152,7 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
         }
 
         // if there wasn't any stored query, create one by default.
-        if (StringUtils.isEmpty(queryString))
+        if (StringUtils.isBlank(queryString))
         {
             ModelElementFacade owner;
             if (entity == null)
@@ -163,10 +162,11 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
             {
                 owner = entity;
             }
-            String variableName = StringUtils.uncapitalize(owner.getName());
-            queryString = "from " + owner.getName() + " as " + variableName;
+            String variableName = StringUtils.uncapitalize(owner.getName()).substring(0, 1);
+            queryString = "SELECT " + variableName + " from " + owner.getName() + " as " + variableName;
             Collection<ParameterFacade> arguments = this.getArguments();
             //int size = this.getArguments().size();
+            int argCount = 0;
             if (arguments != null && !arguments.isEmpty())
             {
                 for (ParameterFacade facade : arguments)
@@ -176,7 +176,7 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
                     {
                         if (!whereClauseExists)
                         {
-                            queryString += " where";
+                            queryString += " WHERE";
                             whereClauseExists = true;
                         }
                         String parameter = "?";
@@ -184,10 +184,11 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
                         {
                             parameter = ':' + argument.getName();
                         }
-                        queryString += ' ' + variableName + '.' + argument.getName() + " = " + parameter + " and";
+                        queryString += ' ' + variableName + '.' + argument.getName() + " = " + parameter + " AND";
+                        argCount++;
                     }
                 }
-                if (this.getArguments().size() > 1)
+                if (argCount > 0)
                 {
                     // Remove the final ' and'
                     queryString = queryString.substring(0, queryString.length() - 4);

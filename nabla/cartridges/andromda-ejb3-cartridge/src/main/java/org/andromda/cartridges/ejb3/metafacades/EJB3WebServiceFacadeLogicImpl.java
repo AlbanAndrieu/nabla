@@ -154,7 +154,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     protected String handleGetStyle()
     {
         String style = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_WEBSERVICE_STYLE);
-        if (StringUtils.isEmpty(style))
+        if (StringUtils.isBlank(style))
         {
             style = String.valueOf(this.getConfiguredProperty(PROPERTY_DEFAULT_STYLE));
         }
@@ -168,7 +168,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     protected String handleGetUse()
     {
         String use = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_WEBSERVICE_USE);
-        if (StringUtils.isEmpty(use))
+        if (StringUtils.isBlank(use))
         {
             use = String.valueOf(this.getConfiguredProperty(PROPERTY_DEFAULT_USE));
         }
@@ -239,7 +239,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     protected String handleGetParameterStyle()
     {
         String parameterStyle = (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_WEBSERVICE_PARAMETER_STYLE);
-        if (StringUtils.isEmpty(parameterStyle))
+        if (StringUtils.isBlank(parameterStyle))
         {
             parameterStyle = String.valueOf(this.getConfiguredProperty(PROPERTY_DEFAULT_PARAMETER_STYLE));
         }

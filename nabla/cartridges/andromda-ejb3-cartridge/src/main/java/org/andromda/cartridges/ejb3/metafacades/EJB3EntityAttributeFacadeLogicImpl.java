@@ -456,7 +456,7 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     public String getColumnLength()
     {
         String columnLength = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN_LENGTH);
-        if (StringUtils.isEmpty(columnLength))
+        if (StringUtils.isBlank(columnLength))
         {
             columnLength = super.getColumnLength();
         }
@@ -473,7 +473,7 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     public String getColumnName()
     {
         String columnName = (String) this.findTaggedValue(UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN);
-        if (StringUtils.isEmpty(columnName))
+        if (StringUtils.isBlank(columnName))
         {
             columnName = super.getColumnName();
         }

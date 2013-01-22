@@ -15,7 +15,7 @@
         <name>AndroMDA EJB3 Cartridge</name>
         <description>Produces EJB 3.0 persistence layer from a model.</description>
 
-        <dependencies>
+    <dependencies>
                 <dependency>
                		<groupId>org.andromda.profiles.uml2</groupId>
                   	<artifactId>andromda-profile</artifactId>
@@ -55,37 +55,52 @@
                         <scope>compile</scope>
                 </dependency>
                 <dependency>
-                        <groupId>org.hibernate</groupId>
-                        <artifactId>hibernate-entitymanager</artifactId>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
                         <version>${hibernate.entitymanager.version}</version>
-                        <scope>test</scope>
-                </dependency>
-                <dependency>
-                        <groupId>org.jboss.spec</groupId>
-                        <artifactId>jboss-javaee-web-6.0</artifactId>
+            <scope>test</scope>
+<!--
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.interceptor</groupId>
+                    <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.transaction</groupId>
+                    <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+                </exclusion>
+            </exclusions>
+-->
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-web-6.0</artifactId>
                         <version>${org.jboss.spec.jboss.javaee6.version}</version>
-                        <type>pom</type>
-                        <scope>test</scope>
-                        <exclusions>
-                                <exclusion>
-                                        <groupId>org.apache.xalan</groupId>
-                                        <artifactId>xalan</artifactId>
-                                </exclusion>
-                		<exclusion>
-                		    	<groupId>org.jboss.spec.javax.interceptor</groupId>
-                		    	<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
-                		</exclusion>                                
-                        </exclusions>
-                </dependency>
-        	<dependency>
-        	    <groupId>org.jboss.logging</groupId>
-        	    <artifactId>jboss-logging</artifactId>
-        	</dependency>                
-                <!-- version 2.7.1-1.jbossorg referenced by jboss-javaee-web-6.0 not in
-                        maven central -->
-                <dependency>
-                        <groupId>xalan</groupId>
-                        <artifactId>xalan</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.xalan</groupId>
+                    <artifactId>xalan</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.interceptor</groupId>
+                    <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+        </dependency>
+        <!-- version 2.7.1-1.jbossorg referenced by jboss-javaee-web-6.0 not in maven central -->
+        <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
                         <version>${xalan.version}</version>
                         <scope>test</scope>
                 </dependency>
@@ -93,46 +108,46 @@
                         <groupId>org.testng</groupId>
                         <artifactId>testng</artifactId>
                         <version>${testng.version}</version>
-                        <scope>test</scope>
-                        <exclusions>
-                                <exclusion>
-                                        <groupId>qdox</groupId>
-                                        <artifactId>qdox</artifactId>
-                                </exclusion>
-                                <exclusion>
-                                        <groupId>org.beanshell</groupId>
-                                        <artifactId>bsh</artifactId>
-                                </exclusion>
-                        </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <!-- We need this to compile the generated test model sources -->
-                <!--dependency>
-                    <groupId>org.jboss.microcontainer</groupId>
-                    <artifactId>jboss-ejb3-all</artifactId>
-                    <version>alpha_9</version>
-                    <scope>test</scope>
-                </dependency-->
-                <dependency>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-validator</artifactId>
-                    <version>4.3.0.Final</version>
-                    <scope>test</scope>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.jboss.logging</groupId>
-                            <artifactId>jboss-logging</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>                
-        </dependencies>
-        <build>
-                <plugins>
-                        <plugin>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>qdox</groupId>
+                    <artifactId>qdox</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.beanshell</groupId>
+                    <artifactId>bsh</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- We need this to compile the generated test model sources -->
+        <!--dependency>
+            <groupId>org.jboss.microcontainer</groupId>
+            <artifactId>jboss-ejb3-all</artifactId>
+            <version>alpha_9</version>
+            <scope>test</scope>
+        </dependency-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-source-plugin</artifactId>
                                 <executions>
@@ -192,6 +207,9 @@
                 <test.model.uri>file:${test.src.dir}/${uml.type}/EJB3CartridgeTestModel.uml</test.model.uri>
                 <!--<test.output.dir>${project.basedir}/${target.dir}/cartridge-test/actualUML2</test.output.dir> -->
                 <test.output.dir>${project.basedir}/../tmp-ejb3/cartridge-test/actualUML2</test.output.dir>
+                <hibernate.core.version>4.1.8.Final</hibernate.core.version>
+        	<hibernate.entitymanager.version>4.1.8.Final</hibernate.entitymanager.version>
+                <hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
         </properties>
         <profiles>
            <profile>

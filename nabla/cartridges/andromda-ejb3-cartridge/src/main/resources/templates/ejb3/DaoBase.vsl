@@ -100,6 +100,7 @@ public abstract class $entity.daoBaseName## no new line
 #foreach($entityRef in $entityReferences)
     /**
      * Gets the reference to <code>$entityRef.daoName</code>.
+     * @return $entityRef.targetElement.fullyQualifiedDaoName
      */
     protected $entityRef.targetElement.fullyQualifiedDaoName ${entityRef.daoGetterName}()
     {
@@ -116,7 +117,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}load
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public Object load(final int transform,#foreach($identifier in $entity.identifiers) final $identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $entity.identifiers.size()),#end#end)## no new line
@@ -150,7 +151,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}load(#foreach($identifier in $identifiers) $identifier.type.fullyQualifiedName#if ($velocityCount != $identifiers.size()),#end#end)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     ##public $rootEntityType load(#foreach($identifier in $entity.identifiers) final $identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $entity.identifiers.size()),#end#end)## no new line
@@ -163,7 +164,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}loadAll()
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
 #if ($enableTemplating)
@@ -179,7 +180,7 @@ public abstract class $entity.daoBaseName## no new line
      * @see ${rootDaoType}${esc.hash}loadAll(int)
      */
     @SuppressWarnings("rawtypes")
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public java.util.Collection loadAll(final int transform)## no new line
@@ -188,10 +189,10 @@ public abstract class $entity.daoBaseName## no new line
         try
         {
 #if ($entity.genericFinders)
-            ##javax.persistence.Query query = entityManager.createNamedQuery("${entity.name}.findAll");
+##            javax.persistence.Query query = entityManager.createNamedQuery("${entity.name}.findAll");
             javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createNamedQuery("${entity.name}.findAll", ${entity.fullyQualifiedEntityName}.class);
 #else
-            ##javax.persistence.Query query = entityManager.createQuery("from ${entity.entityName} as entity");
+##            javax.persistence.Query query = entityManager.createQuery("from ${entity.entityName} as entity");
             javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createQuery("from ${entity.entityName} as entity", ${entity.fullyQualifiedEntityName}.class);
 #end
 #if ($entity.useQueryCache && !$entity.useDefaultCacheRegion)
@@ -213,7 +214,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create $entity.name with no VO transformation
      * @see ${rootDaoType}${esc.hash}create($entity.fullyQualifiedEntityName)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public $rootEntityType create($entity.fullyQualifiedEntityName $argumentName)## no new line
@@ -226,7 +227,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create $entity.name with VO transformation
      * @see ${rootDaoType}${esc.hash}create(int, $entity.fullyQualifiedEntityName)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public Object create(final int transform, final $rootEntityType $argumentName)## no new line
@@ -253,7 +254,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create a Collection of $entity.name with no VO transformation
      * @see ${rootDaoType}${esc.hash}create(java.util.Collection)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
 #if ($enableTemplating)
@@ -269,7 +270,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create a Collection of $entity.name with VO transformation
      * @see ${rootDaoType}${esc.hash}create(int, java.util.Collection)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
 #if ($enableTemplating)
@@ -304,7 +305,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create Entity $entity.name using instance attributes with no VO transformation
      * @see ${rootDaoType}${esc.hash}create(${entity.getInstanceAttributeTypeList(true, false)})
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public $rootEntityType create(## no new line
@@ -321,7 +322,7 @@ public abstract class $entity.daoBaseName## no new line
      * @see ${rootDaoType}${esc.hash}create(int, ${entity.getInstanceAttributeTypeList(true, false)})
      * composite=$entity.compositePrimaryKeyPresent identifiers=$entity.identifiers.size()
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public Object create(final int transform, ## no new line
@@ -360,7 +361,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create Entity $entity.name using required properties with no VO transformation
      * @see ${rootDaoType}${esc.hash}create(${entity.getRequiredPropertyTypeList(true, $entity.usingAssignedIdentifier)})
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public $rootEntityType create(## no new line
@@ -376,7 +377,7 @@ public abstract class $entity.daoBaseName## no new line
      * Create Entity $entity.name using required properties with VO transformation
      * @see ${rootDaoType}${esc.hash}create(int, ${entity.getRequiredPropertyTypeList(true, $entity.usingAssignedIdentifier)})
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public Object create(final int transform,## no new line
@@ -418,7 +419,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}update($entity.fullyQualifiedEntityName)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public void update($entity.fullyQualifiedEntityName $argumentName)## no new line
@@ -442,7 +443,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}update(java.util.Collection)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public void update(final $entityCollectionType entities)## no new line
@@ -468,7 +469,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}remove($entity.fullyQualifiedEntityName)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public void remove($entity.fullyQualifiedEntityName $argumentName)## no new line
@@ -492,7 +493,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}remove(#foreach ($identifier in $identifiers)$identifier.type.fullyQualifiedName#if ($velocityCount != $identifiers.size()), #end#end)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public void remove(#foreach ($identifier in $entity.identifiers)$identifier.type.fullyQualifiedName $identifier.name#if ($velocityCount != $entity.identifiers.size()), #end#end)## no new line
@@ -531,7 +532,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}remove(java.util.Collection)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     public void remove($entityCollectionType entities)## no new line
@@ -559,7 +560,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}$finder.getSignature(false)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     $finder.visibility $returnType $finder.signature## no new line
@@ -583,7 +584,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${finder.name}(String#if(!$finder.arguments.empty), ${finder.argumentTypeNames}#end)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     $finder.visibility $returnType ${finder.name}(final String queryString#if(!$finder.arguments.empty), ${finder.getTypedArgumentList('final')}#end)## no new line
@@ -610,7 +611,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${finder.name}(int#if(!$finder.arguments.empty), ${finder.argumentTypeNames}#end)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     $finder.visibility#if ($finder.returnTypePresent) $returnType#else void#end ${finder.name}(final int transform#if(!$finder.arguments.empty), ${finder.getTypedArgumentList('final')}#end)## no new line
@@ -622,7 +623,7 @@ public abstract class $entity.daoBaseName## no new line
     {
         try
         {
-            ##javax.persistence.Query queryObject = entityManager.createNamedQuery("${entity.name}.${finder.name}");
+##            javax.persistence.Query queryObject = entityManager.createNamedQuery("${entity.name}.${finder.name}");
             javax.persistence.TypedQuery<${rootEntityType}> queryObject = this.entityManager.createNamedQuery("${entity.name}.${finder.name}", ${rootEntityType}.class);
 #**##foreach($argument in $finder.arguments)
 #*  *##set ($count = $velocityCount - 1)
@@ -681,7 +682,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${finder.name}(int, String#if(!$finder.arguments.empty), ${finder.argumentTypeNames}#end)
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     $finder.visibility#if ($finder.returnTypePresent) $returnType#else void#end ${finder.name}(final int transform, final String queryString#if(!$finder.arguments.empty), ${finder.getTypedArgumentList('final')}#end)## no new line
@@ -693,7 +694,7 @@ public abstract class $entity.daoBaseName## no new line
     {
         try
         {
-            ##javax.persistence.Query queryObject = entityManager.createQuery(queryString);
+##            javax.persistence.Query queryObject = entityManager.createQuery(queryString);
             javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> queryObject = this.entityManager.createQuery(queryString, ${entity.fullyQualifiedEntityName}.class);
 #**##foreach($argument in $finder.arguments)
 #*  *##set ($count = $velocityCount - 1)
@@ -756,7 +757,7 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${operation.getSignature(false)}
      */
-#if (($javaVersion.compareTo("1.6")>-1) || ($javaVersion.compareTo("1.7")>-1))
+#if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
     $operation.visibility $returnType.fullyQualifiedName ${operation.name}(${operation.getTypedArgumentList('final')})## no new line
@@ -798,6 +799,11 @@ public abstract class $entity.daoBaseName## no new line
 
      /**
       * Performs the core logic for {@link ${esc.hash}${operation.getSignature(false)}}
+#foreach($argument in $operation.arguments)
+      * @param $argument.name $argument.fullyQualifiedType
+#end
+      * @return $operation.returnType.fullyQualifiedName 
+      * @throws Exception
       */
     protected abstract $operation.returnType.fullyQualifiedName $operation.implementationSignature## no new line
  throws Exception;
@@ -816,7 +822,7 @@ public abstract class $entity.daoBaseName## no new line
      *   <li>{@link ${rootEntityType}} - {@link ${esc.hash}$entity.daoNoTransformationConstantName}</li>
 #**##foreach ($valueObjectRef in $entity.valueObjectReferences)
 #*  *##set ($targetElement = $valueObjectRef.targetElement)
-     *   <li>{@link $targetElement.fullyQualifiedName} - {@link ${valueObjectRef.transformationConstantName}}</li>
+     *   <li>{@link $targetElement.fullyQualifiedName} - {@link ${esc.hash}${valueObjectRef.transformationConstantName}}</li>
 #**##end
      * </ul>
 #end
@@ -879,11 +885,14 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationToCollectionMethodName}(java.util.Collection)
      */
+#if ($javaVersion.compareTo("1.6")>-1)
+    @Override
+#end
     public final void ${valueObjectRef.transformationToCollectionMethodName}(java.util.Collection entities)
     {
         if (entities != null)
         {
-            org.apache.commons.collections.CollectionUtils.transform(entities, ${valueObjectRef.transformationAnonymousName});
+            org.apache.commons.collections.CollectionUtils.transform(entities, this.${valueObjectRef.transformationAnonymousName});
         }
     }
 
@@ -891,6 +900,8 @@ public abstract class $entity.daoBaseName## no new line
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link $entity.daoImplementationName} class if you intend to use reporting queries.
+     * @param row Object[] Array of $entity.fullyQualifiedEntityName to transform
+     * @return target $valueObjectRef.targetElement.fullyQualifiedName
      * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationMethodName}(${rootEntityType})
      */
     protected $valueObjectRef.targetElement.fullyQualifiedName ${valueObjectRef.transformationMethodName}(Object[] row)
@@ -920,6 +931,9 @@ public abstract class $entity.daoBaseName## no new line
     private org.apache.commons.collections.Transformer $valueObjectRef.transformationAnonymousName =
         new org.apache.commons.collections.Transformer()
         {
+#if ($javaVersion.compareTo("1.6")>-1)
+            @Override
+#end
             public Object transform(Object input)
             {
                 Object result = null;
@@ -938,35 +952,43 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationToEntityCollectionMethodName}(java.util.Collection)
      */
+#if ($javaVersion.compareTo("1.6")>-1)
+    @Override
+#end
     public final void ${valueObjectRef.transformationToEntityCollectionMethodName}(java.util.Collection instances)
     {
         if (instances != null)
         {
             for (final java.util.Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof $valueObjectRef.targetElement.fullyQualifiedName))
                 {
                     iterator.remove();
                 }
             }
-            org.apache.commons.collections.CollectionUtils.transform(instances, $valueObjectRef.valueObjectToEntityTransformerName);
+            org.apache.commons.collections.CollectionUtils.transform(instances, this.$valueObjectRef.valueObjectToEntityTransformerName);
         }
     }
 
     private final org.apache.commons.collections.Transformer $valueObjectRef.valueObjectToEntityTransformerName =
         new org.apache.commons.collections.Transformer()
         {
+#if ($javaVersion.compareTo("1.6")>-1)
+            @Override
+#end
             public Object transform(Object input)
             {
                 return ${valueObjectRef.transformationToEntityMethodName}(($valueObjectRef.targetElement.fullyQualifiedName)input);
             }
         };
 
-
     /**
      * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationMethodName}($entity.fullyQualifiedEntityName, $valueObjectRef.targetElement.fullyQualifiedName)
      */
+#if ($javaVersion.compareTo("1.6")>-1)
+    @Override
+#end
     public void ${valueObjectRef.transformationMethodName}(## no new line
  $entity.fullyQualifiedEntityName source,## no new line
  $valueObjectRef.targetElement.fullyQualifiedName target)
@@ -994,6 +1016,9 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationMethodName}(${rootEntityType})
      */
+#if ($javaVersion.compareTo("1.6")>-1)
+    @Override
+#end
     public $valueObjectRef.targetElement.fullyQualifiedName ${valueObjectRef.transformationMethodName}(final $rootEntityType entity)
     {
         final $valueObjectRef.targetElement.fullyQualifiedName target = new ${valueObjectRef.targetElement.fullyQualifiedName}();
@@ -1002,8 +1027,11 @@ public abstract class $entity.daoBaseName## no new line
     }
 
     /**
-     * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationToEntityMethodName}($valueObjectRef.targetElement.fullyQualifiedName, $entity.fullyQualifiedEntityName)
+     * @see ${rootDaoType}${esc.hash}${valueObjectRef.transformationToEntityMethodName}($valueObjectRef.targetElement.fullyQualifiedName, $entity.fullyQualifiedEntityName, boolean)
      */
+#if ($javaVersion.compareTo("1.6")>-1)
+    @Override
+#end
     public void ${valueObjectRef.transformationToEntityMethodName}(## no new line
  $valueObjectRef.targetElement.fullyQualifiedName source,## no new line
  $entity.fullyQualifiedEntityName target,## no new line

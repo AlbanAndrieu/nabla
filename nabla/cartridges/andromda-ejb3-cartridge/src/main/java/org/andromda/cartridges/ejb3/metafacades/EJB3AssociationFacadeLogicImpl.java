@@ -116,7 +116,7 @@ public class EJB3AssociationFacadeLogicImpl extends EJB3AssociationFacadeLogic
         String name = (super.getName().equalsIgnoreCase(super.getRelationName()) ? null : super.getName());
 
         // if the name isn't defined, use the this implementation of relation name
-        if (StringUtils.isEmpty(name))
+        if (StringUtils.isBlank(name))
         {
             name = this.getRelationName();
         }

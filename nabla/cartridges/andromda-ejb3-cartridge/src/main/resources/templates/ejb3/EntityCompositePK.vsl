@@ -167,6 +167,7 @@ $property.getDocumentation("     * ")
     public int compareTo(${entity.entityCompositePrimaryKeyName} o)
     {
         int cmp = 0;
+##set ($identifiers = $entity.identifiers)
 #if (!$identifiers.empty)
 #**##foreach ($identifier in $identifiers)
 #*  *##if (!$identifier.type.primitive && !$identifier.type.arrayType && !$identifier.lob && !$identifier.containsEmbeddedObject && !$identifier.type.collectionType && !$identifier.type.name.equals("Object"))
