@@ -435,17 +435,17 @@ $attribute.getDocumentation("     * ")
 ##
 ##    //$attribute.type $attribute.type.name
 #*          *##if (!$attribute.type.name.equals("boolean") && !$attribute.type.name.equals("Date"))    
-    @javax.validation.constraints.NotNull(message = "You should enter a value.")
+##    @javax.validation.constraints.NotNull(message = "You should enter a value for ${attribute.name}.")
 #*            *##if (!$attribute.columnEmptyable )    
-    @org.hibernate.validator.NotEmpty(message = "You should enter a value.")
-##    @org.hibernate.validator.constraints.NotEmpty(message = "You should enter a value.")
+##    @org.hibernate.validator.NotEmpty(message = "You should enter a value for ${attribute.name}.")
+    @org.hibernate.validator.constraints.NotEmpty(message = "You should enter a value for ${attribute.name}.")
 #*            *##end    
 #*          *##end
 #*        *##end
 
 #*        *##if ($attribute.columnLength)
-    @org.hibernate.validator.Length(max = $attribute.columnLength)
-##    @org.hibernate.validator.constraints.Length(max = $attribute.columnLength)
+##    @org.hibernate.validator.Length(max = $attribute.columnLength)
+    @org.hibernate.validator.constraints.Length(max = $attribute.columnLength)
 #*        *##end
 #*      *##end
 ##set ($hibernateType = $attribute.findTaggedValue("andromda_hibernate_type"))
@@ -457,8 +457,8 @@ $attribute.getDocumentation("     * ")
     @javax.validation.constraints.Digits(integer=$attribute.columnPrecision, fraction =#if ($attribute.columnScale) $attribute.columnScale#else 0#end, message="${attribute.name} has a max size ($attribute.columnPrecision#if ($attribute.columnScale), $attribute.columnScale#end)")
 #*      *##end
 #*      *##if ($attribute.columnEmailable)
-    @org.hibernate.validator.Email(message = "invalid e-mail invalid")
-##    @org.hibernate.validator.constraints.Email(message = "invalid e-mail invalid")
+##    @org.hibernate.validator.Email(message = "invalid e-mail invalid")
+    @org.hibernate.validator.constraints.Email(message = "invalid e-mail invalid")
 #*      *##end
 #*      *##if (!$stringUtils.isBlank($attribute.columnPatternable))
     @javax.validation.constraints.Pattern(regexp = "$attribute.columnPatternable", message = "not a valid field")
