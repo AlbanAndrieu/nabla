@@ -7,7 +7,7 @@
         <!-- Comma separated list of cartridges to be processed by namespace name, such as java,webservice. Empty = true = process all -->
         <property name="cartridgeFilter">${filter}</property>
         <!-- Debug andromda processing using example log4j.xml file -->
-        <property name="loggingConfigurationUri">file:${project.basedir}/../log4j.xml</property>  
+        <property name="loggingConfigurationUri">file:${project.basedir}/../log4j.xml</property>
     </properties>
     <!-- Server will load and validate model in the background automatically when anything changes.
     To start server from mda directory: mvn andromda:start-server.
@@ -93,7 +93,7 @@
         <namespace name="default">
             <properties>
                 <!--<property name="overwrite">true</property>-->
-        	
+
                 <!-- Use enums, strongly typed collections with templates, and @annotation markups -->
                 <property name="enableTemplating">true</property>
                 <property name="enableAnnotations">true</property>
@@ -116,11 +116,12 @@
                 <property name="parameterNameMask">none</property -->
                 <property name="enumerationLiteralNameMask">upperunderscore</property>
                 <property name="hibernateVersion">3</property>
+                <property name="hibernateEntityAnnotations">false</property>
                 <!--<property name="defaultIdentifierType">datatype::Integer</property>-->
-                <property name="persistenceContainerName">jboss</property>                
+                <property name="persistenceContainerName">jboss</property>
                 <property name="mergeLocation">${merge.templates.location}</property>
-                <!-- Override default @todo to set to Eclipse default -->      	
-        	<property name="toDoTag">TODO</property>  
+                <!-- Override default @todo to set to Eclipse default -->
+        	<property name="toDoTag">TODO</property>
                 <!-- Automatically makes English names plural (generally adds s if missing).
                 default=true, set to false if using non-English models or Jaxb/CXF 2.0 or JAXB simpleBindingMode=false.>
                 <property name="pluralizeAssociationEndNames">true</property>
@@ -139,7 +140,7 @@
                 <property name="testConnectionUrl">${jdbc.url}</property>
                 <property name="testDialect">${hibernate.dialect}</property>
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
-                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest--> 
+                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest-->
             </properties>
         </namespace>
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
@@ -182,7 +183,6 @@
                 <property name="hibernateEnableCache">false</property>
                 <property name="hibernateEnableAssociationsCache">false</property>
                 <property name="hibernateTypeMappingsUri">Hibernate</property>
-                <!--property name="hibernateEntityAnnotations">false</property-->
                 <property name="hibernateInheritanceStrategy">${hibernate.inheritance.strategy}</property>
                 <property name="hibernateJdbcBatchSize">0</property>
                 <property name="hibernateQueryUseNamedParameters">true</property>
@@ -242,16 +242,16 @@
                 <property name="enableMyFacesDevelopmentSupport">true</property>
                 <property name="ajaxLibrary">trinidad</property>
                 <!--<property name="ajaxLibrary">icefaces</property>-->
-                <property name="extension">false</property>                      
+                <property name="extension">false</property>
                 <!--<property name="portletContainer"></property>-->
-                <!--<property name="standalone">false</property>-->                
+                <!--<property name="standalone">false</property>-->
                 <!--<property name="validationExtension">commons-validator</property>-->
                 <property name="enablePreferences">false</property>
-                <property name="enableOds">false</property>                
+                <property name="enableOds">false</property>
                 <!--<property name="skin">none</property>-->
                 <!--<property name="useAutocompleteLookup">true</property>-->
             </properties>
-        </namespace> 
+        </namespace>
         <namespace name="deployment">
             <properties>
                  <property name="languageMappingsUri">Java</property>
@@ -261,7 +261,7 @@
                  <property name="deploymentreport">${mda.generated.dir}</property>
                  <property name="antprojects">${mda.generated.dir}</property>
             </properties>
-        </namespace>             
+        </namespace>
         <namespace name="database">
             <properties>
                 <property name="overwrite">true</property>
@@ -276,6 +276,6 @@
                 -->
                 <property name="scripts">${sql.generated.dir}</property>
             </properties>
-        </namespace>        
+        </namespace>
     </namespaces>
 </andromda>

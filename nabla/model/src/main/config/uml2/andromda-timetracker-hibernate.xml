@@ -113,6 +113,7 @@
                 <property name="parameterNameMask">none</property -->
                 <property name="enumerationLiteralNameMask">upperunderscore</property>
                 <property name="hibernateVersion">3</property>
+                <property name="hibernateEntityAnnotations">false</property>
                 <property name="persistenceContainerName">jboss</property>
                 <!-- Override default @todo to set to Eclipse default>
                 <property name="toDoTag">TODO</property -->
@@ -134,7 +135,7 @@
                 <property name="testConnectionUrl">${jdbc.url}</property>
                 <property name="testDialect">${hibernate.dialect}</property>
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
-                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest--> 
+                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest-->
             </properties>
         </namespace>
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
@@ -177,7 +178,6 @@
                 <property name="hibernateEnableCache">false</property>
                 <property name="hibernateEnableAssociationsCache">false</property>
                 <property name="hibernateTypeMappingsUri">Hibernate</property>
-                <!--property name="hibernateEntityAnnotations">false</property-->
                 <property name="hibernateInheritanceStrategy">${hibernate.inheritance.strategy}</property>
                 <property name="hibernateJdbcBatchSize">0</property>
                 <property name="hibernateQueryUseNamedParameters">true</property>
@@ -235,6 +235,6 @@
                 <property name="enableFaceletsDevelopmentSupport">true</property>
                 <property name="enableMyFacesDevelopmentSupport">true</property>
             </properties>
-        </namespace>     
+        </namespace>
     </namespaces>
 </andromda>
