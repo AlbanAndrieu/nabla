@@ -134,14 +134,17 @@
                 <property name="testDriver">${jdbc.driver}</property>
                 <property name="testConnectionUrl">${jdbc.url}</property>
                 <property name="testDialect">${hibernate.dialect}</property>
-                <property name="hibernateVersion">4</property>
-                <!--<property name="hibernateEntityAnnotations">false</property>-->
+                <property name="hibernateVersion">3</property>
+                <property name="hibernateEntityAnnotations">false</property><!-- set to false for hibernateVersion 3 TODO must be used-->
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
                 <property name="hibernateHbm2DDLAuto">${hibernate.hbm2ddl}</property> <!--does not work with unitest-->
                 <property name="hibernateDialect">${hibernate.dialect}</property>
                 <property name="persistenceContextUnitName">${application.id}</property>
                 <property name="javaVersion">${jdkLevel}</property>
                 <property name="hibernateQueryUseNamedParameters">true</property>
+                <!--<property name="hibernateCacheProvider">org.jboss.ejb3.entity.TreeCacheProviderHook</property>-->
+                <!--<property name="hibernateCacheProvider">org.hibernate.cache.EhCacheProvider</property> if so enable dependency ehcache pom-->
+                <property name="hibernateCacheProvider">${hibernate.cache.provider}</property>
                 <property name="hibernateEnableCache">false</property>
                 <property name="hibernateEnableAssociationsCache">false</property>
                 <property name="hibernateQueryCacheFactory">org.hibernate.cache.StandardQueryCacheFactory</property>
@@ -156,7 +159,11 @@
             <properties>
                 <property name="sessionFactory">org.springframework.orm.hibernate3.LocalSessionFactoryBean</property>
                 <property name="localTransactionManager">org.springframework.orm.hibernate3.HibernateTransactionManager</property>
-                <property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>
+                <!--
+                <property name="sessionFactory">org.springframework.orm.hibernate4.LocalSessionFactoryBean</property>
+                <property name="localTransactionManager">org.springframework.orm.hibernate4.HibernateTransactionManager</property>
+                -->
+                <!--<property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>-->
                 <!--<property name="mergeMappingsUri">file:${conf.dir}/mappings/SpringMergeMappings.xml</property>-->
                 <property name="mergeMappingsUri">${merge.mappings.spring}</property>
                 <property name="springTypesPackage">${application.package}</property>
@@ -184,7 +191,7 @@
                 <property name="hibernateTypeMappingsUri">Hibernate</property>
                 <property name="hibernateJdbcBatchSize">0</property>
                 <property name="compositionDefinesEagerLoading">true</property>
-                <property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>
+                <!--<property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>-->
                 <property name="hibernateTransactionFactoryClass">org.hibernate.transaction.JTATransactionFactory</property>
                 <property name="defaultHibernateGeneratorClass">${hibernate.generatorClass}</property>
                 <property name="hibernateAggregationCascade">delete</property>
@@ -240,9 +247,6 @@
                 <property name="hibernateEnableCache">true</property>
                 <!--<property name="hibernateUseQueryCache">false</property>-->
                 <property name="useDefaultCacheRegion">false</property>
-                <!--<property name="hibernateCacheProvider">org.jboss.ejb3.entity.TreeCacheProviderHook</property>-->
-                <!--<property name="hibernateCacheProvider">org.hibernate.cache.EhCacheProvider</property>-->
-                <property name="hibernateCacheProvider">${hibernate.cache.provider}</property>
                 <property name="hibernateTreecacheMbeanObject">jboss.cache:service=EJB3EntityTreeCache</property>
                 <property name="hibernateShowSql">${hibernate.showsql}</property>
                 <property name="hibernateFormatSql">true</property>
