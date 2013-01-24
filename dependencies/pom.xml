@@ -1225,6 +1225,8 @@
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
 		<jsf.version>1.2_12</jsf.version>
+		<jsf.api.version>${jsf.version}</jsf.api.version>
+		<jsf.impl.version>${jsf.version}</jsf.impl.version>
 		<sun.jsf.version>2.1.0-b03</sun.jsf.version>
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<aspectj.version>1.6.6</aspectj.version>
@@ -1239,6 +1241,7 @@
 		<el.version>1.2</el.version>
 		<facelets.version>1.1.13</facelets.version>
 		<toplink.essentials.version>2.0-40</toplink.essentials.version>
+		<openjpa.version>1.2.1</openjpa.version>
 		<openjpa.all.version>0.9.7-incubating-SNAPSHOT</openjpa.all.version>
 		<hibernate.version>3.2.6.ga</hibernate.version>
 		<hibernate.legacy.core.version>3.3.2.GA</hibernate.legacy.core.version>
@@ -1255,13 +1258,13 @@
 		<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
 		<hibernate.validator.version>3.1.0.GA</hibernate.validator.version> <!-- works with hibernate.core.version 3.3.2.GA -->
 		<!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.6.8.GA -->
-		<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>
+		<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->
+		<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version> <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
 		<!--<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>-->
 		<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
 		<hibernate.search.version>3.1.1.GA</hibernate.search.version>
 		<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
 		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
-		<!--<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>-->
 		<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
 		<ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>
 		<jboss.ejb3.persistence.version>4.0.5-GA</jboss.ejb3.persistence.version>
@@ -1278,6 +1281,7 @@
 		<sitemesh.version>2.2.1</sitemesh.version>
 		<spring.version>2.5.6</spring.version>
 		<spring3.version>3.1.3.RELEASE</spring3.version>
+		<spring.security.web>3.1.3.RELEASE</spring.security.web> <!-- TODO spring3.version -->
 		<!--<spring.jpa.version>2.0.6</spring.jpa.version>-->
 		<springmodules.validation.version>0.8</springmodules.validation.version>
 		<spring.mock.version>2.0.8</spring.mock.version>
@@ -1429,7 +1433,7 @@
 
 		<!-- Plugin version definitions	-->
 		<maven.project.version>3.0-alpha-2</maven.project.version>
-		<plexus.util.version>3.0.8</plexus.util.version>
+		<plexus.util.version>3.0.10</plexus.util.version>
 		<plexus.container.default.version>1.5.5</plexus.container.default.version>
 
 		<!--<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>-->
@@ -1809,6 +1813,19 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>build-helper-maven-plugin</artifactId>
+										<versionRange>[${maven.build.helper.plugin.version},)</versionRange>
+										<goals>
+											<goal>add-test-source</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>								
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
@@ -3366,6 +3383,10 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 				     <groupId>org.slf4j</groupId>
 				     <artifactId>slf4j-api</artifactId>
 				 </exclusion>
+		  		 <exclusion>
+		  		     <groupId>javax.persistence</groupId>
+		  		     <artifactId>persistence-api</artifactId>
+		  		 </exclusion>				 
 			     </exclusions>
 			</dependency>
 			<dependency>
@@ -3514,6 +3535,10 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 						<groupId>org.hibernate</groupId>
 						<artifactId>hibernate</artifactId>
 					</exclusion>
+		    			<exclusion>
+		    				<groupId>org.hibernate</groupId>
+		    				<artifactId>ejb3-persistence</artifactId>
+		    			</exclusion>						
 				</exclusions>
 			</dependency>
 	    <dependency>
@@ -3578,6 +3603,18 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 	    </dependency>
 
 			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-annotations</artifactId>
+				<version>${hibernate.annotations.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>javax.transaction</groupId>
+						<artifactId>jta</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			
+			<dependency>
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache</artifactId>
 				<version>${ehcache.version}</version>
@@ -3606,6 +3643,13 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 				<artifactId>javassist</artifactId>
 				<version>${javassist.version}</version>
 			</dependency>
+			
+				<dependency>
+				    <groupId>org.apache.openjpa</groupId>
+				    <artifactId>openjpa</artifactId>
+				    <version>${openjpa.version}</version>
+				</dependency>    
+							
 			<dependency>
 				<groupId>org.apache.activemq</groupId>
 				<artifactId>activemq-core</artifactId>
@@ -3643,17 +3687,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 				<artifactId>aopalliance</artifactId>
 				<version>${aopalliance.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-annotations</artifactId>
-				<version>${hibernate.annotations.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.transaction</groupId>
-						<artifactId>jta</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+
 			<dependency>
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
@@ -4345,13 +4379,13 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 			<dependency>
 				<groupId>javax.faces</groupId>
 				<artifactId>jsf-api</artifactId>
-				<version>${jsf.version}</version>
+				<version>${jsf.api.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>javax.faces</groupId>
 				<artifactId>jsf-impl</artifactId>
-				<version>${jsf.version}</version>
+				<version>${jsf.impl.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
@@ -4698,6 +4732,12 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 			  <version>${seam.utils.version}</version>
 			  <type>ejb</type>
 			  <scope>test</scope>
+			  <exclusions>
+		  	  	<exclusion>
+		  	  	    <groupId>javax.persistence</groupId>
+		  	  	    <artifactId>persistence-api</artifactId>
+		  	  	</exclusion>	
+			  </exclusions>				  
 			</dependency>
 
 			<dependency>
