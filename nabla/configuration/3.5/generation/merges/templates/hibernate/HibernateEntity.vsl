@@ -8,7 +8,6 @@
 package $entity.packageName;
 #end
 
-
 #if(!$entity.generalization)
 import java.io.Serializable;
 
@@ -25,7 +24,39 @@ $entity.getDocumentation(" * ")
 ##, dynamic-insert="$entity.dynamicInsert" dynamic-update="$entity.dynamicUpdate"
 ##if (!$entity.specializations.empty && $entity.hibernateInheritanceClass && !$entity.abstract), discriminator-value="$entity.hibernateDiscriminatorValue"#end
 ##if ($entity.xmlTagName), node="$entity.xmlTagName"#end
-##if ($entity.abstract), abstract="true"#end)##if ($entity.listenerEnabled)##@javax.persistence.EntityListeners({${entity.fullyQualifiedEntityListenerName}.class})##else##// Uncomment to enable entity listener for ${entity.entityName}##// @javax.persistence.EntityListeners({${entity.fullyQualifiedEntityListenerName}.class})##end#set ($discriminatorColumnDefinition = "$entity.hibernateDiscriminatorColumn $entity.hibernateDiscriminatorType $entity.hibernateDiscriminatorType ($entity.hibernateDiscriminatorLength) NOT NULL")##        <discriminator column="$entity.hibernateDiscriminatorColumn" type="$entity.hibernateDiscriminatorType"/>## Only include the inheritance related annotations for inheritance mapping## that doesn't involve embeddable superclass hierarchy.#### Only include the inheritance and discriminator column mapping for the top level class## in the hierarchy, regardless of the number of levels in the hierarchy.###if ($entity.specializations.empty && !$entity.generalizations.empty)@javax.persistence.Inheritance(strategy = javax.persistence.InheritanceType.${entity.hibernateInheritanceStrategy})#### Discriminator components only apply to single table mapping strategy###*  *##if ($entity.hibernateInheritanceClass)#*    *##set ($argExists = false)@javax.persistence.DiscriminatorColumn(#if ($entity.hibernateDiscriminatorColumn)name = "${entity.hibernateDiscriminatorColumn}"#set ($argExists = true)#end#if ($entity.hibernateDiscriminatorType)#if ($argExists), #end#**#discriminatorType = javax.persistence.DiscriminatorType.${entity.hibernateDiscriminatorType}#set ($argExists = true)#end#if ($discriminatorColumnDefinition)#if ($argExists), #end#**#columnDefinition = "${discriminatorColumnDefinition}"#set ($argExists = true)#end#if ($entity.hibernateDiscriminatorLength > 0)#if ($argExists), #end#**#length = ${entity.hibernateDiscriminatorLength}#end)@javax.persistence.DiscriminatorValue("${entity.hibernateDiscriminatorValue}")#*  *##end#elseif ($entity.generalizations.empty && $entity.hibernateInheritanceClass)## && !$entity.embeddableSuperclassGeneralizationExists)#### Only include the DiscriminatorValue annotation for subclasses if## the inheritance strategy is single table mapping strategy.##@javax.persistence.DiscriminatorValue("${entity.hibernateDiscriminatorValue}")#end
+##if ($entity.abstract), abstract="true"#end)
+##if ($entity.listenerEnabled)
+##@javax.persistence.EntityListeners({${entity.fullyQualifiedEntityListenerName}.class})
+##else
+##// Uncomment to enable entity listener for ${entity.entityName}
+##// @javax.persistence.EntityListeners({${entity.fullyQualifiedEntityListenerName}.class})
+##end
+#set ($discriminatorColumnDefinition = "$entity.hibernateDiscriminatorColumn $entity.hibernateDiscriminatorType $entity.hibernateDiscriminatorType ($entity.hibernateDiscriminatorLength) NOT NULL")
+##        <discriminator column="$entity.hibernateDiscriminatorColumn" type="$entity.hibernateDiscriminatorType"/>
+## Only include the inheritance related annotations for inheritance mapping
+## that doesn't involve embeddable superclass hierarchy.
+##
+## Only include the inheritance and discriminator column mapping for the top level class
+## in the hierarchy, regardless of the number of levels in the hierarchy.
+##
+#if (!$entity.specializations.empty && $entity.generalizations.empty)
+@javax.persistence.Inheritance(strategy = javax.persistence.InheritanceType.$hibernateUtils.getInheritanceTypeEnum(${entity.hibernateInheritanceStrategy}))
+##
+## Discriminator components only apply to single table mapping strategy
+##
+#*  *##if ($entity.hibernateInheritanceClass)
+#*    *##set ($argExists = false)
+@javax.persistence.DiscriminatorColumn(#if ($entity.hibernateDiscriminatorColumn)name = "${entity.hibernateDiscriminatorColumn}"#set ($argExists = true)#end#if ($entity.hibernateDiscriminatorType)#if ($argExists), #end#**#discriminatorType = javax.persistence.DiscriminatorType.${entity.hibernateDiscriminatorType}#set ($argExists = true)#end#if ($discriminatorColumnDefinition)#if ($argExists), #end#**#columnDefinition = "${discriminatorColumnDefinition}"#set ($argExists = true)#end#if ($entity.hibernateDiscriminatorLength > 0)#if ($argExists), #end#**#length = ${entity.hibernateDiscriminatorLength}#end)
+@javax.persistence.DiscriminatorValue("${entity.hibernateDiscriminatorValue}")
+#*  *##end
+#elseif ($entity.generalizations.empty && $entity.hibernateInheritanceClass)## && !$entity.embeddableSuperclassGeneralizationExists)
+
+##
+## Only include the DiscriminatorValue annotation for subclasses if
+## the inheritance strategy is single table mapping strategy.
+##
+@javax.persistence.DiscriminatorValue("${entity.hibernateDiscriminatorValue}")
+#end
 #if ($hibernateEnableCache.equalsIgnoreCase("true"))
 @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.${entity.hibernateCacheType})
 #else
@@ -33,23 +64,23 @@ $entity.getDocumentation(" * ")
 // @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.${entity.hibernateCacheType})
 #end
 #set ($finders = $entity.getQueryOperations(false))
+#set ($entityIdVariable = $stringUtils.uncapitalize(${entity.name}).substring(0,1))
 #if (!$finders.empty)
-@javax.persistence.NamedQueries({
-#if ($entity.genericFinders && !$entity.finderFindAllExists)    
-@javax.persistence.NamedQuery(name = "${entity.name}.findAll", query = "select $stringUtils.uncapitalize(${entity.name}) from ${entity.name} AS $stringUtils.uncapitalize(${entity.name})")
-#if (!$finders.empty),
+@javax.persistence.NamedQueries
+({
+#if ($entity.genericFinders && !$entity.finderFindAllExists)
+    @javax.persistence.NamedQuery(name = "${entity.name}.findAll", query = "SELECT $entityIdVariable FROM ${entity.name} AS $entityIdVariable")#if (!$finders.empty),#end
+
 #end
+#foreach ($finder in $finders)
+    @javax.persistence.NamedQuery(name = "${entity.name}.${finder.name}", query = "${finder.query}")#if($velocityCount != $finders.size()), #end
+
 #end
-#foreach ($finder in $finders)    
-@javax.persistence.NamedQuery(name = "${entity.name}.${finder.name}", query = "${finder.query}")
-#if($velocityCount != $finders.size()), 
-#end
-#end})
+})
 #else
 #if ($entity.genericFinders)
-@javax.persistence.NamedQuery(name = "${entity.name}.findAll", query = "select $stringUtils.uncapitalize(${entity.name}) from ${entity.name} AS $stringUtils.uncapitalize(${entity.name})")
-#if (!$finders.empty),
-#end
+@javax.persistence.NamedQuery(name = "${entity.name}.findAll", query = "SELECT $entityIdVariable FROM ${entity.name} AS $entityIdVariable")#if (!$finders.empty),#end
+
 #end
 #end
 #end
@@ -67,20 +98,22 @@ $comma"${attribute.name}"##no new line
 #end
 })
 @javax.xml.bind.annotation.XmlAccessorType(javax.xml.bind.annotation.XmlAccessType.FIELD)
+// HibernateEntity.vsl annotations merge-point
 public abstract class $entity.entityName##no new line
 #if($entity.generalization)
 #if ($entity.generalization.fullyQualifiedEntityImplementationName)
-#set ($generalizationName = $entity.generalization.fullyQualifiedEntityImplementationName)#else
+#set ($generalizationName = $entity.generalization.fullyQualifiedEntityImplementationName)
+#else
 #set ($generalizationName = $entity.generalization.fullyQualifiedName)
-#end 
+#end
  extends $generalizationName
-#else 
+#else
  implements Serializable, Comparable<${entity.entityName}>
 #if (!$entity.interfaceAbstractions.empty)
 , $entity.implementedInterfaceList
 #end
 #end
- {
+{
     /**
      * The serial version UID of this class. Needed for serialization.
      */
@@ -131,14 +164,21 @@ public abstract class $entity.entityName##no new line
     }
 
 #end
+#if (!$entity.attributes.empty)
     // Generate $entity.attributes.size() attributes
+#end
 ## Identifier attribute is automatically added to the list of attributes.
 #foreach ($attribute in $entity.attributes)
 #renderAttribute($entity $attribute)
 #end
+#if (!$entity.associationEnds.empty)
     // Generate $entity.associationEnds.size() associations
+#end
 #foreach ($associationEnd in $entity.associationEnds)
 #renderAssociation($entity $associationEnd)
+#end
+#if (!$entity.businessOperations.empty)
+    // Generate $entity.businessOperations.size() businessOperations
 #end
 #foreach ($operation in $entity.businessOperations)
     /**
@@ -146,7 +186,7 @@ $operation.getDocumentation("     * ")
 #foreach ($argument in $operation.arguments)
      * @param $argument.name $argument.getDocumentation("")
 #end
-#if ($operation.returnTypePresent)     
+#if ($operation.returnTypePresent)
      * @return $operation.getterSetterReturnTypeName
 #end
 #foreach ($exception in $operation.exceptions)
@@ -236,13 +276,11 @@ $operation.getDocumentation("     * ")
 #if (!$entity.usingForeignIdentifier)
 ## allRequiredProperties includes identifiers, which should never be required. subtract 1 from allProperties.size()
 #foreach ($identifier in $entity.identifiers)
-##// identifier $identifier
 #set ($allSize = $allSize - 1)
 #end
 #end
 #set ($requiredParams=0)
 #foreach ($property in $entity.allRequiredConstructorParameters)
-##// property $property
 #if ($entity.usingForeignIdentifier || !$property.identifier)
 #set ($requiredParams=$requiredParams+1)
 #end
@@ -252,7 +290,6 @@ $operation.getDocumentation("     * ")
 ##// allproperty $property
 #end
 ##// ($entity.allRequiredConstructorParameters.size() + $entity.identifiers.size()) > $entity.allProperties.size()
-## Don't duplicate newInstance if there are no optional parameters or no required parameters
 #if ($requiredParams < $allSize && $requiredParams > 0)
         // requiredParams not identifier : $requiredParams allSize minus identifier : $allSize all required constructor parameters : $entity.allRequiredConstructorParameters.size() identifiers : $entity.identifiers.size() all properties :  $entity.allProperties.size()
 ##// Don't use 3.4 or 3.3 use 3.2 vsl 
@@ -266,44 +303,28 @@ $operation.getDocumentation("     * ")
 #if ($entity.usingForeignIdentifier || !$property.identifier)
          * @param ${property.name} ${property.getterSetterTypeName}
 #end
-#if ($property.identifier)
-         * @param identifier ${property.name} ${property.getterSetterTypeName}
-#end
-#if ($entity.usingForeignIdentifier)
-         * @param foreign ${property.name} ${property.getterSetterTypeName}
-#end
 #end
          * @return newInstance
          */
         public static $entity.fullyQualifiedName newInstance(## no newline
 #set ($comma = "")
 #foreach ($property in $entity.allRequiredConstructorParameters)
-#set ($identifierPresent = false)
-#foreach ($identifier in $entity.identifiers)
-#if ($identifier == $property)
-#set ($identifierPresent = true)
-#end
-#end
-#if ($entity.usingForeignIdentifier || (!$property.identifier || !${identifierPresent}) )
+#if ($entity.usingForeignIdentifier || !$property.identifier)
 ${comma}${property.getterSetterTypeName} ${property.name}## no newline
 #set ($comma = ", ")
 #end
 #end
 )
         {
-            final ${entity.fullyQualifiedName} entityInstance = new ${entity.fullyQualifiedEntityImplementationName}();
+            final ${entity.fullyQualifiedName} entity = new ${entity.fullyQualifiedEntityImplementationName}();
 #foreach ($property in $entity.allRequiredConstructorParameters)
-#set ($identifierPresent = false)
-#foreach ($identifier in $entity.identifiers)
-#if ($identifier == $property)
-#set ($identifierPresent = true)
+#if (!$property.identifier || $entity.usingForeignIdentifier)
+#if ($property.hibernateEntityAttributeMetaType || ($property.navigable && $property.otherEnd))
+            entity.${property.setterName}(${property.name});
 #end
 #end
-#if ($entity.usingForeignIdentifier || (!$property.identifier || !${identifierPresent}) )
-            entityInstance.${property.setterName}(${property.name});
 #end
-#end
-            return entityInstance;
+            return entity;
         }
 #end
 #set ($propertiesPresent = false)
@@ -327,20 +348,22 @@ ${comma}${property.getterSetterTypeName} ${property.name}## no newline
         public static $entity.fullyQualifiedName newInstance(## no newline
 #set ($comma = "")
 #foreach ($property in $entity.allProperties)
-#if ($entity.usingForeignIdentifier || !$property.identifier)
+#if (!$property.identifier || $entity.usingForeignIdentifier)
 ${comma}${property.getterSetterTypeName} ${property.name}## no newline
 #set ($comma = ", ")
 #end
 #end
 )
         {
-            final ${entity.fullyQualifiedName} entityInstance = new ${entity.fullyQualifiedEntityImplementationName}();
+            final ${entity.fullyQualifiedName} entity = new ${entity.fullyQualifiedEntityImplementationName}();
 #foreach ($property in $entity.allProperties)
-#if ($entity.usingForeignIdentifier || !$property.identifier)
-            entityInstance.${property.setterName}(${property.name});
+#if (!$property.identifier || $entity.usingForeignIdentifier)
+#if ($property.hibernateEntityAttributeMetaType || ($property.navigable && $property.otherEnd))
+            entity.${property.setterName}(${property.name});
 #end
 #end
-            return entityInstance;
+#end
+            return entity;
         }
 #end
     }
