@@ -1319,6 +1319,18 @@
                     which is also used by the maven-compiler-plugin. Allowed values=1.4,1.5,1.6,1.7. Default=1.6.
                 </documentation>
             </property>
+            <property name="hibernateVersion">
+                <default>3</default>
+                <documentation>
+                    The version of Hibernate to use when generating.
+                    Allowable values are:
+                    <ul>
+                        <li>2 - Hibernate 2.x</li>
+                        <li>3 - Hibernate 3.x</li>
+                        <li>4 - Hibernate 4.x</li>
+                    </ul>
+                </documentation>
+            </property>            
             <property name="deploymentPlatform">
                 <default>jboss6</default>
                 <documentation>
