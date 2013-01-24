@@ -14,6 +14,22 @@
    	
    <dependencyManagement>
       <dependencies>
+	<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+
+	<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+		of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+		of artifacts. We use this here so that we always get the correct versions 
+		of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
+		read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
+		for your project, such as Arquillian for testing) -->
+	<dependency>
+		<groupId>org.jboss.bom</groupId>
+		<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+		<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+		<type>pom</type>
+		<scope>import</scope>
+	</dependency>
+			      
          <!-- JBoss distributes a complete set of Java EE 6 APIs including 
             a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
             a collection) of artifacts. We use this here so that we always get the correct 
@@ -102,12 +118,19 @@
 			<scope>test</scope>
 		</dependency>
 
-        	<dependency>
-        	        <groupId>org.jboss.arquillian</groupId>
-        	        <artifactId>arquillian-junit</artifactId>
-        	        <version>${version.org.jboss.arquillian}</version>
-        	        <scope>test</scope>
-        	</dependency>   
+		<!-- Optional, but highly recommended -->
+    		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.protocol</groupId>
+			<artifactId>arquillian-protocol-servlet</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- replace this by slf4j-api and slf4j-simple http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html -->
 		<dependency>
@@ -674,8 +697,6 @@
 		<maven.test.skip>false</maven.test.skip>
 		<maven.test.failure.skip>true</maven.test.failure.skip>
                  -->
-      <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-      <jboss.bom.version>1.0.3.Final</jboss.bom.version>
       <!-- Alternatively, comment out the above line, and un-comment the line below to
          use version 1.0.0.Final-redhat-1 which is a release certified
          to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven repository. -->
@@ -915,19 +936,27 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>arq-jbossas-managed000</id>
+			<id>arq-jbossas-managed0</id>
 			<activation>
 				<property>
 					<name>profile.activation</name>
 				</property>
 			</activation>
 			<dependencies>
+                    		<dependency>
+                    		  <groupId>org.jboss.arquillian</groupId>
+                    		  <artifactId>arquillian-bom</artifactId>
+                    		  <version>${org.jboss.arquillian.version}</version>
+                    		  <type>pom</type>
+                    		  <scope>import</scope>
+                    		</dependency>
+ 			
 				<dependency>
 				    <groupId>org.jboss.as</groupId>
 				    <artifactId>jboss-as-arquillian-container-managed</artifactId>
 				    <version>${version.org.jboss.as.arquillian.container}</version>
 				    <scope>test</scope>
-				</dependency>		
+				</dependency>					
 				<!--	
                 		<dependency>
                 		    <groupId>org.jboss.arquillian.container</groupId>
@@ -944,6 +973,26 @@
 				</dependency>        			   		
 			</dependencies>
 			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>${basedir}/src/test/bootstrap-arquillian/java</source>
+									</sources>
+								</configuration>
+							</execution>				
+						</executions>				
+					</plugin>
+				</plugins>					
 				<resources>
 					<resource>
 						<directory>${maven.build.generated}/main/resources</directory>
@@ -959,13 +1008,11 @@
 					<testResource>
 						<directory>${basedir}/src/test/resources</directory>
 						<filtering>true</filtering>
-					</testResource>
-					<!--
+					</testResource>						
 					<testResource>
-						<directory>${basedir}/src/test/bootstrap-openejb</directory>
+						<directory>${basedir}/src/test/bootstrap-arquillian</directory>
 						<filtering>true</filtering>
 					</testResource>
-					-->
 				</testResources>
 			</build>
 		</profile>	
@@ -1050,6 +1097,26 @@
 				-->   	                                
 			</dependencies>
 			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>${basedir}/src/test/bootstrap-openejb/java</source>
+									</sources>
+								</configuration>
+							</execution>				
+						</executions>				
+					</plugin>
+				</plugins>			
 				<resources>
                     			<!--
 					<resource>
@@ -1072,10 +1139,6 @@
 						<directory>${basedir}/src/test/resources</directory>
 						<filtering>true</filtering>
 					</testResource>
-					<testResource>
-						<directory>${basedir}/src/test/bootstrap-openejb/java</directory>
-						<filtering>true</filtering>
-					</testResource>					
 					<testResource>
 						<directory>${basedir}/src/test/bootstrap-openejb</directory>
 						<filtering>true</filtering>
