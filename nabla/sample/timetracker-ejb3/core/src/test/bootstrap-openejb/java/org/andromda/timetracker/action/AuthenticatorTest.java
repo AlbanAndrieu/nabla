@@ -6,35 +6,16 @@ import java.util.TreeSet;
 import no.knowit.seam.openejb.mock.AbstractSeamOpenEjbTest;
 import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
 
-import org.apache.log4j.Logger; //import org.jboss.arquillian.api.Deployment;
-//import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.mock.AbstractSeamTest.ComponentTest;
+import org.apache.log4j.Logger;
 import org.jboss.seam.security.Credentials;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.runner.RunWith;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-//@RunWith(Arquillian.class)
 public class AuthenticatorTest extends SeamOpenEjbTest
 {
 
     private static final Logger logger = Logger.getLogger(AuthenticatorTest.class);
-
-    /*
-    @Deployment
-    public static Archive<?> createTestArchive()
-    {
-        return ShrinkWrap.create(WebArchive.class, "test.war").addClasses(Authenticator.class, AuthenticatorAction.class).addPackages(true, "org.andromda.timetracker") // Needed to run in managed / remote container
-                .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml").addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").addAsResource(EmptyAsset.INSTANCE, "seam.properties")
-                // Deploy our test datasource
-                .addAsWebInfResource("test-ds.xml", "test-ds.xml");
-    }
-     */
 
     @Override
     @BeforeSuite
@@ -51,8 +32,8 @@ public class AuthenticatorTest extends SeamOpenEjbTest
         super.beforeSuite();
     }
 
-    // Ignore Junit Test @Ignore("Pending improvment")
-    @Test(enabled = false)
+    //TODO Ignore Junit Test @Ignore("Pending improvment")
+    //@Test(enabled = false)
     public void shouldAuthenticate() throws Exception
     {
         new ComponentTest()

@@ -118,20 +118,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Optional, but highly recommended -->
-    		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.protocol</groupId>
-			<artifactId>arquillian-protocol-servlet</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- replace this by slf4j-api and slf4j-simple http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -951,6 +937,20 @@
                     		  <scope>import</scope>
                     		</dependency>
  			
+				<!-- Optional, but highly recommended -->
+    				<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+					<scope>test</scope>
+				</dependency>
+                		
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<scope>test</scope>
+				</dependency>
+		 			
 				<dependency>
 				    <groupId>org.jboss.as</groupId>
 				    <artifactId>jboss-as-arquillian-container-managed</artifactId>
