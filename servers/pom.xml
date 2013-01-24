@@ -97,6 +97,7 @@
                                 <jboss.ear.version>5</jboss.ear.version>
                                 <!-- START INFO USE BY MDA -->
                                 <jboss.home>${env.JBOSS_HOME}</jboss.home>
+                                <server.version>7.1.1.Final</server.version>
                                 <!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>-->
                                 <!--<jboss.home>/workspace/jboss-as-7.1.1.Final/</jboss.home>-->
                                 <server.home>${jboss.home}</server.home>
@@ -109,7 +110,7 @@
                           	<webservice.port>8180</webservice.port>
                                 <!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
                               	<dataSource>java:jboss/datasources/${dataSource.name}</dataSource>
-                                <ejb.jndi.mappedname.pattern>java:global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern>
+                                <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
                                 <ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb>
                                 <ejb.jndi.pattern>java:app/core-${project.version}.jar/#{ejbName}</ejb.jndi.pattern>
                                 <ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
@@ -172,7 +173,7 @@
                                 <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
                                 <ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
                                 <ejb.jndi.pattern>${application.context}-ear/#{ejbName}/local</ejb.jndi.pattern>
-                                <ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern}/#{ejbName}/Local</ejb.jndi.pattern.test>
+                                <ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
                                 <!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/> in persistence.xml -->
                                 <jpa.provider.module>org.hibernate:3</jpa.provider.module>
                                 <hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
