@@ -281,13 +281,13 @@
 	<dependency>
 		<groupId>javax.faces</groupId>
 		<artifactId>jsf-api</artifactId>
-		<version>${jsf.version}</version>
+		<version>${jsf.api.version}</version>
 		<scope>${scope.type}</scope>
 	</dependency>
 	<dependency>
 		<groupId>javax.faces</groupId>
 		<artifactId>jsf-impl</artifactId>
-		<version>${jsf.version}</version>
+		<version>${jsf.impl.version}</version>
 		<scope>${scope.type}</scope>
 	</dependency>
     -->

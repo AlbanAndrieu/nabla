@@ -22,7 +22,8 @@ import org.testng.annotations.Test;
 
 public class SimpleSeamTest extends SeamOpenEjbTest
 {
-    private static final Logger logger = Logger.getLogger(SimpleSeamTest.class);
+    private static final Logger logger           = Logger.getLogger(SimpleSeamTest.class);
+    public static final String  JNDI_PREFIX_NAME = "";                                    //"global/timetracker-ejb3-ear/core-3.4/";
 
     @Test
     public void testGetUser() throws Exception
@@ -115,7 +116,7 @@ public class SimpleSeamTest extends SeamOpenEjbTest
     {
 
         final InitialContext initialContext = this.getInitialContext();
-        final UserServiceLocal local = (UserServiceLocal) initialContext.lookup("UserServiceBean/Local");
+        final UserServiceLocal local = (UserServiceLocal) initialContext.lookup(JNDI_PREFIX_NAME + "UserServiceBean/Local");
         Assert.assertNotNull(local);
 
         // final UserVO userVOLocal = local.getUser("testuser");

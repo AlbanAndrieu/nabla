@@ -12,6 +12,7 @@ import javax.naming.NamingException;
 import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
 
 import org.andromda.timetracker.ServiceLocator;
+import org.andromda.timetracker.action.SimpleSeamTest;
 import org.andromda.timetracker.domain.Role;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.UserDoesNotExistException;
@@ -33,7 +34,9 @@ import org.testng.annotations.Test;
  */
 public class UserServiceTest extends SeamOpenEjbTest
 {
-    private static final Log logger = LogFactory.getLog(UserServiceTest.class);
+    private static final Log    logger           = LogFactory.getLog(UserServiceTest.class);
+
+    private static final String JNDI_PREFIX_NAME = SimpleSeamTest.JNDI_PREFIX_NAME;
 
     // @BeforeTest
     // public void startup() throws Exception
@@ -77,7 +80,7 @@ public class UserServiceTest extends SeamOpenEjbTest
         UserServiceLocal userService;
         try
         {
-            userService = this.doJndiLookup("UserServiceBean");
+            userService = this.doJndiLookup(JNDI_PREFIX_NAME + "UserServiceBean");
             // userService = (UserServiceLocal) EJB3Container.getInitialContext().lookup("UserServiceBean/local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
@@ -103,7 +106,7 @@ public class UserServiceTest extends SeamOpenEjbTest
         try
         {
             final InitialContext initialContext = this.getInitialContext();
-            userService = (UserServiceLocal) initialContext.lookup("UserServiceBean/Local");
+            userService = (UserServiceLocal) initialContext.lookup(JNDI_PREFIX_NAME + "UserServiceBean/Local");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -127,7 +130,7 @@ public class UserServiceTest extends SeamOpenEjbTest
         try
         {
             final InitialContext initialContext = this.getInitialContext();
-            userService = (UserServiceRemote) initialContext.lookup("UserServiceBean/Remote");
+            userService = (UserServiceRemote) initialContext.lookup(JNDI_PREFIX_NAME + "UserServiceBean/Remote");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }
@@ -199,7 +202,7 @@ public class UserServiceTest extends SeamOpenEjbTest
         try
         {
             // userService = (UserServiceLocal) EJB3Container.getInitialContext("user", "password").lookup("UserServiceBean/local");
-            userService = this.doJndiLookup("UserServiceBean");
+            userService = this.doJndiLookup(JNDI_PREFIX_NAME + "UserServiceBean");
             UserServiceTest.logger.debug("Service : " + userService.toString());
             Assert.assertNotNull(userService);
         }

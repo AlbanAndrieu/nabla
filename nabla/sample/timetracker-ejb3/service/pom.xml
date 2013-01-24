@@ -17,7 +17,7 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>database</artifactId>
             <version>${project.version}</version>
-        </dependency> 
+        </dependency>        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -52,6 +52,13 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
+        
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		        
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
@@ -180,7 +187,13 @@
             <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
-			                
+
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>${jboss.logging.version}</version>
+        </dependency>
+        	
 	<dependency>
 	    <groupId>commons-io</groupId>
 	    <artifactId>commons-io</artifactId>

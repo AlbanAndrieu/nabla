@@ -26,7 +26,7 @@ import org.jboss.seam.annotations.Scope;
  * Add any manual implementation within this class.  This class will NOT
  * be overwritten with incremental changes.
  *
- * 
+ * TODO: Model Documentation for User
  *
  */
 //Uncomment because jboss embedded tests for UserServiceBean does not work with seam
@@ -37,7 +37,7 @@ import org.jboss.seam.annotations.Scope;
 // Uncomment to enable entity listener for User
 // @javax.persistence.EntityListeners({org.andromda.timetracker.domain.UserListener.class})
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries( { @NamedQuery(name = "User.findAll", query = "select user from User AS user"), @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email") })
+@NamedQueries( { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User AS u"), @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email") })
 public class User extends UserEmbeddable implements Serializable, Comparable<User>
 {
     /**
@@ -87,7 +87,7 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
     // -------------- Entity Methods -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for User.getUserDetails
      */
     @Transient
     public static User getUserDetails(String username)
@@ -99,8 +99,9 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
     // --------------- Lifecycle callbacks -----------------
 
     /**
-     * @see Comparable#compareTo(T)
+     * @see Comparable#compareTo
      */
+    @Override
     public int compareTo(User o)
     {
         int cmp = 0;
@@ -140,4 +141,5 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
         }
         return cmp;
     }
+
 }

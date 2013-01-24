@@ -59,6 +59,7 @@ public class UserServiceTest
             catch (final Exception e)
             {
                 this.logger.debug("Exception : " + e);
+                System.err.println("Exception : " + e);
                 Assert.fail();
             }
 

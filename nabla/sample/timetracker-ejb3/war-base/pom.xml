@@ -81,27 +81,35 @@
         <!-- Provides portable constraints such as @Email -->
         <!-- Hibernate Validator is shipped in JBoss AS 7 -->
         <dependency>
-            <artifactId>hibernate-validator</artifactId>
             <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>            
             <scope>provided</scope>
+            <!--
             <exclusions>
               <exclusion>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
               </exclusion>
-            </exclusions>            
+              <exclusion>
+                  <groupId>org.jboss.logging</groupId>
+                  <artifactId>jboss-logging</artifactId>
+              </exclusion>              
+            </exclusions>      
+            -->      
         </dependency>    
 
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-search</artifactId>
 		<version>${hibernate.search.version}</version>
+		<!--
 		<exclusions>
 			<exclusion>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate</artifactId>
 			</exclusion>
 		</exclusions>
+		-->
 	</dependency>
                
         <!-- GWT validation uses Hibernate Validator, and requires the sources 
@@ -117,6 +125,10 @@
               <groupId>org.slf4j</groupId>
               <artifactId>slf4j-api</artifactId>
             </exclusion>
+              <exclusion>
+                  <groupId>org.jboss.logging</groupId>
+                  <artifactId>jboss-logging</artifactId>
+              </exclusion>                          
           </exclusions>
         </dependency>
                 

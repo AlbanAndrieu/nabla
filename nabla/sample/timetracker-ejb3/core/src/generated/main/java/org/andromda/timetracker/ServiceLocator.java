@@ -119,6 +119,7 @@ public class ServiceLocator
      * Gets the remote interface {@link UserServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return UserServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final UserServiceRemote get_org_andromda_timetracker_service_UserServiceBean_Remote(Properties env) throws NamingException
@@ -130,6 +131,7 @@ public class ServiceLocator
      * Gets the local interface {@link UserServiceLocal}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return UserServiceRemote
      * @throws NamingException failure to lookup local service interface.
      */
     public final UserServiceLocal get_org_andromda_timetracker_service_UserServiceBean_Local(Properties env) throws NamingException
@@ -155,6 +157,7 @@ public class ServiceLocator
      * Gets the remote interface {@link TimeTrackingServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return TimeTrackingServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final TimeTrackingServiceRemote get_org_andromda_timetracker_service_TimeTrackingServiceBean_Remote(Properties env) throws NamingException
@@ -180,6 +183,7 @@ public class ServiceLocator
      * Gets the remote interface {@link SecurityServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return SecurityServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final SecurityServiceRemote get_org_andromda_timetracker_service_SecurityServiceBean_Remote(Properties env) throws NamingException
@@ -192,6 +196,7 @@ public class ServiceLocator
      * Gets an instance of the given service.
      *
      * @param serviceName lookup this service from the context.
+     * @return Object getService(serviceName, null)
      * @throws NamingException failure to lookup remote service interface.
      */
     public final Object getService(String serviceName) throws NamingException
@@ -204,6 +209,7 @@ public class ServiceLocator
      *
      * @param serviceName lookup this service from the context.
      * @param env the Context environment properties.  Null represents no properties.
+     * @return Object getContext(env).lookup(serviceName)
      * @throws NamingException failure to lookup remote service interface.
      */
     public final Object getService(String serviceName, Properties env) throws NamingException

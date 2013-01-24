@@ -34,7 +34,7 @@
                 <scope>runtime</scope>
             </dependency>
             -->
-            
+
             <!-- TODO check in core -->
             <!-- replace this by slf4j-api and slf4j-simple
             http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
@@ -44,7 +44,7 @@
                     <version>${slf4j.version}</version>
                 <scope>provided</scope>
             </dependency>
-            -->            
+            -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -56,15 +56,15 @@
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
                 <scope>provided</scope>
-            </dependency>            
-          
+            </dependency>
+
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib-nodep</artifactId>
                 <version>${cglib.nodep.version}</version>
                 <scope>runtime</scope>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.andromda</groupId>
                 <artifactId>andromda-utils</artifactId>
@@ -111,16 +111,16 @@
                 <version>${andromda.version}</version>
                 <scope>runtime</scope>
             </dependency>
-            -->          
+            -->
 
-            <!--    
+            <!--
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-annotations</artifactId>
                 <version>${hibernate.annotations.version}</version>
-            </dependency>        
-            -->                        
-            
+            </dependency>
+            -->
+
             <!--dependency>
                 <groupId>taglibs</groupId>
                 <artifactId>standard</artifactId>
@@ -133,7 +133,7 @@
                 <version>2.0</version>
                 <scope>provided</scope>
             </dependency-->
-        
+
             <!--dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -184,11 +184,11 @@
 	    		    -->
 	    		    <!--<file>${home.dir}/filters/project-${environment}.properties</file>-->
 	    		    <!--
-	    		    <file>${home.dir}/build-tools/src/main/resources/project/project-development.properties</file>	    
+	    		    <file>${home.dir}/build-tools/src/main/resources/project/project-development.properties</file>
 	    		  </files>
 	    		</configuration>
 	        </execution>
-	      </executions>      
+	      </executions>
 	    </plugin>
 	    -->
             <!--
@@ -203,7 +203,7 @@
                 <groupId>org.twdata.maven</groupId>
                 <artifactId>maven-cli-plugin</artifactId>
             </plugin>
-        </plugins>        
+        </plugins>
     </build>
     <modules>
         <!-- Save the values used to generate this project from andromdapp
@@ -227,16 +227,16 @@
         -->
         <module>mda</module>
         <module>common</module>
-        <module>database</module>
+        <module>database</module> <!--hibernateVersion 3 only -->
         <module>core</module>
         <!--<module>core-test</module>-->
-        <module>service</module>
+        <module>service</module> <!--hibernateVersion 3 only -->
         <module>war-base</module>
         <module>web</module>
         <module>app</module>
         <module>client</module>
     </modules>
-    <properties>      
+    <properties>
         <!--
         <andromda.version>3.4</andromda.version>
         <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
@@ -247,61 +247,59 @@
         <maven.default.skin.version>1.0</maven.default.skin.version>
         <doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
         <maven.build.helper.plugin.version>1.5</maven.build.helper.plugin.version>
-        <lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>       
+        <lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
         <antlr.version>2.7.7</antlr.version>
-        <log4j.version>1.2.16</log4j.version>	
+        <log4j.version>1.2.16</log4j.version>
         <junit.version>4.10</junit.version>
         <testng.version>6.3</testng.version>
         <servlet.api.version>2.5</servlet.api.version>
         <hibernate.core.version>3.6.8.Final</hibernate.core.version>
-        <hibernate.entitymanager.version>3.6.8.Final</hibernate.entitymanager.version>        
-        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>               
-        <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>                
+        <hibernate.entitymanager.version>3.6.8.Final</hibernate.entitymanager.version>
+        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
         <maven.build.generated>src/generated</maven.build.generated>
         -->
         <!-- WORKS <commons.digester.version>1.8.1</commons.digester.version> -->
-        <!-- WORKS -->
-        <hibernate.core.version>3.3.2.GA</hibernate.core.version>
-        <hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>   
         <!-- NOK for hibernate3-maven-plugin in database -->
-        <!-- WORKS with jboss 7 but not openejb
-        <hibernate.core.version>3.6.8.Final</hibernate.core.version>
-        -->
+        <!-- WORKS with jboss 7 but not openejb -->
+        <!--<hibernate.core.version>3.6.9.Final</hibernate.core.version>-->
         <!--
-        <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version> 
+        <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
         -->
         <!-- WORKS with openejb
         <hibernate.core.version>3.3.2.GA</hibernate.core.version>
         <hibernate.entitymanager.version>${hibernate.core.version}</hibernate.entitymanager.version>
-        -->        
+        -->
         <!-- <hibernate.validator.version>4.2.0.Final</hibernate.validator.version> -->
         <!--error in test <hibernate.annotations.version>3.2.0.ga</hibernate.annotations.version>-->
         <!--<hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>-->
         <!--
         <hibernate.core.version>3.6.10.Final</hibernate.core.version>
         -->
-        <!--
-        <hibernate.core.version>4.0.1.Final</hibernate.core.version>
-        <hibernate.entitymanager.version>4.0.1.Final</hibernate.entitymanager.version> 
-        -->
+	<sun.jsf.api.version>2.1.5</sun.jsf.api.version>
+	<sun.jsf.impl.version>2.1.5</sun.jsf.impl.version>
+	<jsf.api.version>1.2_15</jsf.api.version>
+        <jsf.impl.version>1.2_15</jsf.impl.version>
+        <version.org.jboss.arquillian>1.0.0.Alpha5</version.org.jboss.arquillian>
+        <version.arquillian.seam2>1.0.0.Final-SNAPSHOT</version.arquillian.seam2>
         <!--<hibernate.validator.version>4.2.0.Final</hibernate.validator.version> TODO -->
         <!--error in test <hibernate.annotations.version>3.2.0.ga</hibernate.annotations.version>-->
 
-        <!--<hibernate3.version>3.6.8.Final</hibernate3.version>-->        
+        <!--<hibernate3.version>3.6.8.Final</hibernate3.version>-->
         <!--<slf4j.version>1.5.8</slf4j.version>-->
         <!--<jsf.version>1.2_10</jsf.version>-->
         <!--<javax.faces.version>1.2_12</javax.faces.version>-->
         <!--<richfaces.version>3.1.2.GA</richfaces.version>-->
         <!--<richfaces.version>3.3.2.SR1</richfaces.version>-->
-        <richfaces.version>3.3.3.Final</richfaces.version>  
+        <richfaces.version>3.3.3.Final</richfaces.version>
         <!--<drools.version>5.0.1</drools.version>-->
-        <!--<drools.version>5.3.0.Final</drools.version>-->            
-                         
-        <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version> 
+        <!--<drools.version>5.3.0.Final</drools.version>-->
+
+        <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
         <jboss.cache.version>1.4.1.SP9</jboss.cache.version>
         <!--<org.mvel.mvel2.version>2.0.10-SNAPSHOT</org.mvel.mvel2.version>-->
-        
+
         <!--<el.api.version>1.0</el.api.version>-->
         <el.api.version>2.2.1-b04</el.api.version>
         <jboss.el.version>1.0_02.CR5</jboss.el.version>
@@ -309,17 +307,17 @@
         <!--<gwt.version>1.5.2</gwt.version>-->
 
         <!--<myfaces.version>2.0.2</myfaces.version>-->
-                
+
         <application.package>org.andromda.timetracker</application.package>
         <application.id>${project.parent.artifactId}</application.id> <!-- hint: same value as artifactId -->
         <application.name>TimeTracker</application.name>
         <database.name>${application.id}</database.name>
- 
+
     	<application.context>${application.id}</application.context>
     	<application.web.context>${application.context}</application.web.context>
     	<application.display.name>Nabla Reference Implementation</application.display.name>
     	<application.description>
-    	  The Nabla Reference Implementation is a Maven multi module project 
+    	  The Nabla Reference Implementation is a Maven multi module project
     	  you can use as a template for your own JBoss Seam project
     	</application.description>
     	<application.distributable>false</application.distributable>
@@ -328,14 +326,18 @@
     	<application.jndi.pattern>${ejb.jndi.pattern}</application.jndi.pattern>
     	<!-- OpenEJB JNDI Pattern -->
     	<!--use same propertie as jboss5x profile for openejb to work -->
-    	<application.jndi.pattern.test>${ejb.jndi.pattern.test}</application.jndi.pattern.test>    	
+    	<application.jndi.pattern.test>${ejb.jndi.pattern.test}</application.jndi.pattern.test>
 
     	<application.unpack.modules>false</application.unpack.modules> <!-- app.unpack.modules=false -->
-    	
+    	<!--<ejb.jndi.pattern>java:app/core-${project.version}.jar/#{ejbName}</ejb.jndi.pattern>-->
+        <!--<ejb.jndi.pattern.test>${ejb.jndi.pattern}</ejb.jndi.pattern.test>-->
+        <!--<ejb.jndi.pattern.test>/#{ejbName}/Local</ejb.jndi.pattern.test>-->
+        <!--<ejb.jndi.mappedname.pattern>java:</ejb.jndi.mappedname.pattern> check ServiceLocator.java-->
+
 	<hibernate.hbm2ddl>create-drop</hibernate.hbm2ddl> <!-- update -->
-	<hibernate.showsql>true</hibernate.showsql> 
+	<hibernate.showsql>true</hibernate.showsql>
 	<hibernate.default_batch_fetch_size>16</hibernate.default_batch_fetch_size>
-	
+
 	<!-- see components.properties or components.xml -->
 	<ejbJndiPattern>/#{ejbName}/local</ejbJndiPattern>
 	<seamBootstrapsPu>true</seamBootstrapsPu>
@@ -343,7 +345,7 @@
 	<seamEmfRef>#entityManagerFactory</seamEmfRef>
 	<!--<puJndiName>java\:comp/env/core-test/pu</puJndiName>-->
 	<puJndiName>#null</puJndiName>
- 
+
 	<ds.jndi.name>${application.id}</ds.jndi.name>
 	<!--<pu.transaction-type>RESOURCE_LOCAL</pu.transaction-type>-->
 	<pu.transaction-type>JTA</pu.transaction-type>
@@ -353,4 +355,100 @@
 	<pu.hibernate.transaction.manager_lookup_class.test>org.apache.openejb.hibernate.TransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class.test>
 	<pu.jboss.entity.manager.factory.jndi.name>java:/myEntityManagerFactory</pu.jboss.entity.manager.factory.jndi.name> <!--java:/${application.id}EntityManagerFactory-->
     </properties>
+    <profiles>
+    	<profile>
+    		<id>hibernate-3</id>
+    		<activation>
+    			<property>
+    				<name>!profile.activation</name>
+    			</property>
+    		</activation>
+    		<!-- compatibility https://hibernate.onjira.com/browse/HVAL-75 -->
+    		<properties>
+        		<hibernate.core.version>3.3.2.GA</hibernate.core.version>
+        		<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        		<!--<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version> instead 3.4.0.GA (add antlr)-->
+        		<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
+        		<hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>
+        		<hibernate.validator.version>3.1.0.GA</hibernate.validator.version>
+        		<!--<seam.version>2.3.0.Final</seam.version>-->
+        		<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version> -->  
+        		<!--<hibernate.search.version>3.0.0.GA</hibernate.search.version> does not works-->
+    		</properties>
+    	</profile>
+    	<profile>
+    		<id>hibernate-3-6-NOK</id>
+    		<activation>
+    			<property>
+    				<name>profile.activation</name>
+    			</property>
+    		</activation>
+    		<properties>
+        		<hibernate.core.version>3.6.8.Final</hibernate.core.version>
+        		<!--<hibernate.annotations.version>3.5.6-Final</hibernate.annotations.version>-->
+        		<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
+        		<hibernate.entitymanager.version>3.6.8.Final</hibernate.entitymanager.version>
+                        <!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--><!-- works with hibernate.core.version 3.6.8.GA -->
+        		<!--<hibernate.search.version>4.2.0.Beta1</hibernate.search.version>-->
+        		<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
+        		<ehcache.version>2.6.2</ehcache.version>
+        		<javassist.version>3.17.1-GA</javassist.version>
+    		</properties>
+    	</profile>
+    	<profile>
+    		<id>hibernate-4</id>
+    		<activation>
+    			<property>
+    				<name>profile.activation</name>
+    			</property>
+    		</activation>
+    		<dependencyManagement>
+    		<!--
+    		    <dependencies>
+    				<dependency>
+    		               <groupId>org.jboss.seam</groupId>
+    		               <artifactId>bom</artifactId>
+    		               <version>${seam.version}</version>
+    		               <type>pom</type>
+    		               <scope>import</scope>
+    		           </dependency>
+    		    </dependencies>
+    		    -->
+    		</dependencyManagement>
+        <!--
+			<dependencies>
+				<dependency>
+				    <groupId>org.jboss.as</groupId>
+				    <artifactId>jboss-as-arquillian-container-managed</artifactId>
+				    <version>${version.org.jboss.as.arquillian.container}</version>
+				    <scope>test</scope>
+				</dependency>
+			</dependencies>
+			-->
+    		<properties>
+    			<spring3.version>3.2.0.RELEASE</spring3.version>
+    			<validation.api.version>1.1.0.Beta2</validation.api.version>
+    			<cxf.version>2.7.1</cxf.version>
+    		        <jsf.version>1.2_15</jsf.version>
+        		<hibernate.core.version>4.1.8.Final</hibernate.core.version>
+        		<hibernate.entitymanager.version>4.1.8.Final</hibernate.entitymanager.version>
+        		<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
+        		<hibernate.search.version>4.1.1.Final</hibernate.search.version>
+        		<javax.persistence.version>1.0</javax.persistence.version>
+        		<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
+			<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
+			<hibernate.search.version>4.2.0.Beta1</hibernate.search.version>
+			<org.apache.myfaces.trinidad.version>2.0.1</org.apache.myfaces.trinidad.version>
+			<richfaces.version>4.2.2.Final</richfaces.version>
+			<ehcache.version>2.6.2</ehcache.version>
+        		<javassist.version>3.17.1-GA</javassist.version>
+			<!--<seam.version>2.3.0.Final</seam.version>-->
+			<!--<openejb.javaee.api.version>6.0-4</openejb.javaee.api.version>-->
+			<!--<openejb.core.version>4.5.1</openejb.core.version>-->
+        		<!--<ejb3.persistence.version>3.3.2.Beta1</ejb3.persistence.version>-->
+        		<!--<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version> NOK-->
+        		<!--<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>-->
+    		</properties>
+    	</profile>
+    </profiles>
 </project>

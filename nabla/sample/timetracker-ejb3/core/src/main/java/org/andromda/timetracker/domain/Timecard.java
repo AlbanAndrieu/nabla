@@ -32,7 +32,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 // Uncomment to enable entity listener for Timecard
 // @javax.persistence.EntityListeners({org.andromda.timetracker.domain.TimecardListener.class})
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQuery(name = "Timecard.findAll", query = "select timecard from Timecard AS timecard")
+@NamedQuery(name = "Timecard.findAll", query = "SELECT t FROM Timecard AS t")
 public class Timecard extends TimecardEmbeddable implements Serializable, Comparable<Timecard>
 {
     /**
@@ -79,7 +79,7 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
     // -------------- Entity Methods -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.Timecard.addTimeAllocation
      */
     @Transient
     public void addTimeAllocation(TimeAllocation timeAllocation)
@@ -89,7 +89,7 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.Timecard.findByCriteria
      */
     @Transient
     public static List findByCriteria(TimecardSearchCriteriaVO criteria)
@@ -101,8 +101,9 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
     // --------------- Lifecycle callbacks -----------------
 
     /**
-     * @see Comparable#compareTo(T)
+     * @see Comparable#compareTo
      */
+    @Override
     public int compareTo(Timecard o)
     {
         int cmp = 0;
@@ -126,4 +127,5 @@ public class Timecard extends TimecardEmbeddable implements Serializable, Compar
         }
         return cmp;
     }
+
 }
