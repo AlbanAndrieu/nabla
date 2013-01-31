@@ -10,10 +10,9 @@
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
-        <groupId>com.nabla.project</groupId>
         <artifactId>uml</artifactId>
+        <name>Nabla UML</name>        
         <packaging>pom</packaging>
-        <name>Nabla UML</name>
         <description>Parent of all MDA-related modules.</description>
         <url>${JOB_URL}</url>
 
