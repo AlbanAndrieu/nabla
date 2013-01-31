@@ -10,9 +10,8 @@
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
-        <groupId>com.nabla.project</groupId>
         <artifactId>main</artifactId>
-        <name>Main</name>
+        <name>Nabla Main</name>
         <packaging>pom</packaging>
         <description>The Main pom file is a superpom to centralize all third parties</description>
         <url>${JOB_URL}</url>
@@ -640,11 +639,6 @@
                                             </configuration>
                                         </execution>
                                 </executions>
-                        </plugin>
-                        <plugin>
-                                <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>buildnumber-maven-plugin</artifactId>
-                                <version>${maven.buildnumber.plugin.version}</version>
                         </plugin>
 
                         <!--
@@ -1275,6 +1269,12 @@ STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
 vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
                                                                         </configuration>
                                                                 </plugin>
+                                                                
+    								<plugin>
+    								  <groupId>de.smartics.maven.plugin</groupId>
+    								  <artifactId>maven-buildmetadata-plugin</artifactId>
+    								  <version>${maven.buildmetadata.plugin.version}</version>
+    								</plugin>                                                                
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
@@ -1460,6 +1460,11 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
                                                 </executions>
                                         </plugin>
                                         -->
+    					<plugin>
+    					  <groupId>de.smartics.maven.plugin</groupId>
+    					  <artifactId>maven-buildmetadata-plugin</artifactId>
+    					  <version>${maven.buildmetadata.plugin.version}</version>
+    					</plugin>                                          
                                 </plugins>
                         </build>
                         <properties>
@@ -1971,7 +1976,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
                                                                         <configuration>
                                                                                 <minSeverity>info</minSeverity>
                                                                         </configuration>
-                                                                </plugin>
+                                                                </plugin>                                                                
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
