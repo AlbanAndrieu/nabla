@@ -14,7 +14,7 @@
     <artifactId>maven</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>AndroMDA Maven Site Plugins</name>
+    <name>Nabla Maven Site Plugins</name>
     <description>The Nabla Maven site plugins</description>
     <!--<url>http://maven.apache.org/skins/</url>-->
     <url>${JOB_URL}</url>    
