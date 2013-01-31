@@ -10,13 +10,11 @@
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
-        <groupId>com.nabla.project</groupId>
         <artifactId>project</artifactId>
-        <name>Project</name>
+        <name>Nabla Project</name>
         <packaging>pom</packaging>
+        <description>Proof of concept : SOA framework for generic services</description>        
         <url>${JOB_URL}</url>
-
-        <description>Proof of concept : SOA framework for generic services</description>
 
         <scm>
                 <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/project</connection>
