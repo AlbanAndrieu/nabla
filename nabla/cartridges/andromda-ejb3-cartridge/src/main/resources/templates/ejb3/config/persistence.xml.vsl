@@ -44,10 +44,9 @@ Modify as necessary for JPA unit testing
 #end
         <class>${entity.fullyQualifiedEntityName}</class>
 #if ($entity.embeddableSuperclass && $entity.dynamicIdentifiersPresent)
-##TODO
-###**##set ($attributes = $entity.getInstanceAttributes(false, false))
-###else
-###**##set ($attributes = $entity.getInstanceAttributes(false, true))
+#**##set ($attributes = $entity.getInstanceAttributes(false, false))
+#else
+#**##set ($attributes = $entity.getInstanceAttributes(false, true))
 #end
 #if (!$attributes.empty)
 #foreach ($attribute in $attributes)
