@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+	<!-- @version $Revision: $ $Date: $ $Author: $ $State: $ -->
+	
 	<parent>
 	    <groupId>com.nabla</groupId>
 	    <artifactId>users</artifactId>
@@ -137,7 +138,7 @@
     		  <properties>
 			<env.WORKSPACE>${env.HOME}</env.WORKSPACE>
     		  </properties>
-    		</profile>
+    		</profile>	
 		<profile>
 		  <!-- e.g: mvn	initialize -Pshow-properties -->
 		  <id>show-properties</id>
@@ -1200,6 +1201,7 @@
 		<jboss.cache.version>1.4.1.SP9</jboss.cache.version>
 		<jboss.el.version>1.0_02.CR5</jboss.el.version>
 		<jboss.logging.version>3.1.2.GA</jboss.logging.version>
+		<jboss.common.core.version>2.2.20.GA</jboss.common.core.version>
 		<jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
 		<jbossws.client.version>2.0.1.SP2</jbossws.client.version>
 		<el.api.version>2.2.1-b04</el.api.version>
@@ -1432,6 +1434,10 @@
 		  resources, i.e. build	is platform dependent! -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- TODO ???
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+		<build.datetime>${maven.build.timestamp}</build.datetime>  
+		-->
 
 		<!-- Plugin version definitions	-->
 		<maven.project.version>3.0-alpha-2</maven.project.version>
@@ -1513,6 +1519,8 @@
 		<maven.site.plugin.version>3.2</maven.site.plugin.version>
 		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
 		<maven.buildnumber.plugin.version>1.2</maven.buildnumber.plugin.version>
+		<maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>	
+		<maven.license.plugin.version>1.9.0</maven.license.plugin.version>	
 		<maven.gmaven.plugin.version>1.4</maven.gmaven.plugin.version>
 		<maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
 		<maven.surefire.plugin.version>2.12.4</maven.surefire.plugin.version>
@@ -1571,8 +1579,8 @@
 		<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 		<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
         	<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
-        	<version.org.jboss.as.arquillian.container>7.1.1.Final</version.org.jboss.as.arquillian.container> <!-- same as version.jbossas7 -->
-        	<version.org.jboss.spec.jboss.javaee.6.0>${org.jboss.bom.jboss.javaee6.with.tools.version}</version.org.jboss.spec.jboss.javaee.6.0>
+        	<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->
+        	<org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
         	<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
       		<jboss.bom.version>1.0.3.Final</jboss.bom.version>
 	</properties>
@@ -2221,17 +2229,36 @@
 
 				</plugin>
 				<!-- The build date is available as $buildNumber in my POMs and	resource files.	-->
+				<!-- buildnumber-maven-plugin DOES not WORKS use maven-buildmetadata-plugin instead -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>buildnumber-maven-plugin</artifactId>
 					<version>${maven.buildnumber.plugin.version}</version>
 					<configuration>
-						<format>{0,date,yyyy-MM-dd HH:mm:ss}</format>
+						<format>{0,date,yyyy-MM-dd HH:mm:ss}.{1}</format>
+            					<items>
+            					    <item>timestamp</item>
+            					    <item>scmVersion</item>
+            					</items>
+						<!--<format>{0,number}</format>-->
+						<!--<format>Build: #{0} ({1,date})</format>-->
+						<!--<format>{0,date,yyyy-MM-dd HH:mm:ss}</format>-->
+						<!--
 						<items>
+						        <item>buildNumber\d*</item>
 							<item>timestamp</item>
-						</items>
-						<doCheck>false</doCheck>
-						<doUpdate>false</doUpdate>
+						</items>  
+						-->
+						<buildNumberPropertyName>buildNumberSeq</buildNumberPropertyName>
+     						<!-- 
+     						 doCheck and doUpdate actually talk to repository if it's true,
+     						 Check would check that there are no local changes. 
+     						 Update would update it 
+     						-->					
+						<doCheck>true</doCheck>
+						<doUpdate>true</doUpdate>
+						<revisionOnScmFailure>1.0</revisionOnScmFailure>    
+						<getRevisionOnlyOnce>true</getRevisionOnlyOnce> 
 					</configuration>
 					<executions>
 						<execution>
@@ -2242,6 +2269,22 @@
 						</execution>
 					</executions>
 				</plugin>
+
+		  		<plugin>
+		  		  <groupId>de.smartics.maven.plugin</groupId>
+		  		  <artifactId>maven-buildmetadata-plugin</artifactId>
+		  		  <version>${maven.buildmetadata.plugin.version}</version>
+		  		</plugin>		
+				<plugin>
+				  <groupId>com.mycila.maven-license-plugin</groupId>
+				  <artifactId>maven-license-plugin</artifactId>
+				  <version>${maven.license.plugin.version}</version>
+				  <configuration>
+				    <properties>
+				      <year>\${build.copyright.year}</year>
+				    </properties>
+				  </configuration>
+				</plugin>		  				
 				<!--
 				  see: http://docs.codehaus.org/display/GMAVEN/Home
 				-->
@@ -2253,7 +2296,7 @@
 				    <providerSelection>2.0</providerSelection>
 				    <debug>${jdkDebug}</debug>
 				    <stacktrace>${jdkDebug}</stacktrace>
-				    <targetBytecode>1.5</targetBytecode> <!-- is the value to compile for a JDK	1.5 or later JVM. -->
+				    <targetBytecode>${jdkLevel}</targetBytecode> <!-- is the value to compile for a JDK	1.5 or later JVM. -->
 				    <verbose>true</verbose>
 				    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 				  </configuration>
@@ -2353,13 +2396,34 @@
 								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 							</manifest>
 							<manifestEntries>
-								<Build-Machine>${env.COMPUTERNAME}</Build-Machine>
-								<Url>${project.url}</Url>
-								<Implementation-Title>${product.title}</Implementation-Title>
-								<Implementation-Version>${product.version}</Implementation-Version>
-								<Build-Date>${timestamp}</Build-Date>
-								<Build-Revision>${buildNumber}</Build-Revision>
-								<Mode>${environment}</Mode>
+					                  <Url>${project.url}</Url>
+					                  <Specification-Title>${project.name}-${product.title}</Specification-Title>
+					                  <Specification-Version>${project.version}-${product.version}</Specification-Version>
+					                  <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+					                  <Implementation-Title>${project.name}-${product.title}</Implementation-Title>
+					                  <Implementation-Version>${project.version}-${product.version}</Implementation-Version>
+					                  <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+					                  <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+					                  <Implementation-Build>${maven.build.timestamp}</Implementation-Build>							
+        				                  <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
+        				                  <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+        				                  <Implementation-URL>${project.url}</Implementation-URL>
+        				                  <Implementation-Date>${build.date}</Implementation-Date>
+        				                  <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+        				                  <Implementation-DatePattern>${build.date.pattern}</Implementation-DatePattern>
+        				                  <Implementation-Full-Version>${build.version.full}</Implementation-Full-Version>
+        				                  <Built-Host>${build.host.name}</Built-Host>
+        				                  <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
+        				                  <Built-By>${build.user}</Built-By>
+        				                  <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+					                  <Build-Date>${build.date}</Build-Date>
+					                  <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+        				                  <Maven-Version>${build.maven.version}</Maven-Version>
+        				                  <Java-Version>${java.version}</Java-Version>
+        				                  <Java-Vendor>${java.vendor}</Java-Vendor>														
+					                  <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
+					                  <X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>								
+					                  <Mode>${environment}</Mode>
 							</manifestEntries>
 						</archive>
 						<includeJar>false</includeJar>
@@ -2404,10 +2468,33 @@
 					      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 					    </manifest>
 					    <manifestEntries>
-					      <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
 					      <Url>${project.url}</Url>
-					      <Build-Date>${timestamp}</Build-Date>
-					      <Build-Revision>${buildNumber}</Build-Revision>
+					      <Specification-Title>${project.name}-${product.title}</Specification-Title>
+					      <Specification-Version>${project.version}-${product.version}</Specification-Version>
+					      <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+					      <Implementation-Title>${project.name}-${product.title}</Implementation-Title>
+					      <Implementation-Version>${project.version}-${product.version}</Implementation-Version>
+					      <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+					      <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+					      <Implementation-Build>${maven.build.timestamp}</Implementation-Build>							
+        				      <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
+        				      <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+        				      <Implementation-URL>${project.url}</Implementation-URL>
+        				      <Implementation-Date>${build.date}</Implementation-Date>
+        				      <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+        				      <Implementation-DatePattern>${build.date.pattern}</Implementation-DatePattern>
+        				      <Implementation-Full-Version>${build.version.full}</Implementation-Full-Version>
+        				      <Built-Host>${build.host.name}</Built-Host>
+        				      <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
+        				      <Built-By>${build.user}</Built-By>
+        				      <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+					      <Build-Date>${build.date}</Build-Date>
+					      <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+        				      <Maven-Version>${build.maven.version}</Maven-Version>
+        				      <Java-Version>${java.version}</Java-Version>
+        				      <Java-Vendor>${java.vendor}</Java-Vendor>														
+					      <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
+					      <X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>								
 					      <Mode>${environment}</Mode>
 					    </manifestEntries>
 					  </archive>
@@ -2442,8 +2529,9 @@
 								<index>true</index>
 							-->
 							<!-- List dependencies in the MANIFEST.MF -->
+							<!--<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>--> <!-- for maven-bundle-plugin -->
 							<manifest>
-								<addClasspath>true</addClasspath>
+								<addClasspath>true</addClasspath>								
 								<!--
 									<mainClass>
 									com.sgcib.services.extract.eoleextract.FullExtract</mainClass>
@@ -2464,49 +2552,43 @@
 
 							<!-- Custom Entries -->
 							<manifestEntries>
-								<Build-Machine>${env.COMPUTERNAME}</Build-Machine>
-								<Url>${project.url}</Url>
-								<Specification-Title>${project.name}</Specification-Title>
-								<Specification-Version>${project.version}</Specification-Version>
-								<Specification-Vendor>${project.organization.name}</Specification-Vendor>
-								<Implementation-Title>${project.name}</Implementation-Title>
-								<Implementation-Version>${project.version}</Implementation-Version>
-								<Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
-								<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-								<Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-								<X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
-								<X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>
-								<Build-Date>${timestamp}</Build-Date>
-								<Build-Revision>${buildNumber}</Build-Revision>
-								<Mode>${environment}</Mode>
+					      		  <Url>${project.url}</Url>
+					      		  <Specification-Title>${project.name}-${product.title}</Specification-Title>
+					      		  <Specification-Version>${project.version}-${product.version}</Specification-Version>
+					      		  <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+					      		  <Implementation-Title>${project.name}-${product.title}</Implementation-Title>
+					      		  <Implementation-Version>${project.version}-${product.version}</Implementation-Version>
+					      		  <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+					      		  <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+					      		  <Implementation-Build>${maven.build.timestamp}</Implementation-Build>							
+        				      		  <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
+        				      		  <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+        				      		  <Implementation-URL>${project.url}</Implementation-URL>
+        				      		  <Implementation-Date>${build.date}</Implementation-Date>
+        				      		  <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+        				      		  <Implementation-DatePattern>${build.date.pattern}</Implementation-DatePattern>
+        				      		  <Implementation-Full-Version>${build.version.full}</Implementation-Full-Version>
+        				      		  <Built-Host>${build.host.name}</Built-Host>
+        				      		  <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
+        				      		  <Built-By>${build.user}</Built-By>
+        				      		  <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+					      		  <Build-Date>${build.date}</Build-Date>
+					      		  <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+        				      		  <Maven-Version>${build.maven.version}</Maven-Version>
+        				      		  <Java-Version>${java.version}</Java-Version>
+        				      		  <Java-Vendor>${java.vendor}</Java-Vendor>														
+					      		  <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
+					      		  <X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>								
+					      		  <Mode>${environment}</Mode>
 							</manifestEntries>
 
-							<!--
-								<manifestSections> <manifestSection> <name>Custom</name>
-								<manifestEntries> <Mode>Development</Mode>
-								<Built-By>Alban</Built-By>
-								<Implementation-URL>${pom.url}</Implementation-URL>
-								<More-Info>For more information	go to ${pom.url}</More-Info>
-								<Support>Get commercial	support:
-								${pom.organization.url}/support</Support> <Description>Nabla ESB
-								and Integration	Platform</Description> <License>Nabla Source
-								http://www.nabla.com/</License>
-								<Vendor-Url>${pom.organization.url}</Vendor-Url>
-								<Product-Url>${pom.url}</Product-Url>
-								<Dtd-Public-Id>-//${pom.organization.name} //DTD
-								nabla-configuration XML	V1.0//EN</Dtd-Public-Id>
-								<Dtd-System-Id>${pom.url}/dtds</Dtd-System-Id>
-							-->
 							<!--
 								This would work	if this	issue gets closed:
 								http://jira.codehaus.org/browse/MNG-1832
 							-->
 							<!-- Build-Date>${mvn.timestamp.yyyy-MM-dd-HH:mm:ss}</Build-Date -->
 							<!--  include repository revision from buildnumber plugin -->
-							<!--<Build-Revision>${buildNumber}</Build-Revision>-->
-							<!--
-								</manifestEntries> </manifestSection> </manifestSections>
-							-->
+							<!--<Build-Revision>${build.scmRevision.id}</Build-Revision>-->
 						</archive>
 					</configuration>
 				</plugin>
@@ -2601,10 +2683,33 @@
 					      <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 					    </manifest>
 					    <manifestEntries>
-					      <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
 					      <Url>${project.url}</Url>
-					      <Build-Date>${timestamp}</Build-Date>
-					      <Build-Revision>${buildNumber}</Build-Revision>
+					      <Specification-Title>${project.name}-${product.title}</Specification-Title>
+					      <Specification-Version>${project.version}-${product.version}</Specification-Version>
+					      <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+					      <Implementation-Title>${project.name}-${product.title}</Implementation-Title>
+					      <Implementation-Version>${project.version}-${product.version}</Implementation-Version>
+					      <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+					      <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+					      <Implementation-Build>${maven.build.timestamp}</Implementation-Build>							
+        				      <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
+        				      <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+        				      <Implementation-URL>${project.url}</Implementation-URL>
+        				      <Implementation-Date>${build.date}</Implementation-Date>
+        				      <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+        				      <Implementation-DatePattern>${build.date.pattern}</Implementation-DatePattern>
+        				      <Implementation-Full-Version>${build.version.full}</Implementation-Full-Version>
+        				      <Built-Host>${build.host.name}</Built-Host>
+        				      <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
+        				      <Built-By>${build.user}</Built-By>
+        				      <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+					      <Build-Date>${build.date}</Build-Date>
+					      <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+        				      <Maven-Version>${build.maven.version}</Maven-Version>
+        				      <Java-Version>${java.version}</Java-Version>
+        				      <Java-Vendor>${java.vendor}</Java-Vendor>														
+					      <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
+					      <X-Compile-Target-JDK>${jdkLevel}</X-Compile-Target-JDK>								
 					      <Mode>${environment}</Mode>
 					    </manifestEntries>
 					  </archive>
@@ -3028,6 +3133,96 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		</pluginManagement>
 
 		<plugins>
+		  <!-- does not works with maven 3
+                  <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>${maven.buildnumber.plugin.version}</version>
+                    <inherited>true</inherited>                                
+                  </plugin>
+                  -->
+		  <plugin>
+		    <groupId>de.smartics.maven.plugin</groupId>
+		    <artifactId>maven-buildmetadata-plugin</artifactId>
+		    <version>${maven.buildmetadata.plugin.version}</version>		    
+		    <executions>
+		      <execution>
+		        <phase>initialize</phase>
+		        <goals>
+		          <goal>provide-buildmetadata</goal>
+		        </goals>
+		      </execution>
+		    </executions>
+  		    <configuration>
+  		      <addProjectInfo>true</addProjectInfo>
+  		      <propertyOutputFileMapping>
+  		        <fileMapping>
+  		          <packaging>war</packaging>
+  		          <outputFile>${project.build.directory}/${project.build.finalName}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>ear</packaging>
+  		          <outputFile>${project.build.directory}/${project.build.finalName}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>sar</packaging>
+  		          <outputFile>${project.build.directory}/${project.build.finalName}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>rar</packaging>
+  		          <outputFile>${project.build.directory}/${project.build.finalName}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>par</packaging>
+  		          <outputFile>${project.build.directory}/${project.build.finalName}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>bundle</packaging>
+  		          <outputFile>${project.build.outputDirectory}/META-INF/build.properties</outputFile>
+  		        </fileMapping>    		        
+  		        <fileMapping>
+  		          <packaging>jar</packaging>
+  		          <outputFile>${project.build.outputDirectory}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>ejb</packaging>
+  		          <outputFile>${project.build.outputDirectory}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>maven-archetype</packaging>
+  		          <outputFile>${project.build.outputDirectory}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>maven-plugin</packaging>
+  		          <outputFile>${project.build.outputDirectory}/META-INF/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>eclipse-plugin</packaging>
+  		          <outputFile>${project.build.directory}/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>eclipse-feature</packaging>
+  		          <outputFile>${project.build.directory}/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>eclipse-repository</packaging>
+  		          <outputFile>${project.build.directory}/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>eclipse-update-site</packaging>
+  		          <outputFile>${project.build.directory}/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>targetplatform</packaging>
+  		          <outputFile>${project.build.directory}/build.properties</outputFile>
+  		        </fileMapping>
+  		        <fileMapping>
+  		          <packaging>pom</packaging>
+  		          <outputFile>${project.build.directory}/build.properties</outputFile>
+  		        </fileMapping>
+  		      </propertyOutputFileMapping>
+  		    </configuration>
+		  </plugin>                  	
 		  <plugin>
 		   <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
 		   <artifactId>maven-java-formatter-plugin</artifactId>
@@ -4511,6 +4706,7 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 			  <artifactId>gwt-dev</artifactId>
 			  <version>${gwt.version}</version>
 			</dependency>
+			
     <dependency>
       <groupId>com.googlecode.objectify</groupId>
       <artifactId>objectify</artifactId>
@@ -4535,6 +4731,13 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
         	    <version>${jboss.logging.version}</version>
         	</dependency>
 
+		<!--Fix: java.lang.ClassNotFoundException: org.jboss.util.id.SerialVersion-->
+		<dependency>
+		  <groupId>org.jboss</groupId>
+		  <artifactId>jboss-common-core</artifactId>
+		  <version>${jboss.common.core.version}</version>
+		</dependency>
+				
 	    <dependency>
 	      <groupId>org.jbpm</groupId>
 	      <artifactId>jbpm-jpdl</artifactId>
