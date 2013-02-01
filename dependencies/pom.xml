@@ -2166,7 +2166,7 @@
 						<!-- Enable or disable JUnit tests -->
 						<skip>${maven.test.skip}</skip>
 						<linkXRef>true</linkXRef>
-						<argLine>-Xms64m -Xmx256m -Djava.awt.headless=true</argLine>
+						<argLine>-Xms64m -Xmx256m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
 						<excludes>
 							<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
 						</excludes>
