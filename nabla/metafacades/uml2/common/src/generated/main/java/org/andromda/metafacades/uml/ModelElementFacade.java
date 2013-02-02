@@ -273,14 +273,14 @@ public interface ModelElementFacade
     public Collection<DependencyFacade> getTargetDependencies();
 
     /**
-     * Get the template parameter for this model element having the parameterName
+     * Get the template parameters for this model element.
      * @param parameterName String
      * @return Object
      */
     public Object getTemplateParameter(String parameterName);
 
     /**
-     * Get the template parameters for this model element
+     * Get the template parameter for this model element having the parameterName.
      * @return Collection<TemplateParameterFacade>
      */
     public Collection<TemplateParameterFacade> getTemplateParameters();

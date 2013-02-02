@@ -69,7 +69,7 @@ public interface GeneralizableElementFacade
     public GeneralizableElementFacade getGeneralizationRoot();
 
     /**
-     * Return all generalizations (ancestors) from this generalizable element.
+     * The model element that represents an element that can be generalized or specialized.
      * @return Collection<GeneralizableElementFacade>
      */
     public Collection<GeneralizableElementFacade> getGeneralizations();

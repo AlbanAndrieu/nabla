@@ -54,7 +54,11 @@ public interface FrontEndActionState
     public FrontEndForward getForward();
 
     /**
-     * All calls deferred to the services by this action state.
+     * A behavioral feature of a classifier that specifies the name, type, parameters, and
+     * constraints for
+     * invoking an associated behavior. May invoke both the execution of method behaviors as well as
+     * other
+     * behavioral responses.
      * @return List<OperationFacade>
      */
     public List<OperationFacade> getServiceCalls();

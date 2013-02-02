@@ -55,16 +55,14 @@ public interface OperationFacade
 
     /**
      * Specification of an argument used to pass information into or out of an invocation of a
-     * behavioral
-     * feature. Parameters are allowed to be treated as connectable elements. Parameters have
-     * support for
-     * streaming, exceptions, and parameter sets.
+     * behavioral feature. Parameters are allowed to be treated as connectable elements. Parameters
+     * have support for streaming, exceptions, and parameter sets.
      * @return Collection<ParameterFacade>
      */
     public Collection<ParameterFacade> getArguments();
 
     /**
-     * Constructs the operation call with the operation name
+     * Constructs the operation call with the operation name.
      * @return String
      */
     public String getCall();
@@ -185,7 +183,7 @@ public interface OperationFacade
 
     /**
      * Return the operation signature, including public/protested abstract returnType name plus
-     * argument type and name
+     * argument type and name.
      * @return String
      */
     public String getSignature();

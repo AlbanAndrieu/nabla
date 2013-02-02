@@ -5,7 +5,7 @@
 package org.andromda.metafacades.uml;
 
 /**
- * Represents a UML Destination for incoming/outgoing messages.
+ * TODO: Model Documentation for org.andromda.metafacades.uml.Destination
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

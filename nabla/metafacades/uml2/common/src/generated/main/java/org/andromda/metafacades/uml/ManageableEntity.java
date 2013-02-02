@@ -73,7 +73,7 @@ public interface ManageableEntity
     public String getManageablePackageName();
 
     /**
-     * The Package path of the Entity
+     * The Package path of the Entity.
      * @return String
      */
     public String getManageablePackagePath();

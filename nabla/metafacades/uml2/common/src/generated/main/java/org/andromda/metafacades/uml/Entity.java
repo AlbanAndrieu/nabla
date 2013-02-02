@@ -304,8 +304,7 @@ public interface Entity
     public boolean isChild();
 
     /**
-     * True if this entity identifier is a composite (consists of multiple key columns, typically
-     * abstracted into an external composite identifier class)
+     * TODO: Model Documentation for org.andromda.metafacades.uml.Entity.compositeIdentifier
      * @return boolean
      */
     public boolean isCompositeIdentifier();

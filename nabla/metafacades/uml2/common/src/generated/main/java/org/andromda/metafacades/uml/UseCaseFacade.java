@@ -29,7 +29,9 @@ public interface UseCaseFacade
     public Collection<ExtendFacade> getExtends();
 
     /**
-     * The extension points related to this use-case.
+     * Identifies a point in the behavior of a use case where that behavior can be extended by the
+     * behavior
+     * of some other (extending) use case, as specified by an extend relationship.
      * @return Collection<ExtensionPointFacade>
      */
     public Collection<ExtensionPointFacade> getExtensionPoints();
@@ -41,7 +43,8 @@ public interface UseCaseFacade
     public ActivityGraphFacade getFirstActivityGraph();
 
     /**
-     * The included instances related to this use-case.
+     * An include relationship defines that a use case contains the behavior defined in another use
+     * case.
      * @return Collection<IncludeFacade>
      */
     public Collection<IncludeFacade> getIncludes();

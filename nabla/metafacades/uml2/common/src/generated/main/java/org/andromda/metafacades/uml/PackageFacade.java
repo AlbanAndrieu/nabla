@@ -35,7 +35,7 @@ public interface PackageFacade
     public ModelElementFacade findModelElement(String fullyQualifiedName);
 
     /**
-     * Returns all classes in this package
+     * Returns all classes in this package.
      * @return Collection<ClassifierFacade>
      */
     public Collection<ClassifierFacade> getClasses();

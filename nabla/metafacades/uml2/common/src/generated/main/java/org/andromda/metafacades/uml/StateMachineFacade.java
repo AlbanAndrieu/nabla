@@ -26,19 +26,16 @@ public interface StateMachineFacade
 
     /**
      * Represents a model element. It may be an Element or NamedElement. A named element is an
-     * element in a
-     * model that may have a name. An element is a constituent of a model. As such, it has the
-     * capability
-     * of owning other elements.
+     * element in a model that may have a name. An element is a constituent of a model. As such, it
+     * has the capability of owning other elements.
      * @return ModelElementFacade
      */
     public ModelElementFacade getContextElement();
 
     /**
      * A special kind of state signifying that the enclosing region is completed. If the enclosing
-     * region
-     * is directly contained in a state machine and all other regions in the state machine also are
-     * completed, then it means that the entire state machine is completed.
+     * region is directly contained in a state machine and all other regions in the state machine
+     * also are completed, then it means that the entire state machine is completed.
      * @return Collection<FinalStateFacade>
      */
     public Collection<FinalStateFacade> getFinalStates();
@@ -73,23 +70,19 @@ public interface StateMachineFacade
 
     /**
      * Models a situation during which some (usually implicit) invariant condition holds. The states
-     * of
-     * protocol state machines are exposed to the users of their context classifiers. A protocol
-     * state
-     * represents an exposed stable situation of its context classifier: when an instance of the
-     * classifier
-     * is not processing any operation, users of this instance can always know its state
-     * configuration.
+     * of protocol state machines are exposed to the users of their context classifiers. A protocol
+     * state represents an exposed stable situation of its context classifier: when an instance of
+     * the classifier is not processing any operation, users of this instance can always know its
+     * state configuration.
      * @return Collection<StateFacade>
      */
     public Collection<StateFacade> getStates();
 
     /**
      * A directed relationship between a source vertex and a target vertex. It may be part of a
-     * compound
-     * transition, which takes the state machine from one state configuration to another,
-     * representing the
-     * complete response of the state machine to an occurrence of an event of a particular type.
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @return Collection<TransitionFacade>
      */
     public Collection<TransitionFacade> getTransitions();
