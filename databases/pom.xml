@@ -10,7 +10,6 @@
 	</parent>
 
         <modelVersion>4.0.0</modelVersion>
-        <groupId>com.nabla.project</groupId>
         <artifactId>databases</artifactId>
         <name>Databases</name>
         <packaging>pom</packaging>
@@ -118,11 +117,18 @@
                                 <!-- START DATABASE INFO USE BY ANROMDA -->
                                 <!--
                                         Change this to generate to the correct MDA database mappings, For
-                                        MySql use: MySQL For Hypersonic use: HypersonicSql For Oracle9i
-                                        use: Oracle9i For DB2 use: DB2 For Informix use: InformixDB For
-                                        MSSQL use: MSSQL For Pointbase use: PointBase For Postgres use:
-                                        PostgreSQL For Sybase use: Sybase For SapDB use: SapDB For Derby
-                                        use: Derby
+                                        MySql use: 
+                                        MySQL For Hypersonic use: 
+                                        HypersonicSql For Oracle9i use: 
+                                        Oracle9i For DB2 use: 
+                                        DB2 For Informix use: 
+                                        InformixDB For MSSQL use: 
+                                        MSSQL For Pointbase use: 
+                                        PointBase For Postgres use:
+                                        PostgreSQL For Sybase use: 
+                                        Sybase For SapDB use: 
+                                        SapDB For Derby use: 
+                                        Derby
                                 -->
                                 <sql.mappings>MySQL</sql.mappings>
                                 <!--
@@ -289,6 +295,8 @@
                                 <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
                                 <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
                                 <dbunit.schema>APP</dbunit.schema>
+                                <sql.mappings>Derby</sql.mappings>
+                                <jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
                                 <jdbc.driver.jar>
                                         <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
                                 TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
@@ -320,7 +328,7 @@
 
                                 <!-- jdbc:mysql://localhost:3306/myDB -->
                                 <!-- create database in C:/tmp -->
-                                <jdbc.client.url><![CDATA[jdbc:derby:C:/tmp/${database.name};create=true]]></jdbc.client.url>
+                                <jdbc.client.url><![CDATA[jdbc:derby:~/${database.name};create=true]]></jdbc.client.url>
                                 <jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
                                 <jdbc.url>${jdbc.embedded.url}</jdbc.url>
                                 
