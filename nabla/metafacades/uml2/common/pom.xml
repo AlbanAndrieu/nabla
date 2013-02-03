@@ -24,10 +24,11 @@
     </scm>
      
     <dependencies>
+        <!-- fix Error running AndroMDA: com_cenqua_clover/CoverageRecorder -->
         <dependency>
           <groupId>com.cenqua.clover</groupId>
           <artifactId>clover</artifactId>
-          <version>3.1.5</version>
+          <version>${clover.version}</version>
         </dependency>
     </dependencies>
     <build>
