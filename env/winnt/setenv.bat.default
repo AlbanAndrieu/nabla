@@ -79,3 +79,5 @@ REM bad classpath with ;C:\Sun\SDK6\lib\ext\QTJava.zip
 REM set CLASSPATH=.;%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%SVN_HOME%\bin;%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%CYGWIN_HOME%\usr\include;%CYGWIN_HOME%\lib;%CYGWIN_HOME%\usr\lib;%MINGW_HOME%\bin;%CMAKE_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin
 set CLASSPATH=.;%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%SVN_HOME%\bin;%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%CYGWIN_HOME%\usr\include;%CYGWIN_HOME%\lib;%CYGWIN_HOME%\usr\lib;%MINGW_HOME%\bin;%CMAKE_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin
 echo %CLASSPATH%
+
+set PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.py;.pyw

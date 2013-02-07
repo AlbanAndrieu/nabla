@@ -27,7 +27,8 @@ log4j.appender.FILE.layout.ConversionPattern=PROJECT - %d{yyyy/MM/dd HH:mm:ss}  
 # LUMBERMILL CHAINSAW
 log4j.appender.SOCKETSERV=org.apache.log4j.net.SocketAppender
 log4j.appender.SOCKETSERV.Port=4445
-log4j.appender.SOCKETSERV.RemoteHost=Alban-PC
+log4j.appender.SOCKETSERV.RemoteHost=localhost
+log4j.appender.SOCKETSERV.ReconnectionDelay=10000
 
 log4j.logger.org.springframework=WARN, CONSOLE, SOCKETSERV, FILE
 log4j.logger.org.hibernate=WARN, CONSOLE, SOCKETSERV, FILE
