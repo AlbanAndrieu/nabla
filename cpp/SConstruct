@@ -8,7 +8,7 @@ import re
 from config import ProjectMacro
 
 EnsureSConsVersion(2, 1)
-EnsurePythonVersion(2, 7)
+#EnsurePythonVersion(2, 7)
 
 # To be retrieved automatically
 Arch = ProjectMacro.getArch()
@@ -56,34 +56,32 @@ print "sandbox :", env['sandbox']
 #########################
 # Default values setted when no environment defined (like jenkins)
 if env['target'] == 'local':
-  KTPPDev = env['sandbox']
-  KTPPTarget = env['sandbox'] + '/target'
+  DEV_SOURCE_DIR = env['sandbox']
+  DEV_BINARY_DIR = env['sandbox'] + '/target'
 else:
-  KTPPDev = ProjectMacro.getEnvVariable('PROJECT_SRC',os.path.dirname(env['sandbox']))
-  KTPPTarget = ProjectMacro.getEnvVariable('PROJECT_TARGET_PATH',os.path.dirname(env['sandbox'])) + '/sample'
+  DEV_SOURCE_DIR = ProjectMacro.getEnvVariable('PROJECT_SRC',os.path.dirname(env['sandbox']))
+  DEV_BINARY_DIR = ProjectMacro.getEnvVariable('PROJECT_TARGET_PATH',os.path.dirname(env['sandbox'])) + '/sample'
 
-if re.search('dev\/', KTPPTarget):
-  KTPPTarget = re.sub(r'dev\/', 'dev_obj/', KTPPTarget)
+#if re.search('dev\/', DEV_BINARY_DIR):
+#  DEV_BINARY_DIR = re.sub(r'dev\/', 'dev_target/', DEV_BINARY_DIR)
 
-print "KTPPTarget :", KTPPTarget
+print "DEV_BINARY_DIR :", DEV_BINARY_DIR
 
 if env['target'] == 'local':
-	KTPPThirdPartyDir = env['sandbox'] + '/thirdparty'
+	PROJECT_THIRDPARTY_PATH = env['sandbox'] + '/thirdparty'
 else:
-	KTPPThirdPartyDir = ProjectMacro.getEnvVariable('PROJECT_THIRDPARTY_PATH','/thirdparty')
+	PROJECT_THIRDPARTY_PATH = ProjectMacro.getEnvVariable('PROJECT_THIRDPARTY_PATH','/thirdparty')
 
-print "KTPPThirdPartyDir :", KTPPThirdPartyDir
+print "PROJECT_THIRDPARTY_PATH :", PROJECT_THIRDPARTY_PATH
 
 # might not WORK in eclipse (hard code it)
-KTPPJavaDir = ProjectMacro.getEnvVariable('JAVA_HOME', KTPPThirdPartyDir + 'java' + Arch)
-print "KTPPJavaDir :", KTPPJavaDir
+PROJECT_JAVA_PATH = ProjectMacro.getEnvVariable('JAVA_HOME', PROJECT_THIRDPARTY_PATH + 'java' + Arch)
+print "PROJECT_JAVA_PATH :", PROJECT_JAVA_PATH
 
-env['cache_path'] = KTPPTarget + '/buildcache-' + Arch
+env['cache_path'] = DEV_BINARY_DIR + '/buildcache-' + Arch
 print "env['cache_path'] :", env['cache_path']
 CacheDir(env['cache_path'])
-SConsignFile(KTPPTarget + '/scons-signatures-' + Arch)
-
-KplusOptFolderName = env['output_folder']
+SConsignFile(DEV_BINARY_DIR + '/scons-signatures-' + Arch)
 
 #registering function to handle builderrors correctly
 ProjectMacro.registerBuildFailuresAtExit()
@@ -102,73 +100,73 @@ else:
 	env.Prepend(CCFLAGS = '-DDEBUG')
 
 #binaries directory
-thePath=os.path.join(KTPPTarget,'bin',Arch)
+thePath=os.path.join(DEV_BINARY_DIR,'bin',Arch)
 ProjectMacro.mkdir(thePath)
-KTPPBinDir = os.path.abspath(thePath)
-#obj directories
-thePath=os.path.join(KTPPTarget,'obj',Arch)
+PROJECT_BINARY_DIR = os.path.abspath(thePath)
+#target directories
+thePath=os.path.join(DEV_BINARY_DIR,'target',Arch)
 ProjectMacro.mkdir(os.path.join(thePath,theOptDbgFolder))
-thePath=os.path.join(KTPPTarget,'include',Arch)
+thePath=os.path.join(DEV_BINARY_DIR,'include',Arch)
 ProjectMacro.mkdir(thePath)
-KTPPIncludesDir = os.path.abspath(thePath)
+PROJECT_INCLUDE_DIR = os.path.abspath(thePath)
 #lib directories
-thePath=os.path.join(KTPPTarget,'lib',Arch,theOptDbgFolder)
+thePath=os.path.join(DEV_BINARY_DIR,'lib',Arch,theOptDbgFolder)
 ProjectMacro.mkdir(thePath)
-KTPPStaticLibDir = Dir(thePath).srcnode().abspath
-thePath=os.path.join(KTPPStaticLibDir,'shared')
+LIBRARY_STATIC_OUTPUT_PATH = Dir(thePath).srcnode().abspath
+thePath=os.path.join(LIBRARY_STATIC_OUTPUT_PATH,'shared')
 ProjectMacro.mkdir(thePath)
-KTPPLibDir = Dir(thePath).srcnode().abspath
+LIBRARY_OUTPUT_PATH = Dir(thePath).srcnode().abspath
 
 if env['target'] == 'local':
-  KTPObjDir = '.'
+  PROJECT_BINARY_DIR = '.'
 else:
-  KTPObjDir = os.path.abspath(os.path.join(thePath,theOptDbgFolder))
-  VariantDir(os.path.join(KTPObjDir,'sample'), 'sample', duplicate=0)
+  PROJECT_BINARY_DIR = os.path.abspath(os.path.join(thePath,theOptDbgFolder))
+  VariantDir(os.path.join(PROJECT_BINARY_DIR,'sample'), 'sample', duplicate=0)
 
-env['KTPPStaticLibDir'] = KTPPStaticLibDir
-env['KTPPLibDir'] = KTPPLibDir
-env['KTPPBinDir'] = KTPPBinDir
-env['KTPPIncludesDir'] = KTPPIncludesDir
+env['LIBRARY_STATIC_OUTPUT_PATH'] = LIBRARY_STATIC_OUTPUT_PATH
+env['LIBRARY_OUTPUT_PATH'] = LIBRARY_OUTPUT_PATH
+env['PROJECT_BINARY_DIR'] = PROJECT_BINARY_DIR
+env['PROJECT_INCLUDE_DIR'] = PROJECT_INCLUDE_DIR
 
-print "static lib dir :", KTPPStaticLibDir
-print "shared lib dir :", KTPPLibDir
-print "bin dir :", KTPPBinDir
-print "include dir :", KTPPIncludesDir
+print "static lib dir :", LIBRARY_STATIC_OUTPUT_PATH
+print "shared lib dir :", LIBRARY_OUTPUT_PATH
+print "bin dir :", PROJECT_BINARY_DIR
+print "include dir :", PROJECT_INCLUDE_DIR
 
 env['CPPPATH'] = [
     '.',
 # published headers
-	KTPPIncludesDir,
+	PROJECT_INCLUDE_DIR,
 # 3rd parties
-#	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'boost',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'zlib',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'xerces',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'log4cxx',Arch,'include'),
-#	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers'),
-#	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO'),
-#	os.path.join(KTPPThirdPartyDir,'tao',Arch,'ACE_wrappers','TAO','orbsvcs'),
-#	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'include'),
-	os.path.join(KTPPJavaDir,'include'),
-	os.path.join(KTPPJavaDir,'include',['linux','solaris'][Arch!='x86Linux']),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'cppunit',Arch,'include'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'boost',Arch,'include'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'zlib',Arch,'include'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'xerces',Arch,'include'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'log4cxx',Arch,'include'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'tao',Arch,'ACE_wrappers'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'tao',Arch,'ACE_wrappers','TAO'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'tao',Arch,'ACE_wrappers','TAO','orbsvcs'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'openssl',Arch,'include'),
+	os.path.join(PROJECT_JAVA_PATH,'include'),
+	os.path.join(PROJECT_JAVA_PATH,'include',['linux','solaris'][Arch!='x86Linux']),
 ]
 
 # -L parameter
 ##############
 env["LIBPATH"]     = [
-	KTPPStaticLibDir,
-	KTPPLibDir,
-#	os.path.join(KTPPThirdPartyDir,'boost', Arch, 'lib',['','opt/shared'][Arch!='x86Linux']),
-#	os.path.join(KTPPThirdPartyDir,'xerces', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'libxml2', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'tao', Arch, 'ACE_wrappers','lib'),
-#	os.path.join(KTPPThirdPartyDir,'openssl',Arch,'lib'),
-#	os.path.join(KTPPThirdPartyDir,'rv', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'apr',Arch,'lib'),
-#	os.path.join(KTPPThirdPartyDir,'apr-util',Arch,'lib'),
-#	os.path.join(KTPPThirdPartyDir,'log4cxx', Arch, 'lib'),
-#	os.path.join(KTPPThirdPartyDir,'cppunit',Arch,'lib'),
-	os.path.join(KTPPJavaDir, 'jre','lib',env['java_arch'],'server'),
+	LIBRARY_STATIC_OUTPUT_PATH,
+	LIBRARY_OUTPUT_PATH,
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'boost', Arch, 'lib',['','opt/shared'][Arch!='x86Linux']),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'xerces', Arch, 'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'libxml2', Arch, 'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'tao', Arch, 'ACE_wrappers','lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'openssl',Arch,'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'rv', Arch, 'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'apr',Arch,'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'apr-util',Arch,'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'log4cxx', Arch, 'lib'),
+#	os.path.join(PROJECT_THIRDPARTY_PATH,'cppunit',Arch,'lib'),
+	os.path.join(PROJECT_JAVA_PATH, 'jre','lib',env['java_arch'],'server'),
 
 # 3rd parties
 ]
@@ -249,7 +247,7 @@ if Arch in ['x86sol','sun4sol']:
 	env['OSDependentLibs'].extend([ 'posix4','pthread','thread','socket'])
 
 #register the idl builder
-ProjectMacro.registerIDLBuilders(env,KTPPThirdPartyDir,Arch)
+ProjectMacro.registerIDLBuilders(env,PROJECT_THIRDPARTY_PATH,Arch)
 
 # Variables visible to SConscripts
 Export('env', 'Versions')
@@ -257,18 +255,18 @@ Export('env', 'Versions')
 #Sconscript calls
 if not GetOption('help'):
     env.SConscript([
-    		KTPObjDir+'/sample/microsoft/src/main/cpp/SConscript',
-		KTPObjDir+'/sample/microsoft/src/main/app/SConscript',
+    		PROJECT_BINARY_DIR+'/sample/microsoft/src/main/cpp/SConscript',
+		PROJECT_BINARY_DIR+'/sample/microsoft/src/main/app/SConscript',
     ])
 
-SConscript(KTPObjDir+'/sample/microsoft/src/test/cpp/SConscript')
-SConscript(KTPObjDir+'/sample/microsoft/src/test/app/SConscript')
+SConscript(PROJECT_BINARY_DIR+'/sample/microsoft/src/test/cpp/SConscript')
+SConscript(PROJECT_BINARY_DIR+'/sample/microsoft/src/test/app/SConscript')
 
 env.Package( NAME           = 'nabla',
              VERSION        = '1.2.3',
              PACKAGEVERSION = 0,
              PACKAGETYPE    = 'targz',
-             source=[KTPPLibDir, KTPPBinDir],
+             source=[LIBRARY_OUTPUT_PATH, PROJECT_BINARY_DIR],
              LICENSE        = 'misys',
              SUMMARY        = 'Nabla (Backend)',
              DESCRIPTION    = 'Nabla (Backend)',
@@ -282,4 +280,3 @@ print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)
 os.system('./cpplint.sh')
 
 #TODO : http://v8.googlecode.com/svn/trunk/SConstruct
-

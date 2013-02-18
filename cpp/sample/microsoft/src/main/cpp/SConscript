@@ -6,7 +6,7 @@ Import('env')
 localenv = env.Clone()
 
 #exporting headers
-localenv.Install(os.path.join(localenv['KTPPIncludesDir'],''), Glob('include/*.h')+Glob('include/*.ipp'))
+localenv.Install(os.path.join(localenv['PROJECT_INCLUDE_DIR'],''), Glob('include/*.h')+Glob('include/*.ipp'))
 
 #building shared library
-localenv.SharedLibrary(os.path.join(localenv['KTPPLibDir'],'main_library'), Glob('*.cpp'))
+localenv.SharedLibrary(os.path.join(localenv['PROJECT_INCLUDE_DIR'],'main_library'), Glob('*.cpp'))

@@ -15,6 +15,6 @@ localenv = env.Clone()
 localenv.Append(LIBS=['main_library'], LIBPATH=['#main_library'])
 
 #building Binary
-p = localenv.Program(os.path.join(localenv['KTPPBinDir'],'run_app'), Glob('*.cpp'))
+p = localenv.Program(os.path.join(localenv['PROJECT_BINARY_DIR'],'run_app'), Glob('*.cpp'))
 
 Default(p)

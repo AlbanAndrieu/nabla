@@ -34,9 +34,9 @@ def generate(env, **kw):
         env['debug_flags'] = '-g0'
         env['opt_flags'] = '-fast'
         if Arch=='x86sol':
-            env['cc_path'] = '/rms/sunpro/sun-studio-12.x86sol_2/SUNWspro/bin'
+            env['cc_path'] = '/sunpro/sun-studio-12.x86sol_2/SUNWspro/bin'
         else:
-            env['cc_path'] = '/rms/sunpro/sun-studio-12/SUNWspro/bin'
+            env['cc_path'] = '/sunpro/sun-studio-12/SUNWspro/bin'
         #/opt/SUNWspro/bin:/usr/sfw/bin
         env['ENV']['PATH'] = env['cc_path'] + ':/usr/bin:/usr/sbin:/usr/ccs/bin:/usr/local/bin'
         env['ENV']['LD_LIBRARY_PATH'] = ''

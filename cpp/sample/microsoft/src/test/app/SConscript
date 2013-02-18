@@ -18,6 +18,6 @@ localenv["LIBS"] = [
 localenv.Append(LIBS=['test_library'], LIBPATH=['#test_library'])
 
 #building Binary
-p = localenv.Program(os.path.join(localenv['KTPPBinDir'],'run_tests'), Glob('*.cpp'))
+p = localenv.Program(os.path.join(localenv['PROJECT_BINARY_DIR'],'run_tests'), Glob('*.cpp'))
 
 Default(p)
