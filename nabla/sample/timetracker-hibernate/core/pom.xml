@@ -515,7 +515,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
+                <inherited>true</inherited>
                 <configuration>
+			<!-- Enable or disable JUnit tests -->
+			<skip>${maven.test.skip}</skip>
+			<!-- Enable or disable Stop maven -->
+			<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>                
                         <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
