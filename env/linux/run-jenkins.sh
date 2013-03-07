@@ -9,8 +9,10 @@
 #/etc/init.d/jenkins restart
 #or 
 #sudo service tomcat6 restart
+#sudo service jenkins restart
 
 #JENKINS_HOME
+#/etc/default/jenkins
 #/var/lib/jenkins/
 #/jenkins/
 
@@ -21,6 +23,9 @@
 #tomcat6
 #/usr/share/tomcat6/
 #/home/kdeveloper/.jenkins
+
+#WAR
+#/var/lib/tomcat6/webapps/jenkins/
 
 #http://en.wikipedia.org/wiki/Xvfb
 #yum install Xvfb

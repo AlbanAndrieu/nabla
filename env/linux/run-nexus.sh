@@ -36,9 +36,11 @@ cd /usr/local/sonatype-work/nexus/plugin-repository
 sudo mv ~/Downloads/nexus-crowd-plugin-2.1.2-SNAPSHOT .
 sudo chown -R nexus.data nexus-crowd-plugin-*/
 
+cd /usr/local/nexus
 ./bin/nexus start
+microsoft
 
-sudo update-rc.d -f nexus remove
+sudo update-rc .d -f nexus remove
 sudo update-rc.d nexus defaults 10 90
 sudo service nexus start
 
