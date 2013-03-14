@@ -68,3 +68,48 @@ Everything you need should now be installed and Apache should restart. If Apache
 
 http://localhost:8095/crowd/
 crowd user/pass alban.andrieu@nabla.mobi/microsoft
+
+JIRA
+See where JIRA will be installed and the settings that will be used.
+Installation Directory: /opt/atlassian/jira 
+Home Directory: /var/atlassian/application-data/jira 
+HTTP Port: 8082 
+RMI Port: 8006
+
+JIRA mySQL database : user jira pass microsoft
+CREATE DATABASE jira CHARACTER SET utf8 COLLATE utf8_bin;
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX on jira.* TO 'jira'@'localhost' IDENTIFIED BY 'microsoft';
+flush privileges;
+
+cd /workspace/users/albandri10/Downloads/mysql-connector-java-5.1.22
+sudo cp mysql-connector-java-5.1.22-bin.jar /opt/atlassian/jira/lib/
+cd /opt/atlassian/jira/bin
+sudo ./start-jira.sh
+
+jira user/pass alban.andrieu@nabla.mobi/microsoft
+
+CONFLUENCE
+See where Confluence will be installed and the settings that will be used.
+Installation Directory: /opt/atlassian/confluence 
+Home Directory: /var/atlassian/application-data/confluence 
+HTTP Port: 8090 
+RMI Port: 8000 
+
+CREATE DATABASE confluence;
+GRANT ALL PRIVILEGES ON confluence.* TO 'confluence'@'localhost' IDENTIFIED BY 'microsoft';
+
+confluence user/pass alban.andrieu@nabla.mobi/microsoft
+
+fisheye
+sudo gedit /etc/environment
+FISHEYE_INST="/workspace/fisheye-2.10.2"
+cd /workspace/fecru-2.10.2
+as albandri
+./bin/start.sh
+http://localhost:8060/ 
+
+SET GLOBAL storage_engine = 'InnoDB';
+CREATE DATABASE fisheye CHARACTER SET utf8 COLLATE utf8_bin;
+GRANT ALL PRIVILEGES ON fisheye.* TO 'fisheye'@'localhost' IDENTIFIED BY 'microsoft';
+FLUSH PRIVILEGES;
+

@@ -29,16 +29,21 @@ default login/password is admin/admin123/microsoft
 
 #https://docs.sonatype.org/display/Nexus/Nexus+Crowd+Plugin+(Community+Version)
 cd /usr/local/sonatype-work/nexus/plugin-repository
+#check out the latest code from https://github.com/flopma/nexus-crowd-plugin and build it by yourself.
+mvn clean install
+sudo cp /workspace/divers/nexus-crowd-plugin/target/nexus-crowd-plugin-2.0.6-SNAPSHOT-bundle.zip .
+sudo unzip nexus-crowd-plugin-2.0.6-SNAPSHOT-bundle.zip
+sudo chown -R nexus.data nexus-crowd-plugin-2.0.6-SNAPSHOT/
 #https://github.com/johnou/nexus-crowd-plugin/downloads
-# Plugins 2.1.2-SNAPSHOT works
+# Plugins 2.1.2-SNAPSHOT works with previous nexus version
 
 #sudo mv ~/Downloads/nexus-crowd-plugin-1.6.0 .
 sudo mv ~/Downloads/nexus-crowd-plugin-2.1.2-SNAPSHOT .
 sudo chown -R nexus.data nexus-crowd-plugin-*/
 
-cd /usr/local/nexus
-./bin/nexus start
-microsoft
+#cd /usr/local/nexus
+#./bin/nexus start
+#microsoft
 
 sudo update-rc .d -f nexus remove
 sudo update-rc.d nexus defaults 10 90
