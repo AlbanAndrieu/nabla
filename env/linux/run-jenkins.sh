@@ -11,21 +11,26 @@
 #sudo service tomcat6 restart
 #sudo service jenkins restart
 
+#WAR upgrade
+#/usr/share/jenkins/
+#/var/lib/tomcat6/webapps/jenkins/
+#sudo service tomcat6 stop
+#copy jenkins.war $TOMCAT_HOME/webapps
+#sudo ln -s /usr/share/jenkins/jenkins.war jenkins.war
+#sudo chown tomcat6:tomcat6 jenkins.war
+#cd $TOMCAT_HOME/webapps
+#sudo rm -Rf jenkins/
+#sudo service tomcat6 start
+
 #JENKINS_HOME
 #/etc/default/jenkins
 #/var/lib/jenkins/
 #/jenkins/
 
-#WAR
-#/usr/share/jenkins/
-
 #JENKINS USER
 #tomcat6
 #/usr/share/tomcat6/
 #/home/kdeveloper/.jenkins
-
-#WAR
-#/var/lib/tomcat6/webapps/jenkins/
 
 #http://en.wikipedia.org/wiki/Xvfb
 #yum install Xvfb
