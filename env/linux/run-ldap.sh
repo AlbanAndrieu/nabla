@@ -7,6 +7,8 @@
 #sudo rm  -rf /etc/ldap
 
 sudo apt-get install slapd ldap-utils migrationtools
+
+sudo dpkg-reconfigure slapd
 Omit OpenLDAP server configuration? ... No
 DNS domain name: ... ldap.nabla.mobi
 Name of your organization: ... nabla
@@ -50,3 +52,6 @@ cd /opt/GoogleAppsDirSync
 sudo ./config-manager
 4/hITCFu3OkXtq96da9ysrgsMaFLlx.Eh-a-J3Bu7gXOl05ti8ZT3aRT0JKdgI
 
+sudo dpkg-reconfigure ldap-auth-config
+
+#http://doc.ubuntu-fr.org/ldap_client

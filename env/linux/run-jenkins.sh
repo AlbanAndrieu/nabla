@@ -57,5 +57,6 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 
 #less /var/log/jenkins/jenkins.log
 
-#trigger a full backup 
+#trigger a full backup
 #wget http://albandri:8280/jenkins/backup/backup
+#http://home.nabla.mobi:8080/
