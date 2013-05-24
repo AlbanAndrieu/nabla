@@ -38,8 +38,7 @@
 			<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version> -->
 		<org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version> <!-- TODO check because version is better than main pom -->
 		<!-- TODO remove -->
-		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
-		<version.org.jboss.as.arquillian.container>7.1.1.Final</version.org.jboss.as.arquillian.container>
+		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>		
 		<!-- TODO SEE https://docs.jboss.org/author/display/ARQ/Apache+OpenEJB+3.1+-+Embedded -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 	</properties>
@@ -607,9 +606,9 @@
 			    				<goal>compile</goal>
 			    				<!--
 			    				<goal>test</goal>
-                	                			<goal>i18n</goal>
-                	                			<goal>generateAsync</goal>
-                	                			-->
+                	                		<goal>i18n</goal>
+                	                		<goal>generateAsync</goal>
+                	                		-->
 			    			</goals>
 			    		</execution>
 			    		<execution>
@@ -823,7 +822,7 @@
 				<dependency>
 					<groupId>org.jboss.as</groupId>
 					<artifactId>jboss-as-arquillian-container-managed</artifactId>
-					<version>${version.org.jboss.as.arquillian.container}</version>
+					<version>${org.jboss.as.arquillian.container.version}</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -840,10 +839,52 @@
 				<dependency>
 					<groupId>org.jboss.as</groupId>
 					<artifactId>jboss-as-arquillian-container-remote</artifactId>
-					<version>${version.org.jboss.as.arquillian.container}</version>
+					<version>${org.jboss.as.arquillian.container.version}</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
+ 			<build>
+            		    <plugins>
+            		        <plugin>
+            		            <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-surefire-plugin</artifactId>
+				    <version>${maven.surefire.plugin.version}</version>
+            		            <configuration>
+            		                <environmentVariables>
+            		                    <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+            		                </environmentVariables>
+            		                <systemProperties>
+            		                    <jboss.version>${server.version}</jboss.version>
+            		                </systemProperties>
+            		            </configuration>
+            		        </plugin>
+            		        <plugin>
+            		            <groupId>org.apache.maven.plugins</groupId>
+            		            <artifactId>maven-dependency-plugin</artifactId>
+            		            <executions>
+            		                <execution>
+            		                    <id>unpack</id>
+            		                    <phase>process-test-classes</phase>
+            		                    <goals>
+            		                        <goal>unpack</goal>
+            		                    </goals>
+            		                    <configuration>
+            		                        <artifactItems>
+            		                            <artifactItem>
+            		                                <groupId>org.jboss.as</groupId>
+            		                                <artifactId>jboss-as-dist</artifactId>
+            		                                <version>${server.version}</version>
+            		                                <type>zip</type>
+            		                                <overWrite>false</overWrite>
+            		                                <outputDirectory>${project.build.directory}</outputDirectory>
+            		                            </artifactItem>
+            		                        </artifactItems>
+            		                    </configuration>
+            		                </execution>
+            		            </executions>
+            		        </plugin>
+            		    </plugins>
+            		</build>			
 		</profile>
 
 		<!-- Run with: mvn clean test -Parq-glassfish-embedded -->
