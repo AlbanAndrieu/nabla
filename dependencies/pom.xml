@@ -1064,6 +1064,7 @@
 
 		<!-- TODO overrided in filter -->
 		<jdkLevel>1.7</jdkLevel>
+		<jdkVersion>1.7.0</jdkVersion>
 		<jdkDebug>true</jdkDebug>
 		<jdkOptimize>false</jdkOptimize>
 		<fork>false</fork>
@@ -1080,9 +1081,9 @@
 		<!-- TODO overrided in filter -->
 
 		<copyright.year>2012</copyright.year>
-		<scope.ear>provided</scope.ear>
-		<scope.web>compile</scope.web>
-		<scope.type>${scope.ear}</scope.type> <!-- check overrided pom.xml in server -->
+		<scope.provided>provided</scope.provided>
+		<scope.compile>compile</scope.compile>
+		<scope.type>${scope.provided}</scope.type> <!-- check overrided pom.xml in server -->
 
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
 		<andromda.version>3.5</andromda.version>
@@ -1345,6 +1346,7 @@
 		<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>
 		<icefaces.version>1.8.2</icefaces.version>
 		<nekohtml.version>1.9.6.2</nekohtml.version>
+		<net.sourceforge.nekohtml.version>1.9.17</net.sourceforge.nekohtml.version>
 
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
@@ -1910,6 +1912,19 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+								  <pluginExecutionFilter>
+								    <groupId>de.smartics.maven.plugin</groupId>
+								    <artifactId>maven-buildmetadata-plugin</artifactId>
+								    <versionRange>[${maven.buildmetadata.plugin.version},)</versionRange>
+								    <goals>
+								      <goal>provide-buildmetadata</goal>
+								    </goals>
+								  </pluginExecutionFilter>
+								  <action>
+								    <ignore></ignore>
+								  </action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -2036,11 +2051,6 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-
-					<!--
-						We must	force maven site 2.0-beta-5 because beta-6 does	compile
-						only with Java 5
-					-->
 					<version>${maven.release.plugin.version}</version>
 					<configuration>
 						<useReleaseProfile>true</useReleaseProfile>
@@ -2048,12 +2058,6 @@
 						<useReleaseProfile>true</useReleaseProfile>
 						<arguments>-Prelease</arguments>
 						<preparationGoals>clean	install</preparationGoals>
-						<!--
-							<preparationGoals>install</preparationGoals>
-
-							<tagBase>https://svn.apache.org/repos/asf/maven/components/releases</tagBase>
-						-->
-
 						<tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>
 					</configuration>
 				</plugin>
@@ -2077,7 +2081,7 @@
 									<requireJavaVersion>
 										<message>You need at least Java	${jdkLevel}!</message>
 										<!-- minimum version is	1.5, higher versions allowed -->
-										<version>[${jdkLevel},]</version>
+										<version>[${jdkVersion},]</version>
 										<!--<version>[1.6.0,]</version>-->
 									</requireJavaVersion>
 									<DependencyConvergence/>
@@ -2944,11 +2948,11 @@
 						<generateHtml>true</generateHtml>
 						<generateHistorical>true</generateHistorical>
 						<!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>-->
-						<license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
-mj2L0GvL7ePpomMqqELByruVl2K3>1GMBYKI4nhRWIL2RCC
-QMqOxUMMomNoqMomprpxWNQNrpONOqqqNrXtvUsSxUvrVWU
-STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
-vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
+						<license><![CDATA[OpNRrvIENQaoGGXxaiQqOwJXqooaKPgIvnlGoqvBoGKwQGE
+mj2KOqFZX5pLPXFmOTbTtX2x2L0CAXjQk1mCknTZnGfv8tf
+ROrMvwqmrmoQOPqPMQQWxmnoormMRoPQRMXtTsxWwUUNnqq
+OnmqmUUnpsortqummmmmUUnpsortqummmmmUUEXYiXUUnmm
+mm]]></license>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -4484,6 +4488,13 @@ vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
 		<groupId>nekohtml</groupId>
 		<artifactId>nekohtml</artifactId>
 		<version>${nekohtml.version}</version>
+		<scope>provided</scope>
+	    </dependency>
+	    
+	    <dependency>
+		<groupId>net.sourceforge.nekohtml</groupId>
+		<artifactId>nekohtml</artifactId>
+		<version>${net.sourceforge.nekohtml.version}</version>
 		<scope>provided</scope>
 	    </dependency>
 
