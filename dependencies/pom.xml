@@ -1448,6 +1448,7 @@
                 <maven.project.version>3.0-alpha-2</maven.project.version>
                 <plexus.util.version>3.0.10</plexus.util.version>
                 <plexus.container.default.version>1.5.5</plexus.container.default.version>
+                <plexus.archiver.version>2.4.1</plexus.archiver.version>
 
                 <!--<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>-->
                 <wagon.webdav.jackrabbit.version>1.0-beta-7</wagon.webdav.jackrabbit.version>
@@ -1469,7 +1470,8 @@
                 <maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
                 <maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
                 <maven.shared.jar.version>1.0</maven.shared.jar.version>
-                <maven.jar.plugin.version>2.4</maven.jar.plugin.version>
+                <!--<maven.jar.plugin.version>2.4</maven.jar.plugin.version> does not work in eclipse org.codehaus.plexus.archiver.jar.Manifest.merge(org.codehaus.plexus.archiver.jar.Manifest) see : http://dev.eclipse.org/mhonarc/lists/m2e-users/msg02273.html-->
+                <maven.jar.plugin.version>2.3.2</maven.jar.plugin.version>
                 <maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
                 <maven.war.plugin.version>2.3</maven.war.plugin.version>
                 <maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
@@ -1677,7 +1679,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                                                                                 <artifactId>maven-jaxb2-plugin</artifactId>
-                                                                                <versionRange>[0.7,)</versionRange>
+                                                                                <versionRange>[${maven.jaxb2.plugin.version},)</versionRange>
                                                                                 <goals>
                                                                                         <goal>generate</goal>
                                                                                 </goals>
@@ -1927,6 +1929,19 @@
                                                                     <ignore></ignore>
                                                                   </action>
                                                                 </pluginExecution>
+                                                                <pluginExecution>
+                                                                        <pluginExecutionFilter>
+                                                                                <groupId>org.apache.felix</groupId>
+                                                                                <artifactId>maven-bundle-plugin</artifactId>
+                                                                                <versionRange>[${maven.bundle.plugin.version},)</versionRange>
+                                                                                <goals>
+                                                                                        <goal>manifest</goal>
+                                                                                </goals>
+                                                                        </pluginExecutionFilter>
+                                                                        <action>
+                                                                                <ignore></ignore>
+                                                                        </action>
+                                                                </pluginExecution>                                                                                                                                
                                                         </pluginExecutions>
                                                 </lifecycleMappingMetadata>
                                         </configuration>
@@ -2282,11 +2297,13 @@
                                         </executions>
                                 </plugin>
 
+				<!-- dectivate : validation error in eclipse and does not work with maven-bundle-plugin
                                 <plugin>
                                   <groupId>de.smartics.maven.plugin</groupId>
                                   <artifactId>maven-buildmetadata-plugin</artifactId>
                                   <version>${maven.buildmetadata.plugin.version}</version>
                                 </plugin>
+                                -->
                                 <plugin>
                                   <groupId>com.mycila.maven-license-plugin</groupId>
                                   <artifactId>maven-license-plugin</artifactId>
@@ -3173,6 +3190,7 @@ mm]]></license>
                     <inherited>true</inherited>
                   </plugin>
                   -->
+                  <!-- dectivate : validation error in eclipse and does not work with maven-bundle-plugin
                   <plugin>
                     <groupId>de.smartics.maven.plugin</groupId>
                     <artifactId>maven-buildmetadata-plugin</artifactId>
@@ -3255,6 +3273,7 @@ mm]]></license>
                       </propertyOutputFileMapping>
                     </configuration>
                   </plugin>
+                  -->
                   <plugin>
                    <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
                    <artifactId>maven-java-formatter-plugin</artifactId>
@@ -5920,6 +5939,11 @@ mm]]></license>
                 <artifactId>plexus-container-default</artifactId>
                 <version>${plexus.container.default.version}</version>
             </dependency>
+            <dependency>
+                 <groupId>org.codehaus.plexus</groupId>
+                 <artifactId>plexus-archiver</artifactId>
+                 <version>${plexus.archiver.version}</version>
+            </dependency>            
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-plugin-api</artifactId>
