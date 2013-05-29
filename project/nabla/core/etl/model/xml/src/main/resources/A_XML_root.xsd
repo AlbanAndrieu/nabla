@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
-	xmlns:INS="urn:test:XML_InstrumentService:1_0_0" xmlns="urn:test:Test_Service:1_0_0" targetNamespace="urn:test:Test_Service:1_0_0">
+<xs:schema targetNamespace="urn:nabla:Nabla_Service:1_0_0"
+	xmlns:INS="urn:nabla:A_XML_InstrumentService:1_0_0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="urn:nabla:Nabla_Service:1_0_0" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
 	<!-- *********************************************** -->
 	<!--Version Of The Package -->
 	<xs:annotation>
@@ -10,15 +12,17 @@
 	</xs:annotation>
 	<!-- *********************************************** -->
 	<!--Include shared structures -->
-	<xs:import namespace="urn:test:XML_InstrumentService:1_0_0" schemaLocation="./XML_InstrumentService/XML_InstrumentService.xsd" />
+	<xs:import namespace="urn:nabla:A_XML_InstrumentService:1_0_0"
+		schemaLocation="./A_XML_InstrumentService/A_XML_InstrumentService.xsd" />
 	<!-- *********************************************** -->
 	<!--*** TEMPLATE STRUCTURES to be specialized in services *** -->
 	<xs:element name="XML_trade_template">
 		<xs:complexType>
 			<xs:choice>
-				<xs:element ref="INS:endOfDayInventoryTrade" maxOccurs="unbounded" />
-				<xs:element ref="INS:endOfMonthInventoryTrade" maxOccurs="unbounded" />
-				<xs:element ref="INS:productSet" maxOccurs="unbounded" />
+				<xs:element ref="INS:InventoryTrade" maxOccurs="unbounded" />
+				<xs:element ref="INS:InventoryTradeValuated"
+					maxOccurs="unbounded" />
+				<xs:element ref="INS:ProductSet" maxOccurs="unbounded" />
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>

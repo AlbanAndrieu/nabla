@@ -3,10 +3,10 @@
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
 	<!-- Global beans -->
-	<import resource="Config.xml"/>
+	<import resource="Config-Sample.xml"/>
 
 	<!-- Technical beans -->
-	<import resource="SpringConfig.xml"/>
+	<import resource="SpringConfig-Sample.xml"/>
 
 	<!-- Functional beans -->
 

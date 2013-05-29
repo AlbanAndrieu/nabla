@@ -37,6 +37,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
@@ -132,4 +133,11 @@ public class LogTest extends TestCase
 
     }
 
+    @Override
+    protected void tearDown() throws Exception
+    {
+        super.tearDown();
+
+        LogManager.shutdown();
+    }
 }

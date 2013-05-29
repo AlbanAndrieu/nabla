@@ -413,7 +413,7 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
     public String getExtractServiceId()
     {
 
-        return "EoleExtractService";
+        return "NablaExtractService";
 
     }
 

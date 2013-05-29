@@ -51,13 +51,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public abstract class AbstractApplicationContextFactory
 {
 
-    protected static Logger    logger                           = Logger.getLogger(AbstractApplicationContextFactory.class);
+    protected static Logger      logger                     = Logger.getLogger(AbstractApplicationContextFactory.class);
 
+    public static final String   SPRING_PACKAGE             = "com/nabla/project/application/core/spring/";
     /**
      * DOCUMENT ME!
      */
-    public final static String springBaseDefaultConfiguration[] = { "com/nabla/project/application/core/spring/ServiceBase.xml", };
-    private static String      springConfiguration[]            = springBaseDefaultConfiguration;
+    public final static String[] springDefaultConfiguration = { SPRING_PACKAGE + "/ServiceBase-Sample.xml", };
+    private static String[]      springConfiguration        = springDefaultConfiguration;
 
     /**
      * Creates a new AbstractApplicationContextFactory object.
@@ -75,7 +76,7 @@ public abstract class AbstractApplicationContextFactory
 
     }
 
-    private ApplicationContext applicationContext = null;
+    protected ApplicationContext applicationContext = null;
 
     /**
      * DOCUMENT ME!

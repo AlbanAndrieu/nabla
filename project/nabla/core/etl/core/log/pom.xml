@@ -37,7 +37,7 @@
                         <scope>compile</scope>
                 </dependency>
                 -->
-                <dependency>
+		<dependency>
 			<groupId>jmdns</groupId>
 			<artifactId>jmdns</artifactId>
 			<version>${jmdns.version}</version>
@@ -46,8 +46,8 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>		
-	</dependencies>	
+		</dependency>
+	</dependencies>
 	<build>
 		<testResources>
 			<testResource>
@@ -78,7 +78,21 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<archive>
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>				
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
+	<properties>
+		<bundle.namespace>com.nabla.project.application.core.log</bundle.namespace>
+	</properties>
 </project>

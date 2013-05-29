@@ -46,7 +46,6 @@ public class ApplicationContextFactory extends AbstractApplicationContextFactory
     /**
      * DOCUMENT ME!
      */
-    public final static String                     springDefaultConfiguration[] = { "com/nabla/project/application/core/spring/ServiceBase.xml", };
     private final static ApplicationContextFactory applicationContextFactory    = new ApplicationContextFactory();
 
     /**

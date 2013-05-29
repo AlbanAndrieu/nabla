@@ -7,15 +7,15 @@
                 <version>1.0</version>
         </parent>
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.nabla.project.core.etl.core</groupId>
-  <artifactId>core</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0</version>
-  <name>Etl Core Assembly</name>
-  <description>Java core of the Etl</description>
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>com.nabla.project.core.etl.core</groupId>
+  	<artifactId>core</artifactId>
+  	<packaging>pom</packaging>
+  	<name>Etl Core Assembly</name>
+  	<description>Java core of the Etl</description>
 
         <modules>
+                <module>build</module>
                 <!--<module>communication</module>-->
                 <module>api</module>
                 <module>configuration</module>

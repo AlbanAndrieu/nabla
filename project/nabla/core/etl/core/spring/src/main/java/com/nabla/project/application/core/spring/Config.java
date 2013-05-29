@@ -43,8 +43,6 @@ package com.nabla.project.application.core.spring;
 public class Config extends AbstractConfig
 {
 
-    public static String beanConfig = "defaultConfiguration";
-
     /**
      * Creates a new Config object.
      */

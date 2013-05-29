@@ -10,15 +10,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.nabla.project.core.etl.model</groupId>
   <artifactId>model</artifactId>
-  <version>1.0</version>
   <packaging>pom</packaging>
   <name>Etl Model Assembly</name>
   <description>Java model</description>
 
         <modules>
-                <!--<module>nstools</module>
-                <module>message</module>-->
-                <module>xml</module>
+                <!--<module>nstools</module>-->
+                <module>xml</module>                
+                <module>message</module>
         </modules>
 
 </project>

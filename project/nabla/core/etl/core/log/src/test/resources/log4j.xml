@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <!-- 
 	http://logging.apache.org/index.html
@@ -8,7 +8,7 @@
 
 	<appender name="ROLL"
 		class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="~/server.log" />
+		<param name="File" value="~/logs/server.log" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="2" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -19,7 +19,7 @@
 
 	<appender name="ACCESS"
 		class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="~/access.log" />
+		<param name="File" value="~/logs/access.log" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%m%n" />
 		</layout>
@@ -48,7 +48,7 @@
 
 	<appender name="XMLOutFormat"
 		class="org.apache.log4j.FileAppender">
-		<param name="File" value="~/chainsaw.log" />
+		<param name="File" value="~/logs/chainsaw.log" />
 		<param name="append" value="false" />
 		<layout class="org.apache.log4j.xml.XMLLayout" />
 	</appender>

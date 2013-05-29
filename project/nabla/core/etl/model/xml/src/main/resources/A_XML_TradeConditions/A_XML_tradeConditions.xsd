@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
-	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
-	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
-	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradeConditions:1_0_0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:nabla:A_XML_TradeConditions:1_0_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:nabla:A_XML_TradingGeneric:1_0_0" xmlns:PHD="urn:nabla:A_XML_ProductHeader:1_0_0"
+	xmlns:REF="urn:nabla:A_XML_ReferentialGeneric:1_0_0" xmlns:TRD="urn:nabla:A_XML_Trade:1_0_0"
+	xmlns:TPI="urn:nabla:A_XML_TradePartyInfo:1_0_0" xmlns:TPY="urn:nabla:A_XML_TradePayment:1_0_0"
+	xmlns:TCD="urn:nabla:A_XML_TradeConditions:1_0_0" xmlns:PTY="urn:nabla:A_XML_TradingParty:1_0_0"
+	xmlns:THD="urn:nabla:A_XML_TradeHeader:1_0_0" xmlns:INS="urn:nabla:A_XML_InstrumentService:1_0_0">
 	<!-- *********************************************** -->
 	<!--Version Of The Package -->
 	<xs:annotation>
 		<xs:documentation>
-			<package name="XML_TradeConditions" mnemonic="TCD" version="1.0.0" />
+			<package name="A_XML_TradeConditions" mnemonic="TCD" version="1.0.0" />
 		</xs:documentation>
 	</xs:annotation>
 	<!-- *********************************************** -->
 	<!--Include shared structures -->
-	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
-	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
-	<xs:import namespace="urn:test:XML_TradingParty:1_0_0" schemaLocation="../XML_TradingParty/XML_tradingParty.xsd" />
+	<xs:import namespace="urn:nabla:A_XML_TradingGeneric:1_0_0"
+		schemaLocation="../A_XML_TradingGeneric/A_XML_trading_generic.xsd" />
+	<xs:import namespace="urn:nabla:A_XML_ReferentialGeneric:1_0_0"
+		schemaLocation="../A_XML_Generic/A_XML_referential_generic.xsd" />
+	<xs:import namespace="urn:nabla:A_XML_TradingParty:1_0_0"
+		schemaLocation="../A_XML_TradingParty/A_XML_tradingParty.xsd" />
 	<!-- *********************************************** -->
 	<!--*** Trade ComplexTypes *** -->
 	<!-- *********************************************** -->
 	<xs:simpleType name="XML_ExchangeProductTypeScheme">
 		<xs:annotation>
 			<xs:documentation>
-				<definition>Type of exchange product, it's used to know the accounting nature of the echanged product</definition>
+				<definition>Type of exchange product, it's used to know the
+					accounting nature of the echanged product
+				</definition>
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
@@ -36,14 +45,16 @@
 			<xs:element name="quantity" type="xs:decimal">
 				<xs:annotation>
 					<xs:documentation>
-						<definition>Exchanged quantity of product (nominal of product at initial negotiation)</definition>
+						<definition>Exchanged quantity of product (nominal of product at
+							initial negotiation)</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="valueDate" type="xs:date">
 				<xs:annotation>
 					<xs:documentation>
-						<definition>The adjusted value date at which the product is delivered</definition>
+						<definition>The adjusted value date at which the product is
+							delivered</definition>
 					</xs:documentation>
 					<xs:documentation>
 						<definition>The value date at which the product is delivered</definition>
@@ -60,7 +71,8 @@
 	<xs:element name="ATradeDirection" type="REF:tradeDirectionScheme">
 		<xs:annotation>
 			<xs:documentation>
-				<definition>Redondant information used by transversal systems to identify trade direction (Buy or Sell) from partyA</definition>
+				<definition>Redondant information used by transversal systems to
+					identify trade direction (Buy or Sell) from partyA</definition>
 			</xs:documentation>
 		</xs:annotation>
 	</xs:element>
@@ -88,26 +100,39 @@
 			<xs:element name="APartyReference" type="REF:XML_Reference">
 				<xs:annotation>
 					<xs:documentation>
-						<definition>First principal party implied in the trade - INTERNAL by convention - the trade Direction is expressed
-							from AParty point of view</definition>
+						<definition>First principal party implied in the trade - INTERNAL
+							by convention - the trade Direction is expressed from AParty
+							point of view</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="BPartyReference" type="REF:XML_Reference">
 				<xs:annotation>
 					<xs:documentation>
-						<definition>Second principal party implied in the trade - can be INTERNAL or EXTERNAL</definition>
+						<definition>Second principal party implied in the trade - can be
+							INTERNAL or EXTERNAL</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="exchangedProduct" type="TCD:XML_ExchangedProduct">
 				<xs:annotation>
 					<xs:documentation>
-						<definition>First product exchanged description - if Quantity is positive, PartyA "buy" ("receive") product</definition>
+						<definition>first product exchanged description - if Quantity is
+							positive, PartyA "buy" ("receive") product1</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="TCD:ATradeDirection" minOccurs="0" />
+			<xs:element name="portfoliosTradeIndicator" type="xs:boolean"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						<definition>redondant information used by transversal systems to
+							identify trade made with A portfolio and B portfolio
+						</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

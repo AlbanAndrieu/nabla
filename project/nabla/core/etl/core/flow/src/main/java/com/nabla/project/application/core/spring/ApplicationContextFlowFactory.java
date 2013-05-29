@@ -46,7 +46,7 @@ public class ApplicationContextFlowFactory extends AbstractApplicationContextFac
     /**
      * DOCUMENT ME!
      */
-    public static String                               springConfiguration[]     = springBaseDefaultConfiguration;
+    public static String                               springConfiguration[]     = springDefaultConfiguration;
     private final static ApplicationContextFlowFactory applicationContextFactory = new ApplicationContextFlowFactory();
 
     /**

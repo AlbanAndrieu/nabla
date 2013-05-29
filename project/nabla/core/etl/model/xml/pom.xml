@@ -15,6 +15,36 @@
 	<name>Etl Model Xml</name>
 	<description>Implementation using java objects to perform model transformation and Jaxb to generate XML</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<!-- JAXB api http://mojo.codehaus.org/jaxws-maven-plugin/dependencies.html -->
+		<!--
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>${javax.activation.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons.logging.version}</version>
+			<scope>compile</scope>
+		</dependency>
+        -->
+
+	</dependencies>
+	
 	<build>
 		<plugins>
 			<!-- call external ant task to generate jaxb classes -->
@@ -66,48 +96,34 @@
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
-<!--
-                        <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-jar-plugin</artifactId>
+
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-jar-plugin</artifactId>
+<!--		      
                                 <executions>
                                         <execution>
                                                 <goals>
                                                         <goal>test-jar</goal>
                                                 </goals>
                                         </execution>
-                                </executions>
-                        </plugin>
-                         -->
+                                </executions>	
+                   -->                                	      
+		      <configuration>
+		        <archive>
+		          <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+		        </archive>
+		      </configuration>
+		    </plugin>
+		    
+		    <plugin>
+        	        <groupId>org.apache.felix</groupId>
+        	        <artifactId>maven-bundle-plugin</artifactId>
+        	    </plugin>                
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-		<!-- JAXB api http://mojo.codehaus.org/jaxws-maven-plugin/dependencies.html -->
-		<!--
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<version>${javax.activation.version}</version>
-			<scope>compile</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>${commons.logging.version}</version>
-			<scope>compile</scope>
-		</dependency>
-        -->
-
-	</dependencies>
+	
+        <properties>
+            <bundle.namespace>com.nabla.project.application.model</bundle.namespace>
+        </properties>	
 </project>

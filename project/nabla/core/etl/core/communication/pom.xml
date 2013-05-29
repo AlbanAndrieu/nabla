@@ -8,11 +8,33 @@
         </parent>
         
         <modelVersion>4.0.0</modelVersion>
-        <name>com.nabla.project.core.etl.core..communication</name>
+        <name>com.nabla.project.core.etl.core.communication</name>
         <groupId>communication</groupId>
         <packaging>pom</packaging>
-        <version>1.0</version>
         <name>Etl Core Communication</name>
         <description>Java communication of the Etl</description>
 
+    	<build>
+        	<plugins>
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-jar-plugin</artifactId>
+		      <configuration>
+		        <archive>
+		          <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+		        </archive>
+		      </configuration>
+		    </plugin>
+		    
+		    <plugin>
+        	        <groupId>org.apache.felix</groupId>
+        	        <artifactId>maven-bundle-plugin</artifactId>
+        	    </plugin>
+        	</plugins>
+        </build>
+        
+        <properties>
+            <bundle.namespace>com.nabla.project.application.api</bundle.namespace>
+        </properties>
+        
 </project>

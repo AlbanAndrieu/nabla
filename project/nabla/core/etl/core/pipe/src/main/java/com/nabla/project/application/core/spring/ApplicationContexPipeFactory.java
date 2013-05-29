@@ -43,7 +43,7 @@ package com.nabla.project.application.core.spring;
 public class ApplicationContexPipeFactory extends AbstractApplicationContextFactory
 {
 
-    private static String                             springConfiguration[]     = springBaseDefaultConfiguration;
+    private static String                             springConfiguration[]     = springDefaultConfiguration;
     private final static ApplicationContexPipeFactory applicationContextFactory = new ApplicationContexPipeFactory();
 
     /**

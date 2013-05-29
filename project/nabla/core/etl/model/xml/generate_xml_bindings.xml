@@ -18,21 +18,21 @@
         	<!-- Used the -npa switch in order to omit the package-info generation -->
        	    <arg value="-npa" />
             <schema dir="src/main/resources/">
-                <include name="XML_Generic/**/*.xsd" />
-                <include name="XML_ProductHeader/**/*.xsd" />
-                <include name="XML_Instrument**/*.xsd" />
-                <include name="XML_OTCProductShared/**/*.xsd" />
-                <include name="XML_CommercialMargin/**/*.xsd" />
-                <include name="XML_FinancialInfo/**/XML_financialInfo.xsd" />
-                <include name="XML_SettlementInfo/**/*.xsd" />
-                <include name="XML_Trade/**/*.xsd" />
-                <include name="XML_TradeCondition/**/*.xsd" />
-                <include name="XML_TradeHeader/**/XML_tradeHeader.xsd" />
-                <include name="XML_TradePartyInfo/**/*.xsd" />
-                <include name="XML_TradePayment/**/*.xsd" />
-                <include name="XML_TradingGeneric/**/*.xsd" />
-                <include name="XML_TradingParty/**/*.xsd" />
-                <include name="XML_InstrumentService/**/XML_InstrumentService.xsd" />
+                <include name="A_XML_Generic/**/*.xsd" />
+                <include name="A_XML_ProductHeader/**/*.xsd" />
+                <include name="A_XML_Instrument**/*.xsd" />
+                <include name="A_XML_OTCProductShared/**/*.xsd" />
+                <include name="A_XML_CommercialMargin/**/*.xsd" />
+                <include name="A_XML_FinancialInfo/**/A_XML_financialInfo.xsd" />
+                <include name="A_XML_SettlementInfo/**/*.xsd" />
+                <include name="A_XML_Trade/**/*.xsd" />
+                <include name="A_XML_TradeCondition/**/*.xsd" />
+                <include name="A_XML_TradeHeader/**/A_XML_tradeHeader.xsd" />
+                <include name="A_XML_TradePartyInfo/**/*.xsd" />
+                <include name="A_XML_TradePayment/**/*.xsd" />
+                <include name="A_XML_TradingGeneric/**/*.xsd" />
+                <include name="A_XML_TradingParty/**/*.xsd" />
+                <include name="A_XML_InstrumentService/**/XML_InstrumentService.xsd" />
                 <include name="/*root*.xsd" />
             </schema>
             <produces dir="target/generated-sources/main/java" includes="**/*.java" />

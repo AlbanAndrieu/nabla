@@ -19,7 +19,7 @@
                 <module>core</module>
                 <module>model</module>
                 <module>tool</module>
-
+                <module>bom</module>
         </modules>
 
 	<!--

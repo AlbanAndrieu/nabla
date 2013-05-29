@@ -41,7 +41,7 @@ import java.io.Serializable;
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class Condition implements Serializable
 {
 
@@ -169,7 +169,10 @@ public class Condition implements Serializable
 
     public enum ConditionId
     {
-        KEY("[KEY]", ":key"), STATUS("[STATUS]", ":status"), DATEMIN("[DATEMIN]", ":datemin"), DATEMAX("[DATEMIN]", ":datemax"), MAXROW("[MAXROW]", ":maxrow");
+
+        MAXROW("MAXROW", "[maxrow]"), SELECT("SELECT", "[SELECT]"), FROM("FROM", "[FROM]"), WHERE("WHERE", "[WHERE]"), ORDERBY("ORDERBY", "[ORDERBY]"), DATVALMIN("DATVALMIN", "[datvalmin]"), DATVALMAX(
+                "DATVALMAX",
+                "[datvalmax]"), TYPEOFDEAL("TYPEOFDEAL", "[typeofdeal]"), FOLDER("FOLDER", "[folder]");
 
         private String xmlMapping;
         private String sqlValueName;

@@ -15,6 +15,17 @@
 	<name>Etl Tool</name>
 	<description>Technical Components providing transverse technical functionalities to services</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+		</dependency>
+	</dependencies>
+	
 	<build>
 		<testResources>
 			<testResource>
@@ -45,18 +56,21 @@
 						</goals>
 					</execution>
 				</executions>
+		      <configuration>
+		        <archive>
+		          <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+		        </archive>
+		      </configuration>				
 			</plugin>
+		    
+		    <plugin>
+        	        <groupId>org.apache.felix</groupId>
+        	        <artifactId>maven-bundle-plugin</artifactId>
+        	    </plugin>			
 		</plugins>
 	</build>
-
-	<dependencies>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-		</dependency>
-	</dependencies>
+	
+        <properties>
+            <bundle.namespace>com.nabla.project.application.tool.runner</bundle.namespace>
+        </properties>	
 </project>

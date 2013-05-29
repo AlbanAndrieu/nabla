@@ -12,7 +12,6 @@
 	<groupId>com.nabla.project.core.etl.core.time</groupId>
 	<artifactId>time</artifactId>
 	<packaging>jar</packaging>
-	<!-- <version>1.0</version> -->
 	<name>Etl Core Time</name>
 	<description>Java core time of the Etl</description>
 
@@ -55,8 +54,21 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<archive>
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>				
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
 
+	<properties>
+		<bundle.namespace>com.nabla.project.application.core.time</bundle.namespace>
+	</properties>
 </project>

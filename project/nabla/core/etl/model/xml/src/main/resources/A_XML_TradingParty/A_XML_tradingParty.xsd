@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
-	xmlns:GEN="urn:test:XML_TradingGeneric:1_0_0" xmlns:PHD="urn:test:XML_ProductHeader:1_0_0" xmlns:REF="urn:test:XML_ReferentialGeneric:1_0_0"
-	xmlns:TRD="urn:test:XML_Trade:1_0_0" xmlns:TCD="urn:test:XML_TradeConditions:1_0_0" xmlns:PTY="urn:test:XML_TradingParty:1_0_0"
-	xmlns:THD="urn:test:XML_TradeHeader:1_0_0" xmlns:INS="urn:test:XML_InstrumentService:1_0_0" targetNamespace="urn:test:XML_TradingParty:1_0_0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:nabla:A_XML_TradingParty:1_0_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:GEN="urn:nabla:A_XML_TradingGeneric:1_0_0" xmlns:PHD="urn:nabla:A_XML_ProductHeader:1_0_0"
+	xmlns:REF="urn:nabla:A_XML_ReferentialGeneric:1_0_0" xmlns:TRD="urn:nabla:A_XML_Trade:1_0_0"
+	xmlns:TPI="urn:nabla:A_XML_TradePartyInfo:1_0_0" xmlns:TPY="urn:nabla:A_XML_TradePayment:1_0_0"
+	xmlns:TCD="urn:nabla:A_XML_TradeConditions:1_0_0" xmlns:PTY="urn:nabla:A_XML_TradingParty:1_0_0"
+	xmlns:THD="urn:nabla:A_XML_TradeHeader:1_0_0" xmlns:INS="urn:nabla:A_XML_InstrumentService:1_0_0">
+	
 	<!-- Trade party Model -->
 	<!-- *********************************************** -->
 	<!--Version Of The Package -->
 	<xs:annotation>
 		<xs:documentation>
-			<package name="XML_TradingParty" mnemonic="PTY" version="1.0.0" />
+			<package name="A_XML_TradingParty" mnemonic="PTY" version="1.0.0" />
 		</xs:documentation>
 	</xs:annotation>
 	<!-- *********************************************** -->
-	<xs:import namespace="urn:test:XML_TradingGeneric:1_0_0" schemaLocation="../XML_TradingGeneric/XML_trading_generic.xsd" />
-	<xs:import namespace="urn:test:XML_ReferentialGeneric:1_0_0" schemaLocation="../XML_Generic/XML_referential_generic.xsd" />
+	<xs:import namespace="urn:nabla:A_XML_TradingGeneric:1_0_0"
+		schemaLocation="../A_XML_TradingGeneric/A_XML_trading_generic.xsd" />
+	<xs:import namespace="urn:nabla:A_XML_ReferentialGeneric:1_0_0"
+		schemaLocation="../A_XML_Generic/A_XML_referential_generic.xsd" />
 	<xs:simpleType name="XML_TradePartyTypeScheme">
 		<xs:annotation>
 			<xs:documentation>
@@ -29,7 +36,8 @@
 	<xs:complexType name="XML_PartyIdentifier">
 		<xs:sequence>
 			<xs:element ref="PTY:tradePartyId" />
-			<xs:element name="tradePartyCode" type="REF:XML_Code" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="tradePartyCode" type="REF:XML_Code"
+				minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>
 						<definition>Codification of cpty</definition>
@@ -44,14 +52,16 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="tradePartyMnemonic" type="xs:string" minOccurs="0">
+			<xs:element name="tradePartyMnemonic" type="xs:string"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						<definition>Party Mnemonic</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="tradePartyShortName" type="xs:string" minOccurs="0">
+			<xs:element name="tradePartyShortName" type="xs:string"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						<definition>Party Short name</definition>
@@ -79,14 +89,16 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="analyticalFolderId" type="REF:XML_IdWithMnemonic" minOccurs="0">
+			<xs:element name="partyFolderId" type="REF:XML_IdWithMnemonic"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						<definition>Analytical Folder Identifier</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="partyComment" type="REF:XML_Comment" minOccurs="0">
+			<xs:element name="partyComment" type="REF:XML_Comment"
+				minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
 						<definition>Various comments on a party in the trade given by a

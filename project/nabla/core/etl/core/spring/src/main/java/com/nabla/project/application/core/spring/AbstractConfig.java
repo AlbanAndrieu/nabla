@@ -60,12 +60,13 @@ public abstract class AbstractConfig
     /**
      * DOCUMENT ME!
      */
-    // public static String beanConfig = "defaultConfiguration";
+    public static String beanConfig        = "defaultConfiguration";
 
-    // private static AbstractConfig getInstance() {
-    //
-    // return null;
-    //
-    // }
-
+    private static AbstractConfig getInstance()
+    {
+        // defaultConfiguration bean must be declare as a singleton in spring
+        // return
+        // (AbstractConfig)AbstractApplicationContextFactory.getInstance().getApplicationContext().getBean(beanConfig);
+        return null;
+    }
 }
