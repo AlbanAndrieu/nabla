@@ -47,3 +47,5 @@ sudo chmod -R a+X /var/www
 #cgi dans /usr/lib/cgi-bin
 cd /usr/lib
 sudo ln -s /workspace/philesight/philesight.cgi philesight.cgi
+
+tail -f /var/log/apache2/error.log

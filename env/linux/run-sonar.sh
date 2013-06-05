@@ -3,6 +3,7 @@
 #http://docs.codehaus.org/display/SONAR/Running+Sonar+as+a+Service+on+Linux
 
 sudo ln -s /workspace/sonar-3.3/bin/linux-x86-32/sonar.sh /usr/bin/sonar
+cd /etc/init.d
 sudo chmod 755 /etc/init.d/sonar
 sudo update-rc.d sonar defaults
 

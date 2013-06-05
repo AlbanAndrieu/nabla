@@ -12,3 +12,14 @@ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -sha1 -subj \
 #http://support.google.com/a/bin/answer.py?hl=fr&answer=106368  
 
 TODO add password syncronisation in Google Apps Directory Sync
+
+#Install Google Drive
+http://tilap.net/google-drive-sur-ubuntu-facilement/
+
+cd ~
+gmount drive alban.andrieu@nabla.mobi
+
+http://www.howopensource.com/2012/11/install-insync-google-drive-client-in-ubuntu-12-10-12-04-ppa/
+
+wget -O - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key | sudo apt-key add -
+sudo sh -c 'echo "deb http://apt.insynchq.com/ubuntu $(lsb_release -sc) non-free" >> /etc/apt/sources.list.d/insync.list'

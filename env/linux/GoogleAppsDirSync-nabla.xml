@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config version="3.1.6" id="7353be1782bf49af96e7923d0777ded5" rev="11c71566f86947ad9d0cb6840643f479" marker="314">
+<config version="3.1.6" id="7353be1782bf49af96e7923d0777ded5" rev="744b617a09f04502901ef73d191c6080" marker="314">
   <features>
-    <optional>SUSPEND_USERS</optional>
-    <optional>INDEPENDENT_GROUP_SYNC</optional>
-    <optional>SKIP_EXISTING_PASSWORDS</optional>
-    <optional>GIVEN_NAME</optional>
-    <optional>GROUP_DESCRIPTION</optional>
-    <optional>SKIP_SUSPENDING_ADMINS</optional>
-    <optional>GOOGLE_ORGUNITS</optional>
-    <optional>SKIP_SHARED_CONTACTS</optional>
-    <optional>SKIP_CALENDAR_RESOURCES</optional>
-    <optional>SHA1_PASSWORD</optional>
-    <optional>BASE64_PASSWORD</optional>
-    <optional>MULTIDOMAIN</optional>
-    <optional>ALIAS_SYNCHRONIZATION</optional>
-    <optional>MD5_PASSWORD</optional>
-    <optional>GROUP_OWNER</optional>
-    <optional>GOOGLE_QUOTA</optional>
-    <optional>USER_PROFILES</optional>
-    <optional>FAMILY_NAME</optional>
-    <optional>GROUPS</optional>
     <optional>DYNAMIC_GROUPS</optional>
+    <optional>USER_PROFILES</optional>
+    <optional>GOOGLE_QUOTA</optional>
+    <optional>SKIP_SUSPENDING_ADMINS</optional>
+    <optional>SKIP_CALENDAR_RESOURCES</optional>
+    <optional>INDEPENDENT_GROUP_SYNC</optional>
+    <optional>MD5_PASSWORD</optional>
+    <optional>GROUPS</optional>
+    <optional>SUSPEND_USERS</optional>
+    <optional>SHA1_PASSWORD</optional>
+    <optional>ALIAS_SYNCHRONIZATION</optional>
+    <optional>GIVEN_NAME</optional>
+    <optional>GOOGLE_ORGUNITS</optional>
     <optional>NON_ADDRESS_PRIMARY_KEY</optional>
+    <optional>BASE64_PASSWORD</optional>
+    <optional>GROUP_OWNER</optional>
+    <optional>GROUP_DESCRIPTION</optional>
+    <optional>SKIP_SHARED_CONTACTS</optional>
+    <optional>MULTIDOMAIN</optional>
+    <optional>SKIP_EXISTING_PASSWORDS</optional>
+    <optional>FAMILY_NAME</optional>
+    <required>SUPPRESS_DOMAIN</required>
   </features>
   <logging>
     <defaultLogLevel>DEBUG</defaultLogLevel>
@@ -75,11 +76,11 @@
           <authType>ANONYMOUS</authType>
           <authUser>admin</authUser>
           <authCredentialsEncrypted>HhoTpYWilOycJSTmUI8N2g==</authCredentialsEncrypted>
-          <nonAddressPrimaryKeyAttrName>uidNumber</nonAddressPrimaryKeyAttrName>
+          <nonAddressPrimaryKeyAttrName>uid</nonAddressPrimaryKeyAttrName>
           <emailAttrName>mail</emailAttrName>
           <aliasAttrName>proxyAddress</aliasAttrName>
           <dominoWhiteSpaceReplaceChar>.</dominoWhiteSpaceReplaceChar>
-          <givenNameAttrName>givenName</givenNameAttrName>
+          <givenNameAttrName>cn</givenNameAttrName>
           <familyNameAttrName>sn</familyNameAttrName>
           <md5PasswordAttrName>Password</md5PasswordAttrName>
           <defaultPasswordEncrypted>HhoTpYWilOycJSTmUI8N2g==</defaultPasswordEncrypted>
@@ -105,11 +106,10 @@
           <groups>
             <search>
               <priority>1</priority>
-              <scope>SUBTREE</scope>
-              <filter>(objectclass=group)</filter>
-              <memberAttrName>member</memberAttrName>
+              <scope>OBJECT</scope>
+              <filter>(objectClass=posixGroup)</filter>
+              <memberAttrName>memberUid</memberAttrName>
               <groupIdentifierAttr>mail</groupIdentifierAttr>
-              <groupIdentifierSuffix>@nabla.mobi</groupIdentifierSuffix>
               <userEmailAttribute>mail</userEmailAttribute>
             </search>
           </groups>
@@ -126,7 +126,7 @@
               <priority>1</priority>
               <scope>SUBTREE</scope>
               <primaryEmailAddressAttrName>mail</primaryEmailAddressAttrName>
-              <filter>(objectclass=user)</filter>
+              <filter>(&amp;(objectclass=user)(objectcategory=person))</filter>
             </search>
           </userProfiles>
           <calendarResources>

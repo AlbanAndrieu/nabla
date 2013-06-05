@@ -1,13 +1,13 @@
 #http://www.sonatype.org/nexus/
 
-sudo cp nexus-2.2-01-bundle.tar.gz /usr/local/
-cd /usr/local/
+sudo cp nexus-2.2-01-bundle.tar.gz /workspace
+cd /workspace
 sudo tar xvzf nexus-2.2-01-bundle.tar.gz
 sudo ln -s nexus-2.2-01 nexus
 
 #NEXUS_HOME/conf/nexus.properties
 cd /etc/init.d
-sudo ln -s /usr/local/nexus/bin/nexus nexus
+sudo ln -s /workspace/nexus/bin/nexus nexus
 
 sudo update-rc.d nexus defaults 06 94
 ls -l /etc/rc?.d/*nexus
@@ -16,12 +16,14 @@ sudo adduser nexus
 sudo addgroup data
 sudo adduser nexus data
 
-cd /usr/local/nexus
+#cd /usr/local/nexus
+cd /workspace
 
 sudo chown -R nexus.data sonatype-work
 sudo chown -R nexus.data nexus
-sudo chown -R nexus.data nexus-2.2-01
+sudo chown -R nexus.data nexus-2.3.0-04
 
+cd /workspace/nexus
 ./bin/nexus console
 
 #http://www.sonatype.com/books/nexus-book/reference/install-sect-running.html
@@ -45,7 +47,7 @@ sudo chown -R nexus.data nexus-crowd-plugin-*/
 #./bin/nexus start
 #microsoft
 
-sudo update-rc .d -f nexus remove
+sudo update-rc.d -f nexus remove
 sudo update-rc.d nexus defaults 10 90
 sudo service nexus start
 

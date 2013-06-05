@@ -1,8 +1,11 @@
 sudo service crowd start
 http://localhost:8095/crowd/
-user : alban.andrieu@nabla.mobi
+#user : Alban Andrieu
+#pass microsoft
 
 sudo adduser crowd
+sudo addgroup data
+sudo adduser crowd data
 #pass microsoft
 
 #https://confluence.atlassian.com/display/CROWD/Installing+Crowd+and+CrowdID
@@ -26,7 +29,7 @@ cd /workspace
 sudo cp ~/Downloads/mysql-connector-java-5.1.22/mysql-connector-java-5.1.22-bin.jar .
 cd /workspace/atlassian-crowd-2.5.2/apache-tomcat/lib
 cp /workspace/mysql-connector-java-5.1.22-bin.jar .
-sudo chown crowd.crowd mysql-connector-java-5.1.22-bin.jar
+sudo chown crowd.data mysql-connector-java-5.1.22-bin.jar
 sudo chmod 755 mysql-connector-java-5.1.22-bin.jar
 
 gedit /workspace/atlassian-crowd-2.5.2/apache-tomcat/conf/Catalina/localhost/openidserver.xml
@@ -37,6 +40,7 @@ gedit build.properties
 ./start_crowd.sh 
 
 #https://confluence.atlassian.com/display/CROWD/Setting+Crowd+to+Run+Automatically+and+Use+an+Unprivileged+System+User+on+UNIX
+cd /etc/init.d
 sudo ln -s /workspace/atlassian-crowd-2.5.2/crowd.init.d crowd
 
 sudo update-rc.d crowd defaults 05 95
@@ -112,4 +116,18 @@ SET GLOBAL storage_engine = 'InnoDB';
 CREATE DATABASE fisheye CHARACTER SET utf8 COLLATE utf8_bin;
 GRANT ALL PRIVILEGES ON fisheye.* TO 'fisheye'@'localhost' IDENTIFIED BY 'microsoft';
 FLUSH PRIVILEGES;
+
+#grant atlassian
+#!/bin/bash
+CROWD_USER="crowd"
+CROWD_GROUP="crowd"
+#INSTALL_BASE="/opt/crowd/atlassian-crowd-2.2.2"
+INSTALL_BASE="/workspace/atlassian-crowd-2.5.2"
+CROWD_HOME="/var/crowd-home"
+sudo chgrp ${CROWD_GROUP} ${INSTALL_BASE}/{*.sh,apache-tomcat/bin/*.sh}
+sudo chmod g+x ${INSTALL_BASE}/{*.sh,apache-tomcat/bin/*.sh}
+sudo chown -R ${CROWD_USER} ${CROWD_HOME} ${INSTALL_BASE}/apache-tomcat/{logs,work}
+sudo touch -a ${INSTALL_BASE}/atlassian-crowd-openid-server.log
+#sudo mkdir ${INSTALL_BASE}/database
+sudo chown -R ${CROWD_USER} ${INSTALL_BASE}/{database,atlassian-crowd-openid-server.log}
 
