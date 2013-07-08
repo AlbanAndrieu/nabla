@@ -8,7 +8,7 @@ import com.nabla.project.application.api.config.RequestId;
 import com.nabla.project.application.core.log.Log;
 import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
 import com.nabla.project.application.core.spring.AbstractConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.writer.FileDestination;
@@ -64,14 +64,14 @@ public class XMLComparisonTest extends XMLTestCase
             logger.debug("Entering method setUp");
         } // end if
 
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
-        ApplicationContextFactory.newExtractionScope();
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.newExtractionScope();
 
         // Generate reference file
-        comparison = ((XMLComparison) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanComparison));
+        comparison = ((XMLComparison) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanComparison));
         xmlReference = comparison.getContentXmlControl();
 
-        ExtractServiceParameterWrapper parameters = (ExtractServiceParameterWrapper) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanParametersName);
+        ExtractServiceParameterWrapper parameters = (ExtractServiceParameterWrapper) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanParametersName);
         parameters.setPackaging(comparison.getFileXMLTestName().getPackaging());
         parameters.setOutput(comparison.getFileXMLTestName());
 
@@ -95,7 +95,7 @@ public class XMLComparisonTest extends XMLTestCase
         ((FileDestination) parameters.getOutput()).setUrl(fileUrl);
         parameters.setPackaging(packaging);
 
-        parameters.setRequestId((RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName));
+        parameters.setRequestId((RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName));
 
         Perimeter perimeter = parameters.getPerimeter();
 
@@ -104,12 +104,12 @@ public class XMLComparisonTest extends XMLTestCase
         idList.add(id);
         parameters.getPerimeter().setIdList(idList);
 
-        ((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName)).extractPerimeter(parameters.getPerimeter(), parameters.getRequestId() /*
-                                                                                                                                                                                                                     * new
-                                                                                                                                                                                                                     * RequestId
-                                                                                                                                                                                                                     * ("001")
-                                                                                                                                                                                                                     */,
-                parameters.getOutput(), parameters.getStatus(), parameters.getFormat(), parameters.getPackaging());
+        ((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName)).extractPerimeter(parameters.getPerimeter(),
+                parameters.getRequestId() /*
+                                           * new
+                                           * RequestId
+                                           * ("001")
+                                           */, parameters.getOutput(), parameters.getStatus(), parameters.getFormat(), parameters.getPackaging());
 
         xmlResult = comparison.getContentXmlTest();
 

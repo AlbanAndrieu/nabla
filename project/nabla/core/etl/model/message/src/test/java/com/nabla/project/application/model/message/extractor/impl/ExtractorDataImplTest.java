@@ -10,7 +10,7 @@ import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
 import com.nabla.project.application.core.pipe.PipeListenerContainerCounter;
 import com.nabla.project.application.core.pipe.container.PipeListenerContainer;
 import com.nabla.project.application.core.spring.AbstractConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.config.PerimeterTest;
@@ -44,8 +44,8 @@ public class ExtractorDataImplTest extends TestCase
     {
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
-        ApplicationContextFactory.newExtractionScope();
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.newExtractionScope();
         Log.init();
         PipeBlockingQueueService.destroyAllQueue();
     } // end setUp()
@@ -60,9 +60,9 @@ public class ExtractorDataImplTest extends TestCase
     public void testExtractPerimeter100() throws Exception
     {
         // Initialization
-        RequestId requestId = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
-        Perimeter perimeter = PerimeterTest.getPerimeter100((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
-        ExtractDataInterface<Trade> dataExtractor = (ExtractDataInterface<Trade>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataExtractorTradeName);
+        RequestId requestId = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        Perimeter perimeter = PerimeterTest.getPerimeter100((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractDataInterface<Trade> dataExtractor = (ExtractDataInterface<Trade>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataExtractorTradeName);
 
         PipeBlockingQueueService.createPipeBlockingQueue(this.pipeName, requestId, MessageConfig.getInstance().getQueueSize());
 
@@ -88,9 +88,9 @@ public class ExtractorDataImplTest extends TestCase
     public void testExtractSCN01() throws Exception
     {
         // Initialization
-        RequestId requestId = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
-        Perimeter perimeter = PerimeterTest.getPerimeterDeal1((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
-        ExtractDataInterface<Trade> dataExtractor = (ExtractDataInterface<Trade>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataExtractorTradeName);
+        RequestId requestId = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        Perimeter perimeter = PerimeterTest.getPerimeterDeal1((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractDataInterface<Trade> dataExtractor = (ExtractDataInterface<Trade>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataExtractorTradeName);
 
         PipeBlockingQueueService.createPipeBlockingQueue(this.pipeName, requestId, MessageConfig.getInstance().getQueueSize());
 
@@ -126,9 +126,9 @@ public class ExtractorDataImplTest extends TestCase
     public void testExtractSCN02() throws Exception
     {
         // Initialization
-        RequestId requestId = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
-        Perimeter perimeter = PerimeterTest.getPerimeterDeal2((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
-        ExtractDataInterface<Trade> dataExtractor = (ExtractDataInterface<Trade>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataExtractorTradeName);
+        RequestId requestId = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        Perimeter perimeter = PerimeterTest.getPerimeterDeal2((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractDataInterface<Trade> dataExtractor = (ExtractDataInterface<Trade>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataExtractorTradeName);
 
         PipeBlockingQueueService.createPipeBlockingQueue(this.pipeName, requestId, MessageConfig.getInstance().getQueueSize());
 

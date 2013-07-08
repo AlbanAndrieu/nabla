@@ -8,7 +8,7 @@ import com.nabla.project.application.core.pipe.PipeListenerContainerCounter;
 import com.nabla.project.application.core.pipe.container.PipeListenerContainer;
 import com.nabla.project.application.core.pipe.container.PipePublisherContainer;
 import com.nabla.project.application.core.spring.AbstractMessageConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.domain.ContainerTradeTest;
 import com.nabla.project.application.model.message.domain.ObjectContainer;
@@ -56,7 +56,7 @@ public class TransformerThreadTest extends TestCase
         super.setUp();
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
     } // end setUp()
 
     /*
@@ -82,7 +82,7 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
                 AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
@@ -125,7 +125,7 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
                 AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
@@ -168,7 +168,7 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
                 AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
@@ -223,7 +223,7 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
                 AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 

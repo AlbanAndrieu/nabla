@@ -30,7 +30,8 @@ public class XmlValidator
     protected void initialization() throws SAXException
     {
         // <SCHEMA LANGUAGE> could be W3C XML Schema, Relax NG etc.
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.XMLNS_ATTRIBUTE_NS_URI);
+        //SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.XMLNS_ATTRIBUTE_NS_URI);
+        SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         // load a WXS schema, represented by a Schema instance 
         schema = schemaFactory.newSchema(new StreamSource(new File(schemaFileName)));
         // Create a Validator which can be used to validate instance document against this schema(s)

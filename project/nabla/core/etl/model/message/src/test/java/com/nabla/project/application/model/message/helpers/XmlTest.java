@@ -1,7 +1,7 @@
 package com.nabla.project.application.model.message.helpers;
 
 import com.nabla.project.application.core.log.Log;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -49,7 +49,7 @@ public class XmlTest extends XMLTestCase
 
     static
     {
-        ApplicationContextFactory.springXmlConfigurationTest = ApplicationContextFactory.springXmlDefaultConfiguration;
+        ApplicationContextMessageFactory.springXmlConfigurationTest = ApplicationContextMessageFactory.springXmlDefaultConfiguration;
     }
 
     public void setUp()
@@ -65,7 +65,7 @@ public class XmlTest extends XMLTestCase
     public static void assertXmlIdentical(final String reference, final String test, final String xmlDiffEngineBean) throws SAXException, IOException, ParserConfigurationException
     {
         Diff diff = new Diff(reference, test);
-        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
+        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
         assertTrue(diff.identical());
     } // end assertXmlIdentical()
 
@@ -77,7 +77,7 @@ public class XmlTest extends XMLTestCase
     public static void assertXmlSimilar(final String reference, final String test, final String xmlDiffEngineBean) throws SAXException, IOException, ParserConfigurationException
     {
         Diff diff = new Diff(reference, test);
-        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
+        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
         assertTrue(diff.similar());
     } // end assertXmlSimilar()
 
@@ -89,7 +89,7 @@ public class XmlTest extends XMLTestCase
     public static void assertXmlIdentical(final InputSource reference, final InputSource test, final String xmlDiffEngineBean) throws SAXException, IOException, ParserConfigurationException
     {
         Diff diff = new Diff(reference, test);
-        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
+        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
         assertTrue(diff.identical());
     } // end assertXmlIdentical()
 
@@ -101,7 +101,7 @@ public class XmlTest extends XMLTestCase
     public static void assertXmlSimilar(final InputSource reference, final InputSource test, final String xmlDiffEngineBean) throws SAXException, IOException, ParserConfigurationException
     {
         Diff diff = new Diff(reference, test);
-        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
+        diff.overrideDifferenceListener((DifferenceListener) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(xmlDiffEngineBean));
         assertTrue(diff.similar());
     } // end assertXmlSimilar()
 
@@ -248,7 +248,7 @@ public class XmlTest extends XMLTestCase
 
     public static void xmlSchemaValidation(final InputStream inputStreamXml) throws ParserConfigurationException, SAXException, IOException
     {
-        XmlValidator xmlValidator = (XmlValidator) ApplicationContextFactory.getInstance().getApplicationContext().getBean(xmlValidatorBean);
+        XmlValidator xmlValidator = (XmlValidator) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(xmlValidatorBean);
         xmlValidator.validate(inputStreamXml);
     } // end xmlSchemaValidation()
 
@@ -263,7 +263,7 @@ public class XmlTest extends XMLTestCase
 
     public void testXmlSchemaValidationBad() throws Exception
     {
-        String schemaSource = System.getProperty("user.dir") + File.separator + "xml" + File.separator + "SgibML_root.xsd";
+        String schemaSource = System.getProperty("user.dir") + File.separator + "xml" + File.separator + "A_XML_root.xsd";
 
         try
         {
@@ -275,7 +275,7 @@ public class XmlTest extends XMLTestCase
 
         try
         {
-            xmlFileSchemaValidation(schemaSource, "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Test.xml");
+            xmlFileSchemaValidation(schemaSource, "C:\\temp\\TradeTBG4689135Test.xml");
         } // end try
         catch (Exception ex)
         {

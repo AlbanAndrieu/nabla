@@ -3,7 +3,7 @@ package com.nabla.project.application.model.message.writer;
 import com.nabla.project.application.api.config.Packaging;
 import com.nabla.project.application.api.writer.WriterDataInterface;
 import com.nabla.project.application.core.log.Log;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.config.DestinationByteArrayStream;
@@ -47,9 +47,9 @@ public class WriterDataContainerProductJaxbTest extends XMLTestCase
         super.setUp();
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
 
-        extractWriter = (WriterDataInterface) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataWriterContainerProductName);
+        extractWriter = (WriterDataInterface) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataWriterContainerProductName);
     } // end setUp()
 
     /*

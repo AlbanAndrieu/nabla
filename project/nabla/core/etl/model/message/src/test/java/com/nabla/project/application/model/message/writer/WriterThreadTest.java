@@ -8,7 +8,7 @@ import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
 import com.nabla.project.application.core.pipe.container.PipePublisherContainer;
 import com.nabla.project.application.core.spring.AbstractConfig;
 import com.nabla.project.application.core.spring.AbstractMessageConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.config.DestinationByteArrayStream;
 import com.nabla.project.application.model.message.domain.ContainerTradeTest;
@@ -50,7 +50,7 @@ public class WriterThreadTest extends TestCase
         super.setUp();
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
     } // end setUp()
 
     /*
@@ -75,10 +75,10 @@ public class WriterThreadTest extends TestCase
     public void testWriterSCN01() throws Exception
     {
         // Initialization
-        RequestId requestId = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        RequestId requestId = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         DestinationByteArrayStream destination = new DestinationByteArrayStream();
         Packaging packaging = null;
-        WriterThreadInterface<ObjectContainer> writer = (WriterThreadInterface<ObjectContainer>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanWriterThreadName);
+        WriterThreadInterface<ObjectContainer> writer = (WriterThreadInterface<ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanWriterThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
         PipePublisherContainer<ObjectContainer> pipeIn = new PipePublisherContainer<ObjectContainer>(this.pipeName, requestId);
@@ -110,10 +110,10 @@ public class WriterThreadTest extends TestCase
     public void testWriterSCN02() throws Exception
     {
         // Initialization
-        RequestId requestId = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        RequestId requestId = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         DestinationByteArrayStream destination = new DestinationByteArrayStream();
         Packaging packaging = null;
-        WriterThreadInterface<ObjectContainer> writer = (WriterThreadInterface<ObjectContainer>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanWriterThreadName);
+        WriterThreadInterface<ObjectContainer> writer = (WriterThreadInterface<ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanWriterThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
         PipePublisherContainer<ObjectContainer> pipeIn = new PipePublisherContainer<ObjectContainer>(this.pipeName, requestId);

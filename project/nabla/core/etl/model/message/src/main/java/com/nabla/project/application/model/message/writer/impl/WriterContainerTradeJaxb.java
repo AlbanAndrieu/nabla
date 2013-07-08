@@ -57,10 +57,21 @@ public class WriterContainerTradeJaxb extends ModelWriter implements WriterDataI
             this.oStream = output.getOutputStream(packaging);
             this.writer = XMLOutputFactory.newFactory().createXMLStreamWriter(this.oStream);
 
-            writer.writeStartDocument();
-            writer.writeStartElement("Nabla");
-            writer.writeAttribute("xmlns", "urn:nabla:Nabla_Service:1_0_0");
-            writer.writeStartElement("WorkSets");
+            writer.writeStartDocument("UTF-8", "1.0");
+            writer.writeStartElement("MAI", "XML_trade_template", "urn:nabla:Nabla_Service:1_0_0");
+            //writer.writeAttribute("xmlns", "urn:nabla:Nabla_Service:1_0_0");
+            writer.writeAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            writer.writeNamespace("MAI", "urn:nabla:Nabla_Service:1_0_0");
+            writer.writeNamespace("TRD", "urn:nabla:A_XML_Trade:1_0_0");
+            writer.writeNamespace("THD", "urn:nabla:A_XML_TradeHeader:1_0_0");
+            writer.writeNamespace("GEN", "urn:nabla:A_XML_TradingGeneric:1_0_0");
+            writer.writeNamespace("TCD", "urn:nabla:A_XML_TradeConditions:1_0_0");
+            writer.writeNamespace("TPI", "urn:nabla:A_XML_TradePartyInfo:1_0_0");
+            writer.writeNamespace("INS", "urn:nabla:A_XML_InstrumentService:1_0_0");
+            writer.writeNamespace("PHD", "urn:nabla:A_XML_ProductHeader:1_0_0");
+            writer.writeNamespace("PTY", "urn:nabla:A_XML_TradingParty:1_0_0");
+            writer.writeNamespace("REF", "urn:nabla:A_XML_ReferentialGeneric:1_0_0");
+            //writer.writeStartElement("WorkSets"); 
 
             /*
             StringBuilder rootBuilder = new StringBuilder();

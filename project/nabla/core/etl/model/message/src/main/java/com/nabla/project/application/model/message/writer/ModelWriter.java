@@ -13,10 +13,10 @@ public abstract class ModelWriter implements WriterDataInterface
     /*public static String  XML_NAMESPACE_HEADER_VALIDATION;*/
     public static boolean isUsingValidation = false;
     public static String  XML_NAMESPACE_HEADER_END;  /* =
-                                                                            "xmlns=\"urn:xml:nabla_Service:1_1_7\" " +
-                                                                            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-                                                                            "xsi:schemaLocation=\"urn:xml:nabla_Service:1_1_7 ..\\xml\\XML_root.xsd\"" +
-                                                                            ">";*/
+                                                                                                 "xmlns=\"urn:xml:nabla_Service:1_1_7\" " +
+                                                                                                 "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+                                                                                                 "xsi:schemaLocation=\"urn:xml:nabla_Service:1_1_7 ..\\xml\\XML_root.xsd\"" +
+                                                                                                 ">";*/
 
     /*"xsi:noNamespaceSchemaLocation=\"..\\xml\\XML_root.xsd\""*/
     public static String  XML_NAMESPACE_FOOTER;      // = "</MAI:XML_trade_template>";

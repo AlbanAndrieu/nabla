@@ -9,7 +9,7 @@ import com.nabla.project.application.core.pipe.PipeListenerContainerCounter;
 import com.nabla.project.application.core.pipe.container.PipeListenerContainer;
 import com.nabla.project.application.core.pipe.container.PipePublisherContainer;
 import com.nabla.project.application.core.spring.AbstractMessageConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.config.PerimeterTest;
@@ -45,7 +45,7 @@ public class ExtractorThreadTest extends TestCase
         super.setUp();
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
     } // end setUp()
 
     /*
@@ -76,8 +76,8 @@ public class ExtractorThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        Perimeter perimeter = PerimeterTest.getPerimeter100((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
-        ExtractorThreadInterface<Trade> extractor = (ExtractorThreadInterface<Trade>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanExtractorThreadName);
+        Perimeter perimeter = PerimeterTest.getPerimeter100((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractorThreadInterface<Trade> extractor = (ExtractorThreadInterface<Trade>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanExtractorThreadName);
         PipePublisherContainer<Trade> pipe = new PipePublisherContainer<Trade>(pipeName, requestId);
         PipeListenerContainerCounter pipeContainerCounter = new PipeListenerContainerCounter(pipeName, requestId);
         Thread pipeThread = pipeContainerCounter.launch();
@@ -100,8 +100,8 @@ public class ExtractorThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        Perimeter perimeter = PerimeterTest.getPerimeterDeal1((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
-        ExtractorThreadInterface<Trade> extractor = (ExtractorThreadInterface<Trade>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanExtractorThreadName);
+        Perimeter perimeter = PerimeterTest.getPerimeterDeal1((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractorThreadInterface<Trade> extractor = (ExtractorThreadInterface<Trade>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanExtractorThreadName);
         PipePublisherContainer<Trade> pipe = new PipePublisherContainer<Trade>(pipeName, requestId);
         PipeListenerContainer pipeContainer = new PipeListenerContainer(pipeName, requestId);
         Thread pipeThread = pipeContainer.launch();
@@ -137,8 +137,8 @@ public class ExtractorThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        Perimeter perimeter = PerimeterTest.getPerimeterDeal2((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
-        ExtractorThreadInterface<Trade> extractor = (ExtractorThreadInterface<Trade>) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanExtractorThreadName);
+        Perimeter perimeter = PerimeterTest.getPerimeterDeal2((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractorThreadInterface<Trade> extractor = (ExtractorThreadInterface<Trade>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractMessageConfig.beanExtractorThreadName);
         PipePublisherContainer<Trade> pipe = new PipePublisherContainer<Trade>(pipeName, requestId);
         PipeListenerContainer pipeContainer = new PipeListenerContainer(pipeName, requestId);
         Thread pipeThread = pipeContainer.launch();

@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.nabla.project.application.api.transformer.TransformerDataInterface;
 import com.nabla.project.application.core.log.Log;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.model.xml.XMLInventoryTradeMessage;
 
@@ -23,8 +23,8 @@ public class XMLInventoryTradeMessageSetTest extends TestCase
     static
     {
         Log.init();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
-        transformer = (TransformerDataInterface) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerTradeEventMessageName);
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
+        transformer = (TransformerDataInterface) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerTradeEventMessageName);
     }
 
     public static XMLInventoryTradeMessage /* XMLTradeEventMessage */getXMLInventoryTradeMessageSCN01()

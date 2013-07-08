@@ -61,7 +61,7 @@ public class XMLTradeTest extends XMLTestCase
 
     public void testXmlTimeStamp() throws Exception
     {
-        assertEquals("2010-03-05T19:27:47.000+01:00", toXmlTimeStamp(new Date(1173119267000L)));
+        assertEquals("2007-03-05T19:27:47.000+01:00", toXmlTimeStamp(new Date(1173119267000L)));
     } // end testXmlTimeStamp()
 
     public static final String xmlFragHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" + "<MAI:XML_trade_template " + "xmlns:MAI=\"urn:nabla:Nabla_Service:1_0_0\" "
@@ -104,26 +104,26 @@ public class XMLTradeTest extends XMLTestCase
 
     public static String getXMLSpecificTradeConditions(final String id, final boolean coupon)
     {
-        String xmlFragSpecificTradeConditions = "<INS:specificTradeConditions>" + "<PEQTINST:instrumentSpecificTradeConditions>" + "<PEQTINST:instrumentPrice>"
-                + "<PEQTINST:underlyingQuotationType>Price</PEQTINST:underlyingQuotationType>" + "<PEQTINST:cleanPriceValue>" + TradeTest.getTrade(id).getPrice() + "</PEQTINST:cleanPriceValue>"
-                + "<PEQTINST:marketPriceValue>" + TradeTest.getTrade(id).getPrice() + "</PEQTINST:marketPriceValue>" + "</PEQTINST:instrumentPrice>";
+        String xmlFragSpecificTradeConditions = "<INS:specificTradeConditions>" + "<INS:instrumentSpecificTradeConditions>" + "<INS:instrumentPrice>" + "<INS:underlyingQuotationType>Price</INS:underlyingQuotationType>"
+                + "<INS:cleanPriceValue>" + TradeTest.getTrade(id).getPrice() + "</INS:cleanPriceValue>" + "<INS:marketPriceValue>" + TradeTest.getTrade(id).getPrice() + "</INS:marketPriceValue>"
+                + "</INS:instrumentPrice>";
 
         if (coupon)
         {
             xmlFragSpecificTradeConditions = xmlFragSpecificTradeConditions + getXMLSpecificTradeConditionsCoupon(id);
         } // end if
 
-        xmlFragSpecificTradeConditions = xmlFragSpecificTradeConditions + "<PEQTINST:nominalAmount>" + TradeTest.getTrade(id).getNominalAmount() + "</PEQTINST:nominalAmount>" + "<PEQTINST:cleanAmount>"
-                + TradeTest.getTrade(id).getCleanAmount() + "</PEQTINST:cleanAmount>" + "<PEQTINST:dirtyAmount>" + TradeTest.getTrade(id).getDirtyAmount() + "</PEQTINST:dirtyAmount>"
-                + "</PEQTINST:instrumentSpecificTradeConditions>" + "</INS:specificTradeConditions>";
+        xmlFragSpecificTradeConditions = xmlFragSpecificTradeConditions + "<INS:nominalAmount>" + TradeTest.getTrade(id).getNominalAmount() + "</INS:nominalAmount>" + "<INS:cleanAmount>"
+                + TradeTest.getTrade(id).getCleanAmount() + "</INS:cleanAmount>" + "<INS:dirtyAmount>" + TradeTest.getTrade(id).getDirtyAmount() + "</INS:dirtyAmount>" + "</INS:instrumentSpecificTradeConditions>"
+                + "</INS:specificTradeConditions>";
 
         return xmlFragSpecificTradeConditions;
     } // end getXMLSpecificTradeConditions()
 
     public static String getXMLSpecificTradeConditionsCoupon(final String id)
     {
-        String xmlFragSpecificTradeConditionsCoupon = "<PEQTINST:couponInfo>" + "<PEQTINST:accruedAmount>" + "<PEQTINST:realAccruedAmount>" + TradeTest.getTrade(id).getAccruedAmount() + "</PEQTINST:realAccruedAmount>"
-                + "</PEQTINST:accruedAmount>" + "</PEQTINST:couponInfo>";
+        String xmlFragSpecificTradeConditionsCoupon = "<INS:couponInfo>" + "<INS:accruedAmount>" + "<INS:realAccruedAmount>" + TradeTest.getTrade(id).getAccruedAmount() + "</INS:realAccruedAmount>"
+                + "</INS:accruedAmount>" + "</INS:couponInfo>";
 
         return xmlFragSpecificTradeConditionsCoupon;
     } // end getXMLSpecificTradeConditionsCoupon()
@@ -135,8 +135,8 @@ public class XMLTradeTest extends XMLTestCase
                 + "<REF:versionNumber>" + TradeTest.getTrade(id).getIdVersion() + "</REF:versionNumber>" + "</THD:tradeVersion>" + "<THD:tradeCode>" + "<REF:codingScheme>frontTrade</REF:codingScheme>" + "<REF:code>"
                 + TradeTest.getTrade(id).getIdFront() + "</REF:code>" + "</THD:tradeCode>" + "</THD:tradeIdentifier>" + "<THD:tradeTypology>" + "<THD:tradeEventTypology>"
                 + "<THD:tradeEventMacroType>Negotiation</THD:tradeEventMacroType>" + "<THD:tradeEventType>CreationNegotiation</THD:tradeEventType>" + "</THD:tradeEventTypology>" + "</THD:tradeTypology>"
-                + "<THD:otherTradeInfo>" + "<TRDGEN:inputInfo>" + "<REF:sourceApplicationId>" + "<REF:id>ELIOT</REF:id>" + "<REF:idScheme>frontApplication</REF:idScheme>" + "</REF:sourceApplicationId>"
-                + "<TRDGEN:inputTimeStamp>" + toXmlTimeStamp(TradeTest.getTrade(id).getSaisieFrontDate()) + "</TRDGEN:inputTimeStamp>" + "</TRDGEN:inputInfo>" + "</THD:otherTradeInfo>" + "</TRD:tradeHeader>"
+                + "<THD:otherTradeInfo>" + "<GEN:inputInfo>" + "<REF:sourceApplicationId>" + "<REF:id>GEN:</REF:id>" + "<REF:idScheme>frontApplication</REF:idScheme>" + "</REF:sourceApplicationId>"
+                + "<GEN:inputTimeStamp>" + toXmlTimeStamp(TradeTest.getTrade(id).getSaisieFrontDate()) + "</GEN:inputTimeStamp>" + "</GEN:inputInfo>" + "</THD:otherTradeInfo>" + "</TRD:tradeHeader>"
                 + "<TRD:tradeConditions>" + "<TCD:tradeDate>" + toXmlDate(TradeTest.getTrade(id).getTradeDate()) + "</TCD:tradeDate>" + "<TCD:tradeTimeStamp>" + toXmlTimeStamp(TradeTest.getTrade(id).getSystemDate())
                 + "</TCD:tradeTimeStamp>" + /*
                                              * "<TCD:APartyId>" +
@@ -152,8 +152,8 @@ public class XMLTradeTest extends XMLTestCase
                                                                                                             * "<REF:idScheme>eoleIssuer</REF:idScheme>" +
                                                                                                             * "</TCD:BPartyId>" +
                                                                                                             */
-                "<TCD:BPartyReference href=\"" + TradeTest.getTrade(id).getCounterPartyReference() + "\"/>" + "<TCD:exchangedProduct1>" + "<TRDGEN:productId>" + "<REF:id>" + TradeTest.getTrade(id).getProductReference()
-                + "</REF:id>" + "<REF:idScheme>eoleProduct</REF:idScheme>" + "</TRDGEN:productId>" + "<TCD:quantity>" + TradeTest.getTrade(id).getQuantity() + "</TCD:quantity>" + "<TCD:valueDate>"
+                "<TCD:BPartyReference href=\"" + TradeTest.getTrade(id).getCounterPartyReference() + "\"/>" + "<TCD:exchangedProduct1>" + "<GEN:productId>" + "<REF:id>" + TradeTest.getTrade(id).getProductReference()
+                + "</REF:id>" + "<REF:idScheme>eoleProduct</REF:idScheme>" + "</GEN:productId>" + "<TCD:quantity>" + TradeTest.getTrade(id).getQuantity() + "</TCD:quantity>" + "<TCD:valueDate>"
                 + toXmlDate(TradeTest.getTrade(id).getValueDate()) + "</TCD:valueDate>" + "</TCD:exchangedProduct1>" + "<TCD:ATradeDirection>" + TradeDirectionScheme.BUY.value() + "</TCD:ATradeDirection>"
                 + "</TRD:tradeConditions>" + "<TPI:tradePartyInfo>" + /*
                                                                        * "<REF:partyId>" +
@@ -162,7 +162,7 @@ public class XMLTradeTest extends XMLTestCase
                                                                        * "<REF:idScheme>eolePortfolio</REF:idScheme>" +
                                                                        * "</REF:partyId>" +
                                                                        */
-                "<TRDGEN:partyReference href=\"" + TradeTest.getTrade(id).getPortfolioReference() + "\"/>" + "<TPI:tradeManagerIndicator>true</TPI:tradeManagerIndicator>" + "<TPI:partyRole>Principal</TPI:partyRole>"
+                "<GEN:partyReference href=\"" + TradeTest.getTrade(id).getPortfolioReference() + "\"/>" + "<TPI:tradeManagerIndicator>true</TPI:tradeManagerIndicator>" + "<TPI:partyRole>Principal</TPI:partyRole>"
                 + "<TPI:storageApplication>" + "<REF:id>BDR</REF:id>" + "<REF:idScheme>BDRPortfolio</REF:idScheme>" + "</TPI:storageApplication>" + "</TPI:tradePartyInfo>" + "<TPI:tradePartyInfo>" + /*
                                                                                                                                                                                                         * "<REF:partyId>" +
                                                                                                                                                                                                         * "<REF:id>"+TradeTest.getTrade(id).getCounterPartyReference
@@ -170,7 +170,7 @@ public class XMLTradeTest extends XMLTestCase
                                                                                                                                                                                                         * "<REF:idScheme>eoleExternalParty</REF:idScheme>" +
                                                                                                                                                                                                         * "</REF:partyId>" +
                                                                                                                                                                                                         */
-                "<TRDGEN:partyReference href=\"" + TradeTest.getTrade(id).getCounterPartyReference() + "\"/>" + "<TPI:tradeManagerIndicator>false</TPI:tradeManagerIndicator>"
+                "<GEN:partyReference href=\"" + TradeTest.getTrade(id).getCounterPartyReference() + "\"/>" + "<TPI:tradeManagerIndicator>false</TPI:tradeManagerIndicator>"
                 + "<TPI:partyRole>ExternalParty</TPI:partyRole>" + "<TPI:storageApplication>" + "<REF:id>BDR</REF:id>" + "<REF:idScheme>BDRExternalParty</REF:idScheme>" + "</TPI:storageApplication>"
                 + "</TPI:tradePartyInfo>";
 
@@ -197,9 +197,9 @@ public class XMLTradeTest extends XMLTestCase
 
     public static String getXMLProduct(final String id, final boolean body)
     {
-        String xmlFragProductSet = "<INS:productSet>" + "<INS:product id=\"" + TradeTest.getTrade(id).getProductReference() + "\">" + "<INS:productHeader>" + "<PHD:productIdentifier>" + "<TRDGEN:productId>" + "<REF:id>"
-                + TradeTest.getTrade(id).getProduct().getId() + "</REF:id>" + "<REF:idScheme>eoleProduct</REF:idScheme>" + "</TRDGEN:productId>" + "</PHD:productIdentifier>" + "<PHD:productInfo>"
-                + "<PHD:productTypology>" + "<PHD:referentialInstrumentTypology>" + "<PHD:instrumentCategory>debtBond</PHD:instrumentCategory>" + "</PHD:referentialInstrumentTypology>" + "</PHD:productTypology>"
+        String xmlFragProductSet = "<INS:productSet>" + "<INS:product id=\"" + TradeTest.getTrade(id).getProductReference() + "\">" + "<INS:productHeader>" + "<PHD:productIdentifier>" + "<GEN:productId>" + "<REF:id>"
+                + TradeTest.getTrade(id).getProduct().getId() + "</REF:id>" + "<REF:idScheme>eoleProduct</REF:idScheme>" + "</GEN:productId>" + "</PHD:productIdentifier>" + "<PHD:productInfo>" + "<PHD:productTypology>"
+                + "<PHD:referentialInstrumentTypology>" + "<PHD:instrumentCategory>debtBond</PHD:instrumentCategory>" + "</PHD:referentialInstrumentTypology>" + "</PHD:productTypology>"
                 + "<PHD:productSourceApplicationId>" + "<REF:id>BDR</REF:id>" + "<REF:idScheme>referencialApplication</REF:idScheme>" + "</PHD:productSourceApplicationId>" + "<PHD:productMnemonic>"
                 + TradeTest.getTrade(id).getProduct().getName() + "</PHD:productMnemonic>" + "<PHD:productName>" + TradeTest.getTrade(id).getProduct().getShortName() + "</PHD:productName>" + "<PHD:productDates>"
                 + "<PHD:startDate>2001-10-02+02:00</PHD:startDate>" + "<PHD:maturityDate>2010-04-18+02:00</PHD:maturityDate>" + "<PHD:maturityDateType>Fixed</PHD:maturityDateType>" + "</PHD:productDates>"

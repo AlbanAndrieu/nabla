@@ -6,8 +6,8 @@
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-      <!-- <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>-->
-      <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>      
+      <!--<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/>-->  
+      <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>  
 		<property name="url" value="jdbc:derby:~/myDBGlobal;create=true" />
 		<property name="username" value="APP" />
 		<property name="password" value="APP" />

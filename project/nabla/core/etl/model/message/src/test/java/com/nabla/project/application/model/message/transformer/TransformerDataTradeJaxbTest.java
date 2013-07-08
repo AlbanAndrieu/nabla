@@ -3,7 +3,7 @@ package com.nabla.project.application.model.message.transformer;
 import com.nabla.project.application.api.transformer.TransformerDataInterface;
 import com.nabla.project.application.core.log.Log;
 import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.domain.ContainerTradeTest;
@@ -47,7 +47,7 @@ public class TransformerDataTradeJaxbTest extends TestCase
         super.setUp();
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
     } // end setUp()
 
     /*
@@ -72,7 +72,7 @@ public class TransformerDataTradeJaxbTest extends TestCase
     public void testTradeSCN01()
     {
         // Initialization
-        TransformerDataInterface dataTransformer = (TransformerDataInterface) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerTradeName);
+        TransformerDataInterface dataTransformer = (TransformerDataInterface) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerTradeName);
         Trade source = TradeTest.getTrade("SCN01");
         ObjectContainer reference = ContainerTradeTest.getContainerTradeSCN01();
 
@@ -86,7 +86,7 @@ public class TransformerDataTradeJaxbTest extends TestCase
     public void testTradeSCN02()
     {
         // Initialization
-        TransformerDataInterface dataTransformer = (TransformerDataInterface) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerTradeName);
+        TransformerDataInterface dataTransformer = (TransformerDataInterface) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerTradeName);
         Trade source = TradeTest.getTrade("SCN02");
         ObjectContainer reference = ContainerTradeTest.getContainerTradeSCN02();
 

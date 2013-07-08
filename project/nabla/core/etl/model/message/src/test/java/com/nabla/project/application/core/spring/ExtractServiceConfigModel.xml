@@ -28,14 +28,14 @@
 		-->		
 	</bean>
 
-	<bean id="TradeEventMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.KXMLTradeEventMessage" parent="modelTransformer" lazy-init="true">
+	<bean id="TradeEventMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.XMLTradeEventMessageTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'normal' transformer used by the application.
 		</description>
 		<property name="tradeTransformer" ref="TradeModelTransformer"/>
 		<property name="partyTransformer" ref="PartyModelTransformer"/>
 	</bean>
-	<bean id="ProductSetMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.KXMLProductSetMessage" parent="modelTransformer" lazy-init="true">
+	<bean id="ProductSetMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.XMLProductSetMessageTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'normal' transformer used by the application.
 		</description>
@@ -43,17 +43,17 @@
 		<property name="partyTransformer" ref="PartyModelTransformer"/>		
 	</bean>
 
-	<bean id="TradeModelTransformer" class="com.nabla.project.application.model.message.transformer.common.KXMLTradeModelTransformer" parent="modelTransformer" lazy-init="true">
+	<bean id="TradeModelTransformer" class="com.nabla.project.application.model.message.transformer.common.XMLTradeModelTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'common' transformer used by the application.
 		</description>
 	</bean>
-	<bean id="ProductModelTransformer" class="com.nabla.project.application.model.message.transformer.common.KXMLProductModelTransformer" parent="modelTransformer" lazy-init="true">
+	<bean id="ProductModelTransformer" class="com.nabla.project.application.model.message.transformer.common.XMLProductModelTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'common' transformer used by the application.
 		</description>
 	</bean>
-	<bean id="PartyModelTransformer" class="com.nabla.project.application.model.message.transformer.common.KXMLPartyModelTransformer" parent="modelTransformer" lazy-init="true">
+	<bean id="PartyModelTransformer" class="com.nabla.project.application.model.message.transformer.common.XMLPartyModelTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'common' transformer used by the application.
 		</description>
@@ -75,103 +75,61 @@
 					<key>
 						<value>MAI</value>
 					</key>
-					<value>urn:sgcibml:Eole_Service:1_1_7</value>
+					<value>urn:nabla:Nabla_Service:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
 						<value>TRD</value>
 					</key>
-					<value>urn:sgcibml:DTRD_Trade:1_2_7</value>
+					<value>urn:nabla:A_XML_Trade:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
 						<value>THD</value>
 					</key>
-					<value>urn:sgcibml:DTRD_TradeHeader:1_1_3</value>
+					<value>urn:nabla:A_XML_TradeHeader:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
-						<value>TRDGEN</value>
+						<value>GEN</value>
 					</key>
-					<value>urn:sgcibml:DTRD_TradingGeneric:1_0_5</value>
+					<value>urn:nabla:A_XML_TradingGeneric:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
 						<value>TCD</value>
 					</key>
-					<value>urn:sgcibml:DTRD_TradeConditions:1_1_6</value>
-				</entry>
-				<entry>
-					<key>
-						<value>TPY</value>
-					</key>
-					<value>urn:sgcibml:DTRD_TradePayment:1_0_6</value>
+					<value>urn:nabla:A_XML_TradeConditions:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
 						<value>TPI</value>
 					</key>
-					<value>urn:sgcibml:DTRD_TradePartyInfo:1_0_5</value>
+					<value>urn:nabla:A_XML_TradePartyInfo:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
-						<value>STL</value>
+						<value>INST</value>
 					</key>
-					<value>urn:sgcibml:DTRD_SettlementInfo:1_1_5</value>
-				</entry>
-				<entry>
-					<key>
-						<value>CAL</value>
-					</key>
-					<value>urn:sgcibml:DTRD_CommercialMargin:1_0_5</value>
-				</entry>
-				<entry>
-					<key>
-						<value>PEQTINST</value>
-					</key>
-					<value>urn:sgcibml:DSPT_instrument:1_0_0</value>
-				</entry>
-				<entry>
-					<key>
-						<value>PSH</value>
-					</key>
-					<value>urn:sgcibml:DSPT_OTCproductShared:1_0_1</value>
-				</entry>
-				<entry>
-					<key>
-						<value>SGEDINS</value>
-					</key>
-					<value>urn:sgcibml:SGED_InstrumentService:1_0_3</value>
+					<value>urn:nabla:A_XML_InstrumentService:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
 						<value>PHD</value>
 					</key>
-					<value>urn:sgcibml:DPTD_ProductHeader:2_1_4</value>
+					<value>urn:nabla:A_XML_ProductHeader:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
 						<value>PTY</value>
 					</key>
-					<value>urn:sgcibml:DTRD_TradingParty:1_0_4</value>
+					<value>urn:nabla:A_XML_TradingParty:1_0_0</value>
 				</entry>
 				<entry>
 					<key>
-						<value>FINVAL</value>
+						<value>REF</value>
 					</key>
-					<value>urn:sgcibml:DTRD_FinancialInfo:1_7_0</value>
-				</entry>
-				<entry>
-					<key>
-						<value>PSHD</value>
-					</key>
-					<value>urn:sgcibml:DPTD_ProductStructureHeader:1_1_2</value>
-				</entry>
-				<entry>
-					<key>
-						<value>REFGEN</value>
-					</key>
-					<value>urn:sgcibml:DGEN_ReferentialGeneric:1_0_3</value>
+					<value>urn:nabla:A_XML_ReferentialGeneric:1_0_0</value>
 				</entry>
         	</map>
   		</property>
@@ -188,7 +146,7 @@
 		<property name="XML_HEADER" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;"/>
 		<property name="XML_NAMESPACE_HEADER_START" value="&lt;MAI:XML_trade_template"/>
 		<property name="XML_NAMESPACE_HEADER_BODY" value="xmlns=&quot;urn:nabla:Nabla_Service:1_0_0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;"/>		
-		<property name="XML_NAMESPACE_HEADER_VALIDATION" value="xsi:schemaLocation=&quot;urn:nabla:Nabla_Service:1_0_0 ..\xml\XML_root.xsd&quot;"/>
+		<!-- <property name="XML_NAMESPACE_HEADER_VALIDATION" value="xsi:schemaLocation=&quot;urn:nabla:Nabla_Service:1_0_0 ..\xml\XML_root.xsd&quot;"/> -->
 		<property name="usingValidation" value="false"/>
 		<!--"xsi:noNamespaceSchemaLocation=\"..\\sgcibml\\KXML_root.xsd\""-->
 		<property name="XML_NAMESPACE_HEADER_END" value=">"/>				
@@ -197,9 +155,9 @@
 		<property name="XML_ROOT_START" value="&lt;INS:endOfDayTradeEvent&gt;"/>
 		<property name="XML_ROOT_END" value="&lt;/INS:endOfDayTradeEvent&gt;"/>				
 		
-		<property name="namespaces">
+<!-- 		<property name="namespaces">
    			<ref bean="namespacePrefixMapper"/>
-		</property>
+		</property> -->
 		
 	</bean>
 

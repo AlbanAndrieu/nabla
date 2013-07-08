@@ -99,7 +99,7 @@ public class PartyTest extends TestCase
 
     public void testParty0()
     {
-        testParty1(getParty0());
+        testParty0(getParty0());
     } // end testParty0()
 
     public static String    id1        = "1";

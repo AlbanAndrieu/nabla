@@ -4,9 +4,9 @@ import com.nabla.project.application.api.config.Condition;
 import com.nabla.project.application.api.config.Condition.ConditionId;
 import com.nabla.project.application.api.config.Perimeter;
 import com.nabla.project.application.core.log.Log;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
@@ -98,9 +98,9 @@ public class PerimeterTest extends TestCase
 
     public void testTradePerimeter()
     {
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
 
-        ApplicationContext context = ApplicationContextFactory.getInstance().getApplicationContext();
+        ApplicationContext context = ApplicationContextMessageFactory.getInstance().getApplicationContext();
 
         Perimeter perimeter = (Perimeter) context.getBean("tradePerimeterBean");
         perimeter.addCondition(new Condition(ConditionId.MAXROW, "10"));
@@ -122,15 +122,17 @@ public class PerimeterTest extends TestCase
             // logger.info(entry.getValue());
         } // end for
 
-        Assert.assertTrue(keys.contains("[MAXROW]"));
-        Assert.assertTrue(keys.contains("[SELECT]"));
-        Assert.assertTrue(keys.contains("[FROM]"));
-        Assert.assertTrue(keys.contains("[WHERE]"));
-        Assert.assertTrue(keys.contains("[FOLDER]"));
-        Assert.assertTrue(keys.contains("[TYPEOFDEAL]"));
+        System.out.println("Keys : " + keys);
 
-        Assert.assertTrue(keys.contains("[DATVALMAX]"));
-        Assert.assertTrue(keys.contains("[DATVALMIN]"));
+        Assert.assertTrue(keys.contains("MAXROW"));
+        Assert.assertTrue(keys.contains("SELECT"));
+        Assert.assertTrue(keys.contains("FROM"));
+        Assert.assertTrue(keys.contains("WHERE"));
+        Assert.assertTrue(keys.contains("FOLDER"));
+        Assert.assertTrue(keys.contains("TYPEOFDEAL"));
+
+        Assert.assertTrue(keys.contains("DATVALMAX"));
+        Assert.assertTrue(keys.contains("DATVALMIN"));
 
         Set<Condition> conditions = perimeter.getConditions();
 

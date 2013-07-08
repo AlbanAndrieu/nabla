@@ -16,6 +16,7 @@ public class MessageConfig extends AbstractMessageConfig
     public static String beanExtractServiceTradeName              = "extractServiceTrade";
     public static String beanComparison                           = "comparison";
 
+    public static String beanConfig                               = "defaultConfigurationMessage";
     /**
      * Class manage by spring
      */
@@ -32,7 +33,7 @@ public class MessageConfig extends AbstractMessageConfig
     public static MessageConfig getInstance()
     {
         // defaultConfiguration bean must be declare as a singleton in spring
-        return (MessageConfig) ApplicationContextFactory.getInstance().getApplicationContext().getBean(beanConfig);
+        return (MessageConfig) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(beanConfig);
     } // end getInstance()
 
     public boolean isValidationXmlOutput()

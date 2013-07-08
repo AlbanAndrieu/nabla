@@ -9,7 +9,7 @@
 		<property name="productSetMessage" ref="ProductSetMessageTransformer"/>
 	</bean>
 	
-	<bean id="TradeEventMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.XMLTradeEventMessage" parent="modelTransformer" lazy-init="true">
+	<bean id="TradeEventMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.XMLTradeEventMessageTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'normal' transformer used by the application.
 		</description>
@@ -17,7 +17,7 @@
 		<property name="partyTransformer" ref="PartyModelTransformer"/>
 	</bean>
 	
-	<bean id="ProductSetMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.XMLProductSetMessage" parent="modelTransformer" lazy-init="true">
+	<bean id="ProductSetMessageTransformer" class="com.nabla.project.application.model.message.transformer.EndOfDayTradeEventTransformer.XMLProductSetMessageTransformer" parent="modelTransformer" lazy-init="true">
 		<description>
 			This bean is the 'normal' transformer used by the application.
 		</description>

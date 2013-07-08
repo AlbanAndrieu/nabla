@@ -10,7 +10,7 @@ import com.nabla.project.application.api.config.RequestId;
 import com.nabla.project.application.core.log.Log;
 import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
 import com.nabla.project.application.core.spring.AbstractConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.helpers.CheckFileValidity;
@@ -54,12 +54,12 @@ public class PositionExtractServiceJaxbTest extends TestCase
     {
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
-        ApplicationContextFactory.newExtractionScope();
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.newExtractionScope();
 
-        parameters = (ExtractServiceParameterWrapper) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanParametersName);
+        parameters = (ExtractServiceParameterWrapper) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanParametersName);
 
-        parameters.setRequestId((RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName));
+        parameters.setRequestId((RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName));
         commonfileName = parameters.getOutput().getUrl();
     } // end setUp()
 
@@ -94,7 +94,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         //Set<String> idList = new HashSet<String>();
         parameters.getPerimeter().setIdList(null);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         if (parameters.getPackaging().equals(Packaging.STANDARD))
         {
@@ -117,7 +117,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         parameters.getPerimeter().setIdList(null);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         if (parameters.getPackaging().equals(Packaging.STANDARD))
         {
@@ -140,7 +140,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         parameters.getPerimeter().setIdList(null);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         if (parameters.getPackaging().equals(Packaging.STANDARD))
         {
@@ -163,7 +163,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         perimeter.addCondition(new Condition(ConditionId.DATVALMAX, "2010-03-19"));
         parameters.getPerimeter().setIdList(null);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         if (parameters.getPackaging().equals(Packaging.STANDARD))
         {
@@ -187,7 +187,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         parameters.getPerimeter().setIdList(null);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         if (parameters.getPackaging().equals(Packaging.STANDARD))
         {
@@ -210,7 +210,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         idList.add("TBG5421598");
         parameters.getPerimeter().setIdList(idList);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         System.err.println(idList.size());
 
@@ -238,7 +238,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         idList.add("TBG5421598");
         parameters.getPerimeter().setIdList(idList);
 
-        runExtract((ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
+        runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
 
         if (parameters.getPackaging().equals(Packaging.STANDARD))
         {

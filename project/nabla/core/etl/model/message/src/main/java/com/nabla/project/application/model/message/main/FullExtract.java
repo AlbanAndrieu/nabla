@@ -10,7 +10,7 @@ import com.nabla.project.application.core.configuration.Version;
 import com.nabla.project.application.core.log.Log;
 import com.nabla.project.application.core.spring.AbstractConfig;
 import com.nabla.project.application.core.spring.AbstractMessageConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 
 import org.apache.commons.cli.CommandLine;
@@ -41,7 +41,7 @@ public class FullExtract
     public static void initialization()
     {
         Log.init();
-        applicationContext = ApplicationContextFactory.getInstance().getApplicationContext();
+        applicationContext = ApplicationContextMessageFactory.getInstance().getApplicationContext();
         version = (Version) applicationContext.getBean(AbstractMessageConfig.beanVersion);
     } // end initialization()
 

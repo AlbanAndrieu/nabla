@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 import com.nabla.project.application.api.transformer.TransformerDataInterface;
 import com.nabla.project.application.core.log.Log;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.model.message.transformer.common.XMLProductModelTransformer;
 import com.nabla.project.application.model.xml.XMLProduct;
@@ -28,8 +28,8 @@ public class XMLProductSetTest extends TestCase
     static
     {
         Log.init();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
-        transformer = (TransformerDataInterface) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerProductMessageName);
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
+        transformer = (TransformerDataInterface) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanDataTransformerProductMessageName);
     }
 
     /**

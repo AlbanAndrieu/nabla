@@ -20,6 +20,6 @@
 
 	
 	<bean id="xmlValidator" class="com.nabla.project.application.model.message.helpers.XmlValidator" scope="prototype">
-		<constructor-arg type="java.lang.String" index="0" value="..\message\xml\XML_root.xsd"/>
+		<constructor-arg type="java.lang.String" index="0" value="..\xml\src\main\resources\A_XML_root.xsd"/>
 	</bean>
 </beans>

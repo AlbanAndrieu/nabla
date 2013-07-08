@@ -9,7 +9,7 @@ import com.nabla.project.application.api.config.RequestId;
 import com.nabla.project.application.core.log.Log;
 import com.nabla.project.application.core.pipe.PipeBlockingQueueService;
 import com.nabla.project.application.core.spring.AbstractConfig;
-import com.nabla.project.application.core.spring.ApplicationContextFactory;
+import com.nabla.project.application.core.spring.ApplicationContextMessageFactory;
 import com.nabla.project.application.core.spring.MessageConfig;
 import com.nabla.project.application.core.time.Chronometer;
 import com.nabla.project.application.model.message.config.DestinationByteArrayStream;
@@ -51,8 +51,8 @@ public class PositionExtractServiceTest extends TestCase
         super.setUp();
         chronometer = new Chronometer();
         chronometer.start();
-        ApplicationContextFactory.springXmlConfiguration = ApplicationContextFactory.springXmlConfigurationTest;
-        ApplicationContextFactory.newExtractionScope();
+        ApplicationContextMessageFactory.springXmlConfiguration = ApplicationContextMessageFactory.springXmlConfigurationTest;
+        ApplicationContextMessageFactory.newExtractionScope();
     } // end setUp()
 
     /*
@@ -78,10 +78,10 @@ public class PositionExtractServiceTest extends TestCase
     public void testExtractSCN01() throws Exception
     {
         // Initialization
-        ExtractService extractService = (ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
-        Perimeter perimeter = PerimeterTest.getPerimeterDeal1((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractService extractService = (ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
+        Perimeter perimeter = PerimeterTest.getPerimeterDeal1((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
         Destination destination = new DestinationByteArrayStream();
-        RequestId id = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        RequestId id = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         Destination status = null;
         Format format = null;
         Packaging packaging = null;
@@ -95,10 +95,10 @@ public class PositionExtractServiceTest extends TestCase
     public void testExtractSCN02() throws Exception
     {
         // Initialization
-        ExtractService extractService = (ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
-        Perimeter perimeter = PerimeterTest.getPerimeterDeal2((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractService extractService = (ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
+        Perimeter perimeter = PerimeterTest.getPerimeterDeal2((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
         Destination destination = new DestinationByteArrayStream();
-        RequestId id = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        RequestId id = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         Destination status = null;
         Format format = null;
         Packaging packaging = null;
@@ -111,10 +111,10 @@ public class PositionExtractServiceTest extends TestCase
     public void testExtractBusinessCase070608() throws Exception
     {
         // Initialization
-        ExtractService extractService = (ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
-        Perimeter perimeter = PerimeterTest.getPerimeterBusinessCase01((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractService extractService = (ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
+        Perimeter perimeter = PerimeterTest.getPerimeterBusinessCase01((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
         Destination destination = new DestinationByteArrayStream();
-        RequestId id = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        RequestId id = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         Destination status = null;
         Format format = null;
         Packaging packaging = null;
@@ -128,10 +128,10 @@ public class PositionExtractServiceTest extends TestCase
     public void testExtract100() throws Exception
     {
         // Initialization
-        ExtractService extractService = (ExtractService) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
-        Perimeter perimeter = PerimeterTest.getPerimeter100((Perimeter) ApplicationContextFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
+        ExtractService extractService = (ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName);
+        Perimeter perimeter = PerimeterTest.getPerimeter100((Perimeter) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanPerimeterName));
         Destination destination = new DestinationByteArrayStream();
-        RequestId id = (RequestId) ApplicationContextFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
+        RequestId id = (RequestId) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(AbstractConfig.beanRequestIdName);
         Destination status = null;
         Format format = null;
         Packaging packaging = null;
