@@ -170,9 +170,9 @@ public class Condition implements Serializable
     public enum ConditionId
     {
 
-        MAXROW("MAXROW", "[maxrow]"), SELECT("SELECT", "[SELECT]"), FROM("FROM", "[FROM]"), WHERE("WHERE", "[WHERE]"), ORDERBY("ORDERBY", "[ORDERBY]"), DATVALMIN("DATVALMIN", "[datvalmin]"), DATVALMAX(
+        MAXROW("MAXROW", "[MAXROW]"), SELECT("SELECT", "[SELECT]"), FROM("FROM", "[FROM]"), WHERE("WHERE", "[WHERE]"), ORDERBY("ORDERBY", "[ORDERBY]"), DATVALMIN("DATVALMIN", "[DATVALMIN]"), DATVALMAX(
                 "DATVALMAX",
-                "[datvalmax]"), TYPEOFDEAL("TYPEOFDEAL", "[typeofdeal]"), FOLDER("FOLDER", "[folder]");
+                "[DATVALMAX]"), TYPEOFDEAL("TYPEOFDEAL", "[typeofdeal]"), FOLDER("FOLDER", "[folder]");
 
         private String xmlMapping;
         private String sqlValueName;

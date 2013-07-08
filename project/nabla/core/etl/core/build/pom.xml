@@ -11,5 +11,7 @@
         <groupId>com.nabla.project.core.etl.core.build</groupId>
         <artifactId>build</artifactId>
         <packaging>pom</packaging>
-
+        <name>Etl Core Build</name>
+        <description>Java build of the Etl</description>
+        
 </project>

@@ -46,7 +46,7 @@ public class ApplicationContextFactory extends AbstractApplicationContextFactory
     /**
      * DOCUMENT ME!
      */
-    private final static ApplicationContextFactory applicationContextFactory    = new ApplicationContextFactory();
+    private final static ApplicationContextFactory applicationContextFactory = new ApplicationContextFactory();
 
     /**
      * Creates a new ApplicationContextFactory object.
