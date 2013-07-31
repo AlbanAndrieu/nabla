@@ -41,3 +41,4 @@ Date::Format
 Date::Manip
 LWP::Protocol::https
 Crypt::SSLeay
+File::Copy::Recursive

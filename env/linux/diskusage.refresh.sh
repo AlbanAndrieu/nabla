@@ -22,3 +22,5 @@ rm /workspace/philesight/philesight.db
 #done
 echo "Scan finished at " `date`;
 
+echo "Check server output with : tail -f /var/log/apache2/error.log"
+echo "Check result in : http://home.nabla.mobi/cgi-bin/philesight.cgi"
