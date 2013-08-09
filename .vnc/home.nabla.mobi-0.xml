@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE vncaddressbook [
+<!ENTITY COMPANY "RealVNC Ltd.">
+<!ELEMENT vncaddressbook (folder*,file*)>
+<!ATTLIST vncaddressbook password CDATA #IMPLIED>
+<!ELEMENT folder (folder*,file*)>
+<!ATTLIST folder name CDATA #REQUIRED>
+<!ELEMENT file (section*)>
+<!ATTLIST file name CDATA #REQUIRED>
+<!ELEMENT section (param*)>
+<!ATTLIST section name CDATA #REQUIRED>
+<!ELEMENT param (#PCDATA)>
+<!ATTLIST param name CDATA #REQUIRED>
+<!ATTLIST param value CDATA #REQUIRED>
+]>
+<vncaddressbook>
+<file name="home.nabla.mobi-0">
+<section name="Connection">
+<param name="Host" value="home.nabla.mobi:0" />
+<param name="UserName" value="aandrieu" />
+<param name="Encryption" value="Server" />
+<param name="SecurityNotificationTimeout" value="2500" />
+<param name="SelectDesktop" value="" />
+<param name="ProxyServer" value="" />
+<param name="ProxyType" value="" />
+<param name="ProxyUserName" value="" />
+<param name="ProxyPassword" value="" />
+<param name="SingleSignOn" value="1" />
+</section>
+<section name="Options">
+<param name="UseLocalCursor" value="1" />
+<param name="FullScreen" value="0" />
+<param name="RelativePtr" value="0" />
+<param name="FullColour" value="0" />
+<param name="ColourLevel" value="pal8" />
+<param name="PreferredEncoding" value="ZRLE" />
+<param name="AutoSelect" value="1" />
+<param name="Shared" value="1" />
+<param name="SendPointerEvents" value="1" />
+<param name="SendKeyEvents" value="1" />
+<param name="ClientCutText" value="1" />
+<param name="ServerCutText" value="1" />
+<param name="ShareFiles" value="1" />
+<param name="EnableChat" value="1" />
+<param name="EnableRemotePrinting" value="1" />
+<param name="ChangeServerDefaultPrinter" value="1" />
+<param name="PointerEventInterval" value="0" />
+<param name="PointerCornerSnapThreshold" value="30" />
+<param name="Scaling" value="None" />
+<param name="MenuKey" value="F8" />
+<param name="EnableToolbar" value="1" />
+<param name="AutoReconnect" value="1" />
+<param name="Protocol3.3" value="0" />
+<param name="AcceptBell" value="1" />
+<param name="ScalePrintOutput" value="1" />
+<param name="PasswordFile" value="" />
+<param name="VerifyId" value="2" />
+<param name="IdHash" value="" />
+<param name="WarnUnencrypted" value="1" />
+<param name="DotWhenNoCursor" value="1" />
+<param name="FullScreenChangeResolution" value="0" />
+<param name="UseAllMonitors" value="0" />
+<param name="Emulate3" value="0" />
+<param name="DisableWinKeys" value="1" />
+<param name="SuppressIME" value="1" />
+<param name="Monitor" value="" />
+</section>
+</file>
+</vncaddressbook>
