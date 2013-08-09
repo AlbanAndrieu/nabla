@@ -22,24 +22,26 @@ while ( "$1" != "" )
 end
 ###################
 
+echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin winnt"
+
 if (! $?PROJECT_USER) then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  exit 1
+  setenv PROJECT_USER albandri10
 endif
 
 if (! $?PROJECT_VERSION) then
   echo "ERROR: Set PROJECT_VERSION environment variable!"
-  exit 1
+  setenv PROJECT_VERSION 10
 endif
 
-if (! $?DEV_HOME) then
-  echo "ERROR: Set DEV_HOME environment variable!"
-  exit 1
+if (! $?PROJECT_HOME) then
+  echo "ERROR: Set PROJECT_HOME environment variable!"
+  setenv PROJECT_HOME ${DRIVE_PATH}/workspace/users
 endif
 
 if (! $?WORKSPACE_ENV) then
   echo "ERROR: Set WORKSPACE_ENV environment variable!"
-  exit 1
+  setenv WORKSPACE_ENV ${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 endif
 
 if (! $?PROJECT_EXTRACTION) then
@@ -74,8 +76,8 @@ foreach i (\
     /usr/bin            \
     /bin                \
     /usr/sbin           \
-    /sbin               \
-    /usr/X11R6/bin      \
+#    /sbin               \
+#    /usr/X11R6/bin      \
 )
     if ( -d "$i" ) then
         if ( -z "$path" ) then
@@ -88,16 +90,22 @@ foreach i (\
     endif
 end
 
-setenv PROJECT_VERSION 10
+if (! -d ${HOME}/bin) then
+    setenv PATH "${HOME}/bin:$PATH"
+endif
+if (! -d ${WORKSPACE_ENV}/${ARCH}/bin) then
+    setenv PATH "${WORKSPACE_ENV}/${ARCH}/bin:$PATH"
+endif
+
 setenv PROJECT_MAJOR_VERSION ${PROJECT_VERSION}
 
 setenv PROJECT_BUILD_TYPE target
 setenv CLIENT_SERVER_TYPE jboss
 
-setenv PROJECT_DEV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-setenv PROJECT_SRC ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/cpp
+setenv PROJECT_DEV ${PROJECT_HOME}/${PROJECT_USER}
+setenv PROJECT_SRC ${PROJECT_HOME}/${PROJECT_USER}/cpp
 setenv PROJECT_TARGET_PATH ${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
-setenv PROJECT_USER_PROFILE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env/config/profiles/albandri.dev.properties
+setenv PROJECT_USER_PROFILE ${PROJECT_HOME}/${PROJECT_USER}/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties
 
 setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
 setenv PROJECT_RELEASE ${PROJECT_TARGET_PATH}/deploy/${PROJECT_MAJOR_VERSION}
@@ -129,6 +137,7 @@ if (! $?KEEP_ENV) then
   endif
 endif
 
+#Define LD_LIBRARY_PATH if does not exists
 if (! $?LD_LIBRARY_PATH) then
   setenv LD_LIBRARY_PATH
 endif
@@ -149,10 +158,10 @@ setenv ORB_VERSION 1_5a
 setenv ORB tao
 
 setenv SYBASE_VERSION 12.5
+setenv SYBASE_OCS OCS-15_0
 setenv SYBASE_HOME ${DRIVE_PATH}/Sybase/${SYBASE_OCS}/
 #setenv SYBASE_HOME ${PROJECT_THIRDPARTY_PATH}/database/sybase
-setenv SYBASE ${SYBASE_HOME}/${SYBASE_VERSION}/${MACHINE}
-setenv SYBASE_OCS OCS-15_0
+setenv SYBASE ${SYBASE_HOME}/${SYBASE_VERSION}/${ARCH}
 
 setenv ORACLE_VERSION 10.2.0
 #setenv ORACLE_HOME ${DRIVE_PATH}/oraclexe
@@ -163,8 +172,6 @@ setenv CPPUNIT_VERSION 1.12.0
 setenv CORBA_ROOT ${PROJECT_THIRDPARTY_PATH}/tao
 setenv ACE_ROOT ${CORBA_ROOT}/ACE_wrappers
 setenv TAO_ROOT ${ACE_ROOT}/TAO
-
-setenv ACE_ROOT ${CORBA_ROOT}/ACE_wrappers
 
 setenv TAO_ROOT ${ACE_ROOT}/TAO
 setenv CIAO_ROOT ${TAO_ROOT}/CIAO
@@ -192,19 +199,44 @@ setenv GRAPHVIZ_HOME ${DRIVE_PATH}/Graphviz2.26.3
 setenv PATH ${PATH}:${GRAPHVIZ_HOME}/bin
 
 setenv HUDSON_HOME ${DRIVE_PATH}/hudson
+setenv JENKINS_HOME ${DRIVE_PATH}/jenkins
+setenv SONAR_HOME ${DRIVE_PATH}/workspace/sonar-3.3
+setenv SONAR_RUNNER_HOME ${DRIVE_PATH}/workspace/sonar-runner-2.0
+setenv PATH ${SONAR_RUNNER_HOME}/bin:${PATH}
 setenv CYGWIN_HOME ${DRIVE_PATH}/cygwin
 setenv SVN_HOME ${CYGWIN_HOME}/bin
+setenv CROWD_INSTALL ${DRIVE_PATH}/workspace/atlassian-crowd-2.5.2/
+setenv CROWD_HOME /var/crowd-home
+setenv NEXUS_HOME /usr/local/nexus
 
-#setenv CMAKE_HOME ${DRIVE_PATH}/CMake-2.6.4
-setenv CMAKE_HOME ${CYGWIN_HOME}/usr/share/cmake-2.6.4
+# CMAKE 2.6.4
+setenv CMAKE_HOME ${DRIVE_PATH}/CMake-2.6.4
 setenv CMAKE_ROOT ${CMAKE_HOME}
 
+# PYTHON 27
+setenv PYTHON_DIR ${DRIVE_PATH}/Python27
+setenv PATH ${PYTHON_DIR}:${PATH}
+
+# ALIAS to python
+alias python '${DRIVE_PATH}/Python27/python'
+
+# SCONS 2.2.0
+setenv SCONS_DIR ${DRIVE_PATH}/scons
+setenv SCONS_PATH ${SCONS_DIR}/scons-local-2.2.0/SCons/Script
+if ( $SCONS_PATH == "" ) then
+  echo "WARNING: Set SCONS_PATH environment variable not defined!"
+else  
+  setenv PATH ${SCONS_PATH}:${PATH}
+endif
+
+# ALIAS to scons-local
+alias scons '${SCONS_DIR}/scons.py'
+
 # JAVA
-#setenv JAVA_HOME ${KPLUSTP_THIRDPARTY}/j2se/${ARCH}/jdk1.5
 #setenv JAVA_HOME "C:\\Program\ Files\ \(x86\)\\Java\\jdk1.5.0_22"
 ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
 #setenv JAVA_HOME /ProgramFilesx86/Java/jdk1.5.0_22
-setenv JAVA_HOME "${DRIVE_PATH}/Sun/SDK/jdk"
+setenv JAVA_HOME ${DRIVE_PATH}/SUN/SDK/jdk1.7.0_05
 
 setenv JRE_HOME ${JAVA_HOME}/jre
 setenv PATH ${PATH}:${JAVA_HOME}/bin
@@ -215,7 +247,14 @@ setenv M2 ${M2_HOME}/bin
 setenv MAVEN_DIR ${M2_HOME}
 #setenv MAVEN_OPTS "-Xmx1548m"
 #setenv MAVEN_OPTS "-Xmx512M -XX:MaxPermSize=1024M"
-setenv MAVEN_OPTS "-Xms512m -Xmx1024m"
+#setenv MAVEN_OPTS "-Xms512m -Xmx1024m"
+#Add MaxPermSize for andromda
+setenv MAVEN_OPTS "-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M"
+# -Djava.awt.headless=true
+if ( "1" == "1" ) then
+  #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log
+  setenv MAVEN_OPTS "${MAVEN_OPTS} -XX:+PrintGCDetails -Xloggc:gc.log"
+endif
 setenv PATH ${PATH}:${M2}
 
 # ANT 
@@ -224,23 +263,39 @@ setenv ANT_OPTS "-Xmx512m"
 setenv PATH ${PATH}:${ANT_HOME}/bin
 
 # JBOSS
-setenv JBOSS_HOME "${DRIVE_PATH}/jboss-4.2.2.GA"
+setenv JBOSS_HOME C:\\jboss-as-7.1.1.Final
 setenv PATH ${JBOSS_HOME}/bin:$PATH
 
-setenv CATALINA_HOME ${JBOSS_HOME}/server/default
-#setenv CATALINA_OPTS "-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME"
+# JBOSS
+setenv BEES_HOME "${DRIVE_PATH}/cloudbees-sdk-1.1"
+setenv PATH ${BEES_HOME}:$PATH
 alias jboss '${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
 
-# ECLIPSE
+# TOMCAT
+setenv CATALINA_HOME ${JBOSS_HOME}/server/default
+# Customize tomcat in CATALINA_BASE
+setenv CATALINA_BASE ${CATALINA_HOME}
+setenv CATALINA_OPTS ""
+#setenv CATALINA_OPTS "-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME -Dapplication.property.dir=${CATALINA_HOME}/project"
+if ( "1" == "1" ) then
+  setenv CATALINA_OPTS "-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n -Djava.compiler=NONE $CATALINA_OPTS"
+endif
+
+# ECLIPSE 3.7
 setenv ECLIPSE_HOME ${DRIVE_PATH}/eclipse-3.7
 setenv PATH ${ECLIPSE_HOME}:$PATH
 alias eclipse '${ECLIPSE_HOME}/eclipse'
+
+#ln -s ${DRIVE_PATH}/MagicDraw\ UML\ 16.5 /MagicDrawUML16.5
+#setenv MD_HOME "/MagicDrawUML16.5"
+setenv MD_HOME C:\MagicDraw-UML-16.5
+setenv ANDROMDA_HOME ${DRIVE_PATH}/repo/org/andromda
 
 # LUMBERMILL
 setenv LUMBERMILL_HOME ${DRIVE_PATH}/lumbermill-2.0-b3
 setenv PATH ${PATH}:${LUMBERMILL_HOME}/bin
 alias lumbermill 'java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
-echo "Lumbermill port is 4430"
+echo "Lumbermill port is 4445"
 
 # Make a directory with link to several libraries for LIBPATH length restriction
 #################################################################################
@@ -262,21 +317,26 @@ set LIB_LINK_DIR="${PROJECT_DEV}/lib/${ARCH}"
 
 #################################################################################
 
-switch( ${MACHINE} )
-    case x86sol:
-    case sun4sol:
-      setenv LD_LIBRARY_PATH /usr/lib/lwp
-    breaksw
-    case rs6000:
-      setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt
-    breaksw
-    default:
-      setenv LD_LIBRARY_PATH ""
-    breaksw
- endsw 
+#switch( ${ARCH} )
+#    case solaris:
+#    case sun4sol:
+#      setenv LD_LIBRARY_PATH /usr/lib/lwp
+#    breaksw
+#    case rs6000:
+#      setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt
+#    breaksw
+#    default:
+#      setenv LD_LIBRARY_PATH ""
+#    breaksw
+# endsw 
 
 #setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/tibrv
 #setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/sybase
+#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/boost
+#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/cppunit
+#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/gettext
+#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/xerces
+#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/xml2
 
 #CORBA TAO
 if ( "$ORB" == "tao" ) then
@@ -287,12 +347,6 @@ if ( "$ORB" == "tao" ) then
   setenv PATH ${PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
   setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}::${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
 endif
-
-#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/boost
-#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/cppunit
-#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/gettext
-#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/xerces
-#setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/xml2
 
 setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:/lib:/usr/lib
 
@@ -324,7 +378,7 @@ alias cls 'clear'
 
 alias ls                /bin/ls -F
 
-if (${ARCH} == sun4sol || ${ARCH} == x86sol) then
+if (${ARCH} == sun4sol || ${ARCH} == solaris) then
   alias l               /bin/ls -Fl
   alias pp              /usr/ucb/ps -auxwww
   if ( `uname -s` == "SunOS" && `uname -r` != "5.8" ) then
@@ -342,7 +396,7 @@ else if (${ARCH} == rs6000) then
 else if (${ARCH} == hprisc) then
   alias l               /bin/ls -Fl
   alias pp              /bin/ps -edf
-else if (${ARCH} == x86Linux || ${ARCH} == cygwin) then
+else if (${ARCH} == linux || ${ARCH} == cygwin) then
   alias l               /bin/ls -Fl --color
   alias pp              /bin/ps -auxwww
 endif
@@ -370,9 +424,13 @@ setenv M2_SETTINGS ${WORKSPACE_ENV}/home/.m2/settings.xml
 # PATH Setting
 #source ${WORKSPACE_ENV}/java/dev.env.csh
 #source ${WORKSPACE_ENV}/cpp/dev.env.csh
+#GIT
+source ${WORKSPACE_ENV}/home/.git-completion.bash
 
 alias replace "${WORKSPACE_ENV}/scripts/replace.pl"
-alias svndi "svn di --diff-cmd=svndiff"
+alias svndi "svn di --diff-cmd=xxdiff"
+#TODO same as svn st-q
+alias svnst "svn st | grep -v ^?"
 
 ####### TRY TO CHANGE PATH TO BE IN THE CURRENT ENVIRONMENT DEVELOPMENT PATH
 
@@ -401,6 +459,15 @@ if ( "${ARCH}" == "sun4sol" ) then
   find ${PROJECT_TARGET_PATH}/corefiles/ -type f -name "core*" -atime +4 -exec rm {} \;
 endif
 
-setenv DISPLAY Alban-PC:0.0
+switch ( ${ARCH} )
+  case rs6000:
+    setenv LIBPATH ${LD_LIBRARY_PATH}
+    unsetenv LD_LIBRARY_PATH
+  breaksw
+endsw
+
+setenv DISPLAY localhost:0.0
     
 echo "PATH is ${PATH}"
+
+#exit 0

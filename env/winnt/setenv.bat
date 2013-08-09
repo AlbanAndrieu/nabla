@@ -4,6 +4,9 @@ rem set POC_HOME=%~dp0
 # Deactivate proxy
 rem proxycfg -d
 
+# Flush DNS cache
+rem ipconfig /flushdns
+
 set VERSION=10
 
 set UNIX_USERNAME=albandri

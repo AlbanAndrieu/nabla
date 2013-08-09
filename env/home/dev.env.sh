@@ -1,6 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+#!/bin/bash
 
 ####################
 ### READ ARGUMENTS
@@ -26,28 +24,30 @@ then
 fi
 ###################
 
+echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin winnt"
+
 if [ -z "$PROJECT_USER" ]
 then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  exit 1
+  export PROJECT_USER=albandri10
 fi
 
 if [ -z "$PROJECT_VERSION" ]
 then
   echo "ERROR: Set PROJECT_VERSION environment variable!"
-  exit 1
+  export PROJECT_VERSION=10
 fi
 
-if [ -z "$DEV_HOME" ]
+if [ -z "$PROJECT_HOME" ]
 then
-  echo "ERROR: Set DEV_HOME environment variable!"
-  exit 1
+  echo "ERROR: Set PROJECT_HOME environment variable!"
+  export PROJECT_HOME=${DRIVE_PATH}/workspace/users
 fi
 
 if [ -z "$WORKSPACE_ENV" ]
 then
   echo "ERROR: Set WORKSPACE_ENV environment variable!"
-  exit 1
+  export WORKSPACE_ENV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
 fi
 
 if [ -z "$PROJECT_EXTRACTION" ]
@@ -66,38 +66,35 @@ then
 fi
 export SVN_EDITOR=${EDITOR}
 
-export PROJECT_VERSION=10
+export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
+if [ -d "${HOME}/bin" ] ; then
+    PATH="${HOME}/bin:$PATH"
+fi
+if [ -d "${WORKSPACE_ENV}/bin" ] ; then
+    PATH="${WORKSPACE_ENV}/bin:$PATH"
+fi
+if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
+    PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
+fi
+
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
 
 export PROJECT_BUILD_TYPE=target
 export CLIENT_SERVER_TYPE=jboss
 
-export PROJECT_DEV=${DEV_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
+export PROJECT_DEV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
 export PROJECT_TARGET_PATH=${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
-export PROJECT_USER_PROFILE="${PROJECT_DEV}/env/config/profiles/${UNIX_USERNAME}.dev.properties"
+export PROJECT_USER_PROFILE="${PROJECT_DEV}/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties"
 
 export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
 export PROJECT_RELEASE=${PROJECT_TARGET_PATH}/release/${PROJECT_MAJOR_VERSION}
 export PROJECT_PKG=${PROJECT_TARGET_PATH}/pkg/${PROJECT_MAJOR_VERSION}
 
-export QTDIR=/lib/qt3
-
-export HUDSON_HOME=${DRIVE_PATH}/hudson
-export CYGWIN_HOME=${DRIVE_PATH}/cygwin
-export SVN_HOME=${CYGWIN_HOME}/bin
-
-export SYBASE_VERSION=12.5
-export SYBASE_OCS=OCS-15_0
-export SYBASE_HOME=${DRIVE_PATH}/Sybase/${SYBASE_OCS}/
-
-export ORACLE_VERSION=10.2.0
-export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/server
-
 if [ ! -d $PROJECT_DEV ]
 then
   echo "ERROR: Directory ${PROJECT_DEV} doesn't exist!"
-  #exit 1
+  exit 1
 fi
 
 ##
@@ -116,7 +113,7 @@ fi
 ##  if [ -z "$LD_LIBRARY_PATH" ]
 ##  then
 ##    echo 'Cleaning $LD_LIBRARY_PATH: '${LD_LIBRARY_PATH}
-##    export LD_LIBRARY_PATH=""
+    export LD_LIBRARY_PATH=""
 ##  fi
 ##
 ##  if [ -z "$LIBPATH" ]
@@ -126,10 +123,32 @@ fi
 ##  fi
 ##fi
 
+#Define LD_LIBRARY_PATH if does not exists
 if [ -z "$LD_LIBRARY_PATH" ]
 then
   export LD_LIBRARY_PATH
 fi
+
+
+export QTDIR=/lib/qt3
+
+export HUDSON_HOME=${DRIVE_PATH}/hudson
+export JENKINS_HOME=${DRIVE_PATH}/jenkins
+export SONAR_HOME=${DRIVE_PATH}/workspace/sonar-3.3
+export SONAR_RUNNER_HOME=${DRIVE_PATH}/workspace/sonar-runner-2.0
+export PATH=${SONAR_RUNNER_HOME}/bin:${PATH}
+export CYGWIN_HOME=${DRIVE_PATH}/cygwin
+export SVN_HOME=${CYGWIN_HOME}/bin
+export CROWD_INSTALL=${DRIVE_PATH}/workspace/atlassian-crowd-2.5.2/
+export CROWD_HOME=/var/crowd-home
+export NEXUS_HOME=/usr/local/nexus
+
+export SYBASE_OCS=OCS-15_0
+export SYBASE_VERSION=12.5
+export SYBASE_HOME=${DRIVE_PATH}/Sybase/${SYBASE_OCS}/
+
+export ORACLE_VERSION=10.2.0
+export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/server
 
 ###
 # Alias
@@ -148,56 +167,106 @@ echo "find . -name 'pom.xml' | xargs grep SNAPSHOT"
 export ORB_VERSION=1_3
 export ORB=tao
 
-export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
-export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
+  export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 
-echo ${ACE_ROOT}
+  echo ${ACE_ROOT}
 
-TAO_ROOT=${ACE_ROOT}/TAO
-export TAO_ROOT
+  TAO_ROOT=${ACE_ROOT}/tao
+  export TAO_ROOT
 
-echo ${TAO_ROOT}
+  echo ${TAO_ROOT}
 
-MPC_ROOT=${ACE_ROOT}/MPC
-export MPC_ROOT
+  MPC_ROOT=${ACE_ROOT}/MPC
+  export MPC_ROOT
 
-echo ${MPC_ROOT}
+  echo ${MPC_ROOT}
 
-CIAO_ROOT=${TAO_ROOT}/CIAO
-export CIAO_ROOT
-DANCE_ROOT=${CIAO_ROOT}/DANCE
-export DANCE_ROOT
+  CIAO_ROOT=${TAO_ROOT}/CIAO
+  export CIAO_ROOT
+  
+  echo ${CIAO_ROOT}
+  
+  DANCE_ROOT=${CIAO_ROOT}/DANCE
+  export DANCE_ROOT
+  
+  echo ${DANCE_ROOT}
 
-DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
-export DDS_ROOT
+  DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
+  export DDS_ROOT
+  
+  echo ${DDS_ROOT}
+fi
 
 export BOOST_VERSION=1.41.0
-export GETTEXT_VERSION=0.14.5
-export XERCES_VERSION=2_5_0
-export XML2_VERSION=2.7.4
+export GETTEXT_VERSION=0.17
+export XERCES_VERSION=2.8.0
+export XML2_VERSION=2.7.2
 export TIBRV_VERSION=7.2.x
 
-#export MINGW_ROOT=${DRIVE_PATH}/MinGW
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  export MINGW_ROOT=${DRIVE_PATH}/MinGW
 
-export BOOST_ROOT=${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
+  export BOOST_ROOT=${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
+else
+  export BOOST_ROOT=/usr/include
+fi 
 export BOOST=$BOOST_ROOT
 
-#export CMAKE_HOME=${DRIVE_PATH}/CMake-2.6.4
-export CMAKE_HOME=${CYGWIN_HOME}/usr/share/cmake-2.6.4
+# CMAKE 2.6.4
+export CMAKE_HOME=${DRIVE_PATH}/CMake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
+# PYTHON 27
+export PYTHON_DIR=${DRIVE_PATH}/Python27
+
+# ALIAS to python
+alias python='${DRIVE_PATH}/Python27/python'
+  
+# SCONS 2.2.0
+#export SCONS_DIR=${PYTHON_DIR}/Lib/site-packages/scons-2.2.0
+export SCONS_DIR=${DRIVE_PATH}/scons
+  
+# ALIAS to scons-local
+alias scons='${SCONS_DIR}/scons.py'
+  
+export SCONS_PATH=${SCONS_DIR}/scons-local-2.2.0/SCons/Script
+if [ "$SCONS_PATH" = "" ]
+then
+  echo "WARNING: Set SCONS_PATH environment variable not defined!"
+else    
+  export PATH=${SCONS_PATH}:${PATH}
+fi
+
 #CORBA TAO
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
-export PATH=${PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}::${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
+export PATH=${PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs
+if [ -d "${MPC_ROOT}" ] ; then
+    PATH="${MPC_ROOT}:$PATH"
+fi
+if [ -d "${CIAO_ROOT}" ] ; then
+    PATH="${CIAO_ROOT}:$PATH"
+fi
+if [ -d "${DANCE_ROOT}" ] ; then
+    PATH="${DANCE_ROOT}:$PATH"
+fi
+if [ -d "${DDS_ROOT}" ] ; then
+    PATH="${DDS_ROOT}:$PATH"
+fi
+export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
 
 # JAVA
 #JDK_HOME=/usr/lib/jvm/ia32-java-6-sun-1.6.0.06/
 #JDK_HOME=${DRIVE_PATH}/Sun/SDK/jdk
-ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
-#export JAVA_HOME="${DRIVE_PATH}/Program Files (x86)/Java/jdk1.5.0_22"
-##export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
-export JAVA_HOME="${DRIVE_PATH}/Sun/SDK/jdk"
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
+  #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
+fi
+export JAVA_HOME=${DRIVE_PATH}/SUN/SDK/jdk1.7.0_05
+  
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
 #export JAVA=$JAVA_HOME/bin/java
@@ -208,48 +277,94 @@ export PATH
 export JAVA_OPTS="-Xms256m -Xmx1548m"
 
 # MAVEN
-export M2_HOME="${DRIVE_PATH}/apache-maven-3.0.4"
+export M2_HOME=${DRIVE_PATH}/apache-maven-3.0.4
 export M2=${M2_HOME}/bin
-export MAVEN_OPTS="-Xms512m -Xmx1024m"
-#export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M"
 export PATH=${M2}:$PATH
+#export MAVEN_OPTS="-Xms512m -Xmx1024m"
+#export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M" 
+#export MAVEN_OPTS="-Xms256m -Xmx512m -XX:PermSize=64M -XX:MaxPermSize=160M"
+#Jenkins We have 48GB RAM and 44 GB swap and its 24 core server. 
+#-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
+#Add MaxPermSize for andromda
+MAVEN_OPTS="-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M"
+# -Djava.awt.headless=true
+if [ 1 -eq 1 ] ; then
+  #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log
+  MAVEN_OPTS="${MAVEN_OPTS} -XX:+PrintGCDetails -Xloggc:gc.log"
+fi
+export MAVEN_OPTS  
 export M2_REPO=${DRIVE_PATH}/repo
 echo "Maven repo are in : ${M2_REPO}"
 
-# ANT 
-export ANT_HOME="${DRIVE_PATH}/apache-ant-1.8.0"
-export ANT_OPTS="-Xmx512m"
+# ANT
+export ANT_HOME=${DRIVE_PATH}/apache-ant-1.8.0
 export PATH=${ANT_HOME}/bin:${ANT_HOME}/lib:$PATH
+export ANT_OPTS="-Xmx512m"
 
 # JBOSS
-export JBOSS_HOME="${DRIVE_PATH}/jboss-4.2.2.GA"
+export JBOSS_HOME=C:\\jboss-as-7.1.1.Final
 export PATH=${JBOSS_HOME}/bin:$PATH
 
-export CATALINA_HOME=${JBOSS_HOME}/server/default
-#export CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME"
+# JBOSS
+export BEES_HOME="${DRIVE_PATH}/cloudbees-sdk-1.1"
+export PATH=${BEES_HOME}:$PATH
 alias jboss='${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
 
-# ECLIPSE
+# TOMCAT
+export CATALINA_HOME=${JBOSS_HOME}/server/default
+# Customize tomcat in CATALINA_BASE
+export CATALINA_BASE=${CATALINA_HOME}
+CATALINA_OPTS=""
+#CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME -Dapplication.property.dir=${CATALINA_HOME}/project"
+if [ 1 -eq 1 ] ; then
+  export CATALINA_OPTS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n -Djava.compiler=NONE $CATALINA_OPTS"
+fi
+
+# ECLIPSE 3.7
 export ECLIPSE_HOME=${DRIVE_PATH}/eclipse-3.7
-export PATH=${ECLIPSE_HOME}:$PATH
-alias eclipse='${ECLIPSE_HOME}/eclipse'
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  export PATH=${ECLIPSE_HOME}:$PATH
+  alias eclipse='${ECLIPSE_HOME}/eclipse'
+else
+  export ECLIPSE_HOME=${DRIVE_PATH}/eclipse
+fi
+
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  #ln -s ${DRIVE_PATH}/MagicDraw\ UML\ 16.5 /MagicDrawUML16.5
+  #export MD_HOME="/MagicDrawUML16.5"
+  export MD_HOME=C:\MagicDraw-UML-16.5
+fi
+export ANDROMDA_HOME=${DRIVE_PATH}/repo/org/andromda
 
 # LUMBERMILL
 export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
 export PATH=${LUMBERMILL_HOME}/bin:${PATH}
 alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
-echo "Lumbermill port is 4430"
+echo "Lumbermill port is 4445"
 
 # GRAPHVIZ
-export GRAPHVIZ_HOME=${DRIVE_PATH}/Graphviz2.26.3
-export PATH=${GRAPHVIZ_HOME}/bin:${PATH}
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  export GRAPHVIZ_HOME=${DRIVE_PATH}/Graphviz2.26.3
+  export PATH=${GRAPHVIZ_HOME}/bin:${PATH}
+else
+  export GRAPHVIZ_HOME=/usr/share/graphviz/
+fi
 
 # TIBCO
-export TIBCO_HOME=${DRIVE_PATH}/Tibco/Tibrv
-export PATH=${TIBCO_HOME}/bin:${PATH}
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  export TIBCO_HOME=${DRIVE_PATH}/Tibco/Tibrv
+  export PATH=${TIBCO_HOME}/bin:${PATH}
+fi
 
 # WINDOWS
-export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
+if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
+then
+  export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
+fi
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -274,35 +389,42 @@ test ! -d ${LIB_LINK_DIR} && mkdir -p ${LIB_LINK_DIR}
 
 #################################################################################
 
-case ${MACHINE} in
-    sun4sol)
-      export LD_LIBRARY_PATH=/usr/lib/lwp
-    ;;
-    rs6000)
-      export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt
-    ;;
-    *)
-      export LD_LIBRARY_PATH=""
-    ;;
-esac
+#case ${ARCH} in
+#    sun4sol)
+#      export LD_LIBRARY_PATH=/usr/lib/lwp
+#    ;;
+#    rs6000)
+#      export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt
+#    ;;
+#    *)
+#      export LD_LIBRARY_PATH=""
+#    ;;
+#esac
+#export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt
 
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/tibrv
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/sybase
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/oracle
-
-#if [ "$ORB" = "tao" ]
-#then
-#  export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PROJECT_THIRDPARTY_PATH}/corba/${ORB}/${ORB_VERSION}/lib/${ARCH}.mt/opt/shared
-#else
-#  export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PROJECT_THIRDPARTY_PATH}/corba/${ORB}/${ORB_VERSION}/${ARCH}/lib
-#fi
-
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/boost
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/cppunit
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/gettext
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/xerces
 
+#CORBA TAO
+#if [ "$ORB" = "tao" ]
+#  export MPC_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers/MPC
+#  export CIAO_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers/TAO/CIAO
+#  export DANCE_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers/TAO/CIAO/DANCE
+#  export DDS_ROOT=${DRIVE_PATH}/thirdparty/tao/ACE_wrappers/TAO/CIAO/connectors/dds4ccm
+#  export PATH=${PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/bin:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
+#  export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}::${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
+#fi
+
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/lib:/usr/lib
+
+# Development library path, opt first, then debug
+export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/debug:${PROJECT_TARGET_PATH}/lib/${ARCH}/debug/shared:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${LD_LIBRARY_PATH}
 
 ##
 # Alias
@@ -324,7 +446,7 @@ alias cls="clear"
 
 alias ls='/bin/ls -F'
 
-if [ "${ARCH}" = sun4sol -o "${ARCH}" = x86sol ]
+if [ "${ARCH}" = sun4sol -o "${ARCH}" = solaris ]
 then
   alias l='/bin/ls -Fl'
   alias pp='/usr/ucb/ps -auxwww'
@@ -346,7 +468,7 @@ else
         alias l='/bin/ls -Fl'
         alias pp='/bin/ps -edf'
       else
-        if [ "${ARCH}" = x86Linux -o "${ARCH}" = cygwin ]
+        if [ "${ARCH}" = linux -o "${ARCH}" = cygwin ]
         then
           alias l='/bin/ls -Fl --color'
           alias pp='/bin/ps -auxwww'
@@ -380,29 +502,13 @@ export M2_SETTINGS=${WORKSPACE_ENV}/home/.m2/settings.xml
 # PATH Setting
 #source ${WORKSPACE_ENV}/java/dev.env.sh
 #source ${WORKSPACE_ENV}/cpp/dev.env.sh
+#GIT
+source ${WORKSPACE_ENV}/home/.git-completion.bash
 
 alias replace="${WORKSPACE_ENV}/scripts/replace.pl"
-alias svndi="svn di --diff-cmd=svndiff"
-
-case ${MACHINE} in
-  sun4sol)
-    test -f /usr/xpg4/bin/grep && alias grep /usr/xpg4/bin/grep
-    export PATH=${PATH}:/usr/X/bin
-  ;;
-
-  x86Linux)
-    test "$TERM" = "xterm" && export TERM=xterm-color
-  ;;
-
-  rs6000)
-    export PATH=${PATH}:/usr/X11R6/bin
-    export LIBPATH=${LD_LIBRARY_PATH}
-  ;;
-
-  *)
-  ;;
-
-esac
+alias svndi="svn di --diff-cmd=xxdiff"
+#TODO same as svn st-q
+alias svnst="svn st | grep -v ^?"
 
 ####### TRY TO CHANGE PATH TO BE IN THE CURRENT ENVIRONMENT DEVELOPMENT PATH
 
@@ -420,6 +526,15 @@ then
   fi
 fi
 
+case ${ARCH} in
+    rs6000)
+      export LIBPATH=${LD_LIBRARY_PATH}
+      unset LD_LIBRARY_PATH
+    ;;
+esac
+
 export DISPLAY=localhost:0.0
 
 echo "PATH is ${PATH}"
+
+#exit 0

@@ -42,3 +42,4 @@ Date::Manip
 LWP::Protocol::https
 Crypt::SSLeay
 File::Copy::Recursive
+File::Find::Rule
