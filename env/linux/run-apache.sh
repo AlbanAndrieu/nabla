@@ -49,3 +49,7 @@ cd /usr/lib
 sudo ln -s /workspace/philesight/philesight.cgi philesight.cgi
 
 tail -f /var/log/apache2/error.log
+
+sudo iptables -A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
+netstat -an | grep 8080
+sudo lsof -i :8080

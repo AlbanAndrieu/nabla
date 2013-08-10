@@ -5,10 +5,11 @@ sudo apt-get install rubygems
 #sudo gem install tumblr-rb
 
 #downgrade ruby 
-sudo aptitude remove ruby
-sudo aptitude remove ruby 1.9.2p0
-sudo aptitude purge ruby
-sudo aptitude purge ruby 1.9.2p0
+#http://stackoverflow.com/questions/4601003/how-to-downgrade-from-ruby-1-9-2-to-ruby-1-8-7-to-run-rails-2-0-2
+dpkg -l | grep ruby
+sudo aptitude remove ruby1.9.1
+#sudo aptitude purge ruby
+#sudo aptitude purge ruby 1.9.2p0
 
 #see /workspace/users/albandri10/env/linux/diskusage.refresh.sh
 #see /usr/lib/cgi-bin/philesight.cgi
