@@ -6,3 +6,10 @@
 	editor = gedit
 [credential]
 	helper = cache --timeout=86400
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
