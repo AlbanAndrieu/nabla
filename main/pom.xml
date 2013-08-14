@@ -82,10 +82,12 @@
 
                 <hudson.port>8070</hudson.port>
                 <tomcat.port>8280</tomcat.port>
-                <jenkins.port>${tomcat.port}</jenkins.port>
+                <jenkins.port>${tomcat.port}</jenkins.port> <!-- http://localhost:8280/jenkins/ -->
                 <oracle.port>8080</oracle.port>
                 <archiva.port>8010</archiva.port>
                 <nexus.port>8081</nexus.port>
+		<jira.port>8082</jira.port><!-- http://localhost:8082/ control port 8006 -->
+		<confluence.port>8090</confluence.port><!-- http://localhost:8090/ control port 8000 -->
                 <continuum.port>8020</continuum.port>
                 <mysql.port>3306</mysql.port>
                 <sonar.port>9000</sonar.port>
@@ -93,6 +95,7 @@
                 <sonar.mysql.port>${mysql.port}</sonar.mysql.port>
                 <fitness.port>9090</fitness.port>
                 <bugzilla.mysql.port>${mysql.port}</bugzilla.mysql.port>
+		<crowd.port>8095</crowd.port><!-- http://localhost:8095/crowd/ -->
 
                 <apache-continuum.version>1.2.3</apache-continuum.version>
 

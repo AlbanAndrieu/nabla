@@ -23,7 +23,9 @@ sudo apt-get -f install
 
 sudo apt-cache search 5
 sudo apt-get install libdb5.1-dev 
- 
+
+sudo apt-get install ssmtp mailutils
+
 #Install following perl package
 sudo cpan install BDB
 XML::DOM

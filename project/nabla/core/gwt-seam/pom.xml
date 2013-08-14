@@ -26,8 +26,16 @@
 			<groupId>com.gwtplatform</groupId>
 			<artifactId>gwtp-all</artifactId>
 			<version>${gwtp.all.version}</version>
-			<scope>provided</scope>			
-		</dependency>		            				
+			<scope>provided</scope>		
+                        <!--
+		        <exclusions>
+	        		<exclusion>
+	        			<groupId>com.googlecode.objectify</groupId>
+	        			<artifactId>objectify</artifactId>
+	        		</exclusion>
+	        	</exclusions>
+                        -->
+		</dependency>	            				
 		<dependency>
 			<groupId>org.jboss.seam</groupId>
 			<artifactId>jboss-seam</artifactId>
