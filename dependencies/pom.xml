@@ -1122,7 +1122,7 @@
                 <jfree.jcommon.version>1.0.16</jfree.jcommon.version>
                 <jfreechart-demo.version>1.0.13</jfreechart-demo.version>
                 <junitperf.version>1.9.1</junitperf.version>
-                <clover.version>3.1.11</clover.version>
+                <clover.version>3.1.12</clover.version>
                 <dbunit.version>2.4.9</dbunit.version>
                 <testng.version>6.8</testng.version>
                 <htmlunit.version>1.11</htmlunit.version>
@@ -1313,7 +1313,7 @@
                 <hamcrest.core.version>1.3.RC2</hamcrest.core.version>
                 <jsp.version>2.0</jsp.version>
                 <jsp-api.version>2.2.1-b03</jsp-api.version>
-                <junit.version>4.11-beta-1</junit.version>
+                <junit.version>4.11</junit.version>
                 <org.jboss.arquillian.version>1.0.3.Final</org.jboss.arquillian.version>
                 <org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
                 <httpunit.version>1.6.2</httpunit.version>
@@ -1421,6 +1421,7 @@
                 <wss4j.version>1.5.8</wss4j.version>
                 <wsdl4j.version>1.6.2</wsdl4j.version>
                 <groovy.version>2.0.5</groovy.version>
+                <http.builder.version>0.6</http.builder.version>
 
                 <flex.sdk.version>4.5.0.20967</flex.sdk.version>
                 <flexlib.version>2.5</flexlib.version>
@@ -1524,20 +1525,20 @@
                 <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
                 <!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
-                <maven.site.plugin.version>3.2</maven.site.plugin.version>
+                <maven.site.plugin.version>3.3</maven.site.plugin.version>
                 <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
                 <maven.buildnumber.plugin.version>1.2</maven.buildnumber.plugin.version>
                 <maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>
                 <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
                 <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
                 <maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
-                <maven.surefire.plugin.version>2.14.1</maven.surefire.plugin.version>
+                <maven.surefire.plugin.version>2.15</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
                 <maven.versions.plugin.version>1.3.1</maven.versions.plugin.version>
                 <maven.idea.plugin.version>2.2</maven.idea.plugin.version>
-                <maven.cargo.maven2.plugin.version>1.4.0</maven.cargo.maven2.plugin.version>
+                <maven.cargo.maven2.plugin.version>1.4.3</maven.cargo.maven2.plugin.version>
                 <maven.jetty.plugin.version>7.0.0.pre5</maven.jetty.plugin.version>
                 <maven.jboss.as.plugin.version>7.4.Final</maven.jboss.as.plugin.version>
                 <maven.ant.plugin.version>2.3</maven.ant.plugin.version>
@@ -1560,7 +1561,7 @@
                 <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
                 <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
                 <maven.java.formatter.plugin.version>0.3.1</maven.java.formatter.plugin.version>
-                <maven.failsafe.plugin.version>2.14.1</maven.failsafe.plugin.version>
+                <maven.failsafe.plugin.version>2.15</maven.failsafe.plugin.version>
                 <maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
                 <maven.bundle.plugin.version>2.3.7</maven.bundle.plugin.version>
@@ -1803,6 +1804,7 @@
                                                                                 <versionRange>[${maven.gmaven.plugin.version},)</versionRange>
                                                                                 <goals>
                                                                                         <goal>execute</goal>
+                                                                                        <goal>testCompile</goal>
                                                                                 </goals>
                                                                         </pluginExecutionFilter>
                                                                         <action>
@@ -3135,6 +3137,31 @@ mm]]></license>
                                     <groupId>org.apache.maven.plugins</groupId>
                                     <artifactId>maven-failsafe-plugin</artifactId>
                                     <version>${maven.failsafe.plugin.version}</version>
+                                    <!--
+          			    <executions>
+          			      <execution>
+          			        <id>integration-test</id>
+          			        <goals>
+          			          <goal>integration-test</goal>
+          			          <goal>verify</goal>
+          			        </goals>
+          			      </execution>
+          			    </executions>         
+          			    -->
+                                    <executions>
+                                      <execution>
+                                        <id>integration-test</id>
+                                        <goals>
+                                          <goal>integration-test</goal>
+                                        </goals>
+                                      </execution>
+                                      <execution>
+                                        <id>verify</id>
+                                        <goals>
+                                          <goal>verify</goal>
+                                        </goals>
+                                      </execution>
+                                    </executions>          			                               
                                 </plugin>
 
                                 <plugin>
@@ -3444,6 +3471,12 @@ mm]]></license>
                                 <!--<classifier>jdk15</classifier>-->
                                 <scope>test</scope>
                         </dependency>
+			<dependency>
+				<groupId>org.codehaus.groovy.modules.http-builder</groupId>
+				<artifactId>http-builder</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>                        
                         <dependency>
                                 <groupId>org.beanshell</groupId>
                                 <artifactId>bsh</artifactId>
