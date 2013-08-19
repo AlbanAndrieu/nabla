@@ -51,11 +51,11 @@
         </dependency>
         <dependency>
 	    <groupId>com.nabla.project.core.etl.model.xml</groupId>
-	    <artifactId>xmls</artifactId>
+	    <artifactId>xml</artifactId>
 	    <version>${project.version}</version>
         </dependency>
         <dependency>
-	    <groupId>com.nabla.project.core.etl.core.tool</groupId>
+	    <groupId>com.nabla.project.core.etl.tool</groupId>
 	    <artifactId>tool</artifactId>
 	    <version>${project.version}</version>
         </dependency>
