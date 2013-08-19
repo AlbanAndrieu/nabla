@@ -16,7 +16,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto3.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -30,7 +31,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto3.b.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -44,7 +46,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto4.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -58,7 +61,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto4.b.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -72,7 +76,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto5.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -86,7 +91,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto6.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -100,7 +106,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto7.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -114,7 +121,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto8.b.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -128,7 +136,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto9.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -142,7 +151,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto9.b.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -156,7 +166,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto10.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -170,7 +181,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto10.a.PaymentService
                 ]]>
             </description>
             <ejb-name>PaymentServiceBean</ejb-name>
@@ -184,7 +196,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto11.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -208,7 +221,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto16.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -222,7 +236,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto13.a.RentalService
                 ]]>
             </description>
             <ejb-name>RentalServiceBean</ejb-name>
@@ -236,7 +251,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto18.a.UserService
                 ]]>
             </description>
             <ejb-name>UserServiceBean</ejb-name>
@@ -250,7 +266,8 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto18.a.UserEndPointService
                 ]]>
             </description>
             <ejb-name>UserEndPointServiceBean</ejb-name>
@@ -264,7 +281,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto16.a.Person
                 ]]>
             </description>
             <ejb-name>PersonManageableService</ejb-name>
@@ -278,7 +295,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto16.a.Car
                 ]]>
             </description>
             <ejb-name>CarManageableService</ejb-name>
@@ -292,7 +309,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.b.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -306,7 +323,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -320,7 +337,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.c.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -334,7 +351,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.d.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -348,7 +365,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.e.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -362,7 +379,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.f.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -376,7 +393,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.g.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -390,7 +407,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.h.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -404,7 +421,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto1.i.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -418,7 +435,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -432,7 +449,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -446,7 +463,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.b.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -460,7 +477,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.b.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -474,7 +491,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.c.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -488,7 +505,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.c.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -502,7 +519,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -516,7 +533,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -530,7 +547,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.e.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -544,7 +561,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.e.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -558,7 +575,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.e1.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -572,7 +589,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.e1.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -586,7 +603,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.e2.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -600,7 +617,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.e2.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -614,7 +631,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d1.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -628,7 +645,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d1.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -642,7 +659,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d2.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -656,7 +673,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d2.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -670,7 +687,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d3.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -684,7 +701,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d3.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -698,7 +715,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d4.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -712,7 +729,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto2.d4.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -726,7 +743,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto3.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -740,7 +757,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto3.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -754,7 +771,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto3.b.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -768,7 +785,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto3.b.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -782,7 +799,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto4.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -796,7 +813,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto4.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -810,7 +827,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto4.b.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -824,7 +841,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto4.b.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -838,7 +855,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto5.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -852,7 +869,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto5.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -866,7 +883,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto6.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -880,7 +897,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto6.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -894,7 +911,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto7.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -908,7 +925,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto7.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -922,7 +939,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto8.b.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -936,7 +953,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto8.b.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -950,7 +967,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto9.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -964,7 +981,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto9.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -978,7 +995,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto9.a.Vehicle
                 ]]>
             </description>
             <ejb-name>VehicleDao</ejb-name>
@@ -992,7 +1009,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto9.b.Vehicle
                 ]]>
             </description>
             <ejb-name>VehicleDao</ejb-name>
@@ -1006,7 +1023,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto9.b.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1020,7 +1037,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto9.b.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -1034,7 +1051,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto10.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1048,7 +1065,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto10.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -1062,7 +1079,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto11.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1076,7 +1093,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto11.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -1090,7 +1107,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto16.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1104,7 +1121,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto16.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -1118,7 +1135,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto13.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1132,7 +1149,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto13.a.Car
                 ]]>
             </description>
             <ejb-name>CarDao</ejb-name>
@@ -1146,7 +1163,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto19.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1160,7 +1177,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto20.a.Person
                 ]]>
             </description>
             <ejb-name>PersonDao</ejb-name>
@@ -1174,7 +1191,7 @@
         <session>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for org.andromda.test.howto18.a.User
                 ]]>
             </description>
             <ejb-name>UserDao</ejb-name>
@@ -1187,7 +1204,8 @@
         <message-driven>
             <description>
                 <![CDATA[
-                
+                TODO: Model Documentation for
+org.andromda.test.howto10.a.PaymentProcessor
                 ]]>
             </description>
             <ejb-name>PaymentProcessorMDBBean</ejb-name>

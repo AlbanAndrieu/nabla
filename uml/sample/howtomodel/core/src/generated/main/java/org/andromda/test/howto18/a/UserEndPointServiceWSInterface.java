@@ -15,6 +15,7 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService(targetNamespace = "http://org.andromda.test.howto18/a")
 @SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+//@org.jboss.ws.annotation.PortComponent(contextRoot = "/howtomodel-ws", urlPattern="/services/UserEndPointService/*")
 public interface UserEndPointServiceWSInterface
     extends Remote
 {

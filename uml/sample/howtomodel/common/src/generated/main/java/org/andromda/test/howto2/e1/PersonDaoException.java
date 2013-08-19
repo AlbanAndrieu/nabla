@@ -8,7 +8,7 @@ package org.andromda.test.howto2.e1;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.test.howto2.e1.Person
  */
 public class PersonDaoException
     extends Exception

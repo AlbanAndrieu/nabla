@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 @Stateless
 public class CarDaoImpl extends CarDaoBase
 {
-
     private static final Logger logger = Logger.getLogger(CarDaoImpl.class);
 
+    // This entity has no Business Operations and no ValueObject dependency references
 }

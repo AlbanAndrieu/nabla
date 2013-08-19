@@ -10,7 +10,7 @@ import javax.ejb.Remote;
 /**
  * Remote component interface for the PaymentServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto10.a.PaymentService
  *
  */
 @Remote
@@ -20,7 +20,7 @@ public interface PaymentServiceRemote extends PaymentService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto10.a.PaymentService.register
      */
     public void register(Person owner, Car car, int leasePeriod);
 

@@ -8,7 +8,7 @@ package org.andromda.test.howto1.c;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.test.howto1.c.Car
  */
 public class CarDaoException
     extends Exception

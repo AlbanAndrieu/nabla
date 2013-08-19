@@ -3,11 +3,12 @@
 package org.andromda.test.howto4.a;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
  * Composite primary key class for Car entity bean.
- * 
+ * TODO: Model Documentation for org.andromda.test.howto4.a.Car
  */
 @Embeddable
 public class CarPK
@@ -19,9 +20,11 @@ public class CarPK
 
     /**
      * Get the serial property.
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto4.a.Car.serial
      * @return String The value of serial
+     * owning=$property.otherEnd.owning optional=$property.optional $property.otherEnd.fulyQualifiedName many2One=$property.many2One target=$property.otherEnd.many2One
      */
+    @Column(name="SERIAL", nullable=false)
     public String getSerial()
     {
         return this.serial;
@@ -38,9 +41,11 @@ public class CarPK
 
     /**
      * Get the name property.
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto4.a.Car.name
      * @return String The value of name
+     * owning=$property.otherEnd.owning optional=$property.optional $property.otherEnd.fulyQualifiedName many2One=$property.many2One target=$property.otherEnd.many2One
      */
+    @Column(name="NAME", nullable=false)
     public String getName()
     {
         return this.name;
@@ -64,10 +69,10 @@ public class CarPK
     }
 
     /**
-     * Implementation for the main constructor with all POJO identifier attributes.
+     * Implementation for the main constructor with all POJO identifier properties.
      *
-     * @param serial Value for the serial property
-     * @param name Value for the name property
+     * @param serial Value for the serial property true
+     * @param name Value for the name property false
      */
     public CarPK(String serial, String name)
     {
@@ -131,5 +136,21 @@ public class CarPK
             cmp = (cmp != 0 ? cmp : this.getName().compareTo(o.getName()));
         }
         return cmp;
+    }
+
+    /**
+     * Returns a String representation of the composite key object
+     * @return String Textual representation of the object displaying name/value pairs for all properties
+     * @see Object#toString
+     */
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CarPK(");
+        sb.append(" serial=").append(getSerial());
+        sb.append(" name=").append(getName());
+        sb.append(")");
+        return sb.toString();
     }
 }

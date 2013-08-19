@@ -11,7 +11,7 @@ import javax.ejb.Remote;
 /**
  * Remote component interface for the RentalServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto16.a.RentalService
  *
  */
 @Remote
@@ -21,12 +21,12 @@ public interface RentalServiceRemote extends RentalService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.RentalService.getAllCars
      */
     public List getAllCars() throws RentalException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.RentalService.getCustomersByName
      */
     public List getCustomersByName(String name) throws RentalException;
 

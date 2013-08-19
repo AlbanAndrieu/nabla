@@ -16,7 +16,7 @@ public final class ManageCarSearchForm
     private String serial;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car.serial
      * @return serial
      */
     public String getSerial()
@@ -25,7 +25,7 @@ public final class ManageCarSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car.serial
      * @param serialIn
      */
     public void setSerial(String serialIn)
@@ -36,7 +36,7 @@ public final class ManageCarSearchForm
     private String name;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car.name
      * @return name
      */
     public String getName()
@@ -45,7 +45,7 @@ public final class ManageCarSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car.name
      * @param nameIn
      */
     public void setName(String nameIn)
@@ -56,7 +56,7 @@ public final class ManageCarSearchForm
     private CarType type;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car.type
      * @return type
      */
     public CarType getType()
@@ -65,7 +65,7 @@ public final class ManageCarSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car.type
      * @param typeIn
      */
     public void setType(CarType typeIn)
@@ -76,7 +76,7 @@ public final class ManageCarSearchForm
     private String owner;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person
      * @return owner
      */
     public String getOwner()
@@ -85,7 +85,7 @@ public final class ManageCarSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person
      * @param ownerIn
      */
     public void setOwner(String ownerIn)

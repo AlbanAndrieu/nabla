@@ -10,7 +10,7 @@ import javax.ejb.Remote;
 /**
  * Remote component interface for the UserEndPointServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto18.a.UserEndPointService
  *
  */
 @Remote
@@ -20,12 +20,12 @@ public interface UserEndPointServiceRemote extends UserEndPointService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto18.a.UserEndPointService.addUser
      */
     public void addUser(String name) throws UserException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto18.a.UserEndPointService.getUser
      */
     public User getUser(Long id) throws UserException;
 

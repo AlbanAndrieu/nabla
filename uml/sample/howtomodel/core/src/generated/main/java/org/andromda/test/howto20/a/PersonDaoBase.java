@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 
 /**
@@ -33,18 +33,18 @@ public abstract class PersonDaoBase implements PersonDao
 {
 
     private static final Logger logger = Logger.getLogger(PersonDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context howtomodel     */
+     * Inject persistence context howtomodel     */    
     @PersistenceContext(unitName = "howtomodel")
     protected EntityManager entityManager;
 
     /**
-     * @see PersonDao#load(int,)
+     * @see PersonDao#load
      */
     @Override
     public Object load(final int transform, final String serial) throws PersonDaoException
@@ -55,8 +55,8 @@ public abstract class PersonDaoBase implements PersonDao
         }
         try
         {
-            final Object entity = (Person)this.entityManager.find(Person.class, serial);
-            return transformEntity(transform, (Person)entity);
+                        final Person entity = this.entityManager.find(Person.class, serial);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -65,10 +65,10 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
-     * @see PersonDao#load()
+     * @see PersonDao#load( String)
      */
     @Override
-    public Person load( final String serial) throws PersonDaoException
+        public Person load( final String serial) throws PersonDaoException
     {
         return (Person)this.load(TRANSFORM_NONE, serial);
     }
@@ -77,21 +77,22 @@ public abstract class PersonDaoBase implements PersonDao
      * @see PersonDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<Person> loadAll() throws PersonDaoException
     {
-        return(Collection<Person>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see PersonDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws PersonDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("Person.findAll");
+                        TypedQuery<Person> query = this.entityManager.createNamedQuery("Person.findAll", Person.class);
             List<Person> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -103,6 +104,7 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
+     * Create Person with no VO transformation
      * @see PersonDao#create(Person)
      */
     @Override
@@ -112,6 +114,7 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
+     * Create Person with VO transformation
      * @see PersonDao#create(int, Person)
      */
     @Override
@@ -135,7 +138,8 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
-     * @see PersonDao#create(Collection<Person>)
+     * Create a Collection of Person with no VO transformation
+     * @see PersonDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -145,10 +149,11 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
+     * Create a Collection of Person with VO transformation
      * @see PersonDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<Person> entities) throws PersonDaoException
     {
         if (entities == null)
@@ -171,6 +176,7 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
+     * Create Entity Person using instance attributes with no VO transformation
      * @see PersonDao#create(PersonName, Date)
      */
     @Override
@@ -180,7 +186,9 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
+     * Create Entity Person using instance attributes with VO transformation
      * @see PersonDao#create(int, PersonName, Date)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, PersonName name, Date birthDate) throws PersonDaoException
@@ -213,7 +221,7 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
-     * @see PersonDao#update(Collection<Person>)
+     * @see PersonDao#update(Collection)
      */
     @Override
     public void update(final Collection<Person> entities) throws PersonDaoException
@@ -281,7 +289,7 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
-     * @see PersonDao#remove(Collection<Person>)
+     * @see PersonDao#remove(Collection)
      */
     @Override
     public void remove(Collection<Person> entities) throws PersonDaoException

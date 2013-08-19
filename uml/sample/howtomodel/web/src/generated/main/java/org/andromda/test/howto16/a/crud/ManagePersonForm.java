@@ -14,7 +14,7 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.test.howto16.a.Person
  * This form encapsulates the fields that are used in the execution of the CRUD operations in Person
  */
 public class ManagePersonForm
@@ -112,7 +112,7 @@ public class ManagePersonForm
     private String name;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.name
      * @return name
      */
     public String getName()
@@ -121,7 +121,7 @@ public class ManagePersonForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.name
      * @param nameIn
      */
     public void setName(String nameIn)
@@ -148,7 +148,7 @@ public class ManagePersonForm
     private Date birthDate;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.birthDate
      * @return birthDate
      */
     public Date getBirthDate()
@@ -157,7 +157,7 @@ public class ManagePersonForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.birthDate
      * @param birthDateIn
      */
     public void setBirthDate(Date birthDateIn)
@@ -184,7 +184,7 @@ public class ManagePersonForm
     private String serial;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.serial
      * @return serial
      */
     public String getSerial()
@@ -193,7 +193,7 @@ public class ManagePersonForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.serial
      * @param serialIn
      */
     public void setSerial(String serialIn)
@@ -222,7 +222,7 @@ public class ManagePersonForm
     private String[] cars;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car
      * @return cars
      */
     public String[] getCars()
@@ -231,7 +231,7 @@ public class ManagePersonForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car
      * @param carsIn
      */
     public void setCars(String[] carsIn)

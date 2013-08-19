@@ -15,7 +15,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 
 /**
@@ -32,18 +32,18 @@ public abstract class UserDaoBase implements UserDao
 {
 
     private static final Logger logger = Logger.getLogger(UserDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context howtomodel     */
+     * Inject persistence context howtomodel     */    
     @PersistenceContext(unitName = "howtomodel")
     protected EntityManager entityManager;
 
     /**
-     * @see UserDao#load(int,)
+     * @see UserDao#load
      */
     @Override
     public Object load(final int transform, final String serial) throws UserDaoException
@@ -54,8 +54,8 @@ public abstract class UserDaoBase implements UserDao
         }
         try
         {
-            final Object entity = (User)this.entityManager.find(User.class, serial);
-            return transformEntity(transform, (User)entity);
+                        final User entity = this.entityManager.find(User.class, serial);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -64,10 +64,10 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#load()
+     * @see UserDao#load( String)
      */
     @Override
-    public User load( final String serial) throws UserDaoException
+        public User load( final String serial) throws UserDaoException
     {
         return (User)this.load(TRANSFORM_NONE, serial);
     }
@@ -76,21 +76,22 @@ public abstract class UserDaoBase implements UserDao
      * @see UserDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<User> loadAll() throws UserDaoException
     {
-        return(Collection<User>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see UserDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws UserDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("User.findAll");
+                        TypedQuery<User> query = this.entityManager.createNamedQuery("User.findAll", User.class);
             List<User> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -102,6 +103,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create User with no VO transformation
      * @see UserDao#create(User)
      */
     @Override
@@ -111,6 +113,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create User with VO transformation
      * @see UserDao#create(int, User)
      */
     @Override
@@ -134,7 +137,8 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#create(Collection<User>)
+     * Create a Collection of User with no VO transformation
+     * @see UserDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -144,10 +148,11 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create a Collection of User with VO transformation
      * @see UserDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<User> entities) throws UserDaoException
     {
         if (entities == null)
@@ -170,6 +175,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create Entity User using instance attributes with no VO transformation
      * @see UserDao#create(String)
      */
     @Override
@@ -179,7 +185,9 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create Entity User using instance attributes with VO transformation
      * @see UserDao#create(int, String)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, String name) throws UserDaoException
@@ -211,7 +219,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#update(Collection<User>)
+     * @see UserDao#update(Collection)
      */
     @Override
     public void update(final Collection<User> entities) throws UserDaoException
@@ -279,7 +287,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#remove(Collection<User>)
+     * @see UserDao#remove(Collection)
      */
     @Override
     public void remove(Collection<User> entities) throws UserDaoException

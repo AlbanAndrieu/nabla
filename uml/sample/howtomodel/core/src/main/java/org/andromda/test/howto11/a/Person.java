@@ -22,7 +22,7 @@ import javax.persistence.UniqueConstraint;
  * Add any manual implementation within this class.  This class will NOT
  * be overwritten with incremental changes.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto11.a.Person
  *
  */
 @Entity
@@ -78,7 +78,7 @@ public class Person extends PersonEmbeddable implements Serializable, Comparable
     // --------------- Lifecycle callbacks -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto11.a.Person.prePersist
      */
     @PrePersist
     public void prePersist()
@@ -87,7 +87,7 @@ public class Person extends PersonEmbeddable implements Serializable, Comparable
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto11.a.Person.preUpdate
      */
     @PreUpdate
     public void preUpdate()
@@ -96,8 +96,9 @@ public class Person extends PersonEmbeddable implements Serializable, Comparable
     }
 
     /**
-     * @see Comparable#compareTo(T)
+     * @see Comparable#compareTo
      */
+    @Override
     public int compareTo(Person o)
     {
         int cmp = 0;
@@ -117,4 +118,5 @@ public class Person extends PersonEmbeddable implements Serializable, Comparable
         }
         return cmp;
     }
+
 }

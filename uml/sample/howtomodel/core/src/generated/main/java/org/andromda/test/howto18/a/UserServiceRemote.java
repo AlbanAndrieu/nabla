@@ -11,7 +11,7 @@ import javax.ejb.Remote;
 /**
  * Remote component interface for the UserServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto18.a.UserService
  *
  */
 @Remote
@@ -21,17 +21,17 @@ public interface UserServiceRemote extends UserService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto18.a.UserService.addUser
      */
     public void addUser(User user) throws UserException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto18.a.UserService.getUser
      */
     public User getUser(Long id) throws UserException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto18.a.UserService.getAllUsers
      */
     public Collection getAllUsers() throws UserException;
 

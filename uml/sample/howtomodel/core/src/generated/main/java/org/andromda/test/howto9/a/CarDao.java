@@ -24,7 +24,8 @@ public interface CarDao
 
     /**
      * Loads an instance of Car from the persistent store.
-     * @param id the identifier of the entity to load.
+     * @param id Long identifier part of the composite PK of the entity to load.
+     * @return Car
      * @throws CarDaoException
      */
     public Car load(Long id) throws CarDaoException;
@@ -37,7 +38,8 @@ public interface CarDao
      *   optionally transform the entity (into a value object for example).  By default, transformation does
      *   not occur.
      *
-     * @param id the identifier of the entity to load.
+     * @param transform int transformation flag
+     * @param id Long identifier part of the composite PK of the entity to load.
      * @return either the entity or the object transformed from the entity.
      * @throws CarDaoException
      */
@@ -63,6 +65,7 @@ public interface CarDao
      * @return Collection of the loaded entities.
      * @throws CarDaoException
      */
+    @SuppressWarnings("rawtypes")
     public Collection loadAll(final int transform) throws CarDaoException;
 
     /**
@@ -112,6 +115,7 @@ public interface CarDao
      * @return the created instances. Collection
      * @throws CarDaoException
      */
+    @SuppressWarnings({"rawtypes"})
     public Collection create(int transform, Collection<Car> entities)
         throws CarDaoException;
 
@@ -133,11 +137,11 @@ public interface CarDao
         CarType type,
         String make,
         String model,
-        short age)
+        Short age)
  throws CarDaoException;
 
     /**
-     *   Does the same thing as {@link #create(String, String, CarType, String, String, short)} with an
+     *   Does the same thing as {@link #create(String, String, CarType, String, String, Short)} with an
      *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
      *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
      *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
@@ -159,7 +163,7 @@ public interface CarDao
         CarType type,
         String make,
         String model,
-        short age)
+        Short age)
  throws CarDaoException;
 
     /**
@@ -181,13 +185,13 @@ public interface CarDao
         Person owner,
         String serial,
         CarType type,
-        short age,
+        Short age,
         String make,
         String model)
  throws CarDaoException;
 
     /**
-     *   Does the same thing as {@link #create(String, String, CarType, String, String, short)} with an
+     *   Does the same thing as {@link #create(String, String, CarType, String, String, Short)} with an
      *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
      *   the returned entity will <strong>NOT</strong be transformed.  If this flag is any of the other constants
      *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
@@ -209,7 +213,7 @@ public interface CarDao
         Person owner,
         String serial,
         CarType type,
-        short age,
+        Short age,
         String make,
         String model)
  throws CarDaoException;
@@ -251,7 +255,7 @@ public interface CarDao
     public void remove(Collection<Car> entities) throws CarDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for Car.findByType
      * @param type
      * @return List
      * @throws CarDaoException

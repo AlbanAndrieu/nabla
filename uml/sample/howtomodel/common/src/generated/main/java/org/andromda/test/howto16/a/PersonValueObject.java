@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class PersonValueObject
+ * TODO: Model Documentation for PersonValueObject
  */
 public class PersonValueObject
     implements Serializable, Comparable<PersonValueObject>
@@ -27,11 +27,17 @@ public class PersonValueObject
     private static final long serialVersionUID = -6491520082644996244L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute serial */
+    /**
+     * TODO: Model Documentation for PersonValueObject.serial
+     */
     protected String serial;
-    /** TODO: Model Documentation for attribute name */
+    /**
+     * TODO: Model Documentation for PersonValueObject.name
+     */
     protected String name;
-    /** TODO: Model Documentation for attribute birthDate */
+    /**
+     * TODO: Model Documentation for PersonValueObject.birthDate
+     */
     protected Date birthDate;
 
     /** Default Constructor with no properties */
@@ -81,7 +87,7 @@ public class PersonValueObject
     }
 
     /**
-     * TODO: Model Documentation for attribute serial
+     * TODO: Model Documentation for PersonValueObject.serial
      * Get the serial Attribute
      * @return serial String
      */
@@ -91,7 +97,7 @@ public class PersonValueObject
     }
 
     /**
-     * 
+     * TODO: Model Documentation for PersonValueObject.serial
      * @param value String
      */
     public void setSerial(final String value)
@@ -100,7 +106,7 @@ public class PersonValueObject
     }
 
     /**
-     * TODO: Model Documentation for attribute name
+     * TODO: Model Documentation for PersonValueObject.name
      * Get the name Attribute
      * @return name String
      */
@@ -110,7 +116,7 @@ public class PersonValueObject
     }
 
     /**
-     * 
+     * TODO: Model Documentation for PersonValueObject.name
      * @param value String
      */
     public void setName(final String value)
@@ -119,7 +125,7 @@ public class PersonValueObject
     }
 
     /**
-     * TODO: Model Documentation for attribute birthDate
+     * TODO: Model Documentation for PersonValueObject.birthDate
      * Get the birthDate Attribute
      * @return birthDate Date
      */
@@ -129,7 +135,7 @@ public class PersonValueObject
     }
 
     /**
-     * 
+     * TODO: Model Documentation for PersonValueObject.birthDate
      * @param value Date
      */
     public void setBirthDate(final Date value)

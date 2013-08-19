@@ -23,7 +23,8 @@ public interface VehicleDao
 
     /**
      * Loads an instance of Vehicle from the persistent store.
-     * @param serial the identifier of the entity to load.
+     * @param serial String identifier part of the composite PK of the entity to load.
+     * @return Vehicle
      * @throws VehicleDaoException
      */
     public Vehicle load(String serial) throws VehicleDaoException;
@@ -36,7 +37,8 @@ public interface VehicleDao
      *   optionally transform the entity (into a value object for example).  By default, transformation does
      *   not occur.
      *
-     * @param serial the identifier of the entity to load.
+     * @param transform int transformation flag
+     * @param serial String identifier part of the composite PK of the entity to load.
      * @return either the entity or the object transformed from the entity.
      * @throws VehicleDaoException
      */
@@ -62,6 +64,7 @@ public interface VehicleDao
      * @return Collection of the loaded entities.
      * @throws VehicleDaoException
      */
+    @SuppressWarnings("rawtypes")
     public Collection loadAll(final int transform) throws VehicleDaoException;
 
     /**
@@ -111,6 +114,7 @@ public interface VehicleDao
      * @return the created instances. Collection
      * @throws VehicleDaoException
      */
+    @SuppressWarnings({"rawtypes"})
     public Collection create(int transform, Collection<Vehicle> entities)
         throws VehicleDaoException;
 
@@ -126,11 +130,11 @@ public interface VehicleDao
      */
     public Vehicle create(        String make,
         String model,
-        short age)
+        Short age)
  throws VehicleDaoException;
 
     /**
-     *   Does the same thing as {@link #create(String, String, short)} with an
+     *   Does the same thing as {@link #create(String, String, Short)} with an
      *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
      *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
      *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
@@ -146,7 +150,7 @@ public interface VehicleDao
      */
     public Object create( int transform,        String make,
         String model,
-        short age)
+        Short age)
  throws VehicleDaoException;
 
 

@@ -8,7 +8,7 @@ package org.andromda.test.howto9.b;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.test.howto9.b.Vehicle
  */
 public class VehicleDaoException
     extends Exception
@@ -16,7 +16,7 @@ public class VehicleDaoException
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -1194042908050548782L;
+    private static final long serialVersionUID = 7054703851638781109L;
 
     /**
      * The default constructor.

@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
@@ -16,10 +17,12 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService(targetNamespace = "http://org.andromda.test.howto18/a")
 @SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+//@org.jboss.ws.annotation.PortComponent(contextRoot = "/howtomodel-ws", urlPattern="/services/UserService/*")
 public interface UserServiceWSInterface
     extends Remote
 {
     @WebMethod(operationName = "AddUser")
+    @WebResult(name = "AddUser")
     public void addUser(
         @WebParam(name = "User") User user
     ) throws UserException, RemoteException;

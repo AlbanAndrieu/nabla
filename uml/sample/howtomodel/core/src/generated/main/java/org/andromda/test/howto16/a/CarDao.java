@@ -79,7 +79,8 @@ public interface CarDao
 
     /**
      * Loads an instance of Car from the persistent store.
-     * @param serial the identifier of the entity to load.
+     * @param serial String identifier part of the composite PK of the entity to load.
+     * @return Car
      * @throws CarDaoException
      */
     public Car load(String serial) throws CarDaoException;
@@ -92,7 +93,8 @@ public interface CarDao
      *   optionally transform the entity (into a value object for example).  By default, transformation does
      *   not occur.
      *
-     * @param serial the identifier of the entity to load.
+     * @param transform int transformation flag
+     * @param serial String identifier part of the composite PK of the entity to load.
      * @return either the entity or the object transformed from the entity.
      * @throws CarDaoException
      */
@@ -118,6 +120,7 @@ public interface CarDao
      * @return Collection of the loaded entities.
      * @throws CarDaoException
      */
+    @SuppressWarnings("rawtypes")
     public Collection loadAll(final int transform) throws CarDaoException;
 
     /**
@@ -167,6 +170,7 @@ public interface CarDao
      * @return the created instances. Collection
      * @throws CarDaoException
      */
+    @SuppressWarnings({"rawtypes"})
     public Collection create(int transform, Collection<Car> entities)
         throws CarDaoException;
 
@@ -274,7 +278,7 @@ public interface CarDao
     public void remove(Collection<Car> entities) throws CarDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for Car.findByType
      * @param type
      * @return List
      * @throws CarDaoException
@@ -313,7 +317,7 @@ public interface CarDao
     public List findByType(int transform, String queryString, CarType type) throws CarDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for Car.allCarsAreRented
      * @return boolean
      */
     public boolean allCarsAreRented() throws CarDaoException;

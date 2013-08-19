@@ -19,7 +19,7 @@ import javax.persistence.UniqueConstraint;
  * Add any manual implementation within this class.  This class will NOT
  * be overwritten with incremental changes.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto8.b.Car
  *
  */
 @Entity
@@ -95,8 +95,9 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
     // --------------- Lifecycle callbacks -----------------
 
     /**
-     * @see Comparable#compareTo(T)
+     * @see Comparable#compareTo
      */
+    @Override
     public int compareTo(Car o)
     {
         int cmp = 0;
@@ -116,4 +117,5 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
         }
         return cmp;
     }
+
 }

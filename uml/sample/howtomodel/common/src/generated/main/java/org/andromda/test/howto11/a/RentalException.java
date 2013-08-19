@@ -8,7 +8,7 @@ package org.andromda.test.howto11.a;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.test.howto11.a.RentalException
  */
 public class RentalException
     extends Exception

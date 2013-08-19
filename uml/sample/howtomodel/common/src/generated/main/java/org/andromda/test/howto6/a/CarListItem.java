@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class CarListItem
+ * TODO: Model Documentation for CarListItem
  */
 public class CarListItem
     implements Serializable, Comparable<CarListItem>
@@ -26,11 +26,17 @@ public class CarListItem
     private static final long serialVersionUID = 7948218505486926119L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute name */
+    /**
+     * TODO: Model Documentation for CarListItem.name
+     */
     protected String name;
-    /** TODO: Model Documentation for attribute serial */
+    /**
+     * TODO: Model Documentation for CarListItem.serial
+     */
     protected String serial;
-    /** TODO: Model Documentation for attribute ownerName */
+    /**
+     * TODO: Model Documentation for CarListItem.ownerName
+     */
     protected String ownerName;
 
     /** Default Constructor with no properties */
@@ -80,7 +86,7 @@ public class CarListItem
     }
 
     /**
-     * TODO: Model Documentation for attribute name
+     * TODO: Model Documentation for CarListItem.name
      * Get the name Attribute
      * @return name String
      */
@@ -90,7 +96,7 @@ public class CarListItem
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarListItem.name
      * @param value String
      */
     public void setName(final String value)
@@ -99,7 +105,7 @@ public class CarListItem
     }
 
     /**
-     * TODO: Model Documentation for attribute serial
+     * TODO: Model Documentation for CarListItem.serial
      * Get the serial Attribute
      * @return serial String
      */
@@ -109,7 +115,7 @@ public class CarListItem
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarListItem.serial
      * @param value String
      */
     public void setSerial(final String value)
@@ -118,7 +124,7 @@ public class CarListItem
     }
 
     /**
-     * TODO: Model Documentation for attribute ownerName
+     * TODO: Model Documentation for CarListItem.ownerName
      * Get the ownerName Attribute
      * @return ownerName String
      */
@@ -128,7 +134,7 @@ public class CarListItem
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarListItem.ownerName
      * @param value String
      */
     public void setOwnerName(final String value)

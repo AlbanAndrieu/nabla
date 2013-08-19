@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 @Stateless
 public class PersonDaoImpl extends PersonDaoBase
 {
-
     private static final Logger logger = Logger.getLogger(PersonDaoImpl.class);
 
+    // This entity has no Business Operations and no ValueObject dependency references
 }

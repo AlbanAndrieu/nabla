@@ -19,7 +19,7 @@ import javax.persistence.UniqueConstraint;
  * Add any manual implementation within this class.  This class will NOT
  * be overwritten with incremental changes.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto9.b.Car
  *
  */
 @Entity
@@ -52,7 +52,7 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Vehic
      * values provided by the parameters.
      *
      */
-    public Car(String make, String model, short age, String serial, String name, CarType type)
+    public Car(String make, String model, Short age, String serial, String name, CarType type)
     {
         super(make, model, age, serial, name, type);
     }
@@ -68,7 +68,7 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Vehic
      * @param type Value for the type property
      * @param owner Value for the owner relation
      */
-    public Car(String make, String model, short age, String serial, String name, CarType type, Person owner)
+    public Car(String make, String model, Short age, String serial, String name, CarType type, Person owner)
     {
         super(make, model, age, serial, name, type, owner);
     }
@@ -98,7 +98,7 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Vehic
     // --------------- Lifecycle callbacks -----------------
 
     /**
-     * @see Comparable#compareTo(T)
+     * @see Comparable#compareTo
      */
     public int compareTo(Car o)
     {
@@ -116,7 +116,20 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Vehic
             {
                 cmp = (cmp != 0 ? cmp : this.getType().compareTo(o.getType()));
             }
+            if (this.getMake() != null)
+            {
+                cmp = (cmp != 0 ? cmp : this.getMake().compareTo(o.getMake()));
+            }
+            if (this.getModel() != null)
+            {
+                cmp = (cmp != 0 ? cmp : this.getModel().compareTo(o.getModel()));
+            }
+            if (this.getAge() != null)
+            {
+                cmp = (cmp != 0 ? cmp : this.getAge().compareTo(o.getAge()));
+            }
         }
         return cmp;
     }
+
 }

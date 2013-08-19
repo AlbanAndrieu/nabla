@@ -10,7 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.test.howto20.a.PersonName
  *
  * Migrated from using @Embeddable annotation to mapping in orm.xml
  * Still use the attribute annotations
@@ -30,7 +30,7 @@ public abstract class PersonName
      * @param firstName
      * @param surname
      */
-    public static PersonName newInstance(String firstName,String surname)
+    public static PersonName newInstance(String firstName, String surname)
     {
         PersonNameImpl object = new PersonNameImpl();
         object.setFirstName(firstName);
@@ -72,7 +72,7 @@ public abstract class PersonName
     private String firstName;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto20.a.PersonName.firstName
      * @return String
      */
     @Column(name = "FIRST_NAME", unique = true, nullable = false, insertable = true, updatable = true)
@@ -82,7 +82,7 @@ public abstract class PersonName
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto20.a.PersonName
      * @param firstNameIn
      */
     public void setFirstName(String firstNameIn)
@@ -93,7 +93,7 @@ public abstract class PersonName
     private String surname;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto20.a.PersonName.surname
      * @return String
      */
     @Column(name = "SURNAME", unique = true, nullable = false, insertable = true, updatable = true)
@@ -103,7 +103,7 @@ public abstract class PersonName
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto20.a.PersonName
      * @param surnameIn
      */
     public void setSurname(String surnameIn)
@@ -116,12 +116,17 @@ public abstract class PersonName
      */
     /**
      * Indicates if the argument is of the same type and all values are equal.
-     *
      * @param object The target object to compare with
      * @return boolean True if both objects a 'equal'
+     * @see Object#equals(Object)
      */
+    @Override
     public boolean equals(Object object)
     {
+        if (null == object)
+        {
+            return false;
+        }
         if (this == object)
         {
             return true;
@@ -142,11 +147,13 @@ public abstract class PersonName
         return true;
     }
 
+
     /**
      * Returns a hash code value for the object
-     *
      * @return int The hash code value
+     * @see Object#hashCode
      */
+    @Override
     public int hashCode()
     {
         int hashCode = 0;
@@ -156,6 +163,7 @@ public abstract class PersonName
         return hashCode;
     }
 
+
     /**
      * Returns a String representation of the object
      *
@@ -163,18 +171,18 @@ public abstract class PersonName
      */
     /**
      * Returns a String representation of the object
-     *
      * @return String Textual representation of the object displaying name/value pairs for all attributes
+     * @see Object#toString
      */
+    @Override
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("PersonName(=");
-        sb.append("firstName: ");
-        sb.append(getFirstName());
-        sb.append(", surname: ");
-        sb.append(getSurname());
+        sb.append("PersonName(");
+        sb.append(" firstName=").append(getFirstName());
+        sb.append(" surname=").append(getSurname());
         sb.append(")");
         return sb.toString();
     }
+
 }

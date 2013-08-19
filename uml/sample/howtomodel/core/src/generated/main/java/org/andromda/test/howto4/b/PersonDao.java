@@ -24,18 +24,24 @@ public interface PersonDao
 
     /**
      * Loads an instance of Person from the persistent store.
+     * @param id long identifier part of the composite PK of the entity to load.
+     * @param tag String identifier part of the composite PK of the entity to load.
+     * @return Person
      * @throws PersonDaoException
      */
     public Person load(long id, String tag) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #load(long)} with an
+     *   Does the same thing as {@link #load(long, String)} with an
      *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
      *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
      *   defined in this class then the result <strong>WILL BE</strong> passed through an operation which can
      *   optionally transform the entity (into a value object for example).  By default, transformation does
      *   not occur.
      *
+     * @param transform int transformation flag
+     * @param id long identifier part of the composite PK of the entity to load.
+     * @param tag String identifier part of the composite PK of the entity to load.
      * @return either the entity or the object transformed from the entity.
      * @throws PersonDaoException
      */
@@ -61,6 +67,7 @@ public interface PersonDao
      * @return Collection of the loaded entities.
      * @throws PersonDaoException
      */
+    @SuppressWarnings("rawtypes")
     public Collection loadAll(final int transform) throws PersonDaoException;
 
     /**
@@ -110,6 +117,7 @@ public interface PersonDao
      * @return the created instances. Collection
      * @throws PersonDaoException
      */
+    @SuppressWarnings({"rawtypes"})
     public Collection create(int transform, Collection<Person> entities)
         throws PersonDaoException;
 

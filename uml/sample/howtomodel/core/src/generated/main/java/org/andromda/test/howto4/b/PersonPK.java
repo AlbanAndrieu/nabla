@@ -3,11 +3,12 @@
 package org.andromda.test.howto4.b;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
  * Composite primary key class for Person entity bean.
- * 
+ * TODO: Model Documentation for org.andromda.test.howto4.b.Person
  */
 @Embeddable
 public class PersonPK
@@ -19,9 +20,11 @@ public class PersonPK
 
     /**
      * Get the id property.
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto4.b.Person.id
      * @return long The value of id
+     * owning=$property.otherEnd.owning optional=$property.optional $property.otherEnd.fulyQualifiedName many2One=$property.many2One target=$property.otherEnd.many2One
      */
+    @Column(name="ID", nullable=false)
     public long getId()
     {
         return this.id;
@@ -38,9 +41,11 @@ public class PersonPK
 
     /**
      * Get the tag property.
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto4.b.Person.tag
      * @return String The value of tag
+     * owning=$property.otherEnd.owning optional=$property.optional $property.otherEnd.fulyQualifiedName many2One=$property.many2One target=$property.otherEnd.many2One
      */
+    @Column(name="TAG", nullable=false)
     public String getTag()
     {
         return this.tag;
@@ -64,10 +69,10 @@ public class PersonPK
     }
 
     /**
-     * Implementation for the main constructor with all POJO identifier attributes.
+     * Implementation for the main constructor with all POJO identifier properties.
      *
-     * @param id Value for the id property
-     * @param tag Value for the tag property
+     * @param id Value for the id property true
+     * @param tag Value for the tag property false
      */
     public PersonPK(long id, String tag)
     {
@@ -127,5 +132,21 @@ public class PersonPK
             cmp = (cmp != 0 ? cmp : this.getTag().compareTo(o.getTag()));
         }
         return cmp;
+    }
+
+    /**
+     * Returns a String representation of the composite key object
+     * @return String Textual representation of the object displaying name/value pairs for all properties
+     * @see Object#toString
+     */
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("PersonPK(");
+        sb.append(" id=").append(getId());
+        sb.append(" tag=").append(getTag());
+        sb.append(")");
+        return sb.toString();
     }
 }

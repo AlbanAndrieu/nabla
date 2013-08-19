@@ -25,7 +25,8 @@ public interface PersonDao
 
     /**
      * Loads an instance of Person from the persistent store.
-     * @param serial the identifier of the entity to load.
+     * @param serial String identifier part of the composite PK of the entity to load.
+     * @return Person
      * @throws PersonDaoException
      */
     public Person load(String serial) throws PersonDaoException;
@@ -38,7 +39,8 @@ public interface PersonDao
      *   optionally transform the entity (into a value object for example).  By default, transformation does
      *   not occur.
      *
-     * @param serial the identifier of the entity to load.
+     * @param transform int transformation flag
+     * @param serial String identifier part of the composite PK of the entity to load.
      * @return either the entity or the object transformed from the entity.
      * @throws PersonDaoException
      */
@@ -64,6 +66,7 @@ public interface PersonDao
      * @return Collection of the loaded entities.
      * @throws PersonDaoException
      */
+    @SuppressWarnings("rawtypes")
     public Collection loadAll(final int transform) throws PersonDaoException;
 
     /**
@@ -113,6 +116,7 @@ public interface PersonDao
      * @return the created instances. Collection
      * @throws PersonDaoException
      */
+    @SuppressWarnings({"rawtypes"})
     public Collection create(int transform, Collection<Person> entities)
         throws PersonDaoException;
 
@@ -185,7 +189,7 @@ public interface PersonDao
     public void remove(Collection<Person> entities) throws PersonDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for Person.findAll
      * @return List
      * @throws PersonDaoException
      */
@@ -221,7 +225,7 @@ public interface PersonDao
     public List findAll(int transform, String queryString) throws PersonDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for Person.findByName
      * @param name
      * @return List
      * @throws PersonDaoException

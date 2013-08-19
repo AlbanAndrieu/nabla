@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 import org.apache.log4j.Logger;
@@ -35,18 +35,18 @@ public abstract class CarDaoBase implements CarDao
 {
 
     private static final Logger logger = Logger.getLogger(CarDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context howtomodel     */
+     * Inject persistence context howtomodel     */    
     @PersistenceContext(unitName = "howtomodel")
     protected EntityManager entityManager;
 
     /**
-     * @see CarDao#load(int,)
+     * @see CarDao#load
      */
     @Override
     public Object load(final int transform, final String serial) throws CarDaoException
@@ -57,8 +57,8 @@ public abstract class CarDaoBase implements CarDao
         }
         try
         {
-            final Object entity = (Car)this.entityManager.find(Car.class, serial);
-            return transformEntity(transform, (Car)entity);
+                        final Car entity = this.entityManager.find(Car.class, serial);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -67,10 +67,10 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
-     * @see CarDao#load()
+     * @see CarDao#load( String)
      */
     @Override
-    public Car load( final String serial) throws CarDaoException
+        public Car load( final String serial) throws CarDaoException
     {
         return (Car)this.load(TRANSFORM_NONE, serial);
     }
@@ -79,21 +79,22 @@ public abstract class CarDaoBase implements CarDao
      * @see CarDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<Car> loadAll() throws CarDaoException
     {
-        return(Collection<Car>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see CarDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws CarDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("Car.findAll");
+                        TypedQuery<Car> query = this.entityManager.createNamedQuery("Car.findAll", Car.class);
             List<Car> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -105,6 +106,7 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create Car with no VO transformation
      * @see CarDao#create(Car)
      */
     @Override
@@ -114,6 +116,7 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create Car with VO transformation
      * @see CarDao#create(int, Car)
      */
     @Override
@@ -137,7 +140,8 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
-     * @see CarDao#create(Collection<Car>)
+     * Create a Collection of Car with no VO transformation
+     * @see CarDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -147,10 +151,11 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create a Collection of Car with VO transformation
      * @see CarDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<Car> entities) throws CarDaoException
     {
         if (entities == null)
@@ -173,6 +178,7 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create Entity Car using instance attributes with no VO transformation
      * @see CarDao#create(String, CarType)
      */
     @Override
@@ -182,7 +188,9 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create Entity Car using instance attributes with VO transformation
      * @see CarDao#create(int, String, CarType)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, String name, CarType type) throws CarDaoException
@@ -194,6 +202,7 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create Entity Car using required properties with no VO transformation
      * @see CarDao#create(String, Person, CarType)
      */
     @Override
@@ -203,14 +212,18 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
+     * Create Entity Car using required properties with VO transformation
      * @see CarDao#create(int, String, Person, CarType)
      */
     @Override
     public Object create(final int transform,String name, Person owner, CarType type) throws CarDaoException
     {
         Car entity = new Car();
+        // name $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setName(name);
+        // owner $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setOwner(owner);
+        // type $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setType(type);
         return this.create(transform, entity);
     }
@@ -237,7 +250,7 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
-     * @see CarDao#update(Collection<Car>)
+     * @see CarDao#update(Collection)
      */
     @Override
     public void update(final Collection<Car> entities) throws CarDaoException
@@ -305,7 +318,7 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
-     * @see CarDao#remove(Collection<Car>)
+     * @see CarDao#remove(Collection)
      */
     @Override
     public void remove(Collection<Car> entities) throws CarDaoException
@@ -353,7 +366,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-            Query queryObject = entityManager.createNamedQuery("Car.findByType");
+                        TypedQuery<Car> queryObject = this.entityManager.createNamedQuery("Car.findByType", Car.class);
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -373,7 +386,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-            Query queryObject = entityManager.createQuery(queryString);
+                        TypedQuery<Car> queryObject = this.entityManager.createQuery(queryString, Car.class);
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -389,8 +402,7 @@ public abstract class CarDaoBase implements CarDao
      * @see CarDao#allCarsAreRented()
      */
     @Override
-    public boolean allCarsAreRented()
-    {
+    public boolean allCarsAreRented()    {
         try
         {
             return this.handleAllCarsAreRented();

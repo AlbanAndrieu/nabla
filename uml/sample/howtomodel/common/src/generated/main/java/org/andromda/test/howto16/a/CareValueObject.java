@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class CareValueObject
+ * TODO: Model Documentation for CareValueObject
  */
 public class CareValueObject
     implements Serializable, Comparable<CareValueObject>
@@ -26,11 +26,17 @@ public class CareValueObject
     private static final long serialVersionUID = -4439548878484213163L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute serial */
+    /**
+     * TODO: Model Documentation for CareValueObject.serial
+     */
     protected String serial;
-    /** TODO: Model Documentation for attribute name */
+    /**
+     * TODO: Model Documentation for CareValueObject.name
+     */
     protected String name;
-    /** TODO: Model Documentation for attribute type */
+    /**
+     * TODO: Model Documentation for CareValueObject.type
+     */
     protected CarType type;
 
     /** Default Constructor with no properties */
@@ -80,7 +86,7 @@ public class CareValueObject
     }
 
     /**
-     * TODO: Model Documentation for attribute serial
+     * TODO: Model Documentation for CareValueObject.serial
      * Get the serial Attribute
      * @return serial String
      */
@@ -90,7 +96,7 @@ public class CareValueObject
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CareValueObject.serial
      * @param value String
      */
     public void setSerial(final String value)
@@ -99,7 +105,7 @@ public class CareValueObject
     }
 
     /**
-     * TODO: Model Documentation for attribute name
+     * TODO: Model Documentation for CareValueObject.name
      * Get the name Attribute
      * @return name String
      */
@@ -109,7 +115,7 @@ public class CareValueObject
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CareValueObject.name
      * @param value String
      */
     public void setName(final String value)
@@ -118,7 +124,7 @@ public class CareValueObject
     }
 
     /**
-     * TODO: Model Documentation for attribute type
+     * TODO: Model Documentation for CareValueObject.type
      * Get the type Attribute
      * @return type CarType
      */
@@ -128,7 +134,7 @@ public class CareValueObject
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CareValueObject.type
      * @param value CarType
      */
     public void setType(final CarType value)

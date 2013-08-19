@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class CarDetails
+ * TODO: Model Documentation for CarDetails
  */
 public class CarDetails
     implements Serializable, Comparable<CarDetails>
@@ -27,15 +27,25 @@ public class CarDetails
     private static final long serialVersionUID = 265048543605741244L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute name */
+    /**
+     * TODO: Model Documentation for CarDetails.name
+     */
     protected String name;
-    /** TODO: Model Documentation for attribute serial */
+    /**
+     * TODO: Model Documentation for CarDetails.serial
+     */
     protected String serial;
-    /** TODO: Model Documentation for attribute ownerName */
+    /**
+     * TODO: Model Documentation for CarDetails.ownerName
+     */
     protected String ownerName;
-    /** TODO: Model Documentation for attribute year */
+    /**
+     * TODO: Model Documentation for CarDetails.year
+     */
     protected Date year;
-    /** TODO: Model Documentation for attribute timesRented */
+    /**
+     * TODO: Model Documentation for CarDetails.timesRented
+     */
     protected int timesRented;
     /**
      * boolean setter for primitive attribute, so we can tell if it's initialized
@@ -100,7 +110,7 @@ public class CarDetails
     }
 
     /**
-     * TODO: Model Documentation for attribute name
+     * TODO: Model Documentation for CarDetails.name
      * Get the name Attribute
      * @return name String
      */
@@ -110,7 +120,7 @@ public class CarDetails
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarDetails.name
      * @param value String
      */
     public void setName(final String value)
@@ -119,7 +129,7 @@ public class CarDetails
     }
 
     /**
-     * TODO: Model Documentation for attribute serial
+     * TODO: Model Documentation for CarDetails.serial
      * Get the serial Attribute
      * @return serial String
      */
@@ -129,7 +139,7 @@ public class CarDetails
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarDetails.serial
      * @param value String
      */
     public void setSerial(final String value)
@@ -138,7 +148,7 @@ public class CarDetails
     }
 
     /**
-     * TODO: Model Documentation for attribute ownerName
+     * TODO: Model Documentation for CarDetails.ownerName
      * Get the ownerName Attribute
      * @return ownerName String
      */
@@ -148,7 +158,7 @@ public class CarDetails
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarDetails.ownerName
      * @param value String
      */
     public void setOwnerName(final String value)
@@ -157,7 +167,7 @@ public class CarDetails
     }
 
     /**
-     * TODO: Model Documentation for attribute year
+     * TODO: Model Documentation for CarDetails.year
      * Get the year Attribute
      * @return year Date
      */
@@ -167,7 +177,7 @@ public class CarDetails
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarDetails.year
      * @param value Date
      */
     public void setYear(final Date value)
@@ -176,7 +186,7 @@ public class CarDetails
     }
 
     /**
-     * TODO: Model Documentation for attribute timesRented
+     * TODO: Model Documentation for CarDetails.timesRented
      * Get the timesRented Attribute
      * @return timesRented int
      */
@@ -186,7 +196,7 @@ public class CarDetails
     }
 
     /**
-     * 
+     * TODO: Model Documentation for CarDetails.timesRented
      * @param value int
      */
     public void setTimesRented(final int value)

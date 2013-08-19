@@ -16,7 +16,7 @@ public final class ManagePersonSearchForm
     private String name;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.name
      * @return name
      */
     public String getName()
@@ -25,7 +25,7 @@ public final class ManagePersonSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.name
      * @param nameIn
      */
     public void setName(String nameIn)
@@ -36,7 +36,7 @@ public final class ManagePersonSearchForm
     private Date birthDate;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.birthDate
      * @return birthDate
      */
     public Date getBirthDate()
@@ -45,7 +45,7 @@ public final class ManagePersonSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.birthDate
      * @param birthDateIn
      */
     public void setBirthDate(Date birthDateIn)
@@ -56,7 +56,7 @@ public final class ManagePersonSearchForm
     private String serial;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.serial
      * @return serial
      */
     public String getSerial()
@@ -65,7 +65,7 @@ public final class ManagePersonSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Person.serial
      * @param serialIn
      */
     public void setSerial(String serialIn)
@@ -76,7 +76,7 @@ public final class ManagePersonSearchForm
     private String[] cars;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car
      * @return cars
      */
     public String[] getCars()
@@ -85,7 +85,7 @@ public final class ManagePersonSearchForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.test.howto16.a.Car
      * @param carsIn
      */
     public void setCars(String[] carsIn)

@@ -11,7 +11,7 @@ import javax.ejb.Remote;
 /**
  * Remote component interface for the RentalServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.test.howto9.b.RentalService
  *
  */
 @Remote

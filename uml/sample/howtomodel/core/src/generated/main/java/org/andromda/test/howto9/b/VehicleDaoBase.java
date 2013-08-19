@@ -15,7 +15,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 
 /**
@@ -32,18 +32,18 @@ public abstract class VehicleDaoBase implements VehicleDao
 {
 
     private static final Logger logger = Logger.getLogger(VehicleDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context howtomodel     */
+     * Inject persistence context howtomodel     */    
     @PersistenceContext(unitName = "howtomodel")
     protected EntityManager entityManager;
 
     /**
-     * @see VehicleDao#load(int,)
+     * @see VehicleDao#load
      */
     @Override
     public Object load(final int transform, final String serial) throws VehicleDaoException
@@ -54,8 +54,8 @@ public abstract class VehicleDaoBase implements VehicleDao
         }
         try
         {
-            final Object entity = (Vehicle)this.entityManager.find(Vehicle.class, serial);
-            return transformEntity(transform, (Vehicle)entity);
+                        final Vehicle entity = this.entityManager.find(Vehicle.class, serial);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -64,10 +64,10 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
-     * @see VehicleDao#load()
+     * @see VehicleDao#load( String)
      */
     @Override
-    public Vehicle load( final String serial) throws VehicleDaoException
+        public Vehicle load( final String serial) throws VehicleDaoException
     {
         return (Vehicle)this.load(TRANSFORM_NONE, serial);
     }
@@ -76,21 +76,22 @@ public abstract class VehicleDaoBase implements VehicleDao
      * @see VehicleDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<Vehicle> loadAll() throws VehicleDaoException
     {
-        return(Collection<Vehicle>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see VehicleDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws VehicleDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("Vehicle.findAll");
+                        TypedQuery<Vehicle> query = this.entityManager.createNamedQuery("Vehicle.findAll", Vehicle.class);
             List<Vehicle> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -102,6 +103,7 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
+     * Create Vehicle with no VO transformation
      * @see VehicleDao#create(Vehicle)
      */
     @Override
@@ -111,6 +113,7 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
+     * Create Vehicle with VO transformation
      * @see VehicleDao#create(int, Vehicle)
      */
     @Override
@@ -134,7 +137,8 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
-     * @see VehicleDao#create(Collection<Vehicle>)
+     * Create a Collection of Vehicle with no VO transformation
+     * @see VehicleDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -144,10 +148,11 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
+     * Create a Collection of Vehicle with VO transformation
      * @see VehicleDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<Vehicle> entities) throws VehicleDaoException
     {
         if (entities == null)
@@ -170,19 +175,22 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
-     * @see VehicleDao#create(String, String, short)
+     * Create Entity Vehicle using instance attributes with no VO transformation
+     * @see VehicleDao#create(String, String, Short)
      */
     @Override
-    public Vehicle create(String make, String model, short age) throws VehicleDaoException
+    public Vehicle create(String make, String model, Short age) throws VehicleDaoException
     {
         return (Vehicle)this.create(TRANSFORM_NONE, make, model, age);
     }
 
     /**
-     * @see VehicleDao#create(int, String, String, short)
+     * Create Entity Vehicle using instance attributes with VO transformation
+     * @see VehicleDao#create(int, String, String, Short)
+     * composite=false identifiers=1
      */
     @Override
-    public Object create(final int transform, String make, String model, short age) throws VehicleDaoException
+    public Object create(final int transform, String make, String model, Short age) throws VehicleDaoException
     {
         Vehicle entity = new Vehicle();
         entity.setMake(make);
@@ -213,7 +221,7 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
-     * @see VehicleDao#update(Collection<Vehicle>)
+     * @see VehicleDao#update(Collection)
      */
     @Override
     public void update(final Collection<Vehicle> entities) throws VehicleDaoException
@@ -281,7 +289,7 @@ public abstract class VehicleDaoBase implements VehicleDao
     }
 
     /**
-     * @see VehicleDao#remove(Collection<Vehicle>)
+     * @see VehicleDao#remove(Collection)
      */
     @Override
     public void remove(Collection<Vehicle> entities) throws VehicleDaoException
