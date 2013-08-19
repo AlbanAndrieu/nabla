@@ -82,6 +82,7 @@
 
                 <hudson.port>8070</hudson.port>
                 <tomcat.port>8280</tomcat.port>
+                <jetty.port>9090</jetty.port>
                 <jenkins.port>${tomcat.port}</jenkins.port> <!-- http://localhost:8280/jenkins/ -->
                 <oracle.port>8080</oracle.port>
                 <archiva.port>8010</archiva.port>
@@ -1153,28 +1154,11 @@
                                                                                         <excludeRoot>${basedir}/${target.dir}/generated-sources/stubs</excludeRoot>
                                                                                 </excludeRoots>
 
+										<!--
                                                                                 <rulesets>
-                                                                                        <!-- <ruleset>project/pmd_regles_nabla.xml</ruleset> -->
-                                                                                        <ruleset>/rulesets/basic.xml</ruleset>
-                                                                                        <ruleset>/rulesets/braces.xml</ruleset>
-                                                                                        <ruleset>/rulesets/clone.xml</ruleset>
-                                                                                        <ruleset>/rulesets/codesize.xml</ruleset>
-                                                                                        <ruleset>/rulesets/controversial.xml</ruleset>
-                                                                                        <ruleset>/rulesets/coupling.xml</ruleset>
-                                                                                        <ruleset>/rulesets/design.xml</ruleset>
-                                                                                        <ruleset>/rulesets/finalizers.xml</ruleset>
-                                                                                        <ruleset>/rulesets/logging-java.xml</ruleset>
-                                                                                        <ruleset>/rulesets/j2ee.xml</ruleset>
-                                                                                        <ruleset>/rulesets/javabeans.xml</ruleset>
-                                                                                        <ruleset>/rulesets/junit.xml</ruleset>
-                                                                                        <ruleset>/rulesets/naming.xml</ruleset>
-                                                                                        <ruleset>/rulesets/optimizations.xml</ruleset>
-                                                                                        <ruleset>/rulesets/strictexception.xml</ruleset>
-                                                                                        <ruleset>/rulesets/strings.xml</ruleset>
-                                                                                        <ruleset>/rulesets/sunsecure.xml</ruleset>
-                                                                                        <ruleset>/rulesets/typeresolution.xml</ruleset>
-                                                                                        <ruleset>/rulesets/unusedcode.xml</ruleset>
+                                                                                         <ruleset>project/pmd_regles_nabla.xml</ruleset> 
                                                                                 </rulesets>
+                                                                                -->
                                                                         </configuration>
                                                                 </plugin>
 
