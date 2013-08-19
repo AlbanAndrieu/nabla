@@ -104,9 +104,6 @@
         <module name="CovariantEquals">
             <property name="severity" value="error"/>
         </module>
-        <module name="DoubleCheckedLocking">
-            <property name="severity" value="error"/>
-        </module>
         <module name="EmptyStatement" />
         <module name="EqualsHashCode">
             <property name="severity" value="error"/>
