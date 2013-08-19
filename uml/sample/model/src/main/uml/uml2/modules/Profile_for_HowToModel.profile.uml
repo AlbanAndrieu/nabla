@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_16_5_4_55001df_1302828629287_171385_740" name="Profile_for_HowToModel" metamodelReference="_0metamodelReferenceProfile_for_HowToModel">
-  <eAnnotations xmi:id="_UauUOkWQEeKdoLL77qAXzg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-    <contents xmi:type="ecore:EPackage" xmi:id="_UauUO0WQEeKdoLL77qAXzg" name="Profile_for_HowToModel" nsURI="http:///schemas/Profile_for_HowToModel/_UMkZ4EWQEeKdoLL77qAXzg/0" nsPrefix="Profile_for_HowToModel">
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_UauUPEWQEeKdoLL77qAXzg" name="andromda_webservice_operation_result_name">
-        <eAnnotations xmi:id="_UauUPUWQEeKdoLL77qAXzg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_16_5_4_55001df_1302828628602_775116_427"/>
-        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_UauUPkWQEeKdoLL77qAXzg" name="andromda_webservice_operation_result_name" ordered="false" lowerBound="1">
+  <eAnnotations xmi:id="_Ka--cwjmEeODOoKfnaVwqw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_Ka--dAjmEeODOoKfnaVwqw" name="Profile_for_HowToModel" nsURI="http:///schemas/Profile_for_HowToModel/_KExbwQjmEeODOoKfnaVwqw/0" nsPrefix="Profile_for_HowToModel">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Ka--dQjmEeODOoKfnaVwqw" name="andromda_webservice_operation_result_name">
+        <eAnnotations xmi:id="_Ka--dgjmEeODOoKfnaVwqw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_16_5_4_55001df_1302828628602_775116_427"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_Ka--dwjmEeODOoKfnaVwqw" name="andromda_webservice_operation_result_name" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eStructuralFeatures>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_UauUP0WQEeKdoLL77qAXzg" name="base_Operation" ordered="false" lowerBound="1">
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Ka--eAjmEeODOoKfnaVwqw" name="base_Operation" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Operation"/>
         </eStructuralFeatures>
       </eClassifiers>
