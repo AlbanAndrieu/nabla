@@ -9,4 +9,6 @@ localenv = env.Clone()
 localenv.Install(os.path.join(localenv['PROJECT_INCLUDE_DIR'],''), Glob('include/*.h')+Glob('include/*.ipp'))
 
 #building shared library
-localenv.SharedLibrary(os.path.join(localenv['PROJECT_INCLUDE_DIR'],'main_library'), Glob('*.cpp'))
+p = localenv.SharedLibrary(os.path.join(localenv['PROJECT_INCLUDE_DIR'],'main_library'), Glob('*.cpp'))
+
+Default(p)

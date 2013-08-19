@@ -97,6 +97,36 @@ def generate(env, **kw):
 	    '-zrescan',
 	]
 
+    if Arch == 'winnt':
+        env['debug_flags'] = [
+            '/Zd',
+            '/MDd',
+        ]
+        env['opt_flags'] = [
+            '/O2',
+            '/GL',
+            '/MD',
+        ]
+        env['ENV']['PATH'] = env['ENV']['PATH'] + ';C:\\Program Files\\7-Zip;C:\\Program Files\\Java\\jre6\\bin'
+        env['CCFLAGS'] = [
+            '/nologo',
+            '/W3',
+            '/GX',
+            '/GR',
+            '-DWIN',
+            '-DWIN32',
+            '-DWINNT',
+            '-D_WINDOWS',
+        ]
+        env['LINKFLAGS'] = [
+            '/nologo',
+            '/opt:ref',
+            '/nodefaultlib:libcmt.lib',
+            '/nodefaultlib:libc.lib',
+            '/nodefaultlib:libcd.lib',
+            '/nodefaultlib:libcmtd.lib',
+        ]
+        
     print "CCCOM is:", env.subst('$CCCOM')
 
 def exists(env):

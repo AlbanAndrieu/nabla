@@ -4,6 +4,7 @@
 
 import os
 import re
+#import platform
 
 from config import ProjectMacro
 
@@ -24,6 +25,9 @@ vars.AddVariables(
 )
 env = DefaultEnvironment(tools = ['gcc', 'gnulink'], CC = '/usr/local/bin/gcc')
 
+#print "Platform :", platform.platform()
+#print "machine : ", platform.machine()  
+    
 if Arch in ['x86sol','sun4sol']:
     env = Environment(tools=['suncc', 'sunc++', 'sunlink'])
 #print "ENV PATH :", env['ENV']['PATH']
@@ -262,21 +266,22 @@ if not GetOption('help'):
 SConscript(PROJECT_BINARY_DIR+'/sample/microsoft/src/test/cpp/SConscript')
 SConscript(PROJECT_BINARY_DIR+'/sample/microsoft/src/test/app/SConscript')
 
-env.Package( NAME           = 'nabla',
-             VERSION        = '1.2.3',
-             PACKAGEVERSION = 0,
-             PACKAGETYPE    = 'targz',
-             source=[LIBRARY_OUTPUT_PATH, PROJECT_BINARY_DIR],
-             LICENSE        = 'misys',
-             SUMMARY        = 'Nabla (Backend)',
-             DESCRIPTION    = 'Nabla (Backend)',
-             X_RPM_GROUP    = 'Application/nabla',
-             SOURCE_URL     = 'http://nabla.mobi/nabla-1.2.3.tar.gz'
-        )
+if 'package' in COMMAND_LINE_TARGETS:
+    env.Package( NAME           = 'nabla',
+                 VERSION        = '1.2.3',
+                 PACKAGEVERSION = 0,
+                 PACKAGETYPE    = 'targz',
+                 source=[LIBRARY_OUTPUT_PATH, PROJECT_BINARY_DIR],
+                 LICENSE        = 'misys',
+                 SUMMARY        = 'Nabla (Backend)',
+                 DESCRIPTION    = 'Nabla (Backend)',
+                 X_RPM_GROUP    = 'Application/nabla',
+                 SOURCE_URL     = 'http://nabla.mobi/nabla-1.2.3.tar.gz'
+            )
 
 print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)
 
 #See http://google-styleguide.googlecode.com/
-os.system('./cpplint.sh')
+#os.system('./cpplint.sh')
 
 #TODO : http://v8.googlecode.com/svn/trunk/SConstruct

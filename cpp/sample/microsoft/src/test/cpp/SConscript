@@ -18,4 +18,6 @@ localenv["LIBS"] = [
 localenv.Append(LIBS=['main_library'], LIBPATH=['#main_library'])
 
 #building shared library
-localenv.SharedLibrary(os.path.join(localenv['PROJECT_INCLUDE_DIR'],'test_library'), Glob('*.cpp'))
+p = localenv.SharedLibrary(os.path.join(localenv['PROJECT_INCLUDE_DIR'],'test_library'), Glob('*.cpp'))
+
+Default(p)
