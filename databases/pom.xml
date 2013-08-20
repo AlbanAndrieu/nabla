@@ -11,7 +11,7 @@
 
         <modelVersion>4.0.0</modelVersion>
         <artifactId>databases</artifactId>
-        <name>Databases</name>
+        <name>Nabla Databases</name>
         <packaging>pom</packaging>
         <description>The Databases pom file is a superpom to centralize all third parties</description>
         <url>${JOB_URL}</url>
