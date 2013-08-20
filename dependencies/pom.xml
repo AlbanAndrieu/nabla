@@ -1003,6 +1003,46 @@
                                 </plugins>
                         </reporting>
                 </profile>
+		<profile>
+			<id>cloverReport</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<maven.test.skip>false</maven.test.skip>
+				<maven.test.failure.skip>true</maven.test.failure.skip>
+				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<configuration>
+							<skipTests>${maven.test.skip}</skipTests>
+							<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<version>${maven.clover.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>clover</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>instrument</goal>
+									<goal>check</goal>
+									<goal>clover</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>                
         </profiles>
 
         <!-- Keep Alphabetical Order. Capital Letter goes first -->
@@ -1548,6 +1588,7 @@
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
                 <maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
+                <maven.pitest.plugin.version>0.30</maven.pitest.plugin.version>
 
                 <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 
@@ -2951,7 +2992,7 @@
                                                 <generatePdf>true</generatePdf>
                                                 <generateHtml>true</generateHtml>
                                                 <generateHistorical>true</generateHistorical>
-                                                <!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>-->
+                                                <licenseLocation>${maven.clover.licenseLocation}</licenseLocation> <!-- see ~/.m2/settings.xml -->
                                                 <license><![CDATA[OpNRrvIENQaoGGXxaiQqOwJXqooaKPgIvnlGoqvBoGKwQGE
 mj2KOqFZX5pLPXFmOTbTtX2x2L0CAXjQk1mCknTZnGfv8tf
 ROrMvwqmrmoQOPqPMQQWxmnoormMRoPQRMXtTsxWwUUNnqq
@@ -3187,7 +3228,15 @@ mm]]></license>
                                         </dependency>
                                     </dependencies>
                                 </plugin>
-
+				<plugin>
+				    <groupId>org.pitest</groupId>
+				    <artifactId>pitest-maven</artifactId>
+				    <version>${maven.pitest.plugin.version}</version>
+				    <configuration>
+				    	<verbose>true</verbose>
+				    	<failWhenNoMutations>false</failWhenNoMutations>
+				    </configuration>
+				</plugin>
                         </plugins>
                 </pluginManagement>
 
