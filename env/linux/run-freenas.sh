@@ -99,18 +99,18 @@ pkg_add -r ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/jav
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
 setenv PACKAGESITE ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/Latest/
 
-pkg_add -r compat6x-i386
-pkg_add -r libXaw
-pkg_add -r libdnet
-pkg_add -r libevent
-pkg_add -r libgcrypt
-pkg_add -r libidn
-pkg_add -r libnet11
-pkg_add -r libpcap
-pkg_add -r libtasn1
+pkg_add -v -r compat6x-i386
+pkg_add -v -r libXaw
+pkg_add -v -r libdnet
+pkg_add -v -r libevent
+pkg_add -v -r libgcrypt
+pkg_add -v -r libidn
+pkg_add -v -r libnet11
+pkg_add -v -r libpcap
+pkg_add -v -r libtasn1
 
-pkg_add -r subversion
-pkg_add -r wget
+pkg_add -v -r subversion
+pkg_add -v -r wget
 
 pkg_add -v -r openjdk7
 
@@ -250,3 +250,43 @@ Require all granted
 
 #owncloud
 http://forums.freenas.org/threads/owncloud-setup.9177/
+
+pkg_add -v -r maven3
+pkg_add -v -r apache-ant
+pkg_add -v -r geany -f
+
+#jenkins
+pkg_add -r jenkins
+http://192.168.0.47:8081
+/usr/local/etc/rc.d/jenkins onestart
+vi /usr/local/etc/rc.d/jenkins
+: ${jenkins_args="--webroot=${jenkins_home}/war --httpListenAddress=192.168.0.47 --httpPort=8280 --ajp13ListenAddress=192.168.0.47 --ajp13Port=8009 --prefix=/jenkins"}
+echo 'jenkins_enable="YES"' >> /etc/rc.conf
+
+tail -f /var/log/jenkins.log
+
+ll /usr/local/share/jenkins/jenkins.war
+pkg_add -v -r fontconfig
+pkg_add -v -r libXfont
+pkg_add -v -r libfontenc
+pkg_add -v -r ttmkfdir
+pkg_add -v -r dejavu
+pkg_add -v -r freetype
+pkg_add -v -r freetype-tools
+
+pkg_info | grep jenkins
+#pkg_delete jenkins-1.454
+cd /usr/ports/devel/jenkins/ && make install clean
+ll /usr/ports/distfiles/jenkins/1.525/jenkins.war
+cd /usr/local/share/jenkins/
+
+pkg_add -v -r selenium
+/usr/local/www/selenium
+
+pkg_add -v -r ruby
+pkg_add -v -r gtksourceview
+/var/db/pkg/gtksourceview-1.8.5_7
+
+pkg_delete openjdk-7.2.13
+pkg_delete openjdk6-b24_4
+openjdk6-b24_4

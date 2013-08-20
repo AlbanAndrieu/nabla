@@ -4,3 +4,4 @@ sudo add-apt-repository  http://ppa.launchpad.net/zfs-native/stable/ubuntu
 sudo apt-get update
 sudo apt-get install ubuntu-zfs
 
+zpool upgrade -v

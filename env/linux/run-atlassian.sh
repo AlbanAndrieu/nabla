@@ -91,6 +91,7 @@ cd /opt/atlassian/jira/bin
 sudo ./start-jira.sh
 
 jira user/pass alban.andrieu@nabla.mobi/microsoft
+admin/microsoft
 
 CONFLUENCE
 See where Confluence will be installed and the settings that will be used.
@@ -103,6 +104,7 @@ CREATE DATABASE confluence;
 GRANT ALL PRIVILEGES ON confluence.* TO 'confluence'@'localhost' IDENTIFIED BY 'microsoft';
 
 confluence user/pass alban.andrieu@nabla.mobi/microsoft
+admin/microsoft
 
 fisheye
 sudo gedit /etc/environment
@@ -116,6 +118,8 @@ SET GLOBAL storage_engine = 'InnoDB';
 CREATE DATABASE fisheye CHARACTER SET utf8 COLLATE utf8_bin;
 GRANT ALL PRIVILEGES ON fisheye.* TO 'fisheye'@'localhost' IDENTIFIED BY 'microsoft';
 FLUSH PRIVILEGES;
+
+tail -f /workspace/fisheye/var/log/fisheye.out
 
 #grant atlassian
 #!/bin/bash
