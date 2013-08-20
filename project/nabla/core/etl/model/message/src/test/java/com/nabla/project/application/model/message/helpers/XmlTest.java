@@ -255,9 +255,9 @@ public class XmlTest extends XMLTestCase
     public void testXmlSchemaValidationGood() throws Exception
     {
         /*
-        String schemaSource=System.getProperty("user.dir")+ File.separator+"xml"+ File.separator+"SgibML_root.xsd";
-        xmlFileSchemaValidation(schemaSource, "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Ref.xml");
-        xmlFileSchemaValidation("C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Ref.xml");
+         * String schemaSource=System.getProperty("user.dir")+ File.separator+"xml"+ File.separator+"SgibML_root.xsd";
+         * xmlFileSchemaValidation(schemaSource, "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Ref.xml");
+         * xmlFileSchemaValidation("C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Ref.xml");
          */
     } // end testXmlSchemaValidationGood()
 
@@ -293,16 +293,16 @@ public class XmlTest extends XMLTestCase
         Log.init();
 
         /*
-        args=new String[]
-                        {
-                        "+"+xmlValidationOption,
-                        "-"+xmlFileTestArg,
-                        "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Test.xml",
-                        "-"+xmlFileRefArg,
-                        "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Ref.xml",
-                        "-"+xmlFileXsdArg,
-                        "C:\\USERS\\brice\\workfolder\\SGCIBML_Extract\\trunk\\poc\\JavaExtractorJaxb2\\xml\\SgibML_root.xsd",
-                        };
+         * args=new String[]
+         * {
+         * "+"+xmlValidationOption,
+         * "-"+xmlFileTestArg,
+         * "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Test.xml",
+         * "-"+xmlFileRefArg,
+         * "C:\\Documents and Settings\\bfarez051507\\Desktop\\TradeTBG4689135Ref.xml",
+         * "-"+xmlFileXsdArg,
+         * "C:\\USERS\\brice\\workfolder\\SGCIBML_Extract\\trunk\\poc\\JavaExtractorJaxb2\\xml\\SgibML_root.xsd",
+         * };
          */
 
         // Create Options object

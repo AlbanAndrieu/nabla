@@ -10,23 +10,25 @@ public abstract class ModelWriter implements WriterDataInterface
     public static String  XML_HEADER;                // = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
     public static String  XML_NAMESPACE_HEADER_START; // = "<MAI:XML_trade_template";
     public static String  XML_NAMESPACE_HEADER_BODY;
-    /*public static String  XML_NAMESPACE_HEADER_VALIDATION;*/
+    /* public static String XML_NAMESPACE_HEADER_VALIDATION; */
     public static boolean isUsingValidation = false;
-    public static String  XML_NAMESPACE_HEADER_END;  /* =
-                                                                                                  "xmlns=\"urn:xml:nabla_Service:1_1_7\" " +
-                                                                                                  "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
-                                                                                                  "xsi:schemaLocation=\"urn:xml:nabla_Service:1_1_7 ..\\xml\\XML_root.xsd\"" +
-                                                                                                  ">";*/
+    public static String  XML_NAMESPACE_HEADER_END;  /*
+                                                       * =
+                                                       * "xmlns=\"urn:xml:nabla_Service:1_1_7\" " +
+                                                       * "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+                                                       * "xsi:schemaLocation=\"urn:xml:nabla_Service:1_1_7 ..\\xml\\XML_root.xsd\"" +
+                                                       * ">";
+                                                       */
 
-    /*"xsi:noNamespaceSchemaLocation=\"..\\xml\\XML_root.xsd\""*/
+    /* "xsi:noNamespaceSchemaLocation=\"..\\xml\\XML_root.xsd\"" */
     public static String  XML_NAMESPACE_FOOTER;      // = "</MAI:XML_trade_template>";
 
     // Use by test only
     public static String  XML_ROOT_START;            // = "<SGEDINS:endOfDayTradeEvent>";
-    // Use by test only	
+    // Use by test only
     public static String  XML_ROOT_END;              // = "</SGEDINS:endOfDayTradeEvent>";
 
-    /*  public static NamespacePrefixMapperWriter namespaces;*/
+    /* public static NamespacePrefixMapperWriter namespaces; */
 
     /**
      * 
@@ -104,19 +106,21 @@ public abstract class ModelWriter implements WriterDataInterface
      * 
      * @return the namespaces
      */
-    /*    public NamespacePrefixMapperWriter getNamespaces()
-     {
-     return namespaces;
-     } // end getNamespaces()
+    /*
+     * public NamespacePrefixMapperWriter getNamespaces()
+     * {
+     * return namespaces;
+     * } // end getNamespaces()
      */
     /**
      * 
      * @param namespaces the namespaces to set
      */
-    /*    public void setNamespaces(final NamespacePrefixMapperWriter namespaces)
-     {
-     this.namespaces = namespaces;
-     } // end setNamespaces()
+    /*
+     * public void setNamespaces(final NamespacePrefixMapperWriter namespaces)
+     * {
+     * this.namespaces = namespaces;
+     * } // end setNamespaces()
      */
     /**
      * 
@@ -176,20 +180,20 @@ public abstract class ModelWriter implements WriterDataInterface
      * 
      * @return the XML_NAMESPACE_HEADER_VALIDATION
      */
-    /*    public String getXML_NAMESPACE_HEADER_VALIDATION()
-     {
-     return XML_NAMESPACE_HEADER_VALIDATION;
-     } // end getXML_NAMESPACE_HEADER_VALIDATION()
-
-     *//**
-      * 
-      * @param xml_namespace_header_validation the XML_NAMESPACE_HEADER_VALIDATION to set
-      */
     /*
-    public void setXML_NAMESPACE_HEADER_VALIDATION(final String xml_namespace_header_validation)
-    {
-     XML_NAMESPACE_HEADER_VALIDATION = xml_namespace_header_validation;
-    } // end setXML_NAMESPACE_HEADER_VALIDATION()
+     * public String getXML_NAMESPACE_HEADER_VALIDATION()
+     * {
+     * return XML_NAMESPACE_HEADER_VALIDATION;
+     * } // end getXML_NAMESPACE_HEADER_VALIDATION()
+     *//**
+       * 
+       * @param xml_namespace_header_validation the XML_NAMESPACE_HEADER_VALIDATION to set
+       */
+    /*
+     * public void setXML_NAMESPACE_HEADER_VALIDATION(final String xml_namespace_header_validation)
+     * {
+     * XML_NAMESPACE_HEADER_VALIDATION = xml_namespace_header_validation;
+     * } // end setXML_NAMESPACE_HEADER_VALIDATION()
      */
     /**
      * 

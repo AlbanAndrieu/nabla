@@ -14,8 +14,8 @@ public class Jmx
 
     public static void main(final String[] args) throws Exception
     {
-        //ApplicationContextFactory.springXmlConfiguration=ApplicationContextFactory.springXmlTestsDefaultConfiguration;
-        //AbstractApplicationContextFactory.get().getApplicationContext().getBean(Config.beanExtractServiceTradeName);
+        // ApplicationContextFactory.springXmlConfiguration=ApplicationContextFactory.springXmlTestsDefaultConfiguration;
+        // AbstractApplicationContextFactory.get().getApplicationContext().getBean(Config.beanExtractServiceTradeName);
         Log.init();
 
         while (true)
@@ -29,16 +29,12 @@ public class Jmx
         } // end while
 
         /*
-        Without spring :
-        
-        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-        
-        ObjectName name = new ObjectName("com.sgcib.services.extract.eoleextract.jmx:type=JmxTestBean");
-        
-        mbs.registerMBean(new JmxTestBean(), name);
-        
-        System.out.println("Waiting forever...");
-        Thread.sleep(Long.MAX_VALUE);
+         * Without spring :
+         * MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+         * ObjectName name = new ObjectName("com.sgcib.services.extract.eoleextract.jmx:type=JmxTestBean");
+         * mbs.registerMBean(new JmxTestBean(), name);
+         * System.out.println("Waiting forever...");
+         * Thread.sleep(Long.MAX_VALUE);
          */
     } // end main()
 } // end Jmx

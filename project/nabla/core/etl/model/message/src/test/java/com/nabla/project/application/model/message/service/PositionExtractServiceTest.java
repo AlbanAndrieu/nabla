@@ -34,14 +34,13 @@ public class PositionExtractServiceTest extends TestCase
     {
         Log.init();
 
-        //PropertyConfigurator.configure("log4j.properties");
+        // PropertyConfigurator.configure("log4j.properties");
     }
 
     public Chronometer      chronometer;
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#setUp()
      */
     @Override
@@ -57,7 +56,6 @@ public class PositionExtractServiceTest extends TestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#tearDown()
      */
     @Override

@@ -26,8 +26,8 @@ public class ApplicationContextMessageFactory extends AbstractApplicationContext
     /**
      * The configuration file for the service application context
      */
-    //public static String                                  springDefaultConfiguration[]         = springXmlConfiguration;                                                                                 //{ SPRING_PACKAGE + "/ServiceBase-Sample.xml", };
-    //public static String                                  springConfiguration[]              = springDefaultConfiguration;
+    // public static String springDefaultConfiguration[] = springXmlConfiguration; //{ SPRING_PACKAGE + "/ServiceBase-Sample.xml", };
+    // public static String springConfiguration[] = springDefaultConfiguration;
 
     /**
      * The singleton
@@ -52,7 +52,7 @@ public class ApplicationContextMessageFactory extends AbstractApplicationContext
     } // end getInstance()
 
     // The service bean factory instance
-    //private ApplicationContext applicationContext = null;
+    // private ApplicationContext applicationContext = null;
     /**
      * 
      * @return ApplicationContext

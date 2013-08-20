@@ -36,7 +36,7 @@ public class PositionExtractServiceJaxb extends ExtractServiceCommon implements 
 
     public void extractPerimeter(final Perimeter perimeter, final RequestId id, final Destination output, final Destination status, final Format format, final Packaging packaging)
     {
-        //identifier of the current extract
+        // identifier of the current extract
         logger.info("Extract starting");
 
         Chronometer chronometer = new Chronometer();

@@ -35,9 +35,9 @@ public class FileDestinationHelper extends FileDestination
     public void setUrl(final String aUrl)
     {
         this.url = aUrl;
-        //		File file = File.createTempFile(this.url, ".xml", new File(/*System.getProperty("user.dir")*/"." + File.separator
-        //		+ "target" + File.separator));	
-        //		this.path = file.getCanonicalPath();		
+        // File file = File.createTempFile(this.url, ".xml", new File(/*System.getProperty("user.dir")*/"." + File.separator
+        // + "target" + File.separator));
+        // this.path = file.getCanonicalPath();
         this.path = "." + File.separator + "target" + File.separator + aUrl + ".xml";
 
         switch (this.packaging)

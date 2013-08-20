@@ -26,8 +26,8 @@ public class PerformanceTest
 
         // Extractor
         suite.addTest(new TimedTest(new ExtractorDataImplTest("testExtractPerimeter100"), 15000L));
-        //suite.addTest(
-        //	new LoadTest(new ExtractorDataImplTest("testExtractPerimeter100"),2));
+        // suite.addTest(
+        // new LoadTest(new ExtractorDataImplTest("testExtractPerimeter100"),2));
 
         // Transformer
         suite.addTest(new TimedTest(new RepeatedTest(new TransformerDataTradeJaxbTest("testTradeTBG5414992"), nbTransformLoop), 2000L));

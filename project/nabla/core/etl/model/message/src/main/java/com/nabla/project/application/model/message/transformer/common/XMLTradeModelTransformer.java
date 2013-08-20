@@ -60,20 +60,20 @@ public class XMLTradeModelTransformer extends ModelTransformer
          */
         XMLTradeIdentifier identifier = XMLfactory.createXMLTradeIdentifier();
 
-        //trade/tradeHeader/tradeIdentifier/tradeId/id
-        //trade/tradeHeader/tradeIdentifier/tradeId/idScheme
+        // trade/tradeHeader/tradeIdentifier/tradeId/id
+        // trade/tradeHeader/tradeIdentifier/tradeId/idScheme
         XMLTradeId tradeId = XMLfactory.createXMLTradeId();
         tradeId.setId(trade.getId());
         tradeId.setIdScheme(BACK_TRADE_SCHEME);
         identifier.setTradeId(tradeId);
 
-        //trade/tradeHeader/tradeIdentifier/tradeVersion/versionNumber
+        // trade/tradeHeader/tradeIdentifier/tradeVersion/versionNumber
         XMLDatetimeVersion version = XMLfactory.createXMLDatetimeVersion();
         version.setVersionNumber(trade.getIdVersion());
         identifier.setTradeVersion(version);
 
-        //trade/tradeHeader/tradeIdentifier/tradeCode/code
-        //trade/tradeHeader/tradeIdentifier/tradeCode/codingScheme
+        // trade/tradeHeader/tradeIdentifier/tradeCode/code
+        // trade/tradeHeader/tradeIdentifier/tradeCode/codingScheme
         if (trade.getIdFront() != null)
         {
             XMLCode code = XMLfactory.createXMLCode();
@@ -95,7 +95,7 @@ public class XMLTradeModelTransformer extends ModelTransformer
          */
         XMLTradeConditions tradeConditions = XMLfactory.createXMLTradeConditions();
 
-        //trade/tradeConditions/tradeDate
+        // trade/tradeConditions/tradeDate
         XMLGregorianCalendar date = JaxbDateHelper.getJaxbDate(trade.getTradeDate());
 
         if (date != null)
@@ -108,7 +108,7 @@ public class XMLTradeModelTransformer extends ModelTransformer
             throw new AssertionError("Unknown value for setTradeDate() : ");
         } // end else
 
-        //trade/tradeConditions/tradeTimeStamp
+        // trade/tradeConditions/tradeTimeStamp
         date = JaxbDateHelper.getJaxbDateTime(trade.getSystemDate());
 
         if (date != null)
@@ -121,7 +121,7 @@ public class XMLTradeModelTransformer extends ModelTransformer
             throw new AssertionError("Unknown value for setTradeTimeStamp() : ");
         } // end else
 
-        //trade/tradeConditions/APartyReference
+        // trade/tradeConditions/APartyReference
         XMLParty portfolioParty = XMLfactory.createXMLParty();
         portfolioParty.setId(trade.getPortfolioReference());
 
@@ -129,7 +129,7 @@ public class XMLTradeModelTransformer extends ModelTransformer
         portfolioReference.setHref(portfolioParty);
         tradeConditions.setAPartyReference(portfolioReference);
 
-        //trade/tradeConditions/BPartyReference
+        // trade/tradeConditions/BPartyReference
         XMLParty counterPartyParty = XMLfactory.createXMLParty();
         counterPartyParty.setId(trade.getCounterPartyReference());
 
@@ -137,20 +137,20 @@ public class XMLTradeModelTransformer extends ModelTransformer
         counterPartyReference.setHref(counterPartyParty);
         tradeConditions.setBPartyReference(counterPartyReference);
 
-        //product
+        // product
         XMLExchangedProduct exchangedProduct = XMLfactory.createXMLExchangedProduct();
 
-        //trade/tradeConditions/exchangedProduct1/productId/id
-        //trade/tradeConditions/exchangedProduct1/productId/idScheme
+        // trade/tradeConditions/exchangedProduct1/productId/id
+        // trade/tradeConditions/exchangedProduct1/productId/idScheme
         XMLId idProduct = XMLfactory.createXMLId();
         idProduct.setId(trade.getProductReference());
         idProduct.setIdScheme(BACK_PRODUCT_SCHEME);
         exchangedProduct.setProductId(idProduct);
 
-        //trade/tradeConditions/exchangedProduct1/quantity
+        // trade/tradeConditions/exchangedProduct1/quantity
         exchangedProduct.setQuantity(trade.getQuantity());
 
-        //trade/tradeConditions/exchangedProduct1/valueDate
+        // trade/tradeConditions/exchangedProduct1/valueDate
         date = JaxbDateHelper.getJaxbDate(trade.getValueDate());
 
         if (date != null)
@@ -165,7 +165,7 @@ public class XMLTradeModelTransformer extends ModelTransformer
 
         tradeConditions.setExchangedProduct(exchangedProduct);
 
-        //trade/tradeConditions/ATradeDirection
+        // trade/tradeConditions/ATradeDirection
         switch (trade.getTradeDirection())
         {
             case BUY:
@@ -182,7 +182,7 @@ public class XMLTradeModelTransformer extends ModelTransformer
                 logger.warn("WARNING : " + trade.getId() + " TYPAVT = " + trade.getTradeDirection());
                 tradeConditions.setATradeDirection(TradeDirectionScheme.BUY);
 
-                //throw new AssertionError("Unknown value for setATradeDirection() : ");
+                // throw new AssertionError("Unknown value for setATradeDirection() : ");
         } // end switch
 
         return tradeConditions;
@@ -197,17 +197,17 @@ public class XMLTradeModelTransformer extends ModelTransformer
          */
         TradePartyInfo portfolio = XMLfactory.createTradePartyInfo();
 
-        //trade/tradePartyInfo/partyRole
+        // trade/tradePartyInfo/partyRole
         portfolio.getPartyRole().add(XMLPartyRoleScheme.PRINCIPAL);
 
-        //trade/tradePartyInfo/storageApplication/id
-        //trade/tradePartyInfo/storageApplication/idScheme
+        // trade/tradePartyInfo/storageApplication/id
+        // trade/tradePartyInfo/storageApplication/idScheme
         XMLId idPortfolioStorageApplication = XMLfactory.createXMLId();
         idPortfolioStorageApplication.setId(BACK_UNKNOWN_SCHEME);
         idPortfolioStorageApplication.setIdScheme(BACK_PORTFOLIO_SCHEME);
         portfolio.setStorageApplication(idPortfolioStorageApplication);
 
-        //trade/tradePartyInfo/PartyReference/href/id
+        // trade/tradePartyInfo/PartyReference/href/id
         XMLParty portfolioParty = XMLfactory.createXMLParty();
         portfolioParty.setId(trade.getPortfolioReference());
 
@@ -222,17 +222,17 @@ public class XMLTradeModelTransformer extends ModelTransformer
          */
         TradePartyInfo party = XMLfactory.createTradePartyInfo();
 
-        //trade/tradePartyInfo/partyRole
+        // trade/tradePartyInfo/partyRole
         party.getPartyRole().add(XMLPartyRoleScheme.THIRD_PARTY);
 
-        //trade/tradePartyInfo/storageApplication/id
-        //trade/tradePartyInfo/storageApplication/idScheme
+        // trade/tradePartyInfo/storageApplication/id
+        // trade/tradePartyInfo/storageApplication/idScheme
         XMLId idPartyStorageApplication = XMLfactory.createXMLId();
         idPartyStorageApplication.setId(BACK_UNKNOWN_SCHEME);
         idPartyStorageApplication.setIdScheme(BACK_EXTERNALPARTY_SCHEME);
         party.setStorageApplication(idPartyStorageApplication);
 
-        //trade/tradePartyInfo/PartyReference/href/id
+        // trade/tradePartyInfo/PartyReference/href/id
         XMLParty counterPartyParty = XMLfactory.createXMLParty();
         counterPartyParty.setId(trade.getCounterPartyReference());
 

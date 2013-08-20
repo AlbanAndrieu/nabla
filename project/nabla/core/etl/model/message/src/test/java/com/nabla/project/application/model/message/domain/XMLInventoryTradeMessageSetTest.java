@@ -30,10 +30,10 @@ public class XMLInventoryTradeMessageSetTest extends TestCase
     public static XMLInventoryTradeMessage /* XMLTradeEventMessage */getXMLInventoryTradeMessageSCN01()
     {
         /* XMLTradeEventMessage */XMLInventoryTradeMessage tradeEventMessage = new XMLInventoryTradeMessage() /*
-                                                                                                                * XMLTradeEventMessage
-                                                                                                                * (
-                                                                                                                * )
-                                                                                                                */;
+                                                                                                               * XMLTradeEventMessage
+                                                                                                               * (
+                                                                                                               * )
+                                                                                                               */;
 
         tradeEventMessage.setTrade(XMLTradeSetTest.getXMLTradeSCN01());
 

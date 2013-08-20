@@ -39,7 +39,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
     {
         Log.init();
 
-        //PropertyConfigurator.configure( "log4j.properties" );
+        // PropertyConfigurator.configure( "log4j.properties" );
     }
 
     public Chronometer                    chronometer;
@@ -89,9 +89,9 @@ public class PositionExtractServiceJaxbTest extends TestCase
         final Integer maxrow = 10;
         Perimeter perimeter = parameters.getPerimeter();
         perimeter.addCondition(new Condition(ConditionId.MAXROW, maxrow.toString()));
-        //perimeter.addCondition( new Condition( ConditionId.INDACT ) );
+        // perimeter.addCondition( new Condition( ConditionId.INDACT ) );
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
-        //Set<String> idList = new HashSet<String>();
+        // Set<String> idList = new HashSet<String>();
         parameters.getPerimeter().setIdList(null);
 
         runExtract((ExtractService) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(MessageConfig.beanExtractServiceTradeName), parameters);
@@ -112,8 +112,8 @@ public class PositionExtractServiceJaxbTest extends TestCase
         final Integer maxrow = 10;
         Perimeter perimeter = parameters.getPerimeter();
         perimeter.addCondition(new Condition(ConditionId.MAXROW, maxrow.toString()));
-        //perimeter.addCondition( new Condition( ConditionId.INDACT ) );
-        //perimeter.addCondition( new Condition( ConditionId.PARTYAGENCY ) );
+        // perimeter.addCondition( new Condition( ConditionId.INDACT ) );
+        // perimeter.addCondition( new Condition( ConditionId.PARTYAGENCY ) );
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         parameters.getPerimeter().setIdList(null);
 
@@ -135,8 +135,8 @@ public class PositionExtractServiceJaxbTest extends TestCase
         final Integer maxrow = 10;
         Perimeter perimeter = parameters.getPerimeter();
         perimeter.addCondition(new Condition(ConditionId.MAXROW, maxrow.toString()));
-        //perimeter.addCondition( new Condition( ConditionId.INDACT ) );
-        //perimeter.addCondition( new Condition( ConditionId.INTERNAL ) );
+        // perimeter.addCondition( new Condition( ConditionId.INDACT ) );
+        // perimeter.addCondition( new Condition( ConditionId.INTERNAL ) );
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         parameters.getPerimeter().setIdList(null);
 
@@ -158,7 +158,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
         final Integer maxrow = 10;
         Perimeter perimeter = parameters.getPerimeter();
         perimeter.addCondition(new Condition(ConditionId.MAXROW, maxrow.toString()));
-        //perimeter.addCondition( new Condition( ConditionId.INDACT ) );
+        // perimeter.addCondition( new Condition( ConditionId.INDACT ) );
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         perimeter.addCondition(new Condition(ConditionId.DATVALMAX, "2010-03-19"));
         parameters.getPerimeter().setIdList(null);
@@ -181,9 +181,9 @@ public class PositionExtractServiceJaxbTest extends TestCase
         final Integer maxrow = 10;
         Perimeter perimeter = parameters.getPerimeter();
         perimeter.addCondition(new Condition(ConditionId.MAXROW, maxrow.toString()));
-        //perimeter.addCondition( new Condition( ConditionId.INDACT ) );
-        //perimeter.addCondition( new Condition( ConditionId.PARTYAGENCY ) );
-        //perimeter.addCondition( new Condition( ConditionId.INTERNAL ) );
+        // perimeter.addCondition( new Condition( ConditionId.INDACT ) );
+        // perimeter.addCondition( new Condition( ConditionId.PARTYAGENCY ) );
+        // perimeter.addCondition( new Condition( ConditionId.INTERNAL ) );
         perimeter.addCondition(new Condition(ConditionId.DATVALMIN, "2010-03-18"));
         parameters.getPerimeter().setIdList(null);
 
@@ -229,7 +229,7 @@ public class PositionExtractServiceJaxbTest extends TestCase
 
         Perimeter perimeter = parameters.getPerimeter();
 
-        //perimeter.addCondition( new Condition( ConditionId.INDACT ) );
+        // perimeter.addCondition( new Condition( ConditionId.INDACT ) );
         Set<String> idList = new HashSet<String>();
         idList.add("TBG4689135");
         idList.add("TBG5219999");
@@ -248,10 +248,10 @@ public class PositionExtractServiceJaxbTest extends TestCase
 
     private void runExtract(final ExtractService extractservice, final ExtractServiceParameterWrapper parameters)
     {
-        if ( //((ExtractServiceCommon) extractservice).setUsingWriterThread(true);
+        if ( // ((ExtractServiceCommon) extractservice).setUsingWriterThread(true);
         logger.isDebugEnabled())
         {
-            //((ExtractServiceCommon) extractservice).setUsingWriterThread(true);
+            // ((ExtractServiceCommon) extractservice).setUsingWriterThread(true);
             logger.debug("Output : " + ((FileDestination) parameters.getOutput()).getPath());
         } // end if
 

@@ -40,7 +40,6 @@ public class WriterThreadTest extends TestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#setUp()
      */
     @Override
@@ -55,7 +54,6 @@ public class WriterThreadTest extends TestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#tearDown()
      */
     @Override

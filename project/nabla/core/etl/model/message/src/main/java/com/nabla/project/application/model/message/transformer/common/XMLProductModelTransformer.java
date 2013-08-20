@@ -49,8 +49,8 @@ public class XMLProductModelTransformer extends ModelTransformer
 
     protected XMLProductHeader buildProductHeader(final Product product)
     {
-        //product//productHeader/productIdentifier/productId/idScheme
-        //product//productHeader/productIdentifier/productId/id
+        // product//productHeader/productIdentifier/productId/idScheme
+        // product//productHeader/productIdentifier/productId/id
         XMLId productId = XMLfactory.createXMLId();
         productId.setId(product.getId());
         productId.setIdScheme(BACK_PRODUCT_SCHEME);
@@ -58,8 +58,8 @@ public class XMLProductModelTransformer extends ModelTransformer
         XMLProductIdentifier identifier = XMLfactory.createXMLProductIdentifier();
         identifier.setProductId(productId);
 
-        //product/productHeader/productIdentifier/productCode/code
-        //product/productHeader/productIdentifier/productCode/codingScheme
+        // product/productHeader/productIdentifier/productCode/code
+        // product/productHeader/productIdentifier/productCode/codingScheme
         XMLCode code = new XMLCode();
         code.setCode(product.getIdentifiantISIN());
         code.setCodingScheme(BACK_PRODUCT_CODE_SCHEME);
@@ -80,12 +80,12 @@ public class XMLProductModelTransformer extends ModelTransformer
 
         XMLProductTypologyInfo typologyInfo = XMLfactory.createXMLProductTypologyInfo();
 
-        //product//productHeader/productInfo/productMnemonic
-        //product//productHeader/productInfo/productName
+        // product//productHeader/productInfo/productMnemonic
+        // product//productHeader/productInfo/productName
         productInfo.setProductName(product.getName());
         productInfo.setProductShortName(product.getShortName());
 
-        //product//productHeader/productInfo/productDates/startDate
+        // product//productHeader/productInfo/productDates/startDate
         XMLProductDates productDates = XMLfactory.createXMLProductDates();
 
         XMLGregorianCalendar startDate = JaxbDateHelper.getJaxbDate(product.getStartValidityDate());
@@ -100,10 +100,10 @@ public class XMLProductModelTransformer extends ModelTransformer
             throw new AssertionError("Unknown value for setStartDate() : ");
         } // end else
 
-        //FIXME : not well implemented ! need to take data from different table in database.
-        //TO FIX !!!!
-        //product//productHeader/productInfo/productDates/maturityDate
-        //product//productHeader/productInfo/productDates/maturityDateType
+        // FIXME : not well implemented ! need to take data from different table in database.
+        // TO FIX !!!!
+        // product//productHeader/productInfo/productDates/maturityDate
+        // product//productHeader/productInfo/productDates/maturityDateType
         XMLGregorianCalendar maturityDate = JaxbDateHelper.getJaxbDate(product.getEndValidityDate());
 
         switch (product.getProductCategory())
@@ -111,7 +111,7 @@ public class XMLProductModelTransformer extends ModelTransformer
             case BOND:
                 productDates.setMaturityDate(maturityDate);
 
-                //productDates.setMaturityDateType( eme.FIXED );
+                // productDates.setMaturityDateType( eme.FIXED );
                 break;
 
             case PAPERS:
@@ -129,7 +129,7 @@ public class XMLProductModelTransformer extends ModelTransformer
                 logger.warn("WARNING : " + product.getId() + " Product Category = " + product.getProductCategory());
                 productDates.setMaturityDateType(MaturityDateTypeScheme.OPEN);
 
-                //throw new AssertionError("Unknown value for setATradeDirection() : ");
+                // throw new AssertionError("Unknown value for setATradeDirection() : ");
         } // end switch
 
         if (maturityDate != null)
@@ -144,12 +144,12 @@ public class XMLProductModelTransformer extends ModelTransformer
 
         productInfo.setProductDates(productDates);
 
-        //product//productHeader/productInfo/productReferenceQuantity
+        // product//productHeader/productInfo/productReferenceQuantity
         productInfo.setProductReferenceQuantity(product.getNominalAmount());
 
         XMLProductReferenceParty referenceParty = XMLfactory.createXMLProductReferenceParty();
 
-        //product//productHeader/productInfo/productReferenceParty/productPartyId/Id
+        // product//productHeader/productInfo/productReferenceParty/productPartyId/Id
         XMLParty issuerPartyParty = XMLfactory.createXMLParty();
         issuerPartyParty.setId(product.getIssuerPartyReference());
 

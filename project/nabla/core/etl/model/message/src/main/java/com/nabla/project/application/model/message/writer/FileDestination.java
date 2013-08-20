@@ -57,10 +57,10 @@ public class FileDestination implements Destination
         {
             try
             {
-                //				File file = File.createTempFile(this.url, ".xml", new File(/*System.getProperty("user.dir")*/"." + File.separator
-                //				+ "target" + File.separator));	
-                //				this.path = file.getCanonicalPath();
-                //this.path = "." + File.separator + "target" + File.separator + this.url + ".xml";
+                // File file = File.createTempFile(this.url, ".xml", new File(/*System.getProperty("user.dir")*/"." + File.separator
+                // + "target" + File.separator));
+                // this.path = file.getCanonicalPath();
+                // this.path = "." + File.separator + "target" + File.separator + this.url + ".xml";
                 switch (packaging)
                 {
                     case STANDARD:

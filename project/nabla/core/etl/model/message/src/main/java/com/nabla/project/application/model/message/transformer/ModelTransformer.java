@@ -33,9 +33,9 @@ public abstract class ModelTransformer implements TransformerDataInterface
     public static QName     PARTY_QNAME                    = new QName(PARTY_QNAME_VALUE);
 
     /*
-    public static String BDR_SCHEME = "BDR";
-    public static String BDR_PORTFOLIO_SCHEME = "BDRPortfolio";
-    public static String BDR_EXTERNALPARTY_SCHEME = "BDRExternalParty";
+     * public static String BDR_SCHEME = "BDR";
+     * public static String BDR_PORTFOLIO_SCHEME = "BDRPortfolio";
+     * public static String BDR_EXTERNALPARTY_SCHEME = "BDRExternalParty";
      */
     /**
      * 
@@ -60,31 +60,39 @@ public abstract class ModelTransformer implements TransformerDataInterface
      * @return the BDR_EXTERNALPARTY_SCHEME
      */
 
-    /*        public String getBDR_EXTERNALPARTY_SCHEME() {
-                    return BDR_EXTERNALPARTY_SCHEME;
-            }*/
+    /*
+     * public String getBDR_EXTERNALPARTY_SCHEME() {
+     * return BDR_EXTERNALPARTY_SCHEME;
+     * }
+     */
     /**
      * 
      */
 
-    /*        public void setBDR_EXTERNALPARTY_SCHEME(String bdr_externalparty_scheme) {
-                    BDR_EXTERNALPARTY_SCHEME = bdr_externalparty_scheme;
-            }*/
+    /*
+     * public void setBDR_EXTERNALPARTY_SCHEME(String bdr_externalparty_scheme) {
+     * BDR_EXTERNALPARTY_SCHEME = bdr_externalparty_scheme;
+     * }
+     */
     /**
      * 
      * @return the BDR_PORTFOLIO_SCHEME
      */
 
-    /*        public String getBDR_PORTFOLIO_SCHEME() {
-                    return BDR_PORTFOLIO_SCHEME;
-            }*/
+    /*
+     * public String getBDR_PORTFOLIO_SCHEME() {
+     * return BDR_PORTFOLIO_SCHEME;
+     * }
+     */
     /**
      * 
      */
 
-    /*        public void setBDR_PORTFOLIO_SCHEME(String bdr_portfolio_scheme) {
-                    BDR_PORTFOLIO_SCHEME = bdr_portfolio_scheme;
-            }*/
+    /*
+     * public void setBDR_PORTFOLIO_SCHEME(String bdr_portfolio_scheme) {
+     * BDR_PORTFOLIO_SCHEME = bdr_portfolio_scheme;
+     * }
+     */
 
     /**
      * 

@@ -46,7 +46,6 @@ public class TransformerThreadTest extends TestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#setUp()
      */
     @Override
@@ -61,7 +60,6 @@ public class TransformerThreadTest extends TestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#tearDown()
      */
     @Override
@@ -82,8 +80,8 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
-                AbstractMessageConfig.beanTransformerThreadName);
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext()
+                .getBean(AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
         PipePublisherContainer<Trade> pipeIn = new PipePublisherContainer<Trade>(pipeInName, requestId);
@@ -125,8 +123,8 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
-                AbstractMessageConfig.beanTransformerThreadName);
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext()
+                .getBean(AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
         PipePublisherContainer<Trade> pipeIn = new PipePublisherContainer<Trade>(pipeInName, requestId);
@@ -168,8 +166,8 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
-                AbstractMessageConfig.beanTransformerThreadName);
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext()
+                .getBean(AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
         PipePublisherContainer<Trade> pipeIn = new PipePublisherContainer<Trade>(pipeInName, requestId);
@@ -223,8 +221,8 @@ public class TransformerThreadTest extends TestCase
     {
         // Initialization
         RequestId requestId = new RequestId();
-        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext().getBean(
-                AbstractMessageConfig.beanTransformerThreadName);
+        TransformerThreadInterface<Trade, ObjectContainer> transformer = (TransformerThreadInterface<Trade, ObjectContainer>) ApplicationContextMessageFactory.getInstance().getApplicationContext()
+                .getBean(AbstractMessageConfig.beanTransformerThreadName);
         PipeBlockingQueueService.destroyAllQueue();
 
         PipePublisherContainer<Trade> pipeIn = new PipePublisherContainer<Trade>(pipeInName, requestId);

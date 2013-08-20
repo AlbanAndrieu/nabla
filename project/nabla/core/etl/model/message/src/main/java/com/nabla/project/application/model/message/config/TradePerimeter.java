@@ -41,8 +41,8 @@ public class TradePerimeter extends Perimeter
         // generate generic part : SELECT, FROM & WHERE
         StringBuilder builder = new StringBuilder();
 
-        //builder.append(queryParts.get("[MAXROW]"));
-        //builder.append(" ");
+        // builder.append(queryParts.get("[MAXROW]"));
+        // builder.append(" ");
 
         // generate maxrow part
         for (Iterator iter = conditions.iterator(); iter.hasNext();)
@@ -52,7 +52,7 @@ public class TradePerimeter extends Perimeter
 
             if (conditionId.equals(ConditionId.MAXROW))
             {
-                //maxRowCondition = condition;
+                // maxRowCondition = condition;
                 String part = queryParts.get(conditionId.getXmlMapping());
 
                 if (conditionId.getSqlValueName() != null)
@@ -116,11 +116,13 @@ public class TradePerimeter extends Perimeter
         // generate date part
         String part = "";
 
-        /*if ((dateMinCondition != null) && (dateMaxCondition != null)) {
-                part = queryParts.get("[DATVALMINMAX]");
-                part = part.replaceFirst(dateMinCondition.getConditionId().getSqlValueName(), dateMinCondition.getValue());
-                part = part.replaceFirst(dateMaxCondition.getConditionId().getSqlValueName(), dateMaxCondition.getValue());
-        } else*/
+        /*
+         * if ((dateMinCondition != null) && (dateMaxCondition != null)) {
+         * part = queryParts.get("[DATVALMINMAX]");
+         * part = part.replaceFirst(dateMinCondition.getConditionId().getSqlValueName(), dateMinCondition.getValue());
+         * part = part.replaceFirst(dateMaxCondition.getConditionId().getSqlValueName(), dateMaxCondition.getValue());
+         * } else
+         */
         if (dateMinCondition != null)
         {
             part = queryParts.get(dateMinCondition.getConditionId().getXmlMapping());

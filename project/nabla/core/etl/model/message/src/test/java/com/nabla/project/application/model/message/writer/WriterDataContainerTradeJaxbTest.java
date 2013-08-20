@@ -38,7 +38,6 @@ public class WriterDataContainerTradeJaxbTest extends XMLTestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#setUp()
      */
     @Override
@@ -55,7 +54,6 @@ public class WriterDataContainerTradeJaxbTest extends XMLTestCase
 
     /*
      * (non-Javadoc)
-     *
      * @see junit.framework.TestCase#tearDown()
      */
     @Override

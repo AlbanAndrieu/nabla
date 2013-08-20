@@ -68,7 +68,7 @@ public class XmlDiffXPath extends XMLTestCase implements DifferenceListener
 
                 if (m.matches())
                 {
-                    //diffResult=RETURN_IGNORE_DIFFERENCE_NODES_SIMILAR;
+                    // diffResult=RETURN_IGNORE_DIFFERENCE_NODES_SIMILAR;
                     diffResult = RETURN_IGNORE_DIFFERENCE_NODES_IDENTICAL;
                 } // end if
             } // end while

@@ -41,29 +41,22 @@ public class XMLTradeEventMessageTransformer extends ModelTransformer
     } // end transform()
 
     /*
-            private XMLFinancialInfo buildFinancialInfo() {
-                    // FIXME fake financial info for validating schema
-                    // need to get data from database
-                    XMLFinancialInfo financialInfo = XMLfactory.createXMLFinancialInfo();
-    
-                    financialInfo.setInfoTimeStamp(JaxbDateHelper.getJaxbDateTime(new Date()));
-    
-                    XMLFinancialIndicator financialIndicator = XMLfactory.createXMLFinancialIndicator();
-    
-                    XMLFinancialIndicatorTypology financialIndicatorTypology = XMLfactory.createXMLFinancialIndicatorTypology();
-    
-                    financialIndicatorTypology.setFinancialIndicatorCategory(XMLFinancialIndicatorCategoryScheme.INVENTORY_POSITION);
-                    financialIndicatorTypology.setFinancialIndicatorType("AccruedInterest");
-                    financialIndicator.setFinancialIndicatorTypology(financialIndicatorTypology);
-    
-                    XMLFinancialIndicatorValue financialIndicatorValue = XMLfactory.createXMLFinancialIndicatorValue();
-                    financialIndicatorValue.setFinancialIndicatorValue("");
-                    financialIndicator.setFinancialIndicatorValue(financialIndicatorValue);
-    
-                    financialInfo.getFinancialIndicator().add(financialIndicator);
-    
-                    return financialInfo;
-            }
+     * private XMLFinancialInfo buildFinancialInfo() {
+     * // FIXME fake financial info for validating schema
+     * // need to get data from database
+     * XMLFinancialInfo financialInfo = XMLfactory.createXMLFinancialInfo();
+     * financialInfo.setInfoTimeStamp(JaxbDateHelper.getJaxbDateTime(new Date()));
+     * XMLFinancialIndicator financialIndicator = XMLfactory.createXMLFinancialIndicator();
+     * XMLFinancialIndicatorTypology financialIndicatorTypology = XMLfactory.createXMLFinancialIndicatorTypology();
+     * financialIndicatorTypology.setFinancialIndicatorCategory(XMLFinancialIndicatorCategoryScheme.INVENTORY_POSITION);
+     * financialIndicatorTypology.setFinancialIndicatorType("AccruedInterest");
+     * financialIndicator.setFinancialIndicatorTypology(financialIndicatorTypology);
+     * XMLFinancialIndicatorValue financialIndicatorValue = XMLfactory.createXMLFinancialIndicatorValue();
+     * financialIndicatorValue.setFinancialIndicatorValue("");
+     * financialIndicator.setFinancialIndicatorValue(financialIndicatorValue);
+     * financialInfo.getFinancialIndicator().add(financialIndicator);
+     * return financialInfo;
+     * }
      */
     /**
      * 
