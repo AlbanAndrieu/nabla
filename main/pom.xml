@@ -644,7 +644,11 @@
                                         </execution>
                                 </executions>
                         </plugin>
-
+			<plugin>
+			    <groupId>org.pitest</groupId>
+			    <artifactId>pitest-maven</artifactId>
+			    <version>${maven.pitest.plugin.version}</version>
+			</plugin>
                         <!--
                                 <plugin> <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>jboss-packaging-maven-plugin</artifactId> <executions>
@@ -1249,11 +1253,12 @@
                                                                                 <generatePdf>true</generatePdf>
                                                                                 <generateHtml>true</generateHtml>
                                                                                 <generateHistorical>true</generateHistorical>
-                                                                                <license><![CDATA[RoNNNCkExAorDfrErFIlrAmaUnonwEGmiwqRHvfUsiQnsdR
-mj2L0GvL7ePpomMqqELByruVl2K3>1GMBYKI4nhRWIL2RCC
-QMqOxUMMomNoqMomprpxWNQNrpONOqqqNrXtvUsSxUvrVWU
-STwtwUoTXSwUUVvUvOMPoqnmnmUUnposvtummmmmmUUnpos
-vtummmmmmUUI5LK5IJW69E1E391CWJF6KN1I5UUnmmmm]]></license>
+                                                                                <!--
+                                                                                <license><![CDATA[OpNRrvIENQaoGGXxaiQqOwJXqooaKPgIvnlGoqvBoGKwQGE
+mj2KOqFZX5pLPXFmOTbTtX2x2L0CAXjQk1mCknTZnGfv8tf
+ROrMvwqmrmoQOPqPMQQWxmnoormMRoPQRMXtTsxWwUUNnqq
+OnmqmUUnpsortqummmmmUUnpsortqummmmmUUEXYiXUUnmm
+mm]]></license>-->
                                                                         </configuration>
                                                                 </plugin>
                                                                 
