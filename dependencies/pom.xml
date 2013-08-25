@@ -52,10 +52,10 @@
         <ciManagement>
                 <!--
                 <system>hudson</system>
-                <url>http://localhost:8070/hudson/</url>
+                <url>http://localhost:8070/hudson/</url>https://nabla.ci.cloudbees.com/
                 -->
                 <system>jenkins</system>
-                <url>https://nabla.ci.cloudbees.com/</url>
+                <url>http://home.nabla.mobi:8080</url>
                 <notifiers>
                         <notifier>
                                 <type>mail</type>
@@ -882,6 +882,8 @@
                                                         <effort>Default</effort>
                                                         <!--<failOnError>true</failOnError>-->
                                                         <excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
+							<maxHeap>2048</maxHeap>
+							<timeout>1200000</timeout>                                                          
                                                 </configuration>
                                         </plugin>
 
@@ -1086,12 +1088,12 @@
                 <!-- TODO overrided in filter -->
                 <jdkLevel>1.7</jdkLevel>
                 <jdkVersion>1.7.0</jdkVersion>
-                <jdkDebug>true</jdkDebug>
-                <jdkOptimize>false</jdkOptimize>
-                <fork>false</fork>
+                <maven.compiler.debug>true</maven.compiler.debug>
+                <maven.compiler.optimize>false</maven.compiler.optimize>
+                <maven.compiler.fork>false</maven.compiler.fork>
 
-                <java.runtime.version>${jdkLevel}</java.runtime.version>
-                <java.source.version>${jdkLevel}</java.source.version>
+                <maven.compiler.target>${jdkLevel}</maven.compiler.target>
+                <maven.compiler.source>${jdkLevel}</maven.compiler.source>
 
                 <!--<maven.version>2.2.1</maven.version>-->
                 <maven.version>3.0.4</maven.version>
@@ -1293,8 +1295,10 @@
                 <hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
                 <hibernate.search.version>3.1.1.GA</hibernate.search.version>
                 <!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
-                <hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
-                <hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
+                <!--<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>-->
+                <hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
+                <!--<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>-->
+                <hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version>
                 <ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>
                 <jboss.ejb3.persistence.version>4.0.5-GA</jboss.ejb3.persistence.version>
                 <net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
@@ -1452,6 +1456,7 @@
                 <jersey.version>1.14</jersey.version>
                 <jetty.version>6.1.25</jetty.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version>
+                <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
 
                 <!--
                         French Encoding in some files: can't use UTF-8, TODO update source
@@ -2049,14 +2054,14 @@
                                         <artifactId>maven-compiler-plugin</artifactId>
                                         <version>${maven.compiler.plugin.version}</version>
                                         <configuration>
-                                                <source>${java.source.version}</source>
-                                                <target>${java.runtime.version}</target>
-                                                <compilerVersion>${java.source.version}</compilerVersion>
+                                                <source>${maven.compiler.source}</source>
+                                                <target>${maven.compiler.target}</target>
+                                                <compilerVersion>${maven.compiler.source}</compilerVersion>
                                                 <meminitial>128m</meminitial>
                                                 <maxmem>512m</maxmem>
-                                                <fork>${fork}</fork>
-                                                <debug>${jdkDebug}</debug>
-                                                <optimize>${jdkOptimize}</optimize>
+                                                <fork>${maven.compiler.fork}</fork>
+                                                <debug>${maven.compiler.debug}</debug>
+                                                <optimize>${maven.compiler.optimize}</optimize>
                                                 <showDeprecation>true</showDeprecation>
                                                 <showWarnings>true</showWarnings>
                                                 <encoding>${project.build.sourceEncoding}</encoding>
@@ -2348,8 +2353,8 @@
                                   <version>${maven.gmaven.plugin.version}</version>
                                   <configuration>
                                     <providerSelection>2.0</providerSelection>
-                                    <debug>${jdkDebug}</debug>
-                                    <stacktrace>${jdkDebug}</stacktrace>
+                                    <debug>${maven.compiler.debug}</debug>
+                                    <stacktrace>${maven.compiler.debug}</stacktrace>
                                     <targetBytecode>${jdkLevel}</targetBytecode> <!-- is the value to compile for a JDK 1.5 or later JVM. -->
                                     <verbose>true</verbose>
                                     <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
@@ -2365,7 +2370,7 @@
                                     <dependency>
                                       <groupId>org.codehaus.gmaven.runtime</groupId>
                                       <artifactId>gmaven-runtime-1.7</artifactId>
-                                      <version>${maven.gmaven.plugin.version}</version>
+                                      <version>${gmaven.runtime.version}</version>
 
                                       <exclusions>
                                         <exclusion>
@@ -2890,12 +2895,14 @@
                                                 <findbugsXmlOutput>true</findbugsXmlOutput>
                                                 <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                                                 <xmlOutput>true</xmlOutput>
-                                                <fork>${fork}</fork>
+                                                <fork>${maven.compiler.fork}</fork>
                                                 <!--<threshold>Normal</threshold>-->
                                                 <threshold>High</threshold>
                                                 <effort>Default</effort>
                                                 <failOnError>false</failOnError>
                                                 <excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
+						<maxHeap>2048</maxHeap>
+						<timeout>1200000</timeout>                                               
                                         </configuration>
                                 </plugin>
                                 <!--
@@ -3853,6 +3860,10 @@ mm]]></license>
                                 <artifactId>ejb3-persistence</artifactId>
                                 <version>${ejb3.persistence.version}</version>
                         </dependency>
+                        <!-- With these dependencies here it is possible to use annotation processing 
+			in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing 
+			-> Enable Annotation Processing. Set target/generated-sources/annotations 
+			as the generated source directory -->
                         <dependency>
                                 <groupId>org.hibernate</groupId>
                                 <artifactId>hibernate-jpamodelgen</artifactId>
