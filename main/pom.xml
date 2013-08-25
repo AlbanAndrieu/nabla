@@ -106,6 +106,7 @@
                 <project.includedictionaries>${project.target}</project.includedictionaries>
                 <maven.build.generated>src/generated</maven.build.generated>
                 <maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
+                <append.to.project.name>trunk</append.to.project.name>                
         </properties>
         <dependencyManagement>
                 <dependencies>
@@ -265,7 +266,7 @@
                                         <artifactId>maven-eclipse-plugin</artifactId>
                                         <version>${maven.eclipse.plugin.version}</version>
                                         <configuration>
-                                                <projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+                                                <projectNameTemplate>[artifactId]-[version]-${append.to.project.name}</projectNameTemplate>
                                                 <wtpmanifest>true</wtpmanifest>
                                                 <wtpapplicationxml>true</wtpapplicationxml>
                                                 <wtpversion>2.0</wtpversion>
@@ -307,6 +308,12 @@
                                                         <buildcommand>org.maven.ide.eclipse.maven2Builder</buildcommand>
                                                 </additionalBuildcommands>
                                                 <additionalConfig>
+							<file>
+								<name>.settings/org.eclipse.core.resources.prefs</name>
+								<content>
+								<![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]>
+								</content>
+							</file>                                                
                                                         <file>
                                                                 <name>.checkstyle</name>
                                                                 <!--redirect to to checkstyle_regles_nabla_eclipse.xml (must be imported by hand in eclipse -->
@@ -1178,6 +1185,8 @@
                                                                                 <xmlOutput>true</xmlOutput>
                                                                                 <threshold>Normal</threshold>
                                                                                 <effort>Default</effort>
+										<maxHeap>2048</maxHeap>
+										<timeout>1200000</timeout>                                                                                  
                                                                         </configuration>
                                                                 </plugin>
 
