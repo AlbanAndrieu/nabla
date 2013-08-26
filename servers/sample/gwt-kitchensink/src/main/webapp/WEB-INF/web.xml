@@ -25,7 +25,7 @@
     </servlet-mapping>
 
     <resource-ref>
-        <res-ref-name>jdbc/nabla</res-ref-name>
+        <res-ref-name>${datasource}</res-ref-name>        
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>

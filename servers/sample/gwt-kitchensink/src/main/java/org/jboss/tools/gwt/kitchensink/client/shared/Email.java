@@ -19,7 +19,7 @@ import javax.validation.Payload;
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-@Target( { METHOD, FIELD, ANNOTATION_TYPE })
+@Target({ METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @Constraint(validatedBy = GwtCompatibleEmailValidator.class)
 public @interface Email

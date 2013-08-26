@@ -17,7 +17,7 @@
 
 	<properties>
 	        <application.id>nabla</application.id>
-		<!--<dataSource>java:/jdbc/${dataSource.name}</dataSource>-->
+		<!--<datasource>java:/jdbc/${datasource.name}</datasource>-->
 		<database.name>nabla</database.name>
 
 		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any 
@@ -159,6 +159,7 @@
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-dev</artifactId>
 				<version>${gwt.version}</version>
+				<classifier>${platform}</classifier>
 			</dependency>
 
 			<!-- gwt-test-utils is needed by clover -->
@@ -429,13 +430,25 @@
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
-				</includes>
+				</includes>				
 			</resource>	
+			<resource>
+				<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>				
 		</resources>
 		<testResources>
 			<testResource>
 				<directory>${basedir}/src/test/resources</directory>
 				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>				
 			</testResource>
 		</testResources>	
 		<!-- Maven will append the version to the finalName (which is the name 
@@ -558,9 +571,9 @@
         	/ with.clover.everything profiles would not overwrite the default setting (and we have to disable two goals) -->
         	<profile>
         	    <id>default</id>
-        	    <activation>
-        	        <activeByDefault>true</activeByDefault>
-        	    </activation>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>        	    
         	    <build>
         	        <plugins>
 			    <!-- The default profile skips all tests, though you can tune it to run 
@@ -605,7 +618,7 @@
 			    				<goal>resources</goal>
 			    				<goal>compile</goal>
 			    				<!--
-			    				<goal>test</goal>
+			    				<goal>test</goal>                	                		
                 	                		<goal>i18n</goal>
                 	                		<goal>generateAsync</goal>
                 	                		-->
@@ -624,6 +637,70 @@
         	    </build>
         	</profile>
         	
+       	<!-- ============================================================================================ -->
+        	<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
+        	<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
+        	<!-- But thanks to this you can perform full tests or your application in a web browser           -->
+        	<!-- ============================================================================================ -->
+        	<profile>
+        	    <id>with.test</id>
+        	    <build>
+        	        <plugins>
+        	            <!-- GWT Maven Plugin -->
+        	            <plugin>
+        	                <groupId>org.codehaus.mojo</groupId>
+        	                <artifactId>gwt-maven-plugin</artifactId>
+        	                <version>${maven.gwt.plugin.version}</version>
+        	                <executions>
+        	                    <execution>
+        	                        <goals>
+        	                            <goal>compile</goal>
+        	                            <goal>test</goal>
+        	                            <!--<goal>i18n</goal>
+        	                            <goal>generateAsync</goal>-->
+        	                        </goals>
+        	                    </execution>
+        	                </executions>
+        	                <!-- Plugin configuration. There are many available options, see gwt-maven-plugin documentation at codehaus.org -->
+        	                <configuration>
+        	                    <runTarget>KitchenSink.html</runTarget>
+        	                    <hostedWebapp>${webappDirectory}</hostedWebapp>
+        	                    <!--<i18nMessagesBundle>com.nabla.client.Messages</i18nMessagesBundle>-->
+        	                    <!-- Use htmlunit framework simulating Internet Explorer 7 -->
+        	                    <!--
+        	                    <mode>htmlunit</mode>
+        	                    <htmlunit>IE7</htmlunit>
+        	                    <validateOnly>true</validateOnly>
+        	                    -->
+        	                </configuration>
+        	            </plugin>
+			    <plugin>
+			    	<groupId>org.apache.maven.plugins</groupId>
+			    	<artifactId>maven-surefire-plugin</artifactId>
+			    	<version>${maven.surefire.plugin.version}</version>
+			    	<configuration>
+			    		<skip>false</skip>
+			    		<!--
+            		                <environmentVariables>
+            		                    <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+            		                </environmentVariables>            		                
+            		                <systemProperties>
+            		                    <jboss.version>${server.version}</jboss.version>
+            		                </systemProperties>	
+            		                -->		    		
+			    	</configuration>
+			    </plugin>  		             	            
+        	            <plugin>
+        	                <groupId>com.atlassian.maven.plugins</groupId>
+        	                <artifactId>maven-clover2-plugin</artifactId>
+        	                <configuration>
+        	                    <skip>true</skip>
+        	                </configuration>
+        	            </plugin>
+        	        </plugins>
+        	    </build>
+        	</profile>
+        	        	
         	<!-- ============================================================================================ -->
         	<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
         	<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->

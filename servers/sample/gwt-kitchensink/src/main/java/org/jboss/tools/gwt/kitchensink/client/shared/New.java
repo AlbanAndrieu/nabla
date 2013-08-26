@@ -18,7 +18,7 @@ import javax.inject.Qualifier;
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-@Target( { FIELD, PARAMETER, METHOD, TYPE })
+@Target({ FIELD, PARAMETER, METHOD, TYPE })
 @Retention(RUNTIME)
 @Documented
 @Qualifier
