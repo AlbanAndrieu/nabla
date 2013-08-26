@@ -399,8 +399,8 @@ public class User extends BaseObject implements Serializable, UserDetails
     @Override
     public String toString()
     {
-        final ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("username", this.username).append("enabled", this.enabled).append("accountExpired", this.accountExpired).append(
-                "credentialsExpired", this.credentialsExpired).append("accountLocked", this.accountLocked);
+        final ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("username", this.username).append("enabled", this.enabled).append("accountExpired", this.accountExpired)
+                .append("credentialsExpired", this.credentialsExpired).append("accountLocked", this.accountLocked);
 
         final GrantedAuthority[] auths = this.getAuthorities();
         if (auths != null)

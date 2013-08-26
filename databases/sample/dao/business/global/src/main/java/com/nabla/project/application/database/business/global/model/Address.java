@@ -250,8 +250,8 @@ public class Address /* extends BaseObject */implements Serializable
     @Override
     public String toString()
     {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("address", this.address).append("addressInfo", this.addressInfo).append("code", this.code).append("city", this.city).append("province",
-                this.province).append("postalCode", this.postalCode).append("cedex", this.cedex).append("country", this.country).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("address", this.address).append("addressInfo", this.addressInfo).append("code", this.code).append("city", this.city)
+                .append("province", this.province).append("postalCode", this.postalCode).append("cedex", this.cedex).append("country", this.country).toString();
     }
 
     // public String toString() {

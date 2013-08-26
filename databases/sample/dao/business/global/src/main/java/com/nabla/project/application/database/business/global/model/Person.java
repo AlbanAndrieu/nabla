@@ -24,7 +24,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.compass.annotations.SearchableProperty;
 
-@SuppressWarnings( { "unused", "serial" })
+@SuppressWarnings({ "unused", "serial" })
 @Entity
 @Table(name = "Person")
 public class Person /* extends BaseObject */implements Serializable
@@ -216,8 +216,8 @@ public class Person /* extends BaseObject */implements Serializable
     @Override
     public String toString()
     {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id).append("version", this.version).append("lastName", this.lastName).append("firstName", this.firstName).append("birthDate",
-                this.birthDate).append("married", this.married).append("nbChildren", this.nbChildren).append("address", this.address).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", this.id).append("version", this.version).append("lastName", this.lastName).append("firstName", this.firstName)
+                .append("birthDate", this.birthDate).append("married", this.married).append("nbChildren", this.nbChildren).append("address", this.address).toString();
     }
     // public String toString() {
     // return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),

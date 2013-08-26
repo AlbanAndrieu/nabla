@@ -144,19 +144,21 @@
 							<components>
 								<component>
 									<name>hbm2ddl</name>
+									<outputDirectory>${target.dir}/site/hibernate3</outputDirectory>
 									<!--<implementation>jpaconfiguration</implementation> -->
 									<!--<implementation>jdbcconfiguration</implementation> -->
-									<!--<implementation>annotationconfiguration</implementation> -->
+									<implementation>annotationconfiguration</implementation> 
 								</component>
 							</components>
 							<componentProperties>
 								<drop>true</drop>
+								<create>true</create>
 								<jdk5>true</jdk5>
 								<!--<console>false</console> -->
 								<configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
 								<propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
 								<!--<propertyfile>src/test/resources/jdbc.properties</propertyfile> -->
-								<!--<persistenceunit>jpa</persistenceunit> -->
+								<!--<persistenceunit>jpa</persistenceunit>-->
 								<outputfilename>create-schema.sql</outputfilename>
 							</componentProperties>
 						</configuration>
@@ -247,7 +249,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dbunit-maven-plugin</artifactId>
-						<version>${dbunit.maven.plugin.version}</version>
+						<version>${maven.dbunit.plugin.version}</version>
 						<configuration>
 							<dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
 							<driver>${jdbc.driver}</driver>
@@ -301,7 +303,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dbunit-maven-plugin</artifactId>
-						<version>${dbunit.maven.plugin.version}</version>
+						<version>${maven.dbunit.plugin.version}</version>
 						<configuration>
 							<dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
 							<driver>${jdbc.driver}</driver>
@@ -377,6 +379,7 @@
                                                                 <component>
                                                                         <name>hbm2doc</name>
                                                                         <outputDirectory>${target.dir}/site/hibernate3/javadoc</outputDirectory>
+                                                                        <implementation>annotationconfiguration</implementation>
                                                                 </component>
                                                                 <component>
                                                                         <name>hbm2cfgxml</name>
@@ -390,7 +393,10 @@
                                                                 </component>
                                                         </components>
                                                         <componentProperties>
-                                                                <drop>true</drop>
+								<!--<implementation>jpaconfiguration</implementation>-->
+								<drop>true</drop>
+								<create>true</create>
+								<export>true</export> 
                                                                 <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
 								<propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
                                                                 <revengfile>src/main/resources/hibernate/${database}/hibernate.reveng.xml</revengfile>
@@ -522,6 +528,7 @@
                 <profile>
                         <id>sql</id>
                         <properties>
+				<!--<maven.test.skip>false</maven.test.skip>-->        
 				<jdbc.client.url><![CDATA[jdbc:derby:~/${database.name}]]></jdbc.client.url>
 			</properties>
                         <build>
@@ -549,7 +556,8 @@
                                                         <driver>${jdbc.driver}</driver>
                                                         <url>${jdbc.url};create=true</url>
                                                         <!--all executions are ignored if -Dmaven.test.skip=true-->
-                                                        <skip>${maven.test.skip}</skip>
+                                                        <!--<skip>${maven.test.skip}</skip>-->
+                                                        <skip>false</skip>
                                                 </configuration>
 
                                                 <executions>
@@ -567,6 +575,20 @@
                                                                 </configuration>
                                                         </execution>
 
+                                                        <!-- drop db before test -->
+                                                        <execution>
+                                                                <id>drop-schema-before-test</id>
+                                                                <phase>process-test-resources</phase>
+                                                                <goals>
+                                                                        <goal>execute</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <autocommit>true</autocommit>
+                                                                        <sqlCommand>DROP SCHEMA APP RESTRICT</sqlCommand>
+                                                                        <onError>continue</onError>
+                                                                </configuration>
+                                                        </execution>
+                                                       
                                                         <execution>
                                                                 <id>create-schema</id>
                                                                 <phase>process-test-resources</phase>
@@ -591,7 +613,8 @@
                                                                 	<autocommit>true</autocommit>
                                                                 	<srcFiles>
                                                                 		<srcFile>sql/create-schema.sql</srcFile>
-                                                                	</srcFiles>
+                                                                	</srcFiles>                                                                	
+                                                                	<onError>continue</onError>
                                                                 </configuration>
                                                                 </execution>
 
@@ -605,7 +628,7 @@
                                                                 <fileset>
                                                                 <basedir>${basedir}</basedir>
                                                                 <includes>
-                                                        <!-- These 2 files may not get executed in sequence, use srcFiles instead, if needed -->
+                                                        	<!-- These 2 files may not get executed in sequence, use srcFiles instead, if needed -->
                                                                 <include>sql/test-data1.sql</include>
                                                                 <include>sql/test-data2.sql</include>
                                                                 </includes>
@@ -629,7 +652,7 @@
                                                         </execution>
                                                         -->
 
-                                                        <!--
+                                                        <!-- TODO for DROP SCHEMA APP RESTRICT to work
                                                         <execution>
                                                                 <id>drop-tables</id>
                                                                 <phase>test</phase>
@@ -645,21 +668,21 @@
                                                                 </configuration>
                                                         </execution>
                                                         -->
-
+                                                        
                                                         <!-- drop db after test -->
-                                                        <!--
                                                         <execution>
                                                                 <id>drop-schema-after-test</id>
-                                                                <phase>test</phase>
+                                                                <phase>process-test-resources</phase>
                                                                 <goals>
                                                                         <goal>execute</goal>
                                                                 </goals>
                                                                 <configuration>
                                                                         <autocommit>true</autocommit>
-                                                                        <sqlCommand>DROP SCHEMA APP</sqlCommand>
+                                                                        <sqlCommand>DROP SCHEMA APP RESTRICT</sqlCommand>
+                                                                        <onError>continue</onError>
                                                                 </configuration>
-                                                        </execution>
-                                                        -->
+                                                        </execution>                                                      
+
 							<!--
                                                         <execution>
                                                                 <id>shutdown-db-after-test</id>
@@ -678,6 +701,14 @@
 
                                                 </executions>
                                         </plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<!--<skip>${maven.test.skip}</skip>-->
+							<skip>true</skip>
+						</configuration>
+					</plugin>                                        
                                 </plugins>
                         </build>
                 </profile>
