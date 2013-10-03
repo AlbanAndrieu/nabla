@@ -308,6 +308,7 @@
                                                         <buildcommand>org.maven.ide.eclipse.maven2Builder</buildcommand>
                                                 </additionalBuildcommands>
                                                 <additionalConfig>
+                                                	<!-- add UTF-8 -->
 							<file>
 								<name>.settings/org.eclipse.core.resources.prefs</name>
 								<content>
@@ -865,6 +866,47 @@
                                                                         -->
                                                                 </plugin>
 
+                                                                <!-- Add this plug-ins only if you use SCM -->
+                                                                <plugin>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-changes-plugin</artifactId>
+                                                                        <version>${maven.changes.plugin.version}</version>
+                                                                        <reportSets>
+                                                                                <reportSet>
+                                                                                        <reports>
+                                                                                                <report>changes-report</report>
+                                                                                        </reports>
+                                                                                </reportSet>
+                                                                        </reportSets>
+                                                                        <configuration>
+                                                                                <columnNames>Key,Type,Summary,Assignee,Status,Resolution,Priority,Component</columnNames>
+                                                                                <sortColumnNames>Key</sortColumnNames>
+                                                                        </configuration>
+                                                                </plugin>
+                                                                <!-- Add this plug-ins only if you use SCM -->
+
+                                                                <!-- Developer activity (last 6 months) -->
+                                                                <plugin>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-changelog-plugin</artifactId>
+                                                                        <version>${maven.changelog.plugin.version}</version>
+                                                                        <reportSets>
+                                                                                <reportSet>
+                                                                                        <id>dual-report</id>
+                                                                                        <configuration>
+                                                                                                <type>range</type>
+                                                                                                <range>90</range>
+                                                                                                <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+                                                                                        </configuration>
+                                                                                        <reports>
+                                                                                                <report>changelog</report>
+                                                                                                <report>file-activity</report>
+                                                                                                <report>dev-activity</report>
+                                                                                        </reports>
+                                                                                </reportSet>
+                                                                        </reportSets>
+                                                                </plugin>
+                                                                
                                                                 <!-- *** GENERATION JAVADOC *** -->
                                                                 <!-- Javadoc settings -->
                                                                 <plugin>
@@ -1185,7 +1227,7 @@
                                                                                 <xmlOutput>true</xmlOutput>
                                                                                 <threshold>Normal</threshold>
                                                                                 <effort>Default</effort>
-										<maxHeap>2048</maxHeap>
+										<maxHeap>1024</maxHeap>
 										<timeout>1200000</timeout>                                                                                  
                                                                         </configuration>
                                                                 </plugin>
@@ -1262,14 +1304,33 @@
                                                                                 <generatePdf>true</generatePdf>
                                                                                 <generateHtml>true</generateHtml>
                                                                                 <generateHistorical>true</generateHistorical>
-                                                                                <!--
-                                                                                <license><![CDATA[OpNRrvIENQaoGGXxaiQqOwJXqooaKPgIvnlGoqvBoGKwQGE
-mj2KOqFZX5pLPXFmOTbTtX2x2L0CAXjQk1mCknTZnGfv8tf
-ROrMvwqmrmoQOPqPMQQWxmnoormMRoPQRMXtTsxWwUUNnqq
-OnmqmUUnpsortqummmmmUUnpsortqummmmmUUEXYiXUUnmm
-mm]]></license>-->
                                                                         </configuration>
                                                                 </plugin>
+                                                                
+                                                                <plugin>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-doap-plugin</artifactId>
+                                                                        <version>${maven.doap.plugin.version}</version>
+                                                                        <configuration>
+                                                                                <doapOptions>
+                                                                                        <programmingLanguage>java</programmingLanguage>
+                                                                                        <category>build-management</category>
+                                                                                </doapOptions>
+                                                                                <asfExtOptions>
+                                                                                        <included>false</included>
+                                                                                </asfExtOptions>
+                                                                        </configuration>
+                                                                </plugin>
+
+                                                                <!-- Compare APIs to a previous version, uncomment when a release version exists -->
+                                                                <plugin>
+                                                                        <groupId>org.codehaus.mojo</groupId>
+                                                                        <artifactId>clirr-maven-plugin</artifactId>
+                                                                        <version>${maven.clirr.plugin.version}</version>
+                                                                        <configuration>
+                                                                                <minSeverity>info</minSeverity>
+                                                                        </configuration>
+                                                                </plugin>                                                                  
                                                                 
     								<plugin>
     								  <groupId>de.smartics.maven.plugin</groupId>
