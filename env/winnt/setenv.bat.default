@@ -57,7 +57,7 @@ set MSVCDir=C:\MinGW
 
 set HUDSON_HOME=C:\hudson
 set JENKINS_HOME=C:\hudson
-set SVN_HOME=C:\Program Files\SlikSvn
+set SVN_HOME=C:\Program Files\VisualSVN Server
 
 set ORACLE_HOME=C:\oraclexe\app\oracle\product\10.2.0\server
 

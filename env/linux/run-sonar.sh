@@ -9,7 +9,7 @@ sudo update-rc.d sonar defaults
 
 sudo gedit /workspace/sonar-3.3/conf/sonar.properties
 
-/workspace/sonar-3.3/bin/linux-x86-64/sonar.sh start
+/workspace/sonar-3.3/bin/linux-x86-32/sonar.sh start
 
 #You can now browse to http://localhost:9000.
 

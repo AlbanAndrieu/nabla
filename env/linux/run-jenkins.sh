@@ -60,3 +60,8 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 #trigger a full backup
 #wget http://albandri:8280/jenkins/backup/backup
 #http://home.nabla.mobi:8080/
+
+#check memory 
+#http://blog.cloudbees.com/2013/09/health-check-up-for-your-jenkins.html?mkt_tok=3RkMMJWWfF9wsRonvanBZKXonjHpfsX%2F7uwqUbHr08Yy0EZ5VunJEUWy24MIRdQ%2FcOedCQkZHblFnVwASa2lV7oNr6QP
+ssh -X jenkins@myserver jconsole 
+
