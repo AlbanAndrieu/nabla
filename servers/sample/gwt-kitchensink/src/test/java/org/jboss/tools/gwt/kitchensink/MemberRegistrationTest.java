@@ -1,3 +1,4 @@
+
 package org.jboss.tools.gwt.kitchensink;
 
 import static org.junit.Assert.assertNotNull;
@@ -50,3 +51,4 @@ public class MemberRegistrationTest
     }
 
 }
+

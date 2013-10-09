@@ -31,3 +31,4 @@ public @interface Email
     Class<? extends Payload>[] payload() default {};
 
 }
+
