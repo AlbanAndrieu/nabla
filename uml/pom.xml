@@ -387,6 +387,9 @@
                 <maven.andromda.schema2xmi.classStereotype>Entity</maven.andromda.schema2xmi.classStereotype>
                 <maven.andromda.schema2xmi.identifierStereotypes>Identifier</maven.andromda.schema2xmi.identifierStereotypes>
                 <maven.andromda.schema2xmi.package>com.nabla.andromda</maven.andromda.schema2xmi.package>
+                
+                <!-- andromda property mapping -->
+                <dataSource>${datasource}</dataSource>
 
         </properties>
         <profiles>
