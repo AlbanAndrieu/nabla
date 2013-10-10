@@ -21,7 +21,7 @@ import javax.faces.model.SelectItem;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.details
  */
 public class SearchTimecardsDetailsFormImpl
     implements Serializable, InitializeTimecardIdForm
@@ -73,8 +73,8 @@ public class SearchTimecardsDetailsFormImpl
     private Long timecardId;
 
     /**
-     * 
-     * @return timecardId 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardId
+     * @return timecardId TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardId
      */
     public Long getTimecardId()
     {
@@ -107,8 +107,8 @@ public class SearchTimecardsDetailsFormImpl
     }
 
     /**
-     * 
-     * @param timecardIdIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardId
+     * @param timecardIdIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardId
      */
     public void setTimecardId(Long timecardIdIn)
     {
@@ -278,8 +278,8 @@ public class SearchTimecardsDetailsFormImpl
     private Long id;
 
     /**
-     * 
-     * @return id 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
+     * @return id TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
      */
     public Long getId()
     {
@@ -312,8 +312,8 @@ public class SearchTimecardsDetailsFormImpl
     }
 
     /**
-     * 
-     * @param idIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
+     * @param idIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
      */
     public void setId(Long idIn)
     {

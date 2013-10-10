@@ -15,12 +15,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * 
+ * TODO: Model Documentation for User
  */
 @XmlType(propOrder = {"username", "password", "firstName", "lastName", "email", "isActive", "creationDate", "comment"})
 @XmlAccessorType(XmlAccessType.FIELD)
+// HibernateEntity.vsl annotations merge-point
 public abstract class User implements Serializable, Comparable<User>
- {
+{
     /**
      * The serial version UID of this class. Needed for serialization.
      */
@@ -31,7 +32,7 @@ public abstract class User implements Serializable, Comparable<User>
     private String username;
 
     /**
-     * 
+     * TODO: Model Documentation for User.username
      * @return this.username String
      */
     public String getUsername()
@@ -40,7 +41,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.username
      * @param usernameIn String
      */
     public void setUsername(String usernameIn)
@@ -52,7 +53,7 @@ public abstract class User implements Serializable, Comparable<User>
     private String password;
 
     /**
-     * 
+     * TODO: Model Documentation for User.password
      * @return this.password String
      */
     public String getPassword()
@@ -61,7 +62,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.password
      * @param passwordIn String
      */
     public void setPassword(String passwordIn)
@@ -73,7 +74,7 @@ public abstract class User implements Serializable, Comparable<User>
     private String firstName;
 
     /**
-     * 
+     * TODO: Model Documentation for User.firstName
      * @return this.firstName String
      */
     public String getFirstName()
@@ -82,7 +83,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.firstName
      * @param firstNameIn String
      */
     public void setFirstName(String firstNameIn)
@@ -94,7 +95,7 @@ public abstract class User implements Serializable, Comparable<User>
     private String lastName;
 
     /**
-     * 
+     * TODO: Model Documentation for User.lastName
      * @return this.lastName String
      */
     public String getLastName()
@@ -103,7 +104,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.lastName
      * @param lastNameIn String
      */
     public void setLastName(String lastNameIn)
@@ -115,7 +116,7 @@ public abstract class User implements Serializable, Comparable<User>
     private String email;
 
     /**
-     * 
+     * TODO: Model Documentation for User.email
      * @return this.email String
      */
     public String getEmail()
@@ -124,7 +125,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.email
      * @param emailIn String
      */
     public void setEmail(String emailIn)
@@ -136,7 +137,7 @@ public abstract class User implements Serializable, Comparable<User>
     private boolean isActive;
 
     /**
-     * 
+     * TODO: Model Documentation for User.isActive
      * @return this.isActive boolean
      */
     public boolean isIsActive()
@@ -145,7 +146,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.isActive
      * @param isActiveIn boolean
      */
     public void setIsActive(boolean isActiveIn)
@@ -157,7 +158,7 @@ public abstract class User implements Serializable, Comparable<User>
     private Date creationDate;
 
     /**
-     * 
+     * TODO: Model Documentation for User.creationDate
      * @return this.creationDate Date
      */
     public Date getCreationDate()
@@ -166,7 +167,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.creationDate
      * @param creationDateIn Date
      */
     public void setCreationDate(Date creationDateIn)
@@ -178,7 +179,7 @@ public abstract class User implements Serializable, Comparable<User>
     private String comment;
 
     /**
-     * 
+     * TODO: Model Documentation for User.comment
      * @return this.comment String
      */
     public String getComment()
@@ -187,7 +188,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.comment
      * @param commentIn String
      */
     public void setComment(String commentIn)
@@ -199,7 +200,7 @@ public abstract class User implements Serializable, Comparable<User>
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for User.id
      * @return this.id Long
      */
     public Long getId()
@@ -208,7 +209,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User.id
      * @param idIn Long
      */
     public void setId(Long idIn)
@@ -220,7 +221,7 @@ public abstract class User implements Serializable, Comparable<User>
     private Collection<UserRole> roles = new HashSet<UserRole>();
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole
      * @return this.roles Collection<UserRole>
      */
     public Collection<UserRole> getRoles()
@@ -229,7 +230,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole
      * @param rolesIn Collection<UserRole>
      */
     public void setRoles(Collection<UserRole> rolesIn)
@@ -238,7 +239,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole
      * @param elementToAdd UserRole
      * @return <tt>true</tt> if this collection changed as a result of the
      *         call
@@ -249,7 +250,7 @@ public abstract class User implements Serializable, Comparable<User>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole
      * @param elementToRemove UserRole
      * @return <tt>true</tt> if this collection changed as a result of the
      *         call
@@ -323,15 +324,15 @@ public abstract class User implements Serializable, Comparable<User>
          */
         public static User newInstance(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate)
         {
-            final User entityInstance = new UserImpl();
-            entityInstance.setUsername(username);
-            entityInstance.setPassword(password);
-            entityInstance.setFirstName(firstName);
-            entityInstance.setLastName(lastName);
-            entityInstance.setEmail(email);
-            entityInstance.setIsActive(isActive);
-            entityInstance.setCreationDate(creationDate);
-            return entityInstance;
+            final User entity = new UserImpl();
+            entity.setUsername(username);
+            entity.setPassword(password);
+            entity.setFirstName(firstName);
+            entity.setLastName(lastName);
+            entity.setEmail(email);
+            entity.setIsActive(isActive);
+            entity.setCreationDate(creationDate);
+            return entity;
         }
 
         /**
@@ -350,59 +351,62 @@ public abstract class User implements Serializable, Comparable<User>
          */
         public static User newInstance(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Collection<UserRole> roles)
         {
-            final User entityInstance = new UserImpl();
-            entityInstance.setUsername(username);
-            entityInstance.setPassword(password);
-            entityInstance.setFirstName(firstName);
-            entityInstance.setLastName(lastName);
-            entityInstance.setEmail(email);
-            entityInstance.setIsActive(isActive);
-            entityInstance.setCreationDate(creationDate);
-            entityInstance.setComment(comment);
-            entityInstance.setRoles(roles);
-            return entityInstance;
+            final User entity = new UserImpl();
+            entity.setUsername(username);
+            entity.setPassword(password);
+            entity.setFirstName(firstName);
+            entity.setLastName(lastName);
+            entity.setEmail(email);
+            entity.setIsActive(isActive);
+            entity.setCreationDate(creationDate);
+            entity.setComment(comment);
+            entity.setRoles(roles);
+            return entity;
         }
     }
 
     /**
+     * @param other
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
      * @see Comparable#compareTo
      */
-    public int compareTo(User o)
+    @Override
+    public int compareTo(User other)
     {
         int cmp = 0;
         if (this.getId() != null)
         {
-            cmp = this.getId().compareTo(o.getId());
+            cmp = this.getId().compareTo(other.getId());
         }
         else
         {
             if (this.getUsername() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getUsername().compareTo(o.getUsername()));
+                cmp = (cmp != 0 ? cmp : this.getUsername().compareTo(other.getUsername()));
             }
             if (this.getPassword() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getPassword().compareTo(o.getPassword()));
+                cmp = (cmp != 0 ? cmp : this.getPassword().compareTo(other.getPassword()));
             }
             if (this.getFirstName() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getFirstName().compareTo(o.getFirstName()));
+                cmp = (cmp != 0 ? cmp : this.getFirstName().compareTo(other.getFirstName()));
             }
             if (this.getLastName() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getLastName().compareTo(o.getLastName()));
+                cmp = (cmp != 0 ? cmp : this.getLastName().compareTo(other.getLastName()));
             }
             if (this.getEmail() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getEmail().compareTo(o.getEmail()));
+                cmp = (cmp != 0 ? cmp : this.getEmail().compareTo(other.getEmail()));
             }
             if (this.getCreationDate() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getCreationDate().compareTo(o.getCreationDate()));
+                cmp = (cmp != 0 ? cmp : this.getCreationDate().compareTo(other.getCreationDate()));
             }
             if (this.getComment() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getComment().compareTo(o.getComment()));
+                cmp = (cmp != 0 ? cmp : this.getComment().compareTo(other.getComment()));
             }
         }
         return cmp;

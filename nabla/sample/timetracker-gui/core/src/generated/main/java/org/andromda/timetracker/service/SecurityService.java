@@ -13,13 +13,14 @@ package org.andromda.timetracker.service;
 import org.andromda.timetracker.vo.UserDetailsVO;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.service.SecurityService
  */
 public interface SecurityService
 {
     /**
-     * 
-     * @param username 
+     * TODO: Model Documentation for org.andromda.timetracker.service.SecurityService.getUserDetails
+     * @param username TODO: Model Documentation for
+org.andromda.timetracker.service.SecurityService.getUserDetails(username)
      * @return  UserDetailsVO
      */
     public UserDetailsVO getUserDetails(String username);

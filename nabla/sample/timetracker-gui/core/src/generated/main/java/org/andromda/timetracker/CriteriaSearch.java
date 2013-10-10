@@ -746,10 +746,10 @@ public class CriteriaSearch
                     criteria.add(Restrictions.isNotEmpty(parameterName));
                     break;
                 }
-            	default:
-            	{
-            	    criteria.add(Restrictions.isNull(parameterName));
-            	}
+                default:
+                {
+                    criteria.add(Restrictions.isNull(parameterName));
+                }
             }
         }
     }

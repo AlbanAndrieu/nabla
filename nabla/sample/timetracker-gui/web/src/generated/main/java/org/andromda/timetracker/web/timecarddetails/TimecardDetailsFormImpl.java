@@ -21,7 +21,7 @@ import javax.faces.model.SelectItem;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.PopulateScreen
  */
 public class TimecardDetailsFormImpl
     implements Serializable
@@ -70,8 +70,8 @@ public class TimecardDetailsFormImpl
     private Long timecardId;
 
     /**
-     * 
-     * @return timecardId 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.timecardId
+     * @return timecardId TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.timecardId
      */
     public Long getTimecardId()
     {
@@ -104,8 +104,8 @@ public class TimecardDetailsFormImpl
     }
 
     /**
-     * 
-     * @param timecardIdIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.timecardId
+     * @param timecardIdIn TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.timecardId
      */
     public void setTimecardId(Long timecardIdIn)
     {

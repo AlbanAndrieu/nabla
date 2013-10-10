@@ -18,20 +18,21 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(propOrder = {"timePeriod"})
 @XmlAccessorType(XmlAccessType.FIELD)
+// HibernateEntity.vsl annotations merge-point
 public abstract class TimeAllocation implements Serializable, Comparable<TimeAllocation>
- {
+{
     /**
      * The serial version UID of this class. Needed for serialization.
      */
     private static final long serialVersionUID = 6048749692954952788L;
 
     // Generate 2 attributes
-    @XmlTransient  
+    @XmlTransient
     @XmlElement(name = "timePeriod")
     private TimePeriod timePeriod;
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocation.timePeriod
      * @return this.timePeriod TimePeriod
      */
     public TimePeriod getTimePeriod()
@@ -40,7 +41,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocation.timePeriod
      * @param timePeriodIn TimePeriod
      */
     public void setTimePeriod(TimePeriod timePeriodIn)
@@ -52,7 +53,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocation.id
      * @return this.id Long
      */
     public Long getId()
@@ -61,7 +62,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocation.id
      * @param idIn Long
      */
     public void setId(Long idIn)
@@ -73,7 +74,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     private Task task;
 
     /**
-     * 
+     * This class represents a task for which time allocations need to be tracked.
      * @return this.task Task
      */
     public Task getTask()
@@ -82,7 +83,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     }
 
     /**
-     * 
+     * This class represents a task for which time allocations need to be tracked.
      * @param taskIn Task
      */
     public void setTask(Task taskIn)
@@ -93,7 +94,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     private Timecard timecard;
 
     /**
-     * 
+     * This class represents a timecard submitted by a person.
      * @return this.timecard Timecard
      */
     public Timecard getTimecard()
@@ -102,7 +103,7 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
     }
 
     /**
-     * 
+     * This class represents a timecard submitted by a person.
      * @param timecardIn Timecard
      */
     public void setTimecard(Timecard timecardIn)
@@ -170,29 +171,32 @@ public abstract class TimeAllocation implements Serializable, Comparable<TimeAll
          */
         public static TimeAllocation newInstance(TimePeriod timePeriod, Task task, Timecard timecard)
         {
-            final TimeAllocation entityInstance = new TimeAllocationImpl();
-            entityInstance.setTimePeriod(timePeriod);
-            entityInstance.setTask(task);
-            entityInstance.setTimecard(timecard);
-            return entityInstance;
+            final TimeAllocation entity = new TimeAllocationImpl();
+            entity.setTimePeriod(timePeriod);
+            entity.setTask(task);
+            entity.setTimecard(timecard);
+            return entity;
         }
     }
 
     /**
+     * @param other
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
      * @see Comparable#compareTo
      */
-    public int compareTo(TimeAllocation o)
+    @Override
+    public int compareTo(TimeAllocation other)
     {
         int cmp = 0;
         if (this.getId() != null)
         {
-            cmp = this.getId().compareTo(o.getId());
+            cmp = this.getId().compareTo(other.getId());
         }
         else
         {
             if (this.getTimePeriod() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getTimePeriod().compareTo(o.getTimePeriod()));
+                cmp = (cmp != 0 ? cmp : this.getTimePeriod().compareTo(other.getTimePeriod()));
             }
         }
         return cmp;

@@ -16,7 +16,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class UserDetailsVO
+ * TODO: Model Documentation for UserDetailsVO
  */
 public class UserDetailsVO
     extends UserVO
@@ -25,21 +25,33 @@ public class UserDetailsVO
     private static final long serialVersionUID = 1496993145138888879L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute password */
+    /**
+     * TODO: Model Documentation for UserDetailsVO.password
+     */
     protected String password;
-    /** TODO: Model Documentation for attribute email */
+    /**
+     * TODO: Model Documentation for UserDetailsVO.email
+     */
     protected String email;
-    /** TODO: Model Documentation for attribute isActive */
+    /**
+     * TODO: Model Documentation for UserDetailsVO.isActive
+     */
     protected boolean isActive;
     /**
      * boolean setter for primitive attribute, so we can tell if it's initialized
      */
     protected boolean setIsActive = false;
-    /** TODO: Model Documentation for attribute creationDate */
+    /**
+     * TODO: Model Documentation for UserDetailsVO.creationDate
+     */
     protected Date creationDate;
-    /** TODO: Model Documentation for attribute comment */
+    /**
+     * TODO: Model Documentation for UserDetailsVO.comment
+     */
     protected String comment;
-    /** TODO: Model Documentation for attribute roles */
+    /**
+     * TODO: Model Documentation for UserDetailsVO.roles
+     */
     protected UserRoleVO[] roles;
 
     /** Default Constructor with no properties */
@@ -50,14 +62,14 @@ public class UserDetailsVO
 
     /**
      * Constructor taking only required properties
-     * @param usernameIn String
-     * @param firstNameIn String
-     * @param lastNameIn String
-     * @param passwordIn String
-     * @param emailIn String
-     * @param isActiveIn boolean
-     * @param creationDateIn Date
-     * @param rolesIn UserRoleVO[]
+     * @param usernameIn String TODO: Model Documentation for UserVO.username
+     * @param firstNameIn String TODO: Model Documentation for UserVO.firstName
+     * @param lastNameIn String TODO: Model Documentation for UserVO.lastName
+     * @param passwordIn String TODO: Model Documentation for UserDetailsVO.password
+     * @param emailIn String TODO: Model Documentation for UserDetailsVO.email
+     * @param isActiveIn boolean TODO: Model Documentation for UserDetailsVO.isActive
+     * @param creationDateIn Date TODO: Model Documentation for UserDetailsVO.creationDate
+     * @param rolesIn UserRoleVO[] TODO: Model Documentation for UserDetailsVO.roles
      */
     public UserDetailsVO(final String usernameIn, final String firstNameIn, final String lastNameIn, final String passwordIn, final String emailIn, final boolean isActiveIn, final Date creationDateIn, final UserRoleVO[] rolesIn)
     {
@@ -133,7 +145,7 @@ public class UserDetailsVO
     }
 
     /**
-     * TODO: Model Documentation for attribute password
+     * TODO: Model Documentation for UserDetailsVO.password
      * Get the password Attribute
      * @return password String
      */
@@ -143,7 +155,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.password
      * @param value String
      */
     public void setPassword(final String value)
@@ -152,7 +164,7 @@ public class UserDetailsVO
     }
 
     /**
-     * TODO: Model Documentation for attribute email
+     * TODO: Model Documentation for UserDetailsVO.email
      * Get the email Attribute
      * @return email String
      */
@@ -162,7 +174,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.email
      * @param value String
      */
     public void setEmail(final String value)
@@ -171,7 +183,7 @@ public class UserDetailsVO
     }
 
     /**
-     * TODO: Model Documentation for attribute isActive
+     * TODO: Model Documentation for UserDetailsVO.isActive
      * Get the isActive Attribute
      * @return isActive boolean
      */
@@ -181,7 +193,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.isActive
      * Duplicates isBoolean method, for use as Jaxb2 compatible object
      * Get the isActive Attribute
      * @return isActive boolean
@@ -193,7 +205,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.isActive
      * @param value boolean
      */
     public void setIsActive(final boolean value)
@@ -212,7 +224,7 @@ public class UserDetailsVO
     }
 
     /**
-     * TODO: Model Documentation for attribute creationDate
+     * TODO: Model Documentation for UserDetailsVO.creationDate
      * Get the creationDate Attribute
      * @return creationDate Date
      */
@@ -222,7 +234,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.creationDate
      * @param value Date
      */
     public void setCreationDate(final Date value)
@@ -231,7 +243,7 @@ public class UserDetailsVO
     }
 
     /**
-     * TODO: Model Documentation for attribute comment
+     * TODO: Model Documentation for UserDetailsVO.comment
      * Get the comment Attribute
      * @return comment String
      */
@@ -241,7 +253,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.comment
      * @param value String
      */
     public void setComment(final String value)
@@ -250,7 +262,7 @@ public class UserDetailsVO
     }
 
     /**
-     * TODO: Model Documentation for attribute roles
+     * TODO: Model Documentation for UserDetailsVO.roles
      * Get the roles Attribute
      * @return roles UserRoleVO[]
      */
@@ -260,7 +272,7 @@ public class UserDetailsVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserDetailsVO.roles
      * @param value UserRoleVO[]
      */
     public void setRoles(final UserRoleVO[] value)

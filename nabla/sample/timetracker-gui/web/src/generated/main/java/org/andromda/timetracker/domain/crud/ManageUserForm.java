@@ -15,7 +15,7 @@ import javax.faces.application.FacesMessage;
 import org.andromda.presentation.gui.JsfUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.domain.User
  * This form encapsulates the fields that are used in the execution of the CRUD operations in User
  */
 public class ManageUserForm
@@ -113,7 +113,7 @@ public class ManageUserForm
     private String username;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.username
      * @return username
      */
     public String getUsername()
@@ -122,7 +122,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.username
      * @param usernameIn
      */
     public void setUsername(String usernameIn)
@@ -149,7 +149,7 @@ public class ManageUserForm
     private String password;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.password
      * @return password
      */
     public String getPassword()
@@ -158,7 +158,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.password
      * @param passwordIn
      */
     public void setPassword(String passwordIn)
@@ -185,7 +185,7 @@ public class ManageUserForm
     private String firstName;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @return firstName
      */
     public String getFirstName()
@@ -194,7 +194,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @param firstNameIn
      */
     public void setFirstName(String firstNameIn)
@@ -221,7 +221,7 @@ public class ManageUserForm
     private String lastName;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @return lastName
      */
     public String getLastName()
@@ -230,7 +230,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @param lastNameIn
      */
     public void setLastName(String lastNameIn)
@@ -257,7 +257,7 @@ public class ManageUserForm
     private String email;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.email
      * @return email
      */
     public String getEmail()
@@ -266,7 +266,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.email
      * @param emailIn
      */
     public void setEmail(String emailIn)
@@ -293,7 +293,7 @@ public class ManageUserForm
     private boolean isActive;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
      * @return isActive
      */
     public boolean isIsActive()
@@ -302,7 +302,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
      * @param isActiveIn
      */
     public void setIsActive(boolean isActiveIn)
@@ -329,7 +329,7 @@ public class ManageUserForm
     private Date creationDate;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @return creationDate
      */
     public Date getCreationDate()
@@ -338,7 +338,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @param creationDateIn
      */
     public void setCreationDate(Date creationDateIn)
@@ -365,7 +365,7 @@ public class ManageUserForm
     private String comment;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @return comment
      */
     public String getComment()
@@ -374,7 +374,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @param commentIn
      */
     public void setComment(String commentIn)
@@ -401,7 +401,7 @@ public class ManageUserForm
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.id
      * @return id
      */
     public Long getId()
@@ -410,7 +410,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.id
      * @param idIn
      */
     public void setId(Long idIn)
@@ -439,7 +439,7 @@ public class ManageUserForm
     private Long[] roles;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return roles
      */
     public Long[] getRoles()
@@ -448,7 +448,7 @@ public class ManageUserForm
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @param rolesIn
      */
     public void setRoles(Long[] rolesIn)

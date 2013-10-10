@@ -12,10 +12,10 @@ import java.util.StringTokenizer;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
-import org.apache.commons.lang.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -228,7 +228,8 @@ public class PropertySearch
      *
      * @exception ConversionException if thrown by an underlying Converter
      */
-    protected Object convert(Object value, Class type) {
+    protected Object convert(Object value, Class type)
+    {
         Converter converter = ConvertUtils.lookup(type);
         Object result;
         if (converter != null)
@@ -273,9 +274,11 @@ public class PropertySearch
                     }
                     propertyType = type;
                 }
+                final Object object = propertyType.newInstance();
                 final String name = parameter.getName().replaceAll(".*\\" + PERIOD, "");
-                try{
-                    value = convert(value,propertyType.getMethod("get"+StringUtils.capitalize(name)).getReturnType());
+                try
+                {
+                    value = convert(value, PropertyUtils.getPropertyType(object, name));
                 }
                 catch (final NoSuchMethodException noSuchMethodException)
                 {

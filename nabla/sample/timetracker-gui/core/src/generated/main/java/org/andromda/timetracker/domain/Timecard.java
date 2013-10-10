@@ -19,8 +19,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(propOrder = {"comments", "startDate", "status"})
 @XmlAccessorType(XmlAccessType.FIELD)
+// HibernateEntity.vsl annotations merge-point
 public abstract class Timecard implements Serializable, Comparable<Timecard>
- {
+{
     /**
      * The serial version UID of this class. Needed for serialization.
      */
@@ -31,7 +32,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private String comments;
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.comments
      * @return this.comments String
      */
     public String getComments()
@@ -40,7 +41,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.comments
      * @param commentsIn String
      */
     public void setComments(String commentsIn)
@@ -52,7 +53,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private Date startDate;
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.startDate
      * @return this.startDate Date
      */
     public Date getStartDate()
@@ -61,7 +62,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.startDate
      * @param startDateIn Date
      */
     public void setStartDate(Date startDateIn)
@@ -73,7 +74,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private TimecardStatus status;
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.status
      * @return this.status TimecardStatus
      */
     public TimecardStatus getStatus()
@@ -82,7 +83,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.status
      * @param statusIn TimecardStatus
      */
     public void setStatus(TimecardStatus statusIn)
@@ -94,7 +95,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.id
      * @return this.id Long
      */
     public Long getId()
@@ -103,7 +104,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.id
      * @param idIn Long
      */
     public void setId(Long idIn)
@@ -115,7 +116,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private User approver;
 
     /**
-     * 
+     * TODO: Model Documentation for User
      * @return this.approver User
      */
     public User getApprover()
@@ -124,7 +125,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User
      * @param approverIn User
      */
     public void setApprover(User approverIn)
@@ -135,7 +136,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private User submitter;
 
     /**
-     * 
+     * TODO: Model Documentation for User
      * @return this.submitter User
      */
     public User getSubmitter()
@@ -144,7 +145,7 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for User
      * @param submitterIn User
      */
     public void setSubmitter(User submitterIn)
@@ -155,7 +156,9 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     private Collection<TimeAllocation> allocations = new HashSet<TimeAllocation>();
 
     /**
-     * 
+     * TimeAllocation represents a time period for which the timecard submitter worked on the
+     * associated
+     * task.
      * @return this.allocations Collection<TimeAllocation>
      */
     public Collection<TimeAllocation> getAllocations()
@@ -164,7 +167,9 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TimeAllocation represents a time period for which the timecard submitter worked on the
+     * associated
+     * task.
      * @param allocationsIn Collection<TimeAllocation>
      */
     public void setAllocations(Collection<TimeAllocation> allocationsIn)
@@ -173,7 +178,9 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TimeAllocation represents a time period for which the timecard submitter worked on the
+     * associated
+     * task.
      * @param elementToAdd TimeAllocation
      * @return <tt>true</tt> if this collection changed as a result of the
      *         call
@@ -184,7 +191,9 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
     }
 
     /**
-     * 
+     * TimeAllocation represents a time period for which the timecard submitter worked on the
+     * associated
+     * task.
      * @param elementToRemove TimeAllocation
      * @return <tt>true</tt> if this collection changed as a result of the
      *         call
@@ -194,9 +203,11 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
         return this.allocations.remove(elementToRemove);
     }
 
+    // Generate 1 businessOperations
     /**
-     * 
-     * @param timeAllocation 
+     * TODO: Model Documentation for Timecard.addTimeAllocation
+     * @param timeAllocation TODO: Model Documentation for
+Timecard.addTimeAllocation(timeAllocation)
      */
     public abstract void addTimeAllocation(TimeAllocation timeAllocation);
 
@@ -261,12 +272,12 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
          */
         public static Timecard newInstance(String comments, Date startDate, TimecardStatus status, User submitter)
         {
-            final Timecard entityInstance = new TimecardImpl();
-            entityInstance.setComments(comments);
-            entityInstance.setStartDate(startDate);
-            entityInstance.setStatus(status);
-            entityInstance.setSubmitter(submitter);
-            return entityInstance;
+            final Timecard entity = new TimecardImpl();
+            entity.setComments(comments);
+            entity.setStartDate(startDate);
+            entity.setStatus(status);
+            entity.setSubmitter(submitter);
+            return entity;
         }
 
         /**
@@ -282,40 +293,43 @@ public abstract class Timecard implements Serializable, Comparable<Timecard>
          */
         public static Timecard newInstance(String comments, Date startDate, TimecardStatus status, User approver, User submitter, Collection<TimeAllocation> allocations)
         {
-            final Timecard entityInstance = new TimecardImpl();
-            entityInstance.setComments(comments);
-            entityInstance.setStartDate(startDate);
-            entityInstance.setStatus(status);
-            entityInstance.setApprover(approver);
-            entityInstance.setSubmitter(submitter);
-            entityInstance.setAllocations(allocations);
-            return entityInstance;
+            final Timecard entity = new TimecardImpl();
+            entity.setComments(comments);
+            entity.setStartDate(startDate);
+            entity.setStatus(status);
+            entity.setApprover(approver);
+            entity.setSubmitter(submitter);
+            entity.setAllocations(allocations);
+            return entity;
         }
     }
 
     /**
+     * @param other
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
      * @see Comparable#compareTo
      */
-    public int compareTo(Timecard o)
+    @Override
+    public int compareTo(Timecard other)
     {
         int cmp = 0;
         if (this.getId() != null)
         {
-            cmp = this.getId().compareTo(o.getId());
+            cmp = this.getId().compareTo(other.getId());
         }
         else
         {
             if (this.getComments() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getComments().compareTo(o.getComments()));
+                cmp = (cmp != 0 ? cmp : this.getComments().compareTo(other.getComments()));
             }
             if (this.getStartDate() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getStartDate().compareTo(o.getStartDate()));
+                cmp = (cmp != 0 ? cmp : this.getStartDate().compareTo(other.getStartDate()));
             }
             if (this.getStatus() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getStatus().compareTo(o.getStatus()));
+                cmp = (cmp != 0 ? cmp : this.getStatus().compareTo(other.getStatus()));
             }
         }
         return cmp;

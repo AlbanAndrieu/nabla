@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class TaskVO
+ * TODO: Model Documentation for TaskVO
  */
 public class TaskVO
     implements Serializable, Comparable<TaskVO>
@@ -26,9 +26,13 @@ public class TaskVO
     private static final long serialVersionUID = -3435321887199770301L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute id */
+    /**
+     * TODO: Model Documentation for TaskVO.id
+     */
     protected Long id;
-    /** TODO: Model Documentation for attribute name */
+    /**
+     * TODO: Model Documentation for TaskVO.name
+     */
     protected String name;
 
     /** Default Constructor with no properties */
@@ -39,7 +43,7 @@ public class TaskVO
 
     /**
      * Constructor taking only required properties
-     * @param nameIn String
+     * @param nameIn String TODO: Model Documentation for TaskVO.name
      */
     public TaskVO(final String nameIn)
     {
@@ -83,7 +87,7 @@ public class TaskVO
     }
 
     /**
-     * TODO: Model Documentation for attribute id
+     * TODO: Model Documentation for TaskVO.id
      * Get the id Attribute
      * @return id Long
      */
@@ -93,7 +97,7 @@ public class TaskVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TaskVO.id
      * @param value Long
      */
     public void setId(final Long value)
@@ -102,7 +106,7 @@ public class TaskVO
     }
 
     /**
-     * TODO: Model Documentation for attribute name
+     * TODO: Model Documentation for TaskVO.name
      * Get the name Attribute
      * @return name String
      */
@@ -112,7 +116,7 @@ public class TaskVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TaskVO.name
      * @param value String
      */
     public void setName(final String value)

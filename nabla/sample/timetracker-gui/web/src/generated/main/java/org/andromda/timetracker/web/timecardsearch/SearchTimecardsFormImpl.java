@@ -24,7 +24,7 @@ import org.andromda.timetracker.vo.TimecardSummaryVO;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.Populate Search Screen
  */
 public class SearchTimecardsFormImpl
     implements Serializable, PopulateSearchScreenForm
@@ -86,8 +86,8 @@ public class SearchTimecardsFormImpl
     private TimecardSummaryVO[] timecardSummaries;
 
     /**
-     * 
-     * @return timecardSummaries 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardSummaries
+     * @return timecardSummaries TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardSummaries
      */
     public TimecardSummaryVO[] getTimecardSummaries()
     {
@@ -120,8 +120,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param timecardSummariesIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardSummaries
+     * @param timecardSummariesIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardSummaries
      */
     public void setTimecardSummaries(TimecardSummaryVO[] timecardSummariesIn)
     {
@@ -1258,8 +1258,8 @@ public class SearchTimecardsFormImpl
     private Long submitter;
 
     /**
-     * 
-     * @return submitter 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.submitter
+     * @return submitter TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.submitter
      */
     public Long getSubmitter()
     {
@@ -1292,8 +1292,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param submitterIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.submitter
+     * @param submitterIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.submitter
      */
     public void setSubmitter(Long submitterIn)
     {
@@ -1463,8 +1463,8 @@ public class SearchTimecardsFormImpl
     private Long approver;
 
     /**
-     * 
-     * @return approver 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.approver
+     * @return approver TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.approver
      */
     public Long getApprover()
     {
@@ -1497,8 +1497,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param approverIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.approver
+     * @param approverIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.approver
      */
     public void setApprover(Long approverIn)
     {
@@ -1668,8 +1668,8 @@ public class SearchTimecardsFormImpl
     private String status;
 
     /**
-     * 
-     * @return status 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.status
+     * @return status TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.status
      */
     public String getStatus()
     {
@@ -1702,8 +1702,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param statusIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.status
+     * @param statusIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.status
      */
     public void setStatus(String statusIn)
     {
@@ -1873,8 +1873,8 @@ public class SearchTimecardsFormImpl
     private Date startDateMinimum;
 
     /**
-     * 
-     * @return startDateMinimum 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMinimum
+     * @return startDateMinimum TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMinimum
      */
     public Date getStartDateMinimum()
     {
@@ -1907,8 +1907,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param startDateMinimumIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMinimum
+     * @param startDateMinimumIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMinimum
      */
     public void setStartDateMinimum(Date startDateMinimumIn)
     {
@@ -2078,8 +2078,8 @@ public class SearchTimecardsFormImpl
     private Date startDateMaximum;
 
     /**
-     * 
-     * @return startDateMaximum 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMaximum
+     * @return startDateMaximum TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMaximum
      */
     public Date getStartDateMaximum()
     {
@@ -2112,8 +2112,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param startDateMaximumIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMaximum
+     * @param startDateMaximumIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMaximum
      */
     public void setStartDateMaximum(Date startDateMaximumIn)
     {
@@ -2283,8 +2283,8 @@ public class SearchTimecardsFormImpl
     private Long id;
 
     /**
-     * 
-     * @return id 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
+     * @return id TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
      */
     public Long getId()
     {
@@ -2317,8 +2317,8 @@ public class SearchTimecardsFormImpl
     }
 
     /**
-     * 
-     * @param idIn 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
+     * @param idIn TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
      */
     public void setId(Long idIn)
     {

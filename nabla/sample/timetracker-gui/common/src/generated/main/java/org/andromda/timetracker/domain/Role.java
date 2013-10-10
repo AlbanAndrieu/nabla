@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.domain.Role
  */
 public enum Role
 {
