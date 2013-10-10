@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class UserVO
+ * TODO: Model Documentation for UserVO
  */
 public class UserVO
     implements Serializable, Comparable<UserVO>
@@ -26,13 +26,21 @@ public class UserVO
     private static final long serialVersionUID = 1001098440399290858L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute id */
+    /**
+     * TODO: Model Documentation for UserVO.id
+     */
     protected Long id;
-    /** TODO: Model Documentation for attribute username */
+    /**
+     * TODO: Model Documentation for UserVO.username
+     */
     protected String username;
-    /** TODO: Model Documentation for attribute firstName */
+    /**
+     * TODO: Model Documentation for UserVO.firstName
+     */
     protected String firstName;
-    /** TODO: Model Documentation for attribute lastName */
+    /**
+     * TODO: Model Documentation for UserVO.lastName
+     */
     protected String lastName;
 
     /** Default Constructor with no properties */
@@ -43,9 +51,9 @@ public class UserVO
 
     /**
      * Constructor taking only required properties
-     * @param usernameIn String
-     * @param firstNameIn String
-     * @param lastNameIn String
+     * @param usernameIn String TODO: Model Documentation for UserVO.username
+     * @param firstNameIn String TODO: Model Documentation for UserVO.firstName
+     * @param lastNameIn String TODO: Model Documentation for UserVO.lastName
      */
     public UserVO(final String usernameIn, final String firstNameIn, final String lastNameIn)
     {
@@ -99,7 +107,7 @@ public class UserVO
     }
 
     /**
-     * TODO: Model Documentation for attribute id
+     * TODO: Model Documentation for UserVO.id
      * Get the id Attribute
      * @return id Long
      */
@@ -109,7 +117,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserVO.id
      * @param value Long
      */
     public void setId(final Long value)
@@ -118,7 +126,7 @@ public class UserVO
     }
 
     /**
-     * TODO: Model Documentation for attribute username
+     * TODO: Model Documentation for UserVO.username
      * Get the username Attribute
      * @return username String
      */
@@ -128,7 +136,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserVO.username
      * @param value String
      */
     public void setUsername(final String value)
@@ -137,7 +145,7 @@ public class UserVO
     }
 
     /**
-     * TODO: Model Documentation for attribute firstName
+     * TODO: Model Documentation for UserVO.firstName
      * Get the firstName Attribute
      * @return firstName String
      */
@@ -147,7 +155,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserVO.firstName
      * @param value String
      */
     public void setFirstName(final String value)
@@ -156,7 +164,7 @@ public class UserVO
     }
 
     /**
-     * TODO: Model Documentation for attribute lastName
+     * TODO: Model Documentation for UserVO.lastName
      * Get the lastName Attribute
      * @return lastName String
      */
@@ -166,7 +174,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserVO.lastName
      * @param value String
      */
     public void setLastName(final String value)

@@ -25,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.myfaces.trinidad.context.RequestContext;
 
 /**
- * 
+ * TODO: Model Documentation for HomeController
  */
 public abstract class HomeController
     implements Serializable{
@@ -42,7 +42,7 @@ public abstract class HomeController
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timetrackerhome.searchTimecards
      * This method is called when 'searchTimecards' is triggered in the view 'TimeTracker Home'.
      * It can be safely overridden in descendant classes.
      */
@@ -88,7 +88,7 @@ public abstract class HomeController
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timetrackerhome.newTimecard
      * This method is called when 'newTimecard' is triggered in the view 'TimeTracker Home'.
      * It can be safely overridden in descendant classes.
      */
@@ -134,7 +134,7 @@ public abstract class HomeController
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timetrackerhome.approveTimecards
      * This method is called when 'approveTimecards' is triggered in the view 'TimeTracker Home'.
      * It can be safely overridden in descendant classes.
      */
@@ -180,7 +180,7 @@ public abstract class HomeController
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timetrackerhome.latestTimecard
      * This method is called when 'latestTimecard' is triggered in the view 'TimeTracker Home'.
      * It can be safely overridden in descendant classes.
      */

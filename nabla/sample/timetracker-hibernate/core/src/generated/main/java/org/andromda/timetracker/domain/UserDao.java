@@ -14,7 +14,7 @@ import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 
 /**
- *
+ * TODO: Model Documentation for User
  * @see User
  */
 public interface UserDao
@@ -68,6 +68,7 @@ public interface UserDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link UserVO}.
      * @param entities
+     * @return Collection<UserVO>
      */
     public Collection<UserVO> toUserVOCollection(Collection<?> entities);
 
@@ -135,6 +136,7 @@ public interface UserDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link UserDetailsVO}.
      * @param entities
+     * @return Collection<UserDetailsVO>
      */
     public Collection<UserDetailsVO> toUserDetailsVOCollection(Collection<?> entities);
 
@@ -322,14 +324,14 @@ public interface UserDao
      * instance from <strong>all</strong> attributes and adds it to
      * the persistent store.
      * </p>
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
      * @return User
      */
     public User create(
@@ -352,14 +354,14 @@ public interface UserDao
      * not occur.
      * </p>
      * @param transform
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
      * @return User
      */
     public Object create(
@@ -406,8 +408,8 @@ public interface UserDao
     public void remove(Collection<User> entities);
 
     /**
-     * 
-     * @param email 
+     * TODO: Model Documentation for User.findByEmail
+     * @param email TODO: Model Documentation for User.findByEmail(email)
      * @return User
      */
     public User findByEmail(String email);
@@ -419,7 +421,7 @@ public interface UserDao
      * argument allows you to override the query string defined in {@link #findByEmail(String)}.
      * </p>
      * @param queryString
-     * @param email 
+     * @param email TODO: Model Documentation for User.findByEmail(email)
      * @return User
      */
     public User findByEmail(String queryString, String email);
@@ -434,7 +436,7 @@ public interface UserDao
      * transform the entities (into value objects for example). By default, transformation does
      * not occur.
      * @param transform
-     * @param email 
+     * @param email TODO: Model Documentation for User.findByEmail(email)
      * @return Object
      * </p>
      */
@@ -448,14 +450,14 @@ public interface UserDao
      * </p>
      * @param transform
      * @param queryString
-     * @param email 
+     * @param email TODO: Model Documentation for User.findByEmail(email)
      * @return Object
      */
     public Object findByEmail(int transform, String queryString, String email);
 
     /**
-     * 
-     * @param username 
+     * TODO: Model Documentation for User.getUserDetails
+     * @param username TODO: Model Documentation for User.getUserDetails(username)
      * @return User
      */
     public User getUserDetails(String username);

@@ -8,7 +8,7 @@ package org.andromda.timetracker.service;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.service.UserDoesNotExistException
  */
 public class UserDoesNotExistException
     extends Exception

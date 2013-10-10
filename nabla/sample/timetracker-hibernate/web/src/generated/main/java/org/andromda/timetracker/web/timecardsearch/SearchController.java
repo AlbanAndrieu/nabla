@@ -35,7 +35,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.myfaces.trinidad.context.RequestContext;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.SearchController
  */
 public abstract class SearchController
     implements Serializable{
@@ -44,7 +44,8 @@ public abstract class SearchController
     private static final Log logger = LogFactory.getLog(SearchController.class);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.timetracker.web.timecardsearch.SearchController.populateSearchScreen
      * @param form
      * @throws Throwable
      */
@@ -52,7 +53,8 @@ public abstract class SearchController
         throws Throwable;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.timetracker.web.timecardsearch.SearchController.initializeTimecardId
      * @param form
      * @throws Throwable
      */
@@ -86,7 +88,7 @@ public abstract class SearchController
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.search
      * This method is called when 'search' is triggered in the view 'Search Timecards'.
      * It can be safely overridden in descendant classes.
 SearchTimecardsSearchFormImpl)
@@ -196,7 +198,8 @@ SearchTimecardsSearchFormImpl)
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.Populate Search
+     * Screen
      * @param form
      * @return forward
      * @throws Throwable
@@ -226,7 +229,7 @@ SearchTimecardsSearchFormImpl)
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.details
      * This method is called when 'details' is triggered in the view 'Search Timecards'.
      * It can be safely overridden in descendant classes.
 SearchTimecardsDetailsFormImpl)
@@ -336,7 +339,8 @@ SearchTimecardsDetailsFormImpl)
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.Initialize Timecard
+     * Id
      * @param form
      * @return forward
      * @throws Throwable
@@ -475,7 +479,8 @@ SearchTimecardsFormImpl)
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.Populate Search
+     * Screen
      * @param form
      * @return forward
      * @throws Throwable

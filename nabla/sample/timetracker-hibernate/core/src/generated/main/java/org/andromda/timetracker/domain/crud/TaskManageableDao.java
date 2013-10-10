@@ -11,8 +11,8 @@ import org.andromda.timetracker.domain.Task;
 public interface TaskManageableDao
 {
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for Task.name
+     * @param id TODO: Model Documentation for Task.id
      * @return Task
      */
     public Task create(String name, Long id);
@@ -24,8 +24,8 @@ public interface TaskManageableDao
     public Task readById(Long id);
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for Task.name
+     * @param id TODO: Model Documentation for Task.id
      * @return List<Task>
      */
     public List<Task> read(String name, Long id);
@@ -36,8 +36,8 @@ public interface TaskManageableDao
     public List<Task> readAll();
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for Task.name
+     * @param id TODO: Model Documentation for Task.id
      * @return Task
      */
     public Task update(String name, Long id);

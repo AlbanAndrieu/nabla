@@ -11,7 +11,8 @@ import javax.faces.event.ValueChangeEvent;
  * <code>initializeTimecardId</code> method, which is located on the
  * <code>org.andromda.timetracker.web.timecardsearch.SearchController</code> controller.
  *
- * 
+ * TODO: Model Documentation for
+ * org.andromda.timetracker.web.timecardsearch.SearchController.initializeTimecardId
  *
  * @see org.andromda.timetracker.web.timecardsearch.SearchController#initializeTimecardId(InitializeTimecardIdForm)
  */
@@ -39,25 +40,27 @@ public interface InitializeTimecardIdForm
     public void setEvent(FacesEvent event);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
      * @return id
      */
     public Long getId();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.id
      * @param id
      */
     public void setId(Long id);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.timetracker.web.timecardsearch.SearchController.initializeTimecardId(timecardId)
      * @return timecardId
      */
     public Long getTimecardId();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.timetracker.web.timecardsearch.SearchController.initializeTimecardId(timecardId)
      * @param timecardId
      */
     public void setTimecardId(Long timecardId);

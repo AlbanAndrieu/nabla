@@ -28,7 +28,6 @@
         <param-name>facelets.VIEW_MAPPINGS</param-name>
         <param-value>*.xhtml</param-value>
     </context-param>
-
     <!-- Trinidad has its own ViewHandler, which is a "decorating"
          view handler - for example, it needs to wrap methods like renderView()
          to perform some extra pre- and post-handling.  Facelets, on the other
@@ -51,7 +50,6 @@
         <param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
         <param-value>com.sun.facelets.FaceletViewHandler</param-value>
     </context-param>
-
     <context-param>
         <description>
             Turn off the javascript obfuscation

@@ -31,7 +31,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.myfaces.trinidad.context.RequestContext;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.TimecardController
  */
 public abstract class TimecardController
     implements Serializable{
@@ -173,7 +173,7 @@ TimecardDetailsFormImpl)
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecarddetails.PopulateScreen
      * @param form
      * @return forward
      * @throws Throwable

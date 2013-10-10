@@ -14,7 +14,8 @@ import org.andromda.timetracker.vo.TimecardSummaryVO;
  * <code>populateSearchScreen</code> method, which is located on the
  * <code>org.andromda.timetracker.web.timecardsearch.SearchController</code> controller.
  *
- * 
+ * TODO: Model Documentation for
+ * org.andromda.timetracker.web.timecardsearch.SearchController.populateSearchScreen
  *
  * @see org.andromda.timetracker.web.timecardsearch.SearchController#populateSearchScreen(PopulateSearchScreenForm)
  */
@@ -42,13 +43,13 @@ public interface PopulateSearchScreenForm
     public void setEvent(FacesEvent event);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.submitter
      * @return submitter
      */
     public Long getSubmitter();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.submitter
      * @param submitter
      */
     public void setSubmitter(Long submitter);
@@ -146,13 +147,13 @@ public interface PopulateSearchScreenForm
     public void setSubmitterLabelList(Object[] submitterLabelList);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.approver
      * @return approver
      */
     public Long getApprover();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.approver
      * @param approver
      */
     public void setApprover(Long approver);
@@ -250,13 +251,13 @@ public interface PopulateSearchScreenForm
     public void setApproverLabelList(Object[] approverLabelList);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.status
      * @return status
      */
     public String getStatus();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.status
      * @param status
      */
     public void setStatus(String status);
@@ -354,37 +355,37 @@ public interface PopulateSearchScreenForm
     public void setStatusLabelList(Object[] statusLabelList);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMinimum
      * @return startDateMinimum
      */
     public Date getStartDateMinimum();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMinimum
      * @param startDateMinimum
      */
     public void setStartDateMinimum(Date startDateMinimum);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMaximum
      * @return startDateMaximum
      */
     public Date getStartDateMaximum();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.startDateMaximum
      * @param startDateMaximum
      */
     public void setStartDateMaximum(Date startDateMaximum);
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardSummaries
      * @return timecardSummaries
      */
     public TimecardSummaryVO[] getTimecardSummaries();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.web.timecardsearch.timecardSummaries
      * @param timecardSummaries
      */
     public void setTimecardSummaries(TimecardSummaryVO[] timecardSummaries);

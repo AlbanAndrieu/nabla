@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class TimeAllocationVO
+ * TODO: Model Documentation for TimeAllocationVO
  */
 public class TimeAllocationVO
     implements Serializable, Comparable<TimeAllocationVO>
@@ -26,11 +26,17 @@ public class TimeAllocationVO
     private static final long serialVersionUID = -3871073062522340607L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute id */
+    /**
+     * TODO: Model Documentation for TimeAllocationVO.id
+     */
     protected Long id;
-    /** TODO: Model Documentation for attribute timePeriodVO */
+    /**
+     * TODO: Model Documentation for TimeAllocationVO.timePeriodVO
+     */
     protected TimePeriodVO timePeriodVO;
-    /** TODO: Model Documentation for attribute taskId */
+    /**
+     * TODO: Model Documentation for TimeAllocationVO.taskId
+     */
     protected Long taskId;
 
     /** Default Constructor with no properties */
@@ -41,7 +47,7 @@ public class TimeAllocationVO
 
     /**
      * Constructor taking only required properties
-     * @param timePeriodVOIn TimePeriodVO
+     * @param timePeriodVOIn TimePeriodVO TODO: Model Documentation for TimeAllocationVO.timePeriodVO
      */
     public TimeAllocationVO(final TimePeriodVO timePeriodVOIn)
     {
@@ -89,7 +95,7 @@ public class TimeAllocationVO
     }
 
     /**
-     * TODO: Model Documentation for attribute id
+     * TODO: Model Documentation for TimeAllocationVO.id
      * Get the id Attribute
      * @return id Long
      */
@@ -99,7 +105,7 @@ public class TimeAllocationVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocationVO.id
      * @param value Long
      */
     public void setId(final Long value)
@@ -108,7 +114,7 @@ public class TimeAllocationVO
     }
 
     /**
-     * TODO: Model Documentation for attribute timePeriodVO
+     * TODO: Model Documentation for TimeAllocationVO.timePeriodVO
      * Get the timePeriodVO Attribute
      * @return timePeriodVO TimePeriodVO
      */
@@ -118,7 +124,7 @@ public class TimeAllocationVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocationVO.timePeriodVO
      * @param value TimePeriodVO
      */
     public void setTimePeriodVO(final TimePeriodVO value)
@@ -127,7 +133,7 @@ public class TimeAllocationVO
     }
 
     /**
-     * TODO: Model Documentation for attribute taskId
+     * TODO: Model Documentation for TimeAllocationVO.taskId
      * Get the taskId Attribute
      * @return taskId Long
      */
@@ -137,7 +143,7 @@ public class TimeAllocationVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimeAllocationVO.taskId
      * @param value Long
      */
     public void setTaskId(final Long value)

@@ -60,8 +60,8 @@ public final class TaskManageableDaoBase
     }
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for Task.name
+     * @param id TODO: Model Documentation for Task.id
      * @return entity
      * @see TaskDao#create(Task)
      */
@@ -86,8 +86,8 @@ public final class TaskManageableDaoBase
     }
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for Task.name
+     * @param id TODO: Model Documentation for Task.id
      * @return List<Task>
      */
     @SuppressWarnings("unchecked")
@@ -107,6 +107,7 @@ public final class TaskManageableDaoBase
             {
                 criteria.add(Restrictions.eq("id", id));
             }
+            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
             criteria.setMaxResults(250);
 
             return criteria.list();
@@ -138,8 +139,8 @@ public final class TaskManageableDaoBase
     }
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for Task.name
+     * @param id TODO: Model Documentation for Task.id
      * @return getDao().update(entity)
      * @see TaskDao#update(Task)
      */

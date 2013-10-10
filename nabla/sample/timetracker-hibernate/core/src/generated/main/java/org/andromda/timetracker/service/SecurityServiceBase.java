@@ -74,7 +74,8 @@ public abstract class SecurityServiceBase
 
     /**
      * Performs the core logic for {@link #getUserDetails(String)}
-     * @param username String 
+     * @param username String TODO: Model Documentation for
+SecurityService.getUserDetails(username)
      * @return UserDetailsVO
      * @throws Exception
      */

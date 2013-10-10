@@ -75,7 +75,8 @@ public abstract class TimeTrackingServiceBase
 
     /**
      * Performs the core logic for {@link #findTimecards(TimecardSearchCriteriaVO)}
-     * @param criteria TimecardSearchCriteriaVO 
+     * @param criteria TimecardSearchCriteriaVO TODO: Model Documentation for
+TimeTrackingService.findTimecards(criteria)
      * @return TimecardSummaryVO[]
      * @throws Exception
      */
