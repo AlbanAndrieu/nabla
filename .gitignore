@@ -1,0 +1,33 @@
+
+# Compiled
+target/
+test-output/
+
+# Eclipse
+.classpath
+.classpath.orig
+.project
+.settings
+.metadata
+
+# IDEA
+.idea
+*.iml
+
+# Maven
+.m2
+.repository
+
+# Checkstyle
+.checkstyle
+
+# CSS
+
+
+
+# Node.js
+
+node_modules/
+
+# misc
+*.orig
