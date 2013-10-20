@@ -34,3 +34,32 @@ sudo apt-get install ntp autofs perl libnet-ssleay-perl openssl libauthen-pam-pe
 
 wget http://home.nabla.mobi:8080/jnlpJars/jenkins-cli.jar
 java -jar jenkins-cli.jar -s http://home.nabla.mobi:8080/ help
+
+ec2-authorize default -p 22
+ec2-authorize default -p 25
+ec2-authorize default -p 10000
+ec2-authorize default -p 10001
+ec2-authorize default -p 10002
+ec2-authorize default -p 10003
+ec2-authorize default -p 10004
+ec2-authorize default -p 10005
+ec2-authorize default -p 10006
+ec2-authorize default -p 10007
+ec2-authorize default -p 10008
+ec2-authorize default -p 10009
+ec2-authorize default -p 20000
+ec2-authorize default -p 80
+ec2-authorize default -p 443
+ec2-authorize default -p 21
+ec2-authorize default -p 20
+ec2-authorize default -p 110
+ec2-authorize default -p 143
+ec2-authorize default -p 53
+ec2-authorize default -p 53 -P udp
+
+#TODO 
+remove
+cert-73R73RRLJU3L4UKIECW56GR6TOLDCGGF.pem
+pk-73R73RRLJU3L4UKIECW56GR6TOLDCGGF.pem
+albandri-0.pem
+jenkins.pem

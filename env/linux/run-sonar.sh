@@ -22,3 +22,8 @@ user/pass admin/microsoft Alban Andrieu/...
 sudo update-rc.d -f sonar remove
 sudo update-rc.d sonar defaults 35 65
 ls -l /etc/rc?.d/*sonar
+
+#http://docs.codehaus.org/display/SONAR/Pitest
+wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-pitest-plugin/0.2/sonar-pitest-plugin-0.2.jar
+cd /workspace/sonar/extensions/plugins
+sudo mv /workspace/sonar-pitest-plugin-0.2.jar /workspace/sonar/extensions/plugins

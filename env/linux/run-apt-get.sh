@@ -25,6 +25,8 @@ sudo apt-get install libdb5.1-dev
 sudo apt-get install ssmtp mailutils
 sudo apt-get install geany gedit
 
+sudo apt-get install openjdk-6-jdk openjdk-7-jdk
+
 #cpan
 sudo cpan install CPAN
 #Install following perl package

@@ -68,4 +68,3 @@ close(FILE_TMP);
 if (!$USE_STDIN) {
   move($FILE_NAME_TMP, $FILE_NAME);
 }
-
