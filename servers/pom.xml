@@ -1,66 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-        <parent>
-               <groupId>com.nabla.project</groupId>
-               <artifactId>databases</artifactId>
-               <version>1.0</version>
-               <relativePath>../databases/pom.xml</relativePath>
-        </parent>
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>databases</artifactId>
+		<version>1.0</version>
+		<relativePath>../databases/pom.xml</relativePath>
+	</parent>
 
-        <modelVersion>4.0.0</modelVersion>
-        <artifactId>servers</artifactId>
-        <name>Nabla Servers</name>
-        <packaging>pom</packaging>
-        <description>The Servers pom file is a superpom to centralize all third parties</description>
-        <url>${JOB_URL}</url>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>servers</artifactId>
+	<name>Nabla Servers</name>
+	<packaging>pom</packaging>
+	<description>The Servers pom file is a superpom to centralize all third parties</description>
+	<url>${JOB_URL}</url>
 
-        <scm>
-                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
-                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
-                <url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
-                <tag>HEAD</tag>
-        </scm>
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
+		<tag>HEAD</tag>
+	</scm>
 
-        <build>
-                <pluginManagement>
-                        <plugins>
+	<build>
+		<pluginManagement>
+			<plugins>
 
                              <!-- mvn cargo:deploy -->
-                              <plugin>
-                                        <groupId>org.codehaus.cargo</groupId>
-                                        <artifactId>cargo-maven2-plugin</artifactId>
-                                        <version>${maven.cargo.maven2.plugin.version}</version>
-                                        <configuration>
-                                                <wait>${cargo.wait}</wait>
-                                                <container>
-                                                        <containerId>${cargo.container}</containerId>
-                                                        <type>installed</type>
-                                                        <!--<type>remote</type>-->
-                                                        <!-- type>embedded</type -->
-                                                        <home>${cargo.container.home}</home>
-                                                        <!--
-                                                        <zipUrlInstaller>
-                                                                <url>${cargo.container.url}</url>
-                                                                <installDir>${installDir}</installDir>
-                                                        </zipUrlInstaller>
-                                                        -->
-                                                </container>
-                                                <configuration>
-                                                        <type>standalone</type>
-                                                        <!--<home>${project.build.directory}/${cargo.container}/container</home> -->
-                                                        <properties>
-                                                                <cargo.hostname>${cargo.host}</cargo.hostname>
-                                                                <cargo.servlet.port>${cargo.port}</cargo.servlet.port>
-                                                                <!--
-								<cargo.jvmargs>
-									-Dmgr.config=${env.WORKSPACE}/test/integration/mockrtm/src/main/resources
-									-Drtm.data=${basedir}/src/test/resources/rtmdata
-								</cargo.jvmargs>                            
-								-->                                    
-                                                        </properties>
-                                                </configuration>
+				<!-- call mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:run 
+					> deploy.log 2>&1 -->
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<version>${maven.cargo.maven2.plugin.version}</version>
+					<configuration>
+						<wait>${cargo.wait}</wait>
+						<container>
+							<timeout>180000</timeout>
+							<!--<containerId>${cargo.container}</containerId> -->
+							<!--<type>${cargo.container.type}</type> -->
+
+							<!-- <zipUrlInstaller> <url>${cargo.container.url}</url> <installDir>${installDir}</installDir> 
+								</zipUrlInstaller> -->
+						</container>
+						<configuration>
+							<type>${cargo.configuration.type}</type>
+							<home>${cargo.container.home}</home>
+							<properties>
+								<cargo.hostname>${cargo.host}</cargo.hostname>
+								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+								<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
+								<cargo.remote.username>admin</cargo.remote.username>
+								<cargo.remote.password>admin</cargo.remote.password>
+								<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources 
+									-Dnabla.data=${basedir}/src/test/resources/data -->
+								<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
+								<!-- </cargo.jvmargs> -->
+							</properties>
+						</configuration>
                                                 <!--
 						<deployables>
 							<deployable>
@@ -81,7 +79,7 @@
 							</deployable>
 						</deployables>         
 						-->                                       
-                                        </configuration>
+					</configuration>
                                         <executions>
                                                 <execution>
                                                         <id>start-container</id>
@@ -98,270 +96,521 @@
                                                         </goals>
                                                 </execution>
                                         </executions>
-                                </plugin>
+				</plugin>
                               <!-- end Web application server helpers -->
-                        </plugins>
-                </pluginManagement>
-        </build>
+			</plugins>
+		</pluginManagement>
+	</build>
 
-      <profiles>
+	<profiles>
 
-            <!-- ================= START Container Profiles ================= -->
-          <profile>
-                      <id>jboss7</id>
-                        <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>jboss7</value>                                
-                                </property>
-                                
-                        </activation>
-                  	<properties>
-                                <!-- console user myNewUser admin added with add-user.sh -->
-                                <as.version>6</as.version>
-                                <jboss.ear.version>5</jboss.ear.version>
-                                <!-- START INFO USE BY MDA -->
-                                <jboss.home>${env.JBOSS_HOME}</jboss.home>
-                                <server.version>7.1.1.Final</server.version>
-                                <!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>-->
-                                <!--<jboss.home>/workspace/jboss-as-7.1.1.Final/</jboss.home>-->
-                                <server.home>${jboss.home}</server.home>
-                                <server.name>${product.name}</server.name>
-                                <server.port>${jboss.port}</server.port>
+		<!-- ================= START Container Profiles ================= -->
+		<profile>
+			<id>jboss7x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jboss7x</value>
+				</property>
 
-                              	<!-- Change this to the host on which your webservice will be deployed -->
-                                <webservice.host>localhost</webservice.host>
+			</activation>
+			<properties>
+				<!-- console user myNewUser admin added with add-user.sh -->
+				<as.version>6</as.version>
+				<jboss.ear.version>5</jboss.ear.version>
+				<!-- START INFO USE BY MDA -->
+				<jboss.home>${env.JBOSS_HOME}</jboss.home>
+				<server.version>7.1.1.Final</server.version>
+				<!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home> -->
+				<!--<jboss.home>/workspace/jboss-as-7.1.1.Final/</jboss.home> -->
+				<server.home>${jboss.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${jboss.port}</server.port>
+				<!-- Change this to the host on which your webservice will be deployed -->
+				<webservice.host>localhost</webservice.host>
                            	<!-- Change this the port on which your webservice will be deploy -->
-                          	<webservice.port>8180</webservice.port>
-                                <!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
-                              	<datasource>java:jboss/datasources/${datasource.name}</datasource>
-                                <ejb.jndi.mappedname.pattern>java:global/${application.name}</ejb.jndi.mappedname.pattern>
-                                <!--<ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb>-->
-                                <ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
-                                <ejb.jndi.pattern>java:app/core-${project.version}.jar/#{ejbName}</ejb.jndi.pattern>
-                                <ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
-                                <!-- define JPA provider, check: https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication -->
-                                <jpa.provider.module>hibernate3-bundled</jpa.provider.module>
-                                <hibernate.cache.provider></hibernate.cache.provider> <!-- must be to org.hibernate.cache.HashtableCacheProvider for openejb junit tests -->
-                                <deploy.url>WRONG use tomcat profile</deploy.url>
+				<webservice.port>8180</webservice.port>
+				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server 
+					compatibility -->
+				<datasource>java:jboss/datasources/${datasource.name}</datasource>
+				<ejb.jndi.mappedname.pattern>java:global/${application.name}</ejb.jndi.mappedname.pattern>
+				<!--<ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb> -->
+				<ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
+				<ejb.jndi.pattern>java:app/core-${project.version}.jar/#{ejbName}</ejb.jndi.pattern>
+				<ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
+				<!-- define JPA provider, check: https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication -->
+				<jpa.provider.module>hibernate3-bundled</jpa.provider.module>
+				<hibernate.cache.provider></hibernate.cache.provider> <!-- must be to org.hibernate.cache.HashtableCacheProvider for openejb junit 
+					tests -->
+				<deploy.url>WRONG use tomcat profile</deploy.url>
 
-                             	<!-- END INFO USE BY MDA -->
-                                <cargo.container>jboss7x</cargo.container>
-                             	<cargo.container.home>${jboss.home}</cargo.container.home>
-                             	<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
-                                <cargo.host>localhost</cargo.host>
-                                <cargo.port>${jboss.port}</cargo.port>
-                                <cargo.wait>false</cargo.wait>
-                                <!--<jboss.bind.address>localhost</jboss.bind.address>-->
-                                <jboss.server>standalone</jboss.server>
-                                <jboss.servers.directory>${jboss.home}</jboss.servers.directory>
-                                <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
-                                <!-- for jboss 7.1.1 compile -->
-                                <!--<scope.type>${scope.provided}</scope.type>-->
-                                <scope.type>${scope.compile}</scope.type>
-                                <!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
+				<!-- END INFO USE BY MDA -->
+				<cargo.container>jboss71x</cargo.container>
+				<cargo.container.home>${jboss.home}</cargo.container.home>
+				<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jboss.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
+				<jboss.server>standalone</jboss.server>
+				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
+				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
+				<!-- for jboss 7.1.1 compile -->
+                                <!--<scope.type>${scope.provided}</scope.type> -->
+				<scope.type>${scope.compile}</scope.type>
+				<!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
                                 <!--
                              	<hibernate.core.version>3.6.8.Final</hibernate.core.version>
                              	<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>
                              	-->
-                             	<!-- works with hibernate.core.version 3.6.8.GA -->
+				<!-- works with hibernate.core.version 3.6.8.GA -->
 
-                                <!-- must be emtpy for non jboss7 target -->
+				<!-- must be emtpy for non jboss7 target -->
                                 <!-- uncomment for open ejb to work -->
                                 <!--
                                 <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
                             	<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
                             	<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
                                 -->
-                    </properties>
-          </profile>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>${cargo.container}</containerId>
+								<artifactInstaller>
+									<groupId>org.jboss.as</groupId>
+									<artifactId>jboss-as-dist</artifactId>
+									<version>7.1.1.Final</version>
+								</artifactInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
-                <profile>
-                      <id>jboss5</id>
-                        <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>jboss5</value>
-                                </property>
-                        </activation>
-                  <properties>
-                                <as.version>5</as.version>
-                                <jboss.ear.version>5</jboss.ear.version>
+		<profile>
+			<id>jboss5x</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>server</name>
+					<value>jboss5x</value>
+				</property>
+			</activation>
+			<properties>
+				<as.version>5</as.version>
+				<jboss.ear.version>5</jboss.ear.version>
                                 <!-- START INFO USE BY MDA -->
-                         	<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
-                                <jboss.home>C:\jboss-5.1.0.GA</jboss.home>
-                                <server.version>5.1.0.GA</server.version>
-                             	<server.home>${jboss.home}</server.home>
-                                <server.name>${product.name}</server.name>
-                             	<server.port>${jboss.port}</server.port>
+				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home> -->
+				<jboss.home>C:\jboss-5.1.0.GA</jboss.home>
+				<server.version>5.1.0.GA</server.version>
+				<server.home>${jboss.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${jboss.port}</server.port>
 
-                              	<!-- Change this to the host on which your webservice will be deployed -->
-                                <webservice.host>localhost</webservice.host>
+				<!-- Change this to the host on which your webservice will be deployed -->
+				<webservice.host>localhost</webservice.host>
                            	<!-- Change this the port on which your webservice will be deploy -->
-                          	<webservice.port>8180</webservice.port>
-                                <!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server compatibility -->
-                                <datasource>java:/${datasource.name}</datasource>
-                                <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
-                                <ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
-                                <ejb.jndi.pattern>${application.context}-ear/#{ejbName}/local</ejb.jndi.pattern>
-                                <ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
-                                <!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/> in persistence.xml -->
-                                <jpa.provider.module>org.hibernate:3</jpa.provider.module>
-                                <hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
-                                <deploy.url>WRONG use tomcat profile</deploy.url>
+				<webservice.port>8180</webservice.port>
+				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server 
+					compatibility -->
+				<datasource>java:/${datasource.name}</datasource>
+				<ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
+				<ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
+				<ejb.jndi.pattern>${application.context}-ear/#{ejbName}/local</ejb.jndi.pattern>
+				<ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
+				<!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule" 
+					value="org.hibernate:3"/> in persistence.xml -->
+				<jpa.provider.module>org.hibernate:3</jpa.provider.module>
+				<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+				<deploy.url>WRONG use tomcat profile</deploy.url>
 
                              	<!-- END INFO USE BY MDA -->
-                           	<!--<cargo.container>jboss4x</cargo.container>-->
-                                <cargo.container>jboss5x</cargo.container>
-                                <cargo.container.home>${jboss.home}</cargo.container.home>
-                              	<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
-                                <cargo.host>localhost</cargo.host>
-                                <cargo.port>${jboss.port}</cargo.port>
-                                <cargo.wait>false</cargo.wait>
-                                <!--<jboss.bind.address>localhost</jboss.bind.address>-->
+				<!--<cargo.container>jboss4x</cargo.container> -->
+				<cargo.container>jboss51x</cargo.container>
+				<cargo.container.home>${jboss.home}</cargo.container.home>
+				<cargo.container.url>http://downloads.sourceforge.net/jboss/jboss-5.1.0.GA.zip?big_mirror=1</cargo.container.url>
+				<!--http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip -->
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jboss.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
 
-                                <jboss.server>default</jboss.server>
-                                <jboss.servers.directory>${jboss.home}/server</jboss.servers.directory>
-                                <jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deploy</jboss.deploy.directory>
-                                <!-- for jboss 5.1.0 provided -->
-                                <scope.type>${scope.compile}</scope.type>
-                                <!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
-                                <!--
-                           	<hibernate.core.version>3.3.2.GA</hibernate.core.version>
-                                -->
-                    </properties>
-          </profile>
+				<jboss.server>default</jboss.server>
+				<jboss.servers.directory>${jboss.home}/server</jboss.servers.directory>
+				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deploy</jboss.deploy.directory>
+				<!-- for jboss 5.1.0 provided -->
+				<scope.type>${scope.compile}</scope.type>
+				<!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
+				<!-- <hibernate.core.version>3.3.2.GA</hibernate.core.version> -->
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>${cargo.container}</containerId>
+								<zipUrlInstaller>
+									<url>${cargo.container.url}</url>
+								</zipUrlInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 
-          <profile>
-                 <id>jetty6</id>
-                        <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>jetty6</value>
-                                </property>
-                        </activation>
-                 <properties>
-                         <server.home></server.home>
-                         <server.name>${product.name}</server.name>
-                         <server.port></server.port>
-                         <datasource>${datasource.name}</datasource>
+		<profile>
+			<id>jetty6x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jetty6x</value>
+				</property>
+			</activation>
+			<properties>
+				<server.home></server.home>
+				<server.name>${product.name}</server.name>
+				<server.port></server.port>
+				<datasource>${datasource.name}</datasource>
 
-                         <cargo.container>jetty6x</cargo.container>
-                         <cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
-                         <cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
-		         <cargo.host>localhost</cargo.host>
-                         <cargo.port>${jetty.port}</cargo.port>
-                         <cargo.wait>false</cargo.wait>                         
-                 </properties>
-          </profile>
-          <profile>
-                 <id>jetty9</id>
-                        <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>jetty9x</value>
-                                </property>
-                        </activation>
-                 <properties>
-                         <server.home></server.home>
-                         <server.name>${product.name}</server.name>
-                         <server.port></server.port>
-                         <datasource>${datasource.name}</datasource>
+				<cargo.container>jetty6x</cargo.container>
+				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
+				<cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
+				<cargo.container.type>embedded</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jetty.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>jetty6x</containerId>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jetty7x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jetty7x</value>
+				</property>
+			</activation>
+			<properties>
+				<server.home></server.home>
+				<server.name>${product.name}</server.name>
+				<server.port></server.port>
+				<datasource>${datasource.name}</datasource>
 
-                         <cargo.container>jetty9x</cargo.container>
-                         <cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
-                         <cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
-		         <cargo.host>localhost</cargo.host>
-                         <cargo.port>${jetty.port}</cargo.port>
-                         <cargo.wait>false</cargo.wait>
-                 </properties>
-          </profile>          
-          <profile>
-                <id>tomcat7x</id>
-                        <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>tomcat7x</value>
-                                </property>
-                        </activation>
-                <properties>
-                          <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
-                          <server.home>${tomcat.home}</server.home>
-                          <server.name>${product.name}</server.name>
-                          <server.port>${tomcat.port}</server.port>
-                          <datasource>${datasource.name}</datasource>
-                          <deploy.url>http://localhost:${tomcat.port}/manager/html</deploy.url>
+				<cargo.container>jetty7x</cargo.container>
+				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
+				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jetty.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>jetty7x</containerId>
+								<artifactInstaller>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-distribution</artifactId>
+									<version>7.6.3.v20120416</version>
+								</artifactInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jetty9x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jetty9x</value>
+				</property>
+			</activation>
+			<properties>
+				<server.home></server.home>
+				<server.name>${product.name}</server.name>
+				<server.port></server.port>
+				<datasource>${datasource.name}</datasource>
 
-                          <cargo.container>tomcat7x</cargo.container>
-                          <cargo.container.home>${tomcat.home}</cargo.container.home>
-                          <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.16/bin/apache-tomcat-7.0.16.zip</cargo.container.url>
-                          <cargo.host>localhost</cargo.host>
-                          <cargo.port>${tomcat.port}</cargo.port>
-                          <cargo.wait>false</cargo.wait>
-                          <scope.type>${scope.web}</scope.type>
-                </properties>
-          </profile>
-          <profile>
-                <id>tomcat6x</id>
-                        <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>tomcat6x</value>
-                                </property>
-                        </activation>
-                <properties>
-                          <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
-                          <server.home>${tomcat.home}</server.home>
-                          <server.name>${product.name}</server.name>
-                          <server.port>${tomcat.port}</server.port>
-                          <datasource>${datasource.name}</datasource>
-                          <deploy.url>http://localhost:${tomcat.port}/manager</deploy.url>
+				<cargo.container>jetty9x</cargo.container>
+				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
+				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jetty.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>jetty9x</containerId>
+								<artifactInstaller>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-distribution</artifactId>
+									<version>9.0.2.v20130417</version>
+								</artifactInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>tomcat7x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>tomcat7x</value>
+				</property>
+			</activation>
+			<properties>
+				<!--<tomcat.home>${env.CATALINA_HOME}</tomcat.home> -->
+				<tomcat.home>/tomcat-7.0</tomcat.home>
+				<server.home>${tomcat.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${tomcat.port}</server.port>
+				<datasource>${datasource.name}</datasource>
+				<deploy.url>http://${cargo.host}:${tomcat.port}/manager</deploy.url>
 
-                          <cargo.container>tomcat6x</cargo.container>
-                          <cargo.container.home>${tomcat.home}</cargo.container.home>
-                          <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.20/bin/apache-tomcat-6.0.20.zip</cargo.container.url>
-                          <cargo.host>localhost</cargo.host>
-                          <cargo.port>${tomcat.port}</cargo.port>
-                          <cargo.wait>false</cargo.wait>
-                          <scope.type>${scope.web}</scope.type>
-                </properties>
-          </profile>
-          <profile>
-                <id>glassfish</id>
-                 <activation>
-                                <property>
-                                        <name>server</name>
-                                        <value>glassfish</value>
-                                </property>
-                        </activation>
-                <properties>
-                           <!--<glassfish.home>${env.J2EE_HOME}</glassfish.home> -->
-                           <glassfish.home>C:/Sun/SDK</glassfish.home>
-                           <server.home>${glassfish.home}</server.home>
-                           <server.name>${product.name}</server.name>
-                           <server.port>${glassfish.port}</server.port>
-                           <datasource>${datasource.name}</datasource>
+				<cargo.container>tomcat7x</cargo.container>
+				<cargo.container.home>${tomcat.home}</cargo.container.home>
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.16/bin/apache-tomcat-7.0.16.zip</cargo.container.url>
+				<!--http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.30/bin/apache-tomcat-7.0.30.zip -->
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>existing</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${tomcat.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+				<scope.type>${scope.web}</scope.type>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>tomcat7x</containerId>
+								<type>${cargo.container.type}</type>
+								<zipUrlInstaller>
+									<url>${cargo.container.url}</url>
+								</zipUrlInstaller>
+							</container>
+						</configuration>
+						<!-- 
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>deployer-deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>verify-deploy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>deployer-deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>clean-undeploy</id>
+								<phase>pre-clean</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+								</goals>
+							</execution>
+						</executions>
+						-->
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>tomcat6x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>tomcat6x</value>
+				</property>
+			</activation>
+			<properties>
+				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
+				<server.home>${tomcat.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${tomcat.port}</server.port>
+				<datasource>${datasource.name}</datasource>
+				<deploy.url>http://localhost:${tomcat.port}/manager</deploy.url>
 
-                           <cargo.container>glassfish3x</cargo.container>
-                           <cargo.container.home>${server.home}</cargo.container.home>
-                           <cargo.container.url>http://download.java.net/glassfish/3.1.1/release/glassfish-3.1.1.zip</cargo.container.url>
-                           <cargo.host>localhost</cargo.host>
-                           <cargo.port>${glassfish.port}</cargo.port>
-                           <cargo.wait>false</cargo.wait>
-                </properties>
-          </profile>
+				<cargo.container>tomcat6x</cargo.container>
+				<cargo.container.home>${tomcat.home}</cargo.container.home>
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.35/bin/apache-tomcat-6.0.35.zip</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${tomcat.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+				<scope.type>${scope.web}</scope.type>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>tomcat6x</containerId>
+								<zipUrlInstaller>
+									<url>${cargo.container.url}</url>
+								</zipUrlInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>glassfish3x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>glassfish3x</value>
+				</property>
+			</activation>
+			<properties>
+				<!--<glassfish.home>${env.J2EE_HOME}</glassfish.home> -->
+				<glassfish.home>C:/Sun/SDK</glassfish.home>
+				<server.home>${glassfish.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${glassfish.port}</server.port>
+				<datasource>${datasource.name}</datasource>
+
+				<cargo.container>glassfish3x</cargo.container>
+				<cargo.container.home>${server.home}</cargo.container.home>
+				<cargo.container.url>http://download.java.net/glassfish/3.1.2/release/glassfish-3.1.2.zip</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${glassfish.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>glassfish3x</containerId>
+								<zipUrlInstaller>
+									<url>${cargo.container.url}</url>
+								</zipUrlInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jonas5x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jonas5x</value>
+				</property>
+			</activation>
+			<properties>
+				<jonas.home>TODO</jonas.home>
+				<server.home>${jonas.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${jonas.port}</server.port>
+				<datasource>${datasource.name}</datasource>
+
+				<cargo.container>jonasx</cargo.container>
+				<cargo.container.home>${server.home}</cargo.container.home>
+				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jonas.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>jonas5x</containerId>
+								<artifactInstaller>
+									<groupId>org.ow2.jonas.assemblies.profiles</groupId>
+									<artifactId>jonas-full</artifactId>
+									<version>5.2.3</version>
+									<classifier>bin</classifier>
+								</artifactInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>          
              <!-- ================= END Container Profiles ================= -->
-          <profile>
-              <id>sample</id>
-              <activation>
-                  <property>
-                          <name>profile.activation</name>
-                  </property>
-              </activation>
-              <modules>
-                   <module>sample</module>
-              </modules>
-          </profile>
-     </profiles>
+		<profile>
+			<id>sample</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>
+			<modules>
+				<module>sample</module>
+			</modules>
+		</profile>
+	</profiles>
 
 </project>
