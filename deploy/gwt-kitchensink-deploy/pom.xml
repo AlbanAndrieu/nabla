@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>deploy</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gwt-kitchensink-deploy</artifactId>
+	<name>Nabla gwt-kitchensink Deploy</name>
+	<packaging>pom</packaging>
+	<description>Nabla gwt-kitchensink Deploy</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.tools.gwt.kitchensink</groupId>
+			<artifactId>gwt-kitchensink</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- for automatic running of integration tests with Jetty -->
+				<!-- mvn cargo:deploy -->
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<configuration>
+						<configuration>
+							<type>${cargo.configuration.type}</type>
+							<home>${cargo.container.home}</home>
+							<properties>
+								<cargo.hostname>${cargo.host}</cargo.hostname>
+								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+								<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
+								<cargo.remote.username>admin</cargo.remote.username>
+								<cargo.remote.password>admin</cargo.remote.password>
+								<!-- 
+								<cargo.jvmargs> 
+								-Dnabla.config=${basedir}/src/main/resources 
+								-Dnabla.data=${basedir}/src/test/resources/data -->
+								<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
+								<!-- 
+								</cargo.jvmargs>
+								 -->
+							</properties>
+						</configuration>
+						<deployables>
+							<deployable>
+								<groupId>org.jboss.tools.gwt.kitchensink</groupId>
+								<artifactId>gwt-kitchensink</artifactId>
+								<type>war</type>
+								<properties>
+									<context>/nabla</context>
+								</properties>
+								<pingURL>http://${cargo.host}:${tomcat.port}/nabla</pingURL>
+								<pingTimeout>60000</pingTimeout>
+							</deployable>
+						</deployables>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

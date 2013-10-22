@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>uml</artifactId>
+		<version>1.0</version>
+		<relativePath>../uml/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>deploy</artifactId>
+	<name>Nabla Deploy</name>
+	<packaging>pom</packaging>
+	<description>The Deploy pom file is a superpom to centralize deployment</description>
+	<url>${JOB_URL}</url>
+
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/deploy</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/deploy</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/deploy</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<modules>
+		<module>gwt-kitchensink-deploy</module>
+	</modules>
+</project>
