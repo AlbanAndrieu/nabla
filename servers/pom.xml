@@ -80,6 +80,7 @@
 						</deployables>         
 						-->                                       
 					</configuration>
+                                                <!--					
                                         <executions>
                                                 <execution>
                                                         <id>start-container</id>
@@ -96,6 +97,7 @@
                                                         </goals>
                                                 </execution>
                                         </executions>
+						-->                                          
 				</plugin>
                               <!-- end Web application server helpers -->
 			</plugins>
@@ -233,7 +235,6 @@
 				<deploy.url>WRONG use tomcat profile</deploy.url>
 
                              	<!-- END INFO USE BY MDA -->
-				<!--<cargo.container>jboss4x</cargo.container> -->
 				<cargo.container>jboss51x</cargo.container>
 				<cargo.container.home>${jboss.home}</cargo.container.home>
 				<cargo.container.url>http://downloads.sourceforge.net/jboss/jboss-5.1.0.GA.zip?big_mirror=1</cargo.container.url>
@@ -301,7 +302,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>jetty6x</containerId>
+								<containerId>${cargo.container}</containerId>
 							</container>
 						</configuration>
 					</plugin>
@@ -338,7 +339,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>jetty7x</containerId>
+								<containerId>${cargo.container}</containerId>
 								<artifactInstaller>
 									<groupId>org.eclipse.jetty</groupId>
 									<artifactId>jetty-distribution</artifactId>
@@ -380,7 +381,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>jetty9x</containerId>
+								<containerId>${cargo.container}</containerId>
 								<artifactInstaller>
 									<groupId>org.eclipse.jetty</groupId>
 									<artifactId>jetty-distribution</artifactId>
@@ -427,7 +428,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>tomcat7x</containerId>
+								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
@@ -503,7 +504,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>tomcat6x</containerId>
+								<containerId>${cargo.container}</containerId>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -545,7 +546,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>glassfish3x</containerId>
+								<containerId>${cargo.container}</containerId>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -570,7 +571,7 @@
 				<server.port>${jonas.port}</server.port>
 				<datasource>${datasource.name}</datasource>
 
-				<cargo.container>jonasx</cargo.container>
+				<cargo.container>jonas5x</cargo.container>
 				<cargo.container.home>${server.home}</cargo.container.home>
 				<cargo.container.url>TODO</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
@@ -586,7 +587,7 @@
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
 							<container>
-								<containerId>jonas5x</containerId>
+								<containerId>${cargo.container}</containerId>
 								<artifactInstaller>
 									<groupId>org.ow2.jonas.assemblies.profiles</groupId>
 									<artifactId>jonas-full</artifactId>
