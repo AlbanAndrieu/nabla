@@ -71,7 +71,11 @@ if [ ! -x ${REPLACE_EXE} ]; then
     exit 1
 fi
 
-[ -r ${THIRDPARTY_PROPERTIES} ] || echo "Warning: properties file ${THIRDPARTY_PROPERTIES} not found"
+[ -n "${THIRDPARTY_PROPERTIES}" ] || echo "Warning: properties file name for THIRDPARTY (${THIRDPARTY_PROPERTIES}) not defined"
+[ -r ${THIRDPARTY_PROPERTIES} ] || echo "Warning: properties file THIRDPARTY (${THIRDPARTY_PROPERTIES}) not found"
+#echo "THIRDPARTY_PROPERTIES : ${THIRDPARTY_PROPERTIES}"
+[ -n "${USER_COMMON_PROPERTIES}" ] || echo "Warning: properties file name for USER_COMMON (${USER_COMMON_PROPERTIES}) not defined"
+#echo "USER_COMMON_PROPERTIES : ${USER_COMMON_PROPERTIES}"
 
 if [ "${TARGET_FILE}" != "" ]; then
 

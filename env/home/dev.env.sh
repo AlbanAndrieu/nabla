@@ -29,13 +29,19 @@ echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin win
 if [ -z "$PROJECT_USER" ]
 then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  export PROJECT_USER=albandri10
+  export PROJECT_USER=aandrieu
 fi
 
 if [ -z "$PROJECT_VERSION" ]
 then
   echo "ERROR: Set PROJECT_VERSION environment variable!"
   export PROJECT_VERSION=10
+fi
+
+if [ -z "$DRIVE_PATH" ]
+then
+  #echo "ERROR: Set DRIVE_PATH environment variable!"
+  export DRIVE_PATH=/cygdrive/c
 fi
 
 if [ -z "$PROJECT_HOME" ]
@@ -70,8 +76,8 @@ export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
 if [ -d "${HOME}/bin" ] ; then
     PATH="${HOME}/bin:$PATH"
 fi
-if [ -d "${WORKSPACE_ENV}/bin" ] ; then
-    PATH="${WORKSPACE_ENV}/bin:$PATH"
+if [ -d "${WORKSPACE_ENV}/${ARCH}/bin" ] ; then
+    PATH="${WORKSPACE_ENV}/${ARCH}/bin:$PATH"
 fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
@@ -83,6 +89,7 @@ export PROJECT_BUILD_TYPE=target
 export CLIENT_SERVER_TYPE=jboss
 
 export PROJECT_DEV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
+echo PROJECT_USER: ${PROJECT_USER} PROJECT_DEV : ${PROJECT_DEV}
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
 export PROJECT_TARGET_PATH=${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
 export PROJECT_USER_PROFILE="${PROJECT_DEV}/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties"
@@ -129,19 +136,21 @@ then
   export LD_LIBRARY_PATH
 fi
 
-
 export QTDIR=/lib/qt3
 
 export HUDSON_HOME=${DRIVE_PATH}/hudson
 export JENKINS_HOME=${DRIVE_PATH}/jenkins
-export SONAR_HOME=${DRIVE_PATH}/workspace/sonar-3.3
-export SONAR_RUNNER_HOME=${DRIVE_PATH}/workspace/sonar-runner-2.0
+export TOMCAT_HOME=/var/lib/tomcat6
+export SONAR_HOME=${DRIVE_PATH}/workspace/sonar
+export SONAR_RUNNER_HOME=${DRIVE_PATH}/workspace/sonar-runner
 export PATH=${SONAR_RUNNER_HOME}/bin:${PATH}
 export CYGWIN_HOME=${DRIVE_PATH}/cygwin
 export SVN_HOME=${CYGWIN_HOME}/bin
-export CROWD_INSTALL=${DRIVE_PATH}/workspace/atlassian-crowd-2.5.2/
+export CROWD_INSTALL=${DRIVE_PATH}/workspace/crowd
 export CROWD_HOME=/var/crowd-home
-export NEXUS_HOME=/usr/local/nexus
+export NEXUS_HOME=${DRIVE_PATH}/workspace/nexus
+export FISHEYE_HOME=${DRIVE_PATH}/workspace/fecru
+export FISHEYE_INST=${DRIVE_PATH}/workspace/fisheye
 
 export SYBASE_OCS=OCS-15_0
 export SYBASE_VERSION=12.5
@@ -366,6 +375,15 @@ then
   export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
+#AWS EC2
+#export EC2_KEYPAIR=<your keypair name> # name only, not the file name
+#export EC2_URL=https://ec2.<your ec2 region>.amazonaws.com
+#export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+#export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+export EC2_KEYPAIR=albandri # name only, not the file name
+export EC2_URL=https://ec2.us-west-2.amazonaws.com
+export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
+export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 ###
 # INCLUDE LANGUAGE SPECIFIC
 ###
@@ -429,6 +447,13 @@ export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_P
 ##
 # Alias
 ##
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+
 alias cde="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}"
 alias cdr="cd ${PROJECT_DEV}"
 alias cdc="cd ${PROJECT_DEV}/env/config"
@@ -495,9 +520,9 @@ alias setEnvFilesAll="${WORKSPACE_ENV}/config/setEnvFiles.allUserDev.sh ${PROJEC
 
 alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 
-export M2_SETTINGS=${WORKSPACE_ENV}/home/.m2/settings.xml
-#alias mvn="mvn -s ${M2_SETTINGS}"
-#echo "Maven settings are in : ${M2_SETTINGS}"
+export M2_SETTINGS=${PROJECT_DEV}/.m2/settings.xml
+alias mvn="mvn -s ${M2_SETTINGS}"
+echo "Maven settings are in : ${M2_SETTINGS}"
 
 # PATH Setting
 #source ${WORKSPACE_ENV}/java/dev.env.sh
@@ -533,7 +558,7 @@ case ${ARCH} in
     ;;
 esac
 
-export DISPLAY=localhost:0.0
+export DISPLAY=:0.0
 
 echo "PATH is ${PATH}"
 

@@ -1,0 +1,11 @@
+[tomcat-servers]
+webserver1
+
+[jboss-servers]
+webserver1
+
+[webservers]
+web3
+
+[dbservers]
+web2

@@ -26,12 +26,17 @@ echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin win
 
 if (! $?PROJECT_USER) then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  setenv PROJECT_USER albandri10
+  setenv PROJECT_USER aandrieu
 endif
 
 if (! $?PROJECT_VERSION) then
   echo "ERROR: Set PROJECT_VERSION environment variable!"
   setenv PROJECT_VERSION 10
+endif
+
+if (! $?DRIVE_PATH) then
+  echo "ERROR: Set DRIVE_PATH environment variable!"
+  setenv DRIVE_PATH /cygdrive/c
 endif
 
 if (! $?PROJECT_HOME) then
@@ -102,10 +107,10 @@ setenv PROJECT_MAJOR_VERSION ${PROJECT_VERSION}
 setenv PROJECT_BUILD_TYPE target
 setenv CLIENT_SERVER_TYPE jboss
 
-setenv PROJECT_DEV ${PROJECT_HOME}/${PROJECT_USER}
-setenv PROJECT_SRC ${PROJECT_HOME}/${PROJECT_USER}/cpp
+setenv PROJECT_DEV ${PROJECT_HOME}/aandrieu
+setenv PROJECT_SRC ${PROJECT_HOME}/aandrieu/cpp
 setenv PROJECT_TARGET_PATH ${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
-setenv PROJECT_USER_PROFILE ${PROJECT_HOME}/${PROJECT_USER}/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties
+setenv PROJECT_USER_PROFILE ${PROJECT_HOME}/aandrieu/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties
 
 setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
 setenv PROJECT_RELEASE ${PROJECT_TARGET_PATH}/deploy/${PROJECT_MAJOR_VERSION}
@@ -200,14 +205,17 @@ setenv PATH ${PATH}:${GRAPHVIZ_HOME}/bin
 
 setenv HUDSON_HOME ${DRIVE_PATH}/hudson
 setenv JENKINS_HOME ${DRIVE_PATH}/jenkins
-setenv SONAR_HOME ${DRIVE_PATH}/workspace/sonar-3.3
-setenv SONAR_RUNNER_HOME ${DRIVE_PATH}/workspace/sonar-runner-2.0
+setenv TOMCAT_HOME /var/lib/tomcat6
+setenv SONAR_HOME ${DRIVE_PATH}/workspace/sonar
+setenv SONAR_RUNNER_HOME ${DRIVE_PATH}/workspace/sonar-runner
 setenv PATH ${SONAR_RUNNER_HOME}/bin:${PATH}
 setenv CYGWIN_HOME ${DRIVE_PATH}/cygwin
 setenv SVN_HOME ${CYGWIN_HOME}/bin
-setenv CROWD_INSTALL ${DRIVE_PATH}/workspace/atlassian-crowd-2.5.2/
+setenv CROWD_INSTALL ${DRIVE_PATH}/workspace/crowd
 setenv CROWD_HOME /var/crowd-home
-setenv NEXUS_HOME /usr/local/nexus
+setenv NEXUS_HOME ${DRIVE_PATH}/workspace/nexus
+setenv FISHEYE_HOME ${DRIVE_PATH}/workspace/fecru
+setenv FISHEYE_INST ${DRIVE_PATH}/workspace/fisheye
 
 # CMAKE 2.6.4
 setenv CMAKE_HOME ${DRIVE_PATH}/CMake-2.6.4
@@ -361,6 +369,13 @@ setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_P
 ##
 # Alias
 ##
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+
 alias cde 'cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}'
 alias cdr 'cd ${PROJECT_DEV}'
 alias cdc 'cd ${PROJECT_DEV}/env/config'
@@ -418,8 +433,9 @@ alias setEnvFilesAll    '${WORKSPACE_ENV}/config/setEnvFiles.allUserDev.sh ${PRO
 
 alias setWorkspace      "source ${WORKSPACE_ENV}/scripts/setWorkspace.csh"
 
-setenv M2_SETTINGS ${WORKSPACE_ENV}/home/.m2/settings.xml
-#alias mvn               'mvn -s ${M2_SETTINGS}'
+setenv M2_SETTINGS ${PROJECT_DEV}/.m2/settings.xml
+alias mvn               'mvn -s ${M2_SETTINGS}'
+echo "Maven settings are in : ${M2_SETTINGS}"
 
 # PATH Setting
 #source ${WORKSPACE_ENV}/java/dev.env.csh
@@ -466,7 +482,7 @@ switch ( ${ARCH} )
   breaksw
 endsw
 
-setenv DISPLAY localhost:0.0
+setenv DISPLAY :0.0
     
 echo "PATH is ${PATH}"
 

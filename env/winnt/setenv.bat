@@ -9,7 +9,7 @@ rem ipconfig /flushdns
 
 set VERSION=10
 
-set UNIX_USERNAME=albandri
+set UNIX_USERNAME=aandrieu
 set HOME=C:\workspace\users\%UNIX_USERNAME%%VERSION%
 set WORKSPACE=%HOME%
 set HOMEPATH=%HOME%
@@ -57,7 +57,7 @@ set MSVCDir=C:\MinGW
 
 set HUDSON_HOME=C:\hudson
 set JENKINS_HOME=C:\hudson
-set SVN_HOME=C:\Program Files\SlikSvn
+set SVN_HOME=C:\Program Files\VisualSVN Server
 
 set ORACLE_HOME=C:\oraclexe\app\oracle\product\10.2.0\server
 
