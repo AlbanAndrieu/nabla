@@ -283,6 +283,7 @@
                 <profile>
                         <id>derby</id>
 			<activation>
+				<activeByDefault>true</activeByDefault>
                                 <property>
                                         <name>database</name>
 					<value>derby</value>
