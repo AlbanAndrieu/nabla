@@ -128,7 +128,7 @@
 
         <profiles>
                 <!-- ================= START Environment Profiles ================= -->
-		<profile>	
+		<profile>
         	  <id>m2e</id>
         	  <activation>
         	    <property>
@@ -162,7 +162,7 @@
         	      </plugins>
         	    </pluginManagement>
         	  </build>
-        	</profile>                   
+        	</profile>
                 <profile>
                   <id>env.WORKSPACE.default</id>
                   <activation>
@@ -895,7 +895,7 @@
                                                                 <excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
                                                         </excludeRoots>
 
-							<!-- 
+							<!--
                                                         <rulesets>
                                                                 <ruleset>project/pmd_regles_nabla.xml</ruleset>
                                                         </rulesets>
@@ -918,7 +918,7 @@
                                                         <!--<failOnError>true</failOnError>-->
                                                         <excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 							<maxHeap>1024</maxHeap>
-							<timeout>1200000</timeout>                                                          
+							<timeout>1200000</timeout>
                                                 </configuration>
                                         </plugin>
 
@@ -1084,11 +1084,11 @@
         	             <plugin>
         	                 <groupId>com.atlassian.maven.plugins</groupId>
         	                 <artifactId>maven-clover2-plugin</artifactId>
-        	                 <version>${maven.clover.plugin.version}</version>	                 
+        	                 <version>${maven.clover.plugin.version}</version>
         	             </plugin>
         	         </plugins>
-        	     </reporting>			
-		</profile>          		           
+        	     </reporting>
+		</profile>
 		<profile>
         	    <id>clover.optimize</id>
         	    <build>
@@ -1122,7 +1122,7 @@
         	            </plugin>
         	        </plugins>
         	    </build>
-        	</profile> 	
+        	</profile>
 		<profile>
         	    <id>clover.all</id>
         	    <build>
@@ -1140,7 +1140,7 @@
         	                      <historyDir>${user.home}/history/${project.artifact}</historyDir>
         	                      <generatePdf>true</generatePdf>
   				      <generateXml>true</generateXml>
-  				      <generateHtml>true</generateHtml>        	                      
+  				      <generateHtml>true</generateHtml>
         	                </configuration>
         	                <executions>
         	                    <execution>
@@ -1167,7 +1167,7 @@
         	            </plugin>
         	        </plugins>
         	    </build>
-        	</profile>        				
+        	</profile>
         </profiles>
 
         <!-- Keep Alphabetical Order. Capital Letter goes first -->
@@ -1241,10 +1241,11 @@
 		<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
 		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
+		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>
 
                 <!-- BEGIN of Thirdparties versions stick to project recommandations -->
                 <andromda.version>3.5</andromda.version>
-                
+
                 <tibjms.version>4.2.0</tibjms.version>
                 <!--<tibrv.version>8.1.2</tibrv.version>-->
                 <tibrv.version>8.2.2</tibrv.version>
@@ -1345,8 +1346,8 @@
                 <jdbc.hsqldb.version>2.2.8</jdbc.hsqldb.version>
                 <!--<jconnect.version>6.0.5.26312</jconnect.version>-->
                 <!--<jdbc.jconnect.version>7.0.7</jdbc.jconnect.version>-->
-                <jdbc.jtds.version>1.2.6</jdbc.jtds.version>  
-                <jdbc.sybase.version>7.0.7</jdbc.sybase.version> 
+                <jdbc.jtds.version>1.2.6</jdbc.jtds.version>
+                <jdbc.sybase.version>7.0.7</jdbc.sybase.version>
                 <!--TODO same as jdbc.sybase.version <jconn.version>6.0</jconn.version>-->
                 <jdbc.h2.version>1.3.168</jdbc.h2.version>
                 <jdbc.oracle.version>10.2.0.2.0</jdbc.oracle.version>
@@ -1411,7 +1412,7 @@
                 <displaytag.version>1.2</displaytag.version>
                 <dwr.version>2.0.1</dwr.version>
                 <ehcache.version>2.5.0</ehcache.version>
-                <ehcache.jar.version>2.7.4</ehcache.jar.version>        
+                <ehcache.jar.version>2.7.4</ehcache.jar.version>
                 <ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
                 <org.javassist.version>3.15.0-GA</org.javassist.version>
                 <javassist.version>3.12.1.GA</javassist.version>
@@ -1543,7 +1544,7 @@
 
                 <logback.version>1.0.7</logback.version>
                 <log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
-                <slf4j.version>1.7.2</slf4j.version>                
+                <slf4j.version>1.7.2</slf4j.version>
                 <commons.dbcp>1.2.2</commons.dbcp>
 
                 <blazeds.version>3.2.0.3978</blazeds.version>
@@ -1573,7 +1574,7 @@
                 <jaxb.api.version>2.1</jaxb.api.version>
                 <jaxb.impl.version>2.1.13</jaxb.impl.version>
                 <javax.jms.version>1.1</javax.jms.version>
-                <!-- jetty 8 migration implies migrate to servlet api 3. The official maven 
+                <!-- jetty 8 migration implies migrate to servlet api 3. The official maven
 			artifact name changed to javax.servlet:javax.servlet-api:3.0.1 -->
 		<javax.servlet.api.version>3.0.1</javax.servlet.api.version>
                 <json.lib.version>2.3</json.lib.version>
@@ -1599,7 +1600,7 @@
 		<groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
 		<groovy.eclipse.batch.version>2.0.6-01</groovy.eclipse.batch.version>
 		<gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
-		
+
                 <flex.sdk.version>4.6.b.23201</flex.sdk.version>
                 <flexlib.version>2.5</flexlib.version>
                 <flexunit.version>4.0-rc-1</flexunit.version>
@@ -1610,7 +1611,7 @@
 		<!--<jetty.version>6.1.25</jetty.version>--> <!-- TODO remove jetty 6 and 7 -->
 		<!--<jetty7.version>7.6.5.v20120716</jetty7.version>-->
 		<jetty8.version>8.1.9.v20130131</jetty8.version>
-		                
+
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
                 <maven.groovy.plugin.version>1.3</maven.groovy.plugin.version>
                 <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
@@ -1663,7 +1664,7 @@
                 <!--<maven.jar.plugin.version>2.4</maven.jar.plugin.version> does not work in eclipse org.codehaus.plexus.archiver.jar.Manifest.merge(org.codehaus.plexus.archiver.jar.Manifest) see : http://dev.eclipse.org/mhonarc/lists/m2e-users/msg02273.html-->
                 <maven.jar.plugin.version>2.3.2</maven.jar.plugin.version>
                 <maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
-                <maven.war.plugin.version>2.4</maven.war.plugin.version>                
+                <maven.war.plugin.version>2.4</maven.war.plugin.version>
                 <maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
                 <maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
                 <maven.archiver.plugin.version>2.5</maven.archiver.plugin.version>
@@ -2139,7 +2140,7 @@
                                                                         <action>
                                                                                 <ignore></ignore>
                                                                         </action>
-                                                                </pluginExecution>                                                                                                                                
+                                                                </pluginExecution>
                                                         </pluginExecutions>
                                                 </lifecycleMappingMetadata>
                                         </configuration>
@@ -2217,8 +2218,8 @@
 							<groupId>ant-contrib</groupId>
 							<artifactId>ant-contrib</artifactId>
 							<version>${ant.contrib.version}</version>
-						</dependency>                     
-						-->                           
+						</dependency>
+						-->
                                         </dependencies>
                                         <!--
 					<executions>
@@ -2266,8 +2267,8 @@
 								</target>
 							</configuration>
 						</execution>
-					</executions>                    
-					-->                    
+					</executions>
+					-->
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -2372,12 +2373,12 @@
                   								<excludes>
                   								  <exclude>org.apache.maven:maven-core</exclude>
                   								  <exclude>org.apache.maven.plugins:*</exclude>
-                  								</excludes>   
-                  								-->             							  
+                  								</excludes>
+                  								-->
                 							</requireReleaseDeps>
                 							<requireReleaseVersion>
                 							  <message>No Snapshots Allowed!</message>
-                							</requireReleaseVersion>      
+                							</requireReleaseVersion>
  									<requireSameVersions>
                 							  <plugins>
                 							    <plugin>org.apache.maven.plugins:maven-surefire-plugin</plugin>
@@ -2389,11 +2390,11 @@
                 							  <dependencies>
                 							    <dependency>org.apache.maven</dependency> <!-- or org.apache.maven:* -->
                 							  </dependencies>
-                							</requireSameVersions>     
+                							</requireSameVersions>
 									<requireUpperBoundDeps>
                 							  <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
                 							  <!-- <uniqueVersions>true</uniqueVersions> -->
-                							</requireUpperBoundDeps>          							           							          							
+                							</requireUpperBoundDeps>
                                                                 </rules>
                                                                 <fail>true</fail>
                                                         </configuration>
@@ -2663,7 +2664,7 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>groovy-maven-plugin</artifactId>
 					<version>${maven.groovy.plugin.version}</version>
-				</plugin>                                
+				</plugin>
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>xdoclet-maven-plugin</artifactId>
@@ -3031,7 +3032,7 @@
                                             </manifestEntries>
                                           </archive>
                                         </configuration>
-                                </plugin>                    
+                                </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-plugin-plugin</artifactId>
@@ -3160,7 +3161,7 @@
                                                 <failOnError>false</failOnError>
                                                 <excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 						<maxHeap>1024</maxHeap>
-						<timeout>1200000</timeout>                                               
+						<timeout>1200000</timeout>
                                         </configuration>
                                 </plugin>
                                 <!--
@@ -3215,7 +3216,7 @@
 						</execution>
 -->
 					</executions>
-				</plugin>                                
+				</plugin>
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>dashboard-maven-plugin</artifactId>
@@ -3261,7 +3262,7 @@
                                                 <linkXRef>true</linkXRef>
                                                 <!--
                                                 <rulesets>
-                                                        <ruleset>project/pmd_regles_nabla.xml</ruleset> 
+                                                        <ruleset>project/pmd_regles_nabla.xml</ruleset>
                                                 </rulesets>
                                                 -->
                                                 <excludeRoots>
@@ -3353,8 +3354,8 @@ mm]]></license>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>${maven.jetty.eclipse.plugin.version}</version>
-				</plugin>                      
-				<!-- TODO already using jetty-maven-plugin -->    
+				</plugin>
+				<!-- TODO already using jetty-maven-plugin -->
                                 <plugin>
                                         <groupId>org.mortbay.jetty</groupId>
                                         <artifactId>maven-jetty-plugin</artifactId>
@@ -3453,7 +3454,7 @@ mm]]></license>
 						</dependency>
 					</dependencies>
 				</plugin>
-				
+
                                 <plugin>
                                     <groupId>com.adobe.ac</groupId>
                                     <artifactId>flex-pmd-cpd-maven-plugin</artifactId>
@@ -3501,7 +3502,7 @@ mm]]></license>
 					<artifactId>maven-pax-plugin</artifactId>
 					<version>${maven.pax.plugin.version}</version>
 				</plugin>
-				
+
       				<plugin>
       				  <groupId>org.codehaus.izpack</groupId>
       				  <artifactId>izpack-maven-plugin</artifactId>
@@ -3513,10 +3514,9 @@ mm]]></license>
       				        <goal>izpack</goal>
       				      </goals>
       				      <configuration>
-					      <!--<izpackBasedir>/home/izpack/MGR/</izpackBasedir>-->
 					      <izpackBasedir>${staging.dir}</izpackBasedir>
 					      <!--<installFile>${staging.dir}/x86Linux-install.xml</installFile>-->
-					      <!--<comprLevel>9</comprLevel> -->
+					      <comprLevel>9</comprLevel>>
       				      </configuration>
       				    </execution>
       				  </executions>
@@ -3527,8 +3527,8 @@ mm]]></license>
       				      <version>${izpack.compiler.version}</version>
       				    </dependency>
       				  </dependencies>
-      				</plugin>			
-      
+      				</plugin>
+
                                 <plugin>
                                     <groupId>org.apache.maven.plugins</groupId>
                                     <artifactId>maven-failsafe-plugin</artifactId>
@@ -3542,7 +3542,7 @@ mm]]></license>
           			          <goal>verify</goal>
           			        </goals>
           			      </execution>
-          			    </executions>         
+          			    </executions>
           			    -->
                                     <executions>
                                       <execution>
@@ -3557,7 +3557,7 @@ mm]]></license>
                                           <goal>verify</goal>
                                         </goals>
                                       </execution>
-                                    </executions>          			                               
+                                    </executions>
                                 </plugin>
 
                                 <plugin>
@@ -3604,12 +3604,12 @@ mm]]></license>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>apt-maven-plugin</artifactId>
 					<version>${maven.apt.plugin.version}</version>
-				</plugin>       
+				</plugin>
 				<plugin>
 					<groupId>org.codehaus.cargo</groupId>
 					<artifactId>cargo-maven2-plugin</artifactId>
 					<version>${maven.cargo.maven2.plugin.version}</version>
-				</plugin>				                         
+				</plugin>
 				<plugin>
 				    <groupId>org.pitest</groupId>
 				    <artifactId>pitest-maven</artifactId>
@@ -3619,7 +3619,7 @@ mm]]></license>
 				    		<outputFormat>HTML</outputFormat>
 				    		<outputFormat>XML</outputFormat>
 				    		<outputFormat>CSV</outputFormat>
-				    	</outputFormats>					
+				    	</outputFormats>
 				    	<verbose>true</verbose>
 				    	<failWhenNoMutations>false</failWhenNoMutations>
 				    	<threads>4</threads>
@@ -3768,8 +3768,8 @@ mm]]></license>
 					<groupId>com.sun</groupId>
 					<artifactId>tools</artifactId>
 					<version>${jdkVersion}</version>
-				</dependency>   
-				             
+				</dependency>
+
                         <!-- JBoss distributes a complete set of Java EE 6 APIs including a
                           Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or a
                           collection) of artifacts. We use this here so that we always get the correct
@@ -3885,7 +3885,7 @@ mm]]></license>
 				<artifactId>hamcrest-all</artifactId>
 				<version>${hamcrest.all.version}</version>
 				<scope>test</scope>
-			</dependency>                        
+			</dependency>
                         <dependency>
                                 <groupId>org.springframework</groupId>
                                 <artifactId>spring-mock</artifactId>
@@ -3916,7 +3916,7 @@ mm]]></license>
 				<artifactId>http-builder</artifactId>
 				<version>${http.builder.version}</version>
 				<scope>test</scope>
-			</dependency>                    
+			</dependency>
 			<dependency>
 				<groupId>com.google.code.bean-matchers</groupId>
 				<artifactId>bean-matchers</artifactId>
@@ -3928,7 +3928,7 @@ mm]]></license>
 						<artifactId>mockito-core</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>			    
+			</dependency>
                         <dependency>
                                 <groupId>org.beanshell</groupId>
                                 <artifactId>bsh</artifactId>
@@ -3975,9 +3975,9 @@ mm]]></license>
                                         </exclusion>
                                 </exclusions>
                         </dependency>
-                        
+
                         <!-- Spring -->
-                        
+
                         <!-- to remove for spring 3.x -->
                         <dependency>
                                 <groupId>org.springframework</groupId>
@@ -4078,14 +4078,14 @@ mm]]></license>
                                 <scope>test</scope>
                         </dependency>
                       <!-- // Spring -->
-                                              
+
                         <dependency>
                                 <groupId>com.google.api.client</groupId>
                                 <artifactId>google-api-client</artifactId>
                                 <version>${google.api.client.version}</version>
                                 <scope>compile</scope>
                         </dependency>
-                        
+
                         <!-- see pom in database -->
                         <dependency>
                                 <groupId>org.hibernate</groupId>
@@ -4279,9 +4279,9 @@ mm]]></license>
                                 <artifactId>ejb3-persistence</artifactId>
                                 <version>${ejb3.persistence.version}</version>
                         </dependency>
-                        <!-- With these dependencies here it is possible to use annotation processing 
-			in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing 
-			-> Enable Annotation Processing. Set target/generated-sources/annotations 
+                        <!-- With these dependencies here it is possible to use annotation processing
+			in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing
+			-> Enable Annotation Processing. Set target/generated-sources/annotations
 			as the generated source directory -->
                         <dependency>
                                 <groupId>org.hibernate</groupId>
@@ -4384,7 +4384,7 @@ mm]]></license>
       <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
       <optional>true</optional>
     </dependency>
-    
+
                         <dependency>
                                 <groupId>net.sf.ehcache</groupId>
                                 <artifactId>ehcache</artifactId>
@@ -4517,7 +4517,7 @@ mm]]></license>
                                     </exclusion>
                                 </exclusions>
                         </dependency>
-                        
+
                         <!-- POI -->
                         <dependency>
                                 <groupId>poi</groupId>
@@ -4543,18 +4543,18 @@ mm]]></license>
                                 <scope>compile</scope>
                         </dependency>
                         <!-- // POI -->
-                        
+
                         <dependency>
                                 <groupId>javax.activation</groupId>
                                 <artifactId>activation</artifactId>
                                 <version>${javax.activation.version}</version>
                                 <scope>compile</scope>
-                        </dependency>                     
+                        </dependency>
                         <dependency>
                             <groupId>javax.inject</groupId>
                             <artifactId>javax.inject</artifactId>
                             <version>${inject.version}</version>
-                        </dependency>                        
+                        </dependency>
                         <dependency>
                             <groupId>c3p0</groupId>
                             <artifactId>c3p0</artifactId>
@@ -4717,8 +4717,8 @@ mm]]></license>
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-eclipse-batch</artifactId>
 				<version>${groovy.eclipse.batch.version}</version>
-			</dependency>	
-					
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.xmlgraphics</groupId>
 				<artifactId>batik-transcoder</artifactId>
@@ -4728,14 +4728,14 @@ mm]]></license>
 				<groupId>org.apache.xmlgraphics</groupId>
 				<artifactId>batik-codec</artifactId>
 				<version>${batik.version}</version>
-			</dependency>			
+			</dependency>
                         <!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
                         <dependency>
                                 <groupId>batik</groupId>
                                 <artifactId>batik-ext</artifactId>
                                 <version>${batik.ext.version}</version>
                         </dependency>
-                        			
+
 			<dependency>
 				<groupId>org.jogamp.gluegen</groupId>
 				<artifactId>gluegen-rt-main</artifactId>
@@ -4746,7 +4746,7 @@ mm]]></license>
 				<artifactId>jocl-main</artifactId>
 				<version>${gluegen.rt.main.version}</version>
 			</dependency>
-			
+
                         <dependency>
                                 <groupId>commons-validator</groupId>
                                 <artifactId>commons-validator</artifactId>
@@ -6194,7 +6194,7 @@ mm]]></license>
 				<type>swc</type>
 				<scope>theme</scope> <!-- do not comment, even if maven is complaining -->
 			</dependency>
-			
+
             <!-- Caucho Hessian -->
             <dependency>
                 <groupId>com.caucho</groupId>
@@ -6303,7 +6303,7 @@ mm]]></license>
                 <version>${tomcat.version}</version>
             </dependency>
 			<!-- Database -->
-			<!-- DERBY -->            
+			<!-- DERBY -->
             <dependency>
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>
@@ -6324,7 +6324,7 @@ mm]]></license>
 				<artifactId>jconn3</artifactId>
 				<version>${jdbc.sybase.version}</version>
 			</dependency>
-			<!-- // SYBASE -->			
+			<!-- // SYBASE -->
 			<!-- JTDS -->
 			<dependency>
 				<groupId>net.sourceforge.jtds</groupId>
@@ -6344,23 +6344,23 @@ mm]]></license>
                                         <groupId>com.oracle</groupId>
                                         <artifactId>ojdbc14</artifactId>
                                         <version>${jdbc.oracle.version}</version>
-                                </dependency>		
-                                	<!-- // ORACLE -->	
+                                </dependency>
+                                	<!-- // ORACLE -->
 			<!-- POSTGRESQL -->
                                 <dependency>
                                         <groupId>postgresql</groupId>
                                         <artifactId>postgresql</artifactId>
                                         <version>${jdbc.postgresql.version}</version>
-                                </dependency>		
-                                	<!-- // POSTGRESQL -->	
+                                </dependency>
+                                	<!-- // POSTGRESQL -->
 			<!-- MYSQL -->
                                 <dependency>
                                         <groupId>mysql</groupId>
                                         <artifactId>mysql-connector-java</artifactId>
                                         <version>${jdbc.mysql.version}</version>
-                                </dependency>		
-                                	<!-- // MYSQL -->	                                 	     	                                	
-			<!-- // Database -->            
+                                </dependency>
+                                	<!-- // MYSQL -->
+			<!-- // Database -->
             <dependency>
                 <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-utils</artifactId>
@@ -6375,7 +6375,7 @@ mm]]></license>
                  <groupId>org.codehaus.plexus</groupId>
                  <artifactId>plexus-archiver</artifactId>
                  <version>${plexus.archiver.version}</version>
-            </dependency>            
+            </dependency>
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-plugin-api</artifactId>
@@ -6494,7 +6494,7 @@ mm]]></license>
                     <version>${guice.version}</version>
                 </dependency>
                 <!-- // Guice -->
-                
+
 			<!-- Javax -->
 			<dependency>
 				<groupId>org.apache.geronimo.specs</groupId>
@@ -6570,19 +6570,19 @@ mm]]></license>
 				<artifactId>geronimo-jsp_2.1_spec</artifactId>
 				<version>${geronimo.jsp.2.1.spec.version}</version>
 			</dependency>
-			
-			
+
+
                         <dependency>
                                 <groupId>javax.jms</groupId>
                                 <artifactId>jms</artifactId>
                                 <version>${javax.jms.version}</version>
                                 <scope>compile</scope>
-                        </dependency>			
+                        </dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>${javax.servlet.api.version}</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
@@ -6594,7 +6594,7 @@ mm]]></license>
 				<groupId>com.sun.xml.messaging.saaj</groupId>
 				<artifactId>saaj-impl</artifactId>
 				<version>${saaj.impl.version}</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>javax.xml.soap</groupId>
 				<artifactId>saaj-api</artifactId>
@@ -6612,7 +6612,7 @@ mm]]></license>
                 <artifactId>stax-api</artifactId>
                 <version>${stax.api.version}</version>
                 <scope>runtime</scope>
-            </dependency> 			
+            </dependency>
 			<!-- // Javax -->
 
 			<!-- JAXB -->
@@ -6638,9 +6638,9 @@ mm]]></license>
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-xjc</artifactId>
                 <version>${jaxb.impl.version}</version>
-            </dependency>			
+            </dependency>
 			<!-- // JAXB -->
-			
+
                 <!-- Jackson -->
                 <dependency>
                     <groupId>org.codehaus.jackson</groupId>
@@ -6892,7 +6892,7 @@ mm]]></license>
 				<version>${log4jdbc.remix.version}</version>
 			</dependency>
 			<!-- // Logging -->
-			
+
                 <dependency>
                     <groupId>com.google.code.findbugs</groupId>
                     <artifactId>jsr305</artifactId>
