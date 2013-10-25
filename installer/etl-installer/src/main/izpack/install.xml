@@ -22,7 +22,7 @@
 
     <!-- following appears in HelloPanel -->
     <authors>
-      <author name="groovy-dev" email="dev@nabla.mobi"/>
+      <author name="nabla-dev" email="dev@nabla.mobi"/>
     </authors>
     <url>http://nabla.mobi</url>
   </info>
@@ -81,6 +81,7 @@
     <panel classname="FinishPanel"/>
   </panels>
   
+  <!--
   <listeners>
     <listener installer="SummaryLoggerInstallerListener"/>
     <listener installer="RegistryInstallerListener"
@@ -88,6 +89,7 @@
       <os family="windows"/>
     </listener>
   </listeners>
+  -->
 
   <packs>
     <pack name="Groovy core" required="yes">

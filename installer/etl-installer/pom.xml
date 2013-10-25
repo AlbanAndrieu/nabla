@@ -23,8 +23,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
     <app.title>${project.name}</app.title>
     <app.subpath>${project.artifactId}-${project.version}</app.subpath>
     <app.version>${project.version}</app.version>
-  
-    <staging.dir>${project.build.directory}/staging</staging.dir>
+      
     <download.dir>${project.build.directory}/downloads</download.dir>
 
     <groovy.version>1.5.6</groovy.version>
@@ -71,7 +70,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
     <dependency>
       <groupId>org.codehaus.izpack</groupId>
       <artifactId>izpack-standalone-compiler</artifactId>
-      <version>${izpack.compiler.version}</version> <!-- 4.0.1 -->
       <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
       <optional>true</optional>
     </dependency>
@@ -226,6 +224,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
+                <!--
                 <artifactItem>
                   <groupId>izpack.demo</groupId>
                   <artifactId>jidebuilder</artifactId>
@@ -233,6 +232,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
+                -->
               </artifactItems>
             </configuration>
           </execution>
