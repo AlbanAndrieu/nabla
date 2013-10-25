@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>deploy</artifactId>
+		<version>1.0</version>
+		<relativePath>../deploy/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>installer</artifactId>
+	<name>Nabla Installer</name>
+	<packaging>pom</packaging>
+	<description>The Installer pom file is a superpom to centralize installation</description>
+	<url>${JOB_URL}</url>
+
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/installer</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/installer</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/installer</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<modules>
+		<module>etl-installer</module>
+	</modules>
+</project>
