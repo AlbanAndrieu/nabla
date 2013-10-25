@@ -128,6 +128,41 @@
 
         <profiles>
                 <!-- ================= START Environment Profiles ================= -->
+		<profile>	
+        	  <id>m2e</id>
+        	  <activation>
+        	    <property>
+        	      <name>m2e.version</name>
+        	    </property>
+        	  </activation>
+        	  <build>
+        	    <plugins>
+        	      <plugin>
+        	        <groupId>org.maven.ide.eclipse</groupId>
+        	        <artifactId>lifecycle-mapping</artifactId>
+        	        <version>${lifecycle.mapping.version}</version>
+        	        <configuration>
+        	          <mappingId>customizable</mappingId>
+        	          <configurators>
+        	            <configurator id='org.maven.ide.eclipse.configuration.wtp.configurator' />
+        	          </configurators>
+        	          <mojoExecutions>
+        	            <mojoExecution>org.apache.maven.plugins:maven-resources-plugin::</mojoExecution>
+        	          </mojoExecutions>
+        	        </configuration>
+        	      </plugin>
+        	    </plugins>
+        	    <pluginManagement>
+        	      <plugins>
+        	        <plugin>
+        	          <groupId>org.apache.maven.plugins</groupId>
+        	          <artifactId>maven-resources-plugin</artifactId>
+        	          <version>${maven.resources.plugin.version}</version>
+        	        </plugin>
+        	      </plugins>
+        	    </pluginManagement>
+        	  </build>
+        	</profile>                   
                 <profile>
                   <id>env.WORKSPACE.default</id>
                   <activation>
@@ -882,7 +917,7 @@
                                                         <effort>Default</effort>
                                                         <!--<failOnError>true</failOnError>-->
                                                         <excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
-							<maxHeap>2048</maxHeap>
+							<maxHeap>1024</maxHeap>
 							<timeout>1200000</timeout>                                                          
                                                 </configuration>
                                         </plugin>
@@ -1006,7 +1041,7 @@
                         </reporting>
                 </profile>
 		<profile>
-			<id>cloverReport</id>
+			<id>clover.report</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
@@ -1032,7 +1067,7 @@
 						<version>${maven.clover.plugin.version}</version>
 						<executions>
 							<execution>
-								<id>clover</id>
+								<id>clover-reporting</id>
 								<phase>verify</phase>
 								<goals>
 									<goal>instrument</goal>
@@ -1044,7 +1079,95 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>                
+        	     <reporting>
+        	         <plugins>
+        	             <plugin>
+        	                 <groupId>com.atlassian.maven.plugins</groupId>
+        	                 <artifactId>maven-clover2-plugin</artifactId>
+        	                 <version>${maven.clover.plugin.version}</version>	                 
+        	             </plugin>
+        	         </plugins>
+        	     </reporting>			
+		</profile>          		           
+		<profile>
+        	    <id>clover.optimize</id>
+        	    <build>
+        	        <plugins>
+        	            <plugin>
+        	                <groupId>com.atlassian.maven.plugins</groupId>
+        	                <artifactId>maven-clover2-plugin</artifactId>
+        	                <version>${maven.clover.plugin.version}</version>
+        	                <configuration>
+        	                      <generateHistorical>true</generateHistorical>
+        	                      <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
+        	                      <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
+        	                      <singleCloverDatabase>true</singleCloverDatabase>
+        	                      <historyDir>${user.home}/history/${project.artifact}</historyDir>
+        	                      <includesAllSourceRoots>true</includesAllSourceRoots>
+        	                      <generatePdf>true</generatePdf>
+  				      <generateXml>true</generateXml>
+  				      <generateHtml>true</generateHtml>
+        	                </configuration>
+        	                <executions>
+        	                    <execution>
+        	                        <id>clover-initialization</id>
+        	                        <!--<phase>initialize</phase>-->
+        	                        <goals>
+        	                            <goal>setup</goal>
+        	                            <goal>optimize</goal>
+        	                            <goal>snapshot</goal>
+        	                        </goals>
+        	                    </execution>
+        	                </executions>
+        	            </plugin>
+        	        </plugins>
+        	    </build>
+        	</profile> 	
+		<profile>
+        	    <id>clover.all</id>
+        	    <build>
+        	        <plugins>
+        	            <plugin>
+        	                <groupId>com.atlassian.maven.plugins</groupId>
+        	                <artifactId>maven-clover2-plugin</artifactId>
+        	                <version>${maven.clover.plugin.version}</version>
+        	                <configuration>
+        	                      <!--<targetPercentage>93%</targetPercentage>-->
+        	                      <generateHistorical>true</generateHistorical>
+        	                      <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
+        	                      <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
+        	                      <singleCloverDatabase>true</singleCloverDatabase>
+        	                      <historyDir>${user.home}/history/${project.artifact}</historyDir>
+        	                      <generatePdf>true</generatePdf>
+  				      <generateXml>true</generateXml>
+  				      <generateHtml>true</generateHtml>        	                      
+        	                </configuration>
+        	                <executions>
+        	                    <execution>
+        	                        <id>clover-initialization</id>
+        	                        <!--<phase>initialize</phase>-->
+        	                        <goals>
+        	                            <goal>setup</goal>
+        	                            <goal>optimize</goal>
+        	                            <goal>snapshot</goal>
+        	                        </goals>
+        	                    </execution>
+        	                    <execution>
+        	                    	<id>clover-reporting</id>
+        	                        <phase>verify</phase>
+        	                        <goals>
+        	                            <!-- Aggregate results from sub-modules and generate report-->
+                                    	    <!--<goal>aggregate</goal>-->
+        	                            <goal>clover</goal>
+        	                            <goal>log</goal>
+        	                            <goal>check</goal>
+        	                        </goals>
+        	                    </execution>
+        	                </executions>
+        	            </plugin>
+        	        </plugins>
+        	    </build>
+        	</profile>        				
         </profiles>
 
         <!-- Keep Alphabetical Order. Capital Letter goes first -->
@@ -1112,6 +1235,12 @@
                 <bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
                 <bundle.namespace>${project.groupId}</bundle.namespace>
 
+		<!-- Sonar properties -->
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
+		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>
+		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
+
                 <!-- BEGIN of Thirdparties versions stick to project recommandations -->
                 <andromda.version>3.5</andromda.version>
 
@@ -1119,14 +1248,15 @@
                 <!--<tibrv.version>8.1.2</tibrv.version>-->
                 <tibrv.version>8.2.2</tibrv.version>
                 <mq.version>1.0</mq.version>
-                <jaxen.version>1.1.1</jaxen.version>
+                <jaxen.version>1.1.3</jaxen.version>
                 <isorelax.version>1.0</isorelax.version>
                 <msv.version>1.0</msv.version>
 
                 <castor.version>1.3.1</castor.version>
                 <jtidy.version>4aug2000r7-dev-hudson-1</jtidy.version>
 
-                <neethi.version>2.0.1</neethi.version>
+                <neethi.version>2.0.4</neethi.version>
+                <javax.stax.api.version>1.0-2</javax.stax.api.version>
                 <stax.api.version>1.0.1</stax.api.version>
                 <stax.util.version>20100402</stax.util.version>
                 <woden.impl.om.version>1.0M8</woden.impl.om.version>
@@ -1145,8 +1275,9 @@
                 <jfree.jcommon.version>1.0.16</jfree.jcommon.version>
                 <jfreechart-demo.version>1.0.13</jfreechart-demo.version>
                 <junitperf.version>1.9.1</junitperf.version>
+                <!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
                 <clover.version>3.1.11</clover.version>
-		<!--<clover.version>3.1.12</clover.version>-->
+                <!--<clover.version>3.1.12</clover.version>-->
                 <dbunit.version>2.4.9</dbunit.version>
                 <testng.version>6.8</testng.version>
                 <htmlunit.version>1.11</htmlunit.version>
@@ -1159,7 +1290,7 @@
                 <dom4j.version>1.6.1</dom4j.version>
                 <jmdns.version>1.0</jmdns.version>
 
-                <fop.version>0.95</fop.version>
+                <fop.version>0.95-1</fop.version>
                 <axis.version>1.4</axis.version>
                 <axis.jaxrpc.version>1.4</axis.jaxrpc.version>
                 <axis2.version>1.2</axis2.version>
@@ -1172,7 +1303,7 @@
                 <!-- common parties versions -->
                 <commons.lang.version>2.6</commons.lang.version>
                 <commons.beanutils.version>1.8.3</commons.beanutils.version>
-                <commons.dbcp.version>1.2.2</commons.dbcp.version>
+                <commons.dbcp.version>1.4</commons.dbcp.version>
                 <commons.pool.version>1.4</commons.pool.version>
                 <commons.fileupload.version>1.2.2</commons.fileupload.version>
                 <commons.io.version>2.1</commons.io.version>
@@ -1200,16 +1331,27 @@
                 <javax.activation.version>1.1.1</javax.activation.version>
                 <antlr.version>2.7.7</antlr.version>
                 <org.antlr.version>3.5</org.antlr.version>
-                <jdom.version>1.0</jdom.version>
+                <org.jdom.version>1.1.1</org.jdom.version>
+                <jdom.version>${org.jdom.version}</jdom.version>
                 <ant-nodeps.version>1.7.0</ant-nodeps.version>
                 <ant.version>1.7.0</ant.version>
                 <ant.trax.version>1.7.0</ant.trax.version>
+                <ant.contrib.version>20020829</ant.contrib.version>
                 <c3p0.version>0.8.5.2</c3p0.version>
+                <jacoco.version>0.6.3.201306030806</jacoco.version>
 
-                <jdbc.derby.version>10.3.1.4</jdbc.derby.version>
-                <jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
+                <jdbc.derby.version>10.9.1.0</jdbc.derby.version>
+                <jdbc.hsqldb.version>2.2.8</jdbc.hsqldb.version>
+                <!--<jconnect.version>6.0.5.26312</jconnect.version>-->
+                <!--<jdbc.jconnect.version>7.0.7</jdbc.jconnect.version>-->
+                <jdbc.jtds.version>1.2.6</jdbc.jtds.version>  
+                <jdbc.sybase.version>7.0.7</jdbc.sybase.version> 
+                <!--TODO same as jdbc.sybase.version <jconn.version>6.0</jconn.version>-->
+                <jdbc.h2.version>1.3.168</jdbc.h2.version>
+                <jdbc.oracle.version>10.2.0.2.0</jdbc.oracle.version>
+                <jdbc.postgresql.version>8.1-407.jdbc3</jdbc.postgresql.version>
+                <jdbc.mysql.version>5.1.14</jdbc.mysql.version>
 
-                <jconn.version>6.0</jconn.version>
                 <!--<asm.version>2.2.3</asm.version>--> <!-- error running openejb -->
                 <asm.version>3.3.1</asm.version> <!-- works with cglib -->
                 <cglib.version>2.2</cglib.version>
@@ -1218,9 +1360,10 @@
                 <javax.transaction.version>1.1</javax.transaction.version>
                 <acegi.security.version>1.0.1</acegi.security.version>
                 <xml.security.version>1.3.0</xml.security.version>
-                <xml.apis.version>1.0.b2</xml.apis.version>
+                <xml.apis.version>1.3.04</xml.apis.version>
                 <!--<xml.apis.version>2.0.2</xml.apis.version>-->
-                <batik.ext.version>1.7</batik.ext.version>
+                <batik.version>1.7</batik.version>
+                <batik.ext.version>${batik.version}</batik.ext.version>
 
                 <jboss.version>4.2.2.GA</jboss.version>
                 <jbossall.client.version>4.2.3.GA</jbossall.client.version>
@@ -1251,8 +1394,8 @@
                 <inject.version>1</inject.version>
                 <guice.version>3.0</guice.version>
                 <jsr305.version>2.0.1</jsr305.version>
-                <joda.time.version>2.1</joda.time.version>
-                <guava.version>13.0.1</guava.version>
+                <joda.time.version>2.2</joda.time.version>
+                <guava.version>14.0.1</guava.version>
                 <jarjar.version>0.6</jarjar.version>
                 <acegi.version>1.0.5</acegi.version>
                 <acegijsf.version>1.1.2</acegijsf.version>
@@ -1266,8 +1409,11 @@
                 <corejsf.validator.version>1.0</corejsf.validator.version>
                 <displaytag.version>1.2</displaytag.version>
                 <dwr.version>2.0.1</dwr.version>
-                <ehcache.version>2.4.6</ehcache.version>
-                <ehcache.jar.version>1.5.0</ehcache.jar.version>
+                <ehcache.version>2.5.0</ehcache.version>
+                <!--<ehcache.version>2.4.6</ehcache.version>-->
+                <!--<ehcache.jar.version>1.5.0</ehcache.jar.version>-->
+                <ehcache.jar.version>2.7.4</ehcache.jar.version>        
+                <ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
                 <org.javassist.version>3.15.0-GA</org.javassist.version>
                 <javassist.version>3.12.1.GA</javassist.version>
                 <el.version>1.2</el.version>
@@ -1337,9 +1483,11 @@
                 <mockito.version>1.9.5</mockito.version>
                 <mockrunner.version>0.4.2</mockrunner.version>
                 <hamcrest.core.version>1.3.RC2</hamcrest.core.version>
+                <hamcrest.all.version>1.3</hamcrest.all.version>
                 <jsp.version>2.0</jsp.version>
                 <jsp-api.version>2.2.1-b03</jsp-api.version>
                 <junit.version>4.11</junit.version>
+                <bean.matchers.version>0.8.1</bean.matchers.version>
                 <org.jboss.arquillian.version>1.0.3.Final</org.jboss.arquillian.version>
                 <org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
                 <httpunit.version>1.6.2</httpunit.version>
@@ -1394,21 +1542,18 @@
                 <!--<xerces.version>2.10.0</xerces.version> TODO add dependency batik to avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
                 <tomcat.version>6.0.29</tomcat.version>
 
-                <!--<jconnect.version>6.0.5.26312</jconnect.version>-->
-                <jconnect.version>7.0.7</jconnect.version>
-                <jtds.version>1.2.6</jtds.version>
-                <logback.version>0.9.26</logback.version>
-                <slf4j.version>1.7.2</slf4j.version>
-                <derby.version>10.9.1.0</derby.version>
+                <logback.version>1.0.7</logback.version>
+                <log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
+                <slf4j.version>1.7.2</slf4j.version>                
                 <commons.dbcp>1.2.2</commons.dbcp>
 
                 <blazeds.version>3.2.0.3978</blazeds.version>
                 <ezmorph.version>1.0.6</ezmorph.version>
-                <fastinfoset.version>1.2.3</fastinfoset.version>
+                <fastinfoset.version>1.2.9</fastinfoset.version>
                 <flex.messaging.common.version>3.3.0.4852</flex.messaging.common.version>
                 <geronimo.version>1.0</geronimo.version>
                 <geronimo.jms.version>1.1.1</geronimo.jms.version>
-                <geronimo.activation.spec.version>1.0.2</geronimo.activation.spec.version>
+                <geronimo.activation.spec.version>1.1</geronimo.activation.spec.version>
                 <geronimo.annotation.spec.version>1.1.1</geronimo.annotation.spec.version>
                 <geronimo.ejb.2.1.spec.version>1.1</geronimo.ejb.2.1.spec.version>
                 <geronimo.ejb.3.0.spec.version>1.0</geronimo.ejb.3.0.spec.version>
@@ -1419,6 +1564,7 @@
                 <geronimo.j2ee.specs.version>1.1</geronimo.j2ee.specs.version>
                 <geronimo.stax.api.spec.version>1.0.1</geronimo.stax.api.spec.version>
                 <geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
+                <geronimo.jsp.2.1.spec.version>1.0.1</geronimo.jsp.2.1.spec.version>
 
                 <seam.version>2.2.1.Final</seam.version>
                 <seam.bom.version>3.1.0.Final</seam.bom.version>
@@ -1428,6 +1574,9 @@
                 <jaxb.api.version>2.1</jaxb.api.version>
                 <jaxb.impl.version>2.1.13</jaxb.impl.version>
                 <javax.jms.version>1.1</javax.jms.version>
+                <!-- jetty 8 migration implies migrate to servlet api 3. The official maven 
+			artifact name changed to javax.servlet:javax.servlet-api:3.0.1 -->
+		<javax.servlet.api.version>3.0.1</javax.servlet.api.version>
                 <json.lib.version>2.3</json.lib.version>
 
                 <saaj.api.version>1.3</saaj.api.version>
@@ -1438,9 +1587,9 @@
                 <validation.api.version>1.0.0.GA</validation.api.version>
 
                 <xml.resolver>1.2</xml.resolver>
-                <xmlschema.version>1.4.6</xmlschema.version>
+                <xmlschema.version>1.4.7</xmlschema.version>
                 <xmt.version>1.0</xmt.version>
-                <xpp3_min.version>1.1.4c</xpp3_min.version>
+                <xpp3.min.version>1.1.4c</xpp3.min.version>
                 <xstream.version>1.4.2</xstream.version>
                 <yourkit.version>9.0.8</yourkit.version>
                 <xmlsec.version>1.4.3</xmlsec.version>
@@ -1448,16 +1597,26 @@
                 <wsdl4j.version>1.6.2</wsdl4j.version>
                 <groovy.version>2.0.5</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
-
-                <flex.sdk.version>4.5.0.20967</flex.sdk.version>
+		<groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
+		<groovy.eclipse.batch.version>2.0.6-01</groovy.eclipse.batch.version>
+		<gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
+		
+                <flex.sdk.version>4.6.b.23201</flex.sdk.version>
                 <flexlib.version>2.5</flexlib.version>
                 <flexunit.version>4.0-rc-1</flexunit.version>
+                <spark.version>4.6.b.23201</spark.version>
                 <ilog-elixir.version>3.0.21588</ilog-elixir.version>
                 <jackson.version>1.9.9</jackson.version>
-                <jersey.version>1.14</jersey.version>
-                <jetty.version>6.1.25</jetty.version>
-                <jetty7.version>7.6.5.v20120716</jetty7.version>
+                <jersey.version>1.17.1</jersey.version>
+		<!--<jetty.version>6.1.25</jetty.version>--> <!-- TODO remove jetty 6 and 7 -->
+		<!--<jetty7.version>7.6.5.v20120716</jetty7.version>-->
+		<jetty8.version>8.1.9.v20130131</jetty8.version>
+		                
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
+                <maven.groovy.plugin.version>1.3</maven.groovy.plugin.version>
+                <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
+                <izpack.version>5.0.0-rc1-SNAPSHOT</izpack.version>
+                <izpack.compiler.version>4.3.5</izpack.compiler.version>
 
                 <!--
                         French Encoding in some files: can't use UTF-8, TODO update source
@@ -1486,22 +1645,25 @@
 
                 <maven.docbkx.plugin.version>2.0.8</maven.docbkx.plugin.version>
                 <doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
-                <lifecycle.mapping.version>1.0.0-RC1</lifecycle.mapping.version>
+                <!--<lifecycle.mapping.version>1.0.0-RC1</lifecycle.mapping.version>-->
+                <lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
 
                 <maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
                 <maven.xml.plugin.version>1.0</maven.xml.plugin.version>
+                <maven.jspc.plugin.version>2.0-alpha-3</maven.jspc.plugin.version>
                 <maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
                 <maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
                 <maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
                 <maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
                 <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+                <!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
                 <maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
                 <maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
                 <maven.shared.jar.version>1.0</maven.shared.jar.version>
                 <!--<maven.jar.plugin.version>2.4</maven.jar.plugin.version> does not work in eclipse org.codehaus.plexus.archiver.jar.Manifest.merge(org.codehaus.plexus.archiver.jar.Manifest) see : http://dev.eclipse.org/mhonarc/lists/m2e-users/msg02273.html-->
                 <maven.jar.plugin.version>2.3.2</maven.jar.plugin.version>
                 <maven.ejb.plugin.version>2.3</maven.ejb.plugin.version>
-                <maven.war.plugin.version>2.4</maven.war.plugin.version>
+                <maven.war.plugin.version>2.4</maven.war.plugin.version>                
                 <maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
                 <maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
                 <maven.archiver.plugin.version>2.5</maven.archiver.plugin.version>
@@ -1567,7 +1729,9 @@
                 <!--<maven.versions.plugin.version>2.1</maven.versions.plugin.version> NullPointerException -->
                 <maven.idea.plugin.version>2.2.1</maven.idea.plugin.version>
                 <maven.cargo.maven2.plugin.version>1.4.3</maven.cargo.maven2.plugin.version>
-                <maven.jetty.plugin.version>7.0.0.pre5</maven.jetty.plugin.version>
+                <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
+                <maven.jetty.mortbay.plugin.version>${jetty8.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
+                <maven.jetty.eclipse.plugin.version>9.0.4.v20130625</maven.jetty.eclipse.plugin.version>
                 <maven.jboss.as.plugin.version>7.4.Final</maven.jboss.as.plugin.version>
                 <maven.ant.plugin.version>2.3</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
@@ -1595,6 +1759,9 @@
                 <maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
                 <maven.pitest.plugin.version>0.30</maven.pitest.plugin.version>
+                <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
+                <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
+                <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
 
                 <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 
@@ -2039,16 +2206,68 @@
                                                         <artifactId>ant-trax</artifactId>
                                                         <version>${ant.trax.version}</version>
                                                 </dependency>
+                                                <!-- required to get meaningful jacoco reports for integration tests -->
+                                                <!--
+						<dependency>
+							<groupId>org.jacoco</groupId>
+							<artifactId>org.jacoco.ant</artifactId>
+							<version>${jacoco.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>ant-contrib</groupId>
+							<artifactId>ant-contrib</artifactId>
+							<version>${ant.contrib.version}</version>
+						</dependency>                     
+						-->                           
                                         </dependencies>
                                         <!--
-                                                <executions> <execution> <id>echodir</id> <goals> <goal>run</goal>
-                                                </goals> <phase>verify</phase> <inherited>false</inherited>
-                                                <configuration> <tasks> <echo> Build Dir:
-                                                ${project.build.directory} </echo> </tasks> </configuration>
-                                                </execution> </executions> <dependencies> <dependency>
-                                                <groupId>ant</groupId> <artifactId>ant-trax</artifactId>
-                                                <version>1.6.5</version> </dependency> </dependencies>
-                                        -->
+					<executions>
+						<execution>
+							<id>jacoco-report</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<target>
+									<taskdef name="jacoco-report" classname="org.jacoco.ant.ReportTask" classpathref="maven.plugin.classpath" />
+									<taskdef classpathref="maven.runtime.classpath" resource="net/sf/antcontrib/antcontrib.properties" />
+									<available file="${project.basedir}/target/jacoco.exec" property="jacoco.exec.file.exists" />
+									<echo message="${project.basedir}/target/jacoco.exec" />
+									<if>
+										<equals arg1="${jacoco.exec.file.exists}" arg2="true" />
+										<then>
+											<echo message="Executing jacoco report" />
+											<jacoco-report>
+												<executiondata>
+													<file file="${project.basedir}/target/jacoco.exec" />
+												</executiondata>
+
+												<structure name="Nabla">
+													<classfiles>
+														<fileset dir="${env.WORKSPACE}/code">
+															<include name="**/target/classes/**/*.class" />
+														</fileset>
+													</classfiles>
+													<sourcefiles encoding="UTF-8">
+														<fileset dir="${env.WORKSPACE}/code">
+															<include name="**/src/main/java/**/*.java" />
+														</fileset>
+													</sourcefiles>
+												</structure>
+												<html destdir="${project.basedir}/target/jacoco/report" />
+												<xml destfile="${project.basedir}/target/jacoco/report/jacoco.xml" />
+											</jacoco-report>
+										</then>
+										<else>
+											<echo message="No jacoco.exec file found." />
+										</else>
+									</if>
+								</target>
+							</configuration>
+						</execution>
+					</executions>                    
+					-->                    
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -2062,6 +2281,7 @@
                                                 <maxmem>512m</maxmem>
                                                 <fork>${maven.compiler.fork}</fork>
                                                 <debug>${maven.compiler.debug}</debug>
+                                                <debuglevel>lines,vars,source</debuglevel>
                                                 <optimize>${maven.compiler.optimize}</optimize>
                                                 <showDeprecation>true</showDeprecation>
                                                 <showWarnings>true</showWarnings>
@@ -2107,6 +2327,11 @@
                                                 <arguments>-Prelease</arguments>
                                                 <preparationGoals>clean install</preparationGoals>
                                                 <tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>
+                                                <tagNameFormat>@{project.version}</tagNameFormat>
+                                                <checkModificationExcludes>
+							<checkModificationExclude>**/*.log</checkModificationExclude>
+						</checkModificationExcludes>
+						<!--<allowTimestampedSnapshots>true</allowTimestampedSnapshots>-->
                                         </configuration>
                                 </plugin>
                                 <plugin>
@@ -2141,7 +2366,34 @@
                                                                                 <banSnapshots>false</banSnapshots>
                                                                                 <phases>clean,deploy,site</phases>
                                                                         </requirePluginVersions>
-
+                							<requireReleaseDeps>
+                							  	<message>No Snapshots Allowed!</message>
+                							  	<!--
+                  								<excludes>
+                  								  <exclude>org.apache.maven:maven-core</exclude>
+                  								  <exclude>org.apache.maven.plugins:*</exclude>
+                  								</excludes>   
+                  								-->             							  
+                							</requireReleaseDeps>
+                							<requireReleaseVersion>
+                							  <message>No Snapshots Allowed!</message>
+                							</requireReleaseVersion>      
+ 									<requireSameVersions>
+                							  <plugins>
+                							    <plugin>org.apache.maven.plugins:maven-surefire-plugin</plugin>
+                							    <plugin>org.apache.maven.plugins:maven-failsafe-plugin</plugin>
+                							    <plugin>org.apache.maven.plugins:maven-surefire-report-plugin</plugin>
+                							  </plugins>
+                							</requireSameVersions>
+                							<requireSameVersions>
+                							  <dependencies>
+                							    <dependency>org.apache.maven</dependency> <!-- or org.apache.maven:* -->
+                							  </dependencies>
+                							</requireSameVersions>     
+									<requireUpperBoundDeps>
+                							  <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
+                							  <!-- <uniqueVersions>true</uniqueVersions> -->
+                							</requireUpperBoundDeps>          							           							          							
                                                                 </rules>
                                                                 <fail>true</fail>
                                                         </configuration>
@@ -2407,6 +2659,11 @@
                                   </executions>
                                   -->
                                 </plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>groovy-maven-plugin</artifactId>
+					<version>${maven.groovy.plugin.version}</version>
+				</plugin>                                
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>xdoclet-maven-plugin</artifactId>
@@ -2774,7 +3031,7 @@
                                             </manifestEntries>
                                           </archive>
                                         </configuration>
-                                </plugin>
+                                </plugin>                    
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-plugin-plugin</artifactId>
@@ -2902,7 +3159,7 @@
                                                 <effort>Default</effort>
                                                 <failOnError>false</failOnError>
                                                 <excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
-						<maxHeap>2048</maxHeap>
+						<maxHeap>1024</maxHeap>
 						<timeout>1200000</timeout>                                               
                                         </configuration>
                                 </plugin>
@@ -2924,6 +3181,41 @@
                                                 </formats>
                                         </configuration>
                                 </plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${maven.jacoco.plugin.version}</version>
+					<configuration>
+						<!-- includes>
+							<include>com.nabla.project.**</include>
+						</includes -->
+						<dumpOnExit>true</dumpOnExit>
+						<append>true</append>
+						<output>file</output>
+						<!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
+					</configuration>
+					<executions>
+						<execution>
+							<id>pre-integration-test</id>
+							<phase>pre-integration-test</phase>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+							<configuration>
+								<propertyName>jacoco.args</propertyName>
+							</configuration>
+						</execution>
+<!-- Does not work for integration tests
+						<execution>
+							<id>verify</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+-->
+					</executions>
+				</plugin>                                
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>dashboard-maven-plugin</artifactId>
@@ -2986,9 +3278,11 @@
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-dependency-plugin</artifactId>
                                         <version>${maven.dependency.plugin.version}</version>
+                                        <!--
                                         <configuration>
                                             <ignoreNonCompile>true</ignoreNonCompile>
                                         </configuration>
+                                        -->
                                 </plugin>
                                 <plugin>
                                         <groupId>com.atlassian.maven.plugins</groupId>
@@ -3000,7 +3294,7 @@
                                                 <generatePdf>true</generatePdf>
                                                 <generateHtml>true</generateHtml>
                                                 <generateHistorical>true</generateHistorical>
-                                                <licenseLocation>${maven.clover.licenseLocation}</licenseLocation> <!-- see ~/.m2/settings.xml -->
+                                                <!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>--> <!-- see ~/.m2/settings.xml -->
                                                 <license><![CDATA[OpNRrvIENQaoGGXxaiQqOwJXqooaKPgIvnlGoqvBoGKwQGE
 mj2KOqFZX5pLPXFmOTbTtX2x2L0CAXjQk1mCknTZnGfv8tf
 ROrMvwqmrmoQOPqPMQQWxmnoormMRoPQRMXtTsxWwUUNnqq
@@ -3055,10 +3349,16 @@ mm]]></license>
                                         </executions>
                                         -->
                                 </plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${maven.jetty.eclipse.plugin.version}</version>
+				</plugin>                      
+				<!-- TODO already using jetty-maven-plugin -->    
                                 <plugin>
                                         <groupId>org.mortbay.jetty</groupId>
                                         <artifactId>maven-jetty-plugin</artifactId>
-                                        <version>${maven.jetty.plugin.version}</version>
+                                        <version>${maven.jetty.mortbay.plugin.version}</version>
                                         <configuration>
                                                 <contextPath>/</contextPath>
                                                 <scanIntervalSeconds>3</scanIntervalSeconds>
@@ -3076,6 +3376,11 @@ mm]]></license>
                                                 </scanTargetPatterns>
                                         </configuration>
                                 </plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>${maven.exec.plugin.version}</version>
+				</plugin>
                                 <plugin>
                                         <groupId>org.jboss.as.plugins</groupId>
                                         <artifactId>jboss-as-maven-plugin</artifactId>
@@ -3122,7 +3427,33 @@ mm]]></license>
                                             </dependency>
                                         </dependencies>
                                 </plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo.jspc</groupId>
+					<artifactId>jspc-maven-plugin</artifactId>
+					<version>${maven.jspc.plugin.version}</version>
+					<configuration>
+						<source>1.5</source>
+						<target>1.5</target>
+						<includeInProject>false</includeInProject>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>compile</goal>
+							</goals>
+						</execution>
+					</executions>
 
+					<!-- Use the Tomcat 6 JSP compiler -->
+					<dependencies>
+						<dependency>
+							<groupId>org.codehaus.mojo.jspc</groupId>
+							<artifactId>jspc-compiler-tomcat6</artifactId>
+							<version>${jspc.compiler.tomcat6.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				
                                 <plugin>
                                     <groupId>com.adobe.ac</groupId>
                                     <artifactId>flex-pmd-cpd-maven-plugin</artifactId>
@@ -3165,6 +3496,38 @@ mm]]></license>
                                     </configuration>
                                 </plugin>
 
+				<plugin>
+					<groupId>org.ops4j</groupId>
+					<artifactId>maven-pax-plugin</artifactId>
+					<version>${maven.pax.plugin.version}</version>
+				</plugin>
+				
+      				<plugin>
+      				  <groupId>org.codehaus.izpack</groupId>
+      				  <artifactId>izpack-maven-plugin</artifactId>
+      				  <version>${maven.izpack.plugin.version}</version>
+      				  <executions>
+      				    <execution>
+      				      <phase>package</phase>
+      				      <goals>
+      				        <goal>izpack</goal>
+      				      </goals>
+      				      <configuration>
+					      <!--<izpackBasedir>/home/izpack/MGR/</izpackBasedir>-->
+					      <installFile>${staging.dir}/x86Linux-install.xml</installFile>
+					      <comprLevel>9</comprLevel> 
+      				      </configuration>
+      				    </execution>
+      				  </executions>
+      				  <dependencies>
+      				    <dependency>
+      				      <groupId>org.codehaus.izpack</groupId>
+      				      <artifactId>izpack-compiler</artifactId>
+      				      <version>${izpack.compiler.version}</version>
+      				    </dependency>
+      				  </dependencies>
+      				</plugin>			
+      
                                 <plugin>
                                     <groupId>org.apache.maven.plugins</groupId>
                                     <artifactId>maven-failsafe-plugin</artifactId>
@@ -3237,13 +3600,37 @@ mm]]></license>
                                     </dependencies>
                                 </plugin>
 				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>apt-maven-plugin</artifactId>
+					<version>${maven.apt.plugin.version}</version>
+				</plugin>       
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<version>${maven.cargo.maven2.plugin.version}</version>
+				</plugin>				                         
+				<plugin>
 				    <groupId>org.pitest</groupId>
 				    <artifactId>pitest-maven</artifactId>
 				    <version>${maven.pitest.plugin.version}</version>
 				    <configuration>
+				    	<outputFormats>
+				    		<outputFormat>HTML</outputFormat>
+				    		<outputFormat>XML</outputFormat>
+				    		<outputFormat>CSV</outputFormat>
+				    	</outputFormats>					
 				    	<verbose>true</verbose>
 				    	<failWhenNoMutations>false</failWhenNoMutations>
-				    </configuration>
+				    	<threads>4</threads>
+				    	<avoidCallsTo>
+				    		<avoidCallsTo>akka.event.LoggingAdapter</avoidCallsTo>
+				    	</avoidCallsTo>
+				    	<jvmArgs>
+				    		<value>-XX:PermSize=256m</value>
+				    		<value>-XX:MaxPermSize=512m</value>
+				    	</jvmArgs>
+                        	    	<detectInlinedCode>true</detectInlinedCode>
+					</configuration>
 				</plugin>
                         </plugins>
                 </pluginManagement>
@@ -3376,6 +3763,12 @@ mm]]></license>
         </build>
         <dependencyManagement>
                 <dependencies>
+				<dependency>
+					<groupId>com.sun</groupId>
+					<artifactId>tools</artifactId>
+					<version>${jdkVersion}</version>
+				</dependency>   
+				             
                         <!-- JBoss distributes a complete set of Java EE 6 APIs including a
                           Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or a
                           collection) of artifacts. We use this here so that we always get the correct
@@ -3486,6 +3879,12 @@ mm]]></license>
                                 <version>${mockito.version}</version>
                                 <scope>test</scope>
                         </dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>${hamcrest.all.version}</version>
+				<scope>test</scope>
+			</dependency>                        
                         <dependency>
                                 <groupId>org.springframework</groupId>
                                 <artifactId>spring-mock</artifactId>
@@ -3514,9 +3913,21 @@ mm]]></license>
 			<dependency>
 				<groupId>org.codehaus.groovy.modules.http-builder</groupId>
 				<artifactId>http-builder</artifactId>
-				<version>${junit.version}</version>
+				<version>${http.builder.version}</version>
 				<scope>test</scope>
-			</dependency>                        
+			</dependency>                    
+			<dependency>
+				<groupId>com.google.code.bean-matchers</groupId>
+				<artifactId>bean-matchers</artifactId>
+				<version>${bean.matchers.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.mockito</groupId>
+						<artifactId>mockito-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>			    
                         <dependency>
                                 <groupId>org.beanshell</groupId>
                                 <artifactId>bsh</artifactId>
@@ -3563,6 +3974,9 @@ mm]]></license>
                                         </exclusion>
                                 </exclusions>
                         </dependency>
+                        
+                        <!-- Spring -->
+                        
                         <!-- to remove for spring 3.x -->
                         <dependency>
                                 <groupId>org.springframework</groupId>
@@ -3662,12 +4076,15 @@ mm]]></license>
                                 <version>${spring.version}</version>
                                 <scope>test</scope>
                         </dependency>
+                      <!-- // Spring -->
+                                              
                         <dependency>
                                 <groupId>com.google.api.client</groupId>
                                 <artifactId>google-api-client</artifactId>
                                 <version>${google.api.client.version}</version>
                                 <scope>compile</scope>
                         </dependency>
+                        
                         <!-- see pom in database -->
                         <dependency>
                                 <groupId>org.hibernate</groupId>
@@ -3978,6 +4395,11 @@ mm]]></license>
                                 <type>jar</type>
                         </dependency>
                         <dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache-terracotta</artifactId>
+				<version>${ehcache.terracotta.version}</version>
+			</dependency>
+                        <dependency>
                                 <groupId>org.javassist</groupId>
                                 <artifactId>javassist</artifactId>
                                 <version>${org.javassist.version}</version>
@@ -4046,21 +4468,10 @@ mm]]></license>
                                 <scope>compile</scope>
                         </dependency>
                         <dependency>
-                                <groupId>javax.jms</groupId>
-                                <artifactId>jms</artifactId>
-                                <version>${javax.jms.version}</version>
-                                <scope>compile</scope>
-                        </dependency>
-                        <dependency>
                                 <groupId>javax.mail</groupId>
                                 <artifactId>mail</artifactId>
                                 <version>${javax.mail.version}</version>
                                 <scope>compile</scope>
-                        </dependency>
-                        <dependency>
-                                <groupId>log4j</groupId>
-                                <artifactId>log4j</artifactId>
-                                <version>${log4j.version}</version>
                         </dependency>
                         <dependency>
                                 <groupId>jfree</groupId>
@@ -4097,6 +4508,8 @@ mm]]></license>
                                     </exclusion>
                                 </exclusions>
                         </dependency>
+                        
+                        <!-- POI -->
                         <dependency>
                                 <groupId>poi</groupId>
                                 <artifactId>poi</artifactId>
@@ -4120,17 +4533,19 @@ mm]]></license>
                                 <version>${poi.version}</version>
                                 <scope>compile</scope>
                         </dependency>
+                        <!-- // POI -->
+                        
                         <dependency>
                                 <groupId>javax.activation</groupId>
                                 <artifactId>activation</artifactId>
                                 <version>${javax.activation.version}</version>
                                 <scope>compile</scope>
-                        </dependency>
+                        </dependency>                     
                         <dependency>
                             <groupId>javax.inject</groupId>
                             <artifactId>javax.inject</artifactId>
                             <version>${inject.version}</version>
-                        </dependency>
+                        </dependency>                        
                         <dependency>
                             <groupId>c3p0</groupId>
                             <artifactId>c3p0</artifactId>
@@ -4284,6 +4699,45 @@ mm]]></license>
                             </exclusion>
                           </exclusions>
                         </dependency>
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-eclipse-compiler</artifactId>
+				<version>${groovy.eclipse.compiler.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-eclipse-batch</artifactId>
+				<version>${groovy.eclipse.batch.version}</version>
+			</dependency>	
+					
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-transcoder</artifactId>
+				<version>${batik.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-codec</artifactId>
+				<version>${batik.version}</version>
+			</dependency>			
+                        <!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
+                        <dependency>
+                                <groupId>batik</groupId>
+                                <artifactId>batik-ext</artifactId>
+                                <version>${batik.ext.version}</version>
+                        </dependency>
+                        			
+			<dependency>
+				<groupId>org.jogamp.gluegen</groupId>
+				<artifactId>gluegen-rt-main</artifactId>
+				<version>${gluegen.rt.main.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jogamp.jocl</groupId>
+				<artifactId>jocl-main</artifactId>
+				<version>${gluegen.rt.main.version}</version>
+			</dependency>
+			
                         <dependency>
                                 <groupId>commons-validator</groupId>
                                 <artifactId>commons-validator</artifactId>
@@ -4701,12 +5155,6 @@ mm]]></license>
                             <version>${icefaces.version}</version>
                             <!--<scope>runtime</scope>-->
                             <scope>compile</scope>
-                        </dependency>
-                        <dependency>
-                                <groupId>javax.servlet</groupId>
-                                <artifactId>servlet-api</artifactId>
-                                <version>${servlet.api.version}</version>
-                                <scope>provided</scope>
                         </dependency>
                         <dependency>
                                 <groupId>javax.servlet</groupId>
@@ -5475,12 +5923,6 @@ mm]]></license>
                                 <artifactId>xml-apis-ext</artifactId>
                                 <version>${xml.apis.version}</version>
                         </dependency>
-                        <!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
-                        <dependency>
-                                <groupId>batik</groupId>
-                                <artifactId>batik-ext</artifactId>
-                                <version>${batik.ext.version}</version>
-                        </dependency>
 
             <!-- Apache CXF -->
             <dependency>
@@ -5736,6 +6178,14 @@ mm]]></license>
             -->
             <!-- // BlaseDS/Flex -->
 
+			<dependency>
+				<groupId>com.adobe.flex.framework</groupId>
+				<artifactId>spark</artifactId>
+				<version>${spark.version}</version>
+				<type>swc</type>
+				<scope>theme</scope> <!-- do not comment, even if maven is complaining -->
+			</dependency>
+			
             <!-- Caucho Hessian -->
             <dependency>
                 <groupId>com.caucho</groupId>
@@ -5753,110 +6203,12 @@ mm]]></license>
             </dependency>
             -->
             <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-jms_1.1_spec</artifactId>
-                <version>${geronimo.jms.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-j2ee_1.4_spec</artifactId>
-                <version>${geronimo.j2ee.specs.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-annotation_1.0_spec</artifactId>
-                <version>${geronimo.annotation.spec.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-ejb_2.1_spec</artifactId>
-                <version>${geronimo.ejb.2.1.spec.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-ejb_3.0_spec</artifactId>
-                <version>${geronimo.ejb.3.0.spec.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-activation_1.1_spec</artifactId>
-                <version>${geronimo.activation.spec.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
-                <version>${geronimo.ws.metadata.spec.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-jaxws_2.1_spec</artifactId>
-                <version>${geronimo.jaxws.2.1.spec.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                        <groupId>org.apache.geronimo.specs</groupId>
-                        <artifactId>geronimo-jaxws_2.2_spec</artifactId>
-                        <version>${geronimo.jaxws.2.2.spec.version}</version>
-                        <scope>provided</scope>
-            </dependency>
-            <dependency>
-                        <groupId>org.apache.geronimo.specs</groupId>
-                        <artifactId>geronimo-servlet_2.5_spec</artifactId>
-                        <version>${geronimo.servlet.2.5.spec.version}</version>
-            </dependency>
-            <dependency>
-                        <groupId>org.apache.geronimo.specs</groupId>
-                        <artifactId>geronimo-servlet_3.0_spec</artifactId>
-                        <version>${geronimo.servlet.3.0.spec.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-stax-api_1.0_spec</artifactId>
-                <version>${geronimo.stax.api.spec.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>stax</groupId>
-                <artifactId>stax-api</artifactId>
-                <version>${stax.api.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.woden</groupId>
                 <artifactId>woden-impl-om</artifactId>
                 <version>${woden.impl.om.version}</version>
                 <scope>runtime</scope>
             </dependency>
-            <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>${jaxb.api.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <version>${jaxb.impl.version}</version>
-                <scope>compile</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.xml.stream</groupId>
-                        <artifactId>stax-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-xjc</artifactId>
-                <version>${jaxb.impl.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>wsdl4j</groupId>
                 <artifactId>wsdl4j</artifactId>
@@ -5869,18 +6221,7 @@ mm]]></license>
                 <version>${wstx.asl.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <dependency>
-                <groupId>javax.xml.soap</groupId>
-                <artifactId>saaj-api</artifactId>
-                <version>${saaj.api.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.xml.messaging.saaj</groupId>
-                <artifactId>saaj-impl</artifactId>
-                <version>${saaj.impl.version}</version>
-                <scope>compile</scope>
-            </dependency>
+
             <dependency>
                 <groupId>org.apache.ws.commons.schema</groupId>
                 <artifactId>XmlSchema</artifactId>
@@ -5931,56 +6272,7 @@ mm]]></license>
                 <artifactId>ezmorph</artifactId>
                 <version>${ezmorph.version}</version>
             </dependency>
-            <dependency>
-                        <groupId>ch.qos.logback</groupId>
-                        <artifactId>logback-core</artifactId>
-                        <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>log4j-over-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-                        <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>jul-to-slf4j</artifactId>
-                        <version>${slf4j.version}</version>
-                        <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-simple</artifactId>
-                        <version>${slf4j.version}</version>
-                        <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-jdk14</artifactId>
-                        <version>${slf4j.version}</version>
-                        <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-                    <scope>runtime</scope>
-            </dependency>
+
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>catalina</artifactId>
@@ -6001,11 +6293,65 @@ mm]]></license>
                 <artifactId>juli-adapters</artifactId>
                 <version>${tomcat.version}</version>
             </dependency>
+			<!-- Database -->
+			<!-- DERBY -->            
             <dependency>
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>
-                <version>${derby.version}</version>
+                <version>${jdbc.derby.version}</version>
             </dependency>
+            <!-- // DERBY -->
+			<!-- Database -->
+			<!-- HSQLDB -->
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${jdbc.hsqldb.version}</version>
+			</dependency>
+			<!-- // HSQLDB -->
+			<!-- SYBASE -->
+			<dependency>
+				<groupId>com.sybase</groupId>
+				<artifactId>jconn3</artifactId>
+				<version>${jdbc.sybase.version}</version>
+			</dependency>
+			<!-- // SYBASE -->			
+			<!-- JTDS -->
+			<dependency>
+				<groupId>net.sourceforge.jtds</groupId>
+				<artifactId>jtds</artifactId>
+				<version>${jdbc.jtds.version}</version>
+			</dependency>
+			<!-- // JTDS -->
+			<!-- H2 -->
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${jdbc.h2.version}</version>
+			</dependency>
+			<!-- // H2 -->
+			<!-- ORACLE -->
+                                <dependency>
+                                        <groupId>com.oracle</groupId>
+                                        <artifactId>ojdbc14</artifactId>
+                                        <version>${jdbc.oracle.version}</version>
+                                </dependency>		
+                                	<!-- // ORACLE -->	
+			<!-- POSTGRESQL -->
+                                <dependency>
+                                        <groupId>postgresql</groupId>
+                                        <artifactId>postgresql</artifactId>
+                                        <version>${jdbc.postgresql.version}</version>
+                                </dependency>		
+                                	<!-- // POSTGRESQL -->	
+			<!-- MYSQL -->
+                                <dependency>
+                                        <groupId>mysql</groupId>
+                                        <artifactId>mysql-connector-java</artifactId>
+                                        <version>${jdbc.mysql.version}</version>
+                                </dependency>		
+                                	<!-- // MYSQL -->	                                 	     	                                	
+			<!-- // Database -->            
             <dependency>
                 <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-utils</artifactId>
@@ -6087,6 +6433,7 @@ mm]]></license>
                 -->
                 <!-- // 3rd Parties -->
 
+<!-- Guice -->
                 <dependency>
                     <groupId>com.google.inject</groupId>
                     <artifactId>guice</artifactId>
@@ -6138,7 +6485,153 @@ mm]]></license>
                     <version>${guice.version}</version>
                 </dependency>
                 <!-- // Guice -->
+                
+			<!-- Javax -->
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-activation_1.1_spec</artifactId>
+				<version>${geronimo.activation.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-annotation_1.0_spec</artifactId>
+				<version>${geronimo.annotation.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-ejb_2.1_spec</artifactId>
+				<version>${geronimo.ejb.2.1.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-ejb_3.0_spec</artifactId>
+				<version>${geronimo.ejb.3.0.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-j2ee_1.4_spec</artifactId>
+				<version>${geronimo.j2ee.specs.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jaxws_2.1_spec</artifactId>
+				<version>${geronimo.jaxws.2.1.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jaxws_2.2_spec</artifactId>
+				<version>${geronimo.jaxws.2.2.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jms_1.1_spec</artifactId>
+				<version>${geronimo.jms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-servlet_2.5_spec</artifactId>
+				<version>${geronimo.servlet.2.5.spec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-servlet_3.0_spec</artifactId>
+				<version>${geronimo.servlet.3.0.spec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-stax-api_1.0_spec</artifactId>
+				<version>${geronimo.stax.api.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-ws-metadata_2.0_spec</artifactId>
+				<version>${geronimo.ws.metadata.spec.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jsp_2.1_spec</artifactId>
+				<version>${geronimo.jsp.2.1.spec.version}</version>
+			</dependency>
+			
+			
+                        <dependency>
+                                <groupId>javax.jms</groupId>
+                                <artifactId>jms</artifactId>
+                                <version>${javax.jms.version}</version>
+                                <scope>compile</scope>
+                        </dependency>			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet.api.version}</version>
+			</dependency>			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
 
+			<dependency>
+				<groupId>com.sun.xml.messaging.saaj</groupId>
+				<artifactId>saaj-impl</artifactId>
+				<version>${saaj.impl.version}</version>
+			</dependency>			
+			<dependency>
+				<groupId>javax.xml.soap</groupId>
+				<artifactId>saaj-api</artifactId>
+				<version>${saaj.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.stream</groupId>
+				<artifactId>stax-api</artifactId>
+				<version>${javax.stax.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+            <dependency>
+                <groupId>stax</groupId>
+                <artifactId>stax-api</artifactId>
+                <version>${stax.api.version}</version>
+                <scope>runtime</scope>
+            </dependency> 			
+			<!-- // Javax -->
+
+			<!-- JAXB -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb.api.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb.impl.version}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.xml.stream</groupId>
+                        <artifactId>stax-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-xjc</artifactId>
+                <version>${jaxb.impl.version}</version>
+            </dependency>			
+			<!-- // JAXB -->
+			
                 <!-- Jackson -->
                 <dependency>
                     <groupId>org.codehaus.jackson</groupId>
@@ -6168,29 +6661,55 @@ mm]]></license>
                 <!-- // Jackson -->
 
                 <!-- Jersey -->
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-core</artifactId>
-                    <version>${jersey.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-json</artifactId>
-                    <version>${jersey.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-server</artifactId>
-                    <version>${jersey.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.jersey.contribs</groupId>
-                    <artifactId>jersey-guice</artifactId>
-                    <version>${jersey.version}</version>
-                </dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-core</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-json</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-server</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.contribs</groupId>
+				<artifactId>jersey-apache-client</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.contribs</groupId>
+				<artifactId>jersey-guice</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.contribs</groupId>
+				<artifactId>wadl-resourcedoc-doclet</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.contribs</groupId>
+				<artifactId>jersey-wadl-json-schema</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.contribs</groupId>
+				<artifactId>jersey-multipart</artifactId>
+				<version>${jersey.version}</version>
+			</dependency>
                 <!-- // Jersey -->
 
                 <!-- Jetty -->
+                <!--
                 <dependency>
                     <groupId>org.mortbay.jetty</groupId>
                     <artifactId>jetty</artifactId>
@@ -6209,9 +6728,11 @@ mm]]></license>
                     <version>${jetty.version}</version>
                     <scope>runtime</scope>
                 </dependency>
+                -->
                 <!-- // Jetty -->
 
                 <!-- // Jetty7 -->
+                <!--
                 <dependency>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-server</artifactId>
@@ -6232,17 +6753,137 @@ mm]]></license>
                     <artifactId>jetty-websocket</artifactId>
                     <version>${jetty7.version}</version>
                 </dependency>
+                -->
                 <!-- // Jetty7 -->
 
-                <!-- JTDS -->
-                <dependency>
-                    <groupId>net.sourceforge.jtds</groupId>
-                    <artifactId>jtds</artifactId>
-                    <version>${jtds.version}</version>
-                </dependency>
-                <!-- // JTDS -->
+			<!-- // Jetty8 -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-security</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-util</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-servlet</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-servlets</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-deploy</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-websocket</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-xml</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-continuation</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-http</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-io</artifactId>
+				<version>${jetty8.version}</version>
+			</dependency>
+			<!-- // Jetty8 -->
 
-                <!-- Misc -->
+			<!-- Logging -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jdk14</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.lazyluke</groupId>
+				<artifactId>log4jdbc-remix</artifactId>
+				<version>${log4jdbc.remix.version}</version>
+			</dependency>
+			<!-- // Logging -->
+			
                 <dependency>
                     <groupId>com.google.code.findbugs</groupId>
                     <artifactId>jsr305</artifactId>
@@ -6318,7 +6959,7 @@ mm]]></license>
                 <dependency>
                     <groupId>org.jdom</groupId>
                     <artifactId>jdom</artifactId>
-                    <version>${jdom.version}</version>
+                    <version>${org.jdom.version}</version>
                 </dependency>
                 <!--
                 <dependency>
@@ -6335,7 +6976,7 @@ mm]]></license>
                 <dependency>
                     <groupId>xpp3</groupId>
                     <artifactId>xpp3_min</artifactId>
-                    <version>${xpp3_min.version}</version>
+                    <version>${xpp3.min.version}</version>
                 </dependency>
                 <!-- // Misc -->
                 </dependencies>
