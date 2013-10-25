@@ -88,6 +88,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 
     <plugins>
       <!--  fetch resource files from the orignal Ant build project -->
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-scm-plugin</artifactId>
@@ -109,6 +110,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
           </execution>
         </executions>
       </plugin>
+      -->
 
       <!-- fetch and unpack all dependent bundles into staging area -->
       <plugin>
@@ -116,6 +118,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
         <artifactId>maven-dependency-plugin</artifactId>
         <version>${maven.dependency.plugin.version}</version>
         <executions>
+            <!--
           <execution>
             <id>unpack-bundle-dependencies</id>
             <phase>process-resources</phase>
@@ -124,7 +127,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             </goals>
             <configuration>
               <artifactItems>
-                <!--
                 <artifactItem>
                   <groupId>izpack.demo</groupId>
                   <artifactId>groovy</artifactId>
@@ -133,7 +135,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <type>zip</type>
                   <outputDirectory>${staging.dir}/binary</outputDirectory>
                 </artifactItem>
-                -->
                 <artifactItem>
                   <groupId>izpack.demo</groupId>
                   <artifactId>groovy</artifactId>
@@ -161,10 +162,11 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
               </artifactItems>
             </configuration>
           </execution>
-
+                -->
           <!-- izpack can't match include="scriptcom*.jar"
             so, split into separate bin and lib directories -->
 
+	  <!--
           <execution>
             <id>unpack-scriptom-dlls</id>
             <phase>process-resources</phase>
@@ -203,11 +205,10 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <outputDirectory>${staging.dir}/scriptom/lib</outputDirectory>
                 </artifactItem>
               </artifactItems>
-              <!--  need to use a explicit cache marker, to distinguish the execution from previous one
-                    since both executions share the same artifact -->
               <markersDirectory>${project.build.directory}/scriptomJarsMarker</markersDirectory>
             </configuration>
           </execution>
+	  -->
 
           <execution>
             <id>copy-jars-dependencies</id>
@@ -218,13 +219,20 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             <configuration>
               <artifactItems>
                 <artifactItem>
+                  <groupId>com.nabla.project.core.etl.model.message</groupId>
+                  <artifactId>message</artifactId>
+                  <version>${project.version}</version>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/jars</outputDirectory>
+                </artifactItem>
+                <!--
+                <artifactItem>
                   <groupId>izpack.demo</groupId>
                   <artifactId>svg-salamander</artifactId>
                   <version>${svg-salamander.version}</version>
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
-                <!--
                 <artifactItem>
                   <groupId>izpack.demo</groupId>
                   <artifactId>jidebuilder</artifactId>
@@ -240,13 +248,36 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <encoding>UTF-8</encoding>
+              <outputDirectory>${staging.dir}/resources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.codehaus.izpack</groupId>
         <artifactId>izpack-maven-plugin</artifactId>
         <version>${maven.izpack.plugin.version}</version>
 
         <!-- common configuration by all executions -->
         <configuration>
-          <descriptor>${basedir}/src/izpack/install.xml</descriptor>
+          <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
           <izpackBasedir>${staging.dir}</izpackBasedir>
         </configuration>
 
@@ -260,162 +291,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
           </execution>
         </executions>
       </plugin>
-
     </plugins>
-
   </build>
-
-  <profiles>
-    <profile>
-      <id>install-dependencies</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>${maven.antrun.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>create-staging-area</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <tasks>
-                    <mkdir dir="${download.dir}" />
-                    <get src="${groovy.bin.url}" dest="${download.dir}/${groovy.bin.archive}" verbose="on"
-                      usetimestamp="yes" />
-                    <get src="${groovy.docs.url}" dest="${download.dir}/${groovy.docs.archive}" verbose="on"
-                      usetimestamp="yes" />
-                    <get src="${gant.url}" dest="${download.dir}/${gant.archive}" verbose="on" usetimestamp="yes" />
-                    <get src="${scriptom.url}" dest="${download.dir}/${scriptom.archive}" verbose="on"
-                      usetimestamp="yes" />
-                    <get src="${graphicsbuilder.url}" dest="${download.dir}/${graphicsbuilder.archive}" verbose="on"
-                      usetimestamp="yes" />
-                    <!--<get src="${jidebuilder.url}" dest="${download.dir}/${jidebuilder.archive}" verbose="on"
-                      usetimestamp="yes" />-->
-                    <get src="${svg-salamander.url}" dest="${download.dir}/${svg-salamander.archive}" verbose="on"
-                      usetimestamp="yes" />
-                  </tasks>
-                </configuration>
-              </execution>
-
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-install-plugin</artifactId>
-            <configuration>
-              <generatePom>true</generatePom>
-              <!--  use fake id for demo purpose  -->
-              <groupId>izpack.demo</groupId>
-            </configuration>
-            <executions>
-              <execution>
-                <id>install-groovy-binary</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${groovy.binary.zip}</file>
-                  <artifactId>groovy</artifactId>
-                  <version>${groovy.version}</version>
-                  <classifier>binary</classifier>
-                  <packaging>zip</packaging>
-                </configuration>
-              </execution>
-              <execution>
-                <id>install-groovy-docs</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${groovy.docs.zip}</file>
-                  <artifactId>groovy</artifactId>
-                  <version>${groovy.version}</version>
-                  <classifier>docs</classifier>
-                  <packaging>zip</packaging>
-                </configuration>
-              </execution>
-              <execution>
-                <id>install-gant-binary</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${gant.zip}</file>
-                  <artifactId>gant</artifactId>
-                  <version>${gant.version}</version>
-                  <classifier>binary</classifier>
-                  <packaging>zip</packaging>
-                </configuration>
-              </execution>
-              <execution>
-                <id>install-scriptom-binary</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${scriptom.zip}</file>
-                  <artifactId>scriptom</artifactId>
-                  <version>${scriptom.version}</version>
-                  <classifier>binary</classifier>
-                  <packaging>zip</packaging>
-                </configuration>
-              </execution>
-              <execution>
-                <id>install-graphicsbuilder-binary</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${graphicsbuilder.zip}</file>
-                  <artifactId>graphicsbuilder</artifactId>
-                  <version>${graphicsbuilder.version}</version>
-                  <classifier>binary</classifier>
-                  <packaging>zip</packaging>
-                </configuration>
-              </execution>
-	      <!--
-              <execution>
-                <id>install-jidebuilder-bundle</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${jidebuilder.jar}</file>
-                  <artifactId>jidebuilder</artifactId>
-                  <version>${jidebuilder.version}</version>
-                  <packaging>jar</packaging>
-                </configuration>
-              </execution>
-              -->
-              <execution>
-                <id>install-svg-salamander-jar</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>install-file</goal>
-                </goals>
-                <configuration>
-                  <file>${svg-salamander.jar}</file>
-                  <artifactId>svg-salamander</artifactId>
-                  <version>${svg-salamander.version}</version>
-                  <packaging>jar</packaging>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>

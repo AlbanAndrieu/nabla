@@ -49,22 +49,22 @@
       == expected to fit down the left-hand side. Putting it here causes
       == the rest of the panels to be wrongly sized. However, using
       == groovy.png as a Heading image works much better.
-      == <res id="Installer.image" src="resource/infiniflow.gif" />
+      == <res id="Installer.image" src="resources/infiniflow.gif" />
       == -->
-    <res id="Heading.image" src="resource/groovy.png" />
+    <res id="Heading.image" src="resources/groovy.png" />
 
-    <res id="HTMLLicencePanel.licence" src="resource/asl2.html" />
+    <res id="HTMLLicencePanel.licence" src="resources/asl2.html" />
 
     <!-- FIXME: parse=yes results in a blank panel -->
     <res id="HTMLInfoPanel.info"
-	src="resource/README-IzPack.html" parse="no" />
+	src="resources/README-IzPack.html" parse="no" />
 
-    <res id="TargetPanel.dir.unix" src="resource/target_unix.txt" parse="yes" />
-    <res id="Win_NT_shortcutSpec.xml" src="resource/winShortcutSpec.xml" />
-    <res id="shortcutSpec.xml" src="resource/emptyShortcutSpec.xml" />
-    <res id="ProcessPanel.Spec.xml" src="resource/processSpec.xml" />
-    <res src="resource/groovy-splash.png" id="installer.langsel.img"/>
-    <res src="resource/RegistrySpec.xml" id="RegistrySpec.xml"/>
+    <res id="TargetPanel.dir.unix" src="resources/target_unix.txt" parse="yes" />
+    <res id="Win_NT_shortcutSpec.xml" src="resources/winShortcutSpec.xml" />
+    <res id="shortcutSpec.xml" src="resources/emptyShortcutSpec.xml" />
+    <res id="ProcessPanel.Spec.xml" src="resources/processSpec.xml" />
+    <res src="resources/groovy-splash.png" id="installer.langsel.img"/>
+    <res src="resources/RegistrySpec.xml" id="RegistrySpec.xml"/>
   </resources>
 
   <native type="izpack" name="ShellLink.dll"/>
@@ -95,20 +95,22 @@
     <pack name="Groovy core" required="yes">
       <description>Groovy core files installation.</description>
 
+      <!--
       <fileset dir="binary/groovy-${groovy.version}"
       	targetdir="$INSTALL_PATH">
       </fileset>
+      -->
 
-      <file src="resource/README-IzPack.html"
+      <file src="resources/README-IzPack.html"
 	targetdir="$INSTALL_PATH" />
       <parsable targetfile="$INSTALL_PATH/README-IzPack.html" />
 
-      <file src="resource/groovy.exe"
+      <file src="resources/groovy.exe"
 	targetdir="$INSTALL_PATH/bin" os="windows" />
-      <file src="resource/groovyw.exe"
+      <file src="resources/groovyw.exe"
 	targetdir="$INSTALL_PATH/bin" os="windows" />
 
-      <file src="resource/pre-uninstall.bat"
+      <file src="resources/pre-uninstall.bat"
 	targetdir="$INSTALL_PATH/Uninstaller" os="windows" />
       <parsable targetfile="$INSTALL_PATH/Uninstaller/pre-uninstall.bat" os="windows" />
       <executable targetfile="$INSTALL_PATH/Uninstaller/pre-uninstall.bat" os="windows" stage="uninstall" />
@@ -125,12 +127,14 @@
       <description>Adds file associations on Windows.</description>
     </pack>
 
+    <!--
     <pack name="Documentation" required="no">
       <description>Groovy Documentation, including a PDF Wiki snapshot.</description>
       <fileset dir="docs/groovy-${groovy.version}"
       	targetdir="$INSTALL_PATH">
       </fileset>
     </pack>
+    -->
 
     <pack name="Scriptom" required="no">
       <os family="windows" />
