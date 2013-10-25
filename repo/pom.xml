@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>dependencies</artifactId>
+		<version>1.0</version>
+		<relativePath>../dependencies/pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>repo</artifactId>
+	<name>Nabla Repository Installer</name>
+	<packaging>pom</packaging>
+	<description>The Repository pom file is an installer to centralize installation of artifact in maven</description>
+	<url>${JOB_URL}</url>
+
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/repo</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/repo</developerConnection>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/repo</url>
+		<tag>HEAD</tag>
+	</scm>
+
+  <properties>
+    <download.dir>${project.build.directory}/downloads</download.dir>
+    <staging.dir>${project.build.directory}/staging</staging.dir>
+        
+    <sybase.driver.jar>jconn3.jar</sybase.driver.jar>
+    <sybase.driver.url>http://alban.googlecode.com/svn/repo/jar/dbdriver/${sybase.driver.jar}</sybase.driver.url>    
+  </properties>
+    
+      <build>
+        <plugins>
+
+          <!--  fetch resource files from the orignal Ant build project -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-plugin</artifactId>
+            <version>${maven.scm.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>svn-co-resource-to-staging</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>checkout</goal>
+                </goals>
+                <configuration>
+                  <skipCheckoutIfExists>true</skipCheckoutIfExists>
+                  <connectionUrl>scm:svn:http://alban.googlecode.com/svn/wiki</connectionUrl>
+                  <checkoutDirectory>${staging.dir}/resource</checkoutDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>   
+        
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${maven.antrun.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>create-staging-area</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <mkdir dir="${download.dir}" />
+                    <get src="${sybase.driver.url}" dest="${download.dir}/${sybase.driver.jar}" verbose="on"
+                      usetimestamp="yes" />
+                  </tasks>
+                </configuration>
+              </execution>
+
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <configuration>
+              <generatePom>true</generatePom>
+              <!--  use fake id for demo purpose  -->
+              <groupId>izpack.demo</groupId>
+            </configuration>
+            <executions>
+              <!--
+              <execution>
+                <id>install-groovy-binary</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>install-file</goal>
+                </goals>
+                <configuration>
+                  <file>${groovy.binary.zip}</file>
+                  <artifactId>groovy</artifactId>
+                  <version>${groovy.version}</version>
+                  <classifier>binary</classifier>
+                  <packaging>zip</packaging>
+                </configuration>
+              </execution>
+              <execution>
+                <id>install-groovy-docs</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>install-file</goal>
+                </goals>
+                <configuration>
+                  <file>${groovy.docs.zip}</file>
+                  <artifactId>groovy</artifactId>
+                  <version>${groovy.version}</version>
+                  <classifier>docs</classifier>
+                  <packaging>zip</packaging>
+                </configuration>
+              </execution>
+              -->
+              <execution>
+                <id>install-svg-salamander-jar</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>install-file</goal>
+                </goals>
+                <configuration>
+                  <file>${download.dir}/${sybase.driver.jar}</file>
+                  <groupId>com.sybase</groupId>
+                  <artifactId>jconn3</artifactId>
+                  <version>${jdbc.sybase.version}</version>
+                  <packaging>jar</packaging>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+      
+</project>
