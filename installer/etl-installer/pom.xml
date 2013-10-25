@@ -11,7 +11,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>etl-deploy</artifactId>
 	<name>Nabla ETL Deploy</name>
-	<packaging>pom</packaging>
+	<packaging>izpack-jar</packaging>
 	<description>Nabla ETL Deploy</description>
 
 <!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
@@ -32,6 +32,8 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
     <graphicsbuilder.version>0.5.1</graphicsbuilder.version>
     <jidebuilder.version>1.0</jidebuilder.version>
     <svg-salamander.version>1.0</svg-salamander.version>
+    
+    <message.archive>jidebuilder-${project.version}.jar</message.archive>
 
     <groovy.bin.archive>groovy-binary-${groovy.version}.zip</groovy.bin.archive>
     <groovy.bin.url>http://dist.codehaus.org/groovy/distributions/${groovy.bin.archive}</groovy.bin.url>
@@ -86,7 +88,8 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 
     <defaultGoal>package</defaultGoal>
 
-    <plugins>
+    <plugins>      
+      
       <!--  fetch resource files from the orignal Ant build project -->
       <!--
       <plugin>
@@ -225,6 +228,13 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>log4j</groupId>
+                  <artifactId>log4j</artifactId>
+                  <version>${log4j.version}</version>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/lib</outputDirectory>
+                </artifactItem>                
                 <!--
                 <artifactItem>
                   <groupId>izpack.demo</groupId>
@@ -270,15 +280,19 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
         </executions>
       </plugin>
 
+      <!-- http://docs.codehaus.org/display/IZPACK/IzPack+Maven+Plugin+Reference -->
       <plugin>
         <groupId>org.codehaus.izpack</groupId>
         <artifactId>izpack-maven-plugin</artifactId>
         <version>${maven.izpack.plugin.version}</version>
-
+        <extensions>true</extensions>
         <!-- common configuration by all executions -->
         <configuration>
           <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
           <izpackBasedir>${staging.dir}</izpackBasedir>
+          <finalName>NABLAInstaller</finalName>
+          <enableOverrideArtifact>true</enableOverrideArtifact>
+          <mkdirs>true</mkdirs>
         </configuration>
 
         <executions>

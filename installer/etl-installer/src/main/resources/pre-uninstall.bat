@@ -3,5 +3,5 @@ del "$INSTALL_PATH\bin\*.exe"
 del "$INSTALL_PATH\.installationinformation"
 
 :: remove file associations
-ftype Groovy= 
-assoc .groovy=
+ftype Nabla= 
+assoc .nabla=

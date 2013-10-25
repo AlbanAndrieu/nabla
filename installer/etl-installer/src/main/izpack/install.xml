@@ -4,27 +4,30 @@
                      xmlns:izpack="http://izpack.org/schema/installation"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:schemaLocation="http://izpack.org/schema/installation http://izpack.org/schema/5.0/izpack-installation-5.0.xsd">
-                     
+                
+  <!-- http://izpack.org/documentation/installation-files.html#the-installer-requirements-element-installerrequirements -->     
   <variables>
     <variable name="appGroup" value="${app.group}"/>
     <variable name="appTitle" value="${app.title}"/>
     <variable name="appSubPath" value="${app.subpath}"/>
     <variable name="appVersion" value="${app.version}"/>
+    <variable name="is.silent.mode.active" value="_ISSILENTMODE_" />
     <!-- pre-select desktop shortcut checkbox -->
     <variable name="DesktopShortcutCheckboxEnabled" value="true" />
   </variables>
 
   <info>
     <javaversion>1.7</javaversion>
-    <appname>${app.title}</appname>
-    <appsubpath>${app.subpath}</appsubpath>
-    <appversion>${app.version}</appversion>
+    <appname>@{app.title}</appname>
+    <appsubpath>@{app.subpath}</appsubpath>
+    <appversion>@{app.version}</appversion>
 
     <!-- following appears in HelloPanel -->
     <authors>
       <author name="nabla-dev" email="dev@nabla.mobi"/>
     </authors>
     <url>http://nabla.mobi</url>
+    <!--<uninstaller name="remove.task" path="${INSTALL_PATH}/Uninstall" write="yes"/>-->
   </info>
 
   <guiprefs width="800" height="600" resizable="yes">
@@ -56,8 +59,7 @@
     <res id="HTMLLicencePanel.licence" src="resources/asl2.html" />
 
     <!-- FIXME: parse=yes results in a blank panel -->
-    <res id="HTMLInfoPanel.info"
-	src="resources/README-IzPack.html" parse="no" />
+    <res id="HTMLInfoPanel.info" src="resources/README-IzPack.html" parse="no" />
 
     <res id="TargetPanel.dir.unix" src="resources/target_unix.txt" parse="yes" />
     <res id="Win_NT_shortcutSpec.xml" src="resources/winShortcutSpec.xml" />
@@ -67,33 +69,57 @@
     <res src="resources/RegistrySpec.xml" id="RegistrySpec.xml"/>
   </resources>
 
-  <native type="izpack" name="ShellLink.dll"/>
-
+  <conditions>
+  	<condition type="variable" id="error.occured">
+  		<name>error.occured</name>
+  		<value>false</value>
+  	</condition>
+  	<condition type="variable" id="no.further.step.available.nabla">
+  		<name>no.further.step.available.nabla</name>
+  		<value>false</value>
+  	</condition>
+  </conditions>
+	  
   <panels>
+    <panel classname="HelloPanel"/>
     <panel classname="HTMLInfoPanel"/>
     <panel classname="HTMLLicencePanel"/>
-    <panel classname="TargetPanel" /> 
+    <panel classname="TargetPanel"/> 
+    <!--<panel classname="InstallationGroupPanel" condition="no.further.step.available.nabla"/>-->
     <panel classname="PacksPanel"/>
+    <!--<panel classname="UserPathPanel"/>-->
+    <!--
+    <panel classname="UserInputPanel" id="UserInputPanel.0" condition="no.further.step.available.nabla"/>
+    <panel classname="UserInputPanel" id="UserInputPanel.1" condition="no.further.step.available.nabla"/>
+    <panel classname="UserInputPanel" id="UserInputPanel.2" condition="no.further.step.available.nabla"/>
+    -->
+    <!--
+    <panel classname="UserInputPanel" id="jdbc.connection.parameters">
+      <validator classname="JdbcConnectionValidator" />
+    </panel>
+    -->    
     <panel classname="SummaryPanel"/>
     <panel classname="InstallPanel"/>
     <panel classname="ProcessPanel"/>
     <panel classname="ShortcutPanel" /> 
     <panel classname="FinishPanel"/>
   </panels>
-  
-  <!--
+
+<!--    
   <listeners>
-    <listener installer="SummaryLoggerInstallerListener"/>
+    <listener installer="SummaryLoggerInstallerListener">
+      <os family="windows"/>
+    </listener>
+    
     <listener installer="RegistryInstallerListener"
               uninstaller="RegistryUninstallerListener">
       <os family="windows"/>
     </listener>
   </listeners>
-  -->
-
+      -->
   <packs>
-    <pack name="Groovy core" required="yes">
-      <description>Groovy core files installation.</description>
+    <pack name="Nabla core" required="yes">
+      <description>Nabla core files installation.</description>
 
       <!--
       <fileset dir="binary/groovy-${groovy.version}"
@@ -107,19 +133,30 @@
 
       <file src="resources/groovy.exe"
 	targetdir="$INSTALL_PATH/bin" os="windows" />
+      <!--
       <file src="resources/groovyw.exe"
 	targetdir="$INSTALL_PATH/bin" os="windows" />
+      -->
 
       <file src="resources/pre-uninstall.bat"
 	targetdir="$INSTALL_PATH/Uninstaller" os="windows" />
       <parsable targetfile="$INSTALL_PATH/Uninstaller/pre-uninstall.bat" os="windows" />
       <executable targetfile="$INSTALL_PATH/Uninstaller/pre-uninstall.bat" os="windows" stage="uninstall" />
 
+      <file src="resources/install.sh" targetdir="$INSTALL_PATH" os="unix"/>
+      <!--<parsable targetfile="$INSTALL_PATH/install.sh" os="unix"/>-->
+      
+      <file src="resources/run.bat" targetdir="$INSTALL_PATH" os="windows"/>
+      <!--<parsable targetfile="$INSTALL_PATH/bat.bat" os="windows"/>-->
+      <!--  The file will be parsed  -->
+
       <executable targetfile="$INSTALL_PATH/bin/groovy" os="unix" />
+      <!--
       <executable targetfile="$INSTALL_PATH/bin/groovyc" os="unix" />
       <executable targetfile="$INSTALL_PATH/bin/groovysh" os="unix" />
       <executable targetfile="$INSTALL_PATH/bin/groovyConsole" os="unix"/>
       <executable targetfile="$INSTALL_PATH/bin/java2groovy" os="unix"/>
+      -->
     </pack>
 
     <pack name="File associations" required="no">
@@ -136,6 +173,7 @@
     </pack>
     -->
 
+    <!--
     <pack name="Scriptom" required="no">
       <os family="windows" />
       <description>COM Scripting Module. Microsoft Visual C++ 2005 SP1 Redistributable Package is required.
@@ -163,20 +201,26 @@
       <executable targetfile="$INSTALL_PATH/bin/graphicsPad" os="unix" />
       <executable targetfile="$INSTALL_PATH/bin/svg2groovy" os="unix" />
     </pack>
+    -->
     
-    <pack name="JideBuilder" required="no">
-      <description>JideBuilder is a Groovy builder for the open source JIDE Common Layer.</description>
-      <fileset dir="jars" targetdir="$INSTALL_PATH/lib">
-        <include name="${jidebuilder.archive}"/>
-        <include name="${svg-salamander.archive}"/>
+    <pack name="Message" required="no">
+      <description>Message is an ETL for the open source Nabla Common Layer.</description>
+      <fileset dir="jars" targetdir="$INSTALL_PATH/bin" override="true">
+        <!--<include name="@{message.archive}"/>-->
+        <!--<include name="@{test.archive}"/>-->
       </fileset>
+      <fileset dir="lib" targetdir="$INSTALL_PATH/lib" override="true">
+      </fileset>      
     </pack>
 
   </packs>
   
+  <!-- The native libraries to add. This is required for creating shortcuts on Windows -->
   <native type="izpack" name="ShellLink.dll"/>
   <native type="3rdparty" name="COIOSHelper.dll" stage="both">
     <os family="windows"/>
   </native>
+
+  <jar src="lib/log4j-1.2.17.jar" />
 
 </izpack:installation>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
 <processing>
 
+  <!--
   <job name="Copy base native launchers">
     <os family="windows" />
     <executefile name="cmd.exe">
@@ -17,24 +18,16 @@
     </executefile>
   </job>
 
-  <job name="Copy gant native launcher">
+  <job name="Copy message">
     <os family="windows" />
-    <executeForPack name="Gant" />
-    <executefile name="cmd.exe">
-      <arg>/c</arg>
-      <arg>cd /d $INSTALL_PATH\bin &amp; copy groovy.exe gant.exe</arg>
-    </executefile>
-  </job>
-
-  <job name="Copy graphicsPad native launcher">
-    <os family="windows" />
-    <executeForPack name="GraphicsBuilder" />
+    <executeForPack name="Message" />
     <executefile name="cmd.exe">
       <arg>/c</arg>
       <arg>cd /d $INSTALL_PATH\bin &amp; copy groovyw.exe graphicsPad.exe &amp; copy groovy.exe svg2groovy.exe</arg>
     </executefile>
   </job>
-
+  -->
+  
   <job name="Add file associations">
     <os family="windows" />
     <executeForPack name="File associations" />
@@ -49,7 +42,7 @@
   <job name="Export path">
     <os family="unix" />
     <executefile name="/bin/echo">
-      <arg>You should add Groovy to your PATH environment variable: export PATH="$INSTALL_PATH/bin:$PATH"</arg>
+      <arg>You should add Nabla to your PATH environment variable: export PATH="$INSTALL_PATH/bin:$PATH"</arg>
     </executefile>
   </job>
 

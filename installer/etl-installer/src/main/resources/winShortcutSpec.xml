@@ -20,20 +20,6 @@
   </shortcut>
 
   <shortcut
-    name="Graphics Pad"
-    target="$INSTALL_PATH\bin\graphicsPad.exe"
-    commandLine=""
-    workingDirectory="$INSTALL_PATH\bin"
-    description="Start Groovy builder for Java 2D"
-    initialState="normal"
-    programGroup="yes"
-    desktop="yes"
-    applications="no"
-    startMenu="no"
-    startup="no">
-  </shortcut>
-
-  <shortcut
     name="Uninstall"
     target="$INSTALL_PATH\\Uninstaller\uninstaller.jar"
     commandLine=""
@@ -50,36 +36,6 @@
   <shortcut
     name="API Documentation"
     target="$INSTALL_PATH\html\api\index.html"
-    commandLine=""
-    workingDirectory="$INSTALL_PATH"
-    description="$appTitle"
-    initialState="normal"
-    programGroup="yes"
-    desktop="no"
-    applications="no"
-    startMenu="no"
-    startup="no">
-    <createForPack name="Documentation" />
-  </shortcut>
-
-  <shortcut
-    name="GAPI Documentation"
-    target="$INSTALL_PATH\html\html\gapi\index.html"
-    commandLine=""
-    workingDirectory="$INSTALL_PATH"
-    description="$appTitle"
-    initialState="normal"
-    programGroup="yes"
-    desktop="no"
-    applications="no"
-    startMenu="no"
-    startup="no">
-    <createForPack name="Documentation" />
-  </shortcut>
-
-  <shortcut
-    name="GDK Documentation"
-    target="$INSTALL_PATH\html\groovy-jdk\index.html"
     commandLine=""
     workingDirectory="$INSTALL_PATH"
     description="$appTitle"
