@@ -52,7 +52,7 @@
         <ciManagement>
                 <!--
                 <system>hudson</system>
-                <url>http://localhost:8070/hudson/</url>https://nabla.ci.cloudbees.com/
+                <url>http://localhost:8070/hudson/</url>
                 -->
                 <system>jenkins</system>
                 <url>http://home.nabla.mobi:8080</url>
@@ -128,6 +128,7 @@
 
         <profiles>
                 <!-- ================= START Environment Profiles ================= -->
+                <!--
 		<profile>
         	  <id>m2e</id>
         	  <activation>
@@ -163,6 +164,7 @@
         	    </pluginManagement>
         	  </build>
         	</profile>
+        	-->
                 <profile>
                   <id>env.WORKSPACE.default</id>
                   <activation>
