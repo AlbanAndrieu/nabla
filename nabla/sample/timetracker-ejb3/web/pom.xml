@@ -961,10 +961,16 @@
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
             </plugin>
+            <plugin>            
+            	<groupId>org.eclipse.jetty</groupId>
+		<artifactId>jetty-maven-plugin</artifactId>
+		<version>${maven.jetty.eclipse.plugin.version}</version>
+		
+	    <!--
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
-                <version>${maven.jetty.plugin.version}</version>
+                <version>${maven.jetty.mortbay.plugin.version}</version>
                 <configuration>
 			<scanIntervalSeconds>10</scanIntervalSeconds>
           		<connectors>
@@ -972,7 +978,8 @@
           		    <port>8050</port>
           		    <maxIdleTime>60000</maxIdleTime>
           		  </connector>
-          		</connectors>                
+          		</connectors>         
+          		-->       
           		<!--
                     <webAppSourceDirectory>${project.basedir}/${target.dir}/src/main/java</webAppSourceDirectory>
                     <webAppConfig>
@@ -983,7 +990,7 @@
                         <contextPath>/${application.id}-${project.version}</contextPath>
                     </webAppConfig>
                     -->
-                </configuration>
+                <!--</configuration>-->
                 <!-- jsp 2
 		<dependencies>
                     <dependency>
