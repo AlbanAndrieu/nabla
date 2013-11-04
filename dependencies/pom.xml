@@ -1411,8 +1411,12 @@
                 <corejsf.validator.version>1.0</corejsf.validator.version>
                 <displaytag.version>1.2</displaytag.version>
                 <dwr.version>2.0.1</dwr.version>
-                <ehcache.version>2.5.0</ehcache.version>
+                <!--
+                <ehcache.version>2.5.0</ehcache.version>                
                 <ehcache.jar.version>2.7.4</ehcache.jar.version>
+                -->
+		<ehcache.version>2.4.6</ehcache.version>
+                <ehcache.jar.version>1.5.0</ehcache.jar.version>                
                 <ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
                 <org.javassist.version>3.15.0-GA</org.javassist.version>
                 <javassist.version>3.12.1.GA</javassist.version>
