@@ -22,7 +22,7 @@ Modify as necessary for JPA unit testing
         <!-- use jta-data-source only when transaction-type is JTA -->
         <jta-data-source>${dataSource}</jta-data-source>
         <!-- use non-jta-data-source only when transaction-type is RESOURCE_LOCAL -->
-        <!--<non-jta-data-source>${dataSource}Unmanaged</non-jta-data-source>-->
+        <non-jta-data-source>${dataSource}Unmanaged</non-jta-data-source>
 #end
 #if ($stringUtils.isNotBlank($jarFiles))
 #**##set ($jars = $stringUtils.split($jarFiles,','))

@@ -7,8 +7,8 @@
         <artifactId>timetracker-ejb3</artifactId>
         <version>3.5</version>
     </parent>
-    
-    <modelVersion>4.0.0</modelVersion>    
+
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>web</artifactId>
     <packaging>war</packaging>
     <name>[${project.parent.artifactId} :: EJB3 Web] - ${project.artifactId} : ${project.version}</name>
@@ -23,17 +23,17 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
-            <scope>${scope.type}</scope>            
+            <scope>${scope.type}</scope>
             <type>ejb</type>
-        </dependency>       
-        <!-- 
+        </dependency>
+        <!--
        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>war-base</artifactId>
             <version>${project.version}</version>
             <type>war</type>
-        </dependency>       
-        --> 
+        </dependency>
+        -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -84,22 +84,22 @@
             <artifactId>oro</artifactId>
             <scope>${scope.type}</scope>
         </dependency>
-        
+
         <!-- JSR-303 (Bean Validation) Implementation -->
         <!-- Provides portable constraints such as @Email -->
         <!-- Hibernate Validator is shipped in JBoss AS 7 -->
         <dependency>
-            <groupId>org.hibernate</groupId>        
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>${scope.type}</scope>
-        </dependency>    
-               
-        <!-- GWT validation uses Hibernate Validator, and requires the sources 
+        </dependency>
+
+        <!-- GWT validation uses Hibernate Validator, and requires the sources
           at compile time. -->
         <dependency>
           <groupId>org.hibernate</groupId>
           <artifactId>hibernate-validator</artifactId>
-          <version>${hibernate.validator.version}</version>          
+          <version>${hibernate.validator.version}</version>
           <scope>${scope.type}</scope>
           <classifier>sources</classifier>
           <exclusions>
@@ -109,15 +109,15 @@
             </exclusion>
           </exclusions>
         </dependency>
-        
+
         <!--
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-infinispan</artifactId>
                 <scope>${scope.type}</scope>
-            </dependency>   
-        -->         
-            
+            </dependency>
+        -->
+
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-search</artifactId>
@@ -125,27 +125,34 @@
                 <scope>${scope.type}</scope>
 	</dependency>
 
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-commons-annotations</artifactId>
+		<version>${hibernate.commons.annotations.version}</version>
+		<scope>${scope.type}</scope>
+	</dependency>
+
         <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
             <version>${ant.version}</version>
         </dependency>
-						
-        <!-- Import the Bean Validation API, which is used both on the server 
-        and the client. -->                
+
+        <!-- Import the Bean Validation API, which is used both on the server
+        and the client. -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>
-        <!-- GWT validation also requires the validation API sources at compile 
+        <!-- GWT validation also requires the validation API sources at compile
           time -->
         <dependency>
           <groupId>javax.validation</groupId>
           <artifactId>validation-api</artifactId>
           <version>${validation.api.version}</version>
           <classifier>sources</classifier>
-        </dependency>        
-        
+        </dependency>
+
         <!--
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
@@ -158,13 +165,13 @@
             <!--
         </dependency>
         -->
-        
+
         <dependency>
             <groupId>com.sun.facelets</groupId>
             <artifactId>jsf-facelets</artifactId>
-        </dependency>   
-             
-        <!-- icefaces 
+        </dependency>
+
+        <!-- icefaces
         <dependency>
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces</artifactId>
@@ -178,34 +185,34 @@
 	    <artifactId>icefaces-facelets</artifactId>
 	</dependency>
 	-->
-        
+
     	<!-- richfaces -->
         <dependency>
           <groupId>org.richfaces.framework</groupId>
           <artifactId>richfaces-api</artifactId>
           <scope>${scope.type}</scope>
         </dependency>
-                	
+
     	<dependency>
     	  <groupId>org.richfaces.framework</groupId>
     	  <artifactId>richfaces-impl</artifactId>
     	</dependency>
-    	
+
     	<dependency>
     	  <groupId>org.richfaces.ui</groupId>
     	  <artifactId>richfaces-ui</artifactId>
     	</dependency>
-	
+
     	<dependency>
     	  <groupId>org.richfaces.samples</groupId>
     	  <artifactId>glassX</artifactId>
     	</dependency>
-    	  
+
     	<dependency>
     	  <groupId>org.richfaces.samples</groupId>
     	  <artifactId>darkX</artifactId>
-    	</dependency>   
-        
+    	</dependency>
+
         <!-- myfaces -->
         <!--
         <dependency>
@@ -217,7 +224,7 @@
             <artifactId>myfaces-impl</artifactId>
         </dependency>
         -->
-        
+
         <!--
 
         <dependency>
@@ -275,30 +282,23 @@
             <scope>compile</scope>
         </dependency>
         -->
-    
+
 	<!-- for cannot access javax.faces.application.FacesMessage -->
-	<!-- see in core project it is provided (needed for jboss 7) 
+	<!-- see in core project it is provided (needed for jboss 7) -->
 	<dependency>
 		<groupId>javax.faces</groupId>
 		<artifactId>jsf-api</artifactId>
 		<version>${jsf.api.version}</version>
 		<scope>${scope.type}</scope>
 	</dependency>
-	<dependency>
-		<groupId>javax.faces</groupId>
-		<artifactId>jsf-impl</artifactId>
-		<version>${jsf.impl.version}</version>
-		<scope>${scope.type}</scope>
-	</dependency>
-    -->
-    
+
 	<dependency>
 		<groupId>org.testng</groupId>
 		<artifactId>testng</artifactId>
 		<version>${testng.version}</version>
 		<scope>test</scope>
 	</dependency>
-		        
+
         <!-- replace this by slf4j-api and slf4j-simple
         http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
         <dependency>
@@ -335,25 +335,27 @@
 			<artifactId>el-api</artifactId>
 			<version>${el.api.version}</version>
 			<scope>${scope.type}</scope>
-		</dependency>	
-    		    
+		</dependency>
+
         	<dependency>
         	  <groupId>javax.ejb</groupId>
         	  <artifactId>ejb-api</artifactId>
         	  <scope>${scope.type}</scope>
-		  <optional>true</optional> 
+		  <optional>true</optional>
         	</dependency>
-        	
+
         <!-- *************** Seam Dependencies *************** -->
-    <!--
+
+ 	<!--
 	<dependency>
 	  <groupId>org.jboss.seam</groupId>
 	  <artifactId>jboss-seam</artifactId>
 	  <version>${seam.version}</version>
 	  <scope>${scope.type}</scope>
 	  <type>ejb</type>
-	</dependency>    
-    -->
+	</dependency>
+	-->
+
  			<dependency>
 				<groupId>org.apache.lucene</groupId>
 				<artifactId>lucene-core</artifactId>
@@ -385,19 +387,19 @@
 				<version>${lucene.version}</version>
 				<scope>compile</scope>
 			</dependency>
-			-->			       
+			-->
 
         <dependency>
           <groupId>org.jboss.seam</groupId>
           <artifactId>jboss-seam-ui</artifactId>
         </dependency>
-        
+
         <!-- optional, but a reasonable requirement for a newly created project -->
         <dependency>
           <groupId>org.jboss.seam</groupId>
           <artifactId>jboss-seam-debug</artifactId>
         </dependency>
-   
+
 	<dependency>
 		<groupId>org.jboss.seam</groupId>
 		<artifactId>jboss-seam-remoting</artifactId>
@@ -410,8 +412,8 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
-	                
-        <!-- add more Seam modules as needed 
+
+        <!-- add more Seam modules as needed
         <dependency>
           <groupId>org.jboss.seam</groupId>
           <artifactId>jboss-seam-ioc</artifactId>
@@ -431,44 +433,52 @@
         <dependency>
           <groupId>org.jboss.seam</groupId>
           <artifactId>jboss-seam-excel</artifactId>
-        </dependency>        
+        </dependency>
         -->
 
 	<dependency>
-		<groupId>javassist</groupId>
+		<groupId>org.javassist</groupId>
 		<artifactId>javassist</artifactId>
+		<version>${org.javassist.version}</version>
+		<scope>${scope.type}</scope>
+	</dependency>
+	<!--
+	<dependency>
+		<groupId>javassist</groupId>
+		<artifactId>javassist</artifactId
 		<version>${javassist.version}</version>
 		<scope>${scope.type}</scope>
 	</dependency>
-			
+	-->
+
         <dependency>
         	<groupId>asm</groupId>
         	<artifactId>asm</artifactId>
         	<version>${asm.version}</version>
-        </dependency>		
+        </dependency>
        <dependency>
 		<groupId>cglib</groupId>
 		<artifactId>cglib</artifactId>
 		<version>${cglib.version}</version>
-	</dependency>		
-		
+	</dependency>
+
         <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>servlet-api</artifactId>
         </dependency>
-        
+
         <!--
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
         </dependency>
         -->
-        
+
         <!--dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
         </dependency-->
-        
+
         <!--
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -502,12 +512,14 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <scope>${scope.type}</scope>
+            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId> 
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <scope>${scope.type}</scope>
-        </dependency>              
+            <!--<scope>provided</scope>-->
+        </dependency>
 
 	<!-- *************** Drools / jBPM Dependency *************** -->
 
@@ -542,7 +554,7 @@
 		</exclusions>
 	</dependency>
 
-        <!-- gwt-user is required at runtime because we use some of the client/server 
+        <!-- gwt-user is required at runtime because we use some of the client/server
         shared APIs such as RegExp, so scope is 'compile' rather than 'provided'. -->
         <dependency>
             <groupId>com.google.gwt</groupId>
@@ -566,14 +578,14 @@
             <scope>compile</scope>
         </dependency>
         -->
-        
+
 	<dependency>
 	    <groupId>com.gwtplatform</groupId>
 	    <artifactId>gwtp-all</artifactId>
 	    <version>${gwtp.all.version}</version>
-	    <scope>compile</scope>			
-	</dependency>	        
-	
+	    <scope>compile</scope>
+	</dependency>
+
 	<dependency>
 		<groupId>xerces</groupId>
 		<artifactId>xercesImpl</artifactId>
@@ -586,21 +598,21 @@
 			</exclusion>
 		</exclusions>
 	</dependency>
- 
+
 	<dependency>
 		<groupId>org.jboss.el</groupId>
 		<artifactId>jboss-el</artifactId>
 		<version>${jboss.el.version}</version>
 		<scope>${scope.type}</scope>
 	</dependency>
-	 
+
        <dependency>
                <groupId>org.hibernate.javax.persistence</groupId>
                <artifactId>hibernate-jpa-2.0-api</artifactId>
                <version>${hibernate.jpa.api.version}</version>
                <scope>provided</scope>
-       </dependency>	
-         
+       </dependency>
+
         <dependency>
             <groupId>nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
@@ -616,25 +628,25 @@
             <version>2.0.2_GA</version>
         </dependency>
         -->
-        
+
         <!--
         <dependency>
             <groupId>org.ajax4jsf</groupId>
             <artifactId>ajax4jsf</artifactId>
             <version>1.0.5</version>
-        </dependency>    
-        -->    
-        
+        </dependency>
+        -->
+
         <!--
 	<dependency>
 	    <groupId>javax.persistence</groupId>
 	    <artifactId>persistence-api</artifactId>
 	    <scope>${scope.type}</scope>
 	    <optional>true</optional>
-	</dependency>        
-	-->	
-	
-	<!-- jboss dependencies -->            
+	</dependency>
+	-->
+
+	<!-- jboss dependencies -->
         <!-- Import the CDI API, we use provided scope as the API is included
             in JBoss AS 7 -->
         <!--
@@ -646,7 +658,7 @@
         -->
         <!-- Import the Common Annotations API (JSR-250), we use provided scope
             as the API is included in JBoss AS 7 -->
-        <!--            
+        <!--
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.1_spec</artifactId>
@@ -655,52 +667,56 @@
         -->
         <!-- Import the JSF API, we use provided scope as the API is included
             in JBoss AS 7 -->
-        <!--            
+        <!--
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.1_spec</artifactId>
             <scope>provided</scope>
         </dependency>
-        -->        
+        -->
         <!-- Import the EJB API, we use provided scope as the API is included in
               JBoss AS 7 -->
-        <!--              
+        <!--
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
             <artifactId>jboss-ejb-api_3.1_spec</artifactId>
             <scope>provided</scope>
-        </dependency>	   
-        -->    
-        <!-- Define the version of JBoss' Java EE 6 APIs we want to import. 
-            Any dependencies from org.jboss.spec will have their version defined by this 
+        </dependency>
+        -->
+        <!-- Define the version of JBoss' Java EE 6 APIs we want to import.
+            Any dependencies from org.jboss.spec will have their version defined by this
             BOM -->
-        <!-- JBoss distributes a complete set of Java EE 6 APIs including 
-            a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
-            a collection) of artifacts. We use this here so that we always get the correct 
-            versions of artifacts. Here we use the jboss-javaee-6.0 stack (you can read 
-            this as the JBoss stack of the Java EE 6 APIs). You can actually use this 
-            stack with any version of JBoss AS that implements Java EE 6, not just JBoss 
+        <!-- JBoss distributes a complete set of Java EE 6 APIs including
+            a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
+            a collection) of artifacts. We use this here so that we always get the correct
+            versions of artifacts. Here we use the jboss-javaee-6.0 stack (you can read
+            this as the JBoss stack of the Java EE 6 APIs). You can actually use this
+            stack with any version of JBoss AS that implements Java EE 6, not just JBoss
             AS 7! -->
-        <!-- put this in dependencyManagement            
+        <!-- put this in dependencyManagement
         <dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-6.0</artifactId>
             <version>${version.org.jboss.spec.jboss.javaee6}</version>
             <type>pom</type>
             <scope>import</scope>
-        </dependency>                         	
-        -->	
+        </dependency>
+        -->
     </dependencies>
-    
-    <properties>    
+
+    <properties>
     	<target.dir>target</target.dir>
+    	<!--
+    	<jboss.home>C:\jboss-5.1.0.GA</jboss.home>
+        <server.version>5.1.0.GA</server.version>
+        -->
     </properties>
-	    
+
     <build>
         <finalName>${project.parent.artifactId}</finalName>
         <!--<defaultGoal>hotdeploy:exploded</defaultGoal>-->
         <!-- comment resources for mvn eclipse:eclipse -->
-            <!--        
+            <!--
         <resources>
             <resource>
               <directory>src/main/java</directory>
@@ -717,14 +733,14 @@
             <resource>
                 <directory>src/hot/java</directory>
                 <filtering>false</filtering>
-            </resource> 
-            -->                 
+            </resource>
+            -->
             <!--
             <resource>
             	<directory>${maven.build.generated}/main/java</directory>
             	<filtering>true</filtering>
-            </resource>	
-            -->	        
+            </resource>
+            -->
             <!--
             <resource>
                 <directory>src/main/resources</directory>
@@ -742,12 +758,12 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-                  -->           
+                  -->
         <!--
 	<filters>
 		<filter>${home.dir}/build-tools/src/main/resources/project/${project.parent.artifactId}-development.properties</filter>
-	</filters>   
-	-->     	
+	</filters>
+	-->
 	<!--
         <testResources>
           <testResource>
@@ -761,7 +777,7 @@
             </includes>
           </testResource>
         </testResources>
-        -->	
+        -->
         <plugins>
            <plugin>
            	<groupId>org.codehaus.mojo</groupId>
@@ -803,7 +819,7 @@
               </executions>
             </plugin>
             -->
-            <!-- GWT plugin to compile client-side java code to javascript and 
+            <!-- GWT plugin to compile client-side java code to javascript and
             to run GWT development mode -->
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
@@ -813,18 +829,18 @@
                 <inplace>true</inplace>
                 <logLevel>INFO</logLevel>
                 <extraJvmArgs>-Xmx512m</extraJvmArgs>
-                <!-- Configure GWT's development mode (formerly known as hosted 
-                  mode) to not start the default server (embedded jetty), but to download the 
+                <!-- Configure GWT's development mode (formerly known as hosted
+                  mode) to not start the default server (embedded jetty), but to download the
                   HTML host page from the configured runTarget. -->
                 <noServer>true</noServer>
                 <runTarget>http://localhost:8180/timetracker-ejb3/HelloWorldGWT.html</runTarget>
-             
               </configuration>
               <executions>
                 <execution>
                   <goals>
                     <goal>resources</goal>
                     <goal>compile</goal>
+                    <!--<goal>generateAsync</goal>-->
                   </goals>
                 </execution>
                 <execution>
@@ -836,7 +852,7 @@
                 </execution>
               </executions>
             </plugin>
-<!--        
+<!--
 	    <plugin>
 	    	<groupId>com.ctp.seam.maven</groupId>
 	    	<artifactId>maven-hotdeploy-plugin</artifactId>
@@ -847,8 +863,8 @@
 	    		<sourceDirectory>${basedir}/src/main/hot</sourceDirectory>
 	    		<deployDirectory>${jboss.deploy.directory}/${build.finalName}.war</deployDirectory>
 	    	</configuration>
-	    </plugin>   
-	    -->    
+	    </plugin>
+	    -->
 	    <!-- run with 'mvn cli:execute-phase' and use 'hot' -->
 	    <plugin>
 	    	<groupId>org.twdata.maven</groupId>
@@ -859,7 +875,7 @@
 	    			<cln>clean -o -Pclean</cln>
 	    		</userAliases>
 	    	</configuration>
-	    </plugin>	    
+	    </plugin>
 	    <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -885,7 +901,7 @@
           	        <targetPath>WEB-INF</targetPath>
           	        <filtering>true</filtering>
           	      </webResource>
-          	    </webResources>                
+          	    </webResources>
                     <!--<warSourceDirectory>${target.dir}/src/main/webapp</warSourceDirectory>-->
                     <!-- Needed for mvn 2.1 with war-plugin 2.1. See http://jira.codehaus.org/browse/MWAR-187 -->
                     <!--
@@ -893,12 +909,12 @@
                     <excludes>**/*.java</excludes>
                     -->
                     <!--packagingExcludes>**/aopa*.jar,**/cglib-*.jar,**/commons-codec*.jar,**/commons-fileu*.jar,**/commons-logging*.jar,**/hibernate-validator*.jar,**/spring-a*.jar,**/spring-bean*.jar,**/spring-co*.jar,**/spring-expr*.jar,**/spring-tx*.jar,**/spring-web*.jar</packagingExcludes-->
-                    <!-- We must exclude GWT client local classes from the deployment, 
-                      or classpath scanners such as Hibernate and Weld get confused when the webapp 
+                    <!-- We must exclude GWT client local classes from the deployment,
+                      or classpath scanners such as Hibernate and Weld get confused when the webapp
                       is bootstrapping. -->
                     <!-- workaround for openejb exluded ejb-jar.xml and components.xml from **/WEB-INF/classes/META-INF/ -->
-                    <!--<packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class,**/WEB-INF/classes/META-INF/*.xml</packagingExcludes>-->     
-                    <packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class</packagingExcludes>    
+                    <!--<packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class,**/WEB-INF/classes/META-INF/*.xml</packagingExcludes>-->
+                    <packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class</packagingExcludes>
                     <!--<webappDirectory>${jboss.deploy.directory}/${project.parent.artifactId}</webappDirectory>-->
                     <!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
                     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -916,16 +932,16 @@
                         -->
                         <!--
                       </overlay>
-                    </overlays>       
-                    -->             
+                    </overlays>
+                    -->
                     <archive>
                       <manifest>
                         <addClasspath>true</addClasspath>
-                      </manifest>                    
+                      </manifest>
                       <manifestEntries>
                         <Dependencies>org.jboss.as.naming,org.jboss.as.server,org.jboss.msc</Dependencies>
                       </manifestEntries>
-                    </archive>  
+                    </archive>
                 </configuration>
             </plugin>
             <!-- The JBoss AS plugin deploys your war to a local JBoss AS container -->
@@ -935,7 +951,7 @@
               <artifactId>jboss-as-maven-plugin</artifactId>
               <version>${maven.jboss.as.plugin.version}</version>
             </plugin>
-      
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-clean-plugin</artifactId>
@@ -956,16 +972,16 @@
                   </fileset>
                 </filesets>
               </configuration>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromdapp-maven-plugin</artifactId>
             </plugin>
-            <plugin>            
+            <plugin>
             	<groupId>org.eclipse.jetty</groupId>
 		<artifactId>jetty-maven-plugin</artifactId>
 		<version>${maven.jetty.eclipse.plugin.version}</version>
-		
+
 	    <!--
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -978,8 +994,8 @@
           		    <port>8050</port>
           		    <maxIdleTime>60000</maxIdleTime>
           		  </connector>
-          		</connectors>         
-          		-->       
+          		</connectors>
+          		-->
           		<!--
                     <webAppSourceDirectory>${project.basedir}/${target.dir}/src/main/java</webAppSourceDirectory>
                     <webAppConfig>
@@ -1033,16 +1049,296 @@
                             </exclusion>
                         </exclusions>
                     </dependency>
-		</dependencies>                
+		</dependencies>
 		-->
             </plugin>
         </plugins>
     </build>
-    
+
     <profiles>
+	<profile>
+			<id>arq-jbossas-managed-nok</id>
+			<activation>
+				<property>
+					<name>profile.activation</name>
+				</property>
+			</activation>
+			<dependencies>
+                    		<dependency>
+                    		  <groupId>org.jboss.arquillian</groupId>
+                    		  <artifactId>arquillian-bom</artifactId>
+                    		  <version>${org.jboss.arquillian.version}</version>
+                    		  <type>pom</type>
+                    		  <!--<scope>import</scope>-->
+                    		</dependency>
+
+				<!-- Optional, but highly recommended -->
+    				<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
+    				<!--
+				<dependency>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+					<scope>test</scope>
+				</dependency>
+				-->
+      				<dependency>
+      				        <groupId>org.jboss.arquillian.testng</groupId>
+      				        <artifactId>arquillian-testng-container</artifactId>
+      				        <scope>test</scope>
+      				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<scope>test</scope>
+				</dependency>
+
+				<dependency>
+				    <groupId>org.jboss.as</groupId>
+				    <artifactId>jboss-as-arquillian-container-managed</artifactId>
+				    <version>${org.jboss.as.arquillian.container.version}</version>
+				    <scope>test</scope>
+				</dependency>
+
+				<!--
+     				<dependency>
+        			    <groupId>org.jboss.spec</groupId>
+        			    <artifactId>jboss-javaee-6.0</artifactId>
+        			    <version>1.0.0.Final</version>
+        			    <type>pom</type>
+        			    <scope>provided</scope>
+        			</dependency>
+        			<dependency>
+        			    <groupId>org.jboss.as</groupId>
+        			    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+        			    <version>7.0.2.Final</version>
+        			</dependency>
+        			-->
+
+				<!--
+                		<dependency>
+                		    <groupId>org.jboss.arquillian.container</groupId>
+                		    <artifactId>arquillian-jbossas-embedded-6</artifactId>
+                		    <version>1.0.0.CR3</version>
+                		    <scope>test</scope>
+                		</dependency>
+    				<dependency>
+                		    <groupId>org.jboss.jbossas</groupId>
+                		    <artifactId>jboss-as-depchain</artifactId>
+                		    <version>6.0.0.Final</version>
+                		    <type>pom</type>
+                		    <scope>test</scope>
+          			    <exclusions>
+          			      <exclusion>
+          			        <groupId>org.apache.cxf</groupId>
+          			        <artifactId>cxf-common-schemas</artifactId>
+          			      </exclusion>
+          			    </exclusions>
+                		</dependency>
+                		-->
+
+                		<dependency>
+                		    <groupId>org.jboss.arquillian.container</groupId>
+                		    <artifactId>arquillian-openejb-embedded-3.1</artifactId>
+                		    <version>${org.jboss.arquillian.junit.version}</version>
+                		    <scope>test</scope>
+                		</dependency>
+                		<!--
+				<dependency>
+					<groupId>jboss</groupId>
+					<artifactId>jnp-client</artifactId>
+					<version>4.2.2.GA</version>
+				</dependency>
+				-->
+
+				<!--
+				<dependency>
+					<groupId>org.jboss.seam.faces</groupId>
+					<artifactId>seam-faces</artifactId>
+					<version>3.0.0.Alpha3</version>
+				</dependency>
+				-->
+       				<!--
+				<dependency>
+				  <groupId>org.jboss.seam</groupId>
+				  <artifactId>jboss-seam</artifactId>
+				  <version>${seam.version}</version>
+				  <scope>${scope.type}</scope>
+				  <type>ejb</type>
+				</dependency>
+				-->
+    				<dependency>
+    				  <groupId>no.knowit.seam</groupId>
+    				  <artifactId>seam-utils-ejb</artifactId>
+    				  <version>${seam.utils.version}</version>
+    				  <type>ejb</type>
+    				  <scope>test</scope>
+    				</dependency>
+
+    				<dependency>
+    				  <groupId>no.knowit.seam</groupId>
+    				  <artifactId>seam-utils-openejb</artifactId>
+    				  <version>${seam.utils.version}</version>
+    				  <type>ejb</type>
+    				  <scope>test</scope>
+    				</dependency>
+
+			       <dependency>
+			         <groupId>dom4j</groupId>
+			         <artifactId>dom4j</artifactId>
+			         <version>${dom4j.version}</version>
+			         <scope>test</scope>
+			       </dependency>
+
+			       <!--Fix: java.lang.ClassNotFoundException: org.jboss.util.id.SerialVersion-->
+			       <dependency>
+				  <groupId>org.jboss</groupId>
+				  <artifactId>jboss-common-core</artifactId>
+				  <version>${jboss.common.core.version}</version>
+				  <scope>test</scope>
+				</dependency>
+
+			       <!--Caused by: java.lang.ClassNotFoundException: org.jboss.util.id.SerialVersion-->
+			       <!--
+              			<dependency>
+                		    <groupId>org.apache.openejb</groupId>
+                		    <artifactId>openejb-core</artifactId>
+                		    <version>${openejb.core.version}</version>
+                		    <scope>test</scope>
+                		</dependency>
+                		-->
+
+                		<!-- comment <provider>org.hibernate.ejb.HibernatePersistence</provider> in persistence.xml to enable openjpa -->
+                		<!--
+				<dependency>
+				    <groupId>org.apache.openjpa</groupId>
+				    <artifactId>openjpa</artifactId>
+				    <version>${openjpa.version}</version>
+				</dependency>
+				-->
+				<dependency>
+				  <groupId>org.jboss.arquillian.extension</groupId>
+				  <artifactId>arquillian-seam2</artifactId>
+				  <version>${org.jboss.arquillian.seam2.version}</version>
+				  <scope>test</scope>
+				</dependency>
+
+				<dependency>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+					<version>${junit.version}</version>
+					<type>jar</type>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>${basedir}/src/test/bootstrap-arquillian/java</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!--
+            				<plugin>
+            				    <groupId>org.apache.maven.plugins</groupId>
+            				    <artifactId>maven-surefire-plugin</artifactId>
+            				    <version>${maven.surefire.plugin.version}</version>
+            				    <configuration>
+            				            <suiteXmlFiles>
+            				                    <suiteXmlFile>src/test/bootstrap-arquillian/testng-all.xml</suiteXmlFile>
+            				            </suiteXmlFiles>
+            				    </configuration>
+            				</plugin>
+            				-->
+            		                <plugin>
+            		                    <groupId>org.apache.maven.plugins</groupId>
+				            <artifactId>maven-surefire-plugin</artifactId>
+				            <version>${maven.surefire.plugin.version}</version>
+					    <inherited>true</inherited>
+					    <configuration>
+					    	<skip>${maven.test.skip}</skip>
+					    	<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+					    	<!--
+					    	<childDelegation>true</childDelegation>
+					    	<useSystemClassLoader>true</useSystemClassLoader>
+					    	<argLine>-Dsun.lang.ClassLoader.allowArraySyntax=true</argLine>
+					    	-->
+					    	<!--
+            		                        <environmentVariables>
+            		                            <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+            		                        </environmentVariables>
+            		                        -->
+            		                        <environmentVariables>
+            		                            <JBOSS_HOME>${jboss.home}</JBOSS_HOME>
+            		                        </environmentVariables>
+            		                        <systemProperties>
+            		                            <jboss.version>${server.version}</jboss.version>
+            		                        </systemProperties>
+            		                        <!--
+ 		    				<classpathDependencyExcludes>
+                    				    <classpathDependencyExcludes>org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec</classpathDependencyExcludes>
+                    				    <classpathDependencyExcludes>org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec</classpathDependencyExcludes>
+                    				    <classpathDependencyExcludes>javax.enterprise:cdi-api</classpathDependencyExcludes>
+                    				    <classpathDependencyExcludes>com.sun.faces:jsf-api</classpathDependencyExcludes>
+                    				    <classpathDependencyExcludes>javax.validation:validation-api</classpathDependencyExcludes>
+                    				    <classpathDependencyExcludes>org.hibernate.javax.persistence:hibernate-jpa-2.0-api</classpathDependencyExcludes>
+                    				    <classpathDependencyExclude>javax:javaee-api</classpathDependencyExclude>
+    						    <classpathDependencyExclude>javax:javaee-web-api</classpathDependencyExclude>
+                    				</classpathDependencyExcludes>
+                    				-->
+						<additionalClasspathElements>
+                        			    <!--<additionalClasspathElement>${env.JBOSS_HOME}/client/jbossws-native-client.jar</additionalClasspathElement>-->
+                        			    <!-- Because jbossweb.sar contains shared web.xml, which must be visible from same CL as TomcatDeployer.class.getClassLoader -->
+                        			    <!--<additionalClasspathElement>${env.JBOSS_HOME}/server/default/deploy/jbossweb.sar</additionalClasspathElement>-->
+                        			</additionalClasspathElements>
+                        			<redirectTestOutputToFile>true</redirectTestOutputToFile>
+                        			<trimStackTrace>false</trimStackTrace>
+                        			<printSummary>true</printSummary>
+                        			<forkMode>once</forkMode>
+                        			<!-- MaxPermSize Required to bump the space for relective data like classes, methods, etc. EMB-41. Endorsed required for things
+                        			    like WS support (EMB-61) -->
+                        			<!--<argLine>-Xmx512m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djava.endorsed.dirs=${env.JBOSS_HOME}/lib/endorsed -Djboss.home=${env.JBOSS_HOME} -Djboss.boot.server.log.dir=${env.JBOSS_HOME}</argLine>-->
+            		                    </configuration>
+            		                </plugin>
+				</plugins>
+				<resources>
+					<resource>
+						<directory>${maven.build.generated}/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+					<resource>
+						<directory>${basedir}/src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+
+				<testResources>
+					<testResource>
+						<directory>${basedir}/src/test/resources</directory>
+						<filtering>true</filtering>
+					</testResource>
+					<testResource>
+						<directory>${basedir}/src/test/bootstrap-arquillian/resources</directory>
+						<filtering>true</filtering>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
                 <!-- important in order to openejb to work components.xml and ejb-jar.xml (can be empty) must be in src\main\resources\META-INF if source are in src/main/java -->
                 <!-- in order to seam to see the name add seam.properties to src\main\resources -->
-		<profile>		        
+		<profile>
 			<id>microcontainer-openejb</id>
 			<activation>
 				<property>
@@ -1054,35 +1350,56 @@
     				<dependency>
     				  <groupId>no.knowit.seam</groupId>
     				  <artifactId>seam-utils-ejb</artifactId>
-    				  <version>${seam.utils.version}</version>    				  
+    				  <version>${seam.utils.version}</version>
     				  <type>ejb</type>
     				  <scope>test</scope>
     				</dependency>
-    
+
     				<dependency>
     				  <groupId>no.knowit.seam</groupId>
     				  <artifactId>seam-utils-openejb</artifactId>
     				  <version>${seam.utils.version}</version>
     				  <type>ejb</type>
     				  <scope>test</scope>
-    				</dependency>              
-                	
+    				</dependency>
+                		<!--
         			<dependency>
 				  <groupId>org.jboss</groupId>
 				  <artifactId>jboss-common-core</artifactId>
 				  <version>2.2.19.GA</version>
 				  <scope>test</scope>
-				</dependency>		            
-					
+				</dependency>
+				-->
+
 			       <dependency>
 			         <groupId>dom4j</groupId>
 			         <artifactId>dom4j</artifactId>
 			         <version>${dom4j.version}</version>
 			         <scope>test</scope>
-			       </dependency>						
+			       </dependency>
 			</dependencies>
-			<build>        
-				<resources>				
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-test-source</id>
+								<phase>generate-test-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>${basedir}/src/test/bootstrap-openejb/java</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<resources>
 					<resource>
 						<directory>${maven.build.generated}/main/resources</directory>
 						<filtering>true</filtering>
@@ -1090,26 +1407,26 @@
 					<resource>
 						<directory>${basedir}/src/main/resources</directory>
 						<filtering>true</filtering>
-					</resource>																		
+					</resource>
 				</resources>
-				
+
 				<testResources>
 					<testResource>
 						<directory>${basedir}/src/test/resources</directory>
 						<filtering>true</filtering>
-					</testResource>		
+					</testResource>
 					<testResource>
-						<directory>${basedir}/src/test/bootstrap-openejb</directory>
+						<directory>${basedir}/src/test/bootstrap-openejb/resources</directory>
 						<filtering>true</filtering>
 					</testResource>
 				</testResources>
 				<!--
 				<filters>
 					<filter>${home.dir}/build-tools/src/main/resources/project/project-development.properties</filter>
-				</filters>	   	
+				</filters>
 				-->
-			</build>				
-		</profile>	
+			</build>
+		</profile>
 		<!--
 		<profile>
 			<id>clean</id>
@@ -1153,6 +1470,6 @@
 				</plugins>
 			</build>
 		</profile>
-		-->	
-	</profiles>    
+		-->
+	</profiles>
 </project>

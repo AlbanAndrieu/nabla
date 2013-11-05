@@ -196,7 +196,7 @@
         path="templates/ejb3/config/persistence.xml.vsl"
         outputPattern="META-INF/persistence.xml"
         outlet="entity-config"
-        overwrite="false"
+        overwrite="true"
         outputToSingleFile="true"
         outputOnEmptyElements="false">
         <modelElements>
@@ -217,7 +217,7 @@
         path="templates/ejb3/test/persistence.xml.vsl"
         outputPattern="META-INF/persistence.xml"
         outlet="test-config"
-        overwrite="false"
+        overwrite="true"
         outputToSingleFile="true"
         outputOnEmptyElements="false">
         <modelElements>

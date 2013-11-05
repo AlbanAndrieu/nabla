@@ -95,25 +95,26 @@ public class AddResource extends org.apache.myfaces.renderkit.html.util.DefaultA
         originalResponse.insert(headerInsertPosition, headContents.toString());
 
         // TODO: fix this
-        /*StringBuilder buf = new StringBuilder();
-           Set bodyInfos = getBodyOnloadInfos();
-           if (bodyInfos.size() > 0)
-           {
-               int i = 0;
-               for (Iterator it = getBodyOnloadInfos().iterator(); it.hasNext();)
-               {
-                   AttributeInfo positionedInfo = (AttributeInfo) it.next();
-                   if (i == 0)
-                   {
-                       buf.append(positionedInfo.getAttributeName());
-                       buf.append("=\"");
-                   }
-                   buf.append(positionedInfo.getAttributeValue());
-                   i++;
-               }
-               buf.append("\"");
-               originalResponse.insert(bodyInsertPosition - 1, " " + buf.toString());
-           }
+        /*
+         * StringBuilder buf = new StringBuilder();
+         * Set bodyInfos = getBodyOnloadInfos();
+         * if (bodyInfos.size() > 0)
+         * {
+         * int i = 0;
+         * for (Iterator it = getBodyOnloadInfos().iterator(); it.hasNext();)
+         * {
+         * AttributeInfo positionedInfo = (AttributeInfo) it.next();
+         * if (i == 0)
+         * {
+         * buf.append(positionedInfo.getAttributeName());
+         * buf.append("=\"");
+         * }
+         * buf.append(positionedInfo.getAttributeValue());
+         * i++;
+         * }
+         * buf.append("\"");
+         * originalResponse.insert(bodyInsertPosition - 1, " " + buf.toString());
+         * }
          */
 
         // insert all the items that want to go immediately after the <body> tag.

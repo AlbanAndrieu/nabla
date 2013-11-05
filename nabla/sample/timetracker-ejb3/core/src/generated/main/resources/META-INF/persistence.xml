@@ -34,7 +34,7 @@ Modify as necessary for JPA unit testing
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
             <!-- does not work with jboss 7 : https://docs.jboss.org/author/display/AS7/Seam+2+Booking+EAR+Migration+of+Binaries+-+Step+by+Step
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>

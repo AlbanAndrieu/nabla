@@ -108,6 +108,12 @@
 			<artifactId>validation-api</artifactId>
 		</dependency>
 		
+                <dependency>
+                        <groupId>antlr</groupId>
+                        <artifactId>antlr</artifactId>
+                        <version>${antlr.version}</version>
+                </dependency>		
+		
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -119,13 +125,15 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>${jsf.version}</version>
 			<scope>provided</scope>
-		</dependency>					
+		</dependency>		
+		<!-- must be use with hibernate.cache.provider_class org.hibernate.cache.EhCacheProvider in persistence.xml			
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<version>${ehcache.version}</version>
 			<type>pom</type>
 		</dependency>
+		-->
 		
                 <dependency>
                     <groupId>org.hibernate</groupId>
@@ -280,7 +288,7 @@
 		<dependency>
 			<groupId>org.mvel</groupId>
 			<artifactId>mvel2</artifactId>
-			<version>${mvel.version}</version>
+			<version>${org.mvel.mvel2.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jbpm</groupId>
@@ -297,7 +305,7 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>${gwt.user.version}</version>
+			<version>${gwt.version}</version>
 		</dependency>
 
 		<dependency>

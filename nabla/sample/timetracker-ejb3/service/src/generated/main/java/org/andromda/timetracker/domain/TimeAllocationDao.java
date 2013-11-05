@@ -67,6 +67,7 @@ public interface TimeAllocationDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link TimeAllocationVO}.
      * @param entities
+     * @return Collection<TimeAllocationVO>
      */
     public Collection<TimeAllocationVO> toTimeAllocationVOCollection(Collection<?> entities);
 
@@ -254,7 +255,7 @@ public interface TimeAllocationDao
      * instance from <strong>all</strong> attributes and adds it to
      * the persistent store.
      * </p>
-     * @param timePeriod 
+     * @param timePeriod TODO: Model Documentation for TimeAllocation.timePeriod
      * @return TimeAllocation
      */
     public TimeAllocation create(
@@ -270,7 +271,7 @@ public interface TimeAllocationDao
      * not occur.
      * </p>
      * @param transform
-     * @param timePeriod 
+     * @param timePeriod TODO: Model Documentation for TimeAllocation.timePeriod
      * @return TimeAllocation
      */
     public Object create(
