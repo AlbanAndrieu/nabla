@@ -20,7 +20,7 @@
 			<property name="hibernate.connection.username" value="user" />
 			<property name="hibernate.connection.password" value="user" />
 			<property name="hibernate.connection.url"
-				value="jdbc:derby:C:\tmp\myDBGlobal;create=true;" />
+				value="jdbc:derby:~\myDBGlobal;create=true;" />
 		</properties>
 	</persistence-unit>
 	<!--
