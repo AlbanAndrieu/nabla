@@ -28,7 +28,7 @@
 			<plugins>
 
                              <!-- mvn cargo:deploy -->
-				<!-- call mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:run 
+				<!-- call mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:run
 					> deploy.log 2>&1 -->
 				<plugin>
 					<groupId>org.codehaus.cargo</groupId>
@@ -41,7 +41,7 @@
 							<!--<containerId>${cargo.container}</containerId> -->
 							<!--<type>${cargo.container.type}</type> -->
 
-							<!-- <zipUrlInstaller> <url>${cargo.container.url}</url> <installDir>${installDir}</installDir> 
+							<!-- <zipUrlInstaller> <url>${cargo.container.url}</url> <installDir>${installDir}</installDir>
 								</zipUrlInstaller> -->
 						</container>
 						<configuration>
@@ -51,9 +51,9 @@
 								<cargo.hostname>${cargo.host}</cargo.hostname>
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 								<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
-								<cargo.remote.username>admin</cargo.remote.username>
-								<cargo.remote.password>admin</cargo.remote.password>
-								<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources 
+								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+								<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources
 									-Dnabla.data=${basedir}/src/test/resources/data -->
 								<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
 								<!-- </cargo.jvmargs> -->
@@ -77,10 +77,10 @@
 									<context>/mocknabla</context>
 								</properties>
 							</deployable>
-						</deployables>         
-						-->                                       
+						</deployables>
+						-->
 					</configuration>
-                                                <!--					
+                                                <!--
                                         <executions>
                                                 <execution>
                                                         <id>start-container</id>
@@ -97,7 +97,7 @@
                                                         </goals>
                                                 </execution>
                                         </executions>
-						-->                                          
+						-->
 				</plugin>
                               <!-- end Web application server helpers -->
 			</plugins>
@@ -132,7 +132,7 @@
 				<webservice.host>localhost</webservice.host>
                            	<!-- Change this the port on which your webservice will be deploy -->
 				<webservice.port>8180</webservice.port>
-				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server 
+				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server
 					compatibility -->
 				<datasource>java:jboss/datasources/${datasource.name}</datasource>
 				<ejb.jndi.mappedname.pattern>java:global/${application.name}</ejb.jndi.mappedname.pattern>
@@ -142,7 +142,7 @@
 				<ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
 				<!-- define JPA provider, check: https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication -->
 				<jpa.provider.module>hibernate3-bundled</jpa.provider.module>
-				<hibernate.cache.provider></hibernate.cache.provider> <!-- must be to org.hibernate.cache.HashtableCacheProvider for openejb junit 
+				<hibernate.cache.provider></hibernate.cache.provider> <!-- must be to org.hibernate.cache.HashtableCacheProvider for openejb junit
 					tests -->
 				<deploy.url>WRONG use tomcat profile</deploy.url>
 
@@ -155,6 +155,8 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
 				<jboss.server>standalone</jboss.server>
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
@@ -221,14 +223,14 @@
 				<webservice.host>localhost</webservice.host>
                            	<!-- Change this the port on which your webservice will be deploy -->
 				<webservice.port>8180</webservice.port>
-				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server 
+				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server
 					compatibility -->
 				<datasource>java:/${datasource.name}</datasource>
 				<ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
 				<ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
-				<ejb.jndi.pattern>${application.context}-ear/#{ejbName}/local</ejb.jndi.pattern>
+				<ejb.jndi.pattern>${application.context}-ear/#{ejbName}/Local</ejb.jndi.pattern>
 				<ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
-				<!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule" 
+				<!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule"
 					value="org.hibernate:3"/> in persistence.xml -->
 				<jpa.provider.module>org.hibernate:3</jpa.provider.module>
 				<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
@@ -244,6 +246,8 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
 
 				<jboss.server>default</jboss.server>
@@ -294,6 +298,10 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+
+				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
 				<plugins>
@@ -331,6 +339,10 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+
+				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
 				<plugins>
@@ -373,6 +385,10 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+
+				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
 				<plugins>
@@ -419,6 +435,9 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+				
 				<scope.type>${scope.web}</scope.type>
 			</properties>
 			<build>
@@ -435,7 +454,7 @@
 								</zipUrlInstaller>
 							</container>
 						</configuration>
-						<!-- 
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -495,6 +514,9 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+				
 				<scope.type>${scope.web}</scope.type>
 			</properties>
 			<build>
@@ -538,6 +560,10 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${glassfish.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
 				<plugins>
@@ -579,6 +605,10 @@
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jonas.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
 				<plugins>
@@ -599,7 +629,7 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>          
+		</profile>
              <!-- ================= END Container Profiles ================= -->
 		<profile>
 			<id>sample</id>
