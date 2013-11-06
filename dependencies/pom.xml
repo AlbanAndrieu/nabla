@@ -1738,6 +1738,7 @@
                 <maven.idea.plugin.version>2.2.1</maven.idea.plugin.version>
                 <maven.cargo.maven2.plugin.version>1.4.3</maven.cargo.maven2.plugin.version>
                 <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
+                <maven.tomcat7.plugin.version>2.1</maven.tomcat7.plugin.version>
                 <maven.jetty.mortbay.plugin.version>${jetty8.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
                 <maven.jetty.eclipse.plugin.version>9.0.4.v20130625</maven.jetty.eclipse.plugin.version>
                 <maven.jboss.as.plugin.version>7.4.Final</maven.jboss.as.plugin.version>
@@ -3357,6 +3358,11 @@ mm]]></license>
                                         </executions>
                                         -->
                                 </plugin>
+				<plugin>
+				    	<groupId>org.apache.tomcat.maven</groupId>
+				    	<artifactId>tomcat7-maven-plugin</artifactId> 
+					<version>${maven.tomcat7.plugin.version}</version>
+				</plugin>                                   
 				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
