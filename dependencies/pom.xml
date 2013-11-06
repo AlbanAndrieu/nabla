@@ -6,7 +6,7 @@
         <parent>
             <groupId>com.nabla</groupId>
             <artifactId>users</artifactId>
-            <version>1.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </parent>
 
         <modelVersion>4.0.0</modelVersion>
@@ -1733,8 +1733,8 @@
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
-                <maven.versions.plugin.version>1.3.1</maven.versions.plugin.version>
-                <!--<maven.versions.plugin.version>2.1</maven.versions.plugin.version> NullPointerException -->
+                <maven.versions.plugin.version>2.1</maven.versions.plugin.version>
+                <!--<maven.versions.plugin.version>1.3.1</maven.versions.plugin.version> NullPointerException with 2.1 -->
                 <maven.idea.plugin.version>2.2.1</maven.idea.plugin.version>
                 <maven.cargo.maven2.plugin.version>1.4.3</maven.cargo.maven2.plugin.version>
                 <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>

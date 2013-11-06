@@ -8,7 +8,7 @@
 	<artifactId>users</artifactId>
 	<packaging>pom</packaging>
 	<name>Users</name>
-	<version>1.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<!-- This element provides a basic description of your project -->
 	<description>Users</description>
 	<url>http://www.maven.nabla.mobi</url>
