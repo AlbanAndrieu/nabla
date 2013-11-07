@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.nabla.project</groupId>
         <artifactId>maven</artifactId>
-        <version>1.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     
     <groupId>com.nabla.project</groupId>

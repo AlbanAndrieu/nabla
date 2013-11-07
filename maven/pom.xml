@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.nabla.project</groupId>
     <artifactId>maven</artifactId>
-    <version>1.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Nabla Maven Site Plugins</name>
     <description>The Nabla Maven site plugins</description>
