@@ -377,7 +377,7 @@
                                                         <dependency>
                                                                 <groupId>com.nabla.project</groupId>
                                                                 <artifactId>build-tools</artifactId>
-                                                                <version>1.0</version>
+                                                                <version>1.0.1-SNAPSHOT</version>
                                                         </dependency>
                                                 </dependencies>
                                         </plugin>
@@ -481,7 +481,7 @@
                                                         <dependency>
                                                                 <groupId>com.nabla.project</groupId>
                                                                 <artifactId>build-tools</artifactId>
-                                                                <version>1.0</version>
+                                                                <version>1.0.1-SNAPSHOT</version>
                                                         </dependency>
                                                 </dependencies>
                                         </plugin>
@@ -1835,7 +1835,7 @@
                         <extension>
                                 <groupId>com.nabla.project</groupId>
                                 <artifactId>build-tools</artifactId>
-                                <version>1.0</version>
+                                <version>1.0.1-SNAPSHOT</version>
                         </extension>
                 </extensions>
                 <pluginManagement>
