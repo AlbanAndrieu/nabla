@@ -9,6 +9,10 @@
 #Nameserver 2
 #8.8.4.4
 
+portsnap fetch
+portsnap extract
+portsnap update
+
 tail -f  /var/log/messages
 
 #Install PBI Plugins : http://pisethtips.blogspot.fr/2013/01/using-freenas-to-build-diy-home-server.html
@@ -94,6 +98,7 @@ ssh root@192.168.0.46
 
 #http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
 jexec 1 /bin/tcsh
+jls
 pkg_add -r ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/java/openjdk-7.2.13.tbz
 
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
@@ -165,14 +170,17 @@ cd /usr/ports/www/apache22
 cat /usr/local/etc/apache22/httpd.conf | grep Listen
 echo 'apache22_enable="YES"' >> /etc/rc.conf
 
-start apache 
+#as non jail
+#start apache 
 /usr/local/etc/rc.d/apache22 start
 
 less /var/log/httpd-error.log
 see http://192.168.0.47/
 
 #http://forums.freenas.org/threads/php-applications-nginx-php-fpm-mysql-jail-install-and-setup.10802/
-pkg_add -r owncloud
+pkg_info | grep owncloud
+pkg_delete owncloud
+pkg_add -r owncloud-2
 Please note that everything has been installed in /usr/local/www/owncloud.
 service nginx start && service php-fpm start && service mysql-server start
 
@@ -250,20 +258,98 @@ Require all granted
 
 #owncloud
 http://forums.freenas.org/threads/owncloud-setup.9177/
+#cd /usr/ports/www/owncloud/ && make install clean
 
 pkg_add -v -r maven3
 pkg_add -v -r apache-ant
 pkg_add -v -r geany -f
+
+<?php
+$CONFIG = array(
+"datadirectory" => '/usr/local/www/owncloud/data',
+"dbtype" => 'mysql',
+"version" => '2.0.0',
+"dbname" => 'owncloud',
+"dbhost" => 'localhost',
+"dbtableprefix" => 'oc_',
+"dbuser" => 'oc_mysql_albandr',
+"dbpassword" => 'aee6d111dcf016529d8c23b83161c6cf',
+"installed" => true,
+  "apps_paths" => array (
+      0 => array (
+              "path"     => OC::$SERVERROOT."/apps",
+              "url"      => "/apps",
+              "writable" => false,
+      ),
+      1 => array (
+              "path"     => OC::$SERVERROOT."/apps2",
+              "url"      => "/apps2",
+              "writable" => true,
+      ),
+),
+"log_type" => "owncloud",
+"logfile" => "owncloud.log",
+"loglevel" => "3",
+"logdateformat" => "F d, Y H:i:s",
+"mail_smtphost"     => "smtp.gmail.com:465",
+"mail_smtpsecure"   => 'ssl',
+);
+?>
+
+
+/mnt/dpool/jail/software/usr/local/www/owncloud/data
+
+#hors jail
+chown -R www:www /mnt/dpool/owncloud/apps2
+
+#copy app
+mv /mnt/dpool/workspace/os/freenas/ /mnt/dpool/owncloud/apps2
+
+#hors jail
+chown -R www:www /mnt/dpool/owncloud/apps2
+
+mv /mnt/dpool/workspace/os/freenas/ /mnt/dpool/owncloud/apps2
+
+dans le jail
+chown -R www:www /usr/local/www/owncloud/apps2
+ 
+#NOK mkdir /usr/pbi/minidlna-amd64/media
+/usr/local/www/owncloud
+
+#dans le jail
+chown -R www:www /usr/local/www/owncloud/apps2
+ 
+#mount point app
+/mnt/dpool/owncloud/apps2
+/usr/local/www/owncloud/apps2
+
+#mount point media
+/mnt/dpool/media
+/usr/local/www/owncloud/data
+ 
+ 
+mkdir /usr/pbi/minidlna-amd64/media
+/usr/local/www/owncloud
 
 #jenkins
 pkg_add -r jenkins
 http://192.168.0.47:8081
 /usr/local/etc/rc.d/jenkins onestart
 vi /usr/local/etc/rc.d/jenkins
+/usr/local/etc/rc.d/jenkins stop
 : ${jenkins_args="--webroot=${jenkins_home}/war --httpListenAddress=192.168.0.47 --httpPort=8280 --ajp13ListenAddress=192.168.0.47 --ajp13Port=8009 --prefix=/jenkins"}
 echo 'jenkins_enable="YES"' >> /etc/rc.conf
 
 tail -f /var/log/jenkins.log
+tail -f /mnt/dpool/jail/software/var/log/httpd-access.log
+http://192.168.0.47:8280/jenkins/
+
+#shorty error
+http://www.macintom.com/wp/2012/06/13/owncloud-bug-lors-de-lactivation-dune-application-owncloud-ne-fonctionne-plus/
+UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "shorty" AND  `configkey` =  "enabled"
+UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "music" AND  `configkey` =  "enabled"
+UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "internal_bookmarks" AND  `configkey` =  "enabled"
+UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "mozilla_sync" AND  `configkey` =  "enabled"
 
 ll /usr/local/share/jenkins/jenkins.war
 pkg_add -v -r fontconfig
@@ -273,6 +359,8 @@ pkg_add -v -r ttmkfdir
 pkg_add -v -r dejavu
 pkg_add -v -r freetype
 pkg_add -v -r freetype-tools
+
+/usr/local/jenkins`
 
 pkg_info | grep jenkins
 #pkg_delete jenkins-1.454
@@ -290,3 +378,7 @@ pkg_add -v -r gtksourceview
 pkg_delete openjdk-7.2.13
 pkg_delete openjdk6-b24_4
 openjdk6-b24_4
+
+#SSH
+ssh -i OpenSSH_RSA_4096 albandri@freenas
+

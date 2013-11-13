@@ -22,10 +22,10 @@
 #sudo rm -Rf jenkins/
 #sudo service tomcat6 start
 
-#JENKINS_HOME
-#/etc/default/jenkins
-#/var/lib/jenkins/
-#/jenkins/
+#change JENKINS_HOME from /var/lib/jenkins/ to /jenkins/
+sudo gedit /etc/default/jenkins
+#change port to 8280
+sudo gedit /var/lib/tomcat7/conf/server.xml
 
 #JENKINS USER
 #tomcat6

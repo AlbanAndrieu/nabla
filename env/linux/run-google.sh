@@ -23,3 +23,15 @@ http://www.howopensource.com/2012/11/install-insync-google-drive-client-in-ubunt
 
 wget -O - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.insynchq.com/ubuntu $(lsb_release -sc) non-free" >> /etc/apt/sources.list.d/insync.list'
+
+Incoming Mail (IMAP) Server - Requires SSL
+imap.gmail.com
+Port: 993
+Requires SSL:Yes
+
+Outgoing Mail (SMTP) Server - Requires TLS
+smtp.gmail.com
+Port: 465 or 587
+Requires SSL: Yes
+Requires authentication: Yes
+Use same settings as incoming mail server
