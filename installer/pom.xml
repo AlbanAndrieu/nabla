@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.nabla.project</groupId>
 		<artifactId>deploy</artifactId>
-		<version>1.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../deploy/pom.xml</relativePath>
 	</parent>
 
