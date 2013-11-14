@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
+use diagnostics;
 
 use Tree::Simple;
 use Tree::Simple::View::ASCII;
@@ -180,4 +181,3 @@ if ($dataset) {
 $tree_view = Tree::Simple::View::ASCII->new($root);
 @report_lines = split "\n", $tree_view->expandAll();
 print_report( @report_lines );
-
