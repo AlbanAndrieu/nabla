@@ -9,10 +9,10 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>etl-deploy</artifactId>
-	<name>Nabla ETL Deploy</name>
+	<artifactId>etl-installer</artifactId>
+	<name>Nabla ETL Installer</name>
 	<packaging>izpack-jar</packaging>
-	<description>Nabla ETL Deploy</description>
+	<description>Nabla ETL Installer</description>
 
 <!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
 http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/sample/pom.xml
