@@ -16,13 +16,15 @@ dmesg | grep ZFS
 
 ls -l /dev/disk/by-id/
 #zpool create -f datastore raidz /dev/vdb /dev/vdc /dev/vdd
-sudo zpool create -o ashift=9 rpool /dev/disk/by-id/ata-WDC_WD10EALX-759BA1_WD-WCATR7615786 -f
-sudo zpool status rpool
 sudo zpool create -o ashift=9 dpool /dev/disk/by-id/ata-WDC_WD10EALX-759BA1_WD-WCATR7624246 -f
+sudo zfs create dpool/ROOT
+sudo zfs create dpool/ROOT/ubuntu-1
 sudo zpool status dpool
 
 sudo zfs create -o mountpoint=/mnt/backup dpool/backup
 sudo zfs create -o mountpoint=/mnt/jenkins dpool/jenkins
+
+sudo zfs snapshot dpool/jenkins@empty
 
 sudo zfs list
 

@@ -54,19 +54,7 @@ $CONFIG = array (
 https://cloud.google.com/console#/project
 
 less /owncloud/data/albandri/mount.json
-{"user":{"albandri":{"\/albandri\/files\/FTP":{"class":"\\OC\\Files\\Storage\\FTP","options":{"host":"mafreebox.freebox.fr",
-"user":"freebox","password":"microsoft","root":"","secure":"false"}},"\/albandri\/files\/Dropbox":{"class":"\\OC\\Files\\Sto
-rage\\Dropbox","options":{"configured":"true","app_key":"w2cmydmksjbwmzp","app_secret":"76e2eoo2sfc63ez","token":"zwqlybkwxg
-3abdw7","token_secret":"uayjqdh652rhpyd"}}}}}
-
-{   "class":"\\OC\\Files\\Storage\\Google",
-    "options":{
-        "configured":"true",
-        "client_id":"837653203266-nfdak9kv9j2uvfaoo43cekp8otbok7eu.apps.googleusercontent.com",
-        "client_secret":"dQ7r3RI6ujEcc1xHQlDDn195",
-        "token":"#token"
-    }
-}
+{"user":{"albandri":{"\/albandri\/files\/FTP":{"class":"\\OC\\Files\\Storage\\FTP","options":{"host":"mafreebox.freebox.fr","user":"freebox","password":"microsoft","root":"","secure":"false"}},"\/albandri\/files\/Dropbox":{"class":"\\OC\\Files\\Storage\\Dropbox","options":{"configured":"true","app_key":"w2cmydmksjbwmzp","app_secret":"76e2eoo2sfc63ez","token":"zwqlybkwxg3abdw7","token_secret":"uayjqdh652rhpyd"}},"\/albandri\/files\/GoogleDrive":{"class":"\\OC\\Files\\Storage\\Google","options":{"configured":"true","client_id":"762972018205.apps.googleusercontent.com","client_secret":"pbOcqdG7LIVVvnClt5R1XWWB","token":"{\"access_token\":\"ya29.1.AADtN_VhCAxDMEhqlwBKji3OOtt2AMLnUO2Sd5a1rjoPMBLCReEzHpVjJtcT4N5rHz4nsw\",\"token_type\":\"Bearer\",\"expires_in\":3600,\"refresh_token\":\"1\\\/iqtNu9Wsdrpo9xLmhw7LeoVDoWNDnIlmEfqw4hBtyBI\",\"created\":1384385302}"}}}}}
 
 /etc/apache2/sites-available/default-ssl
 

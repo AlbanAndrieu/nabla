@@ -48,3 +48,5 @@ sudo cpan install LWP::Protocol::https
 sudo cpan install Crypt::SSLeay
 sudo cpan install File::Copy::Recursive
 sudo cpan install File::Find::Rule
+sudo cpan install Tree::Simple
+sudo cpan install Tree::Simple::View::ASCII
