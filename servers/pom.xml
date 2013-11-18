@@ -71,10 +71,10 @@
 							</deployable>
 							<deployable>
 								<groupId>com.nabla.project</groupId>
-								<artifactId>integration-mock-nabla</artifactId>
+								<artifactId>nabla-other-nabla</artifactId>
 								<type>war</type>
 								<properties>
-									<context>/mocknabla</context>
+									<context>/othernabla</context>
 								</properties>
 							</deployable>
 						</deployables>
