@@ -87,11 +87,16 @@ flush privileges;
 
 cd /workspace/users/albandri10/Downloads/mysql-connector-java-5.1.22
 sudo cp mysql-connector-java-5.1.22-bin.jar /opt/atlassian/jira/lib/
-cd /opt/atlassian/jira/bin
-sudo ./start-jira.sh
+#cd /opt/atlassian/jira/bin
+#sudo ./start-jira.sh
 
 jira user/pass alban.andrieu@nabla.mobi/microsoft
 admin/microsoft
+
+#start
+as root 
+cd /opt/atlassian/jira/
+./startup.sh
 
 CONFLUENCE
 See where Confluence will be installed and the settings that will be used.
@@ -105,6 +110,11 @@ GRANT ALL PRIVILEGES ON confluence.* TO 'confluence'@'localhost' IDENTIFIED BY '
 
 confluence user/pass alban.andrieu@nabla.mobi/microsoft
 admin/microsoft
+
+#start
+as root 
+cd /opt/atlassian/confluence 
+./startup.sh
 
 fisheye
 sudo gedit /etc/environment
