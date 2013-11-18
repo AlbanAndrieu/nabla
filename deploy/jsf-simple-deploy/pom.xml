@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>deploy</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jsf-simple-deploy</artifactId>
+	<name>Nabla jsf-simple Deploy</name>
+	<packaging>pom</packaging>
+	<description>Nabla jsf-simple Deploy</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.nabla.project.servers.sample</groupId>
+			<artifactId>jsf-simple</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- for automatic running of integration tests with Jetty -->
+				<!-- mvn cargo:deploy -->
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<configuration>
+						<configuration>
+							<type>${cargo.configuration.type}</type>
+							<home>${cargo.container.home}</home>
+							<properties>
+								<cargo.hostname>${cargo.host}</cargo.hostname>
+								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+								<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
+								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+								<!-- 
+								<cargo.jvmargs> 
+								-Dnabla.config=${basedir}/src/main/resources 
+								-Dnabla.data=${basedir}/src/test/resources/data -->
+								<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
+								<!-- 
+								</cargo.jvmargs>
+								 -->
+							</properties>
+						</configuration>
+						<deployables>
+							<deployable>
+								<groupId>com.nabla.project.servers.sample</groupId>
+								<artifactId>jsf-simple</artifactId>
+								<type>war</type>
+								<properties>
+									<context>/welcome</context>
+								</properties>
+								<pingURL>http://${cargo.host}:${tomcat.port}/welcome</pingURL>
+								<pingTimeout>60000</pingTimeout>
+							</deployable>
+						</deployables>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+	<plugins>	
+	<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
+	<plugin>
+	    <groupId>org.apache.tomcat.maven</groupId>
+	    <artifactId>tomcat7-maven-plugin</artifactId>
+	    <configuration>
+	    <!-- http port -->
+	        <port>${tomcat.port}</port>
+	        <path>/welcome</path>
+	        <!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile>-->
+	        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+	        <!--
+	        <systemProperties>
+	            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
+	        </systemProperties>
+	        -->
+	        <url>${deploy.url}</url>
+	        <username>${cargo.remote.user}</username>
+	        <password>${cargo.remote.password}</password>
+	        <addContextWarDependencies>true</addContextWarDependencies>
+	        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+	        <configurationDir>${basedir}</configurationDir>
+	    </configuration>
+	    <dependencies>
+	        <dependency>
+			<groupId>com.nabla.project.servers.sample</groupId>
+			<artifactId>jsf-simple</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>    
+	        </dependency>
+	        <dependency>
+	            <groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.client.artifactId}</artifactId>
+			<version>${jdbc.version}</version>
+	            <scope>runtime</scope>
+	        </dependency>
+	    </dependencies>
+	</plugin>					
+      </plugins>		
+	</build>
+</project>

@@ -24,6 +24,6 @@
 	</scm>
 
 	<modules>
-		<module>gwt-kitchensink-deploy</module>
+		<module>jsf-simple-deploy</module>
 	</modules>
 </project>
