@@ -44,4 +44,9 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   
+  <!-- For Jetty to work -->
+  <listener>
+      <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+  </listener>
+  
 </web-app>

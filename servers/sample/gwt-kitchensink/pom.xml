@@ -539,42 +539,42 @@
 				</configuration>
 			</plugin>				
 					<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
-<plugin>
-    <groupId>org.apache.tomcat.maven</groupId>
-    <artifactId>tomcat7-maven-plugin</artifactId>
-    <configuration>
-    <!-- http port -->
-        <port>${tomcat.port}</port>
-        <path>/nabla</path>
-        <!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile>-->
-        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
-        <!--
-        <systemProperties>
-            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
-        </systemProperties>
-        -->
-        <url>${deploy.url}</url>
-        <username>admin</username>
-        <password>admin</password>
-        <addContextWarDependencies>true</addContextWarDependencies>
-        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
-        <configurationDir>${basedir}</configurationDir>
-    </configuration>
-    <dependencies>
-        <dependency>
-		<groupId>org.jboss.tools.gwt.kitchensink</groupId>
-		<artifactId>gwt-kitchensink</artifactId>
-		<version>${project.version}</version>
-		<type>war</type>    
-        </dependency>
-        <dependency>
-            <groupId>${jdbc.groupId}</groupId>
-		<artifactId>${jdbc.client.artifactId}</artifactId>
-		<version>${jdbc.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-    </dependencies>
-</plugin>					
+			<plugin>
+			    <groupId>org.apache.tomcat.maven</groupId>
+			    <artifactId>tomcat7-maven-plugin</artifactId>
+			    <configuration>
+			    <!-- http port -->
+			        <port>${tomcat.port}</port>
+			        <path>/nabla</path>
+			        <!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile>-->
+			        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+			        <!--
+			        <systemProperties>
+			            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
+			        </systemProperties>
+			        -->
+			        <url>${deploy.url}</url>
+			        <username>${cargo.remote.user}</username>
+			        <password>${cargo.remote.password}</password>
+			        <addContextWarDependencies>true</addContextWarDependencies>
+			        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+			        <configurationDir>${basedir}</configurationDir>
+			    </configuration>
+			    <dependencies>
+			        <dependency>
+					<groupId>org.jboss.tools.gwt.kitchensink</groupId>
+					<artifactId>gwt-kitchensink</artifactId>
+					<version>${project.version}</version>
+					<type>war</type>    
+			        </dependency>
+			        <dependency>
+			            <groupId>${jdbc.groupId}</groupId>
+					<artifactId>${jdbc.client.artifactId}</artifactId>
+					<version>${jdbc.version}</version>
+			            <scope>runtime</scope>
+			        </dependency>
+			    </dependencies>
+			</plugin>					
 		</plugins>
 
 		<pluginManagement>

@@ -60,18 +60,76 @@
   <build>
     <finalName>welcome</finalName>
     
-    <!--
     <plugins>
-       <plugin>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-compiler-plugin</artifactId>
-           <version>2.3.1</version>
-           <configuration>
-               <source>1.6</source>
-               <target>1.6</target>
-           </configuration>
-       </plugin>
-    </plugins>
-    -->
+        		
+	<plugin>
+		<!-- Allow this web application to be started with the command : 'mvn 
+			jetty:run-war' -->
+		<groupId>org.eclipse.jetty</groupId>
+		<artifactId>jetty-maven-plugin</artifactId>
+		<configuration>
+			<webAppConfig>
+				<contextPath>/welcome</contextPath>
+			</webAppConfig>
+			<useTestClasspath>true</useTestClasspath>
+			<connectors>
+				<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+					<port>${jetty.port}</port>
+					<maxIdleTime>600000</maxIdleTime>
+				</connector>
+			</connectors>
+			<!--
+			<systemProperties>
+				<systemProperty>
+					<key>nabla.config</key>
+					<value>../../config/dev</value>
+				</systemProperty>
+				<systemProperty>
+					<key>nabla.data</key>
+					<value>${data.dir}</value>
+				</systemProperty>
+			</systemProperties>
+			-->
+		</configuration>
+	</plugin>				
+			
+	<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
+	<plugin>
+	    <groupId>org.apache.tomcat.maven</groupId>
+	    <artifactId>tomcat7-maven-plugin</artifactId>
+	    <configuration>
+	    <!-- http port -->
+	        <port>${tomcat.port}</port>
+	        <path>/welcome</path>
+	        <!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile>-->
+	        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+	        <!--
+	        <systemProperties>
+	            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
+	        </systemProperties>
+	        -->
+	        <url>${deploy.url}</url>
+	        <username>${cargo.remote.user}</username>
+	        <password>${cargo.remote.password}</password>
+	        <addContextWarDependencies>true</addContextWarDependencies>
+	        <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+	        <configurationDir>${basedir}</configurationDir>
+	    </configuration>
+	    <dependencies>
+	        <dependency>
+			<groupId>com.nabla.project.servers.sample</groupId>
+			<artifactId>jsf-simple</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>    
+	        </dependency>
+	        <dependency>
+	            <groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.client.artifactId}</artifactId>
+			<version>${jdbc.version}</version>
+	            <scope>runtime</scope>
+	        </dependency>
+	    </dependencies>
+	</plugin>					
+      </plugins>
   </build>
 </project>
