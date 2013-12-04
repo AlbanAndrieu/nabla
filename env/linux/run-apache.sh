@@ -77,6 +77,11 @@ sudo nmap -p 80,8080 192.168.0.0-255
 sudo nmap -sS -O -p80,8180,8080 192.168.0.0/24
 sudo nmap localhost
 
+--------- change apache to port 8080 -----------
+sudo nano /etc/apache2/ports.conf
+#change
+Listen 127.0.0.1:8080
+
 -----------------------------------------------------------------------
 
 #http://technique.arscenic.org/lamp-linux-apache-mysql-php/apache/modules-complementaires/article/mod_proxy-rediriger-en-tout
@@ -89,7 +94,7 @@ or
 sudo vim /etc/apache2/sites-available/nabla.conf
 sudo a2ensite nabla
 
-<VirtualHost *:80>
+<VirtualHost *:8080>
         # The ServerName directive sets the request scheme, hostname and port that
         # the server uses to identify itself. This is used when creating
         # redirection URLs. In the context of virtual hosts, the ServerName

@@ -24,8 +24,9 @@
 
 #change JENKINS_HOME from /var/lib/jenkins/ to /jenkins/
 sudo gedit /etc/default/jenkins
-#change port to 8280
-sudo gedit /var/lib/tomcat7/conf/server.xml
+#change port to 8380
+#sudo gedit /var/lib/tomcat7/conf/server.xml
+#see http://localhost:8380/jenkins
 
 #JENKINS USER
 #tomcat6
@@ -66,6 +67,9 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 ssh -X jenkins@myserver jconsole 
 
 #conf
+#/etc/init/jenkins.conf
 /etc/default/jenkins
-/etc/init/jenkins.conf
+
+PREFIX=/jenkins
+JENKINS_ARGS="$JENKINS_ARGS --prefix=$PREFIX"
 
