@@ -96,6 +96,7 @@
                 <property name="enableTemplating">true</property>
                 <property name="enableAnnotations">true</property>
                 <property name="typeSafeEnumsEnabled">true</property>
+                <!--<property name="typeSafeEnumsEnabled">false</property>-->
                 <!-- Replaces default JavaMappings with customized mappings which extend Java, for PrimitiveTypes etc. -->
                 <property name="languageMappingsUri">Java</property>
                 <property name="wrapperMappingsUri">JavaWrapper</property>
