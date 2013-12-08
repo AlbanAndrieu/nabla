@@ -208,9 +208,14 @@ README  S25brltty@  S35quota@  S37apparmor@  S41aoetools@  S47lm-sensors@  S55ur
 
 #test
 sudo update-rc.d -n varnish start 85 2 3 4 5 . stop 20 0 1 6 .
+sudo update-rc.d -n varnish start 85 2 3 4 5 . stop 20 0 1 6 .
 sudo update-rc.d -n apache2 start 80 2 3 4 5 . stop 25 0 1 6 .
 
 sudo update-rc.d -f varnish remove
 sudo update-rc.d varnish start 85 2 3 4 5 . stop 20 0 1 6 .
+sudo update-rc.d -f varnishlog remove
+sudo update-rc.d -n varnishlog start 85 2 3 4 5 . stop 20 0 1 6 .
+sudo update-rc.d -f varnishncsa remove
+sudo update-rc.d -n varnishncsa start 85 2 3 4 5 . stop 20 0 1 6 .
 sudo update-rc.d -f apache2 remove
 sudo update-rc.d apache2 start 80 2 3 4 5 . stop 25 0 1 6 .

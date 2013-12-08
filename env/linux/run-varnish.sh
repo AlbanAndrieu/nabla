@@ -9,6 +9,14 @@ varnishlog
 #https://www.digitalocean.com/community/articles/how-to-install-and-configure-varnish-with-apache-on-ubuntu-12-04--3
 sudo nano /etc/default/varnish
 
+DAEMON_OPTS="-a :80,:443 \
+             -T localhost:6082 \
+             -f /etc/varnish/default.vcl \
+             -S /etc/varnish/secret \
+             -s malloc,256m"
+             
+sudo nano /etc/varnish/default.vcl            
+             
 # This is a basic VCL configuration file for varnish.  See the vcl(7)
 # man page for details on VCL syntax and semantics.
 # 
@@ -18,25 +26,34 @@ sudo nano /etc/default/varnish
 backend default {
     .host = "127.0.0.1";
     .port = "8080";
+    .probe = {
+         .url = "/jenkins/?";
+         .interval = 5s;
+         .timeout = 1 s;
+         .window = 5;
+         .threshold = 3;
+    }    
 }
 # Define the list of backends (web servers).
 # Port 80 Backend Servers
+#backend web1 { .host = "127.0.0.1"; .port = "8380"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
 backend web1 { .host = "127.0.0.1"; .port = "8080"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
-#backend web2 { .host = "127.0.0.1"; .probe = { .url = "/status.php"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
+backend web2 { .host = "192.168.0.47"; .port = "80"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
+#sick backend web2 { .host = "192.168.0.46"; .port = "80"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
 
 # Port 443 Backend Servers for SSL
-backend web1_ssl { .host = "127.0.0.1"; .port = "443"; .probe = { .url = "/"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
-#backend web2_ssl { .host = "127.0.0.1"; .port = "443"; .probe = { .url = "/status.php"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
+backend web1_ssl { .host = "82.231.208.223"; .port = "443"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
+#backend web2_ssl { .host = "127.0.0.1"; .port = "443"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
 
 # Define the director that determines how to distribute incoming requests.
 director default_director round-robin {
   { .backend = web1; }
-#  { .backend = web2; }
+  { .backend = web2; }
 }
 
 director ssl_director round-robin {
   { .backend = web1_ssl; }
-#  { .backend = web2_ssl; }
+  { .backend = web2_ssl; }
 }
 sub vcl_recv {
   #if (req.url ~ "^/jenkins/") {
@@ -45,21 +62,15 @@ sub vcl_recv {
   #  set req.backend = default;
   #}
   # Set the director to cycle between web servers.
-  if (server.port == 443) {
-    set req.backend = ssl_director;
-  }
-  else {
+  #if (server.port == 443) {
+  #  set req.backend = ssl_director;
+  #}
+  #else {
    set req.backend = default_director;
-  }
+  #}
 }
 
 #now varnish will forward to apache on port 8080
-
-DAEMON_OPTS="-a :80,:443 \
-             -T localhost:6082 \
-             -f /etc/varnish/default.vcl \
-             -S /etc/varnish/secret \
-             -s malloc,256m"
 
 sudo nano /etc/apache2/ports.conf
 # If you just change the port or add more ports here, you will likely also
@@ -85,6 +96,7 @@ Listen 127.0.0.1:8080
 #apache is at http://albandri.local:8080
 #jenkins is at http://localhost:8380/jenkins
 #http://82.231.208.223:8080/
+192.168.0.29
 https://albandri.local/jenkins
 
 cat /etc/init.d/varnish

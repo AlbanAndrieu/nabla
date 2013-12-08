@@ -80,7 +80,10 @@ sudo nmap localhost
 --------- change apache to port 8080 -----------
 sudo nano /etc/apache2/ports.conf
 #change
-Listen 127.0.0.1:8080
+#NameVirtualHost *:80
+#Listen 80
+#NameVirtualHost *:8080
+Listen *:8080
 
 -----------------------------------------------------------------------
 
@@ -93,6 +96,10 @@ sudo vim 000-default.conf
 or
 sudo vim /etc/apache2/sites-available/nabla.conf
 sudo a2ensite nabla
+sudo a2ensite jenkins
+sudo a2enmod rewrite
+sudo a2enmod proxy
+sudo a2enmod ssl
 
 <VirtualHost *:8080>
         # The ServerName directive sets the request scheme, hostname and port that
@@ -193,5 +200,3 @@ Fingerprint:
 SF-Port22-TCP:V=6.40%I=7%D=11/15%Time=52856A44%P=i686-pc-linux-gnu%r(NULL,SF:29,"SSH-2\.0-OpenSSH_6\.2p2\x20Ubuntu-6ubuntu0\.1\r\n");
 
 -------------------------------------------
-
-sudo a2enmod rewrite
