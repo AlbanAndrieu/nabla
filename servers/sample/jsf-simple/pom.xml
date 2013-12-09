@@ -132,7 +132,7 @@
 			<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 			<testSourceDirectory>${basedir}/src/test/groovy</testSourceDirectory>
           		<excludes>
-          		  <exclude>**/*IntegrationIT*</exclude>
+          		  <exclude>**/*ITest*</exclude>
           		</excludes>			
 		</configuration>
  		<executions>
@@ -147,7 +147,7 @@
         	        <exclude>none</exclude>
         	      </excludes>
         	      <includes>
-        	        <include>**/*IntegrationIT*</include>
+        	        <include>**/*ITest*</include>
         	      </includes>
         	    </configuration>
         	  </execution>
@@ -186,7 +186,7 @@
 					<properties>
 						<context>/welcome</context>
 					</properties>
-					<pingURL>http://${cargo.host}:${tomcat.port}/welcome</pingURL>
+					<pingURL>http://${cargo.host}:${cargo.port}/welcome</pingURL>
 					<pingTimeout>60000</pingTimeout>
 				</deployable>
 			</deployables>
