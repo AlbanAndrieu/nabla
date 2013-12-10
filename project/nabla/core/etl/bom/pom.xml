@@ -9,7 +9,7 @@
     
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.nabla.project.core.etl</groupId>
-    <artifactId>com.nabla.project.core.etl.bom</artifactId>
+    <artifactId>bom</artifactId>
     <name>Etl BOM bundles</name>
     <packaging>pom</packaging>
     
