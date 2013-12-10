@@ -23,6 +23,13 @@
 		<tag>HEAD</tag>
 	</scm>
 
+        <!-- ================= Default Properties ================= -->
+        <properties>
+        	<!-- needed for maven-ear-plugin -->
+		<as.version>5</as.version>
+		<jboss.ear.version>5</jboss.ear.version>
+        </properties>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -437,7 +444,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<scope.type>${scope.web}</scope.type>
 			</properties>
 			<build>
@@ -516,7 +523,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<scope.type>${scope.web}</scope.type>
 			</properties>
 			<build>
@@ -562,7 +569,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
@@ -607,7 +614,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<scope.type>${scope.compile}</scope.type>
 			</properties>
 			<build>
