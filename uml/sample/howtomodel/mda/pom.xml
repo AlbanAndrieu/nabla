@@ -176,7 +176,7 @@
 				<groupId>com.atlassian.maven.plugins</groupId>
 				<artifactId>maven-clover2-plugin</artifactId>
 				<configuration>
-					<skip>true/skip>
+					<skip>true</skip>
 				</configuration>
 			</plugin>                        
 		</plugins>
