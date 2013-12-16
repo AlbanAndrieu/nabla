@@ -28,6 +28,10 @@
         	<!-- needed for maven-ear-plugin -->
 		<as.version>5</as.version>
 		<jboss.ear.version>5</jboss.ear.version>
+		<jboss.home>${env.JBOSS_HOME}</jboss.home>
+		<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
+		<jboss.server>standalone</jboss.server>
+		<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
         </properties>
 
 	<build>
