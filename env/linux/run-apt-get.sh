@@ -65,12 +65,13 @@ sudo cpan install Tree::Simple
 sudo cpan install Tree::Simple::View::ASCII
 
 #http://askubuntu.com/questions/205342/how-do-i-downgrade-to-subversion-1-6
+sudo apt-get remove libsvn1 subversion
 sudo apt-get remove subversion
 
 sudo gedit /etc/apt/sources.list
 #Append the following line
 #NOK deb http://us.archive.ubuntu.com/ubuntu precise main
-deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
+deb http://us.archive.ubuntu.com/ubuntu precise main universe
 
 sudo apt-get update
 sudo apt-get install subversion
@@ -219,3 +220,18 @@ sudo update-rc.d -f varnishncsa remove
 sudo update-rc.d -n varnishncsa start 85 2 3 4 5 . stop 20 0 1 6 .
 sudo update-rc.d -f apache2 remove
 sudo update-rc.d apache2 start 80 2 3 4 5 . stop 25 0 1 6 .
+
+#add albandri as sudoers
+albandri ALL=(ALL) ALL
+%rms    ALL = NOPASSWD: /usr/local/bin/kzone-connector
+
+#add ability to display with sudo
+xhost +
+
+#sudo mount /dev/sda1 /media/albandri
+
+# ubuntu message
+dmesg
+
+#uid of current user
+id -u

@@ -15,6 +15,16 @@ DAEMON_OPTS="-a :80,:443 \
              -S /etc/varnish/secret \
              -s malloc,256m"
              
+#               -T localhost:6082 \
+#               -f /etc/varnish/default.vcl \
+#               -p thread_pools=4 \
+#               -p thread_pool_max=1500 \
+#               -p listen_depth=2048 \
+#               -p lru_interval=1800 \
+#               -h classic,169313 \
+#               -p connect_timeout=600 \
+#               -s malloc,2G"             
+             
 sudo nano /etc/varnish/default.vcl            
              
 # This is a basic VCL configuration file for varnish.  See the vcl(7)
@@ -29,8 +39,11 @@ backend default {
     .probe = {
          .url = "/jenkins/?";
          .interval = 5s;
-         .timeout = 1 s;
-         .window = 5;
+         .timeout = 1s;
+#         .connect_timeout = 600s;
+#         .first_byte_timeout = 600s;
+#         .between_bytes_timeout = 600s;         
+#         .window = 5;
          .threshold = 3;
     }    
 }
@@ -56,6 +69,9 @@ director ssl_director round-robin {
   { .backend = web2_ssl; }
 }
 sub vcl_recv {
+  if (req.url ~ "^/jenkins/") {
+    set beresp.ttl = 5d;
+  }
   #if (req.url ~ "^/jenkins/") {
   #  set req.backend = jenkins_backup;
   #} else {
@@ -68,6 +84,12 @@ sub vcl_recv {
   #else {
    set req.backend = default_director;
   #}
+}
+
+sub vcl_fetch {
+  if (req.url ~ "^/jenkins/") {
+    set beresp.ttl = 5d;
+  }
 }
 
 #now varnish will forward to apache on port 8080
@@ -107,3 +129,4 @@ varnishstat
 sudo service varnish stop
 sudo service apache2 start
 sudo service varnish start
+sudo service varnish restart

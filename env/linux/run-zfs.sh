@@ -34,6 +34,13 @@ sudo zfs snapshot dpool/backup@empty
 
 sudo zfs list
 
+#chek mount
+sudo zfs get all dpool/jenkins
+#sudo zfs set mountpoint=/mnt/jenkins dpool/jenkins
+sudo zfs get mountpoint dpool/jenkins
+sudo zfs get mounted dpool/jenkins
+sudo zfs mount -a
+
 cd /
 sudo ln -s /mnt/jenkins jenkins
 sudo chown -h jenkins:jenkins /jenkins

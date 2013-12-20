@@ -53,3 +53,5 @@ sudo service nexus start
 
 java -jar /workspace/users/albandri10/Downloads/application-check-1.21.3.jar 
 
+nano ./bin/jsw/conf/wrapper.con
+#change "wrapper.startup.timeout" and "wrapper.ping.timeout to 500
