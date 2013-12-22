@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="${entityManagerName} Test Suite" verbose="2" parallel="false">
+    <test name="${entityManagerName} Services Test">
+        <classes>
+#if($stringUtils.isNotBlank($ejb3TypesPackage))
+#**##set ($testPackage = "${ejb3TypesPackage}.test.")
+#else
+#**##set ($testPackage = "")
+#end
+#if (!$services.isEmpty() || !$mdbs.isEmpty())
+            <!-- Always start the EJB3 embeddable container before running the tests -->
+            <class name="${testPackage}EJB3Container"/>
+#end
+#foreach ($service in $services)
+            <class name="${service.fullyQualifiedServiceTestName}"/>
+#end
+#foreach ($mdb in $mdbs)
+            <class name="${mdb.fullyQualifiedMessageDrivenTestName}"/>
+#end
+        </classes>
+    </test>
+</suite>
