@@ -25,6 +25,10 @@
 #set ($backingListMethod = $stringUtils.capitalize($backingListName))
 #set ($valueListMethod = $stringUtils.capitalize($valueListName))
 #set ($labelListMethod = $stringUtils.capitalize($labelListName))
+
+    /**
+     * @return backingList $listType
+     */
     public $listType get${backingListMethod}()
     {
         $listType values = this.${valueListName};
@@ -51,28 +55,44 @@
         return backingList;
     }
 
+    /**
+     * @return $valueListName
+     */
     public $listType get${valueListMethod}()
     {
         return this.$valueListName;
     }
 
-    public void set${valueListMethod}($listType $valueListName)
+    /**
+     * @param ${valueListName}In
+     */
+    public void set${valueListMethod}($listType ${valueListName}In)
     {
-        this.$valueListName = $valueListName;
+        this.$valueListName = ${valueListName}In;
     }
 
+    /**
+     * @return $labelListName $listType
+     */
     public $listType get${labelListMethod}()
     {
         return this.$labelListName;
     }
 
-    public void set${labelListMethod}($listType $labelListName)
+    /**
+     * @param ${labelListName}In
+     */
+    public void set${labelListMethod}($listType ${labelListName}In)
     {
-        this.$labelListName = $labelListName;
+        this.$labelListName = ${labelListName}In;
     }
 
-#set ($setBackingListMethodSignature = "set${backingListMethod}(java.util.Collection items, String valueProperty, String labelProperty)")
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+#set ($setBackingListMethodSignature = "set${backingListMethod}(java.util.Collection<? extends Object> items, String valueProperty, String labelProperty)")
+    /**
+     * @param items
+     * @param valueProperty
+     * @param labelProperty
+     */
     public void $setBackingListMethodSignature
     {
         this.${valueListName} = null;
@@ -85,11 +105,11 @@
             try
             {
                 final java.util.List<String> labelProperties =
-                    labelProperty == null ? null : new java.util.ArrayList(java.util.Arrays.asList(labelProperty.split("[\\W&&[^\\.]]+")));
+                    labelProperty == null ? null : new java.util.ArrayList<String>(java.util.Arrays.asList(labelProperty.split("[\\W&&[^\\.]]+")));
                 final java.util.List<String> labelDelimiters =
-                    labelProperty == null ? null : new java.util.ArrayList(java.util.Arrays.asList(labelProperty.split("[\\w\\.]+")));
+                    labelProperty == null ? null : new java.util.ArrayList<String>(java.util.Arrays.asList(labelProperty.split("[\\w\\.]+")));
                 int ctr = 0;
-                for (final java.util.Iterator iterator = items.iterator(); iterator.hasNext(); ctr++)
+                for (final java.util.Iterator<? extends Object> iterator = items.iterator(); iterator.hasNext(); ctr++)
                 {
                     final Object item = iterator.next();
                     if (item != null)
@@ -163,11 +183,17 @@
 #set ($backingValueMethod = $stringUtils.capitalize($backingValueName))
     private $field.type.fullyQualifiedName $backingValueName;
 
-    public void set${backingValueMethod}($field.type.fullyQualifiedName $backingValueName)
+    /**
+     * @param ${backingValueName}In
+     */
+    public void set${backingValueMethod}($field.type.fullyQualifiedName ${backingValueName}In)
     {
-        this.$backingValueName = $backingValueName;
+        this.$backingValueName = ${backingValueName}In;
     }
 
+    /**
+     * @return ${backingValueName}
+     */
     public $field.type.fullyQualifiedName get${backingValueMethod}()
     {
         return this.$backingValueName;

@@ -6,7 +6,11 @@
 null;
 #elseif ($transition.enteringFinalState)
 #set ($targetUseCase = $transition.target.targetUseCase)
+###if ($targetUseCase)
 (($targetUseCase.controller.fullyQualifiedName)this.resolveVariable("$targetUseCase.controller.beanName")).${targetUseCase.controllerAction}();
+###else
+##"";
+###end
 #elseif ($transition.enteringView)
 "$transition.target.fromOutcome";
 #elseif ($transition.enteringDecisionPoint)

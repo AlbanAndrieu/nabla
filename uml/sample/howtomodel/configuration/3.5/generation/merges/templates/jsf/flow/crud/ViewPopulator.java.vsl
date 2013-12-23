@@ -29,18 +29,20 @@ public class $manageable.populatorName
     /**
      * Initialize the filter
      *
-     * @param config the configuration
-     * @see javax.servlet.Filter#hash()setFilterConfig(FilterConfig)
+     * @param configIn the configuration
+     * @see javax.servlet.Filter#hash()init(FilterConfig)
      */
-    public void init(FilterConfig config)
+    @Override
+    public void init(FilterConfig configIn)
     {
-        this.config = config;
+        this.config = configIn;
     }
 
     /**
      * @see javax.servlet.Filter#hash()doFilter(javax.servlet.ServletRequest,
      *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
      */
+    @Override
     public void doFilter(
         ServletRequest request,
         ServletResponse response,
@@ -73,6 +75,7 @@ public class $manageable.populatorName
         form = adfContext.getPageFlowScope().get("$actionFormKey");
 
 #if ($formSerialization)
+        @SuppressWarnings("unused")
         final javax.servlet.http.HttpSession session = ((javax.servlet.http.HttpServletRequest)request).getSession();
 
         // - if the form is still null, see if we can get it from a serialized state
@@ -83,13 +86,15 @@ public class $manageable.populatorName
 #end
         try
         {
+            //Keep this code out of the 'if' below to force the form creation in case it does not exist.
+            //This way the direct URL access works fine.
+            ${manageable.formBeanType} ${manageable.formBeanName} =
+                            ((${manageable.controllerName})variableResolver.resolveVariable(
+                            facesContext,
+                            "${manageable.controllerBeanName}")).getForm();
             // - populate the forms
             if (form != null && form instanceof $manageable.formBeanType)
             {
-                $manageable.formBeanType $manageable.formBeanName =
-                    (${manageable.formBeanType})variableResolver.resolveVariable(
-                    facesContext,
-                    "$manageable.formBeanName");
                 // - populate the $manageable.formBeanName with any parameters from the previous form
                 ${manageable.formBeanName}.copyFrom((${manageable.formBeanType})form);
             }
@@ -110,6 +115,7 @@ public class $manageable.populatorName
     /**
      * @see javax.servlet.Filter#hash()destroy()
      */
+    @Override
     public void destroy()
     {
         this.config = null;

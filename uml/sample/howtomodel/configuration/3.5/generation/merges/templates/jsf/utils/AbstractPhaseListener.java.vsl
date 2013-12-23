@@ -17,14 +17,17 @@ public abstract class $className
 {
     private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("rawtypes")
-    private static java.util.Map<Class, Object> firstInstances = new java.util.HashMap<Class, Object>();
+    private static java.util.Map<Class<? extends AbstractPhaseListener>, Object> firstInstances
+        = new java.util.HashMap<Class<? extends AbstractPhaseListener>, Object>();
 
     private boolean isFirstInstance()
     {
         return firstInstances.get(this.getClass()).equals(this);
     }
 
+    /**
+     *
+     */
     public AbstractPhaseListener()
     {
         if (!firstInstances.containsKey(this.getClass()))
@@ -36,6 +39,7 @@ public abstract class $className
     /**
      * @see javax.faces.event.PhaseListener#hash()beforePhase(javax.faces.event.PhaseEvent)
      */
+    @Override
     public void beforePhase(javax.faces.event.PhaseEvent event)
     {
         if (this.isFirstInstance())
@@ -44,11 +48,15 @@ public abstract class $className
         }
     }
 
+    /**
+     * @param event
+     */
     protected abstract void handleBeforePhase(javax.faces.event.PhaseEvent event);
 
     /**
      * @see javax.faces.event.PhaseListener#hash()afterPhase(javax.faces.event.PhaseEvent)
      */
+    @Override
     public void afterPhase(javax.faces.event.PhaseEvent event)
     {
         if (this.isFirstInstance())
@@ -57,11 +65,15 @@ public abstract class $className
         }
     }
 
+    /**
+     * @param event
+     */
     protected abstract void handleAfterPhase(javax.faces.event.PhaseEvent event);
 
     /**
      * @see javax.faces.event.PhaseListener#hash()getPhaseId()
      */
+    @Override
     public javax.faces.event.PhaseId getPhaseId()
     {
         return javax.faces.event.PhaseId.ANY_PHASE;

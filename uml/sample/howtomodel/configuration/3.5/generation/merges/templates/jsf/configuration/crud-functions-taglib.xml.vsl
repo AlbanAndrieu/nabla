@@ -6,6 +6,8 @@
 <facelet-taglib>
     <namespace>http://www.andromda.org/cartridges/jsf/crud</namespace>
 #foreach($manageable in $manageables)
+##  <!-- ${manageable.identifiersPresent} ${manageable.identifiers} -->
+#if(${manageable.identifiersPresent})  
 #if ($manageable.compositeIdentifier || !$manageable.identifiers.iterator().next().type.primitive)
 #set($idParamClass = $manageable.fullyQualifiedIdentifierTypeName)
 #else
@@ -19,5 +21,6 @@
         <function-class>${manageable.controllerType}</function-class>
         <function-signature>${manageable.manageablePackageName}.${manageable.valueObjectClassName} load($idParamClass)</function-signature>
     </function>
+#end    
 #end
 </facelet-taglib>
