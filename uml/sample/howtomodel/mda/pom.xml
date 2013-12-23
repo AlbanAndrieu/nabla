@@ -189,7 +189,7 @@
 		<filter></filter>
 		<validation>true</validation>
 		<!-- use this merge location if dont want the code to change -->
-		<!--<merge.templates.location>${project.basedir}/../configuration/generation/merges</merge.templates.location>-->
+		<merge.templates.location>${project.basedir}/../configuration/${andromda.version}/generation/merges</merge.templates.location>
 		<!-- cartridge output locations -->
 		<common.generated.dir>${project.basedir}/../common/${maven.build.generated}/main/java</common.generated.dir>
 		<common.manual.dir>${project.basedir}/../common/src/main/java</common.manual.dir>
