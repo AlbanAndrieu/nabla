@@ -1512,7 +1512,8 @@
                 <objectify.version>4.0b1</objectify.version>
                 <errai.version>2.0.Beta3</errai.version>
 
-                <selenium.version>0.8.1</selenium.version>
+                <selenium.version>2.37.1</selenium.version>
+                <selenium.java.client.driver.version>1.0.1</selenium.java.client.driver.version>
                 <drools.version>5.0.1</drools.version>
                 <!--<drools.version>5.1.1</drools.version>-->
                 <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
@@ -1772,6 +1773,7 @@
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
+                <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
 
                 <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 
@@ -2669,6 +2671,30 @@
                                   </executions>
                                   -->
                                 </plugin>
+            			<plugin>
+            			    <groupId>org.codehaus.mojo</groupId>
+            			    <artifactId>selenium-maven-plugin</artifactId>
+            			    <version>${maven.selenium.plugin.version}</version>
+            			    <!--
+            			    <configuration>
+				        <browser>*firefox</browser>
+				        <suite>src/test/selenium/SimpleSTest.html</suite>
+				        <startURL>http://localhost:9090</startURL>
+				    </configuration>
+				    -->
+            			    <executions>
+            			        <execution>
+            			            <phase>pre-integration-test</phase>
+            			            <goals>
+            			                <goal>start-server</goal>
+            			            </goals>
+            			            <configuration>
+            			                <background>true</background>
+            			            </configuration>
+            			        </execution>
+            			    </executions>
+            			</plugin>                                            
+                                
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>groovy-maven-plugin</artifactId>
