@@ -406,7 +406,7 @@
                                 <jdbc.client.artifactId>h2</jdbc.client.artifactId>
                                 <jdbc.groupId>com.h2database</jdbc.groupId>
                                 <jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-                                <jdbc.version>$jdbc.h2.version}</jdbc.version>
+                                <jdbc.version>${jdbc.h2.version}</jdbc.version>
                                 <jdbc.driver>org.h2.Driver</jdbc.driver>
 
                                 <database.host></database.host>
