@@ -329,7 +329,7 @@
 
                                 <!-- jdbc:mysql://localhost:3306/myDB -->
                                 <!-- create database in C:/tmp -->
-                                <jdbc.client.url><![CDATA[jdbc:derby:~/${database.name};create=true]]></jdbc.client.url>
+                                <jdbc.client.url><![CDATA[jdbc:derby:target/${database.name};create=true]]></jdbc.client.url>
                                 <jdbc.embedded.url>${jdbc.client.url}</jdbc.embedded.url>
                                 <jdbc.url>${jdbc.embedded.url}</jdbc.url>
                                 
@@ -371,14 +371,13 @@
                                 </dependency>
 
                                 <!-- org.apache.derby.jdbc.ClientDriver -->
-                                <!--
                                 <dependency>
                                         <groupId>${jdbc.groupId}</groupId>
                                         <artifactId>${jdbc.client.artifactId}</artifactId>
                                         <version>${jdbc.version}</version>
-                                        <scope>compile</scope>
+                                        <!--<scope>compile</scope> -->
+                                        <scope>provided</scope>
                                 </dependency>
-                                -->
                         </dependencies>
                 </profile>
                 <profile>
@@ -413,7 +412,7 @@
                                 <database.port></database.port>
                                 <!-- See http://www.h2database.com/html/features.html#database_url (mixed mode) -->
                                 <!--<jdbc.url><![CDATA[jdbc:h2:tutorial-service]]></jdbc.url> -->
-                                <jdbc.url>jdbc:h2:~/${database.name};AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</jdbc.url>
+                                <jdbc.url>jdbc:h2:target/${database.name};AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</jdbc.url>
                                 <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
                                 <jdbc.driver.lib>${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
                                 <jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
@@ -431,7 +430,7 @@
                                         <artifactId>${jdbc.client.artifactId}</artifactId>
                                         <version>${jdbc.version}</version>
                                         <scope>provided</scope>
-                                </dependency>
+                                </dependency>                          
                         </dependencies>
                 </profile>
                 <profile>
