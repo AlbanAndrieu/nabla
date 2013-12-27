@@ -3,6 +3,7 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -12,10 +13,12 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,17 +36,18 @@ public class SimpleSTest
     @Before
     public void setUp() throws Exception
     {
-        /*
-         * DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-         * // say you use the redhat5 label to indicate RHEL5 and the amd64 label to specify the architecture
-         * capabillities.setCapability("jenkins.label","redhat5 && amd64");
-         * // Say you want a specific node to thread your request, just specify the node name (it must be running a selenium configuration though)
-         * capabillities.setCapability("jenkins.nodeName","(master)");
-         * capabillities.setCapability("version", "8");
-         * capabillities.setCapability("platform", Platform.LINUX);
-         * driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
-         */
-        driver = new FirefoxDriver();
+        // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
+
+        DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+        // say you use the redhat5 label to indicate RHEL5 and the amd64 label to specify the architecture
+        // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
+        // Say you want a specific node to thread your request, just specify the node name (it must be running a selenium configuration though)
+        capabillities.setCapability("jenkins.nodeName", "(master)");
+        // capabillities.setCapability("version", "8");
+        capabillities.setCapability("platform", Platform.LINUX);
+        driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
+
+        // driver = new FirefoxDriver();
         // driver = new HtmlUnitDriver(true);
         baseUrl = "http://localhost:9090";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
