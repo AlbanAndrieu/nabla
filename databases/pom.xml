@@ -59,7 +59,7 @@
                                 <!--<jdbc.driver.jar>${jboss.home}/server/default/lib/${jdbc.client.artifactId}-${jdbc.version}.jar</jdbc.driver.jar> -->
                                 <jdbc.driver.jar>
                                 <!-- JBoss5 gives classloader exceptions if the JDBC driver is bundled with the EAR -->
-                                TODO ${settings.localRepository}/com/h2database/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
+                                ${settings.localRepository}/mysql/${jdbc.artifactId}/${jdbc.version}/${jdbc.artifactId}-${jdbc.version}.jar
                                 </jdbc.driver.jar>
                                 <!--
                                         Change driver for appropriate database For MySQL use:
@@ -78,8 +78,8 @@
                                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 
                                 <!-- Change this to the host on which your database will be deployed -->
-                                <!--<database.host>localhost</database.host>-->
-                                <database.host>ec2-174-129-9-255.compute-1.amazonaws.com</database.host>
+                                <database.host>localhost</database.host>
+                                <!--<database.host>ec2-174-129-9-255.compute-1.amazonaws.com</database.host>-->
                                 <!-- Change this the port on which your database will be deploy -->
                                 <!--<database.port>3406</database.port>-->
                                 <database.port>3306</database.port>
