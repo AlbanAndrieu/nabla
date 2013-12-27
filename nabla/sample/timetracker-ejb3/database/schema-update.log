@@ -1,0 +1,18 @@
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building [timetracker-ejb3 :: EJB3 Database Business Tier] - database : 3.5 3.5
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- andromdapp-maven-plugin:3.5:schema (default-cli) @ database ---
+alter table TIME_ALLOCATION add constraint TIME_ALLOCATION_TASKC foreign key (TASK) references TASK
+alter table TIME_ALLOCATION add constraint TIME_ALLOCATION_TIMECARDC foreign key (TIMECARD) references TIMECARD
+alter table USER_ROLE add constraint USER_ROLE_USERSC foreign key (USERS) references USERS
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 12.719s
+[INFO] Finished at: Sat Dec 28 00:22:18 CET 2013
+[INFO] Final Memory: 12M/29M
+[INFO] ------------------------------------------------------------------------
