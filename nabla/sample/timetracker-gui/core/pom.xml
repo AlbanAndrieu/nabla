@@ -181,17 +181,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency-->
-        <!--
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>${jdbc.groupId}</groupId>
+            <artifactId>${jdbc.client.artifactId}</artifactId>
             <version>${jdbc.version}</version>
-        </dependency>
-        -->
+            <scope>test</scope>
+        </dependency> 
     </dependencies>
     <build>
         <plugins>

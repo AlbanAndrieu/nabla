@@ -45,7 +45,7 @@ public class H2
     public static void main(String[] args)
     {
         // Using Embedded H2 database with multiple connections, starting a TCP instance
-        initDb("jdbc:h2:~/timetracker-gui;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1", null);
+        initDb("jdbc:h2:target/timetracker-gui;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1", null);
         // "C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB drop script.sql;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB create script.sql");
         // ;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB insert script.sql");
     }
@@ -54,7 +54,7 @@ public class H2
      * @param url
      * @param sqlFile
      */
-    public static void initDb(String url, String sqlFile) //throws SQLException, ClassNotFoundException
+    public static void initDb(String url, String sqlFile) // throws SQLException, ClassNotFoundException
     {
         long now = System.currentTimeMillis();
         try
@@ -73,16 +73,18 @@ public class H2
                     {
                         LOGGER.info("Parsing SQL file " + files[i]);
                         sqls.addAll(fileToStrings(files[i], ';'));
-                        /*if (i==0)
-                        {
-                            url += ";INIT=";
-                        }
-                        else
-                        {
-                            // Separator for multiple files in the same init command
-                            url += "\\;";
-                        }
-                        url += "RUNSCRIPT FROM '" + files[i] + "'";*/
+                        /*
+                         * if (i==0)
+                         * {
+                         * url += ";INIT=";
+                         * }
+                         * else
+                         * {
+                         * // Separator for multiple files in the same init command
+                         * url += "\\;";
+                         * }
+                         * url += "RUNSCRIPT FROM '" + files[i] + "'";
+                         */
                     }
                 }
             }
@@ -182,7 +184,7 @@ public class H2
         for (int i = 0; i < contentArray.length; i++)
         {
             sqls.add(StringUtils.strip(contentArray[i]));
-            //LOGGER.info(contentArray[i]);
+            // LOGGER.info(contentArray[i]);
         }
         return sqls;
     }
