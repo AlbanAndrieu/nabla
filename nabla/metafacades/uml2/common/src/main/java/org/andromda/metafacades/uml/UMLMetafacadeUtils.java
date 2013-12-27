@@ -303,19 +303,19 @@ public class UMLMetafacadeUtils
             if (implCollection.isEmpty())
             {
                 // Put all mappings into Map, removing the initial 'datatype::'
-                //implCollection.put("List", "ArrayList");
-                //implCollection.put("Set", "HashSet");
-                //implCollection.put("SortedSet", "TreeSet");
-                //implCollection.put("Map", "HashMap");
-                //implCollection.put("SortedMap", "TreeMap");
-                implCollection.put(UMLProfile.COLLECTION_TYPE_NAME.substring(UMLProfile.COLLECTION_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.COLLECTION_IMPL_TYPE_NAME.substring(UMLProfile.COLLECTION_IMPL_TYPE_NAME
-                        .lastIndexOf(':') + 1));
+                // implCollection.put("List", "ArrayList");
+                // implCollection.put("Set", "HashSet");
+                // implCollection.put("SortedSet", "TreeSet");
+                // implCollection.put("Map", "HashMap");
+                // implCollection.put("SortedMap", "TreeMap");
+                implCollection.put(UMLProfile.COLLECTION_TYPE_NAME.substring(UMLProfile.COLLECTION_TYPE_NAME.lastIndexOf(':') + 1),
+                        UMLProfile.COLLECTION_IMPL_TYPE_NAME.substring(UMLProfile.COLLECTION_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
                 implCollection.put(UMLProfile.LIST_TYPE_NAME.substring(UMLProfile.LIST_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.LIST_IMPL_TYPE_NAME.substring(UMLProfile.LIST_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
                 implCollection.put(UMLProfile.MAP_TYPE_NAME.substring(UMLProfile.MAP_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.MAP_IMPL_TYPE_NAME.substring(UMLProfile.MAP_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
-                implCollection.put(UMLProfile.ORDERED_MAP_TYPE_NAME.substring(UMLProfile.ORDERED_MAP_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME.substring(UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME
-                        .lastIndexOf(':') + 1));
-                implCollection.put(UMLProfile.ORDERED_SET_TYPE_NAME.substring(UMLProfile.ORDERED_SET_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.ORDERED_SET_IMPL_TYPE_NAME.substring(UMLProfile.ORDERED_SET_IMPL_TYPE_NAME
-                        .lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.ORDERED_MAP_TYPE_NAME.substring(UMLProfile.ORDERED_MAP_TYPE_NAME.lastIndexOf(':') + 1),
+                        UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME.substring(UMLProfile.ORDERED_MAP_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
+                implCollection.put(UMLProfile.ORDERED_SET_TYPE_NAME.substring(UMLProfile.ORDERED_SET_TYPE_NAME.lastIndexOf(':') + 1),
+                        UMLProfile.ORDERED_SET_IMPL_TYPE_NAME.substring(UMLProfile.ORDERED_SET_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
                 implCollection.put(UMLProfile.SET_TYPE_NAME.substring(UMLProfile.SET_TYPE_NAME.lastIndexOf(':') + 1), UMLProfile.SET_IMPL_TYPE_NAME.substring(UMLProfile.SET_IMPL_TYPE_NAME.lastIndexOf(':') + 1));
             }
         }
@@ -356,7 +356,7 @@ public class UMLMetafacadeUtils
                 collectionImpl = pkg + "ArrayList" + genericType;
             } else
             {
-                //logger.info("UMLMetafacadeUtils translated from " + collectionType + " to " + implType);
+                // logger.info("UMLMetafacadeUtils translated from " + collectionType + " to " + implType);
                 collectionImpl = pkg + implType + genericType;
             }
         }
@@ -478,12 +478,14 @@ public class UMLMetafacadeUtils
             {
                 if (parameter != null)
                 {
-                    /*String name = parameter.getValidationName();
-                    if (name==null && parameter.getParameter() != null)
-                    {
-                        name = parameter.getParameter().getName();
-                    }
-                    buffer.append(name);*/
+                    /*
+                     * String name = parameter.getValidationName();
+                     * if (name==null && parameter.getParameter() != null)
+                     * {
+                     * name = parameter.getParameter().getName();
+                     * }
+                     * buffer.append(name);
+                     */
                     buffer.append(parameter.getName());
                     if (i < size)
                     {
@@ -641,19 +643,21 @@ public class UMLMetafacadeUtils
         Boolean isMany = null;
         boolean isEnumeration = false;
         int maxLength = 9999;
-        /*if (parent != null)
-        {
-            // See if a named dependency exists with the same facadeName
-            for (final DependencyFacade dependency : parent.getSourceDependencies())
-            {
-                if (dependency.getName().equals(facade.getName()) && dependency instanceof DependencyFacade)
-                {
-                    facade = ((DependencyFacade)dependency).getTargetElement();
-                    toString = ".toString()";
-                    break;
-                }
-            }
-        }*/
+        /*
+         * if (parent != null)
+         * {
+         * // See if a named dependency exists with the same facadeName
+         * for (final DependencyFacade dependency : parent.getSourceDependencies())
+         * {
+         * if (dependency.getName().equals(facade.getName()) && dependency instanceof DependencyFacade)
+         * {
+         * facade = ((DependencyFacade)dependency).getTargetElement();
+         * toString = ".toString()";
+         * break;
+         * }
+         * }
+         * }
+         */
         try
         {
             if (logger.isDebugEnabled())
@@ -779,7 +783,7 @@ public class UMLMetafacadeUtils
             if (type instanceof EnumerationFacade)
             {
                 EnumerationFacade enumer = (EnumerationFacade) type;
-                //type = enumer.getLiteralType().getFullyQualifiedName();
+                // type = enumer.getLiteralType().getFullyQualifiedName();
                 Collection<AttributeFacade> literals = enumer.getLiterals();
                 if (StringUtils.isEmpty(defaultValue) && !literals.isEmpty())
                 {
@@ -949,9 +953,9 @@ public class UMLMetafacadeUtils
                 {
                     rtn = "new " + typeName + "()";
                 }
-                //if (facade instanceof ClassifierFacade)
-                //{
-                //ClassifierFacade classifier = (ClassifierFacade)facade;
+                // if (facade instanceof ClassifierFacade)
+                // {
+                // ClassifierFacade classifier = (ClassifierFacade)facade;
                 // If type is abstract, choose Impl descendant if exists, or the last descendant
                 if (type.isAbstract())
                 {
@@ -966,7 +970,7 @@ public class UMLMetafacadeUtils
                         rtn = '(' + type.getName() + ")new " + spec.getFullyQualifiedName() + "()";
                     }
                 }
-                //}
+                // }
                 GeneralizableElementFacade generalization = (GeneralizableElementFacade) type;
                 for (GeneralizableElementFacade spec : generalization.getSpecializations())
                 {
@@ -1012,7 +1016,7 @@ public class UMLMetafacadeUtils
     {
         boolean owning = false;
         AssociationEndFacade otherEnd = associationEnd.getOtherEnd();
-        //String assoc = ((Entity)otherEnd.getValidationOwner()).getName() + "." + associationEnd.getName() + " -> " + associationEnd.getType().getName() + " ";
+        // String assoc = ((Entity)otherEnd.getValidationOwner()).getName() + "." + associationEnd.getName() + " -> " + associationEnd.getType().getName() + " ";
         if (BooleanUtils.toBoolean(ObjectUtils.toString(otherEnd.findTaggedValue("andromda_persistence_associationEnd_primary"))))
         {
             owning = true;
@@ -1026,64 +1030,68 @@ public class UMLMetafacadeUtils
         else if (associationEnd.isNavigable() && !otherEnd.isNavigable())
         {
             owning = true;
-            //LOGGER.info("Owning=true: " + assoc + "nav=" + associationEnd.isNavigable() + " Onav=" + otherEnd.isNavigable());
+            // LOGGER.info("Owning=true: " + assoc + "nav=" + associationEnd.isNavigable() + " Onav=" + otherEnd.isNavigable());
         } else if (!associationEnd.isNavigable() && otherEnd.isNavigable())
         {
             owning = false;
-            //LOGGER.info("Owning=false: " + assoc + "nav=" + associationEnd.isNavigable() + " Onav=" + otherEnd.isNavigable());
+            // LOGGER.info("Owning=false: " + assoc + "nav=" + associationEnd.isNavigable() + " Onav=" + otherEnd.isNavigable());
         }
         // Other side: aggregation/composition side does not own the bidirectional relationship
         else if (otherEnd.isAggregation() || otherEnd.isComposition())
         {
             owning = false;
-            //LOGGER.info("Owning=true: " + assoc + "Oagg=" + otherEnd.isAggregation() + " Ocomp=" + otherEnd.isComposition());
+            // LOGGER.info("Owning=true: " + assoc + "Oagg=" + otherEnd.isAggregation() + " Ocomp=" + otherEnd.isComposition());
         } else if (associationEnd.isAggregation() || associationEnd.isComposition())
         {
             owning = true;
-            //LOGGER.info("Owning=false: " + assoc + "Oagg=" + associationEnd.isAggregation() + " Ocomp=" + otherEnd.isComposition());
+            // LOGGER.info("Owning=false: " + assoc + "Oagg=" + associationEnd.isAggregation() + " Ocomp=" + otherEnd.isComposition());
         }
         // The many side of 1:M owns the bidirectional relationship
         else if (!associationEnd.isMany() && otherEnd.isMany())
         {
             owning = true;
-            //LOGGER.info("Owning=true: " + assoc + "many=" + associationEnd.isMany() + " Omany=" + otherEnd.isMany());
+            // LOGGER.info("Owning=true: " + assoc + "many=" + associationEnd.isMany() + " Omany=" + otherEnd.isMany());
         }
         // Other side: the many side of 1:M owns the bidirectional relationship if no composition/aggregation
         else if (associationEnd.isMany() && !otherEnd.isMany())
         {
             owning = false;
-            //LOGGER.info("Owning=false: " + assoc + "many=" + associationEnd.isMany() + " Omany=" + otherEnd.isMany());
+            // LOGGER.info("Owning=false: " + assoc + "many=" + associationEnd.isMany() + " Omany=" + otherEnd.isMany());
         }
         // The optional side of 1:1 or M:M owns the bidirectional relationship
         else if (associationEnd.getLower() > 0 && otherEnd.getLower() == 0)
         {
             owning = true;
-            //LOGGER.info("Owning=true: " + assoc + "many=" + associationEnd.isMany() + " Omany=" + otherEnd.isMany());
+            // LOGGER.info("Owning=true: " + assoc + "many=" + associationEnd.isMany() + " Omany=" + otherEnd.isMany());
         }
         // If bidirectional 1:1 or M:M, choose the side with the longest type name because it typically indicates a composition relationship
-        /*else if (this.getOtherEnd().getType().getName().length()
-                > this.getType().getName().length())*/
+        /*
+         * else if (this.getOtherEnd().getType().getName().length()
+         * > this.getType().getName().length())
+         */
         else if (associationEnd.getName().length() < otherEnd.getName().length())
         {
             owning = true;
-            //LOGGER.info("Owning=true: " + assoc + "endLength=" + associationEnd.getName().length() + " Olength=" + otherEnd.getName().length());
+            // LOGGER.info("Owning=true: " + assoc + "endLength=" + associationEnd.getName().length() + " Olength=" + otherEnd.getName().length());
         }
         // If length is the same, alphabetically earliest is the owner
         else if (associationEnd.getName().compareTo(otherEnd.getName()) < 0)
         {
             owning = true;
-            //LOGGER.info("Owning=true: " + assoc + "name=" + associationEnd.getName() + " < OName=" + otherEnd.getName());
+            // LOGGER.info("Owning=true: " + assoc + "name=" + associationEnd.getName() + " < OName=" + otherEnd.getName());
         }
-        /*LOGGER.info(((Entity)associationEnd.getOtherEnd().getValidationOwner()).getName()
-            + "." + associationEnd.getName() +" IsOwningEnd=" + owning + " for "
-            + ((Entity)associationEnd.getOtherEnd().getValidationOwner()).getName()
-            + " OName=" + otherEnd.getName() + " Aggregation=" + associationEnd.isAggregation()
-            + " Composition=" + associationEnd.isComposition() + " Navigable=" + associationEnd.isNavigable()
-            + " !Navigable=" + !otherEnd.isNavigable() + " Many=" + associationEnd.isMany()
-            + " OMany=" + otherEnd.isMany() + " Upper=" + associationEnd.getUpper()
-            + " OUpper=" + otherEnd.getUpper() + " OAggregation=" + otherEnd.isAggregation()
-            + " OComposition=" + otherEnd.isComposition() + " ONavigable=" + otherEnd.isNavigable()
-            + " otherEnd=" + otherEnd.getFullyQualifiedName());*/
+        /*
+         * LOGGER.info(((Entity)associationEnd.getOtherEnd().getValidationOwner()).getName()
+         * + "." + associationEnd.getName() +" IsOwningEnd=" + owning + " for "
+         * + ((Entity)associationEnd.getOtherEnd().getValidationOwner()).getName()
+         * + " OName=" + otherEnd.getName() + " Aggregation=" + associationEnd.isAggregation()
+         * + " Composition=" + associationEnd.isComposition() + " Navigable=" + associationEnd.isNavigable()
+         * + " !Navigable=" + !otherEnd.isNavigable() + " Many=" + associationEnd.isMany()
+         * + " OMany=" + otherEnd.isMany() + " Upper=" + associationEnd.getUpper()
+         * + " OUpper=" + otherEnd.getUpper() + " OAggregation=" + otherEnd.isAggregation()
+         * + " OComposition=" + otherEnd.isComposition() + " ONavigable=" + otherEnd.isNavigable()
+         * + " otherEnd=" + otherEnd.getFullyQualifiedName());
+         */
         return owning;
     }
 
@@ -1111,6 +1119,8 @@ public class UMLMetafacadeUtils
      */
     public static String getDate()
     {
-        return df.format(new Date());
+        // return df.format(new Date());
+        // return "$Date: " + df.format(new Date()) + " $";
+        return "$Date$ $Revision: $ $Author: $ $HeadURL: $ $Id: $";
     }
 }
