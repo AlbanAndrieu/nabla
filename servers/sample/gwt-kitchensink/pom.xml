@@ -571,7 +571,7 @@
 			            <groupId>${jdbc.groupId}</groupId>
 					<artifactId>${jdbc.client.artifactId}</artifactId>
 					<version>${jdbc.version}</version>
-			            <scope>runtime</scope>
+			            	<scope>runtime</scope>
 			        </dependency>
 			    </dependencies>
 			</plugin>					
