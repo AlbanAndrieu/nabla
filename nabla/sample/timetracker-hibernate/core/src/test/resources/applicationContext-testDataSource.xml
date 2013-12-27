@@ -6,7 +6,6 @@
        xmlns:lang="http://www.springframework.org/schema/lang"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd">
 
-
     <!-- ========================= DATASOURCE DEFINITION ========================= -->
 
     <!-- Local DataSource that works in any environment -->
@@ -14,7 +13,7 @@
         <property name="driverClassName" value="org.h2.Driver"/>
         <property name="username" value="sa"/>
         <property name="password" value="sa"/>
-        <property name="url" value="jdbc:h2:~/timetracker-hibernate;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1"/>
+        <property name="url" value="jdbc:h2:target/timetracker-hibernate;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1"/>
     </bean>
 
     <!-- ====================== End of DATASOURCE DEFINITION ====================== -->

@@ -53,6 +53,7 @@
         <!-- applicationContext hibernateInterceptor merge-point -->
     </bean>
 
+
     <bean id="org.andromda.timetracker.domain.UserDaoImpl" class="org.andromda.timetracker.domain.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
         <lookup-method name="getUserRoleDao" bean="userRoleDao"/>

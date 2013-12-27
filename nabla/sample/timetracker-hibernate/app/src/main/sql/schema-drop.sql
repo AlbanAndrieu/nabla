@@ -1,18 +1,18 @@
 
     alter table TIMECARD 
-        drop constraint TIMECARD_SUBMITTER_FKC;
+        drop constraint TIMECARD_SUBMITTERC;
 
     alter table TIMECARD 
-        drop constraint TIMECARD_APPROVER_FKC;
+        drop constraint TIMECARD_APPROVERC;
 
     alter table TIME_ALLOCATION 
-        drop constraint TIME_ALLOCATION_TIMECARD_FKC;
+        drop constraint TIME_ALLOCATION_TASKC;
 
     alter table TIME_ALLOCATION 
-        drop constraint TIME_ALLOCATION_TASK_FKC;
+        drop constraint TIME_ALLOCATION_TIMECARDC;
 
     alter table USER_ROLE 
-        drop constraint USER_ROLE_USER_FKC;
+        drop constraint USER_ROLE_USERSC;
 
     drop table TASK if exists;
 

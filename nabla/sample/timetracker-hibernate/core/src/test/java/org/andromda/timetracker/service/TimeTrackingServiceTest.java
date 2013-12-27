@@ -45,7 +45,7 @@ public class TimeTrackingServiceTest
     {
         this.logger.info("testFindAllTimecards:");
         TimecardSearchCriteriaVO criteria = new TimecardSearchCriteriaVO();
-        //Collection<? extends TimecardSummaryVO> timecards = this.timeTrackingService.findTimecards(criteria);
+        // Collection<? extends TimecardSummaryVO> timecards = this.timeTrackingService.findTimecards(criteria);
         TimecardSummaryVO[] timecards = this.timeTrackingService.findTimecards(criteria);
         logTimecards(timecards);
     }
@@ -59,18 +59,18 @@ public class TimeTrackingServiceTest
         this.logger.info("testFindTimecardsForSubmitter:");
         TimecardSearchCriteriaVO criteria = new TimecardSearchCriteriaVO();
         criteria.setSubmitterId(new Long(1));
-        //Collection<? extends TimecardSummaryVO> timecards = this.timeTrackingService.findTimecards(criteria);
+        // Collection<? extends TimecardSummaryVO> timecards = this.timeTrackingService.findTimecards(criteria);
         TimecardSummaryVO[] timecards = this.timeTrackingService.findTimecards(criteria);
         logTimecards(timecards);
     }
 
     private void logTimecards(TimecardSummaryVO[] timecards)
-    //private void logTimecards(Collection<? extends TimecardSummaryVO> timecards)
+    // private void logTimecards(Collection<? extends TimecardSummaryVO> timecards)
     {
         Formatter formatter = new Formatter();
         formatter.format(TimecardHdrFormat, "Submitter", "Approver", "Status", "Start Date");
         this.logger.info(formatter.toString());
-        //for (TimecardSummaryVO timecard : timecards)
+        // for (TimecardSummaryVO timecard : timecards)
         for (int i = 0; i < timecards.length; i++)
         {
             formatter = new Formatter();
