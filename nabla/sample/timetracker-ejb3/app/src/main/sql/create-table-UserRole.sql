@@ -3,13 +3,13 @@ CREATE TABLE USER_ROLE
 (
     ID BIGINT NOT NULL,
     ROLE VARCHAR(256) NOT NULL,
-    USER BIGINT NOT NULL
+    USERS BIGINT NOT NULL
 );
 
 /* ------------- relation indexes ------------------ */
 CREATE INDEX IDXUSERUSERROLE ON USER_ROLE
 (
-       USER
+       USERS
 );
 
 

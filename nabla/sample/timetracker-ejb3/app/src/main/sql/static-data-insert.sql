@@ -1,30 +1,31 @@
 -- duplicated with import.sql in core project
-
+-- SEE instead core/src/main/resources/import.sql
 -- Password is 'cooldude' encoded using MD5 give 756slLjeNViurJBGI5JeqA==
-insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (1, 'testuser', 'cooldude', 'testuser', 'testuser', 'test@test.com',            1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'User for test purpose');
-insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (2, 'admin',    'cooldude', 'Alban',    'Andrieu',  'alban.andrieu@free.fr',    1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Alban Andrieu as administrator');
-insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (3, 'aandrieu', 'cooldude', 'Alban',    'Andrieu',  'alban.andrieu@gmail.com',  1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Alban Andrieu as standard user');
-insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (4, 'rbrooke',  'cooldude', 'Rachael',  'Brooke',   'rachael.brooke@yahoo.com', 1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Rachael Brooke');
+insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (1, 'nbhatia',      '756slLjeNViurJBGI5JeqA==', 'Naresh', 'Bhatia',      'nbhatia@northwind.com',      1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Naresh Bhatia');
+insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (2, 'lcoude',       '756slLjeNViurJBGI5JeqA==', 'Louis',  'Coude',       'lcoude@northwind.com',       1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Louis Coude');
+insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (3, 'ecrutchfield', '756slLjeNViurJBGI5JeqA==', 'Eric',   'Crutchfield', 'ecrutchfield@northwind.com', 1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Eric Crutchfield');
+insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (4, 'cmicali',      '756slLjeNViurJBGI5JeqA==', 'Chris',  'Micali',      'cmicali@northwind.com',      1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Chris Micali');
 commit;
 
---insert into USER_ROLE (ID, ROLE, USER_FK) values (1, 'STANDARD_USER', 1);
---insert into USER_ROLE (ID, ROLE, USER_FK) values (2, 'ADMINISTRATOR', 1);
---insert into USER_ROLE (ID, ROLE, USER_FK) values (3, 'STANDARD_USER', 2);
---insert into USER_ROLE (ID, ROLE, USER_FK) values (4, 'STANDARD_USER', 3);
---insert into USER_ROLE (ID, ROLE, USER_FK) values (5, 'STANDARD_USER', 4);
-insert into USER_ROLE (ID, ROLE) values (1, 'STANDARD_USER');
-insert into USER_ROLE (ID, ROLE) values (2, 'ADMINISTRATOR');
-insert into USER_ROLE (ID, ROLE) values (3, 'STANDARD_USER');
-insert into USER_ROLE (ID, ROLE) values (4, 'STANDARD_USER');
-insert into USER_ROLE (ID, ROLE) values (5, 'STANDARD_USER');
+-- Mixed case enumeration literals for JDK14 standard classes, not JDK5 enums
+--insert into USER_ROLE (ID, ROLE, USER) values (1, 'StandardUser',  1);
+--insert into USER_ROLE (ID, ROLE, USER) values (2, 'Administrator', 1);
+--insert into USER_ROLE (ID, ROLE, USER) values (3, 'StandardUser',  2);
+--insert into USER_ROLE (ID, ROLE, USER) values (4, 'StandardUser',  3);
+--insert into USER_ROLE (ID, ROLE, USER) values (5, 'StandardUser',  4);
+insert into USER_ROLE (ID, ROLE, USER) values (1, 'STANDARD_USER',  1);
+insert into USER_ROLE (ID, ROLE, USER) values (2, 'ADMINISTRATOR', 1);
+insert into USER_ROLE (ID, ROLE, USER) values (3, 'STANDARD_USER',  2);
+insert into USER_ROLE (ID, ROLE, USER) values (4, 'STANDARD_USER',  3);
+insert into USER_ROLE (ID, ROLE, USER) values (5, 'STANDARD_USER',  4);
 commit;
 
-insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (1, 1);
-insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (2, 2);
-insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (2, 3);
-insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (3, 4);
-insert into USER2ROLES (USER_ID_FK, ROLES_ID_FK) values (4, 5);
-commit;
+--insert into USERS2ROLES (USER_ID, ROLES_ID) values (1, 1);
+--insert into USERS2ROLES (USER_ID, ROLES_ID) values (2, 2);
+--insert into USERS2ROLES (USER_ID, ROLES_ID) values (2, 3);
+--insert into USERS2ROLES (USER_ID, ROLES_ID) values (3, 4);
+--insert into USERS2ROLES (USER_ID, ROLES_ID) values (4, 5);
+--commit;
 
 insert into TASK (ID, NAME) values (1, 'Research');
 insert into TASK (ID, NAME) values (2, 'Development');
