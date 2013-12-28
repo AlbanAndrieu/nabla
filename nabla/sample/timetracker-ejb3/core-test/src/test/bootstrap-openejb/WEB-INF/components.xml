@@ -23,7 +23,7 @@
 		http://jboss.com/products/seam/transaction http://jboss.com/products/seam/transaction-2.2.xsd
 		http://jboss.com/products/seam/transaction http://jboss.com/products/seam/jms-2.2.xsd">
 
-	<core:init debug="${app.debug}" jndi-pattern="${application.jndi.pattern.test}" transaction-management-enabled="true" />
+	<core:init debug="${application.debug}" jndi-pattern="${application.jndi.pattern.test}" transaction-management-enabled="true" distributable="${application.distributable}"/>
 
 	<!-- JPA -->
         <transaction:ejb-transaction />
