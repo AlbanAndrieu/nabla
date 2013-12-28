@@ -191,7 +191,7 @@ public abstract class UserEmbeddable implements Serializable{
      * Get the isActive property.
      * @return boolean The value of isActive
      */
-    @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true)
+    @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true, columnDefinition="BIT")
     @NotNull(message="isActive is required")
 
     public boolean isIsActive()
@@ -289,9 +289,9 @@ public abstract class UserEmbeddable implements Serializable{
     @OneToMany(cascade={CascadeType.ALL})
     @JoinTable
     (
-        name="USER2ROLES",
-        joinColumns={@JoinColumn(name="USER_ID_FK", referencedColumnName="ID")},
-        inverseJoinColumns={@JoinColumn(name="ROLES_ID_FK", referencedColumnName="ID")}
+        name="USERS2ROLES",
+        joinColumns={@JoinColumn(name="USERS_ID", referencedColumnName="ID")},
+        inverseJoinColumns={@JoinColumn(name="ROLES_ID", referencedColumnName="ID")}
     )
     public Set<UserRole> getRoles()
     {

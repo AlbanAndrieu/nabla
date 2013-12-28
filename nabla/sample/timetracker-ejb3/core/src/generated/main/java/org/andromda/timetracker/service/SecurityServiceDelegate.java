@@ -47,9 +47,11 @@ public class SecurityServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.timetracker.service.SecurityServiceBean#getUserDetails(String)
      *
-     * Call the session bean operation using appropriate view type
+     * @param username
+     * @return UserDetailsVO
      */
     public UserDetailsVO getUserDetails(String username)
     {

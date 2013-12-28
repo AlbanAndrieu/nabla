@@ -11,7 +11,7 @@ import org.andromda.timetracker.vo.UserDetailsVO;
 /**
  * Remote component interface for the SecurityServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.service.SecurityService
  *
  */
 @Remote
@@ -21,7 +21,9 @@ public interface SecurityServiceRemote extends SecurityService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.service.SecurityService.getUserDetails
+     * @param username
+     * @return UserDetailsVO
      */
     public UserDetailsVO getUserDetails(String username);
 

@@ -37,13 +37,13 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
 {
 
     private static final Logger logger = Logger.getLogger(TimeAllocationDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context timetracker-ejb3     */
+     * Inject persistence context timetracker-ejb3     */    
     @PersistenceContext(unitName = "timetracker-ejb3")
     protected EntityManager entityManager;
 
@@ -54,7 +54,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     protected Session hibernateSession;
 
     /**
-     * @see TimeAllocationDao#load(int,)
+     * @see TimeAllocationDao#load
      */
     @Override
     public Object load(final int transform, final Long id) throws TimeAllocationDaoException
@@ -65,8 +65,8 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
         }
         try
         {
-            final Object entity = (TimeAllocation)this.entityManager.find(TimeAllocation.class, id);
-            return transformEntity(transform, (TimeAllocation)entity);
+                        final TimeAllocation entity = this.entityManager.find(TimeAllocation.class, id);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -75,10 +75,10 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
-     * @see TimeAllocationDao#load()
+     * @see TimeAllocationDao#load( Long)
      */
     @Override
-    public TimeAllocation load( final Long id) throws TimeAllocationDaoException
+        public TimeAllocation load( final Long id) throws TimeAllocationDaoException
     {
         return (TimeAllocation)this.load(TRANSFORM_NONE, id);
     }
@@ -87,21 +87,23 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
      * @see TimeAllocationDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<TimeAllocation> loadAll() throws TimeAllocationDaoException
     {
-        return(Collection<TimeAllocation>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see TimeAllocationDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws TimeAllocationDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("TimeAllocation.findAll");
+            Query query = entityManager.createNamedQuery("TimeAllocation.findAll");            
+
             List<TimeAllocation> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -113,6 +115,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create TimeAllocation with no VO transformation
      * @see TimeAllocationDao#create(TimeAllocation)
      */
     @Override
@@ -122,6 +125,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create TimeAllocation with VO transformation
      * @see TimeAllocationDao#create(int, TimeAllocation)
      */
     @Override
@@ -145,7 +149,8 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
-     * @see TimeAllocationDao#create(Collection<TimeAllocation>)
+     * Create a Collection of TimeAllocation with no VO transformation
+     * @see TimeAllocationDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -155,10 +160,11 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create a Collection of TimeAllocation with VO transformation
      * @see TimeAllocationDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<TimeAllocation> entities) throws TimeAllocationDaoException
     {
         if (entities == null)
@@ -181,6 +187,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create Entity TimeAllocation using instance attributes with no VO transformation
      * @see TimeAllocationDao#create(TimePeriod)
      */
     @Override
@@ -190,7 +197,9 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create Entity TimeAllocation using instance attributes with VO transformation
      * @see TimeAllocationDao#create(int, TimePeriod)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, TimePeriod timePeriod) throws TimeAllocationDaoException
@@ -201,6 +210,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create Entity TimeAllocation using required properties with no VO transformation
      * @see TimeAllocationDao#create(Task, Timecard, TimePeriod)
      */
     @Override
@@ -210,14 +220,18 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
+     * Create Entity TimeAllocation using required properties with VO transformation
      * @see TimeAllocationDao#create(int, Task, Timecard, TimePeriod)
      */
     @Override
     public Object create(final int transform,Task task, Timecard timecard, TimePeriod timePeriod) throws TimeAllocationDaoException
     {
         TimeAllocation entity = new TimeAllocation();
+        // task $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setTask(task);
+        // timecard $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setTimecard(timecard);
+        // timePeriod $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setTimePeriod(timePeriod);
         return this.create(transform, entity);
     }
@@ -244,7 +258,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
-     * @see TimeAllocationDao#update(Collection<TimeAllocation>)
+     * @see TimeAllocationDao#update(Collection)
      */
     @Override
     public void update(final Collection<TimeAllocation> entities) throws TimeAllocationDaoException
@@ -312,7 +326,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
-     * @see TimeAllocationDao#remove(Collection<TimeAllocation>)
+     * @see TimeAllocationDao#remove(Collection)
      */
     @Override
     public void remove(Collection<TimeAllocation> entities) throws TimeAllocationDaoException
@@ -344,7 +358,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
      * This method will return instances of these types:
      * <ul>
      *   <li>{@link TimeAllocation} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link TimeAllocationVO} - {@link TRANSFORM_TIMEALLOCATIONVO}</li>
+     *   <li>{@link TimeAllocationVO} - {@link #TRANSFORM_TIMEALLOCATIONVO}</li>
      * </ul>
      *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
@@ -400,11 +414,12 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     /**
      * @see TimeAllocationDao#toTimeAllocationVOCollection(Collection)
      */
+    @Override
     public final void toTimeAllocationVOCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, TIMEALLOCATIONVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.TIMEALLOCATIONVO_TRANSFORMER);
         }
     }
 
@@ -412,6 +427,8 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link TimeAllocationDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of TimeAllocation to transform
+     * @return target TimeAllocationVO
      * @see TimeAllocationDao#toTimeAllocationVO(TimeAllocation)
      */
     protected TimeAllocationVO toTimeAllocationVO(Object[] row)
@@ -441,6 +458,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     private Transformer TIMEALLOCATIONVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -459,35 +477,37 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     /**
      * @see TimeAllocationDao#timeAllocationVOToEntityCollection(Collection)
      */
+    @Override
     public final void timeAllocationVOToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof TimeAllocationVO))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, TimeAllocationVOToEntityTransformer);
+            CollectionUtils.transform(instances, this.TimeAllocationVOToEntityTransformer);
         }
     }
 
     private final Transformer TimeAllocationVOToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return timeAllocationVOToEntity((TimeAllocationVO)input);
             }
         };
 
-
     /**
      * @see TimeAllocationDao#toTimeAllocationVO(TimeAllocation, TimeAllocationVO)
      */
+    @Override
     public void toTimeAllocationVO( TimeAllocation source, TimeAllocationVO target)
     {
         target.setId(source.getId());
@@ -496,6 +516,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     /**
      * @see TimeAllocationDao#toTimeAllocationVO(TimeAllocation)
      */
+    @Override
     public TimeAllocationVO toTimeAllocationVO(final TimeAllocation entity)
     {
         final TimeAllocationVO target = new TimeAllocationVO();
@@ -504,8 +525,9 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     }
 
     /**
-     * @see TimeAllocationDao#timeAllocationVOToEntity(TimeAllocationVO, TimeAllocation)
+     * @see TimeAllocationDao#timeAllocationVOToEntity(TimeAllocationVO, TimeAllocation, boolean)
      */
+    @Override
     public void timeAllocationVOToEntity( TimeAllocationVO source, TimeAllocation target, boolean copyIfNull)
     {
     }
@@ -546,7 +568,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
 
     /**
      * @return the hibernateSession
-     */
+     */   
     public Session getHibernateSession()
     {
         return this.hibernateSession;
@@ -558,5 +580,5 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     public void setHibernateSession(Session hibernateSessionIn)
     {
         this.hibernateSession = hibernateSessionIn;
-    }
+    }        
 }

@@ -369,7 +369,7 @@ public interface TimecardDao
         throws TimecardDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for Timecard.findByCriteria
      * @param criteria
      * @return List
      */

@@ -345,7 +345,7 @@ public interface UserDao
         throws UserDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for User.findByEmail
      * @param email
      * @return User
      * @throws UserDaoException
@@ -388,7 +388,7 @@ public interface UserDao
         throws UserDaoException;
 
     /**
-     * 
+     * TODO: Model Documentation for User.getUserDetails
      * @param username
      * @return User
      */

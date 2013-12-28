@@ -41,14 +41,14 @@ public abstract class UserDaoBase implements UserDao
 {
 
     private static final Logger logger = Logger.getLogger(UserDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
      * Inject persistence seam context
-     */
+     */    
     @In
 
     protected EntityManager entityManager;
@@ -63,6 +63,7 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * Gets the reference to <code>userRoleDao</code>.
+     * @return UserRoleDao
      */
     protected UserRoleDao getUserRoleDao()
     {
@@ -70,7 +71,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#load(int,)
+     * @see UserDao#load
      */
     @Override
     public Object load(final int transform, final Long id) throws UserDaoException
@@ -81,8 +82,8 @@ public abstract class UserDaoBase implements UserDao
         }
         try
         {
-            final Object entity = (User)this.entityManager.find(User.class, id);
-            return transformEntity(transform, (User)entity);
+                        final User entity = this.entityManager.find(User.class, id);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -91,10 +92,10 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#load()
+     * @see UserDao#load( Long)
      */
     @Override
-    public User load( final Long id) throws UserDaoException
+        public User load( final Long id) throws UserDaoException
     {
         return (User)this.load(TRANSFORM_NONE, id);
     }
@@ -103,21 +104,23 @@ public abstract class UserDaoBase implements UserDao
      * @see UserDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<User> loadAll() throws UserDaoException
     {
-        return(Collection<User>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see UserDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws UserDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("User.findAll");
+            Query query = entityManager.createNamedQuery("User.findAll");            
+
             List<User> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -129,6 +132,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create User with no VO transformation
      * @see UserDao#create(User)
      */
     @Override
@@ -138,6 +142,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create User with VO transformation
      * @see UserDao#create(int, User)
      */
     @Override
@@ -161,7 +166,8 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#create(Collection<User>)
+     * Create a Collection of User with no VO transformation
+     * @see UserDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -171,10 +177,11 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create a Collection of User with VO transformation
      * @see UserDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<User> entities) throws UserDaoException
     {
         if (entities == null)
@@ -197,6 +204,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create Entity User using instance attributes with no VO transformation
      * @see UserDao#create(String, String, String, String, String, boolean, Date, String)
      */
     @Override
@@ -206,7 +214,9 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
+     * Create Entity User using instance attributes with VO transformation
      * @see UserDao#create(int, String, String, String, String, String, boolean, Date, String)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment) throws UserDaoException
@@ -245,7 +255,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#update(Collection<User>)
+     * @see UserDao#update(Collection)
      */
     @Override
     public void update(final Collection<User> entities) throws UserDaoException
@@ -313,7 +323,7 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#remove(Collection<User>)
+     * @see UserDao#remove(Collection)
      */
     @Override
     public void remove(Collection<User> entities) throws UserDaoException
@@ -397,8 +407,7 @@ public abstract class UserDaoBase implements UserDao
      * @see UserDao#getUserDetails(String)
      */
     @Override
-    public User getUserDetails(final String username)
-    {
+    public User getUserDetails(final String username)    {
         if (username == null)
         {
             throw new IllegalArgumentException("org.andromda.timetracker.domain.UserDao.getUserDetails(String username) - 'username' can not be null");
@@ -416,6 +425,9 @@ public abstract class UserDaoBase implements UserDao
 
      /**
       * Performs the core logic for {@link #getUserDetails(String)}
+      * @param username $argument.fullyQualifiedType
+      * @return User 
+      * @throws Exception
       */
     protected abstract User handleGetUserDetails(String username) throws Exception;
 
@@ -429,8 +441,8 @@ public abstract class UserDaoBase implements UserDao
      * This method will return instances of these types:
      * <ul>
      *   <li>{@link User} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link UserVO} - {@link TRANSFORM_USERVO}</li>
-     *   <li>{@link UserDetailsVO} - {@link TRANSFORM_USERDETAILSVO}</li>
+     *   <li>{@link UserVO} - {@link #TRANSFORM_USERVO}</li>
+     *   <li>{@link UserDetailsVO} - {@link #TRANSFORM_USERDETAILSVO}</li>
      * </ul>
      *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
@@ -492,11 +504,12 @@ public abstract class UserDaoBase implements UserDao
     /**
      * @see UserDao#toUserVOCollection(Collection)
      */
+    @Override
     public final void toUserVOCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, USERVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.USERVO_TRANSFORMER);
         }
     }
 
@@ -504,6 +517,8 @@ public abstract class UserDaoBase implements UserDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link UserDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of User to transform
+     * @return target UserVO
      * @see UserDao#toUserVO(User)
      */
     protected UserVO toUserVO(Object[] row)
@@ -533,6 +548,7 @@ public abstract class UserDaoBase implements UserDao
     private Transformer USERVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -551,35 +567,37 @@ public abstract class UserDaoBase implements UserDao
     /**
      * @see UserDao#userVOToEntityCollection(Collection)
      */
+    @Override
     public final void userVOToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof UserVO))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, UserVOToEntityTransformer);
+            CollectionUtils.transform(instances, this.UserVOToEntityTransformer);
         }
     }
 
     private final Transformer UserVOToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return userVOToEntity((UserVO)input);
             }
         };
 
-
     /**
      * @see UserDao#toUserVO(User, UserVO)
      */
+    @Override
     public void toUserVO( User source, UserVO target)
     {
         target.setId(source.getId());
@@ -591,6 +609,7 @@ public abstract class UserDaoBase implements UserDao
     /**
      * @see UserDao#toUserVO(User)
      */
+    @Override
     public UserVO toUserVO(final User entity)
     {
         final UserVO target = new UserVO();
@@ -599,8 +618,9 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#userVOToEntity(UserVO, User)
+     * @see UserDao#userVOToEntity(UserVO, User, boolean)
      */
+    @Override
     public void userVOToEntity( UserVO source, User target, boolean copyIfNull)
     {
         if (copyIfNull || source.getUsername() != null)
@@ -620,11 +640,12 @@ public abstract class UserDaoBase implements UserDao
     /**
      * @see UserDao#toUserDetailsVOCollection(Collection)
      */
+    @Override
     public final void toUserDetailsVOCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, USERDETAILSVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.USERDETAILSVO_TRANSFORMER);
         }
     }
 
@@ -632,6 +653,8 @@ public abstract class UserDaoBase implements UserDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link UserDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of User to transform
+     * @return target UserDetailsVO
      * @see UserDao#toUserDetailsVO(User)
      */
     protected UserDetailsVO toUserDetailsVO(Object[] row)
@@ -661,6 +684,7 @@ public abstract class UserDaoBase implements UserDao
     private Transformer USERDETAILSVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -679,35 +703,37 @@ public abstract class UserDaoBase implements UserDao
     /**
      * @see UserDao#userDetailsVOToEntityCollection(Collection)
      */
+    @Override
     public final void userDetailsVOToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof UserDetailsVO))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, UserDetailsVOToEntityTransformer);
+            CollectionUtils.transform(instances, this.UserDetailsVOToEntityTransformer);
         }
     }
 
     private final Transformer UserDetailsVOToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return userDetailsVOToEntity((UserDetailsVO)input);
             }
         };
 
-
     /**
      * @see UserDao#toUserDetailsVO(User, UserDetailsVO)
      */
+    @Override
     public void toUserDetailsVO( User source, UserDetailsVO target)
     {
         target.setId(source.getId());
@@ -725,6 +751,7 @@ public abstract class UserDaoBase implements UserDao
     /**
      * @see UserDao#toUserDetailsVO(User)
      */
+    @Override
     public UserDetailsVO toUserDetailsVO(final User entity)
     {
         final UserDetailsVO target = new UserDetailsVO();
@@ -733,8 +760,9 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * @see UserDao#userDetailsVOToEntity(UserDetailsVO, User)
+     * @see UserDao#userDetailsVOToEntity(UserDetailsVO, User, boolean)
      */
+    @Override
     public void userDetailsVOToEntity( UserDetailsVO source, User target, boolean copyIfNull)
     {
         if (copyIfNull || source.getUsername() != null)
@@ -807,7 +835,7 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * @return the hibernateSession
-     */
+     */   
     public Session getHibernateSession()
     {
         if (this.entityManager.getDelegate() instanceof HibernateEntityManager)
@@ -817,6 +845,6 @@ public abstract class UserDaoBase implements UserDao
         {
             return (Session) this.entityManager.getDelegate();
         }
-    }
+    }    
 
 }

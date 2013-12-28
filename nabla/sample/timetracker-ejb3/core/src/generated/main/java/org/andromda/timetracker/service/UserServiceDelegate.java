@@ -57,9 +57,11 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.timetracker.service.UserServiceBean#getAllUsers()
      *
-     * Call the session bean operation using appropriate view type
+     * @return UserVO[]
+     * @throws UserDoesNotExistException
      */
     public UserVO[] getAllUsers()
         throws UserDoesNotExistException
@@ -80,9 +82,12 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.timetracker.service.UserServiceBean#getUser(String)
      *
-     * Call the session bean operation using appropriate view type
+     * @param username
+     * @return UserVO
+     * @throws UserDoesNotExistException
      */
     public UserVO getUser(String username)
         throws UserDoesNotExistException
@@ -103,9 +108,12 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.timetracker.service.UserServiceBean#registerUser(UserDetailsVO)
      *
-     * Call the session bean operation using appropriate view type
+     * @param userDetailVO
+     * @return UserDetailsVO
+     * @throws UserDoesNotExistException
      */
     public UserDetailsVO registerUser(UserDetailsVO userDetailVO)
         throws UserDoesNotExistException
@@ -126,9 +134,11 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.timetracker.service.UserServiceBean#removeUser(UserVO)
      *
-     * Call the session bean operation using appropriate view type
+     * @param userVO
+     * @throws UserDoesNotExistException
      */
     public void removeUser(UserVO userVO)
         throws UserDoesNotExistException

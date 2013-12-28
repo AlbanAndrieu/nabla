@@ -12,7 +12,7 @@ import org.andromda.timetracker.vo.TimecardSummaryVO;
 /**
  * Remote component interface for the TimeTrackingServiceBean session bean.
  *
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.service.TimeTrackingService
  *
  */
 @Remote
@@ -22,7 +22,10 @@ public interface TimeTrackingServiceRemote extends TimeTrackingService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.timetracker.service.TimeTrackingService.findTimecards
+     * @param criteria
+     * @return TimecardSummaryVO[]
      */
     public TimecardSummaryVO[] findTimecards(TimecardSearchCriteriaVO criteria);
 

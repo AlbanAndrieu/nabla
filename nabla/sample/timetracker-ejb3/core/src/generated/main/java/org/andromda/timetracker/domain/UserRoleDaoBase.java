@@ -38,20 +38,20 @@ public abstract class UserRoleDaoBase implements UserRoleDao
 {
 
     private static final Logger logger = Logger.getLogger(UserRoleDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
      * Inject persistence seam context
-     */
+     */    
     @In
 
     protected EntityManager entityManager;
 
     /**
-     * @see UserRoleDao#load(int,)
+     * @see UserRoleDao#load
      */
     @Override
     public Object load(final int transform, final Long id) throws UserRoleDaoException
@@ -62,8 +62,8 @@ public abstract class UserRoleDaoBase implements UserRoleDao
         }
         try
         {
-            final Object entity = (UserRole)this.entityManager.find(UserRole.class, id);
-            return transformEntity(transform, (UserRole)entity);
+                        final UserRole entity = this.entityManager.find(UserRole.class, id);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -72,10 +72,10 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
-     * @see UserRoleDao#load()
+     * @see UserRoleDao#load( Long)
      */
     @Override
-    public UserRole load( final Long id) throws UserRoleDaoException
+        public UserRole load( final Long id) throws UserRoleDaoException
     {
         return (UserRole)this.load(TRANSFORM_NONE, id);
     }
@@ -84,21 +84,23 @@ public abstract class UserRoleDaoBase implements UserRoleDao
      * @see UserRoleDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<UserRole> loadAll() throws UserRoleDaoException
     {
-        return(Collection<UserRole>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see UserRoleDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws UserRoleDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("UserRole.findAll");
+            Query query = entityManager.createNamedQuery("UserRole.findAll");            
+
             List<UserRole> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -110,6 +112,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
+     * Create UserRole with no VO transformation
      * @see UserRoleDao#create(UserRole)
      */
     @Override
@@ -119,6 +122,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
+     * Create UserRole with VO transformation
      * @see UserRoleDao#create(int, UserRole)
      */
     @Override
@@ -142,7 +146,8 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
-     * @see UserRoleDao#create(Collection<UserRole>)
+     * Create a Collection of UserRole with no VO transformation
+     * @see UserRoleDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -152,10 +157,11 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
+     * Create a Collection of UserRole with VO transformation
      * @see UserRoleDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<UserRole> entities) throws UserRoleDaoException
     {
         if (entities == null)
@@ -178,6 +184,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
+     * Create Entity UserRole using instance attributes with no VO transformation
      * @see UserRoleDao#create(Role)
      */
     @Override
@@ -187,7 +194,9 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
+     * Create Entity UserRole using instance attributes with VO transformation
      * @see UserRoleDao#create(int, Role)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, Role role) throws UserRoleDaoException
@@ -219,7 +228,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
-     * @see UserRoleDao#update(Collection<UserRole>)
+     * @see UserRoleDao#update(Collection)
      */
     @Override
     public void update(final Collection<UserRole> entities) throws UserRoleDaoException
@@ -287,7 +296,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
-     * @see UserRoleDao#remove(Collection<UserRole>)
+     * @see UserRoleDao#remove(Collection)
      */
     @Override
     public void remove(Collection<UserRole> entities) throws UserRoleDaoException
@@ -319,7 +328,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
      * This method will return instances of these types:
      * <ul>
      *   <li>{@link UserRole} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link UserRoleVO} - {@link TRANSFORM_USERROLEVO}</li>
+     *   <li>{@link UserRoleVO} - {@link #TRANSFORM_USERROLEVO}</li>
      * </ul>
      *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
@@ -375,11 +384,12 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     /**
      * @see UserRoleDao#toUserRoleVOCollection(Collection)
      */
+    @Override
     public final void toUserRoleVOCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, USERROLEVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.USERROLEVO_TRANSFORMER);
         }
     }
 
@@ -387,6 +397,8 @@ public abstract class UserRoleDaoBase implements UserRoleDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link UserRoleDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of UserRole to transform
+     * @return target UserRoleVO
      * @see UserRoleDao#toUserRoleVO(UserRole)
      */
     protected UserRoleVO toUserRoleVO(Object[] row)
@@ -416,6 +428,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     private Transformer USERROLEVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -434,35 +447,37 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     /**
      * @see UserRoleDao#userRoleVOToEntityCollection(Collection)
      */
+    @Override
     public final void userRoleVOToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof UserRoleVO))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, UserRoleVOToEntityTransformer);
+            CollectionUtils.transform(instances, this.UserRoleVOToEntityTransformer);
         }
     }
 
     private final Transformer UserRoleVOToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return userRoleVOToEntity((UserRoleVO)input);
             }
         };
 
-
     /**
      * @see UserRoleDao#toUserRoleVO(UserRole, UserRoleVO)
      */
+    @Override
     public void toUserRoleVO( UserRole source, UserRoleVO target)
     {
         target.setId(source.getId());
@@ -472,6 +487,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     /**
      * @see UserRoleDao#toUserRoleVO(UserRole)
      */
+    @Override
     public UserRoleVO toUserRoleVO(final UserRole entity)
     {
         final UserRoleVO target = new UserRoleVO();
@@ -480,8 +496,9 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     }
 
     /**
-     * @see UserRoleDao#userRoleVOToEntity(UserRoleVO, UserRole)
+     * @see UserRoleDao#userRoleVOToEntity(UserRoleVO, UserRole, boolean)
      */
+    @Override
     public void userRoleVOToEntity( UserRoleVO source, UserRole target, boolean copyIfNull)
     {
         if (copyIfNull || source.getRole() != null)
@@ -526,7 +543,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
 
     /**
      * @return the hibernateSession
-     */
+     */   
     public Session getHibernateSession()
     {
         if (this.entityManager.getDelegate() instanceof HibernateEntityManager)
@@ -536,6 +553,6 @@ public abstract class UserRoleDaoBase implements UserRoleDao
         {
             return (Session) this.entityManager.getDelegate();
         }
-    }
+    }    
 
 }

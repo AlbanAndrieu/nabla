@@ -48,9 +48,11 @@ public class TimeTrackingServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.timetracker.service.TimeTrackingServiceBean#findTimecards(TimecardSearchCriteriaVO)
      *
-     * Call the session bean operation using appropriate view type
+     * @param criteria
+     * @return TimecardSummaryVO[]
      */
     public TimecardSummaryVO[] findTimecards(TimecardSearchCriteriaVO criteria)
     {

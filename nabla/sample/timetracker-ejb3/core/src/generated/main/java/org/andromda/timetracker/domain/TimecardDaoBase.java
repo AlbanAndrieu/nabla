@@ -41,13 +41,13 @@ public abstract class TimecardDaoBase implements TimecardDao
 {
 
     private static final Logger logger = Logger.getLogger(TimecardDaoBase.class);
-
+    
     /** Session Context Injection */
     @Resource
     protected SessionContext context;
 
     /**
-     * Inject persistence context timetracker-ejb3     */
+     * Inject persistence context timetracker-ejb3     */    
     @PersistenceContext(unitName = "timetracker-ejb3")
     protected EntityManager entityManager;
 
@@ -67,6 +67,7 @@ public abstract class TimecardDaoBase implements TimecardDao
 
     /**
      * Gets the reference to <code>timeAllocationDao</code>.
+     * @return TimeAllocationDao
      */
     protected TimeAllocationDao getTimeAllocationDao()
     {
@@ -74,7 +75,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#load(int,)
+     * @see TimecardDao#load
      */
     @Override
     public Object load(final int transform, final Long id) throws TimecardDaoException
@@ -85,8 +86,8 @@ public abstract class TimecardDaoBase implements TimecardDao
         }
         try
         {
-            final Object entity = (Timecard)this.entityManager.find(Timecard.class, id);
-            return transformEntity(transform, (Timecard)entity);
+                        final Timecard entity = this.entityManager.find(Timecard.class, id);
+            return transformEntity(transform, entity);
         }
         catch (Exception ex)
         {
@@ -95,10 +96,10 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#load()
+     * @see TimecardDao#load( Long)
      */
     @Override
-    public Timecard load( final Long id) throws TimecardDaoException
+        public Timecard load( final Long id) throws TimecardDaoException
     {
         return (Timecard)this.load(TRANSFORM_NONE, id);
     }
@@ -107,21 +108,23 @@ public abstract class TimecardDaoBase implements TimecardDao
      * @see TimecardDao#loadAll()
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
     public Collection<Timecard> loadAll() throws TimecardDaoException
     {
-        return(Collection<Timecard>) this.loadAll(TRANSFORM_NONE);
+        return this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see TimecardDao#loadAll(int)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public Collection loadAll(final int transform) throws TimecardDaoException
     {
         try
         {
-            Query query = entityManager.createNamedQuery("Timecard.findAll");
+            Query query = entityManager.createNamedQuery("Timecard.findAll");            
+
             List<Timecard> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -133,6 +136,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create Timecard with no VO transformation
      * @see TimecardDao#create(Timecard)
      */
     @Override
@@ -142,6 +146,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create Timecard with VO transformation
      * @see TimecardDao#create(int, Timecard)
      */
     @Override
@@ -165,7 +170,8 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#create(Collection<Timecard>)
+     * Create a Collection of Timecard with no VO transformation
+     * @see TimecardDao#create(Collection)
      */
     @Override
     //@SuppressWarnings({"unchecked"})
@@ -175,10 +181,11 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create a Collection of Timecard with VO transformation
      * @see TimecardDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public Collection create(final int transform, final Collection<Timecard> entities) throws TimecardDaoException
     {
         if (entities == null)
@@ -201,6 +208,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create Entity Timecard using instance attributes with no VO transformation
      * @see TimecardDao#create(String, Date, TimecardStatus)
      */
     @Override
@@ -210,7 +218,9 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create Entity Timecard using instance attributes with VO transformation
      * @see TimecardDao#create(int, String, Date, TimecardStatus)
+     * composite=false identifiers=1
      */
     @Override
     public Object create(final int transform, String comments, Date startDate, TimecardStatus status) throws TimecardDaoException
@@ -223,6 +233,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create Entity Timecard using required properties with no VO transformation
      * @see TimecardDao#create(String, Date, TimecardStatus, User)
      */
     @Override
@@ -232,15 +243,20 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
+     * Create Entity Timecard using required properties with VO transformation
      * @see TimecardDao#create(int, String, Date, TimecardStatus, User)
      */
     @Override
     public Object create(final int transform,String comments, Date startDate, TimecardStatus status, User submitter) throws TimecardDaoException
     {
         Timecard entity = new Timecard();
+        // comments $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setComments(comments);
+        // startDate $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setStartDate(startDate);
+        // status $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setStatus(status);
+        // submitter $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setSubmitter(submitter);
         return this.create(transform, entity);
     }
@@ -267,7 +283,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#update(Collection<Timecard>)
+     * @see TimecardDao#update(Collection)
      */
     @Override
     public void update(final Collection<Timecard> entities) throws TimecardDaoException
@@ -335,7 +351,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#remove(Collection<Timecard>)
+     * @see TimecardDao#remove(Collection)
      */
     @Override
     public void remove(Collection<Timecard> entities) throws TimecardDaoException
@@ -361,8 +377,7 @@ public abstract class TimecardDaoBase implements TimecardDao
      * @see TimecardDao#findByCriteria(TimecardSearchCriteriaVO)
      */
     @Override
-    public List findByCriteria(final TimecardSearchCriteriaVO criteria)
-    {
+    public List findByCriteria(final TimecardSearchCriteriaVO criteria)    {
         if (criteria == null)
         {
             throw new IllegalArgumentException("org.andromda.timetracker.domain.TimecardDao.findByCriteria(TimecardSearchCriteriaVO criteria) - 'criteria' can not be null");
@@ -380,6 +395,9 @@ public abstract class TimecardDaoBase implements TimecardDao
 
      /**
       * Performs the core logic for {@link #findByCriteria(TimecardSearchCriteriaVO)}
+      * @param criteria $argument.fullyQualifiedType
+      * @return List 
+      * @throws Exception
       */
     protected abstract List handleFindByCriteria(TimecardSearchCriteriaVO criteria) throws Exception;
 
@@ -393,8 +411,8 @@ public abstract class TimecardDaoBase implements TimecardDao
      * This method will return instances of these types:
      * <ul>
      *   <li>{@link Timecard} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link TimecardSummaryVO} - {@link TRANSFORM_TIMECARDSUMMARYVO}</li>
-     *   <li>{@link TimecardVO} - {@link TRANSFORM_TIMECARDVO}</li>
+     *   <li>{@link TimecardSummaryVO} - {@link #TRANSFORM_TIMECARDSUMMARYVO}</li>
+     *   <li>{@link TimecardVO} - {@link #TRANSFORM_TIMECARDVO}</li>
      * </ul>
      *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
@@ -456,11 +474,12 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * @see TimecardDao#toTimecardSummaryVOCollection(Collection)
      */
+    @Override
     public final void toTimecardSummaryVOCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, TIMECARDSUMMARYVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.TIMECARDSUMMARYVO_TRANSFORMER);
         }
     }
 
@@ -468,6 +487,8 @@ public abstract class TimecardDaoBase implements TimecardDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link TimecardDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of Timecard to transform
+     * @return target TimecardSummaryVO
      * @see TimecardDao#toTimecardSummaryVO(Timecard)
      */
     protected TimecardSummaryVO toTimecardSummaryVO(Object[] row)
@@ -497,6 +518,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     private Transformer TIMECARDSUMMARYVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -515,35 +537,37 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * @see TimecardDao#timecardSummaryVOToEntityCollection(Collection)
      */
+    @Override
     public final void timecardSummaryVOToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof TimecardSummaryVO))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, TimecardSummaryVOToEntityTransformer);
+            CollectionUtils.transform(instances, this.TimecardSummaryVOToEntityTransformer);
         }
     }
 
     private final Transformer TimecardSummaryVOToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return timecardSummaryVOToEntity((TimecardSummaryVO)input);
             }
         };
 
-
     /**
      * @see TimecardDao#toTimecardSummaryVO(Timecard, TimecardSummaryVO)
      */
+    @Override
     public void toTimecardSummaryVO( Timecard source, TimecardSummaryVO target)
     {
         target.setId(source.getId());
@@ -555,6 +579,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * @see TimecardDao#toTimecardSummaryVO(Timecard)
      */
+    @Override
     public TimecardSummaryVO toTimecardSummaryVO(final Timecard entity)
     {
         final TimecardSummaryVO target = new TimecardSummaryVO();
@@ -563,8 +588,9 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#timecardSummaryVOToEntity(TimecardSummaryVO, Timecard)
+     * @see TimecardDao#timecardSummaryVOToEntity(TimecardSummaryVO, Timecard, boolean)
      */
+    @Override
     public void timecardSummaryVOToEntity( TimecardSummaryVO source, Timecard target, boolean copyIfNull)
     {
         if (copyIfNull || source.getComments() != null)
@@ -584,11 +610,12 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * @see TimecardDao#toTimecardVOCollection(Collection)
      */
+    @Override
     public final void toTimecardVOCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, TIMECARDVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.TIMECARDVO_TRANSFORMER);
         }
     }
 
@@ -596,6 +623,8 @@ public abstract class TimecardDaoBase implements TimecardDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link TimecardDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of Timecard to transform
+     * @return target TimecardVO
      * @see TimecardDao#toTimecardVO(Timecard)
      */
     protected TimecardVO toTimecardVO(Object[] row)
@@ -625,6 +654,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     private Transformer TIMECARDVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -643,35 +673,37 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * @see TimecardDao#timecardVOToEntityCollection(Collection)
      */
+    @Override
     public final void timecardVOToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof TimecardVO))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, TimecardVOToEntityTransformer);
+            CollectionUtils.transform(instances, this.TimecardVOToEntityTransformer);
         }
     }
 
     private final Transformer TimecardVOToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return timecardVOToEntity((TimecardVO)input);
             }
         };
 
-
     /**
      * @see TimecardDao#toTimecardVO(Timecard, TimecardVO)
      */
+    @Override
     public void toTimecardVO( Timecard source, TimecardVO target)
     {
         target.setId(source.getId());
@@ -684,6 +716,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * @see TimecardDao#toTimecardVO(Timecard)
      */
+    @Override
     public TimecardVO toTimecardVO(final Timecard entity)
     {
         final TimecardVO target = new TimecardVO();
@@ -692,8 +725,9 @@ public abstract class TimecardDaoBase implements TimecardDao
     }
 
     /**
-     * @see TimecardDao#timecardVOToEntity(TimecardVO, Timecard)
+     * @see TimecardDao#timecardVOToEntity(TimecardVO, Timecard, boolean)
      */
+    @Override
     public void timecardVOToEntity( TimecardVO source, Timecard target, boolean copyIfNull)
     {
         if (copyIfNull || source.getComments() != null)
@@ -746,7 +780,7 @@ public abstract class TimecardDaoBase implements TimecardDao
 
     /**
      * @return the hibernateSession
-     */
+     */   
     public Session getHibernateSession()
     {
         return this.hibernateSession;
@@ -758,5 +792,5 @@ public abstract class TimecardDaoBase implements TimecardDao
     public void setHibernateSession(Session hibernateSessionIn)
     {
         this.hibernateSession = hibernateSessionIn;
-    }
+    }        
 }

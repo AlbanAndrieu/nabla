@@ -15,7 +15,7 @@ import org.andromda.timetracker.vo.UserVO;
  * only exposes this interface as a Local business interface for the Seam bean
  * component.
  *
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.service.UserService
  *
  */
 @Local
@@ -25,22 +25,22 @@ public interface UserServiceLocal extends UserService
     // ------------ Business Methods  -----------------
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.service.UserService.getAllUsers
      */
     public UserVO[] getAllUsers() throws UserDoesNotExistException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.service.UserService.getUser
      */
     public UserVO getUser(String username) throws UserDoesNotExistException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.service.UserService.registerUser
      */
     public UserDetailsVO registerUser(UserDetailsVO userDetailVO) throws UserDoesNotExistException;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.service.UserService.removeUser
      */
     public void removeUser(UserVO userVO) throws UserDoesNotExistException;
 

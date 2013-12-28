@@ -30,7 +30,7 @@ import org.jboss.seam.log.Log;
  *
  * This Seam component is defined through META-INF/components.xml rather than
  * class level annotations.
- * 
+ * TODO: Model Documentation for UserService
  */
 public abstract class UserServiceBase implements UserService, Serializable
 {
@@ -71,6 +71,9 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     // --------------- Constructors ---------------
 
+    /**
+     * Default constructor method with no arguments.
+     */
     public UserServiceBase()
     {
         super();
@@ -83,6 +86,7 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     /**
      * Get the injected DAO UserDao
+     * @return UserDao
      */
     protected UserDao getUserDao()
     {
@@ -92,7 +96,9 @@ public abstract class UserServiceBase implements UserService, Serializable
     // -------- Business Methods  --------------
 
     /**
-     * 
+     * TODO: Model Documentation for UserService.getAllUsers
+     * @return UserVO[]
+     * @throws UserDoesNotExistException
      */
     @Factory
     public UserVO[] getAllUsers() throws UserDoesNotExistException
@@ -113,11 +119,16 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     /**
      * Performs the core logic for {@link #getAllUsers()}
+     * @return UserVO[]
+     * @throws Exception
      */
     protected abstract UserVO[] handleGetAllUsers() throws Exception;
 
     /**
-     * 
+     * TODO: Model Documentation for UserService.getUser
+     * @param username
+     * @return UserVO
+     * @throws UserDoesNotExistException
      */
     public UserVO getUser(String username) throws UserDoesNotExistException
     {
@@ -141,11 +152,17 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     /**
      * Performs the core logic for {@link #getUser(String)}
+     * @param username
+     * @return UserVO
+     * @throws Exception
      */
     protected abstract UserVO handleGetUser(String username) throws Exception;
 
     /**
-     * 
+     * TODO: Model Documentation for UserService.registerUser
+     * @param userDetailVO
+     * @return UserDetailsVO
+     * @throws UserDoesNotExistException
      */
     public UserDetailsVO registerUser(UserDetailsVO userDetailVO) throws UserDoesNotExistException
     {
@@ -169,11 +186,16 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     /**
      * Performs the core logic for {@link #registerUser(UserDetailsVO)}
+     * @param userDetailVO
+     * @return UserDetailsVO
+     * @throws Exception
      */
     protected abstract UserDetailsVO handleRegisterUser(UserDetailsVO userDetailVO) throws Exception;
 
     /**
-     * 
+     * TODO: Model Documentation for UserService.removeUser
+     * @param userVO
+     * @throws UserDoesNotExistException
      */
     public void removeUser(UserVO userVO) throws UserDoesNotExistException
     {
@@ -197,6 +219,8 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     /**
      * Performs the core logic for {@link #removeUser(UserVO)}
+     * @param userVO
+     * @throws Exception
      */
     protected abstract void handleRemoveUser(UserVO userVO) throws Exception;
 
