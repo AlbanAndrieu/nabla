@@ -8,21 +8,21 @@ import java.util.Map;
 import org.andromda.timetracker.domain.User;
 
 /**
- * 
+ * TODO: Model Documentation for User
  */
 public interface UserManageableDao
 {
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return User
      */
     public User create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles);
@@ -34,16 +34,16 @@ public interface UserManageableDao
     public User readById(Long id);
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return List<User>
      */
     public List<User> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles);
@@ -59,16 +59,16 @@ public interface UserManageableDao
     public Map<String,?> readBackingLists();
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return User
      */
     public User update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles);

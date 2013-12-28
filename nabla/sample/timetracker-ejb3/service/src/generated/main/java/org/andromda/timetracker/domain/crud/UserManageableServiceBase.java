@@ -12,7 +12,7 @@ import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserRole;
 
 /**
- *
+ *TODO: Model Documentation for User
  */
 public final class UserManageableServiceBase
     implements UserManageableService
@@ -36,16 +36,16 @@ public final class UserManageableServiceBase
     }
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for UserRole
      * @return UserVO
      * @throws Exception
      * @see org.andromda.timetracker.domain.UserDao#create
@@ -105,16 +105,16 @@ public final class UserManageableServiceBase
     }
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for UserRole
      * @return toValueObjects(dao.read())
      * @throws Exception
      * @see UserManageableService#read
@@ -147,16 +147,16 @@ public final class UserManageableServiceBase
     }
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for UserRole
      * @return toValueObject(this.dao.update(username, password, firstName, lastName, email, isActive, creationDate, comment, id, roles))
      * @throws Exception
      * @see UserManageableDao#update

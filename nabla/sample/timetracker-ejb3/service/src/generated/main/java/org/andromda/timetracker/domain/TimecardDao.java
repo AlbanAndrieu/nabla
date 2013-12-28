@@ -70,6 +70,7 @@ public interface TimecardDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link TimecardSummaryVO}.
      * @param entities
+     * @return Collection<TimecardSummaryVO>
      */
     public Collection<TimecardSummaryVO> toTimecardSummaryVOCollection(Collection<?> entities);
 
@@ -137,6 +138,7 @@ public interface TimecardDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link TimecardVO}.
      * @param entities
+     * @return Collection<TimecardVO>
      */
     public Collection<TimecardVO> toTimecardVOCollection(Collection<?> entities);
 
@@ -324,9 +326,9 @@ public interface TimecardDao
      * instance from <strong>all</strong> attributes and adds it to
      * the persistent store.
      * </p>
-     * @param comments 
-     * @param startDate 
-     * @param status 
+     * @param comments TODO: Model Documentation for Timecard.comments
+     * @param startDate TODO: Model Documentation for Timecard.startDate
+     * @param status TODO: Model Documentation for Timecard.status
      * @return Timecard
      */
     public Timecard create(
@@ -344,9 +346,9 @@ public interface TimecardDao
      * not occur.
      * </p>
      * @param transform
-     * @param comments 
-     * @param startDate 
-     * @param status 
+     * @param comments TODO: Model Documentation for Timecard.comments
+     * @param startDate TODO: Model Documentation for Timecard.startDate
+     * @param status TODO: Model Documentation for Timecard.status
      * @return Timecard
      */
     public Object create(
@@ -428,8 +430,8 @@ public interface TimecardDao
     public void remove(Collection<Timecard> entities);
 
     /**
-     * 
-     * @param criteria 
+     * TODO: Model Documentation for Timecard.findByCriteria
+     * @param criteria TODO: Model Documentation for Timecard.findByCriteria(criteria)
      * @return List
      */
     public List findByCriteria(TimecardSearchCriteriaVO criteria);

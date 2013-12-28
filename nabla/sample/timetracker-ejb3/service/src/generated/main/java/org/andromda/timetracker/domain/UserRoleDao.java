@@ -12,7 +12,7 @@ import org.andromda.timetracker.Search;
 import org.andromda.timetracker.vo.UserRoleVO;
 
 /**
- *
+ * TODO: Model Documentation for UserRole
  * @see UserRole
  */
 public interface UserRoleDao
@@ -66,6 +66,7 @@ public interface UserRoleDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link UserRoleVO}.
      * @param entities
+     * @return Collection<UserRoleVO>
      */
     public Collection<UserRoleVO> toUserRoleVOCollection(Collection<?> entities);
 
@@ -253,7 +254,7 @@ public interface UserRoleDao
      * instance from <strong>all</strong> attributes and adds it to
      * the persistent store.
      * </p>
-     * @param role 
+     * @param role TODO: Model Documentation for UserRole.role
      * @return UserRole
      */
     public UserRole create(
@@ -269,7 +270,7 @@ public interface UserRoleDao
      * not occur.
      * </p>
      * @param transform
-     * @param role 
+     * @param role TODO: Model Documentation for UserRole.role
      * @return UserRole
      */
     public Object create(

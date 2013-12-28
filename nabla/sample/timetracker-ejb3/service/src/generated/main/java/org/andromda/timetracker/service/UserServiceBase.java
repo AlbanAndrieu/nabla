@@ -6,8 +6,8 @@
 /**
  * TEMPLATE:    SpringServiceBase.vsl in andromda-spring cartridge
  * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::UserService
- * STEREOTYPE:  Seam
  * STEREOTYPE:  Service
+ * STEREOTYPE:  Seam
  */
 package org.andromda.timetracker.service;
 
@@ -34,7 +34,7 @@ public abstract class UserServiceBase
     implements UserService
 {
     /**
-     * 
+     * TODO: Model Documentation for UserService.logger
      */
     private Object logger;
 
@@ -56,7 +56,7 @@ public abstract class UserServiceBase
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserService.user
      */
     private User user;
 
@@ -78,7 +78,7 @@ public abstract class UserServiceBase
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserService.userList
      */
     private List<User> userList;
 
@@ -180,7 +180,7 @@ public abstract class UserServiceBase
 
     /**
      * Performs the core logic for {@link #getUser(String)}
-     * @param username String 
+     * @param username String TODO: Model Documentation for UserService.getUser(username)
      * @return UserVO
      * @throws Exception
      */
@@ -252,7 +252,8 @@ public abstract class UserServiceBase
 
     /**
      * Performs the core logic for {@link #registerUser(UserDetailsVO)}
-     * @param userDetailVO UserDetailsVO 
+     * @param userDetailVO UserDetailsVO TODO: Model Documentation for
+UserService.registerUser(userDetailVO)
      * @return UserDetailsVO
      * @throws Exception
      */
@@ -304,7 +305,7 @@ public abstract class UserServiceBase
 
     /**
      * Performs the core logic for {@link #removeUser(UserVO)}
-     * @param userVO UserVO 
+     * @param userVO UserVO TODO: Model Documentation for UserService.removeUser(userVO)
      * @return void
      * @throws Exception
      */

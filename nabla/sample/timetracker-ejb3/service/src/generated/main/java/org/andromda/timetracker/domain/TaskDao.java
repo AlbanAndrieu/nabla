@@ -66,6 +66,7 @@ public interface TaskDao
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link TaskVO}.
      * @param entities
+     * @return Collection<TaskVO>
      */
     public Collection<TaskVO> toTaskVOCollection(Collection<?> entities);
 
@@ -253,7 +254,7 @@ public interface TaskDao
      * instance from <strong>all</strong> attributes and adds it to
      * the persistent store.
      * </p>
-     * @param name 
+     * @param name TODO: Model Documentation for Task.name
      * @return Task
      */
     public Task create(
@@ -269,7 +270,7 @@ public interface TaskDao
      * not occur.
      * </p>
      * @param transform
-     * @param name 
+     * @param name TODO: Model Documentation for Task.name
      * @return Task
      */
     public Object create(

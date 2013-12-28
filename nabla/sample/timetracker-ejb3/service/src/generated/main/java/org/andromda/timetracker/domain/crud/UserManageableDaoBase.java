@@ -28,7 +28,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * 
+ * TODO: Model Documentation for User
  */
 public final class UserManageableDaoBase
     extends HibernateDaoSupport
@@ -103,16 +103,16 @@ public final class UserManageableDaoBase
     }
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for UserRole
      * @return entity
      * @see UserDao#create(User)
      */
@@ -120,7 +120,6 @@ public final class UserManageableDaoBase
     public User create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
     {
         final User entity = new UserImpl();
-
         entity.setUsername(username);
         entity.setPassword(password);
         entity.setFirstName(firstName);
@@ -136,7 +135,7 @@ public final class UserManageableDaoBase
             : Collections.EMPTY_SET;
 
         entity.setRoles(rolesEntities);
-        
+
 
         return (User)this.getDao().create(entity);
     }
@@ -152,16 +151,16 @@ public final class UserManageableDaoBase
     }
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for UserRole
      * @return List<User>
      */
     @SuppressWarnings("unchecked")
@@ -229,6 +228,7 @@ public final class UserManageableDaoBase
             {
                 criteria.createCriteria("roles").add(Restrictions.in("id", roles));
             }
+            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
             criteria.setMaxResults(250);
 
             return criteria.list();
@@ -279,16 +279,16 @@ public final class UserManageableDaoBase
     }
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for User.username
+     * @param password TODO: Model Documentation for User.password
+     * @param firstName TODO: Model Documentation for User.firstName
+     * @param lastName TODO: Model Documentation for User.lastName
+     * @param email TODO: Model Documentation for User.email
+     * @param isActive TODO: Model Documentation for User.isActive
+     * @param creationDate TODO: Model Documentation for User.creationDate
+     * @param comment TODO: Model Documentation for User.comment
+     * @param id TODO: Model Documentation for User.id
+     * @param roles TODO: Model Documentation for UserRole
      * @return getDao().update(entity)
      * @see UserDao#update(User)
      */

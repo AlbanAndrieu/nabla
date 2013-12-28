@@ -14,13 +14,15 @@ import org.andromda.timetracker.vo.TimecardSearchCriteriaVO;
 import org.andromda.timetracker.vo.TimecardSummaryVO;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.service.TimeTrackingService
  */
 public interface TimeTrackingService
 {
     /**
-     * 
-     * @param criteria 
+     * TODO: Model Documentation for
+     * org.andromda.timetracker.service.TimeTrackingService.findTimecards
+     * @param criteria TODO: Model Documentation for
+org.andromda.timetracker.service.TimeTrackingService.findTimecards(criteria)
      * @return  TimecardSummaryVO[]
      */
     public TimecardSummaryVO[] findTimecards(TimecardSearchCriteriaVO criteria);

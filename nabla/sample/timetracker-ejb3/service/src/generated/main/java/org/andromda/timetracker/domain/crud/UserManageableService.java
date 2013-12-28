@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.domain.User
  */
 public interface UserManageableService
 {
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for org.andromda.timetracker.domain.User.username
+     * @param password TODO: Model Documentation for org.andromda.timetracker.domain.User.password
+     * @param firstName TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
+     * @param lastName TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
+     * @param email TODO: Model Documentation for org.andromda.timetracker.domain.User.email
+     * @param isActive TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
+     * @param creationDate TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
+     * @param comment TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
+     * @param id TODO: Model Documentation for org.andromda.timetracker.domain.User.id
+     * @param roles TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return create
      * @throws Exception
      */
@@ -37,16 +37,16 @@ public interface UserManageableService
         throws Exception;
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for org.andromda.timetracker.domain.User.username
+     * @param password TODO: Model Documentation for org.andromda.timetracker.domain.User.password
+     * @param firstName TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
+     * @param lastName TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
+     * @param email TODO: Model Documentation for org.andromda.timetracker.domain.User.email
+     * @param isActive TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
+     * @param creationDate TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
+     * @param comment TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
+     * @param id TODO: Model Documentation for org.andromda.timetracker.domain.User.id
+     * @param roles TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return manageable
      * @throws Exception
      */
@@ -68,16 +68,16 @@ public interface UserManageableService
         throws Exception;
 
     /**
-     * @param username 
-     * @param password 
-     * @param firstName 
-     * @param lastName 
-     * @param email 
-     * @param isActive 
-     * @param creationDate 
-     * @param comment 
-     * @param id 
-     * @param roles 
+     * @param username TODO: Model Documentation for org.andromda.timetracker.domain.User.username
+     * @param password TODO: Model Documentation for org.andromda.timetracker.domain.User.password
+     * @param firstName TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
+     * @param lastName TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
+     * @param email TODO: Model Documentation for org.andromda.timetracker.domain.User.email
+     * @param isActive TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
+     * @param creationDate TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
+     * @param comment TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
+     * @param id TODO: Model Documentation for org.andromda.timetracker.domain.User.id
+     * @param roles TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return update
      * @throws Exception
      */

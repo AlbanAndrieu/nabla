@@ -10,8 +10,8 @@ import java.util.List;
 public interface TaskManageableService
 {
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for org.andromda.timetracker.domain.Task.name
+     * @param id TODO: Model Documentation for org.andromda.timetracker.domain.Task.id
      * @return create
      * @throws Exception
      */
@@ -27,8 +27,8 @@ public interface TaskManageableService
         throws Exception;
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for org.andromda.timetracker.domain.Task.name
+     * @param id TODO: Model Documentation for org.andromda.timetracker.domain.Task.id
      * @return manageable
      * @throws Exception
      */
@@ -43,8 +43,8 @@ public interface TaskManageableService
         throws Exception;
 
     /**
-     * @param name 
-     * @param id 
+     * @param name TODO: Model Documentation for org.andromda.timetracker.domain.Task.name
+     * @param id TODO: Model Documentation for org.andromda.timetracker.domain.Task.id
      * @return update
      * @throws Exception
      */
