@@ -26,6 +26,7 @@
         <!-- ================= Default Properties ================= -->
         <properties>
         	<!-- needed for maven-ear-plugin -->
+        	<!-- TODO remove -->
 		<as.version>5</as.version>
 		<jboss.ear.version>5</jboss.ear.version>
 		<jboss.home>${env.JBOSS_HOME}</jboss.home>
@@ -215,8 +216,11 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 				<property>
+					<!--
 					<name>server</name>
 					<value>jboss5x</value>
+					-->
+                                        <name>!server</name>	
 				</property>
 			</activation>
 			<properties>
