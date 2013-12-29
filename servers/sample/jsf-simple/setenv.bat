@@ -1,9 +1,10 @@
-rem récupère le répertoire courant sous windows
+rem get current directory under windows
 rem set POC_HOME=%~dp0
 
 set VERSION=10
+set UNIX_USERNAME=aandrieu
 
-set HOME=C:\workspace\users\albandri%VERSION%
+set HOME=C:\workspace\users\%UNIX_USERNAME%%VERSION%
 set THIRDPARTY_ROOT=C:\thirdparty
 
 set JAVA_HOME=C:\SUN\SDK\jdk1.7.0_05

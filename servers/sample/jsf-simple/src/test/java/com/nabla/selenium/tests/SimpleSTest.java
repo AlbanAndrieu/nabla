@@ -3,6 +3,9 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+import java.net.BindException;
+import java.net.ServerSocket;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Platform;
@@ -19,40 +23,57 @@ import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.server.RemoteControlConfiguration;
+import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.thoughtworks.selenium.Selenium;
+import com.thoughtworks.selenium.DefaultSelenium;
 
 public class SimpleSTest
 {
-    private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
-    private WebDriver           driver;
-    private String              baseUrl;
-    private boolean             acceptNextAlert      = true;
-    private StringBuffer        verificationErrors   = new StringBuffer();
-    private Selenium            selenium;
+    private static final String  PAGE_TO_LOAD_TIMEOUT = "30000";
+    private WebDriver            driver;
+    private String               baseUrl              = "http://192.168.0.29:9090"; ;
+    private boolean              acceptNextAlert      = true;
+    private StringBuffer         verificationErrors   = new StringBuffer();
+    private DefaultSelenium      selenium;
+    public static SeleniumServer server;
 
     @Before
     public void setUp() throws Exception
     {
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
+        startSeleniumServer(server);
 
         DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-        // say you use the redhat5 label to indicate RHEL5 and the amd64 label to specify the architecture
+        // say you use the redhat5 label to indicate RHEL5 and the amd64 label
+        // to specify the architecture
         // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
-        // Say you want a specific node to thread your request, just specify the node name (it must be running a selenium configuration though)
+        // Say you want a specific node to thread your request, just specify the
+        // node name (it must be running a selenium configuration though)
         capabillities.setCapability("jenkins.nodeName", "(master)");
         // capabillities.setCapability("version", "8");
         capabillities.setCapability("platform", Platform.LINUX);
         driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().window().setSize(new Dimension(1920, 1080));
 
         // driver = new FirefoxDriver();
         // driver = new HtmlUnitDriver(true);
-        baseUrl = "http://localhost:9090";
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
     }
+
+    /*
+     * @Before
+     * public void homePageRefresh() throws IOException
+     * {
+     * driver.manage().deleteAllCookies();
+     * // driver.get(propertyKeysLoader("login.base.url"));
+     * }
+     */
 
     @Test
     public void testSimpleS() throws Exception
@@ -71,13 +92,13 @@ public class SimpleSTest
     @After
     public void tearDown() throws Exception
     {
+        stopSeleniumServer(server, selenium);
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString))
         {
             fail(verificationErrorString);
         }
-        selenium.stop();
     }
 
     private boolean isElementPresent(By by)
@@ -124,6 +145,62 @@ public class SimpleSTest
         finally
         {
             acceptNextAlert = true;
+        }
+    }
+
+    public static void startSeleniumServer(SeleniumServer server) throws Exception
+    {
+
+        try
+        {
+            ServerSocket serverSocket = new ServerSocket(RemoteControlConfiguration.DEFAULT_PORT);
+            serverSocket.close();
+
+            try
+            {
+                RemoteControlConfiguration rcc = new RemoteControlConfiguration();
+                rcc.setPort(RemoteControlConfiguration.DEFAULT_PORT);
+                server = new SeleniumServer(false, rcc);
+
+            }
+            catch (Exception e)
+            {
+                System.err.println("Could not create Selenium Server because of: " + e.getMessage());
+                e.printStackTrace();
+            }
+            try
+            {
+                server.start();
+                System.out.println("Server started");
+            }
+            catch (Exception e)
+            {
+                System.err.println("Could not start Selenium Server because of: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        catch (BindException e)
+        {
+            System.out.println("Selenium server already up, will reuse...");
+        }
+    }
+
+    public static void stopSeleniumServer(SeleniumServer server, DefaultSelenium selenium)
+    {
+        selenium.stop();
+        if (server != null)
+        {
+            try
+            {
+                selenium.shutDownSeleniumServer();
+                server.stop();
+
+                server = null;
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }
