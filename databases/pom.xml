@@ -282,8 +282,7 @@
                 </profile>
                 <profile>
                         <id>derby</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
+			<activation>				
                                 <property>
                                         <name>database</name>
 					<value>derby</value>
@@ -383,13 +382,14 @@
                 <profile>
                         <id>h2</id>	     		
 			<activation>
-                                <property>                                	
+				<activeByDefault>true</activeByDefault>
+                                <property>  
+                                	<!--                              	
                                         <name>database</name>
 					<value>h2</value>
-					<!--
-                                        <name>!database</name>	
-                                        -->				
-                                </property>
+					-->
+                                        <name>!database</name>					
+                                </property>                            
 		 	</activation>
                         <properties>
                                 <database>h2</database>
@@ -450,9 +450,9 @@
                                 <sql.mappings>HypersonicSql</sql.mappings>
                                 <jdbc.exception.sorter>org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter</jdbc.exception.sorter>
                                 <jdbc.client.artifactId>hsqldb</jdbc.client.artifactId>
-                                <jdbc.groupId>hsqldb</jdbc.groupId>
+                                <jdbc.groupId>org.hsqldb</jdbc.groupId>
                                 <jdbc.artifactId>${jdbc.client.artifactId}</jdbc.artifactId>
-                                <jdbc.version>${jdbc.hsqldb.version}</jdbc.version>
+                                <jdbc.version>${jdbc.org.hsqldb.version}</jdbc.version>
                                 <jdbc.driver>org.hsqldb.jdbcDriver</jdbc.driver>
 
                                 <database.host>localhost</database.host>
@@ -461,7 +461,7 @@
                                 <!--<jdbc.url>jdbc:hsqldb:hsql://${database.host}:${database.port}</jdbc.url>-->
                                 <jdbc.url>jdbc:hsqldb:mem:${database.name}</jdbc.url>
                                 <!--<jdbc.driver.jar>${jboss.home}/server/default/lib/hsqldb.jar</jdbc.driver.jar> -->
-                                <jdbc.driver.lib>${settings.localRepository}/com/hsqldb/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
+                                <jdbc.driver.lib>${settings.localRepository}/org/hsqldb/${jdbc.artifactId}/${jdbc.version}</jdbc.driver.lib>
                                 <jdbc.driver.jar>${jdbc.driver.lib}/${jdbc.artifactId}-${jdbc.version}.jar</jdbc.driver.jar>
 
                                 <jdbc.username>sa</jdbc.username>
