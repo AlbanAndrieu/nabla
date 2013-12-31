@@ -905,7 +905,7 @@ public class UMLMetafacadeUtils
             } else if ("Short".equals(typeName) || "java.lang.Short".equals(typeName) || "Integer".equals(typeName) || "java.lang.Integer".equals(typeName) || "Long".equals(typeName) || "java.lang.Long".equals(typeName)
                     || "Float".equals(typeName) || "java.lang.Float".equals(typeName) || "Double".equals(typeName) || "java.lang.Double".equals(typeName) || "java.math.BigDecimal".equals(typeName))
             {
-                rtn = (!StringUtils.isEmpty(defaultValue) ? typeName + ".valueOf(" + defaultValue + ")" : typeName + ".valueOf(\"1\")");
+                rtn = (!StringUtils.isEmpty(defaultValue) ? typeName + ".valueOf(\"" + defaultValue + "\")" : typeName + ".valueOf(\"1\")");
             } else if ("java.math.BigInteger".equals(typeName))
             {
                 rtn = (!StringUtils.isEmpty(defaultValue) ? "java.math.BigInteger.valueOf(" + defaultValue + ')' : "java.math.BigInteger.valueOf(1)");
