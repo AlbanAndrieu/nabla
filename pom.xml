@@ -104,6 +104,8 @@
 				<module>project</module>
 				<module>uml</module>
 				<module>nabla</module>
+				<module>installer</module>
+				<module>deploy</module>
 			</modules>
 		</profile>	
 	        <!--Profile configuration for local builds -->
@@ -165,12 +167,18 @@
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
 				</repository>
 				-->
+				<!--
 				<repository>
 					<id>server-forge-release</id>
 					<name>External Staging Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 				</repository>
-
+				-->
+                                <repository>
+                                        <id>nexus-releases</id>
+                                        <name>Nexus Staging Repository</name>
+                                        <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                                </repository>
 				<!--
 				<snapshotRepository>
 					<id>server-snapshots</id>
@@ -178,11 +186,19 @@
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
 				</snapshotRepository>
 				-->
+				<!--
 				<snapshotRepository>
 					<id>server-forge-snapshot</id>
 					<name>External Snapshot Repository</name>
 					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 				</snapshotRepository>
+				-->
+                                <snapshotRepository>
+                                        <id>nexus-snapshots</id>
+                                        <name>Nexus Snapshot Repository</name>
+                                        <url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+                                </snapshotRepository>
+
 				<site>
 					<id>website</id>
 					<name>Project Website</name>
@@ -195,15 +211,21 @@
             		    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
             		</properties>
             		-->
+			<!--
             		<properties>
             		    <repositoryId>server-forge-release</repositoryId>
             		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             		</properties>
+			-->
+                        <properties>
+                            <repositoryId>nexus-releases</repositoryId>
+                            <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                        </properties>
 		</profile>
-	</profiles>				
-
+	</profiles>
 	<!-- http://mvnrepository.com/search.html -->
 	<repositories>
+		<!--
 		<repository>
 			<id>server-forge-release</id>
 			<name>External Staging Repository</name>
@@ -229,6 +251,31 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+		-->
+                <repository>
+                        <id>nexus-releases</id>
+                        <name>Nexus Release Repository</name>
+                        <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                        <snapshots>
+                                <enabled>false</enabled>
+                        </snapshots>
+                        <releases>
+                                <enabled>true</enabled>
+                        </releases>
+                </repository>
+                <repository>
+                        <id>nexus-snapshots</id>
+                        <name>Nexus Snapshot Repository</name>
+                        <url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+                        <snapshots>
+                                <enabled>true</enabled>
+                                <updatePolicy>daily</updatePolicy>
+                                <checksumPolicy>ignore</checksumPolicy>
+                        </snapshots>
+                        <releases>
+                                <enabled>false</enabled>
+                        </releases>
+                </repository>
 	        <!--
 		<repository>
 			<id>nabla-releases</id>
@@ -418,6 +465,27 @@
 	</repositories>
 
 	<pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-releases</id>
+                    <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                    <releases>
+				<enabled>true</enabled>
+		    </releases>
+                    <snapshots>
+				<enabled>false</enabled>
+		    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>nexus-snapshots</id>
+                    <url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+                    <releases>
+				<enabled>false</enabled>
+		    </releases>
+                    <snapshots>
+				<enabled>true</enabled>
+		    </snapshots>
+                </pluginRepository>
+		<!--
 		<pluginRepository>
 			<id>server-forge-release</id>
 			<url>https://repository-nabla.forge.cloudbees.com/release</url>
@@ -428,6 +496,7 @@
 				<enabled>true</enabled>
 			</releases>
 		</pluginRepository>
+		-->
 		<!--
 		<pluginRepository>
 			<id>nabla-plugins</id>
