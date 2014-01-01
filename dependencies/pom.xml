@@ -1732,7 +1732,7 @@
                 <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
                 <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
                 <maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
-                <maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
+                <maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
@@ -2521,6 +2521,7 @@
                                                                 <value>~/cobertura.ser</value>
                                                         </property>
                                                         <webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>
+                                                        <webdriver.safari.noinstall>true</webdriver.safari.noinstall>
                                                 </systemPropertyVariables>
                                                  <!-- Add source folders to test classpath in order to run gwt-tests as normal junit-tests -->
                                                 <additionalClasspathElements>
