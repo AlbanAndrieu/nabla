@@ -3,7 +3,7 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.URL;
@@ -17,10 +17,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.server.RemoteControlConfiguration;
@@ -43,6 +47,9 @@ public class SimpleSTest
     @Before
     public void setUp() throws Exception
     {
+    	
+    	System.setProperty("webdriver.safari.noinstall", "true");
+    	
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         startSeleniumServer(server);
 
@@ -54,16 +61,25 @@ public class SimpleSTest
         // node name (it must be running a selenium configuration though)
         capabillities.setCapability("jenkins.nodeName", "(master)");
         // capabillities.setCapability("version", "8");
-        capabillities.setCapability("platform", Platform.LINUX);
+        capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+        capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
         driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1920, 1080));
 
+        // RemoteWebDriver does not implement the TakesScreenshot class
+        // if the driver does have the Capabilities to take a screenshot
+        // then Augmenter will add the TakesScreenshot methods to the instance
+        WebDriver augmentedDriver = new Augmenter().augment(driver);
+        File screenshot = ((TakesScreenshot)augmentedDriver).
+                            getScreenshotAs(OutputType.FILE);
         // driver = new FirefoxDriver();
         // driver = new HtmlUnitDriver(true);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
+        
+        //screenshot.
     }
 
     /*
