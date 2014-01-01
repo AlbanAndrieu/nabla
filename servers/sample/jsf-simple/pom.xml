@@ -103,7 +103,7 @@
 				<version>${maven.selenium.plugin.version}</version>
 				<configuration>
 					<browser>*firefox</browser>
-					<suite>src/test/selenium/SimpleSTest.html</suite>
+					<suite>src/test/selenium/SimpleSTestSuite.html</suite>
 					<startURL>http://${cargo.host}:${cargo.port}</startURL>
 				</configuration>
 					<!-- 				
