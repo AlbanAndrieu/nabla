@@ -1514,6 +1514,7 @@
 
                 <selenium.version>2.37.1</selenium.version>
                 <selenium.java.client.driver.version>1.0.1</selenium.java.client.driver.version>
+                <webdriver.chrome>/var/lib/chrome-driver/chromedriver</webdriver.chrome>
                 <drools.version>5.0.1</drools.version>
                 <!--<drools.version>5.1.1</drools.version>-->
                 <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
@@ -2519,6 +2520,7 @@
                                                                 <name>net.sourceforge.cobertura.datafile</name>
                                                                 <value>~/cobertura.ser</value>
                                                         </property>
+                                                        <webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>
                                                 </systemPropertyVariables>
                                                  <!-- Add source folders to test classpath in order to run gwt-tests as normal junit-tests -->
                                                 <additionalClasspathElements>
