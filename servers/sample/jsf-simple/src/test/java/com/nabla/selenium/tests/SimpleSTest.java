@@ -32,13 +32,14 @@ import com.thoughtworks.selenium.DefaultSelenium;
 
 public class SimpleSTest
 {
-    private static final String  PAGE_TO_LOAD_TIMEOUT = "30000";
-    private WebDriver            driver;
-    private String               baseUrl              = "http://192.168.0.29:9090"; ;
-    private boolean              acceptNextAlert      = true;
-    private StringBuffer         verificationErrors   = new StringBuffer();
-    private DefaultSelenium      selenium;
-    //public static SeleniumServer server;
+    private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
+    private WebDriver           driver;
+    private String              baseUrl              = "http://192.168.0.29:9090"; ;
+    private boolean             acceptNextAlert      = true;
+    private StringBuffer        verificationErrors   = new StringBuffer();
+    private DefaultSelenium     selenium;
+
+    // public static SeleniumServer server;
 
     @Before
     public void setUp() throws Exception
@@ -47,7 +48,7 @@ public class SimpleSTest
         // System.setProperty("webdriver.safari.noinstall", "true");
 
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
-        //startSeleniumServer(server);
+        // startSeleniumServer(server);
 
         /*
          * DesiredCapabilities capabillities = DesiredCapabilities.firefox();
@@ -68,8 +69,8 @@ public class SimpleSTest
         // RemoteWebDriver does not implement the TakesScreenshot class
         // if the driver does have the Capabilities to take a screenshot
         // then Augmenter will add the TakesScreenshot methods to the instance
-        WebDriver augmentedDriver = new Augmenter().augment(driver);
-        File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+        //WebDriver augmentedDriver = new Augmenter().augment(driver);
+        //File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
@@ -105,7 +106,7 @@ public class SimpleSTest
     @After
     public void tearDown() throws Exception
     {
-        //stopSeleniumServer(server, selenium);
+        // stopSeleniumServer(server, selenium);
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString))
