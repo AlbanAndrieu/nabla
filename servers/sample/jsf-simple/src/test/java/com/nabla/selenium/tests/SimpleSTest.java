@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.net.BindException;
 import java.net.ServerSocket;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -18,15 +17,12 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -42,44 +38,45 @@ public class SimpleSTest
     private boolean              acceptNextAlert      = true;
     private StringBuffer         verificationErrors   = new StringBuffer();
     private DefaultSelenium      selenium;
-    public static SeleniumServer server;
+    //public static SeleniumServer server;
 
     @Before
     public void setUp() throws Exception
     {
-    	
-    	System.setProperty("webdriver.safari.noinstall", "true");
-    	
-        // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
-        startSeleniumServer(server);
 
-        DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-        // say you use the redhat5 label to indicate RHEL5 and the amd64 label
-        // to specify the architecture
-        // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
-        // Say you want a specific node to thread your request, just specify the
-        // node name (it must be running a selenium configuration though)
-        capabillities.setCapability("jenkins.nodeName", "(master)");
-        // capabillities.setCapability("version", "8");
-        capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
-        capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
-        driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        // System.setProperty("webdriver.safari.noinstall", "true");
+
+        // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
+        //startSeleniumServer(server);
+
+        /*
+         * DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+         * // say you use the redhat5 label to indicate RHEL5 and the amd64 label
+         * // to specify the architecture
+         * // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
+         * // Say you want a specific node to thread your request, just specify the
+         * // node name (it must be running a selenium configuration though)
+         * capabillities.setCapability("jenkins.nodeName", "(master)");
+         * // capabillities.setCapability("version", "8");
+         * capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+         * capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
+         * driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
+         */
+        driver = new FirefoxDriver();
+        // driver = new HtmlUnitDriver(true);
 
         // RemoteWebDriver does not implement the TakesScreenshot class
         // if the driver does have the Capabilities to take a screenshot
         // then Augmenter will add the TakesScreenshot methods to the instance
         WebDriver augmentedDriver = new Augmenter().augment(driver);
-        File screenshot = ((TakesScreenshot)augmentedDriver).
-                            getScreenshotAs(OutputType.FILE);
-        // driver = new FirefoxDriver();
-        // driver = new HtmlUnitDriver(true);
+        File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        // driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().window().setSize(new Dimension(1920, 1080));
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
-        
-        //screenshot.
+
+        // screenshot.
     }
 
     /*
@@ -108,7 +105,7 @@ public class SimpleSTest
     @After
     public void tearDown() throws Exception
     {
-        stopSeleniumServer(server, selenium);
+        //stopSeleniumServer(server, selenium);
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString))
