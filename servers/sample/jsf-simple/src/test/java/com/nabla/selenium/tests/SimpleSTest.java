@@ -69,8 +69,8 @@ public class SimpleSTest
         // RemoteWebDriver does not implement the TakesScreenshot class
         // if the driver does have the Capabilities to take a screenshot
         // then Augmenter will add the TakesScreenshot methods to the instance
-        //WebDriver augmentedDriver = new Augmenter().augment(driver);
-        //File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+        // WebDriver augmentedDriver = new Augmenter().augment(driver);
+        // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);

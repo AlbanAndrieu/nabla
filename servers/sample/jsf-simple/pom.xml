@@ -104,7 +104,7 @@
 		<!-- TOSEE http://blog.xebia.fr/2010/01/13/comment-separer-ses-tests-dintegrations/ -->
 
 		<plugins>
-
+			<!--
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>selenium-maven-plugin</artifactId>
@@ -114,7 +114,8 @@
 					<suite>src/test/selenium/SimpleSTestSuite.html</suite>
 					<startURL>http://${cargo.host}:${cargo.port}</startURL>
 				</configuration>
-					<!-- 				
+				-->
+				<!-- 				
 				<executions>
 					<execution>
 						<id>xvfb</id>
@@ -152,9 +153,10 @@
 					</execution>
 					
 				</executions>
-					-->				
+			-->				
+			<!--
 			</plugin>
-
+			-->
 
 			<plugin>
 				<groupId>org.codehaus.gmaven</groupId>
@@ -189,6 +191,10 @@
 						<exclude>**/*ITest*</exclude>
 						<exclude>**/*STest*</exclude>
 					</excludes>
+					<systemPropertyVariables>
+						<webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>						
+            					<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
+        				</systemPropertyVariables>
 				</configuration>
 				<executions>
 					<execution>
