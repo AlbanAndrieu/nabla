@@ -1669,7 +1669,7 @@
                 <maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
                 <maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
                 <maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
-                <maven.cobertura.plugin.version>2.6</maven.cobertura.plugin.version>
+                <maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
                 <maven.release.plugin.version>2.4.2</maven.release.plugin.version>
                 <!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
                 <maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
