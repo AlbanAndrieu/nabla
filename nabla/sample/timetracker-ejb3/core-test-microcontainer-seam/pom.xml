@@ -1,16 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<parent>
 		<groupId>org.andromda.timetracker.ejb3</groupId>
 		<artifactId>timetracker-ejb3</artifactId>
-		<version>3.5</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.andromda.timetracker.ejb3</groupId>
 	<artifactId>core-test-microcontainer-seam</artifactId>
 	<packaging>seam-war</packaging>
+	<!--<packaging>war</packaging>-->
 	<name>[${project.parent.artifactId} :: Web Application] - ${project.artifactId} : ${project.version}</name>
 
 	<dependencies>
@@ -275,7 +278,7 @@
 		<dependency>
 			<groupId>org.mvel</groupId>
 			<artifactId>mvel2</artifactId>
-			<version>${mvel.version}</version>
+			<version>${org.mvel.mvel2.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jbpm</groupId>
@@ -292,7 +295,7 @@
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>${gwt.user.version}</version>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -337,9 +340,11 @@
 			</testResource>
 			<testResource>
 				<directory>${basedir}/src/test/bootstrap-microcontainer-seam</directory>
+				<filtering>true</filtering>
 			</testResource>
 			<testResource>
 				<directory>${basedir}/src/main/webapp</directory>
+				<!--<filtering>true</filtering>-->
 			</testResource>
 		</testResources>
 		<filters>
@@ -349,12 +354,13 @@
 			<plugin>
 				<groupId>com.ctp.seam.maven</groupId>
 				<artifactId>maven-hotdeploy-plugin</artifactId>
+				<version>${maven.hotdeploy.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<source>${jdkLevel}</source>
 					<target>${jdkLevel}</target>
 					<sourceDirectory>${basedir}/src/main/hot</sourceDirectory>
-					<deployDirectory>${jboss.deploy.directory}/${build.finalName}.war</deployDirectory>
+					<deployDirectory>${jboss.deploy.directory}/${project.build.finalName}.war</deployDirectory>
 				</configuration>
 			</plugin>
 			<!--
@@ -437,7 +443,7 @@
 						<configuration>
 							<filesets>
 								<fileset>
-									<directory>${jboss.deploy.directory}/${build.finalName}.war/</directory>
+									<directory>${jboss.deploy.directory}/${project.build.finalName}.war/</directory>
 									<includes>
 										<include>**/*</include>
 									</includes>
@@ -456,6 +462,7 @@
 					<plugin>
 						<groupId>com.ctp.seam.maven</groupId>
 						<artifactId>maven-hotdeploy-plugin</artifactId>
+						<version>${maven.hotdeploy.plugin.version}</version>
 						<extensions>true</extensions>
 						<configuration>
 							<source>${jdkLevel}</source>

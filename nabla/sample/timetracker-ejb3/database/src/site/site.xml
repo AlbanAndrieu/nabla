@@ -57,6 +57,7 @@
             <item name="Hibernate Doc" href="hibernate3/javadoc/index.html"/>              
             <item name="Hibernate Mappings" href="hibernate3/generated-mappings/hibernate.cfg.xml"/>    
             <!--<item name="Hibernate SQL" href="hibernate3/sql/create-schema.sql"/>-->
+            <item name="Liquibase" href="liquibase/dbDoc/index.html"/>    
         </menu>
 
         <!--

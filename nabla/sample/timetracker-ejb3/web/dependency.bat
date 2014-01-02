@@ -1,4 +1,4 @@
 cls
-REM call mvn dependency:tree -Psample -Dserver=jboss5> dependency.log
-call mvn help:effective-pom -Psample > effective.log
+REM call mvn dependency:tree -Psample -Dserver=jboss5x -Ddatabase=h2 > dependency.log 2>&1
+call mvn help:effective-pom -Psample -Dserver=jboss5x -Ddatabase=h2 > effective.log 2>&1
 pause

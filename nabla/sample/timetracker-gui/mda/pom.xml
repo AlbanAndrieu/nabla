@@ -1,13 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         
     <!-- These settings apply specifically to the andromda code generation process. To generate code without
     compiling or testing or packaging, run mvn install from /mda instead of from the root directory. -->
     
     <parent>
         <groupId>org.andromda.timetracker.gui</groupId>
         <artifactId>timetracker-gui</artifactId>
-        <version>3.5</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     
     <modelVersion>4.0.0</modelVersion>    

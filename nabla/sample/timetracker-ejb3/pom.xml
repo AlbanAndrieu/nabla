@@ -27,6 +27,7 @@
 		of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
 		read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
 		for your project, such as Arquillian for testing) -->
+	<!--
 	<dependency>
 		<groupId>org.jboss.bom</groupId>
 		<artifactId>jboss-javaee-6.0-with-tools</artifactId>
@@ -34,13 +35,15 @@
 		<type>pom</type>
 		<scope>import</scope>
 	</dependency>
+	-->
 			      
-         <!-- JBoss distributes a complete set of Java EE 6 APIs including 
+        <!-- JBoss distributes a complete set of Java EE 6 APIs including 
             a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
             a collection) of artifacts. We use this here so that we always get the correct 
             versions of artifacts. Here we use the jboss-javaee-6.0-with-hibernate stack 
             (you can read this as the JBoss stack of the Java EE Web Profile 6 APIs with 
             extras from the Hibernate family of projects) -->
+        <!--
         <dependency>
             <groupId>org.jboss.bom</groupId>
             <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
@@ -48,6 +51,7 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+        -->
         
             <!--
             <dependency>
@@ -258,7 +262,7 @@
         -->
         <module>mda</module>
         <module>common</module>
-        <!--<module>database</module>--> <!--hibernateVersion 3 only -->
+        <module>database</module> <!--hibernateVersion 3 only -->
         <module>core</module>
         <!--<module>core-test</module>-->
         <module>service</module> <!--hibernateVersion 3 only -->
@@ -371,6 +375,7 @@
 
 	<!-- see components.properties or components.xml -->
 	<ejbJndiPattern>/#{ejbName}/Local</ejbJndiPattern>
+	<jndiPattern>${ejbJndiPattern}</jndiPattern>
 	<debug>true</debug>
 	<seamBootstrapsPu>true</seamBootstrapsPu>
 	<!--<seamEmfRef>\#null</seamEmfRef>-->
@@ -460,26 +465,25 @@
 			</dependencies>
 			-->
     		<properties>
-    			<spring3.version>3.2.0.RELEASE</spring3.version>
+    			<spring3.version>4.0.0.RELEASE</spring3.version>
     			<validation.api.version>1.1.0.Beta2</validation.api.version>
     			<cxf.version>2.7.1</cxf.version>
     		        <jsf.version>1.2_15</jsf.version>
-        		<hibernate.core.version>4.1.8.Final</hibernate.core.version>
-        		<hibernate.entitymanager.version>4.1.8.Final</hibernate.entitymanager.version>
-        		<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
-        		<hibernate.search.version>4.1.1.Final</hibernate.search.version>
+        		<hibernate.core.version>4.3.0.Final</hibernate.core.version>
+        		<hibernate.entitymanager.version>4.3.0.Final</hibernate.entitymanager.version>
+        		<hibernate.validator.version>5.1.0.Alpha1</hibernate.validator.version>
+        		<hibernate.search.version>4.5.0.Alpha2</hibernate.search.version>
         		<javax.persistence.version>1.0</javax.persistence.version>
         		<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
 			<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
-			<hibernate.search.version>4.2.0.Beta1</hibernate.search.version>
 			<org.apache.myfaces.trinidad.version>2.0.1</org.apache.myfaces.trinidad.version>
 			<richfaces.version>4.2.2.Final</richfaces.version>
 			<ehcache.version>2.6.2</ehcache.version>
         		<javassist.version>3.17.1-GA</javassist.version>
         		<infinispan.version>5.1.3.FINAL</infinispan.version>
 			<!--<seam.version>2.3.0.Final</seam.version>-->
-			<!--<openejb.javaee.api.version>6.0-4</openejb.javaee.api.version>-->
-			<!--<openejb.core.version>4.5.1</openejb.core.version>-->
+			<!--<openejb.javaee.api.version>6.0-5</openejb.javaee.api.version>-->
+			<!--<openejb.core.version>4.6.0</openejb.core.version>-->
         		<!--<ejb3.persistence.version>3.3.2.Beta1</ejb3.persistence.version>-->
         		<!--<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version> NOK-->
         		<!--<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>-->

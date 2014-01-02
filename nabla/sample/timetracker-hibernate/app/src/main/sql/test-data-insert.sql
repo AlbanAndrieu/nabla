@@ -1,3 +1,4 @@
+-- SEE instead core/src/main/resources/import.sql
 insert into TIMECARD (ID, STATUS, START_DATE, COMMENTS, APPROVER, SUBMITTER) values ( 1, 'APPROVED',  PARSEDATETIME('2011-05-15', 'yyyy-MM-dd'), 'Timecard 01', 1, 2);
 insert into TIMECARD (ID, STATUS, START_DATE, COMMENTS, APPROVER, SUBMITTER) values ( 2, 'APPROVED',  PARSEDATETIME('2011-05-15', 'yyyy-MM-dd'), 'Timecard 02', 2, 3);
 insert into TIMECARD (ID, STATUS, START_DATE, COMMENTS, APPROVER, SUBMITTER) values ( 3, 'APPROVED',  PARSEDATETIME('2011-05-15', 'yyyy-MM-dd'), 'Timecard 03', 3, 4);

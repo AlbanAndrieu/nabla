@@ -14,11 +14,11 @@ insert into USER_ROLE (ID, ROLE) values (4, 'STANDARD_USER');
 insert into USER_ROLE (ID, ROLE) values (5, 'STANDARD_USER');
 commit;
 
---insert into USER2ROLES (USER_ID, ROLES_ID) values (1, 1);
---insert into USER2ROLES (USER_ID, ROLES_ID) values (2, 2);
---insert into USER2ROLES (USER_ID, ROLES_ID) values (2, 3);
---insert into USER2ROLES (USER_ID, ROLES_ID) values (3, 4);
---insert into USER2ROLES (USER_ID, ROLES_ID) values (4, 5);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (1, 1);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (2, 2);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (2, 3);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (3, 4);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (4, 5);
 --commit;
 
 insert into TASK (ID, NAME) values (1, 'Research');

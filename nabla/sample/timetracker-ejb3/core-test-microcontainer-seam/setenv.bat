@@ -15,7 +15,8 @@ set M2_HOME=C:\apache-maven-3.0.4
 set M2=%M2_HOME%\bin
 set M2_REPO=C:\repo
 set SVN_HOME=C:\Program Files\VisualSVN Server
-set JBOSS_HOME=C:\jboss-as-7.1.1.Final
+REM set JBOSS_HOME=C:\jboss-as-7.1.1.Final
+set JBOSS_HOME=C:\C:\jboss-5.1.0.GA
 
 set MAVEN_OPTS=-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M
 
