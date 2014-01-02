@@ -936,7 +936,7 @@
                                                 <artifactId>javancss-maven-plugin</artifactId>
                                                 <version>${maven.javancss.plugin.version}</version>
                                         </plugin>
-                                        <!--
+                                        
                                         <plugin>
                                             <groupId>org.codehaus.mojo</groupId>
                                             <artifactId>versions-maven-plugin</artifactId>
@@ -951,7 +951,7 @@
                                                 </reportSet>
                                             </reportSets>
                                         </plugin>
-                                        -->
+                                        
                                         <plugin>
                                                 <groupId>org.apache.maven.plugins</groupId>
                                                 <artifactId>maven-doap-plugin</artifactId>
@@ -1174,6 +1174,8 @@
         <properties>
                 <project.svn.path>trunk</project.svn.path>
                 <target.dir>target</target.dir> <!-- default value that can be overrided -->
+                <target.version>RELEASE</target.version> <!-- default value that can be overrided -->
+                <target.version>${project.version}</target.version> <!-- TODO remove overrided to 1.0.1-SNAPSHOT-->
                 <environment>development</environment> <!-- default value that can be overrided -->
 
                 <product.id>nabla</product.id>
@@ -1281,7 +1283,7 @@
                 <!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
                 <clover.version>3.2.0</clover.version>
                 <dbunit.version>2.4.9</dbunit.version>
-                <testng.version>6.8</testng.version>
+                <testng.version>6.8.7</testng.version>
                 <htmlunit.version>1.11</htmlunit.version>
                 <org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
                 <oro.version>2.0.8</oro.version>
@@ -1332,7 +1334,7 @@
                 <taglibs.version>1.1.2</taglibs.version>
                 <javax.activation.version>1.1.1</javax.activation.version>
                 <antlr.version>2.7.7</antlr.version>
-                <org.antlr.version>3.5</org.antlr.version>
+                <org.antlr.version>3.5.1</org.antlr.version>
                 <org.jdom.version>1.1.1</org.jdom.version>
                 <jdom.version>${org.jdom.version}</jdom.version>
                 <ant-nodeps.version>1.7.0</ant-nodeps.version>
@@ -1342,7 +1344,7 @@
                 <c3p0.version>0.8.5.2</c3p0.version>
                 <jacoco.version>0.6.4.201312101107</jacoco.version>
 
-                <jdbc.derby.version>10.9.1.0</jdbc.derby.version>                
+                <jdbc.derby.version>10.10.1.1</jdbc.derby.version>                
                 <jdbc.org.hsqldb.version>2.3.1</jdbc.org.hsqldb.version>
                 <jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
                 <!--<jconnect.version>6.0.5.26312</jconnect.version>-->
@@ -1350,7 +1352,7 @@
                 <jdbc.jtds.version>1.2.6</jdbc.jtds.version>
                 <jdbc.sybase.version>7.0.7</jdbc.sybase.version>
                 <!--TODO same as jdbc.sybase.version <jconn.version>6.0</jconn.version>-->
-                <jdbc.h2.version>1.3.168</jdbc.h2.version>
+                <jdbc.h2.version>1.3.174</jdbc.h2.version>
                 <jdbc.oracle.version>10.2.0.2.0</jdbc.oracle.version>
                 <jdbc.postgresql.version>8.1-407.jdbc3</jdbc.postgresql.version>
                 <jdbc.mysql.version>5.1.27</jdbc.mysql.version>
@@ -1395,10 +1397,10 @@
 
                 <hessian.version>4.0.7</hessian.version>
                 <inject.version>1</inject.version>
-                <guice.version>3.0</guice.version>
-                <jsr305.version>2.0.1</jsr305.version>
+                <guice.version>4.0-beta</guice.version>
+                <jsr305.version>2.0.2</jsr305.version>
                 <joda.time.version>2.2</joda.time.version>
-                <guava.version>14.0.1</guava.version>
+                <guava.version>14.0.1</guava.version> <!-- WARNING 16.0-rc1 does not work with selenium -->
                 <jarjar.version>0.6</jarjar.version>
                 <acegi.version>1.0.5</acegi.version>
                 <acegijsf.version>1.1.2</acegijsf.version>
@@ -1484,7 +1486,7 @@
                 <!-- Testing dependency versions -->
                 <cargo.version>1.0</cargo.version>
                 <jmock.version>2.6.0-RC2</jmock.version>
-                <easymock.version>3.1</easymock.version>
+                <easymock.version>3.2</easymock.version>
                 <mockito.version>1.9.5</mockito.version>
                 <mockrunner.version>0.4.2</mockrunner.version>
                 <hamcrest.core.version>1.3.RC2</hamcrest.core.version>
@@ -1496,7 +1498,7 @@
                 <org.jboss.arquillian.version>1.1.1.Final</org.jboss.arquillian.version>
                 <org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
                 <httpunit.version>1.6.2</httpunit.version>
-                <xmlunit.version>1.3</xmlunit.version>
+                <xmlunit.version>1.5</xmlunit.version>
                 <wiser.version>1.2</wiser.version>
 		<scala.version>2.10.2</scala.version>
 		<scala.suffix>_2.10</scala.suffix>
@@ -1554,7 +1556,7 @@
 
                 <logback.version>1.0.7</logback.version>
                 <log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
-                <slf4j.version>1.7.2</slf4j.version>
+                <slf4j.version>1.7.5</slf4j.version>
                 <commons.dbcp>1.2.2</commons.dbcp>
 
                 <blazeds.version>3.2.0.3978</blazeds.version>
@@ -1621,11 +1623,13 @@
 		<!--<jetty.version>6.1.25</jetty.version>--> <!-- TODO remove jetty 6 and 7 -->
 		<!--<jetty7.version>7.6.5.v20120716</jetty7.version>-->
 		<jetty8.version>8.1.9.v20130131</jetty8.version>
+		<jetty9.version>9.1.0.v20131115</jetty9.version>
+		<jetty.version>${jetty8.version}</jetty.version>
 
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
-                <maven.groovy.plugin.version>1.3</maven.groovy.plugin.version>
+                <maven.groovy.plugin.version>1.35</maven.groovy.plugin.version>
                 <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
-                <izpack.version>5.0.0-beta11</izpack.version>
+                <izpack.version>5.0.0-rc1</izpack.version>
                 <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
                 <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
 
@@ -1665,8 +1669,8 @@
                 <maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
                 <maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
                 <maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
-                <maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
-                <maven.release.plugin.version>2.4.1</maven.release.plugin.version>
+                <maven.cobertura.plugin.version>2.6</maven.cobertura.plugin.version>
+                <maven.release.plugin.version>2.4.2</maven.release.plugin.version>
                 <!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
                 <maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
                 <maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
@@ -1683,7 +1687,7 @@
                 <maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
                 <maven.gui.plugin.version>1.0</maven.gui.plugin.version>
                 <maven.plugin.plugin.plugin.version>3.2</maven.plugin.plugin.plugin.version>
-                <maven.clirr.plugin.version>2.5</maven.clirr.plugin.version>
+                <maven.clirr.plugin.version>2.6.1</maven.clirr.plugin.version>
                 <maven.patch.plugin.version>1.1.1</maven.patch.plugin.version>
                 <maven.one.plugin.version>1.3</maven.one.plugin.version>
                 <maven.findbugs.plugin.version>2.5.3</maven.findbugs.plugin.version>
@@ -1693,11 +1697,11 @@
                 <maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
                 <maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
                 <maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
-                <maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
+                <maven.deploy.plugin.version>2.8.1</maven.deploy.plugin.version>
                 <maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
                 <maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.8.1</maven.scm.plugin.version>
-                <maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
+                <maven.checkstyle.plugin.version>2.11</maven.checkstyle.plugin.version>
                 <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
                 <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
                 <maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
@@ -1706,20 +1710,20 @@
                 <maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
                 <maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
                 <maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
-                <maven.sonar.maven.plugin.version>2.1</maven.sonar.maven.plugin.version>
+                <maven.sonar.maven.plugin.version>2.2</maven.sonar.maven.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.10</maven.cli.plugin.version>
-                <maven.shade.plugin.version>2.1</maven.shade.plugin.version>
+                <maven.shade.plugin.version>2.2</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.3</maven.rar.plugin.version>
-                <maven.install.plugin.version>2.4</maven.install.plugin.version>
-                <maven.ear.plugin.version>2.8</maven.ear.plugin.version>
-                <maven.jboss.plugin.version>1.4.1</maven.jboss.plugin.version> <!-- only version 1.4.1 supports hard deploying multiple files -->
-                <!--<maven.jboss.plugin.version>1.5.1</maven.jboss.plugin.version>-->
+                <maven.install.plugin.version>2.5.1</maven.install.plugin.version>
+                <maven.ear.plugin.version>2.9</maven.ear.plugin.version>
+                <!--<maven.jboss.plugin.version>1.4.1</maven.jboss.plugin.version>--> <!-- only version 1.4.1 supports hard deploying multiple files -->
+                <maven.jboss.plugin.version>1.5.1</maven.jboss.plugin.version>
                 <maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
                 <maven.invoker.plugin.version>1.8</maven.invoker.plugin.version>
                 <maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
                 <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
-                <maven.jxr.plugin.version>2.3</maven.jxr.plugin.version>
+                <maven.jxr.plugin.version>2.4</maven.jxr.plugin.version>
                 <maven.pmd.plugin.version>3.0.1</maven.pmd.plugin.version>
                 <maven.project.info.reports.plugin.version>2.7</maven.project.info.reports.plugin.version>
                 <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
@@ -1736,15 +1740,15 @@
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
-                <maven.versions.plugin.version>2.1</maven.versions.plugin.version>
-                <!--<maven.versions.plugin.version>1.3.1</maven.versions.plugin.version> NullPointerException with 2.1 -->
+                <!--<maven.versions.plugin.version>2.1</maven.versions.plugin.version> NullPointerException with 2.1 -->
+                <maven.versions.plugin.version>1.3.1</maven.versions.plugin.version>
                 <maven.idea.plugin.version>2.2.1</maven.idea.plugin.version>
-                <maven.cargo.maven2.plugin.version>1.4.3</maven.cargo.maven2.plugin.version>
+                <maven.cargo.maven2.plugin.version>1.4.5</maven.cargo.maven2.plugin.version>
                 <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
-                <maven.tomcat7.plugin.version>2.1</maven.tomcat7.plugin.version>
-                <maven.jetty.mortbay.plugin.version>${jetty8.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
+                <maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
+                <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
                 <maven.jetty.eclipse.plugin.version>9.0.4.v20130625</maven.jetty.eclipse.plugin.version>
-                <maven.jboss.as.plugin.version>7.4.Final</maven.jboss.as.plugin.version>
+                <maven.jboss.as.plugin.version>7.5.Final</maven.jboss.as.plugin.version>
                 <maven.ant.plugin.version>2.3</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
                 <maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
@@ -1761,6 +1765,7 @@
                 <maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
                 <maven.jaxb2.plugin.version>0.8.2</maven.jaxb2.plugin.version>
                 <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
+                <maven.org.liquibase.plugin.version>2.0.1</maven.org.liquibase.plugin.version>
                 <maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
                 <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
                 <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
@@ -1770,7 +1775,7 @@
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
                 <maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
-                <maven.pitest.plugin.version>0.30</maven.pitest.plugin.version>
+                <maven.pitest.plugin.version>0.32</maven.pitest.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
@@ -1797,7 +1802,7 @@
                 <!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
                 <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
                 <org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
-                <org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->
+                <org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->
                 <org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
                 <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
                 <jboss.bom.version>1.0.3.Final</jboss.bom.version>
@@ -3447,6 +3452,25 @@ pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>${maven.exec.plugin.version}</version>
 				</plugin>
+	    			<plugin>
+            			    <groupId>org.liquibase</groupId>
+            			    <artifactId>liquibase-maven-plugin</artifactId>
+            			    <version>${maven.org.liquibase.plugin.version}</version>
+          			    <configuration>
+          			      <propertyFileWillOverride>true</propertyFileWillOverride>
+          			      <!--<propertyFile>target/classes/liquibase.properties</propertyFile>-->
+          			    </configuration>            			    
+            			</plugin>  
+            			<plugin>
+            			  <groupId>org.codehaus.mojo</groupId>
+            			  <artifactId>hibernate3-maven-plugin</artifactId>
+            			  <version>${hibernate3.maven.plugin.version}</version>
+            			</plugin>                
+            			<plugin>
+            			    <groupId>org.codehaus.mojo</groupId>
+            			    <artifactId>sql-maven-plugin</artifactId>
+            			    <version>${maven.sql.plugin.version}</version>
+            			</plugin>  
                                 <plugin>
                                         <groupId>org.jboss.as.plugins</groupId>
                                         <artifactId>jboss-as-maven-plugin</artifactId>
@@ -3859,16 +3883,28 @@ pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
                                 of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can
                                 read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
                                 for your project, such as Arquillian for testing) -->
-                        <!--
-                        <dependency>
-                                <groupId>org.jboss.bom</groupId>
-                                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
-                                <version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
-                                <type>pom</type>
-                                <scope>import</scope>
-                        </dependency>
-                        -->
+    			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
+        		<!-- JBoss distributes a complete set of Java EE 6 APIs including 
+        		    a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
+        		    a collection) of artifacts. We use this here so that we always get the correct 
+        		    versions of artifacts. Here we use the jboss-javaee-6.0-with-hibernate stack 
+        		    (you can read this as the JBoss stack of the Java EE Web Profile 6 APIs with 
+        		    extras from the Hibernate family of projects) -->
+        		<dependency>
+        		    <groupId>org.jboss.bom</groupId>
+        		    <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+        		    <version>${jboss.bom.version}</version>
+        		    <type>pom</type>
+        		    <scope>import</scope>
+        		</dependency>
+        
                         <!-- TODO use jboss-javaee-6.0-with-tools instead of jboss-javaee-6.0-->
                         <dependency>
                                 <groupId>org.hibernate.javax.persistence</groupId>
@@ -6856,62 +6892,62 @@ pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-server</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-security</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-util</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-servlet</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-servlets</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-deploy</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-webapp</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-websocket</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-xml</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-continuation</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-http</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-io</artifactId>
-				<version>${jetty8.version}</version>
+				<version>${jetty.version}</version>
 			</dependency>
 			<!-- // Jetty8 -->
 
