@@ -182,6 +182,35 @@
                   </dependency>                         
                 </dependencies>
             </plugin>
+	    <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${maven.org.liquibase.plugin.version}</version>
+      		<executions>
+      		  <execution>
+      		    <phase>process-resources</phase>    
+      		    <goals>
+      		      <goal>update</goal>
+      		    </goals>
+      		  </execution>
+      		</executions>     
+      		    <configuration>
+      		      <changeLogFile>src/main/resources/db-changelog.xml</changeLogFile>
+      		      <driver>${jdbc.driver}</driver>
+      		      <url>${jdbc.url}</url>
+      		      <username>${jdbc.username}</username>
+      		      <password>${jdbc.password}</password>
+      		      <propertyFileWillOverride>true</propertyFileWillOverride>
+      		      <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+      		    </configuration>        		
+      		    <dependencies>
+      		        <dependency>
+      		        	<groupId>${jdbc.groupId}</groupId>
+			     	<artifactId>${jdbc.artifactId}</artifactId>
+			     	<version>${jdbc.version}</version>
+      		        </dependency>
+      		    </dependencies>          		        
+            </plugin>            
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>hibernate3-maven-plugin</artifactId>
