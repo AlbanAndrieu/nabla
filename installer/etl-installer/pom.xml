@@ -79,7 +79,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 		<dependency>
 			<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 			<artifactId>gwt-kitchensink</artifactId>
-			<version>${project.version}</version>
+			<version>${target.version}</version>
 			<type>war</type>
 		</dependency>    
   </dependencies>
@@ -224,7 +224,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                 <artifactItem>
                   <groupId>com.nabla.project.core.etl.model.message</groupId>
                   <artifactId>message</artifactId>
-                  <version>${project.version}</version>
+                  <version>${target.version}</version>
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
