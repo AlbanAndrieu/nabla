@@ -58,7 +58,7 @@
 						</container>
 						<configuration>
 							<type>${cargo.configuration.type}</type>
-							<home>${cargo.container.home}</home>
+							<!--<home>${cargo.container.home}</home>-->
 							<properties>
 								<cargo.hostname>${cargo.host}</cargo.hostname>
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
@@ -72,26 +72,6 @@
 								<!-- </cargo.jvmargs> -->
 							</properties>
 						</configuration>
-                                                <!--
-						<deployables>
-							<deployable>
-								<groupId>com.nabla.project</groupId>
-								<artifactId>nabla-webapp</artifactId>
-								<type>war</type>
-								<properties>
-									<context>/nabla</context>
-								</properties>
-							</deployable>
-							<deployable>
-								<groupId>com.nabla.project</groupId>
-								<artifactId>nabla-other-nabla</artifactId>
-								<type>war</type>
-								<properties>
-									<context>/othernabla</context>
-								</properties>
-							</deployable>
-						</deployables>
-						-->
 					</configuration>
                                                 <!--
                                         <executions>
@@ -135,7 +115,8 @@
 				<jboss.ear.version>5</jboss.ear.version>
 				<!-- START INFO USE BY MDA -->
 				<jboss.home>${env.JBOSS_HOME}</jboss.home>
-				<server.version>7.1.1.Final</server.version>
+				<jboss.version>${jboss7.version}</jboss.version> <!-- overrided -->
+				<server.version>${jboss.version}</server.version>
 				<!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home> -->
 				<!--<jboss.home>/workspace/jboss-as-7.1.1.Final/</jboss.home> -->
 				<server.home>${jboss.home}</server.home>
@@ -164,14 +145,15 @@
 				<cargo.container.home>${jboss.home}/standalone</cargo.container.home>
 				<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
-				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.configuration.type>existing</cargo.configuration.type>
+				<cargo.deployables.type>installed</cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
-				<jboss.server>standalone</jboss.server>
+				<jboss.server>standalone</jboss.server>				
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
 				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
 				<!-- for jboss 7.1.1 compile -->
@@ -203,7 +185,7 @@
 								<artifactInstaller>
 									<groupId>org.jboss.as</groupId>
 									<artifactId>jboss-as-dist</artifactId>
-									<version>7.1.1.Final</version>
+									<version>${jboss.version}</version>
 								</artifactInstaller>
 							</container>
 						</configuration>
@@ -229,8 +211,9 @@
 				<jboss.ear.version>5</jboss.ear.version>
                                 <!-- START INFO USE BY MDA -->
 				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home> -->
-				<jboss.home>C:\jboss-5.1.0.GA</jboss.home>
-				<server.version>5.1.0.GA</server.version>
+				<jboss.home>C:\jboss-${jboss5.version}</jboss.home>
+				<jboss.version>${jboss5.version}</jboss.version> <!-- overrided -->
+				<server.version>${jboss.version}</server.version>				
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
@@ -259,6 +242,7 @@
 				<!--http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip -->
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type>installed</cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -302,15 +286,18 @@
 			</activation>
 			<properties>
 				<server.home></server.home>
+				<jetty.version>${jetty6.version}</jetty.version>
+				<server.version>${jetty.version}</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port></server.port>
 				<datasource>${datasource.name}</datasource>
 
 				<cargo.container>jetty6x</cargo.container>
 				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
-				<cargo.container.url>http://dist.codehaus.org/jetty/jetty-6.1.21/jetty-6.1.21.zip</cargo.container.url>
+				<cargo.container.url>http://dist.codehaus.org/jetty/jetty-${server.version}/jetty-${server.version}.zip</cargo.container.url>
 				<cargo.container.type>embedded</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -343,6 +330,8 @@
 			</activation>
 			<properties>
 				<server.home></server.home>
+				<jetty.version>${jetty7.version}</jetty.version>
+				<server.version>${jetty.version}</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port></server.port>
 				<datasource>${datasource.name}</datasource>
@@ -352,6 +341,7 @@
 				<cargo.container.url>TODO</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -371,7 +361,7 @@
 								<artifactInstaller>
 									<groupId>org.eclipse.jetty</groupId>
 									<artifactId>jetty-distribution</artifactId>
-									<version>7.6.3.v20120416</version>
+									<version>${server.version}</version>
 								</artifactInstaller>
 							</container>
 						</configuration>
@@ -379,6 +369,55 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>jetty8x</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jetty8x</value>
+				</property>
+			</activation>
+			<properties>
+				<server.home></server.home>
+				<jetty.version>${jetty8.version}</jetty.version>
+				<server.version>${jetty.version}</server.version>
+				<server.name>${product.name}</server.name>
+				<server.port></server.port>
+				<datasource>${datasource.name}</datasource>
+
+				<cargo.container>jetty8x</cargo.container>
+				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
+				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${jetty.port}</cargo.port>
+				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+
+				<scope.type>${scope.compile}</scope.type>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<container>
+								<containerId>${cargo.container}</containerId>
+								<artifactInstaller>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-distribution</artifactId>
+									<version>${server.version}</version>
+								</artifactInstaller>
+							</container>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>		
 		<profile>
 			<id>jetty9x</id>
 			<activation>
@@ -389,6 +428,8 @@
 			</activation>
 			<properties>
 				<server.home></server.home>
+				<jetty.version>${jetty9.version}</jetty.version>
+				<server.version>${jetty.version}</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port></server.port>
 				<datasource>${datasource.name}</datasource>
@@ -398,6 +439,7 @@
 				<cargo.container.url>TODO</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -417,7 +459,7 @@
 								<artifactInstaller>
 									<groupId>org.eclipse.jetty</groupId>
 									<artifactId>jetty-distribution</artifactId>
-									<version>9.0.2.v20130417</version>
+									<version>${server.version}</version>
 								</artifactInstaller>
 							</container>
 						</configuration>
@@ -437,6 +479,7 @@
 				<!--<tomcat.home>${env.CATALINA_HOME}</tomcat.home> -->
 				<tomcat.home>/tomcat-7.0</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
+				<server.version>7.0.16</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port>${tomcat.port}</server.port>
 				<datasource>${datasource.name}</datasource>
@@ -444,10 +487,11 @@
 
 				<cargo.container>tomcat7x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
-				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.16/bin/apache-tomcat-7.0.16.zip</cargo.container.url>
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${server.version}/bin/apache-tomcat-${server.version}.zip</cargo.container.url>
 				<!--http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.30/bin/apache-tomcat-7.0.30.zip -->
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>existing</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -517,6 +561,7 @@
 			<properties>
 				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
+				<server.version>6.0.35</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port>${tomcat.port}</server.port>
 				<datasource>${datasource.name}</datasource>
@@ -524,9 +569,10 @@
 
 				<cargo.container>tomcat6x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
-				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.35/bin/apache-tomcat-6.0.35.zip</cargo.container.url>
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v${server.version}/bin/apache-tomcat-${server.version}.zip</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -543,6 +589,7 @@
 						<configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
+								<type>${cargo.container.type}</type>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -564,15 +611,17 @@
 				<!--<glassfish.home>${env.J2EE_HOME}</glassfish.home> -->
 				<glassfish.home>C:/Sun/SDK</glassfish.home>
 				<server.home>${glassfish.home}</server.home>
+				<server.version>3.1.2</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port>${glassfish.port}</server.port>
 				<datasource>${datasource.name}</datasource>
 
 				<cargo.container>glassfish3x</cargo.container>
 				<cargo.container.home>${server.home}</cargo.container.home>
-				<cargo.container.url>http://download.java.net/glassfish/3.1.2/release/glassfish-3.1.2.zip</cargo.container.url>
+				<cargo.container.url>http://download.java.net/glassfish/${server.version}/release/glassfish-${server.version}.zip</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${glassfish.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -589,6 +638,7 @@
 						<configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
+								<type>${cargo.container.type}</type>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -609,6 +659,7 @@
 			<properties>
 				<jonas.home>TODO</jonas.home>
 				<server.home>${jonas.home}</server.home>
+				<server.version>5.2.3</server.version>
 				<server.name>${product.name}</server.name>
 				<server.port>${jonas.port}</server.port>
 				<datasource>${datasource.name}</datasource>
@@ -618,6 +669,7 @@
 				<cargo.container.url>TODO</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jonas.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
@@ -634,10 +686,11 @@
 						<configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
+								<type>${cargo.container.type}</type>
 								<artifactInstaller>
 									<groupId>org.ow2.jonas.assemblies.profiles</groupId>
 									<artifactId>jonas-full</artifactId>
-									<version>5.2.3</version>
+									<version>${server.version}</version>
 									<classifier>bin</classifier>
 								</artifactInstaller>
 							</container>
