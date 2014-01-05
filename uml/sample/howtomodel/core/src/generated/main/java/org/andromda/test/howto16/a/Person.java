@@ -36,10 +36,10 @@ import javax.validation.constraints.Size;
 @Table(name="PERSON")
 @NamedQueries
 ({
-    @NamedQuery(name="Person.findAll", query="from Person as person"), 
-    @NamedQuery(name="Person.findByName", query="from Person as person where person.name = :name and")
+    @NamedQuery(name="Person.findAll", query="SELECT p from Person as p"), 
+    @NamedQuery(name="Person.findByName", query="SELECT p from Person as p WHERE p.name = :name")
 })
-public class Person implements Serializable, Comparable<Person> {
+public class Person implements Serializable, Comparable<Person>{
     private static final long serialVersionUID = 5167170619984197236L;
 
     // ----------- 3 Attribute Definitions ------------

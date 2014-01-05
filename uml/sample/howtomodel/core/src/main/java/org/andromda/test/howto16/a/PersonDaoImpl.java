@@ -38,13 +38,14 @@ public class PersonDaoImpl extends PersonDaoBase
         // TODO implement loadPersonFromPersonValueObject
         throw new UnsupportedOperationException("org.andromda.test.howto16.a.loadPersonFromPersonValueObject(PersonValueObject) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Person person = this.load(personValueObject.getId());
-        if (person == null)
-        {
-            person = Person.Factory.newInstance();
-        }
-        return person;
+        /*
+         * A typical implementation looks like this:
+         * Person person = this.load(personValueObject.getId());
+         * if (person == null)
+         * {
+         * person = Person.Factory.newInstance();
+         * }
+         * return person;
          */
     }
 

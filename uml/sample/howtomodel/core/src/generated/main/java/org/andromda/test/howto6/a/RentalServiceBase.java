@@ -23,6 +23,9 @@ public abstract class RentalServiceBase implements RentalService
 
     // ------ Session Context Injection ------
 
+    /**
+     * SessionContext Injection
+     */
     @Resource
     protected SessionContext context;
 
@@ -39,17 +42,20 @@ public abstract class RentalServiceBase implements RentalService
     /**
      * Inject DAO CarDao
      */
-    @EJB(mappedName="howtomodel-1.0/CarDaoImpl")
+    @EJB(mappedName="howtomodel-1.0.1-SNAPSHOT/CarDaoImpl")
     private CarDao carDao;
 
     /**
      * Inject DAO PersonDao
      */
-    @EJB(mappedName="howtomodel-1.0/PersonDaoImpl")
+    @EJB(mappedName="howtomodel-1.0.1-SNAPSHOT/PersonDaoImpl")
     private PersonDao personDao;
 
     // --------------- Constructors ---------------
 
+    /**
+     * Default constructor method with no arguments.
+     */
     public RentalServiceBase()
     {
         super();
@@ -59,6 +65,7 @@ public abstract class RentalServiceBase implements RentalService
 
     /**
      * Get the injected DAO CarDao
+     * @return CarDao
      */
     protected CarDao getCarDao()
     {
@@ -67,6 +74,7 @@ public abstract class RentalServiceBase implements RentalService
 
     /**
      * Get the injected DAO PersonDao
+     * @return PersonDao
      */
     protected PersonDao getPersonDao()
     {
@@ -77,6 +85,7 @@ public abstract class RentalServiceBase implements RentalService
 
     /**
      * Returns a list of all cars known by the system.
+     * @return List
      */
     public List getAllCars()    {
         try
@@ -91,11 +100,15 @@ public abstract class RentalServiceBase implements RentalService
 
     /**
      * Performs the core logic for {@link #getAllCars()}
+     * @return List
+     * @throws Exception
      */
     protected abstract List handleGetAllCars() throws Exception;
 
     /**
      * Returns all customers with the specified name.
+     * @param name
+     * @return List
      */
     public List getCustomersByName(String name)    {
         if (name == null)
@@ -114,6 +127,9 @@ public abstract class RentalServiceBase implements RentalService
 
     /**
      * Performs the core logic for {@link #getCustomersByName(String)}
+     * @param name
+     * @return List
+     * @throws Exception
      */
     protected abstract List handleGetCustomersByName(String name) throws Exception;
 

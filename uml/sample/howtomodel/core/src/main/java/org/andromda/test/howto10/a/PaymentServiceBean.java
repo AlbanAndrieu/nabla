@@ -35,7 +35,7 @@ public class PaymentServiceBean extends PaymentServiceBase implements PaymentSer
      */
     protected void handleRegister(Person owner, Car car, int leasePeriod) throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         throw new UnsupportedOperationException("org.andromda.test.howto10.a.PaymentServiceBean.handleRegister(Person owner, Car car, int leasePeriod) Not implemented!");
     }
 

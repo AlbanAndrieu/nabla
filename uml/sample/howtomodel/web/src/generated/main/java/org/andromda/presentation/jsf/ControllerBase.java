@@ -531,7 +531,7 @@ public abstract class ControllerBase
 
     /**
      * @param mode
-     * @throws PortletModeException
+     * @throws PortletModeException 
      */
     protected void setPortletMode(final PortletMode mode)
         throws PortletModeException

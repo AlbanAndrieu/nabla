@@ -20,29 +20,29 @@ public class PaymentProcessorTest
     @Test
     public void testPaymentProcessor()
     {
-        //        try
-        //        {
-        //              javax.jms.QueueConnection cnn = null;
-        //              javax.jms.QueueSender sender = null;
-        //              javax.jms.QueueSession session = null;
+        // try
+        // {
+        // javax.jms.QueueConnection cnn = null;
+        // javax.jms.QueueSender sender = null;
+        // javax.jms.QueueSession session = null;
         //
-        //              javax.jms.Queue queue = (javax.jms.Queue)EJB3Container.getInitialContext().lookup("queue/howtomodel/howto10a");
-        //              javax.jms.QueueConnectionFactory factory = (javax.jms.QueueConnectionFactory)EJB3Container.getInitialContext().lookup("java:/ConnectionFactory");
-        //              cnn = factory.createQueueConnection();
-        //              session = cnn.createQueueSession(false, javax.jms.QueueSession.AUTO_ACKNOWLEDGE);
+        // javax.jms.Queue queue = (javax.jms.Queue)EJB3Container.getInitialContext().lookup("queue/howtomodel/howto10a");
+        // javax.jms.QueueConnectionFactory factory = (javax.jms.QueueConnectionFactory)EJB3Container.getInitialContext().lookup("java:/ConnectionFactory");
+        // cnn = factory.createQueueConnection();
+        // session = cnn.createQueueSession(false, javax.jms.QueueSession.AUTO_ACKNOWLEDGE);
         //
-        //              javax.jms.TextMessage msg = session.createTextMessage("Test Message");
+        // javax.jms.TextMessage msg = session.createTextMessage("Test Message");
         //
-        //              sender = session.createSender(queue);
-        //              sender.send(msg);
+        // sender = session.createSender(queue);
+        // sender.send(msg);
         //
-        //              Thread.sleep(1000);
-        //              session.close();
-        //              cnn.close();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test PaymentProcessorTest", ex);
-        //        }
+        // Thread.sleep(1000);
+        // session.close();
+        // cnn.close();
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test PaymentProcessorTest", ex);
+        // }
     }
 }

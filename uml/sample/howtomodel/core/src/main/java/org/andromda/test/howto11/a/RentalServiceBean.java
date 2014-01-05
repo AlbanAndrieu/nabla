@@ -37,7 +37,7 @@ public class RentalServiceBean extends RentalServiceBase implements RentalServic
      */
     protected List handleGetAllCars() throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }
@@ -47,7 +47,7 @@ public class RentalServiceBean extends RentalServiceBase implements RentalServic
      */
     protected List handleGetCustomersByName(String name) throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }

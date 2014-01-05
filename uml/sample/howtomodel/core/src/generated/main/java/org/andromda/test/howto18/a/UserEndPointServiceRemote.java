@@ -21,11 +21,16 @@ public interface UserEndPointServiceRemote extends UserEndPointService
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto18.a.UserEndPointService.addUser
+     * @param name
+     * @throws UserException
      */
     public void addUser(String name) throws UserException;
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto18.a.UserEndPointService.getUser
+     * @param id
+     * @return User
+     * @throws UserException
      */
     public User getUser(Long id) throws UserException;
 

@@ -37,7 +37,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceRemot
      */
     protected void handleAddUser(User user) throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         throw new UnsupportedOperationException("org.andromda.test.howto18.a.UserServiceBean.handleAddUser(User user) Not implemented!");
     }
 
@@ -46,7 +46,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceRemot
      */
     protected User handleGetUser(Long id) throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }
@@ -56,7 +56,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceRemot
      */
     protected Collection handleGetAllUsers() throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }

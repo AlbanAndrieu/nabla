@@ -27,7 +27,7 @@ public interface UserDao
      * @return User
      * @throws UserDaoException
      */
-    public User load(String serial) throws UserDaoException;
+    public User load(String serial)     throws UserDaoException;
 
     /**
      *   Does the same thing as {@link #load(String)} with an
@@ -42,7 +42,7 @@ public interface UserDao
      * @return either the entity or the object transformed from the entity.
      * @throws UserDaoException
      */
-    public Object load(int transform, String serial) throws UserDaoException;
+    public Object load(int transform, String serial)     throws UserDaoException;
 
     /**
      * Loads all entities of type {@link User}.
@@ -173,7 +173,7 @@ public interface UserDao
      * @param serial
      * @throws UserDaoException
      */
-    public void remove(String serial) throws UserDaoException;
+    public void remove(String serial)     throws UserDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.

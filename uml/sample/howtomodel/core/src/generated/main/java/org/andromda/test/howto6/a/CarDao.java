@@ -138,7 +138,7 @@ public interface CarDao
      * @return Car
      * @throws CarDaoException
      */
-    public Car load(String serial) throws CarDaoException;
+    public Car load(String serial)     throws CarDaoException;
 
     /**
      *   Does the same thing as {@link #load(String)} with an
@@ -153,7 +153,7 @@ public interface CarDao
      * @return either the entity or the object transformed from the entity.
      * @throws CarDaoException
      */
-    public Object load(int transform, String serial) throws CarDaoException;
+    public Object load(int transform, String serial)     throws CarDaoException;
 
     /**
      * Loads all entities of type {@link Car}.
@@ -323,7 +323,7 @@ public interface CarDao
      * @param serial
      * @throws CarDaoException
      */
-    public void remove(String serial) throws CarDaoException;
+    public void remove(String serial)     throws CarDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.
@@ -341,9 +341,9 @@ public interface CarDao
     public List findByType(CarType type) throws CarDaoException;
 
     /**
-     *   Does the same thing as {@link #findByType(CarType)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByType(CarType)}.
+     * Does the same thing as {@link #findByType(CarType)} with an
+     * additional argument called <code>queryString</code>.
+     * @param queryString String allows you to override the query string defined in {@link #findByType(CarType)}
      * @param type
      * @return List
      * @throws CarDaoException
@@ -351,13 +351,14 @@ public interface CarDao
     public List findByType(String queryString, CarType type) throws CarDaoException;
 
     /**
-     *   Does the same thing as {@link #findByType(CarType)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   finder results will <strong>NOT</strong> be transformed during retrieval.
-     *   If this flag is any of the other constants defined here
-     *   then finder results <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
+     * Does the same thing as {@link #findByType(CarType)} with an
+     * additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
+     * finder results will <strong>NOT</strong> be transformed during retrieval.
+     * If this flag is any of the other constants defined here
+     * then finder results <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example).  By default, transformation does
+     * not occur.
+     * @param transform int Transform finder results during retrieval
      * @param type
      * @return List
      * @throws CarDaoException
@@ -365,9 +366,14 @@ public interface CarDao
     public List findByType(int transform, CarType type) throws CarDaoException;
 
     /**
-     *   Does the same thing as {@link #findByType(boolean, CarType)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByType(int, CarType type)}.
+     * Does the same thing as {@link #findByType(int, CarType)} with an
+     * additional argument called <code>queryString</code>.  This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link #findByType(int, CarType)}.
+     * @param transform int Transform finder results during retrieval
+     * @param queryString String allows you to override the query string defined in {@link #findByType(CarType)}
+     * @param type
+     * @return List
+     * @throws CarDaoException
      */
     public List findByType(int transform, String queryString, CarType type) throws CarDaoException;
 

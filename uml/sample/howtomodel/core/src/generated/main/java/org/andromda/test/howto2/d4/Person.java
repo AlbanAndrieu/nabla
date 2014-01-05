@@ -29,8 +29,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name="PERSON")
-@NamedQuery(name="Person.findAll", query="select person from Person AS person")
-public class Person implements Serializable, Comparable<Person> {
+@NamedQuery(name="Person.findAll", query="SELECT p FROM Person AS p")
+public class Person implements Serializable, Comparable<Person>{
     private static final long serialVersionUID = 9034591315088444647L;
 
     // ----------- 3 Attribute Definitions ------------

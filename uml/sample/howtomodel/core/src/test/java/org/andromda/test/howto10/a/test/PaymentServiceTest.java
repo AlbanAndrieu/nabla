@@ -20,15 +20,15 @@ public class PaymentServiceTest
     @Test
     public void testRegister()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto10.a.PaymentServiceRemote paymentService = (org.andromda.test.howto10.a.PaymentServiceRemote)EJB3Container.getInitialContext().lookup("PaymentServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testRegister()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto10.a.PaymentServiceRemote paymentService = (org.andromda.test.howto10.a.PaymentServiceRemote)EJB3Container.getInitialContext().lookup("PaymentServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testRegister()", ex);
+        // }
     }
 
 }

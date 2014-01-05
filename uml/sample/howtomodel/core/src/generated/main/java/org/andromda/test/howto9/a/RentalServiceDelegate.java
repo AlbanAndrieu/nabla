@@ -47,9 +47,11 @@ public class RentalServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto9.a.RentalServiceBean#getAllCars()
      *
-     * Call the session bean operation using appropriate view type
+     * @return List
+     * @throws RentalException
      */
     public List getAllCars()
         throws RentalException
@@ -70,9 +72,12 @@ public class RentalServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto9.a.RentalServiceBean#getCustomersByName(String)
      *
-     * Call the session bean operation using appropriate view type
+     * @param name
+     * @return List
+     * @throws RentalException
      */
     public List getCustomersByName(String name)
         throws RentalException

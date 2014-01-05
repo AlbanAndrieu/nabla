@@ -20,43 +20,43 @@ public class UserServiceTest
     @Test
     public void testAddUser()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto18.a.UserServiceRemote userService = (org.andromda.test.howto18.a.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testAddUser()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto18.a.UserServiceRemote userService = (org.andromda.test.howto18.a.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testAddUser()", ex);
+        // }
     }
 
     @Test
     public void testGetUser()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto18.a.UserServiceRemote userService = (org.andromda.test.howto18.a.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testGetUser()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto18.a.UserServiceRemote userService = (org.andromda.test.howto18.a.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testGetUser()", ex);
+        // }
     }
 
     @Test
     public void testGetAllUsers()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto18.a.UserServiceRemote userService = (org.andromda.test.howto18.a.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testGetAllUsers()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto18.a.UserServiceRemote userService = (org.andromda.test.howto18.a.UserServiceRemote)EJB3Container.getInitialContext().lookup("UserServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testGetAllUsers()", ex);
+        // }
     }
 
 }

@@ -28,7 +28,7 @@ public interface PersonDao
      * @return Person
      * @throws PersonDaoException
      */
-    public Person load(String serial) throws PersonDaoException;
+    public Person load(String serial)     throws PersonDaoException;
 
     /**
      *   Does the same thing as {@link #load(String)} with an
@@ -43,7 +43,7 @@ public interface PersonDao
      * @return either the entity or the object transformed from the entity.
      * @throws PersonDaoException
      */
-    public Object load(int transform, String serial) throws PersonDaoException;
+    public Object load(int transform, String serial)     throws PersonDaoException;
 
     /**
      * Loads all entities of type {@link Person}.
@@ -178,7 +178,7 @@ public interface PersonDao
      * @param serial
      * @throws PersonDaoException
      */
-    public void remove(String serial) throws PersonDaoException;
+    public void remove(String serial)     throws PersonDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.

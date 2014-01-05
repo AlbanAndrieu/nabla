@@ -46,9 +46,12 @@ public class PaymentServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto10.a.PaymentServiceBean#register(Person, Car, int)
      *
-     * Call the session bean operation using appropriate view type
+     * @param owner
+     * @param car
+     * @param leasePeriod
      */
     public void register(Person owner, Car car, int leasePeriod)
     {

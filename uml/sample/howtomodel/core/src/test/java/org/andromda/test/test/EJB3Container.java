@@ -39,10 +39,10 @@ public class EJB3Container
             // Boot the JBoss Microcontainer with EJB3 settings, loads ejb3-interceptors-aop.xml
             EJB3StandaloneBootstrap.boot(null);
 
-            //            Uncomment the following to enable security
-            //            logger.info("==>Deploying security-beans");
-            //            EJB3StandaloneBootstrap.deployXmlResource("security-beans.xml");
-            //            logger.info("==>Deployed security-beans");
+            // Uncomment the following to enable security
+            // logger.info("==>Deploying security-beans");
+            // EJB3StandaloneBootstrap.deployXmlResource("security-beans.xml");
+            // logger.info("==>Deployed security-beans");
 
             logger.info("==>Deploying jboss-jms-beans - init JBoss MQ core services");
             EJB3StandaloneBootstrap.deployXmlResource("jboss-jms-beans.xml");

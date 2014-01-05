@@ -16,8 +16,8 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TemporalType;
-import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 
 /**
@@ -93,7 +93,8 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> query = this.entityManager.createNamedQuery("Person.findAll", Person.class);
+            Query query = entityManager.createNamedQuery("Person.findAll");            
+
             List<Person> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -338,7 +339,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createNamedQuery("Person.findAll", Person.class);
+            Query queryObject = entityManager.createNamedQuery("Person.findAll");
             List results = queryObject.getResultList();
             transformEntities(transform, results);
             return results;
@@ -357,7 +358,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createQuery(queryString, Person.class);
+            Query queryObject = entityManager.createQuery(queryString);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
             return results;
@@ -394,7 +395,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createNamedQuery("Person.findByName", Person.class);
+            Query queryObject = entityManager.createNamedQuery("Person.findByName");
             queryObject.setParameter("name", name);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -414,7 +415,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createQuery(queryString, Person.class);
+            Query queryObject = entityManager.createQuery(queryString);
             queryObject.setParameter("name", name);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -452,7 +453,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createNamedQuery("Person.findByNameOrBirthDate", Person.class);
+            Query queryObject = entityManager.createNamedQuery("Person.findByNameOrBirthDate");
             queryObject.setParameter("name", name);
             queryObject.setParameter("birthDate", birthDate, TemporalType.DATE);
             List results = queryObject.getResultList();
@@ -473,7 +474,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createQuery(queryString, Person.class);
+            Query queryObject = entityManager.createQuery(queryString);
             queryObject.setParameter("name", name);
             queryObject.setParameter("birthDate", birthDate, TemporalType.DATE);
             List results = queryObject.getResultList();

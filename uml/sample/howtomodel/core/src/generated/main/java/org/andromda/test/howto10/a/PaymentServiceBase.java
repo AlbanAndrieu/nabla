@@ -21,6 +21,9 @@ public abstract class PaymentServiceBase implements PaymentService
 
     // ------ Session Context Injection ------
 
+    /**
+     * SessionContext Injection
+     */
     @Resource
     protected SessionContext context;
 
@@ -34,6 +37,9 @@ public abstract class PaymentServiceBase implements PaymentService
 
     // --------------- Constructors ---------------
 
+    /**
+     * Default constructor method with no arguments.
+     */
     public PaymentServiceBase()
     {
         super();
@@ -43,6 +49,9 @@ public abstract class PaymentServiceBase implements PaymentService
 
     /**
      * TODO: Model Documentation for PaymentService.register
+     * @param owner
+     * @param car
+     * @param leasePeriod
      */
     public void register(Person owner, Car car, int leasePeriod)    {
         if (owner == null)
@@ -65,6 +74,10 @@ public abstract class PaymentServiceBase implements PaymentService
 
     /**
      * Performs the core logic for {@link #register(Person, Car, int)}
+     * @param owner
+     * @param car
+     * @param leasePeriod
+     * @throws Exception
      */
     protected abstract void handleRegister(Person owner, Car car, int leasePeriod) throws Exception;
 

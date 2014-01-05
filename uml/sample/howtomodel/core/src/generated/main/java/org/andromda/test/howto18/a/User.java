@@ -27,8 +27,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name="USER")
-@NamedQuery(name="User.findAll", query="select user from User AS user")
-public class User implements Serializable, Comparable<User> {
+@NamedQuery(name="User.findAll", query="SELECT u FROM User AS u")
+public class User implements Serializable, Comparable<User>{
     private static final long serialVersionUID = 8686751208262899436L;
 
     // ----------- 2 Attribute Definitions ------------

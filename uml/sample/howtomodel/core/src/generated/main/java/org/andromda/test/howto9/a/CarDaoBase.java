@@ -15,7 +15,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 /**
@@ -91,7 +91,8 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> query = this.entityManager.createNamedQuery("Car.findAll", Car.class);
+            Query query = entityManager.createNamedQuery("Car.findAll");            
+
             List<Car> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -204,20 +205,20 @@ public abstract class CarDaoBase implements CarDao
 
     /**
      * Create Entity Car using required properties with no VO transformation
-     * @see CarDao#create(String, Person, String, CarType, Short, String, String)
+     * @see CarDao#create(String, Person, String, CarType, String, String)
      */
     @Override
-    public Car create(String name, Person owner, String serial, CarType type, Short age, String make, String model) throws CarDaoException
+    public Car create(String name, Person owner, String serial, CarType type, String make, String model) throws CarDaoException
     {
-        return (Car)this.create(TRANSFORM_NONE, name, owner, serial, type, age, make, model);
+        return (Car)this.create(TRANSFORM_NONE, name, owner, serial, type, make, model);
     }
 
     /**
      * Create Entity Car using required properties with VO transformation
-     * @see CarDao#create(int, String, Person, String, CarType, Short, String, String)
+     * @see CarDao#create(int, String, Person, String, CarType, String, String)
      */
     @Override
-    public Object create(final int transform,String name, Person owner, String serial, CarType type, Short age, String make, String model) throws CarDaoException
+    public Object create(final int transform,String name, Person owner, String serial, CarType type, String make, String model) throws CarDaoException
     {
         Car entity = new Car();
         // name $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
@@ -228,8 +229,6 @@ public abstract class CarDaoBase implements CarDao
         entity.setSerial(serial);
         // type $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setType(type);
-        // age $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
-        entity.setAge(age);
         // make $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
         entity.setMake(make);
         // model $propertyType.fullyQualifiedName identifier=$propertyType.identifier false
@@ -375,7 +374,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> queryObject = this.entityManager.createNamedQuery("Car.findByType", Car.class);
+            Query queryObject = entityManager.createNamedQuery("Car.findByType");
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -395,7 +394,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> queryObject = this.entityManager.createQuery(queryString, Car.class);
+            Query queryObject = entityManager.createQuery(queryString);
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -425,6 +424,8 @@ public abstract class CarDaoBase implements CarDao
 
      /**
       * Performs the core logic for {@link #allCarsAreRented()}
+      * @return boolean 
+      * @throws Exception
       */
     protected abstract boolean handleAllCarsAreRented() throws Exception;
 

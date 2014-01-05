@@ -29,7 +29,7 @@ public interface PersonDao
      * @return Person
      * @throws PersonDaoException
      */
-    public Person load(String serial) throws PersonDaoException;
+    public Person load(String serial)     throws PersonDaoException;
 
     /**
      *   Does the same thing as {@link #load(String)} with an
@@ -44,7 +44,7 @@ public interface PersonDao
      * @return either the entity or the object transformed from the entity.
      * @throws PersonDaoException
      */
-    public Object load(int transform, String serial) throws PersonDaoException;
+    public Object load(int transform, String serial)     throws PersonDaoException;
 
     /**
      * Loads all entities of type {@link Person}.
@@ -179,7 +179,7 @@ public interface PersonDao
      * @param serial
      * @throws PersonDaoException
      */
-    public void remove(String serial) throws PersonDaoException;
+    public void remove(String serial)     throws PersonDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.
@@ -196,31 +196,36 @@ public interface PersonDao
     public List findAll() throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findAll()} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findAll()}.
+     * Does the same thing as {@link #findAll()} with an
+     * additional argument called <code>queryString</code>.
+     * @param queryString String allows you to override the query string defined in {@link #findAll()}
      * @return List
      * @throws PersonDaoException
      */
     public List findAll(String queryString) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findAll()} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   finder results will <strong>NOT</strong> be transformed during retrieval.
-     *   If this flag is any of the other constants defined here
-     *   then finder results <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
+     * Does the same thing as {@link #findAll()} with an
+     * additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
+     * finder results will <strong>NOT</strong> be transformed during retrieval.
+     * If this flag is any of the other constants defined here
+     * then finder results <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example).  By default, transformation does
+     * not occur.
+     * @param transform int Transform finder results during retrieval
      * @return List
      * @throws PersonDaoException
      */
     public List findAll(int transform) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findAll(boolean)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findAll(int)}.
+     * Does the same thing as {@link #findAll(int)} with an
+     * additional argument called <code>queryString</code>.  This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link #findAll(int)}.
+     * @param transform int Transform finder results during retrieval
+     * @param queryString String allows you to override the query string defined in {@link #findAll()}
+     * @return List
+     * @throws PersonDaoException
      */
     public List findAll(int transform, String queryString) throws PersonDaoException;
 
@@ -233,9 +238,9 @@ public interface PersonDao
     public List findByName(String name) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findByName(String)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByName(String)}.
+     * Does the same thing as {@link #findByName(String)} with an
+     * additional argument called <code>queryString</code>.
+     * @param queryString String allows you to override the query string defined in {@link #findByName(String)}
      * @param name
      * @return List
      * @throws PersonDaoException
@@ -243,13 +248,14 @@ public interface PersonDao
     public List findByName(String queryString, String name) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findByName(String)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   finder results will <strong>NOT</strong> be transformed during retrieval.
-     *   If this flag is any of the other constants defined here
-     *   then finder results <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
+     * Does the same thing as {@link #findByName(String)} with an
+     * additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
+     * finder results will <strong>NOT</strong> be transformed during retrieval.
+     * If this flag is any of the other constants defined here
+     * then finder results <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example).  By default, transformation does
+     * not occur.
+     * @param transform int Transform finder results during retrieval
      * @param name
      * @return List
      * @throws PersonDaoException
@@ -257,9 +263,14 @@ public interface PersonDao
     public List findByName(int transform, String name) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findByName(boolean, String)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByName(int, String name)}.
+     * Does the same thing as {@link #findByName(int, String)} with an
+     * additional argument called <code>queryString</code>.  This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link #findByName(int, String)}.
+     * @param transform int Transform finder results during retrieval
+     * @param queryString String allows you to override the query string defined in {@link #findByName(String)}
+     * @param name
+     * @return List
+     * @throws PersonDaoException
      */
     public List findByName(int transform, String queryString, String name) throws PersonDaoException;
 
@@ -273,9 +284,9 @@ public interface PersonDao
     public List findByNameOrBirthDate(String name, Date birthDate) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findByNameOrBirthDate(String, Date)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByNameOrBirthDate(String, Date)}.
+     * Does the same thing as {@link #findByNameOrBirthDate(String, Date)} with an
+     * additional argument called <code>queryString</code>.
+     * @param queryString String allows you to override the query string defined in {@link #findByNameOrBirthDate(String, Date)}
      * @param name
      * @param birthDate
      * @return List
@@ -284,13 +295,14 @@ public interface PersonDao
     public List findByNameOrBirthDate(String queryString, String name, Date birthDate) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findByNameOrBirthDate(String, Date)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   finder results will <strong>NOT</strong> be transformed during retrieval.
-     *   If this flag is any of the other constants defined here
-     *   then finder results <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
+     * Does the same thing as {@link #findByNameOrBirthDate(String, Date)} with an
+     * additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
+     * finder results will <strong>NOT</strong> be transformed during retrieval.
+     * If this flag is any of the other constants defined here
+     * then finder results <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example).  By default, transformation does
+     * not occur.
+     * @param transform int Transform finder results during retrieval
      * @param name
      * @param birthDate
      * @return List
@@ -299,9 +311,15 @@ public interface PersonDao
     public List findByNameOrBirthDate(int transform, String name, Date birthDate) throws PersonDaoException;
 
     /**
-     *   Does the same thing as {@link #findByNameOrBirthDate(boolean, String, Date)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByNameOrBirthDate(int, String name, Date birthDate)}.
+     * Does the same thing as {@link #findByNameOrBirthDate(int, String, Date)} with an
+     * additional argument called <code>queryString</code>.  This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link #findByNameOrBirthDate(int, String, Date)}.
+     * @param transform int Transform finder results during retrieval
+     * @param queryString String allows you to override the query string defined in {@link #findByNameOrBirthDate(String, Date)}
+     * @param name
+     * @param birthDate
+     * @return List
+     * @throws PersonDaoException
      */
     public List findByNameOrBirthDate(int transform, String queryString, String name, Date birthDate) throws PersonDaoException;
 

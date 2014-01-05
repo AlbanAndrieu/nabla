@@ -22,11 +22,14 @@ public interface RentalServiceRemote extends RentalService
 
     /**
      * Returns a list of all cars known by the system.
+     * @return List
      */
     public List getAllCars();
 
     /**
      * Returns all customers with the specified name.
+     * @param name
+     * @return List
      */
     public List getCustomersByName(String name);
 

@@ -17,7 +17,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 import org.apache.log4j.Logger;
@@ -95,7 +95,8 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> query = this.entityManager.createNamedQuery("Person.findAll", Person.class);
+            Query query = entityManager.createNamedQuery("Person.findAll");            
+
             List<Person> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -340,7 +341,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createNamedQuery("Person.findAll", Person.class);
+            Query queryObject = entityManager.createNamedQuery("Person.findAll");
             List results = queryObject.getResultList();
             transformEntities(transform, results);
             return results;
@@ -359,7 +360,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createQuery(queryString, Person.class);
+            Query queryObject = entityManager.createQuery(queryString);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
             return results;
@@ -396,7 +397,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createNamedQuery("Person.findByName", Person.class);
+            Query queryObject = entityManager.createNamedQuery("Person.findByName");
             queryObject.setParameter("name", name);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -416,7 +417,7 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> queryObject = this.entityManager.createQuery(queryString, Person.class);
+            Query queryObject = entityManager.createQuery(queryString);
             queryObject.setParameter("name", name);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -438,7 +439,7 @@ public abstract class PersonDaoBase implements PersonDao
      * This method will return instances of these types:
      * <ul>
      *   <li>{@link Person} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link PersonValueObject} - {@link TRANSFORM_PERSONVALUEOBJECT}</li>
+     *   <li>{@link PersonValueObject} - {@link #TRANSFORM_PERSONVALUEOBJECT}</li>
      * </ul>
      *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
@@ -494,11 +495,12 @@ public abstract class PersonDaoBase implements PersonDao
     /**
      * @see PersonDao#toPersonValueObjectCollection(Collection)
      */
+    @Override
     public final void toPersonValueObjectCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, PERSONVALUEOBJECT_TRANSFORMER);
+            CollectionUtils.transform(entities, this.PERSONVALUEOBJECT_TRANSFORMER);
         }
     }
 
@@ -506,6 +508,8 @@ public abstract class PersonDaoBase implements PersonDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link PersonDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of Person to transform
+     * @return target PersonValueObject
      * @see PersonDao#toPersonValueObject(Person)
      */
     protected PersonValueObject toPersonValueObject(Object[] row)
@@ -535,6 +539,7 @@ public abstract class PersonDaoBase implements PersonDao
     private Transformer PERSONVALUEOBJECT_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -553,35 +558,37 @@ public abstract class PersonDaoBase implements PersonDao
     /**
      * @see PersonDao#personValueObjectToEntityCollection(Collection)
      */
+    @Override
     public final void personValueObjectToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof PersonValueObject))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, PersonValueObjectToEntityTransformer);
+            CollectionUtils.transform(instances, this.PersonValueObjectToEntityTransformer);
         }
     }
 
     private final Transformer PersonValueObjectToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return personValueObjectToEntity((PersonValueObject)input);
             }
         };
 
-
     /**
      * @see PersonDao#toPersonValueObject(Person, PersonValueObject)
      */
+    @Override
     public void toPersonValueObject( Person source, PersonValueObject target)
     {
         target.setSerial(source.getSerial());
@@ -592,6 +599,7 @@ public abstract class PersonDaoBase implements PersonDao
     /**
      * @see PersonDao#toPersonValueObject(Person)
      */
+    @Override
     public PersonValueObject toPersonValueObject(final Person entity)
     {
         final PersonValueObject target = new PersonValueObject();
@@ -600,8 +608,9 @@ public abstract class PersonDaoBase implements PersonDao
     }
 
     /**
-     * @see PersonDao#personValueObjectToEntity(PersonValueObject, Person)
+     * @see PersonDao#personValueObjectToEntity(PersonValueObject, Person, boolean)
      */
+    @Override
     public void personValueObjectToEntity( PersonValueObject source, Person target, boolean copyIfNull)
     {
         if (copyIfNull || source.getName() != null)

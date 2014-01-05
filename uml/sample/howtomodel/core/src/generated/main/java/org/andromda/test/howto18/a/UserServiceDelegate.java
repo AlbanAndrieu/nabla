@@ -47,9 +47,11 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto18.a.UserServiceBean#addUser(User)
      *
-     * Call the session bean operation using appropriate view type
+     * @param user
+     * @throws UserException
      */
     public void addUser(User user)
         throws UserException
@@ -70,9 +72,12 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto18.a.UserServiceBean#getUser(Long)
      *
-     * Call the session bean operation using appropriate view type
+     * @param id
+     * @return User
+     * @throws UserException
      */
     public User getUser(Long id)
         throws UserException
@@ -93,9 +98,11 @@ public class UserServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto18.a.UserServiceBean#getAllUsers()
      *
-     * Call the session bean operation using appropriate view type
+     * @return Collection
+     * @throws UserException
      */
     public Collection getAllUsers()
         throws UserException

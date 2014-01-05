@@ -29,7 +29,7 @@ public interface PersonDao
      * @return Person
      * @throws PersonDaoException
      */
-    public Person load(long id, String tag) throws PersonDaoException;
+    public Person load(long id, String tag)     throws PersonDaoException;
 
     /**
      *   Does the same thing as {@link #load(long, String)} with an
@@ -45,7 +45,7 @@ public interface PersonDao
      * @return either the entity or the object transformed from the entity.
      * @throws PersonDaoException
      */
-    public Object load(int transform, long id, String tag) throws PersonDaoException;
+    public Object load(int transform, long id, String tag)     throws PersonDaoException;
 
     /**
      * Loads all entities of type {@link Person}.
@@ -181,7 +181,7 @@ public interface PersonDao
      * @param tag
      * @throws PersonDaoException
      */
-    public void remove(long id, String tag) throws PersonDaoException;
+    public void remove(long id, String tag)     throws PersonDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.

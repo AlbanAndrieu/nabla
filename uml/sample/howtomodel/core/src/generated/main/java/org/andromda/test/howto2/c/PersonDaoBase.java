@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 /**
@@ -92,7 +92,8 @@ public abstract class PersonDaoBase implements PersonDao
     {
         try
         {
-                        TypedQuery<Person> query = this.entityManager.createNamedQuery("Person.findAll", Person.class);
+            Query query = entityManager.createNamedQuery("Person.findAll");            
+
             List<Person> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;

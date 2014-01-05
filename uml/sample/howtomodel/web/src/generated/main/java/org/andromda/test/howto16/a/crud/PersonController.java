@@ -7,8 +7,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import javax.faces.component.UIParameter;
-import javax.faces.context.FacesContext;
-import javax.faces.el.ValueBinding;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import org.andromda.presentation.jsf.ControllerBase;
@@ -457,42 +455,6 @@ public abstract class PersonController
     private void saveMaxResultsWarning()
     {
         addWarningMessage(Messages.get("maximum.results.fetched.warning", new Object[]{String.valueOf("250")}));
-    }
-
-    /**
-     * Export as ODS spreadsheet
-     * @return /org/andromda/test/howto16/a/crud/person-ods-export
-     */
-    public String odsExport()
-    {
-        return "/org/andromda/test/howto16/a/crud/person-ods-export";
-    }
-
-    /**
-     * Helper method to fill the autocomplete component list.
-     * @param event
-     */
-    public void fillAutocomplete(ActionEvent event)
-    {
-        final FacesContext facesContext = this.getContext();
-        final Map<String,String> parameters = facesContext.getExternalContext().getRequestParameterMap();
-        final Object fieldValue = parameters.get(this.getParameterValue("searchFieldRequestParamName",event));
-        try{
-            @SuppressWarnings("rawtypes")
-            final List list = ManageableServiceLocator.instance().getPersonManageableService().read(
-                (fieldValue==null || fieldValue.toString().length() == 0) ? null : fieldValue.toString()
-                , null
-                , null
-                , null
-            );
-            final ValueBinding vb = facesContext.getApplication().createValueBinding("#{autocompleteResult}");
-            vb.setValue(facesContext, list);
-        }
-        catch (final Throwable throwable)
-        {
-            logger.error(throwable.getMessage(),throwable);
-            this.addExceptionMessage(throwable);
-        }
     }
 
     /**

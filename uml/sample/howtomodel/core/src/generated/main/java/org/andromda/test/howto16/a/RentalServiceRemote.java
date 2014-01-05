@@ -22,11 +22,16 @@ public interface RentalServiceRemote extends RentalService
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto16.a.RentalService.getAllCars
+     * @return List
+     * @throws RentalException
      */
     public List getAllCars() throws RentalException;
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto16.a.RentalService.getCustomersByName
+     * @param name
+     * @return List
+     * @throws RentalException
      */
     public List getCustomersByName(String name) throws RentalException;
 

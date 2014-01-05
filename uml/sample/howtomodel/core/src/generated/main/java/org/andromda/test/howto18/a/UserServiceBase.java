@@ -23,6 +23,9 @@ public abstract class UserServiceBase implements UserService
 
     // ------ Session Context Injection ------
 
+    /**
+     * SessionContext Injection
+     */
     @Resource
     protected SessionContext context;
 
@@ -39,11 +42,14 @@ public abstract class UserServiceBase implements UserService
     /**
      * Inject DAO UserDao
      */
-    @EJB(mappedName="howtomodel-1.0/UserDaoImpl")
+    @EJB(mappedName="howtomodel-1.0.1-SNAPSHOT/UserDaoImpl")
     private UserDao userDao;
 
     // --------------- Constructors ---------------
 
+    /**
+     * Default constructor method with no arguments.
+     */
     public UserServiceBase()
     {
         super();
@@ -53,6 +59,7 @@ public abstract class UserServiceBase implements UserService
 
     /**
      * Get the injected DAO UserDao
+     * @return UserDao
      */
     protected UserDao getUserDao()
     {
@@ -63,6 +70,8 @@ public abstract class UserServiceBase implements UserService
 
     /**
      * TODO: Model Documentation for UserService.addUser
+     * @param user
+     * @throws UserException
      */
     public void addUser(User user) throws UserException
     {
@@ -86,11 +95,16 @@ public abstract class UserServiceBase implements UserService
 
     /**
      * Performs the core logic for {@link #addUser(User)}
+     * @param user
+     * @throws Exception
      */
     protected abstract void handleAddUser(User user) throws Exception;
 
     /**
      * TODO: Model Documentation for UserService.getUser
+     * @param id
+     * @return User
+     * @throws UserException
      */
     public User getUser(Long id) throws UserException
     {
@@ -110,11 +124,16 @@ public abstract class UserServiceBase implements UserService
 
     /**
      * Performs the core logic for {@link #getUser(Long)}
+     * @param id
+     * @return User
+     * @throws Exception
      */
     protected abstract User handleGetUser(Long id) throws Exception;
 
     /**
      * TODO: Model Documentation for UserService.getAllUsers
+     * @return Collection
+     * @throws UserException
      */
     public Collection getAllUsers() throws UserException
     {
@@ -134,6 +153,8 @@ public abstract class UserServiceBase implements UserService
 
     /**
      * Performs the core logic for {@link #getAllUsers()}
+     * @return Collection
+     * @throws Exception
      */
     protected abstract Collection handleGetAllUsers() throws Exception;
 

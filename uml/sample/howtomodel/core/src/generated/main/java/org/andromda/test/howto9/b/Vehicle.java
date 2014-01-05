@@ -34,8 +34,8 @@ import javax.validation.constraints.NotNull;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE", discriminatorType=DiscriminatorType.STRING)
 @DiscriminatorValue("V")
-@NamedQuery(name="Vehicle.findAll", query="select vehicle from Vehicle AS vehicle")
-public class Vehicle implements Serializable, Comparable<Vehicle> {
+@NamedQuery(name="Vehicle.findAll", query="SELECT v FROM Vehicle AS v")
+public class Vehicle implements Serializable, Comparable<Vehicle>{
     private static final long serialVersionUID = 7054703851638781109L;
 
     // ----------- 4 Attribute Definitions ------------
@@ -151,7 +151,7 @@ public class Vehicle implements Serializable, Comparable<Vehicle> {
      *
      * @param make String value for the make property true  1
      * @param model String value for the model property true  1
-     * @param age Short value for the age property true  1
+     * @param age Short value for the age property false  0
      * @param serial String value for the serial property true  1
      */
     public Vehicle(String make, String model, Short age, String serial)

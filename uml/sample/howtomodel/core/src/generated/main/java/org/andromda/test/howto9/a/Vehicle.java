@@ -25,7 +25,7 @@ import javax.validation.constraints.NotNull;
  * DO NOT MODIFY this class.
  */
 @MappedSuperclass
-public class Vehicle implements Serializable {
+public class Vehicle implements Serializable{
     private static final long serialVersionUID = -6929560261339232915L;
 
     // ----------- 4 Attribute Definitions ------------
@@ -141,7 +141,7 @@ public class Vehicle implements Serializable {
      *
      * @param make String value for the make property true  1
      * @param model String value for the model property true  1
-     * @param age Short value for the age property true  1
+     * @param age Short value for the age property false  0
      */
     public Vehicle(String make, String model, Short age)
     {

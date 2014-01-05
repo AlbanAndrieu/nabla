@@ -28,7 +28,7 @@ public interface CarDao
      * @return Car
      * @throws CarDaoException
      */
-    public Car load(String serial, String name) throws CarDaoException;
+    public Car load(String serial, String name)     throws CarDaoException;
 
     /**
      *   Does the same thing as {@link #load(String, String)} with an
@@ -44,7 +44,7 @@ public interface CarDao
      * @return either the entity or the object transformed from the entity.
      * @throws CarDaoException
      */
-    public Object load(int transform, String serial, String name) throws CarDaoException;
+    public Object load(int transform, String serial, String name)     throws CarDaoException;
 
     /**
      * Loads all entities of type {@link Car}.
@@ -207,7 +207,7 @@ public interface CarDao
      * @param name
      * @throws CarDaoException
      */
-    public void remove(String serial, String name) throws CarDaoException;
+    public void remove(String serial, String name)     throws CarDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.

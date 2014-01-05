@@ -119,11 +119,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto3.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto3.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto3.a.RentalServiceRemote get_org_andromda_test_howto3_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto3.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto3.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -144,11 +145,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto3.b.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto3.b.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto3.b.RentalServiceRemote get_org_andromda_test_howto3_b_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto3.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto3.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -169,11 +171,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto4.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto4.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto4.a.RentalServiceRemote get_org_andromda_test_howto4_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto4.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto4.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -194,11 +197,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto4.b.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto4.b.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto4.b.RentalServiceRemote get_org_andromda_test_howto4_b_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto4.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto4.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -219,11 +223,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto5.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto5.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto5.a.RentalServiceRemote get_org_andromda_test_howto5_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto5.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto5.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -244,11 +249,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto6.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto6.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto6.a.RentalServiceRemote get_org_andromda_test_howto6_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto6.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto6.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -269,11 +275,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto7.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto7.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto7.a.RentalServiceRemote get_org_andromda_test_howto7_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto7.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto7.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -294,11 +301,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto8.b.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto8.b.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto8.b.RentalServiceRemote get_org_andromda_test_howto8_b_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto8.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto8.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -319,11 +327,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto9.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto9.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto9.a.RentalServiceRemote get_org_andromda_test_howto9_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto9.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto9.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -344,11 +353,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto9.b.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto9.b.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto9.b.RentalServiceRemote get_org_andromda_test_howto9_b_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto9.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto9.b.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -369,11 +379,12 @@ public class ServiceLocator
      * Gets the remote interface {@link RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final RentalServiceRemote get_org_andromda_test_howto10_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -394,11 +405,12 @@ public class ServiceLocator
      * Gets the remote interface {@link PaymentServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return PaymentServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final PaymentServiceRemote get_org_andromda_test_howto10_a_PaymentServiceBean_Remote(Properties env) throws NamingException
     {
-        return (PaymentServiceRemote) getContext(env).lookup("howtomodel-1.0/PaymentServiceBean/remote");
+        return (PaymentServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/PaymentServiceBean/remote");
     }
 
 
@@ -419,11 +431,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto11.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto11.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto11.a.RentalServiceRemote get_org_andromda_test_howto11_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto11.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto11.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -444,11 +457,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto16.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto16.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto16.a.RentalServiceRemote get_org_andromda_test_howto16_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto16.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto16.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -469,11 +483,12 @@ public class ServiceLocator
      * Gets the remote interface {@link org.andromda.test.howto13.a.RentalServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return org.andromda.test.howto13.a.RentalServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final org.andromda.test.howto13.a.RentalServiceRemote get_org_andromda_test_howto13_a_RentalServiceBean_Remote(Properties env) throws NamingException
     {
-        return (org.andromda.test.howto13.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0/RentalServiceBean/remote");
+        return (org.andromda.test.howto13.a.RentalServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/RentalServiceBean/remote");
     }
 
 
@@ -494,11 +509,12 @@ public class ServiceLocator
      * Gets the remote interface {@link UserServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return UserServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final UserServiceRemote get_org_andromda_test_howto18_a_UserServiceBean_Remote(Properties env) throws NamingException
     {
-        return (UserServiceRemote) getContext(env).lookup("howtomodel-1.0/UserServiceBean/remote");
+        return (UserServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/UserServiceBean/remote");
     }
 
 
@@ -519,11 +535,12 @@ public class ServiceLocator
      * Gets the remote interface {@link UserEndPointServiceRemote}.
      *
      * @param env the Context environment properties.  Null represents no properties.
+     * @return UserEndPointServiceRemote
      * @throws NamingException failure to lookup remote service interface.
      */
     public final UserEndPointServiceRemote get_org_andromda_test_howto18_a_UserEndPointServiceBean_Remote(Properties env) throws NamingException
     {
-        return (UserEndPointServiceRemote) getContext(env).lookup("howtomodel-1.0/UserEndPointServiceBean/remote");
+        return (UserEndPointServiceRemote) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/UserEndPointServiceBean/remote");
     }
 
 
@@ -531,6 +548,7 @@ public class ServiceLocator
      * Gets an instance of the given service.
      *
      * @param serviceName lookup this service from the context.
+     * @return Object getService(serviceName, null)
      * @throws NamingException failure to lookup remote service interface.
      */
     public final Object getService(String serviceName) throws NamingException
@@ -543,6 +561,7 @@ public class ServiceLocator
      *
      * @param serviceName lookup this service from the context.
      * @param env the Context environment properties.  Null represents no properties.
+     * @return Object getContext(env).lookup(serviceName)
      * @throws NamingException failure to lookup remote service interface.
      */
     public final Object getService(String serviceName, Properties env) throws NamingException

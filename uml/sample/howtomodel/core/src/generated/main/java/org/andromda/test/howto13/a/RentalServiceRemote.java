@@ -22,11 +22,16 @@ public interface RentalServiceRemote extends RentalService
 
     /**
      * Returns a list of all cars known by the system.
+     * @return List
+     * @throws RentalException
      */
     public List getAllCars() throws RentalException;
 
     /**
      * Returns all customers with the specified name.
+     * @param name
+     * @return List
+     * @throws RentalException
      */
     public List getCustomersByName(String name) throws RentalException;
 

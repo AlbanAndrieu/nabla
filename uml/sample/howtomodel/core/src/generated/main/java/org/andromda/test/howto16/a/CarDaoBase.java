@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 import org.apache.log4j.Logger;
@@ -94,7 +94,8 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> query = this.entityManager.createNamedQuery("Car.findAll", Car.class);
+            Query query = entityManager.createNamedQuery("Car.findAll");            
+
             List<Car> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -366,7 +367,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> queryObject = this.entityManager.createNamedQuery("Car.findByType", Car.class);
+            Query queryObject = entityManager.createNamedQuery("Car.findByType");
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -386,7 +387,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> queryObject = this.entityManager.createQuery(queryString, Car.class);
+            Query queryObject = entityManager.createQuery(queryString);
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -416,6 +417,8 @@ public abstract class CarDaoBase implements CarDao
 
      /**
       * Performs the core logic for {@link #allCarsAreRented()}
+      * @return boolean 
+      * @throws Exception
       */
     protected abstract boolean handleAllCarsAreRented() throws Exception;
 
@@ -429,7 +432,7 @@ public abstract class CarDaoBase implements CarDao
      * This method will return instances of these types:
      * <ul>
      *   <li>{@link Car} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link CareValueObject} - {@link TRANSFORM_CARVO}</li>
+     *   <li>{@link CareValueObject} - {@link #TRANSFORM_CARVO}</li>
      * </ul>
      *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
@@ -485,11 +488,12 @@ public abstract class CarDaoBase implements CarDao
     /**
      * @see CarDao#toCarVoCollection(Collection)
      */
+    @Override
     public final void toCarVoCollection(Collection entities)
     {
         if (entities != null)
         {
-            CollectionUtils.transform(entities, CARVO_TRANSFORMER);
+            CollectionUtils.transform(entities, this.CARVO_TRANSFORMER);
         }
     }
 
@@ -497,6 +501,8 @@ public abstract class CarDaoBase implements CarDao
      * Default implementation for transforming the results of a report query into a value object. This
      * implementation exists for convenience reasons only. It needs only be overridden in the
      * {@link CarDaoImpl} class if you intend to use reporting queries.
+     * @param row Object[] Array of Car to transform
+     * @return target CareValueObject
      * @see CarDao#toCarVo(Car)
      */
     protected CareValueObject toCarVo(Object[] row)
@@ -526,6 +532,7 @@ public abstract class CarDaoBase implements CarDao
     private Transformer CARVO_TRANSFORMER =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 Object result = null;
@@ -544,35 +551,37 @@ public abstract class CarDaoBase implements CarDao
     /**
      * @see CarDao#carVoToEntityCollection(Collection)
      */
+    @Override
     public final void carVoToEntityCollection(Collection instances)
     {
         if (instances != null)
         {
             for (final Iterator iterator = instances.iterator(); iterator.hasNext();)
             {
-                // - remove an objects that are null or not of the correct instance
+                // - remove objects that are null or not of the correct instance
                 if (!(iterator.next() instanceof CareValueObject))
                 {
                     iterator.remove();
                 }
             }
-            CollectionUtils.transform(instances, CarVoToEntityTransformer);
+            CollectionUtils.transform(instances, this.CarVoToEntityTransformer);
         }
     }
 
     private final Transformer CarVoToEntityTransformer =
         new Transformer()
         {
+            @Override
             public Object transform(Object input)
             {
                 return carVoToEntity((CareValueObject)input);
             }
         };
 
-
     /**
      * @see CarDao#toCarVo(Car, CareValueObject)
      */
+    @Override
     public void toCarVo( Car source, CareValueObject target)
     {
         target.setSerial(source.getSerial());
@@ -583,6 +592,7 @@ public abstract class CarDaoBase implements CarDao
     /**
      * @see CarDao#toCarVo(Car)
      */
+    @Override
     public CareValueObject toCarVo(final Car entity)
     {
         final CareValueObject target = new CareValueObject();
@@ -591,8 +601,9 @@ public abstract class CarDaoBase implements CarDao
     }
 
     /**
-     * @see CarDao#carVoToEntity(CareValueObject, Car)
+     * @see CarDao#carVoToEntity(CareValueObject, Car, boolean)
      */
+    @Override
     public void carVoToEntity( CareValueObject source, Car target, boolean copyIfNull)
     {
         if (copyIfNull || source.getName() != null)

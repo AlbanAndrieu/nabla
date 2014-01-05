@@ -47,13 +47,14 @@ public class CarDaoImpl extends CarDaoBase
         // TODO implement loadCarFromCarDetails
         throw new UnsupportedOperationException("org.andromda.test.howto6.a.loadCarFromCarDetails(CarDetails) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Car car = this.load(carDetails.getId());
-        if (car == null)
-        {
-            car = Car.Factory.newInstance();
-        }
-        return car;
+        /*
+         * A typical implementation looks like this:
+         * Car car = this.load(carDetails.getId());
+         * if (car == null)
+         * {
+         * car = Car.Factory.newInstance();
+         * }
+         * return car;
          */
     }
 
@@ -105,13 +106,14 @@ public class CarDaoImpl extends CarDaoBase
         // TODO implement loadCarFromCarListItem
         throw new UnsupportedOperationException("org.andromda.test.howto6.a.loadCarFromCarListItem(CarListItem) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Car car = this.load(carListItem.getId());
-        if (car == null)
-        {
-            car = Car.Factory.newInstance();
-        }
-        return car;
+        /*
+         * A typical implementation looks like this:
+         * Car car = this.load(carListItem.getId());
+         * if (car == null)
+         * {
+         * car = Car.Factory.newInstance();
+         * }
+         * return car;
          */
     }
 

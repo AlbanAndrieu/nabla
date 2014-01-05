@@ -32,11 +32,11 @@ import javax.validation.constraints.NotNull;
 @Table(name="PERSON")
 @NamedQueries
 ({
-    @NamedQuery(name="Person.findAll", query="from Person as person"), 
-    @NamedQuery(name="Person.findByName", query="from Person as person where person.name = :name and"), 
+    @NamedQuery(name="Person.findAll", query="SELECT p from Person as p"), 
+    @NamedQuery(name="Person.findByName", query="SELECT p from Person as p WHERE p.name = :name"), 
     @NamedQuery(name="Person.findByNameOrBirthDate", query="from Person as person where person.name = :name or person.birthDate = :birthDate")
 })
-public class Person implements Serializable, Comparable<Person> {
+public class Person implements Serializable, Comparable<Person>{
     private static final long serialVersionUID = -7369490585991748846L;
 
     // ----------- 3 Attribute Definitions ------------

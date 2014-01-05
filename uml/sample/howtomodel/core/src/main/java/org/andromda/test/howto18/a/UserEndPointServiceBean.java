@@ -36,7 +36,7 @@ public class UserEndPointServiceBean extends UserEndPointServiceBase implements 
      */
     protected void handleAddUser(String name) throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         throw new UnsupportedOperationException("org.andromda.test.howto18.a.UserEndPointServiceBean.handleAddUser(String name) Not implemented!");
     }
 
@@ -45,7 +45,7 @@ public class UserEndPointServiceBean extends UserEndPointServiceBase implements 
      */
     protected User handleGetUser(Long id) throws Exception
     {
-        //TODO: put your implementation here.
+        // TODO: put your implementation here.
         // Dummy return value, just that the file compiles
         return null;
     }

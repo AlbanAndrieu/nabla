@@ -28,8 +28,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name="CAR")
-@NamedQuery(name="Car.findAll", query="select car from Car AS car")
-public class Car implements Serializable, Comparable<Car> {
+@NamedQuery(name="Car.findAll", query="SELECT c FROM Car AS c")
+public class Car implements Serializable, Comparable<Car>{
     private static final long serialVersionUID = -5494979350651264611L;
 
     // ----------- 4 Attribute Definitions ------------

@@ -22,6 +22,9 @@ public abstract class UserEndPointServiceBase implements UserEndPointService
 
     // ------ Session Context Injection ------
 
+    /**
+     * SessionContext Injection
+     */
     @Resource
     protected SessionContext context;
 
@@ -38,11 +41,14 @@ public abstract class UserEndPointServiceBase implements UserEndPointService
     /**
      * Inject DAO UserDao
      */
-    @EJB(mappedName="howtomodel-1.0/UserDaoImpl")
+    @EJB(mappedName="howtomodel-1.0.1-SNAPSHOT/UserDaoImpl")
     private UserDao userDao;
 
     // --------------- Constructors ---------------
 
+    /**
+     * Default constructor method with no arguments.
+     */
     public UserEndPointServiceBase()
     {
         super();
@@ -52,6 +58,7 @@ public abstract class UserEndPointServiceBase implements UserEndPointService
 
     /**
      * Get the injected DAO UserDao
+     * @return UserDao
      */
     protected UserDao getUserDao()
     {
@@ -62,6 +69,8 @@ public abstract class UserEndPointServiceBase implements UserEndPointService
 
     /**
      * TODO: Model Documentation for UserEndPointService.addUser
+     * @param name
+     * @throws UserException
      */
     public void addUser(String name) throws UserException
     {
@@ -85,11 +94,16 @@ public abstract class UserEndPointServiceBase implements UserEndPointService
 
     /**
      * Performs the core logic for {@link #addUser(String)}
+     * @param name
+     * @throws Exception
      */
     protected abstract void handleAddUser(String name) throws Exception;
 
     /**
      * TODO: Model Documentation for UserEndPointService.getUser
+     * @param id
+     * @return User
+     * @throws UserException
      */
     public User getUser(Long id) throws UserException
     {
@@ -109,6 +123,9 @@ public abstract class UserEndPointServiceBase implements UserEndPointService
 
     /**
      * Performs the core logic for {@link #getUser(Long)}
+     * @param id
+     * @return User
+     * @throws Exception
      */
     protected abstract User handleGetUser(Long id) throws Exception;
 

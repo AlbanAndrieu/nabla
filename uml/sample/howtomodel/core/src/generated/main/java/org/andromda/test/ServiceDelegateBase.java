@@ -9,22 +9,21 @@ import java.util.Properties;
 
 /**
  * Service delegate base class extended by all service delegates.
- *
  */
 public abstract class ServiceDelegateBase
 {
     /**
-     * Define remote interface view type
+     * Define remote interface view type = 0
      */
     public static final int REMOTE_VIEW_TYPE = 0;
 
     /**
-     * Define local interface view type
+     * Define local interface view type = 1
      */
     public static final int LOCAL_VIEW_TYPE = 1;
 
     /**
-     * Default remote view type selected
+     * Default remote view type selected = REMOTE_VIEW_TYPE
      */
     private int viewType = REMOTE_VIEW_TYPE;
 
@@ -53,6 +52,7 @@ public abstract class ServiceDelegateBase
 
     /**
      * Get the view interface for invoking business operations
+     * @return viewType
      */
     public int getViewType()
     {
@@ -61,6 +61,7 @@ public abstract class ServiceDelegateBase
 
     /**
      * Set the view interface for invoking business operations
+     * @param viewType int
      */
     public void setViewType(int viewType)
     {
@@ -69,6 +70,7 @@ public abstract class ServiceDelegateBase
 
     /**
      * Get the environment properties if set, otherwise return null
+     * @return Properties
      */
     public Properties getProperties()
     {
@@ -77,6 +79,7 @@ public abstract class ServiceDelegateBase
 
     /**
      * Set the environment properties
+     * @param properties
      */
     public void setProperties(Properties properties)
     {

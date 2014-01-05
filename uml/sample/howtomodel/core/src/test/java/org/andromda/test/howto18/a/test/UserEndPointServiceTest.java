@@ -20,29 +20,29 @@ public class UserEndPointServiceTest
     @Test
     public void testAddUser()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto18.a.UserEndPointServiceRemote userEndPointService = (org.andromda.test.howto18.a.UserEndPointServiceRemote)EJB3Container.getInitialContext().lookup("UserEndPointServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testAddUser()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto18.a.UserEndPointServiceRemote userEndPointService = (org.andromda.test.howto18.a.UserEndPointServiceRemote)EJB3Container.getInitialContext().lookup("UserEndPointServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testAddUser()", ex);
+        // }
     }
 
     @Test
     public void testGetUser()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto18.a.UserEndPointServiceRemote userEndPointService = (org.andromda.test.howto18.a.UserEndPointServiceRemote)EJB3Container.getInitialContext().lookup("UserEndPointServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testGetUser()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto18.a.UserEndPointServiceRemote userEndPointService = (org.andromda.test.howto18.a.UserEndPointServiceRemote)EJB3Container.getInitialContext().lookup("UserEndPointServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testGetUser()", ex);
+        // }
     }
 
 }

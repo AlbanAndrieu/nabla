@@ -226,7 +226,7 @@
             <dependency>
                 <groupId>jboss</groupId>
                 <artifactId>jboss-j2ee</artifactId>
-                <version>${jboss.version}</version>
+                <version>${jboss4.version}</version>
                 <scope>provided</scope>
             </dependency>
             <!--dependency>
@@ -238,7 +238,7 @@
             <dependency>
                 <groupId>jboss</groupId>
                 <artifactId>jboss-ejb3x</artifactId>
-                <version>${jboss.version}</version>
+                <version>${jboss4.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -256,19 +256,19 @@
             <dependency>
                 <groupId>jboss</groupId>
                 <artifactId>jboss-serialization</artifactId>
-                <version>${jboss.version}</version>
+                <version>${jboss4.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jboss</groupId>
                 <artifactId>jboss-remoting</artifactId>
-                <version>${jboss.version}</version>
+                <version>${jboss4.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>jboss</groupId>
                 <artifactId>jboss-aop-jdk50-client</artifactId>
-                <version>${jboss.version}</version>
+                <version>${jboss4.version}</version>
                 <scope>provided</scope>
             </dependency>
             <!--dependency>
@@ -286,7 +286,7 @@
             <dependency>
                 <groupId>jboss</groupId>
                 <artifactId>jnp-client</artifactId>
-                <version>${jboss.version}</version>
+                <version>${jboss4.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <!-- Webservice JBossWS Dependencies -->

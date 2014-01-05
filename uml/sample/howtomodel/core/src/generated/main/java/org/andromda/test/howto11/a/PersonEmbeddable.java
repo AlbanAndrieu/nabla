@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
  * DO NOT MODIFY this class.
  */
 @MappedSuperclass
-public abstract class PersonEmbeddable implements Serializable {
+public abstract class PersonEmbeddable implements Serializable{
     private static final long serialVersionUID = -3303510932853057403L;
 
     // ----------- 3 Attribute Definitions ------------

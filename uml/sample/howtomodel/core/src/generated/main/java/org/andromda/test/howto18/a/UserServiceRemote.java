@@ -22,16 +22,23 @@ public interface UserServiceRemote extends UserService
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto18.a.UserService.addUser
+     * @param user
+     * @throws UserException
      */
     public void addUser(User user) throws UserException;
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto18.a.UserService.getUser
+     * @param id
+     * @return User
+     * @throws UserException
      */
     public User getUser(Long id) throws UserException;
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto18.a.UserService.getAllUsers
+     * @return Collection
+     * @throws UserException
      */
     public Collection getAllUsers() throws UserException;
 

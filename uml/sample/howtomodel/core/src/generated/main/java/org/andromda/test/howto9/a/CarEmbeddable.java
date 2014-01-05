@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
  * DO NOT MODIFY this class.
  */
 @MappedSuperclass
-public abstract class CarEmbeddable    extends Vehicle implements Serializable {
+public abstract class CarEmbeddable    extends Vehicle implements Serializable{
     private static final long serialVersionUID = 48981959400562006L;
 
     // ----------- 3 Attribute Definitions ------------
@@ -115,7 +115,7 @@ public abstract class CarEmbeddable    extends Vehicle implements Serializable {
      * @return Person
      */
     @ManyToOne(optional=false)
-    @JoinColumn(name="OWNER")
+    @JoinColumn(name="OWNER", insertable=true, updatable=true)
     public Person getOwner()
     {
         return this.owner;
@@ -146,7 +146,7 @@ public abstract class CarEmbeddable    extends Vehicle implements Serializable {
      *
      * @param make String value for the make property true  1
      * @param model String value for the model property true  1
-     * @param age Short value for the age property true  1
+     * @param age Short value for the age property false  0
      * @param serial String value for the serial property true  1
      * @param name String value for the name property true  1
      * @param type CarType value for the type property true  1

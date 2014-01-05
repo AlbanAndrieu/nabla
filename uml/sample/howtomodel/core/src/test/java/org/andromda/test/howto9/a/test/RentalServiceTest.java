@@ -20,29 +20,29 @@ public class RentalServiceTest
     @Test
     public void testGetAllCars()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto9.a.RentalServiceRemote rentalService = (org.andromda.test.howto9.a.RentalServiceRemote)EJB3Container.getInitialContext().lookup("RentalServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testGetAllCars()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto9.a.RentalServiceRemote rentalService = (org.andromda.test.howto9.a.RentalServiceRemote)EJB3Container.getInitialContext().lookup("RentalServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testGetAllCars()", ex);
+        // }
     }
 
     @Test
     public void testGetCustomersByName()
     {
-        //        try
-        //        {
-        //            org.andromda.test.howto9.a.RentalServiceRemote rentalService = (org.andromda.test.howto9.a.RentalServiceRemote)EJB3Container.getInitialContext().lookup("RentalServiceBean/remote");
-        //            test implementation
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.warn("Failed test testGetCustomersByName()", ex);
-        //        }
+        // try
+        // {
+        // org.andromda.test.howto9.a.RentalServiceRemote rentalService = (org.andromda.test.howto9.a.RentalServiceRemote)EJB3Container.getInitialContext().lookup("RentalServiceBean/remote");
+        // test implementation
+        // }
+        // catch (Exception ex)
+        // {
+        // logger.warn("Failed test testGetCustomersByName()", ex);
+        // }
     }
 
 }

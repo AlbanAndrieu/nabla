@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
  * DO NOT MODIFY this class.
  */
 @MappedSuperclass
-public abstract class CarEmbeddable implements Serializable {
+public abstract class CarEmbeddable implements Serializable{
     private static final long serialVersionUID = -6793461983486533447L;
 
     // ----------- 3 Attribute Definitions ------------
@@ -115,7 +115,7 @@ public abstract class CarEmbeddable implements Serializable {
      * @return Person
      */
     @ManyToOne(optional=false, fetch=FetchType.LAZY)
-    @JoinColumn(name="OWNER")
+    @JoinColumn(name="OWNER", insertable=true, updatable=true)
     public Person getOwner()
     {
         return this.owner;

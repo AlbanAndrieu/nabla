@@ -101,7 +101,7 @@ public class PatternMatchingExceptionHandler
 
     /**
      * Finds the root cause of the parent exception
-     * by traveling up the exception hierarchy.
+     * by traveling up the exception hierachy.
      * @param throwable the Exception containing the message to retrieve
      * @throws Throwable
      */

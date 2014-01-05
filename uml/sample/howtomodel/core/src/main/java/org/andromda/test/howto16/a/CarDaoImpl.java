@@ -47,13 +47,14 @@ public class CarDaoImpl extends CarDaoBase
         // TODO implement loadCarFromCareValueObject
         throw new UnsupportedOperationException("org.andromda.test.howto16.a.loadCarFromCareValueObject(CareValueObject) not yet implemented.");
 
-        /* A typical implementation looks like this:
-        Car car = this.load(carVo.getId());
-        if (car == null)
-        {
-            car = Car.Factory.newInstance();
-        }
-        return car;
+        /*
+         * A typical implementation looks like this:
+         * Car car = this.load(carVo.getId());
+         * if (car == null)
+         * {
+         * car = Car.Factory.newInstance();
+         * }
+         * return car;
          */
     }
 

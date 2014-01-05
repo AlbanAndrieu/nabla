@@ -115,7 +115,7 @@ public class ManageableServiceLocator
      */
     public final PersonManageableService getPersonManageableServiceRemote(Properties env) throws NamingException
     {
-        return (PersonManageableService) getContext(env).lookup("howtomodel-1.0/PersonManageableService/remote");
+        return (PersonManageableService) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/PersonManageableService/remote");
     }
 
     /**
@@ -126,7 +126,7 @@ public class ManageableServiceLocator
      */
     public final PersonManageableService getPersonManageableServiceLocal(Properties env) throws NamingException
     {
-        return (PersonManageableService) getContext(env).lookup("howtomodel-1.0/PersonManageableService/local");
+        return (PersonManageableService) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/PersonManageableService/local");
     }
     /**
      * Gets an instance of {@link CarManageableService}.
@@ -146,7 +146,7 @@ public class ManageableServiceLocator
      */
     public final CarManageableService getCarManageableServiceRemote(Properties env) throws NamingException
     {
-        return (CarManageableService) getContext(env).lookup("howtomodel-1.0/CarManageableService/remote");
+        return (CarManageableService) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/CarManageableService/remote");
     }
 
     /**
@@ -157,7 +157,7 @@ public class ManageableServiceLocator
      */
     public final CarManageableService getCarManageableServiceLocal(Properties env) throws NamingException
     {
-        return (CarManageableService) getContext(env).lookup("howtomodel-1.0/CarManageableService/local");
+        return (CarManageableService) getContext(env).lookup("howtomodel-1.0.1-SNAPSHOT/CarManageableService/local");
     }
 
     /**

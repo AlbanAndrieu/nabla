@@ -21,6 +21,9 @@ public interface PaymentServiceRemote extends PaymentService
 
     /**
      * TODO: Model Documentation for org.andromda.test.howto10.a.PaymentService.register
+     * @param owner
+     * @param car
+     * @param leasePeriod
      */
     public void register(Person owner, Car car, int leasePeriod);
 

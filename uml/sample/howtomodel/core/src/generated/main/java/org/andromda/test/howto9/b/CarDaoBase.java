@@ -15,7 +15,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 /**
@@ -91,7 +91,8 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> query = this.entityManager.createNamedQuery("Car.findAll", Car.class);
+            Query query = entityManager.createNamedQuery("Car.findAll");            
+
             List<Car> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
@@ -339,7 +340,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> queryObject = this.entityManager.createNamedQuery("Car.findByType", Car.class);
+            Query queryObject = entityManager.createNamedQuery("Car.findByType");
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -359,7 +360,7 @@ public abstract class CarDaoBase implements CarDao
     {
         try
         {
-                        TypedQuery<Car> queryObject = this.entityManager.createQuery(queryString, Car.class);
+            Query queryObject = entityManager.createQuery(queryString);
             queryObject.setParameter("type", type);
             List results = queryObject.getResultList();
             transformEntities(transform, results);
@@ -389,6 +390,8 @@ public abstract class CarDaoBase implements CarDao
 
      /**
       * Performs the core logic for {@link #allCarsAreRented()}
+      * @return boolean 
+      * @throws Exception
       */
     protected abstract boolean handleAllCarsAreRented() throws Exception;
 

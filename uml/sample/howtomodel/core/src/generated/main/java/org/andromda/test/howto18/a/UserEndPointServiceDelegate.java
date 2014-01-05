@@ -46,9 +46,11 @@ public class UserEndPointServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto18.a.UserEndPointServiceBean#addUser(String)
      *
-     * Call the session bean operation using appropriate view type
+     * @param name
+     * @throws UserException
      */
     public void addUser(String name)
         throws UserException
@@ -69,9 +71,12 @@ public class UserEndPointServiceDelegate
     }
 
     /**
+     * Call the session bean operation using appropriate view type
      * @see org.andromda.test.howto18.a.UserEndPointServiceBean#getUser(Long)
      *
-     * Call the session bean operation using appropriate view type
+     * @param id
+     * @return User
+     * @throws UserException
      */
     public User getUser(Long id)
         throws UserException

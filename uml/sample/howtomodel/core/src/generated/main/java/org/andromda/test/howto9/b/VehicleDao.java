@@ -27,7 +27,7 @@ public interface VehicleDao
      * @return Vehicle
      * @throws VehicleDaoException
      */
-    public Vehicle load(String serial) throws VehicleDaoException;
+    public Vehicle load(String serial)     throws VehicleDaoException;
 
     /**
      *   Does the same thing as {@link #load(String)} with an
@@ -42,7 +42,7 @@ public interface VehicleDao
      * @return either the entity or the object transformed from the entity.
      * @throws VehicleDaoException
      */
-    public Object load(int transform, String serial) throws VehicleDaoException;
+    public Object load(int transform, String serial)     throws VehicleDaoException;
 
     /**
      * Loads all entities of type {@link Vehicle}.
@@ -181,7 +181,7 @@ public interface VehicleDao
      * @param serial
      * @throws VehicleDaoException
      */
-    public void remove(String serial) throws VehicleDaoException;
+    public void remove(String serial)     throws VehicleDaoException;
 
     /**
      * Removes all entities in the given <code>entities<code> collection.
