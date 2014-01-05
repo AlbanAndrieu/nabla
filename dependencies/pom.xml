@@ -1370,12 +1370,12 @@
                 <batik.version>1.7</batik.version>
                 <batik.ext.version>${batik.version}</batik.ext.version>
 
-                <jboss4.version>4.2.3.GA</jboss4.version>
+                <jboss4.version>4.2.2.GA</jboss4.version>
                 <jboss5.version>5.1.0.GA</jboss5.version>
                 <jboss7.version>7.1.1.Final</jboss7.version>
                 <jboss.version>${jboss4.version}</jboss.version>
-                <jbossall.client.version>${jboss4.version}</jbossall.client.version>
-                <jboss.annotations.ejb3.version>${jboss4.version}</jboss.annotations.ejb3.version>
+                <jbossall.client.version>4.2.3.GA</jbossall.client.version>
+                <jboss.annotations.ejb3.version>4.2.3.GA</jboss.annotations.ejb3.version>
                 <jboss.embeddable.version>1.0.0.Alpha9</jboss.embeddable.version>
                 <jboss.microcontainer.version>alpha_9</jboss.microcontainer.version>
                 <jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
