@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.net.BindException;
 import java.net.ServerSocket;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -16,13 +17,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,7 +37,7 @@ public class SimpleSTest
 {
     private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
     private WebDriver           driver;
-    private String              baseUrl              = "http://192.168.0.29:9090"; ;
+    private String              baseUrl              = "http://localhost:9090"; ;
     private boolean             acceptNextAlert      = true;
     private StringBuffer        verificationErrors   = new StringBuffer();
     private DefaultSelenium     selenium;
@@ -50,20 +53,23 @@ public class SimpleSTest
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         // startSeleniumServer(server);
 
-        /*
-         * DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-         * // say you use the redhat5 label to indicate RHEL5 and the amd64 label
-         * // to specify the architecture
-         * // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
-         * // Say you want a specific node to thread your request, just specify the
-         * // node name (it must be running a selenium configuration though)
-         * capabillities.setCapability("jenkins.nodeName", "(master)");
-         * // capabillities.setCapability("version", "8");
-         * capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
-         * capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
-         * driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
-         */
-        driver = new FirefoxDriver();
+        DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+        FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
+        // /usr/bin/firefox
+
+        capabillities.setCapability(FirefoxDriver.BINARY, ffb);
+        // say you use the redhat5 label to indicate RHEL5 and the amd64 label
+        // to specify the architecture
+        // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
+        // Say you want a specific node to thread your request, just specify the
+        // node name (it must be running a selenium configuration though)
+        capabillities.setCapability("jenkins.nodeName", "(master)");
+        // capabillities.setCapability("version", "8");
+        capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+        capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
+        driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
+
+        // driver = new FirefoxDriver();
         // driver = new HtmlUnitDriver(true);
 
         // RemoteWebDriver does not implement the TakesScreenshot class
