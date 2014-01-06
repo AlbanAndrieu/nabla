@@ -210,8 +210,8 @@
 				<as.version>5</as.version>
 				<jboss.ear.version>5</jboss.ear.version>
                                 <!-- START INFO USE BY MDA -->
-				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home> -->
-				<jboss.home>C:\jboss-${jboss5.version}</jboss.home>
+				<jboss.home>${env.JBOSS_HOME}</jboss.home>
+				<!--<jboss.home>C:\jboss-${jboss5.version}</jboss.home> -->
 				<jboss.version>${jboss5.version}</jboss.version> <!-- overrided -->
 				<server.version>${jboss.version}</server.version>				
 				<server.home>${jboss.home}</server.home>
@@ -238,7 +238,7 @@
                              	<!-- END INFO USE BY MDA -->
 				<cargo.container>jboss51x</cargo.container>
 				<cargo.container.home>${jboss.home}</cargo.container.home>
-				<cargo.container.url>http://downloads.sourceforge.net/jboss/jboss-5.1.0.GA.zip?big_mirror=1</cargo.container.url>
+				<cargo.container.url>http://downloads.sourceforge.net/jboss/jboss-${jboss5.version}.zip?big_mirror=1</cargo.container.url>
 				<!--http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip -->
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
@@ -476,8 +476,8 @@
 				</property>
 			</activation>
 			<properties>
-				<!--<tomcat.home>${env.CATALINA_HOME}</tomcat.home> -->
-				<tomcat.home>/tomcat-7.0</tomcat.home>
+				<tomcat.home>${env.CATALINA_HOME}</tomcat.home> 
+				<!--<tomcat.home>/tomcat-7.0</tomcat.home>-->
 				<server.home>${tomcat.home}</server.home>
 				<server.version>7.0.16</server.version>
 				<server.name>${product.name}</server.name>
