@@ -182,10 +182,11 @@
 						<configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
+								<!--<home> ${project.build.directory}/jbossas7</home>-->
 								<artifactInstaller>
 									<groupId>org.jboss.as</groupId>
 									<artifactId>jboss-as-dist</artifactId>
-									<version>${jboss.version}</version>
+									<version>${jboss.version}</version>									
 								</artifactInstaller>
 							</container>
 						</configuration>
@@ -483,7 +484,7 @@
 				<server.name>${product.name}</server.name>
 				<server.port>${tomcat.port}</server.port>
 				<datasource>${datasource.name}</datasource>
-				<deploy.url>http://${cargo.host}:${tomcat.port}/manager</deploy.url>
+				<deploy.url>http://${cargo.host}:${tomcat.port}/manager/text</deploy.url>
 
 				<cargo.container>tomcat7x</cargo.container>
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
@@ -506,12 +507,17 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
+							<home>${cargo.container.home}</home>
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
+								<log>target/cargo.log</log>
+								<logLevel>debug</logLevel>
+								<!--
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
+								-->
 							</container>
 						</configuration>
 						<!--
@@ -587,9 +593,12 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
+							<home>${cargo.container.home}</home>
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
+								<log>target/cargo.log</log>
+								<logLevel>debug</logLevel>								
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
