@@ -476,7 +476,7 @@
 				</property>
 			</activation>
 			<properties>
-				<tomcat.home>${env.CATALINA_HOME}</tomcat.home> 
+				<tomcat.home>${env.CATALINA_BASE}</tomcat.home> 
 				<!--<tomcat.home>/tomcat-7.0</tomcat.home>-->
 				<server.home>${tomcat.home}</server.home>
 				<server.version>7.0.16</server.version>
@@ -559,7 +559,7 @@
 				</property>
 			</activation>
 			<properties>
-				<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
+				<tomcat.home>${env.CATALINA_BASE}</tomcat.home>
 				<server.home>${tomcat.home}</server.home>
 				<server.version>6.0.35</server.version>
 				<server.name>${product.name}</server.name>
