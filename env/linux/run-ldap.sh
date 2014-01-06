@@ -55,3 +55,5 @@ sudo ./config-manager
 sudo dpkg-reconfigure ldap-auth-config
 
 #http://doc.ubuntu-fr.org/ldap_client
+
+sudo service slapd status

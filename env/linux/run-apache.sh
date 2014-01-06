@@ -100,6 +100,7 @@ sudo a2ensite jenkins
 sudo a2enmod rewrite
 sudo a2enmod proxy
 sudo a2enmod ssl
+sudo a2enmod proxy_http
 
 <VirtualHost *:8080>
         # The ServerName directive sets the request scheme, hostname and port that
@@ -200,3 +201,6 @@ Fingerprint:
 SF-Port22-TCP:V=6.40%I=7%D=11/15%Time=52856A44%P=i686-pc-linux-gnu%r(NULL,SF:29,"SSH-2\.0-OpenSSH_6\.2p2\x20Ubuntu-6ubuntu0\.1\r\n");
 
 -------------------------------------------
+
+#check error doing
+sudo apache2ctl restart
