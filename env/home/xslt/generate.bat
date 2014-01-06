@@ -2,7 +2,7 @@ cls
 
 set TMP_VAR=%~dp0
 
-REM set M2_REPO=/cygdrive/c/repo
+REM set M2_REPO=${env.WORKSPACE}/.repository
 set M2_REPO=C:\repo
 set JAVACMD=%JAVA_HOME%/bin/java
 REM set PROJECT_DEV=%PROJECT_DEV%/xml
