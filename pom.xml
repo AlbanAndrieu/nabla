@@ -14,6 +14,10 @@
 	<url>http://www.maven.nabla.mobi</url>
 	<!--<url>${JOB_URL}</url>-->
 	
+        <prerequisites>
+                <maven>3.0.4</maven>
+        </prerequisites>
+        	
 	<properties>
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
@@ -174,11 +178,6 @@
 					<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 				</repository>
 				-->
-                                <repository>
-                                        <id>nexus-releases</id>
-                                        <name>Nexus Staging Repository</name>
-                                        <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
-                                </repository>
 				<!--
 				<snapshotRepository>
 					<id>server-snapshots</id>
@@ -193,10 +192,17 @@
 					<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 				</snapshotRepository>
 				-->
+                                <repository>
+                                        <id>nexus-releases</id>
+                                        <name>Nexus Staging Repository</name>
+                                        <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                                        <uniqueVersion>true</uniqueVersion>
+                                </repository>				
                                 <snapshotRepository>
                                         <id>nexus-snapshots</id>
                                         <name>Nexus Snapshot Repository</name>
                                         <url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+                                        <uniqueVersion>false</uniqueVersion>
                                 </snapshotRepository>
 
 				<site>
@@ -461,7 +467,18 @@
     		  <snapshots>
     		    <enabled>false</enabled>
     		  </snapshots>    		  
-    		</repository>      		    				
+    		</repository>      	
+    		<repository>
+    		  <id>seleniumhq</id>
+    		  <name>Selenium HQ Repository</name>
+    		  <url>http://repo1.maven.org/maven2/org/seleniumhq/selenium/</url>
+    		  <releases>
+    		    <enabled>true</enabled>
+    		  </releases>
+    		  <snapshots>
+    		    <enabled>false</enabled>
+    		  </snapshots>    		  
+    		</repository>        			    				
 	</repositories>
 
 	<pluginRepositories>
@@ -600,9 +617,9 @@
 		</pluginRepository>
 		-->
                 <pluginRepository>
-                  <id>jboss-public-repository</id>
-                  <name>JBoss Repository</name>
-                  <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                  	<id>jboss-public-repository</id>
+                  	<name>JBoss Repository</name>
+                  	<url>http://repository.jboss.org/nexus/content/groups/public</url>
                         <snapshots>
                         	<enabled>false</enabled>
                         </snapshots>                        
@@ -610,13 +627,17 @@
                         	<enabled>true</enabled>
                         </releases>
                 </pluginRepository>
-                <!--
                 <pluginRepository>
                 	<id>ctpjava</id>
         		<name>CTP Public Repository</name>
         		<url>http://ctpjava.googlecode.com/svn/trunk/repository</url>
+                        <snapshots>
+                        	<enabled>false</enabled>
+                        </snapshots>                        
+                        <releases>
+                        	<enabled>true</enabled>
+                        </releases>
     		</pluginRepository>	
-		-->	
     		<pluginRepository>
     		  <id>smartics</id>
     		  <name>Smartics Repository</name>
