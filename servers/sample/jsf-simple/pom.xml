@@ -81,7 +81,20 @@
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.version}</version>
 			<scope>test</scope>
+		</dependency>		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-remote-driver</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>	
 		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>	
+		</dependency>
+                        		
 		<!-- TODO remove selenium-chrome-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -89,13 +102,13 @@
 			<version>${selenium.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
 			<version>${selenium.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -307,7 +320,7 @@
 			</plugin>
 
 			<plugin>
-		<!-- Allow this web application to be started with the command : 'mvn jetty:run-war' -->
+			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war' -->
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
