@@ -1518,7 +1518,7 @@
                 <errai.version>2.0.Beta3</errai.version>
 
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
-                <selenium.version>2.39.0</selenium.version>
+                <selenium.version>2.37.1</selenium.version>
                 <selenium.java.client.driver.version>1.0.1</selenium.java.client.driver.version>
                 <webdriver.chrome>/var/lib/chrome-driver/chromedriver</webdriver.chrome>
                 <drools.version>5.0.1</drools.version>
@@ -3428,6 +3428,30 @@ pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>${maven.jetty.eclipse.plugin.version}</version>
+					<configuration>
+						<webAppConfig>
+							<contextPath>/nabla</contextPath>
+						</webAppConfig>
+						<useTestClasspath>true</useTestClasspath>
+						<connectors>
+							<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+								<port>${jetty.port}</port>
+								<maxIdleTime>600000</maxIdleTime>
+							</connector>
+						</connectors>
+						<!--
+						<systemProperties>
+							<systemProperty>
+								<key>nabla.config</key>
+								<value>../../../config/dev</value>
+							</systemProperty>
+							<systemProperty>
+								<key>nabla.data</key>
+								<value>${data.dir}</value>
+							</systemProperty>
+						</systemProperties>
+						-->
+					</configuration>					
 				</plugin>
 				<!-- TODO already using jetty-maven-plugin -->
                                 <plugin>
@@ -3435,8 +3459,14 @@ pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
                                         <artifactId>maven-jetty-plugin</artifactId>
                                         <version>${maven.jetty.mortbay.plugin.version}</version>
                                         <configuration>
-                                                <contextPath>/</contextPath>
+                                                <contextPath>/nabla</contextPath>
                                                 <scanIntervalSeconds>3</scanIntervalSeconds>
+ 	  					<connectors>
+          					  <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+          					    <port>${jetty.port}</port>
+          					    <maxIdleTime>60000</maxIdleTime>
+          					  </connector>
+          					</connectors>                                                
                                                 <scanTargetPatterns>
                                                         <scanTargetPattern>
                                                                 <directory>src/main/webapp/WEB-INF</directory>
