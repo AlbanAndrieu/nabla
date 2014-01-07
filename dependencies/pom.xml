@@ -1697,7 +1697,7 @@
                 <maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
                 <maven.gui.plugin.version>1.0</maven.gui.plugin.version>
                 <maven.plugin.plugin.plugin.version>3.2</maven.plugin.plugin.plugin.version>
-                <maven.clirr.plugin.version>2.6.1</maven.clirr.plugin.version>
+                <maven.clirr.plugin.version>2.5</maven.clirr.plugin.version>
                 <maven.patch.plugin.version>1.1.1</maven.patch.plugin.version>
                 <maven.one.plugin.version>1.3</maven.one.plugin.version>
                 <maven.findbugs.plugin.version>2.5.3</maven.findbugs.plugin.version>
@@ -1711,7 +1711,7 @@
                 <maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
                 <maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.8.1</maven.scm.plugin.version>
-                <maven.checkstyle.plugin.version>2.11</maven.checkstyle.plugin.version>
+                <maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
                 <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
                 <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
                 <maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
