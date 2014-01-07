@@ -56,6 +56,7 @@ public class SimpleSTest
         DesiredCapabilities capabillities = DesiredCapabilities.firefox();
         FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
         // /usr/bin/firefox
+        // C:\Program Files (x86)\Mozilla Firefox\firefox.exe
 
         capabillities.setCapability(FirefoxDriver.BINARY, ffb);
         // say you use the redhat5 label to indicate RHEL5 and the amd64 label
@@ -69,6 +70,9 @@ public class SimpleSTest
         capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
         driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
 
+        // FirefoxProfile profile = new FirefoxProfile();
+        // FirefoxBinary binary = new FirefoxBinary(new File("C:\\path to firefox\\firefox.exe"));
+        // driver = new FirefoxDriver(binary, profile);
         // driver = new FirefoxDriver();
         // driver = new HtmlUnitDriver(true);
 
