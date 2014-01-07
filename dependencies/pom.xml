@@ -2616,11 +2616,13 @@
                                   <version>${maven.buildmetadata.plugin.version}</version>
                                 </plugin>
                                 -->
+                                <!--
 				<plugin>
     				  <groupId>org.codehaus.sonar-plugins</groupId>
     				  <artifactId>maven-report</artifactId>
     				  <version>${maven.sonar.report.plugin.version}</version>
-    				</plugin>                                  
+    				</plugin>     
+    				-->                             
                                 <plugin>
                                   <groupId>com.mycila.maven-license-plugin</groupId>
                                   <artifactId>maven-license-plugin</artifactId>
