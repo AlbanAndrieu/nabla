@@ -142,10 +142,11 @@
 
 				<!-- END INFO USE BY MDA -->
 				<cargo.container>jboss71x</cargo.container>
-				<cargo.container.home>${jboss.home}/standalone</cargo.container.home>
+				<cargo.container.home>${jboss.home}</cargo.container.home>
 				<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
-				<cargo.configuration.type>existing</cargo.configuration.type>
+				<!--<cargo.configuration.type>existing</cargo.configuration.type>-->
+				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type>installed</cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
@@ -180,15 +181,31 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
+							<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>		
+							<type>${cargo.configuration.type}</type>					
 							<container>
 								<containerId>${cargo.container}</containerId>
-								<!--<home> ${project.build.directory}/jbossas7</home>-->
+								<type>${cargo.container.type}</type>
+								<log>target/cargo.log</log>
+								<logLevel>debug</logLevel>
+								<home>${cargo.container.home}</home>									
+								<!--		
 								<artifactInstaller>
 									<groupId>org.jboss.as</groupId>
 									<artifactId>jboss-as-dist</artifactId>
 									<version>${jboss.version}</version>									
 								</artifactInstaller>
+								-->
+								<systemProperties>
+									<jboss.server.log.threshold>INFO</jboss.server.log.threshold>
+								</systemProperties>
 							</container>
+							<properties>								
+								<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
+								<cargo.jboss.configuration>default</cargo.jboss.configuration>
+								<cargo.rmi.port>1099</cargo.rmi.port>
+								<cargo.logging>high</cargo.logging>
+							</properties>							
 						</configuration>
 					</plugin>
 				</plugins>
