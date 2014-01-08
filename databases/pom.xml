@@ -14,7 +14,7 @@
         <name>Nabla Databases</name>
         <packaging>pom</packaging>
         <description>The Databases pom file is a superpom to centralize all third parties</description>
-        <url>${JOB_URL}</url>
+        <url>http://maven.nabla.mobi/dependencies/customs/main/databases</url>
         
         <scm>
                 <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/databases</connection>
@@ -23,6 +23,11 @@
                 <tag>HEAD</tag>
         </scm>
 
+        <ciManagement>
+                <system>Jenkins</system>
+                <url>${JOB_URL}</url>
+        </ciManagement>
+        
         <profiles>
                 <!-- ================= START Database Profiles ================= -->
                 <profile>
