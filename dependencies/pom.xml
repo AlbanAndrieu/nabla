@@ -17,7 +17,7 @@
         <name>Dependencies pom file</name>
         <description>The Dependencies pom file is a superpom to centralize all third parties</description>
         <inceptionYear>2012</inceptionYear>
-        <url>http://maven.nabla.mobi</url>
+        <url>http://maven.nabla.mobi/dependencies</url>
 
         <organization>
                 <name>Nabla Software</name>
@@ -1724,7 +1724,7 @@
                 <maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
                 <maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
                 <maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
-                <maven.sonar.maven.plugin.version>4.0</maven.sonar.maven.plugin.version>
+                <maven.sonar.maven.plugin.version>2.2</maven.sonar.maven.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.10</maven.cli.plugin.version>
                 <maven.shade.plugin.version>2.2</maven.shade.plugin.version>
