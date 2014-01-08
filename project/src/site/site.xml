@@ -130,7 +130,7 @@
        <menu name="Other Resources">
             <!--<item name="Documents" href="/project/documents"/>-->
             <item name="Maven Site Skin Documentation" href="../../../../../../skin/index.html"/>
-            <item name="C++ Documentation sample" href="/../../../../../cpp/index.html"/>
+            <item name="C++ Documentation sample" href="../../../../../../cpp/index.html"/>
             <item name="Other Links" href="otherlinks.html"/>
        </menu> 
        
