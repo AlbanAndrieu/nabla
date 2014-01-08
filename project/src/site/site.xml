@@ -129,14 +129,14 @@
 -->
        <menu name="Other Resources">
             <!--<item name="Documents" href="/project/documents"/>-->
-            <item name="Maven Site Skin Documentation" href="/../../../../../skin/index.html"/>
+            <item name="Maven Site Skin Documentation" href="../../../../../../skin/index.html"/>
             <item name="C++ Documentation sample" href="/../../../../../cpp/index.html"/>
             <item name="Other Links" href="otherlinks.html"/>
        </menu> 
        
        <menu name="Sample Project">       	    
        	    <item name="Maven Site Default Samples" href="/sample/interview/index.html"/>            
-            <item name="Databases Samples" href="../../../../sample/dao/business/index.html"/>
+            <item name="Databases Samples" href="../../sample/dao/business/index.html"/>
             <item name="UML Samples" href="/uml/sample/index.html"/>
        </menu> 
               
