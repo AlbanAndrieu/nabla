@@ -28,6 +28,10 @@
                 <url>${JOB_URL}</url>
         </ciManagement>
         
+	<properties>
+        	<sonar.build-stability.url>https://home.nabla.mobi/jenkins/job/nabla-databases-nightly/</sonar.build-stability.url>
+	</properties>        
+        
         <profiles>
                 <!-- ================= START Database Profiles ================= -->
                 <profile>
