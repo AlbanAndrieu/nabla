@@ -1255,7 +1255,7 @@
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>-->
 		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
-		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>
+		<!--<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>-->
 		<clover.jdkLevel>1.6</clover.jdkLevel>
 		<sonar.java.target>1.7</sonar.java.target>
 		<sonar.language>java</sonar.language>
