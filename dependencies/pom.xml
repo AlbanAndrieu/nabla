@@ -1250,7 +1250,8 @@
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
 		<sonar.clover.version>${clover.version}</sonar.clover.version>
-		<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
+		<!--<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>-->
+		<sonar.clover.reportPath>clover.xml</sonar.clover.reportPath>
 		<!--<sonar.exclusions>**/clover/src-instrumented/**</sonar.exclusions>-->
 		<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>-->
