@@ -389,10 +389,15 @@
                                                 <groupId>com.atlassian.maven.plugins</groupId>
                                                 <artifactId>maven-clover2-plugin</artifactId>
                                                 <version>${maven.clover.plugin.version}</version>
-                                                <configuration>
-                                                        <generateHistorical>true</generateHistorical>
-                                                        <generateHtml>true</generateHtml>
+                                                <configuration>                                                        
+                                                        <jdk>${clover.jdkLevel}</jdk>
+                                                        <generateXml>true</generateXml>
+                                                	<generatePdf>true</generatePdf>
+                                                	<generateHtml>true</generateHtml>
+                                                	<!--
+                                                	<generateHistorical>true</generateHistorical>
                                                         <snapshot>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.snapshot</snapshot>
+                                                        -->
                                                 </configuration>
                                         </plugin>
 
@@ -424,6 +429,7 @@
                                                                 </regexes>
                                                         </check>
                                                 </configuration>
+                                                <!--
                                                 <executions>
                                                         <execution>
                                                                 <goals>
@@ -432,6 +438,7 @@
                                                                 </goals>
                                                         </execution>
                                                 </executions>
+                                                -->
                                         </plugin>
                                         <plugin>
                                                 <groupId>org.codehaus.mojo</groupId>
@@ -1097,7 +1104,7 @@
         	                <groupId>com.atlassian.maven.plugins</groupId>
         	                <artifactId>maven-clover2-plugin</artifactId>
         	                <version>${maven.clover.plugin.version}</version>
-        	                <configuration>
+        	                <configuration>        	               
         	                      <generateHistorical>true</generateHistorical>
         	                      <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
         	                      <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
@@ -1243,11 +1250,13 @@
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
 		<sonar.clover.version>${clover.version}</sonar.clover.version>
-		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>-->
 		<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
-		<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
+		<sonar.exclusions>**/clover/src-instrumented/**</sonar.exclusions>
+		<!--<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>-->
+		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>
+		<clover.jdkLevel>1.6</clover.jdkLevel>
 		<sonar.java.target>1.7</sonar.java.target>
 		<sonar.language>java</sonar.language>
 		<!--<sonar.jacoco.itReportPath>${project.basedir}/reports/jacoco.exec</sonar.jacoco.itReportPath>-->
@@ -3378,16 +3387,20 @@
                                         <artifactId>maven-clover2-plugin</artifactId>
                                         <version>${maven.clover.plugin.version}</version>
                                         <configuration>
-                                                <jdk>${jdkLevel}</jdk>
+                                                <jdk>${clover.jdkLevel}</jdk>
                                                 <generateXml>true</generateXml>
                                                 <generatePdf>true</generatePdf>
                                                 <generateHtml>true</generateHtml>
-                                                <generateHistorical>true</generateHistorical>
+                                                <!--<generateHistorical>true</generateHistorical>-->
                                                 <!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>--> <!-- see ~/.m2/settings.xml -->
                                                 <license><![CDATA[OmnNMlxhQFAEUSQhhRbTWbgBrnPWmXXRCIiwSXEGKTKhtJ
 mi2KQ>iGiT1PeXMUAuQEWBO>2KnpkIvg0X51vAATd3rcfz
 nPRQVXMpRRoqroPmPpRvSMnPpnRmMnqnPPsXXxuSVSSMnm
 pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
+						<excludes>
+            						<!-- GWT classes -->
+            						<exclude>**/client/**/*.java</exclude>
+          					</excludes>
                                         </configuration>
                                         <!--
 					<executions>
