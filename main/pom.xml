@@ -14,7 +14,7 @@
         <name>Nabla Main</name>
         <packaging>pom</packaging>
         <description>The Main pom file is a superpom to centralize all third parties</description>
-        <url>${JOB_URL}</url>
+        <url>http://maven.nabla.mobi/dependencies/customs/main</url>
 
         <scm>
                 <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/main</connection>
@@ -22,7 +22,12 @@
                 <url>https://alban.googlecode.com/svn/${project.svn.path}/main</url>
                 <tag>HEAD</tag>
         </scm>
-
+        
+        <ciManagement>
+                <system>Jenkins</system>
+                <url>${JOB_URL}</url>
+        </ciManagement>
+        
         <!-- ================= Default Properties ================= -->
         <properties>
                 <invoker.skip>true</invoker.skip>
@@ -1296,11 +1301,11 @@
                                                                         <artifactId>maven-clover2-plugin</artifactId>
                                                                         <version>${maven.clover.plugin.version}</version>
                                                                         <configuration>
-                                                                                <jdk>${jdkLevel}</jdk>
+                                                                                <jdk>${clover.jdkLevel}</jdk>
                                                                                 <generateXml>true</generateXml>
                                                                                 <generatePdf>true</generatePdf>
                                                                                 <generateHtml>true</generateHtml>
-                                                                                <generateHistorical>true</generateHistorical>
+                                                                                <!--<generateHistorical>true</generateHistorical>-->
                                                                         </configuration>
                                                                 </plugin>
                                                                 
@@ -1333,7 +1338,14 @@
     								  <groupId>de.smartics.maven.plugin</groupId>
     								  <artifactId>maven-buildmetadata-plugin</artifactId>
     								  <version>${maven.buildmetadata.plugin.version}</version>
-    								</plugin>                                                                
+    								</plugin>
+									<!--
+    								<plugin>
+    								  <groupId>org.codehaus.sonar-plugins</groupId>
+    								  <artifactId>maven-report</artifactId>
+    								  <version>${maven.sonar.report.plugin.version}</version>
+    								</plugin>
+									-->
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
@@ -1412,14 +1424,14 @@
                                                                 </regexes>
                                                         </check>
                                                 </configuration>
-                        <executions>
-        <execution>
-            <goals>
-              <goal>clean</goal>
-              <!--<goal>check</goal> comment to avoid running tests twice-->
-            </goals>
-          </execution>
-    </executions>
+                        			<executions>
+    						    <execution>
+    						        <goals>
+    						          <goal>clean</goal>
+    						          <!--<goal>check</goal> comment to avoid running tests twice-->
+    						        </goals>
+    						      </execution>
+    						</executions>
                                         </plugin>
                                         <!--
                                         <plugin>
