@@ -1249,12 +1249,13 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
+		<clover.enabled>true</clover.enabled>
 		<sonar.clover.version>${clover.version}</sonar.clover.version>
-		<!--<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>-->
-		<sonar.clover.reportPath>clover.xml</sonar.clover.reportPath>
+		<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
+		<!--<sonar.clover.reportPath>${project.build.directory}/clover.xml</sonar.clover.reportPath>-->
 		<!--<sonar.exclusions>**/clover/src-instrumented/**</sonar.exclusions>-->
-		<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
-		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>-->
+		<!--<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>-->
+		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>
 		<clover.jdkLevel>1.6</clover.jdkLevel>
@@ -3394,6 +3395,7 @@
                                                 <generateHtml>true</generateHtml>
                                                 <!--<generateHistorical>true</generateHistorical>-->
                                                 <!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>--> <!-- see ~/.m2/settings.xml -->
+                                                <!--<outputDirectory>${clover.reportPath}/clover-report</outputDirectory>-->
                                                 <license><![CDATA[OmnNMlxhQFAEUSQhhRbTWbgBrnPWmXXRCIiwSXEGKTKhtJ
 mi2KQ>iGiT1PeXMUAuQEWBO>2KnpkIvg0X51vAATd3rcfz
 nPRQVXMpRRoqroPmPpRvSMnPpnRmMnqnPPsXXxuSVSSMnm
