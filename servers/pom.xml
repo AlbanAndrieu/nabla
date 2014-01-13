@@ -73,6 +73,7 @@
 							</properties>
 						</configuration>
 					</configuration>
+					
                                                 <!--
                                         <executions>
                                                 <execution>
@@ -144,9 +145,11 @@
 				<cargo.container>jboss71x</cargo.container>
 				<cargo.container.home>${jboss.home}</cargo.container.home>
 				<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
-				<cargo.container.type>installed</cargo.container.type>
+				<!--<cargo.container.type>installed</cargo.container.type>-->
+				<cargo.container.type>remote</cargo.container.type>
 				<!--<cargo.configuration.type>existing</cargo.configuration.type>-->
-				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<!--<cargo.configuration.type>standalone</cargo.configuration.type>-->
+				<cargo.configuration.type>runtime</cargo.configuration.type>
 				<cargo.deployables.type>installed</cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
@@ -177,16 +180,17 @@
 			</properties>
 			<build>
 				<plugins>
+					<!-- TODO http://cargo.codehaus.org/JBoss+Remote+Deployer -->
 					<plugin>
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>		
+							<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
 							<type>${cargo.configuration.type}</type>					
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
-								<log>target/cargo.log</log>
+								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
 								<home>${cargo.container.home}</home>									
 								<!--		
@@ -202,11 +206,61 @@
 							</container>
 							<properties>								
 								<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
-								<cargo.jboss.configuration>default</cargo.jboss.configuration>
-								<cargo.rmi.port>1099</cargo.rmi.port>
+								<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
+								<cargo.jboss.management.port>9999</cargo.jboss.management.port>
+								<cargo.rmi.port>1099</cargo.rmi.port>-->
+								<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>								
 								<cargo.logging>high</cargo.logging>
 							</properties>							
 						</configuration>
+						<executions>
+							<!--
+							<execution>
+								<id>deploy</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>redeploy</goal>
+								</goals>
+							</execution>
+							-->
+        <execution>
+            <id>pre-integration-test</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>post-integration-test</id>
+            <phase>post-integration-test</phase>
+            <goals>
+                <goal>undeploy</goal>
+            </goals>
+        </execution>							
+							<!--
+							<execution>
+								<id>verify-deploy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>deployer-deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>clean-undeploy</id>
+								<phase>pre-clean</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+								</goals>
+							</execution>
+							-->
+						</executions>				
+                                <dependencies>
+                                        <dependency>
+                                                <groupId>org.jboss.as</groupId>
+                                                <artifactId>jboss-as-controller-client</artifactId>
+                                                <version>${jboss.version}</version>
+                                        </dependency>
+                                </dependencies>								
 					</plugin>
 				</plugins>
 			</build>
@@ -289,6 +343,22 @@
 								</zipUrlInstaller>
 							</container>
 						</configuration>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -334,6 +404,22 @@
 								<containerId>${cargo.container}</containerId>
 							</container>
 						</configuration>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -383,6 +469,22 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -432,6 +534,22 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -481,6 +599,22 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -507,15 +641,17 @@
 				<cargo.container.home>${tomcat.home}</cargo.container.home>
 				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${server.version}/bin/apache-tomcat-${server.version}.zip</cargo.container.url>
 				<!--http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.30/bin/apache-tomcat-7.0.30.zip -->
-				<cargo.container.type>installed</cargo.container.type>
-				<cargo.configuration.type>existing</cargo.configuration.type>
+				<!--<cargo.container.type>installed</cargo.container.type>-->
+				<cargo.container.type>remote</cargo.container.type>
+				<!--<cargo.configuration.type>existing</cargo.configuration.type>-->
+				<cargo.configuration.type>runtime</cargo.configuration.type>
+				<cargo.configuration.home>${tomcat.home}</cargo.configuration.home>
 				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-
 				<scope.type>${scope.web}</scope.type>
 			</properties>
 			<build>
@@ -524,20 +660,29 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<home>${cargo.container.home}</home>
+							<home>${cargo.configuration.home}</home>
+							<type>${cargo.configuration.type}</type>
+							<properties>
+								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+								<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
+								<cargo.logging>high</cargo.logging>
+								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+								<!--<cargo.tomcat.ajp.port>${tomcat.ajb.port}</cargo.tomcat.ajp.port>-->							
+							</properties>								
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
-								<log>target/cargo.log</log>
+								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
-								<!--
+								<!--<home>${cargo.container.home}</home>							
+								
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
 								-->
 							</container>
 						</configuration>
-						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -553,6 +698,7 @@
 									<goal>deployer-undeploy</goal>
 								</goals>
 							</execution>
+							<!--
 							<execution>
 								<id>verify-deploy</id>
 								<phase>install</phase>
@@ -567,8 +713,8 @@
 									<goal>deployer-undeploy</goal>
 								</goals>
 							</execution>
+							-->
 						</executions>
-						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -614,7 +760,7 @@
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
-								<log>target/cargo.log</log>
+								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>								
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
