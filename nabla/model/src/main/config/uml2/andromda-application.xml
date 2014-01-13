@@ -14,7 +14,7 @@
     Leave commented, or else AndroMDA will try to connect each time.-->
     <server>
         <host>localhost</host>
-        <port>4447</port>
+        <port>7444</port>
     </server>
     <repositories>
         <repository name="emf-uml22">
