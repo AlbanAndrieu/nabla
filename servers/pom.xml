@@ -343,6 +343,7 @@
 								</zipUrlInstaller>
 							</container>
 						</configuration>
+						<!--
 				<executions>
 					<execution>
 						<id>start-container</id>
@@ -358,7 +359,8 @@
 							<goal>stop</goal>
 						</goals>
 					</execution>
-				</executions>						
+				</executions>		
+				-->				
 					</plugin>
 				</plugins>
 			</build>
