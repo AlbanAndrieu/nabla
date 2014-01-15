@@ -351,14 +351,7 @@
         				        <goal>undeploy</goal>
         				    </goals>
         				</execution>	
-				</executions>				
-                                <dependencies>
-                                        <dependency>
-                                                <groupId>org.jboss.as</groupId>
-                                                <artifactId>jboss-as-controller-client</artifactId>
-                                                <version>${jboss.version}</version>
-                                        </dependency>
-                                </dependencies>	        						
+				</executions>				        						
 			</plugin>
 
 			<plugin>
