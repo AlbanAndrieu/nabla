@@ -336,8 +336,29 @@
 						</deployable>
 					</deployables>     
 				</configuration>
-
-
+				<executions>
+        				<execution>
+        				    <id>pre-integration-test</id>
+        				    <phase>pre-integration-test</phase>
+        				    <goals>
+        				        <goal>deploy</goal>
+        				    </goals>
+        				</execution>
+        				<execution>
+        				    <id>post-integration-test</id>
+        				    <phase>post-integration-test</phase>
+        				    <goals>
+        				        <goal>undeploy</goal>
+        				    </goals>
+        				</execution>	
+				</executions>				
+                                <dependencies>
+                                        <dependency>
+                                                <groupId>org.jboss.as</groupId>
+                                                <artifactId>jboss-as-controller-client</artifactId>
+                                                <version>${jboss.version}</version>
+                                        </dependency>
+                                </dependencies>	        						
 			</plugin>
 
 			<plugin>
