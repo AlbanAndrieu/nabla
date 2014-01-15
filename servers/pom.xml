@@ -14,7 +14,7 @@
 	<name>Nabla Servers</name>
 	<packaging>pom</packaging>
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
-	<url>${JOB_URL}</url>
+	<url>http://maven.nabla.mobi/dependencies/customs/main/databases/servers</url>
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
@@ -23,6 +23,11 @@
 		<tag>HEAD</tag>
 	</scm>
 
+        <ciManagement>
+                <system>Jenkins</system>
+                <url>${JOB_URL}</url>
+        </ciManagement>
+        
         <!-- ================= Default Properties ================= -->
         <properties>
         	<!-- needed for maven-ear-plugin -->
@@ -50,11 +55,6 @@
 						<wait>${cargo.wait}</wait>
 						<container>
 							<timeout>180000</timeout>
-							<!--<containerId>${cargo.container}</containerId> -->
-							<!--<type>${cargo.container.type}</type> -->
-
-							<!-- <zipUrlInstaller> <url>${cargo.container.url}</url> <installDir>${installDir}</installDir>
-								</zipUrlInstaller> -->
 						</container>
 						<configuration>
 							<type>${cargo.configuration.type}</type>
@@ -73,25 +73,6 @@
 							</properties>
 						</configuration>
 					</configuration>
-					
-                                                <!--
-                                        <executions>
-                                                <execution>
-                                                        <id>start-container</id>
-                                                        <phase>pre-integration-test</phase>
-                                                        <goals>
-                                                                <goal>start</goal>
-                                                        </goals>
-                                                </execution>
-                                                <execution>
-                                                        <id>stop-container</id>
-                                                        <phase>post-integration-test</phase>
-                                                        <goals>
-                                                                <goal>stop</goal>
-                                                        </goals>
-                                                </execution>
-                                        </executions>
-						-->
 				</plugin>
                               <!-- end Web application server helpers -->
 			</plugins>
@@ -215,6 +196,22 @@
 						</configuration>
 						<executions>
 							<!--
+        						<execution>
+        						    <id>pre-integration-test</id>
+        						    <phase>pre-integration-test</phase>
+        						    <goals>
+        						        <goal>deploy</goal>
+        						    </goals>
+        						</execution>
+        						<execution>
+        						    <id>post-integration-test</id>
+        						    <phase>post-integration-test</phase>
+        						    <goals>
+        						        <goal>undeploy</goal>
+        						    </goals>
+        						</execution>							
+							-->
+							<!--
 							<execution>
 								<id>deploy</id>
 								<phase>pre-integration-test</phase>
@@ -222,22 +219,6 @@
 									<goal>redeploy</goal>
 								</goals>
 							</execution>
-							-->
-        <execution>
-            <id>pre-integration-test</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-                <goal>deploy</goal>
-            </goals>
-        </execution>
-        <execution>
-            <id>post-integration-test</id>
-            <phase>post-integration-test</phase>
-            <goals>
-                <goal>undeploy</goal>
-            </goals>
-        </execution>							
-							<!--
 							<execution>
 								<id>verify-deploy</id>
 								<phase>install</phase>
@@ -254,13 +235,13 @@
 							</execution>
 							-->
 						</executions>				
-                                <dependencies>
-                                        <dependency>
-                                                <groupId>org.jboss.as</groupId>
-                                                <artifactId>jboss-as-controller-client</artifactId>
-                                                <version>${jboss.version}</version>
-                                        </dependency>
-                                </dependencies>								
+                                		<dependencies>
+                                		        <dependency>
+                                		                <groupId>org.jboss.as</groupId>
+                                		                <artifactId>jboss-as-controller-client</artifactId>
+                                		                <version>${jboss.version}</version>
+                                		        </dependency>
+                                		</dependencies>								
 					</plugin>
 				</plugins>
 			</build>
@@ -344,23 +325,23 @@
 							</container>
 						</configuration>
 						<!--
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>		
-				-->				
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>			
+						-->			
 					</plugin>
 				</plugins>
 			</build>
@@ -406,22 +387,22 @@
 								<containerId>${cargo.container}</containerId>
 							</container>
 						</configuration>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>						
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -471,22 +452,22 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>						
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -536,22 +517,22 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>						
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>						
 					</plugin>
 				</plugins>
 			</build>
@@ -601,22 +582,22 @@
 								</artifactInstaller>
 							</container>
 						</configuration>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>						
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>						
 					</plugin>
 				</plugins>
 			</build>
