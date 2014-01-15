@@ -40,6 +40,10 @@ sudo apt-get update
 sudo apt-get install oracle-java7-installer
 sudo ln -s java-7-oracle jdk1.7.0
 
+#for jenkins
+sudo apt-get install daemon
+sudo apt-get install nodejs npm
+
 #cpan
 sudo cpan install CPAN
 #Install following perl package
@@ -71,14 +75,18 @@ sudo apt-get remove subversion
 sudo gedit /etc/apt/sources.list
 #Append the following line
 #NOK deb http://us.archive.ubuntu.com/ubuntu precise main
-deb http://us.archive.ubuntu.com/ubuntu precise main universe
+deb http://extras.ubuntu.com/ubuntu precise main
+#deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
+deb http://us.archive.ubuntu.com/ubuntu/ precise main universe restricted multiverse
 
 sudo apt-get update
 sudo apt-get install subversion
 
 sudo gedit /etc/apt/sources.list
 #comment the following line
-deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
+deb http://extras.ubuntu.com/ubuntu precise main
+#deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
+deb http://us.archive.ubuntu.com/ubuntu/ precise main universe restricted multiverse
 
 #check out
 cd /workspace/users/albandri10
@@ -101,6 +109,8 @@ rm ~/.Xauthority
 rm ~/.profile
 sudo apt-get install --reinstall xorg
 sudo reboot
+
+more /etc/rc.local
 
 ls /etc/rc?.d
 
@@ -221,6 +231,9 @@ sudo update-rc.d -n varnishncsa start 85 2 3 4 5 . stop 20 0 1 6 .
 sudo update-rc.d -f apache2 remove
 sudo update-rc.d apache2 start 80 2 3 4 5 . stop 25 0 1 6 .
 
+#sudo update-rc.d -f jenkins remove
+#sudo update-rc.d jenkins start 90 2 3 4 5 . stop 15 0 1 6 .
+
 #add albandri as sudoers
 albandri ALL=(ALL) ALL
 %rms    ALL = NOPASSWD: /usr/local/bin/kzone-connector
@@ -230,8 +243,26 @@ xhost +
 
 #sudo mount /dev/sda1 /media/albandri
 
-# ubuntu message
+# ubuntu error messages check
 dmesg
+grep EDAC /var/log/messages*
+ifconfig eth0
 
 #uid of current user
 id -u
+
+#Fix broken package
+##sudo apt-get remove xserver-xorg-video-all
+##sudo apt-add-repository ppa:xorg-edgers
+##sudo apt-get install ppa-purge
+##sudo ppa-purge xorg-edgers
+##sudo apt-get install compizconfig-settings-manager
+###export DISPLAY=:0
+###ccsm
+##sudo apt-get install lightdm
+##sudo dpkg-reconfigure lightdm
+##sudo apt-get install ubuntu-desktop
+
+#http://ariejan.net/2011/10/24/installing-node-js-and-npm-on-ubuntu-debian/
+
+sudo apt-get install zabbix-agent 

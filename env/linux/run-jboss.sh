@@ -5,5 +5,13 @@
 #check
 echo $JBOSS_HOME
 
-http://home.nabla.mobi:8180
-http://home.nabla.mobi:9990/console
+http://localhost:8180
+http://localhost:9990/console
+
+add-user.bat
+a
+
+Realm (ManagementRealm) : ManagementRealm
+Username :nabla
+Password : microsoft
+Re-enter Password : microsoft

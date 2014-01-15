@@ -73,3 +73,6 @@ ssh -X jenkins@myserver jconsole
 PREFIX=/jenkins
 JENKINS_ARGS="$JENKINS_ARGS --prefix=$PREFIX"
 
+#monitoring
+https://home.nabla.mobi/jenkins/monitoring?
+https://home.nabla.mobi/jenkins/monitoring?part=graph&graph=httpSessions

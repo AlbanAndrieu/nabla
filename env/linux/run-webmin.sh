@@ -15,3 +15,6 @@ sudo ./local-setup.sh
 Login name on windows : admin
 Login name on windows : Ba...7
 http://PTXMZ0087:10000/
+
+#mon
+#change /var/www/cgi-bin/mon.cgi by /usr/lib/cgi-bin/mon.cgi

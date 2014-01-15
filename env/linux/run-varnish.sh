@@ -35,9 +35,9 @@ sudo nano /etc/varnish/default.vcl
 # 
 backend default {
     .host = "127.0.0.1";
-    .port = "8080";
+    .port = "8280";
     .probe = {
-         .url = "/jenkins/?";
+         .url = "/";
          .interval = 5s;
          .timeout = 1s;
 #         .connect_timeout = 600s;
@@ -47,6 +47,36 @@ backend default {
          .threshold = 3;
     }    
 }
+backend jboss {
+    .host = "127.0.0.1";
+    .port = "8180";
+    .probe = {
+         .url = "/";
+         .interval = 5s;
+         .timeout = 1s;
+#         .connect_timeout = 600s;
+#         .first_byte_timeout = 600s;
+#         .between_bytes_timeout = 600s;         
+#         .window = 5;
+         .threshold = 3;
+    }    
+}
+
+backend jboss_console {
+    .host = "127.0.0.1";
+    .port = "9990";
+    .probe = {
+         .url = "/console";
+         .interval = 5s;
+         .timeout = 1s;
+#         .connect_timeout = 600s;
+#         .first_byte_timeout = 600s;
+#         .between_bytes_timeout = 600s;         
+#         .window = 5;
+         .threshold = 3;
+    }    
+}
+
 # Define the list of backends (web servers).
 # Port 80 Backend Servers
 #backend web1 { .host = "127.0.0.1"; .port = "8380"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
@@ -55,7 +85,7 @@ backend web2 { .host = "192.168.0.47"; .port = "80"; .probe = { .url = "/"; .int
 #sick backend web2 { .host = "192.168.0.46"; .port = "80"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
 
 # Port 443 Backend Servers for SSL
-backend web1_ssl { .host = "82.231.208.223"; .port = "443"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
+#backend web1_ssl { .host = "82.231.208.223"; .port = "443"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
 #backend web2_ssl { .host = "127.0.0.1"; .port = "443"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1 s; .window = 5;.threshold = 3; }}
 
 # Define the director that determines how to distribute incoming requests.
@@ -64,25 +94,30 @@ director default_director round-robin {
   { .backend = web2; }
 }
 
-director ssl_director round-robin {
-  { .backend = web1_ssl; }
-  { .backend = web2_ssl; }
-}
+#director ssl_director round-robin {
+#  { .backend = web1_ssl; }
+#  { .backend = web2_ssl; }
+#}
 sub vcl_recv {
   if (req.url ~ "^/jenkins/") {
-    set beresp.ttl = 5d;
+    set req.backend = default_director;
+  } 
+
+  if (req.url ~ "^/console/") {
+    set req.backend = jboss_console;
+  } 
+  
+  if (req.url ~ "^/jboss/") {
+    set req.backend = jboss;
+  } else {
+    set req.backend = default;
   }
-  #if (req.url ~ "^/jenkins/") {
-  #  set req.backend = jenkins_backup;
-  #} else {
-  #  set req.backend = default;
-  #}
   # Set the director to cycle between web servers.
   #if (server.port == 443) {
-  #  set req.backend = ssl_director;
+  #  set req.backend = default_director;
   #}
   #else {
-   set req.backend = default_director;
+  #   set req.backend = default;
   #}
 }
 
