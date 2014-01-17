@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<com.cloudbees.jenkins.plugins.cloud.backup.BackupProject>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.googlecode.GoogleCodeProjectProperty/>
+    <com.cloudbees.plugins.deployer.DeployNowJobProperty>
+      <oneClickDeploy>false</oneClickDeploy>
+      <configuration>
+        <user>alban.andrieu@free.fr</user>
+        <account>nabla</account>
+        <deployables/>
+      </configuration>
+    </com.cloudbees.plugins.deployer.DeployNowJobProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Inherit From Job)</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <com.cloudbees.jenkins.plugins.cloud.backup.BackupBuilder>
+      <format class="com.cloudbees.jenkins.plugins.cloud.backup.format.TarGzFormat"/>
+      <store class="com.cloudbees.jenkins.plugins.cloud.backup.store.DAVStore">
+        <cloudbeesUserAccount>
+          <user>alban.andrieu@free.fr</user>
+          <account>nabla</account>
+        </cloudbeesUserAccount>
+      </store>
+      <subjects>
+        <com.cloudbees.jenkins.plugins.cloud.backup.subject.BuildRecordSubject/>
+        <com.cloudbees.jenkins.plugins.cloud.backup.subject.JobConfigurationSubject/>
+        <com.cloudbees.jenkins.plugins.cloud.backup.subject.SystemConfigurationSubject/>
+      </subjects>
+      <retentionPolicy class="com.cloudbees.jenkins.plugins.cloud.backup.retention.ExponentialDecayRetentionPolicy"/>
+    </com.cloudbees.jenkins.plugins.cloud.backup.BackupBuilder>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</com.cloudbees.jenkins.plugins.cloud.backup.BackupProject>

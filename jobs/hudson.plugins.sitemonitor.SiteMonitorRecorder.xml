@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.sitemonitor.SiteMonitorDescriptor plugin="sitemonitor@0.4">
+  <mValidator/>
+  <mSuccessResponseCodes>
+    <int>200</int>
+  </mSuccessResponseCodes>
+  <mTimeout>30</mTimeout>
+</hudson.plugins.sitemonitor.SiteMonitorDescriptor>

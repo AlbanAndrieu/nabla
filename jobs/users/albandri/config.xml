@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<user>
+  <fullName>albandri</fullName>
+  <description></description>
+  <properties>
+    <jenkins.security.ApiTokenProperty>
+      <apiToken>CxtZKINRLdUUrgoD7ah7n0oPupp8QxlI+IW1AvKBeeL8H4OEAjI4HloApjQp7MwB</apiToken>
+    </jenkins.security.ApiTokenProperty>
+    <hudson.plugins.greenballs.ColorBlindProperty plugin="greenballs@1.12">
+      <enabledColorBlindSupport>false</enabledColorBlindSupport>
+    </hudson.plugins.greenballs.ColorBlindProperty>
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@1.4">
+      <credentials>
+        <com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey plugin="ssh-credentials@0.3">
+          <id>09b4f465-aed3-42fb-be22-c7f9f58e2469</id>
+          <description></description>
+          <username>albandri</username>
+          <passphrase>/B+DhAIyOB5aAKY0KezMAQ==</passphrase>
+          <privateKeySource class="com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey$DirectEntryPrivateKeySource">
+            <privateKey>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
+xTmG2xCBgrStF9jV/PEyruo=</privateKey>
+          </privateKeySource>
+        </com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey>
+      </credentials>
+    </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.5">
+      <emailAddress>alban.andrieu@nabla.mobi</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@1.14">
+      <favorites/>
+    </hudson.plugins.favorite.user.FavoriteUserProperty>
+    <hudson.plugins.jabber.user.JabberUserProperty plugin="jabber@1.25"/>
+    <hudson.model.MyViewsProperty>
+      <primaryViewName></primaryViewName>
+      <views>
+        <hudson.model.AllView>
+          <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
+          <name>All</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+        </hudson.model.AllView>
+      </views>
+    </hudson.model.MyViewsProperty>
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.3">
+      <identifiers/>
+    </hudson.plugins.openid.OpenIdUserProperty>
+    <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.7">
+      <displayForReadOnlyPermission>true</displayForReadOnlyPermission>
+    </org.jenkinsci.plugins.readonly.UserConfiguration>
+    <org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
+      <authorizedKeys>AAAAB3NzaC1yc2EAAAABJQAAAgEA0WObvb7NI9s+lWd8dlrvkaAMtGlPX5/9Sg4h
+JFHjPYy4lnUG5HBpgS7XRH08G39y8ApR+gfRiWL1VtJ3ZsHM7RPQlQjrC6BMC12Z
+DdumZantkxZa6Abx5YTNEHiFIWeB9uAb/WgXuU9/0JzIfCfMdJd0evjlAix2nTLX
+8wyKIeyZWhqMT3bF1oui6y/I9Sd/da07kWcvAwy8SlZ83HmqXPcN1nC9KMFwsZdM
+4FW65iyrRMh2N3VNqtywoqNXyVICKEtfu/vIGzlMwEd+IEgWqUefSHgI2Ntp4T4K
+564lzkYJSL9XwMzD0ytVnSrB16KZhC+0lU8KSDQaky2y95F6O1TXRJzUfiSahWQ+
+Lxuy2NNx6e45tJTfasGln99HP3LNUl8GmHPORwu64Aonze3VqNTHEY5TKHRa0EL1
+ZifGiZQDIqnvGuUy2xoOfm03dgEoOFJqkrLy7ADSaCHvoclY+gpxD6sDRRP4BPRB
+hXIyWOY9dW2AWOkTbY4NFtqj2YTQWCSqLKokEIQpmBCi4t682OOyulQjjOUzGvwe
+p6vwH7dUlzJJ3m/XCQiGHoxuTR1O1VjLbWfygV9VAAvHbOU+Acwmiey1K0XNTz3w
+zVqF1X00+yJyK9pXK/b2nHS0o/AdhGUkmTWNLr1jqjCBEZw/HWPfKlXAtp8wk2e3
+hQkKv8M=</authorizedKeys>
+    </org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
+    <hudson.plugins.skype.user.SkypeUserProperty plugin="skype-notifier@1.1.0"/>
+  </properties>
+</user>

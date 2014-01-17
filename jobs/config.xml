@@ -1,0 +1,899 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors>
+    <string>hudson.diagnosis.UpdateCenterChooser</string>
+    <string>OldData</string>
+    <string>jenkins.security.RekeySecretAdminMonitor</string>
+  </disabledAdministrativeMonitors>
+  <version>1.532.1</version>
+  <numExecutors>1</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
+    <permission>hudson.model.Computer.Configure:albandri</permission>
+    <permission>hudson.model.Computer.Connect:albandri</permission>
+    <permission>hudson.model.Computer.Create:albandri</permission>
+    <permission>hudson.model.Computer.Delete:albandri</permission>
+    <permission>hudson.model.Computer.Disconnect:albandri</permission>
+    <permission>hudson.model.Hudson.Administer:albandri</permission>
+    <permission>hudson.model.Hudson.ConfigureUpdateCenter:albandri</permission>
+    <permission>hudson.model.Hudson.Read:albandri</permission>
+    <permission>hudson.model.Hudson.Read:anonymous</permission>
+    <permission>hudson.model.Hudson.RunScripts:albandri</permission>
+    <permission>hudson.model.Hudson.UploadPlugins:albandri</permission>
+    <permission>hudson.model.Item.Build:albandri</permission>
+    <permission>hudson.model.Item.Cancel:albandri</permission>
+    <permission>hudson.model.Item.Configure:albandri</permission>
+    <permission>hudson.model.Item.Create:albandri</permission>
+    <permission>hudson.model.Item.Create:anonymous</permission>
+    <permission>hudson.model.Item.Delete:albandri</permission>
+    <permission>hudson.model.Item.Discover:albandri</permission>
+    <permission>hudson.model.Item.Read:albandri</permission>
+    <permission>hudson.model.Item.Read:anonymous</permission>
+    <permission>hudson.model.Item.Release:albandri</permission>
+    <permission>hudson.model.Item.Workspace:albandri</permission>
+    <permission>hudson.model.Run.Delete:albandri</permission>
+    <permission>hudson.model.Run.Update:albandri</permission>
+    <permission>hudson.model.View.Configure:albandri</permission>
+    <permission>hudson.model.View.Create:albandri</permission>
+    <permission>hudson.model.View.Delete:albandri</permission>
+    <permission>hudson.model.View.Read:albandri</permission>
+    <permission>hudson.model.View.Read:anonymous</permission>
+    <permission>hudson.plugins.promoted_builds.Promotion.Promote:albandri</permission>
+    <permission>hudson.scm.SCM.Tag:albandri</permission>
+  </authorizationStrategy>
+  <securityRealm class="hudson.security.LDAPSecurityRealm" plugin="ldap@1.7">
+    <server>localhost</server>
+    <rootDN>dc=ldap,dc=nabla,dc=mobi</rootDN>
+    <inhibitInferRootDN>false</inhibitInferRootDN>
+    <userSearchBase>ou=people</userSearchBase>
+    <userSearch>uid={0}</userSearch>
+    <managerDN>cn=admin,dc=ldap,dc=nabla,dc=mobi</managerDN>
+    <managerPassword>bWljcm9zb2Z0</managerPassword>
+    <disableMailAddressResolver>false</disableMailAddressResolver>
+  </securityRealm>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <systemMessage>&lt;p&gt;&lt;b&gt;Nabla&lt;/b&gt; jenkins build &lt;i&gt;Continous Integration&lt;/i&gt;&lt;br&gt;&#xd;
+&lt;b&gt;Build Manager&lt;/b&gt;&lt;/p&gt;</systemMessage>
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter">
+    <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
+  </markupFormatter>
+  <jdks>
+    <jdk>
+      <name>JDK 6u43</name>
+      <home></home>
+      <properties/>
+    </jdk>
+    <jdk>
+      <name>JDK 7u7</name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <hudson.tools.JDKInstaller>
+              <id>jdk-7u40-oth-JPR</id>
+              <acceptLicense>true</acceptLicense>
+            </hudson.tools.JDKInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+    </jdk>
+  </jdks>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds>
+    <hudson.plugins.ec2.EC2Cloud plugin="ec2@1.20">
+      <name>ec2-us-east-1</name>
+      <accessId>AKIAJ6ZKCJ5SFIFQ7O3A</accessId>
+      <secretKey>4YMlmKukO7X/xsyP9iomJEz5UE29COi1sQub9gbY8Iyh5rDflBtJ+AF8+lcmCj7FdgDyZY9PnvfcdD1ynqSUlQ==</secretKey>
+      <privateKey>
+        <privateKey>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</privateKey>
+      </privateKey>
+      <instanceCap>2</instanceCap>
+      <templates>
+        <hudson.plugins.ec2.SlaveTemplate>
+          <ami>ami-5b8dde32-todo</ami>
+          <description>Ubuntu-raring-13.04-amd64-server-20130423 Jenkins slave</description>
+          <zone>us-east-1a</zone>
+          <securityGroups>Jenkins</securityGroups>
+          <remoteFS>/var/jenkins</remoteFS>
+          <sshPort>22</sshPort>
+          <type>M1Small</type>
+          <labels>ubuntu java-small aws</labels>
+          <mode>NORMAL</mode>
+          <initScript>#!/bin/sh
+
+#http://blog.swwomm.com/2013/08/jenkins-ec2-slave-plugin.html
+
+# keep trying to install until it works
+for I in 1 2 3; do
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q update
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q upgrade
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -y -q install \
+        git-core \
+        groovy \
+        openjdk-6-jdk \
+        openjdk-7-jdk \
+        vim \
+        zip
+    sleep 1
+done
+
+# fix missing java links
+#if [ ! -e /usr/lib/jvm/default-java ]; then
+#    sudo ln -s /usr/lib/jvm/java-6-openjdk-amd64 /usr/lib/jvm/default-java
+#fi
+#if [ ! -e /usr/lib/jvm/java-6-openjdk ]; then
+#    sudo ln -s /usr/lib/jvm/java-6-openjdk-amd64 /usr/lib/jvm/java-6-openjdk
+#fi
+
+export JAVA_HOME=/var/jenkins/tools/hudson.model.JDK/JDK_7u7
+echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
+          <userData></userData>
+          <numExecutors>1</numExecutors>
+          <remoteAdmin>ubuntu</remoteAdmin>
+          <rootCommandPrefix>sudo</rootCommandPrefix>
+          <jvmopts></jvmopts>
+          <subnetId></subnetId>
+          <idleTerminationMinutes>30</idleTerminationMinutes>
+          <iamInstanceProfile></iamInstanceProfile>
+          <useEphemeralDevices>false</useEphemeralDevices>
+          <instanceCap>10</instanceCap>
+          <stopOnTerminate>false</stopOnTerminate>
+          <usePrivateDnsName>false</usePrivateDnsName>
+          <launchTimeout>0</launchTimeout>
+        </hudson.plugins.ec2.SlaveTemplate>
+      </templates>
+      <region>us-east-1</region>
+    </hudson.plugins.ec2.EC2Cloud>
+  </clouds>
+  <slaves>
+    <slave>
+      <name>ec2-0</name>
+      <description>AWS</description>
+      <remoteFS>/var/jenkins</remoteFS>
+      <numExecutors>2</numExecutors>
+      <mode>NORMAL</mode>
+      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.5">
+        <host>ec2-54-201-39-135.us-west-2.compute.amazonaws.com-todo</host>
+        <port>22</port>
+        <credentialsId>f9bbe1b9-df8f-4e58-b0d2-7b6fb780e8fa</credentialsId>
+      </launcher>
+      <label>java-small java-medium-todo java-large-todo</label>
+      <nodeProperties>
+        <hudson.slaves.EnvironmentVariablesNodeProperty>
+          <envVars serialization="custom">
+            <unserializable-parents/>
+            <tree-map>
+              <default>
+                <comparator class="hudson.util.CaseInsensitiveComparator"/>
+              </default>
+              <int>2</int>
+              <string>JAVA_HOME</string>
+              <string>/var/jenkins/tools/hudson.model.JDK/JDK_7u7</string>
+              <string>M2_HOME</string>
+              <string>/usr/share/maven</string>
+            </tree-map>
+          </envVars>
+        </hudson.slaves.EnvironmentVariablesNodeProperty>
+      </nodeProperties>
+      <userId>albandri</userId>
+    </slave>
+    <slave>
+      <name>freenas</name>
+      <description>Jenksin slave</description>
+      <remoteFS>/mnt/dpool/jenkins-slave</remoteFS>
+      <numExecutors>1</numExecutors>
+      <mode>NORMAL</mode>
+      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.5">
+        <host>freenas</host>
+        <port>22</port>
+        <credentialsId>5099b703-d456-4635-a14b-560accb49663</credentialsId>
+      </launcher>
+      <label>java-large</label>
+      <nodeProperties/>
+      <userId>albandri</userId>
+    </slave>
+    <slave>
+      <name>windows</name>
+      <description></description>
+      <remoteFS>C:\jenkins-slave</remoteFS>
+      <numExecutors>1</numExecutors>
+      <mode>NORMAL</mode>
+      <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+      <launcher class="hudson.os.windows.ManagedWindowsServiceLauncher">
+        <userName>MISYSROOT\aandrieu</userName>
+        <password>2LDCD2mrG5YBYPvIE/y2OjKwiROLuufJkMQ9vn25lcs=</password>
+        <account class="hudson.os.windows.ManagedWindowsServiceAccount$LocalSystem"/>
+        <host>192.168.0.19.0</host>
+      </launcher>
+      <label>windows java java-medium java-large</label>
+      <nodeProperties>
+        <hudson.slaves.EnvironmentVariablesNodeProperty>
+          <envVars serialization="custom">
+            <unserializable-parents/>
+            <tree-map>
+              <default>
+                <comparator class="hudson.util.CaseInsensitiveComparator"/>
+              </default>
+              <int>1</int>
+              <string>JAVA_HOME</string>
+              <string>C:\SUN\SDK\jdk1.7.0_05</string>
+            </tree-map>
+          </envVars>
+        </hudson.slaves.EnvironmentVariablesNodeProperty>
+        <hudson.tools.ToolLocationNodeProperty>
+          <locations>
+            <hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+              <type>hudson.tasks.Maven$MavenInstallation$DescriptorImpl</type>
+              <name>Maven-3.0.4</name>
+              <home>C:\apache-maven-3.0.4</home>
+            </hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+            <hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+              <type>hudson.model.JDK$DescriptorImpl</type>
+              <name>JDK 7u7</name>
+              <home>C:\SUN\SDK\jdk1.7.0_05</home>
+            </hudson.tools.ToolLocationNodeProperty_-ToolLocation>
+          </locations>
+        </hudson.tools.ToolLocationNodeProperty>
+      </nodeProperties>
+      <userId>albandri</userId>
+    </slave>
+  </slaves>
+  <quietPeriod>5</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Tous</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+    </hudson.model.AllView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>nabla-databases-integration</string>
+        <string>nabla-databases-nightly</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+      </columns>
+      <includeRegex>nabla.*</includeRegex>
+      <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-nightly</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Full)</columnName>
+          <showGroupId>true</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesFullColumn>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+      </columns>
+      <includeRegex>nabla.*nightly</includeRegex>
+      <recurse>false</recurse>
+      <statusFilter>true</statusFilter>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-continuous</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+      </columns>
+      <includeRegex>nabla.*continuous</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <hudson.model.RadiatorView plugin="radiatorviewplugin@1.17">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-radiator</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns/>
+      <includeRegex>nabla.*</includeRegex>
+      <recurse>false</recurse>
+      <showStable>true</showStable>
+      <showStableDetail>true</showStableDetail>
+      <highVis>true</highVis>
+      <groupByPrefix>true</groupByPrefix>
+    </hudson.model.RadiatorView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-integration</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../hudson.model.RadiatorView/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Full)</columnName>
+          <showGroupId>true</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesFullColumn>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+      </columns>
+      <includeRegex>nabla.*integration</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <hudson.plugins.view.dashboard.Dashboard plugin="dashboard-view@2.9.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-dashboard</name>
+      <description>&lt;script&gt;&#xd;
+var xmlhttp = null;&#xd;
+if (window.XMLHttpRequest)&#xd;
+    xmlhttp = new XMLHttpRequest();&#xd;
+else if (window.ActiveXObject) {&#xd;
+    if (new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;))&#xd;
+        xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);&#xd;
+    else&#xd;
+        xmlhttp = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);&#xd;
+}&#xd;
+var url = document.location + &quot;/api/xml?xpath=count%28//job[color=%22blue%22]%29div+count%28//job%29&quot;&#xd;
+xmlhttp.open(&quot;GET&quot;, url, false);//false means synchronous&#xd;
+xmlhttp.send()&#xd;
+var buildSuccessFraction= xmlhttp.responseText&#xd;
+document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=320x160&amp;cht=gom&amp;chd=t:&apos; + buildSuccessFraction * 100.0 + &apos;&amp;chxt=x,y&amp;chxl=y|0:||1:|failure|success&quot;&gt;&apos;)&#xd;
+&lt;/script&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../hudson.model.RadiatorView/jobNames/comparator"/>
+        <string>nabla-nabla-integration</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <com.robestone.hudson.compactcolumns.JobNameColorColumn plugin="compact-columns@1.10">
+          <colorblindHint>underlinehint</colorblindHint>
+          <showColor>true</showColor>
+          <showDescription>true</showDescription>
+          <showLastBuild>true</showLastBuild>
+        </com.robestone.hudson.compactcolumns.JobNameColorColumn>
+        <com.robestone.hudson.compactcolumns.AllStatusesColumn plugin="compact-columns@1.10">
+          <colorblindHint>underlinehint</colorblindHint>
+          <timeAgoTypeString>DIFF</timeAgoTypeString>
+          <onlyShowLastStatus>false</onlyShowLastStatus>
+          <hideDays>60</hideDays>
+        </com.robestone.hudson.compactcolumns.AllStatusesColumn>
+        <hudson.views.BuildButtonColumn/>
+        <org.jenkins.ci.plugins.progress__bar.ProgressBarColumn plugin="progress-bar-column-plugin@1.0"/>
+        <org.jenkinsci.plugins.violationcolumns.FailedTestsColumn plugin="violation-columns@1.6"/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.LastStableColumn/>
+        <com.sonatype.insight.ci.hudson.QualityColumn plugin="insight-ci@2.3.3"/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+        <hudson.plugins.nodenamecolumn.NodeNameColumn plugin="nodenamecolumn@1.1"/>
+        <hudson.plugins.jobtype__column.JobTypeColumn plugin="jobtype-column@1.3"/>
+        <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@1.16"/>
+      </columns>
+      <includeRegex>nabla.*</includeRegex>
+      <recurse>false</recurse>
+      <useCssStyle>false</useCssStyle>
+      <includeStdJobList>false</includeStdJobList>
+      <leftPortletWidth>50%</leftPortletWidth>
+      <rightPortletWidth>50%</rightPortletWidth>
+      <leftPortlets>
+        <hudson.plugins.cobertura.dashboard.CoverageTablePortlet plugin="cobertura@1.9.3">
+          <id>dashboard_portlet_24700</id>
+          <name>Code Coverages(Cobertura)</name>
+        </hudson.plugins.cobertura.dashboard.CoverageTablePortlet>
+        <hudson.plugins.view.dashboard.test.TestStatisticsPortlet>
+          <id>dashboard_portlet_7637</id>
+          <name>Test Statistics Grid</name>
+          <useBackgroundColors>false</useBackgroundColors>
+          <skippedColor>FDB813</skippedColor>
+          <successColor>71E66D</successColor>
+          <failureColor>E86850</failureColor>
+        </hudson.plugins.view.dashboard.test.TestStatisticsPortlet>
+        <hudson.plugins.view.dashboard.test.TestStatisticsChart>
+          <id>dashboard_portlet_29904</id>
+          <name>Test Statistics Chart</name>
+        </hudson.plugins.view.dashboard.test.TestStatisticsChart>
+        <hudson.plugins.view.dashboard.test.TestTrendChart>
+          <id>dashboard_portlet_4419</id>
+          <name>Test Trend Chart</name>
+          <graphWidth>300</graphWidth>
+          <graphHeight>220</graphHeight>
+          <dateRange>0</dateRange>
+          <dateShift>0</dateShift>
+          <displayStatus>ALL</displayStatus>
+        </hudson.plugins.view.dashboard.test.TestTrendChart>
+      </leftPortlets>
+      <rightPortlets>
+        <hudson.plugins.checkstyle.dashboard.WarningsTotalsGraphPortlet plugin="checkstyle@3.38">
+          <id>dashboard_portlet_27657</id>
+          <name>Checkstyle warnings trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+        </hudson.plugins.checkstyle.dashboard.WarningsTotalsGraphPortlet>
+        <hudson.plugins.warnings.dashboard.WarningsTotalsGraphPortlet plugin="warnings@4.38">
+          <id>dashboard_portlet_22382</id>
+          <name>Compiler warnings trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+          <actionSelector>
+            <parserName>AcuCobol Compiler</parserName>
+          </actionSelector>
+        </hudson.plugins.warnings.dashboard.WarningsTotalsGraphPortlet>
+        <hudson.plugins.dry.dashboard.WarningsTotalsGraphPortlet plugin="dry@2.38">
+          <id>dashboard_portlet_992</id>
+          <name>Duplicate code trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+        </hudson.plugins.dry.dashboard.WarningsTotalsGraphPortlet>
+        <hudson.plugins.findbugs.dashboard.WarningsTotalsGraphPortlet plugin="findbugs@4.51">
+          <id>dashboard_portlet_917</id>
+          <name>FindBugs warnings trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+        </hudson.plugins.findbugs.dashboard.WarningsTotalsGraphPortlet>
+        <hudson.plugins.tasks.dashboard.WarningsTotalsGraphPortlet plugin="tasks@4.38">
+          <id>dashboard_portlet_12588</id>
+          <name>Open tasks trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+        </hudson.plugins.tasks.dashboard.WarningsTotalsGraphPortlet>
+        <hudson.plugins.pmd.dashboard.WarningsTotalsGraphPortlet plugin="pmd@3.37">
+          <id>dashboard_portlet_31077</id>
+          <name>PMD warnings trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+        </hudson.plugins.pmd.dashboard.WarningsTotalsGraphPortlet>
+        <hudson.plugins.analysis.collector.dashboard.WarningsTotalsGraphPortlet plugin="analysis-collector@1.38">
+          <id>dashboard_portlet_22585</id>
+          <name>Warnings trend graph (totals)</name>
+          <width>500</width>
+          <height>200</height>
+          <dayCountString>30</dayCountString>
+        </hudson.plugins.analysis.collector.dashboard.WarningsTotalsGraphPortlet>
+      </rightPortlets>
+      <topPortlets>
+        <hudson.plugins.view.dashboard.core.HudsonStdJobsPortlet>
+          <id>dashboard_portlet_21911</id>
+          <name>Jenkins jobs list</name>
+        </hudson.plugins.view.dashboard.core.HudsonStdJobsPortlet>
+        <hudson.plugins.view.dashboard.core.UnstableJobsPortlet>
+          <id>dashboard_portlet_10171</id>
+          <name>Unstable Jobs</name>
+          <showOnlyFailedJobs>false</showOnlyFailedJobs>
+        </hudson.plugins.view.dashboard.core.UnstableJobsPortlet>
+      </topPortlets>
+      <bottomPortlets>
+        <hudson.plugins.view.dashboard.stats.StatJobs>
+          <id>dashboard_portlet_12078</id>
+          <name>Job statistics</name>
+        </hudson.plugins.view.dashboard.stats.StatJobs>
+        <hudson.plugins.view.dashboard.stats.StatBuilds>
+          <id>dashboard_portlet_24553</id>
+          <name>Build statistics</name>
+        </hudson.plugins.view.dashboard.stats.StatBuilds>
+        <au.com.centrumsystems.hudson.plugin.buildpipeline.dashboard.BuildPipelineDashboard plugin="build-pipeline-plugin@1.4.2">
+          <id>dashboard_portlet_2419</id>
+          <name>Build Pipeline Dashboard View</name>
+          <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+            <firstJob>nabla-build-tools</firstJob>
+          </gridBuilder>
+          <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+          <description></description>
+        </au.com.centrumsystems.hudson.plugin.buildpipeline.dashboard.BuildPipelineDashboard>
+      </bottomPortlets>
+    </hudson.plugins.view.dashboard.Dashboard>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>andromda</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <com.robestone.hudson.compactcolumns.LastSuccessAndFailedColumn plugin="compact-columns@1.10">
+          <timeAgoTypeString>DIFF</timeAgoTypeString>
+        </com.robestone.hudson.compactcolumns.LastSuccessAndFailedColumn>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <com.sonatype.insight.ci.hudson.QualityColumn plugin="insight-ci@2.3.3"/>
+        <org.jenkins.ci.plugins.progress__bar.ProgressBarColumn plugin="progress-bar-column-plugin@1.0"/>
+      </columns>
+      <includeRegex>andromda.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-admin</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>nabla-scm-pooling-kill-admin</string>
+        <string>nabla-sonar-backup-admin</string>
+        <string>show-zfs-tree-admin</string>
+        <string>site-monitor-admin</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomDependenciesColumn plugin="maven-info@0.1.2">
+          <onlyWithinGroupId>false</onlyWithinGroupId>
+          <columnName>Maven Dependencies</columnName>
+        </org.tomfolga.PomDependenciesColumn>
+        <org.tomfolga.PomDependenciesWithinGroupIdColumn plugin="maven-info@0.1.2">
+          <onlyWithinGroupId>true</onlyWithinGroupId>
+          <columnName>Maven Dependencies (within groupId)</columnName>
+        </org.tomfolga.PomDependenciesWithinGroupIdColumn>
+        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Full)</columnName>
+          <showGroupId>true</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesFullColumn>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+        <com.sonatype.insight.ci.hudson.QualityColumn plugin="insight-ci@2.3.3"/>
+      </columns>
+      <includeRegex>nabla.*admin</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>miscellaneous</name>
+      <description>Other stuff</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>lifecycle-mapping-plugin</string>
+        <string>proguard-maven-plugin</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomDependenciesColumn plugin="maven-info@0.1.2">
+          <onlyWithinGroupId>false</onlyWithinGroupId>
+          <columnName>Maven Dependencies</columnName>
+        </org.tomfolga.PomDependenciesColumn>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+        <com.sonatype.insight.ci.hudson.QualityColumn plugin="insight-ci@2.3.3"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-all</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[7]/jobNames/comparator"/>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Short)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>true</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesShortColumn>
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+          <columnName>Maven Modules (Version)</columnName>
+          <showGroupId>false</showGroupId>
+          <showArtifactId>false</showArtifactId>
+          <showVersion>true</showVersion>
+        </org.tomfolga.PomModulesVersionColumn>
+        <com.sonatype.insight.ci.hudson.QualityColumn plugin="insight-ci@2.3.3"/>
+      </columns>
+      <includeRegex>(nabla-.*)-all.*</includeRegex>
+      <recurse>false</recurse>
+    </listView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-databases-pipeline</name>
+      <description>&lt;b&gt;Pipeline view of nabla databases&lt;/b&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>nabla-databases-nightly</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>true</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>andromda-pipeline</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>andromda-0-maven-config</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>true</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-servers-pipeline</name>
+      <description>&lt;b&gt;Pipeline view of nabla servers&lt;/b&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>nabla-servers-nightly</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>true</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-project-pipeline</name>
+      <description>&lt;b&gt;Pipeline view of nabla project&lt;/b&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>nabla-project-nightly</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>true</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-uml-pipeline</name>
+      <description>&lt;b&gt;Pipeline view of nabla uml&lt;/b&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>nabla-uml-nightly</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>true</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.2">
+      <owner class="hudson" reference="../../.."/>
+      <name>nabla-nabla-pipeline</name>
+      <description>&lt;b&gt;Pipeline view of nabla nabla&lt;/b&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJob>nabla-nabla-nightly</firstJob>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>true</alwaysAllowManualTrigger>
+      <showPipelineParameters>true</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+  </views>
+  <primaryView>nabla-dashboard</primaryView>
+  <slaveAgentPort>0</slaveAgentPort>
+  <label>ubuntu java java-small java-medium java-large</label>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
+    <excludeClientIPFromCrumb>false</excludeClientIPFromCrumb>
+  </crumbIssuer>
+  <nodeProperties/>
+  <globalNodeProperties>
+    <hudson.slaves.EnvironmentVariablesNodeProperty>
+      <envVars serialization="custom">
+        <unserializable-parents/>
+        <tree-map>
+          <default>
+            <comparator class="hudson.util.CaseInsensitiveComparator"/>
+          </default>
+          <int>6</int>
+          <string>DISPLAY</string>
+          <string>:0</string>
+          <string>JAVA_OPTS</string>
+          <string>-Xms128m -Xmx1024m</string>
+          <string>JBOSS_HOME</string>
+          <string>/workspace/jboss-as-7.1.1.Final</string>
+          <string>PROJECT_DEV</string>
+          <string>/workspace/users/albandri10/</string>
+          <string>PROJECT_TARGET_PATH</string>
+          <string>/target</string>
+          <string>PROJECT_THIRDPARTY_PATH</string>
+          <string>/thirdparty</string>
+        </tree-map>
+      </envVars>
+    </hudson.slaves.EnvironmentVariablesNodeProperty>
+  </globalNodeProperties>
+</hudson>

@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.google.analytics.GoogleAnalyticsPageDecorator plugin="googleanalytics@1.3">
+  <profileId></profileId>
+  <domainName></domainName>
+</hudson.plugins.google.analytics.GoogleAnalyticsPageDecorator>

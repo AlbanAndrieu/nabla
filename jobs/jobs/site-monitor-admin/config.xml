@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Check sites availability</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7"/>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.5.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
+      <diskUsageWithoutBuilds>14723</diskUsageWithoutBuilds>
+      <slaveWorkspacesUsage class="concurrent-hash-map">
+        <entry>
+          <string></string>
+          <concurrent-hash-map>
+            <entry>
+              <string>/var/lib/jenkins/jobs/site-monitor-admin/workspace</string>
+              <long>4096</long>
+            </entry>
+          </concurrent-hash-map>
+        </entry>
+        <entry>
+          <string>ec2-0</string>
+          <concurrent-hash-map>
+            <entry>
+              <string>/var/jenkins/workspace/site-monitor-admin</string>
+              <long>4096</long>
+            </entry>
+          </concurrent-hash-map>
+        </entry>
+      </slaveWorkspacesUsage>
+    </hudson.plugins.disk__usage.DiskUsageProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>H H(5-10) * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders/>
+  <publishers>
+    <hudson.plugins.sitemonitor.SiteMonitorRecorder plugin="sitemonitor@0.4">
+      <mSites>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://home.nabla.mobi:8081/nexus/</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://home.nabla.mobi:8095/crowd</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://home.nabla.mobi:9000/</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://nabla.dyndns-remote.com/</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://home.nabla.mobi/phpmyadmin/</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://home.nabla.mobi/phpldapadmin/htdocs/index.php</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://home.nabla.mobi/cgi-bin/philesight.cgi</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+        <hudson.plugins.sitemonitor.model.Site>
+          <mUrl>http://mafreebox.fr/login.php</mUrl>
+        </hudson.plugins.sitemonitor.model.Site>
+      </mSites>
+    </hudson.plugins.sitemonitor.SiteMonitorRecorder>
+  </publishers>
+  <buildWrappers/>
+</project>

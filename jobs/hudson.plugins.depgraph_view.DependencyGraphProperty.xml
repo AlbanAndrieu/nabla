@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.depgraph__view.DependencyGraphProperty_-DescriptorImpl plugin="depgraph-view@0.11">
+  <dotExe>/usr/bin/dot</dotExe>
+  <graphvizEnabled>true</graphvizEnabled>
+  <editFunctionInJSViewEnabled>false</editFunctionInJSViewEnabled>
+</hudson.plugins.depgraph__view.DependencyGraphProperty_-DescriptorImpl>

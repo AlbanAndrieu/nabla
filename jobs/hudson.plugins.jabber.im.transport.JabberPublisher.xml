@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.jabber.im.transport.JabberPublisherDescriptor plugin="jabber@1.25">
+  <enabled>false</enabled>
+  <port>5222</port>
+  <hudsonNickname></hudsonNickname>
+  <hudsonPassword></hudsonPassword>
+  <exposePresence>true</exposePresence>
+  <enableSASL>true</enableSASL>
+  <scrambledPasswords>true</scrambledPasswords>
+  <defaultTargets/>
+  <commandPrefix>!</commandPrefix>
+  <defaultIdSuffix></defaultIdSuffix>
+  <subscriptionMode>accept_all</subscriptionMode>
+  <emailAddressAsJabberId>false</emailAddressAsJabberId>
+  <proxyType>NONE</proxyType>
+  <proxyPort>3128</proxyPort>
+</hudson.plugins.jabber.im.transport.JabberPublisherDescriptor>

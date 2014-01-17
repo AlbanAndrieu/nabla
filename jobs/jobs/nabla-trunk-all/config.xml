@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<maven2-moduleset plugin="maven-plugin@2.0.1">
+  <actions/>
+  <description>&lt;p&gt;Build &lt;b&gt;Nabla&lt;/b&gt; &lt;i&gt;Trunk All&lt;/i&gt; the whole project at the same time.&lt;br&gt;&#xd;
+The main goals of this job is to perform operations like release, it is intended to build master.&lt;br&gt;&#xd;
+It will keep build history and artifacts.&lt;br&gt;&#xd;
+&lt;br&gt;&#xd;
+It should be as quick as possible whith no reports.&#xd;
+&lt;/p&gt;</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>10</numToKeep>
+    <artifactDaysToKeep>1</artifactDaysToKeep>
+    <artifactNumToKeep>1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.plugins.maveninfo.config.MavenInfoJobConfig plugin="maven-info@0.1.2">
+      <mainModulePattern></mainModulePattern>
+      <dependenciesPattern></dependenciesPattern>
+      <assignName>false</assignName>
+      <nameTemplate></nameTemplate>
+      <assignDescription>false</assignDescription>
+      <descriptionTemplate></descriptionTemplate>
+    </jenkins.plugins.maveninfo.config.MavenInfoJobConfig>
+    <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7">
+      <googlecodeWebsite>https://code.google.com/p/alban/</googlecodeWebsite>
+    </hudson.plugins.googlecode.GoogleCodeProjectProperty>
+    <org.jenkins.ci.plugins.html5__notifier.JobPropertyImpl plugin="html5-notifier-plugin@1.2">
+      <skip>false</skip>
+    </org.jenkins.ci.plugins.html5__notifier.JobPropertyImpl>
+    <jenkins.plugins.svnmerge.IntegratableProject plugin="svnmerge@1.2"/>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.plugins.jira.versionparameter.JiraVersionParameterDefinition plugin="jira@1.38">
+          <name>JiraBuild</name>
+          <description>The Jira Release Number being deployed</description>
+          <projectKey>NABLA</projectKey>
+          <showReleased>true</showReleased>
+          <showArchived>false</showArchived>
+        </hudson.plugins.jira.versionparameter.JiraVersionParameterDefinition>
+        <hudson.plugins.jira.versionparameter.JiraVersionParameterDefinition plugin="jira@1.38">
+          <name>JiraNextBuild</name>
+          <description>The Next Jira Relase Number</description>
+          <projectKey>NABLA</projectKey>
+          <showReleased>false</showReleased>
+          <showArchived>false</showArchived>
+        </hudson.plugins.jira.versionparameter.JiraVersionParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+      <autoRebuild>true</autoRebuild>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.4.4"/>
+  </properties>
+  <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@1.54">
+        <remote>https://alban.googlecode.com/svn/trunk</remote>
+        <local>.</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>false</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <browser class="hudson.plugins.googlecode.GoogleCodeRepositoryBrowser"/>
+    <excludedRegions></excludedRegions>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@1.54"/>
+    <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
+    <directory>trunk</directory>
+  </scm>
+  <assignedNode>java-large</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>true</blockBuildWhenUpstreamBuilding>
+  <jdk>(Default)</jdk>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <rootModule>
+    <groupId>com.nabla</groupId>
+    <artifactId>users</artifactId>
+  </rootModule>
+  <goals>-s $WORKSPACE/.m2/settings.xml -Dsurefire.useFile=false install -Psample,arq-jbossas-managed -Dserver=jboss5x -Ddatabase=derby</goals>
+  <defaultGoals>install</defaultGoals>
+  <mavenName>Maven-3.0.4</mavenName>
+  <aggregatorStyleBuild>true</aggregatorStyleBuild>
+  <incrementalBuild>false</incrementalBuild>
+  <ignoreUpstremChanges>true</ignoreUpstremChanges>
+  <archivingDisabled>false</archivingDisabled>
+  <resolveDependencies>true</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>30</mavenValidationLevel>
+  <runHeadless>true</runHeadless>
+  <settingConfigId></settingConfigId>
+  <globalSettingConfigId></globalSettingConfigId>
+  <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
+  <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+  <reporters/>
+  <publishers>
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.38">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[WARNINGS] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.54">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+      <parserConfigurations/>
+      <consoleParsers>
+        <hudson.plugins.warnings.ConsoleParser>
+          <parserName>Java Compiler (javac)</parserName>
+        </hudson.plugins.warnings.ConsoleParser>
+        <hudson.plugins.warnings.ConsoleParser>
+          <parserName>Maven</parserName>
+        </hudson.plugins.warnings.ConsoleParser>
+      </consoleParsers>
+    </hudson.plugins.warnings.WarningsPublisher>
+    <hudson.tasks.test.AggregatedTestResultPublisher>
+      <includeFailedBuilds>false</includeFailedBuilds>
+    </hudson.tasks.test.AggregatedTestResultPublisher>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>**/target/*.war, **/target/*.jar, **/*-sources.jar</artifacts>
+      <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.dependencyanalyzer.DependencyAnalyzerPublisher plugin="dependencyanalyzer@0.6"/>
+    <hudson.maven.RedeployPublisher>
+      <id>server-forge-snapshot</id>
+      <url>https://repository-nabla.forge.cloudbees.com/snapshot</url>
+      <uniqueVersion>true</uniqueVersion>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.maven.RedeployPublisher>
+    <hudson.plugins.jira.JiraIssueUpdater plugin="jira@1.38"/>
+    <hudson.plugins.svn__tag.SvnTagPublisher plugin="svn-tag@1.16">
+      <tagBaseURL>http://alban.googlecode.com/svn/tags/last-successful/${env[&apos;JOB_NAME&apos;]}</tagBaseURL>
+      <tagComment>Tagged by Jenkins svn-tag plugin. Build:${env[&apos;BUILD_TAG&apos;]}.</tagComment>
+      <tagDeleteComment>Delete old tag by svn-tag Jenkins plugin.</tagDeleteComment>
+    </hudson.plugins.svn__tag.SvnTagPublisher>
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.19">
+      <deleteDirs>false</deleteDirs>
+      <skipWhenFailed>false</skipWhenFailed>
+      <cleanWhenSuccess>true</cleanWhenSuccess>
+      <cleanWhenUnstable>true</cleanWhenUnstable>
+      <cleanWhenFailure>false</cleanWhenFailure>
+      <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
+      <cleanWhenAborted>true</cleanWhenAborted>
+      <notFailBuild>false</notFailBuild>
+      <cleanupMatrixParent>false</cleanupMatrixParent>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.WsCleanup>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+      <strategy class="hudson.plugins.build_timeout.impl.LikelyStuckTimeOutStrategy"/>
+      <failBuild>true</failBuild>
+      <writingDescription>false</writingDescription>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
+    <hudson.plugins.jira.JiraCreateReleaseNotes plugin="jira@1.38">
+      <jiraEnvironmentVariable>JiraReleaseNotes</jiraEnvironmentVariable>
+      <jiraProjectKey>NABLA</jiraProjectKey>
+      <jiraRelease>$JiraBuild</jiraRelease>
+      <jiraFilter>status in (Resolved, Closed)</jiraFilter>
+    </hudson.plugins.jira.JiraCreateReleaseNotes>
+    <org.jvnet.hudson.plugins.m2release.M2ReleaseBuildWrapper plugin="m2release@0.13.0">
+      <scmUserEnvVar></scmUserEnvVar>
+      <scmPasswordEnvVar></scmPasswordEnvVar>
+      <releaseEnvVar>IS_M2RELEASEBUILD</releaseEnvVar>
+      <releaseGoals>-Dresume=false release:prepare release:perform</releaseGoals>
+      <dryRunGoals>-Dresume=false -DdryRun=true release:prepare</dryRunGoals>
+      <selectCustomScmCommentPrefix>false</selectCustomScmCommentPrefix>
+      <selectAppendHudsonUsername>false</selectAppendHudsonUsername>
+      <selectScmCredentials>false</selectScmCredentials>
+      <numberOfReleaseBuildsToKeep>0</numberOfReleaseBuildsToKeep>
+    </org.jvnet.hudson.plugins.m2release.M2ReleaseBuildWrapper>
+  </buildWrappers>
+  <prebuilders>
+    <hudson.tasks.Maven>
+      <targets>-U -s $WORKSPACE/.m2/settings.xml clean validate -Psample,arq-jbossas-managed -Dserver=jboss5x -Ddatabase=derby</targets>
+      <mavenName>Maven-3.0.4</mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </prebuilders>
+  <postbuilders/>
+  <runPostStepsIfResult>
+    <name>SUCCESS</name>
+    <ordinal>0</ordinal>
+    <color>BLUE</color>
+    <completeBuild>true</completeBuild>
+  </runPostStepsIfResult>
+</maven2-moduleset>

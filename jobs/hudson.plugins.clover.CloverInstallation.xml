@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.clover.CloverInstallation_-DescriptorImpl plugin="clover@4.2.0">
+  <installations class="hudson.plugins.clover.CloverInstallation-array"/>
+</hudson.plugins.clover.CloverInstallation_-DescriptorImpl>

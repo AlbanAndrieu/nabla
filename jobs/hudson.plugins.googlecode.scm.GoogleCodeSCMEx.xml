@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.googlecode.scm.GoogleCodeSCMEx_-DescriptorImpl plugin="googlecode@1.7">
+  <generation>1</generation>
+  <credentials class="hashtable"/>
+  <workspaceFormat>100</workspaceFormat>
+  <validateRemoteUpToVar>false</validateRemoteUpToVar>
+  <storeAuthToDisk>true</storeAuthToDisk>
+</hudson.plugins.googlecode.scm.GoogleCodeSCMEx_-DescriptorImpl>

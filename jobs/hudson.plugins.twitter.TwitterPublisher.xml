@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.twitter.TwitterPublisher_-DescriptorImpl plugin="twitter@0.7">
+  <token>AlbanAndrieu</token>
+  <tokenSecret>microsoft</tokenSecret>
+  <hudsonUrl>https://home.nabla.mobi/jenkins/</hudsonUrl>
+  <onlyOnFailureOrRecovery>false</onlyOnFailureOrRecovery>
+  <includeUrl>true</includeUrl>
+</hudson.plugins.twitter.TwitterPublisher_-DescriptorImpl>

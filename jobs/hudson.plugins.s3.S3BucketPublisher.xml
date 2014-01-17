@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.s3.S3BucketPublisher_-DescriptorImpl plugin="s3@0.4">
+  <profiles/>
+</hudson.plugins.s3.S3BucketPublisher_-DescriptorImpl>

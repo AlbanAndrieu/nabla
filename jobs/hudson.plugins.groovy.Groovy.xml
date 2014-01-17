@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.groovy.Groovy_-DescriptorImpl plugin="groovy@1.14">
+  <instanceCounter>
+    <value>4</value>
+  </instanceCounter>
+  <allowMacro>false</allowMacro>
+  <installations/>
+  <installations2>
+    <hudson.plugins.groovy.GroovyInstallation>
+      <name>Groovy-2.1-9</name>
+      <home></home>
+      <properties>
+        <hudson.tools.InstallSourceProperty>
+          <installers>
+            <hudson.plugins.groovy.GroovyInstaller>
+              <id>2.1.9</id>
+            </hudson.plugins.groovy.GroovyInstaller>
+          </installers>
+        </hudson.tools.InstallSourceProperty>
+      </properties>
+    </hudson.plugins.groovy.GroovyInstallation>
+  </installations2>
+</hudson.plugins.groovy.Groovy_-DescriptorImpl>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sites>
+  <sonatype plugin="sonatype-ci@1.3">
+    <id>insight-ci</id>
+    <url>http://links.sonatype.com/products/insight/ci/jenkins-plugins</url>
+  </sonatype>
+  <site>
+    <id>default</id>
+    <url>http://updates.jenkins-ci.org/update-center.json</url>
+  </site>
+</sites>
