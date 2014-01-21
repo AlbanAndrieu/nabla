@@ -42,7 +42,6 @@ sudo ln -s java-7-oracle jdk1.7.0
 
 #for jenkins
 sudo apt-get install daemon
-sudo apt-get install nodejs npm
 
 #cpan
 sudo cpan install CPAN
@@ -263,6 +262,6 @@ id -u
 ##sudo dpkg-reconfigure lightdm
 ##sudo apt-get install ubuntu-desktop
 
-#http://ariejan.net/2011/10/24/installing-node-js-and-npm-on-ubuntu-debian/
-
 sudo apt-get install zabbix-agent 
+#for cacti
+sudo apt-get install snmp snmpd

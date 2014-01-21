@@ -25,3 +25,5 @@ sudo /etc/init.d/apache2 restart
 login/passwd alban.andrieu@nabla.mobi/microsoft
 
 #http://public.kitware.com/Dart/HTML/Client.shtml
+
+cdash.log

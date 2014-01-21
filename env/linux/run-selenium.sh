@@ -61,3 +61,8 @@ java -jar -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver /var/lib
 
 -Dwebdriver.safari.noinstall=true -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver
 #webdriver.safari.driver
+
+#firefox profile
+#http://stackoverflow.com/questions/7106994/jenkins-cant-launch-selenium-tests-timed-out-waiting-for-profile-to-be-created/7154404#7154404
+firefox -P
+#create profile Selenium

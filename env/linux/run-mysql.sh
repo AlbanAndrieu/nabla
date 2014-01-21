@@ -12,9 +12,9 @@ sudo service mysql force-reload
 
 #default user : root/admin
 #sudo mysqladmin -u root password Nouveau_mot_de_passe -p Ancien_mot_de_passe
-sudo mysqladmin -u root password microsoft -p admin
 sudo mysqladmin -u user_name -h host_name password "newpwd"
 sudo mysqladmin -u nabla -h localhost password "nabla"
+sudo mysqladmin -u root -h localhost password "microsoft"
 
 GRANT SUPER ON *.* TO nabla@'localhost' IDENTIFIED BY 'nabla';
 
