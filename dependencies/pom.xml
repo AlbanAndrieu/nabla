@@ -3396,10 +3396,10 @@
                                                 <!--<generateHistorical>true</generateHistorical>-->
                                                 <!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>--> <!-- see ~/.m2/settings.xml -->
                                                 <!--<outputDirectory>${clover.reportPath}/clover-report</outputDirectory>-->
-                                                <license><![CDATA[OmnNMlxhQFAEUSQhhRbTWbgBrnPWmXXRCIiwSXEGKTKhtJ
-mi2KQ>iGiT1PeXMUAuQEWBO>2KnpkIvg0X51vAATd3rcfz
-nPRQVXMpRRoqroPmPpRvSMnPpnRmMnqnPPsXXxuSVSSMnm
-pmUUnpuuoprsmmmmmUUnpuuoprsmmmmmUUEXYiXUUn]]></license>
+                                                <license><![CDATA[oRrpQmDXNRTgPJxqWbEUwIbAnrteKgmisaSDoLeNBBdSQC
+mi2K94ZVw6MKqGL<mg71cH3j2KGDeofihV1z4utr>Zd8gR
+NnQRswPRrqoONRpMONMwXQRPRnrNMPrOmPWTVXxXTVvqnm
+pmUUnpvmvnqmmmmmmUUnpvmvnqmmmmmmUUEXYiXUUn]]></license>
 						<excludes>
             						<!-- GWT classes -->
             						<exclude>**/client/**/*.java</exclude>
