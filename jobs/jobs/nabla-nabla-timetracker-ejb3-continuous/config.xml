@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset plugin="maven-plugin@1.509.4">
+<maven2-moduleset plugin="maven-plugin@2.0.3">
   <actions/>
   <description>&lt;p&gt;Build &lt;b&gt;Nabla&lt;/b&gt; &lt;i&gt;Nabla timetracker-ejb3&lt;/i&gt; continuously during working days.&lt;br&gt;&#xd;
 The main goals of this job is to build fast, often and provide quick feedback to developer.&lt;br&gt;&#xd;
@@ -20,15 +20,16 @@ Report as much as possible :&#xd;
 as soon it does not take too long.&#xd;
 &lt;/p&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>7</daysToKeep>
-    <numToKeep>3</numToKeep>
+    <daysToKeep>365</daysToKeep>
+    <numToKeep>100</numToKeep>
     <artifactDaysToKeep>7</artifactDaysToKeep>
     <artifactNumToKeep>3</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <jenkins.plugins.maveninfo.config.MavenInfoJobConfig plugin="maven-info@0.0.5.1">
+    <jenkins.plugins.maveninfo.config.MavenInfoJobConfig plugin="maven-info@0.1.2">
       <mainModulePattern></mainModulePattern>
+      <dependenciesPattern></dependenciesPattern>
       <assignName>false</assignName>
       <nameTemplate></nameTemplate>
       <assignDescription>false</assignDescription>
@@ -37,33 +38,17 @@ as soon it does not take too long.&#xd;
     <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7">
       <googlecodeWebsite>https://code.google.com/p/alban/</googlecodeWebsite>
     </hudson.plugins.googlecode.GoogleCodeProjectProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.5.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <org.jenkins.ci.plugins.html5__notifier.JobPropertyImpl plugin="html5-notifier-plugin@1.2">
       <skip>false</skip>
     </org.jenkins.ci.plugins.html5__notifier.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>4147296</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map">
-        <entry>
-          <string>ec2-0</string>
-          <concurrent-hash-map>
-            <entry>
-              <string>/var/jenkins/workspace/nabla-nabla-timetracker-ejb3-continuous</string>
-              <long>461621242</long>
-            </entry>
-          </concurrent-hash-map>
-        </entry>
-      </slaveWorkspacesUsage>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
   </properties>
   <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
     <locations>
-      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@1.53">
+      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@1.54">
         <remote>https://alban.googlecode.com/svn/trunk/nabla</remote>
         <local>.</local>
         <depthOption>infinity</depthOption>
@@ -72,7 +57,7 @@ as soon it does not take too long.&#xd;
     </locations>
     <browser class="hudson.plugins.googlecode.GoogleCodeRepositoryBrowser"/>
     <excludedRegions></excludedRegions>
-    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@1.53"/>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@1.54"/>
     <ignoreDirPropChanges>false</ignoreDirPropChanges>
     <filterChangelog>false</filterChangelog>
     <directory>trunk/nabla/</directory>
@@ -85,7 +70,7 @@ as soon it does not take too long.&#xd;
   <jdk>JDK 7u7</jdk>
   <triggers>
     <hudson.triggers.TimerTrigger>
-      <spec>@daily</spec>
+      <spec>@weekly</spec>
     </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
       <spec>*/5 0-9,20-23 * * 1-5</spec>
@@ -98,16 +83,14 @@ as soon it does not take too long.&#xd;
     <artifactId>timetracker-ejb3</artifactId>
   </rootModule>
   <rootPOM>sample/timetracker-ejb3/pom.xml</rootPOM>
-  <goals>-fae -U -Dsurefire.useFile=false install  pmd:pmd pmd:cpd checkstyle:checkstyle cobertura:cobertura -Parq-jbossas-managed -Dserver=jboss5x -Ddatabase=derby</goals>
+  <goals>-U -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle cobertura:cobertura -Parq-jbossas-managed</goals>
   <defaultGoals>install</defaultGoals>
   <mavenName>Maven-3.0.4</mavenName>
   <mavenOpts>-Xms256m -Xmx1024m -XX:PermSize=80M -XX:MaxPermSize=256M</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <localRepository class="hudson.maven.local_repo.DefaultLocalRepositoryLocator"/>
-  <perModuleEmail>true</perModuleEmail>
   <ignoreUpstremChanges>false</ignoreUpstremChanges>
-  <archivingDisabled>true</archivingDisabled>
+  <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>
   <processPlugins>false</processPlugins>
   <mavenValidationLevel>30</mavenValidationLevel>
@@ -118,6 +101,26 @@ as soon it does not take too long.&#xd;
   <settings class="jenkins.mvn.DefaultSettingsProvider"/>
   <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
   <reporters>
+    <hudson.plugins.checkstyle.CheckStyleReporter plugin="checkstyle@3.38">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <pluginName>[CHECKSTYLE] </pluginName>
+      <thresholdLimit>low</thresholdLimit>
+      <canRunOnFailed>false</canRunOnFailed>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.54">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+      </thresholds>
+      <dontComputeNew>true</dontComputeNew>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+    </hudson.plugins.checkstyle.CheckStyleReporter>
     <hudson.plugins.findbugs.FindBugsReporter plugin="findbugs@4.51">
       <healthy></healthy>
       <unHealthy></unHealthy>
@@ -139,26 +142,6 @@ as soon it does not take too long.&#xd;
       <useStableBuildAsReference>false</useStableBuildAsReference>
       <isRankActivated>false</isRankActivated>
     </hudson.plugins.findbugs.FindBugsReporter>
-    <hudson.plugins.checkstyle.CheckStyleReporter plugin="checkstyle@3.38">
-      <healthy></healthy>
-      <unHealthy></unHealthy>
-      <pluginName>[CHECKSTYLE] </pluginName>
-      <thresholdLimit>low</thresholdLimit>
-      <canRunOnFailed>false</canRunOnFailed>
-      <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.54">
-        <unstableTotalAll></unstableTotalAll>
-        <unstableTotalHigh></unstableTotalHigh>
-        <unstableTotalNormal></unstableTotalNormal>
-        <unstableTotalLow></unstableTotalLow>
-        <failedTotalAll></failedTotalAll>
-        <failedTotalHigh></failedTotalHigh>
-        <failedTotalNormal></failedTotalNormal>
-        <failedTotalLow></failedTotalLow>
-      </thresholds>
-      <dontComputeNew>true</dontComputeNew>
-      <useStableBuildAsReference>false</useStableBuildAsReference>
-    </hudson.plugins.checkstyle.CheckStyleReporter>
     <hudson.plugins.pmd.PmdReporter plugin="pmd@3.37">
       <healthy></healthy>
       <unHealthy></unHealthy>
@@ -419,7 +402,7 @@ as soon it does not take too long.&#xd;
       <pathConfig/>
       <failOnSecurityAlerts>false</failOnSecurityAlerts>
     </com.sonatype.insight.ci.hudson.PostBuildScan>
-    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.35">
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.38">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -489,6 +472,41 @@ as soon it does not take too long.&#xd;
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.plugins.dependencyanalyzer.DependencyAnalyzerPublisher plugin="dependencyanalyzer@0.6"/>
+    <hudson.maven.RedeployPublisher>
+      <id>nexus-snapshots</id>
+      <url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+      <uniqueVersion>true</uniqueVersion>
+      <evenIfUnstable>false</evenIfUnstable>
+    </hudson.maven.RedeployPublisher>
+    <org.jenkinsci.plugins.discardbuild.DiscardBuildPublisher plugin="discard-old-build@1.05">
+      <daysToKeep>30</daysToKeep>
+      <numToKeep>-1</numToKeep>
+      <resultsToDiscard>
+        <hudson.model.Result>
+          <name>NOT_BUILT</name>
+          <ordinal>3</ordinal>
+          <color>NOTBUILT</color>
+          <completeBuild>false</completeBuild>
+        </hudson.model.Result>
+        <hudson.model.Result>
+          <name>ABORTED</name>
+          <ordinal>4</ordinal>
+          <color>ABORTED</color>
+          <completeBuild>false</completeBuild>
+        </hudson.model.Result>
+        <hudson.model.Result>
+          <name>FAILURE</name>
+          <ordinal>2</ordinal>
+          <color>RED</color>
+          <completeBuild>true</completeBuild>
+        </hudson.model.Result>
+      </resultsToDiscard>
+      <minLogFileSize>0</minLogFileSize>
+      <maxLogFileSize>0</maxLogFileSize>
+      <intervalDaysToKeep>-1</intervalDaysToKeep>
+      <intervalNumToKeep>15</intervalNumToKeep>
+      <regexp></regexp>
+    </org.jenkinsci.plugins.discardbuild.DiscardBuildPublisher>
     <hudson.plugins.cobertura.CoberturaPublisher plugin="cobertura@1.9.3">
       <coberturaReportFile>**/target/site/cobertura/coverage.xml</coberturaReportFile>
       <onlyStable>false</onlyStable>
@@ -549,7 +567,6 @@ as soon it does not take too long.&#xd;
       </failingTarget>
       <sourceEncoding>ASCII</sourceEncoding>
     </hudson.plugins.cobertura.CoberturaPublisher>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.2"/>
     <hudson.plugins.covcomplplot.CovComplPlotPublisher plugin="covcomplplot@1.1.1">
       <analyzer>Cobertura</analyzer>
       <verbose>false</verbose>
@@ -558,14 +575,20 @@ as soon it does not take too long.&#xd;
     </hudson.plugins.covcomplplot.CovComplPlotPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.7"/>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>300</timeoutMinutes>
+      </strategy>
+      <failBuild>true</failBuild>
+      <writingDescription>false</writingDescription>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
   </buildWrappers>
   <prebuilders>
     <hudson.tasks.Maven>
-      <targets>-U clean validate -Psample,arq-jbossas-managed -Dserver=jboss5x -Ddatabase=derby</targets>
+      <targets>-U clean validate -Psample,arq-jbossas-managed</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <pom>sample/timetracker-ejb3/pom.xml</pom>
-      <properties>maven.repo.local=~/.m2/repository/</properties>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
@@ -573,30 +596,28 @@ as soon it does not take too long.&#xd;
   </prebuilders>
   <postbuilders>
     <hudson.tasks.Maven>
-      <targets>javadoc:javadoc -P!mda -Dno-cartridges= -Dserver=jboss5x -Ddatabase=derby</targets>
+      <targets>javadoc:javadoc -Psample,!mda,arq-jbossas-managed -Dno-cartridges=</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
       <pom>sample/timetracker-ejb3/pom.xml</pom>
-      <properties>maven.repo.local=~/.m2/repository/</properties>
       <usePrivateRepository>false</usePrivateRepository>
-      <settings class="jenkins.mvn.DefaultSettingsProvider" reference="../../../prebuilders/hudson.tasks.Maven/settings"/>
-      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider" reference="../../../prebuilders/hudson.tasks.Maven/globalSettings"/>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
     </hudson.tasks.Maven>
     <hudson.tasks.Maven>
-      <targets>javadoc:aggregate -P!mda -Dno-cartridges= -Dserver=jboss5x -Ddatabase=derby</targets>
+      <targets>javadoc:aggregate -Psample,!mda,arq-jbossas-managed -Dno-cartridges= </targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
       <pom>sample/timetracker-ejb3/pom.xml</pom>
-      <properties>maven.repo.local=~/.m2/repository/</properties>
       <usePrivateRepository>false</usePrivateRepository>
-      <settings class="jenkins.mvn.DefaultSettingsProvider" reference="../../../prebuilders/hudson.tasks.Maven/settings"/>
-      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider" reference="../../../prebuilders/hudson.tasks.Maven/globalSettings"/>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
     </hudson.tasks.Maven>
   </postbuilders>
   <runPostStepsIfResult>
-    <name>SUCCESS</name>
-    <ordinal>0</ordinal>
-    <color>BLUE</color>
+    <name>UNSTABLE</name>
+    <ordinal>1</ordinal>
+    <color>YELLOW</color>
     <completeBuild>true</completeBuild>
   </runPostStepsIfResult>
 </maven2-moduleset>
