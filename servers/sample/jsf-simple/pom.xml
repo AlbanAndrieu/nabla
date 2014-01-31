@@ -15,9 +15,128 @@
 	<!--<version>1.0</version> -->
 	<name>Java Server Faces Maven Webapp</name>
 
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+				of artifacts. We use this here so that we always get the correct versions 
+				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
+				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
+				for your project, such as Arquillian for testing) -->
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+				
 	<dependencies>
 
+		<!-- First declare the APIs we depend on and need for compilation. All 
+			of them are provided by JBoss AS 7 -->
+
+		<!-- Import the CDI API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the JPA API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
+			as the API is included in JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the JAX-RS API, we use provided scope as the API is included 
+			in JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the JPA API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the EJB API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the Bean Validation API, which is used both on the server and 
+			the client. -->
+		<!--			
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		-->
+                
+        	<!-- Import the JSF API, we use provided scope as the API is included
+        	    in JBoss AS 7 -->
+        	<dependency>
+        	    <groupId>org.jboss.spec.javax.faces</groupId>
+        	    <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+        	    <scope>provided</scope>
+        	</dependency>      
+        		
+		<!-- for cannot access javax.faces.application.FacesMessage -->
+		<!-- see in core project it is provided (needed for jboss 7) -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>${jsf.api.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+		<!--
+                <dependency>
+                        <groupId>javax.faces</groupId>
+                        <artifactId>jsf-impl</artifactId>
+                        <version>${jsf.impl.version}</version>
+                        <scope>${scope.type}</scope>
+                </dependency>
+                -->          
+                        	
 		<!-- http://download.java.net/maven/2 -->
+		<!--
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -28,6 +147,7 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>${sun.jsf.version}</version>
 		</dependency>
+		-->
 
 		<!-- http://repo1.maven.org/maven -->
 		<dependency>
