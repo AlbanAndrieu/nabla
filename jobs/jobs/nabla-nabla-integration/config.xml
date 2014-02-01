@@ -500,8 +500,8 @@ This build check that all reports can still be generated and is doing sone addit
       </resultsToDiscard>
       <minLogFileSize>0</minLogFileSize>
       <maxLogFileSize>0</maxLogFileSize>
-      <intervalDaysToKeep>15</intervalDaysToKeep>
-      <intervalNumToKeep>-1</intervalNumToKeep>
+      <intervalDaysToKeep>-1</intervalDaysToKeep>
+      <intervalNumToKeep>15</intervalNumToKeep>
       <regexp></regexp>
     </org.jenkinsci.plugins.discardbuild.DiscardBuildPublisher>
     <hudson.plugins.clover.CloverPublisher plugin="clover@4.2.0">
