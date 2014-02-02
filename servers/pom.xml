@@ -38,6 +38,8 @@
 		<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
 		<jboss.server>standalone</jboss.server>
 		<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
+		<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
+		<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
         </properties>
 
 	<build>
@@ -566,6 +568,8 @@
 				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<scope.type>${scope.compile}</scope.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 			</properties>
 			<build>
 				<plugins>
@@ -635,7 +639,9 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				<scope.type>${scope.web}</scope.type>
+				<scope.type>${scope.compile}</scope.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 			</properties>
 			<build>
 				<plugins>
@@ -731,7 +737,9 @@
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 
-				<scope.type>${scope.web}</scope.type>
+				<scope.type>${scope.compile}</scope.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 			</properties>
 			<build>
 				<plugins>

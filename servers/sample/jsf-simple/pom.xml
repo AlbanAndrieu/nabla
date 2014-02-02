@@ -17,15 +17,19 @@
 
 	<!--
         <properties>
-		<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
-		<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
+		<jsf.api.version>2.1</jsf.api.version>
+        	<jsf.impl.version>2.1</jsf.impl.version>
+		
 		<jsf.api.version>1.2_15</jsf.api.version>
         	<jsf.impl.version>1.2_15</jsf.impl.version>
+		<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
+		<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
         	<el.api.version>2.2.1-b04</el.api.version>
         	<jboss.el.version>1.0_02.CR6</jboss.el.version>
+		
         </properties>
 	-->
-
+ 	
 	<dependencyManagement>
 		<dependencies>
 
@@ -127,7 +131,7 @@
         	    <groupId>org.jboss.spec.javax.faces</groupId>
         	    <artifactId>jboss-jsf-api_2.1_spec</artifactId>
         	    <scope>provided</scope>
-        	</dependency>      
+        	</dependency>  
         		
 		<!-- for cannot access javax.faces.application.FacesMessage -->
 		<!-- see in core project it is provided (needed for jboss 7) -->
@@ -135,23 +139,26 @@
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>${jsf.api.version}</version>
-			<scope>${scope.type}</scope>
+			<scope>${scope.tomcat.never.type}</scope>
 			<!-- <scope>compile</scope> compile needed for jetty -->
 		</dependency>
-		<!-- TODO remove
+		
+		<!-- TODO remove not needed
                 <dependency>
                         <groupId>javax.faces</groupId>
                         <artifactId>jsf-impl</artifactId>
                         <version>${jsf.impl.version}</version>
                         <scope>${scope.type}</scope>
                 </dependency>
-                      
+		-->
+                    
+		<!-- TODO remove 
     		<dependency>
         		<groupId>org.primefaces</groupId>
         		<artifactId>primefaces</artifactId>
         		<version>4.0</version>
     		</dependency>
-		-->
+		 -->
 
     		<!-- Javaee API -->
 		<!-- TODO remove
@@ -161,7 +168,7 @@
     			<version>${javax.javaee.api.version}</version>
 			<scope>${scope.type}</scope>
 		</dependency>
-
+		 recommended way is to include
   		<dependency>
             		<groupId>javax.faces</groupId>
             		<artifactId>javax.faces-api</artifactId>
@@ -169,21 +176,22 @@
 	    		<scope>${scope.type}</scope>
   		</dependency>
 		-->
-		<!-- http://download.java.net/maven/2 -->
-		<!-- replcaced by javax.faces
+		<!-- http://download.java.net/maven/2 needed for tomcat only -->
+		<!-- http://www.mkyong.com/jsf2/jsf-2-0-hello-world-example/ -->
+		<!-- replaced by javax.faces for other except tomcat -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>${sun.jsf.version}</version>
-			<scope>${scope.type}</scope>
+			<scope>${scope.tomcat.only.type}</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>${sun.jsf.version}</version>
-			<scope>${scope.type}</scope>
+			<scope>${scope.tomcat.only.type}</scope>
 		</dependency>
-		-->
+		
 
 		<!-- http://repo1.maven.org/maven -->
 		<dependency>
@@ -610,6 +618,13 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+	    		<plugin>
+	    			<groupId>com.atlassian.maven.plugins</groupId>
+	    			<artifactId>maven-clover2-plugin</artifactId>
+	    			<configuration>
+	    				<skip>true</skip>
+	    			</configuration>
+	    		</plugin>   
 		</plugins>
 	</build>		
 	
