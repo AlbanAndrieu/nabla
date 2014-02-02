@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset plugin="maven-plugin@1.509.4">
+<maven2-moduleset plugin="maven-plugin@2.0.3">
   <actions/>
   <description>&lt;p&gt;Build &lt;b&gt;Nabla&lt;/b&gt; &lt;i&gt;Databases&lt;/i&gt; integration after the nightly job.&lt;br&gt;&#xd;
 The main goals of this job is to integration team works, every week and provide quick feedback to manager.&lt;br&gt;&#xd;
@@ -15,54 +15,47 @@ Report as much as possible and generate the corresponding maven site and publish
   &lt;li&gt;checkstyle&lt;/li&gt;  &#xd;
   &lt;li&gt;findbugs&lt;/li&gt;&#xd;
   &lt;li&gt;cobertura&lt;/li&gt;&#xd;
+  &lt;li&gt;javancss&lt;/li&gt;  &#xd;
   &lt;li&gt;javadoc&lt;/li&gt;&#xd;
-  &lt;li&gt;clover&lt;/li&gt;      &#xd;
+  &lt;li&gt;site&lt;/li&gt;      &#xd;
 &lt;/ul&gt;&#xd;
 This build check that all reports can still be generated and is doing sone additionnal functional tests.&#xd;
 &lt;/p&gt;</description>
   <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>7</daysToKeep>
-    <numToKeep>3</numToKeep>
+    <daysToKeep>365</daysToKeep>
+    <numToKeep>100</numToKeep>
     <artifactDaysToKeep>7</artifactDaysToKeep>
     <artifactNumToKeep>3</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <jenkins.plugins.maveninfo.config.MavenInfoJobConfig plugin="maven-info@0.1.2">
+      <mainModulePattern></mainModulePattern>
+      <dependenciesPattern></dependenciesPattern>
+      <assignName>false</assignName>
+      <nameTemplate></nameTemplate>
+      <assignDescription>false</assignDescription>
+      <descriptionTemplate></descriptionTemplate>
+    </jenkins.plugins.maveninfo.config.MavenInfoJobConfig>
     <hudson.plugins.googlecode.GoogleCodeProjectProperty plugin="googlecode@1.7">
       <googlecodeWebsite>https://code.google.com/p/alban/</googlecodeWebsite>
     </hudson.plugins.googlecode.GoogleCodeProjectProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.5.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <org.jenkins.ci.plugins.html5__notifier.JobPropertyImpl plugin="html5-notifier-plugin@1.2">
       <skip>false</skip>
     </org.jenkins.ci.plugins.html5__notifier.JobPropertyImpl>
-    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.14">
+    <hudson.plugins.promoted__builds.JobPropertyImpl plugin="promoted-builds@2.15">
       <activeProcessNames>
         <string>nabla-database-integration-promoted</string>
       </activeProcessNames>
     </hudson.plugins.promoted__builds.JobPropertyImpl>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.20">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.21">
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.22">
-      <diskUsageWithoutBuilds>881277</diskUsageWithoutBuilds>
-      <slaveWorkspacesUsage class="concurrent-hash-map">
-        <entry>
-          <string>ec2-0</string>
-          <concurrent-hash-map>
-            <entry>
-              <string>/var/jenkins/workspace/nabla-databases-integration</string>
-              <long>203107955</long>
-            </entry>
-          </concurrent-hash-map>
-        </entry>
-      </slaveWorkspacesUsage>
-    </hudson.plugins.disk__usage.DiskUsageProperty>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
   </properties>
   <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
     <locations>
-      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@1.53">
+      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@1.54">
         <remote>https://alban.googlecode.com/svn/trunk/databases</remote>
         <local>.</local>
         <depthOption>infinity</depthOption>
@@ -71,7 +64,7 @@ This build check that all reports can still be generated and is doing sone addit
     </locations>
     <browser class="hudson.plugins.googlecode.GoogleCodeRepositoryBrowser"/>
     <excludedRegions></excludedRegions>
-    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@1.53"/>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@1.54"/>
     <ignoreDirPropChanges>false</ignoreDirPropChanges>
     <filterChangelog>false</filterChangelog>
     <directory>trunk/databases</directory>
@@ -96,14 +89,11 @@ This build check that all reports can still be generated and is doing sone addit
     <groupId>com.nabla.project</groupId>
     <artifactId>databases</artifactId>
   </rootModule>
-  <goals>-U -Dsurefire.useFile=false clover2:setup install clover2:aggregate clover2:clover pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs cobertura:cobertura -Psample,integration -Ddatabase=derby</goals>
+  <goals>-U -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs cobertura:cobertura -Psample,integration -Ddatabase=derby</goals>
   <defaultGoals>install</defaultGoals>
   <mavenName>Maven-3.0.4</mavenName>
-  <mavenOpts>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</mavenOpts>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <localRepository class="hudson.maven.local_repo.DefaultLocalRepositoryLocator"/>
-  <perModuleEmail>true</perModuleEmail>
   <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>true</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>
@@ -412,7 +402,7 @@ This build check that all reports can still be generated and is doing sone addit
     </hudson.plugins.violations.hudson.maven.ViolationsMavenReporter>
   </reporters>
   <publishers>
-    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.35">
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.38">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -474,9 +464,7 @@ This build check that all reports can still be generated and is doing sone addit
       <isWarningsDeactivated>false</isWarningsDeactivated>
     </hudson.plugins.analysis.collector.AnalysisPublisher>
     <hudson.maven.MavenTestDataPublisher>
-      <testDataPublishers>
-        <hudson.plugins.claim.ClaimTestDataPublisher plugin="claim@2.2"/>
-      </testDataPublishers>
+      <testDataPublishers/>
     </hudson.maven.MavenTestDataPublisher>
     <hudson.tasks.test.AggregatedTestResultPublisher>
       <includeFailedBuilds>false</includeFailedBuilds>
@@ -487,6 +475,35 @@ This build check that all reports can still be generated and is doing sone addit
       <allowEmptyArchive>false</allowEmptyArchive>
     </hudson.tasks.ArtifactArchiver>
     <hudson.plugins.dependencyanalyzer.DependencyAnalyzerPublisher plugin="dependencyanalyzer@0.6"/>
+    <org.jenkinsci.plugins.discardbuild.DiscardBuildPublisher plugin="discard-old-build@1.05">
+      <daysToKeep>30</daysToKeep>
+      <numToKeep>-1</numToKeep>
+      <resultsToDiscard>
+        <hudson.model.Result>
+          <name>NOT_BUILT</name>
+          <ordinal>3</ordinal>
+          <color>NOTBUILT</color>
+          <completeBuild>false</completeBuild>
+        </hudson.model.Result>
+        <hudson.model.Result>
+          <name>ABORTED</name>
+          <ordinal>4</ordinal>
+          <color>ABORTED</color>
+          <completeBuild>false</completeBuild>
+        </hudson.model.Result>
+        <hudson.model.Result>
+          <name>FAILURE</name>
+          <ordinal>2</ordinal>
+          <color>RED</color>
+          <completeBuild>true</completeBuild>
+        </hudson.model.Result>
+      </resultsToDiscard>
+      <minLogFileSize>0</minLogFileSize>
+      <maxLogFileSize>0</maxLogFileSize>
+      <intervalDaysToKeep>-1</intervalDaysToKeep>
+      <intervalNumToKeep>15</intervalNumToKeep>
+      <regexp></regexp>
+    </org.jenkinsci.plugins.discardbuild.DiscardBuildPublisher>
     <hudson.plugins.clover.CloverPublisher plugin="clover@4.2.0">
       <cloverReportDir>target/site/clover</cloverReportDir>
       <cloverReportFileName>clover.xml</cloverReportFileName>
@@ -558,17 +575,6 @@ This build check that all reports can still be generated and is doing sone addit
       </failingTarget>
       <sourceEncoding>ASCII</sourceEncoding>
     </hudson.plugins.cobertura.CoberturaPublisher>
-    <hudson.plugins.performance.PerformancePublisher plugin="performance@1.9">
-      <errorFailedThreshold>0</errorFailedThreshold>
-      <errorUnstableThreshold>0</errorUnstableThreshold>
-      <modePerformancePerTestCase>false</modePerformancePerTestCase>
-      <parsers>
-        <hudson.plugins.performance.JUnitParser>
-          <glob>**/TEST-*.xml </glob>
-        </hudson.plugins.performance.JUnitParser>
-      </parsers>
-    </hudson.plugins.performance.PerformancePublisher>
-    <hudson.plugins.claim.ClaimPublisher plugin="claim@2.2"/>
     <hudson.plugins.covcomplplot.CovComplPlotPublisher plugin="covcomplplot@1.1.1">
       <analyzer>Cobertura</analyzer>
       <verbose>false</verbose>
@@ -577,13 +583,24 @@ This build check that all reports can still be generated and is doing sone addit
     </hudson.plugins.covcomplplot.CovComplPlotPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.7"/>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.19">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>300</timeoutMinutes>
+      </strategy>
+      <failBuild>true</failBuild>
+      <writingDescription>false</writingDescription>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
   </buildWrappers>
   <prebuilders>
     <hudson.tasks.Maven>
-      <targets>clean clover2:setup clover2:optimize test clover2:snapshot -Psample -Ddatabase=derby</targets>
+      <targets>clean -Psample -Ddatabase=derby</targets>
       <mavenName>Maven-3.0.4</mavenName>
-      <properties>maven.repo.local=~/.m2/repository/</properties>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
@@ -594,8 +611,7 @@ This build check that all reports can still be generated and is doing sone addit
       <targets>javancss:report -Psample -Ddatabase=derby</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
-      <properties>maven.repo.local=~/.m2/repository/
-java.awt.headless=true</properties>
+      <properties>java.awt.headless=true</properties>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
@@ -604,17 +620,7 @@ java.awt.headless=true</properties>
       <targets>javadoc:aggregate -Psample -Ddatabase=derby</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
-      <properties>maven.repo.local=~/.m2/repository/
-java.awt.headless=true</properties>
-      <usePrivateRepository>false</usePrivateRepository>
-      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
-      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
-    </hudson.tasks.Maven>
-    <hudson.tasks.Maven>
-      <targets>site -Psample,integration -Ddatabase=derby</targets>
-      <mavenName>Maven-3.0.4</mavenName>
-      <properties>maven.repo.local=~/.m2/repository/
-java.awt.headless=true</properties>
+      <properties>java.awt.headless=true</properties>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
@@ -623,8 +629,15 @@ java.awt.headless=true</properties>
       <targets>dashboard:dashboard -Psample -Ddatabase=derby</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
-      <properties>maven.repo.local=~/.m2/repository/
-java.awt.headless=true</properties>
+      <properties>java.awt.headless=true</properties>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+    <hudson.tasks.Maven>
+      <targets>site -Psample,integration -Ddatabase=derby</targets>
+      <mavenName>Maven-3.0.4</mavenName>
+      <properties>java.awt.headless=true</properties>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
