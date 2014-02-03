@@ -66,3 +66,10 @@ java -jar -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver /var/lib
 #http://stackoverflow.com/questions/7106994/jenkins-cant-launch-selenium-tests-timed-out-waiting-for-profile-to-be-created/7154404#7154404
 firefox -P
 #create profile Selenium
+
+#-Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver -port 6666 -log=/tmp/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/gr8mkk7y.Selenium/ 
+
+#check following
+#http://stackoverflow.com/questions/12588082/webdriver-unable-to-connect-to-host-127-0-0-1-on-port-7055-after-45000-ms
+
+You can use any version of selenium from 2.XX but there is only limitation that we can use only firefox25 or firefox 14.01 to 17.XX

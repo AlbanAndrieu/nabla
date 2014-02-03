@@ -8,6 +8,23 @@ sudo apt-get update
 
 #install gearman
 sudo apt-get install gearman-job-server gearman-tools
+#for older ubuntu version 
+#https://github.com/tripsta/gearman-php-prototype/blob/master/README.md
+#follow process
+#curl -L https://launchpad.net/gearmand/1.0/1.0.6/+download/gearmand-1.0.6.tar.gz > gearmand-1.0.6.tar.gz
+#tar xzf gearmand-1.0.6.tar.gz &&
+#cd gearmand-1.0.6 &&
+#./configure &&
+#make &&
+#sudo make install &&
+#cd ../ &&
+#rm -rf gearmand-1.0.6 &&
+#rm gearmand-1.0.6.tar.gz
+#You might need to change prefix=/usr by prefix=/usr/local in /etc/init.d/gearman-job-server
+
+#check version is 1.0.6
+/usr/sbin/gearmand -V
+/usr/local/sbin/gearmand -V
 
 # start gearman
 gearmand -d &
@@ -83,19 +100,37 @@ curl -sS https://getcomposer.org/installer | sudo php
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/bin
 
 ##NOK git clone git://github.com/gaspaio/gearmanui.git gearman-ui
-Try instead : https://github.com/yugene/Gearman-Monitor
+#Try instead : https://github.com/yugene/Gearman-Monitor
 
-cd /workspace/gearman-ui
-sudo /bin/composer.phar install
+#cd /workspace/gearman-ui
+#sudo /bin/composer.phar install
 
-cd /workspace/gearman-ui/app
-sudo chmod 777 -R logs
+#cd /workspace/gearman-ui/app
+#sudo chmod 777 -R logs
 
-cd /workspace/gearman-ui/
-sudo chmod 777 -R web
+#cd /workspace/gearman-ui/
+#sudo chmod 777 -R web
+
+#https://github.com/yugene/Gearman-Monitor
+#https://github.com/tripsta/gearman-php-prototype
+sudo pear install Net_Gearman-0.2.3
+
+cd /workspace
+sudo git clone https://github.com/yugene/Gearman-Monitor.git
 
 cd /var/www
-sudo ln -s /workspace/gearman-ui/web gearman
+#sudo ln -s /workspace/gearman-ui/web gearman
+sudo ln -s /workspace/Gearman-Monitor gearman
+
+sudo nano /etc/hosts
+127.0.0.1 gearman-monitor.local
+
+#modify _config.php with the server info $cfgServers[$i]['address'] = '127.0.0.1:4730'; $cfgServers[$i]['name'] = 'Gearman server 1';
+cd /workspace/Gearman-Monitor
+sudo nano _config.php
+#modify _config.php with the server info $cfgServers[$i]['address'] = '127.0.0.1:4730'; $cfgServers[$i]['name'] = 'Gearman server 1';
+
+sudo service apache2 restart
 
 sudo a2enmod rewrite
 cd /etc/apache2/sites-available

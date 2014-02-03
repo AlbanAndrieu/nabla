@@ -76,3 +76,7 @@ JENKINS_ARGS="$JENKINS_ARGS --prefix=$PREFIX"
 #monitoring
 https://home.nabla.mobi/jenkins/monitoring?
 https://home.nabla.mobi/jenkins/monitoring?part=graph&graph=httpSessions
+
+#On Red hat disable jenkins start at boot time
+#chkconfig jenkins off
+sudo update-rc.d jenkins disable

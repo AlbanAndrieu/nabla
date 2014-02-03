@@ -25,7 +25,7 @@ DAEMON_OPTS="-a :80,:443 \
 #               -p connect_timeout=600 \
 #               -s malloc,2G"             
              
-sudo nano /etc/varnish/default.vcl            
+sudo nano /etc/varnish/default.vcl
              
 # This is a basic VCL configuration file for varnish.  See the vcl(7)
 # man page for details on VCL syntax and semantics.
@@ -36,6 +36,20 @@ sudo nano /etc/varnish/default.vcl
 backend default {
     .host = "127.0.0.1";
     .port = "8280";
+    .probe = {
+         .url = "/";
+         .interval = 5s;
+         .timeout = 1s;
+#         .connect_timeout = 600s;
+#         .first_byte_timeout = 600s;
+#         .between_bytes_timeout = 600s;         
+#         .window = 5;
+         .threshold = 3;
+    }    
+}
+backend apache {
+    .host = "127.0.0.1";
+    .port = "8080";
     .probe = {
          .url = "/";
          .interval = 5s;
@@ -163,5 +177,5 @@ varnishstat
 
 sudo service varnish stop
 sudo service apache2 start
-sudo service varnish start
+#sudo service varnish start
 sudo service varnish restart

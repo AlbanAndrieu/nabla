@@ -1,3 +1,6 @@
+#Remove everything
+#sudo apt-get purge apache2*
+sudo apt-get remove apache2
 sudo apt-get install apache2
 sudo apt-get install php5
 sudo apt-get install libapache2-mod-php5
@@ -7,9 +10,9 @@ sudo /etc/init.d/apache2 restart
 ll /etc/apache2/
 ll /var/www/
 
-config
- /etc/apache2/apache2.conf
-site available
+#config
+/etc/apache2/apache2.conf
+#site available
 cat /etc/apache2/sites-available/default
 
 sudo /etc/init.d/apache2 restart
@@ -55,8 +58,10 @@ tail -f /var/log/apache2/error.log
 sudo ufw status
 sudo iptables -A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
 netstat -an | grep 8080
+netstat -tlnp | grep 8080
 nmap -v -sV -PN albandri
 sudo lsof -i :8080
+sudo lsof -i tcp:443
 
 From the machine 192.168.0.29 run the following and post back here.
 To list listening devices and ports
@@ -78,12 +83,15 @@ sudo nmap -sS -O -p80,8180,8080 192.168.0.0/24
 sudo nmap localhost
 
 --------- change apache to port 8080 -----------
+#http://www.cyberciti.biz/faq/linux-apache2-change-default-port-ipbinding/
 sudo nano /etc/apache2/ports.conf
 #change
 #NameVirtualHost *:80
 #Listen 80
-#NameVirtualHost *:8080
-Listen *:8080
+Listen 127.0.0.1:8080
+#Use below to allow everybody to access apache on port 8080
+#Listen 8080
+#Listen *:8080
 
 -----------------------------------------------------------------------
 
@@ -101,6 +109,9 @@ sudo a2enmod rewrite
 sudo a2enmod proxy
 sudo a2enmod ssl
 sudo a2enmod proxy_http
+
+#check site that are enable at
+cd /etc/apache2/sites-enabled
 
 <VirtualHost *:8080>
         # The ServerName directive sets the request scheme, hostname and port that
@@ -204,3 +215,12 @@ SF-Port22-TCP:V=6.40%I=7%D=11/15%Time=52856A44%P=i686-pc-linux-gnu%r(NULL,SF:29,
 
 #check error doing
 sudo apache2ctl restart
+
+#Fix error : apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1 for ServerName
+#http://blog2fouine.free.fr/index.php/42/2008/05/corriger-lerreur-could-not-determine-domain-name-for-servername/
+sudo nano /etc/hosts
+127.0.0.1	localhost.localdomain localhost ubuntu
+#or change /etc/apache2/httpd.conf
+#add line ServerName localhost
+
+sudo service apache2 restart

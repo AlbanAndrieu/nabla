@@ -10,8 +10,14 @@ http://localhost:9990/console
 
 add-user.bat
 a
-
 Realm (ManagementRealm) : ManagementRealm
-Username :nabla
+Username : nabla
+Password : microsoft
+Re-enter Password : microsoft
+
+#for cargo
+a
+Realm (ManagementRealm) : ManagementRealm
+Username : admin
 Password : microsoft
 Re-enter Password : microsoft

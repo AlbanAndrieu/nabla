@@ -36,6 +36,14 @@ sudo mv phpldapadmin-1.2.3 phpldapadmin
 cd /var/www/phpldapadmin/config
 sudo mv config.php.example config.php
 
+cd /var/www$ 
+sudo ln -s /usr/share/phpldapadmin phpldapadmin
+#ls -lrta /etc/phpldapadmin
+#ls -lrta /usr/share/phpldapadmin
+
+#fix incompatibility
+#http://sourceforge.net/u/nihilisticz/phpldapadmin/ci/7e53dab990748c546b79f0610c3a7a58431e9ebc/
+
 #restart
 sudo /etc/init.d/apache2 restart
 #ou
