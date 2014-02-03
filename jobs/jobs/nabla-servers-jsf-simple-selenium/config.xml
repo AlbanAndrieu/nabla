@@ -37,7 +37,6 @@ as soon it does not take too long.&#xd;
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.4.4"/>
   </properties>
   <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
     <locations>
@@ -66,7 +65,7 @@ as soon it does not take too long.&#xd;
       <spec>@daily</spec>
     </hudson.triggers.TimerTrigger>
     <hudson.triggers.SCMTrigger>
-      <spec>*/5 0-9,20-23 * * 1-5</spec>
+      <spec>H/5 0-9,20-23 * * 1-5</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
@@ -178,6 +177,15 @@ as soon it does not take too long.&#xd;
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
+    <org.jenkinsci.plugins.xvfb.XvfbBuildWrapper plugin="xvfb@1.0.8">
+      <installationName>xvbf-jenkins</installationName>
+      <screen>1024x768x24</screen>
+      <debug>true</debug>
+      <timeout>1</timeout>
+      <displayNameOffset>1</displayNameOffset>
+      <additionalOptions></additionalOptions>
+      <shutdownWithBuild>true</shutdownWithBuild>
+    </org.jenkinsci.plugins.xvfb.XvfbBuildWrapper>
   </buildWrappers>
   <prebuilders>
     <hudson.tasks.Maven>
