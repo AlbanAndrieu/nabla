@@ -1426,7 +1426,7 @@
                 <jarjar.version>0.6</jarjar.version>
                 <acegi.version>1.0.5</acegi.version>
                 <acegijsf.version>1.1.2</acegijsf.version>
-                <jsf.version>1.2_12</jsf.version>
+                <jsf.version>1.2_15</jsf.version>
                 <jsf.api.version>${jsf.version}</jsf.api.version>
                 <jsf.impl.version>${jsf.version}</jsf.impl.version>
                 <sun.jsf.version>2.1.7</sun.jsf.version>
@@ -1537,8 +1537,8 @@
                 <errai.version>2.0.Beta3</errai.version>
 
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
-                <selenium.version>2.29.0</selenium.version> <!-- todo 2.37.1 -->
-                <!--<selenium.java.client.driver.version>1.0.1</selenium.java.client.driver.version>-->
+                <selenium.version>2.37.1</selenium.version> 
+                <selenium.driver.version>2.39.0</selenium.driver.version>
                 <webdriver.chrome>/var/lib/chrome-driver/chromedriver</webdriver.chrome>
                 <drools.version>5.0.1</drools.version>
                 <!--<drools.version>5.1.1</drools.version>-->
@@ -4022,67 +4022,67 @@ pmUUnpvmvnqmmmmmmUUnpvmvnqmmmmmmUUEXYiXUUn]]></license>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>
 			</dependency>		
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-remote-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-firefox-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>                  
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-api</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-support</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-safari-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-iphone-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>						                        		
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-ie-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-htmlunit-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-android-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>					
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-chrome-driver</artifactId>
-				<version>${selenium.version}</version>
+				<version>${selenium.driver.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -5447,6 +5447,7 @@ pmUUnpvmvnqmmmmmmUUnpvmvnqmmmmmmUUEXYiXUUn]]></license>
                                 <artifactId>jsf-api</artifactId>
                                 <version>${jsf.api.version}</version>
                                 <scope>provided</scope>
+                                <!-- <scope>compile</scope> compile needed for jetty -->
                         </dependency>
                         <dependency>
                                 <groupId>javax.faces</groupId>
