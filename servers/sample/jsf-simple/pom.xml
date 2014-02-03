@@ -15,20 +15,18 @@
 	<!--<version>1.0</version> -->
 	<name>Java Server Faces Maven Webapp</name>
 
-	<!--
+	<!--       
         <properties>
 		<jsf.api.version>2.1</jsf.api.version>
-        	<jsf.impl.version>2.1</jsf.impl.version>
-		
+        	<jsf.impl.version>2.1</jsf.impl.version>		
 		<jsf.api.version>1.2_15</jsf.api.version>
         	<jsf.impl.version>1.2_15</jsf.impl.version>
 		<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
 		<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
         	<el.api.version>2.2.1-b04</el.api.version>
-        	<jboss.el.version>1.0_02.CR6</jboss.el.version>
-		
+        	<jboss.el.version>1.0_02.CR6</jboss.el.version>	
         </properties>
-	-->
+	-->	
  	
 	<dependencyManagement>
 		<dependencies>
@@ -212,6 +210,7 @@
 			<version>${jsp-api.version}</version>			
 		</dependency>
 
+		<!-- Tomcat 6 need this -->
 		<dependency>
 			<groupId>com.sun.el</groupId>
 			<artifactId>el-ri</artifactId>
@@ -265,67 +264,67 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>
 		</dependency>		
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-remote-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>                  
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-api</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-support</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-safari-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-iphone-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>						                        		
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-ie-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-htmlunit-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-android-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>					
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
-			<version>${selenium.version}</version>
+			<version>${selenium.driver.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -536,7 +535,7 @@
         				    <goals>
         				        <goal>undeploy</goal>
         				    </goals>
-        				</execution>	
+        				</execution>
 				</executions>				        						
 			</plugin>
 
