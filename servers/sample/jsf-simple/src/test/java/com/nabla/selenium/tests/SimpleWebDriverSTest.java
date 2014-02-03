@@ -31,10 +31,12 @@ import com.thoughtworks.selenium.DefaultSelenium;
 
 public class SimpleWebDriverSTest
 {
+    private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe";
     private static final String DEFAULT_URL          = "http://localhost:9090";
     private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
     private WebDriver           driver;
-    private String              baseUrl              = DEFAULT_URL;             ;
+    private String              baseUrl              = DEFAULT_URL;                          ;
+    private String              chromeDriver         = DEFAULT_CHROMEDRIVER;
     private boolean             acceptNextAlert      = true;
     private StringBuffer        verificationErrors   = new StringBuffer();
     private DefaultSelenium     selenium;
@@ -46,11 +48,14 @@ public class SimpleWebDriverSTest
     {
 
         baseUrl = System.getProperty("webdriver.base.url");
-        System.out.println("webdriver.base.url is : " + baseUrl);
+
         if (null == baseUrl)
         {
+            System.out.println("Use default webdriver.base.url");
             baseUrl = DEFAULT_URL;
+            System.setProperty("webdriver.base.url", baseUrl);
         }
+        System.out.println("webdriver.base.url is : " + baseUrl);
 
         // ProfilesIni allProfiles = new ProfilesIni();
         // FirefoxProfile profile = allProfiles.getProfile("Selenium");
@@ -58,7 +63,15 @@ public class SimpleWebDriverSTest
         // FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
         // driver = new FirefoxDriver(binary, profile);
 
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+        chromeDriver = System.getProperty("webdriver.chrome.driver");
+        if (null == chromeDriver)
+        {
+            System.out.println("Use default webdriver.base.url");
+            chromeDriver = DEFAULT_URL;
+            System.setProperty("webdriver.chrome.driver", chromeDriver);
+        }
+        System.out.println("webdriver.chrome.driver is : " + chromeDriver);
+
         driver = new ChromeDriver();
         // driver = new FirefoxDriver(profile);
         // driver = new HtmlUnitDriver(true);
