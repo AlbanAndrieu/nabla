@@ -82,7 +82,7 @@ as soon it does not take too long.&#xd;
     <groupId>com.nabla.project</groupId>
     <artifactId>servers</artifactId>
   </rootModule>
-  <goals>-U -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs cobertura:cobertura -Psample,arq-jbossas-managed -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</goals>
+  <goals>-U -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs cobertura:cobertura -Psample,arq-jbossas-remote -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</goals>
   <defaultGoals>install</defaultGoals>
   <mavenName>Maven-3.0.4</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
@@ -593,7 +593,7 @@ as soon it does not take too long.&#xd;
   </buildWrappers>
   <prebuilders>
     <hudson.tasks.Maven>
-      <targets>-U clean validate -Psample,arq-jbossas-managed -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
+      <targets>-U clean validate -Psample,arq-jbossas-remote -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
