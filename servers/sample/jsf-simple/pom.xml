@@ -521,7 +521,8 @@
 						</deployable>
 					</deployables>     
 				</configuration>
-				<executions>
+				<!-- 
+				<executions>				
         				<execution>
         				    <id>pre-integration-test</id>
         				    <phase>pre-integration-test</phase>
@@ -536,9 +537,18 @@
         				        <goal>undeploy</goal>
         				    </goals>
         				</execution>
-				</executions>				        						
+				</executions>		
+				-->		        						
 			</plugin>
 
+			<!-- The JBoss AS plugin deploys your war to a local JBoss AS container -->
+			<!-- To use, run: mvn package jboss-as:deploy -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${maven.jboss.as.plugin.version}</version>
+			</plugin>
+			
 			<plugin>
 			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war' -->
 				<groupId>org.eclipse.jetty</groupId>
@@ -569,14 +579,16 @@
 				</configuration>
 			</plugin>
 
-           <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven.war.plugin.version}</version>
-                <configuration>
-                    <packagingExcludes>WEB-INF/lib/javaee-web-api*.jar</packagingExcludes>
-                </configuration>
-            </plugin>
+			<!--
+            		<plugin>
+            		     <groupId>org.apache.maven.plugins</groupId>
+            		     <artifactId>maven-war-plugin</artifactId>
+            		     <version>${maven.war.plugin.version}</version>
+            		     <configuration>
+            		         <packagingExcludes>WEB-INF/lib/javaee-web-api*.jar</packagingExcludes>
+            		     </configuration>
+            		</plugin>       
+            		-->
 
 			<!-- Allow this web application to be started with the command : 'mvn 
 				tomcat7:run' -->
