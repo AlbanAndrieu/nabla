@@ -1539,7 +1539,7 @@
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <selenium.version>2.37.1</selenium.version> 
                 <selenium.driver.version>2.39.0</selenium.driver.version>
-                <webdriver.chrome>/var/lib/chrome-driver/chromedriver</webdriver.chrome>
+                <webdriver.chrome>/var/lib/chromedriver</webdriver.chrome>
                 <drools.version>5.0.1</drools.version>
                 <!--<drools.version>5.1.1</drools.version>-->
                 <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
