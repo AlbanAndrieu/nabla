@@ -74,7 +74,7 @@ as soon it does not take too long.&#xd;
     <groupId>com.nabla.project.servers.sample</groupId>
     <artifactId>jsf-simple</artifactId>
   </rootModule>
-  <goals>-U -Dsurefire.useFile=false install -Psample -Dserver=tomcat7x -Ddatabase=derby -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver -Dwebdriver.base.url=http://localhost:8280</goals>
+  <goals>-U -Dsurefire.useFile=false install -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver -Dwebdriver.base.url=http://localhost:9090</goals>
   <defaultGoals>install</defaultGoals>
   <mavenName>Maven-3.0.4</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
@@ -189,7 +189,7 @@ as soon it does not take too long.&#xd;
   </buildWrappers>
   <prebuilders>
     <hudson.tasks.Maven>
-      <targets>-U clean validate -Psample -Dserver=tomcat7x -Ddatabase=derby -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver -Dwebdriver.base.url=http://localhost:8280</targets>
+      <targets>-U clean validate -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.chrome.driver=/var/lib/chrome-driver/chromedriver -Dwebdriver.base.url=http://localhost:9090</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
