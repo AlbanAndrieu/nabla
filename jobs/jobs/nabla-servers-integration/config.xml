@@ -52,7 +52,6 @@ This build check that all reports can still be generated and is doing sone addit
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.4.4"/>
   </properties>
   <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
     <locations>
@@ -90,7 +89,7 @@ This build check that all reports can still be generated and is doing sone addit
     <groupId>com.nabla.project</groupId>
     <artifactId>servers</artifactId>
   </rootModule>
-  <goals>-U -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs cobertura:cobertura -Psample,arq-jbossas-managed,integration -Dserver=jboss7x</goals>
+  <goals>-U -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs cobertura:cobertura -Psample,arq-jbossas-managed,integration -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</goals>
   <defaultGoals>install</defaultGoals>
   <mavenName>Maven-3.0.4</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
@@ -600,7 +599,7 @@ This build check that all reports can still be generated and is doing sone addit
   </buildWrappers>
   <prebuilders>
     <hudson.tasks.Maven>
-      <targets>clean -Psample -Dserver=jboss7x</targets>
+      <targets>clean -Psample -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
@@ -609,7 +608,7 @@ This build check that all reports can still be generated and is doing sone addit
   </prebuilders>
   <postbuilders>
     <hudson.tasks.Maven>
-      <targets>javancss:report -Psample -Dserver=jboss7x </targets>
+      <targets>javancss:report -Psample -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
       <properties>java.awt.headless=true</properties>
@@ -618,7 +617,7 @@ This build check that all reports can still be generated and is doing sone addit
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
     </hudson.tasks.Maven>
     <hudson.tasks.Maven>
-      <targets>javadoc:aggregate -Psample -Dserver=jboss7x </targets>
+      <targets>javadoc:aggregate -Psample -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
       <properties>java.awt.headless=true</properties>
@@ -627,7 +626,7 @@ This build check that all reports can still be generated and is doing sone addit
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
     </hudson.tasks.Maven>
     <hudson.tasks.Maven>
-      <targets>dashboard:dashboard -Psample -Dserver=jboss7x </targets>
+      <targets>dashboard:dashboard -Psample -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <jvmOptions>-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M</jvmOptions>
       <properties>java.awt.headless=true</properties>
@@ -636,7 +635,7 @@ This build check that all reports can still be generated and is doing sone addit
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
     </hudson.tasks.Maven>
     <hudson.tasks.Maven>
-      <targets>site -Psample,arq-jbossas-managed,integration -Dserver=jboss7x </targets>
+      <targets>site -Psample,arq-jbossas-managed,integration -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</targets>
       <mavenName>Maven-3.0.4</mavenName>
       <properties>java.awt.headless=true</properties>
       <usePrivateRepository>false</usePrivateRepository>
