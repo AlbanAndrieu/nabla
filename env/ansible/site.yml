@@ -1,39 +1,44 @@
 ---
 # This playbook deploys a simple standalone Tomcat 7 server. 
 
+- name: apply common configuration to all nodes
+  hosts: all
+  user: root
+  connection: local
+  
+  roles:
+    - common
+
 - hosts: tomcat-servers 
   user: root
-
+  connection: local
+  
   roles:
     - tomcat
 
 # This playbook deploys a simple standalone JBoss server. 
 
-- hosts: jboss-servers 
-  user: root
-
-  roles:
-    - jboss-standalone
+#- hosts: jboss-servers 
+#  user: root
+#  connection: local
+  
+#  roles:
+#    - jboss-standalone
 
 # This playbook deploys the whole application stack in this site.  
-
-- name: apply common configuration to all nodes
-  hosts: all
-  user: root
-
-  roles:
-    - common
 
 - name: configure and deploy the webservers and application code
   hosts: webservers
   user: root
-
+  connection: local
+  
   roles:
     - web
 
 - name: deploy MySQL and configure the databases
   hosts: dbservers
   user: root
-
+  connection: local
+  
   roles:
     - db

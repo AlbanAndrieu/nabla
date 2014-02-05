@@ -1,32 +1,55 @@
 ---
 # This playbook will install mysql and create db user and give permissions.
 
-- name: Install Mysql package
+- name: Install Mysql package (yum)
   action: yum pkg={{ item }} state=installed
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'    
   with_items:
    - mysql-server
    - MySQL-python
    - libselinux-python
    - libsemanage-python
 
-- name: Configure SELinux to start mysql on any port
-  seboolean: name=mysql_connect_any state=true persistent=yes
+- name: Install Mysql package (apt)
+  action: apt pkg={{ item }} state=present update_cache=yes 
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+   - mysql-server
+#   - mysql-client
+   - python-mysqldb
+   - php5-mysql
+   
+#- name: Configure SELinux to start mysql on any port
+#  seboolean: name=mysql_connect_any state=true persistent=yes
 
 - name: Create Mysql configuration file
-  action: template src=my.cnf.j2 dest=/etc/my.cnf
+  action: template src=my-$ansible_distribution-$ansible_architecture.cnf.j2 dest=/etc/my.cnf
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'   
   notify: 
   - restart mysql
 
+- name: Create Mysql configuration file
+  action: template src=my-$ansible_distribution-$ansible_architecture.cnf.j2 dest=/etc/mysql/my.cnf 
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  notify: 
+  - restart mysql
+  
 - name: Start Mysql Service
   service: name=mysqld state=started enabled=true
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'   
+  
+- name: Start Mysql Service
+  service: name=mysql state=started enabled=true
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+    
+#- name: insert iptables rule
+#  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="{{ mysql_port }}"
+#              insertafter="^:OUTPUT " line="-A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT"
+#  notify: restart iptables
 
-- name: insert iptables rule
-  lineinfile: dest=/etc/sysconfig/iptables state=present regexp="{{ mysql_port }}"
-              insertafter="^:OUTPUT " line="-A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT"
-  notify: restart iptables
+#TODO
+#- name: Create Application Database
+#  mysql_db: name={{ dbname }} state=present
 
-- name: Create Application Database
-  mysql_db: name={{ dbname }} state=present
-
-- name: Create Application DB User
-  mysql_user: name={{ dbuser }} password={{ upassword }} priv=*.*:ALL host='%' state=present
+#- name: Create Application DB User
+#  mysql_user: name={{ dbuser }} password={{ upassword }} priv=*.*:ALL host='%' state=present

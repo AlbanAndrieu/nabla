@@ -1,11 +1,15 @@
 [tomcat-servers]
-webserver1
+#webserver1
+albandri
 
 [jboss-servers]
-webserver1
+#webserver1
+albandri
 
 [webservers]
-web3
+#web3
+albandri
 
 [dbservers]
-web2
+#web2
+albandri

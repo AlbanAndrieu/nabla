@@ -1,6 +1,10 @@
 ---
 # Variables listed here are applicable to all host groups
 
-httpd_port: 80
-ntpserver: 192.168.1.2
+httpd_port: 8081
+#london
+ntpserver1: 10.21.200.3
+#paris
+#ntpserver2: 150.151.192.2
+ntpserver2: timehost
 repository: http://github.com/bennojoy/mywebapp.git

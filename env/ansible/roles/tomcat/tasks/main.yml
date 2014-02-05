@@ -1,42 +1,83 @@
 ---
-- name: Install Java 1.7
+- name: Install Java 1.7 (yum)
   yum: name=java-1.7.0-openjdk state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
-- name: Download Tomcat
-  get_url: url=http://mirror.symnds.com/software/Apache/tomcat/tomcat-7/v7.0.42/bin/apache-tomcat-7.0.42.tar.gz dest=/opt/apache-tomcat-7.0.42.tar.gz
+- name: Install Java 1.7 (apt)
+  #apt: pkg=openjdk-7-jdk state=present update_cache=yes
+  apt: pkg=oracle-java7-installer state=present update_cache=yes  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+   
+#- name: Install Tomcat (yum)
+#  yum: name={{ item }} state=present
+#  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
+#  with_items:
+#   - tomcat7
+#   - tomcat7-docs
+#   - tomcat7-examples
+#   - tomcat7-admin
+        
+- name: Install Tomcat (apt)
+  apt: pkg={{ item }} state=present update_cache=yes  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+   - tomcat7
+   - tomcat7-docs
+   - tomcat7-examples
+   - tomcat7-admin
+   
+#- name: Download Tomcat
+#  get_url: url=http://mirror.symnds.com/software/Apache/tomcat/tomcat-7/v7.0.42/bin/apache-tomcat-7.0.42.tar.gz dest=/opt/apache-tomcat-7.0.42.tar.gz
 
-- name: Extract archive
-  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.42.tar.gz -C /usr/share/ creates=/usr/share/tomcat
+#- name: Extract archive
+#  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.42.tar.gz -C /usr/share/ creates=/usr/share/tomcat
 
-- name: Symlink install directory
-  file: src=/usr/share/apache-tomcat-7.0.42 path=/usr/share/tomcat state=link
+#- name: Symlink install directory
+#  file: src=/usr/share/apache-tomcat-7.0.42 path=/usr/share/tomcat state=link
 
-- name: Add group "tomcat"
-  group: name=tomcat
+#- name: Add group "tomcat"
+#  group: name=tomcat
 
-- name: Add user "tomcat"
-  user: name=tomcat group=tomcat home=/usr/share/tomcat
+#- name: Add user "tomcat"
+#  user: name=tomcat group=tomcat home=/usr/share/tomcat
 
-- name: Change ownership of Tomcat installation
-  file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
+#- name: Change ownership of Tomcat installation
+#  file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
 
 - name: Configure Tomcat server
-  template: src=server.xml dest=/usr/share/tomcat/conf/
+  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/usr/share/tomcat/conf/
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  notify: restart tomcat
+
+- name: Configure Tomcat server
+  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/var/lib/tomcat7/conf/
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   notify: restart tomcat
 
 - name: Configure Tomcat users
   template: src=tomcat-users.xml dest=/usr/share/tomcat/conf/
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
   notify: restart tomcat
 
-- name: Install Tomcat init script
-  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+- name: Configure Tomcat users
+  template: src=tomcat-users.xml dest=/etc/tomcat7/
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  notify: restart tomcat
+
+#- name: Install Tomcat init script
+#  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
 
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes
-
-- name: deploy iptables rules
-  template: src=iptables-save dest=/etc/sysconfig/iptables
-  notify: restart iptables
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'    
+  
+- name: Start Tomcat
+  service: name=tomcat7 state=started enabled=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  
+#- name: deploy iptables rules
+#  template: src=iptables-save dest=/etc/sysconfig/iptables
+#  notify: restart iptables
 
 - name: wait for tomcat to start
-  wait_for: port={{http_port}}
+  wait_for: port={{tomcat_http_port}}
