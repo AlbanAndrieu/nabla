@@ -57,11 +57,6 @@ public class SimpleWebDriverSTest
         }
         System.out.println("webdriver.base.url is : " + baseUrl);
 
-        // ProfilesIni allProfiles = new ProfilesIni();
-        // FirefoxProfile profile = allProfiles.getProfile("Selenium");
-        // FirefoxProfile profile = new FirefoxProfile();
-        // FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
-        // driver = new FirefoxDriver(binary, profile);
 
         chromeDriver = System.getProperty("webdriver.chrome.driver");
         if (null == chromeDriver)
@@ -71,6 +66,12 @@ public class SimpleWebDriverSTest
             System.setProperty("webdriver.chrome.driver", chromeDriver);
         }
         System.out.println("webdriver.chrome.driver is : " + chromeDriver);
+        
+        // ProfilesIni allProfiles = new ProfilesIni();
+        // FirefoxProfile profile = allProfiles.getProfile("Selenium");
+        // FirefoxProfile profile = new FirefoxProfile();
+        // FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files\\Mozilla Firefox\\firefox.exe"));
+        // driver = new FirefoxDriver(binary, profile);
 
         driver = new ChromeDriver();
         // driver = new FirefoxDriver(profile);
@@ -83,10 +84,8 @@ public class SimpleWebDriverSTest
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        // driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
-        // driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1920, 1080));
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
@@ -108,7 +107,7 @@ public class SimpleWebDriverSTest
     {
         driver.get(baseUrl + "/welcome/hello.xhtml");
         selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
-        WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
+        //WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         driver.findElement(By.name("j_idt8:j_idt9")).clear();
         driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
@@ -119,7 +118,7 @@ public class SimpleWebDriverSTest
             public WebElement apply(WebDriver d)
             {
                 // d.get(baseUrl);
-                return d.findElement(By.name("j_idt8:j_idt9")/* By.linkText("Welcome me") */);
+                return d.findElement(By.name("j_idt8:j_idt9"));
             }
         });
 
@@ -131,17 +130,7 @@ public class SimpleWebDriverSTest
 
         driver.findElement(By.name("j_idt8:j_idt10")).click();
 
-        /*
-         * (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>()
-         * {
-         * public Boolean apply(WebDriver d)
-         * {
-         * return d.getCurrentUrl().startsWith(baseUrl + "/welcome/faces/hello.xhtml");
-         * }
-         * });
-         */
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", driver.findElement(By.cssSelector("h3")).getText());
-        // Thread.sleep(1000);
         assertEquals("Welcome Test me !!!", driver.findElement(By.cssSelector("h4")).getText());
     }
 

@@ -28,6 +28,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,19 +36,41 @@ import com.thoughtworks.selenium.DefaultSelenium;
 
 public class SimpleRemoteWebDriverSTest
 {
+    private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe";
+    private static final String DEFAULT_URL          = "http://localhost:9090";
     private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
     private WebDriver           driver;
-    private String              baseUrl              = "http://localhost:9090"; ;
+    private String              baseUrl              = DEFAULT_URL;                          ;
+    private String              chromeDriver         = DEFAULT_CHROMEDRIVER;
     private boolean             acceptNextAlert      = true;
     private StringBuffer        verificationErrors   = new StringBuffer();
     private DefaultSelenium     selenium;
-
     // public static SeleniumServer server;
 
     @Before
     public void setUp() throws Exception
     {
 
+        baseUrl = System.getProperty("webdriver.base.url");
+
+        if (null == baseUrl)
+        {
+            System.out.println("Use default webdriver.base.url");
+            baseUrl = DEFAULT_URL;
+            System.setProperty("webdriver.base.url", baseUrl);
+        }
+        System.out.println("webdriver.base.url is : " + baseUrl);
+
+
+        chromeDriver = System.getProperty("webdriver.chrome.driver");
+        if (null == chromeDriver)
+        {
+            System.out.println("Use default webdriver.base.url");
+            chromeDriver = DEFAULT_URL;
+            System.setProperty("webdriver.chrome.driver", chromeDriver);
+        }
+        System.out.println("webdriver.chrome.driver is : " + chromeDriver);
+        
         // System.setProperty("webdriver.safari.noinstall", "true");
 
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
@@ -86,7 +109,8 @@ public class SimpleRemoteWebDriverSTest
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        // driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1920, 1080));
         selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
@@ -107,11 +131,29 @@ public class SimpleRemoteWebDriverSTest
     {
         driver.get(baseUrl + "/welcome/hello.xhtml");
         selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
-        WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
+        //WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         driver.findElement(By.name("j_idt8:j_idt9")).clear();
         driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
+
+        // wait for the application to get fully loaded
+        WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>()
+        {
+            public WebElement apply(WebDriver d)
+            {
+                // d.get(baseUrl);
+                return d.findElement(By.name("j_idt8:j_idt9"));
+            }
+        });
+
+        findOwnerLink.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("j_idt8:j_idt10")));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
         driver.findElement(By.name("j_idt8:j_idt10")).click();
+
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", driver.findElement(By.cssSelector("h4")).getText());
     }
