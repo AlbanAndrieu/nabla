@@ -18,12 +18,12 @@
 
 # This playbook deploys a simple standalone JBoss server. 
 
-#- hosts: jboss-servers 
-#  user: root
-#  connection: local
+- hosts: jboss-servers 
+  user: root
+  connection: local
   
-#  roles:
-#    - jboss-standalone
+  roles:
+    - jboss-standalone
 
 # This playbook deploys the whole application stack in this site.  
 
