@@ -9,7 +9,7 @@ rem ipconfig /flushdns
 
 set VERSION=10
 
-set UNIX_USERNAME=aandrieu
+set UNIX_USERNAME=albandri
 set HOME=C:\workspace\users\%UNIX_USERNAME%%VERSION%
 set WORKSPACE=%HOME%
 set HOMEPATH=%HOME%

@@ -39,6 +39,9 @@ wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-pitest-plug
 cd /workspace/sonar/extensions/plugins
 sudo mv /workspace/sonar-pitest-plugin-0.2.jar /workspace/sonar/extensions/plugins
 
+#Sonargraph
+/jenkins/.hello2morrow/SonargraphArchitect/SonargraphArchitect.license
+
 mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -Dsonargraph.activationCode=<activation code>) com.hello2morrow.sonargraph:maven-sonargraph-plugin:7.1.10:architect-report
 mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.activationCode=2356-F3B2-E2C6-CC70 com.hello2morrow.sonargraph:maven-sonargraph-plugin:7.1.10:architect-report -Psample -Ddatabase=derby
 mvn sonar:sonar
