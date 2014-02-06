@@ -9,36 +9,36 @@
   roles:
     - common
 
-- hosts: tomcat-servers 
-  user: root
-  connection: local
+#- hosts: tomcat-servers 
+#  user: root
+#  connection: local
   
-  roles:
-    - tomcat
+#  roles:
+#    - tomcat
 
 # This playbook deploys a simple standalone JBoss server. 
 
-- hosts: jboss-servers 
-  user: root
-  connection: local
+#- hosts: jboss-servers 
+#  user: root
+#  connection: local
   
-  roles:
-    - jboss-standalone
+#  roles:
+#    - jboss-standalone
 
 # This playbook deploys the whole application stack in this site.  
 
-- name: configure and deploy the webservers and application code
-  hosts: webservers
-  user: root
-  connection: local
+#- name: configure and deploy the webservers and application code
+#  hosts: webservers
+#  user: root
+#  connection: local
   
-  roles:
-    - web
+#  roles:
+#    - web
 
-- name: deploy MySQL and configure the databases
-  hosts: dbservers
-  user: root
-  connection: local
+#- name: deploy MySQL and configure the databases
+#  hosts: dbservers
+#  user: root
+#  connection: local
   
-  roles:
-    - db
+#  roles:
+#    - db

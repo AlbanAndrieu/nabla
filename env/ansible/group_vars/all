@@ -8,3 +8,5 @@ ntpserver1: 10.21.200.3
 #ntpserver2: 150.151.192.2
 ntpserver2: timehost
 repository: http://github.com/bennojoy/mywebapp.git
+nisserver: nissrv01
+mailserver: mercure.france.effix.fr

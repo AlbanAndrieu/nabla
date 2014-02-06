@@ -72,6 +72,18 @@
    - cmake
    - scons
       
+- name: Install test tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:
+   - xvfb
+      
+- name: Install AWS tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:
+   - ec2-api-tools    
+         
 - name: Install other tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -90,12 +102,53 @@
   tags: ntp
 
 - name: Configure ntp file
-  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  template: src=ntp-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/ntp.conf
   tags: ntp
   notify: restart ntp
 
 - name: Start the ntp service
   service: name=ntp state=started enabled=true
   tags: ntp
+ 
+- name: Install nis (apt)
+  apt: pkg=nis state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: nis
 
-#TODO nis ntp autofs   
+- name: Configure yellow page file
+  template: src=yp-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/yp.conf
+  tags: nis
+  notify: restart nis
+
+- name: Configure nis file
+  template: src=nsswitch-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/nsswitch.conf
+  tags: nis
+  notify: restart nis
+
+- name: Copy the init script
+  copy: src=nis-$ansible_distribution-$ansible_architecture.sh dest=/etc/init.d/nis mode=0755
+
+- name: Enable nis to be started at boot
+  service: name=nis enabled=yes state=started 
+    
+- name: Start the nis service
+  service: name=nis state=started enabled=true
+  tags: nis
+  
+- name: Install autofs (apt)
+  apt: pkg=autofs state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: autofs 
+ 
+#/etc/rc.local
+#/etc/auto.master
+#/etc/autofs_ldap_auth.conf
+ 
+#- name: Configure autofs file
+#  template: src=ntp-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/ntp.conf
+#  tags: autofs
+  #notify: restart autofs
+
+- name: Start the autofs service
+  service: name=autofs state=started enabled=true
+  tags: autofs  
