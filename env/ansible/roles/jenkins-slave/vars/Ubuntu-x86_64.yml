@@ -1,0 +1,3 @@
+---
+jdk_archive: jdk-7-linux-x64.tar.gz
+jvm_folder: /usr/lib/jvm/

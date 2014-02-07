@@ -1,6 +1,18 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
+- name: Checking if Sources are Available
+  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo   'http://url/${ansible_distribution}/stable' | tr "[:upper:]" "[:lower:]"  ))
+  register: sources
+  ignore_errors: True
+
+- debug: msg="sources value is ${sources.stdout} "
+
+- name: Adding source.
+  action: shell echo "deb http://url/${ansible_distribution}/stable      ${ansible_lsb.codename} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
+  when: "ansible_distribution == 'Debian' and sources.stdout == 'a'"  
+#      when: "ansible_os_family == 'RedHat' and sources.stdout == 'a'"
+
 - name: Install basic tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -102,7 +114,7 @@
   tags: ntp
 
 - name: Configure ntp file
-  template: src=ntp-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/ntp.conf
+  template: src=ntp.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/ntp.conf
   tags: ntp
   notify: restart ntp
 
@@ -116,12 +128,12 @@
   tags: nis
 
 - name: Configure yellow page file
-  template: src=yp-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/yp.conf
+  template: src=yp.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/yp.conf
   tags: nis
   notify: restart nis
 
 - name: Configure nis file
-  template: src=nsswitch-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/nsswitch.conf
+  template: src=nsswitch.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/nsswitch.conf
   tags: nis
   notify: restart nis
 
@@ -140,15 +152,26 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: autofs 
  
-#/etc/rc.local
-#/etc/auto.master
-#/etc/autofs_ldap_auth.conf
- 
-#- name: Configure autofs file
-#  template: src=ntp-$ansible_distribution-$ansible_architecture.conf.j2 dest=/etc/ntp.conf
-#  tags: autofs
-  #notify: restart autofs
+- name: Configure autofs file
+  template: src=rc.local-$ansible_distribution-$ansible_architecture.j2 dest=/etc/rc.local
+  tags: autofs
+  notify: restart autofs
+  
+- name: Configure autofs file
+  template: src=auto.master-$ansible_distribution-$ansible_architecture.j2 dest=/etc/auto.master
+  tags: autofs
+  notify: restart autofs
+   
+- name: Configure autofs file
+  template: src=autofs_ldap_auth.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/autofs_ldap_auth.conf
+  tags: autofs
+  notify: restart autofs
 
 - name: Start the autofs service
   service: name=autofs state=started enabled=true
   tags: autofs  
+
+- name: Configure sendmail file
+  template: src=sendmail.cf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/mail/sendmail.cf
+  tags: autofs
+  notify: restart autofs

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!--localRepository>/kgr-mvn/local-repo</localRepository-->
+  <localRepository>${env.WORKSPACE}/.repository</localRepository>
+
+  <!-- interactiveMode
+   | This will determine whether maven prompts you when it needs input. If set to false,
+   | maven will use a sensible default value, perhaps based on some other setting, for
+   | the parameter in question.
+   |
+   | Default: true
+  -->
+  <interactiveMode>false</interactiveMode>
+
+  <!-- offline
+   | Determines whether maven should attempt to connect to the network when executing a build.
+   | This will have an effect on artifact downloads, artifact deployment, and others.
+   |
+   | Default: false
+  <offline>false</offline>
+  -->
+
+  <!-- pluginGroups
+   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
+   | when invoking a command line like "mvn prefix:goal". Maven will automatically add the group identifiers
+   | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.
+   |-->
+  <pluginGroups>
+    <pluginGroup>com.atlassian.maven.plugins</pluginGroup> <!-- for clover -->
+  </pluginGroups>
+
+  <!-- proxies
+   | This is a list of proxies which can be used on this machine to connect to the network.
+   | Unless otherwise specified (by system property or command-line switch), the first proxy
+   | specification in this list marked as active will be used.
+   |-->
+  <proxies>
+    <!-- proxy
+     | Specification for one proxy, to be used in connecting to the network.
+     |
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>proxyuser</username>
+      <password>proxypass</password>
+      <host>proxy.host.net</host>
+      <port>80</port>
+      <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+    </proxy>
+    -->
+  </proxies>
+
+  <servers>
+    <!-- use jenkins instead user/token for the global settings.xml -->
+    <server>
+        <id>homemade-release</id>
+        <username>FOuFiers</username> <!-- do not commit your user password (workaround of issue : KENVNG-269 is : Upload KGR build artifacts into local Nexus (use alban.andrieu nexus credentials) : MGCE-205 -->
+        <password>zZ4tNJNo2sXgkiUL7xBQ11MIYwGCWYi8qyNi/F1jMDk4</password>  <!-- do not commit your user password (workaround of issue : KENVNG-269 is : Upload KGR build artifacts into local Nexus (use alban.andrieu nexus credentials) : MGCE-205 -->
+    </server>
+    <server>
+        <id>homemade-snapshot</id> 
+        <username>FOuFiers</username> <!-- do not commit your user password (workaround of issue : KENVNG-269 is : Upload KGR build artifacts into local Nexus (use alban.andrieu nexus credentials) : MGCE-205 -->
+        <password>zZ4tNJNo2sXgkiUL7xBQ11MIYwGCWYi8qyNi/F1jMDk4</password>  <!-- do not commit your user password (workaround of issue : KENVNG-269 is : Upload KGR build artifacts into local Nexus (use alban.andrieu nexus credentials) : MGCE-205 -->
+    </server>
+  </servers>
+
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://bm-artifacts.france.effix.fr/maven/content/groups/mgr-public</url>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <!-- workaround because some environment does not have the WORKSPACE global varaible -->
+    <profile>
+      <id>env.WORKSPACE.default</id>
+      <activation>
+        <property>
+          <name>!env.WORKSPACE</name>
+        </property>
+      </activation>
+      <properties>
+        <env.WORKSPACE>${env.HOME}</env.WORKSPACE>
+      </properties>
+    </profile>	  
+    <profile>
+       <id>nexus</id>
+       <pluginRepositories>
+           <pluginRepository>
+               <id>public</id>
+               <name>Public Repositories</name>
+               <url>http://bm-artifacts.france.effix.fr/maven/content/groups/mgr-public</url>
+               <layout>default</layout>
+               <releases>
+                   <enabled>true</enabled>
+                   <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                   <enabled>true</enabled>
+                   <updatePolicy>daily</updatePolicy>
+               </snapshots>
+           </pluginRepository>
+       </pluginRepositories>
+       <repositories>
+           <repository>
+               <id>public</id>
+               <name>Public Repositories</name>
+               <url>http://bm-artifacts.france.effix.fr/maven/content/groups/mgr-public</url>
+               <layout>default</layout>
+               <releases>
+                   <enabled>true</enabled>
+                   <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                   <enabled>true</enabled>
+                   <updatePolicy>interval:60</updatePolicy>
+                   <checksumPolicy>fail</checksumPolicy>
+               </snapshots>
+           </repository>
+    
+           <repository>
+               <id>homemade-release</id>
+               <name>Only for publishing homemade releases</name>
+               <url>http://bm-artifacts.france.effix.fr/maven/content/repositories/homemade-release</url>
+               <layout>default</layout>
+               <releases>
+                   <enabled>false</enabled>
+                   <updatePolicy>never</updatePolicy>
+               </releases>
+           </repository>
+           <repository>
+               <id>homemade-snapshot</id>
+               <name>Only for publishing homemade snapshots</name>
+               <url>http://bm-artifacts.france.effix.fr/maven/content/repositories/homemade-snapshot</url>
+               <layout>default</layout>
+               <snapshots>
+                   <enabled>false</enabled>
+                   <updatePolicy>never</updatePolicy>
+               </snapshots>
+           </repository>
+       </repositories>
+    </profile>
+    <profile>
+        <id>system-path-win</id>
+        <activation>
+            <os>
+                <family>Windows</family>
+            </os>
+        </activation>
+        <properties>
+            <!-- TODO ${user.name} does not match the unix user since misys migration -->
+            <dist.dir>\\ptxsnas12\kgrkgl\_src\dev\kgr_36\users\${user.name}\build</dist.dir>
+            <deploy.dir>${dist.dir}/gui</deploy.dir>
+            <deploy.libs.dir>${deploy.dir}/libs</deploy.libs.dir>
+            <kns.src.dir>\\ptxsnas12\kgrkgl\_src\dev\kgr_36\users\${user.name}\src\cpp</kns.src.dir>
+        </properties>
+    </profile>
+    <!--
+    <profile>
+        <id>system-path-unix-workstation</id>
+        <activation>
+            <os>
+                <family>unix</family>
+            </os>
+        </activation>
+        <properties>
+            <dist.dir>/thomsonreuters/home/kgr/dist</dist.dir>
+            <deploy.dir>${dist.dir}/gui</deploy.dir>
+            <deploy.libs.dir>${deploy.dir}/libs</deploy.libs.dir>
+            <kns.src.dir>/home/kdeveloper/workspace-cpp/KGR/src/cpp</kns.src.dir>
+        </properties>
+    </profile>
+    -->
+    <profile>
+        <id>system-path-unix-corellia</id>
+        <activation>
+            <os>
+                <family>unix</family>
+            </os>
+        </activation>
+        <properties>
+            <dist.dir>/thomsonreuters/home/kgr/dist</dist.dir>
+            <deploy.dir>${dist.dir}/gui</deploy.dir>
+            <deploy.libs.dir>${deploy.dir}/libs</deploy.libs.dir>
+            <kns.src.dir>${env.HOME}/trunk/src/cpp</kns.src.dir>
+        </properties>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+
+</settings>

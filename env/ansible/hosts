@@ -13,3 +13,6 @@ albandri
 [dbservers]
 #web2
 albandri
+
+[jenkins-slaves]
+albandri

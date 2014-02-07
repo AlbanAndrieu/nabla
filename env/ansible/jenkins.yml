@@ -1,111 +1,12 @@
 #ansible-playbook jenkins.yml --extra-vars "host=myhost user=myuser" --ask-sudo-pass
 
-- name: Install wget package (Debian based)
-  action: apt pkg='wget' state=installed
-  only_if: "'$ansible_pkg_mgr' == 'apt'"
-- name: Install wget package (RedHat based)
-  action: yum name='wget' state=installed
-  only_if: "'$ansible_pkg_mgr' == 'yum'"
-
-- name: Copy download JDK7 script
-  copy: src=files/download-jdk7.sh dest=/tmp mode=0555
-
-- name: Download JDK7 (Ubuntu)
-  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} /tmp/download-jdk7.sh $jdk_archive
-
-vars_files:
-  - [ "vars/defaults.yml" ]
-  - [ "vars/$ansible_distribution-$ansible_architecture.yml", "vars/$ansible_distribution.yml" ]
-
-- name: Unpack JDK7
-  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} tar zxvf ${jvm_folder}/$jdk_archive --owner=root
-  register: jdk_installed
-  only_if: "'$ansible_pkg_mgr' == 'apt'"
-
-- name: Install JDK7 RPM package
-  action: command creates=${jvm_folder}/latest chdir=${jvm_folder} rpm --force -Uvh ${jvm_folder}/$jdk_archive
-  register: jdk_installed
-  only_if: "'$ansible_pkg_mgr' == 'yum'"
-
-- name: Set java link
-  action: command update-alternatives --install /usr/bin/java java ${jvm_folder}/jdk1.7.0/bin/java 1
-  only_if: '${jdk_installed.changed}'
-
-- name: Set jar link
-  action: command update-alternatives --install /usr/bin/jar jar ${jvm_folder}/jdk1.7.0/bin/jar 1
-  only_if: '${jdk_installed.changed}'
-
-- include: tasks/jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk_archive}
-
-- name: Create jenkins user
-  user: name=jenkins comment="Jenkins slave user" home=${jenkins_home} shell=/bin/bash
-
-- name: Create .ssh folder
-  file: path=${jenkins_home}/.ssh state=directory mode=0700 owner=jenkins
-
-- name: Add passwordless connection for jenkins
-  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjeLgUM9X+ATA6l8w5GSFhxH+tXfZMfVuDSTl6lI7CLhc2QcUbK+s88WrGJNKOKVLIonm3Ezl47bi0D4718ctJmbClikeM88TMmUI4GWsavlH/KbImGrpeSXzRKp2nol
-lCgQSfVbMQoW2l11AaEvAWckfF41UIg2thtOGdlEJbo+oI6WQAH4RAwtq/xo7SyPEOa+pJSTMPc0gUc1q44jp6EZQH1DSiQ5n1fLLVGg0a5Acouo6JqhvD4bKgo8DKtcfQeasv+oG1WG27pdn2ojL2okZ4FCB1USpObQEm
-JKMKrby2FYKOYM0D55GGUeOJm8nWksiwq4m90roiV0XuKnTL jenkins@master"
-
-- name: Update authorized_keys rights
-  file: path=${jenkins_home}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
-
-- name: Tomcat can run any command with no password
-  lineinfile: "line='tomcat ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^tomcat'"
-
-- name: Install subversion package (Debian based)
-  action: apt pkg='subversion' state=installed
-  only_if: "'$ansible_pkg_mgr' == 'apt'"
-
-- name: Install subversion package (RedHat based)
-  action: yum name='subversion' state=installed
-  only_if: "'$ansible_pkg_mgr' == 'yum'"
-
-- name: Create /opt directory
-  file: path=/opt state=directory
-
-- name: Download Maven3
-  get_url: dest=/opt/maven3.tar.gz url=http://apache.proserve.nl/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
-
-- name: Unpack Maven3
-  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
-
-- name: Create Maven3 directory link
-  file: path=/opt/maven src=/opt/apache-maven-3.0.4 state=link
-
-- name: Set mvn link
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1
-
-- name: Create .m2 folder
-  file: path=${jenkins_home}/.m2 state=directory owner=jenkins
-
-- name: Copy maven configuration
-  copy: src=files/settings.xml dest=${jenkins_home}/.m2/ backup=yes
-
-- name: Remove Maven3 archive
-  file: path=/opt/maven3.tar.gz state=absent
-
-- name: Create Jenkins slave directory
-  file: path=${jenkins_home}/jenkins-slave state=directory owner=jenkins
-
-#- name: Download Jenkins Swarm Client
-#  get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
-#
-#- name: Install swarm client script
-#  template: src=templates/jenkins-swarm-client.tmpl dest=/etc/init.d/jenkins-swarm-client mode=0700
-#
-#vars_prompt:
-#
-#  - name: jenkins_username
-#    prompt: "What is your jenkins user?"
-#    private: no
-#  - name: jenkins_password
-#    prompt: "What is your jenkins password?"
-#    private: yes
-#
-#- fail: msg="Missing parameters!"
-#  when_string: $jenkins_username == '' or $jenkins_password == ''  
-#  
-#- name: Start Jenkins swarm client
-#  action: service name=jenkins-swarm-client state=started enabled=yes  
+- name: apply common configuration to all jenkins slaves
+  hosts: jenkins-slaves
+  user: root
+  connection: local
+  vars_files:
+  - [ "roles/jenkins-slave/vars/defaults.yml" ]
+  - [ "roles/jenkins-slave/vars/$ansible_distribution-$ansible_architecture.yml", "roles/jenkins-slave/vars/$ansible_distribution.yml" ]
+    
+  roles:
+    - jenkins-slave

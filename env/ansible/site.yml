@@ -1,4 +1,4 @@
----
+---     
 # This playbook deploys a simple standalone Tomcat 7 server. 
 
 - name: apply common configuration to all nodes
