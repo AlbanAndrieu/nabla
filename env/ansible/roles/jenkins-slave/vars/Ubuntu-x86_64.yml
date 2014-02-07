@@ -1,3 +1,4 @@
 ---
 jdk_archive: jdk-7-linux-x64.tar.gz
 jvm_folder: /usr/lib/jvm/
+ubuntu_version_name: saucy

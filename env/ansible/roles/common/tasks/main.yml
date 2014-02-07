@@ -2,18 +2,18 @@
 # This playbook contains common plays that will be run on all nodes.
 
 - name: Checking if Sources are Available
-  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo   'http://url/${ansible_distribution}/stable' | tr "[:upper:]" "[:lower:]"  ))
+  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo 'http://url/${ansible_distribution}/stable' | tr "[:upper:]" "[:lower:]"  ))
   register: sources
   ignore_errors: True
 
 - debug: msg="sources value is ${sources.stdout} "
-
+ 
 - name: Adding source.
-  action: shell echo "deb http://url/${ansible_distribution}/stable      ${ansible_lsb.codename} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
+  action: shell echo "deb http://url/${ansible_distribution}/stable ${ansible_lsb.codename} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
   when: "ansible_distribution == 'Debian' and sources.stdout == 'a'"  
 #      when: "ansible_os_family == 'RedHat' and sources.stdout == 'a'"
 
-- name: Install basic tools (apt))
+- name: Install basic tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -22,7 +22,7 @@
    - nmap
    - ssh  
    
-- name: Install editor tools (apt))
+- name: Install editor tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:   
@@ -31,7 +31,7 @@
    - geany
    - gedit
 
-- name: Install monitoring tools (apt))
+- name: Install monitoring tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:   
@@ -43,7 +43,7 @@
    - snmpd
 #   - ansible
 
-- name: Install perl (apt))
+- name: Install perl (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -54,7 +54,7 @@
    - libpam-runtime
    - libio-pty-perl
 
-- name: Install python (apt))
+- name: Install python (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -63,7 +63,7 @@
    - python-dev 
    - build-essential
    
-- name: Install SCM (apt))
+- name: Install SCM (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -71,44 +71,54 @@
    - cvs
    - git
       
-- name: Install Java build tools (apt))
+##
+ # JAVA build tools.
+ #           
+- name: Install Java build tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - maven
 
-- name: Install CPP build tools (apt))
+##
+ # CPP build tools.
+ #   
+- name: Install CPP build tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - cmake
    - scons
       
-- name: Install test tools (apt))
+- name: Install test tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - xvfb
       
-- name: Install AWS tools (apt))
+- name: Install AWS tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - ec2-api-tools    
          
-- name: Install other tools (apt))
+- name: Install other tools (Debian based))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - daemon
-   - mailutils      
-  
+   - mailutils     
+   - unzip 
+
+##
+ # NTP tools.
+ #     
 - name: Install ntp (yum)
   yum: name=ntp state=present
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   tags: ntp
 
-- name: Install ntp (apt)
+- name: Install ntp (Debian based)
   apt: pkg=ntp state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: ntp
@@ -122,7 +132,10 @@
   service: name=ntp state=started enabled=true
   tags: ntp
  
-- name: Install nis (apt)
+##
+ # NIS tools.
+ #   
+- name: Install nis (Debian based)
   apt: pkg=nis state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nis
@@ -142,12 +155,15 @@
 
 - name: Enable nis to be started at boot
   service: name=nis enabled=yes state=started 
-    
+  
 - name: Start the nis service
   service: name=nis state=started enabled=true
   tags: nis
   
-- name: Install autofs (apt)
+##
+ # AUTOFS tools.
+ #     
+- name: Install autofs (Debian based)
   apt: pkg=autofs state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: autofs 
@@ -175,3 +191,36 @@
   template: src=sendmail.cf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/mail/sendmail.cf
   tags: autofs
   notify: restart autofs
+
+#- name: add zfs repos
+#  apt_repository: repo='deb http://example.com/ubuntu precise main'
+#  apt_repository: repo='deb http://example.com/ubuntu precise-updates main'
+#  apt_repository: repo='deb http://ppa.launchpad.net/zfs-native/stable/ubuntu ${ubuntu_version_name} main' 
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+
+##
+ # ZFS tools.
+ #  
+- name: ZFS | Add the ZFS native PPA
+  action: command add-apt-repository -y ppa:zfs-native/stable creates=/etc/apt/sources.list.d/custom-zfs-${ubuntu_version_name}.list
+  tags: zfs
+   
+#- name: ZFS | Add the ZFS grub PPA
+#  action: command add-apt-repository -y ppa:zfs-native/grub creates=/etc/apt/sources.list.d/custom-zfs-${ubuntu_version_name}.list
+#  tags: zfs   
+
+- name: ZFS | Update the apt cache for the new repository
+  action: apt update-cache=yes
+  tags: zfs
+
+- name: Install zfs (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:
+   - ubuntu-zfs
+   - zfs-fuse
+   - debootstrap
+   - grub2-common 
+   - grub-pc  
+   - zfs-initramfs
+   

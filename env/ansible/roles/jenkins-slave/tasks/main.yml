@@ -123,3 +123,84 @@
 #  
 #- name: Start Jenkins swarm client
 #  action: service name=jenkins-swarm-client state=started enabled=yes  
+
+#http://drupalcode.org/sandbox/franskuipers/1801378.git/blob/e0d2e3dd3f3b9ff7f9ace61f9e56c56a1f28e915:/ansible.yml  #
+
+##
+ # node.js installation (latest stable instead of Ubuntu's out-of-date one)
+ #
+- name: Node.js | Package prerequisites for node.js
+  action: apt pkg=python-software-properties state=installed
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: nodejs
+
+#- name: add node.js repos
+#  apt_repository: repo='deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu ${ubuntu_version_name} main' 
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+- name: Node.js | Add the node.js PPA
+  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-${ubuntu_version_name}.list
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: nodejs
+
+- name: Node.js | Update the apt cache for the new repository
+  action: apt update-cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: nodejs
+
+- name: Node.js | Install nodejs and npm
+  action: apt pkg=$item state=installed
+  tags: nodejs
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  with_items:
+    - node
+    - nodejs
+     
+#TODO
+#- name: Install npm tools (Debian based)
+#  apt: pkg={{ item }} state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+#  with_items:
+#   - npm
+   
+- name: Install karma tools (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:
+   - karma-tools
+   
+- name: Install selenium tools (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:
+   - xfonts-100dpi
+   - xfonts-75dpi
+   - xfonts-scalable
+   - xfonts-cyrillic
+   - xvfb
+   - x11-apps
+   - imagemagick
+   - firefox
+   - chromium-chromedriver
+
+##
+ # CSS compiling tools.
+ #
+- name: CSS | Install rubygems package
+  action: apt pkg=rubygems state=installed
+  tags: css
+
+- name: CSS | Install SASS
+  action: command gem install sass creates=/usr/local/bin/sass
+  tags: css
+
+- name: CSS | Install Susy (no more --pre required as it's 1.0 now)
+  action: command gem install susy
+  tags: css
+
+- name: CSS | Install Compass
+  action: command gem install compass creates=/usr/local/bin/compass
+  tags: css
+
+- name: CSS | Install Respond-to
+  action: command gem install respond-to
+  tags: css

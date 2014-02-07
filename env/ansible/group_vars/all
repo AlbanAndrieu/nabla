@@ -10,3 +10,4 @@ ntpserver2: timehost
 repository: http://github.com/bennojoy/mywebapp.git
 nisserver: nissrv01
 mailserver: mercure.france.effix.fr
+ubuntu_version_name: saucy
