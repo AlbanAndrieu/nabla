@@ -76,10 +76,11 @@ public class SimpleRemoteWebDriverSTest
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         // startSeleniumServer(server);
 
-        FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
+        //FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-        capabillities.setCapability(FirefoxDriver.PROFILE, profile);
+        //DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+        //capabillities.setCapability(FirefoxDriver.PROFILE, profile);
+        DesiredCapabilities capabillities = DesiredCapabilities.chrome();
         // FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
         // /usr/bin/firefox
         // C:\Program Files (x86)\Mozilla Firefox\firefox.exe
@@ -92,7 +93,9 @@ public class SimpleRemoteWebDriverSTest
         // node name (it must be running a selenium configuration though)
         capabillities.setCapability("jenkins.nodeName", "(master)");
         // capabillities.setCapability("version", "8");
-        capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+        //capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+        capabillities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+        
         capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
         driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
 
