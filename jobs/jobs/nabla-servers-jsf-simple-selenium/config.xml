@@ -188,11 +188,6 @@ as soon it does not take too long.&#xd;
     </org.jenkinsci.plugins.xvfb.XvfbBuildWrapper>
   </buildWrappers>
   <prebuilders>
-    <hudson.tasks.Shell>
-      <command>echo DISPLAY : $DISPLAY
-export DISPLAY=:0
-echo DISPLAY : $DISPLAY</command>
-    </hudson.tasks.Shell>
     <hudson.tasks.Maven>
       <targets>-U clean validate -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.chrome.driver=/var/lib/chromedriver -Dwebdriver.base.url=http://localhost:9090</targets>
       <mavenName>Maven-3.0.4</mavenName>
