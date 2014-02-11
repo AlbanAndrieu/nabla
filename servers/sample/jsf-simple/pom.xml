@@ -243,7 +243,8 @@
                         <groupId>commons-httpclient</groupId>
                         <artifactId>commons-httpclient</artifactId>
                         <version>${commons.httpclient.version}</version>
-                        <scope>${scope.tomcat.never.type}</scope>
+                        <scope>compile</scope>
+                        <!--<scope>${scope.tomcat.never.type}</scope>-->
                 </dependency>
                         		
 		<dependency>
