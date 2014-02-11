@@ -42,7 +42,7 @@
     <permission>hudson.plugins.promoted_builds.Promotion.Promote:albandri</permission>
     <permission>hudson.scm.SCM.Tag:albandri</permission>
   </authorizationStrategy>
-  <securityRealm class="hudson.security.LDAPSecurityRealm" plugin="ldap@1.7">
+  <securityRealm class="hudson.security.LDAPSecurityRealm" plugin="ldap@1.8">
     <server>localhost</server>
     <rootDN>dc=ldap,dc=nabla,dc=mobi</rootDN>
     <inhibitInferRootDN>false</inhibitInferRootDN>
@@ -273,13 +273,13 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
@@ -308,19 +308,19 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Full)</columnName>
           <showGroupId>true</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesFullColumn>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
@@ -349,13 +349,13 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
@@ -365,7 +365,7 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
       <includeRegex>nabla.*continuous</includeRegex>
       <recurse>false</recurse>
     </listView>
-    <hudson.model.RadiatorView plugin="radiatorviewplugin@1.17">
+    <hudson.model.RadiatorView plugin="radiatorviewplugin@1.18">
       <owner class="hudson" reference="../../.."/>
       <name>nabla-radiator</name>
       <filterExecutors>false</filterExecutors>
@@ -401,19 +401,19 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Full)</columnName>
           <showGroupId>true</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesFullColumn>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
@@ -643,27 +643,27 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomDependenciesColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomDependenciesColumn plugin="maven-info@0.1.3">
           <onlyWithinGroupId>false</onlyWithinGroupId>
           <columnName>Maven Dependencies</columnName>
         </org.tomfolga.PomDependenciesColumn>
-        <org.tomfolga.PomDependenciesWithinGroupIdColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomDependenciesWithinGroupIdColumn plugin="maven-info@0.1.3">
           <onlyWithinGroupId>true</onlyWithinGroupId>
           <columnName>Maven Dependencies (within groupId)</columnName>
         </org.tomfolga.PomDependenciesWithinGroupIdColumn>
-        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesFullColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Full)</columnName>
           <showGroupId>true</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesFullColumn>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
@@ -695,17 +695,17 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomDependenciesColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomDependenciesColumn plugin="maven-info@0.1.3">
           <onlyWithinGroupId>false</onlyWithinGroupId>
           <columnName>Maven Dependencies</columnName>
         </org.tomfolga.PomDependenciesColumn>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
@@ -733,13 +733,13 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesShortColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Short)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>true</showArtifactId>
           <showVersion>true</showVersion>
         </org.tomfolga.PomModulesShortColumn>
-        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.2">
+        <org.tomfolga.PomModulesVersionColumn plugin="maven-info@0.1.3">
           <columnName>Maven Modules (Version)</columnName>
           <showGroupId>false</showGroupId>
           <showArtifactId>false</showArtifactId>
