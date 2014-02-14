@@ -72,6 +72,7 @@ sudo apt-get remove libsvn1 subversion
 sudo apt-get remove subversion
 
 sudo gedit /etc/apt/sources.list
+ls /etc/apt/sources.list.d/
 #Append the following line
 #NOK deb http://us.archive.ubuntu.com/ubuntu precise main
 deb http://extras.ubuntu.com/ubuntu precise main
@@ -249,18 +250,6 @@ ifconfig eth0
 
 #uid of current user
 id -u
-
-#Fix broken package
-##sudo apt-get remove xserver-xorg-video-all
-##sudo apt-add-repository ppa:xorg-edgers
-##sudo apt-get install ppa-purge
-##sudo ppa-purge xorg-edgers
-##sudo apt-get install compizconfig-settings-manager
-###export DISPLAY=:0
-###ccsm
-##sudo apt-get install lightdm
-##sudo dpkg-reconfigure lightdm
-##sudo apt-get install ubuntu-desktop
 
 sudo apt-get install zabbix-agent 
 #for cacti

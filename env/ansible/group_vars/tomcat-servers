@@ -6,4 +6,4 @@ tomcat_https_port: 8443
 # This will configure a default manager-gui user:
 
 tomcat_admin_username: admin
-tomcat_admin_password: Motdepasse12
+tomcat_admin_password: microsoft

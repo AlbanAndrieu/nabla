@@ -16,3 +16,7 @@ albandri
 
 [jenkins-slaves]
 albandri
+
+[appservers:vars]
+tomcat_version=7
+java_version=7

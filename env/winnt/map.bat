@@ -15,7 +15,7 @@ NET USE J: \\ptxsnas02\project\dev\users\albandri10
 
 REM KZONE
 NET USE Q: /delete /yes
-NET USE Q: \\PTXSVKGR103\kzone-export
+NET USE Q: \\PTXSVKGR175\kzone-export
 
 REM WORKSTATION SAMBA
 NET USE X: \\Ptxw12662\share

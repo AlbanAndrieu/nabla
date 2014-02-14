@@ -37,7 +37,7 @@
   with_items:   
    - smartmontools
    - mon
-   - ssmtp
+   - ssmtp   
    - zabbix-agent 
    - snmp
    - snmpd

@@ -22,14 +22,8 @@ filegen clockstats file clockstats type day enable
 
 #change done by Marcin ntp servers 1'st london second Paris
 server {{ ntpserver1 }}
-server {{ ntpserver2 }}
-#server timehost
-#server nissrv02
-#restrict 150.151.192.2 nomodify # ptxidns02
-#server ptxidns03
+#server {{ ntpserver2 }}
 restrict timehost mask 255.255.255.255 nomodify notrap noquery
-restrict nissrv02 mask 255.255.255.255 nomodify notrap noquery
-restrict ptxidns03 mask 255.255.255.255 nomodify notrap noquery
 
 # Use Ubuntu's ntp server as a fallback.
 #server ntp.ubuntu.com

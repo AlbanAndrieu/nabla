@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/bash
 #
 # JBoss standalone control script
 #
@@ -69,6 +69,16 @@ if [ ! -z "$JBOSS_USER" ]; then
     CMD_PREFIX="su - $JBOSS_USER -c"
   fi
 fi
+
+success()
+{
+        echo -ne "[  OK  ]\r"
+}
+
+failure()
+{
+        echo -ne "[FAILED]\r"
+}
 
 start() {
   echo -n "Starting $prog: "

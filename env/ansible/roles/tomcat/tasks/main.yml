@@ -4,8 +4,8 @@
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
 - name: Install Java 1.7 (apt)
-  #apt: pkg=openjdk-7-jdk state=present update_cache=yes
-  apt: pkg=oracle-java7-installer state=present update_cache=yes  
+  apt: pkg=openjdk-7-jdk state=present update_cache=yes
+  #apt: pkg=oracle-java7-installer state=present update_cache=yes  
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
    
 #- name: Install Tomcat (yum)
