@@ -46,7 +46,6 @@ as soon it does not take too long.&#xd;
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.4.4"/>
   </properties>
   <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
     <locations>
@@ -84,7 +83,7 @@ as soon it does not take too long.&#xd;
     <groupId>com.nabla.project</groupId>
     <artifactId>servers</artifactId>
   </rootModule>
-  <goals>-U -Dsurefire.useFile=false clover2:setup install clover2:aggregate clover2:clover pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs -Psample,arq-jbossas-remote -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</goals>
+  <goals>-U -Dsurefire.useFile=false clover2:setup install clover2:aggregate clover2:clover pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs -Psample,arq-jbossas-managed -Dserver=jboss7x -Dwebdriver.base.url=http://localhost:8180</goals>
   <defaultGoals>install</defaultGoals>
   <mavenName>Maven-3.0.4</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
@@ -94,7 +93,7 @@ as soon it does not take too long.&#xd;
   <resolveDependencies>false</resolveDependencies>
   <processPlugins>false</processPlugins>
   <mavenValidationLevel>30</mavenValidationLevel>
-  <runHeadless>true</runHeadless>
+  <runHeadless>false</runHeadless>
   <settingConfigId></settingConfigId>
   <globalSettingConfigId></globalSettingConfigId>
   <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
