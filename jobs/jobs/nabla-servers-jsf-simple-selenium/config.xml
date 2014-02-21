@@ -37,11 +37,10 @@ as soon it does not take too long.&#xd;
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.4.4"/>
   </properties>
   <scm class="hudson.plugins.googlecode.scm.GoogleCodeSCMEx" plugin="googlecode@1.7">
     <locations>
-      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@1.54">
+      <hudson.scm.SubversionSCM_-ModuleLocation plugin="subversion@2.0">
         <remote>https://alban.googlecode.com/svn/trunk/servers/sample/jsf-simple</remote>
         <local>.</local>
         <depthOption>infinity</depthOption>
@@ -50,7 +49,7 @@ as soon it does not take too long.&#xd;
     </locations>
     <browser class="hudson.plugins.googlecode.GoogleCodeRepositoryBrowser"/>
     <excludedRegions></excludedRegions>
-    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@1.54"/>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" plugin="subversion@2.0"/>
     <ignoreDirPropChanges>false</ignoreDirPropChanges>
     <filterChangelog>false</filterChangelog>
     <directory>trunk/servers/sample/jsf-simple</directory>
@@ -85,7 +84,7 @@ as soon it does not take too long.&#xd;
   <resolveDependencies>false</resolveDependencies>
   <processPlugins>false</processPlugins>
   <mavenValidationLevel>30</mavenValidationLevel>
-  <runHeadless>true</runHeadless>
+  <runHeadless>false</runHeadless>
   <settingConfigId></settingConfigId>
   <globalSettingConfigId></globalSettingConfigId>
   <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
@@ -93,7 +92,7 @@ as soon it does not take too long.&#xd;
   <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
   <reporters/>
   <publishers>
-    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.38">
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.39">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -102,7 +101,7 @@ as soon it does not take too long.&#xd;
       <canRunOnFailed>false</canRunOnFailed>
       <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.54">
+      <thresholds plugin="analysis-core@1.55">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -139,6 +138,12 @@ as soon it does not take too long.&#xd;
       <numToKeep>-1</numToKeep>
       <resultsToDiscard>
         <hudson.model.Result>
+          <name>ABORTED</name>
+          <ordinal>4</ordinal>
+          <color>ABORTED</color>
+          <completeBuild>false</completeBuild>
+        </hudson.model.Result>
+        <hudson.model.Result>
           <name>FAILURE</name>
           <ordinal>2</ordinal>
           <color>RED</color>
@@ -150,12 +155,6 @@ as soon it does not take too long.&#xd;
           <color>NOTBUILT</color>
           <completeBuild>false</completeBuild>
         </hudson.model.Result>
-        <hudson.model.Result>
-          <name>ABORTED</name>
-          <ordinal>4</ordinal>
-          <color>ABORTED</color>
-          <completeBuild>false</completeBuild>
-        </hudson.model.Result>
       </resultsToDiscard>
       <minLogFileSize>0</minLogFileSize>
       <maxLogFileSize>0</maxLogFileSize>
@@ -165,7 +164,7 @@ as soon it does not take too long.&#xd;
     </org.jenkinsci.plugins.discardbuild.DiscardBuildPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.19">
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.20">
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
