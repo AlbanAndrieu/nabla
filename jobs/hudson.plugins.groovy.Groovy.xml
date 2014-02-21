@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.plugins.groovy.Groovy_-DescriptorImpl plugin="groovy@1.14">
+<hudson.plugins.groovy.Groovy_-DescriptorImpl plugin="groovy@1.15">
   <instanceCounter>
     <value>4</value>
   </instanceCounter>

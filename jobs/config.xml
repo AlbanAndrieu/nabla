@@ -5,7 +5,7 @@
     <string>OldData</string>
     <string>jenkins.security.RekeySecretAdminMonitor</string>
   </disabledAdministrativeMonitors>
-  <version>1.532.1</version>
+  <version>1.532.2</version>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -52,6 +52,7 @@
     <managerPassword>bWljcm9zb2Z0</managerPassword>
     <disableMailAddressResolver>false</disableMailAddressResolver>
   </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
@@ -157,7 +158,7 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
       <numExecutors>2</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.5">
+      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.6">
         <host>ec2-54-201-39-135.us-west-2.compute.amazonaws.com-todo</host>
         <port>22</port>
         <credentialsId>f9bbe1b9-df8f-4e58-b0d2-7b6fb780e8fa</credentialsId>
@@ -189,7 +190,7 @@ echo &quot;JAVA_HOME : $JAVA_HOME&quot;</initScript>
       <numExecutors>1</numExecutors>
       <mode>NORMAL</mode>
       <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
-      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.5">
+      <launcher class="hudson.plugins.sshslaves.SSHLauncher" plugin="ssh-slaves@1.6">
         <host>freenas</host>
         <port>22</port>
         <credentialsId>5099b703-d456-4635-a14b-560accb49663</credentialsId>
@@ -510,14 +511,14 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
         </hudson.plugins.view.dashboard.test.TestTrendChart>
       </leftPortlets>
       <rightPortlets>
-        <hudson.plugins.checkstyle.dashboard.WarningsTotalsGraphPortlet plugin="checkstyle@3.38">
+        <hudson.plugins.checkstyle.dashboard.WarningsTotalsGraphPortlet plugin="checkstyle@3.39">
           <id>dashboard_portlet_27657</id>
           <name>Checkstyle warnings trend graph (totals)</name>
           <width>500</width>
           <height>200</height>
           <dayCountString>30</dayCountString>
         </hudson.plugins.checkstyle.dashboard.WarningsTotalsGraphPortlet>
-        <hudson.plugins.warnings.dashboard.WarningsTotalsGraphPortlet plugin="warnings@4.38">
+        <hudson.plugins.warnings.dashboard.WarningsTotalsGraphPortlet plugin="warnings@4.39">
           <id>dashboard_portlet_22382</id>
           <name>Compiler warnings trend graph (totals)</name>
           <width>500</width>
@@ -527,7 +528,7 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
             <parserName>AcuCobol Compiler</parserName>
           </actionSelector>
         </hudson.plugins.warnings.dashboard.WarningsTotalsGraphPortlet>
-        <hudson.plugins.dry.dashboard.WarningsTotalsGraphPortlet plugin="dry@2.38">
+        <hudson.plugins.dry.dashboard.WarningsTotalsGraphPortlet plugin="dry@2.39">
           <id>dashboard_portlet_992</id>
           <name>Duplicate code trend graph (totals)</name>
           <width>500</width>
@@ -541,21 +542,21 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
           <height>200</height>
           <dayCountString>30</dayCountString>
         </hudson.plugins.findbugs.dashboard.WarningsTotalsGraphPortlet>
-        <hudson.plugins.tasks.dashboard.WarningsTotalsGraphPortlet plugin="tasks@4.38">
+        <hudson.plugins.tasks.dashboard.WarningsTotalsGraphPortlet plugin="tasks@4.39">
           <id>dashboard_portlet_12588</id>
           <name>Open tasks trend graph (totals)</name>
           <width>500</width>
           <height>200</height>
           <dayCountString>30</dayCountString>
         </hudson.plugins.tasks.dashboard.WarningsTotalsGraphPortlet>
-        <hudson.plugins.pmd.dashboard.WarningsTotalsGraphPortlet plugin="pmd@3.37">
+        <hudson.plugins.pmd.dashboard.WarningsTotalsGraphPortlet plugin="pmd@3.38">
           <id>dashboard_portlet_31077</id>
           <name>PMD warnings trend graph (totals)</name>
           <width>500</width>
           <height>200</height>
           <dayCountString>30</dayCountString>
         </hudson.plugins.pmd.dashboard.WarningsTotalsGraphPortlet>
-        <hudson.plugins.analysis.collector.dashboard.WarningsTotalsGraphPortlet plugin="analysis-collector@1.38">
+        <hudson.plugins.analysis.collector.dashboard.WarningsTotalsGraphPortlet plugin="analysis-collector@1.39">
           <id>dashboard_portlet_22585</id>
           <name>Warnings trend graph (totals)</name>
           <width>500</width>
