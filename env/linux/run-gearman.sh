@@ -228,3 +228,6 @@ date.timezone= "Europe/Paris"
 
 sudo pecl install gearman
 #You should add "extension=gearman.so" to php.ini
+
+#http://docs.openstack.org/infra/publications/gearman-plugin/#(20)
+#openstack integration

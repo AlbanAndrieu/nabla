@@ -268,3 +268,9 @@ LC_ADDRESS=en_US.UTF-8
 LC_TELEPHONE=en_US.UTF-8
 LC_MEASUREMENT=en_US.UTF-8
 LC_IDENTIFICATION=en_US.UTF-8
+
+#http://www.isalo.org/wiki.debian-fr/Cowsay_et_fortunes
+sudo aptitude install cowsay fortunes fortunes-fr
+sudo apt-get install randomize-lines
+#add in .bashrc
+#/usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`fortune -s`"

@@ -55,3 +55,6 @@ ansible-playbook -i hosts site.yml -vvvv
 
 ansible-playbook -i hosts jenkins.yml -vvvv
 #ansible-playbook jenkins.yml --extra-vars "host=albandri user=albandri" --ask-sudo-pass
+
+#tutorial
+https://github.com/leucos/ansible-tuto

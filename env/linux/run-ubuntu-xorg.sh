@@ -16,7 +16,7 @@ sudo apt-get install ubuntu-desktop
 #Fix black screen
 #http://askubuntu.com/questions/41681/blank-screen-after-installing-nvidia-restricted-driver
 
-Remove everything to do with the Nvidia proprietary drivers.
+#Remove everything to do with the Nvidia proprietary drivers.
 sudo nvidia-settings --uninstall
 sudo apt-get remove --purge nvidia*
 Start from scratch.
