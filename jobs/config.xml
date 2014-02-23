@@ -449,6 +449,7 @@ document.write(&apos;&lt;img src=&quot;http://chart.apis.google.com/chart?chs=32
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../hudson.model.RadiatorView/jobNames/comparator"/>
         <string>nabla-nabla-integration</string>
+        <string>sauce_java_maven_demo</string>
       </jobNames>
       <jobFilters/>
       <columns>
