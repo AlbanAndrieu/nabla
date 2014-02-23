@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson.plugins.googlecode.scm.GoogleCodeSCMEx_-DescriptorImpl plugin="googlecode@1.7">
-  <generation>4</generation>
+  <generation>1</generation>
   <mayHaveLegacyPerJobCredentials>false</mayHaveLegacyPerJobCredentials>
   <workspaceFormat>100</workspaceFormat>
   <validateRemoteUpToVar>false</validateRemoteUpToVar>
