@@ -20,7 +20,6 @@
       <autoRebuild>false</autoRebuild>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.23"/>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.4.4"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -30,6 +29,7 @@
   <jdk>(Default)</jdk>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
+  <goals>test</goals>
   <mavenName>Maven-3.0.4</mavenName>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
@@ -37,13 +37,17 @@
   <archivingDisabled>false</archivingDisabled>
   <resolveDependencies>false</resolveDependencies>
   <processPlugins>false</processPlugins>
-  <mavenValidationLevel>-1</mavenValidationLevel>
+  <mavenValidationLevel>30</mavenValidationLevel>
   <runHeadless>false</runHeadless>
   <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
   <settings class="jenkins.mvn.DefaultSettingsProvider"/>
   <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
   <reporters/>
-  <publishers/>
+  <publishers>
+    <hudson.plugins.sauce__ondemand.SauceOnDemandMavenTestPublisher plugin="sauce-ondemand@1.70">
+      <testDataPublishers/>
+    </hudson.plugins.sauce__ondemand.SauceOnDemandMavenTestPublisher>
+  </publishers>
   <buildWrappers>
     <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.12.2">
       <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
@@ -53,6 +57,23 @@
       <writingDescription>false</writingDescription>
     </hudson.plugins.build__timeout.BuildTimeoutWrapper>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.5.8"/>
+    <hudson.plugins.sauce__ondemand.SauceOnDemandBuildWrapper plugin="sauce-ondemand@1.70">
+      <startingURL></startingURL>
+      <enableSauceConnect>false</enableSauceConnect>
+      <seleniumHost></seleniumHost>
+      <seleniumPort></seleniumPort>
+      <seleniumInformation>
+        <webDriverBrowsers>
+          <string>Linuxfirefox27</string>
+        </webDriverBrowsers>
+        <isWebDriver>true</isWebDriver>
+        <isAppium>false</isAppium>
+      </seleniumInformation>
+      <webDriverBrowsers reference="../seleniumInformation/webDriverBrowsers"/>
+      <launchSauceConnectOnSlave>false</launchSauceConnectOnSlave>
+      <httpsProtocol></httpsProtocol>
+      <options></options>
+    </hudson.plugins.sauce__ondemand.SauceOnDemandBuildWrapper>
   </buildWrappers>
   <prebuilders/>
   <postbuilders/>
