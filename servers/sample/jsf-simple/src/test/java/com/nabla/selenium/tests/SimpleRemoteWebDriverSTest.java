@@ -45,6 +45,7 @@ public class SimpleRemoteWebDriverSTest
     private boolean             acceptNextAlert      = true;
     private StringBuffer        verificationErrors   = new StringBuffer();
     private DefaultSelenium     selenium;
+
     // public static SeleniumServer server;
 
     @Before
@@ -61,7 +62,6 @@ public class SimpleRemoteWebDriverSTest
         }
         System.out.println("webdriver.base.url is : " + baseUrl);
 
-
         chromeDriver = System.getProperty("webdriver.chrome.driver");
         if (null == chromeDriver)
         {
@@ -70,16 +70,16 @@ public class SimpleRemoteWebDriverSTest
             System.setProperty("webdriver.chrome.driver", chromeDriver);
         }
         System.out.println("webdriver.chrome.driver is : " + chromeDriver);
-        
+
         // System.setProperty("webdriver.safari.noinstall", "true");
 
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         // startSeleniumServer(server);
 
-        //FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
+        // FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        //DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-        //capabillities.setCapability(FirefoxDriver.PROFILE, profile);
+        // DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+        // capabillities.setCapability(FirefoxDriver.PROFILE, profile);
         DesiredCapabilities capabillities = DesiredCapabilities.chrome();
         // FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
         // /usr/bin/firefox
@@ -92,12 +92,20 @@ public class SimpleRemoteWebDriverSTest
         // Say you want a specific node to thread your request, just specify the
         // node name (it must be running a selenium configuration though)
         capabillities.setCapability("jenkins.nodeName", "(master)");
+
+        // capabillities.setVersion("12");
+        // capabillities.setPlatform(Platform.WINDOWS);
+
         // capabillities.setCapability("version", "8");
-        //capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
-        capabillities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-        
+        // capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+
+        // capabillities.setCapability(CapabilityType.VERSION, "12");
+        capabillities.setCapability(CapabilityType.BROWSER_NAME, "googlechrome");
+
         capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
         driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
+        // driver = new RemoteWebDriver(new URL("http://albanandrieu:2e5a4730-39e1-41c2-9e1f-a84fa24e15fd@ondemand.saucelabs.com:80/wd/hub"), capabillities);
+        // driver = new RemoteWebDriver(new URL("http://nabla:5655798f-14ba-4bc6-9d11-8d039a2517c0@ondemand.saucelabs.com:80/wd/hub"), capabillities);
 
         // FirefoxProfile profile = new FirefoxProfile();
         // FirefoxBinary binary = new FirefoxBinary(new File("C:\\path to firefox\\firefox.exe"));
@@ -115,7 +123,7 @@ public class SimpleRemoteWebDriverSTest
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1920, 1080));
-        selenium = new WebDriverBackedSelenium(driver, baseUrl);
+        // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
         // screenshot.
     }
@@ -133,8 +141,8 @@ public class SimpleRemoteWebDriverSTest
     public void testSimpleS() throws Exception
     {
         driver.get(baseUrl + "/welcome/hello.xhtml");
-        selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
-        //WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
+        // selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
+        // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         driver.findElement(By.name("j_idt8:j_idt9")).clear();
         driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
@@ -220,59 +228,56 @@ public class SimpleRemoteWebDriverSTest
         }
     }
 
-    public static void startSeleniumServer(SeleniumServer server) throws Exception
-    {
-
-        try
-        {
-            ServerSocket serverSocket = new ServerSocket(RemoteControlConfiguration.DEFAULT_PORT);
-            serverSocket.close();
-
-            try
-            {
-                RemoteControlConfiguration rcc = new RemoteControlConfiguration();
-                rcc.setPort(RemoteControlConfiguration.DEFAULT_PORT);
-                server = new SeleniumServer(false, rcc);
-
-            }
-            catch (Exception e)
-            {
-                System.err.println("Could not create Selenium Server because of: " + e.getMessage());
-                e.printStackTrace();
-            }
-            try
-            {
-                server.start();
-                System.out.println("Server started");
-            }
-            catch (Exception e)
-            {
-                System.err.println("Could not start Selenium Server because of: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-        catch (BindException e)
-        {
-            System.out.println("Selenium server already up, will reuse...");
-        }
-    }
-
-    public static void stopSeleniumServer(SeleniumServer server, DefaultSelenium selenium)
-    {
-        selenium.stop();
-        if (server != null)
-        {
-            try
-            {
-                selenium.shutDownSeleniumServer();
-                server.stop();
-
-                server = null;
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
+    /*
+     * public static void startSeleniumServer(SeleniumServer server) throws Exception
+     * {
+     * try
+     * {
+     * ServerSocket serverSocket = new ServerSocket(RemoteControlConfiguration.DEFAULT_PORT);
+     * serverSocket.close();
+     * try
+     * {
+     * RemoteControlConfiguration rcc = new RemoteControlConfiguration();
+     * rcc.setPort(RemoteControlConfiguration.DEFAULT_PORT);
+     * server = new SeleniumServer(false, rcc);
+     * }
+     * catch (Exception e)
+     * {
+     * System.err.println("Could not create Selenium Server because of: " + e.getMessage());
+     * e.printStackTrace();
+     * }
+     * try
+     * {
+     * server.start();
+     * System.out.println("Server started");
+     * }
+     * catch (Exception e)
+     * {
+     * System.err.println("Could not start Selenium Server because of: " + e.getMessage());
+     * e.printStackTrace();
+     * }
+     * }
+     * catch (BindException e)
+     * {
+     * System.out.println("Selenium server already up, will reuse...");
+     * }
+     * }
+     * public static void stopSeleniumServer(SeleniumServer server, DefaultSelenium selenium)
+     * {
+     * selenium.stop();
+     * if (server != null)
+     * {
+     * try
+     * {
+     * selenium.shutDownSeleniumServer();
+     * server.stop();
+     * server = null;
+     * }
+     * catch (Exception e)
+     * {
+     * e.printStackTrace();
+     * }
+     * }
+     * }
+     */
 }

@@ -57,7 +57,6 @@ public class SimpleWebDriverSTest
         }
         System.out.println("webdriver.base.url is : " + baseUrl);
 
-
         chromeDriver = System.getProperty("webdriver.chrome.driver");
         if (null == chromeDriver)
         {
@@ -66,7 +65,7 @@ public class SimpleWebDriverSTest
             System.setProperty("webdriver.chrome.driver", chromeDriver);
         }
         System.out.println("webdriver.chrome.driver is : " + chromeDriver);
-        
+
         // ProfilesIni allProfiles = new ProfilesIni();
         // FirefoxProfile profile = allProfiles.getProfile("Selenium");
         // FirefoxProfile profile = new FirefoxProfile();
@@ -107,7 +106,7 @@ public class SimpleWebDriverSTest
     {
         driver.get(baseUrl + "/welcome/hello.xhtml");
         selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
-        //WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
+        // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         driver.findElement(By.name("j_idt8:j_idt9")).clear();
         driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
