@@ -92,6 +92,7 @@
                 <jenkins.port>8380</jenkins.port>
                 <apache.port>8080</apache.port>
                 <varnish.port>80</varnish.port>
+                <nginx.port>8480</nginx.port>
                 <oracle.port>8080</oracle.port>
                 <archiva.port>8010</archiva.port>
                 <nexus.port>8081</nexus.port>
