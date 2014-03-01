@@ -17,7 +17,7 @@
     <name>Nabla Maven Site Plugins</name>
     <description>The Nabla Maven site plugins</description>
     <!--<url>http://maven.apache.org/skins/</url>-->
-    <url>${JOB_URL}</url>    
+    <url>http://maven.nabla.mobi</url>    
 
     <scm>
     	<connection>scm:svn:http://alban.googlecode.com/svn/trunk/maven</connection>
@@ -30,6 +30,11 @@
         <module>skin</module>
     </modules>
 
+    <ciManagement>
+            <system>Jenkins</system>
+            <url>${JOB_URL}</url>
+    </ciManagement>
+        
     <properties>    
     	<invoker.skip>false</invoker.skip>
 	<!--<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version>-->
