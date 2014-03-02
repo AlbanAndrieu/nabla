@@ -252,6 +252,23 @@
 			<artifactId>groovy-all</artifactId>
 		</dependency>
 
+        	<dependency>
+        	    <groupId>com.saucelabs</groupId>
+        	    <artifactId>sauce_junit</artifactId>
+        	    <scope>test</scope>
+        	</dependency>
+        	
+        	<dependency>
+        	    <groupId>com.saucelabs.selenium</groupId>
+        	    <artifactId>sauce-ondemand-driver</artifactId>
+        	    <scope>test</scope>
+        	</dependency>
+        	<dependency>
+        	    <groupId>com.saucelabs.selenium</groupId>
+        	    <artifactId>selenium-client-factory</artifactId>
+        	    <scope>test</scope>
+        	</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
