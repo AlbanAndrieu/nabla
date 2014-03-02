@@ -1539,6 +1539,8 @@
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <selenium.version>2.37.1</selenium.version> 
                 <selenium.driver.version>2.39.0</selenium.driver.version>
+                <saucelabs.selenium.version>2.6</saucelabs.selenium.version>
+                <saucelabs.junit.version>1.0.18</saucelabs.junit.version>
                 <webdriver.chrome>/var/lib/chromedriver</webdriver.chrome> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <drools.version>5.0.1</drools.version>
                 <!--<drools.version>5.1.1</drools.version>-->
@@ -4130,7 +4132,28 @@ pmUUnpvmvnqmmmmmmUUnpvmvnqmmmmmmUUEXYiXUUn]]></license>
 				<artifactId>selenium-server</artifactId>
 				<version>${selenium.version}</version>
 				<scope>test</scope>
-			</dependency>                        
+			</dependency>          
+			
+        		<dependency>
+        		    <groupId>com.saucelabs</groupId>
+        		    <artifactId>sauce_junit</artifactId>
+        		    <version>${saucelabs.junit.version}</version>
+        		    <scope>test</scope>
+        		</dependency>
+        		
+        		<dependency>
+        		    <groupId>com.saucelabs.selenium</groupId>
+        		    <artifactId>sauce-ondemand-driver</artifactId>
+        		    <version>${saucelabs.selenium.version}</version>
+        		    <scope>test</scope>
+        		</dependency>
+        		<dependency>
+        		    <groupId>com.saucelabs.selenium</groupId>
+        		    <artifactId>selenium-client-factory</artifactId>
+        		    <version>${saucelabs.selenium.version}</version>
+        		    <scope>test</scope>
+        		</dependency>			
+			              
                         <dependency>
                                 <groupId>junit</groupId>
                                 <artifactId>junit</artifactId>
