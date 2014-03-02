@@ -3420,10 +3420,10 @@
                                                 <!--<generateHistorical>true</generateHistorical>-->
                                                 <!--<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>--> <!-- see ~/.m2/settings.xml -->
                                                 <!--<outputDirectory>${clover.reportPath}/clover-report</outputDirectory>-->
-                                                <license><![CDATA[oRrpQmDXNRTgPJxqWbEUwIbAnrteKgmisaSDoLeNBBdSQC
-mi2K94ZVw6MKqGL<mg71cH3j2KGDeofihV1z4utr>Zd8gR
-NnQRswPRrqoONRpMONMwXQRPRnrNMPrOmPWTVXxXTVvqnm
-pmUUnpvmvnqmmmmmmUUnpvmvnqmmmmmmUUEXYiXUUn]]></license>
+                                                <license><![CDATA[oonrQTwgsRtiBfTokftkfBGrqMXXebBtXWxKTBllSnQCfK
+mi2Kkjwl7AS0<4V4PamB>FXc2KMtiE15RzOZe11<qE7akM
+nRmnvTPmronONmQqRRptVrPNPnrqmNnnPRtvwVUuXWTnnm
+pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<excludes>
             						<!-- GWT classes -->
             						<exclude>**/client/**/*.java</exclude>
