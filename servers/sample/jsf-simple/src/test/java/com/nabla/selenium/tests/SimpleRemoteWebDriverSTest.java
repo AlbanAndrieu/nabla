@@ -3,14 +3,23 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.net.BindException;
-import java.net.ServerSocket;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -18,23 +27,21 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.server.RemoteControlConfiguration;
-import org.openqa.selenium.server.SeleniumServer;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.saucelabs.common.SauceOnDemandAuthentication;
+import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import com.saucelabs.junit.SauceOnDemandTestWatcher;
 import com.thoughtworks.selenium.DefaultSelenium;
 
-public class SimpleRemoteWebDriverSTest
+@RunWith(Parameterized.class)
+public class SimpleRemoteWebDriverSTest  implements SauceOnDemandSessionIdProvider
 {
     private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe";
     private static final String DEFAULT_URL          = "http://localhost:9090";
@@ -46,8 +53,87 @@ public class SimpleRemoteWebDriverSTest
     private StringBuffer        verificationErrors   = new StringBuffer();
     private DefaultSelenium     selenium;
 
+    private static DesiredCapabilities capabilities;
+    private static Platform ANDROID, LINUX, MAC, UNIX, VISTA, WINDOWS, XP, platformValue;
+    private String browser, browserVersion, platform, sessionId = "";
+    
+    // Create an array of available platforms from the "private static Platform" declaration above
+    Platform[] platformValues = Platform.values();
+    
     // public static SeleniumServer server;
 
+    /**
+     * Constructs a {@link com.saucelabs.common.SauceOnDemandAuthentication} instance using the supplied Sauce
+     * user name and access key. To use the authentication supplied by environment variables or
+     * from an external file, use the no-arg {@link com.saucelabs.common.SauceOnDemandAuthentication} constructor.
+     */
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication();
+
+    public Platform setPlatformCapabilities(String platformParam) {
+
+        String platformVal = platformParam;
+
+        for (int p=0; p<platformValues.length; p++) {
+            platformValue = platformValues[p++];
+            if (platformValue.toString() == platformVal) break;
+        }
+
+        return platformValue;
+
+    }
+
+
+    /**
+     * JUnit Rule that marks Sauce Jobs as passed/failed when the test succeeds or fails.
+     */
+    public @Rule
+    SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
+
+
+    /**
+     * JUnit Rule that records the test name of the current test. When this is referenced
+     * during the creation of {@link org.openqa.selenium.remote.DesiredCapabilities}, the test method name is assigned
+     * to the Sauce Job name and recorded in Jenkins Console Output and in the Sauce Jobs
+     * Report in the Jenkins project's home page.
+     */
+    public @Rule TestName testName = new TestName();
+
+
+    /**
+     * JUnit annotation that runs each test once for each item in a Collection.
+     *
+     * Feel free to add as many additional parameters as you like to the capabilitiesParams array.
+     *
+     * Note: If you add parameters for the MAC platform, make sure that you have Mac minutes in
+     * your <a href="https://saucelabs.com/login">Sauce account</a> or the test will fail.
+     */
+    @Parameters
+    public static Collection<Object[]> data() {
+
+        String json = System.getenv("SAUCE_ONDEMAND_BROWSERS");
+        List<Object[]> browsers = new ArrayList<Object[]>();
+        JSONArray browserArray = null;
+        try {
+            browserArray = new JSONArray(json);
+            for (int i =0;i<browserArray.length();i++) {
+                JSONObject browserJSON = browserArray.getJSONObject(i);
+                browsers.add(new Object[]{browserJSON.get("browser"), browserJSON.get("browser-version"), browserJSON.get("os")});
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return browsers;
+
+    }
+
+    public SimpleRemoteWebDriverSTest(String s1, String s2, String s3) {
+        browser = s1;
+        browserVersion = s2;
+        platform = s3;
+    }
+    
     @Before
     public void setUp() throws Exception
     {
@@ -78,35 +164,49 @@ public class SimpleRemoteWebDriverSTest
 
         // FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        // DesiredCapabilities capabillities = DesiredCapabilities.firefox();
-        // capabillities.setCapability(FirefoxDriver.PROFILE, profile);
-        DesiredCapabilities capabillities = DesiredCapabilities.chrome();
+        // capabilities = DesiredCapabilities.firefox();
+        // capabilities = DesiredCapabilities.chrome();
+        // capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+        
         // FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
         // /usr/bin/firefox
         // C:\Program Files (x86)\Mozilla Firefox\firefox.exe
 
-        // capabillities.setCapability(FirefoxDriver.BINARY, ffb);
+        // capabilities.setCapability(FirefoxDriver.BINARY, ffb);
         // say you use the redhat5 label to indicate RHEL5 and the amd64 label
         // to specify the architecture
-        // capabillities.setCapability("jenkins.label", "redhat5 && amd64");
+        // capabilities.setCapability("jenkins.label", "redhat5 && amd64");
         // Say you want a specific node to thread your request, just specify the
         // node name (it must be running a selenium configuration though)
-        capabillities.setCapability("jenkins.nodeName", "(master)");
+        // capabilities.setCapability("jenkins.nodeName", "(master)");
 
-        // capabillities.setVersion("12");
-        // capabillities.setPlatform(Platform.WINDOWS);
+        // capabilities.setVersion("12");
+        // capabilities.setPlatform(Platform.WINDOWS);
 
-        // capabillities.setCapability("version", "8");
-        // capabillities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+        // capabilities.setCapability("version", "8");
+        // capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
 
-        // capabillities.setCapability(CapabilityType.VERSION, "12");
-        capabillities.setCapability(CapabilityType.BROWSER_NAME, "googlechrome");
+        // capabilities.setCapability(CapabilityType.VERSION, "12");
+        //capabilities.setCapability(CapabilityType.BROWSER_NAME, "googlechrome");
 
-        capabillities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
-        driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabillities);
-        // driver = new RemoteWebDriver(new URL("http://albanandrieu:2e5a4730-39e1-41c2-9e1f-a84fa24e15fd@ondemand.saucelabs.com:80/wd/hub"), capabillities);
-        // driver = new RemoteWebDriver(new URL("http://nabla:5655798f-14ba-4bc6-9d11-8d039a2517c0@ondemand.saucelabs.com:80/wd/hub"), capabillities);
+        //capabilities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
+        
+        // driver = new RemoteWebDriver(new URL("http://albanandrieu:2e5a4730-39e1-41c2-9e1f-a84fa24e15fd@ondemand.saucelabs.com:80/wd/hub"), capabilities);
+        // driver = new RemoteWebDriver(new URL("http://nabla:5655798f-14ba-4bc6-9d11-8d039a2517c0@ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
+        capabilities = new DesiredCapabilities(browser, browserVersion, setPlatformCapabilities(platform));
+        capabilities.setCapability("name", this.getClass().getName() + "." + testName.getMethodName());
+        //driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabilities);
+        this.driver = new RemoteWebDriver(
+                new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
+                capabilities);
+        this.sessionId = ((RemoteWebDriver)driver).getSessionId().toString();
+
+        if (browserVersion == "") browserVersion = "unspecified";
+        String browserName = String.format("%-19s", browser).replaceAll(" ", ".").replaceFirst("[.]", " ");
+        String browserVer = String.format("%-19s", browserVersion).replaceAll(" ", ".");
+        System.out.println("@Test validateTitle() testing browser/version: " + browserName + browserVer + "platform: " + platform);
+        
         // FirefoxProfile profile = new FirefoxProfile();
         // FirefoxBinary binary = new FirefoxBinary(new File("C:\\path to firefox\\firefox.exe"));
         // driver = new FirefoxDriver(binary, profile);
@@ -179,6 +279,11 @@ public class SimpleRemoteWebDriverSTest
         {
             fail(verificationErrorString);
         }
+    }
+
+    @Override
+    public String getSessionId() {
+            return sessionId;
     }
 
     private boolean isElementPresent(By by)
