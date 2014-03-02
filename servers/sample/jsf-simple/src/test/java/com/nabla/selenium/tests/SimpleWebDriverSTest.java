@@ -101,7 +101,7 @@ public class SimpleWebDriverSTest
      * }
      */
 
-    @Test
+    //@Test
     public void testSimpleS() throws Exception
     {
         driver.get(baseUrl + "/welcome/hello.xhtml");
