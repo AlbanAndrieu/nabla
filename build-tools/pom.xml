@@ -183,7 +183,7 @@
             		    <repositoryId>server-forge-release</repositoryId>
             		    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
             		</properties>  	
-            		-->             		
+            		-->        	     		
                         <properties>
                             <repositoryId>nexus-releases</repositoryId>
                             <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
