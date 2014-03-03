@@ -536,7 +536,7 @@
 					<deployables>
 						<deployable>
 							<groupId>com.nabla.project.servers.sample</groupId>
-							<artifactId>jsf-simple</artifactId>
+							<artifactId>jsf-simple-saucelabs</artifactId>
 							<type>war</type>
 							<properties>
 								<context>/welcome</context>
@@ -642,7 +642,7 @@
 				<dependencies>
 					<dependency>
 						<groupId>com.nabla.project.servers.sample</groupId>
-						<artifactId>jsf-simple</artifactId>
+						<artifactId>jsf-simple-saucelabs</artifactId>
 						<version>${project.version}</version>
 						<type>war</type>
 					</dependency>
