@@ -57,4 +57,12 @@ ansible-playbook -i hosts jenkins.yml -vvvv
 #ansible-playbook jenkins.yml --extra-vars "host=albandri user=albandri" --ask-sudo-pass
 
 #tutorial
-https://github.com/leucos/ansible-tuto
+#https://github.com/leucos/ansible-tuto
+
+git clone https://github.com/leucos/ansible-tuto.git
+cd ansible-tuto
+ansible-playbook -c paramiko -i step-00/hosts step-00/setup.yml --ask-pass --sudo
+#use pass vagrant
+
+#see params
+ansible -m setup albandri | grep eth0

@@ -7,6 +7,9 @@ cd /worspace
 sudo wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_i686.deb
 sudo dpkg --install vagrant_1.4.3_i686.deb
 
+#tutorial
+#https://github.com/leucos/ansible-tuto
+#see run-ansible.sh
 git clone https://github.com/leucos/ansible-tuto.git
 cd ansible-tuto
 
@@ -15,19 +18,16 @@ vagrant up
 #wget http://brennovich.s3.amazonaws.com/saucy64_vmware_fusion.box
 #wget http://files.vagrantup.com/precise64.box
 #vagrant box add base /devel/albandri/tmp/ansible-tuto/precise64.box
+#vagrant box add precise32 http://files.vagrantup.com/precise32.box
+#vagrant box add precise32 /devel/albandri/tmp/ansible-tuto/precise32.box
+vagrant init base
+vagrant up
 
-TODO
-[host2] Waiting for machine to boot. This may take a few minutes...
-Timed out while waiting for the machine to boot. This means that
-Vagrant was unable to communicate with the guest machine within
-the configured ("config.vm.boot_timeout" value) time period. This can
-mean a number of things.
+#vagrant package
+#tar xf package.box
+#ovftool box.ovf box.ova
 
-If you're using a custom box, make sure that networking is properly
-working and you're able to connect to the machine. It is a common
-problem that networking isn't setup properly in these boxes.
-Verify that authentication configurations are also setup properly,
-as well.
-
-If the box appears to be booting properly, you may want to increase
-the timeout ("config.vm.boot_timeout") value.
+#you might need to change 
+#export VAGRANT_HOME=/devel/albandri/home/.vagrant.d
+#create symbolic link
+#ln -s /devel/albandri/home/VirtualBox\ VMs/ 'VirtualBox VMs'

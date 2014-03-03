@@ -270,7 +270,11 @@ LC_MEASUREMENT=en_US.UTF-8
 LC_IDENTIFICATION=en_US.UTF-8
 
 #http://www.isalo.org/wiki.debian-fr/Cowsay_et_fortunes
+sudo apt-get install aptitude
 sudo aptitude install cowsay fortunes fortunes-fr
 sudo apt-get install randomize-lines
 #add in .bashrc
 #/usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`fortune -s`"
+
+#http://blog.retep.org/2012/07/05/whoopsie-how-to-disable-it-on-ubuntu-12-04-or-mint-13/
+sudo apt-get remove whoopsie

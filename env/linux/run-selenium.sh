@@ -1,6 +1,7 @@
 #http://alex.nederlof.com/blog/2012/11/19/installing-selenium-with-jenkins-on-ubuntu/
 
-sudo apt-get update && sudo apt-get install -y xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic xvfb x11-apps imagemagick firefox
+sudo apt-get update && sudo apt-get install -y xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic xvfb x11-apps  imagemagick firefox google-chrome-stable
+sudo apt-get install x11-apps imagemagick
 
 cd /etc/init.d
 ln -s /workspace/users/albandri10/env/linux/bin/xvfb.sh xvfb
@@ -42,12 +43,33 @@ curl http://home.nabla.mobi:6666/selenium-server/driver/?cmd=shutDownSeleniumSer
 cd ~/servers/sample/jsf-simple
 mvn jetty:run-war -Psample -Dserver=jetty9x -Ddatabase=derby -Djetty.port=9090
 
+/usr/bin/Xvfb :1 -screen 0 1024x768x24
+export DISPLAY=:1
+
+#screenshot
+xwd -root -display :99 | convert xwd:- capture.png
+
+#firefox profile
+#http://stackoverflow.com/questions/7106994/jenkins-cant-launch-selenium-tests-timed-out-waiting-for-profile-to-be-created/7154404#7154404
+firefox -P
+#create profile Selenium
+chmod -R 777 /workspace/users/albandri10/.mozilla
+
+#Open up Firefox profile manager : $ firefox -ProfileManager
+#Create a new profile, called Selenium
+#Now, when running the selenium command, add "-firefoxProfileTemplate "/home/{username}/.mozilla/firefox/{profile dir}" to the command. (where {username} is your username and {profile dir} is the profile directory, which for me was "6f2um01h.Selenium"
+
+#NOK -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/ 
+
 # Let's see if Selenium works for firefox:
 sudo chown -R jenkins:jenkins /workspace/users/albandri10/.mozilla/firefox/eaadg7zv.Jenkins
-java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html"
-#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/tmp/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/gr8mkk7y.Selenium/ 
-java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/tmp/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/eaadg7zv.Jenkins/
-java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/tmp/selenium.log -debug=true
+#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html"
+java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/
+
+#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/4ppq46yo.Nabla/
+#NOK java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome /opt/google/chrome/chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true`
+java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true
+java -jar /var/lib/selenium/selenium.jar -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/ -htmlSuite *chrome http://localhost:8280/welcome/ /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/src/test/selenium/SimpleSTestSuite.html /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/target/test-reports/chrome-results.html
   
 # For chrome we also need to specify the Chrome driver location.:
 java -jar -Dwebdriver.chrome.driver=/var/lib/chromedriver /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *googlechrome http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html"
@@ -66,18 +88,6 @@ java -jar -Dwebdriver.chrome.driver=/var/lib/chromedriver /var/lib/selenium/sele
 -Dwebdriver.safari.noinstall=true -Dwebdriver.chrome.driver=/var/lib/chromedriver
 #webdriver.safari.driver
 
-#firefox profile
-#http://stackoverflow.com/questions/7106994/jenkins-cant-launch-selenium-tests-timed-out-waiting-for-profile-to-be-created/7154404#7154404
-firefox -P
-#create profile Selenium
-
-Open up Firefox profile manager : $ firefox -ProfileManager
-Create a new profile, called Selenium
-Now, when running the selenium command, add "-firefoxProfileTemplate "/home/{username}/.mozilla/firefox/{profile dir}" to the command. (where {username} is your username and {profile dir} is the profile directory, which for me was "6f2um01h.Selenium"
-
-
-#NOK -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/tmp/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/gr8mkk7y.Selenium/ 
-#-Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/tmp/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/eaadg7zv.Jenkins/
 #check following
 #http://stackoverflow.com/questions/12588082/webdriver-unable-to-connect-to-host-127-0-0-1-on-port-7055-after-45000-ms
 
