@@ -1531,7 +1531,7 @@
                 <gwt.version>2.5.1</gwt.version>
                 <gae.version>1.5.3</gae.version>
                 <gwtp.all.version>1.0.2</gwtp.all.version>
-                <gwt.seam.version>1.0</gwt.seam.version>
+                <gwt.seam.version>${project.version}</gwt.seam.version>
                 <gwt.test.utils.version>0.38</gwt.test.utils.version>
                 <objectify.version>4.0b1</objectify.version>
                 <errai.version>2.0.Beta3</errai.version>
