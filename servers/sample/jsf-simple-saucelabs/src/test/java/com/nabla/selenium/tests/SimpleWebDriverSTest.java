@@ -35,7 +35,7 @@ public class SimpleWebDriverSTest
     private static final String DEFAULT_URL          = "http://localhost:9090";
     private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
     private WebDriver           driver;
-    private String              baseUrl              = DEFAULT_URL;                        
+    private String              baseUrl              = DEFAULT_URL;
     private String              chromeDriver         = DEFAULT_CHROMEDRIVER;
     private boolean             acceptNextAlert      = true;
     private StringBuffer        verificationErrors   = new StringBuffer();
@@ -101,7 +101,7 @@ public class SimpleWebDriverSTest
      * }
      */
 
-    @Test
+    // @Test
     public void testSimpleS() throws Exception
     {
         driver.get(baseUrl + "/welcome/hello.xhtml");
