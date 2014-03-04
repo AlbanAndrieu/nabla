@@ -4,41 +4,31 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.thoughtworks.selenium.DefaultSelenium;
 //import com.saucelabs.common.SauceOnDemandAuthentication;
 //import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 //import com.saucelabs.junit.SauceOnDemandTestWatcher;
-import com.thoughtworks.selenium.DefaultSelenium;
 
 //@RunWith(Parameterized.class)
 public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProvider */
@@ -156,11 +146,11 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         // startSeleniumServer(server);
 
-        // FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
+        FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
         capabilities = DesiredCapabilities.firefox();
         // capabilities = DesiredCapabilities.chrome();
-        // capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+        capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 
         // FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
         // /usr/bin/firefox
