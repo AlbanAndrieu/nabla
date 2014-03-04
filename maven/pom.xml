@@ -86,21 +86,20 @@
 		<build>
 		</build>
 		<distributionManagement>
-			<!--
+		        <!--
 			<repository>
 				<id>server-releases</id>
 				<name>External Staging Repository</name>
 				<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url>
 				<uniqueVersion>false</uniqueVersion>
 			</repository>
-			-->
 			<repository>
 				<id>server-forge-release</id>
 				<name>External Staging Repository</name>
 				<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 				<uniqueVersion>true</uniqueVersion>
 			</repository>				
-			    
+			-->				    
 			<!--
 			<snapshotRepository>
 				<id>server-snapshots</id>
@@ -108,13 +107,26 @@
 				<url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
 				<uniqueVersion>false</uniqueVersion>
 			</snapshotRepository>
-			-->
 			<snapshotRepository>
 				<id>server-forge-snapshot</id>
 				<name>External Snapshot Repository</name>
 				<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 				<uniqueVersion>true</uniqueVersion>
-			</snapshotRepository>	
+			</snapshotRepository>
+			-->					
+                        <repository>
+                                <id>nexus-releases</id>
+                                <name>Nexus Staging Repository</name>
+                                <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                                <uniqueVersion>true</uniqueVersion>
+                        </repository>				
+                        <snapshotRepository>
+                                <id>nexus-snapshots</id>
+                                <name>Nexus Snapshot Repository</name>
+                                <url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+                                <uniqueVersion>false</uniqueVersion>
+                        </snapshotRepository>
+			
 			<site>
 				<id>website</id>
 				<name>Project Website</name>
@@ -126,11 +138,15 @@
             	    <repositoryId>server-snapshots</repositoryId>
             	    <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
             	</properties>     
-            	--> 
             	<properties>
             	    <repositoryId>server-forge-release</repositoryId>
             	    <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
-            	</properties>  		
+            	</properties>  	
+            	-->        	     		
+                <properties>
+                    <repositoryId>nexus-releases</repositoryId>
+                    <url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+                </properties>            	
 	</profile>   
     </profiles>		
 
