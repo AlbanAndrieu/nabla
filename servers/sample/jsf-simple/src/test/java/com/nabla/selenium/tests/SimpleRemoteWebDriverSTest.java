@@ -190,7 +190,7 @@ public class SimpleRemoteWebDriverSTest /*implements SauceOnDemandSessionIdProvi
         // capabilities.setCapability("version", "8");
         // capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
 
-        // capabilities.setCapability(CapabilityType.VERSION, "12");
+        capabilities.setCapability(CapabilityType.VERSION, "12");
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "googlechrome");
 
         capabilities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
