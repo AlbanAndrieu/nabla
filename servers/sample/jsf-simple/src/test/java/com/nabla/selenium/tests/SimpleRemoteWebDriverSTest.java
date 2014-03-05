@@ -148,8 +148,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        capabilities = DesiredCapabilities.firefox();
         // capabilities = DesiredCapabilities.chrome();
+        capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 
         // FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
@@ -205,9 +205,9 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        //driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        //driver.manage().window().setSize(new Dimension(1920, 1080));
         // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
         // screenshot.

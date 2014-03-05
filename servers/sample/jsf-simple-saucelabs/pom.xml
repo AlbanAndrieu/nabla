@@ -13,7 +13,7 @@
 	<artifactId>jsf-simple-saucelabs</artifactId>
 	<packaging>war</packaging>
 	<!--<version>1.0</version> -->
-	<name>Java Server Faces Maven Webapp</name>
+	<name>Java Server Faces Maven Webapp Saucelabs</name>
 
 	<!--       
         <properties>
@@ -301,7 +301,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-firefox-driver</artifactId>
-			<version>${selenium.driver.version}</version>
+			<version>${selenium.firefox.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>                  
 		<dependency>
@@ -319,7 +319,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-safari-driver</artifactId>
-			<version>${selenium.driver.version}</version>
+			<version>${selenium.safari.driver.version}</version>
 			<scope>test</scope>	
 		</dependency>
 		<dependency>
