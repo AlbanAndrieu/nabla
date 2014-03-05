@@ -23,4 +23,7 @@
 	<Match>
 		<Bug pattern="SE_BAD_FIELD" />
 	</Match>
+	<Match>
+		<Package name="org.andromda.timetracker" />
+	</Match>
 </FindBugsFilter>
