@@ -1538,7 +1538,9 @@
 
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <selenium.version>2.37.1</selenium.version> 
-                <selenium.driver.version>2.39.0</selenium.driver.version>
+                <selenium.driver.version>2.9.0</selenium.driver.version>
+                <selenium.safari.driver.version>2.40.0</selenium.safari.driver.version>
+                <selenium.firefox.driver.version>2.9.0</selenium.firefox.driver.version>
                 <saucelabs.selenium.version>2.6</saucelabs.selenium.version>
                 <saucelabs.junit.version>1.0.18</saucelabs.junit.version>
                 <webdriver.chrome>/var/lib/chromedriver</webdriver.chrome> <!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -4076,7 +4078,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-firefox-driver</artifactId>
-				<version>${selenium.driver.version}</version>
+				<version>${selenium.firefox.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>                  
 			<dependency>
@@ -4094,7 +4096,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-safari-driver</artifactId>
-				<version>${selenium.driver.version}</version>
+				<version>${selenium.safari.driver.version}</version>
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
