@@ -372,6 +372,10 @@
                                                 <groupId>org.apache.maven.plugins</groupId>
                                                 <artifactId>maven-checkstyle-plugin</artifactId>
                                                 <version>${maven.checkstyle.plugin.version}</version>
+   						<configuration>
+   						    <excludes>**/generated/**/*</excludes>
+   						    <excludes>**/clover/**/*</excludes>
+   						</configuration>                                                  
                                                 <dependencies>
                                                         <!-- The file defined in the location is stored in this dependency -->
                                                         <dependency>
@@ -881,6 +885,8 @@
                                                         <configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
                                                         <headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
                                                          -->
+   					    		<excludes>**/generated/**/*</excludes>
+   					    		<excludes>**/clover/**/*</excludes>                                                         
                                                 </configuration>
                                         </plugin>
 
@@ -896,7 +902,8 @@
                                                         <targetJdk>${jdkLevel}</targetJdk>
                                                         <excludes>
                                                                 <exclude>**/*Bean.java</exclude>
-                                                                <exclude>**/generated/*.java</exclude>
+   						    		<exclude>**/generated/**/*</exclude>
+   						    		<exclude>**/clover/**/*</exclude>                                                           
                                                         </excludes>
                                                         <excludeRoots>
                                                                 <excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
@@ -942,6 +949,12 @@
                                                 <groupId>org.codehaus.mojo</groupId>
                                                 <artifactId>javancss-maven-plugin</artifactId>
                                                 <version>${maven.javancss.plugin.version}</version>
+   						<configuration>
+   						   <excludes>
+   						      <exclude>**/generated/**/*</exclude>
+   						      <exclude>**/clover/**/*</exclude>
+   						    </excludes>
+   						</configuration>                                                
                                         </plugin>
                                         
                                         <plugin>
@@ -3376,7 +3389,17 @@
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>javancss-maven-plugin</artifactId>
+                                        <!--
+                                        <groupId>org.apache.maven.plugins</groupId>
+   					<artifactId>maven-javancss-plugin</artifactId>
+   					-->
                                         <version>${maven.javancss.plugin.version}</version>
+   					<configuration>
+   					   <excludes>
+   					      <exclude>**/generated/**/*</exclude>
+   					      <exclude>**/clover/**/*</exclude>
+   					    </excludes>
+   					</configuration>                                           
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -3393,12 +3416,18 @@
                                                 <excludeRoots>
                                                         <excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
                                                 </excludeRoots>
+                                                <excludes>**/generated/**/*</excludes>
+                                                <excludes>**/clover/**/*</excludes>
                                         </configuration>
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-checkstyle-plugin</artifactId>
                                         <version>${maven.checkstyle.plugin.version}</version>
+   					<configuration>
+   					    <excludes>**/generated/**/*</excludes>
+   					    <excludes>**/clover/**/*</excludes>
+   					</configuration>                                        
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
