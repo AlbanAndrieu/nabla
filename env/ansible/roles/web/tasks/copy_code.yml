@@ -7,3 +7,5 @@
 
 - name: Creates the index.php file 
   template: src=index.php.j2 dest=/var/www/html/index.php
+  
+#See result at http://localhost/html/index.html

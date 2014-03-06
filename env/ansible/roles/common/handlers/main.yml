@@ -24,3 +24,8 @@
       
 - name: restart iptables
   service: name=iptables state=restarted
+
+- name: restart zabbix-agent
+  service: name=zabbix-agent state=restarted
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  

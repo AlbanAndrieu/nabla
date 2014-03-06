@@ -66,3 +66,6 @@ ansible-playbook -c paramiko -i step-00/hosts step-00/setup.yml --ask-pass --sud
 
 #see params
 ansible -m setup albandri | grep eth0
+
+#jenkins
+#https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/

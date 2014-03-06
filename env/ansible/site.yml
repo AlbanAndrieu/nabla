@@ -1,44 +1,75 @@
 ---     
+
+#as root
+#ansible-playbook -i hosts site.yml -vvvv
+#or using your own user
+#ansible-playbook -i hosts site.yml -vvvv --ask-pass --sudo
+#
+#todo ansible-playbook -c paramiko
+
+# This playbook can be run using vagrant (on virtual box). 
+- hosts: test-boxes
+  sudo: yes
+  remote_user: vagrant
+  
+  roles:
+    - common  
+        
 # This playbook deploys a simple standalone Tomcat 7 server. 
 
 - name: apply common configuration to all nodes
   hosts: all
+#  hosts: albandri
   user: root
-  connection: local
+#  connection: local
   
   roles:
     - common
 
-#- hosts: tomcat-servers 
-#  user: root
+- hosts: tomcat-servers 
+  user: root
 #  connection: local
   
-#  roles:
-#    - tomcat
+  roles:
+    - tomcat
 
 # This playbook deploys a simple standalone JBoss server. 
 
-#- hosts: jboss-servers 
-#  user: root
-#  connection: local
+- hosts: jboss-servers 
+  user: root
+  connection: local
   
-#  roles:
-#    - jboss-standalone
+  roles:
+    - jboss-standalone
 
+# This playbook deploys a MySQL databse.  
+
+- name: deploy MySQL and configure the databases
+  hosts: dbservers
+  user: root
+# connection: local
+  
+  roles:
+    - db
+    
 # This playbook deploys the whole application stack in this site.  
 
-#- name: configure and deploy the webservers and application code
-#  hosts: webservers
-#  user: root
+- name: configure and deploy the webservers and application code
+  hosts: webservers
+  user: root
 #  connection: local
   
-#  roles:
-#    - web
+  roles:
+    - web
 
-#- name: deploy MySQL and configure the databases
-#  hosts: dbservers
-#  user: root
+- name: apply common configuration to all jenkins slaves
+  hosts: test-boxes
+  user: root
 #  connection: local
-  
-#  roles:
-#    - db
+  vars_files:
+  - [ "roles/jenkins-slave/vars/defaults.yml" ]
+  - [ "roles/jenkins-slave/vars/$ansible_distribution-$ansible_architecture.yml", "roles/jenkins-slave/vars/$ansible_distribution.yml" ]
+    
+  roles:
+    - jenkins-slave
+

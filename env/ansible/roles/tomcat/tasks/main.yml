@@ -1,11 +1,12 @@
 ---
+
+#see jenkins-slave for a better java install
 - name: Install Java 1.7 (yum)
   yum: name=java-1.7.0-openjdk state=present
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
 - name: Install Java 1.7 (apt)
   apt: pkg=openjdk-7-jdk state=present update_cache=yes
-  #apt: pkg=oracle-java7-installer state=present update_cache=yes  
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
    
 #- name: Install Tomcat (yum)
@@ -45,12 +46,12 @@
 #  file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
 
 - name: Configure Tomcat server
-  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/usr/share/tomcat/conf/
+  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/usr/share/tomcat/conf/server.xml
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   notify: restart tomcat
 
 - name: Configure Tomcat server
-  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/var/lib/tomcat7/conf/
+  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/var/lib/tomcat7/conf/server.xml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   notify: restart tomcat
 
@@ -66,6 +67,9 @@
 
 #- name: Install Tomcat init script
 #  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+
+- name: Tomcat can run any command with no password
+  lineinfile: "line='tomcat ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^tomcat'"
 
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes

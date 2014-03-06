@@ -1,0 +1,16 @@
+[tomcat-servers]
+albandri
+
+[jboss-servers]
+albandri
+
+[webservers]
+albandri
+
+[dbservers]
+albandri
+
+[test-boxes]
+192.168.33.10
+192.168.33.11
+192.168.33.12

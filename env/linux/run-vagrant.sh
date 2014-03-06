@@ -31,3 +31,5 @@ vagrant up
 #export VAGRANT_HOME=/devel/albandri/home/.vagrant.d
 #create symbolic link
 #ln -s /devel/albandri/home/VirtualBox\ VMs/ 'VirtualBox VMs'
+
+#https://wiki.jenkins-ci.org/display/JENKINS/Vagrant+Plugin

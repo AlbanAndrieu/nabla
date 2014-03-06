@@ -29,7 +29,7 @@ set ANT_HOME=C:\apache-ant-[[ANT_MAJOR_VERSION]]
 set ANT=%ANT_HOME%\bin
 set M2_HOME=C:\apache-maven-[[MAVEN_MAJOR_VERSION]]
 set M2=%M2_HOME%\bin
-set M2_REPO=C:\repos
+set M2_REPO=[[MAVEN_LOCAL_REPO_PATH]]
 
 #set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
 rm Add MaxPermSize for andromda
@@ -66,7 +66,8 @@ set TAO_ROOT=%PROJECT_THIRDPARTY_PATH%\tao\ACE_wrappers\TAO
 set QTDIR=C:\cygwin\lib\qt3
 
 set MACHINE=x86Linux
-set TIBCO_HOME=C:\Tibco\Tibrv
+set TIBCO_HOME=[[TIBCO_HOME]]
+set CHROME_BIN=[[CHROME_BIN]]
 
 rem set DISPLAY=localhost:0.0
 

@@ -43,25 +43,7 @@
 
 #- include: tasks/jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk_archive}
 - include: jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk_archive}
-
-- name: Create jenkins user
-  user: name=jenkins comment="Jenkins slave user" home=${jenkins_home} shell=/bin/bash
-  ignore_errors: True  
-  
-- name: Create .ssh folder
-  file: path=${jenkins_home}/.ssh state=directory mode=0700 owner=jenkins
-
-#- name: Add passwordless connection for jenkins
-#  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjeLgUM9X+ATA6l8w5GSFhxH+tXfZMfVuDSTl6lI7CLhc2QcUbK+s88WrGJNKOKVLIonm3Ezl47bi0D4718ctJmbClikeM88TMmUI4GWsavlH/KbImGrpeSXzRKp2nol
-#lCgQSfVbMQoW2l11AaEvAWckfF41UIg2thtOGdlEJbo+oI6WQAH4RAwtq/xo7SyPEOa+pJSTMPc0gUc1q44jp6EZQH1DSiQ5n1fLLVGg0a5Acouo6JqhvD4bKgo8DKtcfQeasv+oG1WG27pdn2ojL2okZ4FCB1USpObQEm
-#JKMKrby2FYKOYM0D55GGUeOJm8nWksiwq4m90roiV0XuKnTL jenkins@master"
-
-#- name: Update authorized_keys rights
-  #file: path=${jenkins_home}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
-
-#- name: Tomcat can run any command with no password
-#  lineinfile: "line='tomcat ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^tomcat'"
-
+ 
 - name: Install subversion package (Debian based)
   action: apt pkg='subversion' state=installed
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'      
@@ -73,35 +55,35 @@
 - name: Create /opt directory
   file: path=/opt state=directory
 
-- name: Download Maven3
-  get_url: dest=/opt/maven3.tar.gz url=http://apache.proserve.nl/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
+- name: Download Maven 3.0.4
+  get_url: dest=/opt/maven3.tar.gz url=http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.4-bin.tar.gz
 
-- name: Unpack Maven3
-  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
+- name: Unpack Maven 3.0.4
+  action: command creates=/opt/maven3 chdir=/opt tar zxvf /opt/maven3.tar.gz
 
-- name: Create Maven3 directory link
-  file: path=/opt/maven src=/opt/apache-maven-3.0.5 state=link
+- name: Create Maven 3.0.4 directory link
+  file: path=/opt/maven3 src=/opt/apache-maven-3.0.4 state=link
 
-- name: Set mvn link
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1
+- name: Create Maven 3.0.4 directory link (legacy required)
+  file: path=/usr/local/apache-maven-3.0.4 src=/opt/apache-maven-3.0.4 state=link
 
-- name: Create .m2 folder
-  file: path=${jenkins_home}/.m2 state=directory owner=jenkins
+- name: Download Maven 2.2.1
+  get_url: dest=/opt/maven2.tar.gz url=http://archive.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.tar.gz
 
-- name: Copy maven configuration
-  copy: src=settings.xml dest=${jenkins_home}/.m2/ backup=yes
+- name: Unpack Maven 2.2.1
+  action: command creates=/opt/maven2 chdir=/opt tar zxvf /opt/maven2.tar.gz
+
+- name: Create Maven 2.2.1 directory link
+  file: path=/opt/maven2 src=/opt/apache-maven-2.2.1 state=link
+
+- name: Create Maven 2.2.1 directory link (legacy required)
+  file: path=/usr/local/apache-maven-2.2.1 src=/opt/apache-maven-2.2.1 state=link
+  
+- name: Set mvn link to Maven 3.0.4
+  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven3/bin/mvn 1
 
 - name: Remove Maven3 archive
   file: path=/opt/maven3.tar.gz state=absent
-
-- name: Create /kgr-mvn directory
-  file: path=/kgr-mvn state=directory
-
-- name: Create /repository directory
-  file: path=/kgr-mvn/repository state=directory  
-
-- name: Create Jenkins slave directory
-  file: path=/kgr-mvn/jenkins-slave state=directory owner=jenkins
 
 #- name: Download Jenkins Swarm Client
 #  get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
@@ -179,9 +161,64 @@
    - xvfb
    - x11-apps
    - imagemagick
-   - firefox
+     
+# NPM may or may not succeed, if you give it time, care, etc. it eventually works
+- name: Ensure the grunt npm dependencies are installed
+  command: chdir=/usr/bin npm install -g grunt
+  
+- name: Ensure the grunt-cli npm dependencies are installed
+  command: chdir=/usr/bin npm install -g grunt-cli
+     
+- name: Ensure the bower npm dependencies are installed
+  command: chdir=/usr/bin npm install -g bower
+
+- name: Ensure the protractor npm dependencies are installed
+  command: chdir=/usr/bin npm install -g protractor
+
+- debug: msg="ansible_distribution_version value is ${ansible_distribution_version} "
+- debug: msg="ansible_distribution_release is ${ansible_distribution_release} "
+
+#specific does not work for ubuntu 13.04 and 13.10
+- name: Ensure the karma npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'saucy' )  
+
+#TODO check /etc/apt/sources.list
+#TODO wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+#TODO add sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+- name: add google repos
+  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
+
+- name: Addkey google
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub  state=present
+
+- name: install mariadb
+  apt: name=google-chrome-stable state=latest update_cache=yes
+     
+#specific for ubuntu 13.04 and 13.10
+- name: Install selenium tools specific (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' )
+  with_items:
+   - firefox  
    - chromium-chromedriver
 
+- name: Enable Yum repo for Google Chrome
+  copy: dest=/etc/yum.repos.d/google-chrome.repo src=google-chrome.repo
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
+  
+- name: Install Google Chrome
+  yum: name=google-chrome-stable state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
+  
+- name: Enable Yum repo for Google Talk
+  copy: dest=/etc/yum.repos.d/google-talkplugin.repo src=google-talkplugin.repo
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
+  
+- name: Install Google Talk Plugin
+  yum: name=google-talkplugin state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
+        
 ##
  # CSS compiling tools.
  #
@@ -201,6 +238,74 @@
   action: command gem install compass creates=/usr/local/bin/compass
   tags: css
 
-- name: CSS | Install Respond-to
-  action: command gem install respond-to
-  tags: css
+#- name: CSS | Install Respond-to
+#  action: command gem install respond-to
+#  tags: css
+
+- name: Install C++ tools (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:
+   - libxml-dom-perl
+   - libfile-find-rule-perl
+   - libjson-perl
+   - libdate-calc-perl
+   - libdate-manip-perl
+   - libcrypt-ssleay-perl
+
+#TODO extract jenkins user to another script
+# jenkins user
+- name: Create jenkins user
+  user: name=jenkins comment="Jenkins slave user" home=${jenkins_home} shell=/bin/bash
+  ignore_errors: True  
+  
+- name: Create .ssh folder
+  file: path=${jenkins_home}/.ssh state=directory mode=0700 owner=jenkins
+  ignore_errors: True
+
+- name: Add passwordless connection for jenkins (Alban Andrieu)
+  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAio3SOQ9yeK6QfKqSFNKyTasuzjStxWevG1Vz1wgJIxPF+KB0XoMAPD081J+Bzj2LCDRSWisNv2L4xv2jbFxW/Pl7NEakoX47eNx3U+Dxaf+szeWBTryYcDUGkduLV7G8Qncm0luIFd+HDIe/Qir1E2f56Qu2uuBNE6Tz5TFt1vc= Alban"
+    
+- name: Add passwordless connection for jenkins (Daniel Horecki)    
+  authorized_key: user=jenkins key="ssh-dss AAAAB3NzaC1kc3MAAACBAIO8vc4W3vQTQKE6K/r20Wi99FOrsekK72greyX0GnaDvJBPaohvlqt7OSW1rlKRdSAtEDuUPxlFmRoo6Z7aYFlomPX2CjtjDQK/4nY3Pc6s8mMaP1c6bSpPIgU38EXTuZ86zD8xf6D4yhg4PFVOMrtmHkHNo+h1Hlyid6HpQlyvAAAAFQCuacCxq2NPae6p18AytAheOq7kSwAAAIBkvig1Gwy37Qyc3Rr4MTguNDG94g+ETyayJpw8dT7yu+bSmV7ZNsEuGn9bFZBwVZ9xCNlcaFJtOnWxLGSpHh92xjp5fMge8jg1MfoNbZOBT0BFdd4TrTiOHJ7Y+c2PKxfaQK3K42jfKVTpwMlUnpHL5N9nyxPD+5OQCfXEFjXmOAAAAIAEqATEIgg8J0ivrzsjVCXP/eQy+YloRZ6h71Qb8UEZDGr7h/zUPjnKKe42bn7gW0WCvXq0CPJYr/JLI3AXnc83jx1BvFa+6bfjYH1K26ETxA/21p0jkWczFcriQlBVurzc1Tlfs4ftbyNSu/Bd85seLxTGq7wfUhrxbo1P6u2EvA== bespin"
+    
+- name: Add passwordless connection for jenkins (Micahl Tyde)    
+  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAobOs/19MAmxx8ri8ybVIr4GfQqgvq+1z2u44YEoyhbWg8T8cxhQ72jiukoxmMHhydXrQ/43Yf7pX17R8FYhDQRVik6iSKlT6wUZSJOx4052sV5U93+0muHL9YJWVYXU4B3yNNnVMf7xwG71YSnnXw+gPAnYD0C5QIuAsbR6/6tb0ns5U5j8ZLy8jDXVfKf5T+4fl8ptU8hxZ1EHA6pArXGAa1XbEb5pf+ts6XAOpr8MMY0AhoO5NCumwfkyL9k9l/k6Jd7DQiIjDtKBNiyyeF+voY0e8Hv0Pu6Gj91ZSGsGl/zJVPwzDB52xl7jWS5BaDZoezPLF3yy7zbp9WqJJDw== rsa-key-20140108"
+            
+- name: Add passwordless connection for jenkins master
+  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEArEZwPYeyr98mgnng7WaFUB7zkwMWo3nGR6GZrHaCxJkVfzAQMNZXeQPugPXCxBq8sb+ZQiWA3CfYOmUxwbNLgFOGvpucp6OSKmy+Bzrxhpf5d91UgvUVZwYSrqfF/wwvS+sxbsYmKlsqcDMVBN2q8YQypKVDPSstAnVBwV4dR9c= kgr@kenvng"
+    
+- name: Update authorized_keys rights
+  file: path=${jenkins_home}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
+
+- name: Copy the .netrc script for git credentials
+  copy: src=.netrc dest=${jenkins_home}/.netrc mode=0600 owner=jenkins
+  
+- name: Update git .netrc rights
+  file: path=${jenkins_home}/.netrc state=file mode=0600 owner=jenkins
+
+- name: Create .m2 folder
+  file: path=${jenkins_home}/.m2 state=directory owner=jenkins mode=0775
+
+- name: Copy maven configuration
+  copy: src=settings.xml dest=${jenkins_home}/.m2/ backup=yes owner=jenkins
+   
+- name: Jenkins can run any command with no password
+  lineinfile: "line='jenkins ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^jenkins'"
+
+- name: Copy sonar runner configuration
+  copy: src=sonar-runner.properties dest=/kgr-mvn/ backup=yes owner=jenkins
+
+- name: Create /kgr-mvn directory
+  file: path=/kgr-mvn state=directory
+
+- name: Create /repository directory
+  file: path=/kgr-mvn/repository state=directory owner=jenkins
+
+- name: Create Jenkins slave directory
+  file: path=/kgr-mvn/jenkins-slave state=directory owner=jenkins
+
+- name: Create Java directory link (legacy required)
+  file: path=/kgr-mvn/jdk src=/usr/lib/jvm/jdk1.7.0 state=link
+    
+#END OF TODO extract jenkins user to another script

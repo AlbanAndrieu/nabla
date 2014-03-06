@@ -55,3 +55,6 @@ java -jar /workspace/users/albandri10/Downloads/application-check-1.21.3.jar
 
 nano ./bin/jsw/conf/wrapper.con
 #change "wrapper.startup.timeout" and "wrapper.ping.timeout to 500
+
+#Nexus tasks
+#http://blog.sonatype.com/2009/09/nexus-scheduled-tasks/#.UxYfIj-wI44

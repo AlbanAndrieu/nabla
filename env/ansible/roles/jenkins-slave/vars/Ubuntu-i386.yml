@@ -1,4 +1,3 @@
 ---
 jdk_archive: jdk-7-linux-i586.tar.gz
 jvm_folder: /usr/lib/jvm/
-ubuntu_version_name: precise

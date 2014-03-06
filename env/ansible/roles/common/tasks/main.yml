@@ -2,18 +2,18 @@
 # This playbook contains common plays that will be run on all nodes.
 
 - name: Checking if Sources are Available
-  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo 'http://url/${ansible_distribution}/stable' | tr "[:upper:]" "[:lower:]"  ))
+  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo   'http://url/${ansible_distribution}/stable' | tr "[:upper:]" "[:lower:]"  ))
   register: sources
   ignore_errors: True
 
 - debug: msg="sources value is ${sources.stdout} "
- 
+
 - name: Adding source.
-  action: shell echo "deb http://url/${ansible_distribution}/stable ${ansible_lsb.codename} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
+  action: shell echo "deb http://url/${ansible_distribution}/stable      ${ansible_lsb.codename} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
   when: "ansible_distribution == 'Debian' and sources.stdout == 'a'"  
 #      when: "ansible_os_family == 'RedHat' and sources.stdout == 'a'"
 
-- name: Install basic tools (Debian based))
+- name: Install basic tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -22,7 +22,7 @@
    - nmap
    - ssh  
    
-- name: Install editor tools (Debian based))
+- name: Install editor tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:   
@@ -31,19 +31,37 @@
    - geany
    - gedit
 
-- name: Install monitoring tools (Debian based))
+- name: Install monitoring tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:   
    - smartmontools
    - mon
-   - ssmtp   
+   - ssmtp
    - zabbix-agent 
    - snmp
    - snmpd
-#   - ansible
 
-- name: Install perl (Debian based))
+# ansible
+- name: Test ansible is installed
+  shell: ansible --version
+  register: ansible_is_installed
+  ignore_errors: yes
+
+- name: Run install script as sudo
+  script: setup-ansible.sh
+  sudo: yes
+  when: "ansible_is_installed|failed and (ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS')"
+  register: ansible_init_used_sudo
+
+- name: Run install script without sudo
+  script: setup-ansible.sh
+  when: ansible_is_installed|failed and ansible_init_used_sudo|skipped
+
+- name: Test ansible is installed
+  shell: ansible --version
+
+- name: Install perl (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -54,7 +72,7 @@
    - libpam-runtime
    - libio-pty-perl
 
-- name: Install python (Debian based))
+- name: Install python (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -63,7 +81,7 @@
    - python-dev 
    - build-essential
    
-- name: Install SCM (Debian based))
+- name: Install SCM (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -74,7 +92,7 @@
 ##
  # JAVA build tools.
  #           
-- name: Install Java build tools (Debian based))
+- name: Install Java build tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
@@ -83,42 +101,59 @@
 ##
  # CPP build tools.
  #   
-- name: Install CPP build tools (Debian based))
+- name: Install CPP build tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - cmake
    - scons
       
-- name: Install test tools (Debian based))
+- name: Install test tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - xvfb
       
-- name: Install AWS tools (Debian based))
+- name: Install AWS tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - ec2-api-tools    
+   - s3cmd
          
-- name: Install other tools (Debian based))
+- name: Install other tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - daemon
-   - mailutils     
+   - mailutils
    - unzip 
 
 ##
  # NTP tools.
  #     
+#- name: Install connection tools (apt))
+#  apt: pkg={{ item }} state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+#  with_items:   
+#   - nis  
+#   - ntp
+#   - autofs
+
+- name: Configure domain file
+  template: src=defaultdomain-$ansible_distribution-$ansible_architecture.j2 dest=/etc/defaultdomain
+  tags: domain
+    
+- name: Configure resolv.conf file
+  template: src=resolv.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/resolv.conf
+  tags: domain    
+    
 - name: Install ntp (yum)
   yum: name=ntp state=present
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   tags: ntp
 
-- name: Install ntp (Debian based)
+- name: Install ntp (apt)
   apt: pkg=ntp state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: ntp
@@ -131,11 +166,11 @@
 - name: Start the ntp service
   service: name=ntp state=started enabled=true
   tags: ntp
- 
+
 ##
  # NIS tools.
  #   
-- name: Install nis (Debian based)
+- name: Install nis (apt)
   apt: pkg=nis state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nis
@@ -155,7 +190,7 @@
 
 - name: Enable nis to be started at boot
   service: name=nis enabled=yes state=started 
-  
+    
 - name: Start the nis service
   service: name=nis state=started enabled=true
   tags: nis
@@ -163,7 +198,7 @@
 ##
  # AUTOFS tools.
  #     
-- name: Install autofs (Debian based)
+- name: Install autofs (apt)
   apt: pkg=autofs state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: autofs 
@@ -187,6 +222,21 @@
   service: name=autofs state=started enabled=true
   tags: autofs  
 
+- name: Configure xabbix file
+  template: src=zabbix_agentd.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/zabbix/zabbix_agentd.conf
+  tags: zabbix-agent
+  notify: restart zabbix-agent
+
+#- name: Start the xabbix service
+#  service: name=zabbix-agent state=started enabled=true
+#  tags: zabbix-agent
+  
+- name: Install sendmail tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  with_items:   
+   - sendmail
+   
 - name: Configure sendmail file
   template: src=sendmail.cf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/mail/sendmail.cf
   tags: autofs
@@ -223,4 +273,5 @@
    - grub2-common 
    - grub-pc  
    - zfs-initramfs
-   
+
+- include: copy-keys.yml

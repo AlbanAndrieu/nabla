@@ -1,8 +1,9 @@
 #ansible-playbook jenkins.yml --extra-vars "host=myhost user=myuser" --ask-sudo-pass
 
 - name: apply common configuration to all jenkins slaves
-  hosts: jenkins-slaves
-  user: root
+#  hosts: jenkins-slaves
+  hosts: albandri
+#  user: root
   connection: local
   vars_files:
   - [ "roles/jenkins-slave/vars/defaults.yml" ]
