@@ -3416,8 +3416,11 @@
                                                 <excludeRoots>
                                                         <excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
                                                 </excludeRoots>
-                                                <excludes>**/generated/**/*</excludes>
-                                                <excludes>**/clover/**/*</excludes>
+                                                <excludes>
+                                                        <exclude>**/*Bean.java</exclude>
+   							<exclude>**/generated/**/*</exclude>
+   							<exclude>**/clover/**/*</exclude>                                                           
+                                                </excludes>
                                         </configuration>
                                 </plugin>
                                 <plugin>
