@@ -51,3 +51,13 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 #NOK in Jenkins mvn -Dsonarj.prepareForSonar=true -Dsonarj.license=<license-path> (or -Dsonarj.activationCode=<activation code>) com.hello2morrow.sonar:maven-sonarj-plugin:6.0.3:sonarj    
 #NOK in Jenkins mvn -Dsonarj.prepareForSonar=true -Dsonarj.activationCode=2356-F3B2-E2C6-CC70 com.hello2morrow.sonar:maven-sonarj-plugin:6.0.3:sonarj    
     
+#Caused by: java.lang.IllegalArgumentException: Parameter 'directory' is not a directory    
+#Please keep in mind that if you are using a CMR compilation WITHOUT a mutation test 
+#and you're using a Sonar WITH mutation test ... job will fail 
+#I've swithced a CMR project on Sonar page to another profile 
+#without mutation tests
+#there is only one difference between this and MGRCommonProfile <http://10.22.11.40:9000/rules_configuration/index/9>  
+#
+#Config rule called: Survived mutant <http://10.22.11.40:9000/rules_configuration/index/9?sort_by=SORT_BY_RULE_NAME&searchtext=mutant&rule_activation=ACTIVE&commit=Search#>  
+#This rule "is supposing" that in the build process there will be a "special" directory for mutation tests
+#this is why build has been failing

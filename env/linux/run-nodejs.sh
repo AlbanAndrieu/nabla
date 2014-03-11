@@ -79,3 +79,9 @@ npm -g ls
 #http://yeoman.io/
 
 #npm install -g yo karma protractor
+
+#fix issue
+#axconfig: port 1 not active
+sudo apt-get remove node
+sudo apt-get remove --purge node
+sudo apt-get autoremove

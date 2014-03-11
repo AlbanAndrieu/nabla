@@ -134,7 +134,7 @@
   tags: nodejs
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   with_items:
-    - node
+#DO NOT INSTALL    - node
     - nodejs
      
 #TODO

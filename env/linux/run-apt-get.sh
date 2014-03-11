@@ -278,3 +278,6 @@ sudo apt-get install randomize-lines
 
 #http://blog.retep.org/2012/07/05/whoopsie-how-to-disable-it-on-ubuntu-12-04-or-mint-13/
 sudo apt-get remove whoopsie
+
+#messaging
+sudo apt-get install pidgin pidgin-sipe pidgin-skype
