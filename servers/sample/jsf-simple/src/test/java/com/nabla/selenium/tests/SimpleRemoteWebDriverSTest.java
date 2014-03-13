@@ -3,6 +3,7 @@ package com.nabla.selenium.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -11,11 +12,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
@@ -148,15 +149,15 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        // capabilities = DesiredCapabilities.chrome();
+        //capabilities = DesiredCapabilities.chrome();
         capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 
-        // FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
+        FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
         // /usr/bin/firefox
         // C:\Program Files (x86)\Mozilla Firefox\firefox.exe
 
-        // capabilities.setCapability(FirefoxDriver.BINARY, ffb);
+        capabilities.setCapability(FirefoxDriver.BINARY, ffb);
         // say you use the redhat5 label to indicate RHEL5 and the amd64 label
         // to specify the architecture
         // capabilities.setCapability("jenkins.label", "redhat5 && amd64");
