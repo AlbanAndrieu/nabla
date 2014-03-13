@@ -1,0 +1,13 @@
+---
+# Handler to handle common notifications. Handlers are called by other plays.
+# See http://ansible.cc/docs/playbooks.html for more information about handlers.
+
+#TODO for nova-api nova-cert nova-scheduler nova-compute nova-volume
+
+- name: restart nova
+  service: name=nova-api state=restarted
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'    
+  
+- name: restart nova
+  service: name=nova-api state=restarted
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    

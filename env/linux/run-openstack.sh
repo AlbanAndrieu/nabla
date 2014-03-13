@@ -6,12 +6,13 @@ sudo apt-get install ntp
 sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2 
 sudo apt-get install rabbitmq-server memcached python-memcache
 
-#TODO
 sudo apt-get install keystone python-keystone python-keystoneclient
+#NOT available on ubuntu 12 sudo apt-get install python-glanceclient
 sudo apt-get install glance glance-api python-glanceclient glance-common glance-registry python-glance
 sudo apt-get install nova-conductor
 sudo apt-get install nova-api nova-cert nova-common nova-compute nova-compute-kvm nova-doc nova-network nova-objectstore nova-scheduler novnc nova-consoleauth nova-volume python-nova python-novaclient
 #sudo apt-get install nova-novncproxy
+sudo apt-get install python-novaclient python-nova-adminclient 
 sudo apt-get install apache2 libapache2-mod-wsgi openstack-dashboard
 
 sudo apt-get install libnss-myhostname
@@ -30,7 +31,7 @@ FLUSH PRIVILEGES;
 EOF
 
 
-sudo nano  /etc/keystone/keystone.conf
+sudo nano /etc/keystone/keystone.conf
 [DEFAULT]
 bind_host = 0.0.0.0
 public_port = 5000
@@ -197,6 +198,7 @@ keystone --endpoint http://localhost:35357/v2.0 --token  Motdepasse12 user-list
 export SERVICE_ENDPOINT=http://localhost:5000/v2.0/
 export SERVICE_TOKEN=Motdepasse12
 nano .novarc
+export OS_NO_CACHE=1
 export OS_TENANT_NAME=admin 
 export OS_USERNAME=admin 
 export OS_PASSWORD=Motdepasse12 
@@ -365,7 +367,16 @@ keystone service-create --name=volume --type=volume --description='OpenStack Vol
 |     name    |              volume              |
 |     type    |              volume              |
 +-------------+----------------------------------+
+#+-------------+----------------------------------+
+#|   Property  |              Value               |
+#+-------------+----------------------------------+
+#| description |     OpenStack Volume Service     |
+#|      id     | dbe6f57300144922bb3bebb37f84790e |
+#|     name    |              volume              |
+#|     type    |              volume              |
+#+-------------+----------------------------------+
 keystone endpoint-create --region RegionOne --service_id=87f8c368a58544128df648f50592f656 --publicurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --internalurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --adminurl='http://10.25.40.161:8776/v1/%(tenant_id)s'
+#keystone endpoint-create --region RegionOne --service_id=dbe6f57300144922bb3bebb37f84790e --publicurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --internalurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --adminurl='http://10.25.40.161:8776/v1/%(tenant_id)s'
 +-------------+-------------------------------------------+
 |   Property  |                   Value                   |
 +-------------+-------------------------------------------+
@@ -376,11 +387,42 @@ keystone endpoint-create --region RegionOne --service_id=87f8c368a58544128df648f
 |    region   |                 RegionOne                 |
 |  service_id |      87f8c368a58544128df648f50592f656     |
 +-------------+-------------------------------------------+
+#+-------------+-------------------------------------------+
+#|   Property  |                   Value                   |
+#+-------------+-------------------------------------------+
+#|   adminurl  | http://10.25.40.161:8776/v1/%(tenant_id)s |
+#|      id     |      8aa4715258ba487b95059bdb5d584934     |
+#| internalurl | http://10.25.40.161:8776/v1/%(tenant_id)s |
+#|  publicurl  | http://10.25.40.161:8776/v1/%(tenant_id)s |
+#|    region   |                 RegionOne                 |
+#|  service_id |      dbe6f57300144922bb3bebb37f84790e     |
+#+-------------+-------------------------------------------+
+#keystone service-delete dbe6f57300144922bb3bebb37f84790e
+#keystone endpoint-delete 8aa4715258ba487b95059bdb5d584934
+
+keystone endpoint-list
+keystone service-list
 
 sudo nano /etc/nova/api-paste.ini
+paste.filter_factory = keystoneclient.middleware.auth_token:filter_factory
+auth_host = 127.0.0.1
+#auth_host = 10.25.40.161
+auth_port = 35357
+auth_protocol = http
+#admin_tenant_name = %SERVICE_TENANT_NAME%
+#admin_user = %SERVICE_USER%
+#admin_password = %SERVICE_PASSWORD%
 admin_tenant_name = service
 admin_user = nova
+#admin_user = admin
 admin_password = Motdepasse12
+admin_token = Motdepasse12
+# signing_dir is configurable, but the default behavior of the authtoken
+# middleware should be sufficient.  It will create a temporary directory
+# in the home directory for the user the nova process is running as.
+#signing_dir = /var/lib/nova/keystone-signing
+# Workaround for https://bugs.launchpad.net/nova/+bug/1154809
+auth_version = v2.0
 
 #cf http://docs.openstack.org/grizzly/openstack-compute/install/apt/content/nova-conf-file.html
 sudo nano /etc/nova/nova.conf
@@ -389,6 +431,7 @@ sudo nano /etc/nova/nova.conf
 
 # LOGS/STATE
 verbose=True
+debug=True
 logdir=/var/log/nova
 state_path=/var/lib/nova
 lock_path=/var/lock/nova
@@ -488,12 +531,117 @@ nova-volume
 #TODO
 #Images disques
 
-nova --os-username admin --os-password Motdepasse12 image-list
+#nova --os-username admin --os-password Motdepasse12 image-list
+nova --debug image-list
++--------------------------------------+-----------------------------+--------+--------+
+| ID                                   | Name                        | Status | Server |
++--------------------------------------+-----------------------------+--------+--------+
+| 73be1172-63ea-40a2-abef-59b937fe3d50 | Ubuntu 12.04 cloudimg amd64 | ACTIVE |        |
++--------------------------------------+-----------------------------+--------+--------+
+
+env | grep OS_
 less /var/log/nova/nova-api.log
+
+#Réseaux
+sudo nova-manage floating create --ip_range=192.168.1.0/24
+2014-03-11 15:16:25.696 15255 DEBUG nova.openstack.common.lockutils [req-159a9a4c-4c9d-4f53-9187-8869644f210e None None] Got semaphore "dbapi_backend" lock /usr/lib/python2.7/dist-packages/nova/openstack/common/lockutils.py:166
+2014-03-11 15:16:25.697 15255 DEBUG nova.openstack.common.lockutils [req-159a9a4c-4c9d-4f53-9187-8869644f210e None None] Got semaphore / lock "__get_backend" inner /usr/lib/python2.7/dist-packages/nova/openstack/common/lockutils.py:245
+
+sudo nova-manage network create private --fixed_range_v4=172.16.0.0/24 --num_networks=1 --bridge=br1 --bridge_interface=eth1 --network_size=256
+2014-03-11 15:16:58.906 15300 INFO nova.network.driver [-] Loading network driver 'nova.network.linux_net'
+2014-03-11 15:16:58.908 15300 DEBUG nova.servicegroup.api [-] ServiceGroup driver defined as an instance of db __new__ /usr/lib/python2.7/dist-packages/nova/servicegroup/api.py:62
+2014-03-11 15:16:58.956 15300 DEBUG stevedore.extension [-] found extension EntryPoint.parse('file = nova.image.download.file') _load_plugins /usr/lib/python2.7/dist-packages/stevedore/extension.py:84
+2014-03-11 15:16:58.967 15300 DEBUG stevedore.extension [-] found extension EntryPoint.parse('file = nova.image.download.file') _load_plugins /usr/lib/python2.7/dist-packages/stevedore/extension.py:84
+2014-03-11 15:16:58.970 15300 DEBUG nova.openstack.common.lockutils [req-5cf88869-a0ff-40b2-98b1-fe9a8b7a2d97 None None] Got semaphore "dbapi_backend" lock /usr/lib/python2.7/dist-packages/nova/openstack/common/lockutils.py:166
+2014-03-11 15:16:58.970 15300 DEBUG nova.openstack.common.lockutils [req-5cf88869-a0ff-40b2-98b1-fe9a8b7a2d97 None None] Got semaphore / lock "__get_backend" inner /usr/lib/python2.7/dist-packages/nova/openstack/common/lockutils.py:245
+
+nova secgroup-add-rule default icmp -1 -1  0.0.0.0/0
++-------------+-----------+---------+-----------+--------------+
+| IP Protocol | From Port | To Port | IP Range  | Source Group |
++-------------+-----------+---------+-----------+--------------+
+| icmp        | -1        | -1      | 0.0.0.0/0 |              |
++-------------+-----------+---------+-----------+--------------+
+nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
++-------------+-----------+---------+-----------+--------------+
+| IP Protocol | From Port | To Port | IP Range  | Source Group |
++-------------+-----------+---------+-----------+--------------+
+| tcp         | 22        | 22      | 0.0.0.0/0 |              |
++-------------+-----------+---------+-----------+--------------+
+nova secgroup-list-rules default
++-------------+-----------+---------+-----------+--------------+
+| IP Protocol | From Port | To Port | IP Range  | Source Group |
++-------------+-----------+---------+-----------+--------------+
+| icmp        | -1        | -1      | 0.0.0.0/0 |              |
+| tcp         | 22        | 22      | 0.0.0.0/0 |              |
++-------------+-----------+---------+-----------+--------------+
+
+#Première machine virtuelle
+#ssh-keygen -t rsa
+nova keypair-add --pub_key ~/.ssh/id_rsa.pub key1
+
+nova flavor-list
++----+-----------+-----------+------+-----------+------+-------+-------------+-----------+
+| ID | Name      | Memory_MB | Disk | Ephemeral | Swap | VCPUs | RXTX_Factor | Is_Public |
++----+-----------+-----------+------+-----------+------+-------+-------------+-----------+
+| 1  | m1.tiny   | 512       | 1    | 0         |      | 1     | 1.0         | True      |
+| 2  | m1.small  | 2048      | 20   | 0         |      | 1     | 1.0         | True      |
+| 3  | m1.medium | 4096      | 40   | 0         |      | 2     | 1.0         | True      |
+| 4  | m1.large  | 8192      | 80   | 0         |      | 4     | 1.0         | True      |
+| 5  | m1.xlarge | 16384     | 160  | 0         |      | 8     | 1.0         | True      |
++----+-----------+-----------+------+-----------+------+-------+-------------+-----------+
+
+nova boot --flavor 1 --image 73be1172-63ea-40a2-abef-59b937fe3d50 myfirstvm --key_name key1 &
++--------------------------------------+--------------------------------------+
+| Property                             | Value                                |
++--------------------------------------+--------------------------------------+
+| OS-EXT-STS:task_state                | scheduling                           |
+| image                                | Ubuntu 12.04 cloudimg amd64          |
+| OS-EXT-STS:vm_state                  | building                             |
+| OS-EXT-SRV-ATTR:instance_name        | instance-00000001                    |
+| OS-SRV-USG:launched_at               | None                                 |
+| flavor                               | m1.tiny                              |
+| id                                   | 1d6ff00c-ee01-4db9-abb8-4967fb30df6d |
+| security_groups                      | [{u'name': u'default'}]              |
+| user_id                              | 68527a3fb83446d3bab47ce30d500dbc     |
+| OS-DCF:diskConfig                    | MANUAL                               |
+| accessIPv4                           |                                      |
+| accessIPv6                           |                                      |
+| progress                             | 0                                    |
+| OS-EXT-STS:power_state               | 0                                    |
+| OS-EXT-AZ:availability_zone          | nova                                 |
+| config_drive                         |                                      |
+| status                               | BUILD                                |
+| updated                              | 2014-03-11T14:21:40Z                 |
+| hostId                               |                                      |
+| OS-EXT-SRV-ATTR:host                 | None                                 |
+| OS-SRV-USG:terminated_at             | None                                 |
+| key_name                             | key1                                 |
+| OS-EXT-SRV-ATTR:hypervisor_hostname  | None                                 |
+| name                                 | myfirstvm                            |
+| adminPass                            | ZiHHAwdWz77y                         |
+| tenant_id                            | 9f9f573069df4318a54d8b406e2611c9     |
+| created                              | 2014-03-11T14:21:40Z                 |
+| os-extended-volumes:volumes_attached | []                                   |
+| metadata                             | {}                                   |
++--------------------------------------+--------------------------------------+
+
+nova show myfirstvm
+
+TODO NOK
+
+nova --debug volume-create --display_name "volume1" 10
 
 ----------------------------------------------------------------------
 
 ls -lrta /var/log/keystone.log
 ls -lrta /var/log/keystone/keystone.log
 
+sudo restart nova-api
+sudo restart nova-cert
+sudo restart nova-scheduler
+sudo restart nova-compute
+sudo restart nova-volume
+
 #mkdir -p /var/cache/glance/ap
+
+http://10.25.40.161/horizon

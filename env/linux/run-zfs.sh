@@ -54,3 +54,6 @@ swap -d /dev/zvol/dsk/rpool/swap
 zfs destroy rpool/swap
 zfs create -V300G -b4k rpool/swap
 swap -a /dev/zvol/dsk/rpool/swap
+
+#issue Load the module manually by running 'insmod <location>/zfs.ko' as root
+sudo apt-get install --reinstall zfs-dkms

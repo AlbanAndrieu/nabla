@@ -2,7 +2,7 @@
 # Variables listed here are applicable to all host groups
 
 httpd_port: 8081
-#ububtu
+#ubuntu
 ntpserver1: ntp.ubuntu.com
 #paris
 ntpserver2: timehost
@@ -11,7 +11,7 @@ mailserver: smtp.gmail.com
 repository: http://github.com/bennojoy/mywebapp.git
 #repository: http://github.com/alban/nabla.git
 #repository: https://alban.googlecode.com/svn/trunk/env
-ubuntu_version_name: saucy
+#ubuntu_version_name: saucy
 xabbixserver: 82.231.208.223
 defaultdomain: home.nabla.mobi
 nameserver: 82.231.208.223

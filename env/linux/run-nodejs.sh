@@ -65,7 +65,19 @@ npm install -g karma-junit-reporter
 npm install -g karma-ng-scenario
 npm install -g karma-ng-html2js-preprocessor
 npm install -g karma-coverage
+npm install -g karma-jasmine
+npm install -g phantomjs 
+npm install -g karma-phantomjs-launcher
+npm install -g selenium-webdriver
 #if it failed try as non root user whitout -g option
+
+/usr/lib/node_modules/karma/bin/karma --version
+export PATH="$PATH:/usr/lib/node_modules/karma/bin"
+
+#or
+cd /usr/local/bin/
+#Ubuntu 13 ln -s /usr/local/lib/node_modules/karma/bin/karma  /usr/local/bin/karma
+#Ubuntu 12 ln -s /usr/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 
 #check it is working
 karma --version

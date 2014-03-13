@@ -175,6 +175,21 @@
 - name: Ensure the protractor npm dependencies are installed
   command: chdir=/usr/bin npm install -g protractor
 
+- name: Ensure the karma npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma
+
+- name: Ensure the karma-junit-reporter npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-junit-reporter
+  
+- name: Ensure the karma-ng-scenario npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-ng-scenario
+  
+- name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor
+  
+- name: Ensure the karma-coverage npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-coverage  
+
 - debug: msg="ansible_distribution_version value is ${ansible_distribution_version} "
 - debug: msg="ansible_distribution_release is ${ansible_distribution_release} "
 
@@ -186,13 +201,13 @@
 #TODO check /etc/apt/sources.list
 #TODO wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 #TODO add sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-- name: add google repos
+- name: Add google repos
   apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
 
 - name: Addkey google
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub  state=present
 
-- name: install mariadb
+- name: install google
   apt: name=google-chrome-stable state=latest update_cache=yes
      
 #specific for ubuntu 13.04 and 13.10
@@ -252,6 +267,8 @@
    - libdate-calc-perl
    - libdate-manip-perl
    - libcrypt-ssleay-perl
+   - libxml-handler-yawriter-perl
+   - libxml-simple-perl
 
 #TODO extract jenkins user to another script
 # jenkins user
@@ -309,3 +326,4 @@
   file: path=/kgr-mvn/jdk src=/usr/lib/jvm/jdk1.7.0 state=link
     
 #END OF TODO extract jenkins user to another script
+
