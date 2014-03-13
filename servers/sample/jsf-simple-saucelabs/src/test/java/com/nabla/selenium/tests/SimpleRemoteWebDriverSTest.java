@@ -226,9 +226,9 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        //driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
-        //driver.manage().window().setSize(new Dimension(1920, 1080));
+        // driver.manage().window().setSize(new Dimension(1920, 1080));
         // selenium = new WebDriverBackedSelenium(driver, baseUrl);
 
         // screenshot.
