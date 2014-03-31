@@ -158,10 +158,10 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         // startSeleniumServer(server);
 
-        FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
+        // FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        // capabilities = DesiredCapabilities.chrome();
-        capabilities = DesiredCapabilities.firefox();
+        capabilities = DesiredCapabilities.chrome();
+        // capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability(FirefoxDriver.PROFILE, profile);
         capabilities.setJavascriptEnabled(true);
 
