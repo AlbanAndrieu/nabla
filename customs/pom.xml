@@ -15,7 +15,7 @@
 	<name>Customs</name>
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
-        <url>${JOB_URL}</url>
+        <url>http://maven.nabla.mobi/dependencies/customs</url>
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/customs</connection>
@@ -23,7 +23,12 @@
 		<url>https://alban.googlecode.com/svn/${project.svn.path}/customs</url>
 		<tag>HEAD</tag>
 	</scm>
-	
+
+        <ciManagement>
+                <system>Jenkins</system>
+                <url>${JOB_URL}</url>
+        </ciManagement>
+        	
 	<profiles>
 		<profile>
 			<!-- site light for jenkins -->
@@ -41,137 +46,149 @@
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
 			</properties>
 		</profile>
-<!-- ================= PLATFORM DEPENDENT CONFIGURATION ======= -->
-    <profile>
-      <id>linux-x86</id>
-      <properties>
-        <platform>linux</platform>
-        <!--      
-        <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
-        <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
-        <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
-        <java.home>${env.JAVA_HOME}/jre</java.home>
-        <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
-                -->
-      </properties>
-      <activation>
-        <os>
-          <arch>i386</arch>
-          <family>unix</family>
-          <name>linux</name>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>linux-x86_64</id>
-      <properties>
-        <platform>linux</platform>
-        <!--      
-        <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
-        <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
-        <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
-        <java.home>${env.JAVA_HOME}/jre</java.home>
-        <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
-                -->
-      </properties>
-      <activation>
-        <os>
-          <arch>amd64</arch>
-          <family>unix</family>
-          <name>linux</name>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>solaris-sparc</id>
-      <properties>
-        <platform>solaris</platform>
-        <!--      
-        <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
-        <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
-        <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
-        <java.home>${env.JAVA_HOME}/jre</java.home>
-        <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
-                -->
-      </properties>
-      <activation>
-        <os>
-          <arch>sparc</arch>
-          <family>unix</family>
-          <name>SunOS</name>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>solaris-x86</id>
-      <properties>
-        <platform>solaris</platform>
-        <!--      
-        <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
-        <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
-        <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
-        <java.home>${env.JAVA_HOME}/jre</java.home>
-        <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
-        -->
-      </properties>
-      <activation>
-        <os>
-          <arch>x86</arch>
-          <family>unix</family>
-          <name>SunOS</name>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>macosx</id>
-      <activation>
-        <os>
-          <family>unix</family>
-          <name>mac os x</name>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>win32</id>
-      <properties>
-        <platform>mac</platform>
-        <!--
-        <nabla.sourceDirectory>K:\users\${nabla.workspace}/nabla.sourceDirectory>
-        <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
-        <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
-        <java.home>${env.JAVA_HOME}</java.home>
-        <j2ee.home>${env.JAVA_HOME}</j2ee.home>
-        -->        
-      </properties>
-      <activation>
-        <!--<jdk>${jdkVersion}</jdk>-->
-        <os>
-          <arch>x86</arch>
-          <!--<name>Windows XP</name>-->
-          <family>windows</family>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>win64</id>
-      <properties>
-        <platform>windows</platform>
-        <!--      
-        <nabla.sourceDirectory>K:\users\${nabla.workspace}</nabla.sourceDirectory>
-        <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
-        <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
-        <java.home>${env.JAVA_HOME}</java.home>
-        <j2ee.home>${env.JAVA_HOME}</j2ee.home>
-                -->
-      </properties>
-      <activation>
-        <!--<jdk>${jdkVersion}</jdk>-->
-        <os>
-          <arch>amd64</arch>
-          <family>windows</family>
-        </os>
-      </activation>
-    </profile>						
+    		<!-- ================= PLATFORM DEPENDENT CONFIGURATION ======= -->
+    		<profile>
+    		  <id>linux-x86</id>
+    		  <properties>
+    		    <platform>linux</platform>
+    		    <webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
+    		    <webdriver.firefox.bin>/usr/lib/firefox/firefox<webdriver.firefox.bin>
+    		    <!--      
+    		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
+    		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
+    		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
+    		    <java.home>${env.JAVA_HOME}/jre</java.home>
+    		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
+    		            -->
+    		  </properties>
+    		  <activation>
+    		    <os>
+    		      <arch>i386</arch>
+    		      <family>unix</family>
+    		      <name>linux</name>
+    		    </os>
+    		  </activation>
+    		</profile>
+    		<profile>
+    		  <id>linux-x86_64</id>
+    		  <properties>
+    		    <platform>linux</platform>
+    		    <webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
+    		    <webdriver.firefox.bin>/usr/lib/firefox/firefox<webdriver.firefox.bin>
+    		    <!--      
+    		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
+    		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
+    		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
+    		    <java.home>${env.JAVA_HOME}/jre</java.home>
+    		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
+    		            -->
+    		  </properties>
+    		  <activation>
+    		    <os>
+    		      <arch>amd64</arch>
+    		      <family>unix</family>
+    		      <name>linux</name>
+    		    </os>
+    		  </activation>
+    		</profile>
+    		<profile>
+    		  <id>solaris-sparc</id>
+    		  <properties>
+    		    <platform>solaris</platform>
+    		    <webdriver.chrome.driver>TODO</webdriver.chrome.driver>
+    		    <webdriver.firefox.bin>TODO<webdriver.firefox.bin>
+    		    <!--      
+    		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
+    		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
+    		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
+    		    <java.home>${env.JAVA_HOME}/jre</java.home>
+    		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
+    		            -->
+    		  </properties>
+    		  <activation>
+    		    <os>
+    		      <arch>sparc</arch>
+    		      <family>unix</family>
+    		      <name>SunOS</name>
+    		    </os>
+    		  </activation>
+    		</profile>
+    		<profile>
+    		  <id>solaris-x86</id>
+    		  <properties>
+    		    <platform>solaris</platform>
+    		    <webdriver.chrome.driver>TODO</webdriver.chrome.driver>
+    		    <webdriver.firefox.bin>TODO<webdriver.firefox.bin>
+    		    <!--      
+    		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
+    		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
+    		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
+    		    <java.home>${env.JAVA_HOME}/jre</java.home>
+    		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
+    		    -->
+    		  </properties>
+    		  <activation>
+    		    <os>
+    		      <arch>x86</arch>
+    		      <family>unix</family>
+    		      <name>SunOS</name>
+    		    </os>
+    		  </activation>
+    		</profile>
+    		<profile>
+    		  <id>macosx</id>
+    		  <activation>
+    		    <os>
+    		      <family>unix</family>
+    		      <name>mac os x</name>
+    		    </os>
+    		  </activation>
+    		</profile>
+    		<profile>
+    		  <id>win32</id>
+    		  <properties>
+    		    <platform>mac</platform>
+    		    <webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
+    		    <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"<webdriver.firefox.bin>
+    		    <!--
+    		    <nabla.sourceDirectory>K:\users\${nabla.workspace}/nabla.sourceDirectory>
+    		    <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
+    		    <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
+    		    <java.home>${env.JAVA_HOME}</java.home>
+    		    <j2ee.home>${env.JAVA_HOME}</j2ee.home>
+    		    -->        
+    		  </properties>
+    		  <activation>
+    		    <!--<jdk>${jdkVersion}</jdk>-->
+    		    <os>
+    		      <arch>x86</arch>
+    		      <!--<name>Windows XP</name>-->
+    		      <family>windows</family>
+    		    </os>
+    		  </activation>
+    		</profile>
+    		<profile>
+    		  <id>win64</id>
+    		  <properties>
+    		    <platform>windows</platform>
+    		    <webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
+    		    <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"<webdriver.firefox.bin>
+    		    <!--      
+    		    <nabla.sourceDirectory>K:\users\${nabla.workspace}</nabla.sourceDirectory>
+    		    <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
+    		    <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
+    		    <java.home>${env.JAVA_HOME}</java.home>
+    		    <j2ee.home>${env.JAVA_HOME}</j2ee.home>
+    		            -->
+    		  </properties>
+    		  <activation>
+    		    <!--<jdk>${jdkVersion}</jdk>-->
+    		    <os>
+    		      <arch>amd64</arch>
+    		      <family>windows</family>
+    		    </os>
+    		  </activation>
+    		</profile>						
 	</profiles>
 
 </project>
