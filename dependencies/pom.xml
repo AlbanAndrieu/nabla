@@ -1262,19 +1262,21 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
+		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
 		<clover.enabled>true</clover.enabled>
 		<sonar.clover.version>${clover.version}</sonar.clover.version>
 		<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
-		<!--<sonar.clover.reportPath>${project.build.directory}/clover.xml</sonar.clover.reportPath>-->
-		<!--<sonar.exclusions>**/clover/src-instrumented/**</sonar.exclusions>-->
-		<!--<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>-->
-		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>
+		<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>		
+		<!--<sonar.surefire.reportsPath>/target/surefire-reports</sonar.surefire.reportsPath>-->
+		
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>
 		<clover.jdkLevel>1.6</clover.jdkLevel>
 		<sonar.java.target>1.7</sonar.java.target>
-		<sonar.language>java</sonar.language>
+		<sonar.language>java</sonar.language>		
+		<sonar.jacoco.reportPath>target/jacoco.exec</sonar.jacoco.reportPath> <!-- This is the default, put here to be explicit -->
 		<!--<sonar.jacoco.itReportPath>${project.basedir}/reports/jacoco.exec</sonar.jacoco.itReportPath>-->
+		<sonar.jacoco.itReportPath>target/jacoco-it.exec</sonar.jacoco.itReportPath>
 
                 <!-- BEGIN of Thirdparties versions stick to project recommandations -->
                 <andromda.version>3.5</andromda.version>
@@ -2931,8 +2933,9 @@
                                                                 ! for info on the archiver configuration properties. ! NOTE:
                                                                 <addMavenDescriptor> requires v 2.1 or greater archive plugin.
                                                         -->
-                                                        <addMavenDescriptor>false</addMavenDescriptor>
-
+							<!-- do not generate files that disturb jar diff between version -->
+                			        	<addMavenDescriptor>false</addMavenDescriptor>
+                			        	<pomPropertiesFile>false</pomPropertiesFile>
                                                         <!--
                                                                 Disabled for http://mule.mulesource.org/jira/browse/MULE-1153
                                                                 and http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4408526
@@ -3092,6 +3095,9 @@
                                             </webResource>
                                           </webResources>
                                           <archive>
+                                            <!-- do not generate files that disturb jar diff between version -->
+                        		    <addMavenDescriptor>false</addMavenDescriptor>
+                                            <pomPropertiesFile>false</pomPropertiesFile>
                                             <manifest>
                                               <addClasspath>true</addClasspath>
                                               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -3316,24 +3322,34 @@
 								<goals>
 									<goal>prepare-agent</goal>
 								</goals>
-								</execution>
-							<execution>
-								<id>default-prepare-agent-integration</id>
-								<goals>
-									<goal>prepare-agent-integration</goal>
-								</goals>
 							</execution>
 							<execution>
 								<id>default-report</id>
+								<phase>test</phase>
 								<goals>
 									<goal>report</goal>
 								</goals>
 							</execution>
 							<execution>
-								<id>default-report-integration</id>
+								<id>default-prepare-agent-integration</id>
+								<phase>pre-integration-test</phase>
 								<goals>
-									<goal>report-integration</goal>
+									<goal>prepare-agent</goal>
 								</goals>
+								<configuration>
+            							    <destFile>target/jacoco-it.exec</destFile>
+            							    <propertyName>failsafe.argLine</propertyName>
+            							</configuration>
+							</execution>							
+							<execution>
+								<id>default-report-integration</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+            							    <dataFile>target/jacoco-it.exec</dataFile>
+            							</configuration>
 							</execution>
 							<execution>
 								<id>default-check</id>
@@ -3784,6 +3800,9 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <groupId>org.apache.maven.plugins</groupId>
                                     <artifactId>maven-failsafe-plugin</artifactId>
                                     <version>${maven.failsafe.plugin.version}</version>
+                                    <configuration>
+        				<argLine>${failsafe.argLine}</argLine>
+    				    </configuration>
                                     <!--
           			    <executions>
           			      <execution>
@@ -3876,13 +3895,17 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 				    	<threads>4</threads>
 				    	<avoidCallsTo>
 				    		<avoidCallsTo>akka.event.LoggingAdapter</avoidCallsTo>
+                            			<avoidCallsTo>java.util.logging</avoidCallsTo>
+                            			<avoidCallsTo>org.apache.log4j</avoidCallsTo>
+                            			<avoidCallsTo>org.slf4j</avoidCallsTo>
+                            			<avoidCallsTo>org.apache.commons.logging</avoidCallsTo>				    		
 				    	</avoidCallsTo>
 				    	<jvmArgs>
 				    		<value>-XX:PermSize=256m</value>
 				    		<value>-XX:MaxPermSize=512m</value>
 				    	</jvmArgs>
                         	    	<detectInlinedCode>true</detectInlinedCode>
-					</configuration>
+				    </configuration>
 				</plugin>
                         </plugins>
                 </pluginManagement>
