@@ -7,7 +7,7 @@
                 <artifactId>dependencies</artifactId>
                 <version>1.0.1-SNAPSHOT</version>
                 <relativePath>../dependencies/pom.xml</relativePath>
-        </parent>	
+        </parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project</groupId>
@@ -28,7 +28,7 @@
                 <system>Jenkins</system>
                 <url>${JOB_URL}</url>
         </ciManagement>
-        	
+
 	<profiles>
 		<profile>
 			<!-- site light for jenkins -->
@@ -52,8 +52,8 @@
     		  <properties>
     		    <platform>linux</platform>
     		    <webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
-    		    <webdriver.firefox.bin>/usr/lib/firefox/firefox<webdriver.firefox.bin>
-    		    <!--      
+    		    <webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>
+    		    <!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
@@ -74,8 +74,8 @@
     		  <properties>
     		    <platform>linux</platform>
     		    <webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
-    		    <webdriver.firefox.bin>/usr/lib/firefox/firefox<webdriver.firefox.bin>
-    		    <!--      
+    		    <webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>
+    		    <!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
@@ -96,8 +96,8 @@
     		  <properties>
     		    <platform>solaris</platform>
     		    <webdriver.chrome.driver>TODO</webdriver.chrome.driver>
-    		    <webdriver.firefox.bin>TODO<webdriver.firefox.bin>
-    		    <!--      
+    		    <webdriver.firefox.bin>TODO</webdriver.firefox.bin>
+    		    <!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
@@ -118,8 +118,8 @@
     		  <properties>
     		    <platform>solaris</platform>
     		    <webdriver.chrome.driver>TODO</webdriver.chrome.driver>
-    		    <webdriver.firefox.bin>TODO<webdriver.firefox.bin>
-    		    <!--      
+    		    <webdriver.firefox.bin>TODO</webdriver.firefox.bin>
+    		    <!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
@@ -149,14 +149,14 @@
     		  <properties>
     		    <platform>mac</platform>
     		    <webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
-    		    <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"<webdriver.firefox.bin>
+    		    <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"</webdriver.firefox.bin>
     		    <!--
     		    <nabla.sourceDirectory>K:\users\${nabla.workspace}/nabla.sourceDirectory>
     		    <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
     		    <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}</java.home>
     		    <j2ee.home>${env.JAVA_HOME}</j2ee.home>
-    		    -->        
+    		    -->
     		  </properties>
     		  <activation>
     		    <!--<jdk>${jdkVersion}</jdk>-->
@@ -172,8 +172,8 @@
     		  <properties>
     		    <platform>windows</platform>
     		    <webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
-    		    <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"<webdriver.firefox.bin>
-    		    <!--      
+    		    <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"</webdriver.firefox.bin>
+    		    <!--
     		    <nabla.sourceDirectory>K:\users\${nabla.workspace}</nabla.sourceDirectory>
     		    <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
     		    <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
@@ -188,7 +188,7 @@
     		      <family>windows</family>
     		    </os>
     		  </activation>
-    		</profile>						
+    		</profile>
 	</profiles>
 
 </project>
