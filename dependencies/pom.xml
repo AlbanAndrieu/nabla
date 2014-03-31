@@ -1562,7 +1562,8 @@
                 <selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
                 <saucelabs.selenium.version>2.6</saucelabs.selenium.version>
                 <saucelabs.junit.version>1.0.18</saucelabs.junit.version>
-                <webdriver.chrome>/var/lib/chromedriver</webdriver.chrome> <!-- warning overrided in customs/pom.xml depending on architecture -->
+                <!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
+                <!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <drools.version>5.0.1</drools.version>
                 <!--<drools.version>5.1.1</drools.version>-->
                 <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
@@ -2577,7 +2578,8 @@
                                                                 <name>net.sourceforge.cobertura.datafile</name>
                                                                 <value>~/cobertura.ser</value>
                                                         </property>
-                                                        <webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>
+                                                        <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                                                        <webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
                                                         <webdriver.safari.noinstall>true</webdriver.safari.noinstall>
                                                 </systemPropertyVariables>
                                                  <!-- Add source folders to test classpath in order to run gwt-tests as normal junit-tests -->
