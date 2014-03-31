@@ -34,12 +34,14 @@ import com.thoughtworks.selenium.DefaultSelenium;
 //@RunWith(Parameterized.class)
 public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProvider */
 {
-    private static final String        DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe";
+    private static final String        DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";   // "C:\\chromedriver\\chromedriver.exe"
+    private static final String        DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox"; // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
     private static final String        DEFAULT_URL          = "http://localhost:9090";
     private static final String        PAGE_TO_LOAD_TIMEOUT = "30000";
     private WebDriver                  driver;
     private String                     baseUrl              = DEFAULT_URL;
     private String                     chromeDriver         = DEFAULT_CHROMEDRIVER;
+    private String                     firefoxBin           = DEFAULT_FIREFOXBIN;
     private boolean                    acceptNextAlert      = true;
     private StringBuffer               verificationErrors   = new StringBuffer();
     private DefaultSelenium            selenium;
@@ -131,33 +133,41 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
             baseUrl = DEFAULT_URL;
             System.setProperty("webdriver.base.url", baseUrl);
         }
-        System.out.println("webdriver.base.url is : " + baseUrl);
+        System.out.println("webdriver.base.url is : " + baseUrl + "\n");
 
         chromeDriver = System.getProperty("webdriver.chrome.driver");
         if (null == chromeDriver)
         {
             System.out.println("Use default webdriver.base.url");
-            chromeDriver = DEFAULT_URL;
+            chromeDriver = DEFAULT_CHROMEDRIVER;
             System.setProperty("webdriver.chrome.driver", chromeDriver);
         }
-        System.out.println("webdriver.chrome.driver is : " + chromeDriver);
+        System.out.println("webdriver.chrome.driver is : " + chromeDriver + "\n");
 
         // System.setProperty("webdriver.safari.noinstall", "true");
+        firefoxBin = System.getProperty("webdriver.firefox.bin");
+        if (null == firefoxBin)
+        {
+            System.out.println("Use default webdriver.firefox.bin");
+            firefoxBin = DEFAULT_FIREFOXBIN;
+            System.setProperty("webdriver.firefox.bin", firefoxBin);
+        }
+        System.out.println("webdriver.firefox.bin is : " + firefoxBin + "\n");
+        // System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\Mozilla Firefox\\firefox");
 
         // http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
         // startSeleniumServer(server);
 
         FirefoxProfile profile = new ProfilesIni().getProfile("Selenium");
 
-        //capabilities = DesiredCapabilities.chrome();
+        // capabilities = DesiredCapabilities.chrome();
         capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+        capabilities.setJavascriptEnabled(true);
 
-        FirefoxBinary ffb = new FirefoxBinary(new File("/usr/lib/firefox/firefox"));
-        // /usr/bin/firefox
-        // C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+        // FirefoxBinary ffb = new FirefoxBinary(new File(firefoxBin));
 
-        capabilities.setCapability(FirefoxDriver.BINARY, ffb);
+        // capabilities.setCapability(FirefoxDriver.BINARY, ffb);
         // say you use the redhat5 label to indicate RHEL5 and the amd64 label
         // to specify the architecture
         // capabilities.setCapability("jenkins.label", "redhat5 && amd64");
@@ -181,7 +191,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         // capabilities = new DesiredCapabilities(browser, browserVersion, setPlatformCapabilities(platform));
         // capabilities.setCapability("name", this.getClass().getName() + "." + testName.getMethodName());
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://home.nabla.mobi:4444/wd/hub"), capabilities);
         /*
          * this.driver = new RemoteWebDriver(
          * new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.saucelabs.com:80/wd/hub"),
