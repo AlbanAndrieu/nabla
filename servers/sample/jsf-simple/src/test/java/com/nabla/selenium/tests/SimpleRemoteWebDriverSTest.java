@@ -162,7 +162,7 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
 
         capabilities = DesiredCapabilities.chrome();
         // capabilities = DesiredCapabilities.firefox();
-        capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+        // capabilities.setCapability(FirefoxDriver.PROFILE, profile);
         capabilities.setJavascriptEnabled(true);
 
         // FirefoxBinary ffb = new FirefoxBinary(new File(firefoxBin));
