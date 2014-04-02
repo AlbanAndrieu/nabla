@@ -12,7 +12,6 @@
 	<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 	<artifactId>gwt-kitchensink</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
 	<name>JBoss AS Quickstarts: Errai kitchensink</name>
 	<description>A starter Java EE 6 webapp project for use on JBoss AS 7 / EAP 6, generated from the jboss-javaee6-webapp archetype</description>
 
