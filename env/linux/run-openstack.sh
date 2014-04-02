@@ -1,6 +1,7 @@
 #http://doc.ubuntu-fr.org/openstack
 
-sudo apt-get install kvm libvirt-bin virtinst mysql-server python-mysqldb bridge-utils
+sudo apt-get install kvm libvirt-bin virtinst mysql-server python-mysqldb
+sudo apt-get install -y vlan bridge-utils
 
 sudo apt-get install ntp
 sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2 
@@ -16,6 +17,32 @@ sudo apt-get install python-novaclient python-nova-adminclient
 sudo apt-get install apache2 libapache2-mod-wsgi openstack-dashboard
 
 sudo apt-get install libnss-myhostname
+
+less /etc/network/interfaces
+
+#network
+auto lo
+iface lo inet loopback
+
+# this NIC must be on management network
+auto eth0
+iface eth0 inet static
+address 150.151.160.25
+gateway 150.151.192.4
+netmask 255.255.0.0
+broadcast 150.151.255.255
+dns-search france.effix.fr misys.global.ad
+dns-nameservers 150.151.192.1 150.151.192.2 150.151.192.3
+
+# this NIC will be used for VM traffic to the internet
+auto eth1
+iface eth1 inet static
+address 150.151.161.25
+gateway 150.151.192.4
+netmask 255.255.0.0
+broadcast 150.151.255.255
+dns-search france.effix.fr misys.global.ad
+dns-nameservers 150.151.192.1 150.151.192.2 150.151.192.3
 
 #look at http://albandri/horizon
 
@@ -645,3 +672,21 @@ sudo restart nova-volume
 #mkdir -p /var/cache/glance/ap
 
 http://10.25.40.161/horizon
+
+---------------------------
+
+#http://devstack.org/guides/single-machine.html
+git clone https://github.com/openstack-dev/devstack.git
+cd devstack
+
+------------
+
+#https://wiki.ubuntu.com/ServerTeam/CloudArchive#Havana
+
+apt-get install ubuntu-cloud-keyring
+echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/grizzly main" >> sudo /etc/apt/sources.list.d/cloud-archive.list
+sudo apt-get update
+
+git clone https://github.com/jedipunkz/openstack_grizzly_install
+cd openstack_grizzly_install
+cp setup.conf.samples/setup.conf.allinone.nova-network setup.conf

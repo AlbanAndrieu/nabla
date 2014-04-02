@@ -19,6 +19,7 @@ cd /workspace
 /workspace/selenium-server-standalone-2.39.0.jar
 #NOK wget http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
 #NOK unzip chromedriver_linux64.zip -d chrome-driver
+sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
 
 wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
 #or /var/lib/jenkins/selenium-server-standalone-2.29.0.jar
@@ -127,4 +128,25 @@ selenium available browser
 *opera
 *iehta
 *custom  
+    
+#PATH=${PATH}:/usr/lib/chromium-browser/libs  
+
+
+ -Dwebdriver.chrome.driver=/var/lib/chromedriver
+ -Dwebdriver.chrome.driver="chromedriver"
+ -Dwebdriver.chrome.driver=/opt/google/chrome/chrome
   
+ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-standalone-2.29.0.jar
+
+/usr/local/lib/node_modules/protractor/selenium/chromedriver
+
+REM NOK webdriver-manager start
+
+#https://code.google.com/p/selenium/wiki/Grid2
+java -jar /workspace/selenium-server-standalone-2.40.0.jar -role hub
+#register node by hand
+cd /usr/lib/chromium-browser/
+java -jar /workspace/selenium-server-standalone-2.40.0.jar -role node -hub http://127.0.0.1:4444/wd/register -browser seleniumProtocol=WebDriver,browserName=firefox,version=28.0,firefox_binary/usr/bin/firefox,maxInstances=2,platform=LINUX -browser seleniumProtocol=WebDriver,browserName=chrome,version=33,firefox_binary=/usr/bin/chromium-browser,maxInstances=2,platform=LINUX
+#result
+See : http://home.nabla.mobi:4444/grid/console
+See : http://home.nabla.mobi:6666/grid/console

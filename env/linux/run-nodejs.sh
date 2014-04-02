@@ -9,6 +9,12 @@ sudo apt-get install karma-tools
 #http://zagorskis.com/2013/12/install-node-js-karma-grunt-and-bower-on-lubuntu/
 #http://stackoverflow.com/questions/13527889/global-installation-of-grunt-js-fails
 npm config ls -l | grep config
+npm config set prefix /usr/local
+npm config get prefix
+#npm config set prefix ~/npm
+#echo "export NODE_PATH=$NODE_PATH:/home/$USER/npm/lib/node_modules" >> ~/.bashrc && source ~/.bashrc
+#export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/home/root/npm/lib/node_modules:/root/npm/lib/node_modules:/usr/local/lib/node_modules
+export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 
 sudo add-apt-repository -y ppa:chris-lea/node.js;
 sudo apt-get update
@@ -46,13 +52,7 @@ npm --version
 #cd ~
 #./install.sh
 
-npm config get prefix
-#npm config set prefix ~/npm
-#echo "export NODE_PATH=$NODE_PATH:/home/$USER/npm/lib/node_modules" >> ~/.bashrc && source ~/.bashrc
-
 #still as root user
-#NOK npm install -g doctor
-#NOK npm install -g yo
 npm install -g grunt
 npm install -g grunt-cli
 npm install -g bower
@@ -71,17 +71,35 @@ npm install -g karma-phantomjs-launcher
 npm install -g selenium-webdriver
 #if it failed try as non root user whitout -g option
 
-/usr/lib/node_modules/karma/bin/karma --version
-export PATH="$PATH:/usr/lib/node_modules/karma/bin"
+npm install -g doctor
+npm install -g yo
+
+#/usr/lib/node_modules/karma/bin/karma --version
+#export PATH="$PATH:/usr/lib/node_modules/karma/bin"
 
 #or
 cd /usr/local/bin/
-#Ubuntu 13 ln -s /usr/local/lib/node_modules/karma/bin/karma  /usr/local/bin/karma
+#Ubuntu 13 
+ln -s /usr/local/lib/node_modules/karma/bin/karma /usr/local/bin/karma
+#ln -s /root/npm/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 #Ubuntu 12 ln -s /usr/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 
 #check it is working
 karma --version
 Karma version: 0.10.9
+
+#Ubuntu 13 
+#ln -s /usr/local/lib/node_modules/grunt-cli/bin/grunt /usr/local/bin/grunt
+
+#check it is working
+grunt --version
+grunt-cli v0.1.13
+
+bower --version
+1.2.8
+
+#as root
+webdriver-manager update
 
 #sudo chown -R yourusername ~/.npm
 #check npm repository
