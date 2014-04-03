@@ -1,0 +1,50 @@
+{
+  "name": "ui",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-rev": "~0.1.0",
+    "grunt-open": "~0.2.0",    
+    "less": "*",
+    "grunt-concurrent": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-mkdir": "*",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-contrib-less": "*",
+    "grunt-newer": "~0.5.4",
+    "grunt-ngmin": "~0.0.2",
+    "load-grunt-tasks": "~0.2.0",
+    "time-grunt": "~0.2.1",
+    "grunt-karma": "*",
+    "grunt-contrib-clean": "*",
+    "karma-ng-html2js-preprocessor": "*",
+    "karma-ng-scenario": "*",
+    "grunt-protractor-runner": "*",
+    "karma-script-launcher": "*",
+    "karma-chrome-launcher": "*",
+    "karma-firefox-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-phantomjs-launcher": "*",
+    "grunt-connect-pushstate": "*",
+    "phantomjs": "*",    
+    "karma": "*",
+    "grunt-modernizr": "~0.4.1",
+    "protractor": "~0.20.1",
+    "karma-coverage": "*",
+    "karma-junit-reporter": "*",
+    "karma-jasmine": "*",
+    "grunt-spritesmith": "*",
+    "grunt-bower-task": "*",
+    "jasmine-reporters": "*",
+    "matchdep": "*"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}

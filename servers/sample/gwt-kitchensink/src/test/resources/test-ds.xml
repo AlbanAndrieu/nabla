@@ -11,6 +11,7 @@
       pool-name="${application.id}-test" enabled="true"
       use-java-context="true">
       <connection-url>${jdbc.url}</connection-url>
+      <driver-class>${jdbc.driver}</driver-class>
       <driver>${database}</driver>
       <security>
          <user-name>${jdbc.username}</user-name>

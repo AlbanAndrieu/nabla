@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>webapi-ui</artifactId>
+	<name>MGR WebApi UI</name>
+	<packaging>jar</packaging>
+	<description>MGR WebApi UI</description>
+
+	<parent>
+		<groupId>com.misys.mgr</groupId>
+		<artifactId>super-pom</artifactId>
+		<version>1.1.3</version>
+	</parent>
+
+	<properties>
+		<!-- for local test purpose -->
+		<sonar.host.url>http://10.22.11.40:9001</sonar.host.url>
+		<sonar.jdbc.username>root</sonar.jdbc.username>
+		<sonar.jdbc.password>sonar123</sonar.jdbc.password>
+		<sonar.jdbc.url>jdbc:mysql://10.22.11.40:3306/sonarAdonis</sonar.jdbc.url>
+		<sonar.jdbc.driverClassName>com.mysql.jdbc.Driver</sonar.jdbc.driverClassName>  
+		             
+				
+		
+        <sonar.language>js</sonar.language>
+        <sonar.exclusions>${basedir}/libs/**</sonar.exclusions>
+        <sonar.coverage.exclusion>${basedir}/js/src/header.js</sonar.coverage.exclusion>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>
+	</properties>
+
+	<build>
+        <sourceDirectory>js</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        
+        <plugins>
+            <plugin> <!-- "profile" fro Sonar purpose -->
+                <groupId>com.kelveden</groupId>
+                <artifactId>maven-karma-plugin</artifactId>
+                <version>1.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configFile>${basedir}/sonar.karma.conf.js</configFile>
+                    <browsers>PhantomJS</browsers>
+                    <reporters>dots,junit,coverage</reporters>
+                    <colors>false</colors>
+                    <autoWatch>false</autoWatch>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>lcovFileForSonar</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+								<echo message="Copying LCOV file -> lcof.info for Sonar purpose to target directory" />
+                                <copy todir="${basedir}/target" flatten="true">
+                                    <fileset dir="${basedir}">
+                                        <include name="karma-coverage/PhantomJS*/lcov.info" />
+                                    </fileset>
+                                </copy>
+
+                                <path id="sourceDirectory.path">
+                                  <pathelement location="${project.build.sourceDirectory}"/>
+                                </path>
+
+                                <pathconvert targetos="unix" property="relativeSourceDirectory" refid="sourceDirectory.path">
+                                  <map from="${basedir}/" to=""/>
+                                </pathconvert>
+
+								<echo message="Base dir: ${basedir} " />
+								<echo message="Source directory: ${project.build.sourceDirectory}" />
+								<echo message="Relative source directory: ${relativeSourceDirectory}" />
+								<echo message="Fixing a problem with a path to the JavaScript path" />
+                                <replaceregexp byline="true">
+                                    <regexp pattern="SF:\./js/(.*)" />
+                                    <substitution expression="SF:${relativeSourceDirectory}/\1" />
+                                    <fileset dir="target">
+                                        <include name="lcov.info" />
+                                    </fileset>
+                                </replaceregexp>
+                                
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>  			
+		</plugins>
+	</build>
+
+
+</project>
