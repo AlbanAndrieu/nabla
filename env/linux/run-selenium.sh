@@ -136,7 +136,10 @@ selenium available browser
  -Dwebdriver.chrome.driver="chromedriver"
  -Dwebdriver.chrome.driver=/opt/google/chrome/chrome
   
-ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-standalone-2.29.0.jar
+cd /jenkins/plugins/selenium/WEB-INF/lib  
+sudo ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-standalone-2.29.0.jar
+cd /jenkins
+sudo ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-standalone-2.29.0.jar
 
 /usr/local/lib/node_modules/protractor/selenium/chromedriver
 
