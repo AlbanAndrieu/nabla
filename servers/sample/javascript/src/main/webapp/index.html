@@ -1,0 +1,46 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"  ng-app="webApiUi"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="webApiUi"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Nabla</title>
+  <meta name="description" content="">
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/styles/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/css/style.css">
+  <link rel="stylesheet" href="/styles/css/modules.css">
+  <!-- Concated Libaries, Angular, Modernizer etc. -->
+  <script src="/js/build/libs.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="libs/es5-shim/es5-shim.js"></script>
+      <script src="libs/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <ri-header id="ri-header" title="Nabla"></ri-header>
+
+    <main ng-view></main>
+
+    <footer>
+      <div class="left">Nabla</div>
+      <div class="right">v1.0</div>
+    </footer>
+
+    <script src="/js/src/app.js"></script>
+    <script src="/js/src/config.js"></script>
+
+    <script src="/js/build/controllers.js"></script>
+    <script src="/js/build/services.js"></script>
+    <script src="/js/build/directives.js"></script>
+    <script src="/js/build/filters.js"></script>
+    <script src="/js/build/modules.js"></script>
+</body>
+</html>
