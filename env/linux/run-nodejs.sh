@@ -73,6 +73,7 @@ npm install -g selenium-webdriver
 
 npm install -g doctor
 npm install -g yo
+#npm install selenium-standalone
 
 #/usr/lib/node_modules/karma/bin/karma --version
 #export PATH="$PATH:/usr/lib/node_modules/karma/bin"

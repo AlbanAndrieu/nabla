@@ -17,8 +17,8 @@ http://home.nabla.mobi:4444/grid/console
 
 cd /workspace
 /workspace/selenium-server-standalone-2.39.0.jar
-#NOK wget http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
-#NOK unzip chromedriver_linux64.zip -d chrome-driver
+#NOK wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+#NOK unzip chromedriver_linux64.zip
 sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
 
 wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar

@@ -8,19 +8,15 @@ if ( $?prompt ) then
     # yes, we're in an interactive shell
 
     # prompt
-    set prompt = "%{\033[1;36m%}peter %{\033[1;35m%}[%~] %{\033[1;36m%}%n \%%{\033[1;33m%} "
+    set prompt = "%{\033[1;36m%}%m@%{\033[1;36m%}%n %{\033[1;35m%}%~ %{\033[1;33m%} "
 
     # history
     set history         = 1000
     set savehist        = 1000
-    set EDITOR          = nedit
     set filec fignore = (.o)
 
     # cmd-line bindings
     bindkey -v          ; # use vi key bindings
-
-    # display
-    set DISPLAY         = PTXMZ0087:0.0
 
     # cvs
     # set MAKEFLAGS     = "--no-print-directory"
@@ -48,72 +44,28 @@ endif
 setenv MACHINE x86Linux
 setenv ARCH cygwin
 
-echo ${ARCH} ${MACHINE}
+echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
-# ----------
-if ( "${ARCH}" == sun4sol ) then
-    coreadm -p core.%f.%n.%p $$
+setenv PROJECT_USER aandrieu
+setenv PROJECT_VERSION 10
+setenv DRIVE_PATH /cygdrive/c
+setenv PROJECT_HOME ${DRIVE_PATH}/workspace/users
+
+setenv WORKSPACE_ENV ${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
+
+#If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
+setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin
+
+echo SHELL : ${SHELL}
+
+alias 00 'source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+#alias 30 'source ${PROJECT_HOME}/${PROJECT_USER}30/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias [[DEFAULT_ENV_LOADED] 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+
+#echo $PATH wrong after
+if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
+    echo ${WORKSPACE_ENV}/home/dev.env.csh
+    source ${WORKSPACE_ENV}/home/dev.env.csh
 endif
 
-setenv PROJECT_USER albandri
-setenv PROJECT_VERSION 10
-setenv DRIVE_PATH ${DRIVE_PATH}
-# ${PROJECT_HOME}/albandri10
-setenv DEV_HOME ${DRIVE_PATH}/workspace/users
-# Do not use hudson workspace
-#setenv WORKSPACE ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}
-setenv WORKSPACE_ENV ${DEV_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
-
-setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
-echo PROJECT_THIRDPARTY_PATH ${PROJECT_THIRDPARTY_PATH}
-setenv CORBA_ROOT ${PROJECT_THIRDPARTY_PATH}/tao
-setenv ACE_ROOT ${CORBA_ROOT}/ACE_wrappers
-#setenv ACE_ROOT ${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
-
-echo ${ACE_ROOT}
-
-TAO_ROOT ${ACE_ROOT}/TAO
-setenv TAO_ROOT
-
-echo ${TAO_ROOT}
-
-MPC_ROOT ${ACE_ROOT}/MPC
-setenv MPC_ROOT
-
-echo ${MPC_ROOT}
-
-CIAO_ROOT ${TAO_ROOT}/CIAO
-setenv CIAO_ROOT
-DANCE_ROOT ${CIAO_ROOT}/DANCE
-setenv DANCE_ROOT
-
-DDS_ROOT ${CIO_ROOT}/connectors/dds4ccm
-setenv DDS_ROOT
-
-#setenv PATH ${DRIVE_PATH}/cygwin/bin:${DRIVE_PATH}/cygwin/usr/include:${DRIVE_PATH}/cygwin/usr/lib:${DRIVE_PATH}/cygwin/lib
-#If you want to use new GCC by default, make sure that your PATH contains /usr/local/bin before /bin and /usr/bin.
-#:/sbin:/usr/local/sbin:
-setenv PATH /usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:${DRIVE_PATH}/cygwin/bin
-#setenv ACE_ROOT ${DRIVE_PATH}/thirdparty/tao/ACE_wrappers
-setenv LD_LIBRARY_PATH $ACE_ROOT/lib:$LD_LIBRARY_PATH
-
-echo "make and make static_libs=1 in"
-echo "cd ${ACE_ROOT}/ace"
-echo "cd ${ACE_ROOT}/apps/gperf"
-echo "cd ${TAO_ROOT}/tao"
-echo "cd ${TAO_ROOT}/TAO_IDL"
-echo "cd ${TAO_ROOT}/orbsvcs/orbsvcs"
-
-echo ${SHELL}
-
-alias 00 'source ${DEV_HOME}/${KPLUSTP_USER}00/env/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 10 'source ${WORKSPACE_ENV}/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-
-if [ -f ${WORKSPACE_ENV}/dev.env.sh ]; then
-    echo ${WORKSPACE_ENV}/dev.env.sh
-    . ${WORKSPACE_ENV}/dev.env.sh
-fi
-
-# Set current development branche environment
-# 10
-echo "Set your environment with 10 alias."
+#echo "Set your environment with [[DEFAULT_ENV_LOADED] alias."

@@ -1,5 +1,4 @@
 
-java -jar /workspace/selenium-server-standalone-2.40.0.jar -port 7777 -role hu
 sudo iptables -A INPUT -p tcp -m tcp --dport 4444 -j ACCEPT
 sudo iptables -A INPUT -p tcp -i eth0 --dport 7779 -j ACCEPT
 sudo iptables -L
@@ -18,11 +17,6 @@ sudo iptables -t nat -D OUTPUT 2
 
 sudo iptables -t nat -A PREROUTING -p all -d 0.0.0.0/0 -j nova-network-PREROUTING
 2    nova-network-PREROUTING  all  --  0.0.0.0/0            0.0.0.0/0
-
-192.168.122.0/24
-192.168.0.29
-
-less /etc/network/interfaces
 
 #local forward
 ssh -L '*:4444:localhost:4444' mybox 

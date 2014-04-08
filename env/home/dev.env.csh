@@ -433,9 +433,9 @@ alias setEnvFilesAll    '${WORKSPACE_ENV}/config/setEnvFiles.allUserDev.sh ${PRO
 
 alias setWorkspace      "source ${WORKSPACE_ENV}/scripts/setWorkspace.csh"
 
-setenv M2_SETTINGS ${PROJECT_DEV}/.m2/settings.xml
-alias mvn               'mvn -s ${M2_SETTINGS}'
-echo "Maven settings are in : ${M2_SETTINGS}"
+#setenv M2_SETTINGS ${PROJECT_DEV}/.m2/settings.xml
+#alias mvn               'mvn -s ${M2_SETTINGS}'
+#echo "Maven settings are in : ${M2_SETTINGS}"
 
 # PATH Setting
 #source ${WORKSPACE_ENV}/java/dev.env.csh
