@@ -46,6 +46,11 @@ setenv ARCH cygwin
 
 echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
+# ----------
+#if ( "${ARCH}" == sun4sol ) then
+#    coreadm -p core.%f.%n.%p $$
+#endif
+
 setenv PROJECT_USER aandrieu
 setenv PROJECT_VERSION 10
 setenv DRIVE_PATH /cygdrive/c
@@ -60,7 +65,7 @@ echo SHELL : ${SHELL}
 
 alias 00 'source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 #alias 30 'source ${PROJECT_HOME}/${PROJECT_USER}30/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias [[DEFAULT_ENV_LOADED] 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 #echo $PATH wrong after
 if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
@@ -68,4 +73,4 @@ if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
     source ${WORKSPACE_ENV}/home/dev.env.csh
 endif
 
-#echo "Set your environment with [[DEFAULT_ENV_LOADED] alias."
+#echo "Set your environment with 10 alias."
