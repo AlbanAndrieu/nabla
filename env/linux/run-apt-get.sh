@@ -7,16 +7,16 @@ sudo chown albandri:albandri -R /workspace
 sudo apt-get autoremove
 sudo apt-get install nis ntp autofs
 
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.630_all.deb
-dpkg --install webmin_1.630_all.deb
-
 #other package
 sudo apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
 sudo apt-get -f install
 
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.630_all.deb
+dpkg --install webmin_1.630_all.deb
+
 sudo apt-get install subversion cvs git maven
 sudo apt-get install tomcat7 apache2
-sudo apt-get install vim
+sudo apt-get install vim dos2unix
 sudo apt-get install wget curl nmap ssh
 sudo apt-get install smartmontools mon 
 sudo apt-get install cmake scons
@@ -281,3 +281,4 @@ sudo apt-get remove whoopsie
 
 #messaging
 sudo apt-get install pidgin pidgin-sipe pidgin-skype
+

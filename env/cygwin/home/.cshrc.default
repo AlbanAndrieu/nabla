@@ -68,4 +68,4 @@ if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
     source ${WORKSPACE_ENV}/home/dev.env.csh
 endif
 
-#echo "Set your environment with [[DEFAULT_ENV_LOADED] alias."
+#echo "Set your environment with [[DEFAULT_ENV_LOADED]] alias."
