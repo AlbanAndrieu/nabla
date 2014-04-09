@@ -282,3 +282,11 @@ sudo apt-get remove whoopsie
 #messaging
 sudo apt-get install pidgin pidgin-sipe pidgin-skype
 
+#SVN
+#sudo apt-get install python-nautilus python-configobj python-gtk2 python-glade2 python-svn python-dbus python-dulwich subversion meld
+#sudo add-apt-repository ppa:rabbitvcs/ppa
+deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu precise main
+sudo apt-get update
+sudo apt-get install rabbitvcs-nautilus 
+sudo apt-get install rabbitvcs-gedit 
+sudo apt-get install rabbitvcs-cli
