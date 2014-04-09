@@ -177,6 +177,11 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+export EC2_KEYPAIR=albandri # name only, not the file name
+export EC2_URL=https://ec2.us-west-2.amazonaws.com
+export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
+export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
+
 alias 00='. ${PROJECT_HOME}/${KPLUSTP_USER}00/env/home/dev.env.sh'
 alias 10='. ${WORKSPACE_ENV}/home/dev.env.sh'
 
@@ -187,3 +192,4 @@ if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
     . ${WORKSPACE_ENV}/home/dev.env.sh
 fi
 
+#~/.conky/startconky.sh
