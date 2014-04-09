@@ -205,9 +205,9 @@ export ARCH=cygwin
 
 echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
-export PROJECT_USER=aandrieu
+export PROJECT_USER=albandri
 export PROJECT_VERSION=10
-export DRIVE_PATH=/cygdrive/c
+export DRIVE_PATH=
 export PROJECT_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #export WORKSPACE=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}

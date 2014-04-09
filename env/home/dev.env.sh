@@ -29,7 +29,7 @@ echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin win
 if [ -z "$PROJECT_USER" ]
 then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  export PROJECT_USER=aandrieu
+  export PROJECT_USER=albandri
 fi
 
 if [ -z "$PROJECT_VERSION" ]
@@ -41,7 +41,7 @@ fi
 if [ -z "$DRIVE_PATH" ]
 then
   #echo "ERROR: Set DRIVE_PATH environment variable!"
-  export DRIVE_PATH=/cygdrive/c
+  export DRIVE_PATH=
 fi
 
 if [ -z "$PROJECT_HOME" ]
@@ -68,7 +68,7 @@ fi
 
 if [ -z "$EDITOR" ]
 then
-  export EDITOR=nedit
+  export EDITOR=geany
 fi
 export SVN_EDITOR=${EDITOR}
 
@@ -136,21 +136,22 @@ then
   export LD_LIBRARY_PATH
 fi
 
-export QTDIR=/lib/qt3
+export QTDIR=${DRIVE_PATH}/usr/lib/qt3
 
-export HUDSON_HOME=${DRIVE_PATH}/hudson
+export HUDSON_HOME=${DRIVE_PATH}/workspace/hudson
 export JENKINS_HOME=${DRIVE_PATH}/jenkins
-export TOMCAT_HOME=/var/lib/tomcat6
+export TOMCAT_HOME=${DRIVE_PATH}/var/lib/tomcat7
 export SONAR_HOME=${DRIVE_PATH}/workspace/sonar
 export SONAR_RUNNER_HOME=${DRIVE_PATH}/workspace/sonar-runner
 export PATH=${SONAR_RUNNER_HOME}/bin:${PATH}
 export CYGWIN_HOME=${DRIVE_PATH}/cygwin
 export SVN_HOME=${CYGWIN_HOME}/bin
 export CROWD_INSTALL=${DRIVE_PATH}/workspace/crowd
-export CROWD_HOME=/var/crowd-home
+export CROWD_HOME=${DRIVE_PATH}/var/crowd-home
 export NEXUS_HOME=${DRIVE_PATH}/workspace/nexus
 export FISHEYE_HOME=${DRIVE_PATH}/workspace/fecru
 export FISHEYE_INST=${DRIVE_PATH}/workspace/fisheye
+export OPENGROK_TOMCAT_BASE=${DRIVE_PATH}/var/lib/tomcat7
 
 export SYBASE_OCS=OCS-15_0
 export SYBASE_VERSION=12.5
@@ -226,23 +227,23 @@ fi
 export BOOST=$BOOST_ROOT
 
 # CMAKE 2.6.4
-export CMAKE_HOME=${DRIVE_PATH}/CMake-2.6.4
+export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
 # PYTHON 27
-export PYTHON_DIR=${DRIVE_PATH}/Python27
+export PYTHON_DIR=/usr/lib/python
 
 # ALIAS to python
-alias python='${DRIVE_PATH}/Python27/python'
+alias python='/usr/bin/python'
   
 # SCONS 2.2.0
 #export SCONS_DIR=${PYTHON_DIR}/Lib/site-packages/scons-2.2.0
-export SCONS_DIR=${DRIVE_PATH}/scons
+export SCONS_DIR=/usr/lib/scons/SCons
   
 # ALIAS to scons-local
-alias scons='${SCONS_DIR}/scons.py'
+alias scons='/usr/bin/scons'
   
-export SCONS_PATH=${SCONS_DIR}/scons-local-2.2.0/SCons/Script
+export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]
 then
   echo "WARNING: Set SCONS_PATH environment variable not defined!"
@@ -274,7 +275,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-export JAVA_HOME=${DRIVE_PATH}/SUN/SDK/jdk1.7.0_05
+export JAVA_HOME=${DRIVE_PATH}/jenkins/tools/JDK/JDK_7u7
   
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -286,7 +287,7 @@ export PATH
 export JAVA_OPTS="-Xms256m -Xmx1548m"
 
 # MAVEN
-export M2_HOME=${DRIVE_PATH}/apache-maven-3.0.4
+export M2_HOME=/usr/share/maven
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -306,12 +307,12 @@ export M2_REPO=${DRIVE_PATH}/repo
 echo "Maven repo are in : ${M2_REPO}"
 
 # ANT
-export ANT_HOME=${DRIVE_PATH}/apache-ant-1.8.0
+export ANT_HOME=/usr/share/ant
 export PATH=${ANT_HOME}/bin:${ANT_HOME}/lib:$PATH
 export ANT_OPTS="-Xmx512m"
 
 # JBOSS
-export JBOSS_HOME=C:\\jboss-as-7.1.1.Final
+export JBOSS_HOME=${DRIVE_PATH}/workspace/jboss-as-7.1.1.Final
 export PATH=${JBOSS_HOME}/bin:$PATH
 
 # JBOSS
@@ -320,9 +321,9 @@ export PATH=${BEES_HOME}:$PATH
 alias jboss='${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
 
 # TOMCAT
-export CATALINA_HOME=${JBOSS_HOME}/server/default
+export CATALINA_HOME=${DRIVE_PATH}/usr/share/tomcat7
 # Customize tomcat in CATALINA_BASE
-export CATALINA_BASE=${CATALINA_HOME}
+export CATALINA_BASE=${DRIVE_PATH}/var/lib/tomcat7
 CATALINA_OPTS=""
 #CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME -Dapplication.property.dir=${CATALINA_HOME}/project"
 if [ 1 -eq 1 ] ; then
@@ -330,7 +331,7 @@ if [ 1 -eq 1 ] ; then
 fi
 
 # ECLIPSE 3.7
-export ECLIPSE_HOME=${DRIVE_PATH}/eclipse-3.7
+export ECLIPSE_HOME=/workspace/eclipse-j2ee
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
   export PATH=${ECLIPSE_HOME}:$PATH
@@ -343,9 +344,12 @@ if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
   #ln -s ${DRIVE_PATH}/MagicDraw\ UML\ 16.5 /MagicDrawUML16.5
   #export MD_HOME="/MagicDrawUML16.5"
-  export MD_HOME=C:\MagicDraw-UML-16.5
+  export MD_HOME=${DRIVE_PATH}/MagicDraw-UML-16.5
 fi
 export ANDROMDA_HOME=${DRIVE_PATH}/repo/org/andromda
+
+# CHROME
+export CHROME_BIN=${DRIVE_PATH}/usr/bin/google-chrome
 
 # LUMBERMILL
 export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
@@ -529,9 +533,11 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 #source ${WORKSPACE_ENV}/cpp/dev.env.sh
 #GIT
 source ${WORKSPACE_ENV}/home/.git-completion.bash
+#see source ~/.git-prompt.sh in .bashrc
+source ${WORKSPACE_ENV}/home/.novarc
 
 alias replace="${WORKSPACE_ENV}/scripts/replace.pl"
-alias svndi="svn di --diff-cmd=xxdiff"
+alias svndi="svn di --diff-cmd=svndiff"
 #TODO same as svn st-q
 alias svnst="svn st | grep -v ^?"
 
@@ -559,6 +565,9 @@ case ${ARCH} in
 esac
 
 export DISPLAY=:0.0
+export LC_CTYPE=en_US.UTF-8
+
+/usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
 
 echo "PATH is ${PATH}"
 

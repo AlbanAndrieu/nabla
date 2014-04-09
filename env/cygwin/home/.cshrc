@@ -46,14 +46,9 @@ setenv ARCH cygwin
 
 echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
-# ----------
-#if ( "${ARCH}" == sun4sol ) then
-#    coreadm -p core.%f.%n.%p $$
-#endif
-
-setenv PROJECT_USER aandrieu
+setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
-setenv DRIVE_PATH /cygdrive/c
+setenv DRIVE_PATH 
 setenv PROJECT_HOME ${DRIVE_PATH}/workspace/users
 
 setenv WORKSPACE_ENV ${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
@@ -65,7 +60,7 @@ echo SHELL : ${SHELL}
 
 alias 00 'source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 #alias 30 'source ${PROJECT_HOME}/${PROJECT_USER}30/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias 10 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias [[DEFAULT_ENV_LOADED] 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 #echo $PATH wrong after
 if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then

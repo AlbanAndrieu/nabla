@@ -29,7 +29,7 @@ set ANT_HOME=C:\apache-ant-1.8.0
 set ANT=%ANT_HOME%\bin
 set M2_HOME=C:\apache-maven-3.0.4
 set M2=%M2_HOME%\bin
-set M2_REPO=C:\repos
+set M2_REPO=${env.WORKSPACE}/.repository
 
 #set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
 rm Add MaxPermSize for andromda
@@ -55,6 +55,9 @@ set MINGW_HOME=C:\MinGW
 rem set MSYS_HOME=C:\msys\1.0
 set MSVCDir=C:\MinGW
 
+set NODEJS_HOME=C:\nodejs
+set NPM_HOME=C:\nodejs\node_modules\npm
+
 set HUDSON_HOME=C:\hudson
 set JENKINS_HOME=C:\hudson
 set SVN_HOME=C:\Program Files\VisualSVN Server
@@ -66,12 +69,13 @@ set TAO_ROOT=%PROJECT_THIRDPARTY_PATH%\tao\ACE_wrappers\TAO
 set QTDIR=C:\cygwin\lib\qt3
 
 set MACHINE=x86Linux
-set TIBCO_HOME=C:\Tibco\Tibrv
+set TIBCO_HOME==${DRIVE_PATH}/TODO
+set CHROME_BIN=${DRIVE_PATH}/usr/bin/google-chrome
 
 rem set DISPLAY=localhost:0.0
 
 rem set PATH=%JAVA%;%ANT%;%M2%;%M2_REPO%;
-set PATH=%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%MINGW_HOME%\bin;%TIBCO_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin
+set PATH=%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%MINGW_HOME%\bin;%TIBCO_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%NODEJS_HOME%
 REM For selenium
 set PATH=%PATH%;C:\Program Files (x86)\Internet Explorer;C:\Program Files (x86)\Mozilla Firefox
 
@@ -80,7 +84,7 @@ REM PATH %SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMRO
 REM test CLASSPATH executing javadoc.bat
 REM bad classpath with ;C:\Sun\SDK6\lib\ext\QTJava.zip
 REM set CLASSPATH=.;%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%SVN_HOME%\bin;%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%CYGWIN_HOME%\usr\include;%CYGWIN_HOME%\lib;%CYGWIN_HOME%\usr\lib;%MINGW_HOME%\bin;%CMAKE_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin
-set CLASSPATH=.;%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%SVN_HOME%\bin;%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%CYGWIN_HOME%\usr\include;%CYGWIN_HOME%\lib;%CYGWIN_HOME%\usr\lib;%MINGW_HOME%\bin;%CMAKE_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin
+set CLASSPATH=.;%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%SVN_HOME%\bin;%TIBCO_HOME%\bin;%CYGWIN_HOME%\bin;%CYGWIN_HOME%\usr\include;%CYGWIN_HOME%\lib;%CYGWIN_HOME%\usr\lib;%MINGW_HOME%\bin;%CMAKE_HOME%\bin;%GRAPHVIZ_HOME%\bin;%LUMBERMILL_HOME%\bin;%NODEJS_HOME%
 echo %CLASSPATH%
 
 set PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.py;.pyw
