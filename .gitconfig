@@ -2,7 +2,7 @@
 	email = alban.andrieu@mysis.com
 	name = Alban Andrieu
 [core]
-	autocrlf = false
+	autocrlf = input
 	editor = gedit
 [credential]
 	helper = cache --timeout=86400
@@ -13,3 +13,7 @@
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
+[help]
+	autocorrect = 1
+[color]
+	ui = auto
