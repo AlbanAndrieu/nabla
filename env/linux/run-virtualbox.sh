@@ -10,8 +10,8 @@ sudo apt-get install virtualbox-4.3
 sudo apt-get install dkms
 
 sudo mkdir -p /workspace/virtualbox/$USER/.VirtualBox
-sudo chown -R albandri:albandri albandri/
-cp ~/.VirtualBox /workspace/virtualbox/$USER
+sudo chown -R albandri:albandri /workspace/virtualbox/$USER
+cp -R ~/.VirtualBox /workspace/virtualbox/$USER
 rm -rf ~/.VirtualBox
 ln -s /workspace/virtualbox/$USER/.VirtualBox ~/.VirtualBox
 

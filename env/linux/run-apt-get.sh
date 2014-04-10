@@ -12,23 +12,23 @@ sudo apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-r
 sudo apt-get -f install
 
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.630_all.deb
-dpkg --install webmin_1.630_all.deb
+sudo dpkg --install webmin_1.630_all.deb
 
 sudo apt-get install subversion cvs git maven
 sudo apt-get install tomcat7 apache2
-sudo apt-get install vim dos2unix
+sudo apt-get install vim dos2unix xxdiff
 sudo apt-get install wget curl nmap ssh
 sudo apt-get install smartmontools mon 
 sudo apt-get install cmake scons
 
 sudo apt-get install maven
-sudo dpkg -i --force-all /var/cache/apt/archives/libwagon2-java_2.2-3+nmu1_all.deb
-sudo apt-get -f install
-cd /usr/share
-sudo ln -s maven maven3
+#sudo dpkg -i --force-all /var/cache/apt/archives/libwagon2-java_2.2-3+nmu1_all.deb
+#sudo apt-get -f install
+#cd /usr/share
+#sudo ln -s maven maven3
 
-sudo apt-cache search 5
-sudo apt-get install libdb5.1-dev 
+#sudo apt-cache search 5
+#sudo apt-get install libdb5.1-dev 
 
 sudo apt-get install ssmtp mailutils
 sudo apt-get install geany gedit
@@ -38,10 +38,17 @@ sudo apt-get install openjdk-6-jdk openjdk-7-jdk
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
-sudo ln -s java-7-oracle jdk1.7.0
+sudo apt-get install oracle-java8-installer
+#sudo ln -s java-7-oracle jdk1.7.0
+#Switching between Oracle Java 8 and Java 7
+sudo update-java-alternatives -s java-7-oracle
+sudo update-java-alternatives -s java-8-oracle
+
+#Setting Java environment variables
+sudo apt-get install oracle-java8-set-default
 
 #for jenkins
-sudo apt-get install daemon
+#sudo apt-get install daemon
 
 #cpan
 sudo cpan install CPAN
@@ -68,8 +75,8 @@ sudo cpan install Tree::Simple
 sudo cpan install Tree::Simple::View::ASCII
 
 #http://askubuntu.com/questions/205342/how-do-i-downgrade-to-subversion-1-6
-sudo apt-get remove libsvn1 subversion
-sudo apt-get remove subversion
+#sudo apt-get remove libsvn1 subversion
+#sudo apt-get remove subversion
 
 sudo gedit /etc/apt/sources.list
 ls /etc/apt/sources.list.d/
@@ -99,7 +106,7 @@ sudo apt-get install ansible
 sudo apt-get install python-pip python-dev build-essential
 sudo pip install --upgrade pip
 
-sudo vim /etc/ssh/sshd_config
+sudo nano /etc/ssh/sshd_config
 #Append
 ForwardX11Trusted yes
 
@@ -285,7 +292,7 @@ sudo apt-get install pidgin pidgin-sipe pidgin-skype
 #SVN
 #sudo apt-get install python-nautilus python-configobj python-gtk2 python-glade2 python-svn python-dbus python-dulwich subversion meld
 #sudo add-apt-repository ppa:rabbitvcs/ppa
-deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu precise main
+#deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu precise main
 sudo apt-get update
 sudo apt-get install rabbitvcs-nautilus 
 sudo apt-get install rabbitvcs-gedit 
