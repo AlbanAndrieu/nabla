@@ -25,6 +25,14 @@ sudo apt-get install -f
 sudo mkdir drive
 gmount drive alban.andrieu@nabla.mobi
 
+#in order to change mounting point
+# delete mounting
+gumount MON_REPERTOIRE_INITIAL
+# delete directory
+rm -Rf MON_REPERTOIRE_INITIAL
+# mount again
+gmount REPERTOIRE_CIBLE user@gmail.com
+
 #Insync not OK
 #http://www.howopensource.com/2012/11/install-insync-google-drive-client-in-ubuntu-12-10-12-04-ppa/
 #wget -O - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key | sudo apt-key add -
