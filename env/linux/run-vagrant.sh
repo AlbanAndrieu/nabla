@@ -2,6 +2,7 @@
 #http://www.synbioz.com/blog/vagrant_et_la_virtualisation_pour_faciliter_le_developpement
 
 cd /worspace
+#sudo apt-get remove vagrant:i386
 #sudo wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_x86_64.deb
 #sudo dpkg --install vagrant_1.4.3_x86_64.deb
 sudo wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_i686.deb
@@ -22,6 +23,9 @@ vagrant up
 #vagrant box add precise32 /devel/albandri/tmp/ansible-tuto/precise32.box
 vagrant init base
 vagrant up
+vagrant ssh
+vagrant halt
+vagrant destroy
 
 #vagrant package
 #tar xf package.box
