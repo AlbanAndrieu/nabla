@@ -97,7 +97,7 @@ diff3-cmd = xxdiff-subversion
 ### '*' matches leading dots, e.g. '*.rej' matches '.foo.rej'.
 # global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo
 # .project .cdtproject .settings .cdtbuild
-global-ignores = *.o *.lo *.la *.debug *.opt *.ini *.log *.tmp cobertura.ser generated target bin Debug sun4sol rs6000 x86sol x86linux .project .project.default .cproject .cdtproject .settings .cdtbuild .classpath .wtpmodules .checkstyle .springBeans .externalToolBuilders *.txt *.setup *.properties *.params *.conf *.sav #*# .*.rej *.rej .*~ *~ .#* .DS_Store.checkstyle .springBeans .externalToolBuilders.checkstyle
+global-ignores = *.o *.lo *.la *.debug *.opt *.ini *.log *.tmp cobertura.ser generated target bin Debug sun4sol rs6000 x86sol x86linux .project .project.default .cproject .cdtproject .settings .cdtbuild .classpath .wtpmodules .checkstyle .springBeans .externalToolBuilders *.txt *.setup *.properties *.params *.conf *.sav #*# .*.rej *.rej .*~ *~ .#* .DS_Store.checkstyle .springBeans .externalToolBuilders.checkstyle Desktop Pictures Templates Videos Music Public Downloads Documents
 #   *.rej *~ #*# .#* .*.swp .DS_Store
 ### Set log-encoding to the default encoding for log messages
 # log-encoding = latin1

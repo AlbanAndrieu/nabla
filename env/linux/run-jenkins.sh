@@ -25,6 +25,8 @@
 #change JENKINS_HOME from /var/lib/jenkins/ to /jenkins/
 sudo gedit /etc/default/jenkins
 #change port to 8380
+#add
+#JAVA_ARGS="-Xmx1024m -XX:MaxPermSize=512m"
 #sudo gedit /var/lib/tomcat7/conf/server.xml
 #see http://localhost:8380/jenkins
 

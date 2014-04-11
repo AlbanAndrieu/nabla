@@ -297,3 +297,6 @@ sudo apt-get update
 sudo apt-get install rabbitvcs-nautilus 
 sudo apt-get install rabbitvcs-gedit 
 sudo apt-get install rabbitvcs-cli
+
+#putty
+sudo chown -R albandri:albandri ~/.putty
