@@ -15,6 +15,7 @@ cp -R ~/.VirtualBox /workspace/virtualbox/$USER
 rm -rf ~/.VirtualBox
 ln -s /workspace/virtualbox/$USER/.VirtualBox ~/.VirtualBox
 
-#cp -r ~/VirtualBox\ VMs /workspace/virtualbox/$USER 
-#rm -rf ~/VirtualBox 
-#ln -s /workspace/virtualbox/$USER\VirtualBox\ VMs ~/VirtualBox\ VMs
+cp -r ~/VirtualBox\ VMs /workspace/virtualbox/$USER 
+mkdir -p /workspace/virtualbox/$USER/VirtualBox\ VMs
+#rm -rf ~/VirtualBox \ VMs
+ln -s /workspace/virtualbox/$USER/VirtualBox\ VMs ~/VirtualBox\ VMs

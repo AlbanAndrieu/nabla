@@ -56,7 +56,7 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 #and you're using a Sonar WITH mutation test ... job will fail 
 #I've switched a NABLA project on Sonar page to another profile 
 #without mutation tests
-#there is only one difference between this and CommonProfile <http://home.nabla.mobi:9000/rules_configuration/index/9>  
+#there is only one difference between this and CommonProfile <http://home.nabla.mobi:9000/rules_configuration/index/9>  
 #
 #Config rule called: Survived mutant <http://home.nabla.mobi:9000/rules_configuration/index/9?sort_by=SORT_BY_RULE_NAME&searchtext=mutant&rule_activation=ACTIVE&commit=Search#>  
 #This rule "is supposing" that in the build process there will be a "special" directory for mutation tests
