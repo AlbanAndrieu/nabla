@@ -11,7 +11,7 @@ mailserver: smtp.gmail.com
 repository: http://github.com/bennojoy/mywebapp.git
 #repository: http://github.com/alban/nabla.git
 #repository: https://alban.googlecode.com/svn/trunk/env
-#ubuntu_version_name: saucy
+#xabbixserver: 82.231.208.223,82.231.208.224
 xabbixserver: 82.231.208.223
 defaultdomain: home.nabla.mobi
 nameserver: 82.231.208.223

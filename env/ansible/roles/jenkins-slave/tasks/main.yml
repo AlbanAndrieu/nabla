@@ -1,60 +1,84 @@
-#ansible-playbook jenkins.yml --extra-vars "host=myhost user=myuser" --ask-sudo-pass
+#ansible-playbook jenkins.yml --extra-vars "host=myhost user=myuser" -i hosts --ask-sudo-pass
 
 - name: Install wget package (Debian based)
   action: apt pkg='wget' state=installed
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
-  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
 - name: Install wget package (RedHat based)
   action: yum name='wget' state=installed
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Copy download JDK7 script
   copy: src=download-jdk7.sh dest=/tmp mode=0555
 
 - name: Download JDK7 (Ubuntu)
-  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} /tmp/download-jdk7.sh $jdk_archive
+  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} /tmp/download-jdk7.sh $jdk7_archive
 
 - name: Unpack JDK7
-  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} tar zxvf ${jvm_folder}/$jdk_archive --owner=root
+  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} tar zxvf ${jvm_folder}/$jdk7_archive --owner=root
+  register: jdk7_installed
+  ignore_errors: True
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install JDK7 RPM package
+  action: command creates=${jvm_folder}/latest chdir=${jvm_folder} rpm --force -Uvh ${jvm_folder}/$jdk7_archive
+  register: jdk7_installed
+  ignore_errors: True
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- debug: msg="jdk7_installed value is ${jdk7_installed.stdout} "
+
+- debug: msg="jdk7_installed value is ${jdk7_installed} ${jdk7_installed.skipped} ${jdk7_installed.changed}"
+
+- include: jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk7_archive}
+
+- name: Copy download JDK8 script
+  copy: src=download-jdk8.sh dest=/tmp mode=0555
+
+- name: Download JDK8 (Ubuntu)
+  action: command creates=${jvm_folder}/jdk1.8.0 chdir=${jvm_folder} /tmp/download-jdk8.sh $jdk8_archive
+
+- name: Unpack JDK8
+  action: command creates=${jvm_folder}/jdk1.8.0 chdir=${jvm_folder} tar zxvf ${jvm_folder}/$jdk8_archive --owner=root
   register: jdk_installed
   ignore_errors: True    
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'      
 
-- name: Install JDK7 RPM package
-  action: command creates=${jvm_folder}/latest chdir=${jvm_folder} rpm --force -Uvh ${jvm_folder}/$jdk_archive
+- name: Install JDK8 RPM package
+  action: command creates=${jvm_folder}/latest chdir=${jvm_folder} rpm --force -Uvh ${jvm_folder}/$jdk8_archive
   register: jdk_installed
   ignore_errors: True  
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
-- debug: msg="jdk_installed value is ${jdk_installed.stdout} "
+- debug: msg="jdk8_installed value is ${jdk8_installed.stdout} "
 
-- debug: msg="jdk_installed value is ${jdk_installed} ${jdk_installed.skipped} ${jdk_installed.changed}"
-#  when: is_set("$jdk_installed") 
+- debug: msg="jdk8_installed value is ${jdk8_installed} ${jdk8_installed.skipped} ${jdk8_installed.changed}"
 
-- name: Set java link
-  action: command update-alternatives --install /usr/bin/java java ${jvm_folder}/jdk1.7.0/bin/java 1
-  when: "jdk_installed.changed == 'True'"    
-#  when: "ansible_distribution == 'Debian' and jdk_installed.stdout == 'a'"
-
-- name: Set jar link
-  action: command update-alternatives --install /usr/bin/jar jar ${jvm_folder}/jdk1.7.0/bin/jar 1
-  when: "jdk_installed.changed == 'True'"   
-#  when: "ansible_distribution == 'Debian' and jdk_installed.stdout == 'a'"
-
-#- include: tasks/jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk_archive}
-- include: jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk_archive}
+- include: jdk8-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk8_archive}
  
 - name: Install subversion package (Debian based)
   action: apt pkg='subversion' state=installed
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'      
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Install subversion package (RedHat based)
   action: yum name='subversion' state=installed
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'       
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Create /opt directory
   file: path=/opt state=directory
 
+- name: Download Maven 3.2.1
+  get_url: dest=/opt/maven321.tar.gz url=http://archive.apache.org/dist/maven/binaries/apache-maven-3.2.1-bin.tar.gz
+
+- name: Unpack Maven 3.2.1
+  action: command creates=/opt/maven321 chdir=/opt tar zxvf /opt/maven321.tar.gz
+
+- name: Create Maven 3.2.1 directory link
+  file: path=/opt/maven321 src=/opt/apache-maven-3.2.1 state=link
+
+- name: Create Maven 3.2.1 directory link (legacy required)
+  file: path=/usr/local/apache-maven-3.2.1 src=/opt/apache-maven-3.2.1 state=link
+  
 - name: Download Maven 3.0.4
   get_url: dest=/opt/maven3.tar.gz url=http://archive.apache.org/dist/maven/binaries/apache-maven-3.0.4-bin.tar.gz
 
@@ -78,81 +102,64 @@
 
 - name: Create Maven 2.2.1 directory link (legacy required)
   file: path=/usr/local/apache-maven-2.2.1 src=/opt/apache-maven-2.2.1 state=link
-  
-- name: Set mvn link to Maven 3.0.4
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven3/bin/mvn 1
+
+- name: Download Maven 2.0.9
+  get_url: dest=/opt/maven209.tar.gz url=http://archive.apache.org/dist/maven/binaries/apache-maven-2.0.9-bin.tar.gz
+
+- name: Unpack Maven 2.0.9
+  action: command creates=/opt/maven209 chdir=/opt tar zxvf /opt/maven209.tar.gz
+
+- name: Create Maven 2.0.9 directory link
+  file: path=/opt/maven209 src=/opt/apache-maven-2.0.9 state=link
+
+- name: Create Maven 2.0.9 directory link (legacy required)
+  file: path=/usr/local/apache-maven-2.0.9 src=/opt/apache-maven-2.0.9 state=link
 
 - name: Remove Maven3 archive
   file: path=/opt/maven3.tar.gz state=absent
 
-#- name: Download Jenkins Swarm Client
-#  get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
-#
-#- name: Install swarm client script
-#  template: src=templates/jenkins-swarm-client.tmpl dest=/etc/init.d/jenkins-swarm-client mode=0700
-#
-#vars_prompt:
-#
-#  - name: jenkins_username
-#    prompt: "What is your jenkins user?"
-#    private: no
-#  - name: jenkins_password
-#    prompt: "What is your jenkins password?"
-#    private: yes
-#
-#- fail: msg="Missing parameters!"
-#  when_string: $jenkins_username == '' or $jenkins_password == ''  
-#  
-#- name: Start Jenkins swarm client
-#  action: service name=jenkins-swarm-client state=started enabled=yes  
+- name: Remove Maven2 archive
+  file: path=/opt/maven2.tar.gz state=absent
 
-#http://drupalcode.org/sandbox/franskuipers/1801378.git/blob/e0d2e3dd3f3b9ff7f9ace61f9e56c56a1f28e915:/ansible.yml  #
+- name: Remove Maven209 archive
+  file: path=/opt/maven209.tar.gz state=absent
 
 ##
  # node.js installation (latest stable instead of Ubuntu's out-of-date one)
  #
 - name: Node.js | Package prerequisites for node.js
   action: apt pkg=python-software-properties state=installed
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nodejs
 
 #- name: add node.js repos
-#  apt_repository: repo='deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu ${ubuntu_version_name} main' 
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
 - name: Node.js | Add the node.js PPA
   action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-${ubuntu_version_name}.list
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nodejs
 
 - name: Node.js | Update the apt cache for the new repository
   action: apt update-cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nodejs
 
 - name: Node.js | Install nodejs and npm
   action: apt pkg=$item state=installed
   tags: nodejs
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
-#DO NOT INSTALL    - node
+#WARNING DO NOT INSTALL    - node
     - nodejs
-     
-#TODO
-#- name: Install npm tools (Debian based)
-#  apt: pkg={{ item }} state=present update_cache=yes
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-#  with_items:
-#   - npm
-   
+
 - name: Install karma tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
    - karma-tools
-   
+
 - name: Install selenium tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
    - xfonts-100dpi
    - xfonts-75dpi
@@ -161,45 +168,90 @@
    - xvfb
    - x11-apps
    - imagemagick
-     
+
 # NPM may or may not succeed, if you give it time, care, etc. it eventually works
+
+- name: Ensure npm settings
+  command: chdir=/usr/bin npm config set prefix /usr/local
+
+- name: Ensure npm is properly installed
+  command: chdir=/usr/bin npm config get prefix
+
 - name: Ensure the grunt npm dependencies are installed
   command: chdir=/usr/bin npm install -g grunt
-  
+
 - name: Ensure the grunt-cli npm dependencies are installed
   command: chdir=/usr/bin npm install -g grunt-cli
-     
+
 - name: Ensure the bower npm dependencies are installed
   command: chdir=/usr/bin npm install -g bower
 
 - name: Ensure the protractor npm dependencies are installed
   command: chdir=/usr/bin npm install -g protractor
 
-- name: Ensure the karma npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma
-
-- name: Ensure the karma-junit-reporter npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-junit-reporter
-  
-- name: Ensure the karma-ng-scenario npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ng-scenario
-  
-- name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor
-  
-- name: Ensure the karma-coverage npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-coverage  
-
 - debug: msg="ansible_distribution_version value is ${ansible_distribution_version} "
 - debug: msg="ansible_distribution_release is ${ansible_distribution_release} "
 
-#specific does not work for ubuntu 13.04 and 13.10
+- name: Ensure the karma npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma@0.12.4
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'precise' )
+
+#Ubuntu 12 ln -s /usr/local/lib/node_modules/karma/bin/karma /usr/local/bin/karma
+#- name: Create karma binaries link (legacy required)
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  file: path=/usr/local/bin/karma src=/usr/local/lib/node_modules/karma/bin/karma state=link
+ 
+#TODO below does not works
+#- name: Update karma rights
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  file: path=/usr/local/lib/node_modules mode=0777 owner=root group=root state=directory recurse=yes
+
 - name: Ensure the karma npm dependencies are installed
   command: chdir=/usr/bin npm install -g karma
-  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'saucy' )  
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'saucy' )
+
+- name: Ensure the karma-junit-reporter npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-junit-reporter
+
+- name: Ensure the karma-ng-scenario npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-ng-scenario
+
+- name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor
+
+- name: Ensure the karma-coverage npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-coverage
+
+- name: Ensure the karma-jasmine npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-jasmine
+
+- name: Ensure the jasmine-reporters npm dependencies are installed
+  command: chdir=/usr/bin npm install -g jasmine-reporters
+
+- name: Ensure the phantomjs npm dependencies are installed
+  command: chdir=/usr/bin npm install -g phantomjs
+
+- name: Ensure the karma-requirejs npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-requirejs
+  
+- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher
+  
+- name: Ensure the karma-chrome-launcher npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-chrome-launcher
+  
+- name: Ensure the karma-firefox-launcher npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-firefox-launcher
+  
+- name: Ensure the karma-ie-launcher npm dependencies are installed
+  command: chdir=/usr/bin npm install -g karma-ie-launcher
+
+#- name: Ensure the webdriverjs npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g webdriverjs
 
 #TODO check /etc/apt/sources.list
-#TODO wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+#TODO wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 #TODO add sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 - name: Add google repos
   apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
@@ -209,31 +261,42 @@
 
 - name: install google
   apt: name=google-chrome-stable state=latest update_cache=yes
-     
-#specific for ubuntu 13.04 and 13.10
-- name: Install selenium tools specific (Debian based)
+
+- name: Install browser tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+   - firefox
+   - chromium-browser
+
+- name: Install browser tools specific (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+#specific for ubuntu 13.04 and 13.10
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' )
   with_items:
-   - firefox  
    - chromium-chromedriver
-
+   
+#TODO by hand for Ubuntu saucy
+#cd /usr/lib/chromium-browser
+#wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+#unzip chromedriver_linux64.zip   
+   
 - name: Enable Yum repo for Google Chrome
   copy: dest=/etc/yum.repos.d/google-chrome.repo src=google-chrome.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
-  
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
 - name: Install Google Chrome
   yum: name=google-chrome-stable state=present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
-  
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
 - name: Enable Yum repo for Google Talk
   copy: dest=/etc/yum.repos.d/google-talkplugin.repo src=google-talkplugin.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
-  
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
 - name: Install Google Talk Plugin
   yum: name=google-talkplugin state=present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'      
-        
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
 ##
  # CSS compiling tools.
  #
@@ -259,7 +322,7 @@
 
 - name: Install C++ tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
    - libxml-dom-perl
    - libfile-find-rule-perl
@@ -274,30 +337,30 @@
 # jenkins user
 - name: Create jenkins user
   user: name=jenkins comment="Jenkins slave user" home=${jenkins_home} shell=/bin/bash
-  ignore_errors: True  
-  
+  ignore_errors: True
+
 - name: Create .ssh folder
   file: path=${jenkins_home}/.ssh state=directory mode=0700 owner=jenkins
   ignore_errors: True
 
 - name: Add passwordless connection for jenkins (Alban Andrieu)
   authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAio3SOQ9yeK6QfKqSFNKyTasuzjStxWevG1Vz1wgJIxPF+KB0XoMAPD081J+Bzj2LCDRSWisNv2L4xv2jbFxW/Pl7NEakoX47eNx3U+Dxaf+szeWBTryYcDUGkduLV7G8Qncm0luIFd+HDIe/Qir1E2f56Qu2uuBNE6Tz5TFt1vc= Alban"
-    
-- name: Add passwordless connection for jenkins (Daniel Horecki)    
+
+- name: Add passwordless connection for jenkins (Daniel Horecki)
   authorized_key: user=jenkins key="ssh-dss AAAAB3NzaC1kc3MAAACBAIO8vc4W3vQTQKE6K/r20Wi99FOrsekK72greyX0GnaDvJBPaohvlqt7OSW1rlKRdSAtEDuUPxlFmRoo6Z7aYFlomPX2CjtjDQK/4nY3Pc6s8mMaP1c6bSpPIgU38EXTuZ86zD8xf6D4yhg4PFVOMrtmHkHNo+h1Hlyid6HpQlyvAAAAFQCuacCxq2NPae6p18AytAheOq7kSwAAAIBkvig1Gwy37Qyc3Rr4MTguNDG94g+ETyayJpw8dT7yu+bSmV7ZNsEuGn9bFZBwVZ9xCNlcaFJtOnWxLGSpHh92xjp5fMge8jg1MfoNbZOBT0BFdd4TrTiOHJ7Y+c2PKxfaQK3K42jfKVTpwMlUnpHL5N9nyxPD+5OQCfXEFjXmOAAAAIAEqATEIgg8J0ivrzsjVCXP/eQy+YloRZ6h71Qb8UEZDGr7h/zUPjnKKe42bn7gW0WCvXq0CPJYr/JLI3AXnc83jx1BvFa+6bfjYH1K26ETxA/21p0jkWczFcriQlBVurzc1Tlfs4ftbyNSu/Bd85seLxTGq7wfUhrxbo1P6u2EvA== bespin"
-    
-- name: Add passwordless connection for jenkins (Micahl Tyde)    
+
+- name: Add passwordless connection for jenkins (Micahl Tyde)
   authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAobOs/19MAmxx8ri8ybVIr4GfQqgvq+1z2u44YEoyhbWg8T8cxhQ72jiukoxmMHhydXrQ/43Yf7pX17R8FYhDQRVik6iSKlT6wUZSJOx4052sV5U93+0muHL9YJWVYXU4B3yNNnVMf7xwG71YSnnXw+gPAnYD0C5QIuAsbR6/6tb0ns5U5j8ZLy8jDXVfKf5T+4fl8ptU8hxZ1EHA6pArXGAa1XbEb5pf+ts6XAOpr8MMY0AhoO5NCumwfkyL9k9l/k6Jd7DQiIjDtKBNiyyeF+voY0e8Hv0Pu6Gj91ZSGsGl/zJVPwzDB52xl7jWS5BaDZoezPLF3yy7zbp9WqJJDw== rsa-key-20140108"
-            
+
 - name: Add passwordless connection for jenkins master
   authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEArEZwPYeyr98mgnng7WaFUB7zkwMWo3nGR6GZrHaCxJkVfzAQMNZXeQPugPXCxBq8sb+ZQiWA3CfYOmUxwbNLgFOGvpucp6OSKmy+Bzrxhpf5d91UgvUVZwYSrqfF/wwvS+sxbsYmKlsqcDMVBN2q8YQypKVDPSstAnVBwV4dR9c= kgr@kenvng"
-    
+
 - name: Update authorized_keys rights
   file: path=${jenkins_home}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
 
 - name: Copy the .netrc script for git credentials
   copy: src=.netrc dest=${jenkins_home}/.netrc mode=0600 owner=jenkins
-  
+
 - name: Update git .netrc rights
   file: path=${jenkins_home}/.netrc state=file mode=0600 owner=jenkins
 
@@ -306,13 +369,13 @@
 
 - name: Copy maven configuration
   copy: src=settings.xml dest=${jenkins_home}/.m2/ backup=yes owner=jenkins
-   
+
 - name: Jenkins can run any command with no password
   lineinfile: "line='jenkins ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^jenkins'"
-
+ 
 - name: Copy sonar runner configuration
   copy: src=sonar-runner.properties dest=/kgr-mvn/ backup=yes owner=jenkins
-
+  
 - name: Create /kgr-mvn directory
   file: path=/kgr-mvn state=directory
 
@@ -320,10 +383,46 @@
   file: path=/kgr-mvn/repository state=directory owner=jenkins
 
 - name: Create Jenkins slave directory
-  file: path=/kgr-mvn/jenkins-slave state=directory owner=jenkins
+  file: path=/kgr-mvn/jenkins-slave state=directory owner=jenkins mode=0775
 
 - name: Create Java directory link (legacy required)
   file: path=/kgr-mvn/jdk src=/usr/lib/jvm/jdk1.7.0 state=link
-    
+
 #END OF TODO extract jenkins user to another script
 
+- name: Set java link
+  action: command update-alternatives --install /usr/bin/java java ${jvm_folder}/jdk1.7.0/bin/java 1
+  when: "jdk7_installed.changed == 'True'"
+
+- name: Set jar link
+  action: command update-alternatives --install /usr/bin/jar jar ${jvm_folder}/jdk1.7.0/bin/jar 1
+  when: "jdk7_installed.changed == 'True'"
+  
+#- name: Set java link
+#  action: command update-alternatives --install /usr/bin/java java ${jvm_folder}/jdk1.8.0/bin/java 1
+#  when: "jdk8_installed.changed == 'True'"
+
+#- name: Set jar link
+#  action: command update-alternatives --install /usr/bin/jar jar ${jvm_folder}/jdk1.8.0/bin/jar 1
+#  when: "jdk8_installed.changed == 'True'"
+   
+- name: Set mvn link to Maven 3.0.4
+  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven3/bin/mvn 1
+  
+- name: Download Jenkins Swarm Client
+  get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
+
+- name: Install swarm client script
+  template: src=jenkins-swarm-client.tmpl dest=/etc/init.d/jenkins-swarm-client mode=0700
+
+- fail: msg="Missing parameters!"
+  when_string: $jenkins_username == '' or $jenkins_password == ''
+
+- name: Start Jenkins swarm client
+  action: service name=jenkins-swarm-client state=started enabled=yes
+
+#http://drupalcode.org/sandbox/franskuipers/1801378.git/blob/e0d2e3dd3f3b9ff7f9ace61f9e56c56a1f28e915:/ansible.yml  #
+
+#- name: Clone the application
+#  action: git repo=http://almtools/stash/scm/risk/buildmasters.git dest=/jenkins/buildmasters
+  

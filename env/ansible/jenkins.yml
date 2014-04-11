@@ -1,4 +1,6 @@
-#ansible-playbook jenkins.yml --extra-vars "host=myhost user=myuser" --ask-sudo-pass
+#as root 
+#ansible-playbook jenkins.yml --extra-vars "jenkins_username=aandrieu jenkins_password=tbd" -i hosts -vvvv
+#--ask-sudo-pass
 
 - name: apply common configuration to all jenkins slaves
 #  hosts: jenkins-slaves
@@ -8,6 +10,14 @@
   vars_files:
   - [ "roles/jenkins-slave/vars/defaults.yml" ]
   - [ "roles/jenkins-slave/vars/$ansible_distribution-$ansible_architecture.yml", "roles/jenkins-slave/vars/$ansible_distribution.yml" ]
-    
+
+  vars_prompt:
+  - name: jenkins_username
+    prompt: "What is your jenkins user?"
+    private: no
+  - name: jenkins_password
+    prompt: "What is your jenkins password?"
+    private: yes
+
   roles:
     - jenkins-slave

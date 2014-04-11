@@ -1,11 +1,9 @@
 ---     
 
-#as root
+#as root (without vagrant)
 #ansible-playbook -i hosts site.yml -vvvv
-#or using your own user
+#as root (pass vagrant is needed for vagrant to work)
 #ansible-playbook -i hosts site.yml -vvvv --ask-pass --sudo
-#
-#todo ansible-playbook -c paramiko
 
 # This playbook can be run using vagrant (on virtual box). 
 - hosts: test-boxes

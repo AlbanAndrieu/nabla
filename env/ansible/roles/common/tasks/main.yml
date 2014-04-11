@@ -89,18 +89,12 @@
    - cvs
    - git
       
-##
- # JAVA build tools.
- #           
 - name: Install Java build tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - maven
 
-##
- # CPP build tools.
- #   
 - name: Install CPP build tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -127,11 +121,7 @@
   with_items:
    - daemon
    - mailutils
-   - unzip 
 
-##
- # NTP tools.
- #     
 #- name: Install connection tools (apt))
 #  apt: pkg={{ item }} state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -140,6 +130,7 @@
 #   - ntp
 #   - autofs
 
+# ptxidns01/nissrv01 is dns for france.effix.fr and nis for france.effix.fr
 - name: Configure domain file
   template: src=defaultdomain-$ansible_distribution-$ansible_architecture.j2 dest=/etc/defaultdomain
   tags: domain
@@ -166,10 +157,7 @@
 - name: Start the ntp service
   service: name=ntp state=started enabled=true
   tags: ntp
-
-##
- # NIS tools.
- #   
+ 
 - name: Install nis (apt)
   apt: pkg=nis state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
@@ -195,9 +183,6 @@
   service: name=nis state=started enabled=true
   tags: nis
   
-##
- # AUTOFS tools.
- #     
 - name: Install autofs (apt)
   apt: pkg=autofs state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
@@ -241,37 +226,5 @@
   template: src=sendmail.cf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/mail/sendmail.cf
   tags: autofs
   notify: restart autofs
-
-#- name: add zfs repos
-#  apt_repository: repo='deb http://example.com/ubuntu precise main'
-#  apt_repository: repo='deb http://example.com/ubuntu precise-updates main'
-#  apt_repository: repo='deb http://ppa.launchpad.net/zfs-native/stable/ubuntu ${ubuntu_version_name} main' 
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-
-##
- # ZFS tools.
- #  
-- name: ZFS | Add the ZFS native PPA
-  action: command add-apt-repository -y ppa:zfs-native/stable creates=/etc/apt/sources.list.d/custom-zfs-${ubuntu_version_name}.list
-  tags: zfs
-   
-#- name: ZFS | Add the ZFS grub PPA
-#  action: command add-apt-repository -y ppa:zfs-native/grub creates=/etc/apt/sources.list.d/custom-zfs-${ubuntu_version_name}.list
-#  tags: zfs   
-
-- name: ZFS | Update the apt cache for the new repository
-  action: apt update-cache=yes
-  tags: zfs
-
-- name: Install zfs (Debian based)
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:
-   - ubuntu-zfs
-   - zfs-fuse
-   - debootstrap
-   - grub2-common 
-   - grub-pc  
-   - zfs-initramfs
 
 - include: copy-keys.yml

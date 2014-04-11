@@ -1,3 +1,7 @@
 ---
 #NIS issue jenkins_home: /home/jenkins
 jenkins_home: /jenkins
+jenkins_url: https://home.nabla.mobi/jenkins
+jenkins_slave_name: swarm-{{ ansible_hostname }}
+#prompted jenkins_username: tbd
+#prompted jenkins_password: tbd
