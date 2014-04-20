@@ -1766,7 +1766,7 @@
 				<maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
 				<maven.clover.plugin.version>${clover.version}</maven.clover.plugin.version>
 				<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
-				<maven.replacer.plugin.version>1.5.2</maven.replacer.plugin.version>
+				<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 				<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
 				<maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
 				<maven.sonar.maven.plugin.version>2.2</maven.sonar.maven.plugin.version>
