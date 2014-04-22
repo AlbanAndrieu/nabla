@@ -30,6 +30,7 @@
    - vim
    - geany
    - gedit
+   - xxdiff
 
 - name: Install monitoring tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
@@ -39,8 +40,8 @@
    - mon
    - ssmtp
    - zabbix-agent 
-   - snmp
-   - snmpd
+   - snmp # for cacti
+   - snmpd # for cacti
 
 # ansible
 - name: Test ansible is installed

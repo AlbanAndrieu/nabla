@@ -20,6 +20,7 @@ sudo apt-get install libnss-myhostname
 
 less /etc/network/interfaces
 
+----------------------------------------------------------
 #network
 auto lo
 iface lo inet loopback
@@ -43,6 +44,63 @@ netmask 255.255.0.0
 broadcast 150.151.255.255
 dns-search france.effix.fr misys.global.ad
 dns-nameservers 150.151.192.1 150.151.192.2 150.151.192.3
+----------------------------------------------------------
+#network
+auto lo
+iface lo inet loopback
+
+# this NIC must be on management network
+auto eth0
+iface eth0 inet static
+address 10.25.40.161
+gateway 150.151.192.4
+netmask 255.255.0.0
+broadcast 150.151.255.255
+dns-search misys.global.ad
+dns-nameservers 10.21.200.3 10.25.200.3
+
+# this NIC will be used for VM traffic to the internet
+auto eth1
+iface eth1 inet static
+address 10.25.40.161
+gateway 150.151.192.4
+netmask 255.255.0.0
+broadcast 150.151.255.255
+dns-search misys.global.ad
+dns-nameservers 10.21.200.3 10.25.200.3
+----------------------------------------------------------
+TODO
+#network
+auto lo
+iface lo inet loopback
+
+# this NIC must be on management network
+auto eth0
+iface eth0 inet static
+address 10.25.40.161
+gateway 150.151.192.4
+netmask 255.255.0.0
+broadcast 150.151.255.255
+dns-search misys.global.ad
+dns-nameservers 10.21.200.3 10.25.200.3
+
+# this NIC will be used for VM traffic to the internet
+auto eth1
+iface eth1 inet static
+address 10.25.40.161
+gateway 150.151.192.4
+netmask 255.255.0.0
+broadcast 150.151.255.255
+dns-search misys.global.ad
+dns-nameservers 10.21.200.3 10.25.200.3
+
+iface br0 inet static
+	bridge_ports eth0
+	address 192.168.1.250
+	netmask 255.255.255.0
+	gateway 192.168.1.254
+	broadcast 192.168.1.255
+----------------------------------------------------------
 
 #look at http://albandri/horizon
 
@@ -159,7 +217,6 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-
 #Définition des rôles
 keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9   
 
-#TODO
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneServiceAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ glance / { print $2 }'` --role `keystone role-list | awk '/ admin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ service / { print $2 }'`
@@ -535,16 +592,20 @@ sudo chown -R nova:nova /etc/nova/
 
 sudo apt-get install nova-novncproxy
 
-for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" stop; done
-for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" start; done
-#TODO
+for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth nova-novncproxy; do sudo service "$a" stop; done
+for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth nova-novncproxy; do sudo service "$a" start; done
+
+#if
 nova-volume: unrecognized service
-novnc: unrecognized service
 
-#TODO
-sudo service novnc status
-novnc: unrecognized service
-
+initctl show-config | grep nova
+sudo initctl reload-configuration
+initctl list-sessions
+initctl list | grep nova
+#sudo update-rc.d nova-volume disable
+ll /etc/init/nova-volume.conf
+#get the file nova-volume.conf
+ 
 sudo nova-manage db sync
 
 for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" stop; done
@@ -655,6 +716,8 @@ nova boot --flavor 1 --image 73be1172-63ea-40a2-abef-59b937fe3d50 myfirstvm --ke
 nova show myfirstvm
 
 TODO NOK
+sudo ln -s /usr/bin/nova-dhcpbridge /usr/local/bin/nova-dhcpbridge
+nova reset-state 1d6ff00c-ee01-4db9-abb8-4967fb30df6d
 
 nova --debug volume-create --display_name "volume1" 10
 
@@ -682,11 +745,33 @@ cd devstack
 ------------
 
 #https://wiki.ubuntu.com/ServerTeam/CloudArchive#Havana
+#https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
 
-apt-get install ubuntu-cloud-keyring
+sudo apt-get install ubuntu-cloud-keyring
 echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/grizzly main" >> sudo /etc/apt/sources.list.d/cloud-archive.list
 sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+#install first package 
+apt-get install -y keystone
+#check right version 
+dpkg -s keystone
 
 git clone https://github.com/jedipunkz/openstack_grizzly_install
 cd openstack_grizzly_install
 cp setup.conf.samples/setup.conf.allinone.nova-network setup.conf
+nano setup.conf
+
+sudo service networking restart
+
+sudo su - root
+
+cd /devel/albandri/openstack_grizzly_install
+./setup.sh allinone
+
+TODO https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
+
+ 2012.1|2012.1.*) os_dist='essex';;
+ 2012.2|2012.2.*) os_dist='folsom';;
+ 2013.1|2013.1.*) os_dist='grizzly';;
