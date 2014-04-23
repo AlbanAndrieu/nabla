@@ -44,63 +44,36 @@ netmask 255.255.0.0
 broadcast 150.151.255.255
 dns-search france.effix.fr misys.global.ad
 dns-nameservers 150.151.192.1 150.151.192.2 150.151.192.3
+
+#albandri 192.168.0.29
+#freebox 192.168.0.254
+sudo ifconfig
+#inet addr:192.168.0.29  Bcast:192.168.0.255  Mask:255.255.255.0
+
 ----------------------------------------------------------
-#network
+# interfaces(5) file used by ifup(8) and ifdown(8)
 auto lo
 iface lo inet loopback
+        post-up iptables-restore < /etc/iptables.up.rules
 
-# this NIC must be on management network
 auto eth0
-iface eth0 inet static
-address 10.25.40.161
-gateway 150.151.192.4
-netmask 255.255.0.0
-broadcast 150.151.255.255
-dns-search misys.global.ad
-dns-nameservers 10.21.200.3 10.25.200.3
+iface eth0 inet manual
 
-# this NIC will be used for VM traffic to the internet
 auto eth1
-iface eth1 inet static
-address 10.25.40.161
-gateway 150.151.192.4
-netmask 255.255.0.0
-broadcast 150.151.255.255
-dns-search misys.global.ad
-dns-nameservers 10.21.200.3 10.25.200.3
-----------------------------------------------------------
-TODO
-#network
-auto lo
-iface lo inet loopback
+iface eth1 inet manual
 
-# this NIC must be on management network
-auto eth0
-iface eth0 inet static
-address 10.25.40.161
-gateway 150.151.192.4
-netmask 255.255.0.0
-broadcast 150.151.255.255
-dns-search misys.global.ad
-dns-nameservers 10.21.200.3 10.25.200.3
-
-# this NIC will be used for VM traffic to the internet
-auto eth1
-iface eth1 inet static
-address 10.25.40.161
-gateway 150.151.192.4
-netmask 255.255.0.0
-broadcast 150.151.255.255
-dns-search misys.global.ad
-dns-nameservers 10.21.200.3 10.25.200.3
-
+auto br0
 iface br0 inet static
-	bridge_ports eth0
-	address 192.168.1.250
-	netmask 255.255.255.0
-	gateway 192.168.1.254
-	broadcast 192.168.1.255
-----------------------------------------------------------
+        bridge_ports eth0
+        address 192.168.0.29
+        netmask 255.255.255.0
+        gateway 192.168.0.254
+        broadcast 192.168.0.255
+
+auto br1
+iface br1 inet manual
+        bridge_ports eth
+----------------------------------------------------------        
 
 #look at http://albandri/horizon
 
@@ -217,6 +190,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-
 #Définition des rôles
 keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9   
 
+#TODO
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneServiceAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ glance / { print $2 }'` --role `keystone role-list | awk '/ admin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ service / { print $2 }'`
