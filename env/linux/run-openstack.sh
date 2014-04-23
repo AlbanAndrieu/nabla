@@ -1,8 +1,9 @@
 #http://doc.ubuntu-fr.org/openstack
+#sdfsdf
 
 sudo apt-get install kvm libvirt-bin virtinst mysql-server python-mysqldb
 sudo apt-get install -y vlan bridge-utils
-
+#sdgsgsd
 sudo apt-get install ntp
 sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2 
 sudo apt-get install rabbitmq-server memcached python-memcache
@@ -51,6 +52,8 @@ sudo ifconfig
 #inet addr:192.168.0.29  Bcast:192.168.0.255  Mask:255.255.255.0
 
 ----------------------------------------------------------
+TODO
+#network
 # interfaces(5) file used by ifup(8) and ifdown(8)
 auto lo
 iface lo inet loopback
@@ -190,7 +193,6 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-
 #Définition des rôles
 keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9   
 
-#TODO
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneServiceAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ glance / { print $2 }'` --role `keystone role-list | awk '/ admin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ service / { print $2 }'`
