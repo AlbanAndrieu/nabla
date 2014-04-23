@@ -1283,7 +1283,7 @@
 		<sonar.language>java</sonar.language>
 		<!--
 		<jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
-		<jetty.context.path>/webapiui</jetty.context.path>
+		<jetty.context.path>/nabla</jetty.context.path>
 		-->
 
 				<!-- BEGIN of Thirdparties versions stick to project recommandations -->
@@ -1384,7 +1384,7 @@
 				<ant.trax.version>1.7.0</ant.trax.version>
 				<ant.contrib.version>20020829</ant.contrib.version>
 				<c3p0.version>0.8.5.2</c3p0.version>
-				<jacoco.version>0.6.4.201312101107</jacoco.version>
+				<jacoco.version>0.7.1-SNAPSHOT</jacoco.version>
 
 				<jdbc.derby.version>10.10.1.1</jdbc.derby.version>
 				<jdbc.org.hsqldb.version>2.3.1</jdbc.org.hsqldb.version>
@@ -3335,7 +3335,7 @@
 							</execution>
 							<execution>
 								<id>default-report</id>
-								<phase>test</phase>
+								<phase>prepare-package</phase>
 								<goals>
 									<goal>report</goal>
 								</goals>
@@ -3344,7 +3344,7 @@
 								<id>default-prepare-agent-integration</id>
 								<phase>pre-integration-test</phase>
 								<goals>
-									<goal>prepare-agent</goal>
+									<goal>prepare-agent-integration</goal>
 								</goals>
 								<configuration>
 											<destFile>target/jacoco-it.exec</destFile>
@@ -3355,7 +3355,7 @@
 								<id>default-report-integration</id>
 								<phase>post-integration-test</phase>
 								<goals>
-									<goal>report</goal>
+									<goal>report-integration</goal>
 								</goals>
 								<configuration>
 											<dataFile>target/jacoco-it.exec</dataFile>
