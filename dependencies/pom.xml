@@ -4074,7 +4074,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</avoidCallsTo>
 						<jvmArgs>
 							<value>-Xms512m</value>
-							<value>-Xmx4000m</value>
+							<value>-Xmx2000m</value>
 							<value>-XX:PermSize=256m</value>
 							<value>-XX:MaxPermSize=512m</value>
 						</jvmArgs>
