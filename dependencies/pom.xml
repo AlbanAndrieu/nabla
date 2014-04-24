@@ -1495,7 +1495,7 @@
 		<ehcache.version>2.4.6</ehcache.version>
 				<ehcache.jar.version>1.5.0</ehcache.jar.version>
 				<ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
-				<org.javassist.version>3.15.0-GA</org.javassist.version>
+				<org.javassist.version>3.18.1-GA</org.javassist.version>
 				<javassist.version>3.12.1.GA</javassist.version>
 				<el.version>1.2</el.version>
 				<facelets.version>1.1.13</facelets.version>
