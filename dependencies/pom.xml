@@ -4073,10 +4073,10 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
 						</avoidCallsTo>
 						<jvmArgs>
-							<value>-Xms512m</value>
-							<value>-Xmx2000m</value>
-							<value>-XX:PermSize=256m</value>
-							<value>-XX:MaxPermSize=512m</value>
+							<value>-Xms256m</value>
+							<value>-Xmx512m</value>
+							<value>-XX:PermSize=128m</value>
+							<value>-XX:MaxPermSize=256m</value>
 						</jvmArgs>
 						<detectInlinedCode>true</detectInlinedCode>
 						<targetClasses>
