@@ -1258,25 +1258,54 @@
 				<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 				<bundle.namespace>${project.groupId}</bundle.namespace>
 
-		<!-- Sonar properties -->
+		<!-- ************************ -->
+		<!-- Sonar/Reporting settings -->
+		<!-- ************************ -->
+		<!-- Sonar/Jacoco integration. Note that these properties need to be defined outside the "coverage" profile
+		because we want to be to able to execute mvn sonar:sonar without passing a profile -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+		<!-- Tells Sonar to use jacoco for coverage results -->
+		<!-- Don't let Sonar execute tests. We will ask it to Maven -->
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<!--<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>-->
-		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+		<!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test -->
+		<sonar-jacoco-listeners.version>1.4</sonar-jacoco-listeners.version>
+		<!-- The system property jacoco.outputDir needs to be override on the command line
+		with an absolute path if you want to merge results from all modules.
+		Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
+		mvn clean install -Prun-its,coverage -Djacoco.outputDir=${WORKSPACE}/target
+		Note that unfortunately using the following does not work because of
+		 
+		http://jira.codehaus.org/browse/SONAR-3427:
+		 
+		<jacoco.outputDir>${session.executionRootDirectory}/target/</jacoco.outputDir>
+		-->
+		<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
+		<!-- Jacoco output file for UTs -->
+		<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
+		<!-- Tells Sonar where the Jacoco coverage result file is located for Unit Tests -->
+		<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
+		<!-- Jacoco output file for ITs -->
+		<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
+		<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
+		<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+
+		<!--
+		<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath> 
+		<sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
+		-->
+		
 		<clover.enabled>true</clover.enabled>
 		<clover.jdkLevel>1.6</clover.jdkLevel>
 		
 		<sonar.clover.version>${clover.version}</sonar.clover.version>
 		<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
+		
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>	-->
 		<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
-
-		<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath> <!-- This is the default, put here to be explicit -->
-		<!--<sonar.jacoco.itReportPath>${project.basedir}/reports/jacoco.exec</sonar.jacoco.itReportPath>-->
-		<!--<sonar.jacoco.itReportPath>target/jacoco-it.exec</sonar.jacoco.itReportPath>-->
-		<sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
-
+		
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>		
 		<sonar.java.target>1.7</sonar.java.target>
@@ -2404,9 +2433,9 @@
 												<tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>
 												<tagNameFormat>@{project.version}</tagNameFormat>
 												<checkModificationExcludes>
-							<checkModificationExclude>**/*.log</checkModificationExclude>
-						</checkModificationExcludes>
-						<!--<allowTimestampedSnapshots>true</allowTimestampedSnapshots>-->
+													<checkModificationExclude>**/*.log</checkModificationExclude>
+												</checkModificationExcludes>
+												<!--<allowTimestampedSnapshots>true</allowTimestampedSnapshots>-->
 										</configuration>
 								</plugin>
 								<plugin>
@@ -2441,34 +2470,34 @@
 																				<banSnapshots>false</banSnapshots>
 																				<phases>clean,deploy,site</phases>
 																		</requirePluginVersions>
-											<requireReleaseDeps>
-											  	<message>No Snapshots Allowed!</message>
-											  	<!--
-				  								<excludes>
-				  								  <exclude>org.apache.maven:maven-core</exclude>
-				  								  <exclude>org.apache.maven.plugins:*</exclude>
-				  								</excludes>
-				  								-->
-											</requireReleaseDeps>
-											<requireReleaseVersion>
-											  <message>No Snapshots Allowed!</message>
-											</requireReleaseVersion>
- 									<requireSameVersions>
-											  <plugins>
-												<plugin>org.apache.maven.plugins:maven-surefire-plugin</plugin>
-												<plugin>org.apache.maven.plugins:maven-failsafe-plugin</plugin>
-												<plugin>org.apache.maven.plugins:maven-surefire-report-plugin</plugin>
-											  </plugins>
-											</requireSameVersions>
-											<requireSameVersions>
-											  <dependencies>
-												<dependency>org.apache.maven</dependency> <!-- or org.apache.maven:* -->
-											  </dependencies>
-											</requireSameVersions>
-									<requireUpperBoundDeps>
-											  <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
-											  <!-- <uniqueVersions>true</uniqueVersions> -->
-											</requireUpperBoundDeps>
+																		<requireReleaseDeps>
+																			<message>No Snapshots Allowed!</message>
+																			<!--
+																			<excludes>
+																			  <exclude>org.apache.maven:maven-core</exclude>
+																			  <exclude>org.apache.maven.plugins:*</exclude>
+																			</excludes>
+																			-->
+																		</requireReleaseDeps>
+																		<requireReleaseVersion>
+																		  <message>No Snapshots Allowed!</message>
+																		</requireReleaseVersion>
+																		<requireSameVersions>
+																		  <plugins>
+																			<plugin>org.apache.maven.plugins:maven-surefire-plugin</plugin>
+																			<plugin>org.apache.maven.plugins:maven-failsafe-plugin</plugin>
+																			<plugin>org.apache.maven.plugins:maven-surefire-report-plugin</plugin>
+																		  </plugins>
+																		</requireSameVersions>
+																		<requireSameVersions>
+																		  <dependencies>
+																			<dependency>org.apache.maven</dependency> <!-- or org.apache.maven:* -->
+																		  </dependencies>
+																		</requireSameVersions>
+																		<requireUpperBoundDeps>
+																		  <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
+																		  <!-- <uniqueVersions>true</uniqueVersions> -->
+																		</requireUpperBoundDeps>
 																</rules>
 																<fail>true</fail>
 														</configuration>
@@ -3313,78 +3342,86 @@
 												</formats>
 										</configuration>
 								</plugin>
-				<plugin>
-					<groupId>org.jacoco</groupId>
-					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>${maven.jacoco.plugin.version}</version>
-					<configuration>
-						<!-- includes>
-							<include>com.nabla.project.**</include>
-						</includes -->
-						<dumpOnExit>true</dumpOnExit>
-						<append>true</append>
-						<output>file</output>
-						<!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
-					</configuration>
-						<executions>
-							<execution>
-								<id>default-prepare-agent</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>default-report</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>report</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>default-prepare-agent-integration</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>prepare-agent-integration</goal>
-								</goals>
-								<configuration>
-											<destFile>target/jacoco-it.exec</destFile>
-											<propertyName>failsafe.argLine</propertyName>
-										</configuration>
-							</execution>
-							<execution>
-								<id>default-report-integration</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>report-integration</goal>
-								</goals>
-								<configuration>
-											<dataFile>target/jacoco-it.exec</dataFile>
-										</configuration>
-							</execution>
-							<execution>
-								<id>default-check</id>
-								<goals>
-									<goal>check</goal>
-								</goals>
-								<configuration>
-									<rules>
-										<!--  implmentation is needed only for Maven 2  -->
-										<rule implementation="org.jacoco.maven.RuleConfiguration">
-											<element>BUNDLE</element>
-											<limits>
-												<!--  implmentation is needed only for Maven 2  -->
-												<limit implementation="org.jacoco.report.check.Limit">
-													<counter>COMPLEXITY</counter>
-													<value>COVEREDRATIO</value>
-													<minimum>0.60</minimum>
-												</limit>
-											</limits>
-										</rule>
-									</rules>
-								</configuration>
-							</execution>
-						</executions>
-				</plugin>
+								<plugin>
+									<groupId>org.jacoco</groupId>
+									<artifactId>jacoco-maven-plugin</artifactId>
+									<version>${maven.jacoco.plugin.version}</version>
+									<configuration>
+										<!-- includes>
+											<include>com.nabla.project.**</include>
+										</includes -->
+										<dumpOnExit>true</dumpOnExit>
+										<append>true</append>
+										<output>file</output>
+										<!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
+									</configuration>
+										<executions>
+											<execution>
+												<id>default-prepare-agent</id>
+												<phase>process-test-classes</phase>
+												<goals>
+													<goal>prepare-agent</goal>
+												</goals>
+												<configuration>
+												  <destFile>${sonar.jacoco.reportPath}</destFile>
+												  <propertyName>jacoco.agent.ut.arg</propertyName>
+												  <append>true</append>
+												</configuration>												
+											</execution>
+											<execution>
+												<id>default-report</id>
+												<phase>prepare-package</phase>
+												<goals>
+													<goal>report</goal>
+												</goals>
+											</execution>
+											<execution>
+												<id>default-prepare-agent-integration</id>
+												<phase>pre-integration-test</phase>
+												<goals>
+													<goal>prepare-agent-integration</goal>
+												</goals>
+												<configuration>
+															<destFile>${sonar.jacoco.itReportPath}</destFile>
+															<propertyName>failsafe.argLine</propertyName>
+														</configuration>
+											</execution>
+											<!--
+											<execution>
+												<id>default-report-integration</id>
+												<phase>post-integration-test</phase>
+												<goals>
+													<goal>report-integration</goal>
+												</goals>												
+												<configuration>
+															<dataFile>target/jacoco-it.exec</dataFile>
+														</configuration>														
+											</execution>
+											-->
+											<execution>
+												<id>default-check</id>
+												<goals>
+													<goal>check</goal>
+												</goals>
+												<configuration>
+													<rules>
+														<!--  implmentation is needed only for Maven 2  -->
+														<rule implementation="org.jacoco.maven.RuleConfiguration">
+															<element>BUNDLE</element>
+															<limits>
+																<!--  implmentation is needed only for Maven 2  -->
+																<limit implementation="org.jacoco.report.check.Limit">
+																	<counter>COMPLEXITY</counter>
+																	<value>COVEREDRATIO</value>
+																	<minimum>0.60</minimum>
+																</limit>
+															</limits>
+														</rule>
+													</rules>
+												</configuration>
+											</execution>
+										</executions>
+								</plugin>
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>dashboard-maven-plugin</artifactId>
@@ -3847,65 +3884,56 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									</configuration>
 								</plugin>
 
-				<plugin>
-					<groupId>org.ops4j</groupId>
-					<artifactId>maven-pax-plugin</artifactId>
-					<version>${maven.pax.plugin.version}</version>
-				</plugin>
+							<plugin>
+								<groupId>org.ops4j</groupId>
+								<artifactId>maven-pax-plugin</artifactId>
+								<version>${maven.pax.plugin.version}</version>
+							</plugin>
 
-	  				<plugin>
-	  				  <groupId>org.codehaus.izpack</groupId>
-	  				  <artifactId>izpack-maven-plugin</artifactId>
-	  				  <version>${maven.izpack.plugin.version}</version>
-	  				  <executions>
-	  					<execution>
-	  					  <phase>package</phase>
-	  					  <goals>
-	  						<goal>izpack</goal>
-	  					  </goals>
-	  					  <configuration>
-						  <izpackBasedir>${staging.dir}</izpackBasedir>
-						  <!--<installFile>${staging.dir}/x86Linux-install.xml</installFile>-->
-						  <comprLevel>9</comprLevel>>
-	  					  </configuration>
-	  					</execution>
-	  				  </executions>
-	  				  <dependencies>
-	  					<dependency>
-	  					  <groupId>org.codehaus.izpack</groupId>
-	  					  <artifactId>izpack-compiler</artifactId>
-	  					  <version>${izpack.compiler.version}</version>
-	  					</dependency>
-	  				  </dependencies>
-	  				</plugin>
+								<plugin>
+								  <groupId>org.codehaus.izpack</groupId>
+								  <artifactId>izpack-maven-plugin</artifactId>
+								  <version>${maven.izpack.plugin.version}</version>
+								  <executions>
+									<execution>
+									  <phase>package</phase>
+									  <goals>
+										<goal>izpack</goal>
+									  </goals>
+									  <configuration>
+									  <izpackBasedir>${staging.dir}</izpackBasedir>
+									  <!--<installFile>${staging.dir}/x86Linux-install.xml</installFile>-->
+									  <comprLevel>9</comprLevel>>
+									  </configuration>
+									</execution>
+								  </executions>
+								  <dependencies>
+									<dependency>
+									  <groupId>org.codehaus.izpack</groupId>
+									  <artifactId>izpack-compiler</artifactId>
+									  <version>${izpack.compiler.version}</version>
+									</dependency>
+								  </dependencies>
+								</plugin>
 
 								<plugin>
 									<groupId>org.apache.maven.plugins</groupId>
 									<artifactId>maven-failsafe-plugin</artifactId>
 									<version>${maven.failsafe.plugin.version}</version>
 									<configuration>
-						<argLine>${failsafe.argLine}</argLine>
-						</configuration>
-									<!--
-		  				<executions>
-		  				  <execution>
-		  					<id>integration-test</id>
-		  					<goals>
-		  					  <goal>integration-test</goal>
-		  					  <goal>verify</goal>
-		  					</goals>
-		  				  </execution>
-		  				</executions>
-		  				-->
+										<argLine>${failsafe.argLine}</argLine>
+									</configuration>
 									<executions>
 									  <execution>
 										<id>integration-test</id>
+										<phase>integration-test</phase>
 										<goals>
 										  <goal>integration-test</goal>
 										</goals>
 									  </execution>
 									  <execution>
 										<id>verify</id>
+										<phase>verify</phase>
 										<goals>
 										  <goal>verify</goal>
 										</goals>
