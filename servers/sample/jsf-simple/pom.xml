@@ -480,6 +480,7 @@
 					</execution>
 				</executions>
 			</plugin>
+<!--			
 <plugin>
 <groupId>org.jacoco</groupId>
 <artifactId>jacoco-maven-plugin</artifactId>
@@ -515,11 +516,15 @@
 </goals>
 <configuration>
 <rules>
+-->
 <!--  implmentation is needed only for Maven 2  -->
+<!-- 
 <rule implementation="org.jacoco.maven.RuleConfiguration">
 <element>BUNDLE</element>
 <limits>
+	-->
 <!--  implmentation is needed only for Maven 2  -->
+<!-- 
 <limit implementation="org.jacoco.report.check.Limit">
 <counter>COMPLEXITY</counter>
 <value>COVEREDRATIO</value>
@@ -532,6 +537,7 @@
 </execution>
 </executions>
 </plugin>
+-->
 <!--
 <plugin>
   <artifactId>maven-dependency-plugin</artifactId>
