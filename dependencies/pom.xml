@@ -3356,6 +3356,35 @@
 										<!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
 									</configuration>
 										<executions>
+											  <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code
+												being tested. -->
+											  <execution>
+												<id>prepare-ut-agent</id>
+												<phase>process-test-classes</phase>
+												<goals>
+												  <goal>prepare-agent</goal>
+												</goals>
+												<configuration>
+												  <destFile>${sonar.jacoco.reportPath}</destFile>
+												  <propertyName>jacoco.agent.ut.arg</propertyName>
+												  <append>true</append>
+												</configuration>
+											  </execution>
+											  <!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to be passed to the JVM hosting the code
+												being tested. -->
+											  <execution>
+												<id>prepare-it-agent</id>
+												<phase>pre-integration-test</phase>
+												<goals>
+												  <goal>prepare-agent</goal>
+												</goals>
+												<configuration>
+												  <destFile>${sonar.jacoco.itReportPath}</destFile>
+												  <propertyName>jacoco.agent.it.arg</propertyName>
+												  <append>true</append>
+												</configuration>
+											  </execution>	
+											  <!--										
 											<execution>
 												<id>default-prepare-agent</id>
 												<phase>process-test-classes</phase>
@@ -3386,7 +3415,8 @@
 															<propertyName>failsafe.argLine</propertyName>
 														</configuration>
 											</execution>
-											<!--
+											-->
+											<!-- http://sonarqube.15.x6.nabble.com/Maven-Sonar-plugin-execute-surefire-tests-twice-when-setting-the-property-sonar-phase-post-integratit-td5017101.html
 											<execution>
 												<id>default-report-integration</id>
 												<phase>post-integration-test</phase>
@@ -3405,7 +3435,7 @@
 												</goals>
 												<configuration>
 													<rules>
-														<!--  implmentation is needed only for Maven 2  -->
+														<!--  implementation is needed only for Maven 2  -->
 														<rule implementation="org.jacoco.maven.RuleConfiguration">
 															<element>BUNDLE</element>
 															<limits>
@@ -3920,9 +3950,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									<groupId>org.apache.maven.plugins</groupId>
 									<artifactId>maven-failsafe-plugin</artifactId>
 									<version>${maven.failsafe.plugin.version}</version>
+									<!--
 									<configuration>
 										<argLine>${failsafe.argLine}</argLine>
 									</configuration>
+									-->
 									<executions>
 									  <execution>
 										<id>integration-test</id>
