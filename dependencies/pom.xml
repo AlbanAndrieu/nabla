@@ -1492,7 +1492,7 @@
 				<ehcache.version>2.5.0</ehcache.version>
 				<ehcache.jar.version>2.7.4</ehcache.jar.version>
 				-->
-		<ehcache.version>2.4.6</ehcache.version>
+				<ehcache.version>2.4.6</ehcache.version>
 				<ehcache.jar.version>1.5.0</ehcache.jar.version>
 				<ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
 				<org.javassist.version>3.18.1-GA</org.javassist.version>
@@ -1574,9 +1574,9 @@
 				<httpunit.version>1.6.2</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
 				<wiser.version>1.2</wiser.version>
-		<scala.version>2.10.2</scala.version>
-		<scala.suffix>_2.10</scala.suffix>
-		<akka.version>2.2.1</akka.version>
+				<scala.version>2.10.2</scala.version>
+				<scala.suffix>_2.10</scala.suffix>
+				<akka.version>2.2.1</akka.version>
 
 				<google.api.client.version>1.0.10-alpha</google.api.client.version>
 				<!--<gwt.version>2.5.0-rc2</gwt.version>-->
@@ -1866,7 +1866,8 @@
 				<maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
 				<maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
 				<maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
-				<maven.pitest.plugin.version>0.33</maven.pitest.plugin.version>
+				<!--<maven.pitest.plugin.version>0.33</maven.pitest.plugin.version>-->
+				<maven.pitest.plugin.version>0.32</maven.pitest.plugin.version>
 				<maven.pax.plugin.version>1.5</maven.pax.plugin.version>
 				<maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
