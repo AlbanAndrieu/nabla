@@ -62,15 +62,15 @@ public final class SeamRPC
             // Read the name of the RemoteService interface
             String serviceIntfName = maybeDeobfuscate(streamReader, streamReader.readString());
 
-            //			if (type != null) {
-            //			  if (!implementsInterface(type, serviceIntfName)) {
-            //			    // The service does not implement the requested interface
-            //			    throw new IncompatibleRemoteServiceException(
-            //			        "Blocked attempt to access interface '" + serviceIntfName
-            //			            + "', which is not implemented by '" + printTypeName(type)
-            //			            + "'; this is either misconfiguration or a hack attempt");
-            //			  }
-            //			}
+            // if (type != null) {
+            // if (!implementsInterface(type, serviceIntfName)) {
+            // // The service does not implement the requested interface
+            // throw new IncompatibleRemoteServiceException(
+            // "Blocked attempt to access interface '" + serviceIntfName
+            // + "', which is not implemented by '" + printTypeName(type)
+            // + "'; this is either misconfiguration or a hack attempt");
+            // }
+            // }
 
             SerializationPolicy serializationPolicy = streamReader.getSerializationPolicy();
             Class<?> serviceIntf;

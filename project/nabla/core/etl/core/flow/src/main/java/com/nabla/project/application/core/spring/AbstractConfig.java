@@ -80,7 +80,7 @@ public abstract class AbstractConfig
     /**
      * DOCUMENT ME!
      */
-    //public static String beanConfig                = "defaultConfiguration";
+    // public static String beanConfig = "defaultConfiguration";
 
     /**
      * DOCUMENT ME!

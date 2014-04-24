@@ -14,7 +14,6 @@
 	<artifactId>sample</artifactId>
 	<packaging>pom</packaging>
 	<name>Sample</name>
-	<version>1.0.1-SNAPSHOT</version>
 	<!-- This element provides a basic description of your project -->
 	<description>Sample project</description>
 	<modules>

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import com.gwtplatform.dispatch.server.seam.IsSecurityCookieFilter;
 
 @Inherited
-@Target( { ElementType.TYPE })
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SecurityCookieFilterConfig
 {
