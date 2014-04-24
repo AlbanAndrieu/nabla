@@ -714,6 +714,7 @@
                                 <andromda.translation.test.skip>true</andromda.translation.test.skip>
                         </properties>
                 </profile>
+                <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->
 				<profile>
 				  <id>coverage</id>
 				  <build>
