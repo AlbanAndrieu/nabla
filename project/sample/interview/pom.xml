@@ -3,22 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	        	
-        <parent>
+    <parent>
 	    <groupId>com.nabla.project.sample</groupId>
 	    <artifactId>sample</artifactId>
 	    <version>1.0.1-SNAPSHOT</version>
-        </parent>
+    </parent>
                 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.sample.interview</groupId>
 	<artifactId>interview</artifactId>
 	<packaging>pom</packaging>
 	<name>Interview</name>
-	<version>1.0.1-SNAPSHOT</version>
 	<!-- This element provides a basic description of your project -->
 	<description>Sample project for easily doing interview test</description>
 	<modules>
 		<module>test</module>
-		<!--<module>javascript</module>-->
+		<module>javascript</module>
 	</modules>
 </project>

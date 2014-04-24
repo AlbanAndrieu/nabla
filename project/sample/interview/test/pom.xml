@@ -2,16 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-        <parent>
+    <parent>
 	    <groupId>com.nabla.project.sample.interview</groupId>
 	    <artifactId>interview</artifactId>
 	    <version>1.0.1-SNAPSHOT</version>
-        </parent>
+    </parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project.sample.interview.test</groupId>
 	<artifactId>test</artifactId>
-<!-- 	<version>1.0</version> -->
 	<packaging>jar</packaging>
 	<name>Maven Build Tools Configuration for sample</name>
 	<description>Maven Config - global configurations for sample</description>
