@@ -1866,8 +1866,7 @@
 				<maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
 				<maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
 				<maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
-				<!--<maven.pitest.plugin.version>0.33</maven.pitest.plugin.version>-->
-				<maven.pitest.plugin.version>0.32</maven.pitest.plugin.version>
+				<maven.pitest.plugin.version>0.33</maven.pitest.plugin.version>
 				<maven.pax.plugin.version>1.5</maven.pax.plugin.version>
 				<maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
@@ -4061,11 +4060,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</outputFormats>
 						<verbose>true</verbose>
 						<failWhenNoMutations>false</failWhenNoMutations>
-						<threads>4</threads>
+						<!--<threads>4</threads>-->
 						<excludedClasses>
 							<param>com.nabla.todo.*</param>
 							<param>com.nabla.generated.*</param>
 						</excludedClasses>
+						<!--
 						<avoidCallsTo>
 							<avoidCallsTo>akka.event.LoggingAdapter</avoidCallsTo>
 							<avoidCallsTo>java.util.logging</avoidCallsTo>
@@ -4073,6 +4073,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<avoidCallsTo>org.slf4j</avoidCallsTo>
 							<avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
 						</avoidCallsTo>
+						-->
 						<jvmArgs>
 							<value>-Xms256m</value>
 							<value>-Xmx512m</value>
