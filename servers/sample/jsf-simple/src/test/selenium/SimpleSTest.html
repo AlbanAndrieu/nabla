@@ -11,6 +11,8 @@
 <thead>
 <tr><td rowspan="1" colspan="3">SimpleSTest</td></tr>
 </thead><tbody>
+<!-- see documentation at http://release.seleniumhq.org/selenium-core/1.0/reference.html#pause -->
+<!-- https://code.google.com/p/selenium/issues/detail?id=5681 -->
 <tr>
 	<td>open</td>
 	<td>/welcome/hello.xhtml</td>
@@ -18,7 +20,7 @@
 </tr>
 <tr>
 	<td>waitForPageToLoad</td>
-	<td>10000</td>
+	<td>60000</td> <!-- 60 sec -->
 	<td></td>
 </tr>
 <tr>
@@ -32,19 +34,24 @@
 	<td>Test me !!!</td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
+	<td>click</td>
 	<td>name=j_idt8:j_idt10</td>
 	<td></td>
 </tr>
-<tr> 
-     <td>pause</td> 
-     <td>10000</td> 
-     <td></td> 
+<tr>
+	<td>waitForPageToLoad</td>
+	<td>60000</td>
+	<td></td>
 </tr>
 <tr>
 	<td>assertText</td>
 	<td>css=h3</td>
 	<td>JSF 2.0 Hello World Example - welcome.xhtml</td>
+</tr>
+<tr> 
+     <td>pause</td> 
+     <td>120000</td> 
+     <td></td> 
 </tr>
 <tr>
 	<td>assertText</td>
@@ -58,7 +65,7 @@
 </tr>
 <tr>
 	<td>waitForPageToLoad</td>
-	<td>10000</td>
+	<td>30000</td>
 	<td></td>
 </tr>
 </tbody></table>
