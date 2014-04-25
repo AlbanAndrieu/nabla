@@ -14,10 +14,10 @@ import com.nabla.project.application.model.person.dao.IPersonDAO;
 import com.nabla.project.application.model.person.entity.Address;
 import com.nabla.project.application.model.person.entity.Person;
 
-public class PersonDAOTest extends AbstractDaoDatabase
+public class PersonDaoTest extends AbstractDaoDatabase
 {
 
-    public static Logger logger    = Logger.getLogger(DAOTest.class);
+    public static Logger logger    = Logger.getLogger(DaoTest.class);
 
     private IPersonDAO   personDao = null;
 
@@ -56,7 +56,7 @@ public class PersonDAOTest extends AbstractDaoDatabase
         Assert.assertEquals("Lucas", person.getLastname());
         Assert.assertNotNull(person.getId());
 
-        PersonDAOTest.logger.debug("removing person...");
+        PersonDaoTest.logger.debug("removing person...");
 
         this.personDao.remove(person.getId());
 
@@ -67,12 +67,12 @@ public class PersonDAOTest extends AbstractDaoDatabase
         }
         catch (final EntityNotFoundException enf)
         {
-            PersonDAOTest.logger.debug("Expected exception: " + enf.getMessage());
+            PersonDaoTest.logger.debug("Expected exception: " + enf.getMessage());
             Assert.assertNotNull(enf);
         }
         catch (final ObjectRetrievalFailureException orf)
         {
-            PersonDAOTest.logger.debug("Expected exception: " + orf.getMessage());
+            PersonDaoTest.logger.debug("Expected exception: " + orf.getMessage());
         }
     }
 }

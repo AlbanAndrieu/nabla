@@ -12,7 +12,6 @@
 	<name>Databases DAO test</name>
 	<groupId>com.nabla.project.databases.sample.dao.business.test</groupId>
 	<artifactId>test</artifactId>
-	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
 	<description>Database DAO Test : Test Spring Jpa Hibernate and Derby compatibility</description>
 

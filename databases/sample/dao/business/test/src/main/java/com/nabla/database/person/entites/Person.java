@@ -21,7 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@SuppressWarnings( { "unused", "serial" })
+@SuppressWarnings({ "unused", "serial" })
 @Entity
 @Table(name = "Person")
 public class Person implements Serializable
@@ -85,8 +85,8 @@ public class Person implements Serializable
     @Override
     public String toString()
     {
-        return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(), this
-                .getNbChildren(), this.getAddress().getId());
+        return String.format("P[%d,%d,%s,%s,%s,%s,%d,%d]", this.getId(), this.getVersion(), this.getLastname(), this.getFirstname(), new SimpleDateFormat("dd/MM/yyyy").format(this.getBirthdate()), this.isMarried(),
+                this.getNbChildren(), this.getAddress().getId());
     }
 
     // getters and setters

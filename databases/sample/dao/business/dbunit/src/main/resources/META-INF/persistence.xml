@@ -10,6 +10,7 @@
 			<!-- <property name="hibernate.default_schema" value="${dbunit.schema}"/>-->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 		</properties>
+		
         <class>org.appfuse.model.User</class>
         <class>org.appfuse.model.Role</class>
 

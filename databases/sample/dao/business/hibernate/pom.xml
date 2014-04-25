@@ -51,26 +51,23 @@
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
-			<!-- <version>${easymock.version}</version> -->
 			<scope>test</scope>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock-junit4</artifactId>
-			<!-- <version>${jmock.version}</version> -->
 			<scope>test</scope>
 		</dependency>
-
+		-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-mock</artifactId>
-			<!-- <version>${spring.mock.version}</version> -->
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<!-- <version>${spring.version}</version> -->
 			<scope>test</scope>
 		</dependency>
 		

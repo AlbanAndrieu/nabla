@@ -13,9 +13,9 @@ import com.nabla.project.application.model.person.dao.IPersonDAO;
 import com.nabla.project.application.model.person.entity.Person;
 import com.nabla.project.application.time.Chronometer;
 
-public class DAOTest extends AbstractDaoDatabase
+public class DaoTest extends AbstractDaoDatabase
 {
-    public static Logger logger  = Logger.getLogger(DAOTest.class);
+    public static Logger logger  = Logger.getLogger(DaoTest.class);
     private IPersonDAO   testDao = null;
 
     // couche service
@@ -75,6 +75,6 @@ public class DAOTest extends AbstractDaoDatabase
         // TODO Auto-generated method stub
         super.onTearDownAfterTransaction();
         this.chronometer.stop();
-        DAOTest.logger.info("Total Time = " + this.chronometer);
+        DaoTest.logger.info("Total Time = " + this.chronometer);
     }
 }
