@@ -1271,7 +1271,7 @@
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<!--<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>-->
 		<!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test -->
-		<sonar-jacoco-listeners.version>1.4</sonar-jacoco-listeners.version>
+		<sonar-jacoco-listeners.version>2.1</sonar-jacoco-listeners.version>
 		<!-- The system property jacoco.outputDir needs to be override on the command line
 		with an absolute path if you want to merge results from all modules.
 		Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
@@ -1296,7 +1296,7 @@
 		<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath> 
 		<sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
 		-->
-		
+		<sonar.jacoco.excludes>com/sun/facelets/Facelet:com/nabla/pack1/**:com/nabla/pack2/**:</sonar.jacoco.excludes>
 		<clover.enabled>true</clover.enabled>
 		<clover.jdkLevel>1.6</clover.jdkLevel>
 		
@@ -2325,68 +2325,7 @@
 														<artifactId>ant-trax</artifactId>
 														<version>${ant.trax.version}</version>
 												</dependency>
-												<!-- required to get meaningful jacoco reports for integration tests -->
-												<!--
-						<dependency>
-							<groupId>org.jacoco</groupId>
-							<artifactId>org.jacoco.ant</artifactId>
-							<version>${jacoco.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>ant-contrib</groupId>
-							<artifactId>ant-contrib</artifactId>
-							<version>${ant.contrib.version}</version>
-						</dependency>
-						-->
-										</dependencies>
-										<!--
-					<executions>
-						<execution>
-							<id>jacoco-report</id>
-							<phase>verify</phase>
-							<goals>
-								<goal>run</goal>
-							</goals>
-							<configuration>
-								<target>
-									<taskdef name="jacoco-report" classname="org.jacoco.ant.ReportTask" classpathref="maven.plugin.classpath" />
-									<taskdef classpathref="maven.runtime.classpath" resource="net/sf/antcontrib/antcontrib.properties" />
-									<available file="${project.basedir}/target/jacoco.exec" property="jacoco.exec.file.exists" />
-									<echo message="${project.basedir}/target/jacoco.exec" />
-									<if>
-										<equals arg1="${jacoco.exec.file.exists}" arg2="true" />
-										<then>
-											<echo message="Executing jacoco report" />
-											<jacoco-report>
-												<executiondata>
-													<file file="${project.basedir}/target/jacoco.exec" />
-												</executiondata>
-
-												<structure name="Nabla">
-													<classfiles>
-														<fileset dir="${env.WORKSPACE}/code">
-															<include name="**/target/classes/**/*.class" />
-														</fileset>
-													</classfiles>
-													<sourcefiles encoding="UTF-8">
-														<fileset dir="${env.WORKSPACE}/code">
-															<include name="**/src/main/java/**/*.java" />
-														</fileset>
-													</sourcefiles>
-												</structure>
-												<html destdir="${project.basedir}/target/jacoco/report" />
-												<xml destfile="${project.basedir}/target/jacoco/report/jacoco.xml" />
-											</jacoco-report>
-										</then>
-										<else>
-											<echo message="No jacoco.exec file found." />
-										</else>
-									</if>
-								</target>
-							</configuration>
-						</execution>
-					</executions>
-					-->
+										</dependencies>						
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
