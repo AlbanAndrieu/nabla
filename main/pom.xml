@@ -722,8 +722,12 @@
 					  <plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
+						<inherited>true</inherited>
 						<configuration>
 						  <argLine>${jacoco.agent.ut.arg}</argLine>
+						  <skip>${maven.test.skip}</skip>
+						  <!-- Enable or disable Stop maven -->
+						  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 						  <!-- Specific to generate mapping between tests and covered code -->
 						  <properties>
 							<property>
@@ -731,6 +735,11 @@
 							  <value>org.sonar.java.jacoco.JUnitListener</value>
 							</property>
 						  </properties>
+						  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
+						  <excludes>
+							 <exclude>**/*DaoTest.java</exclude>
+						  </excludes>		 
+						  --> 
 						</configuration>
 					  </plugin>
 					  <plugin>
@@ -783,6 +792,11 @@
 							</configuration>
 						  </execution>
 						</executions>
+						<configuration>
+						  <excludes>
+							<exclude>jsp/**/*.class</exclude>
+						  </excludes>
+						</configuration>						  
 					  </plugin>
 					</plugins>
 				  </build>
@@ -791,7 +805,7 @@
 					  <groupId>org.codehaus.sonar-plugins.java</groupId>
 					  <artifactId>sonar-jacoco-listeners</artifactId>
 					  <version>${sonar-jacoco-listeners.version}</version>
-					  <scope>test</scope>
+					  <scope>test</scope>					  
 					</dependency>
 				  </dependencies>
 				</profile>					
