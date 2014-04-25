@@ -26,7 +26,7 @@ public class Address extends AbstractAddress implements java.io.Serializable
 
     /** full constructor */
     public Address(final Long id, final String adr1, final String adr2, final String adr3, final String cedex, final String city, final String code, final String country, /* Set<Person> persons */
-    final Person person)
+            final Person person)
     {
         // super(id, adr1, adr2, adr3, cedex, city, code, country, persons);
         super(id, adr1, adr2, adr3, cedex, city, code, country, person);

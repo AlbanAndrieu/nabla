@@ -9,14 +9,14 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "ACTIVITY", schema = "" /*
- * , uniqueConstraints =
- * {
- * @UniqueConstraint( columnNames =
- * {
- * "NAME"}
- * )
- * }
- */)
+                                       * , uniqueConstraints =
+                                       * {
+                                       * @UniqueConstraint( columnNames =
+                                       * {
+                                       * "NAME"}
+                                       * )
+                                       * }
+                                       */)
 public class Activity extends AbstractActivity implements java.io.Serializable
 {
     // Constructors

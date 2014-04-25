@@ -50,7 +50,7 @@ public abstract class AbstractAddress implements java.io.Serializable
 
     /** full constructor */
     public AbstractAddress(final Long id, final String adr1, final String adr2, final String adr3, final String cedex, final String city, final String code, final String country, /* Set<Person> persons */
-    final Person person)
+            final Person person)
     {
         this.id = id;
         this.adr1 = adr1;

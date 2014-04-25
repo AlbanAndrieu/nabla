@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface IPersonDAO extends GenericDao<Person, Long>
 {
-    //public void save( Person transientInstance );
+    // public void save( Person transientInstance );
 
-    //public void delete( Person persistentInstance );
+    // public void delete( Person persistentInstance );
 
-    //public Person update( Person detachedInstance );
+    // public Person update( Person detachedInstance );
 
-    //public Person findById( Long id );
+    // public Person findById( Long id );
     public List<Person> findByProperty(String propertyName, Object value);
 
     public List<Person> findByVersion(Object version);
@@ -34,5 +34,5 @@ public interface IPersonDAO extends GenericDao<Person, Long>
 
     public List<Person> findAll();
 
-    //public List<Person> findByLastName(String lastName);
+    // public List<Person> findByLastName(String lastName);
 }

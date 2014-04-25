@@ -6,11 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
 import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.Before;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,17 +18,16 @@ import com.nabla.project.application.model.person.entity.Person;
 import com.nabla.project.application.model.person.service.IService;
 import com.nabla.project.application.time.Chronometer;
 
-public class NGTest extends TestCase
+public class NGTest
 {
 
     public static Logger logger = Logger.getLogger(NGTest.class);
 
     Chronometer          chronometer;
 
-    @Override
+    @Before
     protected void setUp() throws Exception
     {
-        super.setUp();
         // log
         // Log.init();
         this.chronometer = new Chronometer();
@@ -50,10 +47,9 @@ public class NGTest extends TestCase
         this.dumpPersonsActivities();
     }
 
-    @Override
+    @After
     protected void tearDown() throws Exception
     {
-        super.tearDown();
         // affichage tables
         NGTest.logger.info("--------------- Database data");
         this.dumpPersons();
@@ -68,16 +64,6 @@ public class NGTest extends TestCase
 
     // couche service
     private IService service;
-
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public NGTest(final String testName)
-    {
-        super(testName);
-    }
 
     // remplissage tables
     public void fill() throws ParseException
@@ -345,11 +331,4 @@ public class NGTest extends TestCase
         assert nbActivities == activites.size();
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite(NGTest.class);
-    }
 }

@@ -13,18 +13,18 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "PERSON", schema = "" /*
- * , uniqueConstraints =
- * {
- * @UniqueConstraint( columnNames =
- * {
- * "LASTNAME"}
- * )
- * , @UniqueConstraint( columnNames =
- * {
- * "ADDRESS_ID"}
- * )
- * }
- */
+                                     * , uniqueConstraints =
+                                     * {
+                                     * @UniqueConstraint( columnNames =
+                                     * {
+                                     * "LASTNAME"}
+                                     * )
+                                     * , @UniqueConstraint( columnNames =
+                                     * {
+                                     * "ADDRESS_ID"}
+                                     * )
+                                     * }
+                                     */
 )
 public class Person extends AbstractPerson implements java.io.Serializable
 {

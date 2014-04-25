@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import junit.framework.Assert;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.apache.log4j.Logger;
 
@@ -15,9 +13,9 @@ import com.nabla.project.application.model.person.dao.IPersonDAO;
 import com.nabla.project.application.model.person.entity.Person;
 import com.nabla.project.application.time.Chronometer;
 
-public class DaoTest extends AbstractDaoDatabase
+public class DAOTest extends AbstractDaoDatabase
 {
-    public static Logger logger  = Logger.getLogger(DaoTest.class);
+    public static Logger logger  = Logger.getLogger(DAOTest.class);
     private IPersonDAO   testDao = null;
 
     // couche service
@@ -28,11 +26,6 @@ public class DaoTest extends AbstractDaoDatabase
     public void setTestDao(final IPersonDAO testDao)
     {
         this.testDao = testDao;
-    }
-
-    public static Test suite()
-    {
-        return new TestSuite(DaoTest.class);
     }
 
     /*
@@ -82,6 +75,6 @@ public class DaoTest extends AbstractDaoDatabase
         // TODO Auto-generated method stub
         super.onTearDownAfterTransaction();
         this.chronometer.stop();
-        DaoTest.logger.info("Total Time = " + this.chronometer);
+        DAOTest.logger.info("Total Time = " + this.chronometer);
     }
 }

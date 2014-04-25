@@ -17,7 +17,7 @@ import com.nabla.project.application.model.person.entity.Person;
 public class PersonDAOTest extends AbstractDaoDatabase
 {
 
-    public static Logger logger    = Logger.getLogger(DaoTest.class);
+    public static Logger logger    = Logger.getLogger(DAOTest.class);
 
     private IPersonDAO   personDao = null;
 
