@@ -1291,12 +1291,13 @@
 		<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
 		<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
 		<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+		<!--<jacoco.skip>true</jacoco.skip>-->
 
 		<!--
 		<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath> 
 		<sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
 		-->
-		<sonar.jacoco.excludes>com/sun/facelets/Facelet:com/nabla/pack1/**:com/nabla/pack2/**:</sonar.jacoco.excludes>
+		<!--<sonar.jacoco.excludes>com/nabla/project/application/model/dao/person/**:com/nabla/pack2/**:</sonar.jacoco.excludes>-->
 		<clover.enabled>true</clover.enabled>
 		<clover.jdkLevel>1.6</clover.jdkLevel>
 		
@@ -1559,7 +1560,9 @@
 
 				<!-- Testing dependency versions -->
 				<cargo.version>1.0</cargo.version>
+				<!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 				<jmock.version>2.6.0</jmock.version>
+				-->
 				<easymock.version>3.2</easymock.version>
 				<mockito.version>1.9.5</mockito.version>
 				<mockrunner.version>1.0.0</mockrunner.version>
@@ -2584,7 +2587,7 @@
 													<name>gwt.args</name>
 													<value>-out ${project.build.directory}/${project.build.finalName}</value>
 												  </property>
-												</systemProperties>
+												</systemProperties>												
 										</configuration>
 
 										<!--
@@ -4374,12 +4377,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${easymock.version}</version>
 								<scope>test</scope>
 						</dependency>
+						<!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 						<dependency>
 								<groupId>org.jmock</groupId>
 								<artifactId>jmock-junit4</artifactId>
 								<version>${jmock.version}</version>
 								<scope>test</scope>
 						</dependency>
+						-->
 						<dependency>
 								<groupId>org.mockito</groupId>
 								<artifactId>mockito-all</artifactId>
