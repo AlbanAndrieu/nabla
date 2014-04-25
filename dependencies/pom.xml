@@ -1354,7 +1354,7 @@
 				<!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
 				<clover.version>3.2.0</clover.version>
 				<dbunit.version>2.4.9</dbunit.version>
-				<testng.version>6.8.7</testng.version>
+				<testng.version>6.8.8</testng.version>
 				<htmlunit.version>1.11</htmlunit.version>
 				<org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
 				<oro.version>2.0.8</oro.version>
@@ -1559,10 +1559,10 @@
 
 				<!-- Testing dependency versions -->
 				<cargo.version>1.0</cargo.version>
-				<jmock.version>2.6.0-RC2</jmock.version>
+				<jmock.version>2.6.0</jmock.version>
 				<easymock.version>3.2</easymock.version>
 				<mockito.version>1.9.5</mockito.version>
-				<mockrunner.version>0.4.2</mockrunner.version>
+				<mockrunner.version>1.0.0</mockrunner.version>
 				<hamcrest.core.version>1.3.RC2</hamcrest.core.version>
 				<hamcrest.all.version>1.3</hamcrest.all.version>
 				<jsp.version>2.0</jsp.version>
@@ -1571,7 +1571,7 @@
 				<bean.matchers.version>0.8.1</bean.matchers.version>
 				<org.jboss.arquillian.version>1.1.1.Final</org.jboss.arquillian.version>
 				<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
-				<httpunit.version>1.6.2</httpunit.version>
+				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
 				<wiser.version>1.2</wiser.version>
 				<scala.version>2.10.2</scala.version>
@@ -1580,7 +1580,7 @@
 
 				<google.api.client.version>1.0.10-alpha</google.api.client.version>
 				<!--<gwt.version>2.5.0-rc2</gwt.version>-->
-				<gwt.version>2.5.1</gwt.version>
+				<gwt.version>2.6.0</gwt.version>
 				<gae.version>1.5.3</gae.version>
 				<gwtp.all.version>1.0.2</gwtp.all.version>
 				<gwt.seam.version>${project.version}</gwt.seam.version>
@@ -1590,11 +1590,11 @@
 
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
 				<!--<selenium.version>2.37.1</selenium.version>-->
-				<selenium.version>2.40.0</selenium.version>
+				<selenium.version>2.41.0</selenium.version>
 				<!--<selenium.driver.version>2.9.0</selenium.driver.version>-->
-				<selenium.driver.version>2.40.0</selenium.driver.version>
-				<selenium.safari.driver.version>2.40.0</selenium.safari.driver.version>
-				<selenium.firefox.driver.version>2.40.0</selenium.firefox.driver.version>
+				<selenium.driver.version>2.41.0</selenium.driver.version>
+				<selenium.safari.driver.version>2.41.0</selenium.safari.driver.version>
+				<selenium.firefox.driver.version>2.41.0</selenium.firefox.driver.version>
 				<selenium.android.driver.version>2.39.0</selenium.android.driver.version>
 				<selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
 				<saucelabs.selenium.version>2.6</saucelabs.selenium.version>
@@ -1827,7 +1827,7 @@
 				<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 				<maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
 				<maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
-				<maven.surefire.plugin.version>2.16</maven.surefire.plugin.version>
+				<maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
 				<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
 				<maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
 				<maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
@@ -3452,7 +3452,6 @@
 															<dataFile>target/jacoco-it.exec</dataFile>
 														</configuration>														
 											</execution>
-											-->
 											<execution>
 												<id>default-check</id>
 												<goals>
@@ -3460,11 +3459,15 @@
 												</goals>
 												<configuration>
 													<rules>
+														-->
 														<!--  implementation is needed only for Maven 2  -->
+														<!--
 														<rule implementation="org.jacoco.maven.RuleConfiguration">
 															<element>BUNDLE</element>
 															<limits>
+																-->
 																<!--  implmentation is needed only for Maven 2  -->
+																<!--
 																<limit implementation="org.jacoco.report.check.Limit">
 																	<counter>COMPLEXITY</counter>
 																	<value>COVEREDRATIO</value>
@@ -3475,6 +3478,7 @@
 													</rules>
 												</configuration>
 											</execution>
+											-->											
 										</executions>
 								</plugin>
 								<plugin>
