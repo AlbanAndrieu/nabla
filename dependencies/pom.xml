@@ -1582,8 +1582,8 @@
 				<akka.version>2.2.1</akka.version>
 
 				<google.api.client.version>1.0.10-alpha</google.api.client.version>
-				<!--<gwt.version>2.5.0-rc2</gwt.version>-->
-				<gwt.version>2.6.0</gwt.version>
+				<gwt.version>2.5.1</gwt.version>
+				<!--<gwt.version>2.6.0</gwt.version>-->
 				<gae.version>1.5.3</gae.version>
 				<gwtp.all.version>1.0.2</gwtp.all.version>
 				<gwt.seam.version>${project.version}</gwt.seam.version>
