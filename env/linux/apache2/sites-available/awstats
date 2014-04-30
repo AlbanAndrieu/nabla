@@ -1,0 +1,20 @@
+Alias /awstatsclasses "/usr/share/awstats/classes/"
+Alias /awstatscss "/usr/share/awstats/css/"
+Alias /awstats-icon "/usr/share/awstats/icon/"
+
+ScriptAlias /stats /usr/lib/cgi-bin/awstats.pl
+
+# mêmes paramètres que dans awstats.*.conf
+<Directory /usr/lib/cgi-bin/>
+  DirectoryIndex awstats.pl
+  UseCanonicalName off
+#  AuthName "Statistiques awstats"
+#  AuthType Basic
+#  Require valid-user
+#  AuthUserFile /che/min/.passwdstats
+  Options +ExecCGI
+  AllowOverride None
+  Order allow,deny
+#  Allow from all
+  Allow from 127.0.0.1
+</Directory>
