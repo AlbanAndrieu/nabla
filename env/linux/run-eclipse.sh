@@ -27,3 +27,9 @@ TargetEnvironment=Unity
 
 #Or
 gnome-desktop-item-edit --create-new ~/Desktop
+
+#BUG for eclipse bundled with ubuntu
+#http://stackoverflow.com/questions/10165693/eclipse-cannot-load-swt-libraries
+#sudo apt-get install libswt-gtk-3-jni libswt-gtk-3-java
+#ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86/
+sudo ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86_64/

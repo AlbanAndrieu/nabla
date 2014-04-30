@@ -58,5 +58,100 @@ less /owncloud/data/albandri/mount.json
 
 /etc/apache2/sites-available/default-ssl
 
+-------------------------------------------------------------------------------------
+#on freenas
 #TODO Media bug fix
 https://github.com/owncloud/apps/commit/64ce426e073fff7118a5b0f5490f6887ef08ef2f
+#or install it by hand
+#http://imgur.com/a/FgFlc
+
+#echo 'jenkins_enable="YES"' >> /etc/rc.conf
+service sshd start
+adduser
+ps usermod owncloud -G wheel
+id owncloud
+
+ssh owncloud@192.168.0.13
+#become root
+su -
+
+#owncloud change default port
+edit /usr/pbi/owncloud-amd64/etc/apache22/httpd.conf 
+service apache22 restart
+
+cd /usr/pbi/owncloud-amd64/www/owncloud
+edit post-install.sh
+------------------------------------
+#!/bin/sh
+#########################################
+
+owncloud_pbi_path=/usr/pbi/owncloud-$(uname -m)
+
+/bin/cp ${owncloud_pbi_path}/etc/rc.d/apache22 /usr/local/etc/rc.d/
+
+${owncloud_pbi_path}/bin/python2.7 ${owncloud_pbi_path}/owncloudUI/manage.py syncdb --migrate --noinput
+
+if [ ! -f "${owncloud_pbi_path}/www/owncloud/config/config.php" ]; then
+	cat << __EOF__ > ${owncloud_pbi_path}/www/owncloud/config/config.php
+	<?php
+	\$CONFIG = array (
+	  'datadirectory' => '/media',
+	);
+	?>
+__EOF__
+fi
+
+cat << __EOF__ > ${owncloud_pbi_path}/etc/apache22/Includes/owncloud.conf
+AddType application/x-httpd-php .php
+
+Alias / ${owncloud_pbi_path}/www/owncloud/
+AcceptPathInfo On
+<Directory ${owncloud_pbi_path}/www/owncloud>
+    AllowOverride All
+    Order Allow,Deny
+    Allow from all
+</Directory>
+__EOF__
+
+chown www:www ${owncloud_pbi_path}/www/owncloud \
+	${owncloud_pbi_path}/www/owncloud/apps \
+	${owncloud_pbi_path}/www/owncloud/config \
+	${owncloud_pbi_path}/www/owncloud/config/config.php \
+	/media
+
+
+# Generate SSL certificate
+if [ ! -f "${owncloud_pbi_path}/etc/apache22/server.crt" ]; then
+
+	if ! fgrep "commonName_default" /etc/ssl/openssl.cnf; then
+		/usr/bin/sed -i '' -E 's/(^commonName_max.*)/\1\
+commonName_default = ownCloud/' /etc/ssl/openssl.cnf
+	fi
+	tmp=$(mktemp /tmp/tmp.XXXXXX)
+	dd if=/dev/urandom count=16 bs=1 2> /dev/null | uuencode -|head -2 |tail -1 > "${tmp}"
+	/usr/bin/openssl req -batch -passout file:"${tmp}" -new -x509 -keyout ${owncloud_pbi_path}/etc/apache22/server.key.out -out ${owncloud_pbi_path}/etc/apache22/server.crt
+	/usr/bin/openssl rsa -passin file:"${tmp}" -in ${owncloud_pbi_path}/etc/apache22/server.key.out -out ${owncloud_pbi_path}/etc/apache22/server.key
+
+fi
+
+#Enable SSL
+/usr/bin/sed -i '' -E -e 's/^#(.*httpd-ssl.conf)/\1/' ${owncloud_pbi_path}/etc/apache22/httpd.conf
+---------------------------------
+
+cd /usr/pbi/owncloud-amd64/www/apache22/data
+
+less /usr/pbi/owncloud-amd64/www/apache22/data
+less etc/apache22/extra/httpd-ssl.conf  
+tail -f /var/log/httpd-error.log 
+
+#accessing your file via webdav
+#http://doc.owncloud.org/server/6.0/user_manual/files/files.html
+davs://home.nabla.mobi/owncloud/remote.php/webdav
+
+#ubuntu client
+#http://software.opensuse.org/download/package?project=isv:ownCloud:desktop&package=owncloud-client
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_12.10/ /' >> /etc/apt/sources.list.d/owncloud-client.list"
+wget http://download.opensuse.org/repositories/isv:ownCloud:desktop/xUbuntu_13.10/Release.key
+sudo apt-key add - < Release.key  
+sudo apt-get update
+sudo apt-get install owncloud-client

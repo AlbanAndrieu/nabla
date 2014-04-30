@@ -1,4 +1,31 @@
+#GUI
+user : root
+
+#Upgrade FreeNAS
+#http://doc.freenas.org/index.php/Upgrading_FreeNAS%C2%AE
+http://download.freenas.org/9.2.1.5/RELEASE/x64/
+
+#to see 
+#http://www.durindel.fr/utilisation-avancee-de-freenas
 #http://www.durindel.fr/informatique/tutoriel-configuration-de-freenas
+#TODO
+#http://www.geekzone.fr/ipb/topic/49641-les-newsgroups-pour-les-nuls-sabnzbd-sickbeard-couchpotato/
+
+#remove old plugins by hand
+#https://bugs.freenas.org/issues/4264#note-4
+sqlite3 /data/freenas-v1.db
+
+delete from plugins_plugins;
+delete from services_rcptoken;
+delete from plugins_nullmountpoint;
+
+.quit
+
+#do some cleanup on old dataset
+cd /mnt/dpool/plugins
+minidlna-1.0.24_1-amd64
+transmission-2.77-amd64
+firefly-1696_7-amd64
 
 #freenas IP is 192.168.0.46
 
@@ -27,11 +54,44 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 #rm -Rf /mnt/dpool/jail/software/var/db/minidlna/files.db
 #check issue http://forums.freenas.org/threads/mount-point-connects-to-empty-folders-cannot-get-minidlna-to-scan-media.11196/
 
-#Firefly
-http://192.168.0.47:3689/
-admin 
+#configure plugins
+#http://forums.freenas.org/index.php?threads/seting-up-freenas-9-2-0-with-transmission-and-couchpotato-as-a-dlna-server.17165/
 
+#Firefly
+#do redirect to jail
+http://192.168.0.47:3689/
+http://home.nabla.mobi:3689/index.html
+
+#transmission
 http://192.168.0.47:9091/
+http://home.nabla.mobi:9091/transmission/web/
+#in the jail
+cd /usr/pbi/transmission-amd64/etc/transmission/home/
+edit /usr/pbi/transmission-amd64/etc/transmission/home/settings.json
+
+#install transmission rempte gui
+#https://code.google.com/p/transmisson-remote-gui/downloads/list
+
+#couchpotato
+http://home.nabla.mobi:5050/wizard/
+#username : alban.andrieu@free.fr
+
+#minidlna
+#TODO fix issue http://forums.freenas.org/index.php?threads/minidlna-automatic-scan-fix.9312/
+
+#sabnzbd_1
+https://home.nabla.mobi:9090/sabnzbd/
+https://sabnzbd_1:9090/sabnzbd/
+https://127.0.0.1:9090/sabnzbd/
+https://192.168.0.8:9090/sabnzbd/
+
+
+#plexmedia
+#In the gui check disableRemoteSecurity
+#or
+#/usr/pbi/plexmediaserver-amd64/plexdata/Plex Media Server/Preferences.xml
+#and add the attribute
+#disableRemoteSecurity="1" 
 
 #mount by hand
 sudo apt-get install nfs-common
@@ -332,6 +392,77 @@ mkdir /usr/pbi/minidlna-amd64/media
 /usr/local/www/owncloud
 
 #jenkins
+#http://www.slideshare.net/iXsystems/jenkins-bhyve
+pkg install devel/jenkins-lts
+#pkg install /devel/jenkins
+======================================================================          
+                                                                                
+This OpenJDK implementation requires fdescfs(5) mounted on /dev/fd and          
+procfs(5) mounted on /proc.                                                     
+                                                                                
+If you have not done it yet, please do the following:                           
+                                                                                
+        mount -t fdescfs fdesc /dev/fd                                          
+        mount -t procfs proc /proc                                              
+                                                                                
+To make it permanent, you need the following lines in /etc/fstab:               
+                                                                                
+        fdesc   /dev/fd         fdescfs         rw      0       0               
+        proc    /proc           procfs          rw      0       0               
+                                                                                
+====================================================================== 
+
+#Install Jenkins
+#https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
+
+echo 'jenkins_enable="YES"' >> /etc/rc.conf
+cd /usr/local/etc/rc.d/
+edit jenkins
+service jenkins restart
+http://home.nabla.mobi:8381/jenkins
+192.168.0.14
+tail -f /var/log/jenkins.log
+
+user : admin
+pass : 
+
+#add ssh to jail 
+#http://doc.freenas.org/index.php/Adding_Jails
+edit /etc/rc.conf
+#sshd_enable="YES"
+service sshd start
+
+adduser
+#slave
+#other group wheel
+#microsoft
+
+#jenkins user add rsa key in freenas
+[jenkins@freenas ~/.ssh]$ ssh-keygen -t rsa                                     
+Generating public/private rsa key pair.                                         
+Enter file in which to save the key (/mnt/dpool/jenkins/.ssh/id_rsa):           
+Enter passphrase (empty for no passphrase):                                     
+Enter same passphrase again:                                                    
+Your identification has been saved in /mnt/dpool/jenkins/.ssh/id_rsa.           
+Your public key has been saved in /mnt/dpool/jenkins/.ssh/id_rsa.pub.           
+The key fingerprint is:                                                         
+37:41:20:f6:8e:c8:aa:23:b7:45:82:7e:df:46:b2:7a jenkins@freenas.local           
+
+less ~/.ssh/id_rsa.pub
+ssh-rsa KEY jenkins@freenas.local
+ssh-rsa KEY jenkins@albandri
+
+#freenas
+ssh jenkins@192.168.0.46
+ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
+
+#jenkins_1 jail
+ssh -v jenkins@192.168.0.14
+#albandri
+ssh -v jenkins@192.168.0.29
+
+-----------------------------------------------------
+#????? below was not working
 pkg_add -r jenkins
 http://192.168.0.47:8081
 /usr/local/etc/rc.d/jenkins onestart
@@ -342,7 +473,7 @@ echo 'jenkins_enable="YES"' >> /etc/rc.conf
 
 tail -f /var/log/jenkins.log
 tail -f /mnt/dpool/jail/software/var/log/httpd-access.log
-http://192.168.0.47:8280/jenkins/
+http://192.168.0.47:8381/jenkins/
 
 #shorty error
 http://www.macintom.com/wp/2012/06/13/owncloud-bug-lors-de-lactivation-dune-application-owncloud-ne-fonctionne-plus/
@@ -360,7 +491,7 @@ pkg_add -v -r dejavu
 pkg_add -v -r freetype
 pkg_add -v -r freetype-tools
 
-/usr/local/jenkins`
+/usr/local/jenkins
 
 pkg_info | grep jenkins
 #pkg_delete jenkins-1.454
@@ -382,3 +513,6 @@ openjdk6-b24_4
 #SSH
 ssh -i OpenSSH_RSA_4096 albandri@freenas
 
+#http://doc.freenas.org/index.php/Plugins
+
+http://www.freshports.org/devel/jenkins-lts/

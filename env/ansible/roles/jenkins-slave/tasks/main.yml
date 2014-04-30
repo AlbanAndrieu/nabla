@@ -278,8 +278,10 @@
    
 #TODO by hand for Ubuntu saucy
 #cd /usr/lib/chromium-browser
-#wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+#sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+#sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
 #unzip chromedriver_linux64.zip   
+#unzip chromedriver_linux32.zip   
    
 - name: Enable Yum repo for Google Chrome
   copy: dest=/etc/yum.repos.d/google-chrome.repo src=google-chrome.repo
@@ -406,9 +408,12 @@
 #  action: command update-alternatives --install /usr/bin/jar jar ${jvm_folder}/jdk1.8.0/bin/jar 1
 #  when: "jdk8_installed.changed == 'True'"
    
-- name: Set mvn link to Maven 3.0.4
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven3/bin/mvn 1
-  
+#- name: Set mvn link to Maven 3.0.4
+#  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven3/bin/mvn 1
+
+- name: Set mvn link to Maven 3.2.1
+  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven321/bin/mvn 1
+    
 - name: Download Jenkins Swarm Client
   get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
 
