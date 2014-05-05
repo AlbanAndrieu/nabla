@@ -2,9 +2,6 @@
 sudo apt-get install varnish
 
 sudo service varnish status
- 
-#log
-varnishlog 
 
 #https://www.digitalocean.com/community/articles/how-to-install-and-configure-varnish-with-apache-on-ubuntu-12-04--3
 sudo nano /etc/default/varnish
@@ -49,7 +46,7 @@ backend default {
 }
 backend apache {
     .host = "127.0.0.1";
-    .port = "8080";
+    .port = "7070";
     .probe = {
          .url = "/";
          .interval = 5s;
@@ -94,8 +91,8 @@ backend jboss_console {
 # Define the list of backends (web servers).
 # Port 80 Backend Servers
 #backend web1 { .host = "127.0.0.1"; .port = "8380"; .probe = { .url = "/jenkins/?"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
-backend web1 { .host = "127.0.0.1"; .port = "8080"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
-backend web2 { .host = "192.168.0.47"; .port = "80"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
+backend web1 { .host = "127.0.0.1"; .port = "7070"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
+backend web2 { .host = "192.168.0.8"; .port = "8080"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
 #sick backend web2 { .host = "192.168.0.46"; .port = "80"; .probe = { .url = "/"; .interval = 5s; .timeout = 1s; .window = 5;.threshold = 3; }}
 
 # Port 443 Backend Servers for SSL
@@ -173,6 +170,8 @@ https://albandri.local/jenkins
 cat /etc/init.d/varnish
 cat /etc/default/varnish
 
+#log
+varnishlog 
 varnishstat
 
 sudo service varnish stop

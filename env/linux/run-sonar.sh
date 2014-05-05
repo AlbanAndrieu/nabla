@@ -16,8 +16,8 @@ sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncodi
 sudo gedit /workspace/sonar/conf/wrapper.conf
 
 Copy the OLD_SONARQUBE_HOME/extensions/plugins directory into NEW_SONARQUBE_HOME/extensions/plugins (replace plugins with compatible versions if necessary)
-cp sonar-3.7/extensions/plugins/ sonar/extensions/plugins
-cp sonar-3.7/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
+sudo cp sonar/extensions/plugins/* sonar/extensions/plugins/
+#sudo cp sonar/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
 If a custom JDBC driver is used, copy it into NEW_SONARQUBE_HOME/extensions/jdbc-driver/<dialect>
 
 /workspace/sonar/bin/linux-x86-32/sonar.sh start

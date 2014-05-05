@@ -1,4 +1,5 @@
 #http://doc.ubuntu-fr.org/owncloud
+#install owncloud inside ubuntu
 dans env/script/mountall.sh
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/owncloud /owncloud
 
@@ -68,7 +69,7 @@ https://github.com/owncloud/apps/commit/64ce426e073fff7118a5b0f5490f6887ef08ef2f
 #echo 'jenkins_enable="YES"' >> /etc/rc.conf
 service sshd start
 adduser
-ps usermod owncloud -G wheel
+pw usermod owncloud -G wheel
 id owncloud
 
 ssh owncloud@192.168.0.13
@@ -144,6 +145,40 @@ less /usr/pbi/owncloud-amd64/www/apache22/data
 less etc/apache22/extra/httpd-ssl.conf  
 tail -f /var/log/httpd-error.log 
 
+#fix permisssion bug
+cd /usr/pbi/owncloud-amd64/www/owncloud
+#chmod -R 755 *
+#chown -R wwww:wwww *
+
+#install app
+cd /usr/pbi/owncloud-amd64/www/owncloud/apps
+wget --no-check-certificate https://freans.de/owncloud/images/ocDashboard/ocDashboard_1.1.zip
+chown www:www ocDashboard_1.1.zip
+chmod 777 ocDashboard_1.1.zip
+#or
+#scp ocDashboard owncloud@192.168.0.13:/usr/pbi/owncloud-amd64/www/owncloud/apps
+wget --no-check-certificate https://github.com/owncloud/music/releases/download/v0.1.9.1-rc/music.tar.gz
+chown www:www
+chmod 777
+tar -xvf music.tar.gz
+
+scp 157091-fluxx_compensator.zip albandri@home.nabla.mobi:~/Downloads
+scp 162915-files_embeddedvideo-0.0.4.tar.gz owncloud@192.168.0.13:/tmp
+
+#in the jail
+#install port
+portsnap fetch && portsnap extract
+cd /usr/ports/net/samba36
+make install clean
+#Edit /etc/rc.conf
+#add this line to the file and save
+echo 'samba_enable="YES"' >> /etc/rc.conf
+
+cd /usr/pbi/owncloud-amd64/www/owncloud
+#edit /usr/pbi/owncloud-amd64/www/owncloudapps/files_external/lib/config.php
+cd /usr/ports/ftp/php55-ftp/
+make clean install
+
 #accessing your file via webdav
 #http://doc.owncloud.org/server/6.0/user_manual/files/files.html
 davs://home.nabla.mobi/owncloud/remote.php/webdav
@@ -155,3 +190,4 @@ wget http://download.opensuse.org/repositories/isv:ownCloud:desktop/xUbuntu_13.1
 sudo apt-key add - < Release.key  
 sudo apt-get update
 sudo apt-get install owncloud-client
+

@@ -1,9 +1,29 @@
 #http://doc.ubuntu-fr.org/openstack
-#sdfsdf
 
+#https://wiki.ubuntu.com/ServerTeam/CloudArchive#Havana
+#https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
+
+sudo apt-get install ubuntu-cloud-keyring
+echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/grizzly main" >> /etc/apt/sources.list.d/cloud-archive.list
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+#remove havana version
+sudo apt-get remove keystone python-keystone python-keystoneclient python-nova python-novaclient
+sudo apt-get autoremove
+
+#install first package 
+apt-get install -y keystone
+#check right version 
+dpkg -s keystone
+
+ 2012.1|2012.1.*) os_dist='essex';;
+ 2012.2|2012.2.*) os_dist='folsom';;
+ 2013.1|2013.1.*) os_dist='grizzly';;
+ 
 sudo apt-get install kvm libvirt-bin virtinst mysql-server python-mysqldb
 sudo apt-get install -y vlan bridge-utils
-#sdgsgsd
 sudo apt-get install ntp
 sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2 
 sudo apt-get install rabbitmq-server memcached python-memcache
@@ -76,7 +96,61 @@ iface br0 inet static
 auto br1
 iface br1 inet manual
         bridge_ports eth
-----------------------------------------------------------        
+----------------------------------------------------------
+#show disk
+sudo lshw -C disk
+        
+#iSCSI
+sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2
+#change node.startup = automatic in 
+sudo nano /etc/iscsi/iscsid.conf
+sudo /etc/init.d/open-iscsi restart
+
+[albandri@albandri ~]  $ sudo iscsiadm -m discovery -t sendtargets -p 192.168.0.46
+192.168.0.46:3260,1 iqn.2011-03.org.example.istgt:albandri
+[albandri@albandri ~]  $ sudo iscsiadm --mode node --targetname iqn.2011-03.org.example.istgt:albandri --portal 192.168.0.46:3260 --login
+Logging in to [iface: default, target: iqn.2011-03.org.example.istgt:albandri, portal: 192.168.0.46,3260] (multiple)
+Login to [iface: default, target: iqn.2011-03.org.example.istgt:albandri, portal: 192.168.0.46,3260] successful.
+[albandri@albandri ~]  $ sudo iscsiadm -m session -o show
+tcp: [1] 192.168.0.46:3260,1 iqn.2011-03.org.example.istgt:albandri
+
+sudo /etc/init.d/open-iscsi restart
+dmesg
+# [sdb] Attached SCSI disk
+# [sdc] Attached SCSI disk
+# [sdd] Attached SCSI disk
+[albandri@albandri ~]  $ ls -lrta /dev/disk/by-path/ip-192.168.0.46\:3260-iscsi-iqn.2011-03.org.example.istgt\:albandri-lun-*
+lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-2 -> ../../sdd
+lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-0 -> ../../sdb
+lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-1 -> ../../sdc
+
+#create LVM volume. Warning, respect naming with nova-volumes 
+sudo pvcreate /dev/sdb
+sudo vgcreate nova-volumes /dev/sdb
+
+ls /dev/mapper
+sudo fdisk -lu
+sudo blkid /dev/sdb
+/dev/sdb: UUID="k0JoAu-6i9x-yxBS-QwXA-LStw-hpGF-YPI2PD" TYPE="LVM2_member" 
+
+#load necessary module
+sudo modprobe dm-mod
+#Scan your system for LVM volumes and identify in the output the volume group name that has your Fedora volume
+sudo vgscan
+sudo vgchange -ay nova-volumes
+#Find the logical volume 
+sudo lvs
+sudo pvs
+  PV         VG           Fmt  Attr PSize   PFree  
+  /dev/sdb   nova-volumes lvm2 a--  100.00g 100.00g
+sudo lvdisplay /dev/nova-volumes  
+#manual mount
+sudo mkdir /mnt/openstack
+#TODO
+#sudo mount /dev/sdb/nova-volumes /mnt/openstack
+#sudo umount /mnt/openstack 
+sudo mount /dev/VolGroup00/LogVol00 /mnt/fcroot -o ro,user
+----------------------------------------------------------
 
 #look at http://albandri/horizon
 
@@ -719,21 +793,9 @@ git clone https://github.com/openstack-dev/devstack.git
 cd devstack
 
 ------------
+#automate install
 
-#https://wiki.ubuntu.com/ServerTeam/CloudArchive#Havana
-#https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
-
-sudo apt-get install ubuntu-cloud-keyring
-echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/grizzly main" >> sudo /etc/apt/sources.list.d/cloud-archive.list
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
-
-#install first package 
-apt-get install -y keystone
-#check right version 
-dpkg -s keystone
-
+cd /workspace/
 git clone https://github.com/jedipunkz/openstack_grizzly_install
 cd openstack_grizzly_install
 cp setup.conf.samples/setup.conf.allinone.nova-network setup.conf
@@ -743,11 +805,7 @@ sudo service networking restart
 
 sudo su - root
 
-cd /devel/albandri/openstack_grizzly_install
+#cd /devel/albandri/openstack_grizzly_install
+cd /workspace/openstack_grizzly_install
 ./setup.sh allinone
 
-TODO https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
-
- 2012.1|2012.1.*) os_dist='essex';;
- 2012.2|2012.2.*) os_dist='folsom';;
- 2013.1|2013.1.*) os_dist='grizzly';;

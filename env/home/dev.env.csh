@@ -121,6 +121,12 @@ if (! -d $PROJECT_DEV) then
   exit 1
 endif
 
+#This variable must not be set if jenkins is used
+if (! $?WORKSPACE) then
+  echo "ERROR: Set WORKSPACE environment variable!"
+  setenv WORKSPACE ${PROJECT_DEV}
+endif
+
 ##
 # Cleaning LD_LIBRARY_PATH LIBPATH and CLASSPATH
 ##
@@ -245,20 +251,22 @@ alias scons '/usr/bin/scons'
 #setenv JAVA_HOME "C:\\Program\ Files\ \(x86\)\\Java\\jdk1.5.0_22"
 ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
 #setenv JAVA_HOME /ProgramFilesx86/Java/jdk1.5.0_22
-setenv JAVA_HOME ${DRIVE_PATH}/jenkins/tools/JDK/JDK_7u7
+setenv JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 setenv JRE_HOME ${JAVA_HOME}/jre
 setenv PATH ${PATH}:${JAVA_HOME}/bin
 
 # MAVEN
-setenv M2_HOME /usr/share/maven
+setenv M2_HOME /usr/local/apache-maven-3.2.1
 setenv M2 ${M2_HOME}/bin
 setenv MAVEN_DIR ${M2_HOME}
 #setenv MAVEN_OPTS "-Xmx1548m"
 #setenv MAVEN_OPTS "-Xmx512M -XX:MaxPermSize=1024M"
 #setenv MAVEN_OPTS "-Xms512m -Xmx1024m"
 #Add MaxPermSize for andromda
-setenv MAVEN_OPTS "-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M"
+#setenv MAVEN_OPTS "-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M"
+#for java 8 PermSize and MaxPermSize can be removed
+setenv MAVEN_OPTS "-Xms256m -Xmx512m"
 # -Djava.awt.headless=true
 if ( "1" == "1" ) then
   #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log

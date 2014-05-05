@@ -36,6 +36,7 @@ firefly-1696_7-amd64
 #Nameserver 2
 #8.8.4.4
 
+#install package
 portsnap fetch
 portsnap extract
 portsnap update
@@ -85,6 +86,16 @@ https://sabnzbd_1:9090/sabnzbd/
 https://127.0.0.1:9090/sabnzbd/
 https://192.168.0.8:9090/sabnzbd/
 
+#subsonic
+pkg_add -v -r xtrans
+pkg_add -v -r xproto
+pkg_add -v -r xextproto
+pkg_add -v -r javavmwrapper
+# NOK pkg_add -v -r lame
+#instead
+pkg_add -r -v http://ftp.urc.ac.ru/pub/OS/FreeBSD/packages-7/Latest/lame.tbz
+pkg_add -v -r flac
+pkg_add -v -r ffmpeg
 
 #plexmedia
 #In the gui check disableRemoteSecurity
@@ -436,6 +447,7 @@ adduser
 #slave
 #other group wheel
 #microsoft
+pw usermod jenkins -G wheel
 
 #jenkins user add rsa key in freenas
 [jenkins@freenas ~/.ssh]$ ssh-keygen -t rsa                                     
@@ -452,6 +464,11 @@ less ~/.ssh/id_rsa.pub
 ssh-rsa KEY jenkins@freenas.local
 ssh-rsa KEY jenkins@albandri
 
+#install port
+portsnap fetch && portsnap extract
+cd /usr/ports/java/openjdk7
+make clean install
+
 #freenas
 ssh jenkins@192.168.0.46
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
@@ -460,6 +477,10 @@ ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
 ssh -v jenkins@192.168.0.14
 #albandri
 ssh -v jenkins@192.168.0.29
+
+#in the jail
+#install port
+portsnap fetch && portsnap extract
 
 -----------------------------------------------------
 #????? below was not working
@@ -516,3 +537,10 @@ ssh -i OpenSSH_RSA_4096 albandri@freenas
 #http://doc.freenas.org/index.php/Plugins
 
 http://www.freshports.org/devel/jenkins-lts/
+
+#jdk8
+pkg_add -v -r libffi
+cd /usr/ports/java/openjdk8
+make clean install
+
+ls -lrta /usr/local/openjdk8

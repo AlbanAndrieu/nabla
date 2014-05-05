@@ -82,3 +82,6 @@ https://home.nabla.mobi/jenkins/monitoring?part=graph&graph=httpSessions
 #On Red hat disable jenkins start at boot time
 #chkconfig jenkins off
 sudo update-rc.d jenkins disable
+
+#TODO jenkins in apache is in conflict with gearman
+sudo a2dissite gearman

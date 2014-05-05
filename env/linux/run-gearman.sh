@@ -172,6 +172,7 @@ sudo nano gearman.conf
         #ProxyRequests off
 </VirtualHost>
 
+#TODO WARNING jenkins in apache is in conflict with gearman
 sudo a2ensite gearman
 
 cd /var/www/gearman
