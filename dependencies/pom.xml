@@ -1271,7 +1271,7 @@
 		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
 		<!--<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>-->
 		<!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test -->
-		<sonar-jacoco-listeners.version>2.1</sonar-jacoco-listeners.version>
+		<sonar.jacoco.listeners.version>2.2</sonar.jacoco.listeners.version>
 		<!-- The system property jacoco.outputDir needs to be override on the command line
 		with an absolute path if you want to merge results from all modules.
 		Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
@@ -1355,7 +1355,8 @@
 				<!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
 				<clover.version>3.2.0</clover.version>
 				<dbunit.version>2.4.9</dbunit.version>
-				<testng.version>6.8.8</testng.version>
+				<testng.version>6.8.7</testng.version>
+				<!--todo <testng.version>6.8.8</testng.version>-->
 				<htmlunit.version>1.11</htmlunit.version>
 				<org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
 				<oro.version>2.0.8</oro.version>
@@ -1429,6 +1430,7 @@
 				<jdbc.postgresql.version>8.1-407.jdbc3</jdbc.postgresql.version>
 				<jdbc.mysql.version>5.1.27</jdbc.mysql.version>
 
+				<asm.ow2.version>5.0.2</asm.ow2.version>
 				<!--<asm.version>2.2.3</asm.version>--> <!-- error running openejb -->
 				<asm.version>3.3.1</asm.version> <!-- works with cglib -->
 				<cglib.version>2.2</cglib.version>
@@ -1864,7 +1866,7 @@
 				<maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
 				<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
 				<maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
-				<maven.failsafe.plugin.version>2.16</maven.failsafe.plugin.version>
+				<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
 				<maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
 				<maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
 				<maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
@@ -3486,8 +3488,8 @@
 												</excludeRoots>
 												<excludes>
 														<exclude>**/*Bean.java</exclude>
-   							<exclude>**/generated/**/*</exclude>
-   							<exclude>**/clover/**/*</exclude>
+														<exclude>**/generated/**/*</exclude>
+														<exclude>**/clover/**/*</exclude>
 												</excludes>
 										</configuration>
 								</plugin>
@@ -3495,10 +3497,11 @@
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-checkstyle-plugin</artifactId>
 										<version>${maven.checkstyle.plugin.version}</version>
-   					<configuration>
-   						<excludes>**/generated/**/*</excludes>
-   						<excludes>**/clover/**/*</excludes>
-   					</configuration>
+										<configuration>
+											<includeTestSourceDirectory>true</includeTestSourceDirectory>
+											<excludes>**/generated/**/*</excludes>
+											<excludes>**/clover/**/*</excludes>
+										</configuration>
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -4664,6 +4667,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<artifactId>asm</artifactId>
 								<version>${asm.version}</version>
 						</dependency>
+						<dependency>
+								<groupId>org.ow2.asm</groupId>
+								<artifactId>asm</artifactId>
+								<version>${asm.ow2.version}</version>
+						</dependency>            				
 						<dependency>
 								<groupId>cglib</groupId>
 								<artifactId>cglib-nodep</artifactId>
