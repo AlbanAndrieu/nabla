@@ -34,6 +34,10 @@
 package com.nabla.project.visma.api;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * @author albandri
@@ -41,9 +45,35 @@ import java.math.BigDecimal;
  */
 public interface ILoan {
     
+    /**
+     * 
+     * Interest in percent. Default is 5.5 (for 5.5%).
+     *
+     * @return interest in percent
+     */
     double getInterest();
 	
-	IProduct getProduct();
-
-	BigDecimal calculateMonthlyPayment();
+	/**
+	 * 
+	 * Give the time wanted for the loan in order to calculate payments.
+	 *
+	 * @return payback time in years
+	 */
+	int getPaybackTime();	 
+	   
+    /**
+     * 
+     * Give the product related to the loan.
+     *
+     * @return the product related to the loan
+     */	
+    IProduct getProduct();
+    
+	/**
+	 * 
+	 * Give monthly payback plan based on the product, interest and payback time
+	 *
+	 * @return a date with their corresponding amount and interest
+	 */
+    Map<Integer, List<BigDecimal>> calcMonthlyPayment();
 }

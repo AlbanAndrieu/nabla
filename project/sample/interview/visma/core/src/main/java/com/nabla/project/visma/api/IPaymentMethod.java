@@ -34,27 +34,26 @@
 package com.nabla.project.visma.api;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
 /**
- * @author albandri
+ * DOCUMENT ME! albandri.
+ *
+ * @author $Author$
+ * @version $Revision$
+ *
+ * @since $Date$
  *
  */
-public interface IProduct {
+public interface IPaymentMethod
+{
 
     /**
      * 
-     * Give the price or amount of the product in NOK.
+     * Give monthly payback plan (payments) based on the product, interest and payback time
      *
-     * @return the price or amount of the product
+     * @return a date with its corresponding payment and interest for a loan
      */
-	BigDecimal getPrice();
-	
-	/**
-	 * 
-	 * Give the name of the product.
-	 *
-	 * @return the name of the product
-	 */
-	String getName();
-
+    public Map<Integer, List<BigDecimal>> calculate();
 }
