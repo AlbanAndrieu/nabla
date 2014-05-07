@@ -29,7 +29,7 @@ public class BasicPaymentMethodTest
     {
         // based on http://en.wikipedia.org/wiki/Fixed-rate_mortgage sample
         product = new House(new BigDecimal(200_000));
-        loan = new HouseLoan(product, HouseLoanTest.DEFAULT_PAYBACK_TIME, DEFAULT_TEST_INTEREST);
+        loan = new HouseLoan(product, HouseLoanTest.DEFAULT_PAYBACK_TIME, BasicPaymentMethodTest.DEFAULT_TEST_INTEREST);
     }
 
     @After
