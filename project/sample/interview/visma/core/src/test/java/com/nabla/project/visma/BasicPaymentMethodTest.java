@@ -17,12 +17,12 @@ public class BasicPaymentMethodTest
 {
 
     private static final String EXPECTED_PAYMENT_RESULT_30 = "1264.136046985927464091663352477320";
-    private static final String EXPECTED_PAYMENT_RESULT_1 = "17259.28339205628248798033176022882";
+    private static final String EXPECTED_PAYMENT_RESULT_1  = "17259.28339205628248798033176022882";
 
-    private static final double DEFAULT_TEST_INTEREST = 6.5;
-    
-    private ILoan loan;
-    private IProduct product;
+    private static final double DEFAULT_TEST_INTEREST      = 6.5;
+
+    private ILoan               loan;
+    private IProduct            product;
 
     @Before
     public void setUp() throws Exception
@@ -40,7 +40,8 @@ public class BasicPaymentMethodTest
     }
 
     @Test
-    public final void testPaymentMethodNotNull() {
+    public final void testPaymentMethodNotNull()
+    {
 
         IPaymentMethod method = new BasicPaymentMethod(loan);
         Assert.assertNotNull(method.calculate());
@@ -48,7 +49,8 @@ public class BasicPaymentMethodTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testPaymentMethodNull() {
+    public final void testPaymentMethodNull()
+    {
 
         IPaymentMethod method = new BasicPaymentMethod(null);
         Assert.assertNotNull(method.calculate());
@@ -66,21 +68,21 @@ public class BasicPaymentMethodTest
     public void testCalcNumberOfMonths()
     {
         Assert.assertEquals(360, BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime()), HouseLoanTest.DOUBLE_DELTA);
-    }        
+    }
 
     @Test
     public void testMonthlyPaymentWithDouble()
-    {        
+    {
         IPaymentMethod method = new BasicPaymentMethod(loan);
         Assert.assertEquals(1264.136046985934, ((BasicPaymentMethod) method).getMonthlyPaymentWithDouble(), HouseLoanTest.DOUBLE_DELTA);
-    }                   
+    }
 
     @Test
     public void testMonthlyPayment()
     {
         IPaymentMethod method = new BasicPaymentMethod(loan);
         Assert.assertEquals(EXPECTED_PAYMENT_RESULT_30, ((BasicPaymentMethod) method).getMonthlyPayment().toString());
-    }      
+    }
 
     @Test
     public void testCalculate()
@@ -90,7 +92,9 @@ public class BasicPaymentMethodTest
         Map<Integer, List<BigDecimal>> payments = method.calculate();
         Assert.assertNotNull(payments);
         Assert.assertEquals(12, payments.size());
-        Assert.assertEquals("{0=[" + EXPECTED_PAYMENT_RESULT_1 + "], 1=[" + EXPECTED_PAYMENT_RESULT_1 + "], 2=[" + EXPECTED_PAYMENT_RESULT_1 + "], 3=[" + EXPECTED_PAYMENT_RESULT_1 + "], 4=[" + EXPECTED_PAYMENT_RESULT_1 + "], 5=[" + EXPECTED_PAYMENT_RESULT_1 + "], 6=[" + EXPECTED_PAYMENT_RESULT_1 + "], 7=[" + EXPECTED_PAYMENT_RESULT_1 + "], 8=[" + EXPECTED_PAYMENT_RESULT_1 + "], 9=[" + EXPECTED_PAYMENT_RESULT_1 + "], 10=[" + EXPECTED_PAYMENT_RESULT_1 + "], 11=[" + EXPECTED_PAYMENT_RESULT_1 + "]}", method.calculate().toString());
+        Assert.assertEquals("{0=[" + EXPECTED_PAYMENT_RESULT_1 + "], 1=[" + EXPECTED_PAYMENT_RESULT_1 + "], 2=[" + EXPECTED_PAYMENT_RESULT_1 + "], 3=[" + EXPECTED_PAYMENT_RESULT_1 + "], 4=[" + EXPECTED_PAYMENT_RESULT_1
+                + "], 5=[" + EXPECTED_PAYMENT_RESULT_1 + "], 6=[" + EXPECTED_PAYMENT_RESULT_1 + "], 7=[" + EXPECTED_PAYMENT_RESULT_1 + "], 8=[" + EXPECTED_PAYMENT_RESULT_1 + "], 9=[" + EXPECTED_PAYMENT_RESULT_1
+                + "], 10=[" + EXPECTED_PAYMENT_RESULT_1 + "], 11=[" + EXPECTED_PAYMENT_RESULT_1 + "]}", method.calculate().toString());
     }
 
 }

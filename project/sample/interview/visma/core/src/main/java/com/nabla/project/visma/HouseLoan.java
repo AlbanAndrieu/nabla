@@ -10,29 +10,31 @@ import org.apache.log4j.Logger;
 import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IProduct;
 
-public class HouseLoan implements ILoan {
+public class HouseLoan implements ILoan
+{
 
-    private static final transient Logger LOGGER         = Logger.getLogger(HouseLoan.class);
+    private static final transient Logger LOGGER           = Logger.getLogger(HouseLoan.class);
 
-    public static final double DEFAULT_INTEREST = 5.5;
+    public static final double            DEFAULT_INTEREST = 5.5;
 
     // Fixed interest of 5.5% per year
-    private double interest = DEFAULT_INTEREST;
+    private double                        interest         = DEFAULT_INTEREST;
 
-    private IProduct product;
+    private IProduct                      product;
 
-    private int paybackTime;
+    private int                           paybackTime;
 
-    public HouseLoan() {
+    public HouseLoan()
+    {
         throw new AssertionError();
     }
 
     public HouseLoan(IProduct aProduct, int aPaybackTime)
-    {      
+    {
         this.product = aProduct;
         this.paybackTime = aPaybackTime;
 
-        if (null == this.product )
+        if (null == this.product)
         {
             throw new IllegalArgumentException("Product cannot be null");
         }
@@ -40,22 +42,23 @@ public class HouseLoan implements ILoan {
         if (this.paybackTime <= 0)
         {
             throw new IllegalArgumentException("Payback time cannot be zero or negatif");
-        }        
+        }
     }
 
     public HouseLoan(IProduct aProduct, int aPaybackTime, double aInterest)
-    {      
+    {
         this(aProduct, aPaybackTime);
         this.interest = aInterest;
 
         if (this.interest <= 0)
         {
             throw new IllegalArgumentException("Interest time cannot be zero or negatif");
-        }        
+        }
     }
 
     @Override
-    public double getInterest() {
+    public double getInterest()
+    {
 
         return interest;
     }
@@ -67,7 +70,8 @@ public class HouseLoan implements ILoan {
     }
 
     @Override
-    public Map<Integer, List<BigDecimal>> calcMonthlyPayment() {
+    public Map<Integer, List<BigDecimal>> calcMonthlyPayment()
+    {
 
         LOGGER.debug("Start calculateMonthlyPayment for : " + this.toString());
         // TODO check Design pattern strategy
@@ -75,7 +79,8 @@ public class HouseLoan implements ILoan {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 

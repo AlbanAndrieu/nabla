@@ -12,27 +12,31 @@ import com.nabla.project.visma.api.IProduct;
  * @author albandri
  *
  */
-public class House implements IProduct, Comparable<House>, Serializable {
+public class House implements IProduct, Comparable<House>, Serializable
+{
 
-    private static final long serialVersionUID = 1L;
+    private static final long  serialVersionUID = 1L;
 
-    public static final String DEFAULT_NAME = "House";
-    
-    private String name = DEFAULT_NAME;
-    private BigDecimal price = BigDecimal.TEN;
+    public static final String DEFAULT_NAME     = "House";
 
-    public House() {
+    private String             name             = DEFAULT_NAME;
+    private BigDecimal         price            = BigDecimal.TEN;
+
+    public House()
+    {
         throw new AssertionError();
     }
 
-    public House(BigDecimal aPrice) {
+    public House(BigDecimal aPrice)
+    {
 
         this.price = aPrice;
         this.validateState();
 
     }
 
-    public House(int aPrice) {
+    public House(int aPrice)
+    {
         this(new BigDecimal(aPrice));
     }
 
@@ -46,14 +50,15 @@ public class House implements IProduct, Comparable<House>, Serializable {
         {
             throw new IllegalArgumentException("Price cannot be null");
         }
-        if (this.price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException(
-                    "Amount must not be negatif or zero");
+        if (this.price.compareTo(BigDecimal.ZERO) <= 0)
+        {
+            throw new IllegalArgumentException("Amount must not be negatif or zero");
         }
     }
 
     @Override
-    public BigDecimal getPrice() {
+    public BigDecimal getPrice()
+    {
         return this.price;
     }
 
@@ -64,7 +69,8 @@ public class House implements IProduct, Comparable<House>, Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 
@@ -75,15 +81,15 @@ public class House implements IProduct, Comparable<House>, Serializable {
 
     }
 
-    public int hashCode() {
+    public int hashCode()
+    {
         return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
                 // if deriving: appendSuper(super.hashCode()).
-                append(getName()).
-                append(getPrice()).
-                toHashCode();
+                append(getName()).append(getPrice()).toHashCode();
     }
 
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (obj == null)
             return false;
         if (obj == this)
@@ -93,10 +99,8 @@ public class House implements IProduct, Comparable<House>, Serializable {
 
         House rhs = (House) obj;
         return new EqualsBuilder().
-                // if deriving: appendSuper(super.equals(obj)).
-                append(name, rhs.name).
-                append(price, rhs.price).
-                isEquals();
+        // if deriving: appendSuper(super.equals(obj)).
+                append(name, rhs.name).append(price, rhs.price).isEquals();
     }
 
     @Override

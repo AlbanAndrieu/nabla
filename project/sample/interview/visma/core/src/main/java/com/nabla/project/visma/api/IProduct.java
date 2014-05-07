@@ -39,7 +39,8 @@ import java.math.BigDecimal;
  * @author albandri
  *
  */
-public interface IProduct {
+public interface IProduct
+{
 
     /**
      * 
@@ -47,14 +48,14 @@ public interface IProduct {
      *
      * @return the price or amount of the product
      */
-	BigDecimal getPrice();
-	
-	/**
-	 * 
-	 * Give the name of the product.
-	 *
-	 * @return the name of the product
-	 */
-	String getName();
+    BigDecimal getPrice();
+
+    /**
+     * 
+     * Give the name of the product.
+     *
+     * @return the name of the product
+     */
+    String getName();
 
 }
