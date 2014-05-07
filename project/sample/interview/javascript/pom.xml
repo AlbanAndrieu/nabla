@@ -63,6 +63,7 @@
 			<plugin>
 				<groupId>com.mobilvox.ossi.mojo</groupId>
 				<artifactId>maven-js-plugin</artifactId>
+				<version>${maven.js.plugin.version}</version>
 				<configuration>
 					<replaceSiteJavaScript>false</replaceSiteJavaScript>
 					<siteClassifier>-compressed</siteClassifier>
