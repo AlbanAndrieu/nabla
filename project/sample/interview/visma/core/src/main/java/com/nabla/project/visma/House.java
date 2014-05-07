@@ -16,7 +16,9 @@ public class House implements IProduct, Comparable<House>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String name = "Default house name";
+    public static final String DEFAULT_HOUSE_NAME = "Default house name";
+    
+    private String name = DEFAULT_HOUSE_NAME;
     private BigDecimal price = BigDecimal.TEN;
 
     public House() {
@@ -40,7 +42,7 @@ public class House implements IProduct, Comparable<House>, Serializable {
      */
     private void validateState()
     {
-        if (this.price == null)
+        if (null == this.price)
         {
             throw new IllegalArgumentException("Price cannot be null");
         }
@@ -66,8 +68,8 @@ public class House implements IProduct, Comparable<House>, Serializable {
 
         final StringBuffer str = new StringBuffer();
 
-        str.append("name=").append(this.getName()).append(' ');
-        str.append("price=").append(this.getPrice());
+        str.append("name:").append(this.getName()).append(' ');
+        str.append("price:").append(this.getPrice());
 
         return str.toString();
 

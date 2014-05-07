@@ -40,8 +40,10 @@ import java.math.BigDecimal;
  *
  */
 public interface ILoan {
-
-	BigDecimal getInterest();
+    
+    double getInterest();
+	
+	IProduct getProduct();
 
 	BigDecimal calculateMonthlyPayment();
 }

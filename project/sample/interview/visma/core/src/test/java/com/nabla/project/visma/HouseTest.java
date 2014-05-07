@@ -2,12 +2,9 @@ package com.nabla.project.visma;
 
 import java.math.BigDecimal;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import com.nabla.project.visma.House;
 import com.nabla.project.visma.api.IProduct;
 
 /**
@@ -20,44 +17,44 @@ import com.nabla.project.visma.api.IProduct;
  */
 public class HouseTest {
 
-    private IProduct product;
-    private BigDecimal expectedPrice = new BigDecimal(1_000_000);
-
-    @Before
-    public void setUp() throws Exception {
-        product = new House(expectedPrice);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        product = null;
-    }
+    public static final BigDecimal EXPECTED_PRICE = new BigDecimal(1_000_000);
 
     @Test(expected = AssertionError.class)
     public final void testEmptyContructor() {
 
-        product = new House();
+        IProduct product = new House();
+        Assert.assertNotNull(product);
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public final void testProductNull() {
+
+        IProduct product = new House(null);
+        Assert.assertNotNull(product);
+
+    }
+    
     @Test
     public final void testPriceContructor() {
 
-        Assert.assertEquals(new House(new BigDecimal(1_000_000)).getPrice(), expectedPrice);
-        Assert.assertFalse("to string", new House(new BigDecimal(1_000_000)).equals(expectedPrice));
+        Assert.assertEquals(new House(new BigDecimal(1_000_000)).getPrice(), EXPECTED_PRICE);
+        Assert.assertFalse("to string", new House(new BigDecimal(1_000_000)).equals(EXPECTED_PRICE));
     }
 
     @Test(expected = NumberFormatException.class)
     public final void testPriceNotANumber() {
 
-        product = new House(new BigDecimal("Not a number"));
+        IProduct product = new House(new BigDecimal("Not a number"));
+        Assert.assertNotNull(product);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public final void testPriceNotNull() {
 
-        product = new House(null);
+        IProduct product = new House(null);
+        Assert.assertNotNull(product);
 
     }
     
@@ -85,8 +82,8 @@ public class HouseTest {
     @Test
     public final void testToString() {
 
-        Assert.assertEquals(new House(1_000_000).toString(), "name=Default house name price="+expectedPrice);
-        Assert.assertFalse(new House(1_000_000).equals("name=Default house name price="+expectedPrice));
+        Assert.assertEquals(new House(1_000_000).toString(), "name:" + House.DEFAULT_HOUSE_NAME + " price:"+EXPECTED_PRICE);
+        Assert.assertFalse(new House(1_000_000).equals("name:" + House.DEFAULT_HOUSE_NAME + " price:"+EXPECTED_PRICE));
 
     }
     
