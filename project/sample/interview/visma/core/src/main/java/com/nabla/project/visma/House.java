@@ -48,7 +48,7 @@ public class House implements IProduct, Comparable<House>, Serializable {
         }
         if (this.price.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException(
-                    "Price must not be negatif or zero");
+                    "Amount must not be negatif or zero");
         }
     }
 
