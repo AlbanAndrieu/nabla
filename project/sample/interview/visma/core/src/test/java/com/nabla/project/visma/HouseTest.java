@@ -82,8 +82,8 @@ public class HouseTest {
     @Test
     public final void testToString() {
 
-        Assert.assertEquals("name:" + House.DEFAULT_HOUSE_NAME + " price:"+DEFAULT_EXPECTED_PRICE, new House(1_000_000).toString());
-        Assert.assertFalse(new House(1_000_000).equals("name:" + House.DEFAULT_HOUSE_NAME + " price:"+DEFAULT_EXPECTED_PRICE));
+        Assert.assertEquals("name:" + House.DEFAULT_NAME + " price:"+DEFAULT_EXPECTED_PRICE, new House(1_000_000).toString());
+        Assert.assertFalse(new House(1_000_000).equals("name:" + House.DEFAULT_NAME + " price:"+DEFAULT_EXPECTED_PRICE));
 
     }
     

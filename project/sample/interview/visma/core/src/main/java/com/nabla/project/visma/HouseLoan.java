@@ -69,7 +69,7 @@ public class HouseLoan implements ILoan {
     @Override
     public Map<Integer, List<BigDecimal>> calcMonthlyPayment() {
 
-        LOGGER.debug("Start calculateMonthlyPayment");
+        LOGGER.debug("Start calculateMonthlyPayment for : " + this.toString());
         // TODO check Design pattern strategy
         return new BasicPaymentMethod(this).calculate();
     }

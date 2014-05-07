@@ -16,9 +16,9 @@ public class House implements IProduct, Comparable<House>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DEFAULT_HOUSE_NAME = "Default house name";
+    public static final String DEFAULT_NAME = "House";
     
-    private String name = DEFAULT_HOUSE_NAME;
+    private String name = DEFAULT_NAME;
     private BigDecimal price = BigDecimal.TEN;
 
     public House() {

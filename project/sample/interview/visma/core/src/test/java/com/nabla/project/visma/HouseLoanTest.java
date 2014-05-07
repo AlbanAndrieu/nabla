@@ -66,12 +66,6 @@ public class HouseLoanTest
         Assert.assertEquals(HouseTest.DEFAULT_EXPECTED_PRICE, loan.getProduct().getPrice());
     }
 
-    @Test
-    public void testCalculateMonthlyPayment()
-    {
-        fail("Not yet implemented");
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testZeroPaybackTime()
     {
@@ -143,7 +137,18 @@ public class HouseLoanTest
     @Test
     public void testToString()
     {
-        Assert.assertEquals(new HouseLoan(product, HouseLoanTest.DEFAULT_PAYBACK_TIME).toString(), "product:{name:" + House.DEFAULT_HOUSE_NAME + " price:"+ HouseTest.DEFAULT_EXPECTED_PRICE + "} paybacktime:" + HouseLoanTest.DEFAULT_PAYBACK_TIME + " interest:" + HouseLoan.DEFAULT_INTEREST);
+        Assert.assertEquals(new HouseLoan(product, HouseLoanTest.DEFAULT_PAYBACK_TIME).toString(), "product:{name:" + House.DEFAULT_NAME + " price:"+ HouseTest.DEFAULT_EXPECTED_PRICE + "} paybacktime:" + HouseLoanTest.DEFAULT_PAYBACK_TIME + " interest:" + HouseLoan.DEFAULT_INTEREST);
+    }
+
+    @Test
+    public void testCalculateMonthlyPayment()
+    {
+        //See BasicPaymentMethodTest for more tests
+        Assert.assertNotNull(product);
+        Assert.assertEquals(product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
+        
+        ILoan loan = new HouseLoan(product, 1);
+        Assert.assertNotNull(loan.calcMonthlyPayment());
     }
 
 }
