@@ -7,7 +7,7 @@ import com.nabla.project.visma.api.ILoan
 import com.nabla.project.visma.api.IProduct
 import static org.junit.Assert.assertEquals
 
-class SampleTest extends GroovyTestCase {
+class SampleITest extends GroovyTestCase {
 
     @Test
     void testVisma() {
