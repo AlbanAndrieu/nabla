@@ -1379,13 +1379,18 @@
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>javancss-maven-plugin</artifactId>
                                                                         <version>${maven.javancss.plugin.version}</version>
+																		<configuration>
                                                                         <!--
-                                                                        <configuration>
                                                                           <failOnViolation>true</failOnViolation>
                                                                           <ccnLimit>12</ccnLimit>
                                                                           <ncssLimit>90</ncssLimit>
-                                                                        </configuration>
-                                                                        -->
+                                                                        -->													
+																		   <excludes>
+																			  <exclude>**/generated/**/*</exclude>
+																			  <exclude>**/clover/**/*</exclude>
+																			  <exclude>**/Visma.java</exclude>
+																			</excludes>
+																		</configuration>                                                                        
                                                                 </plugin>
 
                                                                 <!--
