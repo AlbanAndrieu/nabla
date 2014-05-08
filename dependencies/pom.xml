@@ -4148,9 +4148,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 				   <configuration>
 					 <!--<configFile>${home.dir}/build-tools/src/main/resources/project/jalopy_regles_nabla_eclipse.xml</configFile>-->
 					 <configFile>/project/jalopy_regles_nabla_eclipse.xml</configFile>
+					 <overrideConfigCompilerVersion>true</overrideConfigCompilerVersion>
 					 <compilerSource>${jdkLevel}</compilerSource>
 					 <compilerCompliance>${jdkLevel}</compilerCompliance>
 					 <compilerTargetPlatform>${jdkLevel}</compilerTargetPlatform>
+					 <lineEnding>LF</lineEnding>
+					 <encoding>UTF-8</encoding>
 				   </configuration>
 				   <dependencies>
 					 <dependency>
@@ -7451,6 +7454,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<groupId>com.google.code.findbugs</groupId>
 					<artifactId>jsr305</artifactId>
 					<version>${jsr305.version}</version>
+					<optional>true</optional><!-- needed only for annotations -->
 				</dependency>
 				<dependency>
 					<groupId>com.google.guava</groupId>
