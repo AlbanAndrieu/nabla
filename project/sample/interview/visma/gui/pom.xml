@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project.sample.interview.visma</groupId>
+		<artifactId>visma</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gui</artifactId>
+	<packaging>war</packaging>
+	<name>Java Server Faces Maven Webapp for Visma</name>
+
+	<!--       
+        <properties>
+			<jsf.api.version>2.1</jsf.api.version>
+        	<jsf.impl.version>2.1</jsf.impl.version>		
+			<jsf.api.version>1.2_15</jsf.api.version>
+        	<jsf.impl.version>1.2_15</jsf.impl.version>
+			<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
+			<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
+        	<el.api.version>2.2.1-b04</el.api.version>
+        	<jboss.el.version>1.0_02.CR6</jboss.el.version>	
+        </properties>
+	-->	
+ 	
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+				of artifacts. We use this here so that we always get the correct versions 
+				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
+				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
+				for your project, such as Arquillian for testing) -->
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- First declare the APIs we depend on and need for compilation. All 
+			of them are provided by JBoss AS 7 -->
+
+		<!-- Import the CDI API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the JPA API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
+			as the API is included in JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the JAX-RS API, we use provided scope as the API is included 
+			in JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the JPA API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the EJB API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<!--
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<!-- Import the Bean Validation API, which is used both on the server and 
+			the client. -->
+		<!--			
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		-->
+                
+		<!-- Import the JSF API, we use provided scope as the API is included
+			in JBoss AS 7 -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>  
+        		
+		<!-- for cannot access javax.faces.application.FacesMessage -->
+		<!-- see in core project it is provided (needed for jboss 7) -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<!--<version>${jsf.api.version}</version>-->
+			<scope>${scope.tomcat.never.type}</scope>
+			<!-- <scope>compile</scope> compile needed for jetty -->
+		</dependency>
+		
+		<!-- TODO remove not needed
+                <dependency>
+                        <groupId>javax.faces</groupId>
+                        <artifactId>jsf-impl</artifactId>
+                        <version>${jsf.impl.version}</version>
+                        <scope>${scope.type}</scope>
+                </dependency>
+		-->
+                    
+		<!-- TODO remove 
+    		<dependency>
+        		<groupId>org.primefaces</groupId>
+        		<artifactId>primefaces</artifactId>
+        		<version>4.0</version>
+    		</dependency>
+		 -->
+
+    		<!-- Javaee API -->
+		<!-- TODO remove
+		<dependency>
+    			<groupId>javax</groupId>
+    			<artifactId>javaee-api</artifactId>
+    			<version>${javax.javaee.api.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+		 recommended way is to include
+  		<dependency>
+            		<groupId>javax.faces</groupId>
+            		<artifactId>javax.faces-api</artifactId>
+            		<version>2.1</version>
+	    		<scope>${scope.type}</scope>
+  		</dependency>
+		-->
+		<!-- http://download.java.net/maven/2 needed for tomcat only -->
+		<!-- replaced by javax.faces for other except tomcat -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<!--<version>${sun.jsf.version}</version>-->
+			<scope>${scope.tomcat.only.type}</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<!--<version>${sun.jsf.version}</version>-->
+			<scope>${scope.tomcat.only.type}</scope>
+		</dependency>		
+
+		<!-- http://repo1.maven.org/maven -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<!--<version>${jstl.version}</version>-->
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<!--<version>${servlet.api.version}</version>-->
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<!--<version>${jsp-api.version}</version>-->	
+		</dependency>
+
+		<!-- Tomcat 6 need this -->
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+			<!--<version>${el.ri.version}</version>-->
+		</dependency>
+
+		<!-- TODO must be needed later
+		<dependency>
+			<groupId>org.jboss.el</groupId>
+			<artifactId>jboss-el</artifactId>
+			<version>${jboss.el.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>${el.api.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>${org.mvel.mvel2.version}</version>
+			<scope>${scope.type}</scope>
+		</dependency>
+		-->
+		<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<!--<version>${commons.httpclient.version}</version>-->
+				<scope>compile</scope>
+		</dependency>
+                        		
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<!--<version>${junit.version}</version>-->
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 
+		<dependency>
+			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>${selenium.java.client.driver.version}</version>
+			<scope>test</scope>
+		</dependency>
+		 -->
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>
+		</dependency>		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-remote-driver</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<!--<version>${selenium.firefox.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>                  
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-api</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-safari-driver</artifactId>
+			<!--<version>${selenium.safari.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-iphone-driver</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>						                        		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-ie-driver</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-android-driver</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>	
+		</dependency>					
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<!--<version>${selenium.driver.version}</version>-->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<!--<version>${selenium.version}</version>-->
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<finalName>visma</finalName>
+		<plugins>
+			<!--
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>selenium-maven-plugin</artifactId>
+				<version>${maven.selenium.plugin.version}</version>
+				<configuration>
+					<browser>*firefox</browser>
+					<suite>src/test/selenium/SimpleSTestSuite.html</suite>
+					<startURL>http://${cargo.host}:${cargo.port}</startURL>
+				</configuration>
+				-->
+				<!-- 				
+				<executions>
+					<execution>
+						<id>xvfb</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>xvfb</goal>
+						</goals>
+						<configuration> 
+							<display>:99</display> 
+						</configuration> 
+					</execution>
+
+					<execution>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start-server</goal>
+						</goals>
+						<configuration>
+							<background>true</background>
+						</configuration>
+					</execution>
+					<execution>
+						<id>run-selenium-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>selenese</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-selenium</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop-server</goal>
+						</goals>
+					</execution>
+					
+				</executions>
+			-->				
+			<!--
+			</plugin>
+			-->
+
+			<plugin>
+				<groupId>org.codehaus.gmaven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<fileset>
+									<directory>${basedir}/src/test/groovy</directory>
+									<includes>
+										<include>**/*.groovy</include>
+									</includes>
+								</fileset>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>${maven.test.skip}</skipTests>
+					<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+					<testSourceDirectory>${basedir}/src/test/groovy</testSourceDirectory>
+					<excludes>
+						<exclude>**/*ITest*</exclude>
+						<exclude>**/*STest*</exclude>
+					</excludes>
+					<systemPropertyVariables>
+						<webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>						
+            			<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
+        			</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<id>surefire-itest</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<excludes>
+								<exclude>none</exclude>
+							</excludes>
+							<includes>
+								<include>**/*ITest*</include>
+								<include>**/*STest*</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+<!--
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-dependency-plugin</artifactId>
+  <executions>
+    <execution>
+      <id>unpack</id>
+      <phase>pre-integration-test</phase>
+      <goals>
+        <goal>unpack</goal>
+      </goals>
+      <configuration>
+        <artifactItems>
+          <artifactItem>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-dist</artifactId>
+            <version>${jboss.version}</version>
+            <type>zip</type>
+            <overWrite>false</overWrite>
+            <outputDirectory>${project.build.directory}</outputDirectory>
+          </artifactItem>
+        </artifactItems>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+-->
+			<!-- for automatic running of integration tests with Jetty -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<!--<version>${maven.cargo.maven2.plugin.version}</version>-->
+				<configuration>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<timeout>180000</timeout> <!-- 5 minutes -->
+						<!--<containerId>${cargo.container}</containerId> -->
+						<!--<type>${cargo.container.type}</type> -->
+					</container>				
+					<configuration>
+						<!--<type>${cargo.configuration.type}</type>-->
+						<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
+						<properties>
+							<cargo.hostname>${cargo.host}</cargo.hostname>
+							<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+							<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
+							<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+							<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+							<cargo.logging>high</cargo.logging>
+							<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources 
+								-Dnabla.data=${basedir}/src/test/resources/data -->
+							<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
+							<!-- </cargo.jvmargs> -->
+						</properties>
+					</configuration>
+					<deployables>
+						<deployable>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>gui</artifactId>
+							<type>war</type>
+							<properties>
+								<context>/visma</context>
+							</properties>
+							<pingURL>http://${cargo.host}:${cargo.port}/visma</pingURL>
+							<pingTimeout>60000</pingTimeout>
+						</deployable>
+					</deployables>     
+				</configuration>
+				<!-- 
+				<executions>				
+        				<execution>
+        				    <id>pre-integration-test</id>
+        				    <phase>pre-integration-test</phase>
+        				    <goals>
+        				        <goal>deploy</goal>
+        				    </goals>
+        				</execution>
+        				<execution>
+        				    <id>post-integration-test</id>
+        				    <phase>post-integration-test</phase>
+        				    <goals>
+        				        <goal>undeploy</goal>
+        				    </goals>
+        				</execution>
+				</executions>		
+				-->		        						
+			</plugin>
+
+			<!-- The JBoss AS plugin deploys your war to a local JBoss AS container -->
+			<!-- To use, run: mvn package jboss-as:deploy -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<!--<version>${maven.jboss.as.plugin.version}</version>-->
+			</plugin>
+			
+			<plugin>
+			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war -Psample -Dserver=jetty9x -Ddatabase=derby -Djetty.port=9090' -->
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/visma</contextPath>
+					</webAppConfig>
+					<useTestClasspath>true</useTestClasspath>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>${jetty.port}</port>
+							<maxIdleTime>600000</maxIdleTime>
+						</connector>
+					</connectors>
+			<!--
+			<systemProperties>
+				<systemProperty>
+					<key>nabla.config</key>
+					<value>../../config/dev</value>
+				</systemProperty>
+				<systemProperty>
+					<key>nabla.data</key>
+					<value>${data.dir}</value>
+				</systemProperty>
+			</systemProperties>
+			-->
+				</configuration>
+			</plugin>
+
+			<!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.mortbay.jetty</groupId>
+									<artifactId>jetty-runner</artifactId>
+									<version>${jetty.runner.version}</version>
+									<destFileName>jetty-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>			
+			
+			<!--
+            		<plugin>
+            		     <groupId>org.apache.maven.plugins</groupId>
+            		     <artifactId>maven-war-plugin</artifactId>
+            		     <version>${maven.war.plugin.version}</version>
+            		     <configuration>
+            		         <packagingExcludes>WEB-INF/lib/javaee-web-api*.jar</packagingExcludes>
+            		     </configuration>
+            		</plugin>       
+            		-->
+
+			<!-- Allow this web application to be started with the command : 'mvn 
+				tomcat7:run' -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<!-- http port -->
+					<port>${tomcat.port}</port>
+					<path>/visma</path>
+					<!--<contextFile>${basedir}/src/main/webapp/META-INF/context.xml</contextFile> -->
+					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+	        <!--
+	        <systemProperties>
+	            <java.security.auth.login.config>${basedir}/conf/jaas.config</java.security.auth.login.config>
+	        </systemProperties>
+	        -->
+					<url>${deploy.url}</url>
+					<username>${cargo.remote.user}</username>
+					<password>${cargo.remote.password}</password>
+					<addContextWarDependencies>true</addContextWarDependencies>
+					<addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+					<!--<configurationDir>${basedir}</configurationDir>-->
+					<server>nabla-tomcat</server>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>gui</artifactId>
+						<version>${project.version}</version>
+						<type>war</type>
+					</dependency>
+					<!--
+					<dependency>
+						<groupId>${jdbc.groupId}</groupId>
+						<artifactId>${jdbc.client.artifactId}</artifactId>
+						<version>${jdbc.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					-->
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>   
+		</plugins>
+	</build>		
+	
+</project>
+ 

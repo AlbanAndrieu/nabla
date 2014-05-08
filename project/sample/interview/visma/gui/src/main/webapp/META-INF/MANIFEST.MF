@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: jsf-api-1.2_15.jar jstl-1.2.jar el-ri-1.0.jar commons-http
+ client-3.1.jar commons-logging-1.1.1.jar commons-codec-1.5.jar groovy
+ -all-2.0.5.jar cglib-nodep-2.2.2.jar commons-collections-3.2.1.jar co
+ mmons-io-2.1.jar
+

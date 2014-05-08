@@ -9,7 +9,6 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.nabla.project.sample.interview.visma.core</groupId>
 	<artifactId>core</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven core for visma</name>

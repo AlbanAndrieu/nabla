@@ -41,12 +41,22 @@
 				<version>${commons.lang.version}</version> 
 				<scope>compile</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.google.code.findbugs</groupId>
+				<artifactId>jsr305</artifactId>
+				<version>${jsr305.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 
 	<modules>
 		<module>core</module>
-		<!--<module>gui</module>-->
+		<module>gui</module>
 	</modules>
 	
 	<build>
@@ -59,7 +69,7 @@
 					<source>${jdkLevel}</source>
 					<target>${jdkLevel}</target>
 				</configuration>
-			</plugin>
+			</plugin>	
 		</plugins>
 	</build>
 
@@ -72,6 +82,8 @@
 		<mockito.version>1.9.5</mockito.version>
 		<log4j.version>1.2.17</log4j.version>
 		<commons.lang.version>2.5</commons.lang.version>
+		<jsr305.version>2.0.2</jsr305.version>
+		<guava.version>14.0.1</guava.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
