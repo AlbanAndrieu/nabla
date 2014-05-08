@@ -511,8 +511,7 @@
 			</plugin>
 			
 			<plugin>
-				<!-- Allow this web application to be started with the command : 'mvn 
-					jetty:run-war' -->
+				<!-- Allow this web application to be started with the command : 'mvn jetty:run-war -Djetty.port=9090' -->
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>

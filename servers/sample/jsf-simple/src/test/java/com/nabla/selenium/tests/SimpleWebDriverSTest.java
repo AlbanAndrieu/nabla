@@ -26,8 +26,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
-public class SimpleWebDriverSTest
-{
+public class SimpleWebDriverSTest {
     private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe";             // "/var/lib/chromedriver"
     private static final String DEFAULT_FIREFOXBIN   = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"; // "/usr/lib/firefox/firefox"
     private static final String DEFAULT_URL          = "http://localhost:9090";
@@ -43,13 +42,11 @@ public class SimpleWebDriverSTest
     // public static SeleniumServer server;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
 
         baseUrl = System.getProperty("webdriver.base.url");
 
-        if (null == baseUrl)
-        {
+        if (null == baseUrl) {
             System.out.println("Use default webdriver.base.url");
             baseUrl = DEFAULT_URL;
             System.setProperty("webdriver.base.url", baseUrl);
@@ -57,8 +54,7 @@ public class SimpleWebDriverSTest
         System.out.println("webdriver.base.url is : " + baseUrl + "\n");
 
         chromeDriver = System.getProperty("webdriver.chrome.driver");
-        if (null == chromeDriver)
-        {
+        if (null == chromeDriver) {
             System.out.println("Use default webdriver.base.url");
             chromeDriver = DEFAULT_CHROMEDRIVER;
             System.setProperty("webdriver.chrome.driver", chromeDriver);
@@ -66,8 +62,7 @@ public class SimpleWebDriverSTest
         System.out.println("webdriver.chrome.driver is : " + chromeDriver + "\n");
 
         firefoxBin = System.getProperty("webdriver.firefox.bin");
-        if (null == firefoxBin)
-        {
+        if (null == firefoxBin) {
             System.out.println("Use default webdriver.firefox.bin");
             firefoxBin = DEFAULT_FIREFOXBIN;
             System.setProperty("webdriver.firefox.bin", firefoxBin);
@@ -109,8 +104,7 @@ public class SimpleWebDriverSTest
      */
 
     @Test
-    public void testSimpleS() throws Exception
-    {
+    public void testSimpleS() throws Exception {
         driver.get(baseUrl + "/welcome/hello.xhtml");
         selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
@@ -119,10 +113,8 @@ public class SimpleWebDriverSTest
         driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>()
-        {
-            public WebElement apply(WebDriver d)
-            {
+        WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>() {
+            public WebElement apply(WebDriver d) {
                 // d.get(baseUrl);
                 return d.findElement(By.name("j_idt8:j_idt9"));
             }
@@ -141,115 +133,91 @@ public class SimpleWebDriverSTest
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         // stopSeleniumServer(server, selenium);
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString))
-        {
+        if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
     }
 
-    private boolean isElementPresent(By by)
-    {
-        try
-        {
+    private boolean isElementPresent(By by) {
+        try {
             driver.findElement(by);
             return true;
         }
-        catch (NoSuchElementException e)
-        {
+        catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    private boolean isAlertPresent()
-    {
-        try
-        {
+    private boolean isAlertPresent() {
+        try {
             driver.switchTo().alert();
             return true;
         }
-        catch (NoAlertPresentException e)
-        {
+        catch (NoAlertPresentException e) {
             return false;
         }
     }
 
-    private String closeAlertAndGetItsText()
-    {
-        try
-        {
+    private String closeAlertAndGetItsText() {
+        try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();
-            if (acceptNextAlert)
-            {
+            if (acceptNextAlert) {
                 alert.accept();
-            } else
-            {
+            } else {
                 alert.dismiss();
             }
             return alertText;
         }
-        finally
-        {
+        finally {
             acceptNextAlert = true;
         }
     }
 
-    public static void startSeleniumServer(SeleniumServer server) throws Exception
-    {
+    public static void startSeleniumServer(SeleniumServer server) throws Exception {
 
-        try
-        {
+        try {
             ServerSocket serverSocket = new ServerSocket(RemoteControlConfiguration.DEFAULT_PORT);
             serverSocket.close();
 
-            try
-            {
+            try {
                 RemoteControlConfiguration rcc = new RemoteControlConfiguration();
                 rcc.setPort(RemoteControlConfiguration.DEFAULT_PORT);
                 server = new SeleniumServer(false, rcc);
 
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 System.err.println("Could not create Selenium Server because of: " + e.getMessage());
                 e.printStackTrace();
             }
-            try
-            {
+            try {
                 server.start();
                 System.out.println("Server started");
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 System.err.println("Could not start Selenium Server because of: " + e.getMessage());
                 e.printStackTrace();
             }
         }
-        catch (BindException e)
-        {
+        catch (BindException e) {
             System.out.println("Selenium server already up, will reuse...");
         }
     }
 
-    public static void stopSeleniumServer(SeleniumServer server, DefaultSelenium selenium)
-    {
+    public static void stopSeleniumServer(SeleniumServer server, DefaultSelenium selenium) {
         selenium.stop();
-        if (server != null)
-        {
-            try
-            {
+        if (server != null) {
+            try {
                 selenium.shutDownSeleniumServer();
                 server.stop();
 
                 server = null;
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }

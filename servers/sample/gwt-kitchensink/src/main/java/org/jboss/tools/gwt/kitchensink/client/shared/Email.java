@@ -22,8 +22,7 @@ import javax.validation.Payload;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @Constraint(validatedBy = GwtCompatibleEmailValidator.class)
-public @interface Email
-{
+public @interface Email {
     String message() default "{org.hibernate.validator.constraints.Email.message}";
 
     Class<?>[] groups() default {};

@@ -22,7 +22,6 @@ import javax.inject.Qualifier;
 @Retention(RUNTIME)
 @Documented
 @Qualifier
-public @interface New
-{
+public @interface New {
 
 }

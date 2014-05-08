@@ -42,8 +42,7 @@ import org.jboss.errai.common.client.api.annotations.Portable;
 @XmlRootElement
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class Member implements Serializable, Comparable<Member>
-{
+public class Member implements Serializable, Comparable<Member> {
     /** Default value included to remove warning. Remove or modify at will. **/
     private static final long serialVersionUID = 1L;
 
@@ -67,43 +66,35 @@ public class Member implements Serializable, Comparable<Member>
     @Column(name = "phone_number")
     private String            phoneNumber;
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPhoneNumber()
-    {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber)
-    {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -111,22 +102,17 @@ public class Member implements Serializable, Comparable<Member>
      * Compares this member to the other member case-insensitive-alphabetically by name.
      */
     @Override
-    public int compareTo(Member o)
-    {
-        if (o == null)
-        {
+    public int compareTo(Member o) {
+        if (o == null) {
             return 1;
         }
-        if (this.name == null && o.name != null)
-        {
+        if (this.name == null && o.name != null) {
             return -1;
         }
-        if (this.name == null && o.name == null)
-        {
+        if (this.name == null && o.name == null) {
             return 0;
         }
-        if (this.name != null && o.name == null)
-        {
+        if (this.name != null && o.name == null) {
             return 1;
         }
         return this.name.compareToIgnoreCase(o.name);

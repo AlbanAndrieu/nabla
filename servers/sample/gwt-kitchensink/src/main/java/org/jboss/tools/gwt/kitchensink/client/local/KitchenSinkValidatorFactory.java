@@ -18,17 +18,14 @@ import com.google.gwt.validation.client.impl.AbstractGwtValidator;
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-public final class KitchenSinkValidatorFactory extends AbstractGwtValidatorFactory
-{
+public final class KitchenSinkValidatorFactory extends AbstractGwtValidatorFactory {
 
     @GwtValidation(value = Member.class, groups = { Default.class })
-    public interface GwtValidator extends Validator
-    {
+    public interface GwtValidator extends Validator {
     }
 
     @Override
-    public AbstractGwtValidator createValidator()
-    {
+    public AbstractGwtValidator createValidator() {
         return GWT.create(GwtValidator.class);
     }
 }

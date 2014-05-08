@@ -250,6 +250,7 @@
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!--
@@ -480,8 +481,10 @@
 					</execution>
 				</executions>
 			</plugin>
+
 <!--
 <plugin>
+  <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-dependency-plugin</artifactId>
   <executions>
     <execution>
@@ -576,7 +579,7 @@
 			</plugin>
 			
 			<plugin>
-			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war' -->
+			<!-- Allow this web application to be started with the command : 'mvn jetty:run-war -Psample -Dserver=jetty9x -Ddatabase=derby -Djetty.port=9090' -->
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
@@ -605,6 +608,30 @@
 				</configuration>
 			</plugin>
 
+			<!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.mortbay.jetty</groupId>
+									<artifactId>jetty-runner</artifactId>
+									<version>${jetty.runner.version}</version>
+									<destFileName>jetty-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>			
+			
 			<!--
             		<plugin>
             		     <groupId>org.apache.maven.plugins</groupId>

@@ -52,15 +52,13 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-public class KitchenSinkClient extends Composite
-{
+public class KitchenSinkClient extends Composite {
 
     private static final KitchenSinkTemplates TEMPLATES = GWT.create(KitchenSinkTemplates.class);
 
     private static KitchenSinkClientUiBinder  uiBinder  = GWT.create(KitchenSinkClientUiBinder.class);
 
-    interface KitchenSinkClientUiBinder extends UiBinder<Widget, KitchenSinkClient>
-    {
+    interface KitchenSinkClientUiBinder extends UiBinder<Widget, KitchenSinkClient> {
     }
 
     private final Caller<MemberService> memberService;
@@ -103,45 +101,36 @@ public class KitchenSinkClient extends Composite
     @UiField(provided = true)
     CellTable<Member>                   membersTable = new CellTable<Member>();
 
-    public KitchenSinkClient(Caller<MemberService> memberService)
-    {
+    public KitchenSinkClient(Caller<MemberService> memberService) {
         this.memberService = memberService;
         initWidget(uiBinder.createAndBindUi(this));
 
         // This sets up the structure of the Registered Members CellTable
 
-        membersTable.addColumn(new Column<Member, String>(new TextCell())
-        {
+        membersTable.addColumn(new Column<Member, String>(new TextCell()) {
             @Override
-            public String getValue(Member m)
-            {
+            public String getValue(Member m) {
                 return m.getName();
             }
         }, "Name");
 
-        membersTable.addColumn(new Column<Member, String>(new TextCell())
-        {
+        membersTable.addColumn(new Column<Member, String>(new TextCell()) {
             @Override
-            public String getValue(Member m)
-            {
+            public String getValue(Member m) {
                 return m.getEmail();
             }
         }, "Email");
 
-        membersTable.addColumn(new Column<Member, String>(new TextCell())
-        {
+        membersTable.addColumn(new Column<Member, String>(new TextCell()) {
             @Override
-            public String getValue(Member m)
-            {
+            public String getValue(Member m) {
                 return m.getPhoneNumber();
             }
         }, "Phone Number");
 
-        membersTable.addColumn(new Column<Member, SafeHtml>(new SafeHtmlCell())
-        {
+        membersTable.addColumn(new Column<Member, SafeHtml>(new SafeHtmlCell()) {
             @Override
-            public SafeHtml getValue(Member m)
-            {
+            public SafeHtml getValue(Member m) {
                 String url = "rest/members/" + m.getId();
                 return TEMPLATES.link(UriUtils.fromString(url), url);
             }
@@ -155,8 +144,7 @@ public class KitchenSinkClient extends Composite
      * @param event The click event (ignored)
      */
     @UiHandler("registerButton")
-    void onRegisterButtonClick(ClickEvent event)
-    {
+    void onRegisterButtonClick(ClickEvent event) {
         Member newMember = new Member();
         newMember.setName(nameBox.getText());
         newMember.setEmail(emailBox.getText());
@@ -171,20 +159,15 @@ public class KitchenSinkClient extends Composite
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<Member>> violations = validator.validate(newMember);
 
-        for (ConstraintViolation<Member> cv : violations)
-        {
+        for (ConstraintViolation<Member> cv : violations) {
             String prop = cv.getPropertyPath().toString();
-            if (prop.equals("name"))
-            {
+            if (prop.equals("name")) {
                 nameValidationErr.setText(cv.getMessage());
-            } else if (prop.equals("email"))
-            {
+            } else if (prop.equals("email")) {
                 emailValidationErr.setText(cv.getMessage());
-            } else if (prop.equals("phoneNumber"))
-            {
+            } else if (prop.equals("phoneNumber")) {
                 phoneValidationErr.setText(cv.getMessage());
-            } else
-            {
+            } else {
                 registerConfirmMessage.setText(cv.getMessage());
             }
         }
@@ -192,22 +175,18 @@ public class KitchenSinkClient extends Composite
         if (!violations.isEmpty())
             return;
 
-        memberService.call(new RemoteCallback<Void>()
-        {
+        memberService.call(new RemoteCallback<Void>() {
             @Override
-            public void callback(Void response)
-            {
+            public void callback(Void response) {
                 registerConfirmMessage.setText("Registration Complete!");
                 registerConfirmMessage.setStyleName("successMessage");
 
                 // the server will also broadcast a @New Member CDI event, which causes the table to update
                 // so we don't have to do that here.
             }
-        }, new ErrorCallback()
-        {
+        }, new ErrorCallback() {
             @Override
-            public boolean error(Message message, Throwable throwable)
-            {
+            public boolean error(Message message, Throwable throwable) {
                 registerConfirmMessage.setText("Member registration failed: " + throwable.getMessage());
                 return false;
             }
@@ -222,8 +201,7 @@ public class KitchenSinkClient extends Composite
      *          The member to add to the CellTable being displayed in the web
      *          page.
      */
-    public void addDisplayedMember(Member m)
-    {
+    public void addDisplayedMember(Member m) {
         members.add(m);
         Collections.sort(members);
         membersTable.setRowData(members);
@@ -235,16 +213,13 @@ public class KitchenSinkClient extends Composite
      *
      * @param members The list of members to display on the web page. Not null.
      */
-    public void setDisplayedMembers(List<Member> members)
-    {
+    public void setDisplayedMembers(List<Member> members) {
         this.members.clear();
         this.members.addAll(members);
         membersTable.setRowData(this.members);
-        if (members.isEmpty())
-        {
+        if (members.isEmpty()) {
             setTableStatusMessage("No members registered yet.");
-        } else
-        {
+        } else {
             setTableStatusMessage("");
         }
     }
@@ -252,16 +227,14 @@ public class KitchenSinkClient extends Composite
     /**
      * Sets the general error message that appears near the top of the page.
      */
-    public void setGeneralErrorMessage(String string)
-    {
+    public void setGeneralErrorMessage(String string) {
         generalErrorLabel.setText(string);
     }
 
     /**
      * Sets the message that appears underneath the Registered Members table.
      */
-    public void setTableStatusMessage(String message)
-    {
+    public void setTableStatusMessage(String message) {
         tableEmptyMessage.setText(message);
     }
 
@@ -273,8 +246,7 @@ public class KitchenSinkClient extends Composite
      * "http://code.google.com/webtoolkit/doc/latest/DevGuideSecuritySafeHtml.html#Creating_SafeHtml_Values"
      * >the GWT user guide</a> for details.
      */
-    public interface KitchenSinkTemplates extends SafeHtmlTemplates
-    {
+    public interface KitchenSinkTemplates extends SafeHtmlTemplates {
         @Template("<a target=\"_blank\" href=\"{0}\">{1}</a>")
         SafeHtml link(SafeUri url, String linkText);
     }

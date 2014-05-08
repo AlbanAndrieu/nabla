@@ -17,15 +17,13 @@ import org.jboss.tools.gwt.kitchensink.client.shared.Member;
  */
 @Path("/members")
 @RequestScoped
-public class MemberResourceRESTService
-{
+public class MemberResourceRESTService {
     @Inject
     private EntityManager em;
 
     @GET
     @Produces("text/xml")
-    public List<Member> listAllMembers()
-    {
+    public List<Member> listAllMembers() {
         // Use @SupressWarnings to force IDE to ignore warnings about "genericizing" the results of
         // this query
         @SuppressWarnings("unchecked")
@@ -40,8 +38,7 @@ public class MemberResourceRESTService
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Produces("text/xml")
-    public Member lookupMemberById(@PathParam("id") long id)
-    {
+    public Member lookupMemberById(@PathParam("id") long id) {
         return em.find(Member.class, id);
     }
 }
