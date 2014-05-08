@@ -885,8 +885,8 @@
 														<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
 														<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
 														 -->
-   								<excludes>**/generated/**/*</excludes>
-   								<excludes>**/clover/**/*</excludes>
+														<excludes>**/generated/**/*</excludes>
+														<excludes>**/clover/**/*</excludes>
 												</configuration>
 										</plugin>
 
@@ -902,8 +902,8 @@
 														<targetJdk>${jdkLevel}</targetJdk>
 														<excludes>
 																<exclude>**/*Bean.java</exclude>
-   									<exclude>**/generated/**/*</exclude>
-   									<exclude>**/clover/**/*</exclude>
+																<exclude>**/generated/**/*</exclude>
+																<exclude>**/clover/**/*</exclude>
 														</excludes>
 														<excludeRoots>
 																<excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
@@ -931,8 +931,8 @@
 														<effort>Default</effort>
 														<!--<failOnError>true</failOnError>-->
 														<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
-							<maxHeap>1024</maxHeap>
-							<timeout>1200000</timeout>
+														<maxHeap>1024</maxHeap>
+														<timeout>1200000</timeout>
 												</configuration>
 										</plugin>
 
@@ -949,12 +949,19 @@
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>javancss-maven-plugin</artifactId>
 												<version>${maven.javancss.plugin.version}</version>
-   						<configuration>
-   						   <excludes>
-   							  <exclude>**/generated/**/*</exclude>
-   							  <exclude>**/clover/**/*</exclude>
-   							</excludes>
-   						</configuration>
+												<!--
+												<configuration>
+												
+												  <failOnViolation>true</failOnViolation>
+												  <ccnLimit>12</ccnLimit>
+												  <ncssLimit>90</ncssLimit>																							
+												   <excludes>
+													  <exclude>**/generated/**/*</exclude>
+													  <exclude>**/clover/**/*</exclude>
+													  <exclude>**/Visma.java</exclude>
+													</excludes>
+												</configuration>  
+												-->	
 										</plugin>
 
 										<plugin>
@@ -1711,12 +1718,13 @@
 				<ilog-elixir.version>3.0.21588</ilog-elixir.version>
 				<jackson.version>1.9.9</jackson.version>
 				<jersey.version>1.17.1</jersey.version>
-		<jetty6.version>6.1.25</jetty6.version>
-		<jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
-		<jetty8.version>8.1.14.v20131031</jetty8.version>
-		<jetty9.version>9.0.2.v20130417</jetty9.version>
-		<jetty.version>${jetty8.version}</jetty.version>
-		<jetty-websocket.version>${jetty8.version}</jetty-websocket.version>
+				<jetty6.version>6.1.25</jetty6.version>
+				<jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
+				<jetty8.version>8.1.14.v20131031</jetty8.version>
+				<jetty9.version>9.0.2.v20130417</jetty9.version>
+				<jetty.version>${jetty8.version}</jetty.version>
+				<jetty.websocket.version>${jetty8.version}</jetty.websocket.version>
+				<jetty.runner.version>8.1.15.v20140411</jetty.runner.version>
 
 				<gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
 				<maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
@@ -1843,7 +1851,7 @@
 				<maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
 				<maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
 				<maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
-				<maven.jetty.eclipse.plugin.version>9.0.4.v20130625</maven.jetty.eclipse.plugin.version>
+				<maven.jetty.eclipse.plugin.version>9.2.0.M0</maven.jetty.eclipse.plugin.version>
 				<maven.jboss.as.plugin.version>7.5.Final</maven.jboss.as.plugin.version>
 				<maven.ant.plugin.version>2.3</maven.ant.plugin.version>
 				<maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
@@ -2654,12 +2662,12 @@
 								</plugin>
 								-->
 								<!--
-				<plugin>
-					  <groupId>org.codehaus.sonar-plugins</groupId>
-					  <artifactId>maven-report</artifactId>
-					  <version>${maven.sonar.report.plugin.version}</version>
-					</plugin>
-					-->
+								<plugin>
+								  <groupId>org.codehaus.sonar-plugins</groupId>
+								  <artifactId>maven-report</artifactId>
+								  <version>${maven.sonar.report.plugin.version}</version>
+								</plugin>
+								-->
 								<plugin>
 								  <groupId>com.mycila.maven-license-plugin</groupId>
 								  <artifactId>maven-license-plugin</artifactId>
@@ -2732,35 +2740,35 @@
 								  </executions>
 								  -->
 								</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>selenium-maven-plugin</artifactId>
-							<version>${maven.selenium.plugin.version}</version>
-							<!--
-							<configuration>
-						<browser>*firefox</browser>
-						<suite>src/test/selenium/SimpleSTest.html</suite>
-						<startURL>http://localhost:9090</startURL>
-					</configuration>
-					-->
-							<executions>
-								<execution>
-									<phase>pre-integration-test</phase>
-									<goals>
-										<goal>start-server</goal>
-									</goals>
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>selenium-maven-plugin</artifactId>
+									<version>${maven.selenium.plugin.version}</version>
+									<!--
 									<configuration>
-										<background>true</background>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
+								<browser>*firefox</browser>
+								<suite>src/test/selenium/SimpleSTest.html</suite>
+								<startURL>http://localhost:9090</startURL>
+							</configuration>
+							-->
+									<executions>
+										<execution>
+											<phase>pre-integration-test</phase>
+											<goals>
+												<goal>start-server</goal>
+											</goals>
+											<configuration>
+												<background>true</background>
+											</configuration>
+										</execution>
+									</executions>
+								</plugin>
 
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>groovy-maven-plugin</artifactId>
-					<version>${maven.groovy.plugin.version}</version>
-				</plugin>
+								<plugin>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>groovy-maven-plugin</artifactId>
+										<version>${maven.groovy.plugin.version}</version>
+								</plugin>
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>xdoclet-maven-plugin</artifactId>
@@ -3133,25 +3141,25 @@
 										  </archive>
 										</configuration>
 								</plugin>
-				<plugin>
-					<groupId>ro.isdc.wro4j</groupId>
-					<artifactId>wro4j-maven-plugin</artifactId>
-					<version>${maven.wro4j.plugin.version}</version>
-					<executions>
-						<execution>
-							<phase>compile</phase>
-							<goals>
-								<goal>run</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<targetGroups>style</targetGroups>
-						<destinationFolder>${project.build.directory}/${project.build.finalName}</destinationFolder>
-						<cssDestinationFolder>${project.build.directory}/${project.build.finalName}/css/</cssDestinationFolder>
-						<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
-					</configuration>
-				</plugin>
+								<plugin>
+									<groupId>ro.isdc.wro4j</groupId>
+									<artifactId>wro4j-maven-plugin</artifactId>
+									<version>${maven.wro4j.plugin.version}</version>
+									<executions>
+										<execution>
+											<phase>compile</phase>
+											<goals>
+												<goal>run</goal>
+											</goals>
+										</execution>
+									</executions>
+									<configuration>
+										<targetGroups>style</targetGroups>
+										<destinationFolder>${project.build.directory}/${project.build.finalName}</destinationFolder>
+										<cssDestinationFolder>${project.build.directory}/${project.build.finalName}/css/</cssDestinationFolder>
+										<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+									</configuration>
+								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-plugin-plugin</artifactId>
@@ -3459,17 +3467,19 @@
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>javancss-maven-plugin</artifactId>
-										<!--
-										<groupId>org.apache.maven.plugins</groupId>
-   					<artifactId>maven-javancss-plugin</artifactId>
-   					-->
 										<version>${maven.javancss.plugin.version}</version>
-   					<configuration>
-   					   <excludes>
-   						  <exclude>**/generated/**/*</exclude>
-   						  <exclude>**/clover/**/*</exclude>
-   						</excludes>
-   					</configuration>
+										<configuration>
+										<!--
+										  <failOnViolation>true</failOnViolation>
+										  <ccnLimit>12</ccnLimit>
+										  <ncssLimit>90</ncssLimit>
+										-->													
+										   <excludes>
+											  <exclude>**/generated/**/*</exclude>
+											  <exclude>**/clover/**/*</exclude>
+											  <exclude>**/Visma.java</exclude>
+											</excludes>
+										</configuration>  
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -3595,41 +3605,41 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										</executions>
 										-->
 								</plugin>
-				<plugin>
-						<groupId>org.apache.tomcat.maven</groupId>
-						<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>${maven.tomcat7.plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<version>${maven.jetty.eclipse.plugin.version}</version>
-					<configuration>
-						<webAppConfig>
-							<contextPath>/nabla</contextPath>
-						</webAppConfig>
-						<useTestClasspath>true</useTestClasspath>
-						<connectors>
-							<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-								<port>${jetty.port}</port>
-								<maxIdleTime>600000</maxIdleTime>
-							</connector>
-						</connectors>
-						<!--
-						<systemProperties>
-							<systemProperty>
-								<key>nabla.config</key>
-								<value>../../../config/dev</value>
-							</systemProperty>
-							<systemProperty>
-								<key>nabla.data</key>
-								<value>${data.dir}</value>
-							</systemProperty>
-						</systemProperties>
-						-->
-					</configuration>
-				</plugin>
-				<!-- TODO already using jetty-maven-plugin -->
+								<plugin>
+										<groupId>org.apache.tomcat.maven</groupId>
+										<artifactId>tomcat7-maven-plugin</artifactId>
+									<version>${maven.tomcat7.plugin.version}</version>
+								</plugin>
+								<plugin>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-maven-plugin</artifactId>
+									<version>${maven.jetty.eclipse.plugin.version}</version>
+									<configuration>
+										<webAppConfig>
+											<contextPath>/nabla</contextPath>
+										</webAppConfig>
+										<useTestClasspath>true</useTestClasspath>
+										<connectors>
+											<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+												<port>${jetty.port}</port>
+												<maxIdleTime>600000</maxIdleTime>
+											</connector>
+										</connectors>
+										<!--
+										<systemProperties>
+											<systemProperty>
+												<key>nabla.config</key>
+												<value>../../../config/dev</value>
+											</systemProperty>
+											<systemProperty>
+												<key>nabla.data</key>
+												<value>${data.dir}</value>
+											</systemProperty>
+										</systemProperties>
+										-->
+									</configuration>
+								</plugin>
+								<!-- TODO already using jetty-maven-plugin -->
 								<plugin>
 										<groupId>org.mortbay.jetty</groupId>
 										<artifactId>maven-jetty-plugin</artifactId>
@@ -3637,12 +3647,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										<configuration>
 												<contextPath>/nabla</contextPath>
 												<scanIntervalSeconds>3</scanIntervalSeconds>
- 	  					<connectors>
-		  					  <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-		  						<port>${jetty.port}</port>
-		  						<maxIdleTime>60000</maxIdleTime>
-		  					  </connector>
-		  					</connectors>
+												<connectors>
+												  <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+													<port>${jetty.port}</port>
+													<maxIdleTime>60000</maxIdleTime>
+												  </connector>
+												</connectors>
 												<scanTargetPatterns>
 														<scanTargetPattern>
 																<directory>src/main/webapp/WEB-INF</directory>
@@ -3657,30 +3667,30 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 												</scanTargetPatterns>
 										</configuration>
 								</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId>
-					<version>${maven.exec.plugin.version}</version>
-				</plugin>
-					<plugin>
-							<groupId>org.liquibase</groupId>
-							<artifactId>liquibase-maven-plugin</artifactId>
-							<version>${maven.org.liquibase.plugin.version}</version>
-		  				<configuration>
-		  				  <propertyFileWillOverride>true</propertyFileWillOverride>
-		  				  <!--<propertyFile>target/classes/liquibase.properties</propertyFile>-->
-		  				</configuration>
-						</plugin>
-						<plugin>
-						  <groupId>org.codehaus.mojo</groupId>
-						  <artifactId>hibernate3-maven-plugin</artifactId>
-						  <version>${hibernate3.maven.plugin.version}</version>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>sql-maven-plugin</artifactId>
-							<version>${maven.sql.plugin.version}</version>
-						</plugin>
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>exec-maven-plugin</artifactId>
+									<version>${maven.exec.plugin.version}</version>
+								</plugin>
+								<plugin>
+									<groupId>org.liquibase</groupId>
+									<artifactId>liquibase-maven-plugin</artifactId>
+									<version>${maven.org.liquibase.plugin.version}</version>
+									<configuration>
+									  <propertyFileWillOverride>true</propertyFileWillOverride>
+									  <!--<propertyFile>target/classes/liquibase.properties</propertyFile>-->
+									</configuration>
+								</plugin>
+								<plugin>
+								  <groupId>org.codehaus.mojo</groupId>
+								  <artifactId>hibernate3-maven-plugin</artifactId>
+								  <version>${hibernate3.maven.plugin.version}</version>
+								</plugin>
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>sql-maven-plugin</artifactId>
+									<version>${maven.sql.plugin.version}</version>
+								</plugin>
 								<plugin>
 										<groupId>org.jboss.as.plugins</groupId>
 										<artifactId>jboss-as-maven-plugin</artifactId>
@@ -3727,124 +3737,124 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 											</dependency>
 										</dependencies>
 								</plugin>
-						<plugin>
-							<groupId>com.kelveden</groupId>
-							<artifactId>maven-karma-plugin</artifactId>
-							<version>${maven.karma.plugin.version}</version>
-							<executions>
-								<execution>
-									<phase>test</phase>
-									<goals>
-										<goal>start</goal>
-									</goals>
-								</execution>
-							</executions>
-							<configuration>
-								<configFile>${basedir}/src/main/webapp/karma.conf.js</configFile>
-								<junitReportFile>src/main/webapp/resources/test-results.xml</junitReportFile>
-								<reportsDirectory>${project.build.directory}/karma-reports</reportsDirectory>
-								<browsers>PhantomJS</browsers>
-								<autoWatch>false</autoWatch>
-								<singleRun>true</singleRun>
-								<colors>true</colors>
-								<skipKarma>${maven.test.skip}</skipKarma>
-								<skipTests>${maven.test.skip}</skipTests>
-								<karmaFailureIgnore>false</karmaFailureIgnore>
-								<reporters>dots,junit,coverage</reporters>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>pl.allegro</groupId>
-							<artifactId>grunt-maven-plugin</artifactId>
-							<version>${maven.grunt.plugin.version}</version>
-				<configuration>
+								<plugin>
+									<groupId>com.kelveden</groupId>
+									<artifactId>maven-karma-plugin</artifactId>
+									<version>${maven.karma.plugin.version}</version>
+									<executions>
+										<execution>
+											<phase>test</phase>
+											<goals>
+												<goal>start</goal>
+											</goals>
+										</execution>
+									</executions>
+									<configuration>
+										<configFile>${basedir}/src/main/webapp/karma.conf.js</configFile>
+										<junitReportFile>src/main/webapp/resources/test-results.xml</junitReportFile>
+										<reportsDirectory>${project.build.directory}/karma-reports</reportsDirectory>
+										<browsers>PhantomJS</browsers>
+										<autoWatch>false</autoWatch>
+										<singleRun>true</singleRun>
+										<colors>true</colors>
+										<skipKarma>${maven.test.skip}</skipKarma>
+										<skipTests>${maven.test.skip}</skipTests>
+										<karmaFailureIgnore>false</karmaFailureIgnore>
+										<reporters>dots,junit,coverage</reporters>
+									</configuration>
+								</plugin>
+								<plugin>
+									<groupId>pl.allegro</groupId>
+									<artifactId>grunt-maven-plugin</artifactId>
+									<version>${maven.grunt.plugin.version}</version>
+									<configuration>
 
-					<!-- the same directory for JavaScript compilation and build directory
-						because we use "exploded" directory from war plugin -->
+										<!-- the same directory for JavaScript compilation and build directory
+											because we use "exploded" directory from war plugin -->
 
-					<sourceDirectory>${project.build.directory}/${project.build.finalName}</sourceDirectory>
-					<jsSourceDirectory>js</jsSourceDirectory>
-					<gruntBuildDirectory>${project.build.directory}/${project.build.finalName}</gruntBuildDirectory>
+										<sourceDirectory>${project.build.directory}/${project.build.finalName}</sourceDirectory>
+										<jsSourceDirectory>js</jsSourceDirectory>
+										<gruntBuildDirectory>${project.build.directory}/${project.build.finalName}</gruntBuildDirectory>
 
 
-					<gruntOptions>
-						<gruntOption>--verbose</gruntOption>
-					</gruntOptions>
+										<gruntOptions>
+											<gruntOption>--verbose</gruntOption>
+										</gruntOptions>
 
-					<filteredResources>
-						<filteredResource>maven-properties.json</filteredResource>
-					</filteredResources>
+										<filteredResources>
+											<filteredResource>maven-properties.json</filteredResource>
+										</filteredResources>
 
-					<showColors>true</showColors>
-					<target>build</target>
-				</configuration>
-				<executions>
-					<execution>
-						<id>prepare-ui</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>npm</goal>
-							<goal>grunt</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>replacer</artifactId>
-				<version>${maven.replacer.plugin.version}</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<ignoreMissingFile>false</ignoreMissingFile>
-					<includes>
-						<include>target/**/production/config.js</include>
-						<include>target/**/jetty-web.xml</include>
-						<include>target/**/urlrewrite.xml</include>
-						<include>target/**/index.html</include>
-					</includes>
-					<!--
-					<replacements>									
-						<replacement>
-							<token>${jetty.context.path.to.replace}</token>
-							<value>${jetty.context.path}</value>
-						</replacement>								
-					</replacements>
-					-->
-				</configuration>
-			</plugin>			
-				<plugin>
-					<groupId>org.codehaus.mojo.jspc</groupId>
-					<artifactId>jspc-maven-plugin</artifactId>
-					<version>${maven.jspc.plugin.version}</version>
-					<configuration>
-						<source>1.5</source>
-						<target>1.5</target>
-						<includeInProject>false</includeInProject>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>compile</goal>
-							</goals>
-						</execution>
-					</executions>
+										<showColors>true</showColors>
+										<target>build</target>
+									</configuration>
+									<executions>
+										<execution>
+											<id>prepare-ui</id>
+											<phase>prepare-package</phase>
+											<goals>
+												<goal>npm</goal>
+												<goal>grunt</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
+								<plugin>
+									<groupId>com.google.code.maven-replacer-plugin</groupId>
+									<artifactId>replacer</artifactId>
+									<version>${maven.replacer.plugin.version}</version>
+									<executions>
+										<execution>
+											<phase>prepare-package</phase>
+											<goals>
+												<goal>replace</goal>
+											</goals>
+										</execution>
+									</executions>
+									<configuration>
+										<ignoreMissingFile>false</ignoreMissingFile>
+										<includes>
+											<include>target/**/production/config.js</include>
+											<include>target/**/jetty-web.xml</include>
+											<include>target/**/urlrewrite.xml</include>
+											<include>target/**/index.html</include>
+										</includes>
+										<!--
+										<replacements>									
+											<replacement>
+												<token>${jetty.context.path.to.replace}</token>
+												<value>${jetty.context.path}</value>
+											</replacement>								
+										</replacements>
+										-->
+									</configuration>
+								</plugin>			
+								<plugin>
+									<groupId>org.codehaus.mojo.jspc</groupId>
+									<artifactId>jspc-maven-plugin</artifactId>
+									<version>${maven.jspc.plugin.version}</version>
+									<configuration>
+										<source>${jdkLevel}</source>
+										<target>${jdkLevel}</target>
+										<includeInProject>false</includeInProject>
+									</configuration>
+									<executions>
+										<execution>
+											<goals>
+												<goal>compile</goal>
+											</goals>
+										</execution>
+									</executions>
 
-					<!-- Use the Tomcat 6 JSP compiler -->
-					<dependencies>
-						<dependency>
-							<groupId>org.codehaus.mojo.jspc</groupId>
-							<artifactId>jspc-compiler-tomcat6</artifactId>
-							<version>${jspc.compiler.tomcat6.version}</version>
-						</dependency>
-					</dependencies>
-				</plugin>
+									<!-- Use the Tomcat 6 JSP compiler -->
+									<dependencies>
+										<dependency>
+											<groupId>org.codehaus.mojo.jspc</groupId>
+											<artifactId>jspc-compiler-tomcat6</artifactId>
+											<version>${jspc.compiler.tomcat6.version}</version>
+										</dependency>
+									</dependencies>
+								</plugin>
 
 								<plugin>
 									<groupId>com.adobe.ac</groupId>
@@ -3987,57 +3997,57 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										</dependency>
 									</dependencies>
 								</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>apt-maven-plugin</artifactId>
-					<version>${maven.apt.plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.cargo</groupId>
-					<artifactId>cargo-maven2-plugin</artifactId>
-					<version>${maven.cargo.maven2.plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.pitest</groupId>
-					<artifactId>pitest-maven</artifactId>
-					<version>${maven.pitest.plugin.version}</version>
-					<configuration>
-						<outputFormats>
-							<outputFormat>HTML</outputFormat>
-							<outputFormat>XML</outputFormat>
-							<outputFormat>CSV</outputFormat>
-						</outputFormats>
-						<verbose>true</verbose>
-						<failWhenNoMutations>false</failWhenNoMutations>
-						<!--<threads>4</threads>-->
-						<excludedClasses>
-							<param>com.nabla.todo.*</param>
-							<param>com.nabla.generated.*</param>
-						</excludedClasses>
-						<!--
-						<avoidCallsTo>
-							<avoidCallsTo>akka.event.LoggingAdapter</avoidCallsTo>
-							<avoidCallsTo>java.util.logging</avoidCallsTo>
-							<avoidCallsTo>org.apache.log4j</avoidCallsTo>
-							<avoidCallsTo>org.slf4j</avoidCallsTo>
-							<avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
-						</avoidCallsTo>
-						-->
-						<jvmArgs>
-							<value>-Xms256m</value>
-							<value>-Xmx512m</value>
-							<value>-XX:PermSize=128m</value>
-							<value>-XX:MaxPermSize=256m</value>
-						</jvmArgs>
-						<detectInlinedCode>true</detectInlinedCode>
-						<targetClasses>
-							<param>com.*</param>
-						</targetClasses>
-						<targetTests>
-							<param>com.*</param>
-						</targetTests>
-					</configuration>
-				</plugin>
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>apt-maven-plugin</artifactId>
+									<version>${maven.apt.plugin.version}</version>
+								</plugin>
+								<plugin>
+									<groupId>org.codehaus.cargo</groupId>
+									<artifactId>cargo-maven2-plugin</artifactId>
+									<version>${maven.cargo.maven2.plugin.version}</version>
+								</plugin>
+								<plugin>
+									<groupId>org.pitest</groupId>
+									<artifactId>pitest-maven</artifactId>
+									<version>${maven.pitest.plugin.version}</version>
+									<configuration>
+										<outputFormats>
+											<outputFormat>HTML</outputFormat>
+											<outputFormat>XML</outputFormat>
+											<outputFormat>CSV</outputFormat>
+										</outputFormats>
+										<verbose>true</verbose>
+										<failWhenNoMutations>false</failWhenNoMutations>
+										<!--<threads>4</threads>-->
+										<excludedClasses>
+											<param>com.nabla.todo.*</param>
+											<param>com.nabla.generated.*</param>
+										</excludedClasses>
+										<!--
+										<avoidCallsTo>
+											<avoidCallsTo>akka.event.LoggingAdapter</avoidCallsTo>
+											<avoidCallsTo>java.util.logging</avoidCallsTo>
+											<avoidCallsTo>org.apache.log4j</avoidCallsTo>
+											<avoidCallsTo>org.slf4j</avoidCallsTo>
+											<avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+										</avoidCallsTo>
+										-->
+										<jvmArgs>
+											<value>-Xms256m</value>
+											<value>-Xmx512m</value>
+											<value>-XX:PermSize=128m</value>
+											<value>-XX:MaxPermSize=256m</value>
+										</jvmArgs>
+										<detectInlinedCode>true</detectInlinedCode>
+										<targetClasses>
+											<param>com.*</param>
+										</targetClasses>
+										<targetTests>
+											<param>com.*</param>
+										</targetTests>
+									</configuration>
+								</plugin>
 						</plugins>
 				</pluginManagement>
 
@@ -7361,7 +7371,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-websocket</artifactId>
-				<version>${jetty-websocket.version}</version>
+				<version>${jetty.websocket.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
