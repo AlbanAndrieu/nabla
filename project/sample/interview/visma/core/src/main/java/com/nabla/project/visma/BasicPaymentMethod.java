@@ -13,9 +13,9 @@ import com.nabla.project.visma.api.IPaymentMethod;
 public class BasicPaymentMethod implements IPaymentMethod
 {
 
-    private ILoan loan;
+    private final ILoan loan;
 
-    public BasicPaymentMethod(ILoan aLoan)
+    public BasicPaymentMethod(final ILoan aLoan)
     {
         this.loan = aLoan;
 
@@ -29,13 +29,13 @@ public class BasicPaymentMethod implements IPaymentMethod
     @Override
     public Map<Integer, List<BigDecimal>> calculate()
     {
-        BigDecimal payment = getMonthlyPayment();
-        Map<Integer, List<BigDecimal>> monthlySchedule = new HashMap<Integer, List<BigDecimal>>();
+        final BigDecimal payment = this.getMonthlyPayment();
+        final Map<Integer, List<BigDecimal>> monthlySchedule = new HashMap<Integer, List<BigDecimal>>();
 
-        int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime());
+        final int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime());
         for (int month = 0; month < numberOfMonths; month++)
         {
-            List<BigDecimal> data = new ArrayList<BigDecimal>();
+            final List<BigDecimal> data = new ArrayList<BigDecimal>();
             data.add(payment);
             monthlySchedule.put(month, data);
         }
@@ -43,12 +43,12 @@ public class BasicPaymentMethod implements IPaymentMethod
         return monthlySchedule;
     }
 
-    public static BigDecimal calcMonthlyInterestRate(double annualInterestRate)
+    public static BigDecimal calcMonthlyInterestRate(final double annualInterestRate)
     {
         return new BigDecimal(annualInterestRate).divide(new BigDecimal(1200), MathContext.DECIMAL128);
     }
 
-    public static int calcNumberOfMonths(int paybackTimeInYear)
+    public static int calcNumberOfMonths(final int paybackTimeInYear)
     {
         return paybackTimeInYear * 12;
     }
@@ -58,40 +58,40 @@ public class BasicPaymentMethod implements IPaymentMethod
     @Deprecated
     public double getMonthlyPaymentWithDouble()
     {
-        BigDecimal monthlyInterestRate = BasicPaymentMethod.calcMonthlyInterestRate(loan.getInterest());
-        BigDecimal loanAmount = loan.getProduct().getPrice();
-        int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime());
+        final BigDecimal monthlyInterestRate = BasicPaymentMethod.calcMonthlyInterestRate(this.loan.getInterest());
+        final BigDecimal loanAmount = this.loan.getProduct().getPrice();
+        final int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime());
 
-        return calcMonthlyPayment(monthlyInterestRate.doubleValue(), loanAmount.doubleValue(), numberOfMonths);
+        return BasicPaymentMethod.calcMonthlyPayment(monthlyInterestRate.doubleValue(), loanAmount.doubleValue(), numberOfMonths);
     }
 
     public BigDecimal getMonthlyPayment()
     {
-        BigDecimal monthlyInterestRate = BasicPaymentMethod.calcMonthlyInterestRate(loan.getInterest());
-        BigDecimal loanAmount = loan.getProduct().getPrice();
-        int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime());
+        final BigDecimal monthlyInterestRate = BasicPaymentMethod.calcMonthlyInterestRate(this.loan.getInterest());
+        final BigDecimal loanAmount = this.loan.getProduct().getPrice();
+        final int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime());
 
-        return calcMonthlyPayment(monthlyInterestRate, loanAmount, numberOfMonths);
+        return BasicPaymentMethod.calcMonthlyPayment(monthlyInterestRate, loanAmount, numberOfMonths);
     }
 
     @Deprecated
     public double getTotalPaymentWithDouble()
     {
-        return getMonthlyPaymentWithDouble() * BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime());
+        return this.getMonthlyPaymentWithDouble() * BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime());
     }
 
     public BigDecimal getTotalPayment()
     {
-        return getMonthlyPayment().multiply(new BigDecimal(BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime())));
+        return this.getMonthlyPayment().multiply(new BigDecimal(BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime())));
     }
 
     @Deprecated
-    public static double calcMonthlyPayment(double monthlyInterestRate, double loanAmount, int numberOfMonths)
+    public static double calcMonthlyPayment(final double monthlyInterestRate, final double loanAmount, final int numberOfMonths)
     {
-        return loanAmount * monthlyInterestRate / (1 - (Math.pow(1 / (1 + monthlyInterestRate), numberOfMonths)));
+        return (loanAmount * monthlyInterestRate) / (1 - (Math.pow(1 / (1 + monthlyInterestRate), numberOfMonths)));
     }
 
-    public static BigDecimal calcMonthlyPayment(BigDecimal monthlyInterestRate, BigDecimal loanAmount, int numberOfMonths)
+    public static BigDecimal calcMonthlyPayment(final BigDecimal monthlyInterestRate, final BigDecimal loanAmount, final int numberOfMonths)
     {
         // return (loanAmount.multiply(new BigDecimal(monthlyInterestRate)))/(1-(1+monthlyInterestRate)-numberOfMonths);
         return loanAmount.multiply(monthlyInterestRate).divide(new BigDecimal(1).subtract((new BigDecimal(1).divide((monthlyInterestRate.add(new BigDecimal(1))), MathContext.DECIMAL128).pow(numberOfMonths))),

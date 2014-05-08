@@ -24,7 +24,7 @@ public class HouseTest
     public final void testEmptyContructor()
     {
 
-        IProduct product = new House();
+        final IProduct product = new House();
         Assert.assertNotNull(product);
 
     }
@@ -33,7 +33,8 @@ public class HouseTest
     public final void testProductNull()
     {
 
-        IProduct product = new House(null);
+        @SuppressWarnings("null")
+        final IProduct product = new House(null);
         Assert.assertNotNull(product);
 
     }
@@ -50,7 +51,7 @@ public class HouseTest
     public final void testPriceNotANumber()
     {
 
-        IProduct product = new House(new BigDecimal("Not a number"));
+        final IProduct product = new House(new BigDecimal("Not a number"));
         Assert.assertNotNull(product);
 
     }
@@ -59,19 +60,27 @@ public class HouseTest
     public final void testPriceNotNull()
     {
 
-        IProduct product = new House(null);
+        @SuppressWarnings("null")
+        final IProduct product = new House(null);
         Assert.assertNotNull(product);
 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public final void testNegatifPriceContructorBigDecimal()
+    {
+
+        Assert.assertEquals(new BigDecimal(-100), new House(new BigDecimal(-100)));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public final void testNegatifPriceContructor()
     {
 
-        Assert.assertEquals(new BigDecimal(-100), new House(new BigDecimal(-100)));
-
+        Assert.assertEquals(new BigDecimal(-100), new House(-100));
     }
 
+    @SuppressWarnings("null")
     @Test(expected = IllegalArgumentException.class)
     public final void testPriceZero1()
     {
@@ -92,8 +101,8 @@ public class HouseTest
     public final void testToString()
     {
 
-        Assert.assertEquals("name:" + House.DEFAULT_NAME + " price:" + DEFAULT_EXPECTED_PRICE, new House(1_000_000).toString());
-        Assert.assertFalse(new House(1_000_000).equals("name:" + House.DEFAULT_NAME + " price:" + DEFAULT_EXPECTED_PRICE));
+        Assert.assertEquals("name:" + House.DEFAULT_NAME + " price:" + HouseTest.DEFAULT_EXPECTED_PRICE, new House(1_000_000).toString());
+        Assert.assertFalse(new House(1_000_000).equals("name:" + House.DEFAULT_NAME + " price:" + HouseTest.DEFAULT_EXPECTED_PRICE));
 
     }
 
@@ -104,6 +113,7 @@ public class HouseTest
         Assert.assertFalse(new House(1_000_000).equals(null));
     }
 
+    @SuppressWarnings("null")
     @Test(expected = IllegalArgumentException.class)
     public final void testCompareZero()
     {

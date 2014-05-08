@@ -13,6 +13,14 @@ import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IPaymentMethod;
 import com.nabla.project.visma.api.IProduct;
 
+/**
+ * DOCUMENT ME!
+ *
+ * @author $Author$
+ * @version $Revision$
+ *
+ * @since $Date$
+ */
 public class BasicPaymentMethodTest
 {
 
@@ -28,22 +36,22 @@ public class BasicPaymentMethodTest
     public void setUp() throws Exception
     {
         // based on http://en.wikipedia.org/wiki/Fixed-rate_mortgage sample
-        product = new House(new BigDecimal(200_000));
-        loan = new HouseLoan(product, HouseLoanTest.DEFAULT_PAYBACK_TIME, BasicPaymentMethodTest.DEFAULT_TEST_INTEREST);
+        this.product = new House(new BigDecimal(200_000));
+        this.loan = new HouseLoan(this.product, HouseLoanTest.DEFAULT_PAYBACK_TIME, BasicPaymentMethodTest.DEFAULT_TEST_INTEREST);
     }
 
     @After
     public void tearDown() throws Exception
     {
-        loan = null;
-        product = null;
+        this.loan = null;
+        this.product = null;
     }
 
     @Test
     public final void testPaymentMethodNotNull()
     {
 
-        IPaymentMethod method = new BasicPaymentMethod(loan);
+        final IPaymentMethod method = new BasicPaymentMethod(this.loan);
         Assert.assertNotNull(method.calculate());
 
     }
@@ -52,7 +60,7 @@ public class BasicPaymentMethodTest
     public final void testPaymentMethodNull()
     {
 
-        IPaymentMethod method = new BasicPaymentMethod(null);
+        final IPaymentMethod method = new BasicPaymentMethod(null);
         Assert.assertNotNull(method.calculate());
 
     }
@@ -60,41 +68,43 @@ public class BasicPaymentMethodTest
     @Test
     public void testCalcMonthlyInterestRate()
     {
-        Assert.assertEquals(DEFAULT_TEST_INTEREST, loan.getInterest(), HouseLoanTest.DOUBLE_DELTA);
-        Assert.assertEquals(new BigDecimal("0.005416666666666666666666666666666667"), BasicPaymentMethod.calcMonthlyInterestRate(loan.getInterest()));
+        Assert.assertEquals(BasicPaymentMethodTest.DEFAULT_TEST_INTEREST, this.loan.getInterest(), HouseLoanTest.DOUBLE_DELTA);
+        Assert.assertEquals(new BigDecimal("0.005416666666666666666666666666666667"), BasicPaymentMethod.calcMonthlyInterestRate(this.loan.getInterest()));
     }
 
     @Test
     public void testCalcNumberOfMonths()
     {
-        Assert.assertEquals(360, BasicPaymentMethod.calcNumberOfMonths(loan.getPaybackTime()), HouseLoanTest.DOUBLE_DELTA);
+        Assert.assertEquals(360, BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime()), HouseLoanTest.DOUBLE_DELTA);
     }
 
     @Test
     public void testMonthlyPaymentWithDouble()
     {
-        IPaymentMethod method = new BasicPaymentMethod(loan);
+        final IPaymentMethod method = new BasicPaymentMethod(this.loan);
         Assert.assertEquals(1264.136046985934, ((BasicPaymentMethod) method).getMonthlyPaymentWithDouble(), HouseLoanTest.DOUBLE_DELTA);
     }
 
     @Test
     public void testMonthlyPayment()
     {
-        IPaymentMethod method = new BasicPaymentMethod(loan);
-        Assert.assertEquals(EXPECTED_PAYMENT_RESULT_30, ((BasicPaymentMethod) method).getMonthlyPayment().toString());
+        final IPaymentMethod method = new BasicPaymentMethod(this.loan);
+        Assert.assertEquals(BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_30, ((BasicPaymentMethod) method).getMonthlyPayment().toString());
     }
 
     @Test
     public void testCalculate()
     {
-        loan = new HouseLoan(product, 1, DEFAULT_TEST_INTEREST);
-        IPaymentMethod method = new BasicPaymentMethod(loan);
-        Map<Integer, List<BigDecimal>> payments = method.calculate();
+        this.loan = new HouseLoan(this.product, 1, BasicPaymentMethodTest.DEFAULT_TEST_INTEREST);
+        final IPaymentMethod method = new BasicPaymentMethod(this.loan);
+        final Map<Integer, List<BigDecimal>> payments = method.calculate();
         Assert.assertNotNull(payments);
         Assert.assertEquals(12, payments.size());
-        Assert.assertEquals("{0=[" + EXPECTED_PAYMENT_RESULT_1 + "], 1=[" + EXPECTED_PAYMENT_RESULT_1 + "], 2=[" + EXPECTED_PAYMENT_RESULT_1 + "], 3=[" + EXPECTED_PAYMENT_RESULT_1 + "], 4=[" + EXPECTED_PAYMENT_RESULT_1
-                + "], 5=[" + EXPECTED_PAYMENT_RESULT_1 + "], 6=[" + EXPECTED_PAYMENT_RESULT_1 + "], 7=[" + EXPECTED_PAYMENT_RESULT_1 + "], 8=[" + EXPECTED_PAYMENT_RESULT_1 + "], 9=[" + EXPECTED_PAYMENT_RESULT_1
-                + "], 10=[" + EXPECTED_PAYMENT_RESULT_1 + "], 11=[" + EXPECTED_PAYMENT_RESULT_1 + "]}", method.calculate().toString());
+        Assert.assertEquals("{0=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 1=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 2=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1
+                + "], 3=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 4=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 5=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 6=["
+                + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 7=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 8=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 9=["
+                + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 10=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 11=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "]}", method.calculate()
+                .toString());
     }
 
 }

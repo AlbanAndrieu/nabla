@@ -3,15 +3,16 @@ package com.nabla.project.visma;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import com.nabla.project.visma.api.IProduct;
 
-/**
- * @author albandri
- *
- */
+@Immutable
 public class House implements IProduct, Comparable<House>, Serializable
 {
 
@@ -19,15 +20,15 @@ public class House implements IProduct, Comparable<House>, Serializable
 
     public static final String DEFAULT_NAME     = "House";
 
-    private String             name             = DEFAULT_NAME;
-    private BigDecimal         price            = BigDecimal.TEN;
+    private final String       name             = House.DEFAULT_NAME;
+    private final BigDecimal   price;
 
     public House()
     {
         throw new AssertionError();
     }
 
-    public House(BigDecimal aPrice)
+    public House(@Nonnull @Nonnegative final BigDecimal aPrice)
     {
 
         this.price = aPrice;
@@ -35,7 +36,7 @@ public class House implements IProduct, Comparable<House>, Serializable
 
     }
 
-    public House(int aPrice)
+    public House(@Nonnegative final int aPrice)
     {
         this(new BigDecimal(aPrice));
     }
@@ -81,30 +82,38 @@ public class House implements IProduct, Comparable<House>, Serializable
 
     }
 
+    @Override
     public int hashCode()
     {
         return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
                 // if deriving: appendSuper(super.hashCode()).
-                append(getName()).append(getPrice()).toHashCode();
-    }
-
-    public boolean equals(Object obj)
-    {
-        if (obj == null)
-            return false;
-        if (obj == this)
-            return true;
-        if (!(obj instanceof House))
-            return false;
-
-        House rhs = (House) obj;
-        return new EqualsBuilder().
-        // if deriving: appendSuper(super.equals(obj)).
-                append(name, rhs.name).append(price, rhs.price).isEquals();
+                append(this.getName()).append(this.getPrice()).toHashCode();
     }
 
     @Override
-    public int compareTo(House aHouse)
+    public boolean equals(final Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (obj == this)
+        {
+            return true;
+        }
+        if (!(obj instanceof House))
+        {
+            return false;
+        }
+
+        final House rhs = (House) obj;
+        return new EqualsBuilder().
+        // if deriving: appendSuper(super.equals(obj)).
+                append(this.name, rhs.name).append(this.price, rhs.price).isEquals();
+    }
+
+    @Override
+    public int compareTo(final House aHouse)
     {
         if (this == aHouse)
         {
@@ -112,7 +121,7 @@ public class House implements IProduct, Comparable<House>, Serializable
         }
 
         // the object fields are never null
-        int comparison = this.price.compareTo(aHouse.price);
+        final int comparison = this.price.compareTo(aHouse.price);
         if (comparison != 0)
         {
             return comparison;

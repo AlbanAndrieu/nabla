@@ -9,7 +9,7 @@ import com.nabla.project.visma.api.IProduct;
 public class Visma
 {
 
-    public static void main(String[] args)
+    public static void main(final String[] args)
     {
         double loanAmount;// double value loan amount
         double annualInterestRate;// double value interest rate
@@ -28,12 +28,12 @@ public class Visma
             numberOfYears = keyboard.nextInt();
         }
 
-        IProduct product = new House(new BigDecimal(loanAmount));
-        ILoan loan = new HouseLoan(product, numberOfYears, annualInterestRate);
+        final IProduct product = new House(new BigDecimal(loanAmount));
+        final ILoan loan = new HouseLoan(product, numberOfYears, annualInterestRate);
 
         System.out.println("Payment schedule is :\n " + loan.calcMonthlyPayment() + "\n");
 
-        BigDecimal totalPayment = new BasicPaymentMethod(loan).getTotalPayment();
+        final BigDecimal totalPayment = new BasicPaymentMethod(loan).getTotalPayment();
         if (totalPayment.doubleValue() < loanAmount)
         {
             System.err.println("Total payment is lower than loan amount\n");

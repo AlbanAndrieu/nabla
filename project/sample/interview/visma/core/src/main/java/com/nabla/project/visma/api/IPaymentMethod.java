@@ -50,7 +50,7 @@ public interface IPaymentMethod
 {
 
     /**
-     * 
+     *
      * Give monthly payback plan (payments) based on the product, interest and payback time
      *
      * @return a date with its corresponding payment and interest for a loan

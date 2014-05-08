@@ -1,7 +1,6 @@
 package com.nabla.project.visma;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class HouseLoan implements ILoan
     public static final double            DEFAULT_INTEREST = 5.5;
 
     // Fixed interest of 5.5% per year
-    private double                        interest         = DEFAULT_INTEREST;
+    private double                        interest         = HouseLoan.DEFAULT_INTEREST;
 
     private IProduct                      product;
 
@@ -29,7 +28,7 @@ public class HouseLoan implements ILoan
         throw new AssertionError();
     }
 
-    public HouseLoan(IProduct aProduct, int aPaybackTime)
+    public HouseLoan(final IProduct aProduct, final int aPaybackTime)
     {
         this.product = aProduct;
         this.paybackTime = aPaybackTime;
@@ -45,7 +44,7 @@ public class HouseLoan implements ILoan
         }
     }
 
-    public HouseLoan(IProduct aProduct, int aPaybackTime, double aInterest)
+    public HouseLoan(final IProduct aProduct, final int aPaybackTime, final double aInterest)
     {
         this(aProduct, aPaybackTime);
         this.interest = aInterest;
@@ -60,20 +59,20 @@ public class HouseLoan implements ILoan
     public double getInterest()
     {
 
-        return interest;
+        return this.interest;
     }
 
     @Override
     public IProduct getProduct()
     {
-        return product;
+        return this.product;
     }
 
     @Override
     public Map<Integer, List<BigDecimal>> calcMonthlyPayment()
     {
 
-        LOGGER.debug("Start calculateMonthlyPayment for : " + this.toString());
+        HouseLoan.LOGGER.debug("Start calculateMonthlyPayment for : " + this.toString());
         // TODO check Design pattern strategy
         return new BasicPaymentMethod(this).calculate();
     }
@@ -95,7 +94,7 @@ public class HouseLoan implements ILoan
     @Override
     public int getPaybackTime()
     {
-        return paybackTime;
+        return this.paybackTime;
     }
 
 }
