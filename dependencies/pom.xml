@@ -948,20 +948,19 @@
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>javancss-maven-plugin</artifactId>
-												<version>${maven.javancss.plugin.version}</version>
-												<!--
+												<version>${maven.javancss.plugin.version}</version>												
 												<configuration>
-												
-												  <failOnViolation>true</failOnViolation>
-												  <ccnLimit>12</ccnLimit>
-												  <ncssLimit>90</ncssLimit>																							
+												   <!--
+												   <failOnViolation>true</failOnViolation>
+												   <ccnLimit>12</ccnLimit>
+												   <ncssLimit>90</ncssLimit>		
+												   -->																					
 												   <excludes>
 													  <exclude>**/generated/**/*</exclude>
 													  <exclude>**/clover/**/*</exclude>
 													  <exclude>**/Visma.java</exclude>
 													</excludes>
-												</configuration>  
-												-->	
+												</configuration>  	
 										</plugin>
 
 										<plugin>
