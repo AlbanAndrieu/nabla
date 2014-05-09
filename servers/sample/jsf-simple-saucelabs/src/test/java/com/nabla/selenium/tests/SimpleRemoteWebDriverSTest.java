@@ -41,8 +41,7 @@ import com.saucelabs.junit.SauceOnDemandTestWatcher;
 import com.thoughtworks.selenium.DefaultSelenium;
 
 @RunWith(Parameterized.class)
-public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvider
-{
+public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvider {
     private static final String        DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe";
     private static final String        DEFAULT_URL          = "http://localhost:9090";
     private static final String        PAGE_TO_LOAD_TIMEOUT = "30000";
@@ -69,13 +68,11 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
      */
     public SauceOnDemandAuthentication authentication       = new SauceOnDemandAuthentication();
 
-    public Platform setPlatformCapabilities(String platformParam)
-    {
+    public Platform setPlatformCapabilities(String platformParam) {
 
         String platformVal = platformParam;
 
-        for (int p = 0; p < platformValues.length; p++)
-        {
+        for (int p = 0; p < platformValues.length; p++) {
             platformValue = platformValues[p++];
             if (platformValue.toString() == platformVal)
                 break;
@@ -109,24 +106,20 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
      * your <a href="https://saucelabs.com/login">Sauce account</a> or the test will fail.
      */
     @Parameters
-    public static Collection<Object[]> data()
-    {
+    public static Collection<Object[]> data() {
 
         String json = System.getenv("SAUCE_ONDEMAND_BROWSERS");
         List<Object[]> browsers = new ArrayList<Object[]>();
         JSONArray browserArray = null;
-        try
-        {
+        try {
             browserArray = new JSONArray(json);
-            for (int i = 0; i < browserArray.length(); i++)
-            {
+            for (int i = 0; i < browserArray.length(); i++) {
                 JSONObject browserJSON = browserArray.getJSONObject(i);
                 browsers.add(new Object[] { browserJSON.get("browser"), browserJSON.get("browser-version"), browserJSON.get("os") });
 
             }
         }
-        catch (JSONException e)
-        {
+        catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -134,21 +127,18 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
 
     }
 
-    public SimpleRemoteWebDriverSTest(String s1, String s2, String s3)
-    {
+    public SimpleRemoteWebDriverSTest(String s1, String s2, String s3) {
         browser = s1;
         browserVersion = s2;
         platform = s3;
     }
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
 
         baseUrl = System.getProperty("webdriver.base.url");
 
-        if (null == baseUrl)
-        {
+        if (null == baseUrl) {
             System.out.println("Use default webdriver.base.url");
             baseUrl = DEFAULT_URL;
             System.setProperty("webdriver.base.url", baseUrl);
@@ -156,8 +146,7 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
         System.out.println("webdriver.base.url is : " + baseUrl);
 
         chromeDriver = System.getProperty("webdriver.chrome.driver");
-        if (null == chromeDriver)
-        {
+        if (null == chromeDriver) {
             System.out.println("Use default webdriver.base.url");
             chromeDriver = DEFAULT_URL;
             System.setProperty("webdriver.chrome.driver", chromeDriver);
@@ -244,8 +233,7 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
      */
 
     @Test
-    public void testSimpleS() throws Exception
-    {
+    public void testSimpleS() throws Exception {
         driver.get(baseUrl + "/welcome/hello.xhtml");
         // selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
@@ -254,10 +242,8 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
         driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
-        WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>()
-        {
-            public WebElement apply(WebDriver d)
-            {
+        WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>() {
+            public WebElement apply(WebDriver d) {
                 // d.get(baseUrl);
                 return d.findElement(By.name("j_idt8:j_idt9"));
             }
@@ -276,66 +262,52 @@ public class SimpleRemoteWebDriverSTest implements SauceOnDemandSessionIdProvide
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         // stopSeleniumServer(server, selenium);
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString))
-        {
+        if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
     }
 
     @Override
-    public String getSessionId()
-    {
+    public String getSessionId() {
         return sessionId;
     }
 
-    private boolean isElementPresent(By by)
-    {
-        try
-        {
+    private boolean isElementPresent(By by) {
+        try {
             driver.findElement(by);
             return true;
         }
-        catch (NoSuchElementException e)
-        {
+        catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    private boolean isAlertPresent()
-    {
-        try
-        {
+    private boolean isAlertPresent() {
+        try {
             driver.switchTo().alert();
             return true;
         }
-        catch (NoAlertPresentException e)
-        {
+        catch (NoAlertPresentException e) {
             return false;
         }
     }
 
-    private String closeAlertAndGetItsText()
-    {
-        try
-        {
+    private String closeAlertAndGetItsText() {
+        try {
             Alert alert = driver.switchTo().alert();
             String alertText = alert.getText();
-            if (acceptNextAlert)
-            {
+            if (acceptNextAlert) {
                 alert.accept();
-            } else
-            {
+            } else {
                 alert.dismiss();
             }
             return alertText;
         }
-        finally
-        {
+        finally {
             acceptNextAlert = true;
         }
     }
