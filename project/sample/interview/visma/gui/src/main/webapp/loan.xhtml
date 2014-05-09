@@ -11,8 +11,13 @@
     <h:body>
     	<h3>JSF 2.0 Visma Loan test - loan.xhtml</h3>
     	<h:form>
-    		<h:inputText value="#{input.name}"></h:inputText>
-    		<h:commandButton value="Get payments" action="payment"></h:commandButton>
+    		<h:outputLabel>Loan amount : </h:outputLabel>
+    		<h:inputText value="#{input.loanAmount}" alt="Please enter the amount of your loan. Ex. 200000">Loan amount : </h:inputText>
+    		<br></br>
+    		<h:outputLabel>Annual interest rate: </h:outputLabel><h:inputText value="#{input.paybackTime}" alt="Please enter the number of years you have to pay back your loan. Ex. 30">Annual interest rate: </h:inputText>
+    		<br></br>
+    		<h:commandButton value="Show payments" action="payment">    		
+    		</h:commandButton>
     	</h:form>
 	</h:body>
 </html>

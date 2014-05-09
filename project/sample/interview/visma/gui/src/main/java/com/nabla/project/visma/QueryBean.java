@@ -1,6 +1,7 @@
 package com.nabla.project.visma;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,14 +16,34 @@ public class QueryBean implements Serializable {
         System.out.println("QueryBean started!");
     }
 
-    private String name;
+    private BigDecimal loanAmount   = new BigDecimal(200_000);
 
-    public String getName() {
-        return this.name;
+    private int        paybackTime  = 30;
+
+    private BigDecimal totalPayment = BigDecimal.ZERO;
+
+    public BigDecimal getLoanAmount() {
+        return this.loanAmount;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setLoanAmount(final BigDecimal loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public int getPaybackTime() {
+        return this.paybackTime;
+    }
+
+    public void setPaybackTime(final int paybackTime) {
+        this.paybackTime = paybackTime;
+    }
+
+    public BigDecimal getTotalPayment() {
+        return this.totalPayment;
+    }
+
+    public void setTotalPayment(final BigDecimal totalPayment) {
+        this.totalPayment = totalPayment;
     }
 
     /*

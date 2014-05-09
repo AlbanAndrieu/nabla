@@ -100,28 +100,28 @@ public class SimpleWebDriverSTest {
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         Assert.assertEquals("JSF 2.0 Visma Loan test - loan.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
-        this.driver.findElement(By.name("j_idt8:j_idt9")).clear();
-        this.driver.findElement(By.name("j_idt8:j_idt9")).sendKeys("Test me !!!");
+        this.driver.findElement(By.name("j_idt8:j_idt11")).clear();
+        this.driver.findElement(By.name("j_idt8:j_idt11")).sendKeys("1000000");
 
         // wait for the application to get fully loaded
         final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>() {
             @Override
             public WebElement apply(final WebDriver d) {
                 // d.get(baseUrl);
-                return d.findElement(By.name("j_idt8:j_idt9"));
+                return d.findElement(By.name("j_idt8:j_idt11"));
             }
         });
 
         findOwnerLink.click();
 
         final WebDriverWait wait = new WebDriverWait(this.driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("j_idt8:j_idt10")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("j_idt8:j_idt19")));
         this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        this.driver.findElement(By.name("j_idt8:j_idt10")).click();
+        this.driver.findElement(By.name("j_idt8:j_idt19")).click();
 
         Assert.assertEquals("JSF 2.0 Visma Loan test results - payment.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
-        Assert.assertEquals("Payment Test me !!!", this.driver.findElement(By.cssSelector("h4")).getText());
+        Assert.assertEquals("Payment total is : 0", this.driver.findElement(By.cssSelector("h4")).getText());
     }
 
     @After
