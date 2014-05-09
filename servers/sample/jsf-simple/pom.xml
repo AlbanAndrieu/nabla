@@ -458,10 +458,12 @@
 						<exclude>**/*STest*</exclude>
 					</excludes>
 					<systemPropertyVariables>
-						<webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>						
-            			<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
+						<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+						<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+						<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
         			</systemPropertyVariables>
 				</configuration>
+				<!--
 				<executions>
 					<execution>
 						<id>surefire-itest</id>
@@ -480,6 +482,7 @@
 						</configuration>
 					</execution>
 				</executions>
+				-->
 			</plugin>
 
 <!--
