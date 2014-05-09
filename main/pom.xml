@@ -1418,16 +1418,19 @@
                                                                 </plugin>
 
                                                                 <!-- TODO javancss:report does not work -->
+                                                                <!-- it does not work with java 8
                                                                 <plugin>
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>javancss-maven-plugin</artifactId>
                                                                         <version>${maven.javancss.plugin.version}</version>
 																		<configuration>
+																		-->
                                                                         <!--
                                                                           <failOnViolation>true</failOnViolation>
                                                                           <ccnLimit>12</ccnLimit>
                                                                           <ncssLimit>90</ncssLimit>
-                                                                        -->													
+                                                                        -->						
+                                                                        <!--							
 																		   <excludes>
 																			  <exclude>**/generated/**/*</exclude>
 																			  <exclude>**/clover/**/*</exclude>
@@ -1435,6 +1438,7 @@
 																			</excludes>
 																		</configuration>                                                                        
                                                                 </plugin>
+                                                                -->
 
                                                                 <!--
                                                                 <plugin>
