@@ -1418,7 +1418,7 @@
                                                                 </plugin>
 
                                                                 <!-- TODO javancss:report does not work -->
-                                                                <!-- it does not work with java 8
+                                                                <!-- it does not work with java 7 syntax
                                                                 <plugin>
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>javancss-maven-plugin</artifactId>
