@@ -945,22 +945,27 @@
 										</plugin>
 
 										<!-- TODO javancss:report does not work -->
+										<!-- it does not work with java 7 syntax
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>javancss-maven-plugin</artifactId>
-												<version>${maven.javancss.plugin.version}</version>												
+												<version>${maven.javancss.plugin.version}</version>
 												<configuration>
-												   <!--
-												   <failOnViolation>true</failOnViolation>
-												   <ccnLimit>12</ccnLimit>
-												   <ncssLimit>90</ncssLimit>		
-												   -->																					
+												-->
+												<!--
+												  <failOnViolation>true</failOnViolation>
+												  <ccnLimit>12</ccnLimit>
+												  <ncssLimit>90</ncssLimit>
+												-->						
+												<!--							
 												   <excludes>
 													  <exclude>**/generated/**/*</exclude>
 													  <exclude>**/clover/**/*</exclude>
+													  <exclude>**/Visma.java</exclude>
 													</excludes>
-												</configuration>  	
+												</configuration>                                                                        
 										</plugin>
+										-->
 
 										<plugin>
 											<groupId>org.codehaus.mojo</groupId>
@@ -1579,8 +1584,9 @@
 				<jsp-api.version>2.2.1-b03</jsp-api.version>
 				<junit.version>4.11</junit.version>
 				<bean.matchers.version>0.8.1</bean.matchers.version>
-				<org.jboss.arquillian.version>1.1.1.Final</org.jboss.arquillian.version>
+				<org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version>
 				<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
+				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
 				<wiser.version>1.2</wiser.version>
@@ -1597,6 +1603,7 @@
 				<gwt.test.utils.version>0.38</gwt.test.utils.version>
 				<objectify.version>4.0b1</objectify.version>
 				<errai.version>2.0.Beta3</errai.version>
+				<weld.servlet.version>1.1.0.Beta1</weld.servlet.version>
 
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
 				<!--<selenium.version>2.37.1</selenium.version>-->
@@ -1626,6 +1633,7 @@
 				<!--<org.apache.myfaces.trinidad.version>2.0.0</org.apache.myfaces.trinidad.version>-->
 				<jsf.facelets.version>1.1.15.B1</jsf.facelets.version>
 				<el.api.version>2.2.1-b04</el.api.version>
+				<el.impl.version>2.2</el.impl.version>
 				<portlet.api.version>1.0</portlet.api.version>
 				<portals.bridges.portletfilter.version>1.0.4</portals.bridges.portletfilter.version>
 				<icefaces.version>1.8.2</icefaces.version>
@@ -4227,12 +4235,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
 								for your project, such as Arquillian for testing) -->
 				<dependency>
-				<groupId>org.jboss.bom</groupId>
-				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
-				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+					<groupId>org.jboss.bom</groupId>
+					<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+					<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
 
 				<!-- JBoss distributes a complete set of Java EE 6 APIs including
 					a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
@@ -5744,32 +5752,38 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${jsf.impl.version}</version>
 								<scope>provided</scope>
 						</dependency>
-			<dependency>
-				<groupId>com.sun.faces</groupId>
-				<artifactId>jsf-api</artifactId>
-				<version>${sun.jsf.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.faces</groupId>
-				<artifactId>jsf-impl</artifactId>
-				<version>${sun.jsf.version}</version>
-				<scope>provided</scope>
-			</dependency>
 						<dependency>
-								<groupId>javax.el</groupId>
-								<artifactId>el-api</artifactId>
-								<version>${el.api.version}</version>
+							<groupId>com.sun.faces</groupId>
+							<artifactId>jsf-api</artifactId>
+							<version>${sun.jsf.version}</version>
+							<scope>provided</scope>
 						</dependency>
 						<dependency>
-								<groupId>com.sun.el</groupId>
-								<artifactId>el-ri</artifactId>
-								<version>${el.ri.version}</version>
+							<groupId>com.sun.faces</groupId>
+							<artifactId>jsf-impl</artifactId>
+							<version>${sun.jsf.version}</version>
+							<scope>provided</scope>
+						</dependency>						
+						<dependency>
+							<groupId>javax.el</groupId>
+							<artifactId>el-api</artifactId>
+							<version>${el.api.version}</version>
 						</dependency>
 						<dependency>
-								<groupId>taglibs</groupId>
-								<artifactId>standard</artifactId>
-								<version>${taglibs.version}</version>
+						   <groupId>org.glassfish.web</groupId>
+						   <artifactId>el-impl</artifactId>
+						   <version>${el.impl.version}</version>
+						   <scope>test</scope>
+						</dependency>						
+						<dependency>
+							<groupId>com.sun.el</groupId>
+							<artifactId>el-ri</artifactId>
+							<version>${el.ri.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>taglibs</groupId>
+							<artifactId>standard</artifactId>
+							<version>${taglibs.version}</version>
 						</dependency>
 						<!-- Errai Core and ErraiBus -->
 						<dependency>
@@ -5840,6 +5854,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						  <version>${errai.version}</version>
 						</dependency>
 
+					  <dependency>
+						 <groupId>org.jboss.weld.servlet</groupId>
+						 <artifactId>weld-servlet</artifactId>
+						 <version>${weld.servlet.version}</version>
+					  </dependency>
+      
 						<dependency>
 						  <groupId>org.jboss.errai</groupId>
 						  <artifactId>jboss7-support</artifactId>
