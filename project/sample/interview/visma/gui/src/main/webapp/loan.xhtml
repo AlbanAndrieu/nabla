@@ -10,18 +10,35 @@
 </h:head>
 <h:body>
 	<f:view>
-		<h3>JSF 2.0 Visma Loan test - loan.xhtml</h3>
+		<h3>
+			<b>Housing Loan Cost Calculator</b>
+		</h3>
+
 		<h:form id="loan_form">
+			<h:outputLabel>To calculate the montly amount of your loan, enter the amount and duration of your loan, and click show monthly payments.</h:outputLabel>
+			<br/>
+			<br/>
 			<h:panelGrid id="panel" columns="3" border="1" cellpadding="10"
 				cellspacing="1">
-				<h:outputLabel>Loan amount : </h:outputLabel>
+				<h:outputLabel>Interest type : </h:outputLabel>
+				<h:selectOneListbox id="loanType" value="#{input.interestType}">
+					<f:selectItem id="item1" itemLabel="Fixed rate (5.5%)" itemValue="1" />
+					<f:selectItem id="item2" itemLabel="Euribor 3 months rate"
+						itemValue="2" itemDisabled="true" />
+					<f:selectItem id="item3" itemLabel="TAEG 20%" itemValue="3"
+						itemDisabled="true" />
+					<f:selectItem id="item4" itemLabel="Custom rate" itemValue="4"
+						itemDisabled="true" />
+				</h:selectOneListbox>
+				<h:message for="loanType" showDetail="true" style="color:orange" />
+				<h:outputLabel>Amount in NOK : </h:outputLabel>
 				<h:inputText id="loanAmount" value="#{input.loanAmount}"
 					label="Please enter the amount of your loan. Ex. 200000" size="20"
 					required="true">
 					<f:validateLongRange minimum="1" maximum="1000000000" />
 				</h:inputText>
 				<h:message for="loanAmount" showDetail="true" style="color:orange" />
-				<h:outputLabel>Annual interest rate: </h:outputLabel>
+				<h:outputLabel>Number of years : </h:outputLabel>
 				<h:inputText id="paybackTime" value="#{input.paybackTime}"
 					label="Please enter the number of years you have to pay back your loan. Ex. 30"
 					size="5" required="true">
@@ -29,9 +46,11 @@
 				</h:inputText>
 				<h:message for="paybackTime" showDetail="true" style="color:orange" />
 			</h:panelGrid>
+			<br/>
 			<h:panelGroup style="display:block; text-align:left">
 				<h:messages for="loan" globalOnly="true" style="color:red" />
-				<h:commandButton id="payment" value="Show my payments"
+				<br/>
+				<h:commandButton id="payment" value="Show monthlty payments"
 					action="#{input.getPayments}" />
 			</h:panelGroup>
 		</h:form>

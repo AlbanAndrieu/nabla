@@ -7,11 +7,28 @@
 	
     <h:head>
     	<title>JSF 2.0 Visma Loan test results</title>
+    	 <h:outputStylesheet library="css" name="styles.css"  /> 	
     </h:head>
     <h:body bgcolor="white">
-    	<h3>JSF 2.0 Visma Loan test results - payment.xhtml</h3>
+    	<h3><b>Housing Loan Cost Calculator (Results)</b></h3>
     	<h4>Payments total is : #{input.totalPayment}</h4>
-    	<h4>Payments schedule are : #{input.scheduledPayment}</h4>
+    	<br/>
+		<h:outputLabel>For your loan with interest rate 5.5 % :<br/>You will pay back the following amounts over the next #{input.scheduledPaymentNumber} month(s)</h:outputLabel>
+		<br/>
+    	<h4>The payments are scheduled as follow :</h4>
+    	 <h:dataTable value="#{input.paymentSchedule.payments}" var="scheduledPayments" border="1" cellpadding="10"
+				cellspacing="1"
+         headerClass="paymentScheduleTableHeader"
+         rowClasses="paymentScheduleTableOddRow,paymentScheduleTableEvenRow">
+      <h:column> 
+         <f:facet name="header">Month. No</f:facet>
+         #{input.paymentSchedule.rowIndex + 1}
+      </h:column>
+      <h:column>    				
+         <f:facet name="header">Loan Amount</f:facet>    				
+         #{scheduledPayments.loanAmount}
+      </h:column>
+   </h:dataTable>
     	<br/>
         <h:link outcome="loan" value="Back home"/>
     </h:body>

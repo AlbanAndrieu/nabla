@@ -99,7 +99,7 @@ public class SimpleWebDriverSTest {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
-        Assert.assertEquals("JSF 2.0 Visma Loan test - loan.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
+        Assert.assertEquals("Housing Loan Cost Calculator", this.driver.findElement(By.cssSelector("h3")).getText());
         this.driver.findElement(By.name("loan_form:loanAmount")).clear();
         this.driver.findElement(By.name("loan_form:loanAmount")).sendKeys("1000000");
         this.driver.findElement(By.name("loan_form:paybackTime")).clear();
@@ -122,9 +122,9 @@ public class SimpleWebDriverSTest {
 
         this.driver.findElement(By.name("loan_form:payment")).click();
 
-        Assert.assertEquals("JSF 2.0 Visma Loan test results - payment.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
+        Assert.assertEquals("Housing Loan Cost Calculator (Results)", this.driver.findElement(By.cssSelector("h3")).getText());
         Assert.assertEquals("Payments total is : 1302315.33552576902309236382167649640", this.driver.findElement(By.cssSelector("h4")).getText());
-        Assert.assertTrue(this.selenium.isElementPresent("//h4[2]"));
+        Assert.assertEquals("1135.578002694005871672195523788416 ", this.driver.findElement(By.xpath("//td[2]")).getText());
 
         Thread.sleep(1000);
         this.selenium.open("/visma/");
@@ -136,7 +136,7 @@ public class SimpleWebDriverSTest {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
-        Assert.assertEquals("JSF 2.0 Visma Loan test - loan.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
+        Assert.assertEquals("Housing Loan Cost Calculator", this.driver.findElement(By.cssSelector("h3")).getText());
         this.driver.findElement(By.name("loan_form:loanAmount")).clear();
         this.driver.findElement(By.name("loan_form:loanAmount")).sendKeys("-10");
         this.driver.findElement(By.name("loan_form:paybackTime")).clear();
