@@ -40,6 +40,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.nabla.project.visma.api.ILoan;
+import com.nabla.project.visma.api.IPaymentMethod;
 import com.nabla.project.visma.api.IProduct;
 
 public class HouseLoan implements ILoan {
@@ -54,6 +55,8 @@ public class HouseLoan implements ILoan {
     private IProduct                      product;
 
     private int                           paybackTime;
+
+    private final IPaymentMethod          paymentMethod    = new BasicPaymentMethod();
 
     public HouseLoan() {
         throw new AssertionError();
@@ -93,11 +96,8 @@ public class HouseLoan implements ILoan {
     }
 
     @Override
-    public Map<Integer, List<BigDecimal>> calcMonthlyPayment() {
-
-        HouseLoan.LOGGER.debug("Start calculateMonthlyPayment for : " + this.toString());
-        // TODO check Design pattern strategy
-        return new BasicPaymentMethod(this).calculate();
+    public int getPaybackTime() {
+        return this.paybackTime;
     }
 
     @Override
@@ -114,8 +114,20 @@ public class HouseLoan implements ILoan {
     }
 
     @Override
-    public int getPaybackTime() {
-        return this.paybackTime;
+    public Map<Integer, List<BigDecimal>> calcMonthlyPayment() {
+
+        if (HouseLoan.LOGGER.isDebugEnabled()) {
+            HouseLoan.LOGGER.debug("Start calculateMonthlyPayment for : " + this.toString());
+        }
+        // TODO check Design pattern strategy
+        this.paymentMethod.setLoan(this);
+        return this.paymentMethod.calculate();
+    }
+
+    @Override
+    public BigDecimal getTotalPayment() {
+        this.paymentMethod.setLoan(this);
+        return this.paymentMethod.getTotalPayment();
     }
 
 }

@@ -50,9 +50,14 @@ import com.nabla.project.visma.api.IPaymentMethod;
  * @version $Revision$
  * @since $Date$
  */
+// TODO WARNING non Immutable
 public class BasicPaymentMethod implements IPaymentMethod {
 
-    private final ILoan loan;
+    private ILoan loan;
+
+    public BasicPaymentMethod() {
+
+    }
 
     /**
      * Creates a new BasicPaymentMethod object.
@@ -69,6 +74,19 @@ public class BasicPaymentMethod implements IPaymentMethod {
 
         }
 
+    }
+
+    public ILoan getLoan() {
+        return this.loan;
+    }
+
+    public void setLoan(final ILoan aloan) {
+        this.loan = aloan;
+        if (null == this.loan) {
+
+            throw new IllegalArgumentException("Loan cannot be null");
+
+        }
     }
 
     /**
@@ -172,6 +190,7 @@ public class BasicPaymentMethod implements IPaymentMethod {
      *
      * @return DOCUMENT ME!
      */
+    @Override
     public BigDecimal getTotalPayment() {
 
         return this.getMonthlyPayment().multiply(new BigDecimal(BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime())));

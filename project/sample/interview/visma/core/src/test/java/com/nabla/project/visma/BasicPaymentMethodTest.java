@@ -94,6 +94,24 @@ public class BasicPaymentMethodTest {
     }
 
     @Test
+    public final void testSetLoanNotNull() {
+
+        final IPaymentMethod method = new BasicPaymentMethod();
+        method.setLoan(this.loan);
+        Assert.assertNotNull(method.getLoan());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public final void testSetLoandNull() {
+
+        final IPaymentMethod method = new BasicPaymentMethod();
+        method.setLoan(null);
+        Assert.assertNotNull(method.getLoan());
+
+    }
+
+    @Test
     public void testCalcMonthlyInterestRate() {
         Assert.assertEquals(BasicPaymentMethodTest.DEFAULT_TEST_INTEREST, this.loan.getInterest(), HouseLoanTest.DOUBLE_DELTA);
         Assert.assertEquals(new BigDecimal("0.005416666666666666666666666666666667"), BasicPaymentMethod.calcMonthlyInterestRate(this.loan.getInterest()));
@@ -128,6 +146,15 @@ public class BasicPaymentMethodTest {
                 + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 7=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 8=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 9=["
                 + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 10=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "], 11=[" + BasicPaymentMethodTest.EXPECTED_PAYMENT_RESULT_1 + "]}", method.calculate()
                 .toString());
+    }
+
+    @Test
+    public final void testgetTotalPayment() {
+
+        final IPaymentMethod method = new BasicPaymentMethod();
+        method.setLoan(this.loan);
+        Assert.assertNotNull(method.getTotalPayment());
+
     }
 
 }

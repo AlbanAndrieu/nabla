@@ -15,57 +15,72 @@
 <!-- https://code.google.com/p/selenium/issues/detail?id=5681 -->
 <tr>
 	<td>open</td>
-	<td>/welcome/hello.xhtml</td>
+	<td>/visma/loan.xhtml</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForPageToLoad</td>
-	<td>30000</td> <!-- 30 sec -->
+	<td>30000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertText</td>
 	<td>css=h3</td>
-	<td>JSF 2.0 Hello World Example - hello.xhtml</td>
+	<td>JSF 2.0 Visma Loan test - loan.xhtml</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>name=j_idt8:j_idt9</td>
-	<td>Test me !!!</td>
+	<td>id=loan_form:loanAmount</td>
+	<td>1000000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loan_form:paybackTime</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=loan_form:payment</td>
+	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>name=j_idt8:j_idt10</td>
+	<td>id=loan_form:payment</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForPageToLoad</td>
-	<td>60000</td>
+	<td>6000</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertText</td>
 	<td>css=h3</td>
-	<td>JSF 2.0 Hello World Example - welcome.xhtml</td>
-</tr>
-<tr> 
-     <td>pause</td> 
-     <td>30000</td> 
-     <td></td> 
+	<td>JSF 2.0 Visma Loan test results - payment.xhtml</td>
 </tr>
 <tr>
 	<td>assertText</td>
 	<td>css=h4</td>
-	<td>Welcome Test me !!!</td>
+	<td>Payments total is : 1302315.33552576902309236382167649640</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//h4[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
 </tr>
 <tr>
 	<td>open</td>
-	<td>/welcome/</td>
+	<td>/visma/</td>
 	<td></td>
 </tr>
 <tr>
 	<td>waitForPageToLoad</td>
-	<td>15000</td>
+	<td>1500</td>
 	<td></td>
 </tr>
 </tbody></table>

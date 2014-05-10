@@ -1,4 +1,4 @@
-package com.nabla.selenium.tests;
+package com.nabla.project.visma.selenium.tests;
 
 import java.util.concurrent.TimeUnit;
 
@@ -95,33 +95,78 @@ public class SimpleWebDriverSTest {
      */
 
     @Test
-    public void testSimpleS() throws Exception {
+    public void testWithGoodInputS() throws Exception {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
-        // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
+        // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
         Assert.assertEquals("JSF 2.0 Visma Loan test - loan.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
-        this.driver.findElement(By.name("j_idt8:j_idt11")).clear();
-        this.driver.findElement(By.name("j_idt8:j_idt11")).sendKeys("1000000");
+        this.driver.findElement(By.name("loan_form:loanAmount")).clear();
+        this.driver.findElement(By.name("loan_form:loanAmount")).sendKeys("1000000");
+        this.driver.findElement(By.name("loan_form:paybackTime")).clear();
+        this.driver.findElement(By.name("loan_form:paybackTime")).sendKeys("10");
 
         // wait for the application to get fully loaded
         final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>() {
             @Override
             public WebElement apply(final WebDriver d) {
                 // d.get(baseUrl);
-                return d.findElement(By.name("j_idt8:j_idt11"));
+                return d.findElement(By.name("loan_form:paybackTime"));
             }
         });
 
         findOwnerLink.click();
 
         final WebDriverWait wait = new WebDriverWait(this.driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("j_idt8:j_idt19")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("loan_form:payment")));
         this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        this.driver.findElement(By.name("j_idt8:j_idt19")).click();
+        this.driver.findElement(By.name("loan_form:payment")).click();
 
         Assert.assertEquals("JSF 2.0 Visma Loan test results - payment.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
-        Assert.assertEquals("Payment total is : 0", this.driver.findElement(By.cssSelector("h4")).getText());
+        Assert.assertEquals("Payments total is : 1302315.33552576902309236382167649640", this.driver.findElement(By.cssSelector("h4")).getText());
+        Assert.assertTrue(this.selenium.isElementPresent("//h4[2]"));
+
+        Thread.sleep(1000);
+        this.selenium.open("/visma/");
+        this.selenium.waitForPageToLoad("1500");
+    }
+
+    @Test
+    public void testWithWrongInputS() throws Exception {
+        this.driver.get(this.baseUrl + "/visma/loan.xhtml");
+        this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
+        // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
+        Assert.assertEquals("JSF 2.0 Visma Loan test - loan.xhtml", this.driver.findElement(By.cssSelector("h3")).getText());
+        this.driver.findElement(By.name("loan_form:loanAmount")).clear();
+        this.driver.findElement(By.name("loan_form:loanAmount")).sendKeys("-10");
+        this.driver.findElement(By.name("loan_form:paybackTime")).clear();
+        this.driver.findElement(By.name("loan_form:paybackTime")).sendKeys("0");
+
+        // wait for the application to get fully loaded
+        final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(final WebDriver d) {
+                // d.get(baseUrl);
+                return d.findElement(By.name("loan_form:paybackTime"));
+            }
+        });
+
+        findOwnerLink.click();
+
+        final WebDriverWait wait = new WebDriverWait(this.driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("loan_form:payment")));
+        this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+        this.driver.findElement(By.name("loan_form:payment")).click();
+
+        Assert.assertEquals("Please enter the amount of your loan. Ex. 200000: Validation Error: Specified attribute is not between the expected values of 1 and 1,000,000,000.",
+                this.driver.findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr/td[3]")).getText());
+        Assert.assertEquals("Please enter the number of years you have to pay back your loan. Ex. 30: Validation Error: Specified attribute is not between the expected values of 1 and 120.",
+                this.driver.findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr[2]/td[3]/span")).getText());
+
+        Thread.sleep(1000);
+        this.selenium.open("/visma/");
+        this.selenium.waitForPageToLoad("1500");
     }
 
     @After

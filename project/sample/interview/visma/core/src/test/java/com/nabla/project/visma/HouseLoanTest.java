@@ -178,4 +178,14 @@ public class HouseLoanTest {
         Assert.assertNotNull(loan.calcMonthlyPayment());
     }
 
+    @Test
+    public void testGetTotalPayment() {
+        // See BasicPaymentMethodTest for more tests
+        Assert.assertNotNull(this.product);
+        Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
+
+        final ILoan loan = new HouseLoan(this.product, 1);
+        Assert.assertNotNull(loan.getTotalPayment());
+    }
+
 }

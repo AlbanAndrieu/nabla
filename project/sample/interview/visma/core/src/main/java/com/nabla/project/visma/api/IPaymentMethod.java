@@ -48,11 +48,24 @@ import java.util.Map;
  */
 public interface IPaymentMethod {
 
+    public void setLoan(final ILoan aloan);
+
+    public ILoan getLoan();
+
     /**
      *
      * Give monthly payback plan (payments) based on the product, interest and payback time
      *
      * @return a date with its corresponding payment and interest for a loan
      */
-    public Map<Integer, List<BigDecimal>> calculate();
+    Map<Integer, List<BigDecimal>> calculate();
+
+    /**
+     *
+     * Get the total of all scheduled payments
+     *
+     * @return total of payments
+     */
+    BigDecimal getTotalPayment();
+
 }

@@ -79,4 +79,12 @@ public interface ILoan {
      * @return a date with their corresponding amount and interest
      */
     Map<Integer, List<BigDecimal>> calcMonthlyPayment();
+
+    /**
+     *
+     * Get the total of all scheduled payment
+     *
+     * @return sum of payments
+     */
+    BigDecimal getTotalPayment();
 }

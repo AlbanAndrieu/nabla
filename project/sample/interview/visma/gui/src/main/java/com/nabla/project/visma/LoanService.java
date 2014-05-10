@@ -34,43 +34,46 @@
 package com.nabla.project.visma;
 
 import java.math.BigDecimal;
-import java.util.Scanner;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import com.nabla.project.visma.api.ILoan;
+import com.nabla.project.visma.api.ILoanService;
 import com.nabla.project.visma.api.IProduct;
 
-public class Visma {
+//The @Stateless annotation eliminates the need for manual transaction
+//TODO @Stateless
+public class LoanService implements ILoanService {
 
-    public static void main(final String[] args) {
-        double loanAmount;// double value loan amount
-        double annualInterestRate;// double value interest rate
-        int numberOfYears;// int value for number of months
+    // TODO @Inject
+    private static transient Logger LOGGER = Logger.getLogger(LoanService.class);
 
-        try (Scanner keyboard = new Scanner(System.in)) {
+    @Override
+    public Map<Integer, List<BigDecimal>> calcMonthlyPayment(final BigDecimal loanAmount, final int numberOfYears) {
 
-            System.out.println("Please enter the amount of your loan. Ex. 200000");
-            loanAmount = keyboard.nextDouble();
-
-            System.out.println("Please enter the annual interest rate as a decimal. Ex. 6.5 for 6.5% = .065");
-            annualInterestRate = keyboard.nextDouble();
-
-            System.out.println("Please enter the number of years you have to pay back your loan. Ex. 30");
-            numberOfYears = keyboard.nextInt();
+        if (LoanService.LOGGER.isDebugEnabled()) {
+            LoanService.LOGGER.debug("Start calculateMonthlyPayment for loan amount: " + loanAmount + " and number of years :" + numberOfYears);
         }
 
-        final IProduct product = new House(new BigDecimal(loanAmount));
-        final ILoan loan = new HouseLoan(product, numberOfYears, annualInterestRate);
+        final IProduct product = new House(loanAmount);
+        final ILoan loan = new HouseLoan(product, numberOfYears);
 
-        System.out.println("Payment schedule is :\n " + loan.calcMonthlyPayment() + "\n");
-
-        final BigDecimal totalPayment = loan.getTotalPayment();
-        if (totalPayment.doubleValue() < loanAmount) {
-            System.err.println("Total payment is lower than loan amount\n");
-            // Calculation is wrong
-        } else {
-            System.out.println("Total payment is :\n " + totalPayment + "\n");
-        }
+        return loan.calcMonthlyPayment();
 
     }
 
+    @Override
+    public BigDecimal getTotalPayment(final BigDecimal loanAmount, final int numberOfYears) {
+
+        if (LoanService.LOGGER.isDebugEnabled()) {
+            LoanService.LOGGER.debug("Start getTotalPayment for loan amount: " + loanAmount + " and number of years :" + numberOfYears);
+        }
+
+        final IProduct product = new House(loanAmount);
+        final ILoan loan = new HouseLoan(product, numberOfYears);
+
+        return loan.getTotalPayment();
+    }
 }
