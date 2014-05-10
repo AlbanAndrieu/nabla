@@ -11,10 +11,11 @@
       <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
    </listener>
 
+<!--
    <listener>
       <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
    </listener>
-
+-->
    <context-param>
       <param-name>com.sun.faces.expressionFactory</param-name>
       <param-value>com.sun.el.ExpressionFactoryImpl</param-value>
@@ -37,6 +38,6 @@
    </servlet-mapping>
 
    <welcome-file-list>
-      <welcome-file>index.xhtml</welcome-file>
+      <welcome-file>loan.xhtml</welcome-file>
    </welcome-file-list>
 </web-app>

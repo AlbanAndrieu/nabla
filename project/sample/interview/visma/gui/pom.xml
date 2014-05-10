@@ -128,6 +128,14 @@
 			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>  
+		
+		<!--
+      <dependency>
+         <groupId>org.jboss.weld.servlet</groupId>
+         <artifactId>weld-servlet</artifactId>
+         <version>${version.weld-servlet}</version>
+      </dependency>      
+      -->  		
         		
 		<!-- for cannot access javax.faces.application.FacesMessage -->
 		<!-- see in core project it is provided (needed for jboss 7) -->
@@ -256,21 +264,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- 
-	      <dependency>
-	         <groupId>org.jboss.arquillian</groupId>
-	         <artifactId>arquillian-junit</artifactId>
-	         <version>${org.jboss.arquillian.junit.version}</version>
-	         <scope>test</scope>
-	      </dependency>
-	      
-	      <dependency>
-	         <groupId>org.jboss.arquillian.framework</groupId>
-	         <artifactId>arquillian-framework-jsfunit</artifactId>
-	         <version>${org.jboss.arquillian.jsfunit.version}</version>
-	         <scope>test</scope>
-	      </dependency> 
-	     -->
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
@@ -289,15 +282,7 @@
 			<version>${org.jboss.arquillian.junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
-			<artifactId>selenium-java-client-driver</artifactId>
-			<version>${selenium.java.client.driver.version}</version>
-			<scope>test</scope>
-		</dependency>
-		 -->
-
+	
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -498,33 +483,6 @@
 				-->
 			</plugin>
 
-<!--
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-dependency-plugin</artifactId>
-  <executions>
-    <execution>
-      <id>unpack</id>
-      <phase>pre-integration-test</phase>
-      <goals>
-        <goal>unpack</goal>
-      </goals>
-      <configuration>
-        <artifactItems>
-          <artifactItem>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-dist</artifactId>
-            <version>${jboss.version}</version>
-            <type>zip</type>
-            <overWrite>false</overWrite>
-            <outputDirectory>${project.build.directory}</outputDirectory>
-          </artifactItem>
-        </artifactItems>
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
--->
 			<!-- for automatic running of integration tests with Jetty -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
@@ -647,17 +605,6 @@
 					</execution>
 				</executions>
 			</plugin>			
-			
-			<!--
-            		<plugin>
-            		     <groupId>org.apache.maven.plugins</groupId>
-            		     <artifactId>maven-war-plugin</artifactId>
-            		     <version>${maven.war.plugin.version}</version>
-            		     <configuration>
-            		         <packagingExcludes>WEB-INF/lib/javaee-web-api*.jar</packagingExcludes>
-            		     </configuration>
-            		</plugin>       
-            		-->
 
 			<!-- Allow this web application to be started with the command : 'mvn 
 				tomcat7:run' -->
