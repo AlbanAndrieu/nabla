@@ -12,8 +12,6 @@ import javax.faces.model.DataModel;
 
 import org.apache.log4j.Logger;
 
-//@ManagedBean(name = "paymentSchedule", eager = true)
-//@SessionScoped
 public class PaymentSchedule implements Serializable {
 
     private static final long             serialVersionUID  = 1L;
@@ -52,7 +50,6 @@ public class PaymentSchedule implements Serializable {
     }
 
     private void setPayments(final Map<Integer, List<BigDecimal>> aPayments) {
-        System.out.println("Schedule size : " + aPayments.size());
         final Payment[] targetPayments = new Payment[aPayments.size()];
 
         aPayments.size();
@@ -64,13 +61,11 @@ public class PaymentSchedule implements Serializable {
             if (PaymentSchedule.LOGGER.isDebugEnabled()) {
                 PaymentSchedule.LOGGER.debug("Data is : " + month + " = " + pairs.getValue());
             }
-            System.out.println("Data is : " + month + " = " + pairs.getValue());
             final List<BigDecimal> data = pairs.getValue();
 
             if (PaymentSchedule.LOGGER.isDebugEnabled()) {
                 PaymentSchedule.LOGGER.debug("Data size : " + data.size());
             }
-            System.out.println("Data size : " + data.size());
 
             for (final BigDecimal bigDecimal : data) {
                 final BigDecimal amount = bigDecimal;

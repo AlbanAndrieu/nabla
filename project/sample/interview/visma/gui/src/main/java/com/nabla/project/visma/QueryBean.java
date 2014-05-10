@@ -37,12 +37,9 @@ public class QueryBean implements Serializable {
 
     private BigDecimal      totalPayment = BigDecimal.ZERO;
 
-    // private Map<Integer, List<BigDecimal>> scheduledPayment = null;
-
     @ManagedProperty(value = "#{navigationBean}")
     private NavigationBean  navigationBean;
 
-    // @ManagedProperty(value = "#{paymentSchedule}")
     private PaymentSchedule paymentSchedule;
 
     // @Inject
@@ -80,14 +77,6 @@ public class QueryBean implements Serializable {
         this.totalPayment = totalPayment;
     }
 
-    /*
-     * public Map<Integer, List<BigDecimal>> getScheduledPayment() {
-     * return this.scheduledPayment;
-     * }
-     * public void setScheduledPayment(final Map<Integer, List<BigDecimal>> scheduledPayment) {
-     * this.scheduledPayment = scheduledPayment;
-     * }
-     */
     public int getScheduledPaymentNumber() {
         return this.paymentSchedule.size();
     }
@@ -110,8 +99,6 @@ public class QueryBean implements Serializable {
      */
     public String getPayments() {
         // Get payments from service
-        // this.setScheduledPayment(this.service.calcMonthlyPayment(this.getLoanAmount(), this.getPaybackTime()));
-
         final Map<Integer, List<BigDecimal>> myPaymentSchedule = this.service.calcMonthlyPayment(this.getLoanAmount(), this.getPaybackTime());
 
         System.out.println("PaymentSchedule is : " + myPaymentSchedule.toString());
