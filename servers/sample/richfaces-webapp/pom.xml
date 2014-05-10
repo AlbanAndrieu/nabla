@@ -23,7 +23,7 @@
         <!--
         <javaee6.spec.version>3.0.0.Beta1-redhat-1</javaee6.spec.version>
         -->
-                <org.richfaces.bom.version>4.2.1.Final</org.richfaces.bom.version>         
+                <org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>         
             </properties>
 
     <dependencyManagement>

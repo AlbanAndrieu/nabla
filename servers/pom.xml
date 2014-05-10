@@ -941,8 +941,8 @@
             		    <plugins>
             		        <plugin>
             		            <groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-surefire-plugin</artifactId>
-				    <version>${maven.surefire.plugin.version}</version>
+								<artifactId>maven-surefire-plugin</artifactId>
+								<version>${maven.surefire.plugin.version}</version>
             		            <configuration>
             		                <environmentVariables>
             		                    <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
@@ -1025,6 +1025,151 @@
 				</plugins>
 			</build>
 		</profile>		
+		
+		  <profile>
+			 <id>arq-jetty-embedded</id>
+			 <activation>
+				<activeByDefault>true</activeByDefault>
+			 </activation>
+			 <dependencies>
+				<dependency>
+				   <groupId>org.jboss.arquillian.container</groupId>
+				   <artifactId>arquillian-jetty-embedded-7</artifactId>
+				   <version>${org.jboss.arquillian.junit.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.eclipse.jetty</groupId>
+				   <artifactId>jetty-webapp</artifactId>
+				   <version>${jetty.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<!-- FIXME only required if we want to use @Resource injection -->
+				<dependency>
+				   <groupId>org.eclipse.jetty</groupId>
+				   <artifactId>jetty-plus</artifactId>
+				   <version>${jetty.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<!-- TODO create a profile for the two JSF impls -->
+				<!--
+				<dependency>
+				   <groupId>org.apache.myfaces.core</groupId>
+				   <artifactId>myfaces-impl</artifactId>
+				   <version>2.0.2</version>
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.apache.myfaces.core</groupId>
+				   <artifactId>myfaces-api</artifactId>
+				   <version>2.0.2</version>
+				   <scope>test</scope>
+				</dependency>
+				-->
+				<dependency>
+				   <groupId>com.sun.faces</groupId>
+				   <artifactId>jsf-impl</artifactId>
+				   <version>${sun.jsf.version}</version> <!--2.0.3-->
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.glassfish.web</groupId>
+				   <artifactId>el-impl</artifactId>
+				   <version>${el.impl.version}</version>
+				   <scope>test</scope>
+				</dependency>
+			 </dependencies>
+			 <build>
+				<testResources>
+				   <testResource>
+					  <directory>src/test/resources</directory>
+				   </testResource>
+				   <testResource>
+					  <directory>src/test/resources-jetty</directory>
+				   </testResource>
+				</testResources>
+			 </build>
+		  </profile>
+		  <profile>
+			 <id>arq-tomcat-embedded</id>
+			 <dependencies>
+				<dependency>
+				   <groupId>org.jboss.arquillian.container</groupId>
+				   <artifactId>arquillian-tomcat-embedded-6</artifactId>
+				   <version>${org.jboss.arquillian.junit.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.apache.tomcat</groupId>
+				   <artifactId>catalina</artifactId>
+				   <version>${tomcat.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.apache.tomcat</groupId>
+				   <artifactId>coyote</artifactId>
+				   <version>${tomcat.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.apache.tomcat</groupId>
+				   <artifactId>jasper</artifactId>
+				   <version>${tomcat.version}</version>
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>com.sun.faces</groupId>
+				   <artifactId>jsf-impl</artifactId>
+				   <version>${sun.jsf.version}</version> <!--2.0.3-->
+				   <scope>test</scope>
+				</dependency>
+				<dependency>
+				   <groupId>org.glassfish.web</groupId>
+				   <artifactId>el-impl</artifactId>
+				   <version>${el.impl.version}</version>
+				   <scope>test</scope>
+				</dependency>
+			 </dependencies>
+			 <build>
+				<testResources>
+				   <testResource>
+					  <directory>src/test/resources</directory>
+				   </testResource>
+				   <testResource>
+					  <directory>src/test/resources-tomcat</directory>
+				   </testResource>
+				</testResources>
+			 </build>
+		  </profile>
+		  <profile>
+			 <!--
+			 This profile will copy all the test dependencies to target/test-libs to help
+			 those not using Maven understand what dependencies they need on the classpath
+			 -->
+			 <id>copy-test-libs</id>
+			 <build>
+				<plugins> 
+				   <plugin>
+					  <groupId>org.apache.maven.plugins</groupId>
+					  <artifactId>maven-dependency-plugin</artifactId>
+					  <executions>
+						 <execution>
+							<id>copy-test-libs</id>
+							<phase>process-test-resources</phase>
+							<configuration>
+							   <includeScope>test</includeScope>
+							   <outputDirectory>${project.build.directory}/test-libs</outputDirectory>
+							   <stripVersion>true</stripVersion>
+							</configuration>
+							<goals>
+							   <goal>copy-dependencies</goal>
+							</goals>
+						 </execution>
+					  </executions>
+				   </plugin>
+				</plugins> 
+			 </build>
+		  </profile>		
                 <!-- ================= START Container JBoss Specific Profiles ================= -->
 		<profile>
 			<id>sample</id>
