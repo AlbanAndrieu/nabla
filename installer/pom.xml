@@ -25,5 +25,6 @@
 
 	<modules>
 		<module>etl-installer</module>
+		<module>visma-installer</module>		
 	</modules>
 </project>

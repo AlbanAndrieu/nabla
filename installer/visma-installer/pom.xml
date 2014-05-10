@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.nabla.project</groupId>
+		<artifactId>installer</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>visma-installer</artifactId>
+	<name>Nabla Visma Installer</name>
+	<packaging>izpack-jar</packaging>
+	<description>Nabla Visma Installer</description>
+
+<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
+http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/sample/pom.xml
+-->
+
+  <properties>
+    <app.group>${project.groupId}</app.group>
+    <app.title>${project.name}</app.title>
+    <app.subpath>${project.artifactId}-${project.version}</app.subpath>
+    <app.version>${project.version}</app.version>
+      
+    <download.dir>${project.build.directory}/downloads</download.dir>
+
+  </properties>
+  
+  <dependencies>
+
+    <!-- this will override the one in the plugin -->
+    <dependency>
+      <groupId>org.codehaus.izpack</groupId>
+      <artifactId>izpack-standalone-compiler</artifactId>
+      <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
+      <optional>true</optional>
+    </dependency> 
+  </dependencies>
+
+  <build>
+
+    <defaultGoal>package</defaultGoal>
+
+    <plugins>      
+      
+      <!--  fetch resource files from the orignal Ant build project -->
+      <!--
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-plugin</artifactId>
+        <version>${maven.scm.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>svn-co-resource-to-staging</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>checkout</goal>
+            </goals>
+            <configuration>
+              <skipCheckoutIfExists>true</skipCheckoutIfExists>
+              <connectionUrl>
+                scm:svn:http://svn.codehaus.org/izpack-svn/izpack-showcases/groovy/trunk/resource/
+              </connectionUrl>
+              <checkoutDirectory>${staging.dir}/resource</checkoutDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+		
+      <!-- fetch and unpack all dependent bundles into staging area -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${maven.dependency.plugin.version}</version>
+        <executions>
+            <!--
+          <execution>
+            <id>unpack-bundle-dependencies</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>groovy</artifactId>
+                  <version>${groovy.version}</version>
+                  <classifier>binary</classifier>
+                  <type>zip</type>
+                  <outputDirectory>${staging.dir}/binary</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>groovy</artifactId>
+                  <version>${groovy.version}</version>
+                  <classifier>docs</classifier>
+                  <type>zip</type>
+                  <outputDirectory>${staging.dir}/docs</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>gant</artifactId>
+                  <version>${gant.version}</version>
+                  <classifier>binary</classifier>
+                  <type>zip</type>
+                  <outputDirectory>${staging.dir}</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>graphicsbuilder</artifactId>
+                  <version>${graphicsbuilder.version}</version>
+                  <classifier>binary</classifier>
+                  <type>zip</type>
+                  <outputDirectory>${staging.dir}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+                -->
+          <!-- izpack can't match include="scriptcom*.jar"
+            so, split into separate bin and lib directories -->
+
+	  <!--
+          <execution>
+            <id>unpack-scriptom-dlls</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>scriptom</artifactId>
+                  <version>${scriptom.version}</version>
+                  <classifier>binary</classifier>
+                  <type>zip</type>
+                  <includes>scriptom*.dll</includes>
+                  <outputDirectory>${staging.dir}/scriptom/bin</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-scriptom-jars</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>scriptom</artifactId>
+                  <version>${scriptom.version}</version>
+                  <classifier>binary</classifier>
+                  <type>zip</type>
+                  <includes>scriptom*.jar</includes>
+                  <outputDirectory>${staging.dir}/scriptom/lib</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+              <markersDirectory>${project.build.directory}/scriptomJarsMarker</markersDirectory>
+            </configuration>
+          </execution>
+	  -->
+	  <!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
+			<execution>
+				<phase>package</phase>
+				<goals>
+					<goal>copy</goal>
+				</goals>
+				<configuration>
+					<artifactItems>
+						<artifactItem>
+							<groupId>org.mortbay.jetty</groupId>
+							<artifactId>jetty-runner</artifactId>
+							<version>${jetty.runner.version}</version>
+							<destFileName>jetty-runner.jar</destFileName>
+							<type>jar</type>
+							<outputDirectory>${staging.dir}/jars</outputDirectory>
+						</artifactItem>
+					</artifactItems>
+				</configuration>
+			</execution>
+				
+          <execution>
+            <id>copy-jars-dependencies</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.nabla.project.sample.interview.visma</groupId>
+                  <artifactId>gui</artifactId>
+                  <version>${target.version}</version>
+                  <type>war</type>
+                  <outputDirectory>${staging.dir}/jars</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>log4j</groupId>
+                  <artifactId>log4j</artifactId>
+                  <version>${log4j.version}</version>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/lib</outputDirectory>
+                </artifactItem>                                
+                <!--
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>svg-salamander</artifactId>
+                  <version>${svg-salamander.version}</version>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/jars</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>izpack.demo</groupId>
+                  <artifactId>jidebuilder</artifactId>
+                  <version>${jidebuilder.version}</version>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/jars</outputDirectory>
+                </artifactItem>
+                -->
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <encoding>UTF-8</encoding>
+              <outputDirectory>${staging.dir}/resources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- http://docs.codehaus.org/display/IZPACK/IzPack+Maven+Plugin+Reference -->
+      <plugin>
+        <groupId>org.codehaus.izpack</groupId>
+        <artifactId>izpack-maven-plugin</artifactId>
+        <version>${maven.izpack.plugin.version}</version>
+        <extensions>true</extensions>
+        <!-- common configuration by all executions -->
+        <configuration>
+          <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
+          <izpackBasedir>${staging.dir}</izpackBasedir>
+          <finalName>VISMAInstaller</finalName>
+          <enableOverrideArtifact>true</enableOverrideArtifact>
+          <mkdirs>true</mkdirs>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>standard-installer</id>
+            <phase>package</phase>
+            <goals>
+              <goal>izpack</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
