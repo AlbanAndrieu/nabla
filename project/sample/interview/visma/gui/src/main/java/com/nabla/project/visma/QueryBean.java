@@ -17,14 +17,17 @@ import com.nabla.project.visma.api.ILoanService;
 
 @ManagedBean(name = "input", eager = true)
 @SessionScoped
-public class QueryBean implements Serializable {
+public class QueryBean implements Serializable
+{
 
     private static final long             serialVersionUID = 1L;
 
     private static final transient Logger LOGGER           = Logger.getLogger(QueryBean.class);
 
-    public QueryBean() {
-        if (QueryBean.LOGGER.isDebugEnabled()) {
+    public QueryBean()
+    {
+        if (QueryBean.LOGGER.isDebugEnabled())
+        {
             QueryBean.LOGGER.debug("QueryBean started!");
         }
     }
@@ -45,51 +48,63 @@ public class QueryBean implements Serializable {
     // @Inject
     ILoanService            service      = new LoanService();
 
-    public BigDecimal getLoanAmount() {
+    public BigDecimal getLoanAmount()
+    {
         return this.loanAmount;
     }
 
-    public void setLoanAmount(final BigDecimal loanAmount) {
+    public void setLoanAmount(final BigDecimal loanAmount)
+    {
         this.loanAmount = loanAmount;
     }
 
-    public int getPaybackTime() {
+    public int getPaybackTime()
+    {
         return this.paybackTime;
     }
 
-    public int getInterestType() {
+    public int getInterestType()
+    {
         return this.interestType;
     }
 
-    public void setInterestType(final int aInterestType) {
+    public void setInterestType(final int aInterestType)
+    {
         this.interestType = aInterestType;
     }
 
-    public void setPaybackTime(final int paybackTime) {
+    public void setPaybackTime(final int paybackTime)
+    {
         this.paybackTime = paybackTime;
     }
 
-    public BigDecimal getTotalPayment() {
+    public BigDecimal getTotalPayment()
+    {
         return this.totalPayment;
     }
 
-    public void setTotalPayment(final BigDecimal totalPayment) {
+    public void setTotalPayment(final BigDecimal totalPayment)
+    {
         this.totalPayment = totalPayment;
     }
 
-    public int getScheduledPaymentNumber() {
+    public int getScheduledPaymentNumber()
+    {
         return this.paymentSchedule.size();
     }
 
-    public void setNavigationBean(final NavigationBean navigationBean) {
+    public void setNavigationBean(final NavigationBean navigationBean)
+    {
         this.navigationBean = navigationBean;
     }
 
-    public PaymentSchedule getPaymentSchedule() {
+    public PaymentSchedule getPaymentSchedule()
+    {
         return this.paymentSchedule;
     }
 
-    public void setPaymentSchedule(final PaymentSchedule paymentSchedule) {
+    public void setPaymentSchedule(final PaymentSchedule paymentSchedule)
+    {
         this.paymentSchedule = paymentSchedule;
     }
 
@@ -97,12 +112,14 @@ public class QueryBean implements Serializable {
      * Get scheduled payments.
      * @return
      */
-    public String getPayments() {
+    public String getPayments()
+    {
         // Get payments from service
         final Map<Integer, List<BigDecimal>> myPaymentSchedule = this.service.calcMonthlyPayment(this.getLoanAmount(), this.getPaybackTime());
 
         System.out.println("PaymentSchedule is : " + myPaymentSchedule.toString());
-        if (QueryBean.LOGGER.isDebugEnabled()) {
+        if (QueryBean.LOGGER.isDebugEnabled())
+        {
             QueryBean.LOGGER.debug("PaymentSchedule is : " + myPaymentSchedule.toString());
         }
 

@@ -2,6 +2,7 @@ package com.nabla.project.visma.selenium.tests;
 
 import java.util.concurrent.TimeUnit;
 
+import org.jboss.arquillian.junit.InSequence;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -95,6 +96,7 @@ public class SimpleWebDriverSTest {
      */
 
     @Test
+    @InSequence(1)
     public void testWithGoodInputS() throws Exception {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
@@ -132,6 +134,7 @@ public class SimpleWebDriverSTest {
     }
 
     @Test
+    @InSequence(2)
     public void testWithWrongInputS() throws Exception {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
@@ -160,9 +163,9 @@ public class SimpleWebDriverSTest {
         this.driver.findElement(By.name("loan_form:payment")).click();
 
         Assert.assertEquals("Please enter the amount of your loan. Ex. 200000: Validation Error: Specified attribute is not between the expected values of 1 and 1,000,000,000.",
-                this.driver.findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr/td[3]")).getText());
-        Assert.assertEquals("Please enter the number of years you have to pay back your loan. Ex. 30: Validation Error: Specified attribute is not between the expected values of 1 and 120.",
                 this.driver.findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr[2]/td[3]/span")).getText());
+        Assert.assertEquals("Please enter the number of years you have to pay back your loan. Ex. 30: Validation Error: Specified attribute is not between the expected values of 1 and 120.",
+                this.driver.findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr[3]/td[3]/span")).getText());
 
         Thread.sleep(1000);
         this.selenium.open("/visma/");

@@ -9,22 +9,27 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PaymentScheduleTest {
+public class PaymentScheduleTest
+{
 
-    final Payment[]       payments        = new Payment[] { new Payment(new BigDecimal(100)), new Payment(new BigDecimal(1_000)), new Payment(new BigDecimal(10_000)) };
+    final Payment[]       payments        = new Payment[]
+                                          { new Payment(new BigDecimal(100)), new Payment(new BigDecimal(1_000)), new Payment(new BigDecimal(10_000)) };
 
     final PaymentSchedule paymentSchedule = new PaymentSchedule(this.payments);
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws Exception
+    {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testConstructorNull() {
+    public final void testConstructorNull()
+    {
 
         final Map<Integer, List<BigDecimal>> nullPaymentSchedule = null;
         final PaymentSchedule paymentSchedule = new PaymentSchedule(nullPaymentSchedule);
@@ -33,7 +38,8 @@ public class PaymentScheduleTest {
     }
 
     @Test
-    public void testSetPaymentsPaymentArray() {
+    public void testSetPaymentsPaymentArray()
+    {
         final PaymentSchedule paymentSchedule = new PaymentSchedule(this.payments);
         Assert.assertNotNull(paymentSchedule.getPayments());
         Assert.assertEquals(3, paymentSchedule.getPayments().getRowCount());
@@ -41,17 +47,20 @@ public class PaymentScheduleTest {
     }
 
     // @Test
-    public void testSetPaymentsMapOfIntegerListOfBigDecimal() {
+    public void testSetPaymentsMapOfIntegerListOfBigDecimal()
+    {
         Assert.fail("Not yet implemented");
     }
 
     // @Test
-    public void testGetPayments() {
+    public void testGetPayments()
+    {
         Assert.fail("Not yet implemented");
     }
 
     // @Test
-    public final void testToString() {
+    public final void testToString()
+    {
 
         Assert.fail("Not yet implemented");
         // Assert.assertEquals("paymentsDataModel:", this.paymentSchedule.toString());
