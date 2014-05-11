@@ -50,6 +50,12 @@ public class PaymentSchedule implements Serializable {
     }
 
     private void setPayments(final Map<Integer, List<BigDecimal>> aPayments) {
+
+        if (null == aPayments)
+        {
+            throw new IllegalArgumentException("Payments schedule cannot be null");
+        }
+
         final Payment[] targetPayments = new Payment[aPayments.size()];
 
         aPayments.size();

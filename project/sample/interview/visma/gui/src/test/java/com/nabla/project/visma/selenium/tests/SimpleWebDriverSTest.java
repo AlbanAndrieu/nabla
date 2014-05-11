@@ -124,7 +124,7 @@ public class SimpleWebDriverSTest {
 
         Assert.assertEquals("Housing Loan Cost Calculator (Results)", this.driver.findElement(By.cssSelector("h3")).getText());
         Assert.assertEquals("Payments total is : 1302315.33552576902309236382167649640", this.driver.findElement(By.cssSelector("h4")).getText());
-        Assert.assertEquals("1135.578002694005871672195523788416 ", this.driver.findElement(By.xpath("//td[2]")).getText());
+        Assert.assertEquals("10852.62779604807519243636518063747", this.driver.findElement(By.xpath("//td[2]")).getText());
 
         Thread.sleep(1000);
         this.selenium.open("/visma/");
