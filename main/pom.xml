@@ -414,27 +414,7 @@
                                 <!--
                                         NoClassDefFoundError running maven plugins site, always shows 0%
                                         coverage anyway
-                                -->
-
-
-                                <!-- attach-javadocs -->
-                                <!-- do not add maven-javadoc-plugin definition because attach-javadocs
-                                        will not work properly -->
-                                <plugin>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-javadoc-plugin</artifactId>
-                                        <version>${maven.javadoc.plugin.version}</version>
-                                        <configuration>
-                                                <show>package</show>
-                                                <version>true</version>
-                                                <javadocVersion>${jdkLevel}</javadocVersion>
-                                                <failOnError>false</failOnError>
-                                                <linksource>true</linksource>
-                                                <serialwarn>true</serialwarn>
-                                                <detectLinks>false</detectLinks>
-                                                <detectOfflineLinks>false</detectOfflineLinks>
-                                        </configuration>
-                                </plugin>
+                                -->                             
                         </plugins>
                 </pluginManagement>
 
@@ -616,7 +596,7 @@
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-jar-plugin</artifactId>
                         </plugin>
-
+						
                         <plugin>
                                 <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>build-helper-maven-plugin</artifactId>
