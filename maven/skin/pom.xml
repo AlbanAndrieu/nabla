@@ -17,10 +17,10 @@
     <properties>    
       <invoker.skip>false</invoker.skip>
       <target.dir>target</target.dir>
-      <maven.minify.plugin.version>1.3.5</maven.minify.plugin.version>
-      <maven.invoker.plugin.version>1.5</maven.invoker.plugin.version>
+      <maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
+      <maven.invoker.plugin.version>1.8</maven.invoker.plugin.version>
       <maven.resources.plugin.version>2.4.3</maven.resources.plugin.version>
-      <maven.site.plugin.version>2.3</maven.site.plugin.version>
+      <maven.site.plugin.version>3.3</maven.site.plugin.version>
       <!--<site.destination>${project.artifactId}</site.destination>-->
       <site.destination>${project.artifactId}-${project.version}</site.destination>
     </properties>
@@ -67,6 +67,7 @@
         <plugin>
           <groupId>com.samaxes.maven</groupId>
           <artifactId>maven-minify-plugin</artifactId>
+          <!-- TODO upgrade to <artifactId>minify-maven-plugin</artifactId> https://github.com/samaxes/minify-maven-plugin/-->      
           <version>${maven.minify.plugin.version}</version>
           <executions>
             <execution>

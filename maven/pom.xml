@@ -130,7 +130,7 @@
 			<site>
 				<id>website</id>
 				<name>Project Website</name>
-				<url>ftp://www.nabla.mobi/maven</url>
+				<url>ftp://home.nabla.mobi:8021/</url>
 			</site>
 		</distributionManagement>
             	<!--
