@@ -1026,6 +1026,7 @@
 			</build>
 		</profile>		
 		
+		<!-- see https://docs.jboss.org/author/display/ARQ/Jetty+7.0+-+Embedded -->
 		  <profile>
 			 <id>arq-jetty-embedded</id>
 			 <activation>
@@ -1045,6 +1046,7 @@
 				   <scope>test</scope>
 				</dependency>
 				<!-- FIXME only required if we want to use @Resource injection -->
+				<!-- plus and naming requires for using JNDI -->
 				<dependency>
 				   <groupId>org.eclipse.jetty</groupId>
 				   <artifactId>jetty-plus</artifactId>
@@ -1066,6 +1068,13 @@
 				   <scope>test</scope>
 				</dependency>
 				-->
+				<!-- Weld servlet, EL and JSP required for testing CDI injections -->
+			  <dependency>
+				 <groupId>org.jboss.weld.servlet</groupId>
+				 <artifactId>weld-servlet</artifactId>
+				 <version>1.0.1-Final</version>
+				 <scope>test</scope>
+			  </dependency>
 				<dependency>
 				   <groupId>com.sun.faces</groupId>
 				   <artifactId>jsf-impl</artifactId>

@@ -196,7 +196,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dbunit-maven-plugin</artifactId>
-						<version>${dbunit.maven.plugin.version}</version>
+						<version>${maven.dbunit.plugin.version}</version>
 						<configuration>
 							<dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
 							<driver>${jdbc.driver}</driver>
@@ -251,7 +251,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>dbunit-maven-plugin</artifactId>
-						<version>${dbunit.maven.plugin.version}</version>
+						<version>${maven.dbunit.plugin.version}</version>
 						<configuration>
 							<dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
 							<driver>${jdbc.driver}</driver>
