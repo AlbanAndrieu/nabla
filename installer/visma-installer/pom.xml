@@ -169,7 +169,8 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 	  -->
 	  <!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
 			<execution>
-				<phase>package</phase>
+				<id>copy-jars-runner</id>
+				<phase>process-resources</phase>
 				<goals>
 					<goal>copy</goal>
 				</goals>
@@ -202,28 +203,21 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <type>war</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
+                 <artifactItem>
+                  <groupId>com.nabla.project.sample.interview.visma</groupId>
+                  <artifactId>core</artifactId>
+                  <version>${target.version}</version>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/lib</outputDirectory>
+                </artifactItem>     
+                <!--                    
                 <artifactItem>
                   <groupId>log4j</groupId>
                   <artifactId>log4j</artifactId>
                   <version>${log4j.version}</version>
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/lib</outputDirectory>
-                </artifactItem>                                
-                <!--
-                <artifactItem>
-                  <groupId>izpack.demo</groupId>
-                  <artifactId>svg-salamander</artifactId>
-                  <version>${svg-salamander.version}</version>
-                  <type>jar</type>
-                  <outputDirectory>${staging.dir}/jars</outputDirectory>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>izpack.demo</groupId>
-                  <artifactId>jidebuilder</artifactId>
-                  <version>${jidebuilder.version}</version>
-                  <type>jar</type>
-                  <outputDirectory>${staging.dir}/jars</outputDirectory>
-                </artifactItem>
+                </artifactItem>                                                
                 -->
               </artifactItems>
             </configuration>

@@ -7,8 +7,8 @@ fi
 
 case "$1" in
 start)
-  java -jar bin/jetty-runner.jar --port 9090 bin/*.war &> output.log
   echo "Go to http://localhost:9090/"
+  java -jar bin/jetty-runner.jar --port 9090 bin/*.war &> output.log
 ;;
 #stop)
 #  killall jetty-runner
