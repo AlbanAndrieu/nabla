@@ -4,7 +4,8 @@
 #https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
 
 sudo apt-get install ubuntu-cloud-keyring
-echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/grizzly main" >> /etc/apt/sources.list.d/cloud-archive.list
+echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu precise-updates/havana main" >> /etc/apt/sources.list.d/cloud-archive.list
+
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
@@ -35,9 +36,11 @@ sudo apt-get install nova-conductor
 sudo apt-get install nova-api nova-cert nova-common nova-compute nova-compute-kvm nova-doc nova-network nova-objectstore nova-scheduler novnc nova-consoleauth nova-volume python-nova python-novaclient
 #sudo apt-get install nova-novncproxy
 sudo apt-get install python-novaclient python-nova-adminclient 
-sudo apt-get install apache2 libapache2-mod-wsgi openstack-dashboard
+sudo apt-get install apache2 libapache2-mod-wsgi openstack-dashboard-ubuntu-theme python-django-horizon
 
 sudo apt-get install libnss-myhostname
+sudo apt-get install neutron-server
+#http://www.revolutionlabs.net/2013/11/part-2-how-to-install-openstack-havana_15.html
 
 less /etc/network/interfaces
 
@@ -125,8 +128,10 @@ lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-isc
 lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-1 -> ../../sdc
 
 #create LVM volume. Warning, respect naming with nova-volumes 
-sudo pvcreate /dev/sdb
-sudo vgcreate nova-volumes /dev/sdb
+#sudo pvcreate /dev/sdb
+sudo pvcreate /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-0
+#sudo vgcreate cinder-volumes /dev/sdb
+sudo vgcreate cinder-volumes /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-0
 
 ls /dev/mapper
 sudo fdisk -lu
@@ -143,6 +148,10 @@ sudo lvs
 sudo pvs
   PV         VG           Fmt  Attr PSize   PFree  
   /dev/sdb   nova-volumes lvm2 a--  100.00g 100.00g
+sudo vgs
+  VG           #PV #LV #SN Attr   VSize   VFree  
+  nova-volumes   1   0   0 wz--n- 100.00g 100.00g
+
 sudo lvdisplay /dev/nova-volumes  
 #manual mount
 sudo mkdir /mnt/openstack
@@ -157,11 +166,13 @@ sudo mount /dev/VolGroup00/LogVol00 /mnt/fcroot -o ro,user
 sudo rm /var/lib/keystone/keystone.db
 sudo chown -R keystone:keystone /etc/keystone/
 
+#mysql -uroot -p -e 'drop database keystone;'
+
 mysql -u root -p <<EOF
 CREATE DATABASE keystone;
-GRANT ALL ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'Motdepasse12';
-GRANT ALL ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'Motdepasse12';
-GRANT ALL ON keystone.* TO 'keystone'@'albandri' IDENTIFIED BY 'Motdepasse12';
+GRANT ALL ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'microsoft';
+GRANT ALL ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'microsoft';
+GRANT ALL ON keystone.* TO 'keystone'@'albandri' IDENTIFIED BY 'microsoft';
 FLUSH PRIVILEGES;
 EOF
 
@@ -172,38 +183,38 @@ bind_host = 0.0.0.0
 public_port = 5000
 admin_port = 35357
 # Mot de passe d'administration
-admin_token = Motdepasse12
+admin_token = ADMIN
 compute_port = 8774
 verbose = True
 debug = True
 log_config = /etc/keystone/logging.conf
    
 [sql]
-connection = mysql://keystone:Motdepasse12@10.25.40.161:3306/keystone
+connection = mysql://keystone:microsoft@192.168.0.29:3306/keystone
 idle_timeout = 200
       
 #Création du compte administrateur      
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-create --name=admin --pass=Motdepasse12 --email=alban.andrieu@misys.com
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=admin --pass=microsoft --email=alban.andrieu@nabla.mobi
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
-|  email   |     alban.andrieu@misys.com      |
+|  email   |     alban.andrieu@nabla.mobi      |
 | enabled  |               True               |
 |    id    | 68527a3fb83446d3bab47ce30d500dbc |
 |   name   |              admin               |
 +----------+----------------------------------+
 #Création du compte interne du service Glance
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-create --name=glance --pass=Motdepasse12 --email=galban.andrieu@misys.com
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=glance --pass=microsoft --email=alban.andrieu@nabla.mobi
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
-|  email   |     galban.andrieu@misys.com     |
+|  email   |     galban.andrieu@nabla.mobi     |
 | enabled  |               True               |
 |    id    | cd93bd532f53495eba123793a0928a00 |
 |   name   |              glance              |
 +----------+----------------------------------+
 #Création du compte interne du service Nova
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-create --name=nova --pass=Motdepasse12 --email=nova@example.com   
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=nova --pass=microsoft --email=nova@example.com   
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -213,7 +224,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-cr
 |   name   |               nova               |
 +----------+----------------------------------+
 #Rôle admin   
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-create --name=admin
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ role-create --name=admin
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -221,7 +232,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-cr
 |   name   |              admin               |
 +----------+----------------------------------+
 #Rôle Membre
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-create --name=Member
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ role-create --name=Member
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -229,7 +240,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-cr
 |   name   |              Member              |
 +----------+----------------------------------+
 #Rôle KeystoneAdmin
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-create --name=KeystoneAdmin
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ role-create --name=KeystoneAdmin
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -237,7 +248,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-cr
 |   name   |          KeystoneAdmin           |
 +----------+----------------------------------+
 #Rôle KeystoneServiceAdmin
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-create --name=KeystoneServiceAdmin
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ role-create --name=KeystoneServiceAdmin
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -245,7 +256,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ role-cr
 |   name   |       KeystoneServiceAdmin       |
 +----------+----------------------------------+
 #Tenant admin
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-create --name=admin
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ tenant-create --name=admin
 +-------------+----------------------------------+
 |   Property  |              Value               |
 +-------------+----------------------------------+
@@ -255,7 +266,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-
 |     name    |              admin               |
 +-------------+----------------------------------+
 #Tenant service
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-create --name=service
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ tenant-create --name=service
 +-------------+----------------------------------+
 |   Property  |              Value               |
 +-------------+----------------------------------+
@@ -265,7 +276,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-
 |     name    |             service              |
 +-------------+----------------------------------+
 #Définition des rôles
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9   
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9   
 
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneServiceAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
@@ -273,7 +284,7 @@ keystone user-role-add --user `keystone user-list | awk '/ glance / { print $2 }
 keystone user-role-add --user `keystone user-list | awk '/ nova / { print $2 }'` --role `keystone role-list | awk '/ admin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ service / { print $2 }'`
 
 #User
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-create --name=$USER --pass=USRPASSWD --email=$USER@misys.com
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=$USER --pass=USRPASSWD --email=$USER@misys.com
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -283,7 +294,7 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-cr
 |   name   |             albandri             |
 +----------+----------------------------------+
 #Tenant
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-create --name=$USER
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ tenant-create --name=$USER
 +-------------+----------------------------------+
 |   Property  |              Value               |
 +-------------+----------------------------------+
@@ -293,10 +304,10 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ tenant-
 |     name    |             albandri             |
 +-------------+----------------------------------+
 #Rôle
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ user-role-add --user-id f558122ed2ee484e9bab232b1aaa2fca --role-id 5a0c7bfb24414336a041c9f61d12b600 --tenant_id f9599900c35e4c1d961116576cac72d2
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-role-add --user-id f558122ed2ee484e9bab232b1aaa2fca --role-id 5a0c7bfb24414336a041c9f61d12b600 --tenant_id f9599900c35e4c1d961116576cac72d2
 
 #Le service Keystone
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ service-create --name=keystone --type=identity --description='Keystone Identity Service'
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ service-create --name=keystone --type=identity --description='Keystone Identity Service'
 +-------------+----------------------------------+
 |   Property  |              Value               |
 +-------------+----------------------------------+
@@ -305,37 +316,37 @@ keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ service
 |     name    |             keystone             |
 |     type    |             identity             |
 +-------------+----------------------------------+
-keystone --token Motdepasse12 --endpoint http://10.25.40.161:35357/v2.0/ endpoint-create --region RegionOne --service_id=f5756ddfef0a4e48b58ae23c3da5b4d3 --publicurl=http://10.25.40.161:5000/v2.0 --internalurl=http://10.25.40.161:5000/v2.0 --adminurl=http://10.25.40.161:35357/v2.0
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ endpoint-create --region RegionOne --service_id=f5756ddfef0a4e48b58ae23c3da5b4d3 --publicurl=http://192.168.0.29:5000/v2.0 --internalurl=http://192.168.0.29:5000/v2.0 --adminurl=http://192.168.0.29:35357/v2.0
 +-------------+----------------------------------+
 |   Property  |              Value               |
 +-------------+----------------------------------+
-|   adminurl  |  http://10.25.40.161:35357/v2.0  |
+|   adminurl  |  http://192.168.0.29:35357/v2.0  |
 |      id     | dfcac06dfaa645d881482b01b9262cef |
-| internalurl |  http://10.25.40.161:5000/v2.0   |
-|  publicurl  |  http://10.25.40.161:5000/v2.0   |
+| internalurl |  http://192.168.0.29:5000/v2.0   |
+|  publicurl  |  http://192.168.0.29:5000/v2.0   |
 |    region   |            RegionOne             |
 |  service_id | f5756ddfef0a4e48b58ae23c3da5b4d3 |
 +-------------+----------------------------------+
 
-keystone --endpoint http://localhost:35357/v2.0 --token  Motdepasse12 user-list
+keystone --endpoint http://localhost:35357/v2.0 --token ADMIN user-list
 +----------------------------------+----------+---------+--------------------------+
 |                id                |   name   | enabled |          email           |
 +----------------------------------+----------+---------+--------------------------+
-| 68527a3fb83446d3bab47ce30d500dbc |  admin   |   True  | alban.andrieu@misys.com  |
+| 68527a3fb83446d3bab47ce30d500dbc |  admin   |   True  | alban.andrieu@nabla.mobi  |
 | f558122ed2ee484e9bab232b1aaa2fca | albandri |   True  |    albandri@misys.com    |
-| cd93bd532f53495eba123793a0928a00 |  glance  |   True  | galban.andrieu@misys.com |
+| cd93bd532f53495eba123793a0928a00 |  glance  |   True  | galban.andrieu@nabla.mobi |
 | 534c3d8fe3144409bb44b02486a066ee |   nova   |   True  |     nova@example.com     |
 +----------------------------------+----------+---------+--------------------------+
 
-#NOK keystone --username admin --password Motdepasse12 --tenant_name admin --auth_url http://localhost:5000/v2.0 user-list
+#NOK keystone --username admin --password microsoft --tenant_name admin --auth_url http://localhost:5000/v2.0 user-list
 
 export SERVICE_ENDPOINT=http://localhost:5000/v2.0/
-export SERVICE_TOKEN=Motdepasse12
+export SERVICE_TOKEN=ADMIN
 nano .novarc
 export OS_NO_CACHE=1
 export OS_TENANT_NAME=admin 
 export OS_USERNAME=admin 
-export OS_PASSWORD=Motdepasse12 
+export OS_PASSWORD=microsoft 
 export OS_AUTH_URL="http://localhost:5000/v2.0/"
 keystone user-list
 
@@ -343,9 +354,9 @@ keystone user-list
 
 mysql -u root -p <<EOF
 CREATE DATABASE glance;
-GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'Motdepasse12';
-GRANT ALL ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'Motdepasse12';
-GRANT ALL ON glance.* TO 'glance'@'albandri' IDENTIFIED BY 'Motdepasse12';
+GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'microsoft';
+GRANT ALL ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'microsoft';
+GRANT ALL ON glance.* TO 'glance'@'albandri' IDENTIFIED BY 'microsoft';
 FLUSH PRIVILEGES;
 EOF
 
@@ -359,14 +370,14 @@ keystone service-create  --name=glance --type=image --description='Glance Image 
 |     name    |              glance              |
 |     type    |              image               |
 +-------------+----------------------------------+
-keystone endpoint-create --region RegionOne --service_id=843577a0081a4671a6670df6c1d1fa76 --publicurl=http://10.25.40.161:9292/v1 --internalurl=http://10.25.40.161:9292/v1 --adminurl=http://10.25.40.161:9292/v1
+keystone endpoint-create --region RegionOne --service_id=843577a0081a4671a6670df6c1d1fa76 --publicurl=http://192.168.0.29:9292/v1 --internalurl=http://192.168.0.29:9292/v1 --adminurl=http://192.168.0.29:9292/v1
 +-------------+----------------------------------+
 |   Property  |              Value               |
 +-------------+----------------------------------+
-|   adminurl  |   http://10.25.40.161:9292/v1    |
+|   adminurl  |   http://192.168.0.29:9292/v1    |
 |      id     | 618d42d69a204b8eb78073c8bb2ca22a |
-| internalurl |   http://10.25.40.161:9292/v1    |
-|  publicurl  |   http://10.25.40.161:9292/v1    |
+| internalurl |   http://192.168.0.29:9292/v1    |
+|  publicurl  |   http://192.168.0.29:9292/v1    |
 |    region   |            RegionOne             |
 |  service_id | 843577a0081a4671a6670df6c1d1fa76 |
 +-------------+----------------------------------+
@@ -374,8 +385,8 @@ keystone endpoint-create --region RegionOne --service_id=843577a0081a4671a6670df
 sudo nano /etc/glance/glance-api-paste.ini
 admin_tenant_name = service
 admin_user = glance
-admin_password = Motdepasse12
-admin_token = Motdepasse12
+admin_password = microsoft
+admin_token = ADMIN
 
 #change
 [pipeline:glance-api]
@@ -384,29 +395,29 @@ pipeline = versionnegotiation authtoken auth-context apiv1app
 sudo nano /etc/glance/glance-api.conf
 admin_tenant_name = service
 admin_user = glance
-admin_password = Motdepasse12
-admin_token = Motdepasse12
+admin_password = microsoft
+admin_token = ADMIN
 
 [paste_deploy]
 flavor = keystone
 
 sudo nano /etc/glance/glance-registry.conf
-sql_connection = mysql://glance:Motdepasse12@10.25.40.161:3306/glance
+sql_connection = mysql://glance:microsoft@192.168.0.29:3306/glance
 
 auth_protocol = http
-admin_token = Motdepasse12
+admin_token = ADMIN
 
 [paste_deploy]
 flavor = keystone
 
 sudo nano /etc/glance/glance-scrubber.conf
-sql_connection = mysql://glance:Motdepasse12@10.25.40.161:3306/glance
+sql_connection = mysql://glance:microsoft@192.168.0.29:3306/glance
 sql_idle_timeout = 3600
 
 sudo nano /etc/glance/glance-registry-paste.ini 
 admin_tenant_name = service
 admin_user = glance
-admin_password = Motdepasse12
+admin_password = microsoft
 [pipeline:glance-registry]
 pipeline = authtoken auth-context context registryapp
 
@@ -423,11 +434,11 @@ sudo service glance-api restart && sudo service glance-registry restart
 
 wget http://uec-images.ubuntu.com/releases/precise/release/ubuntu-12.04-server-cloudimg-amd64-disk1.img
 #glance add name="<Image name>" is_public=true container_format=<container_format> disk_format=<disk_format> < <filename>
-glance --debug --os-username admin --os-password Motdepasse12 add name="Ubuntu 12.04 cloudimg amd64" is_public=true container_format=ovf disk_format=qcow2 < /devel/albandri/tmp/ubuntu-12.04-server-cloudimg-amd64-disk1.img
+glance --debug --os-username admin --os-password microsoft add name="Ubuntu 12.04 cloudimg amd64" is_public=true container_format=ovf disk_format=qcow2 < /devel/albandri/tmp/ubuntu-12.04-server-cloudimg-amd64-disk1.img
 HTTP/1.1 201 Created
 content-length: 477
 etag: 8eb1e06aca4d7dcd3b945f9f818b2545
-location: http://10.25.40.161:9292/v1/images/73be1172-63ea-40a2-abef-59b937fe3d50
+location: http://192.168.0.29:9292/v1/images/73be1172-63ea-40a2-abef-59b937fe3d50
 date: Thu, 06 Mar 2014 16:37:50 GMT
 content-type: application/json
 x-openstack-request-id: req-d11c95c3-1e16-4365-9cef-3a05574730d7
@@ -445,7 +456,7 @@ ID                                   Name                           Disk Format 
 
 glance details
 ================================================================================
-URI: http://10.25.40.161:9292/v1/images/73be1172-63ea-40a2-abef-59b937fe3d50
+URI: http://192.168.0.29:9292/v1/images/73be1172-63ea-40a2-abef-59b937fe3d50
 Id: 73be1172-63ea-40a2-abef-59b937fe3d50
 Public: Yes
 Protected: No
@@ -466,9 +477,9 @@ Updated at: 2014-03-06T16:37:50
 
 mysql -u root -p <<EOF
 CREATE DATABASE nova;
-GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY 'Motdepasse12';
-GRANT ALL ON nova.* TO 'nova'@'localhost' IDENTIFIED BY 'Motdepasse12';
-GRANT ALL ON nova.* TO 'nova'@'albandri' IDENTIFIED BY 'Motdepasse12';
+GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY 'microsoft';
+GRANT ALL ON nova.* TO 'nova'@'localhost' IDENTIFIED BY 'microsoft';
+GRANT ALL ON nova.* TO 'nova'@'albandri' IDENTIFIED BY 'microsoft';
 EOF
 
 #Service compute
@@ -481,14 +492,14 @@ keystone service-create --name=nova --type=compute --description='OpenStack Comp
 |     name    |               nova               |
 |     type    |             compute              |
 +-------------+----------------------------------+
-keystone endpoint-create --region RegionOne --service_id=87c84148575842189ce9ed884aeb5ecd --publicurl='http://10.25.40.161:8774/v2/%(tenant_id)s' --internalurl='http://10.25.40.161:8774/v2/%(tenant_id)s' --adminurl='http://10.25.40.161:8774/v2/%(tenant_id)s'
+keystone endpoint-create --region RegionOne --service_id=87c84148575842189ce9ed884aeb5ecd --publicurl='http://192.168.0.29:8774/v2/%(tenant_id)s' --internalurl='http://192.168.0.29:8774/v2/%(tenant_id)s' --adminurl='http://192.168.0.29:8774/v2/%(tenant_id)s'
 +-------------+-------------------------------------------+
 |   Property  |                   Value                   |
 +-------------+-------------------------------------------+
-|   adminurl  | http://10.25.40.161:8774/v2/%(tenant_id)s |
+|   adminurl  | http://192.168.0.29:8774/v2/%(tenant_id)s |
 |      id     |      991a48ee36fb4eff95204ce435c81c4a     |
-| internalurl | http://10.25.40.161:8774/v2/%(tenant_id)s |
-|  publicurl  | http://10.25.40.161:8774/v2/%(tenant_id)s |
+| internalurl | http://192.168.0.29:8774/v2/%(tenant_id)s |
+|  publicurl  | http://192.168.0.29:8774/v2/%(tenant_id)s |
 |    region   |                 RegionOne                 |
 |  service_id |      87c84148575842189ce9ed884aeb5ecd     |
 +-------------+-------------------------------------------+
@@ -509,25 +520,25 @@ keystone service-create --name=volume --type=volume --description='OpenStack Vol
 #|     name    |              volume              |
 #|     type    |              volume              |
 #+-------------+----------------------------------+
-keystone endpoint-create --region RegionOne --service_id=87f8c368a58544128df648f50592f656 --publicurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --internalurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --adminurl='http://10.25.40.161:8776/v1/%(tenant_id)s'
-#keystone endpoint-create --region RegionOne --service_id=dbe6f57300144922bb3bebb37f84790e --publicurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --internalurl='http://10.25.40.161:8776/v1/%(tenant_id)s' --adminurl='http://10.25.40.161:8776/v1/%(tenant_id)s'
+keystone endpoint-create --region RegionOne --service_id=87f8c368a58544128df648f50592f656 --publicurl='http://192.168.0.29:8776/v1/%(tenant_id)s' --internalurl='http://192.168.0.29:8776/v1/%(tenant_id)s' --adminurl='http://192.168.0.29:8776/v1/%(tenant_id)s'
+#keystone endpoint-create --region RegionOne --service_id=dbe6f57300144922bb3bebb37f84790e --publicurl='http://192.168.0.29:8776/v1/%(tenant_id)s' --internalurl='http://192.168.0.29:8776/v1/%(tenant_id)s' --adminurl='http://192.168.0.29:8776/v1/%(tenant_id)s'
 +-------------+-------------------------------------------+
 |   Property  |                   Value                   |
 +-------------+-------------------------------------------+
-|   adminurl  | http://10.25.40.161:8776/v1/%(tenant_id)s |
+|   adminurl  | http://192.168.0.29:8776/v1/%(tenant_id)s |
 |      id     |      f0a65960e77a4fffb1ab1ca6e4d61c6a     |
-| internalurl | http://10.25.40.161:8776/v1/%(tenant_id)s |
-|  publicurl  | http://10.25.40.161:8776/v1/%(tenant_id)s |
+| internalurl | http://192.168.0.29:8776/v1/%(tenant_id)s |
+|  publicurl  | http://192.168.0.29:8776/v1/%(tenant_id)s |
 |    region   |                 RegionOne                 |
 |  service_id |      87f8c368a58544128df648f50592f656     |
 +-------------+-------------------------------------------+
 #+-------------+-------------------------------------------+
 #|   Property  |                   Value                   |
 #+-------------+-------------------------------------------+
-#|   adminurl  | http://10.25.40.161:8776/v1/%(tenant_id)s |
+#|   adminurl  | http://192.168.0.29:8776/v1/%(tenant_id)s |
 #|      id     |      8aa4715258ba487b95059bdb5d584934     |
-#| internalurl | http://10.25.40.161:8776/v1/%(tenant_id)s |
-#|  publicurl  | http://10.25.40.161:8776/v1/%(tenant_id)s |
+#| internalurl | http://192.168.0.29:8776/v1/%(tenant_id)s |
+#|  publicurl  | http://192.168.0.29:8776/v1/%(tenant_id)s |
 #|    region   |                 RegionOne                 |
 #|  service_id |      dbe6f57300144922bb3bebb37f84790e     |
 #+-------------+-------------------------------------------+
@@ -538,9 +549,10 @@ keystone endpoint-list
 keystone service-list
 
 sudo nano /etc/nova/api-paste.ini
+[filter:authtoken]
 paste.filter_factory = keystoneclient.middleware.auth_token:filter_factory
 auth_host = 127.0.0.1
-#auth_host = 10.25.40.161
+#auth_host = 192.168.0.29
 auth_port = 35357
 auth_protocol = http
 #admin_tenant_name = %SERVICE_TENANT_NAME%
@@ -549,8 +561,8 @@ auth_protocol = http
 admin_tenant_name = service
 admin_user = nova
 #admin_user = admin
-admin_password = Motdepasse12
-admin_token = Motdepasse12
+admin_password = microsoft
+admin_token = ADMIN
 # signing_dir is configurable, but the default behavior of the authtoken
 # middleware should be sufficient.  It will create a temporary directory
 # in the home directory for the user the nova process is running as.
@@ -582,7 +594,7 @@ volume_name_template=volume-%s
 iscsi_helper=tgtadm
 
 # DATABASE
-sql_connection=mysql://nova:Motdepasse12@10.25.40.161/nova
+sql_connection=mysql://nova:microsoft@192.168.0.29/nova
 
 # COMPUTE
 libvirt_type=qemu
@@ -596,16 +608,16 @@ allow_resize_to_same_host=True
 
 # APIS
 osapi_compute_extension=nova.api.openstack.compute.contrib.standard_extensions
-ec2_dmz_host=10.25.40.161
-s3_host=10.25.40.161
+ec2_dmz_host=192.168.0.29
+s3_host=192.168.0.29
 enabled_apis=ec2,osapi_compute,metadata
 
 # RABBITMQ
-rabbit_host=10.25.40.161
+rabbit_host=192.168.0.29
 
 # GLANCE
 image_service=nova.image.glance.GlanceImageService
-glance_api_servers=10.25.40.161:9292
+glance_api_servers=192.168.0.29:9292
 
 # NETWORK
 network_manager=nova.network.manager.FlatDHCPManager
@@ -613,7 +625,7 @@ force_dhcp_release=True
 dhcpbridge_flagfile=/etc/nova/nova.conf
 firewall_driver=nova.virt.libvirt.firewall.IptablesFirewallDriver
 # Change my_ip to match each host
-my_ip=10.25.40.161
+my_ip=192.168.0.29
 public_interface=eth0
 vlan_interface=eth0
 flat_network_bridge=br100
@@ -621,32 +633,36 @@ flat_interface=eth0
 fixed_range=''
 
 # NOVNC CONSOLE
-novncproxy_base_url=http://10.25.40.161:6080/vnc_auto.html
+novncproxy_base_url=http://192.168.0.29:6080/vnc_auto.html
 # Change vncserver_proxyclient_address and vncserver_listen to match each compute host
-vncserver_proxyclient_address=10.25.40.161
-vncserver_listen=10.25.40.161
+vncserver_proxyclient_address=192.168.0.29
+vncserver_listen=192.168.0.29
 
 # AUTHENTICATION
 auth_strategy=keystone
 [keystone_authtoken]
 #auth_host = 127.0.0.1
-auth_host = 10.25.40.161
+auth_host = 192.168.0.29
 auth_port = 35357
 auth_protocol = http
 admin_tenant_name = service
 admin_user = nova
-admin_password = Motdepasse12
+admin_password = microsoft
 signing_dirname = /tmp/keystone-signing-nova
 
 sudo chown -R nova:nova /etc/nova/
+sudo chown -R nova:nova /var/lib/nova
 
 sudo apt-get install nova-novncproxy
 
-for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth nova-novncproxy; do sudo service "$a" stop; done
-for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth nova-novncproxy; do sudo service "$a" start; done
+sudo service nova-api start
+
+for a in libvirt-bin nova-conductor nova-console nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-cert nova-consoleauth nova-novncproxy cinder-volume cinder-api cinder-schedule nova-volume rabbitmq-server ceilometer-agent-central ceilometer-api ceilometer-collector ceilometer-agent-compute  ; do sudo service "$a" stop; done
+for a in libvirt-bin nova-conductor nova-console nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-cert nova-consoleauth nova-novncproxy cinder-volume nova-volume ; do sudo service "$a" start; done
 
 #if
 nova-volume: unrecognized service
+#
 
 initctl show-config | grep nova
 sudo initctl reload-configuration
@@ -658,8 +674,8 @@ ll /etc/init/nova-volume.conf
  
 sudo nova-manage db sync
 
-for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" stop; done
-for a in libvirt-bin nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" start; done
+#for a in libvirt-bin nova-conductor nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" stop; done
+#for a in libvirt-bin nova-conductor nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" start; done
 
 sudo nova-manage service list
 
@@ -669,7 +685,7 @@ nova-volume
 #TODO
 #Images disques
 
-#nova --os-username admin --os-password Motdepasse12 image-list
+#nova --os-username admin --os-password microsoft image-list
 nova --debug image-list
 +--------------------------------------+-----------------------------+--------+--------+
 | ID                                   | Name                        | Status | Server |
@@ -784,7 +800,7 @@ sudo restart nova-volume
 
 #mkdir -p /var/cache/glance/ap
 
-http://10.25.40.161/horizon
+http://192.168.0.29/horizon
 
 ---------------------------
 
@@ -797,6 +813,7 @@ cd devstack
 
 cd /workspace/
 git clone https://github.com/jedipunkz/openstack_grizzly_install
+git clone git://github.com/jedipunkz/openstack_havana_deploy.git
 cd openstack_grizzly_install
 cp setup.conf.samples/setup.conf.allinone.nova-network setup.conf
 nano setup.conf

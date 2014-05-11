@@ -17,16 +17,19 @@ http://home.nabla.mobi:4444/grid/console
 
 cd /workspace
 /workspace/selenium-server-standalone-2.39.0.jar
-#NOK wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
-#NOK unzip chromedriver_linux64.zip
-sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
+cd /usr/lib/chromium-browser/
+#NOK sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+#NOK sudo unzip chromedriver_linux64.zip
+sudo sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
+sudo unzip chromedriver_linux32.zip
+sudo chmod 755 chromedriver
 
 wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
 #or /var/lib/jenkins/selenium-server-standalone-2.29.0.jar
 
 sudo apt-get install chromium-chromedriver
-/var/lib/
-ln -s /usr/lib/chromium-browser/chromedriver /var/lib/chromedriver
+cd /var/lib/
+sudo ln -s /usr/lib/chromium-browser/chromedriver /var/lib/chromedriver
 ls /var/lib/chromedriver
 sudo mkdir selenium
 cd /var/lib/selenium

@@ -33,3 +33,6 @@ gnome-desktop-item-edit --create-new ~/Desktop
 #sudo apt-get install libswt-gtk-3-jni libswt-gtk-3-java
 #ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86/
 sudo ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86_64/
+
+#Groovy plugin
+#http://dist.springsource.org/release/GRECLIPSE/e4.3/
