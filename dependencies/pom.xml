@@ -267,11 +267,12 @@
 								</pluginManagement>
 						</build>
 				</profile>
+				<!--
 				<profile>
 						<id>maven-2-site</id>
 						<properties>
 								<maven.test.skip>false</maven.test.skip>
-								<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
+								<lastModifiedCheck>true</lastModifiedCheck>
 						</properties>
 						<build>
 								<pluginManagement>
@@ -293,20 +294,9 @@
 														<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 
 														<locales>en</locales>
-														<!--<locales>en,fr</locales> -->
 														<excludeModules>build-tools</excludeModules>
-														<!--<excludeModules>maven-gui-plugin</excludeModules>-->
-														<!--<siteDirectory>${basedir}/site/src/site</siteDirectory>-->
 														<port>8070</port>
 												</configuration>
-												<dependencies>
-														<!--
-														<dependency>
-																<groupId>org.apache.maven.skins</groupId>
-																<artifactId>maven-default-skin</artifactId>
-																<version>${maven.default.skin.version}</version>
-														</dependency>
-														-->
 														<dependency>
 																<groupId>com.nabla.project</groupId>
 																<artifactId>skin</artifactId>
@@ -341,22 +331,6 @@
 												<artifactId>maven-changelog-plugin</artifactId>
 												<version>${maven.changelog.plugin.version}</version>
 										</plugin>
-										<!--
-										<plugin>
-												<groupId>org.codehaus.mojo</groupId>
-												<artifactId>emma-maven-plugin</artifactId>
-												<version>${maven.emma.plugin.version}</version>
-												<inherited>true</inherited>
-												<executions>
-												  <execution>
-													<phase>process-classes</phase>
-													<goals>
-													  <goal>instrument</goal>
-													</goals>
-												  </execution>
-												</executions>
-										</plugin>
-										-->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-scm-plugin</artifactId>
@@ -367,17 +341,15 @@
 												<artifactId>maven-jxr-plugin</artifactId>
 												<version>${maven.jxr.plugin.version}</version>
 										</plugin>
-										<!-- http://checkstyle.sourceforge.net -->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-checkstyle-plugin</artifactId>
 												<version>${maven.checkstyle.plugin.version}</version>
-   						<configuration>
-   							<excludes>**/generated/**/*</excludes>
-   							<excludes>**/clover/**/*</excludes>
-   						</configuration>
-												<dependencies>
-														<!-- The file defined in the location is stored in this dependency -->
+												<configuration>
+													<excludes>**/generated/**/*</excludes>
+													<excludes>**/clover/**/*</excludes>
+												</configuration>
+												<dependencies>														
 														<dependency>
 																<groupId>com.nabla.project</groupId>
 																<artifactId>build-tools</artifactId>
@@ -386,9 +358,6 @@
 												</dependencies>
 										</plugin>
 
-										<!-- Code Coverage by Clover -->
-										<!-- Bind Clover Coverage instrumentation to the site generation -->
-										<!-- Blocked by http://jira.codehaus.org/browse/MCLOVER-50 -->
 										<plugin>
 												<groupId>com.atlassian.maven.plugins</groupId>
 												<artifactId>maven-clover2-plugin</artifactId>
@@ -398,19 +367,19 @@
 														<generateXml>true</generateXml>
 													<generatePdf>true</generatePdf>
 													<generateHtml>true</generateHtml>
-													<!--
-													<generateHistorical>true</generateHistorical>
-														<snapshot>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.snapshot</snapshot>
-														-->
 												</configuration>
 										</plugin>
 
-										<!-- Delete code coverage database when 'mvn clean' is executed -->
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>cobertura-maven-plugin</artifactId>
 												<version>${maven.cobertura.plugin.version}</version>
 												<configuration>
+														<aggregate>true</aggregate>
+														<formats>
+																<format>xml</format>
+																<format>html</format>
+														</formats>												
 														<check>
 																<branchRate>55</branchRate>
 																<lineRate>55</lineRate>
@@ -433,17 +402,8 @@
 																</regexes>
 														</check>
 												</configuration>
-												<!--
-												<executions>
-														<execution>
-																<goals>
-																		<goal>clean</goal>
-																		<goal>check</goal>
-																</goals>
-														</execution>
-												</executions>
-												-->
 										</plugin>
+		
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>dashboard-maven-plugin</artifactId>
@@ -458,8 +418,6 @@
 														<keepVersionAsDiscriminantCriteria>false</keepVersionAsDiscriminantCriteria>
 												</configuration>
 												<dependencies>
-														<!-- Comment out if deploying to a Java EE 5 server with a server provided
-																data source -->
 														<dependency>
 																<groupId>org.apache.derby</groupId>
 																<artifactId>derbyclient</artifactId>
@@ -483,7 +441,6 @@
 																<version>${jdbc.derby.version}</version>
 																<scope>compile</scope>
 														</dependency>
-														<!-- to override commons-logging in Hibernate library dependency -->
 														<dependency>
 																<groupId>commons-logging</groupId>
 																<artifactId>commons-logging</artifactId>
@@ -514,29 +471,6 @@
 														<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 														<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
 												</configuration>
-												<!--
-												<reportSets>
-												  <reportSet>
-													<reports>
-													  <report>cim</report>
-													  <report>dependencies</report>
-													  <report>dependency-convergence</report>
-													  <report>dependency-management</report>
-													  <report>help</report>
-													  <report>index </report>
-													  <report>issue-tracking</report>
-													  <report>license</report>
-													  <report>mailing-list</report>
-													  <report>modules</report>
-													  <report>plugin-management</report>
-													  <report>plugins</report>
-													  <report>project-team</report>
-													  <report>scm</report>
-													  <report>summary</report>
-													</reports>
-												  </reportSet>
-												</reportSets>
-										-->
 										</plugin>
 
 										<plugin>
@@ -545,7 +479,6 @@
 												<version>${maven.plugin.plugin.plugin.version}</version>
 										</plugin>
 
-										<!-- Add this plug-ins only if you use SCM -->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-changes-plugin</artifactId>
@@ -554,8 +487,7 @@
 														<reportSet>
 																<reports>
 																		<report>changes-report</report>
-																		<!-- Uncomment if using JIRA -->
-																		<!--report>jira-report</report-->
+																		
 																</reports>
 														</reportSet>
 												</reportSets>
@@ -564,9 +496,6 @@
 														<sortColumnNames>Key</sortColumnNames>
 												</configuration>
 										</plugin>
-										<!-- Add this plug-ins only if you use SCM -->
-
-										<!-- Uncomment after configuring SCM connection -->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-changelog-plugin</artifactId>
@@ -587,8 +516,6 @@
 														</reportSet>
 												</reportSets>
 										</plugin>
-										<!-- *** GENERATION JAVADOC *** -->
-										<!-- Javadoc settings -->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-javadoc-plugin</artifactId>
@@ -597,7 +524,6 @@
 														<reportSet>
 																<id>non-aggregate</id>
 																<configuration>
-																		<!-- Specific configuration for the non aggregate report -->
 																		<doctitle>Nabla API for ${project.name} ${project.version}</doctitle>
 																		<windowtitle>Nabla API for ${project.name} ${project.version}</windowtitle>
 																		<testDoctitle>Nabla Test API for ${project.name} ${project.version}</testDoctitle>
@@ -608,56 +534,8 @@
 																		<report>test-javadoc</report>
 																</reports>
 														</reportSet>
-
-														<!-- TODO deactivate if mvn site is too slow -->
-														<!--
-														<reportSet>
-																<id>aggregate</id>
-																<configuration>
-																		<doctitle>Nabla Aggregate API for ${project.name} ${project.version}</doctitle>
-																		<windowtitle>Nabla Aggregate API for ${project.name} ${project.version}</windowtitle>
-																		<testDoctitle>Nabla Aggregate Test API for ${project.name} ${project.version}</testDoctitle>
-																		<testWindowtitle>Nabla Aggregate Test API for ${project.name} ${project.version}</testWindowtitle>
-																		-->
-																		<!-- Specific configuration for the aggregate report -->
-																		<!--
-																		<tags>
-																				<tag>
-																						<name>date</name>
-																						<placement>a</placement>
-																						<head>date</head>
-																				</tag>
-																				<tag>
-																						<name>version.interne</name>
-																						<placement>a</placement>
-																						<head>version interne</head>
-																				</tag>
-																				<tag>
-																						<name>todo</name>
-																						<placement>a</placement>
-																						<head>To Do:</head>
-																				</tag>
-																				<tag>
-																						<name>note</name>
-																						<placement>a</placement>
-																						<head>Note:</head>
-																				</tag>
-																				<tag>
-																						<name>opt</name>
-																						<placement>X</placement>
-																						<head>opt:</head>
-																				</tag>
-																		</tags>
-																</configuration>
-																<reports>
-																		<report>aggregate</report>
-																		<report>test-aggregate</report>
-																</reports>
-														</reportSet>
-														-->
 												</reportSets>
 												<configuration>
-														<!-- Default configuration for all reports -->
 														<excludePackageNames>*.ejb.*</excludePackageNames>
 														<groups>
 																<group>
@@ -731,16 +609,6 @@
 														</groups>
 
 														<stylesheet>maven</stylesheet>
-														<!--
-																<minmemory>128m</minmemory> <maxmemory>512m</maxmemory>
-														-->
-														<!--
-														<minmemory>128m</minmemory>
-														<maxmemory>2g</maxmemory>
-														<maxmemory>512m</maxmemory>
-														<maxmemory>1548m</maxmemory>
-														-->
-														<!--<show>package</show>-->
 														<show>public</show>
 														<version>true</version>
 														<javadocVersion>${jdkLevel}</javadocVersion>
@@ -754,29 +622,11 @@
 														<docencoding>${project.build.sourceEncoding}</docencoding>
 														<encoding>${project.build.sourceEncoding}</encoding>
 
-														<!--<sourcepath>${basedir}/src/main/java;${basedir}/src/generated/main/java</sourcepath>-->
-														<!--
-														<doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
-														<docletArtifact>
-																<groupId>gr.spinellis</groupId>
-																<artifactId>UmlGraph</artifactId>
-																<version>4.9.0</version>
-														</docletArtifact>
-														<additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
-																com.nabla.gui.* -collpackages java.util.* -collpackages
-																com.nabla.logical.*
-																-collpackages
-																com.nabla.utils.* -qualify
-																-postfixpackage
-																-nodefontsize 9 -nodefontpackagesize 7
-																-outputencoding utf8</additionalparam>
-														<excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
-														-->
 														<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
 														<docletArtifact>
 																<groupId>org.umlgraph</groupId>
 																<artifactId>doclet</artifactId>
-																<version>5.1</version>
+																<version>${org.umlgraph.doclet.version}</version>
 														</docletArtifact>
 														<additionalparam>-views</additionalparam>
 														<additionalparam>-operations</additionalparam>
@@ -784,20 +634,15 @@
 														<additionalparam>-types</additionalparam>
 														<additionalparam>-visibility</additionalparam>
 														<additionalparam>-collpackages</additionalparam>
-														<show>private</show>
-
 												</configuration>
 										</plugin>
 
-										<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
-										<!-- Source code cross-reference -->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-jxr-plugin</artifactId>
 												<version>${maven.jxr.plugin.version}</version>
 												<configuration>
 														<linkJavadoc>true</linkJavadoc>
-														<!--<aggregate>true</aggregate> generate [WARNING] DEPRECATED [aggregate] -->
 														<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
 														<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 												</configuration>
@@ -807,15 +652,8 @@
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-surefire-report-plugin</artifactId>
 												<version>${maven.surefire.plugin.version}</version>
-												<!--
-												<configuration>
-														<aggregate>true</aggregate>
-												</configuration>
-												-->
 										</plugin>
 
-										<!-- Comment gerer un rapport des tags -->
-										<!-- taglist must be after dashboard and jxr in order to avoid error -->
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>taglist-maven-plugin</artifactId>
@@ -851,20 +689,7 @@
 														</tagListOptions>
 												</configuration>
 										</plugin>
-										<!-- When there is JXR cross-refernce output available, it will be linked
-												to in case of test failures -->
-										<!--
-										<plugin>
-												<groupId>org.apache.maven.plugins</groupId>
-												<groupId>org.codehaus.mojo</groupId>
-												<artifactId>emma-maven-plugin</artifactId>
-												<version>${maven.emma.plugin.version}</version>
-												<inherited>true</inherited>
-										</plugin>
-										-->
-										<!-- Comment verifier la qualitee code avec checkstyle ou PMD -->
-										<!-- *** GENERATION CHECKSTYLE *** -->
-										<!-- Checkstyle plug-in -->
+										
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-checkstyle-plugin</artifactId>
@@ -872,25 +697,18 @@
 												<inherited>true</inherited>
 												<configuration>
 														<linkXref>true</linkXref>
-														<!--<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding> -->
 														<charset>${project.build.sourceEncoding}</charset>
 														<docencoding>${project.build.sourceEncoding}</docencoding>
 														<encoding>${project.build.sourceEncoding}</encoding>
 														<includeTestSourceDirectory>true</includeTestSourceDirectory>
-														<!--<configLocation>project/checkstyle_regles_nabla_eclipse.xml</configLocation>-->
 														<configLocation>project/checkstyle_checks.xml</configLocation>
 														<headerLocation>project/LICENSE-1.0.txt</headerLocation>
 														<propertyExpansion>projectname=nabla</propertyExpansion>
-														<!--
-														<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_regles_nabla_eclipse.xml</configLocation>
-														<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
-														 -->
 														<excludes>**/generated/**/*</excludes>
 														<excludes>**/clover/**/*</excludes>
 												</configuration>
 										</plugin>
 
-										<!-- *** GENERATION PMD *** -->
 										<plugin>
 												<groupId>org.apache.maven.plugins</groupId>
 												<artifactId>maven-pmd-plugin</artifactId>
@@ -908,64 +726,29 @@
 														<excludeRoots>
 																<excludeRoot>${basedir}/${target.dir}/generated-sources</excludeRoot>
 														</excludeRoots>
-
-							<!--
-														<rulesets>
-																<ruleset>project/pmd_regles_nabla.xml</ruleset>
-														</rulesets>
-														-->
 												</configuration>
 										</plugin>
 
-										<!-- *** GENERATION FINDBUGS *** -->
-										<!-- Java Heap Space possible si trop de source a analyser -->
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>findbugs-maven-plugin</artifactId>
 												<version>${maven.findbugs.plugin.version}</version>
 												<configuration>
-														<!--<findbugsXmlOutput>true</findbugsXmlOutput>-->
 														<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
 														<xmlOutput>true</xmlOutput>
 														<threshold>Normal</threshold>
 														<effort>Default</effort>
-														<!--<failOnError>true</failOnError>-->
 														<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 														<maxHeap>1024</maxHeap>
 														<timeout>1200000</timeout>
 												</configuration>
 										</plugin>
 
-										<!-- Comment analyser les metriques avec JDepend -->
-										<!-- TODO does not work jdepend:generate -->
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>jdepend-maven-plugin</artifactId>
 												<version>${maven.jdepend.plugin.version}</version>
 										</plugin>
-
-										<!-- TODO javancss:report does not work -->
-										<!-- it does not work with java 7 syntax
-										<plugin>
-												<groupId>org.codehaus.mojo</groupId>
-												<artifactId>javancss-maven-plugin</artifactId>
-												<version>${maven.javancss.plugin.version}</version>
-												<configuration>
-												-->
-												<!--
-												  <failOnViolation>true</failOnViolation>
-												  <ccnLimit>12</ccnLimit>
-												  <ncssLimit>90</ncssLimit>
-												-->						
-												<!--							
-												   <excludes>
-													  <exclude>**/generated/**/*</exclude>
-													  <exclude>**/clover/**/*</exclude>
-													  <exclude>**/Visma.java</exclude>
-													</excludes>
-												</configuration>                                                                        
-										</plugin>
-										-->
 
 										<plugin>
 											<groupId>org.codehaus.mojo</groupId>
@@ -996,7 +779,7 @@
 														</asfExtOptions>
 												</configuration>
 										</plugin>
-										<!-- Compare APIs to a previous version, uncomment when a release version exists -->
+										
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>clirr-maven-plugin</artifactId>
@@ -1006,56 +789,7 @@
 														<minSeverity>info</minSeverity>
 												</configuration>
 										</plugin>
-										<!--
-										<plugin>
-												<groupId>org.codehaus.mojo</groupId>
-												<artifactId>rat-maven-plugin</artifactId>
-												<version>${maven.rat.plugin.version}</version>
-										</plugin>
-										-->
-										<!--
-										<plugin>
-												<groupId>org.apache.rat</groupId>
-												<artifactId>apache-rat-plugin</artifactId>
-												<version>${maven.apache.rat.plugin.version}</version>
-												<configuration>
-												  <licenses>
-													<license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-													  <licenseFamilyCategory>YASL1</licenseFamilyCategory>
-													  <licenseFamilyName>Yet Another Software License (YASL) 1.0</licenseFamilyName>
-													  <notes></notes>
-													  <patterns>
-														<pattern>Copyright (c) 2002-2004, Nabla</pattern>
-													  </patterns>
-													</license>
-												  </licenses>
-												  <licenseFamilies>
-													<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
-													  <familyName>Yet Another Software License</familyName>
-													</licenseFamily>
-												  </licenseFamilies>
-												</configuration>
-										</plugin>
-										-->
-
-										<!-- Comment gerer un rapport de couverture des tests -->
-										<!-- Code Coverage by Cobertura -->
-										<!--
-										<plugin>
-												<groupId>org.codehaus.mojo</groupId>
-												<artifactId>cobertura-maven-plugin</artifactId>
-												<version>${maven.cobertura.plugin.version}</version>
-												<configuration>
-														<aggregate>true</aggregate>
-														<formats>
-																<format>xml</format>
-																<format>html</format>
-														</formats>
-												</configuration>
-										</plugin>
-										-->
-
-										<!-- dashboard must be done at the end in order to have a complete report -->
+			
 										<plugin>
 												<groupId>org.codehaus.mojo</groupId>
 												<artifactId>dashboard-maven-plugin</artifactId>
@@ -1070,6 +804,7 @@
 								</plugins>
 						</reporting>
 				</profile>
+				-->
 		<profile>
 			<id>clover.report</id>
 			<activation>
@@ -1363,7 +1098,7 @@
 				<jfreechart-demo.version>1.0.13</jfreechart-demo.version>
 				<junitperf.version>1.9.1</junitperf.version>
 				<!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
-				<clover.version>3.2.0</clover.version>
+				<clover.version>3.3.0</clover.version>
 				<dbunit.version>2.4.9</dbunit.version>
 				<testng.version>6.8.7</testng.version>
 				<!--todo <testng.version>6.8.8</testng.version>-->
@@ -1603,7 +1338,7 @@
 				<gwt.test.utils.version>0.38</gwt.test.utils.version>
 				<objectify.version>4.0b1</objectify.version>
 				<errai.version>2.0.Beta3</errai.version>
-				<weld.servlet.version>1.1.0.Beta1</weld.servlet.version>
+				<weld.servlet.version>1.0.1-Final</weld.servlet.version>
 
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
 				<!--<selenium.version>2.37.1</selenium.version>-->
@@ -1619,6 +1354,7 @@
 				<!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<drools.version>5.0.1</drools.version>
+				<drools.transformer.xstream.version>5.1.0.M2</drools.transformer.xstream.version>
 				<!--<drools.version>5.1.1</drools.version>-->
 				<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
 
@@ -1735,7 +1471,7 @@
 				<gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
 				<maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
 				<jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
-				<izpack.version>5.0.0-rc1</izpack.version>
+				<izpack.version>5.0.0-rc2</izpack.version>
 				<izpack.compiler.version>${izpack.version}</izpack.compiler.version>
 				<izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
 
@@ -1768,16 +1504,20 @@
 				<doxia.module.twiki.version>1.1.3</doxia.module.twiki.version>
 				<!--<lifecycle.mapping.version>1.0.0-RC1</lifecycle.mapping.version>-->
 				<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
+				<org.umlgraph.doclet.version>5.1</org.umlgraph.doclet.version>
+				<org.umlgraph.umlgraph.version>5.6.6</org.umlgraph.umlgraph.version>
+				<gr.spinellis.UmlGraph.version>4.6.0</gr.spinellis.UmlGraph.version>
 
 				<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 				<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
-				<maven.karma.plugin.version>1.6</maven.karma.plugin.version>				
+				<maven.karma.plugin.version>1.7</maven.karma.plugin.version>
+				<maven.grunt.plugin.version>1.3.0</maven.grunt.plugin.version>				
 				<maven.jspc.plugin.version>2.0-alpha-3</maven.jspc.plugin.version>
 				<maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
-				<maven.apache.rat.plugin.version>0.9-SNAPSHOT</maven.apache.rat.plugin.version>
+				<maven.apache.rat.plugin.version>0.10</maven.apache.rat.plugin.version>
 				<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
 				<maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
-				<maven.release.plugin.version>2.4.2</maven.release.plugin.version>
+				<maven.release.plugin.version>2.5</maven.release.plugin.version>
 				<!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
 				<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
 				<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
@@ -1794,7 +1534,7 @@
 				<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 				<maven.gui.plugin.version>1.0</maven.gui.plugin.version>
 				<maven.plugin.plugin.plugin.version>3.2</maven.plugin.plugin.plugin.version>
-				<maven.clirr.plugin.version>2.5</maven.clirr.plugin.version>
+				<maven.clirr.plugin.version>2.6.1</maven.clirr.plugin.version>
 				<maven.patch.plugin.version>1.1.1</maven.patch.plugin.version>
 				<maven.one.plugin.version>1.3</maven.one.plugin.version>
 				<maven.findbugs.plugin.version>2.5.4-SNAPSHOT</maven.findbugs.plugin.version>
@@ -1802,27 +1542,27 @@
 				<maven.jstools.plugin.version>0.7</maven.jstools.plugin.version>
 				<maven.javancss.plugin.version>2.1-SNAPSHOT</maven.javancss.plugin.version>
 				<maven.jdepend.plugin.version>2.0-beta-2</maven.jdepend.plugin.version>
-				<maven.changes.plugin.version>2.9</maven.changes.plugin.version>
+				<maven.changes.plugin.version>2.10</maven.changes.plugin.version>
 				<maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
 				<maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
 				<maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
 				<maven.deploy.plugin.version>2.8.1</maven.deploy.plugin.version>
 				<maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
 				<maven.changelog.plugin.version>2.2</maven.changelog.plugin.version>
-				<maven.scm.plugin.version>1.8.1</maven.scm.plugin.version>
-				<maven.checkstyle.plugin.version>2.9.1</maven.checkstyle.plugin.version>
+				<maven.scm.plugin.version>1.9</maven.scm.plugin.version>
+				<maven.checkstyle.plugin.version>2.12.1</maven.checkstyle.plugin.version>
 				<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
 				<maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
 				<maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
 				<maven.clover.plugin.version>${clover.version}</maven.clover.plugin.version>
 				<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
 				<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
-				<maven.gpg.plugin.version>1.4</maven.gpg.plugin.version>
+				<maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
 				<maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
 				<maven.sonar.maven.plugin.version>2.2</maven.sonar.maven.plugin.version>
 				<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
 				<maven.cli.plugin.version>1.0.10</maven.cli.plugin.version>
-				<maven.shade.plugin.version>2.2</maven.shade.plugin.version>
+				<maven.shade.plugin.version>2.3</maven.shade.plugin.version>
 				<maven.rar.plugin.version>2.3</maven.rar.plugin.version>
 				<maven.install.plugin.version>2.5.1</maven.install.plugin.version>
 				<maven.ear.plugin.version>2.9</maven.ear.plugin.version>
@@ -1831,16 +1571,17 @@
 				<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
 				<maven.invoker.plugin.version>1.8</maven.invoker.plugin.version>
 				<maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
-				<maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
+				<!--<maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>	-->
+				<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>					
 				<maven.jxr.plugin.version>2.4</maven.jxr.plugin.version>
-				<maven.pmd.plugin.version>3.0.1</maven.pmd.plugin.version>
+				<maven.pmd.plugin.version>3.1</maven.pmd.plugin.version>
 				<maven.project.info.reports.plugin.version>2.7</maven.project.info.reports.plugin.version>
 				<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
 				<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
 				<!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
 				<maven.site.plugin.version>3.3</maven.site.plugin.version>
 				<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
-				<maven.buildnumber.plugin.version>1.2</maven.buildnumber.plugin.version>
+				<maven.buildnumber.plugin.version>1.3</maven.buildnumber.plugin.version>
 				<maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>
 				<maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
 				<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
@@ -1853,7 +1594,7 @@
 				<!--<maven.versions.plugin.version>2.1</maven.versions.plugin.version> NullPointerException with 2.1 -->
 				<maven.versions.plugin.version>1.3.1</maven.versions.plugin.version>
 				<maven.idea.plugin.version>2.2.1</maven.idea.plugin.version>
-				<maven.cargo.maven2.plugin.version>1.4.5</maven.cargo.maven2.plugin.version>
+				<maven.cargo.maven2.plugin.version>1.4.8</maven.cargo.maven2.plugin.version>
 				<maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
 				<maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
 				<maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
@@ -1875,9 +1616,9 @@
 				<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
 				<maven.jaxb2.plugin.version>0.8.2</maven.jaxb2.plugin.version>
 				<maven.sql.plugin.version>1.5</maven.sql.plugin.version>
-				<maven.org.liquibase.plugin.version>2.0.1</maven.org.liquibase.plugin.version>
+				<maven.org.liquibase.plugin.version>3.1.1</maven.org.liquibase.plugin.version>
 				<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
-				<maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
+				<maven.exec.plugin.version>1.3</maven.exec.plugin.version>
 				<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
 				<maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
 				<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
@@ -1890,7 +1631,7 @@
 				<maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
 				<maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
-				<maven.wro4j.plugin.version>1.7.0</maven.wro4j.plugin.version>
+				<maven.wro4j.plugin.version>1.7.5</maven.wro4j.plugin.version>
 
 				<hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 
@@ -1912,7 +1653,7 @@
 				  repository. -->
 				<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
+				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>				
 				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->
 				<org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
@@ -2637,7 +2378,7 @@
 
 								</plugin>
 								<!-- The build date is available as $buildNumber in my POMs and resource files. -->
-								<!-- buildnumber-maven-plugin DOES not WORKS use maven-buildmetadata-plugin instead -->
+								<!-- TODO buildnumber-maven-plugin DOES not WORKS use maven-buildmetadata-plugin instead -->
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>buildnumber-maven-plugin</artifactId>
@@ -2963,9 +2704,9 @@
 																! for info on the archiver configuration properties. ! NOTE:
 																<addMavenDescriptor> requires v 2.1 or greater archive plugin.
 														-->
-							<!-- do not generate files that disturb jar diff between version -->
-										<addMavenDescriptor>false</addMavenDescriptor>
-										<pomPropertiesFile>false</pomPropertiesFile>
+														<!-- do not generate files that disturb jar diff between version -->
+														<addMavenDescriptor>false</addMavenDescriptor>
+														<pomPropertiesFile>false</pomPropertiesFile>
 														<!--
 																Disabled for http://mule.mulesource.org/jira/browse/MULE-1153
 																and http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4408526
@@ -3236,17 +2977,91 @@
 										<artifactId>maven-surefire-report-plugin</artifactId>
 										<version>${maven.surefire.report.plugin.version}</version>
 								</plugin>
+								<!-- attach-javadocs -->
+                                <!-- do not add maven-javadoc-plugin definition because attach-javadocs
+                                        will not work properly -->
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-javadoc-plugin</artifactId>
 										<version>${maven.javadoc.plugin.version}</version>
-												<dependencies>
-												  <dependency>
-													<groupId>org.codehaus.mojo</groupId>
-													<artifactId>clirr-maven-plugin</artifactId>
-													<version>${maven.clirr.plugin.version}</version>
-												  </dependency>
-												</dependencies>
+										<configuration>
+												<!--<stylesheet>maven</stylesheet>-->
+												<!--
+														<minmemory>128m</minmemory> <maxmemory>512m</maxmemory>
+												-->
+												<!--
+												<minmemory>128m</minmemory>
+												<maxmemory>2g</maxmemory>
+												<maxmemory>512m</maxmemory>
+												<maxmemory>1548m</maxmemory>
+												-->
+												<!--
+												<show>package</show>
+												<show>private</show>
+												--> 	
+															
+                                                <show>public</show>
+												<version>true</version>												
+												<failOnError>false</failOnError>
+												<javadocVersion>${jdkLevel}</javadocVersion>
+												<linksource>true</linksource>
+												<serialwarn>true</serialwarn>
+												<detectLinks>false</detectLinks>
+												<detectOfflineLinks>false</detectOfflineLinks>
+
+												<charset>${project.build.sourceEncoding}</charset>
+												<docencoding>${project.build.sourceEncoding}</docencoding>
+												<encoding>${project.build.sourceEncoding}</encoding>
+												
+												<!--<sourcepath>${basedir}/src/main/java;${basedir}/src/generated/main/java</sourcepath>-->
+												<!--
+												<doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
+												<docletArtifact>
+														<groupId>gr.spinellis</groupId>
+														<artifactId>UmlGraph</artifactId>
+														<version>${gr.spinellis.UmlGraph.version}</version>
+												</docletArtifact>
+												<additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
+														com.nabla.gui.* -collpackages java.util.* -collpackages
+														com.nabla.logical.*
+														-collpackages
+														com.nabla.utils.* -qualify
+														-postfixpackage
+														-nodefontsize 9 -nodefontpackagesize 7
+														-outputencoding utf8</additionalparam>
+												<excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
+												-->
+																								
+												<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+												<docletArtifact>
+														<groupId>org.umlgraph</groupId>
+														<!--
+														<artifactId>doclet</artifactId>
+														<version>${org.umlgraph.doclet.version}</version>
+														-->
+														<artifactId>umlgraph</artifactId>
+														<version>${org.umlgraph.umlgraph.version}</version>
+												</docletArtifact>
+												<useStandardDocletOptions>true</useStandardDocletOptions>
+												<additionalparam>-views</additionalparam>												
+												<additionalparam>-operations</additionalparam>
+												<additionalparam>-qualify</additionalparam>
+												<additionalparam>-types</additionalparam>
+												<additionalparam>-visibility</additionalparam>
+												<additionalparam>-collpackages</additionalparam>
+                                        </configuration>
+										<dependencies>
+										  <dependency>
+											<groupId>org.umlgraph</groupId>
+											<artifactId>umlgraph</artifactId>
+											<version>${org.umlgraph.umlgraph.version}</version>
+										  </dependency>  
+										  <dependency>
+											<groupId>org.codehaus.mojo</groupId>
+											<artifactId>clirr-maven-plugin</artifactId>
+											<version>${maven.clirr.plugin.version}</version>
+										  </dependency>
+										</dependencies>
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -3299,7 +3114,6 @@
 												<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
 												<xmlOutput>true</xmlOutput>
 												<fork>${maven.compiler.fork}</fork>
-												<!--<threshold>Normal</threshold>-->
 												<threshold>High</threshold>
 												<effort>Default</effort>
 												<failOnError>false</failOnError>
@@ -3317,14 +3131,7 @@
 									<groupId>gr.abiss.mvn.plugins</groupId>
 									<artifactId>maven-jstools-plugin</artifactId>
 									<version>${maven.jstools.plugin.version}</version>			
-								</plugin>		
-								<!--
-								<plugin>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>emma-maven-plugin</artifactId>
-										<version>${maven.emma.plugin.version}</version>
-								</plugin>
-								-->
+								</plugin>	
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>cobertura-maven-plugin</artifactId>
@@ -3449,7 +3256,7 @@
 											</execution>
 											-->											
 										</executions>
-								</plugin>
+								</plugin>								
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>dashboard-maven-plugin</artifactId>
@@ -3477,6 +3284,23 @@
 										<groupId>org.apache.rat</groupId>
 										<artifactId>apache-rat-plugin</artifactId>
 										<version>${maven.apache.rat.plugin.version}</version>
+												<configuration>
+												  <licenses>
+													<license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+													  <licenseFamilyCategory>YASL1</licenseFamilyCategory>
+													  <licenseFamilyName>Yet Another Software License (YASL) 1.0</licenseFamilyName>
+													  <notes></notes>
+													  <patterns>
+														<pattern>Copyright (c) 2002-2004, Nabla</pattern>
+													  </patterns>
+													</license>
+												  </licenses>
+												  <licenseFamilies>
+													<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+													  <familyName>Yet Another Software License</familyName>
+													</licenseFamily>
+												  </licenseFamilies>
+												</configuration>										
 								</plugin>
 								-->
 
@@ -3524,11 +3348,35 @@
 										<artifactId>maven-checkstyle-plugin</artifactId>
 										<version>${maven.checkstyle.plugin.version}</version>
 										<configuration>
+											<linkXref>true</linkXref>
+											<charset>${project.build.sourceEncoding}</charset>
+											<docencoding>${project.build.sourceEncoding}</docencoding>
+											<encoding>${project.build.sourceEncoding}</encoding>
 											<includeTestSourceDirectory>true</includeTestSourceDirectory>
+											<configLocation>project/checkstyle_checks.xml</configLocation>
+											<headerLocation>project/LICENSE-1.0.txt</headerLocation>
+	<!--
+											<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
+											<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+	-->
+											<propertyExpansion>projectname=nabla</propertyExpansion>
 											<excludes>**/generated/**/*</excludes>
 											<excludes>**/clover/**/*</excludes>
 										</configuration>
+										<dependencies>														
+											<dependency>
+													<groupId>com.nabla.project</groupId>
+													<artifactId>build-tools</artifactId>
+													<version>1.0.1-SNAPSHOT</version>
+											</dependency>
+										</dependencies>										
 								</plugin>
+                                
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>dbunit-maven-plugin</artifactId>
+									<version>${maven.dbunit.plugin.version}</version>
+								</plugin>   								
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-dependency-plugin</artifactId>
@@ -7512,6 +7360,38 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<version>${xmt.version}</version>
 				</dependency>
 				-->
+				<dependency>
+				  <groupId>org.drools</groupId>
+				  <artifactId>drools-core</artifactId>
+				  <version>${drools.version}</version>
+				</dependency>			  
+				<dependency>
+				  <groupId>org.drools</groupId>
+				  <artifactId>drools-compiler</artifactId>
+				  <version>${drools.version}</version>
+				</dependency>				
+				<dependency>
+				  <groupId>org.drools</groupId>
+				  <artifactId>drools-api</artifactId>
+				  <version>${drools.version}</version>
+				</dependency>			  
+				<dependency>
+				  <groupId>org.drools</groupId>
+				  <artifactId>drools-decisiontables</artifactId>
+				  <version>${drools.version}</version>
+				</dependency>			   
+				<dependency>
+				  <groupId>org.drools</groupId>
+				  <artifactId>drools-templates</artifactId>
+				  <version>${drools.version}</version>
+				</dependency>
+
+				<dependency>
+				  <groupId>org.drools</groupId>
+				  <artifactId>drools-transformer-xstream</artifactId>
+				  <version>${drools.transformer.xstream.version}</version>
+				</dependency>
+       				
 				<dependency>
 					<groupId>com.thoughtworks.xstream</groupId>
 					<artifactId>xstream</artifactId>
