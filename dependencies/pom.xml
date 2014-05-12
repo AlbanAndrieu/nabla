@@ -991,6 +991,7 @@
 
 				<maven.test.skip>false</maven.test.skip>
 				<maven.test.failure.skip>true</maven.test.failure.skip>
+				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<!--<maven.clover.licenseLocation>${home.dir}/build-tools/src/main/resources/project/clover.license</maven.clover.licenseLocation>-->
 				<!-- TODO overrided in filter -->
 
@@ -2985,6 +2986,7 @@
 										<artifactId>maven-javadoc-plugin</artifactId>
 										<version>${maven.javadoc.plugin.version}</version>
 										<configuration>
+												<stylesheetfile>project/javadoc-stylesheet.css</stylesheetfile>
 												<!--<stylesheet>maven</stylesheet>-->
 												<!--
 														<minmemory>128m</minmemory> <maxmemory>512m</maxmemory>
@@ -3051,17 +3053,22 @@
 												<additionalparam>-collpackages</additionalparam>
                                         </configuration>
 										<dependencies>
-										  <dependency>
-											<groupId>org.umlgraph</groupId>
-											<artifactId>umlgraph</artifactId>
-											<version>${org.umlgraph.umlgraph.version}</version>
-										  </dependency>  
-										  <dependency>
-											<groupId>org.codehaus.mojo</groupId>
-											<artifactId>clirr-maven-plugin</artifactId>
-											<version>${maven.clirr.plugin.version}</version>
-										  </dependency>
-										</dependencies>
+											<dependency>
+												<groupId>org.umlgraph</groupId>
+												<artifactId>umlgraph</artifactId>
+												<version>${org.umlgraph.umlgraph.version}</version>
+											</dependency>  
+											<dependency>
+												<groupId>org.codehaus.mojo</groupId>
+												<artifactId>clirr-maven-plugin</artifactId>
+												<version>${maven.clirr.plugin.version}</version>
+											</dependency>
+											<dependency>
+												<groupId>com.nabla.project</groupId>
+												<artifactId>build-tools</artifactId>
+												<version>1.0.1-SNAPSHOT</version>
+											</dependency>										  
+										</dependencies>	  
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -3121,6 +3128,13 @@
 												<maxHeap>1024</maxHeap>
 												<timeout>1200000</timeout>
 										</configuration>
+										<dependencies>														
+											<dependency>
+													<groupId>com.nabla.project</groupId>
+													<artifactId>build-tools</artifactId>
+													<version>1.0.1-SNAPSHOT</version>
+											</dependency>
+										</dependencies>												
 								</plugin>
 								<plugin>
 									<groupId>com.mobilvox.ossi.mojo</groupId>
@@ -3342,6 +3356,13 @@
 														<exclude>**/clover/**/*</exclude>
 												</excludes>
 										</configuration>
+										<dependencies>														
+											<dependency>
+													<groupId>com.nabla.project</groupId>
+													<artifactId>build-tools</artifactId>
+													<version>1.0.1-SNAPSHOT</version>
+											</dependency>
+										</dependencies>											
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
