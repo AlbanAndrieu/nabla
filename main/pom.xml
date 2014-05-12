@@ -682,6 +682,7 @@
                         <id>eclipse-folders</id>
                         <properties>
                                 <target.dir>target-eclipse</target.dir>
+                                <maven.javadoc.skip>true</maven.javadoc.skip>
                         </properties>
                 </profile>
                 <profile>
@@ -692,6 +693,7 @@
                                 <skipProcessing>true</skipProcessing>
                                 <maven.test.skip>false</maven.test.skip>
                                 <andromda.translation.test.skip>true</andromda.translation.test.skip>
+                                <maven.javadoc.skip>false</maven.javadoc.skip>
                         </properties>
                 </profile>
                 <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->
@@ -913,6 +915,7 @@
                                 <jdbc.username /> <jdbc.password /> <jdbc.exception.sorter />
                                 <webservice.host /> <webservice.port />
                                 -->
+                                <maven.javadoc.skip>true</maven.javadoc.skip>
                         </properties>
 
                 </profile>
@@ -924,6 +927,10 @@
                                         <value>int</value>
                                 </property>
                         </activation>
+                        <properties>
+                                <environment>integration</environment>
+                                <maven.javadoc.skip>false</maven.javadoc.skip>
+                        </properties>                        
                         <build>
                                 <plugins>
                                         <plugin>
@@ -966,6 +973,7 @@
                                                 <executions>
                                                         <execution>
                                                                 <id>attach-javadocs</id>
+                                                                <phase>post-integration-test</phase>
                                                                 <goals>
                                                                         <goal>jar</goal>
                                                                 </goals>
@@ -1205,7 +1213,8 @@
                                                                                         </group>
                                                                                 </groups>
 
-                                                                                <stylesheet>maven</stylesheet>
+																				<stylesheetfile>project/javadoc-stylesheet.css</stylesheetfile>
+                                                                                <!--<stylesheet>maven</stylesheet>-->
                                                                                 <!--
                                                                                         <minmemory>128m</minmemory> <maxmemory>512m</maxmemory>
                                                                                 -->
@@ -1267,7 +1276,26 @@
 																				<additionalparam>-types</additionalparam>
 																				<additionalparam>-visibility</additionalparam>
 																				<additionalparam>-collpackages</additionalparam>
-                                                                        </configuration>                                                                                                                                                   
+                                                                        </configuration>  
+                                                                        <!--    
+																		<dependencies>
+																		    <dependency>
+																				<groupId>org.umlgraph</groupId>
+																				<artifactId>umlgraph</artifactId>
+																				<version>${org.umlgraph.umlgraph.version}</version>
+																		    </dependency>  
+																		    <dependency>
+																				<groupId>org.codehaus.mojo</groupId>
+																				<artifactId>clirr-maven-plugin</artifactId>
+																				<version>${maven.clirr.plugin.version}</version>
+																		    </dependency>
+																			<dependency>
+																				<groupId>com.nabla.project</groupId>
+																				<artifactId>build-tools</artifactId>
+																				<version>1.0.1-SNAPSHOT</version>
+																			</dependency>										  
+																		</dependencies>	    
+																		-->                                                                                                                                                                                                                 
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
@@ -1343,7 +1371,16 @@
 																			<propertyExpansion>projectname=nabla</propertyExpansion>
 																			<excludes>**/generated/**/*</excludes>
 																			<excludes>**/clover/**/*</excludes>
-																		</configuration>		
+																		</configuration>	
+																		<!--
+																		<dependencies>
+																			<dependency>
+																				<groupId>com.nabla.project</groupId>
+																				<artifactId>build-tools</artifactId>
+																				<version>1.0.1-SNAPSHOT</version>
+																			</dependency>										  
+																		</dependencies>	    
+																		-->
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION PMD *** -->
@@ -1370,6 +1407,15 @@
                                                                                 </rulesets>
                                                                                 -->
                                                                         </configuration>
+                                                                        <!--
+																		<dependencies>
+																			<dependency>
+																				<groupId>com.nabla.project</groupId>
+																				<artifactId>build-tools</artifactId>
+																				<version>1.0.1-SNAPSHOT</version>
+																			</dependency>										  
+																		</dependencies>      
+																		-->                                                                  
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION FINDBUGS *** -->
@@ -1391,6 +1437,13 @@
 																				<maxHeap>1024</maxHeap>
 																				<timeout>1200000</timeout>
                                                                         </configuration>
+																		<dependencies>
+																			<dependency>
+																				<groupId>com.nabla.project</groupId>
+																				<artifactId>build-tools</artifactId>
+																				<version>1.0.1-SNAPSHOT</version>
+																			</dependency>										  
+																		</dependencies>                                                                        
                                                                 </plugin>
                                                                 -->
 
@@ -1720,13 +1773,9 @@
 										</plugin>                                          
                                 </plugins>
                         </build>
-                        <properties>
-                                <environment>integration</environment>
-                                <!--<jdbc.driver.jar /> <jdbc.driver /> <jdbc.url /> <jdbc.username/> <jdbc.password /> <jdbc.exception.sorter /> <webservice.host /> <webservice.port/> -->
-                        </properties>
                 </profile>
                 <profile>
-                        <id>validation</id>
+                        <id>validation</id>                        
                         <activation>
                                 <property>
                                         <name>env</name>
@@ -1772,6 +1821,10 @@
                                         <value>rel</value>
                                 </property>
                         </activation>
+                        <properties>
+                                <environment>release</environment>
+                                <maven.javadoc.skip>false</maven.javadoc.skip>
+                        </properties>                          
                         <build>
                                 <plugins>
                                         <plugin>
@@ -1807,6 +1860,7 @@
                                                 <executions>
                                                         <execution>
                                                                 <id>attach-javadocs</id>
+                                                                <phase>post-integration-test</phase>
                                                                 <goals>
                                                                         <goal>jar</goal>
                                                                 </goals>
@@ -2119,7 +2173,8 @@
                                                                                         </group>
                                                                                 </groups>
 
-                                                                                <stylesheet>maven</stylesheet>
+																				<stylesheetfile>project/javadoc-stylesheet.css</stylesheetfile>
+                                                                                <!--<stylesheet>maven</stylesheet>-->
                                                                                 <!--
                                                                                         <minmemory>128m</minmemory> <maxmemory>512m</maxmemory>
                                                                                 -->
