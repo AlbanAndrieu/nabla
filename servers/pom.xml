@@ -57,7 +57,7 @@
 					<configuration>
 						<wait>${cargo.wait}</wait>
 						<container>
-							<timeout>180000</timeout>
+							<timeout>240000</timeout> <!-- 4 minutes -->
 						</container>
 						<configuration>
 							<type>${cargo.configuration.type}</type>
@@ -76,6 +76,28 @@
 							</properties>
 						</configuration>
 					</configuration>
+					  <executions>
+						<execution>
+						  <id>start</id>
+						  <phase>pre-integration-test</phase>
+						  <goals>
+							<goal>start</goal>
+						  </goals>
+						  <configuration>
+							<timeout>240000</timeout> <!-- 4 minutes -->
+						  </configuration>
+						</execution>
+						<execution>
+						  <id>stop</id>
+						  <phase>post-integration-test</phase>
+						  <goals>
+							<goal>stop</goal>
+						  </goals>
+						  <configuration>
+							<timeout>60000</timeout> <!-- 1 minutes -->
+						  </configuration>
+						</execution>
+					  </executions>					
 				</plugin>
                               <!-- end Web application server helpers -->
 			</plugins>
