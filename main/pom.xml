@@ -1030,6 +1030,8 @@
                                                                                 <reportSet>
                                                                                         <reports>
                                                                                                 <report>changes-report</report>
+                                                                                                <!-- Uncomment if using JIRA -->
+																								<!--report>jira-report</report-->
                                                                                         </reports>
                                                                                 </reportSet>
                                                                         </reportSets>
@@ -1213,8 +1215,11 @@
                                                                                 <maxmemory>512m</maxmemory>
                                                                                 <maxmemory>1548m</maxmemory>
                                                                                 -->
-                                                                                <!--<show>package</show>-->
-                                                                                <show>public</show>
+                                                                                <!--
+																				<show>package</show>
+																				<show>private</show>
+																				--> 				
+																				<show>public</show>
                                                                                 <version>true</version>
                                                                                 <javadocVersion>${jdkLevel}</javadocVersion>
                                                                                 <failOnError>false</failOnError>
@@ -1226,14 +1231,13 @@
                                                                                 <charset>${project.build.sourceEncoding}</charset>
                                                                                 <docencoding>${project.build.sourceEncoding}</docencoding>
                                                                                 <encoding>${project.build.sourceEncoding}</encoding>
-                                                                                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
 
                                                                                 <!--
                                                                                 <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
                                                                                 <docletArtifact>
                                                                                         <groupId>gr.spinellis</groupId>
                                                                                         <artifactId>UmlGraph</artifactId>
-                                                                                        <version>4.9.0</version>
+                                                                                        <version>${gr.spinellis.UmlGraph.version}</version>
                                                                                 </docletArtifact>
                                                                                 <additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
                                                                                         com.nabla.gui.* -collpackages java.util.* -collpackages
@@ -1245,20 +1249,25 @@
                                                                                         -outputencoding utf8</additionalparam>
                                                                                 <excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
                                                                                 -->
-                                                                                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                                                                                <docletArtifact>
-                                                                                        <groupId>org.umlgraph</groupId>
-                                                                                        <artifactId>doclet</artifactId>
-                                                                                        <version>5.1</version>
-                                                                                </docletArtifact>
-                                                                                <additionalparam>-views</additionalparam>
-                                                                                <additionalparam>-operations</additionalparam>
-                                                                                <additionalparam>-qualify</additionalparam>
-                                                                                <additionalparam>-types</additionalparam>
-                                                                                <additionalparam>-visibility</additionalparam>
-                                                                                <additionalparam>-collpackages</additionalparam>
-                                                                                <show>private</show>
-                                                                        </configuration>
+                                                                                
+																				<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+																				<docletArtifact>
+																						<groupId>org.umlgraph</groupId>
+																						<!--
+																						<artifactId>doclet</artifactId>
+																						<version>${org.umlgraph.doclet.version}</version>
+																						-->
+																						<artifactId>umlgraph</artifactId>
+																						<version>${org.umlgraph.umlgraph.version}</version>
+																				</docletArtifact>
+																				<useStandardDocletOptions>true</useStandardDocletOptions>
+																				<additionalparam>-views</additionalparam>												
+																				<additionalparam>-operations</additionalparam>
+																				<additionalparam>-qualify</additionalparam>
+																				<additionalparam>-types</additionalparam>
+																				<additionalparam>-visibility</additionalparam>
+																				<additionalparam>-collpackages</additionalparam>
+                                                                        </configuration>                                                                                                                                                   
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
@@ -1312,17 +1321,6 @@
                                                                                 </tagListOptions>
                                                                         </configuration>
                                                                 </plugin>
-                                                                <!-- When there is JXR cross-refernce output available, it will be linked
-                                                                        to in case of test failures -->
-
-                                                                <!--
-                                                                <plugin>
-                                                                        <groupId>org.codehaus.mojo</groupId>
-                                                                        <artifactId>emma-maven-plugin</artifactId>
-                                                                        <version>${maven.emma.plugin.version}</version>
-                                                                </plugin>
-                                                                -->
-
                                                                 <!-- Comment verifier la qualitee code avec checkstyle ou PMD -->
                                                                 <!-- *** GENERATION CHECKSTYLE *** -->
                                                                 <!-- Checkstyle plug-in -->
@@ -1330,20 +1328,22 @@
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-checkstyle-plugin</artifactId>
                                                                         <version>${maven.checkstyle.plugin.version}</version>
-                                                                        <configuration>
-                                                                                <linkXref>true</linkXref>
-                                                                                <charset>${project.build.sourceEncoding}</charset>
-                                                                                <docencoding>${project.build.sourceEncoding}</docencoding>
-                                                                                <encoding>${project.build.sourceEncoding}</encoding>
-                                                                                <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                                                                                <configLocation>project/checkstyle_checks.xml</configLocation>
-                                                                                <headerLocation>project/LICENSE-1.0.txt</headerLocation>
-<!--
-                                                                                <configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
-                                                                                <headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
--->
-                                                                                <propertyExpansion>projectname=nabla</propertyExpansion>
-                                                                        </configuration>
+																		<configuration>
+																			<linkXref>true</linkXref>
+																			<charset>${project.build.sourceEncoding}</charset>
+																			<docencoding>${project.build.sourceEncoding}</docencoding>
+																			<encoding>${project.build.sourceEncoding}</encoding>
+																			<includeTestSourceDirectory>true</includeTestSourceDirectory>
+																			<configLocation>project/checkstyle_checks.xml</configLocation>
+																			<headerLocation>project/LICENSE-1.0.txt</headerLocation>
+									<!--
+																			<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
+																			<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+									-->
+																			<propertyExpansion>projectname=nabla</propertyExpansion>
+																			<excludes>**/generated/**/*</excludes>
+																			<excludes>**/clover/**/*</excludes>
+																		</configuration>		
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION PMD *** -->
@@ -1374,20 +1374,25 @@
 
                                                                 <!-- *** GENERATION FINDBUGS *** -->
                                                                 <!-- Java Heap Space possible si trop de source a analyser -->
+                                                                <!-- TODO Does not work with JAVA 8
                                                                 <plugin>
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>findbugs-maven-plugin</artifactId>
                                                                         <version>${maven.findbugs.plugin.version}</version>
-                                                                        <configuration>
-                                                                                <findbugsXmlOutput>true</findbugsXmlOutput>
-                                                                                <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-                                                                                <xmlOutput>true</xmlOutput>
-                                                                                <threshold>Normal</threshold>
-                                                                                <effort>Default</effort>
+                                                                        <configuration>                                                                                 
+																				<findbugsXmlOutput>true</findbugsXmlOutput>                                                                          												<findbugsXmlOutput>true</findbugsXmlOutput>
+																				<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+																				<xmlOutput>true</xmlOutput>
+																				<fork>${maven.compiler.fork}</fork>
+																				<threshold>High</threshold>
+																				<effort>Default</effort>
+																				<failOnError>false</failOnError>
+																				<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
 																				<maxHeap>1024</maxHeap>
-																				<timeout>1200000</timeout>                                                                                  
+																				<timeout>1200000</timeout>
                                                                         </configuration>
                                                                 </plugin>
+                                                                -->
 
                                                                 <!-- Comment analyser les metriques avec JDepend -->
                                                                 <!-- TODO does not work jdepend:generate -->
@@ -1439,18 +1444,22 @@
 
                                                                 <!-- Comment gerer un rapport de couverture des tests -->
                                                                 <!-- Code Coverage by Cobertura -->
+                                                                <!-- TODO doesn not work with JAVA 8
                                                                 <plugin>
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>cobertura-maven-plugin</artifactId>
                                                                         <version>${maven.cobertura.plugin.version}</version>
                                                                         <configuration>
+																				-->
                                                                                 <!--<aggregate>true</aggregate>-->
+                                                                                <!--
                                                                                 <formats>
                                                                                         <format>xml</format>
                                                                                         <format>html</format>
                                                                                 </formats>
                                                                         </configuration>
                                                                 </plugin>
+                                                                -->
 
                                                                 <!-- dashboard must be done at the end in order to have a complete report -->
 <!--
@@ -1513,18 +1522,20 @@
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
-                                                        <!--
+                                                        
                                                         <dependency>
                                                                 <groupId>org.apache.maven.skins</groupId>
                                                                 <artifactId>maven-default-skin</artifactId>
                                                                 <version>${maven.default.skin.version}</version>
                                                         </dependency>
-                                                        -->
+                                                        
+                                                        <!--
                                                         <dependency>
                                                                 <groupId>com.nabla.project</groupId>
                                                                 <artifactId>skin</artifactId>
                                                                 <version>1.0.1-SNAPSHOT</version>
                                                         </dependency>
+                                                        -->
                                                         <dependency>
                                                                 <groupId>org.apache.maven.doxia</groupId>
                                                                 <artifactId>doxia-module-twiki</artifactId>
@@ -1537,27 +1548,34 @@
                                                 <artifactId>maven-dependency-plugin</artifactId>
                                                 <version>${maven.dependency.plugin.version}</version>
                                         </plugin>
-                                        <!--
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>emma-maven-plugin</artifactId>
-                                                <version>${maven.emma.plugin.version}</version>
-                                                <inherited>true</inherited>
-                                        </plugin>
-                                        -->
                                         <!-- http://checkstyle.sourceforge.net -->
                                         <plugin>
                                                 <groupId>org.apache.maven.plugins</groupId>
                                                 <artifactId>maven-checkstyle-plugin</artifactId>
                                                 <version>${maven.checkstyle.plugin.version}</version>
-                                                <dependencies>
-                                                        <!-- The file defined in the location is stored in this dependency -->
-                                                        <dependency>
-                                                                <groupId>com.nabla.project</groupId>
-                                                                <artifactId>build-tools</artifactId>
-                                                                <version>1.0.1-SNAPSHOT</version>
-                                                        </dependency>
-                                                </dependencies>
+												<configuration>
+													<linkXref>true</linkXref>
+													<charset>${project.build.sourceEncoding}</charset>
+													<docencoding>${project.build.sourceEncoding}</docencoding>
+													<encoding>${project.build.sourceEncoding}</encoding>
+													<includeTestSourceDirectory>true</includeTestSourceDirectory>
+													<configLocation>project/checkstyle_checks.xml</configLocation>
+													<headerLocation>project/LICENSE-1.0.txt</headerLocation>
+			<!--
+													<configLocation>${home.dir}/build-tools/src/main/resources/project/checkstyle_checks.xml</configLocation>
+													<headerLocation>${home.dir}/build-tools/src/main/resources/project/LICENSE-1.0.txt</headerLocation>
+			-->
+													<propertyExpansion>projectname=nabla</propertyExpansion>
+													<excludes>**/generated/**/*</excludes>
+													<excludes>**/clover/**/*</excludes>
+												</configuration>
+												<dependencies>														
+													<dependency>
+															<groupId>com.nabla.project</groupId>
+															<artifactId>build-tools</artifactId>
+															<version>1.0.1-SNAPSHOT</version>
+													</dependency>
+												</dependencies>			
                                         </plugin>
 
                                         <!-- Delete code coverage database when 'mvn clean' is executed -->
@@ -1931,6 +1949,8 @@
                                                                                 <reportSet>
                                                                                         <reports>
                                                                                                 <report>changes-report</report>
+                                                                                                <!-- Uncomment if using JIRA -->
+																								<!--report>jira-report</report-->
                                                                                         </reports>
                                                                                 </reportSet>
                                                                         </reportSets>
@@ -2109,7 +2129,10 @@
                                                                                 <maxmemory>512m</maxmemory>
                                                                                 <maxmemory>1548m</maxmemory>
                                                                                 -->
-                                                                                <!--<show>package</show>-->
+                                                                                <!--
+																				<show>package</show>
+																				<show>private</show>
+																				--> 	
                                                                                 <show>public</show>
                                                                                 <version>true</version>
                                                                                 <javadocVersion>${jdkLevel}</javadocVersion>
@@ -2122,14 +2145,13 @@
                                                                                 <charset>${project.build.sourceEncoding}</charset>
                                                                                 <docencoding>${project.build.sourceEncoding}</docencoding>
                                                                                 <encoding>${project.build.sourceEncoding}</encoding>
-                                                                                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-
+                                                                                
                                                                                 <!--
                                                                                 <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
                                                                                 <docletArtifact>
                                                                                         <groupId>gr.spinellis</groupId>
                                                                                         <artifactId>UmlGraph</artifactId>
-                                                                                        <version>4.9.0</version>
+                                                                                        <version>${gr.spinellis.UmlGraph.version}</version>
                                                                                 </docletArtifact>
                                                                                 <additionalparam> -inferrel -inferdep -quiet -hide java.* -hide
                                                                                         com.nabla.gui.* -collpackages java.util.* -collpackages
@@ -2141,19 +2163,24 @@
                                                                                         -outputencoding utf8</additionalparam>
                                                                                 <excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
                                                                                 -->
-                                                                                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                                                                                <docletArtifact>
-                                                                                        <groupId>org.umlgraph</groupId>
-                                                                                        <artifactId>doclet</artifactId>
-                                                                                        <version>5.1</version>
-                                                                                </docletArtifact>
-                                                                                <additionalparam>-views</additionalparam>
-                                                                                <additionalparam>-operations</additionalparam>
-                                                                                <additionalparam>-qualify</additionalparam>
-                                                                                <additionalparam>-types</additionalparam>
-                                                                                <additionalparam>-visibility</additionalparam>
-                                                                                <additionalparam>-collpackages</additionalparam>
-                                                                                <show>private</show>
+                                                                                
+  																				<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+																				<docletArtifact>
+																						<groupId>org.umlgraph</groupId>
+																						<!--
+																						<artifactId>doclet</artifactId>
+																						<version>${org.umlgraph.doclet.version}</version>
+																						-->
+																						<artifactId>umlgraph</artifactId>
+																						<version>${org.umlgraph.umlgraph.version}</version>
+																				</docletArtifact>
+																				<useStandardDocletOptions>true</useStandardDocletOptions>
+																				<additionalparam>-views</additionalparam>												
+																				<additionalparam>-operations</additionalparam>
+																				<additionalparam>-qualify</additionalparam>
+																				<additionalparam>-types</additionalparam>
+																				<additionalparam>-visibility</additionalparam>
+																				<additionalparam>-collpackages</additionalparam>
                                                                         </configuration>
                                                                 </plugin>
 
@@ -2249,14 +2276,6 @@
                                                 <artifactId>maven-changelog-plugin</artifactId>
                                                 <version>${maven.changelog.plugin.version}</version>
                                         </plugin>
-                                        <!--
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>emma-maven-plugin</artifactId>
-                                                <version>${maven.emma.plugin.version}</version>
-                                                <inherited>true</inherited>
-                                        </plugin>
-                                        -->
                                         <plugin>
                                                 <groupId>org.apache.maven.plugins</groupId>
                                                 <artifactId>maven-scm-plugin</artifactId>
