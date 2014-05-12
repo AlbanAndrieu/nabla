@@ -5,7 +5,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Nabla
+    Checkstyle-Configuration: Checkstyle Nabla
     Description: none
 -->
 <module name="Checker">
@@ -14,7 +14,6 @@
     <property name="cacheFile" value="target/cachefile"/>
     <property name="tabWidth" value="4"/>
     <module name="JavadocMethod">
-      <property name="logLoadErrors" value="true"/>
       <property name="suppressLoadErrors" value="true"/>
     </module>
     <module name="JavadocType"/>
@@ -28,12 +27,6 @@
     <module name="MemberName"/>
     <module name="MethodName"/>
     <module name="PackageName"/>
-    <!--
-    <module name="PackageName">
-      <property name="format"
-         value="com\.$\{projectname\}\.project(\.[a-z][a-zA-Z0-9]+)*$"/>
-    </module>
-    -->
     <module name="ParameterName"/>
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
@@ -62,11 +55,11 @@
     <module name="AvoidNestedBlocks"/>
     <module name="EmptyBlock"/>
     <module name="LeftCurly">
-        <property name="option" value="nl"/>
+      <property name="maxLineLength" value="220"/>
     </module>
-    <module name="NeedBraces" />
+    <module name="NeedBraces"/>
     <module name="RightCurly">
-        <property name="option" value="alone"/>
+      <property name="option" value="alone"/>
     </module>
     <module name="AvoidInlineConditionals"/>
     <module name="EmptyStatement"/>
@@ -77,7 +70,6 @@
     <module name="MagicNumber"/>
     <module name="MissingSwitchDefault"/>
     <module name="RedundantThrows">
-      <property name="logLoadErrors" value="true"/>
       <property name="suppressLoadErrors" value="true"/>
     </module>
     <module name="SimplifyBooleanExpression"/>
