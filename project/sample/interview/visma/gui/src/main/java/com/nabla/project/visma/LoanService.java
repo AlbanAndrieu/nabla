@@ -45,18 +45,15 @@ import com.nabla.project.visma.api.IProduct;
 
 //The @Stateless annotation eliminates the need for manual transaction
 //TODO @Stateless
-public class LoanService implements ILoanService
-{
+public class LoanService implements ILoanService {
 
     // TODO @Inject
     private static transient Logger LOGGER = Logger.getLogger(LoanService.class);
 
     @Override
-    public Map<Integer, List<BigDecimal>> calcMonthlyPayment(final BigDecimal loanAmount, final int numberOfYears)
-    {
+    public Map<Integer, List<BigDecimal>> calcMonthlyPayment(final BigDecimal loanAmount, final int numberOfYears) {
 
-        if (LoanService.LOGGER.isDebugEnabled())
-        {
+        if (LoanService.LOGGER.isDebugEnabled()) {
             LoanService.LOGGER.debug("Start calculateMonthlyPayment for loan amount: " + loanAmount + " and number of years :" + numberOfYears);
         }
 
@@ -68,11 +65,9 @@ public class LoanService implements ILoanService
     }
 
     @Override
-    public BigDecimal getTotalPayment(final BigDecimal loanAmount, final int numberOfYears)
-    {
+    public BigDecimal getTotalPayment(final BigDecimal loanAmount, final int numberOfYears) {
 
-        if (LoanService.LOGGER.isDebugEnabled())
-        {
+        if (LoanService.LOGGER.isDebugEnabled()) {
             LoanService.LOGGER.debug("Start getTotalPayment for loan amount: " + loanAmount + " and number of years :" + numberOfYears);
         }
 

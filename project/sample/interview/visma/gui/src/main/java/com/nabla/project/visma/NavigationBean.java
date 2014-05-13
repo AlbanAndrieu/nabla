@@ -7,8 +7,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class NavigationBean implements Serializable
-{
+public class NavigationBean implements Serializable {
 
     private static final long serialVersionUID = -1074473345848765304L;
 
@@ -16,8 +15,7 @@ public class NavigationBean implements Serializable
      * Redirect to payment page.
      * @return Payment page name.
      */
-    public String redirectToPayment()
-    {
+    public String redirectToPayment() {
         return "payment?faces-redirect=true";
     }
 
