@@ -11,7 +11,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>gui</artifactId>
 	<packaging>war</packaging>
-	<name>Java Server Faces Maven Webapp for Visma</name>
+	<name>Maven Java Server Faces Webapp for Visma</name>
 
 	<!--       
         <properties>
@@ -129,14 +129,14 @@
 			<scope>provided</scope>
 		</dependency>  
 		
-		<!--
+		<!-- 
       <dependency>
          <groupId>org.jboss.weld.servlet</groupId>
          <artifactId>weld-servlet</artifactId>
-         <version>${version.weld-servlet}</version>
+         <version>${weld.servlet.version}</version>
       </dependency>      
-      -->  		
-        		
+      -->
+      
 		<!-- for cannot access javax.faces.application.FacesMessage -->
 		<!-- see in core project it is provided (needed for jboss 7) -->
 		<dependency>
@@ -264,6 +264,15 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- 
+		<dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-bom</artifactId>
+            <version>2.0.0-alpha-1</version>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+         -->
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
@@ -459,7 +468,9 @@
 						<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
 						<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
 						<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
-        			</systemPropertyVariables>
+                        <arquillian.launch>jetty</arquillian.launch>
+                        <!--<arquillian.launch>jbossas_managed</arquillian.launch>-->
+                     </systemPropertyVariables>
 				</configuration>
 				<!-- run with -Prun-its instead
 				<executions>
