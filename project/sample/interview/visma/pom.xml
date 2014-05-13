@@ -70,6 +70,13 @@
 					<target>${jdkLevel}</target>
 				</configuration>
 			</plugin>	
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>				
 		</plugins>
 	</build>
 
