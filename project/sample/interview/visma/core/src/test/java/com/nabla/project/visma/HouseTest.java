@@ -48,12 +48,14 @@ import com.nabla.project.visma.api.IProduct;
  *
  * @since $Date$
  */
-public class HouseTest {
+public class HouseTest
+{
 
     public static final BigDecimal DEFAULT_EXPECTED_PRICE = new BigDecimal(1_000_000);
 
     @Test(expected = AssertionError.class)
-    public final void testEmptyContructor() {
+    public final void testEmptyContructor()
+    {
 
         final IProduct product = new House();
         Assert.assertNotNull(product);
@@ -61,7 +63,8 @@ public class HouseTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testProductNull() {
+    public final void testProductNull()
+    {
 
         @SuppressWarnings("null")
         final IProduct product = new House(null);
@@ -70,14 +73,16 @@ public class HouseTest {
     }
 
     @Test
-    public final void testPriceContructor() {
+    public final void testPriceContructor()
+    {
 
         Assert.assertEquals(HouseTest.DEFAULT_EXPECTED_PRICE, new House(new BigDecimal(1_000_000)).getPrice());
         Assert.assertFalse(new House(new BigDecimal(1_000_000)).equals(HouseTest.DEFAULT_EXPECTED_PRICE));
     }
 
     @Test(expected = NumberFormatException.class)
-    public final void testPriceNotANumber() {
+    public final void testPriceNotANumber()
+    {
 
         final IProduct product = new House(new BigDecimal("Not a number"));
         Assert.assertNotNull(product);
@@ -85,7 +90,8 @@ public class HouseTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testPriceNotNull() {
+    public final void testPriceNotNull()
+    {
 
         @SuppressWarnings("null")
         final IProduct product = new House(null);
@@ -94,34 +100,39 @@ public class HouseTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testNegatifPriceContructorBigDecimal() {
+    public final void testNegatifPriceContructorBigDecimal()
+    {
 
         Assert.assertEquals(new BigDecimal(-100), new House(new BigDecimal(-100)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testNegatifPriceContructor() {
+    public final void testNegatifPriceContructor()
+    {
 
         Assert.assertEquals(new BigDecimal(-100), new House(-100));
     }
 
     @SuppressWarnings("null")
     @Test(expected = IllegalArgumentException.class)
-    public final void testPriceZero1() {
+    public final void testPriceZero1()
+    {
 
         Assert.assertEquals(BigDecimal.ZERO, new House(BigDecimal.ZERO));
 
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testPriceZero2() {
+    public final void testPriceZero2()
+    {
 
         Assert.assertEquals(BigDecimal.ZERO, new House(0));
 
     }
 
     @Test
-    public final void testToString() {
+    public final void testToString()
+    {
 
         Assert.assertEquals("name:" + House.DEFAULT_NAME + " price:" + HouseTest.DEFAULT_EXPECTED_PRICE, new House(1_000_000).toString());
         Assert.assertFalse(new House(1_000_000).equals("name:" + House.DEFAULT_NAME + " price:" + HouseTest.DEFAULT_EXPECTED_PRICE));
@@ -129,20 +140,23 @@ public class HouseTest {
     }
 
     @Test
-    public final void testCompareNull() {
+    public final void testCompareNull()
+    {
 
         Assert.assertFalse(new House(1_000_000).equals(null));
     }
 
     @SuppressWarnings("null")
     @Test(expected = IllegalArgumentException.class)
-    public final void testCompareZero() {
+    public final void testCompareZero()
+    {
 
         Assert.assertFalse(new House(1_000_000).equals(new House((BigDecimal.ZERO))));
     }
 
     @Test
-    public final void testCompareOK() {
+    public final void testCompareOK()
+    {
 
         Assert.assertEquals(new House(1_000_000), new House(1_000_000));
         Assert.assertTrue(new House(1_000_000).equals(new House(1_000_000)));
@@ -150,13 +164,15 @@ public class HouseTest {
     }
 
     @Test
-    public final void testCompareNOK() {
+    public final void testCompareNOK()
+    {
 
         Assert.assertFalse(new House(1_000_000).equals(new House((3_565_777))));
     }
 
     @Test(expected = AssertionError.class)
-    public final void testCompareNOKwithException() {
+    public final void testCompareNOKwithException()
+    {
 
         Assert.assertFalse(new House(1_000_000).equals(new House()));
     }

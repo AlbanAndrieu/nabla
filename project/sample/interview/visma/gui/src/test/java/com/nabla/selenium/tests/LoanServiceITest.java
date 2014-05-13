@@ -16,13 +16,15 @@ import com.nabla.project.visma.LoanService;
 import com.nabla.project.visma.api.ILoanService;
 
 @RunWith(Arquillian.class)
-public class LoanServiceITest {
+public class LoanServiceITest
+{
 
     // @TargetsContainer("weld")
     @Deployment
     // @org.jboss.arquillian.container.test.api.TargetsContainer("jetty")
     // @org.jboss.arquillian.container.test.api.TargetsContainer("jbossas_managed")
-    public static Archive<?> createTestArchive() {
+    public static Archive<?> createTestArchive()
+    {
         // return ShrinkWrap.create(JavaArchive.class, "test.jar")
         return ShrinkWrap.create(WebArchive.class, "test.war").addClasses(ILoanService.class, LoanService.class).setWebXML("jsf-web.xml");
         /*
@@ -51,7 +53,8 @@ public class LoanServiceITest {
 
     @Test
     @InSequence(1)
-    public void testRegister() throws Exception {
+    public void testRegister() throws Exception
+    {
         final BigDecimal total = this.service.getTotalPayment(new BigDecimal(200_000), 30);
 
         Assert.assertNotNull(total);

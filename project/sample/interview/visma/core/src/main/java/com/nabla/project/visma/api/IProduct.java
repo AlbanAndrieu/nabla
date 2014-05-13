@@ -44,7 +44,8 @@ import java.math.BigDecimal;
  * @since $Date$
  *
  */
-public interface IProduct {
+public interface IProduct
+{
 
     /**
      *

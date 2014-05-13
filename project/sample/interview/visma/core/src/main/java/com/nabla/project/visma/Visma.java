@@ -39,14 +39,17 @@ import java.util.Scanner;
 import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IProduct;
 
-public class Visma {
+public class Visma
+{
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args)
+    {
         double loanAmount;// double value loan amount
         double annualInterestRate;// double value interest rate
         int numberOfYears;// int value for number of months
 
-        try (Scanner keyboard = new Scanner(System.in)) {
+        try (Scanner keyboard = new Scanner(System.in))
+        {
 
             System.out.println("Please enter the amount of your loan. Ex. 200000");
             loanAmount = keyboard.nextDouble();
@@ -64,10 +67,12 @@ public class Visma {
         System.out.println("Payment schedule is :\n " + loan.calcMonthlyPayment() + "\n");
 
         final BigDecimal totalPayment = loan.getTotalPayment();
-        if (totalPayment.doubleValue() < loanAmount) {
+        if (totalPayment.doubleValue() < loanAmount)
+        {
             System.err.println("Total payment is lower than loan amount\n");
             // Calculation is wrong
-        } else {
+        } else
+        {
             System.out.println("Total payment is :\n " + totalPayment + "\n");
         }
 

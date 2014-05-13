@@ -46,7 +46,8 @@ import java.util.Map;
  * @since $Date$
  *
  */
-public interface IPaymentMethod {
+public interface IPaymentMethod
+{
 
     public void setLoan(final ILoan aloan);
 

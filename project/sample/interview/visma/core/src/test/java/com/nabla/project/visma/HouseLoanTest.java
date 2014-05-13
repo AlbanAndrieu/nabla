@@ -49,7 +49,8 @@ import com.nabla.project.visma.api.IProduct;
  *
  * @since $Date$
  */
-public class HouseLoanTest {
+public class HouseLoanTest
+{
 
     public static final double DOUBLE_DELTA         = 1e-15;
     public static final int    DEFAULT_PAYBACK_TIME = 30;
@@ -57,17 +58,20 @@ public class HouseLoanTest {
     private IProduct           product;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         this.product = new House(HouseTest.DEFAULT_EXPECTED_PRICE);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws Exception
+    {
         this.product = null;
     }
 
     @Test(expected = AssertionError.class)
-    public final void testEmptyContructor() {
+    public final void testEmptyContructor()
+    {
 
         final ILoan loan = new HouseLoan();
         Assert.assertNotNull(loan);
@@ -75,7 +79,8 @@ public class HouseLoanTest {
     }
 
     @Test
-    public final void testProductNotNull() {
+    public final void testProductNotNull()
+    {
 
         final ILoan loan = new HouseLoan(this.product, HouseLoanTest.DEFAULT_PAYBACK_TIME);
         Assert.assertNotNull(loan.getProduct());
@@ -83,7 +88,8 @@ public class HouseLoanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public final void testProductNull() {
+    public final void testProductNull()
+    {
 
         final ILoan loan = new HouseLoan(null, HouseLoanTest.DEFAULT_PAYBACK_TIME);
         Assert.assertNotNull(loan.getProduct());
@@ -91,7 +97,8 @@ public class HouseLoanTest {
     }
 
     @Test
-    public void testGetProduct() {
+    public void testGetProduct()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -102,7 +109,8 @@ public class HouseLoanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testZeroPaybackTime() {
+    public void testZeroPaybackTime()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -111,7 +119,8 @@ public class HouseLoanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNegatifPaybackTime() {
+    public void testNegatifPaybackTime()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -120,7 +129,8 @@ public class HouseLoanTest {
     }
 
     @Test
-    public void testPaybackTime() {
+    public void testPaybackTime()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -130,7 +140,8 @@ public class HouseLoanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testZeroInterest() {
+    public void testZeroInterest()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -139,7 +150,8 @@ public class HouseLoanTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNegatifInterest() {
+    public void testNegatifInterest()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -148,7 +160,8 @@ public class HouseLoanTest {
     }
 
     @Test
-    public void testInterest() {
+    public void testInterest()
+    {
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
 
@@ -158,18 +171,21 @@ public class HouseLoanTest {
     }
 
     @Test
-    public void testDefaultInterest() {
+    public void testDefaultInterest()
+    {
         Assert.assertEquals(HouseLoan.DEFAULT_INTEREST, new HouseLoan(this.product, HouseLoanTest.DEFAULT_PAYBACK_TIME).getInterest(), HouseLoanTest.DOUBLE_DELTA);
     }
 
     @Test
-    public void testToString() {
+    public void testToString()
+    {
         Assert.assertEquals(new HouseLoan(this.product, HouseLoanTest.DEFAULT_PAYBACK_TIME).toString(), "product:{name:" + House.DEFAULT_NAME + " price:" + HouseTest.DEFAULT_EXPECTED_PRICE + "} paybacktime:"
                 + HouseLoanTest.DEFAULT_PAYBACK_TIME + " interest:" + HouseLoan.DEFAULT_INTEREST);
     }
 
     @Test
-    public void testCalculateMonthlyPayment() {
+    public void testCalculateMonthlyPayment()
+    {
         // See BasicPaymentMethodTest for more tests
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));
@@ -179,7 +195,8 @@ public class HouseLoanTest {
     }
 
     @Test
-    public void testGetTotalPayment() {
+    public void testGetTotalPayment()
+    {
         // See BasicPaymentMethodTest for more tests
         Assert.assertNotNull(this.product);
         Assert.assertEquals(this.product, new House(HouseTest.DEFAULT_EXPECTED_PRICE));

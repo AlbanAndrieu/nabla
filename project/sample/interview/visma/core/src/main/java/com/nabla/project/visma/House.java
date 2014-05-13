@@ -46,7 +46,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import com.nabla.project.visma.api.IProduct;
 
 @Immutable
-public class House implements IProduct, Comparable<House>, Serializable {
+public class House implements IProduct, Comparable<House>, Serializable
+{
 
     private static final long  serialVersionUID = 1L;
 
@@ -55,18 +56,21 @@ public class House implements IProduct, Comparable<House>, Serializable {
     private final String       name             = House.DEFAULT_NAME;
     private final BigDecimal   price;
 
-    public House() {
+    public House()
+    {
         throw new AssertionError();
     }
 
-    public House(@Nonnull @Nonnegative final BigDecimal aPrice) {
+    public House(@Nonnull @Nonnegative final BigDecimal aPrice)
+    {
 
         this.price = aPrice;
         this.validateState();
 
     }
 
-    public House(@Nonnegative final int aPrice) {
+    public House(@Nonnegative final int aPrice)
+    {
         this(new BigDecimal(aPrice));
     }
 
@@ -74,27 +78,33 @@ public class House implements IProduct, Comparable<House>, Serializable {
      * Validate immutable data like BigDecimal.
      * It raise the exception IllegalArgumentException when arguments are wrong
      */
-    private void validateState() {
-        if (null == this.price) {
+    private void validateState()
+    {
+        if (null == this.price)
+        {
             throw new IllegalArgumentException("Price cannot be null");
         }
-        if (this.price.compareTo(BigDecimal.ZERO) <= 0) {
+        if (this.price.compareTo(BigDecimal.ZERO) <= 0)
+        {
             throw new IllegalArgumentException("Amount must not be negatif or zero");
         }
     }
 
     @Override
-    public BigDecimal getPrice() {
+    public BigDecimal getPrice()
+    {
         return this.price;
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return this.name;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
 
         final StringBuffer str = new StringBuffer();
 
@@ -106,21 +116,26 @@ public class House implements IProduct, Comparable<House>, Serializable {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
                 // if deriving: appendSuper(super.hashCode()).
                 append(this.getName()).append(this.getPrice()).toHashCode();
     }
 
     @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
+    public boolean equals(final Object obj)
+    {
+        if (obj == null)
+        {
             return false;
         }
-        if (obj == this) {
+        if (obj == this)
+        {
             return true;
         }
-        if (!(obj instanceof House)) {
+        if (!(obj instanceof House))
+        {
             return false;
         }
 
@@ -131,14 +146,17 @@ public class House implements IProduct, Comparable<House>, Serializable {
     }
 
     @Override
-    public int compareTo(final House aHouse) {
-        if (this == aHouse) {
+    public int compareTo(final House aHouse)
+    {
+        if (this == aHouse)
+        {
             return 0;
         }
 
         // the object fields are never null
         final int comparison = this.price.compareTo(aHouse.price);
-        if (comparison != 0) {
+        if (comparison != 0)
+        {
             return comparison;
         }
 

@@ -18,7 +18,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
-public class SimpleWebDriverSTest {
+public class SimpleWebDriverSTest
+{
     // private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe"; // "/var/lib/chromedriver"
     // private static final String DEFAULT_FIREFOXBIN = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"; // "/usr/lib/firefox/firefox"
     private static final String DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";                  // "C:\\chromedriver\\chromedriver.exe"
@@ -34,11 +35,13 @@ public class SimpleWebDriverSTest {
     private DefaultSelenium     selenium;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
 
         this.baseUrl = System.getProperty("webdriver.base.url");
 
-        if (null == this.baseUrl) {
+        if (null == this.baseUrl)
+        {
             System.out.println("Use default webdriver.base.url");
             this.baseUrl = SimpleWebDriverSTest.DEFAULT_URL;
             System.setProperty("webdriver.base.url", this.baseUrl);
@@ -46,7 +49,8 @@ public class SimpleWebDriverSTest {
         System.out.println("webdriver.base.url is : " + this.baseUrl + "\n");
 
         this.chromeDriver = System.getProperty("webdriver.chrome.driver");
-        if (null == this.chromeDriver) {
+        if (null == this.chromeDriver)
+        {
             System.out.println("Use default webdriver.base.url");
             this.chromeDriver = SimpleWebDriverSTest.DEFAULT_CHROMEDRIVER;
             System.setProperty("webdriver.chrome.driver", this.chromeDriver);
@@ -54,7 +58,8 @@ public class SimpleWebDriverSTest {
         System.out.println("webdriver.chrome.driver is : " + this.chromeDriver + "\n");
 
         this.firefoxBin = System.getProperty("webdriver.firefox.bin");
-        if (null == this.firefoxBin) {
+        if (null == this.firefoxBin)
+        {
             System.out.println("Use default webdriver.firefox.bin");
             this.firefoxBin = SimpleWebDriverSTest.DEFAULT_FIREFOXBIN;
             System.setProperty("webdriver.firefox.bin", this.firefoxBin);
@@ -97,7 +102,8 @@ public class SimpleWebDriverSTest {
 
     @Test
     @InSequence(1)
-    public void testWithGoodInputS() throws Exception {
+    public void testWithGoodInputS() throws Exception
+    {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
@@ -108,9 +114,11 @@ public class SimpleWebDriverSTest {
         this.driver.findElement(By.name("loan_form:paybackTime")).sendKeys("10");
 
         // wait for the application to get fully loaded
-        final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>() {
+        final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>()
+        {
             @Override
-            public WebElement apply(final WebDriver d) {
+            public WebElement apply(final WebDriver d)
+            {
                 // d.get(baseUrl);
                 return d.findElement(By.name("loan_form:paybackTime"));
             }
@@ -135,7 +143,8 @@ public class SimpleWebDriverSTest {
 
     @Test
     @InSequence(2)
-    public void testWithWrongInputS() throws Exception {
+    public void testWithWrongInputS() throws Exception
+    {
         this.driver.get(this.baseUrl + "/visma/loan.xhtml");
         this.selenium.waitForPageToLoad(SimpleWebDriverSTest.PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
@@ -146,9 +155,11 @@ public class SimpleWebDriverSTest {
         this.driver.findElement(By.name("loan_form:paybackTime")).sendKeys("0");
 
         // wait for the application to get fully loaded
-        final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>() {
+        final WebElement findOwnerLink = (new WebDriverWait(this.driver, 5)).until(new ExpectedCondition<WebElement>()
+        {
             @Override
-            public WebElement apply(final WebDriver d) {
+            public WebElement apply(final WebDriver d)
+            {
                 // d.get(baseUrl);
                 return d.findElement(By.name("loan_form:paybackTime"));
             }
@@ -173,10 +184,12 @@ public class SimpleWebDriverSTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws Exception
+    {
         this.driver.quit();
         final String verificationErrorString = this.verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
+        if (!"".equals(verificationErrorString))
+        {
             Assert.fail(verificationErrorString);
         }
     }

@@ -46,7 +46,8 @@ import java.util.Map;
  * @since $Date$
  *
  */
-public interface ILoan {
+public interface ILoan
+{
 
     /**
      *
