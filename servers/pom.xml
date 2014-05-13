@@ -76,6 +76,7 @@
 							</properties>
 						</configuration>
 					</configuration>
+					<!--
 					  <executions>
 						<execution>
 						  <id>start</id>
@@ -84,7 +85,7 @@
 							<goal>start</goal>
 						  </goals>
 						  <configuration>
-							<timeout>240000</timeout> <!-- 4 minutes -->
+							<timeout>240000</timeout> 
 						  </configuration>
 						</execution>
 						<execution>
@@ -94,10 +95,11 @@
 							<goal>stop</goal>
 						  </goals>
 						  <configuration>
-							<timeout>60000</timeout> <!-- 1 minutes -->
+							<timeout>60000</timeout> 
 						  </configuration>
 						</execution>
-					  </executions>					
+					  </executions>		
+					  -->			
 				</plugin>
                               <!-- end Web application server helpers -->
 			</plugins>
