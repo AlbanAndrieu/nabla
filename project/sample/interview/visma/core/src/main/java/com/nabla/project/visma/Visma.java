@@ -39,6 +39,7 @@ import java.util.Scanner;
 import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IProduct;
 
+@SuppressWarnings("all")
 public class Visma
 {
 

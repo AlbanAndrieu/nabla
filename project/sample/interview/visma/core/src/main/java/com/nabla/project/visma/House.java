@@ -53,7 +53,7 @@ public class House implements IProduct, Comparable<House>, Serializable
 
     public static final String DEFAULT_NAME     = "House";
 
-    private final String       name             = House.DEFAULT_NAME;
+    private final String       name             = House.DEFAULT_NAME; // NOSONAR
     private final BigDecimal   price;
 
     public House()
@@ -80,11 +80,11 @@ public class House implements IProduct, Comparable<House>, Serializable
      */
     private void validateState()
     {
-        if (null == this.price)
+        if (null == this.price) // NOPMD
         {
             throw new IllegalArgumentException("Price cannot be null");
         }
-        if (this.price.compareTo(BigDecimal.ZERO) <= 0)
+        if (this.price.compareTo(BigDecimal.ZERO) <= 0) // NOPMD
         {
             throw new IllegalArgumentException("Amount must not be negatif or zero");
         }
@@ -103,7 +103,7 @@ public class House implements IProduct, Comparable<House>, Serializable
     }
 
     @Override
-    public String toString()
+    public final String toString()
     {
 
         final StringBuilder str = new StringBuilder();
@@ -126,7 +126,7 @@ public class House implements IProduct, Comparable<House>, Serializable
     @Override
     public boolean equals(final Object obj)
     {
-        if (obj == null)
+        if (null == obj) // NOPMD
         {
             return false;
         }
@@ -155,7 +155,7 @@ public class House implements IProduct, Comparable<House>, Serializable
 
         // the object fields are never null
         final int comparison = this.price.compareTo(aHouse.price);
-        if (comparison != 0)
+        if (comparison != 0) // NOPMD
         {
             return comparison;
         }

@@ -57,7 +57,6 @@ public class PaymentSchedule implements Serializable
     @SuppressWarnings("unused")
     private PaymentSchedule(final DataModel<Payment> paymentsDataModel)
     {
-        super();
         this.paymentsDataModel = paymentsDataModel;
 
         if (null == this.paymentsDataModel)
@@ -68,13 +67,11 @@ public class PaymentSchedule implements Serializable
 
     public PaymentSchedule(final Map<Integer, List<BigDecimal>> aPayments)
     {
-        super();
         this.setPayments(aPayments);
     }
 
     public PaymentSchedule(final Payment[] aPayments)
     {
-        super();
         this.setPayments(aPayments);
     }
 

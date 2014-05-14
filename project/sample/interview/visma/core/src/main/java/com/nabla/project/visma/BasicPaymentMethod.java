@@ -36,9 +36,9 @@ package com.nabla.project.visma;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IPaymentMethod;
@@ -58,7 +58,7 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     public BasicPaymentMethod()
     {
-
+        // TODO throw new AssertionError();
     }
 
     /**
@@ -108,7 +108,7 @@ public class BasicPaymentMethod implements IPaymentMethod
     {
 
         final BigDecimal payment = this.getMonthlyPayment();
-        final Map<Integer, List<BigDecimal>> monthlySchedule = new HashMap<Integer, List<BigDecimal>>();
+        final Map<Integer, List<BigDecimal>> monthlySchedule = new ConcurrentHashMap<Integer, List<BigDecimal>>();
 
         final int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime());
 
@@ -153,8 +153,7 @@ public class BasicPaymentMethod implements IPaymentMethod
     }
 
     /**
-     * DOCUMENT ME!
-     * 
+     * @deprecated (double is not as accurate as BigDecimal)
      * @return DOCUMENT ME!
      */
     @Deprecated
@@ -186,8 +185,7 @@ public class BasicPaymentMethod implements IPaymentMethod
     }
 
     /**
-     * DOCUMENT ME!
-     * 
+     * @deprecated (double is not as accurate as BigDecimal)
      * @return DOCUMENT ME!
      */
     @Deprecated
@@ -212,8 +210,7 @@ public class BasicPaymentMethod implements IPaymentMethod
     }
 
     /**
-     * DOCUMENT ME!
-     * 
+     * @deprecated (double is not as accurate as BigDecimal)
      * @param monthlyInterestRate DOCUMENT ME!
      * @param loanAmount DOCUMENT ME!
      * @param numberOfMonths DOCUMENT ME!

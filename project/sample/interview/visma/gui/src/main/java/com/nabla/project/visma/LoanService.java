@@ -49,7 +49,7 @@ public class LoanService implements ILoanService
 {
 
     // TODO @Inject
-    private static transient Logger LOGGER = Logger.getLogger(LoanService.class);
+    private static final transient Logger LOGGER = Logger.getLogger(LoanService.class);
 
     @Override
     public Map<Integer, List<BigDecimal>> calcMonthlyPayment(final BigDecimal loanAmount, final int numberOfYears)
