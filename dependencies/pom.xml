@@ -1004,63 +1004,67 @@
 				<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 				<bundle.namespace>${project.groupId}</bundle.namespace>
 
-		<!-- ************************ -->
-		<!-- Sonar/Reporting settings -->
-		<!-- ************************ -->
-		<!-- Sonar/Jacoco integration. Note that these properties need to be defined outside the "coverage" profile
-		because we want to be to able to execute mvn sonar:sonar without passing a profile -->
-		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
-		<!-- Tells Sonar to use jacoco for coverage results -->
-		<!-- Don't let Sonar execute tests. We will ask it to Maven -->
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
-		<!--<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>-->
-		<!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test -->
-		<sonar.jacoco.listeners.version>2.2</sonar.jacoco.listeners.version>
-		<!-- The system property jacoco.outputDir needs to be override on the command line
-		with an absolute path if you want to merge results from all modules.
-		Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
-		mvn clean install -Prun-its,coverage -Djacoco.outputDir=${WORKSPACE}/target
-		Note that unfortunately using the following does not work because of
-		 
-		http://jira.codehaus.org/browse/SONAR-3427:
-		 
-		<jacoco.outputDir>${session.executionRootDirectory}/target/</jacoco.outputDir>
-		-->
-		<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
-		<!-- Jacoco output file for UTs -->
-		<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
-		<!-- Tells Sonar where the Jacoco coverage result file is located for Unit Tests -->
-		<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
-		<!-- Jacoco output file for ITs -->
-		<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
-		<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
-		<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
-		<!--<jacoco.skip>true</jacoco.skip>-->
+				<!-- ************************ -->
+				<!-- Sonar/Reporting settings -->
+				<!-- ************************ -->
+				<!-- Sonar/Jacoco integration. Note that these properties need to be defined outside the "coverage" profile
+				because we want to be to able to execute mvn sonar:sonar without passing a profile -->
+				<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+				<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+				<!-- Tells Sonar to use jacoco for coverage results -->
+				<!-- Don't let Sonar execute tests. We will ask it to Maven -->
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<!--<sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>-->
+				<!--<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>-->
+				<!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test -->
+				<sonar.jacoco.listeners.version>2.2</sonar.jacoco.listeners.version>
+				<!-- The system property jacoco.outputDir needs to be override on the command line
+				with an absolute path if you want to merge results from all modules.
+				Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
+				mvn clean install -Prun-its,coverage -Djacoco.outputDir=${WORKSPACE}/target
+				Note that unfortunately using the following does not work because of
+				 
+				http://jira.codehaus.org/browse/SONAR-3427:
+				 
+				<jacoco.outputDir>${session.executionRootDirectory}/target/</jacoco.outputDir>
+				-->
+				<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
+				<!-- Jacoco output file for UTs -->
+				<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
+				<!-- Tells Sonar where the Jacoco coverage result file is located for Unit Tests -->
+				<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
+				<!-- Jacoco output file for ITs -->
+				<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
+				<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
+				<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+				<!--<jacoco.skip>true</jacoco.skip>-->
 
-		<!--
-		<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath> 
-		<sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
-		-->
-		<!--<sonar.jacoco.excludes>com/nabla/project/application/model/dao/person/**:com/nabla/pack2/**:</sonar.jacoco.excludes>-->
-		<clover.enabled>true</clover.enabled>
-		<clover.jdkLevel>1.6</clover.jdkLevel>
-		
-		<sonar.clover.version>${clover.version}</sonar.clover.version>
-		<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
-		
-		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>	-->
-		<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
-		
-		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
-		<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>		
-		<sonar.java.target>1.7</sonar.java.target>
-		<sonar.language>java</sonar.language>
-		<!--
-		<jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
-		<jetty.context.path>/nabla</jetty.context.path>
-		-->
+				<!--
+				<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath> 
+				<sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
+				-->
+				<!--<sonar.jacoco.excludes>com/nabla/project/application/model/dao/person/**:com/nabla/pack2/**:</sonar.jacoco.excludes>-->
+				<clover.enabled>true</clover.enabled>
+				<clover.jdkLevel>1.6</clover.jdkLevel>
+				
+				<sonar.clover.version>${clover.version}</sonar.clover.version>
+				<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
+				
+				<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>	-->
+				<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
+				
+				<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
+				<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>		
+				<sonar.java.target>1.7</sonar.java.target>
+				<sonar.language>java</sonar.language>
+				<!--
+				<jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
+				<jetty.context.path>/nabla</jetty.context.path>
+				-->
+				<!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
+				<!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus -->
+				<sonar.exclusions>**/generated/**</sonar.exclusions>
+				
 
 				<!-- BEGIN of Thirdparties versions stick to project recommandations -->
 				<andromda.version>3.5</andromda.version>
