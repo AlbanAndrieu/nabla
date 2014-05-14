@@ -39,12 +39,10 @@ import java.util.Map;
 
 /**
  * DOCUMENT ME! albandri.
- *
+ * 
  * @author $Author$
  * @version $Revision$
- *
  * @since $Date$
- *
  */
 public interface IPaymentMethod
 {
@@ -54,17 +52,15 @@ public interface IPaymentMethod
     public ILoan getLoan();
 
     /**
-     *
      * Give monthly payback plan (payments) based on the product, interest and payback time
-     *
+     * 
      * @return a date with its corresponding payment and interest for a loan
      */
     Map<Integer, List<BigDecimal>> calculate();
 
     /**
-     *
      * Get the total of all scheduled payments
-     *
+     * 
      * @return total of payments
      */
     BigDecimal getTotalPayment();

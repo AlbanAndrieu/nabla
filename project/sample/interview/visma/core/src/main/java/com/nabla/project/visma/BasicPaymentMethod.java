@@ -45,7 +45,7 @@ import com.nabla.project.visma.api.IPaymentMethod;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -63,7 +63,7 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * Creates a new BasicPaymentMethod object.
-     *
+     * 
      * @param aLoan DOCUMENT ME!
      */
     public BasicPaymentMethod(final ILoan aLoan)
@@ -100,7 +100,7 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -128,9 +128,8 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param annualInterestRate DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static BigDecimal calcMonthlyInterestRate(final double annualInterestRate)
@@ -142,9 +141,8 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param paybackTimeInYear DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static int calcNumberOfMonths(final int paybackTimeInYear)
@@ -154,10 +152,9 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     }
 
-    // =PMT(6.5/100/12,30*12,200000)
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Deprecated
@@ -174,7 +171,7 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public BigDecimal getMonthlyPayment()
@@ -190,7 +187,7 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Deprecated
@@ -203,7 +200,7 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -216,11 +213,10 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param monthlyInterestRate DOCUMENT ME!
      * @param loanAmount DOCUMENT ME!
      * @param numberOfMonths DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     @Deprecated
@@ -233,18 +229,16 @@ public class BasicPaymentMethod implements IPaymentMethod
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param monthlyInterestRate DOCUMENT ME!
      * @param loanAmount DOCUMENT ME!
      * @param numberOfMonths DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static BigDecimal calcMonthlyPayment(final BigDecimal monthlyInterestRate, final BigDecimal loanAmount, final int numberOfMonths)
     {
 
-        // return (loanAmount.multiply(new BigDecimal(monthlyInterestRate)))/(1-(1+monthlyInterestRate)-numberOfMonths);
-        return loanAmount.multiply(monthlyInterestRate).divide(new BigDecimal(1).subtract((new BigDecimal(1).divide((monthlyInterestRate.add(new BigDecimal(1))), MathContext.DECIMAL128).pow(numberOfMonths))),
+        return loanAmount.multiply(monthlyInterestRate).divide(BigDecimal.ONE.subtract((BigDecimal.ONE.divide((monthlyInterestRate.add(BigDecimal.ONE)), MathContext.DECIMAL128).pow(numberOfMonths))),
                 MathContext.DECIMAL128);
 
     }

@@ -41,17 +41,15 @@ public interface ILoanService
 {
 
     /**
-    *
-    * Give monthly payback plan based on the product, interest and payback time
-    *
-    * @return a date with their corresponding amount and interest
-    */
+     * Give monthly payback plan based on the product, interest and payback time
+     * 
+     * @return a date with their corresponding amount and interest
+     */
     Map<Integer, List<BigDecimal>> calcMonthlyPayment(BigDecimal loanAmount, int numberOfYears);
 
     /**
-     *
      * Get the total of all scheduled payment
-     *
+     * 
      * @return sum of payments
      */
     BigDecimal getTotalPayment(BigDecimal loanAmount, int numberOfYears);

@@ -51,9 +51,9 @@ public class HouseLoan implements ILoan
     public static final double            DEFAULT_INTEREST = 5.5;
 
     // Fixed interest of 5.5% per year
-    private double                        interest         = HouseLoan.DEFAULT_INTEREST;
+    private static double                 interest         = HouseLoan.DEFAULT_INTEREST;
 
-    private IProduct                      product;
+    private transient IProduct            product;
 
     private int                           paybackTime;
 
@@ -83,9 +83,9 @@ public class HouseLoan implements ILoan
     public HouseLoan(final IProduct aProduct, final int aPaybackTime, final double aInterest)
     {
         this(aProduct, aPaybackTime);
-        this.interest = aInterest;
+        HouseLoan.interest = aInterest;
 
-        if (this.interest <= 0)
+        if (HouseLoan.interest <= 0)
         {
             throw new IllegalArgumentException("Interest time cannot be zero or negatif");
         }
@@ -95,7 +95,7 @@ public class HouseLoan implements ILoan
     public double getInterest()
     {
 
-        return this.interest;
+        return HouseLoan.interest;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class HouseLoan implements ILoan
     public String toString()
     {
 
-        final StringBuffer str = new StringBuffer();
+        final StringBuilder str = new StringBuilder();
 
         str.append("product:{").append(this.getProduct()).append("} ");
         str.append("paybacktime:").append(this.getPaybackTime()).append(' ');

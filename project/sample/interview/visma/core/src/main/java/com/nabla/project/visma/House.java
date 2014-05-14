@@ -106,7 +106,7 @@ public class House implements IProduct, Comparable<House>, Serializable
     public String toString()
     {
 
-        final StringBuffer str = new StringBuffer();
+        final StringBuilder str = new StringBuilder();
 
         str.append("name:").append(this.getName()).append(' ');
         str.append("price:").append(this.getPrice());
