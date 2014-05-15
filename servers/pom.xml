@@ -116,7 +116,6 @@
 					<name>server</name>
 					<value>jboss7x</value>
 				</property>
-
 			</activation>
 			<properties>
 				<!-- console user myNewUser admin added with add-user.sh -->
@@ -283,7 +282,7 @@
 					<name>server</name>
 					<value>jboss5x</value>
 					-->
-                                        <name>!server</name>	
+                    <name>!server</name>	
 				</property>
 			</activation>
 			<properties>
@@ -452,7 +451,7 @@
 
 				<cargo.container>jetty7x</cargo.container>
 				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
-				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.url>TODOjetty7x</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
@@ -517,7 +516,7 @@
 
 				<cargo.container>jetty8x</cargo.container>
 				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
-				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.url>TODOjetty8x</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
@@ -582,7 +581,7 @@
 
 				<cargo.container>jetty9x</cargo.container>
 				<cargo.container.home>${project.build.directory}/jetty</cargo.container.home>
-				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.url>TODOjetty9</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
@@ -845,7 +844,7 @@
 				</property>
 			</activation>
 			<properties>
-				<jonas.home>TODO</jonas.home>
+				<jonas.home>TODOjonas5x</jonas.home>
 				<server.home>${jonas.home}</server.home>
 				<server.version>5.2.3</server.version>
 				<server.name>${product.name}</server.name>
@@ -854,7 +853,7 @@
 
 				<cargo.container>jonas5x</cargo.container>
 				<cargo.container.home>${server.home}</cargo.container.home>
-				<cargo.container.url>TODO</cargo.container.url>
+				<cargo.container.url>TODOjonas5x</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
