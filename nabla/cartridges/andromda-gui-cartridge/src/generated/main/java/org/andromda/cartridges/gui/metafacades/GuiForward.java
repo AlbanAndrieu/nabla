@@ -23,7 +23,8 @@ public interface GuiForward
     public boolean isGuiForwardMetaType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.errorMessages
      * @return Map
      */
     public Map getErrorMessages();
@@ -93,7 +94,8 @@ public interface GuiForward
     public boolean isEnteringPage();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.errorMessagesPresent
      * @return boolean
      */
     public boolean isErrorMessagesPresent();
@@ -111,13 +113,15 @@ public interface GuiForward
     public boolean isFinalStateTarget();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.successMessagesPresent
      * @return boolean
      */
     public boolean isSuccessMessagesPresent();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.warningMessagesPresent
      * @return boolean
      */
     public boolean isWarningMessagesPresent();

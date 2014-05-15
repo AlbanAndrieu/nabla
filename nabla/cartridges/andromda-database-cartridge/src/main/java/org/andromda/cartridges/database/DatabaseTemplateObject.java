@@ -64,7 +64,7 @@ public class DatabaseTemplateObject
     public DatabaseTemplateObject()
     {
 
-        //initialize converters we're using since we don't want to default to 0
+        // initialize converters we're using since we don't want to default to 0
         ConvertUtils.register(new LongConverter(null), java.lang.Long.class);
         ConvertUtils.register(new IntegerConverter(null), java.lang.Integer.class);
         ConvertUtils.register(new ShortConverter(null), java.lang.Short.class);

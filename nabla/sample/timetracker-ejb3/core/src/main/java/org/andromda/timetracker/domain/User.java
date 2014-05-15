@@ -29,7 +29,7 @@ import org.jboss.seam.annotations.Scope;
  * TODO: Model Documentation for User
  *
  */
-//Uncomment because jboss embedded tests for UserServiceBean does not work with seam
+// Uncomment because jboss embedded tests for UserServiceBean does not work with seam
 @Scope(ScopeType.SESSION)
 @Name("user")
 @Entity
@@ -37,7 +37,7 @@ import org.jboss.seam.annotations.Scope;
 // Uncomment to enable entity listener for User
 // @javax.persistence.EntityListeners({org.andromda.timetracker.domain.UserListener.class})
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries( { @NamedQuery(name = "User.findAll", query = "SELECT u FROM User AS u"), @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email") })
+@NamedQueries({ @NamedQuery(name = "User.findAll", query = "SELECT u FROM User AS u"), @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email") })
 public class User extends UserEmbeddable implements Serializable, Comparable<User>
 {
     /**

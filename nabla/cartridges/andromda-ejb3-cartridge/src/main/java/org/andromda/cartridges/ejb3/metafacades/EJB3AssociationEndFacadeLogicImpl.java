@@ -410,52 +410,56 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
     protected boolean handleIsOwning()
     {
         return !UMLMetafacadeUtils.isOwningEnd(this);
-        /*boolean owning = false;
-        if (this.isAggregation() || this.isComposition() || !this.getOtherEnd().isNavigable()
-            || BooleanUtils.toBoolean(
-                ObjectUtils.toString(this.findTaggedValue(
-                        EJB3Profile.TAGGEDVALUE_PERSISTENCE_ASSOCIATION_END_PRIMARY))))
-        {
-            owning = true;
-        }
-        // See if this end or the other end is tagged as the association owner
-        else if (BooleanUtils.toBoolean(
-            ObjectUtils.toString(this.getOtherEnd().findTaggedValue(
-                    EJB3Profile.TAGGEDVALUE_PERSISTENCE_ASSOCIATION_END_PRIMARY))))
-        {
-            owning = false;
-        }
-        // If other end not tagged, the many side of 1:M owns the bidirectional relationship
-        else if (this.isMany() && !this.getOtherEnd().isMany())
-        {
-            owning = true;
-        }
-        // Other side: aggregation/composition owns the bidirectional relationship
-        else if (this.getOtherEnd().isAggregation() || this.getOtherEnd().isComposition())
-        {
-            owning = false;
-        }
-        // Other side: the many side of 1:M owns the bidirectional relationship if no composition/aggregation
-        else if (!this.isMany() && this.getOtherEnd().isMany())
-        {
-            owning = false;
-        }
-        // If bidirectional 1:1 or M:M, choose the side with the longest type name because it typically indicates a composition relationship
-        //else if (this.getOtherEnd().getType().getName().length()
-        //        > this.getType().getName().length())
-        else if (this.getName().length()
-            > this.getOtherEnd().getName().length())
-        {
-            owning = true;
-        }
-        // If length is the same, alphabetically earliest is the owner
-        else if (this.getName().compareTo(
-                this.getOtherEnd().getName()) < 0)
-        {
-            owning = true;
-        }
-        //System.out.println("handleIsOwning=" + owning + " for " + this.getName() + " OName=" + this.getOtherEnd().getName() + " Aggregation=" + this.isAggregation() + " Aggregation=" + this.isAggregation() + " Composition=" + this.isComposition() + " !Navigable=" + !this.isNavigable() + " Many=" + this.isMany() + " OMany=" + this.getOtherEnd().isMany() + " Upper=" + this.getUpper() + " OUpper=" + this.getOtherEnd().getUpper() + " OAggregation=" + this.getOtherEnd().isAggregation() + " OComposition=" + this.getOtherEnd().isComposition() + " ONavigable=" + this.getOtherEnd().isNavigable() + this);
-        return owning;*/
+        /*
+         * boolean owning = false;
+         * if (this.isAggregation() || this.isComposition() || !this.getOtherEnd().isNavigable()
+         * || BooleanUtils.toBoolean(
+         * ObjectUtils.toString(this.findTaggedValue(
+         * EJB3Profile.TAGGEDVALUE_PERSISTENCE_ASSOCIATION_END_PRIMARY))))
+         * {
+         * owning = true;
+         * }
+         * // See if this end or the other end is tagged as the association owner
+         * else if (BooleanUtils.toBoolean(
+         * ObjectUtils.toString(this.getOtherEnd().findTaggedValue(
+         * EJB3Profile.TAGGEDVALUE_PERSISTENCE_ASSOCIATION_END_PRIMARY))))
+         * {
+         * owning = false;
+         * }
+         * // If other end not tagged, the many side of 1:M owns the bidirectional relationship
+         * else if (this.isMany() && !this.getOtherEnd().isMany())
+         * {
+         * owning = true;
+         * }
+         * // Other side: aggregation/composition owns the bidirectional relationship
+         * else if (this.getOtherEnd().isAggregation() || this.getOtherEnd().isComposition())
+         * {
+         * owning = false;
+         * }
+         * // Other side: the many side of 1:M owns the bidirectional relationship if no composition/aggregation
+         * else if (!this.isMany() && this.getOtherEnd().isMany())
+         * {
+         * owning = false;
+         * }
+         * // If bidirectional 1:1 or M:M, choose the side with the longest type name because it typically indicates a composition relationship
+         * //else if (this.getOtherEnd().getType().getName().length()
+         * // > this.getType().getName().length())
+         * else if (this.getName().length()
+         * > this.getOtherEnd().getName().length())
+         * {
+         * owning = true;
+         * }
+         * // If length is the same, alphabetically earliest is the owner
+         * else if (this.getName().compareTo(
+         * this.getOtherEnd().getName()) < 0)
+         * {
+         * owning = true;
+         * }
+         * //System.out.println("handleIsOwning=" + owning + " for " + this.getName() + " OName=" + this.getOtherEnd().getName() + " Aggregation=" + this.isAggregation() + " Aggregation=" + this.isAggregation() +
+         * " Composition=" + this.isComposition() + " !Navigable=" + !this.isNavigable() + " Many=" + this.isMany() + " OMany=" + this.getOtherEnd().isMany() + " Upper=" + this.getUpper() + " OUpper=" +
+         * this.getOtherEnd().getUpper() + " OAggregation=" + this.getOtherEnd().isAggregation() + " OComposition=" + this.getOtherEnd().isComposition() + " ONavigable=" + this.getOtherEnd().isNavigable() + this);
+         * return owning;
+         */
     }
 
     /**
@@ -516,7 +520,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
             for (TaggedValueFacade taggedValue : this.getTaggedValues())
             {
                 // return with true on the first match found
-                //if (name.equals(taggedValue.getName()))
+                // if (name.equals(taggedValue.getName()))
                 String tagName = taggedValue.getName();
                 if (name.equals(tagName) || MetafacadeUtils.getEmfTaggedValue(name).equals(tagName) || MetafacadeUtils.getUml14TaggedValue(name).equals(tagName))
                 {
@@ -627,7 +631,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
              * value
              */
             // TODO cascade can only be null at this point - anything else to change?
-            //cascade = null;
+            // cascade = null;
         } else if (this.isAggregation())
         {
             /*
@@ -636,7 +640,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
              * value
              */
             // TODO cascade can only be null at this point - anything else to change?
-            //cascade = null;
+            // cascade = null;
         }
         return cascade;
     }
@@ -985,9 +989,9 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
             final ClassifierFacade type = this.getOtherEnd().getType();
             if (type instanceof Entity)
             {
-                //Entity entity = (Entity)type;
-                //Instead of using the entity name, use the association end name to avoid duplication of
-                //FK constraint names which causes failures during table creation for some DBs (MySQL)
+                // Entity entity = (Entity)type;
+                // Instead of using the entity name, use the association end name to avoid duplication of
+                // FK constraint names which causes failures during table creation for some DBs (MySQL)
                 buffer.append(EntityMetafacadeUtils.toSqlName(this.getOtherEnd().getName(), this.getConfiguredProperty(UMLMetafacadeProperties.SQL_NAME_SEPARATOR)));
             } else
             {
@@ -1047,8 +1051,8 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
             }
 
             final String columnNamePrefix = this.isConfiguredProperty(UMLMetafacadeProperties.COLUMN_NAME_PREFIX) ? ObjectUtils.toString(this.getConfiguredProperty(UMLMetafacadeProperties.COLUMN_NAME_PREFIX)) : null;
-            columnName = EntityMetafacadeUtils.getSqlNameFromTaggedValue(columnNamePrefix, this, UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN, ((Entity) this.getType()).getMaxSqlNameLength(), suffix, this
-                    .getConfiguredProperty(UMLMetafacadeProperties.SQL_NAME_SEPARATOR));
+            columnName = EntityMetafacadeUtils.getSqlNameFromTaggedValue(columnNamePrefix, this, UMLProfile.TAGGEDVALUE_PERSISTENCE_COLUMN, ((Entity) this.getType()).getMaxSqlNameLength(), suffix,
+                    this.getConfiguredProperty(UMLMetafacadeProperties.SQL_NAME_SEPARATOR));
         }
         return columnName;
     }
@@ -1094,7 +1098,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
         return StringUtils.isNotBlank(this.getHibernateCascadeType()) ? true : false;
     }
 
-    //@Override
+    // @Override
     protected boolean isColumnNullable()
     {
 
@@ -1120,20 +1124,21 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
     /**
      * @see EJB3AssociationEndFacadeLogic#handleIsColumnNullable()
      */
-    /*@Override
-    protected boolean handleIsColumnNullable()
-    {
-        boolean nullable = true;
-        String nullableString = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_NULLABLE);
-
-        if (StringUtils.isBlank(nullableString))
-        {
-            nullable = (this.isIdentifier() || this.isUnique()) ? false : !this.isRequired();
-        }
-        else
-        {
-            nullable = Boolean.valueOf(nullableString).booleanValue();
-        }
-        return nullable;
-    }*/
+    /*
+     * @Override
+     * protected boolean handleIsColumnNullable()
+     * {
+     * boolean nullable = true;
+     * String nullableString = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_NULLABLE);
+     * if (StringUtils.isBlank(nullableString))
+     * {
+     * nullable = (this.isIdentifier() || this.isUnique()) ? false : !this.isRequired();
+     * }
+     * else
+     * {
+     * nullable = Boolean.valueOf(nullableString).booleanValue();
+     * }
+     * return nullable;
+     * }
+     */
 }

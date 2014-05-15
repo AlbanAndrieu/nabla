@@ -40,7 +40,8 @@ public interface GuiEnumeration
     public String getFullyQualifiedConverterName();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiEnumeration.messageKey
      * @return String
      */
     public String getMessageKey();

@@ -29,7 +29,7 @@
     <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="properties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
                 <prop key="hibernate.default_batch_fetch_size">16</prop>
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>

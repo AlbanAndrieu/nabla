@@ -1720,44 +1720,35 @@ public class GuiUtils
     }
 
     /*
-    public static void newFile(final String path, final String name) {
-
-      try {
-
-        final File file = new File(path + "/" + StringUtilsHelper.upperCamelCaseName(name) + ".xml");
-        final boolean success = file.createNewFile();      
-
-        if (!success) {
-          KarmaUtils.logger_.error("Can not create the file " + path + "/" + name + ".xml");
-          //throw new Exception("Can not create the file " + path + "/" + name + ".xml");        
-          System.exit(1);
-        } else {
-          KarmaUtils.logger_.info("Create the file " + path + "/" + name + ".xml");
-        }
-
-      } catch (final IOException e) {
-        e.printStackTrace();
-      } catch (final Exception e) {
-        e.printStackTrace();
-      }
-
-    }
-
-    public static void addToFile(final String path, final String name, final String contenu) {
-      try {
-
-        final File file = new File(path + "/" + name + ".xml");
-
-        final PrintWriter out = new PrintWriter(new FileWriter(file, true), true);
-        final String res = contenu.replace("\\", "");
-        out.println(res);
-        out.close();
-
-      } catch (final IOException e) {
-        e.printStackTrace();
-      } catch (final Exception e) {
-        e.printStackTrace();
-      }
-    }
+     * public static void newFile(final String path, final String name) {
+     * try {
+     * final File file = new File(path + "/" + StringUtilsHelper.upperCamelCaseName(name) + ".xml");
+     * final boolean success = file.createNewFile();
+     * if (!success) {
+     * KarmaUtils.logger_.error("Can not create the file " + path + "/" + name + ".xml");
+     * //throw new Exception("Can not create the file " + path + "/" + name + ".xml");
+     * System.exit(1);
+     * } else {
+     * KarmaUtils.logger_.info("Create the file " + path + "/" + name + ".xml");
+     * }
+     * } catch (final IOException e) {
+     * e.printStackTrace();
+     * } catch (final Exception e) {
+     * e.printStackTrace();
+     * }
+     * }
+     * public static void addToFile(final String path, final String name, final String contenu) {
+     * try {
+     * final File file = new File(path + "/" + name + ".xml");
+     * final PrintWriter out = new PrintWriter(new FileWriter(file, true), true);
+     * final String res = contenu.replace("\\", "");
+     * out.println(res);
+     * out.close();
+     * } catch (final IOException e) {
+     * e.printStackTrace();
+     * } catch (final Exception e) {
+     * e.printStackTrace();
+     * }
+     * }
      */
 }

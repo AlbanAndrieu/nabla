@@ -286,8 +286,8 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
             packageName = EJB3ScriptHelper.reversePackage(packageName);
         }
         String namespacePattern = String.valueOf(this.getConfiguredProperty(NAMESPACE_PATTERN));
-        return MessageFormat.format(namespacePattern, StringUtils.trimToEmpty(StringUtils.substringBeforeLast(packageName, String.valueOf(EJB3Globals.NAMESPACE_DELIMITER))), StringUtils.trimToEmpty(StringUtils
-                .substringAfterLast(packageName, String.valueOf(EJB3Globals.NAMESPACE_DELIMITER))));
+        return MessageFormat.format(namespacePattern, StringUtils.trimToEmpty(StringUtils.substringBeforeLast(packageName, String.valueOf(EJB3Globals.NAMESPACE_DELIMITER))),
+                StringUtils.trimToEmpty(StringUtils.substringAfterLast(packageName, String.valueOf(EJB3Globals.NAMESPACE_DELIMITER))));
     }
 
     /**

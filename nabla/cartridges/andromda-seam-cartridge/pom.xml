@@ -10,7 +10,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
         <artifactId>andromda-seam-cartridge</artifactId>
-        <version>3.5</version>
+        <version>3.6-SNAPSHOT</version>
 	<!-- <packaging>andromda-cartridge</packaging> -->	
 	<packaging>jar</packaging>
     <name>AndroMDA Seam Cartridge</name>

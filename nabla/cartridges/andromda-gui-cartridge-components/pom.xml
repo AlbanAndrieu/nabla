@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <!--<groupId>org.andromda.cartridges</groupId>-->
     <artifactId>andromda-gui-cartridge-components</artifactId>
-    <version>3.5</version>
+    <version>3.6-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AndroMDA Gui Cartridge Components</name>
     <description>Constains custom JSF components used by the JSF cartridge.</description>

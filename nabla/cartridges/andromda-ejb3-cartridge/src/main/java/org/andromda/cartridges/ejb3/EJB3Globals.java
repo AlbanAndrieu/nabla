@@ -322,7 +322,7 @@ public class EJB3Globals
     /**
      * The service base class suffix.
      */
-    //static final String SERVICE_BASE_SUFFIX = "Base";
+    // static final String SERVICE_BASE_SUFFIX = "Base";
 
     /**
      * The name prefix for all spring bean ids.

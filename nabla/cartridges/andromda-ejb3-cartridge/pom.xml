@@ -10,7 +10,7 @@
 
         <modelVersion>4.0.0</modelVersion>
         <artifactId>andromda-ejb3-cartridge</artifactId>
-        <version>3.5</version>
+        <version>3.6-SNAPSHOT</version>
         <packaging>jar</packaging>
         <name>AndroMDA EJB3 Cartridge</name>
         <description>Produces EJB 3.0 persistence layer from a model.</description>

@@ -99,7 +99,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
      */
     private static final String MESSAGE_DRIVEN_DURABLE_SUBSCRIPTION_ID_PATTERN = "messageDrivenDurableSubscriptionIdPattern";
 
-    //  ---------------- constructor -------------------------------
+    // ---------------- constructor -------------------------------
 
     /**
      * @param metaObject
@@ -110,7 +110,7 @@ public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLog
         super(metaObject, context);
     }
 
-    //  ---------------- methods -------------------------------
+    // ---------------- methods -------------------------------
 
     /**
      * @see EJB3MessageDrivenFacade#getAcknowledgeMode()

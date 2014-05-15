@@ -165,7 +165,7 @@ public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic
             String variableName = StringUtils.uncapitalize(owner.getName()).substring(0, 1);
             queryString = "SELECT " + variableName + " from " + owner.getName() + " as " + variableName;
             Collection<ParameterFacade> arguments = this.getArguments();
-            //int size = this.getArguments().size();
+            // int size = this.getArguments().size();
             int argCount = 0;
             if (arguments != null && !arguments.isEmpty())
             {

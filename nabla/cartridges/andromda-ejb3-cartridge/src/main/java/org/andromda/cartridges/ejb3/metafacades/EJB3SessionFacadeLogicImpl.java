@@ -212,9 +212,9 @@ public class EJB3SessionFacadeLogicImpl extends EJB3SessionFacadeLogic
         // Don't use the Metafacade util method since we want to invoke the implementation of
         // getInstanceAttributes from EJB3SessionFacade
 
-        //        List attributes = this.getInheritedInstanceAttributes();
-        //        attributes.addAll(this.getInstanceAttributes());
-        //        return attributes;
+        // List attributes = this.getInheritedInstanceAttributes();
+        // attributes.addAll(this.getInstanceAttributes());
+        // return attributes;
     }
 
     /**
@@ -228,18 +228,18 @@ public class EJB3SessionFacadeLogicImpl extends EJB3SessionFacadeLogic
         // Don't use the Metafacade util method since we want to invoke the implementation of
         // getInstanceAttributes from EJB3SessionFacade
 
-        //        EJB3SessionFacade current = (EJB3SessionFacade)this.getSuperClass();
-        //        if (current == null)
-        //        {
-        //            return new ArrayList();
-        //        }
-        //        List attributes = current.getInheritedInstanceAttributes();
+        // EJB3SessionFacade current = (EJB3SessionFacade)this.getSuperClass();
+        // if (current == null)
+        // {
+        // return new ArrayList();
+        // }
+        // List attributes = current.getInheritedInstanceAttributes();
         //
-        //        if (current.getInstanceAttributes() != null)
-        //        {
-        //            attributes.addAll(current.getInstanceAttributes());
-        //        }
-        //        return attributes;
+        // if (current.getInstanceAttributes() != null)
+        // {
+        // attributes.addAll(current.getInstanceAttributes());
+        // }
+        // return attributes;
     }
 
     /**

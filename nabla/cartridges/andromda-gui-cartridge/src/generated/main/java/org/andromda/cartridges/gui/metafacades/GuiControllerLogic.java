@@ -150,11 +150,11 @@ public abstract class GuiControllerLogic
      */
     public final String getFullPath()
     {
-        String afullPath1a = null;
+        String fullPath1a = null;
         // fullPath has no pre constraints
-        afullPath1a = handleGetFullPath();
+        fullPath1a = handleGetFullPath();
         // fullPath has no post constraints
-        return afullPath1a;
+        return fullPath1a;
     }
 
    /**
@@ -163,8 +163,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetImplementationName();
 
-    private String implementationName2a;
-    private boolean implementationName2aSet = false;
+    private transient String implementationName2a;
+    private transient boolean implementationName2aSet = false;
 
     /**
      * The implementation name of this controller.
@@ -172,19 +172,19 @@ public abstract class GuiControllerLogic
      */
     public final String getImplementationName()
     {
-        String aimplementationName2a = this.implementationName2a;
+        String implementationName2a = this.implementationName2a;
         if (!this.implementationName2aSet)
         {
             // implementationName has no pre constraints
-            aimplementationName2a = handleGetImplementationName();
+            implementationName2a = handleGetImplementationName();
             // implementationName has no post constraints
-            this.implementationName2a = aimplementationName2a;
+            this.implementationName2a = implementationName2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.implementationName2aSet = true;
             }
         }
-        return aimplementationName2a;
+        return implementationName2a;
     }
 
    /**
@@ -193,8 +193,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetFullyQualifiedImplementationName();
 
-    private String fullyQualifiedImplementationName3a;
-    private boolean fullyQualifiedImplementationName3aSet = false;
+    private transient String fullyQualifiedImplementationName3a;
+    private transient boolean fullyQualifiedImplementationName3aSet = false;
 
     /**
      * The fully qualified implementation name of this controller.
@@ -202,19 +202,19 @@ public abstract class GuiControllerLogic
      */
     public final String getFullyQualifiedImplementationName()
     {
-        String afullyQualifiedImplementationName3a = this.fullyQualifiedImplementationName3a;
+        String fullyQualifiedImplementationName3a = this.fullyQualifiedImplementationName3a;
         if (!this.fullyQualifiedImplementationName3aSet)
         {
             // fullyQualifiedImplementationName has no pre constraints
-            afullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
+            fullyQualifiedImplementationName3a = handleGetFullyQualifiedImplementationName();
             // fullyQualifiedImplementationName has no post constraints
-            this.fullyQualifiedImplementationName3a = afullyQualifiedImplementationName3a;
+            this.fullyQualifiedImplementationName3a = fullyQualifiedImplementationName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedImplementationName3aSet = true;
             }
         }
-        return afullyQualifiedImplementationName3a;
+        return fullyQualifiedImplementationName3a;
     }
 
    /**
@@ -223,8 +223,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetFullyQualifiedImplementationPath();
 
-    private String fullyQualifiedImplementationPath4a;
-    private boolean fullyQualifiedImplementationPath4aSet = false;
+    private transient String fullyQualifiedImplementationPath4a;
+    private transient boolean fullyQualifiedImplementationPath4aSet = false;
 
     /**
      * The fully qualified path to the controller implemention file.
@@ -232,19 +232,19 @@ public abstract class GuiControllerLogic
      */
     public final String getFullyQualifiedImplementationPath()
     {
-        String afullyQualifiedImplementationPath4a = this.fullyQualifiedImplementationPath4a;
+        String fullyQualifiedImplementationPath4a = this.fullyQualifiedImplementationPath4a;
         if (!this.fullyQualifiedImplementationPath4aSet)
         {
             // fullyQualifiedImplementationPath has no pre constraints
-            afullyQualifiedImplementationPath4a = handleGetFullyQualifiedImplementationPath();
+            fullyQualifiedImplementationPath4a = handleGetFullyQualifiedImplementationPath();
             // fullyQualifiedImplementationPath has no post constraints
-            this.fullyQualifiedImplementationPath4a = afullyQualifiedImplementationPath4a;
+            this.fullyQualifiedImplementationPath4a = fullyQualifiedImplementationPath4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedImplementationPath4aSet = true;
             }
         }
-        return afullyQualifiedImplementationPath4a;
+        return fullyQualifiedImplementationPath4a;
     }
 
    /**
@@ -253,8 +253,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetBeanName();
 
-    private String beanName5a;
-    private boolean beanName5aSet = false;
+    private transient String beanName5a;
+    private transient boolean beanName5aSet = false;
 
     /**
      * The bean name of this controller (this is what is stored in the JSF configuration file).
@@ -262,19 +262,19 @@ public abstract class GuiControllerLogic
      */
     public final String getBeanName()
     {
-        String abeanName5a = this.beanName5a;
+        String beanName5a = this.beanName5a;
         if (!this.beanName5aSet)
         {
             // beanName has no pre constraints
-            abeanName5a = handleGetBeanName();
+            beanName5a = handleGetBeanName();
             // beanName has no post constraints
-            this.beanName5a = abeanName5a;
+            this.beanName5a = beanName5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.beanName5aSet = true;
             }
         }
-        return abeanName5a;
+        return beanName5a;
     }
 
    /**
@@ -283,8 +283,8 @@ public abstract class GuiControllerLogic
     */
     protected abstract String handleGetControllerSerialVersionUID();
 
-    private String controllerSerialVersionUID6a;
-    private boolean controllerSerialVersionUID6aSet = false;
+    private transient String controllerSerialVersionUID6a;
+    private transient boolean controllerSerialVersionUID6aSet = false;
 
     /**
      * The calculated serial version UID for this controller.
@@ -292,19 +292,19 @@ public abstract class GuiControllerLogic
      */
     public final String getControllerSerialVersionUID()
     {
-        String acontrollerSerialVersionUID6a = this.controllerSerialVersionUID6a;
+        String controllerSerialVersionUID6a = this.controllerSerialVersionUID6a;
         if (!this.controllerSerialVersionUID6aSet)
         {
             // controllerSerialVersionUID has no pre constraints
-            acontrollerSerialVersionUID6a = handleGetControllerSerialVersionUID();
+            controllerSerialVersionUID6a = handleGetControllerSerialVersionUID();
             // controllerSerialVersionUID has no post constraints
-            this.controllerSerialVersionUID6a = acontrollerSerialVersionUID6a;
+            this.controllerSerialVersionUID6a = controllerSerialVersionUID6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.controllerSerialVersionUID6aSet = true;
             }
         }
-        return acontrollerSerialVersionUID6a;
+        return controllerSerialVersionUID6a;
     }
 
    /**
@@ -319,20 +319,22 @@ public abstract class GuiControllerLogic
      */
     public final List<DependencyFacade> getSessionObjectReferences()
     {
-        List<DependencyFacade> asessionObjectReferences7a = null;
+        List<DependencyFacade> sessionObjectReferences7a = null;
         // sessionObjectReferences has no pre constraints
-        asessionObjectReferences7a = handleGetSessionObjectReferences();
+        sessionObjectReferences7a = handleGetSessionObjectReferences();
         // sessionObjectReferences has no post constraints
-        return asessionObjectReferences7a;
+        return sessionObjectReferences7a;
     }
 
     // ------------- associations ------------------
 
-    private List<GuiSessionObject> getSessionObjects1r;
-    private boolean getSessionObjects1rSet = false;
+    private transient List<GuiSessionObject> getSessionObjects1r;
+    private transient boolean getSessionObjects1rSet = false;
 
     /**
-     * 
+     * A controller is assigned as the context of a use-case. All manual implementation is done in
+     * the
+     * controller as Gui actions may result in deferring method calls to this controller.
      * @return (List<GuiSessionObject>)handleGetSessionObjects()
      */
     public final List<GuiSessionObject> getSessionObjects()
@@ -345,7 +347,7 @@ public abstract class GuiControllerLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getSessionObjects1r = (List<GuiSessionObject>)shieldedResult;
+                getSessionObjects1r = (List<GuiSessionObject>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -368,11 +370,13 @@ public abstract class GuiControllerLogic
      */
     protected abstract List handleGetSessionObjects();
 
-    private List<GuiParameter> getAllArguments2r;
-    private boolean getAllArguments2rSet = false;
+    private transient List<GuiParameter> getAllArguments2r;
+    private transient boolean getAllArguments2rSet = false;
 
     /**
-     * 
+     * A controller is assigned as the context of a use-case. All manual implementation is done in
+     * the
+     * controller as Gui actions may result in deferring method calls to this controller.
      * @return (List<GuiParameter>)handleGetAllArguments()
      */
     public final List<GuiParameter> getAllArguments()
@@ -385,7 +389,7 @@ public abstract class GuiControllerLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getAllArguments2r = (List<GuiParameter>)shieldedResult;
+                getAllArguments2r = (List<GuiParameter>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -632,7 +636,7 @@ public abstract class GuiControllerLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperFrontEndController().getNavigableConnectingEnds();
     }
@@ -778,7 +782,7 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -1089,7 +1093,7 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -1189,7 +1193,9 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -1260,7 +1266,7 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -1269,7 +1275,8 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1382,7 +1389,7 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1400,7 +1407,7 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1409,7 +1416,7 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1465,7 +1472,8 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1501,12 +1509,24 @@ public abstract class GuiControllerLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndController().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndController().isValidIdentifierName();
     }
 
     /**

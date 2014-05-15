@@ -139,8 +139,8 @@ public abstract class GuiFinalStateLogic
     */
     protected abstract String handleGetFullPath();
 
-    private String fullPath1a;
-    private boolean fullPath1aSet = false;
+    private transient String fullPath1a;
+    private transient boolean fullPath1aSet = false;
 
     /**
      * A final state maps onto a use-case. The full path to this use-case is returned here. In case
@@ -150,19 +150,19 @@ public abstract class GuiFinalStateLogic
      */
     public final String getFullPath()
     {
-        String afullPath1a = this.fullPath1a;
+        String fullPath1a = this.fullPath1a;
         if (!this.fullPath1aSet)
         {
             // fullPath has no pre constraints
-            afullPath1a = handleGetFullPath();
+            fullPath1a = handleGetFullPath();
             // fullPath has no post constraints
-            this.fullPath1a = afullPath1a;
+            this.fullPath1a = fullPath1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullPath1aSet = true;
             }
         }
-        return afullPath1a;
+        return fullPath1a;
     }
 
    /**
@@ -171,8 +171,8 @@ public abstract class GuiFinalStateLogic
     */
     protected abstract String handleGetPath();
 
-    private String path2a;
-    private boolean path2aSet = false;
+    private transient String path2a;
+    private transient boolean path2aSet = false;
 
     /**
      * The path to which this final state points.
@@ -180,28 +180,30 @@ public abstract class GuiFinalStateLogic
      */
     public final String getPath()
     {
-        String apath2a = this.path2a;
+        String path2a = this.path2a;
         if (!this.path2aSet)
         {
             // path has no pre constraints
-            apath2a = handleGetPath();
+            path2a = handleGetPath();
             // path has no post constraints
-            this.path2a = apath2a;
+            this.path2a = path2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.path2aSet = true;
             }
         }
-        return apath2a;
+        return path2a;
     }
 
     // ------------- associations ------------------
 
-    private List<GuiAction> getActions1r;
-    private boolean getActions1rSet = false;
+    private transient List<GuiAction> getActions1r;
+    private transient boolean getActions1rSet = false;
 
     /**
-     * 
+     * A final state represents the end of a use-case. In a Gui application this means a transition
+     * into
+     * the next use-case.
      * @return (List<GuiAction>)handleGetActions()
      */
     public final List<GuiAction> getActions()
@@ -214,7 +216,7 @@ public abstract class GuiFinalStateLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getActions1r = (List<GuiAction>)shieldedResult;
+                getActions1r = (List<GuiAction>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -394,7 +396,9 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -465,7 +469,7 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -474,7 +478,8 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -587,7 +592,7 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -605,7 +610,7 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -614,7 +619,7 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -670,7 +675,8 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -706,12 +712,24 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndFinalState().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndFinalState().isValidIdentifierName();
     }
 
     /**
@@ -753,7 +771,11 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * Models a situation during which some (usually implicit) invariant condition holds. The states
+     * of protocol state machines are exposed to the users of their context classifiers. A protocol
+     * state represents an exposed stable situation of its context classifier: when an instance of
+     * the classifier is not processing any operation, users of this instance can always know its
+     * state configuration.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getContainer()
      */
     public StateFacade getContainer()
@@ -762,7 +784,10 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getIncomings()
      */
     public Collection<TransitionFacade> getIncomings()
@@ -771,7 +796,10 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getOutgoings()
      */
     public Collection<TransitionFacade> getOutgoings()
@@ -789,7 +817,11 @@ public abstract class GuiFinalStateLogic
     }
 
     /**
-     * 
+     * State machines can be used to express the behavior of part of a system. Behavior is modeled
+     * as a traversal of a graph of state nodes interconnected by one or more joined transition arcs
+     * that are triggered by the dispatching of series of (event) occurrences. During this
+     * traversal, the state machine executes a series of activities associated with various elements
+     * of the state machine.
      * @see org.andromda.metafacades.uml.StateVertexFacade#getStateMachine()
      */
     public StateMachineFacade getStateMachine()

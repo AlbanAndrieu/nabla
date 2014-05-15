@@ -12,7 +12,7 @@
 
     <!-- JNDI DataSource for J2EE environments -->
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:/timetracker-ejb3"/>
+        <property name="jndiName" value="${datasource}"/>
     </bean>
 
     <!-- ====================== End of DATASOURCE DEFINITION ====================== -->

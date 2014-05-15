@@ -8,7 +8,7 @@ import org.andromda.metafacades.uml.FrontEndControllerOperation;
 import org.andromda.metafacades.uml.ServiceOperation;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiControllerOperation
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */
@@ -23,7 +23,7 @@ public interface GuiControllerOperation
     public boolean isGuiControllerOperationMetaType();
 
     /**
-     * 
+     * Reprsents an operation of a service.
      * @return ServiceOperation
      */
     public ServiceOperation getBackEndServiceOperation();
@@ -102,7 +102,8 @@ public interface GuiControllerOperation
     public String getInterfaceType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiControllerOperation.backEndServiceOperationMatchingParameters
      * @return boolean
      */
     public boolean isBackEndServiceOperationMatchingParameters();

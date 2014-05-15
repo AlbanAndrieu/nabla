@@ -801,7 +801,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
 
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
@@ -817,7 +817,7 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
 
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
@@ -839,7 +839,7 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
         // See in ManageableEntityLogicImpl.java in
         // andromda\\trunk\\metafacades\\uml\emf\\uml2\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml2
-final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
+        final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new LinkedHashSet<ManageableEntityAssociationEnd>();
 
         // final List<ManageableEntityAssociationEnd> manageableAssociationEnds = new ArrayList<ManageableEntityAssociationEnd>();
         // linked hashset to guarantee ordering wo duplicates
@@ -2309,39 +2309,28 @@ final Set<ManageableEntityAssociationEnd> manageableAssociationEnds = new Linked
 
     }
 
-    /*    @Override
-     protected AttributeFacade handleGetIdentifierToDelete()
-     {
-
-     // return super.getManageableIdentifier();
-     final AttributeFacade attr = super.getManageableIdentifier();
-
-     if (attr == null)
-     {
-
-     final Collection<GeneralizableElementFacade> parentEntities = this.getAllGeneralizations();
-
-     for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
-     {
-
-     final Object parentEntityObject = parentEntityIterator.next();
-
-     if ((parentEntityObject instanceof Entity) && !((Entity) parentEntityObject).getIdentifiers().isEmpty())
-     {
-
-     final Object identifier = ((Entity) parentEntityObject).getIdentifiers().iterator().next();
-
-     return ((EntityAttribute) identifier);
-
-     }
-
-     }
-
-     }
-
-     return attr;
-
-     }*/
+    /*
+     * @Override
+     * protected AttributeFacade handleGetIdentifierToDelete()
+     * {
+     * // return super.getManageableIdentifier();
+     * final AttributeFacade attr = super.getManageableIdentifier();
+     * if (attr == null)
+     * {
+     * final Collection<GeneralizableElementFacade> parentEntities = this.getAllGeneralizations();
+     * for (final Iterator<GeneralizableElementFacade> parentEntityIterator = parentEntities.iterator(); parentEntityIterator.hasNext();)
+     * {
+     * final Object parentEntityObject = parentEntityIterator.next();
+     * if ((parentEntityObject instanceof Entity) && !((Entity) parentEntityObject).getIdentifiers().isEmpty())
+     * {
+     * final Object identifier = ((Entity) parentEntityObject).getIdentifiers().iterator().next();
+     * return ((EntityAttribute) identifier);
+     * }
+     * }
+     * }
+     * return attr;
+     * }
+     */
 
     // TODO remove
     @Override

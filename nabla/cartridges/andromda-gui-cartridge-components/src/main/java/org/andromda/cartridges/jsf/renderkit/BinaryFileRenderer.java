@@ -90,7 +90,7 @@ public class BinaryFileRenderer extends Renderer
             final OutputStream stream = response.getOutputStream();
 
             // - reset the response to clear out any any headers (i.e. so
-            //   the user doesn't get "unable to open..." when using IE.)
+            // the user doesn't get "unable to open..." when using IE.)
             response.reset();
 
             final String fileName = fileComponent.getFileName();
@@ -106,8 +106,8 @@ public class BinaryFileRenderer extends Renderer
             final String contentType = fileComponent.getContentType();
 
             // - for IE we need to set the content type, content length and buffer size and
-            //   then the flush the response right away because it seems as if there is any lag time
-            //   IE just displays a blank page. With mozilla based clients reports display correctly regardless.
+            // then the flush the response right away because it seems as if there is any lag time
+            // IE just displays a blank page. With mozilla based clients reports display correctly regardless.
             if (StringUtils.isNotBlank(contentType))
             {
 

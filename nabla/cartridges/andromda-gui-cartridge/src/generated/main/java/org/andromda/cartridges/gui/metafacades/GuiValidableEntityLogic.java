@@ -92,41 +92,44 @@ public abstract class GuiValidableEntityLogic
     */
     protected abstract String handleGetValidationNameSuffix();
 
-    private String validationNameSuffix1a;
-    private boolean validationNameSuffix1aSet = false;
+    private transient String validationNameSuffix1a;
+    private transient boolean validationNameSuffix1aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.validationNameSuffix
      * @return (String)handleGetValidationNameSuffix()
      */
     public final String getValidationNameSuffix()
     {
-        String avalidationNameSuffix1a = this.validationNameSuffix1a;
+        String validationNameSuffix1a = this.validationNameSuffix1a;
         if (!this.validationNameSuffix1aSet)
         {
             // validationNameSuffix has no pre constraints
-            avalidationNameSuffix1a = handleGetValidationNameSuffix();
+            validationNameSuffix1a = handleGetValidationNameSuffix();
             // validationNameSuffix has no post constraints
-            this.validationNameSuffix1a = avalidationNameSuffix1a;
+            this.validationNameSuffix1a = validationNameSuffix1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validationNameSuffix1aSet = true;
             }
         }
-        return avalidationNameSuffix1a;
+        return validationNameSuffix1a;
     }
 
     // ---------------- business methods ----------------------
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.eachValidableObjectReferenceIsValid
      * @return boolean
      */
     protected abstract boolean handleEachValidableObjectReferenceIsValid();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.eachValidableObjectReferenceIsValid
      * @return handleEachValidableObjectReferenceIsValid()
      */
     public boolean eachValidableObjectReferenceIsValid()
@@ -139,15 +142,19 @@ public abstract class GuiValidableEntityLogic
 
     /**
      * Method to be implemented in descendants
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.getIdentifierForValidableObjectReference
      * @param businessObjectName
      * @return String
      */
     protected abstract String handleGetIdentifierForValidableObjectReference(String businessObjectName);
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.getIdentifierForValidableObjectReference
      * @param businessObjectName String
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiValidableEntity.getIdentifierForValidableObjectReference(businessObjectName)
      * @return handleGetIdentifierForValidableObjectReference(businessObjectName)
      */
     public String getIdentifierForValidableObjectReference(String businessObjectName)
@@ -161,7 +168,9 @@ public abstract class GuiValidableEntityLogic
     // ------------- associations ------------------
 
     /**
-     * 
+     * A Validable entity handles Validable stereotype. Its a particular Manageable entity in the
+     * way it
+     * carries some of the Manageable use cases, overrides some others, and defines specific ones.
      * @return (List<Entity>)handleGetValidableObjectReferences()
      */
     public final List<Entity> getValidableObjectReferences()
@@ -172,7 +181,7 @@ public abstract class GuiValidableEntityLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getValidableObjectReferences1r = (List<Entity>)shieldedResult;
+            getValidableObjectReferences1r = (List<Entity>) shieldedResult;
         }
         catch (ClassCastException ex)
         {

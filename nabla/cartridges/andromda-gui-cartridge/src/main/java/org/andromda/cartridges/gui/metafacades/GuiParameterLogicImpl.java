@@ -1170,7 +1170,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
             // @see behavior in org.andromda.metafacades.emf.uml22.ParameterFacadeLogicImpl#handleIsRequired()
             // in ..\\andromda\\trunk\\metafacades\\uml\\emf\\uml22\\src\\main\\java\\org\\andromda\\metafacades\\emf\\uml22
-// !this.hasStereotype(UMLProfile.STEREOTYPE_NULLABLE)
+            // !this.hasStereotype(UMLProfile.STEREOTYPE_NULLABLE)
         }
 
     }
@@ -2457,8 +2457,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
             final String dateFormat = this.getDateFormat();
 
-            buffer.append("This field represents a date and should be formatted in the matter described here").append("<a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html\" ").append(
-                    "target=\"_jdk\">");
+            buffer.append("This field represents a date and should be formatted in the matter described here").append("<a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html\" ")
+                    .append("target=\"_jdk\">");
             buffer.append(dateFormat).append("</a> ");
 
             if (this.isStrictDateFormat())
@@ -2579,8 +2579,8 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
         } else if (this.isValidatorDouble())
         {
 
-            buffer.append("The value of this field should reflect a ").append("<a href=\"http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html\" ").append(
-                    "target=\"_jdk\">double precision integer</a> value");
+            buffer.append("The value of this field should reflect a ").append("<a href=\"http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html\" ")
+                    .append("target=\"_jdk\">double precision integer</a> value");
             buffer.append(crlf);
 
         } else if (this.isValidatorFloat())

@@ -135,11 +135,11 @@ public abstract class GuiActivityGraphLogic
 
     // ------------- associations ------------------
 
-    private GuiAction getFirstAction1r;
-    private boolean getFirstAction1rSet = false;
+    private transient GuiAction getFirstAction1r;
+    private transient boolean getFirstAction1rSet = false;
 
     /**
-     * 
+     * Represents the activity graph describing the details of a Gui use-case.
      * @return (GuiAction)handleGetFirstAction()
      */
     public final GuiAction getFirstAction()
@@ -152,7 +152,7 @@ public abstract class GuiActivityGraphLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getFirstAction1r = (GuiAction)shieldedResult;
+                getFirstAction1r = (GuiAction) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -361,7 +361,9 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -432,7 +434,7 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -441,7 +443,8 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -554,7 +557,7 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -572,7 +575,7 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -581,7 +584,7 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -637,7 +640,8 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -673,12 +677,24 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndActivityGraph().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndActivityGraph().isValidIdentifierName();
     }
 
     /**
@@ -711,7 +727,9 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * Represents a model element. It may be an Element or NamedElement. A named element is an
+     * element in a model that may have a name. An element is a constituent of a model. As such, it
+     * has the capability of owning other elements.
      * @see StateMachineFacade#getContextElement()
      */
     public ModelElementFacade getContextElement()
@@ -720,7 +738,9 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * A special kind of state signifying that the enclosing region is completed. If the enclosing
+     * region is directly contained in a state machine and all other regions in the state machine
+     * also are completed, then it means that the entire state machine is completed.
      * @see StateMachineFacade#getFinalStates()
      */
     public Collection<FinalStateFacade> getFinalStates()
@@ -740,7 +760,8 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * An abstraction that encompasses different types of transient vertices in the state machine
+     * graph.
      * @see StateMachineFacade#getInitialStates()
      */
     public Collection<PseudostateFacade> getInitialStates()
@@ -758,7 +779,8 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * An abstraction that encompasses different types of transient vertices in the state machine
+     * graph.
      * @see StateMachineFacade#getPseudostates()
      */
     public Collection<PseudostateFacade> getPseudostates()
@@ -767,7 +789,11 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * Models a situation during which some (usually implicit) invariant condition holds. The states
+     * of protocol state machines are exposed to the users of their context classifiers. A protocol
+     * state represents an exposed stable situation of its context classifier: when an instance of
+     * the classifier is not processing any operation, users of this instance can always know its
+     * state configuration.
      * @see StateMachineFacade#getStates()
      */
     public Collection<StateFacade> getStates()
@@ -776,7 +802,10 @@ public abstract class GuiActivityGraphLogic
     }
 
     /**
-     * 
+     * A directed relationship between a source vertex and a target vertex. It may be part of a
+     * compound transition, which takes the state machine from one state configuration to another,
+     * representing the complete response of the state machine to an occurrence of an event of a
+     * particular type.
      * @see StateMachineFacade#getTransitions()
      */
     public Collection<TransitionFacade> getTransitions()

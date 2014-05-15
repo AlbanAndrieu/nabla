@@ -1011,8 +1011,10 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
                 // Do not include attributes that are assigned for optimistic lock value as a version
                 if (!attr.isVersion())
                 {
-                    /* Do not include identifier attributes for entities with a composite primary key
-                     or if includeAutoIdentifiers is false, do not include identifiers with auto generated values. */
+                    /*
+                     * Do not include identifier attributes for entities with a composite primary key
+                     * or if includeAutoIdentifiers is false, do not include identifiers with auto generated values.
+                     */
                     if (!attr.isIdentifier() || (!isCompositePKPresent && (includeAutoIdentifiers || attr.isGeneratorTypeNone())))
                     {
                         sb.append(separator);
@@ -1042,9 +1044,12 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
             if (obj instanceof EJB3AssociationEndFacade)
             {
                 EJB3AssociationEndFacade assoc = (EJB3AssociationEndFacade) obj;
-                /* Do not include identifier attributes for entities with a composite primary key
-                 or if includeAutoIdentifiers is false, do not include identifiers with auto generated values.*/
-                //System.out.println(this.getName() + "." + assoc.getName() + " Identifier:" + assoc.isIdentifier() + " isCompositePKPresent:" + isCompositePKPresent + " includeAutoIdentifiers:" + includeAutoIdentifiers);
+                /*
+                 * Do not include identifier attributes for entities with a composite primary key
+                 * or if includeAutoIdentifiers is false, do not include identifiers with auto generated values.
+                 */
+                // System.out.println(this.getName() + "." + assoc.getName() + " Identifier:" + assoc.isIdentifier() + " isCompositePKPresent:" + isCompositePKPresent + " includeAutoIdentifiers:" +
+                // includeAutoIdentifiers);
                 if (!assoc.isIdentifier() || !isCompositePKPresent)
                 {
                     sb.append(separator);
@@ -1250,12 +1255,12 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
      * @see org.andromda.cartridges.spring.metafacades.SpringEntity#getDaoName()
      */
     /*
-    protected String handleGetDaoName()
-    {
-       return this.getDaoNamePattern().replaceAll(
-           "\\{0\\}",
-           this.getName());
-    }
+     * protected String handleGetDaoName()
+     * {
+     * return this.getDaoNamePattern().replaceAll(
+     * "\\{0\\}",
+     * this.getName());
+     * }
      */
 
     /**
@@ -1503,30 +1508,34 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
         // If a 1:1 owned identifier relationship, the dependent identifier attributes should be included in addition to the association
         // and the generator="foreign" and @PrimaryKeyJoinColumn annotations are used.
         final List<AssociationEndFacade> associationEnds = this.getAssociationEnds();
-        /*MetafacadeUtils.filterByStereotype(
-            associationEnds,
-            UMLProfile.STEREOTYPE_IDENTIFIER);*/
-        //System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " associationEnds=" + this.getAssociationEnds().size() + " identifiers=" + associationEnds.size());
+        /*
+         * MetafacadeUtils.filterByStereotype(
+         * associationEnds,
+         * UMLProfile.STEREOTYPE_IDENTIFIER);
+         */
+        // System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " associationEnds=" + this.getAssociationEnds().size() + " identifiers=" + associationEnds.size());
         for (AssociationEndFacade associationEnd : associationEnds)
         {
-            //System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " " + associationEnd.getOtherEnd().getFullyQualifiedName() + " Identifier=" + associationEnd.getOtherEnd().hasStereotype("Identifier") + " associationEnd=" + associationEnd + " One2One=" + associationEnd.getOtherEnd().isOne2One() + " Type=" + associationEnd.getOtherEnd().getType());
+            // System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " " + associationEnd.getOtherEnd().getFullyQualifiedName() + " Identifier=" +
+            // associationEnd.getOtherEnd().hasStereotype("Identifier") + " associationEnd=" + associationEnd + " One2One=" + associationEnd.getOtherEnd().isOne2One() + " Type=" + associationEnd.getOtherEnd().getType());
             if (associationEnd.getOtherEnd().hasStereotype("Identifier") && associationEnd.getOtherEnd().isOne2One() && !associationEnd.getOtherEnd().hasStereotype(UMLProfile.STEREOTYPE_TRANSIENT)
                     && associationEnd.getOtherEnd() instanceof EJB3AssociationEndFacade)
             {
                 EJB3AssociationEndFacade ejb3AssociationEnd = (EJB3AssociationEndFacade) associationEnd;
-                //System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " " + ejb3AssociationEnd + " Owning=" + ejb3AssociationEnd.isOwning() + " Aggregation=" + ejb3AssociationEnd.isAggregation() + " Composition=" + ejb3AssociationEnd.isComposition() + " OAggregation=" + ejb3AssociationEnd.getOtherEnd().isAggregation() + " OComposition=" + ejb3AssociationEnd.getOtherEnd().isComposition());
+                // System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " " + ejb3AssociationEnd + " Owning=" + ejb3AssociationEnd.isOwning() + " Aggregation=" + ejb3AssociationEnd.isAggregation()
+                // + " Composition=" + ejb3AssociationEnd.isComposition() + " OAggregation=" + ejb3AssociationEnd.getOtherEnd().isAggregation() + " OComposition=" + ejb3AssociationEnd.getOtherEnd().isComposition());
                 if (ejb3AssociationEnd.isOwning())
                 {
                     Entity entity = (Entity) ejb3AssociationEnd.getType();
                     Collection<ModelElementFacade> identifierAttributes = EntityMetafacadeUtils.getIdentifierAttributes(entity, follow);
-                    //System.out.println("GetInstanceAttributes "  + this.getFullyQualifiedName() + " entity=" + entity + " Attributes=" + identifierAttributes);
+                    // System.out.println("GetInstanceAttributes " + this.getFullyQualifiedName() + " entity=" + entity + " Attributes=" + identifierAttributes);
                     for (ModelElementFacade identifier : identifierAttributes)
                     {
-                        //System.out.println(identifier);
+                        // System.out.println(identifier);
                         if (identifier instanceof AttributeFacade)
                         {
                             attributes.add((AttributeFacade) identifier);
-                            //System.out.println("Added "  + identifier + " to entity=" + entity);
+                            // System.out.println("Added " + identifier + " to entity=" + entity);
                         }
                     }
                 }

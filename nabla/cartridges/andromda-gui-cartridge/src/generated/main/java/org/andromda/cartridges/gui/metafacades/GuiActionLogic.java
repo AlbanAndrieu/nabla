@@ -150,8 +150,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionName();
 
-    private String actionName1a;
-    private boolean actionName1aSet = false;
+    private transient String actionName1a;
+    private transient boolean actionName1aSet = false;
 
     /**
      * The action name corresponding to this action, as found in the gui deployment descriptor. The
@@ -160,19 +160,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionName()
     {
-        String aactionName1a = this.actionName1a;
+        String actionName1a = this.actionName1a;
         if (!this.actionName1aSet)
         {
             // actionName has no pre constraints
-            aactionName1a = handleGetActionName();
+            actionName1a = handleGetActionName();
             // actionName has no post constraints
-            this.actionName1a = aactionName1a;
+            this.actionName1a = actionName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionName1aSet = true;
             }
         }
-        return aactionName1a;
+        return actionName1a;
     }
 
    /**
@@ -181,8 +181,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionPath();
 
-    private String actionPath2a;
-    private boolean actionPath2aSet = false;
+    private transient String actionPath2a;
+    private transient boolean actionPath2aSet = false;
 
     /**
      * The action path corresponding to this action, as found in the gui deployment descriptor. The
@@ -191,19 +191,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionPath()
     {
-        String aactionPath2a = this.actionPath2a;
+        String actionPath2a = this.actionPath2a;
         if (!this.actionPath2aSet)
         {
             // actionPath has no pre constraints
-            aactionPath2a = handleGetActionPath();
+            actionPath2a = handleGetActionPath();
             // actionPath has no post constraints
-            this.actionPath2a = aactionPath2a;
+            this.actionPath2a = actionPath2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionPath2aSet = true;
             }
         }
-        return aactionPath2a;
+        return actionPath2a;
     }
 
    /**
@@ -212,8 +212,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionInput();
 
-    private String actionInput3a;
-    private boolean actionInput3aSet = false;
+    private transient String actionInput3a;
+    private transient boolean actionInput3aSet = false;
 
     /**
      * The action input corresponding to this action, as found in the gui deployment descriptor. The
@@ -222,19 +222,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionInput()
     {
-        String aactionInput3a = this.actionInput3a;
+        String actionInput3a = this.actionInput3a;
         if (!this.actionInput3aSet)
         {
             // actionInput has no pre constraints
-            aactionInput3a = handleGetActionInput();
+            actionInput3a = handleGetActionInput();
             // actionInput has no post constraints
-            this.actionInput3a = aactionInput3a;
+            this.actionInput3a = actionInput3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionInput3aSet = true;
             }
         }
-        return aactionInput3a;
+        return actionInput3a;
     }
 
    /**
@@ -243,8 +243,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionRoles();
 
-    private String actionRoles4a;
-    private boolean actionRoles4aSet = false;
+    private transient String actionRoles4a;
+    private transient boolean actionRoles4aSet = false;
 
     /**
      * The action roles corresponding to this action, as found in the gui deployment descriptor. The
@@ -254,19 +254,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionRoles()
     {
-        String aactionRoles4a = this.actionRoles4a;
+        String actionRoles4a = this.actionRoles4a;
         if (!this.actionRoles4aSet)
         {
             // actionRoles has no pre constraints
-            aactionRoles4a = handleGetActionRoles();
+            actionRoles4a = handleGetActionRoles();
             // actionRoles has no post constraints
-            this.actionRoles4a = aactionRoles4a;
+            this.actionRoles4a = actionRoles4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionRoles4aSet = true;
             }
         }
-        return aactionRoles4a;
+        return actionRoles4a;
     }
 
    /**
@@ -275,8 +275,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFormPost();
 
-    private boolean formPost5a;
-    private boolean formPost5aSet = false;
+    private transient boolean formPost5a;
+    private transient boolean formPost5aSet = false;
 
     /**
      * Specifies whether or not this action is represented by the posting of a form.
@@ -284,19 +284,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFormPost()
     {
-        boolean aformPost5a = this.formPost5a;
+        boolean formPost5a = this.formPost5a;
         if (!this.formPost5aSet)
         {
             // formPost has no pre constraints
-            aformPost5a = handleIsFormPost();
+            formPost5a = handleIsFormPost();
             // formPost has no post constraints
-            this.formPost5a = aformPost5a;
+            this.formPost5a = formPost5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formPost5aSet = true;
             }
         }
-        return aformPost5a;
+        return formPost5a;
     }
 
    /**
@@ -305,8 +305,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsHyperlink();
 
-    private boolean hyperlink6a;
-    private boolean hyperlink6aSet = false;
+    private transient boolean hyperlink6a;
+    private transient boolean hyperlink6aSet = false;
 
     /**
      * Specifies whether or not this action is represented by clicking on a hyperlink.
@@ -314,19 +314,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isHyperlink()
     {
-        boolean ahyperlink6a = this.hyperlink6a;
+        boolean hyperlink6a = this.hyperlink6a;
         if (!this.hyperlink6aSet)
         {
             // hyperlink has no pre constraints
-            ahyperlink6a = handleIsHyperlink();
+            hyperlink6a = handleIsHyperlink();
             // hyperlink has no post constraints
-            this.hyperlink6a = ahyperlink6a;
+            this.hyperlink6a = hyperlink6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hyperlink6aSet = true;
             }
         }
-        return ahyperlink6a;
+        return hyperlink6a;
     }
 
    /**
@@ -335,8 +335,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionClassName();
 
-    private String actionClassName7a;
-    private boolean actionClassName7aSet = false;
+    private transient String actionClassName7a;
+    private transient boolean actionClassName7aSet = false;
 
     /**
      * A good Java class name for this action. The name is constructed from the source page and the
@@ -345,19 +345,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionClassName()
     {
-        String aactionClassName7a = this.actionClassName7a;
+        String actionClassName7a = this.actionClassName7a;
         if (!this.actionClassName7aSet)
         {
             // actionClassName has no pre constraints
-            aactionClassName7a = handleGetActionClassName();
+            actionClassName7a = handleGetActionClassName();
             // actionClassName has no post constraints
-            this.actionClassName7a = aactionClassName7a;
+            this.actionClassName7a = actionClassName7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionClassName7aSet = true;
             }
         }
-        return aactionClassName7a;
+        return actionClassName7a;
     }
 
    /**
@@ -366,8 +366,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormBeanClassName();
 
-    private String formBeanClassName8a;
-    private boolean formBeanClassName8aSet = false;
+    private transient String formBeanClassName8a;
+    private transient boolean formBeanClassName8aSet = false;
 
     /**
      * Returns the class name of the form bean associated to this action.
@@ -375,19 +375,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormBeanClassName()
     {
-        String aformBeanClassName8a = this.formBeanClassName8a;
+        String formBeanClassName8a = this.formBeanClassName8a;
         if (!this.formBeanClassName8aSet)
         {
             // formBeanClassName has no pre constraints
-            aformBeanClassName8a = handleGetFormBeanClassName();
+            formBeanClassName8a = handleGetFormBeanClassName();
             // formBeanClassName has no post constraints
-            this.formBeanClassName8a = aformBeanClassName8a;
+            this.formBeanClassName8a = formBeanClassName8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanClassName8aSet = true;
             }
         }
-        return aformBeanClassName8a;
+        return formBeanClassName8a;
     }
 
    /**
@@ -396,8 +396,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormBeanName();
 
-    private String formBeanName9a;
-    private boolean formBeanName9aSet = false;
+    private transient String formBeanName9a;
+    private transient boolean formBeanName9aSet = false;
 
     /**
      * The name of the form bean associated to this action. The name is returned as it should appear
@@ -406,19 +406,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormBeanName()
     {
-        String aformBeanName9a = this.formBeanName9a;
+        String formBeanName9a = this.formBeanName9a;
         if (!this.formBeanName9aSet)
         {
             // formBeanName has no pre constraints
-            aformBeanName9a = handleGetFormBeanName();
+            formBeanName9a = handleGetFormBeanName();
             // formBeanName has no post constraints
-            this.formBeanName9a = aformBeanName9a;
+            this.formBeanName9a = formBeanName9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanName9aSet = true;
             }
         }
-        return aformBeanName9a;
+        return formBeanName9a;
     }
 
    /**
@@ -427,8 +427,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormValidationMethodName();
 
-    private String formValidationMethodName10a;
-    private boolean formValidationMethodName10aSet = false;
+    private transient String formValidationMethodName10a;
+    private transient boolean formValidationMethodName10aSet = false;
 
     /**
      * The Javascript function name of the validation method that will validate the action
@@ -437,19 +437,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormValidationMethodName()
     {
-        String aformValidationMethodName10a = this.formValidationMethodName10a;
+        String formValidationMethodName10a = this.formValidationMethodName10a;
         if (!this.formValidationMethodName10aSet)
         {
             // formValidationMethodName has no pre constraints
-            aformValidationMethodName10a = handleGetFormValidationMethodName();
+            formValidationMethodName10a = handleGetFormValidationMethodName();
             // formValidationMethodName has no post constraints
-            this.formValidationMethodName10a = aformValidationMethodName10a;
+            this.formValidationMethodName10a = formValidationMethodName10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formValidationMethodName10aSet = true;
             }
         }
-        return aformValidationMethodName10a;
+        return formValidationMethodName10a;
     }
 
    /**
@@ -458,8 +458,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsResettable();
 
-    private boolean resettable11a;
-    private boolean resettable11aSet = false;
+    private transient boolean resettable11a;
+    private transient boolean resettable11aSet = false;
 
     /**
      * True if it should be possible to reset the form represented by this action. False otherwise.
@@ -467,19 +467,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isResettable()
     {
-        boolean aresettable11a = this.resettable11a;
+        boolean resettable11a = this.resettable11a;
         if (!this.resettable11aSet)
         {
             // resettable has no pre constraints
-            aresettable11a = handleIsResettable();
+            resettable11a = handleIsResettable();
             // resettable has no post constraints
-            this.resettable11a = aresettable11a;
+            this.resettable11a = resettable11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resettable11aSet = true;
             }
         }
-        return aresettable11a;
+        return resettable11a;
     }
 
    /**
@@ -488,8 +488,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullActionPath();
 
-    private String fullActionPath12a;
-    private boolean fullActionPath12aSet = false;
+    private transient String fullActionPath12a;
+    private transient boolean fullActionPath12aSet = false;
 
     /**
      * The full path for this action. The full path also contains the package name rendered as
@@ -498,19 +498,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullActionPath()
     {
-        String afullActionPath12a = this.fullActionPath12a;
+        String fullActionPath12a = this.fullActionPath12a;
         if (!this.fullActionPath12aSet)
         {
             // fullActionPath has no pre constraints
-            afullActionPath12a = handleGetFullActionPath();
+            fullActionPath12a = handleGetFullActionPath();
             // fullActionPath has no post constraints
-            this.fullActionPath12a = afullActionPath12a;
+            this.fullActionPath12a = fullActionPath12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullActionPath12aSet = true;
             }
         }
-        return afullActionPath12a;
+        return fullActionPath12a;
     }
 
    /**
@@ -519,8 +519,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullFormBeanPath();
 
-    private String fullFormBeanPath13a;
-    private boolean fullFormBeanPath13aSet = false;
+    private transient String fullFormBeanPath13a;
+    private transient boolean fullFormBeanPath13aSet = false;
 
     /**
      * Returns the full path for the form bean associated to this action.
@@ -528,19 +528,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullFormBeanPath()
     {
-        String afullFormBeanPath13a = this.fullFormBeanPath13a;
+        String fullFormBeanPath13a = this.fullFormBeanPath13a;
         if (!this.fullFormBeanPath13aSet)
         {
             // fullFormBeanPath has no pre constraints
-            afullFormBeanPath13a = handleGetFullFormBeanPath();
+            fullFormBeanPath13a = handleGetFullFormBeanPath();
             // fullFormBeanPath has no post constraints
-            this.fullFormBeanPath13a = afullFormBeanPath13a;
+            this.fullFormBeanPath13a = fullFormBeanPath13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullFormBeanPath13aSet = true;
             }
         }
-        return afullFormBeanPath13a;
+        return fullFormBeanPath13a;
     }
 
    /**
@@ -549,8 +549,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionPathRoot();
 
-    private String actionPathRoot14a;
-    private boolean actionPathRoot14aSet = false;
+    private transient String actionPathRoot14a;
+    private transient boolean actionPathRoot14aSet = false;
 
     /**
      * The root of the action path, this is the same as the path for the use-case context for this
@@ -559,19 +559,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionPathRoot()
     {
-        String aactionPathRoot14a = this.actionPathRoot14a;
+        String actionPathRoot14a = this.actionPathRoot14a;
         if (!this.actionPathRoot14aSet)
         {
             // actionPathRoot has no pre constraints
-            aactionPathRoot14a = handleGetActionPathRoot();
+            actionPathRoot14a = handleGetActionPathRoot();
             // actionPathRoot has no post constraints
-            this.actionPathRoot14a = aactionPathRoot14a;
+            this.actionPathRoot14a = actionPathRoot14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionPathRoot14aSet = true;
             }
         }
-        return aactionPathRoot14a;
+        return actionPathRoot14a;
     }
 
    /**
@@ -580,8 +580,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsValidationRequired();
 
-    private boolean validationRequired15a;
-    private boolean validationRequired15aSet = false;
+    private transient boolean validationRequired15a;
+    private transient boolean validationRequired15aSet = false;
 
     /**
      * True if this action requires validation, false otherwise. An action requires validation if it
@@ -590,19 +590,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isValidationRequired()
     {
-        boolean avalidationRequired15a = this.validationRequired15a;
+        boolean validationRequired15a = this.validationRequired15a;
         if (!this.validationRequired15aSet)
         {
             // validationRequired has no pre constraints
-            avalidationRequired15a = handleIsValidationRequired();
+            validationRequired15a = handleIsValidationRequired();
             // validationRequired has no post constraints
-            this.validationRequired15a = avalidationRequired15a;
+            this.validationRequired15a = validationRequired15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.validationRequired15aSet = true;
             }
         }
-        return avalidationRequired15a;
+        return validationRequired15a;
     }
 
    /**
@@ -611,8 +611,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormBeanType();
 
-    private String formBeanType16a;
-    private boolean formBeanType16aSet = false;
+    private transient String formBeanType16a;
+    private transient boolean formBeanType16aSet = false;
 
     /**
      * The fully qualified name of the form bean associated to this action.
@@ -620,19 +620,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormBeanType()
     {
-        String aformBeanType16a = this.formBeanType16a;
+        String formBeanType16a = this.formBeanType16a;
         if (!this.formBeanType16aSet)
         {
             // formBeanType has no pre constraints
-            aformBeanType16a = handleGetFormBeanType();
+            formBeanType16a = handleGetFormBeanType();
             // formBeanType has no post constraints
-            this.formBeanType16a = aformBeanType16a;
+            this.formBeanType16a = formBeanType16a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanType16aSet = true;
             }
         }
-        return aformBeanType16a;
+        return formBeanType16a;
     }
 
    /**
@@ -641,8 +641,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetDocumentationValue();
 
-    private String documentationValue17a;
-    private boolean documentationValue17aSet = false;
+    private transient String documentationValue17a;
+    private transient boolean documentationValue17aSet = false;
 
     /**
      * The documentation for this action as a String that can be used as a resource message (with
@@ -651,19 +651,19 @@ public abstract class GuiActionLogic
      */
     public final String getDocumentationValue()
     {
-        String adocumentationValue17a = this.documentationValue17a;
+        String documentationValue17a = this.documentationValue17a;
         if (!this.documentationValue17aSet)
         {
             // documentationValue has no pre constraints
-            adocumentationValue17a = handleGetDocumentationValue();
+            documentationValue17a = handleGetDocumentationValue();
             // documentationValue has no post constraints
-            this.documentationValue17a = adocumentationValue17a;
+            this.documentationValue17a = documentationValue17a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.documentationValue17aSet = true;
             }
         }
-        return adocumentationValue17a;
+        return documentationValue17a;
     }
 
    /**
@@ -672,8 +672,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetDocumentationKey();
 
-    private String documentationKey18a;
-    private boolean documentationKey18aSet = false;
+    private transient String documentationKey18a;
+    private transient boolean documentationKey18aSet = false;
 
     /**
      * A key suited as a resource message key for the documentation for this action.
@@ -681,19 +681,19 @@ public abstract class GuiActionLogic
      */
     public final String getDocumentationKey()
     {
-        String adocumentationKey18a = this.documentationKey18a;
+        String documentationKey18a = this.documentationKey18a;
         if (!this.documentationKey18aSet)
         {
             // documentationKey has no pre constraints
-            adocumentationKey18a = handleGetDocumentationKey();
+            documentationKey18a = handleGetDocumentationKey();
             // documentationKey has no post constraints
-            this.documentationKey18a = adocumentationKey18a;
+            this.documentationKey18a = documentationKey18a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.documentationKey18aSet = true;
             }
         }
-        return adocumentationKey18a;
+        return documentationKey18a;
     }
 
    /**
@@ -702,8 +702,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullTilePath();
 
-    private String fullTilePath19a;
-    private boolean fullTilePath19aSet = false;
+    private transient String fullTilePath19a;
+    private transient boolean fullTilePath19aSet = false;
 
     /**
      * The name of a file that can be used as a view file name in case you want to have each action
@@ -712,19 +712,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullTilePath()
     {
-        String afullTilePath19a = this.fullTilePath19a;
+        String fullTilePath19a = this.fullTilePath19a;
         if (!this.fullTilePath19aSet)
         {
             // fullTilePath has no pre constraints
-            afullTilePath19a = handleGetFullTilePath();
+            fullTilePath19a = handleGetFullTilePath();
             // fullTilePath has no post constraints
-            this.fullTilePath19a = afullTilePath19a;
+            this.fullTilePath19a = fullTilePath19a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullTilePath19aSet = true;
             }
         }
-        return afullTilePath19a;
+        return fullTilePath19a;
     }
 
    /**
@@ -733,8 +733,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsDateFieldPresent();
 
-    private boolean dateFieldPresent20a;
-    private boolean dateFieldPresent20aSet = false;
+    private transient boolean dateFieldPresent20a;
+    private transient boolean dateFieldPresent20aSet = false;
 
     /**
      * True if this action contains a parameter of type Date. The generated pages will contain
@@ -743,19 +743,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isDateFieldPresent()
     {
-        boolean adateFieldPresent20a = this.dateFieldPresent20a;
+        boolean dateFieldPresent20a = this.dateFieldPresent20a;
         if (!this.dateFieldPresent20aSet)
         {
             // dateFieldPresent has no pre constraints
-            adateFieldPresent20a = handleIsDateFieldPresent();
+            dateFieldPresent20a = handleIsDateFieldPresent();
             // dateFieldPresent has no post constraints
-            this.dateFieldPresent20a = adateFieldPresent20a;
+            this.dateFieldPresent20a = dateFieldPresent20a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.dateFieldPresent20aSet = true;
             }
         }
-        return adateFieldPresent20a;
+        return dateFieldPresent20a;
     }
 
    /**
@@ -764,8 +764,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsCalendarRequired();
 
-    private boolean calendarRequired21a;
-    private boolean calendarRequired21aSet = false;
+    private transient boolean calendarRequired21a;
+    private transient boolean calendarRequired21aSet = false;
 
     /**
      * True if this action contains a parameter which requires a calendar popup.
@@ -773,19 +773,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isCalendarRequired()
     {
-        boolean acalendarRequired21a = this.calendarRequired21a;
+        boolean calendarRequired21a = this.calendarRequired21a;
         if (!this.calendarRequired21aSet)
         {
             // calendarRequired has no pre constraints
-            acalendarRequired21a = handleIsCalendarRequired();
+            calendarRequired21a = handleIsCalendarRequired();
             // calendarRequired has no post constraints
-            this.calendarRequired21a = acalendarRequired21a;
+            this.calendarRequired21a = calendarRequired21a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.calendarRequired21aSet = true;
             }
         }
-        return acalendarRequired21a;
+        return calendarRequired21a;
     }
 
    /**
@@ -794,8 +794,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsTableLink();
 
-    private boolean tableLink22a;
-    private boolean tableLink22aSet = false;
+    private transient boolean tableLink22a;
+    private transient boolean tableLink22aSet = false;
 
     /**
      * True if a table link name has been specified and it properly targets a table page-variable
@@ -804,19 +804,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isTableLink()
     {
-        boolean atableLink22a = this.tableLink22a;
+        boolean tableLink22a = this.tableLink22a;
         if (!this.tableLink22aSet)
         {
             // tableLink has no pre constraints
-            atableLink22a = handleIsTableLink();
+            tableLink22a = handleIsTableLink();
             // tableLink has no post constraints
-            this.tableLink22a = atableLink22a;
+            this.tableLink22a = tableLink22a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableLink22aSet = true;
             }
         }
-        return atableLink22a;
+        return tableLink22a;
     }
 
    /**
@@ -825,8 +825,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetOnlineHelpKey();
 
-    private String onlineHelpKey23a;
-    private boolean onlineHelpKey23aSet = false;
+    private transient String onlineHelpKey23a;
+    private transient boolean onlineHelpKey23aSet = false;
 
     /**
      * The key to lookup the online help documentation. This documentation is gathered from the
@@ -835,19 +835,19 @@ public abstract class GuiActionLogic
      */
     public final String getOnlineHelpKey()
     {
-        String aonlineHelpKey23a = this.onlineHelpKey23a;
+        String onlineHelpKey23a = this.onlineHelpKey23a;
         if (!this.onlineHelpKey23aSet)
         {
             // onlineHelpKey has no pre constraints
-            aonlineHelpKey23a = handleGetOnlineHelpKey();
+            onlineHelpKey23a = handleGetOnlineHelpKey();
             // onlineHelpKey has no post constraints
-            this.onlineHelpKey23a = aonlineHelpKey23a;
+            this.onlineHelpKey23a = onlineHelpKey23a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpKey23aSet = true;
             }
         }
-        return aonlineHelpKey23a;
+        return onlineHelpKey23a;
     }
 
    /**
@@ -856,8 +856,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetOnlineHelpValue();
 
-    private String onlineHelpValue24a;
-    private boolean onlineHelpValue24aSet = false;
+    private transient String onlineHelpValue24a;
+    private transient boolean onlineHelpValue24aSet = false;
 
     /**
      * The online help documentation. This documentation is gathered from the documentation entered
@@ -866,19 +866,19 @@ public abstract class GuiActionLogic
      */
     public final String getOnlineHelpValue()
     {
-        String aonlineHelpValue24a = this.onlineHelpValue24a;
+        String onlineHelpValue24a = this.onlineHelpValue24a;
         if (!this.onlineHelpValue24aSet)
         {
             // onlineHelpValue has no pre constraints
-            aonlineHelpValue24a = handleGetOnlineHelpValue();
+            onlineHelpValue24a = handleGetOnlineHelpValue();
             // onlineHelpValue has no post constraints
-            this.onlineHelpValue24a = aonlineHelpValue24a;
+            this.onlineHelpValue24a = onlineHelpValue24a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.onlineHelpValue24aSet = true;
             }
         }
-        return aonlineHelpValue24a;
+        return onlineHelpValue24a;
     }
 
    /**
@@ -887,8 +887,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionScope();
 
-    private String actionScope25a;
-    private boolean actionScope25aSet = false;
+    private transient String actionScope25a;
+    private transient boolean actionScope25aSet = false;
 
     /**
      * The scope in which the form bean will be placed (could be page, request, session or
@@ -897,19 +897,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionScope()
     {
-        String aactionScope25a = this.actionScope25a;
+        String actionScope25a = this.actionScope25a;
         if (!this.actionScope25aSet)
         {
             // actionScope has no pre constraints
-            aactionScope25a = handleGetActionScope();
+            actionScope25a = handleGetActionScope();
             // actionScope has no post constraints
-            this.actionScope25a = aactionScope25a;
+            this.actionScope25a = actionScope25a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionScope25aSet = true;
             }
         }
-        return aactionScope25a;
+        return actionScope25a;
     }
 
    /**
@@ -918,8 +918,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormBeanPackageName();
 
-    private String formBeanPackageName26a;
-    private boolean formBeanPackageName26aSet = false;
+    private transient String formBeanPackageName26a;
+    private transient boolean formBeanPackageName26aSet = false;
 
     /**
      * The package for the form bean.
@@ -927,19 +927,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormBeanPackageName()
     {
-        String aformBeanPackageName26a = this.formBeanPackageName26a;
+        String formBeanPackageName26a = this.formBeanPackageName26a;
         if (!this.formBeanPackageName26aSet)
         {
             // formBeanPackageName has no pre constraints
-            aformBeanPackageName26a = handleGetFormBeanPackageName();
+            formBeanPackageName26a = handleGetFormBeanPackageName();
             // formBeanPackageName has no post constraints
-            this.formBeanPackageName26a = aformBeanPackageName26a;
+            this.formBeanPackageName26a = formBeanPackageName26a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formBeanPackageName26aSet = true;
             }
         }
-        return aformBeanPackageName26a;
+        return formBeanPackageName26a;
     }
 
    /**
@@ -948,8 +948,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetActionType();
 
-    private String actionType27a;
-    private boolean actionType27aSet = false;
+    private transient String actionType27a;
+    private transient boolean actionType27aSet = false;
 
     /**
      * The fully qualified name for the action class.
@@ -957,19 +957,19 @@ public abstract class GuiActionLogic
      */
     public final String getActionType()
     {
-        String aactionType27a = this.actionType27a;
+        String actionType27a = this.actionType27a;
         if (!this.actionType27aSet)
         {
             // actionType has no pre constraints
-            aactionType27a = handleGetActionType();
+            actionType27a = handleGetActionType();
             // actionType has no post constraints
-            this.actionType27a = aactionType27a;
+            this.actionType27a = actionType27a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionType27aSet = true;
             }
         }
-        return aactionType27a;
+        return actionType27a;
     }
 
    /**
@@ -978,8 +978,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetStyleId();
 
-    private String styleId28a;
-    private boolean styleId28aSet = false;
+    private transient String styleId28a;
+    private transient boolean styleId28aSet = false;
 
     /**
      * The name of the CSS id in which this action will be contained.
@@ -987,19 +987,19 @@ public abstract class GuiActionLogic
      */
     public final String getStyleId()
     {
-        String astyleId28a = this.styleId28a;
+        String styleId28a = this.styleId28a;
         if (!this.styleId28aSet)
         {
             // styleId has no pre constraints
-            astyleId28a = handleGetStyleId();
+            styleId28a = handleGetStyleId();
             // styleId has no post constraints
-            this.styleId28a = astyleId28a;
+            this.styleId28a = styleId28a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.styleId28aSet = true;
             }
         }
-        return astyleId28a;
+        return styleId28a;
     }
 
    /**
@@ -1008,8 +1008,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsRedirect();
 
-    private boolean redirect29a;
-    private boolean redirect29aSet = false;
+    private transient boolean redirect29a;
+    private transient boolean redirect29aSet = false;
 
     /**
      * Defines whether or not when this action's forward is executed, an HTTP redirect should occur.
@@ -1018,19 +1018,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isRedirect()
     {
-        boolean aredirect29a = this.redirect29a;
+        boolean redirect29a = this.redirect29a;
         if (!this.redirect29aSet)
         {
             // redirect has no pre constraints
-            aredirect29a = handleIsRedirect();
+            redirect29a = handleIsRedirect();
             // redirect has no post constraints
-            this.redirect29a = aredirect29a;
+            this.redirect29a = redirect29a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.redirect29aSet = true;
             }
         }
-        return aredirect29a;
+        return redirect29a;
     }
 
    /**
@@ -1039,8 +1039,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormScope();
 
-    private String formScope30a;
-    private boolean formScope30aSet = false;
+    private transient String formScope30a;
+    private transient boolean formScope30aSet = false;
 
     /**
      * The scope to place the current "form" variable within when this action is executing.
@@ -1048,19 +1048,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormScope()
     {
-        String aformScope30a = this.formScope30a;
+        String formScope30a = this.formScope30a;
         if (!this.formScope30aSet)
         {
             // formScope has no pre constraints
-            aformScope30a = handleGetFormScope();
+            formScope30a = handleGetFormScope();
             // formScope has no post constraints
-            this.formScope30a = aformScope30a;
+            this.formScope30a = formScope30a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formScope30aSet = true;
             }
         }
-        return aformScope30a;
+        return formScope30a;
     }
 
    /**
@@ -1069,8 +1069,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFormScopeSession();
 
-    private boolean formScopeSession31a;
-    private boolean formScopeSession31aSet = false;
+    private transient boolean formScopeSession31a;
+    private transient boolean formScopeSession31aSet = false;
 
     /**
      * Indicates if the form scope is of type "session".
@@ -1078,19 +1078,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFormScopeSession()
     {
-        boolean aformScopeSession31a = this.formScopeSession31a;
+        boolean formScopeSession31a = this.formScopeSession31a;
         if (!this.formScopeSession31aSet)
         {
             // formScopeSession has no pre constraints
-            aformScopeSession31a = handleIsFormScopeSession();
+            formScopeSession31a = handleIsFormScopeSession();
             // formScopeSession has no post constraints
-            this.formScopeSession31a = aformScopeSession31a;
+            this.formScopeSession31a = formScopeSession31a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formScopeSession31aSet = true;
             }
         }
-        return aformScopeSession31a;
+        return formScopeSession31a;
     }
 
    /**
@@ -1099,8 +1099,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFormScopeRequest();
 
-    private boolean formScopeRequest32a;
-    private boolean formScopeRequest32aSet = false;
+    private transient boolean formScopeRequest32a;
+    private transient boolean formScopeRequest32aSet = false;
 
     /**
      * Indicates if the from scope is of type "request".
@@ -1108,19 +1108,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFormScopeRequest()
     {
-        boolean aformScopeRequest32a = this.formScopeRequest32a;
+        boolean formScopeRequest32a = this.formScopeRequest32a;
         if (!this.formScopeRequest32aSet)
         {
             // formScopeRequest has no pre constraints
-            aformScopeRequest32a = handleIsFormScopeRequest();
+            formScopeRequest32a = handleIsFormScopeRequest();
             // formScopeRequest has no post constraints
-            this.formScopeRequest32a = aformScopeRequest32a;
+            this.formScopeRequest32a = formScopeRequest32a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formScopeRequest32aSet = true;
             }
         }
-        return aformScopeRequest32a;
+        return formScopeRequest32a;
     }
 
    /**
@@ -1129,8 +1129,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFormScopeNone();
 
-    private boolean formScopeNone33a;
-    private boolean formScopeNone33aSet = false;
+    private transient boolean formScopeNone33a;
+    private transient boolean formScopeNone33aSet = false;
 
     /**
      * Indicates if the form scope is of type "none".
@@ -1138,19 +1138,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFormScopeNone()
     {
-        boolean aformScopeNone33a = this.formScopeNone33a;
+        boolean formScopeNone33a = this.formScopeNone33a;
         if (!this.formScopeNone33aSet)
         {
             // formScopeNone has no pre constraints
-            aformScopeNone33a = handleIsFormScopeNone();
+            formScopeNone33a = handleIsFormScopeNone();
             // formScopeNone has no post constraints
-            this.formScopeNone33a = aformScopeNone33a;
+            this.formScopeNone33a = formScopeNone33a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formScopeNone33aSet = true;
             }
         }
-        return aformScopeNone33a;
+        return formScopeNone33a;
     }
 
    /**
@@ -1159,8 +1159,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetTableLinkName();
 
-    private String tableLinkName34a;
-    private boolean tableLinkName34aSet = false;
+    private transient String tableLinkName34a;
+    private transient boolean tableLinkName34aSet = false;
 
     /**
      * The name of the table link specified for this action.
@@ -1168,19 +1168,19 @@ public abstract class GuiActionLogic
      */
     public final String getTableLinkName()
     {
-        String atableLinkName34a = this.tableLinkName34a;
+        String tableLinkName34a = this.tableLinkName34a;
         if (!this.tableLinkName34aSet)
         {
             // tableLinkName has no pre constraints
-            atableLinkName34a = handleGetTableLinkName();
+            tableLinkName34a = handleGetTableLinkName();
             // tableLinkName has no post constraints
-            this.tableLinkName34a = atableLinkName34a;
+            this.tableLinkName34a = tableLinkName34a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableLinkName34aSet = true;
             }
         }
-        return atableLinkName34a;
+        return tableLinkName34a;
     }
 
    /**
@@ -1189,8 +1189,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetTableLinkColumnName();
 
-    private String tableLinkColumnName35a;
-    private boolean tableLinkColumnName35aSet = false;
+    private transient String tableLinkColumnName35a;
+    private transient boolean tableLinkColumnName35aSet = false;
 
     /**
      * The name of the column targetted by this action.
@@ -1198,19 +1198,19 @@ public abstract class GuiActionLogic
      */
     public final String getTableLinkColumnName()
     {
-        String atableLinkColumnName35a = this.tableLinkColumnName35a;
+        String tableLinkColumnName35a = this.tableLinkColumnName35a;
         if (!this.tableLinkColumnName35aSet)
         {
             // tableLinkColumnName has no pre constraints
-            atableLinkColumnName35a = handleGetTableLinkColumnName();
+            tableLinkColumnName35a = handleGetTableLinkColumnName();
             // tableLinkColumnName has no post constraints
-            this.tableLinkColumnName35a = atableLinkColumnName35a;
+            this.tableLinkColumnName35a = tableLinkColumnName35a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableLinkColumnName35aSet = true;
             }
         }
-        return atableLinkColumnName35a;
+        return tableLinkColumnName35a;
     }
 
    /**
@@ -1219,8 +1219,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsImageLink();
 
-    private boolean imageLink36a;
-    private boolean imageLink36aSet = false;
+    private transient boolean imageLink36a;
+    private transient boolean imageLink36aSet = false;
 
     /**
      * Specifies whether or not this action is represented by clicking on an image.
@@ -1228,19 +1228,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isImageLink()
     {
-        boolean aimageLink36a = this.imageLink36a;
+        boolean imageLink36a = this.imageLink36a;
         if (!this.imageLink36aSet)
         {
             // imageLink has no pre constraints
-            aimageLink36a = handleIsImageLink();
+            imageLink36a = handleIsImageLink();
             // imageLink has no post constraints
-            this.imageLink36a = aimageLink36a;
+            this.imageLink36a = imageLink36a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.imageLink36aSet = true;
             }
         }
-        return aimageLink36a;
+        return imageLink36a;
     }
 
    /**
@@ -1249,8 +1249,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetImagePath();
 
-    private String imagePath37a;
-    private boolean imagePath37aSet = false;
+    private transient String imagePath37a;
+    private transient boolean imagePath37aSet = false;
 
     /**
      * If this action is an imageLink this property represents the path to the corresponding image.
@@ -1258,19 +1258,19 @@ public abstract class GuiActionLogic
      */
     public final String getImagePath()
     {
-        String aimagePath37a = this.imagePath37a;
+        String imagePath37a = this.imagePath37a;
         if (!this.imagePath37aSet)
         {
             // imagePath has no pre constraints
-            aimagePath37a = handleGetImagePath();
+            imagePath37a = handleGetImagePath();
             // imagePath has no post constraints
-            this.imagePath37a = aimagePath37a;
+            this.imagePath37a = imagePath37a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.imagePath37aSet = true;
             }
         }
-        return aimagePath37a;
+        return imagePath37a;
     }
 
    /**
@@ -1279,28 +1279,28 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey38a;
-    private boolean messageKey38aSet = false;
+    private transient String messageKey38a;
+    private transient boolean messageKey38aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiAction.messageKey
      * @return (String)handleGetMessageKey()
      */
     public final String getMessageKey()
     {
-        String amessageKey38a = this.messageKey38a;
+        String messageKey38a = this.messageKey38a;
         if (!this.messageKey38aSet)
         {
             // messageKey has no pre constraints
-            amessageKey38a = handleGetMessageKey();
+            messageKey38a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey38a = amessageKey38a;
+            this.messageKey38a = messageKey38a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey38aSet = true;
             }
         }
-        return amessageKey38a;
+        return messageKey38a;
     }
 
    /**
@@ -1309,8 +1309,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetImageMessageKey();
 
-    private String imageMessageKey39a;
-    private boolean imageMessageKey39aSet = false;
+    private transient String imageMessageKey39a;
+    private transient boolean imageMessageKey39aSet = false;
 
     /**
      * The resource message key used to look to location of the image for this action.
@@ -1318,19 +1318,19 @@ public abstract class GuiActionLogic
      */
     public final String getImageMessageKey()
     {
-        String aimageMessageKey39a = this.imageMessageKey39a;
+        String imageMessageKey39a = this.imageMessageKey39a;
         if (!this.imageMessageKey39aSet)
         {
             // imageMessageKey has no pre constraints
-            aimageMessageKey39a = handleGetImageMessageKey();
+            imageMessageKey39a = handleGetImageMessageKey();
             // imageMessageKey has no post constraints
-            this.imageMessageKey39a = aimageMessageKey39a;
+            this.imageMessageKey39a = imageMessageKey39a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.imageMessageKey39aSet = true;
             }
         }
-        return aimageMessageKey39a;
+        return imageMessageKey39a;
     }
 
    /**
@@ -1339,8 +1339,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsTableAction();
 
-    private boolean tableAction40a;
-    private boolean tableAction40aSet = false;
+    private transient boolean tableAction40a;
+    private transient boolean tableAction40aSet = false;
 
     /**
      * Denotes this action works on all rows of the table from the table link relation.
@@ -1348,19 +1348,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isTableAction()
     {
-        boolean atableAction40a = this.tableAction40a;
+        boolean tableAction40a = this.tableAction40a;
         if (!this.tableAction40aSet)
         {
             // tableAction has no pre constraints
-            atableAction40a = handleIsTableAction();
+            tableAction40a = handleIsTableAction();
             // tableAction has no post constraints
-            this.tableAction40a = atableAction40a;
+            this.tableAction40a = tableAction40a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableAction40aSet = true;
             }
         }
-        return atableAction40a;
+        return tableAction40a;
     }
 
    /**
@@ -1369,8 +1369,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsTableRowAction();
 
-    private boolean tableRowAction41a;
-    private boolean tableRowAction41aSet = false;
+    private transient boolean tableRowAction41a;
+    private transient boolean tableRowAction41aSet = false;
 
     /**
      * Denotes this action works on a single row of the table from the table link relation.
@@ -1378,19 +1378,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isTableRowAction()
     {
-        boolean atableRowAction41a = this.tableRowAction41a;
+        boolean tableRowAction41a = this.tableRowAction41a;
         if (!this.tableRowAction41aSet)
         {
             // tableRowAction has no pre constraints
-            atableRowAction41a = handleIsTableRowAction();
+            tableRowAction41a = handleIsTableRowAction();
             // tableRowAction has no post constraints
-            this.tableRowAction41a = atableRowAction41a;
+            this.tableRowAction41a = tableRowAction41a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.tableRowAction41aSet = true;
             }
         }
-        return atableRowAction41a;
+        return tableRowAction41a;
     }
 
    /**
@@ -1399,8 +1399,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsMultipartFormData();
 
-    private boolean multipartFormData42a;
-    private boolean multipartFormData42aSet = false;
+    private transient boolean multipartFormData42a;
+    private transient boolean multipartFormData42aSet = false;
 
     /**
      * True is this action is supposed to be rendered as enctype="multipart/form-data" on the page
@@ -1409,19 +1409,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isMultipartFormData()
     {
-        boolean amultipartFormData42a = this.multipartFormData42a;
+        boolean multipartFormData42a = this.multipartFormData42a;
         if (!this.multipartFormData42aSet)
         {
             // multipartFormData has no pre constraints
-            amultipartFormData42a = handleIsMultipartFormData();
+            multipartFormData42a = handleIsMultipartFormData();
             // multipartFormData has no post constraints
-            this.multipartFormData42a = amultipartFormData42a;
+            this.multipartFormData42a = multipartFormData42a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.multipartFormData42aSet = true;
             }
         }
-        return amultipartFormData42a;
+        return multipartFormData42a;
     }
 
    /**
@@ -1430,8 +1430,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormImplementationName();
 
-    private String formImplementationName43a;
-    private boolean formImplementationName43aSet = false;
+    private transient String formImplementationName43a;
+    private transient boolean formImplementationName43aSet = false;
 
     /**
      * The name of the form implementation.
@@ -1439,19 +1439,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormImplementationName()
     {
-        String aformImplementationName43a = this.formImplementationName43a;
+        String formImplementationName43a = this.formImplementationName43a;
         if (!this.formImplementationName43aSet)
         {
             // formImplementationName has no pre constraints
-            aformImplementationName43a = handleGetFormImplementationName();
+            formImplementationName43a = handleGetFormImplementationName();
             // formImplementationName has no post constraints
-            this.formImplementationName43a = aformImplementationName43a;
+            this.formImplementationName43a = formImplementationName43a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formImplementationName43aSet = true;
             }
         }
-        return aformImplementationName43a;
+        return formImplementationName43a;
     }
 
    /**
@@ -1460,8 +1460,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullyQualifiedFormImplementationName();
 
-    private String fullyQualifiedFormImplementationName44a;
-    private boolean fullyQualifiedFormImplementationName44aSet = false;
+    private transient String fullyQualifiedFormImplementationName44a;
+    private transient boolean fullyQualifiedFormImplementationName44aSet = false;
 
     /**
      * The fully qualified name of the form implementation.
@@ -1469,19 +1469,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullyQualifiedFormImplementationName()
     {
-        String afullyQualifiedFormImplementationName44a = this.fullyQualifiedFormImplementationName44a;
+        String fullyQualifiedFormImplementationName44a = this.fullyQualifiedFormImplementationName44a;
         if (!this.fullyQualifiedFormImplementationName44aSet)
         {
             // fullyQualifiedFormImplementationName has no pre constraints
-            afullyQualifiedFormImplementationName44a = handleGetFullyQualifiedFormImplementationName();
+            fullyQualifiedFormImplementationName44a = handleGetFullyQualifiedFormImplementationName();
             // fullyQualifiedFormImplementationName has no post constraints
-            this.fullyQualifiedFormImplementationName44a = afullyQualifiedFormImplementationName44a;
+            this.fullyQualifiedFormImplementationName44a = fullyQualifiedFormImplementationName44a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedFormImplementationName44aSet = true;
             }
         }
-        return afullyQualifiedFormImplementationName44a;
+        return fullyQualifiedFormImplementationName44a;
     }
 
    /**
@@ -1490,8 +1490,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullyQualifiedFormImplementationPath();
 
-    private String fullyQualifiedFormImplementationPath45a;
-    private boolean fullyQualifiedFormImplementationPath45aSet = false;
+    private transient String fullyQualifiedFormImplementationPath45a;
+    private transient boolean fullyQualifiedFormImplementationPath45aSet = false;
 
     /**
      * The fully qualified path of the form implementation.
@@ -1499,19 +1499,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullyQualifiedFormImplementationPath()
     {
-        String afullyQualifiedFormImplementationPath45a = this.fullyQualifiedFormImplementationPath45a;
+        String fullyQualifiedFormImplementationPath45a = this.fullyQualifiedFormImplementationPath45a;
         if (!this.fullyQualifiedFormImplementationPath45aSet)
         {
             // fullyQualifiedFormImplementationPath has no pre constraints
-            afullyQualifiedFormImplementationPath45a = handleGetFullyQualifiedFormImplementationPath();
+            fullyQualifiedFormImplementationPath45a = handleGetFullyQualifiedFormImplementationPath();
             // fullyQualifiedFormImplementationPath has no post constraints
-            this.fullyQualifiedFormImplementationPath45a = afullyQualifiedFormImplementationPath45a;
+            this.fullyQualifiedFormImplementationPath45a = fullyQualifiedFormImplementationPath45a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedFormImplementationPath45aSet = true;
             }
         }
-        return afullyQualifiedFormImplementationPath45a;
+        return fullyQualifiedFormImplementationPath45a;
     }
 
    /**
@@ -1520,8 +1520,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormImplementationInterfaceList();
 
-    private String formImplementationInterfaceList46a;
-    private boolean formImplementationInterfaceList46aSet = false;
+    private transient String formImplementationInterfaceList46a;
+    private transient boolean formImplementationInterfaceList46aSet = false;
 
     /**
      * A comma separated list of all the form interfaces which the form implementation implements.
@@ -1529,19 +1529,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormImplementationInterfaceList()
     {
-        String aformImplementationInterfaceList46a = this.formImplementationInterfaceList46a;
+        String formImplementationInterfaceList46a = this.formImplementationInterfaceList46a;
         if (!this.formImplementationInterfaceList46aSet)
         {
             // formImplementationInterfaceList has no pre constraints
-            aformImplementationInterfaceList46a = handleGetFormImplementationInterfaceList();
+            formImplementationInterfaceList46a = handleGetFormImplementationInterfaceList();
             // formImplementationInterfaceList has no post constraints
-            this.formImplementationInterfaceList46a = aformImplementationInterfaceList46a;
+            this.formImplementationInterfaceList46a = formImplementationInterfaceList46a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formImplementationInterfaceList46aSet = true;
             }
         }
-        return aformImplementationInterfaceList46a;
+        return formImplementationInterfaceList46a;
     }
 
    /**
@@ -1550,8 +1550,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetPath();
 
-    private String path47a;
-    private boolean path47aSet = false;
+    private transient String path47a;
+    private transient boolean path47aSet = false;
 
     /**
      * The path to this action.
@@ -1559,19 +1559,19 @@ public abstract class GuiActionLogic
      */
     public final String getPath()
     {
-        String apath47a = this.path47a;
+        String path47a = this.path47a;
         if (!this.path47aSet)
         {
             // path has no pre constraints
-            apath47a = handleGetPath();
+            path47a = handleGetPath();
             // path has no post constraints
-            this.path47a = apath47a;
+            this.path47a = path47a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.path47aSet = true;
             }
         }
-        return apath47a;
+        return path47a;
     }
 
    /**
@@ -1580,8 +1580,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetPathRoot();
 
-    private String pathRoot48a;
-    private boolean pathRoot48aSet = false;
+    private transient String pathRoot48a;
+    private transient boolean pathRoot48aSet = false;
 
     /**
      * The path's root.
@@ -1589,19 +1589,19 @@ public abstract class GuiActionLogic
      */
     public final String getPathRoot()
     {
-        String apathRoot48a = this.pathRoot48a;
+        String pathRoot48a = this.pathRoot48a;
         if (!this.pathRoot48aSet)
         {
             // pathRoot has no pre constraints
-            apathRoot48a = handleGetPathRoot();
+            pathRoot48a = handleGetPathRoot();
             // pathRoot has no post constraints
-            this.pathRoot48a = apathRoot48a;
+            this.pathRoot48a = pathRoot48a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.pathRoot48aSet = true;
             }
         }
-        return apathRoot48a;
+        return pathRoot48a;
     }
 
    /**
@@ -1610,8 +1610,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetTriggerName();
 
-    private String triggerName49a;
-    private boolean triggerName49aSet = false;
+    private transient String triggerName49a;
+    private transient boolean triggerName49aSet = false;
 
     /**
      * The name of the trigger that triggers that action.
@@ -1619,19 +1619,19 @@ public abstract class GuiActionLogic
      */
     public final String getTriggerName()
     {
-        String atriggerName49a = this.triggerName49a;
+        String triggerName49a = this.triggerName49a;
         if (!this.triggerName49aSet)
         {
             // triggerName has no pre constraints
-            atriggerName49a = handleGetTriggerName();
+            triggerName49a = handleGetTriggerName();
             // triggerName has no post constraints
-            this.triggerName49a = atriggerName49a;
+            this.triggerName49a = triggerName49a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.triggerName49aSet = true;
             }
         }
-        return atriggerName49a;
+        return triggerName49a;
     }
 
    /**
@@ -1640,8 +1640,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetViewFragmentPath();
 
-    private String viewFragmentPath50a;
-    private boolean viewFragmentPath50aSet = false;
+    private transient String viewFragmentPath50a;
+    private transient boolean viewFragmentPath50aSet = false;
 
     /**
      * The path to the view fragment corresponding to this action
@@ -1649,19 +1649,19 @@ public abstract class GuiActionLogic
      */
     public final String getViewFragmentPath()
     {
-        String aviewFragmentPath50a = this.viewFragmentPath50a;
+        String viewFragmentPath50a = this.viewFragmentPath50a;
         if (!this.viewFragmentPath50aSet)
         {
             // viewFragmentPath has no pre constraints
-            aviewFragmentPath50a = handleGetViewFragmentPath();
+            viewFragmentPath50a = handleGetViewFragmentPath();
             // viewFragmentPath has no post constraints
-            this.viewFragmentPath50a = aviewFragmentPath50a;
+            this.viewFragmentPath50a = viewFragmentPath50a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.viewFragmentPath50aSet = true;
             }
         }
-        return aviewFragmentPath50a;
+        return viewFragmentPath50a;
     }
 
    /**
@@ -1670,8 +1670,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullyQualifiedActionClassPath();
 
-    private String fullyQualifiedActionClassPath51a;
-    private boolean fullyQualifiedActionClassPath51aSet = false;
+    private transient String fullyQualifiedActionClassPath51a;
+    private transient boolean fullyQualifiedActionClassPath51aSet = false;
 
     /**
      * The fully qualified path to the action class that execute this action.
@@ -1679,19 +1679,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullyQualifiedActionClassPath()
     {
-        String afullyQualifiedActionClassPath51a = this.fullyQualifiedActionClassPath51a;
+        String fullyQualifiedActionClassPath51a = this.fullyQualifiedActionClassPath51a;
         if (!this.fullyQualifiedActionClassPath51aSet)
         {
             // fullyQualifiedActionClassPath has no pre constraints
-            afullyQualifiedActionClassPath51a = handleGetFullyQualifiedActionClassPath();
+            fullyQualifiedActionClassPath51a = handleGetFullyQualifiedActionClassPath();
             // fullyQualifiedActionClassPath has no post constraints
-            this.fullyQualifiedActionClassPath51a = afullyQualifiedActionClassPath51a;
+            this.fullyQualifiedActionClassPath51a = fullyQualifiedActionClassPath51a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedActionClassPath51aSet = true;
             }
         }
-        return afullyQualifiedActionClassPath51a;
+        return fullyQualifiedActionClassPath51a;
     }
 
    /**
@@ -1700,8 +1700,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetControllerAction();
 
-    private String controllerAction52a;
-    private boolean controllerAction52aSet = false;
+    private transient String controllerAction52a;
+    private transient boolean controllerAction52aSet = false;
 
     /**
      * The name of the action on the controller that executions this action.
@@ -1709,19 +1709,19 @@ public abstract class GuiActionLogic
      */
     public final String getControllerAction()
     {
-        String acontrollerAction52a = this.controllerAction52a;
+        String controllerAction52a = this.controllerAction52a;
         if (!this.controllerAction52aSet)
         {
             // controllerAction has no pre constraints
-            acontrollerAction52a = handleGetControllerAction();
+            controllerAction52a = handleGetControllerAction();
             // controllerAction has no post constraints
-            this.controllerAction52a = acontrollerAction52a;
+            this.controllerAction52a = controllerAction52a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.controllerAction52aSet = true;
             }
         }
-        return acontrollerAction52a;
+        return controllerAction52a;
     }
 
    /**
@@ -1730,8 +1730,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFullyQualifiedActionClassName();
 
-    private String fullyQualifiedActionClassName53a;
-    private boolean fullyQualifiedActionClassName53aSet = false;
+    private transient String fullyQualifiedActionClassName53a;
+    private transient boolean fullyQualifiedActionClassName53aSet = false;
 
     /**
      * The fully qualified name of the action class that execute this action.
@@ -1739,19 +1739,19 @@ public abstract class GuiActionLogic
      */
     public final String getFullyQualifiedActionClassName()
     {
-        String afullyQualifiedActionClassName53a = this.fullyQualifiedActionClassName53a;
+        String fullyQualifiedActionClassName53a = this.fullyQualifiedActionClassName53a;
         if (!this.fullyQualifiedActionClassName53aSet)
         {
             // fullyQualifiedActionClassName has no pre constraints
-            afullyQualifiedActionClassName53a = handleGetFullyQualifiedActionClassName();
+            fullyQualifiedActionClassName53a = handleGetFullyQualifiedActionClassName();
             // fullyQualifiedActionClassName has no post constraints
-            this.fullyQualifiedActionClassName53a = afullyQualifiedActionClassName53a;
+            this.fullyQualifiedActionClassName53a = fullyQualifiedActionClassName53a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullyQualifiedActionClassName53aSet = true;
             }
         }
-        return afullyQualifiedActionClassName53a;
+        return fullyQualifiedActionClassName53a;
     }
 
    /**
@@ -1760,8 +1760,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormKey();
 
-    private String formKey54a;
-    private boolean formKey54aSet = false;
+    private transient String formKey54a;
+    private transient boolean formKey54aSet = false;
 
     /**
      * The key that stores the form in which information is passed from one action to another.
@@ -1769,19 +1769,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormKey()
     {
-        String aformKey54a = this.formKey54a;
+        String formKey54a = this.formKey54a;
         if (!this.formKey54aSet)
         {
             // formKey has no pre constraints
-            aformKey54a = handleGetFormKey();
+            formKey54a = handleGetFormKey();
             // formKey has no post constraints
-            this.formKey54a = aformKey54a;
+            this.formKey54a = formKey54a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formKey54aSet = true;
             }
         }
-        return aformKey54a;
+        return formKey54a;
     }
 
    /**
@@ -1790,8 +1790,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsPopup();
 
-    private boolean popup55a;
-    private boolean popup55aSet = false;
+    private transient boolean popup55a;
+    private transient boolean popup55aSet = false;
 
     /**
      * Indicates if this action forwards to a popup (this is determed when the targetted view is a
@@ -1800,19 +1800,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isPopup()
     {
-        boolean apopup55a = this.popup55a;
+        boolean popup55a = this.popup55a;
         if (!this.popup55aSet)
         {
             // popup has no pre constraints
-            apopup55a = handleIsPopup();
+            popup55a = handleIsPopup();
             // popup has no post constraints
-            this.popup55a = apopup55a;
+            this.popup55a = popup55a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.popup55aSet = true;
             }
         }
-        return apopup55a;
+        return popup55a;
     }
 
    /**
@@ -1821,8 +1821,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFormResetRequired();
 
-    private boolean formResetRequired56a;
-    private boolean formResetRequired56aSet = false;
+    private transient boolean formResetRequired56a;
+    private transient boolean formResetRequired56aSet = false;
 
     /**
      * Indicates if at least one parameter on the form requires being reset.
@@ -1830,19 +1830,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFormResetRequired()
     {
-        boolean aformResetRequired56a = this.formResetRequired56a;
+        boolean formResetRequired56a = this.formResetRequired56a;
         if (!this.formResetRequired56aSet)
         {
             // formResetRequired has no pre constraints
-            aformResetRequired56a = handleIsFormResetRequired();
+            formResetRequired56a = handleIsFormResetRequired();
             // formResetRequired has no post constraints
-            this.formResetRequired56a = aformResetRequired56a;
+            this.formResetRequired56a = formResetRequired56a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formResetRequired56aSet = true;
             }
         }
-        return aformResetRequired56a;
+        return formResetRequired56a;
     }
 
    /**
@@ -1851,8 +1851,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFormReset();
 
-    private boolean formReset57a;
-    private boolean formReset57aSet = false;
+    private transient boolean formReset57a;
+    private transient boolean formReset57aSet = false;
 
     /**
      * Whether or not the entire form should be reset (all action parameters on the form).
@@ -1860,19 +1860,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFormReset()
     {
-        boolean aformReset57a = this.formReset57a;
+        boolean formReset57a = this.formReset57a;
         if (!this.formReset57aSet)
         {
             // formReset has no pre constraints
-            aformReset57a = handleIsFormReset();
+            formReset57a = handleIsFormReset();
             // formReset has no post constraints
-            this.formReset57a = aformReset57a;
+            this.formReset57a = formReset57a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formReset57aSet = true;
             }
         }
-        return aformReset57a;
+        return formReset57a;
     }
 
    /**
@@ -1881,8 +1881,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormImplementationGetter();
 
-    private String formImplementationGetter58a;
-    private boolean formImplementationGetter58aSet = false;
+    private transient String formImplementationGetter58a;
+    private transient boolean formImplementationGetter58aSet = false;
 
     /**
      * The signature of the accessor method that returns the form implementation instance.
@@ -1890,19 +1890,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormImplementationGetter()
     {
-        String aformImplementationGetter58a = this.formImplementationGetter58a;
+        String formImplementationGetter58a = this.formImplementationGetter58a;
         if (!this.formImplementationGetter58aSet)
         {
             // formImplementationGetter has no pre constraints
-            aformImplementationGetter58a = handleGetFormImplementationGetter();
+            formImplementationGetter58a = handleGetFormImplementationGetter();
             // formImplementationGetter has no post constraints
-            this.formImplementationGetter58a = aformImplementationGetter58a;
+            this.formImplementationGetter58a = formImplementationGetter58a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formImplementationGetter58aSet = true;
             }
         }
-        return aformImplementationGetter58a;
+        return formImplementationGetter58a;
     }
 
    /**
@@ -1911,8 +1911,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFormSerialVersionUID();
 
-    private String formSerialVersionUID59a;
-    private boolean formSerialVersionUID59aSet = false;
+    private transient String formSerialVersionUID59a;
+    private transient boolean formSerialVersionUID59aSet = false;
 
     /**
      * The calcuated serial version UID for this action's form.
@@ -1920,19 +1920,19 @@ public abstract class GuiActionLogic
      */
     public final String getFormSerialVersionUID()
     {
-        String aformSerialVersionUID59a = this.formSerialVersionUID59a;
+        String formSerialVersionUID59a = this.formSerialVersionUID59a;
         if (!this.formSerialVersionUID59aSet)
         {
             // formSerialVersionUID has no pre constraints
-            aformSerialVersionUID59a = handleGetFormSerialVersionUID();
+            formSerialVersionUID59a = handleGetFormSerialVersionUID();
             // formSerialVersionUID has no post constraints
-            this.formSerialVersionUID59a = aformSerialVersionUID59a;
+            this.formSerialVersionUID59a = formSerialVersionUID59a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.formSerialVersionUID59aSet = true;
             }
         }
-        return aformSerialVersionUID59a;
+        return formSerialVersionUID59a;
     }
 
    /**
@@ -1941,8 +1941,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsFinalStateTarget();
 
-    private boolean finalStateTarget60a;
-    private boolean finalStateTarget60aSet = false;
+    private transient boolean finalStateTarget60a;
+    private transient boolean finalStateTarget60aSet = false;
 
     /**
      * Indicates whether or not a final state is the target of this action.
@@ -1950,19 +1950,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isFinalStateTarget()
     {
-        boolean afinalStateTarget60a = this.finalStateTarget60a;
+        boolean finalStateTarget60a = this.finalStateTarget60a;
         if (!this.finalStateTarget60aSet)
         {
             // finalStateTarget has no pre constraints
-            afinalStateTarget60a = handleIsFinalStateTarget();
+            finalStateTarget60a = handleIsFinalStateTarget();
             // finalStateTarget has no post constraints
-            this.finalStateTarget60a = afinalStateTarget60a;
+            this.finalStateTarget60a = finalStateTarget60a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.finalStateTarget60aSet = true;
             }
         }
-        return afinalStateTarget60a;
+        return finalStateTarget60a;
     }
 
    /**
@@ -1971,8 +1971,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetFromOutcome();
 
-    private String fromOutcome61a;
-    private boolean fromOutcome61aSet = false;
+    private transient String fromOutcome61a;
+    private transient boolean fromOutcome61aSet = false;
 
     /**
      * The name that corresponds to the from-outcome in an navigational rule.
@@ -1980,19 +1980,19 @@ public abstract class GuiActionLogic
      */
     public final String getFromOutcome()
     {
-        String afromOutcome61a = this.fromOutcome61a;
+        String fromOutcome61a = this.fromOutcome61a;
         if (!this.fromOutcome61aSet)
         {
             // fromOutcome has no pre constraints
-            afromOutcome61a = handleGetFromOutcome();
+            fromOutcome61a = handleGetFromOutcome();
             // fromOutcome has no post constraints
-            this.fromOutcome61a = afromOutcome61a;
+            this.fromOutcome61a = fromOutcome61a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fromOutcome61aSet = true;
             }
         }
-        return afromOutcome61a;
+        return fromOutcome61a;
     }
 
    /**
@@ -2001,8 +2001,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsWarningMessagesPresent();
 
-    private boolean warningMessagesPresent62a;
-    private boolean warningMessagesPresent62aSet = false;
+    private transient boolean warningMessagesPresent62a;
+    private transient boolean warningMessagesPresent62aSet = false;
 
     /**
      * Whether or not any warning messages are present.
@@ -2010,19 +2010,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isWarningMessagesPresent()
     {
-        boolean awarningMessagesPresent62a = this.warningMessagesPresent62a;
+        boolean warningMessagesPresent62a = this.warningMessagesPresent62a;
         if (!this.warningMessagesPresent62aSet)
         {
             // warningMessagesPresent has no pre constraints
-            awarningMessagesPresent62a = handleIsWarningMessagesPresent();
+            warningMessagesPresent62a = handleIsWarningMessagesPresent();
             // warningMessagesPresent has no post constraints
-            this.warningMessagesPresent62a = awarningMessagesPresent62a;
+            this.warningMessagesPresent62a = warningMessagesPresent62a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.warningMessagesPresent62aSet = true;
             }
         }
-        return awarningMessagesPresent62a;
+        return warningMessagesPresent62a;
     }
 
    /**
@@ -2031,8 +2031,8 @@ public abstract class GuiActionLogic
     */
     protected abstract Map handleGetWarningMessages();
 
-    private Map warningMessages63a;
-    private boolean warningMessages63aSet = false;
+    private transient Map warningMessages63a;
+    private transient boolean warningMessages63aSet = false;
 
     /**
      * Any messages used to indicate a warning.
@@ -2040,19 +2040,19 @@ public abstract class GuiActionLogic
      */
     public final Map getWarningMessages()
     {
-        Map awarningMessages63a = this.warningMessages63a;
+        Map warningMessages63a = this.warningMessages63a;
         if (!this.warningMessages63aSet)
         {
             // warningMessages has no pre constraints
-            awarningMessages63a = handleGetWarningMessages();
+            warningMessages63a = handleGetWarningMessages();
             // warningMessages has no post constraints
-            this.warningMessages63a = awarningMessages63a;
+            this.warningMessages63a = warningMessages63a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.warningMessages63aSet = true;
             }
         }
-        return awarningMessages63a;
+        return warningMessages63a;
     }
 
    /**
@@ -2061,8 +2061,8 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsSuccessMessagesPresent();
 
-    private boolean successMessagesPresent64a;
-    private boolean successMessagesPresent64aSet = false;
+    private transient boolean successMessagesPresent64a;
+    private transient boolean successMessagesPresent64aSet = false;
 
     /**
      * Indicates whether or not any success messags are present.
@@ -2070,19 +2070,19 @@ public abstract class GuiActionLogic
      */
     public final boolean isSuccessMessagesPresent()
     {
-        boolean asuccessMessagesPresent64a = this.successMessagesPresent64a;
+        boolean successMessagesPresent64a = this.successMessagesPresent64a;
         if (!this.successMessagesPresent64aSet)
         {
             // successMessagesPresent has no pre constraints
-            asuccessMessagesPresent64a = handleIsSuccessMessagesPresent();
+            successMessagesPresent64a = handleIsSuccessMessagesPresent();
             // successMessagesPresent has no post constraints
-            this.successMessagesPresent64a = asuccessMessagesPresent64a;
+            this.successMessagesPresent64a = successMessagesPresent64a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.successMessagesPresent64aSet = true;
             }
         }
-        return asuccessMessagesPresent64a;
+        return successMessagesPresent64a;
     }
 
    /**
@@ -2091,8 +2091,8 @@ public abstract class GuiActionLogic
     */
     protected abstract Map handleGetSuccessMessages();
 
-    private Map successMessages65a;
-    private boolean successMessages65aSet = false;
+    private transient Map successMessages65a;
+    private transient boolean successMessages65aSet = false;
 
     /**
      * Messages used to indicate successful execution.
@@ -2100,19 +2100,19 @@ public abstract class GuiActionLogic
      */
     public final Map getSuccessMessages()
     {
-        Map asuccessMessages65a = this.successMessages65a;
+        Map successMessages65a = this.successMessages65a;
         if (!this.successMessages65aSet)
         {
             // successMessages has no pre constraints
-            asuccessMessages65a = handleGetSuccessMessages();
+            successMessages65a = handleGetSuccessMessages();
             // successMessages has no post constraints
-            this.successMessages65a = asuccessMessages65a;
+            this.successMessages65a = successMessages65a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.successMessages65aSet = true;
             }
         }
-        return asuccessMessages65a;
+        return successMessages65a;
     }
 
    /**
@@ -2121,28 +2121,29 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsErrorMessagesPresent();
 
-    private boolean errorMessagesPresent66a;
-    private boolean errorMessagesPresent66aSet = false;
+    private transient boolean errorMessagesPresent66a;
+    private transient boolean errorMessagesPresent66aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiAction.errorMessagesPresent
      * @return (boolean)handleIsErrorMessagesPresent()
      */
     public final boolean isErrorMessagesPresent()
     {
-        boolean aerrorMessagesPresent66a = this.errorMessagesPresent66a;
+        boolean errorMessagesPresent66a = this.errorMessagesPresent66a;
         if (!this.errorMessagesPresent66aSet)
         {
             // errorMessagesPresent has no pre constraints
-            aerrorMessagesPresent66a = handleIsErrorMessagesPresent();
+            errorMessagesPresent66a = handleIsErrorMessagesPresent();
             // errorMessagesPresent has no post constraints
-            this.errorMessagesPresent66a = aerrorMessagesPresent66a;
+            this.errorMessagesPresent66a = errorMessagesPresent66a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.errorMessagesPresent66aSet = true;
             }
         }
-        return aerrorMessagesPresent66a;
+        return errorMessagesPresent66a;
     }
 
    /**
@@ -2151,28 +2152,28 @@ public abstract class GuiActionLogic
     */
     protected abstract Map handleGetErrorMessages();
 
-    private Map errorMessages67a;
-    private boolean errorMessages67aSet = false;
+    private transient Map errorMessages67a;
+    private transient boolean errorMessages67aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiAction.errorMessages
      * @return (Map)handleGetErrorMessages()
      */
     public final Map getErrorMessages()
     {
-        Map aerrorMessages67a = this.errorMessages67a;
+        Map errorMessages67a = this.errorMessages67a;
         if (!this.errorMessages67aSet)
         {
             // errorMessages has no pre constraints
-            aerrorMessages67a = handleGetErrorMessages();
+            errorMessages67a = handleGetErrorMessages();
             // errorMessages has no post constraints
-            this.errorMessages67a = aerrorMessages67a;
+            this.errorMessages67a = errorMessages67a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.errorMessages67aSet = true;
             }
         }
-        return aerrorMessages67a;
+        return errorMessages67a;
     }
 
    /**
@@ -2181,28 +2182,29 @@ public abstract class GuiActionLogic
     */
     protected abstract boolean handleIsNeedsFileUpload();
 
-    private boolean needsFileUpload68a;
-    private boolean needsFileUpload68aSet = false;
+    private transient boolean needsFileUpload68a;
+    private transient boolean needsFileUpload68aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiAction.needsFileUpload
      * @return (boolean)handleIsNeedsFileUpload()
      */
     public final boolean isNeedsFileUpload()
     {
-        boolean aneedsFileUpload68a = this.needsFileUpload68a;
+        boolean needsFileUpload68a = this.needsFileUpload68a;
         if (!this.needsFileUpload68aSet)
         {
             // needsFileUpload has no pre constraints
-            aneedsFileUpload68a = handleIsNeedsFileUpload();
+            needsFileUpload68a = handleIsNeedsFileUpload();
             // needsFileUpload has no post constraints
-            this.needsFileUpload68a = aneedsFileUpload68a;
+            this.needsFileUpload68a = needsFileUpload68a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.needsFileUpload68aSet = true;
             }
         }
-        return aneedsFileUpload68a;
+        return needsFileUpload68a;
     }
 
    /**
@@ -2211,8 +2213,8 @@ public abstract class GuiActionLogic
     */
     protected abstract String handleGetTriggerMethodName();
 
-    private String triggerMethodName69a;
-    private boolean triggerMethodName69aSet = false;
+    private transient String triggerMethodName69a;
+    private transient boolean triggerMethodName69aSet = false;
 
     /**
      * The name of the method to be executed when this action is triggered.
@@ -2220,19 +2222,19 @@ public abstract class GuiActionLogic
      */
     public final String getTriggerMethodName()
     {
-        String atriggerMethodName69a = this.triggerMethodName69a;
+        String triggerMethodName69a = this.triggerMethodName69a;
         if (!this.triggerMethodName69aSet)
         {
             // triggerMethodName has no pre constraints
-            atriggerMethodName69a = handleGetTriggerMethodName();
+            triggerMethodName69a = handleGetTriggerMethodName();
             // triggerMethodName has no post constraints
-            this.triggerMethodName69a = atriggerMethodName69a;
+            this.triggerMethodName69a = triggerMethodName69a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.triggerMethodName69aSet = true;
             }
         }
-        return atriggerMethodName69a;
+        return triggerMethodName69a;
     }
 
    /**
@@ -2241,8 +2243,8 @@ public abstract class GuiActionLogic
     */
     protected abstract List<GuiParameter> handleGetHiddenParameters();
 
-    private List<GuiParameter> hiddenParameters70a;
-    private boolean hiddenParameters70aSet = false;
+    private transient List<GuiParameter> hiddenParameters70a;
+    private transient boolean hiddenParameters70aSet = false;
 
     /**
      * All parameters that are of hidden input type.
@@ -2250,19 +2252,19 @@ public abstract class GuiActionLogic
      */
     public final List<GuiParameter> getHiddenParameters()
     {
-        List<GuiParameter> ahiddenParameters70a = this.hiddenParameters70a;
+        List<GuiParameter> hiddenParameters70a = this.hiddenParameters70a;
         if (!this.hiddenParameters70aSet)
         {
             // hiddenParameters has no pre constraints
-            ahiddenParameters70a = handleGetHiddenParameters();
+            hiddenParameters70a = handleGetHiddenParameters();
             // hiddenParameters has no post constraints
-            this.hiddenParameters70a = ahiddenParameters70a;
+            this.hiddenParameters70a = hiddenParameters70a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.hiddenParameters70aSet = true;
             }
         }
-        return ahiddenParameters70a;
+        return hiddenParameters70a;
     }
 
     // ---------------- business methods ----------------------
@@ -2282,6 +2284,8 @@ public abstract class GuiActionLogic
      * request, they will be able to survive a trip to the next use-case. All returned elements are
      * of type GuiParameter.
      * @param finalState GuiFinalState
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiAction.getInterUseCaseParameters(finalState)
      * @return handleGetInterUseCaseParameters(finalState)
      */
     public List getInterUseCaseParameters(GuiFinalState finalState)
@@ -2294,8 +2298,8 @@ public abstract class GuiActionLogic
 
     // ------------- associations ------------------
 
-    private List<GuiView> getTargetPages1r;
-    private boolean getTargetPages1rSet = false;
+    private transient List<GuiView> getTargetPages1r;
+    private transient boolean getTargetPages1rSet = false;
 
     /**
      * Returns all actions that possibly result in returning this page.
@@ -2311,7 +2315,7 @@ public abstract class GuiActionLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getTargetPages1r = (List<GuiView>)shieldedResult;
+                getTargetPages1r = (List<GuiView>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2334,8 +2338,8 @@ public abstract class GuiActionLogic
      */
     protected abstract List handleGetTargetPages();
 
-    private List<GuiParameter> getActionParametersToDeletes2r;
-    private boolean getActionParametersToDeletes2rSet = false;
+    private transient List<GuiParameter> getActionParametersToDeletes2r;
+    private transient boolean getActionParametersToDeletes2rSet = false;
 
     /**
      * The actions used when submitting forms for this table. Table actions that are hyperlinks are
@@ -2353,7 +2357,7 @@ public abstract class GuiActionLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getActionParametersToDeletes2r = (List<GuiParameter>)shieldedResult;
+                getActionParametersToDeletes2r = (List<GuiParameter>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2376,11 +2380,14 @@ public abstract class GuiActionLogic
      */
     protected abstract List handleGetActionParametersToDeletes();
 
-    private List<GuiParameter> getActionFormFieldsToDeletes3r;
-    private boolean getActionFormFieldsToDeletes3rSet = false;
+    private transient List<GuiParameter> getActionFormFieldsToDeletes3r;
+    private transient boolean getActionFormFieldsToDeletes3rSet = false;
 
     /**
-     * 
+     * Represents a Gui action. Such an action typically is associated with a form bean handling all
+     * parameters of this action.
+     * This action model element extends a transition, but the actual logic contained by the action
+     * envelops all action states called, until either a final state or View is reached.
      * @return (List<GuiParameter>)handleGetActionFormFieldsToDeletes()
      */
     public final List<GuiParameter> getActionFormFieldsToDeletes()
@@ -2393,7 +2400,7 @@ public abstract class GuiActionLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getActionFormFieldsToDeletes3r = (List<GuiParameter>)shieldedResult;
+                getActionFormFieldsToDeletes3r = (List<GuiParameter>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2416,11 +2423,14 @@ public abstract class GuiActionLogic
      */
     protected abstract List handleGetActionFormFieldsToDeletes();
 
-    private List<GuiParameter> getResettableActionParameters4r;
-    private boolean getResettableActionParameters4rSet = false;
+    private transient List<GuiParameter> getResettableActionParameters4r;
+    private transient boolean getResettableActionParameters4rSet = false;
 
     /**
-     * 
+     * Represents a Gui action. Such an action typically is associated with a form bean handling all
+     * parameters of this action.
+     * This action model element extends a transition, but the actual logic contained by the action
+     * envelops all action states called, until either a final state or View is reached.
      * @return (List<GuiParameter>)handleGetResettableActionParameters()
      */
     public final List<GuiParameter> getResettableActionParameters()
@@ -2433,7 +2443,7 @@ public abstract class GuiActionLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getResettableActionParameters4r = (List<GuiParameter>)shieldedResult;
+                getResettableActionParameters4r = (List<GuiParameter>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2456,11 +2466,14 @@ public abstract class GuiActionLogic
      */
     protected abstract List handleGetResettableActionParameters();
 
-    private List<GuiExceptionHandler> getActionExceptionsToDeletes5r;
-    private boolean getActionExceptionsToDeletes5rSet = false;
+    private transient List<GuiExceptionHandler> getActionExceptionsToDeletes5r;
+    private transient boolean getActionExceptionsToDeletes5rSet = false;
 
     /**
-     * 
+     * Represents a Gui action. Such an action typically is associated with a form bean handling all
+     * parameters of this action.
+     * This action model element extends a transition, but the actual logic contained by the action
+     * envelops all action states called, until either a final state or View is reached.
      * @return (List<GuiExceptionHandler>)handleGetActionExceptionsToDeletes()
      */
     public final List<GuiExceptionHandler> getActionExceptionsToDeletes()
@@ -2473,7 +2486,7 @@ public abstract class GuiActionLogic
             List shieldedResult = this.shieldedElements(result);
             try
             {
-                getActionExceptionsToDeletes5r = (List<GuiExceptionHandler>)shieldedResult;
+                getActionExceptionsToDeletes5r = (List<GuiExceptionHandler>) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2497,7 +2510,10 @@ public abstract class GuiActionLogic
     protected abstract List handleGetActionExceptionsToDeletes();
 
     /**
-     * 
+     * Represents a Gui action. Such an action typically is associated with a form bean handling all
+     * parameters of this action.
+     * This action model element extends a transition, but the actual logic contained by the action
+     * envelops all action states called, until either a final state or View is reached.
      * @return (List<GuiParameter>)handleGetTableNonColumnFormParameters()
      */
     public final List<GuiParameter> getTableNonColumnFormParameters()
@@ -2508,7 +2524,7 @@ public abstract class GuiActionLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getTableNonColumnFormParameters6r = (List<GuiParameter>)shieldedResult;
+            getTableNonColumnFormParameters6r = (List<GuiParameter>) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -2526,7 +2542,10 @@ public abstract class GuiActionLogic
     protected abstract List handleGetTableNonColumnFormParameters();
 
     /**
-     * 
+     * Represents a Gui action. Such an action typically is associated with a form bean handling all
+     * parameters of this action.
+     * This action model element extends a transition, but the actual logic contained by the action
+     * envelops all action states called, until either a final state or View is reached.
      * @return (List<GuiParameter>)handleGetHiddenActionParameters()
      */
     public final List<GuiParameter> getHiddenActionParameters()
@@ -2537,7 +2556,7 @@ public abstract class GuiActionLogic
         List shieldedResult = this.shieldedElements(result);
         try
         {
-            getHiddenActionParameters7r = (List<GuiParameter>)shieldedResult;
+            getHiddenActionParameters7r = (List<GuiParameter>) shieldedResult;
         }
         catch (ClassCastException ex)
         {
@@ -2554,8 +2573,8 @@ public abstract class GuiActionLogic
      */
     protected abstract List handleGetHiddenActionParameters();
 
-    private GuiParameter getTableLinkParameter8r;
-    private boolean getTableLinkParameter8rSet = false;
+    private transient GuiParameter getTableLinkParameter8r;
+    private transient boolean getTableLinkParameter8rSet = false;
 
     /**
      * Those actions that are working on this table and are to be represented as hyperlinks. It only
@@ -2572,7 +2591,7 @@ public abstract class GuiActionLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getTableLinkParameter8r = (GuiParameter)shieldedResult;
+                getTableLinkParameter8r = (GuiParameter) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2595,8 +2614,8 @@ public abstract class GuiActionLogic
      */
     protected abstract Object handleGetTableLinkParameter();
 
-    private GuiTrigger getActionTriggerToDelete9r;
-    private boolean getActionTriggerToDelete9rSet = false;
+    private transient GuiTrigger getActionTriggerToDelete9r;
+    private transient boolean getActionTriggerToDelete9rSet = false;
 
     /**
      * If isActionTrigger() returns true them this association points to the action to which the
@@ -2613,7 +2632,7 @@ public abstract class GuiActionLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getActionTriggerToDelete9r = (GuiTrigger)shieldedResult;
+                getActionTriggerToDelete9r = (GuiTrigger) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -2958,7 +2977,9 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -3029,7 +3050,7 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -3038,7 +3059,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -3151,7 +3173,7 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -3169,7 +3191,7 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -3178,7 +3200,7 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -3234,7 +3256,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -3270,12 +3293,24 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndAction().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndAction().isValidIdentifierName();
     }
 
     /**
@@ -3308,7 +3343,13 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * An action is a named element that is the fundamental unit of executable functionality. The
+     * execution
+     * of an action represents some transformation or processing in the modeled system, be it a
+     * computer
+     * system or otherwise. An action represents a single step within an activity, that is, one that
+     * is not
+     * further decomposed within the activity. An action has pre- and post-conditions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getEffect()
      */
     public ActionFacade getEffect()
@@ -3317,7 +3358,11 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Constraint'. A condition or restriction expressed in
+     * natural
+     * language text or in a machine readable language for the purpose of declaring some of the
+     * semantics
+     * of an element.
      * @see org.andromda.metafacades.uml.TransitionFacade#getGuard()
      */
     public GuardFacade getGuard()
@@ -3326,7 +3371,9 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Vertex'. An abstraction of a node in a state machine
+     * graph. In
+     * general, it can be the source or destination of any number of transitions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getSource()
      */
     public StateVertexFacade getSource()
@@ -3335,7 +3382,9 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Vertex'. An abstraction of a node in a state machine
+     * graph. In
+     * general, it can be the source or destination of any number of transitions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getTarget()
      */
     public StateVertexFacade getTarget()
@@ -3353,7 +3402,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringActionState
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringActionState()
      */
     public boolean isEnteringActionState()
@@ -3362,7 +3412,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringDecisionPoint
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringDecisionPoint()
      */
     public boolean isEnteringDecisionPoint()
@@ -3371,7 +3422,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringFinalState
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringFinalState()
      */
     public boolean isEnteringFinalState()
@@ -3380,7 +3432,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingActionState
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingActionState()
      */
     public boolean isExitingActionState()
@@ -3389,7 +3442,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingDecisionPoint
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingDecisionPoint()
      */
     public boolean isExitingDecisionPoint()
@@ -3398,7 +3452,8 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingInitialState
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingInitialState()
      */
     public boolean isExitingInitialState()
@@ -3407,7 +3462,7 @@ public abstract class GuiActionLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.metafacades.uml.TransitionFacade.triggerPresent
      * @see org.andromda.metafacades.uml.TransitionFacade#isTriggerPresent()
      */
     public boolean isTriggerPresent()

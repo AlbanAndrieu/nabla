@@ -137,8 +137,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetNotAllowedTitleKey();
 
-    private String notAllowedTitleKey1a;
-    private boolean notAllowedTitleKey1aSet = false;
+    private transient String notAllowedTitleKey1a;
+    private transient boolean notAllowedTitleKey1aSet = false;
 
     /**
      * The message key to use as a tooltip when the user is not allowed to use this trigger.
@@ -146,19 +146,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getNotAllowedTitleKey()
     {
-        String anotAllowedTitleKey1a = this.notAllowedTitleKey1a;
+        String notAllowedTitleKey1a = this.notAllowedTitleKey1a;
         if (!this.notAllowedTitleKey1aSet)
         {
             // notAllowedTitleKey has no pre constraints
-            anotAllowedTitleKey1a = handleGetNotAllowedTitleKey();
+            notAllowedTitleKey1a = handleGetNotAllowedTitleKey();
             // notAllowedTitleKey has no post constraints
-            this.notAllowedTitleKey1a = anotAllowedTitleKey1a;
+            this.notAllowedTitleKey1a = notAllowedTitleKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.notAllowedTitleKey1aSet = true;
             }
         }
-        return anotAllowedTitleKey1a;
+        return notAllowedTitleKey1a;
     }
 
    /**
@@ -167,8 +167,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetTitleKey();
 
-    private String titleKey2a;
-    private boolean titleKey2aSet = false;
+    private transient String titleKey2a;
+    private transient boolean titleKey2aSet = false;
 
     /**
      * The message title key to use as a tooltip for this trigger.
@@ -176,19 +176,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getTitleKey()
     {
-        String atitleKey2a = this.titleKey2a;
+        String titleKey2a = this.titleKey2a;
         if (!this.titleKey2aSet)
         {
             // titleKey has no pre constraints
-            atitleKey2a = handleGetTitleKey();
+            titleKey2a = handleGetTitleKey();
             // titleKey has no post constraints
-            this.titleKey2a = atitleKey2a;
+            this.titleKey2a = titleKey2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.titleKey2aSet = true;
             }
         }
-        return atitleKey2a;
+        return titleKey2a;
     }
 
    /**
@@ -197,8 +197,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetResetTitleKey();
 
-    private String resetTitleKey3a;
-    private boolean resetTitleKey3aSet = false;
+    private transient String resetTitleKey3a;
+    private transient boolean resetTitleKey3aSet = false;
 
     /**
      * The message reset title key to use as a tooltip for this trigger's reset feature.
@@ -206,19 +206,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getResetTitleKey()
     {
-        String aresetTitleKey3a = this.resetTitleKey3a;
+        String resetTitleKey3a = this.resetTitleKey3a;
         if (!this.resetTitleKey3aSet)
         {
             // resetTitleKey has no pre constraints
-            aresetTitleKey3a = handleGetResetTitleKey();
+            resetTitleKey3a = handleGetResetTitleKey();
             // resetTitleKey has no post constraints
-            this.resetTitleKey3a = aresetTitleKey3a;
+            this.resetTitleKey3a = resetTitleKey3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetTitleKey3aSet = true;
             }
         }
-        return aresetTitleKey3a;
+        return resetTitleKey3a;
     }
 
    /**
@@ -227,8 +227,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetResetNotAllowedTitleKey();
 
-    private String resetNotAllowedTitleKey4a;
-    private boolean resetNotAllowedTitleKey4aSet = false;
+    private transient String resetNotAllowedTitleKey4a;
+    private transient boolean resetNotAllowedTitleKey4aSet = false;
 
     /**
      * Returns the message key to use as a tooltip when the user is not allowed to use reset the
@@ -237,19 +237,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getResetNotAllowedTitleKey()
     {
-        String aresetNotAllowedTitleKey4a = this.resetNotAllowedTitleKey4a;
+        String resetNotAllowedTitleKey4a = this.resetNotAllowedTitleKey4a;
         if (!this.resetNotAllowedTitleKey4aSet)
         {
             // resetNotAllowedTitleKey has no pre constraints
-            aresetNotAllowedTitleKey4a = handleGetResetNotAllowedTitleKey();
+            resetNotAllowedTitleKey4a = handleGetResetNotAllowedTitleKey();
             // resetNotAllowedTitleKey has no post constraints
-            this.resetNotAllowedTitleKey4a = aresetNotAllowedTitleKey4a;
+            this.resetNotAllowedTitleKey4a = resetNotAllowedTitleKey4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetNotAllowedTitleKey4aSet = true;
             }
         }
-        return aresetNotAllowedTitleKey4a;
+        return resetNotAllowedTitleKey4a;
     }
 
    /**
@@ -258,8 +258,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetTriggerKey();
 
-    private String triggerKey5a;
-    private boolean triggerKey5aSet = false;
+    private transient String triggerKey5a;
+    private transient boolean triggerKey5aSet = false;
 
     /**
      * The message reset key for this trigger.
@@ -267,19 +267,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getTriggerKey()
     {
-        String atriggerKey5a = this.triggerKey5a;
+        String triggerKey5a = this.triggerKey5a;
         if (!this.triggerKey5aSet)
         {
             // triggerKey has no pre constraints
-            atriggerKey5a = handleGetTriggerKey();
+            triggerKey5a = handleGetTriggerKey();
             // triggerKey has no post constraints
-            this.triggerKey5a = atriggerKey5a;
+            this.triggerKey5a = triggerKey5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.triggerKey5aSet = true;
             }
         }
-        return atriggerKey5a;
+        return triggerKey5a;
     }
 
    /**
@@ -288,8 +288,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetTriggerValue();
 
-    private String triggerValue6a;
-    private boolean triggerValue6aSet = false;
+    private transient String triggerValue6a;
+    private transient boolean triggerValue6aSet = false;
 
     /**
      * The resource message value  for this trigger, this would be the button label or hyperlink
@@ -298,19 +298,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getTriggerValue()
     {
-        String atriggerValue6a = this.triggerValue6a;
+        String triggerValue6a = this.triggerValue6a;
         if (!this.triggerValue6aSet)
         {
             // triggerValue has no pre constraints
-            atriggerValue6a = handleGetTriggerValue();
+            triggerValue6a = handleGetTriggerValue();
             // triggerValue has no post constraints
-            this.triggerValue6a = atriggerValue6a;
+            this.triggerValue6a = triggerValue6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.triggerValue6aSet = true;
             }
         }
-        return atriggerValue6a;
+        return triggerValue6a;
     }
 
    /**
@@ -319,8 +319,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetTitleValue();
 
-    private String titleValue7a;
-    private boolean titleValue7aSet = false;
+    private transient String titleValue7a;
+    private transient boolean titleValue7aSet = false;
 
     /**
      * The default resource message value  for this trigger's tooltip.
@@ -328,19 +328,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getTitleValue()
     {
-        String atitleValue7a = this.titleValue7a;
+        String titleValue7a = this.titleValue7a;
         if (!this.titleValue7aSet)
         {
             // titleValue has no pre constraints
-            atitleValue7a = handleGetTitleValue();
+            titleValue7a = handleGetTitleValue();
             // titleValue has no post constraints
-            this.titleValue7a = atitleValue7a;
+            this.titleValue7a = titleValue7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.titleValue7aSet = true;
             }
         }
-        return atitleValue7a;
+        return titleValue7a;
     }
 
    /**
@@ -349,8 +349,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetResetTitleValue();
 
-    private String resetTitleValue8a;
-    private boolean resetTitleValue8aSet = false;
+    private transient String resetTitleValue8a;
+    private transient boolean resetTitleValue8aSet = false;
 
     /**
      * The tooltip value for this trigger's reset feature.
@@ -358,19 +358,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getResetTitleValue()
     {
-        String aresetTitleValue8a = this.resetTitleValue8a;
+        String resetTitleValue8a = this.resetTitleValue8a;
         if (!this.resetTitleValue8aSet)
         {
             // resetTitleValue has no pre constraints
-            aresetTitleValue8a = handleGetResetTitleValue();
+            resetTitleValue8a = handleGetResetTitleValue();
             // resetTitleValue has no post constraints
-            this.resetTitleValue8a = aresetTitleValue8a;
+            this.resetTitleValue8a = resetTitleValue8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetTitleValue8aSet = true;
             }
         }
-        return aresetTitleValue8a;
+        return resetTitleValue8a;
     }
 
    /**
@@ -379,8 +379,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetResetNotAllowedTitleValue();
 
-    private String resetNotAllowedTitleValue9a;
-    private boolean resetNotAllowedTitleValue9aSet = false;
+    private transient String resetNotAllowedTitleValue9a;
+    private transient boolean resetNotAllowedTitleValue9aSet = false;
 
     /**
      * The message value to use as a tooltip when the user is not allowed to use reset the form
@@ -389,19 +389,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getResetNotAllowedTitleValue()
     {
-        String aresetNotAllowedTitleValue9a = this.resetNotAllowedTitleValue9a;
+        String resetNotAllowedTitleValue9a = this.resetNotAllowedTitleValue9a;
         if (!this.resetNotAllowedTitleValue9aSet)
         {
             // resetNotAllowedTitleValue has no pre constraints
-            aresetNotAllowedTitleValue9a = handleGetResetNotAllowedTitleValue();
+            resetNotAllowedTitleValue9a = handleGetResetNotAllowedTitleValue();
             // resetNotAllowedTitleValue has no post constraints
-            this.resetNotAllowedTitleValue9a = aresetNotAllowedTitleValue9a;
+            this.resetNotAllowedTitleValue9a = resetNotAllowedTitleValue9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetNotAllowedTitleValue9aSet = true;
             }
         }
-        return aresetNotAllowedTitleValue9a;
+        return resetNotAllowedTitleValue9a;
     }
 
    /**
@@ -410,8 +410,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetNotAllowedTitleValue();
 
-    private String notAllowedTitleValue10a;
-    private boolean notAllowedTitleValue10aSet = false;
+    private transient String notAllowedTitleValue10a;
+    private transient boolean notAllowedTitleValue10aSet = false;
 
     /**
      * The message value to use as a tooltip when the user is not allowed to use this trigger.
@@ -419,19 +419,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getNotAllowedTitleValue()
     {
-        String anotAllowedTitleValue10a = this.notAllowedTitleValue10a;
+        String notAllowedTitleValue10a = this.notAllowedTitleValue10a;
         if (!this.notAllowedTitleValue10aSet)
         {
             // notAllowedTitleValue has no pre constraints
-            anotAllowedTitleValue10a = handleGetNotAllowedTitleValue();
+            notAllowedTitleValue10a = handleGetNotAllowedTitleValue();
             // notAllowedTitleValue has no post constraints
-            this.notAllowedTitleValue10a = anotAllowedTitleValue10a;
+            this.notAllowedTitleValue10a = notAllowedTitleValue10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.notAllowedTitleValue10aSet = true;
             }
         }
-        return anotAllowedTitleValue10a;
+        return notAllowedTitleValue10a;
     }
 
    /**
@@ -440,8 +440,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract boolean handleIsActionTrigger();
 
-    private boolean actionTrigger11a;
-    private boolean actionTrigger11aSet = false;
+    private transient boolean actionTrigger11a;
+    private transient boolean actionTrigger11aSet = false;
 
     /**
      * True if this trigger is modeled on an action transition. That means, the transition is coming
@@ -450,19 +450,19 @@ public abstract class GuiTriggerLogic
      */
     public final boolean isActionTrigger()
     {
-        boolean aactionTrigger11a = this.actionTrigger11a;
+        boolean actionTrigger11a = this.actionTrigger11a;
         if (!this.actionTrigger11aSet)
         {
             // actionTrigger has no pre constraints
-            aactionTrigger11a = handleIsActionTrigger();
+            actionTrigger11a = handleIsActionTrigger();
             // actionTrigger has no post constraints
-            this.actionTrigger11a = aactionTrigger11a;
+            this.actionTrigger11a = actionTrigger11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.actionTrigger11aSet = true;
             }
         }
-        return aactionTrigger11a;
+        return actionTrigger11a;
     }
 
    /**
@@ -471,8 +471,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetResetMessageKey();
 
-    private String resetMessageKey12a;
-    private boolean resetMessageKey12aSet = false;
+    private transient String resetMessageKey12a;
+    private transient boolean resetMessageKey12aSet = false;
 
     /**
      * The message key to use for reset button labels.
@@ -480,19 +480,19 @@ public abstract class GuiTriggerLogic
      */
     public final String getResetMessageKey()
     {
-        String aresetMessageKey12a = this.resetMessageKey12a;
+        String resetMessageKey12a = this.resetMessageKey12a;
         if (!this.resetMessageKey12aSet)
         {
             // resetMessageKey has no pre constraints
-            aresetMessageKey12a = handleGetResetMessageKey();
+            resetMessageKey12a = handleGetResetMessageKey();
             // resetMessageKey has no post constraints
-            this.resetMessageKey12a = aresetMessageKey12a;
+            this.resetMessageKey12a = resetMessageKey12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetMessageKey12aSet = true;
             }
         }
-        return aresetMessageKey12a;
+        return resetMessageKey12a;
     }
 
    /**
@@ -501,8 +501,8 @@ public abstract class GuiTriggerLogic
     */
     protected abstract String handleGetResetMessageValue();
 
-    private String resetMessageValue13a;
-    private boolean resetMessageValue13aSet = false;
+    private transient String resetMessageValue13a;
+    private transient boolean resetMessageValue13aSet = false;
 
     /**
      * The message value to use for reset button labels.
@@ -510,25 +510,25 @@ public abstract class GuiTriggerLogic
      */
     public final String getResetMessageValue()
     {
-        String aresetMessageValue13a = this.resetMessageValue13a;
+        String resetMessageValue13a = this.resetMessageValue13a;
         if (!this.resetMessageValue13aSet)
         {
             // resetMessageValue has no pre constraints
-            aresetMessageValue13a = handleGetResetMessageValue();
+            resetMessageValue13a = handleGetResetMessageValue();
             // resetMessageValue has no post constraints
-            this.resetMessageValue13a = aresetMessageValue13a;
+            this.resetMessageValue13a = resetMessageValue13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.resetMessageValue13aSet = true;
             }
         }
-        return aresetMessageValue13a;
+        return resetMessageValue13a;
     }
 
     // ------------- associations ------------------
 
-    private GuiAction getGuiAction1r;
-    private boolean getGuiAction1rSet = false;
+    private transient GuiAction getGuiAction1r;
+    private transient boolean getGuiAction1rSet = false;
 
     /**
      * Returns the trigger that calls this action. Typically this is a button or an hyperlink.
@@ -544,7 +544,7 @@ public abstract class GuiTriggerLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getGuiAction1r = (GuiAction)shieldedResult;
+                getGuiAction1r = (GuiAction) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -741,7 +741,9 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -812,7 +814,7 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -821,7 +823,8 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -934,7 +937,7 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -952,7 +955,7 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -961,7 +964,7 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1017,7 +1020,8 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1053,12 +1057,24 @@ public abstract class GuiTriggerLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndEvent().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndEvent().isValidIdentifierName();
     }
 
     /**

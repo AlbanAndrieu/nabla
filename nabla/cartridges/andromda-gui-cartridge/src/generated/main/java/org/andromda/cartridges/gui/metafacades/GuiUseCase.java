@@ -50,7 +50,8 @@ public interface GuiUseCase
     public String getActionPathRoot();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiUseCase.getActionRoles
      * @return String
      */
     public String getActionRoles();
@@ -91,13 +92,15 @@ public interface GuiUseCase
     public TreeNode getApplicationHierarchyRoot();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiUseCase.containerHeight
      * @return String
      */
     public String getContainerHeight();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiUseCase.containerWidth
      * @return String
      */
     public String getContainerWidth();
@@ -115,7 +118,7 @@ public interface GuiUseCase
     public String getCssFileName();
 
     /**
-     * 
+     * A Gui use-case represents a set of related client/server requests and communication.
      * @return List<GuiUseCase>
      */
     public List<GuiUseCase> getDirectSubUseCases();
@@ -172,7 +175,7 @@ public interface GuiUseCase
     public TreeNode getHierarchyRoot();
 
     /**
-     * 
+     * A Gui use-case represents a set of related client/server requests and communication.
      * @return Collection<GuiUseCase>
      */
     public Collection<GuiUseCase> getIncludedUseCases();
@@ -184,13 +187,15 @@ public interface GuiUseCase
     public String getInitialTargetPath();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiUseCase.getNavigationChildren
      * @return Collection
      */
     public Collection getNavigationChildren();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiUseCase.getNavigationParents
      * @return Collection
      */
     public Collection getNavigationParents();
@@ -292,7 +297,8 @@ public interface GuiUseCase
     public String getPortletViewPath();
 
     /**
-     * 
+     * Represents the portlet preferences for a given use case (assuming the JSF application being
+     * generated is a portlet).
      * @return GuiPortletPreferences
      */
     public GuiPortletPreferences getPreferences();
@@ -329,13 +335,13 @@ public interface GuiUseCase
     public boolean isApplicationValidationRequired();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiUseCase.container
      * @return boolean
      */
     public boolean isContainer();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiUseCase.cyclic
      * @return boolean
      */
     public boolean isCyclic();
@@ -367,13 +373,13 @@ public interface GuiUseCase
     public boolean isViewHasNameOfUseCase();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiUseCase.workbook
      * @return boolean
      */
     public boolean isWorkbook();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiUseCase.worksheet
      * @return boolean
      */
     public boolean isWorksheet();

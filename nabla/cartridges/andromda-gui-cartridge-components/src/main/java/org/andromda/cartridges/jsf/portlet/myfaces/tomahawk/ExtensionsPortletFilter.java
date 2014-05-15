@@ -215,7 +215,7 @@ public class ExtensionsPortletFilter implements PortletFilter
 
                         // When not filtering due to not valid content-type,
                         // deliver the byte-array instead of a charset-converted
-                        // string.  Otherwise a binary stream gets corrupted.
+                        // string. Otherwise a binary stream gets corrupted.
                         servletResponse.getOutputStream().write(responseArray);
 
                     }

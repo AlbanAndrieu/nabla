@@ -141,8 +141,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetExceptionKey();
 
-    private String exceptionKey1a;
-    private boolean exceptionKey1aSet = false;
+    private transient String exceptionKey1a;
+    private transient boolean exceptionKey1aSet = false;
 
     /**
      * The key to use with this handler's message resource bundle that will retrieve the error
@@ -151,19 +151,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getExceptionKey()
     {
-        String aexceptionKey1a = this.exceptionKey1a;
+        String exceptionKey1a = this.exceptionKey1a;
         if (!this.exceptionKey1aSet)
         {
             // exceptionKey has no pre constraints
-            aexceptionKey1a = handleGetExceptionKey();
+            exceptionKey1a = handleGetExceptionKey();
             // exceptionKey has no post constraints
-            this.exceptionKey1a = aexceptionKey1a;
+            this.exceptionKey1a = exceptionKey1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exceptionKey1aSet = true;
             }
         }
-        return aexceptionKey1a;
+        return exceptionKey1a;
     }
 
    /**
@@ -172,8 +172,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetExceptionType();
 
-    private String exceptionType2a;
-    private boolean exceptionType2aSet = false;
+    private transient String exceptionType2a;
+    private transient boolean exceptionType2aSet = false;
 
     /**
      * Fully qualified Java class name of the exception type to register with this handler.
@@ -181,19 +181,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getExceptionType()
     {
-        String aexceptionType2a = this.exceptionType2a;
+        String exceptionType2a = this.exceptionType2a;
         if (!this.exceptionType2aSet)
         {
             // exceptionType has no pre constraints
-            aexceptionType2a = handleGetExceptionType();
+            exceptionType2a = handleGetExceptionType();
             // exceptionType has no post constraints
-            this.exceptionType2a = aexceptionType2a;
+            this.exceptionType2a = exceptionType2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exceptionType2aSet = true;
             }
         }
-        return aexceptionType2a;
+        return exceptionType2a;
     }
 
    /**
@@ -202,8 +202,8 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetExceptionPath();
 
-    private String exceptionPath3a;
-    private boolean exceptionPath3aSet = false;
+    private transient String exceptionPath3a;
+    private transient boolean exceptionPath3aSet = false;
 
     /**
      * The module-relative URI to the resource that will complete the request/response if this
@@ -212,19 +212,19 @@ public abstract class GuiExceptionHandlerLogic
      */
     public final String getExceptionPath()
     {
-        String aexceptionPath3a = this.exceptionPath3a;
+        String exceptionPath3a = this.exceptionPath3a;
         if (!this.exceptionPath3aSet)
         {
             // exceptionPath has no pre constraints
-            aexceptionPath3a = handleGetExceptionPath();
+            exceptionPath3a = handleGetExceptionPath();
             // exceptionPath has no post constraints
-            this.exceptionPath3a = aexceptionPath3a;
+            this.exceptionPath3a = exceptionPath3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exceptionPath3aSet = true;
             }
         }
-        return aexceptionPath3a;
+        return exceptionPath3a;
     }
 
    /**
@@ -233,28 +233,29 @@ public abstract class GuiExceptionHandlerLogic
     */
     protected abstract String handleGetMessageKey();
 
-    private String messageKey4a;
-    private boolean messageKey4aSet = false;
+    private transient String messageKey4a;
+    private transient boolean messageKey4aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiExceptionHandler.messageKey
      * @return (String)handleGetMessageKey()
      */
     public final String getMessageKey()
     {
-        String amessageKey4a = this.messageKey4a;
+        String messageKey4a = this.messageKey4a;
         if (!this.messageKey4aSet)
         {
             // messageKey has no pre constraints
-            amessageKey4a = handleGetMessageKey();
+            messageKey4a = handleGetMessageKey();
             // messageKey has no post constraints
-            this.messageKey4a = amessageKey4a;
+            this.messageKey4a = messageKey4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.messageKey4aSet = true;
             }
         }
-        return amessageKey4a;
+        return messageKey4a;
     }
 
     // ------------- associations ------------------
@@ -478,7 +479,9 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -549,7 +552,7 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -558,7 +561,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -671,7 +675,7 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -689,7 +693,7 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -698,7 +702,7 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -754,7 +758,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -790,12 +795,24 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndExceptionHandler().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndExceptionHandler().isValidIdentifierName();
     }
 
     /**
@@ -828,7 +845,13 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * An action is a named element that is the fundamental unit of executable functionality. The
+     * execution
+     * of an action represents some transformation or processing in the modeled system, be it a
+     * computer
+     * system or otherwise. An action represents a single step within an activity, that is, one that
+     * is not
+     * further decomposed within the activity. An action has pre- and post-conditions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getEffect()
      */
     public ActionFacade getEffect()
@@ -837,7 +860,11 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Constraint'. A condition or restriction expressed in
+     * natural
+     * language text or in a machine readable language for the purpose of declaring some of the
+     * semantics
+     * of an element.
      * @see org.andromda.metafacades.uml.TransitionFacade#getGuard()
      */
     public GuardFacade getGuard()
@@ -846,7 +873,9 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Vertex'. An abstraction of a node in a state machine
+     * graph. In
+     * general, it can be the source or destination of any number of transitions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getSource()
      */
     public StateVertexFacade getSource()
@@ -855,7 +884,9 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Vertex'. An abstraction of a node in a state machine
+     * graph. In
+     * general, it can be the source or destination of any number of transitions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getTarget()
      */
     public StateVertexFacade getTarget()
@@ -873,7 +904,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringActionState
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringActionState()
      */
     public boolean isEnteringActionState()
@@ -882,7 +914,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringDecisionPoint
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringDecisionPoint()
      */
     public boolean isEnteringDecisionPoint()
@@ -891,7 +924,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringFinalState
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringFinalState()
      */
     public boolean isEnteringFinalState()
@@ -900,7 +934,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingActionState
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingActionState()
      */
     public boolean isExitingActionState()
@@ -909,7 +944,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingDecisionPoint
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingDecisionPoint()
      */
     public boolean isExitingDecisionPoint()
@@ -918,7 +954,8 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingInitialState
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingInitialState()
      */
     public boolean isExitingInitialState()
@@ -927,7 +964,7 @@ public abstract class GuiExceptionHandlerLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.metafacades.uml.TransitionFacade.triggerPresent
      * @see org.andromda.metafacades.uml.TransitionFacade#isTriggerPresent()
      */
     public boolean isTriggerPresent()

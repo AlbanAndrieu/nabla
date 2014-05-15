@@ -144,8 +144,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetForwardName();
 
-    private String forwardName1a;
-    private boolean forwardName1aSet = false;
+    private transient String forwardName1a;
+    private transient boolean forwardName1aSet = false;
 
     /**
      * The name for this forward. This name is always lowercase and words are separated using dots,
@@ -154,19 +154,19 @@ public abstract class GuiForwardLogic
      */
     public final String getForwardName()
     {
-        String aforwardName1a = this.forwardName1a;
+        String forwardName1a = this.forwardName1a;
         if (!this.forwardName1aSet)
         {
             // forwardName has no pre constraints
-            aforwardName1a = handleGetForwardName();
+            forwardName1a = handleGetForwardName();
             // forwardName has no post constraints
-            this.forwardName1a = aforwardName1a;
+            this.forwardName1a = forwardName1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.forwardName1aSet = true;
             }
         }
-        return aforwardName1a;
+        return forwardName1a;
     }
 
    /**
@@ -175,8 +175,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetForwardPath();
 
-    private String forwardPath2a;
-    private boolean forwardPath2aSet = false;
+    private transient String forwardPath2a;
+    private transient boolean forwardPath2aSet = false;
 
     /**
      * Returns the path targetted by this forward.
@@ -184,19 +184,19 @@ public abstract class GuiForwardLogic
      */
     public final String getForwardPath()
     {
-        String aforwardPath2a = this.forwardPath2a;
+        String forwardPath2a = this.forwardPath2a;
         if (!this.forwardPath2aSet)
         {
             // forwardPath has no pre constraints
-            aforwardPath2a = handleGetForwardPath();
+            forwardPath2a = handleGetForwardPath();
             // forwardPath has no post constraints
-            this.forwardPath2a = aforwardPath2a;
+            this.forwardPath2a = forwardPath2a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.forwardPath2aSet = true;
             }
         }
-        return aforwardPath2a;
+        return forwardPath2a;
     }
 
    /**
@@ -205,8 +205,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetGuardName();
 
-    private String guardName3a;
-    private boolean guardName3aSet = false;
+    private transient String guardName3a;
+    private transient boolean guardName3aSet = false;
 
     /**
      * If this forward is guarded (such as with decision points) this method return the name of that
@@ -215,19 +215,19 @@ public abstract class GuiForwardLogic
      */
     public final String getGuardName()
     {
-        String aguardName3a = this.guardName3a;
+        String guardName3a = this.guardName3a;
         if (!this.guardName3aSet)
         {
             // guardName has no pre constraints
-            aguardName3a = handleGetGuardName();
+            guardName3a = handleGetGuardName();
             // guardName has no post constraints
-            this.guardName3a = aguardName3a;
+            this.guardName3a = guardName3a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.guardName3aSet = true;
             }
         }
-        return aguardName3a;
+        return guardName3a;
     }
 
    /**
@@ -236,8 +236,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsEnteringPage();
 
-    private boolean enteringPage4a;
-    private boolean enteringPage4aSet = false;
+    private transient boolean enteringPage4a;
+    private transient boolean enteringPage4aSet = false;
 
     /**
      * True if this action directly targets a view page, false otherwise.
@@ -245,19 +245,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isEnteringPage()
     {
-        boolean aenteringPage4a = this.enteringPage4a;
+        boolean enteringPage4a = this.enteringPage4a;
         if (!this.enteringPage4aSet)
         {
             // enteringPage has no pre constraints
-            aenteringPage4a = handleIsEnteringPage();
+            enteringPage4a = handleIsEnteringPage();
             // enteringPage has no post constraints
-            this.enteringPage4a = aenteringPage4a;
+            this.enteringPage4a = enteringPage4a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.enteringPage4aSet = true;
             }
         }
-        return aenteringPage4a;
+        return enteringPage4a;
     }
 
    /**
@@ -266,8 +266,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetTargetNameKey();
 
-    private String targetNameKey5a;
-    private boolean targetNameKey5aSet = false;
+    private transient String targetNameKey5a;
+    private transient boolean targetNameKey5aSet = false;
 
     /**
      * The resource bundle key of the name for the target element. This method returns the key for
@@ -276,19 +276,19 @@ public abstract class GuiForwardLogic
      */
     public final String getTargetNameKey()
     {
-        String atargetNameKey5a = this.targetNameKey5a;
+        String targetNameKey5a = this.targetNameKey5a;
         if (!this.targetNameKey5aSet)
         {
             // targetNameKey has no pre constraints
-            atargetNameKey5a = handleGetTargetNameKey();
+            targetNameKey5a = handleGetTargetNameKey();
             // targetNameKey has no post constraints
-            this.targetNameKey5a = atargetNameKey5a;
+            this.targetNameKey5a = targetNameKey5a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.targetNameKey5aSet = true;
             }
         }
-        return atargetNameKey5a;
+        return targetNameKey5a;
     }
 
    /**
@@ -297,8 +297,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsExitingPage();
 
-    private boolean exitingPage6a;
-    private boolean exitingPage6aSet = false;
+    private transient boolean exitingPage6a;
+    private transient boolean exitingPage6aSet = false;
 
     /**
      * Whether or not this forward (transition) is coming out of a page.
@@ -306,19 +306,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isExitingPage()
     {
-        boolean aexitingPage6a = this.exitingPage6a;
+        boolean exitingPage6a = this.exitingPage6a;
         if (!this.exitingPage6aSet)
         {
             // exitingPage has no pre constraints
-            aexitingPage6a = handleIsExitingPage();
+            exitingPage6a = handleIsExitingPage();
             // exitingPage has no post constraints
-            this.exitingPage6a = aexitingPage6a;
+            this.exitingPage6a = exitingPage6a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.exitingPage6aSet = true;
             }
         }
-        return aexitingPage6a;
+        return exitingPage6a;
     }
 
    /**
@@ -327,28 +327,29 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsSuccessMessagesPresent();
 
-    private boolean successMessagesPresent7a;
-    private boolean successMessagesPresent7aSet = false;
+    private transient boolean successMessagesPresent7a;
+    private transient boolean successMessagesPresent7aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.successMessagesPresent
      * @return (boolean)handleIsSuccessMessagesPresent()
      */
     public final boolean isSuccessMessagesPresent()
     {
-        boolean asuccessMessagesPresent7a = this.successMessagesPresent7a;
+        boolean successMessagesPresent7a = this.successMessagesPresent7a;
         if (!this.successMessagesPresent7aSet)
         {
             // successMessagesPresent has no pre constraints
-            asuccessMessagesPresent7a = handleIsSuccessMessagesPresent();
+            successMessagesPresent7a = handleIsSuccessMessagesPresent();
             // successMessagesPresent has no post constraints
-            this.successMessagesPresent7a = asuccessMessagesPresent7a;
+            this.successMessagesPresent7a = successMessagesPresent7a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.successMessagesPresent7aSet = true;
             }
         }
-        return asuccessMessagesPresent7a;
+        return successMessagesPresent7a;
     }
 
    /**
@@ -357,8 +358,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract Map handleGetSuccessMessages();
 
-    private Map successMessages8a;
-    private boolean successMessages8aSet = false;
+    private transient Map successMessages8a;
+    private transient boolean successMessages8aSet = false;
 
     /**
      * A map of key=value pairs, one for each success message.
@@ -366,19 +367,19 @@ public abstract class GuiForwardLogic
      */
     public final Map getSuccessMessages()
     {
-        Map asuccessMessages8a = this.successMessages8a;
+        Map successMessages8a = this.successMessages8a;
         if (!this.successMessages8aSet)
         {
             // successMessages has no pre constraints
-            asuccessMessages8a = handleGetSuccessMessages();
+            successMessages8a = handleGetSuccessMessages();
             // successMessages has no post constraints
-            this.successMessages8a = asuccessMessages8a;
+            this.successMessages8a = successMessages8a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.successMessages8aSet = true;
             }
         }
-        return asuccessMessages8a;
+        return successMessages8a;
     }
 
    /**
@@ -387,28 +388,29 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsWarningMessagesPresent();
 
-    private boolean warningMessagesPresent9a;
-    private boolean warningMessagesPresent9aSet = false;
+    private transient boolean warningMessagesPresent9a;
+    private transient boolean warningMessagesPresent9aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.warningMessagesPresent
      * @return (boolean)handleIsWarningMessagesPresent()
      */
     public final boolean isWarningMessagesPresent()
     {
-        boolean awarningMessagesPresent9a = this.warningMessagesPresent9a;
+        boolean warningMessagesPresent9a = this.warningMessagesPresent9a;
         if (!this.warningMessagesPresent9aSet)
         {
             // warningMessagesPresent has no pre constraints
-            awarningMessagesPresent9a = handleIsWarningMessagesPresent();
+            warningMessagesPresent9a = handleIsWarningMessagesPresent();
             // warningMessagesPresent has no post constraints
-            this.warningMessagesPresent9a = awarningMessagesPresent9a;
+            this.warningMessagesPresent9a = warningMessagesPresent9a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.warningMessagesPresent9aSet = true;
             }
         }
-        return awarningMessagesPresent9a;
+        return warningMessagesPresent9a;
     }
 
    /**
@@ -417,8 +419,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract Map handleGetWarningMessages();
 
-    private Map warningMessages10a;
-    private boolean warningMessages10aSet = false;
+    private transient Map warningMessages10a;
+    private transient boolean warningMessages10aSet = false;
 
     /**
      * A map of key=value pairs, one for each warning message.
@@ -426,19 +428,19 @@ public abstract class GuiForwardLogic
      */
     public final Map getWarningMessages()
     {
-        Map awarningMessages10a = this.warningMessages10a;
+        Map warningMessages10a = this.warningMessages10a;
         if (!this.warningMessages10aSet)
         {
             // warningMessages has no pre constraints
-            awarningMessages10a = handleGetWarningMessages();
+            warningMessages10a = handleGetWarningMessages();
             // warningMessages has no post constraints
-            this.warningMessages10a = awarningMessages10a;
+            this.warningMessages10a = warningMessages10a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.warningMessages10aSet = true;
             }
         }
-        return awarningMessages10a;
+        return warningMessages10a;
     }
 
    /**
@@ -447,28 +449,29 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsErrorMessagesPresent();
 
-    private boolean errorMessagesPresent11a;
-    private boolean errorMessagesPresent11aSet = false;
+    private transient boolean errorMessagesPresent11a;
+    private transient boolean errorMessagesPresent11aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.errorMessagesPresent
      * @return (boolean)handleIsErrorMessagesPresent()
      */
     public final boolean isErrorMessagesPresent()
     {
-        boolean aerrorMessagesPresent11a = this.errorMessagesPresent11a;
+        boolean errorMessagesPresent11a = this.errorMessagesPresent11a;
         if (!this.errorMessagesPresent11aSet)
         {
             // errorMessagesPresent has no pre constraints
-            aerrorMessagesPresent11a = handleIsErrorMessagesPresent();
+            errorMessagesPresent11a = handleIsErrorMessagesPresent();
             // errorMessagesPresent has no post constraints
-            this.errorMessagesPresent11a = aerrorMessagesPresent11a;
+            this.errorMessagesPresent11a = errorMessagesPresent11a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.errorMessagesPresent11aSet = true;
             }
         }
-        return aerrorMessagesPresent11a;
+        return errorMessagesPresent11a;
     }
 
    /**
@@ -477,28 +480,29 @@ public abstract class GuiForwardLogic
     */
     protected abstract Map handleGetErrorMessages();
 
-    private Map errorMessages12a;
-    private boolean errorMessages12aSet = false;
+    private transient Map errorMessages12a;
+    private transient boolean errorMessages12aSet = false;
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiForward.errorMessages
      * @return (Map)handleGetErrorMessages()
      */
     public final Map getErrorMessages()
     {
-        Map aerrorMessages12a = this.errorMessages12a;
+        Map errorMessages12a = this.errorMessages12a;
         if (!this.errorMessages12aSet)
         {
             // errorMessages has no pre constraints
-            aerrorMessages12a = handleGetErrorMessages();
+            errorMessages12a = handleGetErrorMessages();
             // errorMessages has no post constraints
-            this.errorMessages12a = aerrorMessages12a;
+            this.errorMessages12a = errorMessages12a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.errorMessages12aSet = true;
             }
         }
-        return aerrorMessages12a;
+        return errorMessages12a;
     }
 
    /**
@@ -507,8 +511,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetPath();
 
-    private String path13a;
-    private boolean path13aSet = false;
+    private transient String path13a;
+    private transient boolean path13aSet = false;
 
     /**
      * The path to which this forward points.
@@ -516,19 +520,19 @@ public abstract class GuiForwardLogic
      */
     public final String getPath()
     {
-        String apath13a = this.path13a;
+        String path13a = this.path13a;
         if (!this.path13aSet)
         {
             // path has no pre constraints
-            apath13a = handleGetPath();
+            path13a = handleGetPath();
             // path has no post constraints
-            this.path13a = apath13a;
+            this.path13a = path13a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.path13aSet = true;
             }
         }
-        return apath13a;
+        return path13a;
     }
 
    /**
@@ -537,8 +541,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract boolean handleIsFinalStateTarget();
 
-    private boolean finalStateTarget14a;
-    private boolean finalStateTarget14aSet = false;
+    private transient boolean finalStateTarget14a;
+    private transient boolean finalStateTarget14aSet = false;
 
     /**
      * Indicates whether or not a final state is the target of this forward.
@@ -546,19 +550,19 @@ public abstract class GuiForwardLogic
      */
     public final boolean isFinalStateTarget()
     {
-        boolean afinalStateTarget14a = this.finalStateTarget14a;
+        boolean finalStateTarget14a = this.finalStateTarget14a;
         if (!this.finalStateTarget14aSet)
         {
             // finalStateTarget has no pre constraints
-            afinalStateTarget14a = handleIsFinalStateTarget();
+            finalStateTarget14a = handleIsFinalStateTarget();
             // finalStateTarget has no post constraints
-            this.finalStateTarget14a = afinalStateTarget14a;
+            this.finalStateTarget14a = finalStateTarget14a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.finalStateTarget14aSet = true;
             }
         }
-        return afinalStateTarget14a;
+        return finalStateTarget14a;
     }
 
    /**
@@ -567,8 +571,8 @@ public abstract class GuiForwardLogic
     */
     protected abstract String handleGetFromOutcome();
 
-    private String fromOutcome15a;
-    private boolean fromOutcome15aSet = false;
+    private transient String fromOutcome15a;
+    private transient boolean fromOutcome15aSet = false;
 
     /**
      * The name that corresponds to the from-outcome in an navigational rule.
@@ -576,28 +580,28 @@ public abstract class GuiForwardLogic
      */
     public final String getFromOutcome()
     {
-        String afromOutcome15a = this.fromOutcome15a;
+        String fromOutcome15a = this.fromOutcome15a;
         if (!this.fromOutcome15aSet)
         {
             // fromOutcome has no pre constraints
-            afromOutcome15a = handleGetFromOutcome();
+            fromOutcome15a = handleGetFromOutcome();
             // fromOutcome has no post constraints
-            this.fromOutcome15a = afromOutcome15a;
+            this.fromOutcome15a = fromOutcome15a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fromOutcome15aSet = true;
             }
         }
-        return afromOutcome15a;
+        return fromOutcome15a;
     }
 
     // ------------- associations ------------------
 
-    private GuiActivityGraph getGuiActivityGraph1r;
-    private boolean getGuiActivityGraph1rSet = false;
+    private transient GuiActivityGraph getGuiActivityGraph1r;
+    private transient boolean getGuiActivityGraph1rSet = false;
 
     /**
-     * 
+     * A Gui forward is any transition between states.
      * @return (GuiActivityGraph)handleGetGuiActivityGraph()
      */
     public final GuiActivityGraph getGuiActivityGraph()
@@ -610,7 +614,7 @@ public abstract class GuiForwardLogic
             MetafacadeBase shieldedResult = this.shieldedElement(result);
             try
             {
-                getGuiActivityGraph1r = (GuiActivityGraph)shieldedResult;
+                getGuiActivityGraph1r = (GuiActivityGraph) shieldedResult;
             }
             catch (ClassCastException ex)
             {
@@ -834,7 +838,9 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -905,7 +911,7 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -914,7 +920,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1027,7 +1034,7 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1045,7 +1052,7 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1054,7 +1061,7 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1110,7 +1117,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1146,12 +1154,24 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperFrontEndForward().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperFrontEndForward().isValidIdentifierName();
     }
 
     /**
@@ -1184,7 +1204,13 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * An action is a named element that is the fundamental unit of executable functionality. The
+     * execution
+     * of an action represents some transformation or processing in the modeled system, be it a
+     * computer
+     * system or otherwise. An action represents a single step within an activity, that is, one that
+     * is not
+     * further decomposed within the activity. An action has pre- and post-conditions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getEffect()
      */
     public ActionFacade getEffect()
@@ -1193,7 +1219,11 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Constraint'. A condition or restriction expressed in
+     * natural
+     * language text or in a machine readable language for the purpose of declaring some of the
+     * semantics
+     * of an element.
      * @see org.andromda.metafacades.uml.TransitionFacade#getGuard()
      */
     public GuardFacade getGuard()
@@ -1202,7 +1232,9 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Vertex'. An abstraction of a node in a state machine
+     * graph. In
+     * general, it can be the source or destination of any number of transitions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getSource()
      */
     public StateVertexFacade getSource()
@@ -1211,7 +1243,9 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * A representation of the model object 'Vertex'. An abstraction of a node in a state machine
+     * graph. In
+     * general, it can be the source or destination of any number of transitions.
      * @see org.andromda.metafacades.uml.TransitionFacade#getTarget()
      */
     public StateVertexFacade getTarget()
@@ -1229,7 +1263,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringActionState
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringActionState()
      */
     public boolean isEnteringActionState()
@@ -1238,7 +1273,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringDecisionPoint
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringDecisionPoint()
      */
     public boolean isEnteringDecisionPoint()
@@ -1247,7 +1283,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.enteringFinalState
      * @see org.andromda.metafacades.uml.TransitionFacade#isEnteringFinalState()
      */
     public boolean isEnteringFinalState()
@@ -1256,7 +1293,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingActionState
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingActionState()
      */
     public boolean isExitingActionState()
@@ -1265,7 +1303,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingDecisionPoint
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingDecisionPoint()
      */
     public boolean isExitingDecisionPoint()
@@ -1274,7 +1313,8 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.metafacades.uml.TransitionFacade.exitingInitialState
      * @see org.andromda.metafacades.uml.TransitionFacade#isExitingInitialState()
      */
     public boolean isExitingInitialState()
@@ -1283,7 +1323,7 @@ public abstract class GuiForwardLogic
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.metafacades.uml.TransitionFacade.triggerPresent
      * @see org.andromda.metafacades.uml.TransitionFacade#isTriggerPresent()
      */
     public boolean isTriggerPresent()

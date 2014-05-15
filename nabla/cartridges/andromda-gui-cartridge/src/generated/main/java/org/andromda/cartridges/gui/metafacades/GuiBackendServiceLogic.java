@@ -31,7 +31,7 @@ import org.andromda.metafacades.uml.TemplateParameterFacade;
 import org.andromda.metafacades.uml.TypeMappings;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiBackendService
  * MetafacadeLogic for GuiBackendService
  *
  * @see GuiBackendService
@@ -131,8 +131,8 @@ public abstract class GuiBackendServiceLogic
     */
     protected abstract String handleGetAccessorImplementation();
 
-    private String accessorImplementation1a;
-    private boolean accessorImplementation1aSet = false;
+    private transient String accessorImplementation1a;
+    private transient boolean accessorImplementation1aSet = false;
 
     /**
      * The implementation to use in a controller template in order to get an instance of this
@@ -141,19 +141,19 @@ public abstract class GuiBackendServiceLogic
      */
     public final String getAccessorImplementation()
     {
-        String aaccessorImplementation1a = this.accessorImplementation1a;
+        String accessorImplementation1a = this.accessorImplementation1a;
         if (!this.accessorImplementation1aSet)
         {
             // accessorImplementation has no pre constraints
-            aaccessorImplementation1a = handleGetAccessorImplementation();
+            accessorImplementation1a = handleGetAccessorImplementation();
             // accessorImplementation has no post constraints
-            this.accessorImplementation1a = aaccessorImplementation1a;
+            this.accessorImplementation1a = accessorImplementation1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.accessorImplementation1aSet = true;
             }
         }
-        return aaccessorImplementation1a;
+        return accessorImplementation1a;
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class GuiBackendServiceLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperService().getNavigableConnectingEnds();
     }
@@ -526,7 +526,7 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -810,7 +810,7 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -910,7 +910,9 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -981,7 +983,7 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -990,7 +992,8 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1103,7 +1106,7 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1121,7 +1124,7 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1130,7 +1133,7 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1186,7 +1189,8 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1222,12 +1226,24 @@ public abstract class GuiBackendServiceLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperService().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperService().isValidIdentifierName();
     }
 
     /**

@@ -90,18 +90,18 @@ public class EJB3AssociationFacadeLogicImpl extends EJB3AssociationFacadeLogic
                     {
                         final String prefixProperty = UMLMetafacadeProperties.TABLE_NAME_PREFIX;
                         final String tableNamePrefix = this.isConfiguredProperty(prefixProperty) ? ObjectUtils.toString(this.getConfiguredProperty(prefixProperty)) : null;
-                        tableName = EJB3MetafacadeUtils.getSqlNameFromTaggedValue(tableNamePrefix, this, UMLProfile.TAGGEDVALUE_PERSISTENCE_TABLE, ((Entity) end.getType()).getMaxSqlNameLength(), null, this
-                                .getConfiguredProperty(UMLMetafacadeProperties.SQL_NAME_SEPARATOR));
+                        tableName = EJB3MetafacadeUtils.getSqlNameFromTaggedValue(tableNamePrefix, this, UMLProfile.TAGGEDVALUE_PERSISTENCE_TABLE, ((Entity) end.getType()).getMaxSqlNameLength(), null,
+                                this.getConfiguredProperty(UMLMetafacadeProperties.SQL_NAME_SEPARATOR));
                     }
                     break;
                 }
             }
         }
 
-        //        if (StringUtils.isNotBlank(tableName) && getName().toLowerCase().startsWith(tableName.toLowerCase()))
-        //        {
-        //            tableName = getRelationName().replaceAll("-", "_").toUpperCase();
-        //        }
+        // if (StringUtils.isNotBlank(tableName) && getName().toLowerCase().startsWith(tableName.toLowerCase()))
+        // {
+        // tableName = getRelationName().replaceAll("-", "_").toUpperCase();
+        // }
 
         return tableName;
     }

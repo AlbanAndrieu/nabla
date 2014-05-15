@@ -126,7 +126,10 @@ public interface GuiParameter
     public String getFormat();
 
     /**
-     * 
+     * Represents a Gui action. Such an action typically is associated with a form bean handling all
+     * parameters of this action.
+     * This action model element extends a transition, but the actual logic contained by the action
+     * envelops all action states called, until either a final state or View is reached.
      * @return GuiAction
      */
     public GuiAction getGuiAction();
@@ -241,7 +244,7 @@ public interface GuiParameter
     public String getResetValue();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.styleId
      * @return String
      */
     public String getStyleId();
@@ -363,13 +366,13 @@ public interface GuiParameter
     public String getTimeFormatter();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.titleKey
      * @return String
      */
     public String getTitleKey();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.titleValue
      * @return String
      */
     public String getTitleValue();
@@ -455,13 +458,13 @@ public interface GuiParameter
     public boolean isCalendarRequired();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.checkbox
      * @return boolean
      */
     public boolean isCheckbox();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.combobox
      * @return boolean
      */
     public boolean isCombobox();
@@ -487,19 +490,20 @@ public interface GuiParameter
     public boolean isEqualValidator();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.file
      * @return boolean
      */
     public boolean isFile();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.hiddenField
      * @return boolean
      */
     public boolean isHiddenField();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.hyperlink
      * @return boolean
      */
     public boolean isHyperlink();
@@ -565,13 +569,14 @@ public interface GuiParameter
     public boolean isInputTextarea();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.multiSelection
      * @return boolean
      */
     public boolean isMultiSelection();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.multibox
      * @return boolean
      */
     public boolean isMultibox();
@@ -602,7 +607,8 @@ public interface GuiParameter
     public boolean isPlaintext();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.radioButton
      * @return boolean
      */
     public boolean isRadioButton();
@@ -662,7 +668,8 @@ public interface GuiParameter
     public boolean isStrictDateFormat();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * GuiParameter.tableDecoratorRequired
      * @return boolean
      */
     public boolean isTableDecoratorRequired();
@@ -695,13 +702,13 @@ public interface GuiParameter
     public boolean isTableSortable();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.textArea
      * @return boolean
      */
     public boolean isTextArea();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.textField
      * @return boolean
      */
     public boolean isTextField();
@@ -720,7 +727,7 @@ public interface GuiParameter
     public boolean isValidationRequired();
 
     /**
-     * 
+     * TODO: Model Documentation for GuiParameter.toPhrase
      * @param string String
      * @return String
      */

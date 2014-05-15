@@ -194,8 +194,7 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
         if (!this.isLifecycleCallback()
                 && StringUtils.equalsIgnoreCase(this.getVisibility(), "public")
                 && ((session.isViewTypeBoth() && ((session.isViewTypeStrictlyRemote() && this.isViewTypeStrictlyLocal()) || ((session.isViewTypeStrictlyLocal() || session.isViewTypeStrictlyBoth()) && !this
-                        .isViewTypeStrictlyRemote())))
-                        || (session.isViewTypeStrictlyLocal() && !this.isViewTypeStrictlyRemote()) || this.isViewTypeStrictlyBoth()))
+                        .isViewTypeStrictlyRemote()))) || (session.isViewTypeStrictlyLocal() && !this.isViewTypeStrictlyRemote()) || this.isViewTypeStrictlyBoth()))
         {
             isViewTypeAsbolutelyLocal = true;
         }
@@ -213,8 +212,7 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
         if (!this.isLifecycleCallback()
                 && StringUtils.equalsIgnoreCase(this.getVisibility(), "public")
                 && ((session.isViewTypeBoth() && ((session.isViewTypeStrictlyLocal() && this.isViewTypeStrictlyRemote()) || ((session.isViewTypeStrictlyRemote() || session.isViewTypeStrictlyBoth()) && !this
-                        .isViewTypeStrictlyLocal())))
-                        || (session.isViewTypeStrictlyRemote() && !this.isViewTypeStrictlyLocal()) || this.isViewTypeStrictlyBoth()))
+                        .isViewTypeStrictlyLocal()))) || (session.isViewTypeStrictlyRemote() && !this.isViewTypeStrictlyLocal()) || this.isViewTypeStrictlyBoth()))
         {
             isViewTypeAsbolutelyRemote = true;
         }

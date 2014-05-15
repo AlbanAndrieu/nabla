@@ -43,7 +43,8 @@ public interface GuiExceptionHandler
     public String getExceptionType();
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * org.andromda.cartridges.gui.metafacades.GuiExceptionHandler.messageKey
      * @return String
      */
     public String getMessageKey();

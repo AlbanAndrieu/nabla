@@ -112,27 +112,26 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
 
     /*
      * Override to provide java specific handling of the default value.
-     *
      * @see org.andromda.metafacades.uml.AttributeFacade#getDefaultValue()
-    @Override
-    public String getDefaultValue()
-    {
-        String defaultValue = super.getDefaultValue();
-        final ClassifierFacade type = this.getType();
-        if (type != null)
-        {
-            final String fullyQualifiedName = StringUtils.trimToEmpty(type.getFullyQualifiedName());
-            if (type.isStringType())
-            {
-                defaultValue = '\"' + defaultValue + '\"';
-            }
-            else if (fullyQualifiedName.startsWith("java.lang"))
-            {
-                defaultValue = fullyQualifiedName + ".valueOf(" + defaultValue + ')';
-            }
-        }
-        return defaultValue;
-    }
+     * @Override
+     * public String getDefaultValue()
+     * {
+     * String defaultValue = super.getDefaultValue();
+     * final ClassifierFacade type = this.getType();
+     * if (type != null)
+     * {
+     * final String fullyQualifiedName = StringUtils.trimToEmpty(type.getFullyQualifiedName());
+     * if (type.isStringType())
+     * {
+     * defaultValue = '\"' + defaultValue + '\"';
+     * }
+     * else if (fullyQualifiedName.startsWith("java.lang"))
+     * {
+     * defaultValue = fullyQualifiedName + ".valueOf(" + defaultValue + ')';
+     * }
+     * }
+     * return defaultValue;
+     * }
      */
 
     /**
@@ -666,7 +665,7 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     /**
      * @return findTaggedValue 'andromda_hibernate_type'
      */
-    //@Override
+    // @Override
     protected String handleGetOverrideType()
     {
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_OVERRIDE_TYPE);

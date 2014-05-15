@@ -138,14 +138,16 @@ public class EJB3ScriptHelper
                 if (pObj instanceof EJB3EntityAttributeFacade)
                 {
                     EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
-                    /*System.out.println(attr.getOwner().getName() + " jpa=" + jpaFramework + " attr=" + attr.getName()
-                        + " return=" + (!jpaFramework || !(attr.getName().equals("createDate")
-                                || attr.getName().equals("createdBy") || attr.getName().equals("updateDate")
-                                || attr.getName().equals("updatedBy"))));*/
+                    /*
+                     * System.out.println(attr.getOwner().getName() + " jpa=" + jpaFramework + " attr=" + attr.getName()
+                     * + " return=" + (!jpaFramework || !(attr.getName().equals("createDate")
+                     * || attr.getName().equals("createdBy") || attr.getName().equals("updateDate")
+                     * || attr.getName().equals("updatedBy"))));
+                     */
                     return (!jpaFramework || !(attr.getName().equals("createDate") || attr.getName().equals("createdBy") || attr.getName().equals("updateDate") || attr.getName().equals("updatedBy")));
                 } else
                 {
-                    //System.out.println("NOT EJB3EntityAttributeFacade: " + pObj);
+                    // System.out.println("NOT EJB3EntityAttributeFacade: " + pObj);
                     return false;
                 }
             }
@@ -173,9 +175,11 @@ public class EJB3ScriptHelper
                     // Wrapped primitive may be set to column nullable = false to override nullable datatype
                     EJB3EntityAttributeFacade attr = (EJB3EntityAttributeFacade) pObj;
                     return !attr.isVersion() && !attr.isColumnNullable() && (!attr.isIdentifier() || (!isCompositePKPresent && attr.isGeneratorTypeNone())
-                    /*((isCompositePKPresent && !attr.isIdentifier()) ||
-                    (!isCompositePKPresent && (!attr.isIdentifier() ||
-                        (attr.isGeneratorTypeNone()))*/
+                    /*
+                     * ((isCompositePKPresent && !attr.isIdentifier()) ||
+                     * (!isCompositePKPresent && (!attr.isIdentifier() ||
+                     * (attr.isGeneratorTypeNone()))
+                     */
                     );
                 } else
                 {
@@ -204,11 +208,13 @@ public class EJB3ScriptHelper
                 {
                     EJB3AssociationEndFacade assoc = (EJB3AssociationEndFacade) pObj;
                     return assoc.getOtherEnd().isRequired() || assoc.isIdentifier();
-                    /*return attr.isRequired() &&
-                        ((isCompositePKPresent && !attr.isIdentifier()) ||
-                        (!isCompositePKPresent && (!attr.isIdentifier() ||
-                            (attr.isIdentifier()))
-                        ));*/
+                    /*
+                     * return attr.isRequired() &&
+                     * ((isCompositePKPresent && !attr.isIdentifier()) ||
+                     * (!isCompositePKPresent && (!attr.isIdentifier() ||
+                     * (attr.isIdentifier()))
+                     * ));
+                     */
                 } else
                 {
                     System.out.println("NOT EJB3AssociationEndFacade: " + pObj);

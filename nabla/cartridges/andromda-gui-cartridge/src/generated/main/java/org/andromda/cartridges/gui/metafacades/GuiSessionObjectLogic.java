@@ -34,7 +34,7 @@ import org.apache.commons.collections.Predicate;
 import org.apache.log4j.Logger;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiSessionObject
  * MetafacadeLogic for GuiSessionObject
  *
  * @see GuiSessionObject
@@ -139,8 +139,8 @@ public abstract class GuiSessionObjectLogic
     */
     protected abstract String handleGetFullPath();
 
-    private String fullPath1a;
-    private boolean fullPath1aSet = false;
+    private transient String fullPath1a;
+    private transient boolean fullPath1aSet = false;
 
     /**
      * The full path to the session object class file (comparable to the package name).
@@ -148,19 +148,19 @@ public abstract class GuiSessionObjectLogic
      */
     public final String getFullPath()
     {
-        String afullPath1a = this.fullPath1a;
+        String fullPath1a = this.fullPath1a;
         if (!this.fullPath1aSet)
         {
             // fullPath has no pre constraints
-            afullPath1a = handleGetFullPath();
+            fullPath1a = handleGetFullPath();
             // fullPath has no post constraints
-            this.fullPath1a = afullPath1a;
+            this.fullPath1a = fullPath1a;
             if (isMetafacadePropertyCachingEnabled())
             {
                 this.fullPath1aSet = true;
             }
         }
-        return afullPath1a;
+        return fullPath1a;
     }
 
     // ------------- associations ------------------
@@ -380,7 +380,7 @@ public abstract class GuiSessionObjectLogic
      * The other ends of this classifier's association ends which are navigable.
      * @see ClassifierFacade#getNavigableConnectingEnds()
      */
-    public Collection<ClassifierFacade> getNavigableConnectingEnds()
+    public Collection<AssociationEndFacade> getNavigableConnectingEnds()
     {
         return this.getSuperClassifierFacade().getNavigableConnectingEnds();
     }
@@ -526,7 +526,7 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * True if the ClassifierFacade is an AssociationClass.
      * @see ClassifierFacade#isAssociationClass()
      */
     public boolean isAssociationClass()
@@ -810,7 +810,7 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -910,7 +910,9 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * This method returns the documentation for this model element, with the lines wrapped after
+     * the specified number of characters, values of less than 1 will indicate no line wrapping is
+     * required. HTML style determines if HTML Escaping is applied.
      * @see ModelElementFacade#getDocumentation(String indent, int lineLength, boolean htmlStyle)
      */
     public String getDocumentation(String indent, int lineLength, boolean htmlStyle)
@@ -981,7 +983,7 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * The language mappings that have been set for this model elemnt.
+     * The language mappings that have been set for this model element.
      * @see ModelElementFacade#getLanguageMappings()
      */
     public TypeMappings getLanguageMappings()
@@ -990,7 +992,8 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * Return the model containing this model element (multiple models may be loaded and processed
+     * at the same time).
      * @see ModelElementFacade#getModel()
      */
     public ModelFacade getModel()
@@ -1103,7 +1106,7 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * Return the TaggedValues associated with this model element, under all stereotypes.
      * @see ModelElementFacade#getTaggedValues()
      */
     public Collection<TaggedValueFacade> getTaggedValues()
@@ -1121,7 +1124,7 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1130,7 +1133,7 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()
@@ -1186,7 +1189,8 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * True if there are target dependencies from this element that are instances of BindingFacade.
+     * Deprecated in UML2: Use TemplateBinding parameters instead of dependencies.
      * @see ModelElementFacade#isBindingDependenciesPresent()
      */
     public boolean isBindingDependenciesPresent()
@@ -1222,12 +1226,24 @@ public abstract class GuiSessionObjectLogic
     }
 
     /**
-     * 
+     * True is there are template parameters on this model element. For UML2, applies to Class,
+     * Operation, Property, and Parameter.
      * @see ModelElementFacade#isTemplateParametersPresent()
      */
     public boolean isTemplateParametersPresent()
     {
         return this.getSuperClassifierFacade().isTemplateParametersPresent();
+    }
+
+    /**
+     * True if this element name is a valid identifier name in Java, C#, ANSI or ISO C, C++,
+     * JavaScript. Contains no spaces, special characters etc. Constraint always applied on
+     * Enumerations and Interfaces, optionally applies on other model elements.
+     * @see ModelElementFacade#isValidIdentifierName()
+     */
+    public boolean isValidIdentifierName()
+    {
+        return this.getSuperClassifierFacade().isValidIdentifierName();
     }
 
     /**

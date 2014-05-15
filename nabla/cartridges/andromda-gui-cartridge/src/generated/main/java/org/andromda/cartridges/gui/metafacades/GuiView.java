@@ -32,7 +32,7 @@ public interface GuiView
     public List<GuiAction> getActionForwards();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.actionGroupName
      * @return String
      */
     public String getActionGroupName();
@@ -185,7 +185,7 @@ public interface GuiView
     public String getTitleValue();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.actionGroup
      * @return boolean
      */
     public boolean isActionGroup();
@@ -209,13 +209,13 @@ public interface GuiView
     public boolean isDateFieldPresent();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.expandable
      * @return boolean
      */
     public boolean isExpandable();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.filterView
      * @return boolean
      */
     public boolean isFilterView();
@@ -234,7 +234,7 @@ public interface GuiView
     public boolean isHeldTable();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.mainToolbar
      * @return boolean
      */
     public boolean isMainToolbar();
@@ -246,7 +246,7 @@ public interface GuiView
     public boolean isNameUniqueInWorksheetDomain();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.needsFileUpload
      * @return boolean
      */
     public boolean isNeedsFileUpload();
@@ -270,19 +270,19 @@ public interface GuiView
     public boolean isPopup();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.tabs
      * @return boolean
      */
     public boolean isTabs();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.toolbar
      * @return boolean
      */
     public boolean isToolbar();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.transparent
      * @return boolean
      */
     public boolean isTransparent();
@@ -294,7 +294,7 @@ public interface GuiView
     public boolean isValidationRequired();
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiView.window
      * @return boolean
      */
     public boolean isWindow();

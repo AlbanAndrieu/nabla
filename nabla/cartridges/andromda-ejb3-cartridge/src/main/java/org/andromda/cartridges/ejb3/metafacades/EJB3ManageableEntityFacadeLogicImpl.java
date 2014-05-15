@@ -197,108 +197,108 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      * @see EJB3SessionFacadeLogic#handleGetJndiNameRemote()
      */
     /*
-    @Override
-    protected String handleGetJndiNameRemote()
-    {
-       String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_REMOTE);
-       if (StringUtils.isNotBlank(jndiName))
-       {
-           jndiName = this.getJndiNamePrefix() + "/" + jndiName;
-       }
-       return jndiName;
-    }
+     * @Override
+     * protected String handleGetJndiNameRemote()
+     * {
+     * String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_REMOTE);
+     * if (StringUtils.isNotBlank(jndiName))
+     * {
+     * jndiName = this.getJndiNamePrefix() + "/" + jndiName;
+     * }
+     * return jndiName;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleGetJndiNameLocal()
      */
     /*
-    @Override
-    protected String handleGetJndiNameLocal()
-    {
-       String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_Local);
-       if (StringUtils.isNotBlank(jndiName))
-       {
-           jndiName = this.getJndiNamePrefix() + "/" + jndiName;
-       }
-       return jndiName;
-    }
+     * @Override
+     * protected String handleGetJndiNameLocal()
+     * {
+     * String jndiName = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_JNDI_NAME_Local);
+     * if (StringUtils.isNotBlank(jndiName))
+     * {
+     * jndiName = this.getJndiNamePrefix() + "/" + jndiName;
+     * }
+     * return jndiName;
+     * }
      */
 
     /**
      * @see EJB3SessionFacade#isStateful()
      */
     /*
-    @Override
-    protected boolean handleIsStateful()
-    {
-       boolean isStateful = false;
-       String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
-       if (StringUtils.isBlank(sessionType))
-       {
-           isStateful = !isStateless();
-       }
-       else
-       {
-           isStateful = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATEFUL);
-       }
-       return isStateful;
-    }
+     * @Override
+     * protected boolean handleIsStateful()
+     * {
+     * boolean isStateful = false;
+     * String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
+     * if (StringUtils.isBlank(sessionType))
+     * {
+     * isStateful = !isStateless();
+     * }
+     * else
+     * {
+     * isStateful = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATEFUL);
+     * }
+     * return isStateful;
+     * }
      */
 
     /**
      * @see EJB3SessionFacade#isStateless()
      */
-    //@Override
-    //protected boolean handleIsStateless()
+    // @Override
+    // protected boolean handleIsStateless()
     /*
-    protected boolean isStateless()
-    {
-        boolean isStateless = false;
-        String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
-        if (StringUtils.isBlank(sessionType))
-        {
-            isStateless =
-                this.getAllInstanceAttributes() == null ||
-                    this.filterSeamAttributes(this.getAllInstanceAttributes()).isEmpty();
-        }
-        else
-        {
-            isStateless = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATELESS);
-        }
-        return isStateless;
-    }
+     * protected boolean isStateless()
+     * {
+     * boolean isStateless = false;
+     * String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
+     * if (StringUtils.isBlank(sessionType))
+     * {
+     * isStateless =
+     * this.getAllInstanceAttributes() == null ||
+     * this.filterSeamAttributes(this.getAllInstanceAttributes()).isEmpty();
+     * }
+     * else
+     * {
+     * isStateless = sessionType.equalsIgnoreCase(EJB3Globals.SERVICE_TYPE_STATELESS);
+     * }
+     * return isStateless;
+     * }
      */
 
     /**
      * @see EJB3SessionFacade#getType()
      */
     /*
-    @Override
-    protected String handleGetType()
-    {
-       String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
-       if (StringUtils.isBlank(sessionType))
-       {
-           sessionType = "Stateful";
-           if (this.isStateless())
-           {
-               sessionType = "Stateless";
-           }
-       }
-       return sessionType;
-    }
+     * @Override
+     * protected String handleGetType()
+     * {
+     * String sessionType = (String)this.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_SESSION_TYPE);
+     * if (StringUtils.isBlank(sessionType))
+     * {
+     * sessionType = "Stateful";
+     * if (this.isStateless())
+     * {
+     * sessionType = "Stateless";
+     * }
+     * }
+     * return sessionType;
+     * }
      */
 
     /**
      * @see EJB3SessionFacade#getViewType()
      */
     /*
-    @Override
-    protected String handleGetViewType()
-    {
-       String viewType = EJB3MetafacadeUtils.getViewType(this,
-               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+     * @Override
+     * protected String handleGetViewType()
+     * {
+     * String viewType = EJB3MetafacadeUtils.getViewType(this,
+     * String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
      */
     /**
      * Check all session bean operations.
@@ -310,186 +310,185 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      * StackOverFlowError.
      */
     /*
-    if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL))
-    {
-       boolean operationWithRemoteViewExists =
-           CollectionUtils.exists(
-                   this.getBusinessOperations(),
-                   new Predicate()
-                   {
-                       public boolean evaluate(Object object)
-                       {
-                           EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
-                           String operationViewType =
-                               String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
-                           if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) ||
-                                   operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
-                           {
-                               return true;
-                           }
-                           else
-                           {
-                               return false;
-                           }
-                       }
-                   });
-       viewType = (operationWithRemoteViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
-    }
-    else if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE))
-    {
-       boolean operationWithLocalViewExists =
-           CollectionUtils.exists(
-                   this.getBusinessOperations(),
-                   new Predicate()
-                   {
-                       public boolean evaluate(Object object)
-                       {
-                           EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
-                           String operationViewType =
-                               String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
-                           if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) ||
-                                   operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
-                           {
-                               return true;
-                           }
-                           else
-                           {
-                               return false;
-                           }
-                       }
-                   });
-       viewType = (operationWithLocalViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
-    }
-    return viewType;
-    }
+     * if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL))
+     * {
+     * boolean operationWithRemoteViewExists =
+     * CollectionUtils.exists(
+     * this.getBusinessOperations(),
+     * new Predicate()
+     * {
+     * public boolean evaluate(Object object)
+     * {
+     * EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
+     * String operationViewType =
+     * String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
+     * if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) ||
+     * operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
+     * {
+     * return true;
+     * }
+     * else
+     * {
+     * return false;
+     * }
+     * }
+     * });
+     * viewType = (operationWithRemoteViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
+     * }
+     * else if (viewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE))
+     * {
+     * boolean operationWithLocalViewExists =
+     * CollectionUtils.exists(
+     * this.getBusinessOperations(),
+     * new Predicate()
+     * {
+     * public boolean evaluate(Object object)
+     * {
+     * EJB3SessionOperationFacade operation = (EJB3SessionOperationFacade)object;
+     * String operationViewType =
+     * String.valueOf(operation.findTaggedValue(EJB3Profile.TAGGEDVALUE_EJB_VIEWTYPE));
+     * if (operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) ||
+     * operationViewType.equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
+     * {
+     * return true;
+     * }
+     * else
+     * {
+     * return false;
+     * }
+     * }
+     * });
+     * viewType = (operationWithLocalViewExists ? EJB3Globals.VIEW_TYPE_BOTH : viewType);
+     * }
+     * return viewType;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeLocal()
      */
     /*
-    @Override
-    protected boolean handleIsViewTypeLocal()
-    {
-       boolean isLocal = false;
-       if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) || this.isViewTypeBoth() ||
-               this.isSeamComponent())
-       {
-           isLocal = true;
-       }
-       return isLocal;
-    }
+     * @Override
+     * protected boolean handleIsViewTypeLocal()
+     * {
+     * boolean isLocal = false;
+     * if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_LOCAL) || this.isViewTypeBoth() ||
+     * this.isSeamComponent())
+     * {
+     * isLocal = true;
+     * }
+     * return isLocal;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeRemote()
      */
     /*
-    @Override
-    protected boolean handleIsViewTypeRemote()
-    {
-       boolean isRemote = false;
-       if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) || this.isViewTypeBoth())
-       {
-           isRemote = true;
-       }
-       return isRemote;
-    }
+     * @Override
+     * protected boolean handleIsViewTypeRemote()
+     * {
+     * boolean isRemote = false;
+     * if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_REMOTE) || this.isViewTypeBoth())
+     * {
+     * isRemote = true;
+     * }
+     * return isRemote;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeBoth()
      */
     /*
-    @Override
-    protected boolean handleIsViewTypeBoth()
-    {
-       boolean isBoth = false;
-       if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
-       {
-           isBoth = true;
-       }
-       return isBoth;
-    }
+     * @Override
+     * protected boolean handleIsViewTypeBoth()
+     * {
+     * boolean isBoth = false;
+     * if (this.getViewType().equalsIgnoreCase(EJB3Globals.VIEW_TYPE_BOTH))
+     * {
+     * isBoth = true;
+     * }
+     * return isBoth;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeStrictlyLocal()
      */
     /*
-    @Override
-    protected boolean handleIsViewTypeStrictlyLocal()
-    {
-
-       boolean isViewTypeStrictlyLocal = false;
-       String viewType = EJB3MetafacadeUtils.getViewType(this,
-               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
-       if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_LOCAL) ||
-               StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
-       {
-           isViewTypeStrictlyLocal = true;
-       }
-       return isViewTypeStrictlyLocal;
-    }
+     * @Override
+     * protected boolean handleIsViewTypeStrictlyLocal()
+     * {
+     * boolean isViewTypeStrictlyLocal = false;
+     * String viewType = EJB3MetafacadeUtils.getViewType(this,
+     * String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+     * if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_LOCAL) ||
+     * StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
+     * {
+     * isViewTypeStrictlyLocal = true;
+     * }
+     * return isViewTypeStrictlyLocal;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeStrictlyRemote()
      */
     /*
-    @Override
-    protected boolean handleIsViewTypeStrictlyRemote()
-    {
-       boolean isViewTypeStrictlyRemote = false;
-       String viewType = EJB3MetafacadeUtils.getViewType(this,
-               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
-       if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_REMOTE) ||
-               StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
-       {
-           isViewTypeStrictlyRemote = true;
-       }
-       return isViewTypeStrictlyRemote;
-    }
+     * @Override
+     * protected boolean handleIsViewTypeStrictlyRemote()
+     * {
+     * boolean isViewTypeStrictlyRemote = false;
+     * String viewType = EJB3MetafacadeUtils.getViewType(this,
+     * String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+     * if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_REMOTE) ||
+     * StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
+     * {
+     * isViewTypeStrictlyRemote = true;
+     * }
+     * return isViewTypeStrictlyRemote;
+     * }
      */
 
     /**
      * @see EJB3SessionFacadeLogic#handleIsViewTypeStrictlyBoth()
      */
     /*
-    @Override
-    protected boolean handleIsViewTypeStrictlyBoth()
-    {
-       boolean isViewTypeStrictlyBoth = false;
-       String viewType = EJB3MetafacadeUtils.getViewType(this,
-               String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
-       if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
-       {
-           isViewTypeStrictlyBoth = true;
-       }
-       return isViewTypeStrictlyBoth;
-    }
+     * @Override
+     * protected boolean handleIsViewTypeStrictlyBoth()
+     * {
+     * boolean isViewTypeStrictlyBoth = false;
+     * String viewType = EJB3MetafacadeUtils.getViewType(this,
+     * String.valueOf(this.getConfiguredProperty(SERVICE_DEFAULT_VIEW_TYPE)));
+     * if (StringUtils.equalsIgnoreCase(viewType, EJB3Globals.VIEW_TYPE_BOTH))
+     * {
+     * isViewTypeStrictlyBoth = true;
+     * }
+     * return isViewTypeStrictlyBoth;
+     * }
      */
 
     /**
      * @see EJB3SessionFacade#getHomeInterfaceName()
      */
     /*
-    @Override
-    protected String handleGetHomeInterfaceName()
-    {
-       return EJB3MetafacadeUtils.getHomeInterfaceName(this);
-    }
+     * @Override
+     * protected String handleGetHomeInterfaceName()
+     * {
+     * return EJB3MetafacadeUtils.getHomeInterfaceName(this);
+     * }
      */
 
     /**
      * @see EJB3SessionFacade#getTransactionType()
      */
     /*
-    @Override
-    protected String handleGetTransactionType()
-    {
-       return EJB3MetafacadeUtils.getTransactionType(this, null);
-    }
+     * @Override
+     * protected String handleGetTransactionType()
+     * {
+     * return EJB3MetafacadeUtils.getTransactionType(this, null);
+     * }
      */
 
     /**

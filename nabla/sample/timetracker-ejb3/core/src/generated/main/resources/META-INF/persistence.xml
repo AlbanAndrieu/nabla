@@ -18,9 +18,9 @@ Modify as necessary for JPA unit testing
     <persistence-unit name="timetracker-ejb3" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <!-- use jta-data-source only when transaction-type is JTA -->
-        <jta-data-source>java:/timetracker-ejb3</jta-data-source>
+        <jta-data-source>${datasource}</jta-data-source>
         <!-- use non-jta-data-source only when transaction-type is RESOURCE_LOCAL -->
-        <!--<non-jta-data-source>java:/timetracker-ejb3Unmanaged</non-jta-data-source>-->
+        <non-jta-data-source>${datasource}Unmanaged</non-jta-data-source>
         <!-- Entity list needed for testing in J2SE environment entities=5-->
         <class>org.andromda.timetracker.domain.Task</class>
         <class>org.andromda.timetracker.domain.UserRole</class>
@@ -40,7 +40,7 @@ Modify as necessary for JPA unit testing
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
             please set property hibernate.cache.provider to empty for hibernateCacheProvider in pom.xml in server for profile jboss7
             -->
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
+            <property name="hibernate.cache.provider_class" value="${hibernate.cache.provider}"/>
             <property name="hibernate.treecache.mbean.object_name" value="jboss.cache:service=EJB3EntityTreeCache"/>
             <!-- Encoding -->
             <property name="hibernate.connection.useUnicode" value="true" />

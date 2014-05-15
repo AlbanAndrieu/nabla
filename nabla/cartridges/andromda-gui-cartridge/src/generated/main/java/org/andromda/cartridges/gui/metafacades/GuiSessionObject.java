@@ -7,7 +7,7 @@ package org.andromda.cartridges.gui.metafacades;
 import org.andromda.metafacades.uml.ClassifierFacade;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.cartridges.gui.metafacades.GuiSessionObject
  *
  * Metafacade interface to be used by AndroMDA cartridges.
  */

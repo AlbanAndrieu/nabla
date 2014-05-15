@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <!--<groupId>org.andromda.cartridges</groupId>-->
     <artifactId>andromda-jsf2-cartridge-components</artifactId>
-    <version>3.5</version>
+    <version>3.6-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AndroMDA JSF2 Cartridge Components</name>
     <description>Contains custom JSF2 components used by the JSF2 cartridge.</description>
