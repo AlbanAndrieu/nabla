@@ -23,16 +23,12 @@ import javax.persistence.UniqueConstraint;
  *
  */
 @Entity
-@Table(name = "CAR", uniqueConstraints = @UniqueConstraint(columnNames = {"serial", "name", "type"}))
+@Table(name = "CAR", uniqueConstraints = @UniqueConstraint(columnNames = { "serial", "name", "type" }))
 // Uncomment to enable entity listener for Car
 // @javax.persistence.EntityListeners({org.andromda.test.howto11.a.CarListener.class})
 // Uncomment to enable caching for Car
 // @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries
-({
-    @NamedQuery(name = "Car.findAll", query = "SELECT c FROM Car AS c"),
-    @NamedQuery(name = "Car.findByType", query = "SELECT c from Car as c WHERE c.type = :type")
-})
+@NamedQueries({ @NamedQuery(name = "Car.findAll", query = "SELECT c FROM Car AS c"), @NamedQuery(name = "Car.findByType", query = "SELECT c from Car as c WHERE c.type = :type") })
 public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
 {
     /**
@@ -74,7 +70,6 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
         super(serial, name, type, owner);
     }
 
-
     // -------------- Entity Methods -----------------
 
     /**
@@ -97,21 +92,19 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
         return false;
     }
 
-
     // --------------- Lifecycle callbacks -----------------
 
     /**
      * @see Comparable#compareTo
      */
-            @Override
+    @Override
     public int compareTo(Car o)
     {
         int cmp = 0;
         if (this.getSerial() != null)
         {
             cmp = this.getSerial().compareTo(o.getSerial());
-        }
-        else
+        } else
         {
             if (this.getName() != null)
             {

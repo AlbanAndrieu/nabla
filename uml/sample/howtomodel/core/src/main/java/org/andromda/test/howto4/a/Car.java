@@ -24,7 +24,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "CAR"
 
-, uniqueConstraints = @UniqueConstraint(columnNames = {"type"}))
+, uniqueConstraints = @UniqueConstraint(columnNames = { "type" }))
 // Uncomment to enable entity listener for Car
 // @javax.persistence.EntityListeners({org.andromda.test.howto4.a.CarListener.class})
 // Uncomment to enable caching for Car
@@ -55,7 +55,7 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
      */
     public Car(CarPK pk, String type)
     {
-        super( pk, type);
+        super(pk, type);
     }
 
     /**
@@ -66,9 +66,8 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
      */
     public Car(CarPK pk, String type, Person owner)
     {
-        super( pk, type, owner);
+        super(pk, type, owner);
     }
-
 
     // -------------- Entity Methods -----------------
 
@@ -92,21 +91,19 @@ public class Car extends CarEmbeddable implements Serializable, Comparable<Car>
         return false;
     }
 
-
     // --------------- Lifecycle callbacks -----------------
 
     /**
      * @see Comparable#compareTo
      */
-            @Override
+    @Override
     public int compareTo(Car o)
     {
         int cmp = 0;
         if (this.getPk() != null)
         {
             cmp = this.getPk().compareTo(o.getPk());
-        }
-        else
+        } else
         {
             if (this.getType() != null)
             {

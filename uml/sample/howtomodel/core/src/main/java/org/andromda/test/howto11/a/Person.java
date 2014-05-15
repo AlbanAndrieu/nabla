@@ -26,16 +26,12 @@ import javax.persistence.UniqueConstraint;
  *
  */
 @Entity
-@Table(name = "PERSON", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "birthDate", "serial"}))
+@Table(name = "PERSON", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "birthDate", "serial" }))
 // Uncomment to enable entity listener for Person
 // @javax.persistence.EntityListeners({org.andromda.test.howto11.a.PersonListener.class})
 // Uncomment to enable caching for Person
 // @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL)
-@NamedQueries
-({
-    @NamedQuery(name = "Person.findAll", query = "SELECT p from Person as p"), 
-    @NamedQuery(name = "Person.findByName", query = "SELECT p from Person as p WHERE p.name = :name")
-})
+@NamedQueries({ @NamedQuery(name = "Person.findAll", query = "SELECT p from Person as p"), @NamedQuery(name = "Person.findByName", query = "SELECT p from Person as p WHERE p.name = :name") })
 public class Person extends PersonEmbeddable implements Serializable, Comparable<Person>
 {
     /**
@@ -77,9 +73,7 @@ public class Person extends PersonEmbeddable implements Serializable, Comparable
         super(name, birthDate, serial, cars);
     }
 
-
     // -------------- Entity Methods -----------------
-
 
     // --------------- Lifecycle callbacks -----------------
 
@@ -104,15 +98,14 @@ public class Person extends PersonEmbeddable implements Serializable, Comparable
     /**
      * @see Comparable#compareTo
      */
-            @Override
+    @Override
     public int compareTo(Person o)
     {
         int cmp = 0;
         if (this.getSerial() != null)
         {
             cmp = this.getSerial().compareTo(o.getSerial());
-        }
-        else
+        } else
         {
             if (this.getName() != null)
             {
