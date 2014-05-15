@@ -36,9 +36,9 @@ package com.nabla.project.visma;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IPaymentMethod;
@@ -108,7 +108,7 @@ public class BasicPaymentMethod implements IPaymentMethod
     {
 
         final BigDecimal payment = this.getMonthlyPayment();
-        final Map<Integer, List<BigDecimal>> monthlySchedule = new ConcurrentHashMap<Integer, List<BigDecimal>>();
+        final Map<Integer, List<BigDecimal>> monthlySchedule = new HashMap<Integer, List<BigDecimal>>(); // TODO use : ConcurrentHashMap
 
         final int numberOfMonths = BasicPaymentMethod.calcNumberOfMonths(this.loan.getPaybackTime());
 
