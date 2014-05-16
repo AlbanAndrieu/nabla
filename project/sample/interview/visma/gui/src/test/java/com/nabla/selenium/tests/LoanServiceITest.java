@@ -35,6 +35,7 @@ package com.nabla.selenium.tests;
 
 import java.math.BigDecimal;
 
+import org.apache.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -56,21 +57,15 @@ import com.nabla.project.visma.api.ILoanService;
 public class LoanServiceITest
 {
 
-    // @TargetsContainer("weld")
+    private static final Logger LOGGER = Logger.getLogger(LoanServiceITest.class);
+
     @Deployment
-    // @org.jboss.arquillian.container.test.api.TargetsContainer("jetty")
-    // @org.jboss.arquillian.container.test.api.TargetsContainer("jbossas_managed")
+    // @org.jboss.arquillian.container.test.api.TargetsContainer("arq-weld-ee-embedded")
     public static Archive<?> createTestArchive()
     {
-        // return ShrinkWrap.create(JavaArchive.class, "test.jar")
-        return ShrinkWrap.create(WebArchive.class, "visma.war").addClasses(ILoanService.class, LoanService.class, QueryBean.class, Payment.class, PaymentSchedule.class, NavigationBean.class).setWebXML("jsf-web.xml");
-        /*
-         * .addLibraries(
-         * MavenArtifactResolver.resolveQualifiedIds("com.sun.faces:jsf-api:2.0.4-b03", "com.sun.faces:jsf-impl:2.0.4-b03", "org.jboss.weld.servlet:weld-servlet:1.1.0.Final",
-         * "com.sun.faces:jsf-api:2.0.3-b05", "com.sun.faces:jsf-impl:2.0.3",
-         * // "org.jboss.weld.servlet:weld-servlet:1.1.0.Final",
-         * "org.glassfish.web:el-impl:2.2", "javax.annotation:jsr250-api:1.0", "javax.servlet:jstl:1.2")); // ,
-         */
+        return ShrinkWrap.create(WebArchive.class, "visma.war").addClasses(ILoanService.class, LoanService.class, QueryBean.class, Payment.class, PaymentSchedule.class, NavigationBean.class);
+        // .setWebXML("WEB-INF/web.xml");
+
         // .addAsResource("loan.xhtml", "loan.xhtml").addAsResource("payment.xhtml", "payment.xhtml")
         // .addAsWebResource("faces-config.xml")
         // .addAsWebResource(EmptyAsset.INSTANCE, "beans.xml")
@@ -92,10 +87,13 @@ public class LoanServiceITest
     @InSequence(1)
     public void testRegister() throws Exception
     {
+
+        LoanServiceITest.LOGGER.info("this will go to the console if the level is set correctly");
+
         final BigDecimal total = this.service.getTotalPayment(new BigDecimal(200_000), 30);
 
         Assert.assertNotNull(total);
-        Assert.assertEquals("408808.080969842113801990388563829760", total);
+        Assert.assertEquals("408808.080969842113801990388563829760", total.toString());
         ;
     }
 
