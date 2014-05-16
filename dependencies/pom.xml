@@ -1056,18 +1056,32 @@
 				<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 				<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>		
 				<sonar.java.target>1.7</sonar.java.target>
-				<sonar.language>java</sonar.language>
+				<!--<sonar.language>java</sonar.language>-->
 				<!--
 				<jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
 				<jetty.context.path>/nabla</jetty.context.path>
 				-->
 				<!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
-				<!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus -->
+				<!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus 
+				http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
 				<sonar.exclusions>**/generated/**</sonar.exclusions>
+				<!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js</sonar.sources>-->
+				  
+				<!--
+				<sonar.issue.ignore.multicriteria>e1,e2</sonar.issue.ignore.multicriteria>
+				<sonar.issue.ignore.multicriteria.e1.ruleKey>squid:S1451</sonar.issue.ignore.multicriteria.e1.ruleKey>
+				<sonar.issue.ignore.multicriteria.e1.resourceKey>**/*package-info.java</sonar.issue.ignore.multicriteria.e1.resourceKey>
+				<sonar.issue.ignore.multicriteria.e2.ruleKey>checkstyle:com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck</sonar.issue.ignore.multicriteria.e2.ruleKey>
+				<sonar.issue.ignore.multicriteria.e2.resourceKey>com.nabla.project.visma.House*;*;[1-33]</sonar.issue.ignore.multicriteria.e2.resourceKey>				  
+				-->				
+				<sonar.issue.ignore.block>e1,e2</sonar.issue.ignore.block>
+				<sonar.issue.ignore.block.e1.beginBlockRegexp>@SonarIgnore</sonar.issue.ignore.block.e1.beginBlockRegexp>
+				<sonar.issue.ignore.block.e1.endBlockRegexp></sonar.issue.ignore.block.e1.endBlockRegexp>
+				<sonar.issue.ignore.block.e2.beginBlockRegexp>Copyright (c) 2002-2004, Nabla</sonar.issue.ignore.block.e2.beginBlockRegexp>
+				<sonar.issue.ignore.block.e2.endBlockRegexp>License 1.0</sonar.issue.ignore.block.e2.endBlockRegexp>
 				
-
 				<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-				<andromda.version>3.5</andromda.version>
+				<andromda.version>3.6-SNAPSHOT</andromda.version>
 
 				<tibjms.version>4.2.0</tibjms.version>
 				<!--<tibrv.version>8.1.2</tibrv.version>-->
@@ -1165,7 +1179,7 @@
 				<ant.trax.version>1.7.0</ant.trax.version>
 				<ant.contrib.version>20020829</ant.contrib.version>
 				<c3p0.version>0.8.5.2</c3p0.version>
-				<jacoco.version>0.7.0.201403182114</jacoco.version>
+				<jacoco.version>0.7.1.201405082137</jacoco.version>
 
 				<jdbc.derby.version>10.10.1.1</jdbc.derby.version>
 				<jdbc.org.hsqldb.version>2.3.1</jdbc.org.hsqldb.version>
