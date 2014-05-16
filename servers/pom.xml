@@ -23,15 +23,15 @@
 		<tag>HEAD</tag>
 	</scm>
 
-        <ciManagement>
-                <system>Jenkins</system>
-                <url>${JOB_URL}</url>
-        </ciManagement>
-        
-        <!-- ================= Default Properties ================= -->
-        <properties>
-        	<!-- needed for maven-ear-plugin -->
-        	<!-- TODO remove -->
+		<ciManagement>
+				<system>Jenkins</system>
+				<url>${JOB_URL}</url>
+		</ciManagement>
+		
+		<!-- ================= Default Properties ================= -->
+		<properties>
+			<!-- needed for maven-ear-plugin -->
+			<!-- TODO remove -->
 		<as.version>5</as.version>
 		<jboss.ear.version>5</jboss.ear.version>
 		<jboss.home>${env.JBOSS_HOME}</jboss.home>
@@ -41,13 +41,13 @@
 		<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
 		<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
 		<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
-        </properties>
+		</properties>
 
 	<build>
 		<pluginManagement>
 			<plugins>
 
-                             <!-- mvn cargo:deploy -->
+							 <!-- mvn cargo:deploy -->
 				<!-- call mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:run
 					> deploy.log 2>&1 -->
 				<plugin>
@@ -98,10 +98,10 @@
 							<timeout>60000</timeout> 
 						  </configuration>
 						</execution>
-					  </executions>		
-					  -->			
+					  </executions>	 
+					  -->		   
 				</plugin>
-                              <!-- end Web application server helpers -->
+							  <!-- end Web application server helpers -->
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -132,7 +132,7 @@
 				<server.port>${jboss.port}</server.port>
 				<!-- Change this to the host on which your webservice will be deployed -->
 				<webservice.host>localhost</webservice.host>
-                           	<!-- Change this the port on which your webservice will be deploy -->
+							<!-- Change this the port on which your webservice will be deploy -->
 				<webservice.port>8180</webservice.port>
 				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server
 					compatibility -->
@@ -164,26 +164,26 @@
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
-				<jboss.server>standalone</jboss.server>				
+				<jboss.server>standalone</jboss.server>			 
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
 				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
 				<!-- for jboss 7.1.1 compile -->
-                                <!--<scope.type>${scope.provided}</scope.type> -->
+								<!--<scope.type>${scope.provided}</scope.type> -->
 				<scope.type>${scope.compile}</scope.type>
 				<!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
-                                <!--
-                             	<hibernate.core.version>3.6.8.Final</hibernate.core.version>
-                             	<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>
-                             	-->
+								<!--
+								<hibernate.core.version>3.6.8.Final</hibernate.core.version>
+								<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>
+								-->
 				<!-- works with hibernate.core.version 3.6.8.GA -->
 
 				<!-- must be emtpy for non jboss7 target -->
-                                <!-- uncomment for open ejb to work -->
-                                <!--
-                                <ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
-                            	<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
-                            	<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
-                                -->
+								<!-- uncomment for open ejb to work -->
+								<!--
+								<ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
+								<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
+								<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+								-->
 			</properties>
 			<build>
 				<plugins>
@@ -204,7 +204,7 @@
 								<artifactInstaller>
 									<groupId>org.jboss.as</groupId>
 									<artifactId>jboss-as-dist</artifactId>
-									<version>${jboss.version}</version>									
+									<version>${jboss.version}</version>								 
 								</artifactInstaller>
 								-->
 								<systemProperties>
@@ -216,26 +216,26 @@
 								<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
 								<cargo.jboss.management.port>9999</cargo.jboss.management.port>
 								<cargo.rmi.port>1099</cargo.rmi.port>-->
-								<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>								
+								<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>							   
 								<cargo.logging>high</cargo.logging>
-							</properties>							
+							</properties>						   
 						</configuration>
 						<executions>
 							<!--
-        						<execution>
-        						    <id>pre-integration-test</id>
-        						    <phase>pre-integration-test</phase>
-        						    <goals>
-        						        <goal>deploy</goal>
-        						    </goals>
-        						</execution>
-        						<execution>
-        						    <id>post-integration-test</id>
-        						    <phase>post-integration-test</phase>
-        						    <goals>
-        						        <goal>undeploy</goal>
-        						    </goals>
-        						</execution>							
+								<execution>
+									<id>pre-integration-test</id>
+									<phase>pre-integration-test</phase>
+									<goals>
+										<goal>deploy</goal>
+									</goals>
+								</execution>
+								<execution>
+									<id>post-integration-test</id>
+									<phase>post-integration-test</phase>
+									<goals>
+										<goal>undeploy</goal>
+									</goals>
+								</execution>							
 							-->
 							<!--
 							<execution>
@@ -260,14 +260,14 @@
 								</goals>
 							</execution>
 							-->
-						</executions>				
-                                		<dependencies>
-                                		        <dependency>
-                                		                <groupId>org.jboss.as</groupId>
-                                		                <artifactId>jboss-as-controller-client</artifactId>
-                                		                <version>${jboss.version}</version>
-                                		        </dependency>
-                                		</dependencies>								
+						</executions>			   
+										<dependencies>
+												<dependency>
+														<groupId>org.jboss.as</groupId>
+														<artifactId>jboss-as-controller-client</artifactId>
+														<version>${jboss.version}</version>
+												</dependency>
+										</dependencies>							 
 					</plugin>
 				</plugins>
 			</build>
@@ -282,24 +282,24 @@
 					<name>server</name>
 					<value>jboss5x</value>
 					-->
-                    <name>!server</name>	
+					<name>!server</name>	
 				</property>
 			</activation>
 			<properties>
 				<as.version>5</as.version>
 				<jboss.ear.version>5</jboss.ear.version>
-                                <!-- START INFO USE BY MDA -->
+								<!-- START INFO USE BY MDA -->
 				<jboss.home>${env.JBOSS_HOME}</jboss.home>
 				<!--<jboss.home>C:\jboss-${jboss5.version}</jboss.home> -->
 				<jboss.version>${jboss5.version}</jboss.version> <!-- overrided -->
-				<server.version>${jboss.version}</server.version>				
+				<server.version>${jboss.version}</server.version>			   
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
 
 				<!-- Change this to the host on which your webservice will be deployed -->
 				<webservice.host>localhost</webservice.host>
-                           	<!-- Change this the port on which your webservice will be deploy -->
+							<!-- Change this the port on which your webservice will be deploy -->
 				<webservice.port>8180</webservice.port>
 				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server
 					compatibility -->
@@ -314,7 +314,7 @@
 				<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
 				<deploy.url>WRONG use tomcat profile</deploy.url>
 
-                             	<!-- END INFO USE BY MDA -->
+								<!-- END INFO USE BY MDA -->
 				<cargo.container>jboss51x</cargo.container>
 				<cargo.container.home>${jboss.home}</cargo.container.home>
 				<cargo.container.url>http://downloads.sourceforge.net/jboss/jboss-${jboss5.version}.zip?big_mirror=1</cargo.container.url>
@@ -366,8 +366,8 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>			
-						-->			
+						</executions>		   
+						-->		 
 					</plugin>
 				</plugins>
 			</build>
@@ -428,7 +428,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>						
+						</executions>					   
 					</plugin>
 				</plugins>
 			</build>
@@ -493,7 +493,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>						
+						</executions>					   
 					</plugin>
 				</plugins>
 			</build>
@@ -558,11 +558,11 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>						
+						</executions>					   
 					</plugin>
 				</plugins>
 			</build>
-		</profile>		
+		</profile>	  
 		<profile>
 			<id>jetty9x</id>
 			<activation>
@@ -625,7 +625,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>						
+						</executions>					   
 					</plugin>
 				</plugins>
 			</build>
@@ -682,7 +682,7 @@
 								<cargo.logging>high</cargo.logging>
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 								<!--<cargo.tomcat.ajp.port>${tomcat.ajb.port}</cargo.tomcat.ajp.port>-->							
-							</properties>								
+							</properties>							   
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
@@ -776,7 +776,7 @@
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
-								<logLevel>debug</logLevel>								
+								<logLevel>debug</logLevel>							  
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -887,33 +887,47 @@
 			</build>
 		</profile>
 		
-        	<!-- ================= END Container Profiles ================= -->
-        	
-        	<!-- ================= START Container JBoss Specific Profiles ================= -->
+			<!-- ================= END Container Profiles ================= -->
+			
+			<!-- ================= START Container JBoss Specific Profiles ================= -->
 		<!-- Run with: mvn clean test -Parq-jbossas-managed -->
-		<!-- does not work		
-		<profile>			
+		<profile>		   
 			<id>arq-weld-ee-embedded</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>		   
 			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
 					<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-					<version>1.0.0.CR3</version>
+					<version>1.0.0.CR5</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.weld</groupId>
 					<artifactId>weld-core</artifactId>
-					<version>1.1.5.Final</version>
+					<version>1.1.9.Final</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+					<version>1.6.4</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
 		</profile>
-		-->
 
 		<!-- Run with: mvn clean test -Parq-jbossas-embedded -->
 		<!-- does not work
-		<profile>			
+		<profile>		   
 			<id>arq-jbossas-embedded</id>
 			<dependencies>
 				<dependency>
@@ -937,11 +951,24 @@
 			<id>arq-jbossas-managed</id>
 			<dependencies>
 				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
 					<groupId>org.jboss.as</groupId>
 					<artifactId>jboss-as-arquillian-container-managed</artifactId>
-					<version>${org.jboss.as.arquillian.container.version}</version>
+					<version>7.1.1.Final</version>
+					<!--<version>${org.jboss.as.arquillian.container.version}</version>-->
 					<scope>test</scope>
 				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.protocol</groupId>
+					<artifactId>arquillian-protocol-servlet</artifactId>
+					<scope>test</scope>
+				</dependency>			   
 			</dependencies>
 		</profile>
 
@@ -960,59 +987,59 @@
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
- 			<build>
-            		    <plugins>
-            		        <plugin>
-            		            <groupId>org.apache.maven.plugins</groupId>
-								<artifactId>maven-surefire-plugin</artifactId>
-								<version>${maven.surefire.plugin.version}</version>
-            		            <configuration>
-            		                <environmentVariables>
-            		                    <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
-            		                </environmentVariables>
-            		                <systemProperties>
-            		                    <jboss.version>${server.version}</jboss.version>
-            		                </systemProperties>
-            		            </configuration>
-            		        </plugin>
-            		        <plugin>
-            		            <groupId>org.apache.maven.plugins</groupId>
-            		            <artifactId>maven-dependency-plugin</artifactId>
-            		            <executions>
-            		                <execution>
-            		                    <id>unpack</id>
-            		                    <phase>process-test-classes</phase>
-            		                    <goals>
-            		                        <goal>unpack</goal>
-            		                    </goals>
-            		                    <configuration>
-            		                        <artifactItems>
-            		                            <artifactItem>
-            		                                <groupId>org.jboss.as</groupId>
-            		                                <artifactId>jboss-as-dist</artifactId>
-            		                                <version>${server.version}</version>
-            		                                <type>zip</type>
-            		                                <overWrite>false</overWrite>
-            		                                <outputDirectory>${project.build.directory}</outputDirectory>
-            		                            </artifactItem>
-            		                        </artifactItems>
-            		                    </configuration>
-            		                </execution>
-            		            </executions>
-            		        </plugin>
-            		    </plugins>
-            		</build>			
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven.surefire.plugin.version}</version>
+						<configuration>
+							<environmentVariables>
+								<JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+							</environmentVariables>
+							<systemProperties>
+								<jboss.version>${server.version}</jboss.version>
+							</systemProperties>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.jboss.as</groupId>
+											<artifactId>jboss-as-dist</artifactId>
+											<version>${server.version}</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>${project.build.directory}</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>			
 		</profile>
 
 		<!-- Run with: mvn clean test -Parq-glassfish-embedded -->
-		<!-- does not work
+		<!-- does not work -->
 		<profile>
 			<id>arq-glassfish-embedded</id>
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
 					<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-					<version>1.0.0.CR2</version>
+					<version>1.0.0.CR3</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -1023,7 +1050,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		-->
 
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
@@ -1047,14 +1073,11 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>		
+		</profile>	  
 		
 		<!-- see https://docs.jboss.org/author/display/ARQ/Jetty+7.0+-+Embedded -->
 		  <profile>
 			 <id>arq-jetty-embedded</id>
-			 <activation>
-				<activeByDefault>true</activeByDefault>
-			 </activation>
 			 <dependencies>
 				<dependency>
 				   <groupId>org.jboss.arquillian.container</groupId>
@@ -1202,7 +1225,7 @@
 				</plugins> 
 			 </build>
 		  </profile>		
-                <!-- ================= START Container JBoss Specific Profiles ================= -->
+				<!-- ================= START Container JBoss Specific Profiles ================= -->
 		<profile>
 			<id>sample</id>
 			<activation>
