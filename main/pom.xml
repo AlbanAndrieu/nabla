@@ -641,11 +641,11 @@
                                         </execution>
                                 </executions>
                         </plugin>
-			<plugin>
-			    <groupId>org.pitest</groupId>
-			    <artifactId>pitest-maven</artifactId>
-			    <version>${maven.pitest.plugin.version}</version>
-			</plugin>
+						<plugin>
+							<groupId>org.pitest</groupId>
+							<artifactId>pitest-maven</artifactId>
+							<version>${maven.pitest.plugin.version}</version>
+						</plugin>
                         <!--
                                 <plugin> <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>jboss-packaging-maven-plugin</artifactId> <executions>
@@ -859,7 +859,7 @@
 											<exclude>none</exclude>
 										</excludes>
 										<includes>
-											<!--<include>**/*ITest*</include>-->
+											<include>**/*ITest*</include>
 											<include>**/*STest*</include>
 										</includes>
 									</configuration>
