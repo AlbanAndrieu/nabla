@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+    "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+    
+<faces-config>
+
+#if(!$applicationUseCases.empty)
+#**##set($applicationUseCase = $applicationUseCases.iterator().next())
+#end
+#set ($useCases = $applicationUseCase.allUseCases)
+    <!-- global navigational-rules -->
+#foreach ($useCase in $useCases)
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>$useCase.forwardName</from-outcome>
+            <to-view-id>${useCase.path}.${jsfUtils.viewExtension}</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+#end
+#foreach ($useCase in $useCases)
+#foreach ($rule in $useCase.navigationRules)
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>$rule.fromOutcome</from-outcome>
+            <to-view-id>${rule.path}.${jsfUtils.viewExtension}</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+#end
+#end
+#if ($stringUtils.isNotBlank($securityRealm))
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/logout.${jsfUtils.viewExtension}</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+#end
+
+</faces-config>

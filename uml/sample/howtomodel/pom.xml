@@ -13,7 +13,6 @@
     <groupId>org.andromda.test</groupId>
     <artifactId>howtomodel</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
     <name>AndroMDA HowToModel Sample</name>
     <description>The howtomodel Project.</description>
 
@@ -534,8 +533,8 @@
                 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-jar-plugin</artifactId>
-		    <version>${maven.jar.plugin.version}</version>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.plugin.version}</version>
                     <configuration>
                         <excludes>
                             <exclude>**/*.ref</exclude>
@@ -544,14 +543,14 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-ejb-plugin</artifactId>
-		    <version>${maven.ejb.plugin.version}</version>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>${maven.ejb.plugin.version}</version>
                 </plugin>
                 <!-- Comment to run Eclipse plugin for top level project only, as part of mda install. See mda/eclipse.bat -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-eclipse-plugin</artifactId>
-		    <version>${maven.eclipse.plugin.version}</version>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven.eclipse.plugin.version}</version>
                     <inherited>true</inherited>
                     <!--
                     <configuration>
@@ -563,8 +562,8 @@
                 <plugin>
                     <!-- Automatically attach sources to build artifact as artifact-version-sources.jar and deploy to local repository -->
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-source-plugin</artifactId>
-		    <version>${maven.source.plugin.version}</version>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.plugin.version}</version>
                     <executions>
                         <execution>
                             <id>attach-sources</id>
@@ -577,18 +576,18 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-install-plugin</artifactId>
-		    <version>${maven.install.plugin.version}</version>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven.install.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-deploy-plugin</artifactId>
-		    <version>${maven.deploy.plugin.version}</version>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven.deploy.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-antrun-plugin</artifactId>
-		    <version>${maven.antrun.plugin.version}</version>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven.antrun.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -635,8 +634,8 @@
             <plugin>
                 <!-- Automatically attach sources to build artifact as artifact-version-sources.jar and deploy to local repository -->
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-source-plugin</artifactId>
-		<version>${maven.source.plugin.version}</version>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven.source.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
