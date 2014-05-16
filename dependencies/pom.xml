@@ -218,7 +218,7 @@
 								log.info "Maven project.properties:"
 								log.info "========================================================================"
 								if (project.parent) log.info "project.parent.basedir  = $project.parent.basedir";
-								log.info "project.basedir		 = $project.basedir";
+								log.info "project.basedir		= $project.basedir";
 								log.info "project.artifactId	  = $project.artifactId";
 								log.info "project.build.directory = $project.build.directory";
 								log.info "project.build.finalName = $project.build.finalName";
@@ -349,7 +349,7 @@
 													<excludes>**/generated/**/*</excludes>
 													<excludes>**/clover/**/*</excludes>
 												</configuration>
-												<dependencies>														
+												<dependencies>													  
 														<dependency>
 																<groupId>com.nabla.project</groupId>
 																<artifactId>build-tools</artifactId>
@@ -379,7 +379,7 @@
 														<formats>
 																<format>xml</format>
 																<format>html</format>
-														</formats>												
+														</formats>											  
 														<check>
 																<branchRate>55</branchRate>
 																<lineRate>55</lineRate>
@@ -870,8 +870,8 @@
 								  <historyDir>${user.home}/history/${project.artifact}</historyDir>
 								  <includesAllSourceRoots>true</includesAllSourceRoots>
 								  <generatePdf>true</generatePdf>
-  					  <generateXml>true</generateXml>
-  					  <generateHtml>true</generateHtml>
+					  <generateXml>true</generateXml>
+					  <generateHtml>true</generateHtml>
 							</configuration>
 							<executions>
 								<execution>
@@ -904,8 +904,8 @@
 								  <singleCloverDatabase>true</singleCloverDatabase>
 								  <historyDir>${user.home}/history/${project.artifact}</historyDir>
 								  <generatePdf>true</generatePdf>
-  					  <generateXml>true</generateXml>
-  					  <generateHtml>true</generateHtml>
+					  <generateXml>true</generateXml>
+					  <generateHtml>true</generateHtml>
 							</configuration>
 							<executions>
 								<execution>
@@ -1050,11 +1050,11 @@
 				<sonar.clover.version>${clover.version}</sonar.clover.version>
 				<sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
 				
-				<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath>	-->
+				<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
 				<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
 				
 				<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
-				<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>		
+				<sonar.pitest.reportsDirectory>pitest-reports</sonar.pitest.reportsDirectory>	   
 				<sonar.java.target>1.7</sonar.java.target>
 				<!--<sonar.language>java</sonar.language>-->
 				<!--
@@ -1072,8 +1072,8 @@
 				<sonar.issue.ignore.multicriteria.e1.ruleKey>squid:S1451</sonar.issue.ignore.multicriteria.e1.ruleKey>
 				<sonar.issue.ignore.multicriteria.e1.resourceKey>**/*package-info.java</sonar.issue.ignore.multicriteria.e1.resourceKey>
 				<sonar.issue.ignore.multicriteria.e2.ruleKey>checkstyle:com.puppycrawl.tools.checkstyle.checks.duplicates.StrictDuplicateCodeCheck</sonar.issue.ignore.multicriteria.e2.ruleKey>
-				<sonar.issue.ignore.multicriteria.e2.resourceKey>com.nabla.project.visma.House*;*;[1-33]</sonar.issue.ignore.multicriteria.e2.resourceKey>				  
-				-->				
+				<sonar.issue.ignore.multicriteria.e2.resourceKey>com.nabla.project.visma.House*;*;[1-33]</sonar.issue.ignore.multicriteria.e2.resourceKey>				
+				-->			 
 				<sonar.issue.ignore.block>e1,e2</sonar.issue.ignore.block>
 				<sonar.issue.ignore.block.e1.beginBlockRegexp>@SonarIgnore</sonar.issue.ignore.block.e1.beginBlockRegexp>
 				<sonar.issue.ignore.block.e1.endBlockRegexp></sonar.issue.ignore.block.e1.endBlockRegexp>
@@ -1341,6 +1341,7 @@
 				<org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version>
 				<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
 				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
+				<org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
 				<wiser.version>1.2</wiser.version>
@@ -1530,7 +1531,7 @@
 				<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 				<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
 				<maven.karma.plugin.version>1.7</maven.karma.plugin.version>
-				<maven.grunt.plugin.version>1.3.0</maven.grunt.plugin.version>				
+				<maven.grunt.plugin.version>1.3.0</maven.grunt.plugin.version>			  
 				<maven.jspc.plugin.version>2.0-alpha-3</maven.jspc.plugin.version>
 				<maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
 				<maven.apache.rat.plugin.version>0.10</maven.apache.rat.plugin.version>
@@ -1590,8 +1591,8 @@
 				<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
 				<maven.invoker.plugin.version>1.8</maven.invoker.plugin.version>
 				<maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
-				<!--<maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>	-->
-				<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>					
+				<!--<maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>  -->
+				<maven.javadoc.plugin.version>2.8.1</maven.javadoc.plugin.version>				  
 				<maven.jxr.plugin.version>2.4</maven.jxr.plugin.version>
 				<maven.pmd.plugin.version>3.1</maven.pmd.plugin.version>
 				<maven.project.info.reports.plugin.version>2.7</maven.project.info.reports.plugin.version>
@@ -1672,7 +1673,7 @@
 				  repository. -->
 				<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>				
+				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>			   
 				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->
 				<org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
@@ -1759,7 +1760,7 @@
 																	<action>
 																		<ignore></ignore>
 																	</action>
-																</pluginExecution>																
+																</pluginExecution>															  
 																<pluginExecution>
 																		<pluginExecutionFilter>
 																				<groupId>org.codehaus.mojo</groupId>
@@ -2118,7 +2119,7 @@
 														<artifactId>ant-trax</artifactId>
 														<version>${ant.trax.version}</version>
 												</dependency>
-										</dependencies>						
+										</dependencies>					 
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -2377,11 +2378,11 @@
 													<name>gwt.args</name>
 													<value>-out ${project.build.directory}/${project.build.finalName}</value>
 												  </property>
-												</systemProperties>			
+												</systemProperties>		 
 												<excludes>
 													<exclude>**/*ITest*</exclude>
 													<exclude>**/*STest*</exclude>
-												</excludes>																		
+												</excludes>																	 
 										</configuration>
 
 										<!--
@@ -2997,8 +2998,8 @@
 										<version>${maven.surefire.report.plugin.version}</version>
 								</plugin>
 								<!-- attach-javadocs -->
-                                <!-- do not add maven-javadoc-plugin definition because attach-javadocs
-                                        will not work properly -->
+								<!-- do not add maven-javadoc-plugin definition because attach-javadocs
+										will not work properly -->
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-javadoc-plugin</artifactId>
@@ -3018,10 +3019,10 @@
 												<!--
 												<show>package</show>
 												<show>private</show>
-												--> 	
+												-->	 
 															
-                                                <show>public</show>
-												<version>true</version>												
+												<show>public</show>
+												<version>true</version>											 
 												<failOnError>false</failOnError>
 												<javadocVersion>${jdkLevel}</javadocVersion>
 												<linksource>true</linksource>
@@ -3063,13 +3064,13 @@
 														<version>${org.umlgraph.umlgraph.version}</version>
 												</docletArtifact>
 												<useStandardDocletOptions>true</useStandardDocletOptions>
-												<additionalparam>-views</additionalparam>												
+												<additionalparam>-views</additionalparam>											   
 												<additionalparam>-operations</additionalparam>
 												<additionalparam>-qualify</additionalparam>
 												<additionalparam>-types</additionalparam>
 												<additionalparam>-visibility</additionalparam>
 												<additionalparam>-collpackages</additionalparam>
-                                        </configuration>
+										</configuration>
 										<dependencies>
 											<dependency>
 												<groupId>org.umlgraph</groupId>
@@ -3085,8 +3086,8 @@
 												<groupId>com.nabla.project</groupId>
 												<artifactId>build-tools</artifactId>
 												<version>1.0.1-SNAPSHOT</version>
-											</dependency>										  
-										</dependencies>	  
+											</dependency>										 
+										</dependencies>   
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -3146,24 +3147,24 @@
 												<maxHeap>1024</maxHeap>
 												<timeout>1200000</timeout>
 										</configuration>
-										<dependencies>														
+										<dependencies>													  
 											<dependency>
 													<groupId>com.nabla.project</groupId>
 													<artifactId>build-tools</artifactId>
 													<version>1.0.1-SNAPSHOT</version>
 											</dependency>
-										</dependencies>												
+										</dependencies>											 
 								</plugin>
 								<plugin>
 									<groupId>com.mobilvox.ossi.mojo</groupId>
 									<artifactId>maven-js-plugin</artifactId>
 									<version>${maven.js.plugin.version}</version>
-								</plugin>				
+								</plugin>			   
 								<plugin>
 									<groupId>gr.abiss.mvn.plugins</groupId>
 									<artifactId>maven-jstools-plugin</artifactId>
-									<version>${maven.jstools.plugin.version}</version>			
-								</plugin>	
+									<version>${maven.jstools.plugin.version}</version>		  
+								</plugin>   
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>cobertura-maven-plugin</artifactId>
@@ -3216,8 +3217,8 @@
 												  <propertyName>jacoco.agent.it.arg</propertyName>
 												  <append>true</append>
 												</configuration>
-											  </execution>	
-											  <!--										
+											  </execution>  
+											  <!--									  
 											<execution>
 												<id>default-prepare-agent</id>
 												<phase>process-test-classes</phase>
@@ -3286,9 +3287,9 @@
 													</rules>
 												</configuration>
 											</execution>
-											-->											
+											-->										 
 										</executions>
-								</plugin>								
+								</plugin>							   
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>dashboard-maven-plugin</artifactId>
@@ -3346,7 +3347,7 @@
 										  <failOnViolation>true</failOnViolation>
 										  <ccnLimit>12</ccnLimit>
 										  <ncssLimit>90</ncssLimit>
-										-->													
+										-->												 
 										   <excludes>
 											  <exclude>**/generated/**/*</exclude>
 											  <exclude>**/clover/**/*</exclude>
@@ -3374,13 +3375,13 @@
 														<exclude>**/clover/**/*</exclude>
 												</excludes>
 										</configuration>
-										<dependencies>														
+										<dependencies>													  
 											<dependency>
 													<groupId>com.nabla.project</groupId>
 													<artifactId>build-tools</artifactId>
 													<version>1.0.1-SNAPSHOT</version>
 											</dependency>
-										</dependencies>											
+										</dependencies>										 
 								</plugin>
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -3402,20 +3403,20 @@
 											<excludes>**/generated/**/*</excludes>
 											<excludes>**/clover/**/*</excludes>
 										</configuration>
-										<dependencies>														
+										<dependencies>													  
 											<dependency>
 													<groupId>com.nabla.project</groupId>
 													<artifactId>build-tools</artifactId>
 													<version>1.0.1-SNAPSHOT</version>
 											</dependency>
-										</dependencies>										
+										</dependencies>									 
 								</plugin>
-                                
+								
 								<plugin>
 									<groupId>org.codehaus.mojo</groupId>
 									<artifactId>dbunit-maven-plugin</artifactId>
 									<version>${maven.dbunit.plugin.version}</version>
-								</plugin>   								
+								</plugin>								   
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-dependency-plugin</artifactId>
@@ -3445,7 +3446,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<excludes>
 									<!-- GWT classes -->
 									<exclude>**/client/**/*.java</exclude>
-		  					</excludes>
+							</excludes>
 										</configuration>
 										<!--
 					<executions>
@@ -3723,15 +3724,15 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 											<include>target/**/index.html</include>
 										</includes>
 										<!--
-										<replacements>									
+										<replacements>								  
 											<replacement>
 												<token>${jetty.context.path.to.replace}</token>
 												<value>${jetty.context.path}</value>
-											</replacement>								
+											</replacement>							  
 										</replacements>
 										-->
 									</configuration>
-								</plugin>			
+								</plugin>		   
 								<plugin>
 									<groupId>org.codehaus.mojo.jspc</groupId>
 									<artifactId>jspc-maven-plugin</artifactId>
@@ -3950,8 +3951,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 											<param>com.*</param>
 										</targetTests>
 										<mutators>
-										     <mutator>DEFAULTS</mutator>
-										     <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+											 <mutator>DEFAULTS</mutator>
+											 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
 										</mutators>
 									</configuration>
 								</plugin>
@@ -4593,7 +4594,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<groupId>org.ow2.asm</groupId>
 								<artifactId>asm</artifactId>
 								<version>${asm.ow2.version}</version>
-						</dependency>            				
+						</dependency>						   
 						<dependency>
 								<groupId>cglib</groupId>
 								<artifactId>cglib-nodep</artifactId>
@@ -5650,7 +5651,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>jsf-impl</artifactId>
 							<version>${sun.jsf.version}</version>
 							<scope>provided</scope>
-						</dependency>						
+						</dependency>					   
 						<dependency>
 							<groupId>javax.el</groupId>
 							<artifactId>el-api</artifactId>
@@ -5661,7 +5662,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						   <artifactId>el-impl</artifactId>
 						   <version>${el.impl.version}</version>
 						   <scope>test</scope>
-						</dependency>						
+						</dependency>					   
 						<dependency>
 							<groupId>com.sun.el</groupId>
 							<artifactId>el-ri</artifactId>
@@ -5746,7 +5747,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						 <artifactId>weld-servlet</artifactId>
 						 <version>${weld.servlet.version}</version>
 					  </dependency>
-      
+	  
 						<dependency>
 						  <groupId>org.jboss.errai</groupId>
 						  <artifactId>jboss7-support</artifactId>
@@ -6319,22 +6320,22 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${seam.international.version}</version>
 						</dependency>
 
-	   			<!-- akka-->
-	   			<dependency>
-	   				 	<groupId>com.typesafe.akka</groupId>
-	   				 	<artifactId>akka-actor${scala.suffix}</artifactId>
-	   				 	<version>${akka.version}</version>
-	   			</dependency>
+				<!-- akka-->
+				<dependency>
+						<groupId>com.typesafe.akka</groupId>
+						<artifactId>akka-actor${scala.suffix}</artifactId>
+						<version>${akka.version}</version>
+				</dependency>
 			<dependency>
 				<groupId>com.typesafe.akka</groupId>
 				<artifactId>akka-kernel${scala.suffix}</artifactId>
 				<version>${akka.version}</version>
 			</dependency>
 			<dependency>
-	   				<groupId>com.typesafe.akka</groupId>
-	   				<artifactId>akka-remote${scala.suffix}</artifactId>
-	   				<version>${akka.version}</version>
-	   			</dependency>
+					<groupId>com.typesafe.akka</groupId>
+					<artifactId>akka-remote${scala.suffix}</artifactId>
+					<version>${akka.version}</version>
+				</dependency>
 
 						<!-- Axis2 Dependencies -->
 						<!-- TODO Update to 1.3 or later breaks webservice template code -->
@@ -7403,22 +7404,22 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 				  <groupId>org.drools</groupId>
 				  <artifactId>drools-core</artifactId>
 				  <version>${drools.version}</version>
-				</dependency>			  
+				</dependency>			 
 				<dependency>
 				  <groupId>org.drools</groupId>
 				  <artifactId>drools-compiler</artifactId>
 				  <version>${drools.version}</version>
-				</dependency>				
+				</dependency>			   
 				<dependency>
 				  <groupId>org.drools</groupId>
 				  <artifactId>drools-api</artifactId>
 				  <version>${drools.version}</version>
-				</dependency>			  
+				</dependency>			 
 				<dependency>
 				  <groupId>org.drools</groupId>
 				  <artifactId>drools-decisiontables</artifactId>
 				  <version>${drools.version}</version>
-				</dependency>			   
+				</dependency>			  
 				<dependency>
 				  <groupId>org.drools</groupId>
 				  <artifactId>drools-templates</artifactId>
@@ -7430,7 +7431,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 				  <artifactId>drools-transformer-xstream</artifactId>
 				  <version>${drools.transformer.xstream.version}</version>
 				</dependency>
-       				
+					
 				<dependency>
 					<groupId>com.thoughtworks.xstream</groupId>
 					<artifactId>xstream</artifactId>
