@@ -706,7 +706,7 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<inherited>true</inherited>
 						<configuration>
-						  <argLine>${jacoco.agent.ut.arg}</argLine>
+						  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
 						  <skip>${maven.test.skip}</skip>
 						  <!-- Enable or disable Stop maven -->
 						  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
