@@ -220,6 +220,7 @@
 								<cargo.logging>high</cargo.logging>
 							</properties>						   
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>start-container</id>
@@ -234,7 +235,8 @@
 								<goals>
 									<goal>stop</goal>
 								</goals>
-							</execution>			   
+							</execution>
+							-->			   
 							<!--
 							<execution>
 								<id>deploy</id>
@@ -258,14 +260,16 @@
 								</goals>
 							</execution>
 							-->
+							<!--
 						</executions>			   
-										<dependencies>
-												<dependency>
-														<groupId>org.jboss.as</groupId>
-														<artifactId>jboss-as-controller-client</artifactId>
-														<version>${jboss.version}</version>
-												</dependency>
-										</dependencies>							 
+						-->
+						<dependencies>
+								<dependency>
+										<groupId>org.jboss.as</groupId>
+										<artifactId>jboss-as-controller-client</artifactId>
+										<version>${jboss.version}</version>
+								</dependency>
+						</dependencies>							 
 					</plugin>
 				</plugins>
 			</build>
