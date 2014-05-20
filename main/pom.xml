@@ -837,6 +837,9 @@
 							<configuration>
 								<skipTests>${maven.test.skip}</skipTests>
 								<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+								<redirectTestOutputToFile>true</redirectTestOutputToFile>
+								<trimStackTrace>false</trimStackTrace>
+								<printSummary>true</printSummary>
 								<excludes>
 									<exclude>**/*ITest*</exclude>
 									<exclude>**/*STest*</exclude>
@@ -844,7 +847,9 @@
 								<systemPropertyVariables>
 									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
 									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
-									<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
+									<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
+									<arquillian.launch>${arquillian}</arquillian.launch>
+									<arquillian>${arquillian}</arquillian>
 								</systemPropertyVariables>
 							</configuration>
 							<executions>
