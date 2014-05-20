@@ -7,8 +7,11 @@ echo $JBOSS_HOME
 
 http://localhost:8180
 http://localhost:9990/console
+#http://127.0.0.1:9990/console/App.html
 
-add-user.bat
+cd /workspace/jboss/jboss-as-7.1.1.Final/bin
+chmod 755 *.sh
+add-user.sh
 a
 Realm (ManagementRealm) : ManagementRealm
 Username : nabla
@@ -35,5 +38,3 @@ sudo ln -s /workspace/jboss-as-7.1.1.Final jboss-as
 
 sudo update-rc.d -n jboss start 92 2 3 4 5 . stop 08 0 1 6 .
 sudo update-rc.d -n jboss start 92 2 3 4 5 . stop 08 0 1 6 .
-
-

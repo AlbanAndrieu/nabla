@@ -25,3 +25,10 @@ ln -s /workspace/virtualbox/$USER/VirtualBox\ VMs ~/VirtualBox\ VMs
 wget http://download.virtualbox.org/virtualbox/4.3.10/Oracle_VM_VirtualBox_Extension_Pack-4.3.10-93012.vbox-extpack
 sudo mkdir -p /local/virtualbox/Windows7/Shared
 #Log in with user: User/Kondor_123
+
+#convert vdi to vmdk
+vboxmanage internalcommands converttoraw OpenSolaris.vdi OpenSolaris.raw
+sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
+sudo adduser albandri libvirtd
+sudo virsh -c qemu:///system list
+qemu-img convert -O vmdk OpenSolaris.raw OpenSolaris.vmdk

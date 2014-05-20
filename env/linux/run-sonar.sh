@@ -1,13 +1,37 @@
-#http://docs.codehaus.org/display/SONAR/Installing+Sonar
+#http://docs.codehaus.org/display/SONAR/Installing
+#http://doc.ubuntu-fr.org/sonar
 
-#http://docs.codehaus.org/display/SONAR/Running+Sonar+as+a+Service+on+Linux
+#http://docs.codehaus.org/display/SONAR/Running+SonarQube+as+a+Service+on+Linux
 
-sudo wget http://dist.sonar.codehaus.org/sonarqube-4.0.zip
+#sudo wget http://dist.sonar.codehaus.org/sonarqube-4.0.zip
+sudo wget http://dist.sonar.codehaus.org/sonarqube-4.3.zip
 #unzip sonarqube-4.0.zip -d sonar-4.0
-unzip sonarqube-4.0.zip
+unzip sonarqube-4.3.zip
 
-sudo ln -s /workspace/sonar-3.3/bin/linux-x86-32/sonar.sh /usr/bin/sonar
+ln -s sonarqube-4.3 sonar
+sudo ln -s /workspace/sonar/bin/linux-x86-32/sonar.sh /usr/bin/sonar
 cd /etc/init.d
+sudo nano  /etc/init.d/sonar
+------------------
+#!/bin/sh
+#
+# rc file for SonarQube
+#
+# chkconfig: 345 96 10
+# description: SonarQube system (www.sonarsource.org)
+#
+### BEGIN INIT INFO
+# Provides: sonar
+# Required-Start: $network
+# Required-Stop: $network
+# Default-Start: 3 4 5
+# Default-Stop: 0 1 2 6
+# Short-Description: SonarQube system (www.sonarsource.org)
+# Description: SonarQube system (www.sonarsource.org)
+### END INIT INFO
+ 
+/usr/bin/sonar $*
+--------------------
 sudo chmod 755 /etc/init.d/sonar
 sudo update-rc.d sonar defaults
 

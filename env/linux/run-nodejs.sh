@@ -116,3 +116,10 @@ npm -g ls
 sudo apt-get remove node
 sudo apt-get remove --purge node
 sudo apt-get autoremove
+
+#git clone --depth=14 https://github.com/angular/angular-phonecat.git
+npm install
+npm start : start a local development web-server
+npm test : start the Karma unit test runner
+npm run protractor : run the Protractor end 2 end tests
+npm run update-webdriver : install the drivers needed by Protractor

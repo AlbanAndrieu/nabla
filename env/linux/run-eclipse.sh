@@ -36,3 +36,9 @@ sudo ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86_64/
 
 #Groovy plugin
 #http://dist.springsource.org/release/GRECLIPSE/e4.3/
+
+#Java 8 patches
+#Install new software
+2. Java8 Support: http://download.eclipse.org/eclipse/updates/4.3-P-builds/
+3. Java 8 Facets: http://download.eclipse.org/webtools/patches/drops/R3.5.2/P-3.5.2-20140329045715/repository
+4. New m2e milestone: http://download.eclipse.org/technology/m2e/milestones/1.5  (https://bugs.eclipse.org/bugs/show_bug.cgi?id=420848)

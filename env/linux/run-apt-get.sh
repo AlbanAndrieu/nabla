@@ -20,6 +20,7 @@ sudo apt-get install vim dos2unix xxdiff
 sudo apt-get install wget curl nmap ssh
 sudo apt-get install smartmontools mon 
 sudo apt-get install cmake scons
+sudo apt-get install doxygen graphviz
 
 sudo apt-get install maven
 #sudo dpkg -i --force-all /var/cache/apt/archives/libwagon2-java_2.2-3+nmu1_all.deb
@@ -300,3 +301,6 @@ sudo apt-get install rabbitvcs-cli
 
 #putty
 sudo chown -R albandri:albandri ~/.putty
+
+#synergy
+wget http://synergy-project.org/files/packages/synergy-1.4.17-r2055-Linux-x86_64.deb

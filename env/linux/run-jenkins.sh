@@ -23,12 +23,18 @@
 #sudo service tomcat6 start
 
 #change JENKINS_HOME from /var/lib/jenkins/ to /jenkins/
-sudo gedit /etc/default/jenkins
+
+#conf
+#/etc/init/jenkins.conf
+/etc/default/jenkins
+sudo nano /etc/default/jenkins
 #change port to 8380
 #add
 #JAVA_ARGS="-Xmx1024m -XX:MaxPermSize=512m"
 #sudo gedit /var/lib/tomcat7/conf/server.xml
 #see http://localhost:8380/jenkins
+PREFIX=/jenkins
+JENKINS_ARGS="$JENKINS_ARGS --prefix=$PREFIX"
 
 #JENKINS USER
 #tomcat6
@@ -67,13 +73,6 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 #check memory 
 #http://blog.cloudbees.com/2013/09/health-check-up-for-your-jenkins.html?mkt_tok=3RkMMJWWfF9wsRonvanBZKXonjHpfsX%2F7uwqUbHr08Yy0EZ5VunJEUWy24MIRdQ%2FcOedCQkZHblFnVwASa2lV7oNr6QP
 ssh -X jenkins@myserver jconsole 
-
-#conf
-#/etc/init/jenkins.conf
-/etc/default/jenkins
-
-PREFIX=/jenkins
-JENKINS_ARGS="$JENKINS_ARGS --prefix=$PREFIX"
 
 #monitoring
 https://home.nabla.mobi/jenkins/monitoring?
