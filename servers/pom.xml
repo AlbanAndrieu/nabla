@@ -220,8 +220,8 @@
 								<cargo.logging>high</cargo.logging>
 							</properties>						   
 						</configuration>
-						<!--
 						<executions>
+							<!--							
 							<execution>
 								<id>start-container</id>
 								<phase>pre-integration-test</phase>
@@ -237,7 +237,6 @@
 								</goals>
 							</execution>
 							-->			   
-							<!--
 							<execution>
 								<id>deploy</id>
 								<phase>pre-integration-test</phase>
@@ -259,10 +258,7 @@
 									<goal>deployer-undeploy</goal>
 								</goals>
 							</execution>
-							-->
-							<!--
-						</executions>			   
-						-->
+						</executions>		
 						<dependencies>
 								<dependency>
 										<groupId>org.jboss.as</groupId>
@@ -892,11 +888,15 @@
 			<!-- ================= END Container Profiles ================= -->
 			
 			<!-- ================= START Container JBoss Specific Profiles ================= -->
-		<!-- Run with: mvn clean test -Parq-jbossas-managed -->
+		<!-- Run with: mvn clean test -Parq-weld-ee-embedded -->
 		<profile>		   
 			<id>arq-weld-ee-embedded</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
+                <property>
+                    <name>arquillian</name>
+                    <value>arq-weld-ee-embedded</value>
+                </property>				
 			</activation>		   
 			<dependencies>
 				<dependency>
@@ -925,6 +925,23 @@
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
+			<build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemProperties>
+                                <arquillian.launch>arq-weld-ee-embedded</arquillian.launch>
+                                <arquillian>arq-weld-ee-embedded</arquillian>
+                            </systemProperties>
+                            <excludes>
+                               <exclude>**/jbossas/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>			
 		</profile>
 
 		<!-- Run with: mvn clean test -Parq-jbossas-embedded -->
@@ -951,6 +968,12 @@
 				test, shutting it down when done -->
 			<!-- Run with: mvn clean test -Parq-jbossas-managed -->
 			<id>arq-jbossas-managed</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>arq-jbossas-managed</value>
+                </property>
+            </activation>			
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
@@ -972,6 +995,19 @@
 					<scope>test</scope>
 				</dependency>			   
 			</dependencies>
+			<build>
+               <plugins>
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-surefire-plugin</artifactId>
+                     <configuration>
+                        <excludes>
+                           <exclude>**/weld/**</exclude>
+                        </excludes>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </build>			
 		</profile>
 
 		<profile>
@@ -981,6 +1017,12 @@
 				JBoss AS instance -->
 			<!-- Run with: mvn clean test -Parq-jbossas-remote -->
 			<id>arq-jbossas-remote</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>arq-jbossas-remote</value>
+                </property>
+            </activation>			
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.as</groupId>
@@ -996,12 +1038,19 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>${maven.surefire.plugin.version}</version>
 						<configuration>
+							<!-- avoid downloading jboss
 							<environmentVariables>
 								<JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
 							</environmentVariables>
+							-->
 							<systemProperties>
 								<jboss.version>${server.version}</jboss.version>
 							</systemProperties>
+							 <configuration>
+								<excludes>
+								   <exclude>**/weld/**</exclude>
+								</excludes>
+							 </configuration>							
 						</configuration>
 					</plugin>
 					<plugin>
@@ -1037,6 +1086,12 @@
 		<!-- does not work -->
 		<profile>
 			<id>arq-glassfish-embedded</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>arq-glassfish-embedded</value>
+                </property>
+            </activation>			
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
@@ -1051,8 +1106,56 @@
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
+			 <build>
+               <plugins>
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-surefire-plugin</artifactId>
+                     <configuration>
+                        <excludes>
+                           <exclude>**/weld/**</exclude>
+                           <exclude>**/jbossas/**</exclude>
+                        </excludes>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </build>
 		</profile>
 
+		<profile>
+            <id>arq-glassfish-remote</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>arq-glassfish-remote</value>
+                </property>
+            </activation>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.seam.test</groupId>
+                    <artifactId>glassfish-remote-3.1</artifactId>
+                    <type>pom</type>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+
+            <build>
+               <plugins>
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-surefire-plugin</artifactId>
+                     <configuration>
+                        <excludes>
+                           <exclude>**/weld/**</exclude>
+                           <exclude>**/jbossas/**</exclude>
+                        </excludes>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </build>
+        </profile> 
+        
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
 				invoking mvn. -->
@@ -1136,6 +1239,7 @@
 				   <scope>test</scope>
 				</dependency>
 			 </dependencies>
+			 <!--
 			 <build>
 				<testResources>
 				   <testResource>
@@ -1146,6 +1250,25 @@
 				   </testResource>
 				</testResources>
 			 </build>
+			 -->
+			<build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemProperties>
+                                <arquillian.launch>arq-jetty-embedded</arquillian.launch>
+                                <arquillian>arq-jetty-embedded</arquillian>
+                            </systemProperties>
+                            <excludes>
+                                <exclude>**/weld/**</exclude>
+								<exclude>**/jbossas/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>						 
 		  </profile>
 		  <profile>
 			 <id>arq-tomcat-embedded</id>
@@ -1187,6 +1310,7 @@
 				   <scope>test</scope>
 				</dependency>
 			 </dependencies>
+			 <!--
 			 <build>
 				<testResources>
 				   <testResource>
@@ -1197,6 +1321,7 @@
 				   </testResource>
 				</testResources>
 			 </build>
+			 -->
 		  </profile>
 		  <profile>
 			 <!--
