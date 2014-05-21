@@ -26,7 +26,8 @@ Password : microsoft
 Re-enter Password : microsoft
 
 cd /etc/init.d
-chmod 755 ./jboss
+sudo chmod 755 ./jboss
+sudo chmod -R 777 /var/log/jboss-as/
 
 cd /etc
 sudo mkdir jboss-as
@@ -38,3 +39,5 @@ sudo ln -s /workspace/jboss-as-7.1.1.Final jboss-as
 
 sudo update-rc.d -n jboss start 92 2 3 4 5 . stop 08 0 1 6 .
 sudo update-rc.d -n jboss start 92 2 3 4 5 . stop 08 0 1 6 .
+
+tail -f /var/log/jboss-as/console.log

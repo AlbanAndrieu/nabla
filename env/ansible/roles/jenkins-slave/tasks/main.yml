@@ -178,22 +178,22 @@
   command: chdir=/usr/bin npm config get prefix
 
 - name: Ensure the grunt npm dependencies are installed
-  command: chdir=/usr/bin npm install -g grunt
+  command: chdir=/usr/bin npm install -g grunt@0.4.4
 
 - name: Ensure the grunt-cli npm dependencies are installed
-  command: chdir=/usr/bin npm install -g grunt-cli
+  command: chdir=/usr/bin npm install -g grunt-cli@0.1.13
 
 - name: Ensure the bower npm dependencies are installed
-  command: chdir=/usr/bin npm install -g bower
+  command: chdir=/usr/bin npm install -g bower@1.3.2
 
 - name: Ensure the protractor npm dependencies are installed
-  command: chdir=/usr/bin npm install -g protractor
+  command: chdir=/usr/bin npm install -g protractor@0.20.1
 
 - debug: msg="ansible_distribution_version value is ${ansible_distribution_version} "
 - debug: msg="ansible_distribution_release is ${ansible_distribution_release} "
 
 - name: Ensure the karma npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma@0.12.4
+  command: chdir=/usr/bin npm install -g karma@0.12.9
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'precise' )
 
@@ -207,42 +207,45 @@
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  file: path=/usr/local/lib/node_modules mode=0777 owner=root group=root state=directory recurse=yes
 
-- name: Ensure the karma npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma
-#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'saucy' )
+#TODO WORKAROUND by hand
+#cd /usr/local/bin
+#ln -s ../lib/node_modules/karma/bin/karma karma
+
+#cd /usr/local/lib/node_modules
+#chown -R nobody:jenkins *
 
 - name: Ensure the karma-junit-reporter npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-junit-reporter
+  command: chdir=/usr/bin npm install -g karma-junit-reporter@0.2.2 
 
 - name: Ensure the karma-ng-scenario npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ng-scenario
+  command: chdir=/usr/bin npm install -g karma-ng-scenario@0.1.0
 
 - name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor
+  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor@0.1.0
 
 - name: Ensure the karma-coverage npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-coverage
+  command: chdir=/usr/bin npm install -g karma-coverage@0.2.1
 
 - name: Ensure the karma-jasmine npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-jasmine
+  command: chdir=/usr/bin npm install -g karma-jasmine@0.1.5
 
 - name: Ensure the jasmine-reporters npm dependencies are installed
-  command: chdir=/usr/bin npm install -g jasmine-reporters
+  command: chdir=/usr/bin npm install -g jasmine-reporters@0.4.1
 
 - name: Ensure the phantomjs npm dependencies are installed
-  command: chdir=/usr/bin npm install -g phantomjs
+  command: chdir=/usr/bin npm install -g phantomjs@1.9.7-4
 
 - name: Ensure the karma-requirejs npm dependencies are installed
   command: chdir=/usr/bin npm install -g karma-requirejs
   
 - name: Ensure the karma-phantomjs-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher
+  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
   
 - name: Ensure the karma-chrome-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-chrome-launcher
+  command: chdir=/usr/bin npm install -g karma-chrome-launcher@0.1.3
   
 - name: Ensure the karma-firefox-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-firefox-launcher
+  command: chdir=/usr/bin npm install -g karma-firefox-launcher@0.1.3
   
 - name: Ensure the karma-ie-launcher npm dependencies are installed
   command: chdir=/usr/bin npm install -g karma-ie-launcher
@@ -348,15 +351,6 @@
 - name: Add passwordless connection for jenkins (Alban Andrieu)
   authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAio3SOQ9yeK6QfKqSFNKyTasuzjStxWevG1Vz1wgJIxPF+KB0XoMAPD081J+Bzj2LCDRSWisNv2L4xv2jbFxW/Pl7NEakoX47eNx3U+Dxaf+szeWBTryYcDUGkduLV7G8Qncm0luIFd+HDIe/Qir1E2f56Qu2uuBNE6Tz5TFt1vc= Alban"
 
-- name: Add passwordless connection for jenkins (Daniel Horecki)
-  authorized_key: user=jenkins key="ssh-dss AAAAB3NzaC1kc3MAAACBAIO8vc4W3vQTQKE6K/r20Wi99FOrsekK72greyX0GnaDvJBPaohvlqt7OSW1rlKRdSAtEDuUPxlFmRoo6Z7aYFlomPX2CjtjDQK/4nY3Pc6s8mMaP1c6bSpPIgU38EXTuZ86zD8xf6D4yhg4PFVOMrtmHkHNo+h1Hlyid6HpQlyvAAAAFQCuacCxq2NPae6p18AytAheOq7kSwAAAIBkvig1Gwy37Qyc3Rr4MTguNDG94g+ETyayJpw8dT7yu+bSmV7ZNsEuGn9bFZBwVZ9xCNlcaFJtOnWxLGSpHh92xjp5fMge8jg1MfoNbZOBT0BFdd4TrTiOHJ7Y+c2PKxfaQK3K42jfKVTpwMlUnpHL5N9nyxPD+5OQCfXEFjXmOAAAAIAEqATEIgg8J0ivrzsjVCXP/eQy+YloRZ6h71Qb8UEZDGr7h/zUPjnKKe42bn7gW0WCvXq0CPJYr/JLI3AXnc83jx1BvFa+6bfjYH1K26ETxA/21p0jkWczFcriQlBVurzc1Tlfs4ftbyNSu/Bd85seLxTGq7wfUhrxbo1P6u2EvA== bespin"
-
-- name: Add passwordless connection for jenkins (Micahl Tyde)
-  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAobOs/19MAmxx8ri8ybVIr4GfQqgvq+1z2u44YEoyhbWg8T8cxhQ72jiukoxmMHhydXrQ/43Yf7pX17R8FYhDQRVik6iSKlT6wUZSJOx4052sV5U93+0muHL9YJWVYXU4B3yNNnVMf7xwG71YSnnXw+gPAnYD0C5QIuAsbR6/6tb0ns5U5j8ZLy8jDXVfKf5T+4fl8ptU8hxZ1EHA6pArXGAa1XbEb5pf+ts6XAOpr8MMY0AhoO5NCumwfkyL9k9l/k6Jd7DQiIjDtKBNiyyeF+voY0e8Hv0Pu6Gj91ZSGsGl/zJVPwzDB52xl7jWS5BaDZoezPLF3yy7zbp9WqJJDw== rsa-key-20140108"
-
-- name: Add passwordless connection for jenkins master
-  authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEArEZwPYeyr98mgnng7WaFUB7zkwMWo3nGR6GZrHaCxJkVfzAQMNZXeQPugPXCxBq8sb+ZQiWA3CfYOmUxwbNLgFOGvpucp6OSKmy+Bzrxhpf5d91UgvUVZwYSrqfF/wwvS+sxbsYmKlsqcDMVBN2q8YQypKVDPSstAnVBwV4dR9c= kgr@kenvng"
-
 - name: Update authorized_keys rights
   file: path=${jenkins_home}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
 
@@ -385,7 +379,7 @@
   file: path=/kgr-mvn/repository state=directory owner=jenkins
 
 - name: Create Jenkins slave directory
-  file: path=/kgr-mvn/jenkins-slave state=directory owner=jenkins mode=0775
+  file: path=/kgr-mvn/Jenkins-slave state=directory owner=jenkins mode=0775
 
 - name: Create Java directory link (legacy required)
   file: path=/kgr-mvn/jdk src=/usr/lib/jvm/jdk1.7.0 state=link
@@ -413,7 +407,7 @@
 
 - name: Set mvn link to Maven 3.2.1
   action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven321/bin/mvn 1
-    
+  
 - name: Download Jenkins Swarm Client
   get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
 
@@ -430,4 +424,3 @@
 
 #- name: Clone the application
 #  action: git repo=http://almtools/stash/scm/risk/buildmasters.git dest=/jenkins/buildmasters
-  
