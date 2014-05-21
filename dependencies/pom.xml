@@ -1373,6 +1373,7 @@
 				<saucelabs.junit.version>1.0.18</saucelabs.junit.version>
 				<!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
+				<!--<arquillian>arq-jbossas-managed</arquillian>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<drools.version>5.0.1</drools.version>
 				<drools.transformer.xstream.version>5.1.0.M2</drools.transformer.xstream.version>
 				<!--<drools.version>5.1.1</drools.version>-->
@@ -2328,7 +2329,7 @@
 												<!-- Enable or disable JUnit tests -->
 												<skip>${maven.test.skip}</skip>
 												<linkXRef>true</linkXRef>
-												<argLine>-Xms64m -Xmx256m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+												<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
 												<excludes>
 														<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
 												</excludes>
@@ -4268,7 +4269,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<version>${saucelabs.selenium.version}</version>
 					<scope>test</scope>
 				</dependency>
-
+				
+						<dependency>
+							<groupId>org.jacoco</groupId>
+							<artifactId>org.jacoco.core</artifactId>
+							<version>${jacoco.version}</version> 
+							<scope>provided</scope>
+						</dependency>
+						
 						<dependency>
 								<groupId>junit</groupId>
 								<artifactId>junit</artifactId>
