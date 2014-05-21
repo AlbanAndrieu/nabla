@@ -29,7 +29,6 @@ import org.apache.log4j.Logger;
 public class H2
 {
     private static Logger LOGGER = LogManager.getLogger(H2.class);
-
     /**
      *
      */
@@ -46,15 +45,15 @@ public class H2
     {
         // Using Embedded H2 database with multiple connections, starting a TCP instance
         initDb("jdbc:h2:target/timetracker-ejb3;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1", null);
-        // "C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB drop script.sql;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB create script.sql");
-        // ;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB insert script.sql");
+            // "C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB drop script.sql;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB create script.sql");
+            // ;C:/Workspaces/A34/andromda342/andromda-documentation/samples/timetracker/core/src/test/scripts/DB insert script.sql");
     }
 
     /**
      * @param url
      * @param sqlFile
      */
-    public static void initDb(String url, String sqlFile) // throws SQLException, ClassNotFoundException
+    public static void initDb(String url, String sqlFile) //throws SQLException, ClassNotFoundException
     {
         long now = System.currentTimeMillis();
         try
@@ -69,22 +68,20 @@ public class H2
                 // Files contain SQL statements separated by ;
                 if (files.length > 0)
                 {
-                    for (int i = 0; i < files.length; i++)
+                    for (int i=0; i<files.length; i++)
                     {
                         LOGGER.info("Parsing SQL file " + files[i]);
                         sqls.addAll(fileToStrings(files[i], ';'));
-                        /*
-                         * if (i==0)
-                         * {
-                         * url += ";INIT=";
-                         * }
-                         * else
-                         * {
-                         * // Separator for multiple files in the same init command
-                         * url += "\\;";
-                         * }
-                         * url += "RUNSCRIPT FROM '" + files[i] + "'";
-                         */
+                        /*if (i==0)
+                        {
+                            url += ";INIT=";
+                        }
+                        else
+                        {
+                            // Separator for multiple files in the same init command
+                            url += "\\;";
+                        }
+                        url += "RUNSCRIPT FROM '" + files[i] + "'";*/
                     }
                 }
             }
@@ -117,13 +114,18 @@ public class H2
                             {
                                 LOGGER.error(e);
                             }
-                        } else if (stat.getUpdateCount() > 0)
+                        }
+                        else if (stat.getUpdateCount() > 0)
                         {
                             LOGGER.info(sql + ";\r" + "Updated rows: " + stat.getUpdateCount() + "\r");
-                        } else if (StringUtils.containsIgnoreCase(sql, "INSERT INTO ") || StringUtils.containsIgnoreCase(sql, "UPDATE ") || StringUtils.containsIgnoreCase(sql, "DELETE "))
+                        }
+                        else if (StringUtils.containsIgnoreCase(sql, "INSERT INTO ") ||
+                                StringUtils.containsIgnoreCase(sql, "UPDATE ") ||
+                                StringUtils.containsIgnoreCase(sql, "DELETE "))
                         {
                             LOGGER.info(sql + ";\rExecuted Successfully, no update or result\r");
-                        } else
+                        }
+                        else
                         {
                             LOGGER.info(sql + ";\rExecuted Successfully\r");
                         }
@@ -135,10 +137,12 @@ public class H2
                     }
                 }
             }
-            LOGGER.info("Executed " + successfulCount + " out of " + stmtCount + " sql statements in " + (System.currentTimeMillis() - now1) + " ms, total time = " + (System.currentTimeMillis() - now) + " ms");
+            LOGGER.info("Executed " + successfulCount + " out of " + stmtCount + " sql statements in "
+                + (System.currentTimeMillis() - now1) + " ms, total time = "
+                 + (System.currentTimeMillis() - now) + " ms");
             // Keep in-memory DB connection open after executing SQL statements
-            int i = 1;
-            while (i > 0)
+            int i =1;
+            while (i>0)
             {
                 // There is no Daemon option when starting DB through connection, just have to go into an infinite loop
             }
@@ -181,10 +185,10 @@ public class H2
         String contents = FileUtils.readFileToString(file);
         List<String> sqls = new ArrayList<String>();
         String[] contentArray = StringUtils.split(contents, delimiter);
-        for (int i = 0; i < contentArray.length; i++)
+        for (int i=0; i<contentArray.length; i++)
         {
             sqls.add(StringUtils.strip(contentArray[i]));
-            // LOGGER.info(contentArray[i]);
+            //LOGGER.info(contentArray[i]);
         }
         return sqls;
     }
