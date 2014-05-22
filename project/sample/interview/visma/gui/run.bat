@@ -14,6 +14,7 @@ REM OK call clean install mvn jetty:run-war -Psample,run-its -Dserver=jetty9x -D
 REM OK call mvn org.codehaus.cargo:cargo-maven2-plugin:run -Psample,run-its,arq-jbossas-managed -Dserver=jboss7x > deploy.log 2>&1
 
 REM TO TEST mvn clean install -Dlog4j.configuration=log4j.properties -Dlog4j.debug=true -Prun-its,arq-weld-ee-embedded -Dtest=LoanServiceITest > deploy.log 2>&1
+REM OK mvn -U -Dsurefire.useFile=false install -Psample,coverage,integration,run-its,arq-weld-ee-embedded -Djacoco.outputDir=~/project/sample/interview/visma/target -Ddatabase=derby -Dserver=jboss7x -Dwebdriver.chrome.driver=/var/lib/chromedriver -Dwebdriver.base.url=http://localhost:8180 -Dlog4j.configuration=log4j.properties -Dlog4j.debug=true -Darquillian=arq-weld-ee-embedded -Darquillian.launch=arq-weld-ee-embedded > deploy.log 2>&1
 REM TO RUN mvn clean install org.codehaus.cargo:cargo-maven2-plugin:run -Dserver=jetty9x > deploy.log 2>&1
 
 REM build with mvn clean install -Psample,run-its -Dserver=jetty9x

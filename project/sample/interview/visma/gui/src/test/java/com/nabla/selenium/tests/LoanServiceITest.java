@@ -60,7 +60,7 @@ public class LoanServiceITest
     private static final Logger LOGGER = Logger.getLogger(LoanServiceITest.class);
 
     @Deployment
-    // @org.jboss.arquillian.container.test.api.TargetsContainer("arq-weld-ee-embedded")
+    // @org.jboss.arquillian.container.test.api.TargetsContainer("arq-jetty-embedded")
     public static Archive<?> createTestArchive()
     {
         return ShrinkWrap.create(WebArchive.class, "visma.war").addClasses(ILoanService.class, LoanService.class, QueryBean.class, Payment.class, PaymentSchedule.class, NavigationBean.class);
