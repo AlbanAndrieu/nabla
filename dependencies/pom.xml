@@ -3928,6 +3928,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										<excludedClasses>
 											<param>com.nabla.todo.*</param>
 											<param>com.nabla.generated.*</param>
+											<param>**/*ITest*</param>
+											<param>**/*STest*</param>
 										</excludedClasses>
 										<!--
 										<avoidCallsTo>
