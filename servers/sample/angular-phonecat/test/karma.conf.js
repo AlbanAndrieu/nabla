@@ -19,9 +19,11 @@ module.exports = function(config){
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-phantomjs-launcher',
+            'karma-ie-launcher',
             'karma-junit-reporter',
             'karma-coverage',
-            'karma-jasmine'
+            'karma-jasmine',
+            'karma-requirejs'
             ],
 
 	// test results reporter to use
@@ -59,9 +61,9 @@ module.exports = function(config){
 
 	// Continuous Integration mode
 	// if true, it capture browsers, run tests and exit
-	singleRun: false,
+	singleRun: true,
 	
-    junitReporter : {
+    junitReporter: {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
     },
