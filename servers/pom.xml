@@ -251,6 +251,7 @@
 									<goal>deployer-deploy</goal>
 								</goals>
 							</execution>
+							<!--
 							<execution>
 								<id>clean-undeploy</id>
 								<phase>pre-clean</phase>
@@ -258,6 +259,7 @@
 									<goal>deployer-undeploy</goal>
 								</goals>
 							</execution>
+							-->
 						</executions>		
 						<dependencies>
 								<dependency>
