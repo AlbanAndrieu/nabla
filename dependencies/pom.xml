@@ -3928,8 +3928,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										<excludedClasses>
 											<param>com.nabla.todo.*</param>
 											<param>com.nabla.generated.*</param>
+											<param>com.nabla.project.visma.selenium.tests.*</param>
+											<!--
 											<param>**/*ITest*</param>
 											<param>**/*STest*</param>
+											-->
 										</excludedClasses>
 										<!--
 										<avoidCallsTo>
