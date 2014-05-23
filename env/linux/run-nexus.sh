@@ -53,8 +53,26 @@ sudo service nexus start
 
 java -jar /workspace/users/albandri10/Downloads/application-check-1.21.3.jar 
 
-nano ./bin/jsw/conf/wrapper.con
+sudo nano ./bin/jsw/conf/wrapper.conf
 #change "wrapper.startup.timeout" and "wrapper.ping.timeout to 500
+
+sudo nano /workspace/nexus/bin/nexus
+#add
+#RUN_AS_USER=nexus
+
+sudo chown -R nexus:nexus /workspace/sonatype-work
 
 #Nexus tasks
 #http://blog.sonatype.com/2009/09/nexus-scheduled-tasks/#.UxYfIj-wI44
+
+#Add npm plugins
+#https://github.com/georgy/nexus-npm-repository-plugin
+#WARNING works only with nexus-2.7.2 (not yet 2.8)
+#wget http://www.sonatype.org/downloads/nexus-2.7.2-bundle.tar.gz
+sudo cp /workspace/divers/nexus-npm-repository-plugin-master/target/nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip /workspace/sonatype-work/nexus/plugin-repository
+cd /workspace/sonatype-work/nexus/plugin-repository
+sudo chown nexus:nexus nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip
+sudo jar xf  nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip
+sudo chown -R nexus:nexus /workspace/sonatype-work/nexus/plugin-repository/nexus-npm-repository-plugin-0.0.2-SNAPSHOT
+ 
+npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/ 

@@ -84,3 +84,6 @@ sudo update-rc.d jenkins disable
 
 #TODO jenkins in apache is in conflict with gearman
 sudo a2dissite gearman
+
+#restart ldap if login issue
+sudo service slapd restart

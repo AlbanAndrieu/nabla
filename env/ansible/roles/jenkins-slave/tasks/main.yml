@@ -12,49 +12,49 @@
   copy: src=download-jdk7.sh dest=/tmp mode=0555
 
 - name: Download JDK7 (Ubuntu)
-  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} /tmp/download-jdk7.sh $jdk7_archive
+  action: command creates={{jvm_folder}}/jdk1.7.0 chdir={{jvm_folder}} /tmp/download-jdk7.sh {{jdk7_archive}}
 
 - name: Unpack JDK7
-  action: command creates=${jvm_folder}/jdk1.7.0 chdir=${jvm_folder} tar zxvf ${jvm_folder}/$jdk7_archive --owner=root
+  action: command creates={{jvm_folder}}/jdk1.7.0 chdir={{jvm_folder}} tar zxvf {{jvm_folder}}/{{jdk7_archive}} --owner=root
   register: jdk7_installed
   ignore_errors: True
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Install JDK7 RPM package
-  action: command creates=${jvm_folder}/latest chdir=${jvm_folder} rpm --force -Uvh ${jvm_folder}/$jdk7_archive
+  action: command creates={{jvm_folder}}/latest chdir={{jvm_folder}} rpm --force -Uvh {{jvm_folder}}/{{jdk7_archive}}
   register: jdk7_installed
   ignore_errors: True
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-- debug: msg="jdk7_installed value is ${jdk7_installed.stdout} "
+#- debug: msg="jdk7_installed value is ${jdk7_installed.stdout} "
 
-- debug: msg="jdk7_installed value is ${jdk7_installed} ${jdk7_installed.skipped} ${jdk7_installed.changed}"
+- debug: msg="jdk7_installed value is {{jdk7_installed}} {{jdk7_installed.skipped}} {{jdk7_installed.changed}}"
 
-- include: jdk7-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk7_archive}
+- include: jdk7-tasks.yml jvm_folder={{jvm_folder}} jdk_archive={{jdk7_archive}}
 
 - name: Copy download JDK8 script
   copy: src=download-jdk8.sh dest=/tmp mode=0555
 
 - name: Download JDK8 (Ubuntu)
-  action: command creates=${jvm_folder}/jdk1.8.0 chdir=${jvm_folder} /tmp/download-jdk8.sh $jdk8_archive
+  action: command creates={{jvm_folder}}/jdk1.8.0 chdir={{jvm_folder}} /tmp/download-jdk8.sh {{jdk8_archive}}
 
 - name: Unpack JDK8
-  action: command creates=${jvm_folder}/jdk1.8.0 chdir=${jvm_folder} tar zxvf ${jvm_folder}/$jdk8_archive --owner=root
-  register: jdk_installed
+  action: command creates={{jvm_folder}}/jdk1.8.0 chdir={{jvm_folder}} tar zxvf {{jvm_folder}}/{{jdk8_archive}} --owner=root
+  register: jdk8_installed
   ignore_errors: True    
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'      
 
 - name: Install JDK8 RPM package
-  action: command creates=${jvm_folder}/latest chdir=${jvm_folder} rpm --force -Uvh ${jvm_folder}/$jdk8_archive
-  register: jdk_installed
+  action: command creates={{jvm_folder}}/latest chdir={{jvm_folder}} rpm --force -Uvh {{jvm_folder}}/{{jdk8_archive}}
+  register: jdk8_installed
   ignore_errors: True  
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
-- debug: msg="jdk8_installed value is ${jdk8_installed.stdout} "
+#- debug: msg="jdk8_installed value is ${jdk8_installed.stdout} "
 
-- debug: msg="jdk8_installed value is ${jdk8_installed} ${jdk8_installed.skipped} ${jdk8_installed.changed}"
+- debug: msg="jdk8_installed value is {{jdk8_installed}} {{jdk8_installed.skipped}} {{jdk8_installed.changed}}"
 
-- include: jdk8-tasks.yml jvm_folder=${jvm_folder} jdk_archive=${jdk8_archive}
+- include: jdk8-tasks.yml jvm_folder={{jvm_folder}} jdk_archive={{jdk8_archive}}
  
 - name: Install subversion package (Debian based)
   action: apt pkg='subversion' state=installed
@@ -134,7 +134,7 @@
 
 #- name: add node.js repos
 - name: Node.js | Add the node.js PPA
-  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-${ubuntu_version_name}.list
+  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-{{ ansible_lsb.codename }}.list
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nodejs
 
@@ -144,12 +144,12 @@
   tags: nodejs
 
 - name: Node.js | Install nodejs and npm
-  action: apt pkg=$item state=installed
+  action: apt pkg={{ item }} state=installed
   tags: nodejs
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
-#WARNING DO NOT INSTALL    - node
     - nodejs
+#WARNING DO NOT INSTALL    - node    
 
 - name: Install karma tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
@@ -189,8 +189,8 @@
 - name: Ensure the protractor npm dependencies are installed
   command: chdir=/usr/bin npm install -g protractor@0.20.1
 
-- debug: msg="ansible_distribution_version value is ${ansible_distribution_version} "
-- debug: msg="ansible_distribution_release is ${ansible_distribution_release} "
+- debug: msg="ansible_distribution_version value is {{ansible_distribution_version}} "
+- debug: msg="ansible_distribution_release is {{ansible_distribution_release}} "
 
 - name: Ensure the karma npm dependencies are installed
   command: chdir=/usr/bin npm install -g karma@0.12.9
@@ -233,13 +233,14 @@
   command: chdir=/usr/bin npm install -g jasmine-reporters@0.4.1
 
 - name: Ensure the phantomjs npm dependencies are installed
-  command: chdir=/usr/bin npm install -g phantomjs@1.9.7-4
+  command: chdir=/usr/bin npm install -g phantomjs@1.9.2-4
+#  command: chdir=/usr/bin npm install -g phantomjs@1.9.7-6
 
 - name: Ensure the karma-requirejs npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-requirejs
+  command: chdir=/usr/bin npm install -g karma-requirejs@0.2.1
   
-- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
+#- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
   
 - name: Ensure the karma-chrome-launcher npm dependencies are installed
   command: chdir=/usr/bin npm install -g karma-chrome-launcher@0.1.3
@@ -341,30 +342,30 @@
 #TODO extract jenkins user to another script
 # jenkins user
 - name: Create jenkins user
-  user: name=jenkins comment="Jenkins slave user" home=${jenkins_home} shell=/bin/bash
+  user: name=jenkins comment="Jenkins slave user" home={{jenkins_home}} shell=/bin/bash
   ignore_errors: True
 
 - name: Create .ssh folder
-  file: path=${jenkins_home}/.ssh state=directory mode=0700 owner=jenkins
+  file: path={{jenkins_home}}/.ssh state=directory mode=0700 owner=jenkins
   ignore_errors: True
 
 - name: Add passwordless connection for jenkins (Alban Andrieu)
   authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAio3SOQ9yeK6QfKqSFNKyTasuzjStxWevG1Vz1wgJIxPF+KB0XoMAPD081J+Bzj2LCDRSWisNv2L4xv2jbFxW/Pl7NEakoX47eNx3U+Dxaf+szeWBTryYcDUGkduLV7G8Qncm0luIFd+HDIe/Qir1E2f56Qu2uuBNE6Tz5TFt1vc= Alban"
 
 - name: Update authorized_keys rights
-  file: path=${jenkins_home}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
+  file: path={{jenkins_home}}/.ssh/authorized_keys state=file mode=0600 owner=jenkins
 
 - name: Copy the .netrc script for git credentials
-  copy: src=.netrc dest=${jenkins_home}/.netrc mode=0600 owner=jenkins
+  copy: src=.netrc dest={{jenkins_home}}/.netrc mode=0600 owner=jenkins
 
 - name: Update git .netrc rights
-  file: path=${jenkins_home}/.netrc state=file mode=0600 owner=jenkins
+  file: path={{jenkins_home}}/.netrc state=file mode=0600 owner=jenkins
 
 - name: Create .m2 folder
-  file: path=${jenkins_home}/.m2 state=directory owner=jenkins mode=0775
+  file: path={{jenkins_home}}/.m2 state=directory owner=jenkins mode=0775
 
 - name: Copy maven configuration
-  copy: src=settings.xml dest=${jenkins_home}/.m2/ backup=yes owner=jenkins
+  copy: src=settings.xml dest={{jenkins_home}}/.m2/ backup=yes owner=jenkins
 
 - name: Jenkins can run any command with no password
   lineinfile: "line='jenkins ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^jenkins'"
@@ -387,11 +388,11 @@
 #END OF TODO extract jenkins user to another script
 
 - name: Set java link
-  action: command update-alternatives --install /usr/bin/java java ${jvm_folder}/jdk1.7.0/bin/java 1
+  action: command update-alternatives --install /usr/bin/java java {{jvm_folder}}/jdk1.7.0/bin/java 1
   when: "jdk7_installed.changed == 'True'"
 
 - name: Set jar link
-  action: command update-alternatives --install /usr/bin/jar jar ${jvm_folder}/jdk1.7.0/bin/jar 1
+  action: command update-alternatives --install /usr/bin/jar jar {{jvm_folder}}/jdk1.7.0/bin/jar 1
   when: "jdk7_installed.changed == 'True'"
   
 #- name: Set java link

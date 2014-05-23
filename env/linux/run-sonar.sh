@@ -90,3 +90,7 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 #Deactivate rules
 #PMD 
 #XPath rule template
+
+#add java patch
+#See BUG : http://jira.codehaus.org/browse/SONARJAVA-527
+#Download fix at : http://docs.codehaus.org/display/SONAR/Java+Ecosystem

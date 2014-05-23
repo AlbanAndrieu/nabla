@@ -3,6 +3,10 @@
 #install ansible
 sudo add-apt-repository ppa:rquillo/ansible
 sudo apt-get install ansible
+#sudo apt-get --reinstall install ansible
+#sudo apt-cache showpkg ansible
+#sudo dpkg -l ansible
+#sudo aptitude show ansible
 
 #install python
 sudo apt-get install python-pip python-dev build-essential
@@ -66,6 +70,7 @@ ansible-playbook -c paramiko -i step-00/hosts step-00/setup.yml --ask-pass --sud
 
 #see params
 ansible -m setup albandri | grep eth0
+ansible -m setup localhost
 
 #jenkins
 #https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/

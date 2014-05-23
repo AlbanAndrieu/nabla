@@ -74,6 +74,7 @@ npm install -g selenium-webdriver
 npm install -g doctor
 npm install -g yo
 #npm install selenium-standalone
+npm install -g connect-livereload 
 
 #/usr/lib/node_modules/karma/bin/karma --version
 #export PATH="$PATH:/usr/lib/node_modules/karma/bin"
@@ -84,6 +85,7 @@ cd /usr/local/bin/
 ln -s /usr/local/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 #ln -s /root/npm/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 #Ubuntu 12 ln -s /usr/lib/node_modules/karma/bin/karma /usr/local/bin/karma
+sudo chmod -R 777 /usr/local/lib/node_modules/
 
 #check it is working
 karma --version
@@ -105,6 +107,12 @@ webdriver-manager update
 #sudo chown -R yourusername ~/.npm
 #check npm repository
 npm -g ls
+
+#add nabla repository
+#see https://github.com/georgy/nexus-npm-repository-plugin
+#as jenkins and albandri user
+npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/ 
+npm config ls -l | grep registry
 
 #http://karma-runner.github.io/0.10/index.html
 #http://yeoman.io/

@@ -21,6 +21,8 @@
    - curl
    - nmap
    - ssh  
+   - iotop
+   - htop
    
 - name: Install editor tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
