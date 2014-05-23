@@ -2,21 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	
         <parent>
-		<groupId>com.nabla.project</groupId>
-		<artifactId>servers</artifactId>
+			<groupId>com.nabla.project</groupId>
+			<artifactId>servers</artifactId>
 	    	<version>1.0.1-SNAPSHOT</version>
         </parent>
                 	
-	<modelVersion>4.0.0</modelVersion>
+		<modelVersion>4.0.0</modelVersion>
     	<groupId>com.nabla.project.servers.sample</groupId>
     	<artifactId>sample</artifactId>
-	<packaging>pom</packaging>
-	<name>Server Samples</name>
+		<packaging>pom</packaging>
+		<name>Server Samples</name>
     	<description>Server Samples</description>
-	<modules>
-		<module>jsf-simple</module>
-		<module>jsf-simple-saucelabs</module>
-		<!--<module>jboss-embeddable-ejb3</module>-->
-                <module>gwt-kitchensink</module>
-  </modules>
+		<modules>
+			<module>jsf-simple</module>
+			<!--<module>jsf-simple-saucelabs</module>-->
+			<!--<module>jboss-embeddable-ejb3</module>-->
+			<module>gwt-kitchensink</module>
+			<module>angular-phonecat</module>
+			<module>richfaces-webapp</module>        
+	  </modules>
 </project>
