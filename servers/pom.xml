@@ -199,7 +199,8 @@
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
-								<home>${cargo.container.home}</home>									
+								<home>${cargo.container.home}</home>				
+								<timeout>240000</timeout> <!-- 4 minutes -->					
 								<!--		
 								<artifactInstaller>
 									<groupId>org.jboss.as</groupId>
@@ -462,6 +463,8 @@
 				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<scope.type>${scope.compile}</scope.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>			
 			</properties>
 			<build>
 				<plugins>
@@ -527,6 +530,8 @@
 				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<scope.type>${scope.compile}</scope.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>				
 			</properties>
 			<build>
 				<plugins>
@@ -1228,6 +1233,15 @@
 				 <version>1.0.1-Final</version>
 				 <scope>test</scope>
 			  </dependency>
+			  
+			  <!--
+               <dependency>
+                    <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
+                    <artifactId>jboss-jsp-api_2.2_spec</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                -->
+                			  
 				<dependency>
 				   <groupId>com.sun.faces</groupId>
 				   <artifactId>jsf-impl</artifactId>
