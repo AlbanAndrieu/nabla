@@ -18,7 +18,7 @@
 			<!--<module>jsf-simple-saucelabs</module>-->
 			<!--<module>jboss-embeddable-ejb3</module>-->
 			<module>gwt-kitchensink</module>
-			<module>angular-phonecat</module>
+			<!--<module>angular-phonecat</module>-->
 			<module>richfaces-webapp</module>        
 	  </modules>
 </project>
