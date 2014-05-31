@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         
+	<parent>
+		<artifactId>sample</artifactId>
+		<groupId>com.nabla.project.servers.sample</groupId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	         
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.jboss.tools.example.richfaces</groupId>
     <artifactId>richfaces-webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>JBoss AS Quickstarts: Richefaces kitchensink</name>
     <description>A starter Java EE 6 RichFaces webapp project for use on JBoss AS 7 / EAP 6</description>
-
     <url>http://jboss.org/richfaces</url>
 
     <properties>
