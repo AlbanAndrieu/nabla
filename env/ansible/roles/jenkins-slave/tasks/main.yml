@@ -410,7 +410,7 @@
   action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven321/bin/mvn 1
   
 - name: Download Jenkins Swarm Client
-  get_url: dest=${jenkins_home}/swarm-client-1.8-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.8/swarm-client-1.8-jar-with-dependencies.jar owner=jenkins
+  get_url: dest=${jenkins_home}/swarm-client-1.9-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.9/swarm-client-1.9-jar-with-dependencies.jar owner=jenkins
 
 - name: Install swarm client script
   template: src=jenkins-swarm-client.tmpl dest=/etc/init.d/jenkins-swarm-client mode=0700
