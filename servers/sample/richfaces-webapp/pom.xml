@@ -7,7 +7,7 @@
     <artifactId>richfaces-webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>JBoss AS Quickstarts: kitchensink-rf</name>
+    <name>JBoss AS Quickstarts: Richefaces kitchensink</name>
     <description>A starter Java EE 6 RichFaces webapp project for use on JBoss AS 7 / EAP 6</description>
 
     <url>http://jboss.org/richfaces</url>
@@ -23,8 +23,8 @@
         <!--
         <javaee6.spec.version>3.0.0.Beta1-redhat-1</javaee6.spec.version>
         -->
-                <org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>         
-            </properties>
+		<org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>         
+	</properties>
 
     <dependencyManagement>
         <dependencies>
@@ -198,7 +198,13 @@
 		<version>1.0-rc1</version>
  	</dependency>            
  	-->
-            
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		            
         <!-- Needed for running tests (you may also use TestNG) -->
         <dependency>
             <groupId>junit</groupId>
