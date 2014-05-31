@@ -508,8 +508,8 @@
                 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-resources-plugin</artifactId>
-		    <version>${maven.resources.plugin.version}</version>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven.resources.plugin.version}</version>
                 </plugin>
                 <!--
                 <plugin>
@@ -595,8 +595,8 @@
             <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-clean-plugin</artifactId>
-		<version>${maven.clean.plugin.version}</version>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>${maven.clean.plugin.version}</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -620,8 +620,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-compiler-plugin</artifactId>
-		<version>${maven.compiler.plugin.version}</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>${jdkLevel}</source>
                     <target>${jdkLevel}</target>
@@ -677,7 +677,7 @@
     </modules>
     <properties>
         <!--
-        <andromda.version>3.4</andromda.version>
+        <andromda.version>3.6</andromda.version>
         <jdkLevel>1.6</jdkLevel>
         <downloadSources>true</downloadSources>
         <createChecksum>true</createChecksum>
@@ -806,15 +806,10 @@
                     For SapDB use: jdbc:sapdb://127.0.0.1/howtomodel
                     For Progress use: jdbc:JdbcProgress:T:localhost:3305:howtomodel
                 -->
-                <jdbc.url>
-                    jdbc:mysql://localhost:3306/howtomodel
-                </jdbc.url>
+                <jdbc.url>jdbc:mysql://localhost:3306/howtomodel</jdbc.url>
                 <!-- Enter id/password for the database connection -->
-                <jdbc.username>
-                    howtomodel
-                </jdbc.username>
-                <jdbc.password>
-                    howtomodel                </jdbc.password>
+                <jdbc.username>howtomodel</jdbc.username>
+                <jdbc.password>howtomodel</jdbc.password>
                 <!--
                     Change exception sorter class name for appropriate database
                     For MySQL use: org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter
