@@ -1077,7 +1077,7 @@
 				<sonar.issue.ignore.block>e1,e2</sonar.issue.ignore.block>
 				<sonar.issue.ignore.block.e1.beginBlockRegexp>@SonarIgnore</sonar.issue.ignore.block.e1.beginBlockRegexp>
 				<sonar.issue.ignore.block.e1.endBlockRegexp></sonar.issue.ignore.block.e1.endBlockRegexp>
-				<sonar.issue.ignore.block.e2.beginBlockRegexp>Copyright (c) 2002-2004, Nabla</sonar.issue.ignore.block.e2.beginBlockRegexp>
+				<sonar.issue.ignore.block.e2.beginBlockRegexp>Copyright</sonar.issue.ignore.block.e2.beginBlockRegexp>
 				<sonar.issue.ignore.block.e2.endBlockRegexp>License 1.0</sonar.issue.ignore.block.e2.endBlockRegexp>
 				
 				<!-- BEGIN of Thirdparties versions stick to project recommandations -->
@@ -1179,7 +1179,8 @@
 				<ant.trax.version>1.7.0</ant.trax.version>
 				<ant.contrib.version>20020829</ant.contrib.version>
 				<c3p0.version>0.8.5.2</c3p0.version>
-				<jacoco.version>0.7.1.201405082137</jacoco.version>
+				<!--<jacoco.version>0.7.1.201405082137</jacoco.version>-->
+				<jacoco.version>0.7.2-SNAPSHOT</jacoco.version>
 
 				<jdbc.derby.version>10.10.1.1</jdbc.derby.version>
 				<jdbc.org.hsqldb.version>2.3.1</jdbc.org.hsqldb.version>
@@ -1507,6 +1508,7 @@
 				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+				<build.timestamp>${maven.build.timestamp}</build.timestamp>
 				<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
 
 				<!-- Plugin version definitions -->
@@ -1608,6 +1610,7 @@
 				<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 				<maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
 				<maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
+				<maven.tattletale.plugin.version>1.1.0.Final</maven.tattletale.plugin.version>
 				<maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
 				<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
 				<maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
@@ -1736,6 +1739,19 @@
 										<configuration>
 												<lifecycleMappingMetadata>
 														<pluginExecutions>
+																<pluginExecution>
+																		<pluginExecutionFilter>
+																				<groupId>org.jacoco</groupId>
+																				<artifactId>jacoco-maven-plugin</artifactId>
+																				<versionRange>[${maven.jacoco.plugin.version},)</versionRange>
+																				<goals>
+																						<goal>prepare-agent</goal>
+																				</goals>
+																		</pluginExecutionFilter>
+																		<action>
+																				<ignore />
+																		</action>
+																</pluginExecution>															
 																<pluginExecution>
 																		<pluginExecutionFilter>
 																				<groupId>org.apache.maven.plugins</groupId>
@@ -2319,6 +2335,11 @@
 										<artifactId>maven-verifier-plugin</artifactId>
 										<version>${maven.verifier.plugin.version}</version>
 								</plugin>
+								<plugin>
+									  <groupId>org.jboss.tattletale</groupId>
+									  <artifactId>tattletale-maven</artifactId>
+									  <version>${maven.tattletale.plugin.version}</version>								
+								</plugin>									  
 								<!-- Global test exclusions -->
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
