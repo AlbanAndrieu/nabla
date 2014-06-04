@@ -1179,8 +1179,8 @@
 				<ant.trax.version>1.7.0</ant.trax.version>
 				<ant.contrib.version>20020829</ant.contrib.version>
 				<c3p0.version>0.8.5.2</c3p0.version>
-				<!--<jacoco.version>0.7.1.201405082137</jacoco.version>-->
-				<jacoco.version>0.7.2-SNAPSHOT</jacoco.version>
+				<jacoco.version>0.7.1.201405082137</jacoco.version>
+				<!--<jacoco.version>0.7.2-SNAPSHOT</jacoco.version>-->
 
 				<jdbc.derby.version>10.10.1.1</jdbc.derby.version>
 				<jdbc.org.hsqldb.version>2.3.1</jdbc.org.hsqldb.version>
