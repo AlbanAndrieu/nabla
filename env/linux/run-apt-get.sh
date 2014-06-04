@@ -304,3 +304,11 @@ sudo chown -R albandri:albandri ~/.putty
 
 #synergy
 wget http://synergy-project.org/files/packages/synergy-1.4.17-r2055-Linux-x86_64.deb
+
+#opencl
+#http://develnoter.blogspot.co.uk/2012/05/installing-opencl-in-ubuntu-1204.html
+cd /workspace
+wget http://registrationcenter.intel.com/irc_nas/4181/intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
+tar zxvf intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
+./install-cpu.sh
+ll /usr/lib/x86_64-linux-gnu/libOpenCL.so

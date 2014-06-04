@@ -88,8 +88,17 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 
 #Issue http://sonarqube.15.x6.nabble.com/Cannot-use-PMD-or-Checkstyle-td3214270.html
 #Deactivate rules
-#PMD 
+#PMD
 #XPath rule template
+
+#Checkstyle
+#Header
+#Regexp
+#Regexp Header
+#Regexp Multiline
+#Regexp Singleline
+#Regexp Singleline Java
+#Avoid too deep inheritance tree
 
 #add java patch
 #See BUG : http://jira.codehaus.org/browse/SONARJAVA-527
