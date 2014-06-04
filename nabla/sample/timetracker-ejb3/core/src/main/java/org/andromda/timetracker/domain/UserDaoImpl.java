@@ -155,8 +155,7 @@ public class UserDaoImpl extends UserDaoBase
             try
             {
                 user = this.load(userDetailsVO.getId());
-            }
-            catch (final UserDaoException e)
+            } catch (final UserDaoException e)
             {
                 // user id no set - OK to ignore
             }

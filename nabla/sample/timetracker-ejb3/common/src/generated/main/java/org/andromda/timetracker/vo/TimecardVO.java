@@ -17,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class TimecardVO
+ * TODO: Model Documentation for TimecardVO
  */
 public class TimecardVO
     extends TimecardSummaryVO
@@ -26,7 +26,9 @@ public class TimecardVO
     private static final long serialVersionUID = 6418926857174063619L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute allocations */
+    /**
+     * TODO: Model Documentation for TimecardVO.allocations
+     */
     protected TimeAllocationVO[] allocations;
 
     /** Default Constructor with no properties */
@@ -37,12 +39,12 @@ public class TimecardVO
 
     /**
      * Constructor taking only required properties
-     * @param statusIn TimecardStatus
-     * @param startDateIn Date
-     * @param commentsIn String
-     * @param submitterNameIn String
-     * @param approverNameIn String
-     * @param allocationsIn TimeAllocationVO[]
+     * @param statusIn TimecardStatus TODO: Model Documentation for TimecardSummaryVO.status
+     * @param startDateIn Date TODO: Model Documentation for TimecardSummaryVO.startDate
+     * @param commentsIn String TODO: Model Documentation for TimecardSummaryVO.comments
+     * @param submitterNameIn String TODO: Model Documentation for TimecardSummaryVO.submitterName
+     * @param approverNameIn String TODO: Model Documentation for TimecardSummaryVO.approverName
+     * @param allocationsIn TimeAllocationVO[] TODO: Model Documentation for TimecardVO.allocations
      */
     public TimecardVO(final TimecardStatus statusIn, final Date startDateIn, final String commentsIn, final String submitterNameIn, final String approverNameIn, final TimeAllocationVO[] allocationsIn)
     {
@@ -92,7 +94,7 @@ public class TimecardVO
     }
 
     /**
-     * TODO: Model Documentation for attribute allocations
+     * TODO: Model Documentation for TimecardVO.allocations
      * Get the allocations Attribute
      * @return allocations TimeAllocationVO[]
      */
@@ -102,7 +104,7 @@ public class TimecardVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardVO.allocations
      * @param value TimeAllocationVO[]
      */
     public void setAllocations(final TimeAllocationVO[] value)

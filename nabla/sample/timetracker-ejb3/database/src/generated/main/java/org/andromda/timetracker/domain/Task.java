@@ -16,8 +16,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(propOrder = {"name"})
 @XmlAccessorType(XmlAccessType.FIELD)
+// HibernateEntity.vsl annotations merge-point
 public abstract class Task implements Serializable, Comparable<Task>
- {
+{
     /**
      * The serial version UID of this class. Needed for serialization.
      */
@@ -28,7 +29,7 @@ public abstract class Task implements Serializable, Comparable<Task>
     private String name;
 
     /**
-     * 
+     * TODO: Model Documentation for Task.name
      * @return this.name String
      */
     public String getName()
@@ -37,7 +38,7 @@ public abstract class Task implements Serializable, Comparable<Task>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Task.name
      * @param nameIn String
      */
     public void setName(String nameIn)
@@ -49,7 +50,7 @@ public abstract class Task implements Serializable, Comparable<Task>
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for Task.id
      * @return this.id Long
      */
     public Long getId()
@@ -58,7 +59,7 @@ public abstract class Task implements Serializable, Comparable<Task>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for Task.id
      * @param idIn Long
      */
     public void setId(Long idIn)
@@ -125,27 +126,30 @@ public abstract class Task implements Serializable, Comparable<Task>
          */
         public static Task newInstance(String name)
         {
-            final Task entityInstance = new TaskImpl();
-            entityInstance.setName(name);
-            return entityInstance;
+            final Task entity = new TaskImpl();
+            entity.setName(name);
+            return entity;
         }
     }
 
     /**
+     * @param other
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
      * @see Comparable#compareTo
      */
-    public int compareTo(Task o)
+    @Override
+    public int compareTo(Task other)
     {
         int cmp = 0;
         if (this.getId() != null)
         {
-            cmp = this.getId().compareTo(o.getId());
+            cmp = this.getId().compareTo(other.getId());
         }
         else
         {
             if (this.getName() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getName().compareTo(o.getName()));
+                cmp = (cmp != 0 ? cmp : this.getName().compareTo(other.getName()));
             }
         }
         return cmp;

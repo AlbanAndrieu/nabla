@@ -6,6 +6,7 @@ package org.andromda.timetracker.service;
 
 import java.util.Collection;
 
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 
@@ -15,6 +16,7 @@ import org.andromda.timetracker.domain.UserDaoException;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.ejb.SeamInterceptor;
@@ -22,10 +24,8 @@ import org.jboss.seam.faces.FacesMessages;
 
 /**
  * @see UserServiceBase
- *
  * Remember to manually configure the local business interface this bean implements if originally you only
- * defined the remote business interface.  However, this change is automatically reflected in the ejb-jar.xml.
- *
+ * defined the remote business interface. However, this change is automatically reflected in the ejb-jar.xml.
  * Do not specify the javax.ejb.Stateless annotation
  * Instead, the session bean is defined in the ejb-jar.xml descriptor.
  */
@@ -40,6 +40,8 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
 {
 
     // --------------- Constructors ---------------
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor extending base class default constructor
@@ -62,8 +64,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
         {
             userVOs = this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
             // this.userList = (List<User>) this.getUserDao().loadAll(UserDao.TRANSFORM_NONE);
-        }
-        catch (final UserDaoException ex)
+        } catch (final UserDaoException ex)
         {
             FacesMessages.instance().addToControl("user", "User not found on database.", (Object[]) null);
             this.logger.debug("Empty person list");
@@ -81,8 +82,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
         {
             final User user = this.getUserDao().getUserDetails(username);
             return this.getUserDao().toUserVO(user);
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDoesNotExistException("User : " + username + " does not exist");
         }
@@ -110,4 +110,13 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
 
     // -------- Lifecycle Callback Implementation --------------
 
+    /**
+     * Remove lifecycle method
+     */
+    @Destroy
+    @Remove
+    public void destroy()
+    {
+        super.destroy();
+    }
 }

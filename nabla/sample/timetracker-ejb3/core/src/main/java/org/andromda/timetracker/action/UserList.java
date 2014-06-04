@@ -13,7 +13,8 @@ public class UserList extends EntityQuery<User>
 
     private static final String   EJBQL            = "select user from User user";
 
-    private static final String[] RESTRICTIONS     = { "lower(user.comment) like lower(concat(#{userList.user.comment},'%'))", "lower(user.email) like lower(concat(#{userList.user.email},'%'))",
+    private static final String[] RESTRICTIONS     =
+                                                   { "lower(user.comment) like lower(concat(#{userList.user.comment},'%'))", "lower(user.email) like lower(concat(#{userList.user.email},'%'))",
             "lower(user.username) like lower(concat(#{userList.user.username},'%'))", };
 
     private final User            user             = new User();

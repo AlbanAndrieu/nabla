@@ -60,8 +60,7 @@ public class UserRoleDaoImpl extends UserRoleDaoBase
             try
             {
                 userRole = this.load(userRoleVO.getId());
-            }
-            catch (final UserRoleDaoException e)
+            } catch (final UserRoleDaoException e)
             {
                 UserRoleDaoImpl.logger.debug("UserRoleDaoException" + e);
             }

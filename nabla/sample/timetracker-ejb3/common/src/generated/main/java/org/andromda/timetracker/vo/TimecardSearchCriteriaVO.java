@@ -19,7 +19,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class TimecardSearchCriteriaVO
+ * TODO: Model Documentation for TimecardSearchCriteriaVO
  */
 public class TimecardSearchCriteriaVO
     implements Serializable, Comparable<TimecardSearchCriteriaVO>
@@ -28,15 +28,28 @@ public class TimecardSearchCriteriaVO
     private static final long serialVersionUID = -4922460977778596080L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute submitterId */
+    /**
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.submitterId
+     */
     protected Long submitterId;
-    /** TODO: Model Documentation for attribute approverId */
+    /**
+     * TODO: Model Documentation for TimecardSearchCriteriaVO.approverId
+     */
     protected Long approverId;
-    /** TODO: Model Documentation for attribute status */
+    /**
+     * TODO: Model Documentation for TimecardSearchCriteriaVO.status
+     */
     protected TimecardStatus status;
-    /** TODO: Model Documentation for attribute startDateMin */
+    /**
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.startDateMin
+     */
     protected Date startDateMin;
-    /** TODO: Model Documentation for attribute startDateMax */
+    /**
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.startDateMax
+     */
     protected Date startDateMax;
 
     /**
@@ -96,7 +109,8 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * TODO: Model Documentation for attribute submitterId
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.submitterId
      * Get the submitterId Attribute
      * @return submitterId Long
      */
@@ -106,7 +120,8 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.submitterId
      * @param value Long
      */
     public void setSubmitterId(final Long value)
@@ -115,7 +130,7 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * TODO: Model Documentation for attribute approverId
+     * TODO: Model Documentation for TimecardSearchCriteriaVO.approverId
      * Get the approverId Attribute
      * @return approverId Long
      */
@@ -125,7 +140,7 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSearchCriteriaVO.approverId
      * @param value Long
      */
     public void setApproverId(final Long value)
@@ -134,7 +149,7 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * TODO: Model Documentation for attribute status
+     * TODO: Model Documentation for TimecardSearchCriteriaVO.status
      * Get the status Attribute
      * @return status TimecardStatus
      */
@@ -144,7 +159,7 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSearchCriteriaVO.status
      * @param value TimecardStatus
      */
     public void setStatus(final TimecardStatus value)
@@ -153,7 +168,8 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * TODO: Model Documentation for attribute startDateMin
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.startDateMin
      * Get the startDateMin Attribute
      * @return startDateMin Date
      */
@@ -163,7 +179,8 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.startDateMin
      * @param value Date
      */
     public void setStartDateMin(final Date value)
@@ -172,7 +189,8 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * TODO: Model Documentation for attribute startDateMax
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.startDateMax
      * Get the startDateMax Attribute
      * @return startDateMax Date
      */
@@ -182,7 +200,8 @@ public class TimecardSearchCriteriaVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for
+     * TimecardSearchCriteriaVO.startDateMax
      * @param value Date
      */
     public void setStartDateMax(final Date value)

@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.domain.User
  */
 public class UserVO
     implements Serializable
@@ -17,7 +17,7 @@ public class UserVO
     private String username;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.username
      * @return username
      */
     public String getUsername()
@@ -26,7 +26,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.username
      * @param usernameIn
      */
     public void setUsername(String usernameIn)
@@ -37,7 +37,7 @@ public class UserVO
     private String password;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.password
      * @return password
      */
     public String getPassword()
@@ -46,7 +46,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.password
      * @param passwordIn
      */
     public void setPassword(String passwordIn)
@@ -57,7 +57,7 @@ public class UserVO
     private String firstName;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @return firstName
      */
     public String getFirstName()
@@ -66,7 +66,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @param firstNameIn
      */
     public void setFirstName(String firstNameIn)
@@ -77,7 +77,7 @@ public class UserVO
     private String lastName;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @return lastName
      */
     public String getLastName()
@@ -86,7 +86,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @param lastNameIn
      */
     public void setLastName(String lastNameIn)
@@ -97,7 +97,7 @@ public class UserVO
     private String email;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.email
      * @return email
      */
     public String getEmail()
@@ -106,7 +106,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.email
      * @param emailIn
      */
     public void setEmail(String emailIn)
@@ -117,7 +117,7 @@ public class UserVO
     private boolean isActive;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
      * @return isActive
      */
     public boolean isIsActive()
@@ -126,7 +126,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
      * @param isActiveIn
      */
     public void setIsActive(boolean isActiveIn)
@@ -137,7 +137,7 @@ public class UserVO
     private Date creationDate;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @return creationDate
      */
     public Date getCreationDate()
@@ -146,7 +146,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @param creationDateIn
      */
     public void setCreationDate(Date creationDateIn)
@@ -157,7 +157,7 @@ public class UserVO
     private String comment;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @return comment
      */
     public String getComment()
@@ -166,7 +166,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @param commentIn
      */
     public void setComment(String commentIn)
@@ -177,7 +177,7 @@ public class UserVO
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.id
      * @return id
      */
     public Long getId()
@@ -186,7 +186,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.id
      * @param idIn
      */
     public void setId(Long idIn)
@@ -198,7 +198,7 @@ public class UserVO
     private Long[] roles;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return roles
      */
     public Long[] getRoles()
@@ -207,7 +207,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @param rolesIn
      */
     public void setRoles(Long[] rolesIn)
@@ -218,7 +218,7 @@ public class UserVO
     private Long[][] rolesLabels;
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return roles
      */
     public Long[][] getRolesLabels()
@@ -227,7 +227,7 @@ public class UserVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @param rolesLabelsIn
      */
     public void setRolesLabels(Long[][] rolesLabelsIn)

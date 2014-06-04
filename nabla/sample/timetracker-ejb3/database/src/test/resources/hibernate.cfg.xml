@@ -17,13 +17,13 @@
         <property name="jta.UserTransaction">UserTransaction</property>
         <property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
         <property name="session_factory_name">java:/hibernate/SessionFactory</property>
-        <property name="dialect">org.hibernate.dialect.DerbyDialect</property>
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="jdbc.batch_size">0</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <property name="hibernate.id.new_generator_mappings">true</property>
         <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
         <property name="hibernate.cache.use_query_cache">false</property>
-        <property name="hibernate.cache.provider_class">${hibernate.cache.provider}</property>
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
         <property name="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</property>
         <!-- mapping files -->
         <mapping resource="org/andromda/timetracker/domain/User.hbm.xml"/>

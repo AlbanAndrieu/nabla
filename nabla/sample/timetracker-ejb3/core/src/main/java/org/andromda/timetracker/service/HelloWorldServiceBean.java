@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 
 /**
  * This is a stateless bean
- *
  */
 @Stateless
 // @SecurityDomain("timetracker-ejb3")

@@ -12,12 +12,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * 
+ * TODO: Model Documentation for UserRole
  */
 @XmlType(propOrder = {"role"})
 @XmlAccessorType(XmlAccessType.FIELD)
+// HibernateEntity.vsl annotations merge-point
 public abstract class UserRole implements Serializable, Comparable<UserRole>
- {
+{
     /**
      * The serial version UID of this class. Needed for serialization.
      */
@@ -28,7 +29,7 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
     private Role role;
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole.role
      * @return this.role Role
      */
     public Role getRole()
@@ -37,7 +38,7 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole.role
      * @param roleIn Role
      */
     public void setRole(Role roleIn)
@@ -49,7 +50,7 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
     private Long id;
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole.id
      * @return this.id Long
      */
     public Long getId()
@@ -58,7 +59,7 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRole.id
      * @param idIn Long
      */
     public void setId(Long idIn)
@@ -125,27 +126,30 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
          */
         public static UserRole newInstance(Role role)
         {
-            final UserRole entityInstance = new UserRoleImpl();
-            entityInstance.setRole(role);
-            return entityInstance;
+            final UserRole entity = new UserRoleImpl();
+            entity.setRole(role);
+            return entity;
         }
     }
 
     /**
+     * @param other
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
      * @see Comparable#compareTo
      */
-    public int compareTo(UserRole o)
+    @Override
+    public int compareTo(UserRole other)
     {
         int cmp = 0;
         if (this.getId() != null)
         {
-            cmp = this.getId().compareTo(o.getId());
+            cmp = this.getId().compareTo(other.getId());
         }
         else
         {
             if (this.getRole() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getRole().compareTo(o.getRole()));
+                cmp = (cmp != 0 ? cmp : this.getRole().compareTo(other.getRole()));
             }
         }
         return cmp;

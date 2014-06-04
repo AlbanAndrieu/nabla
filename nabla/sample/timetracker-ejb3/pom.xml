@@ -272,7 +272,7 @@
     </modules>
     <properties>
         <!--
-        <andromda.version>3.4</andromda.version>
+        <andromda.version>3.6</andromda.version>
         <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
         <maven.exec.plugin.version>1.2.1</maven.exec.plugin.version>
         <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
@@ -482,7 +482,7 @@
         		<infinispan.version>5.1.3.FINAL</infinispan.version>
 			<!--<seam.version>2.3.0.Final</seam.version>-->
 			<!--<openejb.javaee.api.version>6.0-5</openejb.javaee.api.version>-->
-			<!--<openejb.core.version>4.6.0</openejb.core.version>-->
+			<openejb.core.version>4.6.0.2</openejb.core.version>
         		<!--<ejb3.persistence.version>3.3.2.Beta1</ejb3.persistence.version>-->
         		<!--<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version> NOK-->
         		<!--<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>-->

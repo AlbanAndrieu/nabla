@@ -51,12 +51,10 @@ public class UserServiceTest
                 {
                     this.userService.removeUser(userVO);
                 }
-            }
-            catch (final UserDoesNotExistException e)
+            } catch (final UserDoesNotExistException e)
             {
                 this.logger.debug("UserDoesNotExistException : " + e);
-            }
-            catch (final Exception e)
+            } catch (final Exception e)
             {
                 this.logger.debug("Exception : " + e);
                 System.err.println("Exception : " + e);
@@ -76,7 +74,8 @@ public class UserServiceTest
             final UserRoleVO urVO = new UserRoleVO();
             urVO.setRole(Role.STANDARD_USER);
 
-            udVO.setRoles(new UserRoleVO[] { urVO });
+            udVO.setRoles(new UserRoleVO[]
+            { urVO });
 
             udVO = this.userService.registerUser(udVO);
 
@@ -93,14 +92,12 @@ public class UserServiceTest
                 {
                     this.userService.removeUser(userVO);
                 }
-            }
-            catch (final UserDoesNotExistException e)
+            } catch (final UserDoesNotExistException e)
             {
                 this.logger.debug("UserDoesNotExistException : " + e);
                 Assert.fail();
             }
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             this.logger.warn("Failed test testRegisterUser()", ex);
             Assert.fail();
@@ -120,8 +117,7 @@ public class UserServiceTest
             {
                 this.logger.info("user : " + userVO.getFirstName());
             }
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             this.logger.warn("Failed test testGetAllUsers()", ex);
             // if reached that means that database is empty and default values have not been inserted

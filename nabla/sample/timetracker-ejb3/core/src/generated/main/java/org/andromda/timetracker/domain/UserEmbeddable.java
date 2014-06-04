@@ -191,7 +191,7 @@ public abstract class UserEmbeddable implements Serializable{
      * Get the isActive property.
      * @return boolean The value of isActive
      */
-    @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true, columnDefinition="BIT")
+    @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true)
     @NotNull(message="isActive is required")
 
     public boolean isIsActive()

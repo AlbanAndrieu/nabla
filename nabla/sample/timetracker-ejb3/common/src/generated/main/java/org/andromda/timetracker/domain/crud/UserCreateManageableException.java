@@ -8,7 +8,7 @@ package org.andromda.timetracker.domain.crud;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * 
+ * TODO: Model Documentation for org.andromda.timetracker.domain.User
  */
 public class UserCreateManageableException
     extends Exception

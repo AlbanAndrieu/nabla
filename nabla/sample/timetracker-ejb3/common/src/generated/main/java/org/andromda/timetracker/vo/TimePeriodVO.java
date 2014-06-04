@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class TimePeriodVO
+ * TODO: Model Documentation for TimePeriodVO
  */
 public class TimePeriodVO
     implements Serializable, Comparable<TimePeriodVO>
@@ -27,9 +27,13 @@ public class TimePeriodVO
     private static final long serialVersionUID = 20317410267177457L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute startTime */
+    /**
+     * TODO: Model Documentation for TimePeriodVO.startTime
+     */
     protected Date startTime;
-    /** TODO: Model Documentation for attribute endTime */
+    /**
+     * TODO: Model Documentation for TimePeriodVO.endTime
+     */
     protected Date endTime;
 
     /** Default Constructor with no properties */
@@ -75,7 +79,7 @@ public class TimePeriodVO
     }
 
     /**
-     * TODO: Model Documentation for attribute startTime
+     * TODO: Model Documentation for TimePeriodVO.startTime
      * Get the startTime Attribute
      * @return startTime Date
      */
@@ -85,7 +89,7 @@ public class TimePeriodVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimePeriodVO.startTime
      * @param value Date
      */
     public void setStartTime(final Date value)
@@ -94,7 +98,7 @@ public class TimePeriodVO
     }
 
     /**
-     * TODO: Model Documentation for attribute endTime
+     * TODO: Model Documentation for TimePeriodVO.endTime
      * Get the endTime Attribute
      * @return endTime Date
      */
@@ -104,7 +108,7 @@ public class TimePeriodVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimePeriodVO.endTime
      * @param value Date
      */
     public void setEndTime(final Date value)

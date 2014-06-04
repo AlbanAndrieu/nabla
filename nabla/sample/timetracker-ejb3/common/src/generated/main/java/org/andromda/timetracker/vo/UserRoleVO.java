@@ -18,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class UserRoleVO
+ * TODO: Model Documentation for UserRoleVO
  */
 public class UserRoleVO
     implements Serializable, Comparable<UserRoleVO>
@@ -27,9 +27,13 @@ public class UserRoleVO
     private static final long serialVersionUID = -144923373363619730L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute id */
+    /**
+     * TODO: Model Documentation for UserRoleVO.id
+     */
     protected Long id;
-    /** TODO: Model Documentation for attribute role */
+    /**
+     * TODO: Model Documentation for UserRoleVO.role
+     */
     protected Role role;
 
     /** Default Constructor with no properties */
@@ -40,7 +44,7 @@ public class UserRoleVO
 
     /**
      * Constructor taking only required properties
-     * @param roleIn Role
+     * @param roleIn Role TODO: Model Documentation for UserRoleVO.role
      */
     public UserRoleVO(final Role roleIn)
     {
@@ -84,7 +88,7 @@ public class UserRoleVO
     }
 
     /**
-     * TODO: Model Documentation for attribute id
+     * TODO: Model Documentation for UserRoleVO.id
      * Get the id Attribute
      * @return id Long
      */
@@ -94,7 +98,7 @@ public class UserRoleVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRoleVO.id
      * @param value Long
      */
     public void setId(final Long value)
@@ -103,7 +107,7 @@ public class UserRoleVO
     }
 
     /**
-     * TODO: Model Documentation for attribute role
+     * TODO: Model Documentation for UserRoleVO.role
      * Get the role Attribute
      * @return role Role
      */
@@ -113,7 +117,7 @@ public class UserRoleVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for UserRoleVO.role
      * @param value Role
      */
     public void setRole(final Role value)

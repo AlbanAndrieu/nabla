@@ -19,7 +19,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * TODO: Model Documentation for class TimecardSummaryVO
+ * TODO: Model Documentation for TimecardSummaryVO
  */
 public class TimecardSummaryVO
     implements Serializable, Comparable<TimecardSummaryVO>
@@ -28,17 +28,29 @@ public class TimecardSummaryVO
     private static final long serialVersionUID = -1821740768280350818L;
 
     // Class attributes
-    /** TODO: Model Documentation for attribute id */
+    /**
+     * TODO: Model Documentation for TimecardSummaryVO.id
+     */
     protected Long id;
-    /** TODO: Model Documentation for attribute status */
+    /**
+     * TODO: Model Documentation for TimecardSummaryVO.status
+     */
     protected TimecardStatus status;
-    /** TODO: Model Documentation for attribute startDate */
+    /**
+     * TODO: Model Documentation for TimecardSummaryVO.startDate
+     */
     protected Date startDate;
-    /** TODO: Model Documentation for attribute comments */
+    /**
+     * TODO: Model Documentation for TimecardSummaryVO.comments
+     */
     protected String comments;
-    /** TODO: Model Documentation for attribute submitterName */
+    /**
+     * TODO: Model Documentation for TimecardSummaryVO.submitterName
+     */
     protected String submitterName;
-    /** TODO: Model Documentation for attribute approverName */
+    /**
+     * TODO: Model Documentation for TimecardSummaryVO.approverName
+     */
     protected String approverName;
 
     /** Default Constructor with no properties */
@@ -49,11 +61,11 @@ public class TimecardSummaryVO
 
     /**
      * Constructor taking only required properties
-     * @param statusIn TimecardStatus
-     * @param startDateIn Date
-     * @param commentsIn String
-     * @param submitterNameIn String
-     * @param approverNameIn String
+     * @param statusIn TimecardStatus TODO: Model Documentation for TimecardSummaryVO.status
+     * @param startDateIn Date TODO: Model Documentation for TimecardSummaryVO.startDate
+     * @param commentsIn String TODO: Model Documentation for TimecardSummaryVO.comments
+     * @param submitterNameIn String TODO: Model Documentation for TimecardSummaryVO.submitterName
+     * @param approverNameIn String TODO: Model Documentation for TimecardSummaryVO.approverName
      */
     public TimecardSummaryVO(final TimecardStatus statusIn, final Date startDateIn, final String commentsIn, final String submitterNameIn, final String approverNameIn)
     {
@@ -117,7 +129,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * TODO: Model Documentation for attribute id
+     * TODO: Model Documentation for TimecardSummaryVO.id
      * Get the id Attribute
      * @return id Long
      */
@@ -127,7 +139,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSummaryVO.id
      * @param value Long
      */
     public void setId(final Long value)
@@ -136,7 +148,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * TODO: Model Documentation for attribute status
+     * TODO: Model Documentation for TimecardSummaryVO.status
      * Get the status Attribute
      * @return status TimecardStatus
      */
@@ -146,7 +158,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSummaryVO.status
      * @param value TimecardStatus
      */
     public void setStatus(final TimecardStatus value)
@@ -155,7 +167,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * TODO: Model Documentation for attribute startDate
+     * TODO: Model Documentation for TimecardSummaryVO.startDate
      * Get the startDate Attribute
      * @return startDate Date
      */
@@ -165,7 +177,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSummaryVO.startDate
      * @param value Date
      */
     public void setStartDate(final Date value)
@@ -174,7 +186,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * TODO: Model Documentation for attribute comments
+     * TODO: Model Documentation for TimecardSummaryVO.comments
      * Get the comments Attribute
      * @return comments String
      */
@@ -184,7 +196,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSummaryVO.comments
      * @param value String
      */
     public void setComments(final String value)
@@ -193,7 +205,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * TODO: Model Documentation for attribute submitterName
+     * TODO: Model Documentation for TimecardSummaryVO.submitterName
      * Get the submitterName Attribute
      * @return submitterName String
      */
@@ -203,7 +215,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSummaryVO.submitterName
      * @param value String
      */
     public void setSubmitterName(final String value)
@@ -212,7 +224,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * TODO: Model Documentation for attribute approverName
+     * TODO: Model Documentation for TimecardSummaryVO.approverName
      * Get the approverName Attribute
      * @return approverName String
      */
@@ -222,7 +234,7 @@ public class TimecardSummaryVO
     }
 
     /**
-     * 
+     * TODO: Model Documentation for TimecardSummaryVO.approverName
      * @param value String
      */
     public void setApproverName(final String value)

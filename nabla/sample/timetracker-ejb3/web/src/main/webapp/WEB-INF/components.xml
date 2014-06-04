@@ -197,7 +197,7 @@
             name="userService"
             class="org.andromda.timetracker.service.UserServiceBean"
             scope="CONVERSATION"
-            jndi-name="${ejb.jndi.mappedname.pattern}/UserServiceBean/local"/>
+            jndi-name="UserServiceBean/local"/>
         -->
         <!-- service : org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacadeLogicImpl[org.andromda.timetracker.service.TimeTrackingService] -->
         <!-- service : org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacadeLogicImpl[org.andromda.timetracker.service.SecurityService] -->
