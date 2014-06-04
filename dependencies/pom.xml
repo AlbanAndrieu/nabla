@@ -805,134 +805,6 @@
 						</reporting>
 				</profile>
 				-->
-		<profile>
-			<id>clover.report</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<properties>
-				<maven.test.skip>false</maven.test.skip>
-				<maven.test.failure.skip>true</maven.test.failure.skip>
-				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven.surefire.plugin.version}</version>
-						<configuration>
-							<skipTests>${maven.test.skip}</skipTests>
-							<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>com.atlassian.maven.plugins</groupId>
-						<artifactId>maven-clover2-plugin</artifactId>
-						<version>${maven.clover.plugin.version}</version>
-						<executions>
-							<execution>
-								<id>clover-reporting</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>instrument</goal>
-									<goal>check</goal>
-									<goal>clover</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-				 <reporting>
-					 <plugins>
-						 <plugin>
-							 <groupId>com.atlassian.maven.plugins</groupId>
-							 <artifactId>maven-clover2-plugin</artifactId>
-							 <version>${maven.clover.plugin.version}</version>
-						 </plugin>
-					 </plugins>
-				 </reporting>
-		</profile>
-		<profile>
-				<id>clover.optimize</id>
-				<build>
-					<plugins>
-						<plugin>
-							<groupId>com.atlassian.maven.plugins</groupId>
-							<artifactId>maven-clover2-plugin</artifactId>
-							<version>${maven.clover.plugin.version}</version>
-							<configuration>
-								  <generateHistorical>true</generateHistorical>
-								  <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
-								  <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
-								  <singleCloverDatabase>true</singleCloverDatabase>
-								  <historyDir>${user.home}/history/${project.artifact}</historyDir>
-								  <includesAllSourceRoots>true</includesAllSourceRoots>
-								  <generatePdf>true</generatePdf>
-					  <generateXml>true</generateXml>
-					  <generateHtml>true</generateHtml>
-							</configuration>
-							<executions>
-								<execution>
-									<id>clover-initialization</id>
-									<!--<phase>initialize</phase>-->
-									<goals>
-										<goal>setup</goal>
-										<goal>optimize</goal>
-										<goal>snapshot</goal>
-									</goals>
-								</execution>
-							</executions>
-						</plugin>
-					</plugins>
-				</build>
-			</profile>
-		<profile>
-				<id>clover.all</id>
-				<build>
-					<plugins>
-						<plugin>
-							<groupId>com.atlassian.maven.plugins</groupId>
-							<artifactId>maven-clover2-plugin</artifactId>
-							<version>${maven.clover.plugin.version}</version>
-							<configuration>
-								  <!--<targetPercentage>93%</targetPercentage>-->
-								  <generateHistorical>true</generateHistorical>
-								  <!--<snapshot>${user.home}/.clover/${groupId}-${artifactId}/clover.snapshot</snapshot>-->
-								  <snapshot>${user.home}/.clover/atlassian-plugins-clover.snapshot</snapshot>
-								  <singleCloverDatabase>true</singleCloverDatabase>
-								  <historyDir>${user.home}/history/${project.artifact}</historyDir>
-								  <generatePdf>true</generatePdf>
-					  <generateXml>true</generateXml>
-					  <generateHtml>true</generateHtml>
-							</configuration>
-							<executions>
-								<execution>
-									<id>clover-initialization</id>
-									<!--<phase>initialize</phase>-->
-									<goals>
-										<goal>setup</goal>
-										<goal>optimize</goal>
-										<goal>snapshot</goal>
-									</goals>
-								</execution>
-								<execution>
-									<id>clover-reporting</id>
-									<phase>verify</phase>
-									<goals>
-										<!-- Aggregate results from sub-modules and generate report-->
-											<!--<goal>aggregate</goal>-->
-										<goal>clover</goal>
-										<goal>log</goal>
-										<goal>check</goal>
-									</goals>
-								</execution>
-							</executions>
-						</plugin>
-					</plugins>
-				</build>
-			</profile>
 		</profiles>
 
 		<!-- Keep Alphabetical Order. Capital Letter goes first -->
@@ -1313,6 +1185,7 @@
 				<spring.security.web>3.1.3.RELEASE</spring.security.web> <!-- TODO spring3.version -->
 				<!--<spring.jpa.version>2.0.6</spring.jpa.version>-->
 				<springmodules.validation.version>0.8</springmodules.validation.version>
+				<spring.springloaded.version>1.2.0.RELEASE</spring.springloaded.version>
 				<spring.mock.version>2.0.8</spring.mock.version>
 				<struts.version>1.2.9</struts.version>
 				<struts.menu.version>2.4.3</struts.menu.version>
@@ -1582,7 +1455,7 @@
 				<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 				<maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
 				<maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
-				<maven.sonar.maven.plugin.version>2.2</maven.sonar.maven.plugin.version>
+				<maven.sonar.maven.plugin.version>2.3</maven.sonar.maven.plugin.version>
 				<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
 				<maven.cli.plugin.version>1.0.10</maven.cli.plugin.version>
 				<maven.shade.plugin.version>2.3</maven.shade.plugin.version>
@@ -3465,10 +3338,10 @@
 mi2Kkjwl7AS0<4V4PamB>FXc2KMtiE15RzOZe11<qE7akM
 nRmnvTPmronONmQqRRptVrPNPnrqmNnnPRtvwVUuXWTnnm
 pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
-						<excludes>
-									<!-- GWT classes -->
-									<exclude>**/client/**/*.java</exclude>
-							</excludes>
+												<excludes>
+														<!-- GWT classes -->
+														<exclude>**/client/**/*.java</exclude>
+												</excludes>
 										</configuration>
 										<!--
 					<executions>
@@ -4548,6 +4421,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${spring.version}</version>
 								<scope>test</scope>
 						</dependency>
+						<dependency>
+								<groupId>org.springframework</groupId>
+								<artifactId>springloaded</artifactId>
+								<version>${spring.springloaded.version}</version>
+						</dependency>						
 					  <!-- // Spring -->
 
 						<dependency>
