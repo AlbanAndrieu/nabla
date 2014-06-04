@@ -18,7 +18,8 @@
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm z</maven.build.timestamp.format>
 		-->
-		<sonar.sources>app/js/java,test</sonar.sources> <!-- TODO removed workaround -->
+		<sonar.sources>app/js,app/css,app/partials,test</sonar.sources> <!-- TODO removed workaround -->
+		<sonar.exclusions>node/**,node_modules/**,app/bower_components/**</sonar.exclusions> 
 	</properties>
 
 	<build>

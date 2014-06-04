@@ -28,7 +28,7 @@ module.exports = function(config){
 
 	// test results reporter to use
 	// possible values: dots || progress || growl
-	reporters: ['progress', 'junit', 'coverage'],
+	reporters: ['dots', 'progress', 'junit', 'coverage'],
 
 	// web server port
 	port: 8080,
@@ -71,14 +71,19 @@ module.exports = function(config){
 	preprocessors: {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
+      'app/*.html': ['html2js'],			      
       // (these files will be instrumented by Istanbul)
-      'src/*.js': ['coverage']
+      'app/js/*.js': ['coverage']
     },
 	
-	 // optionally, configure the reporter
-    coverageReporter: {
-		type : 'html',
-		dir : 'coverage/'
-	}
+	// optionally, configure the reporter
+	//coverageReporter: {
+	//	type : 'html',
+	//	dir : 'coverage/'
+	//}            
+	coverageReporter: {
+		type: 'lcov',
+		dir: '../../../../target/karma-coverage'
+	}			
   });
 };
