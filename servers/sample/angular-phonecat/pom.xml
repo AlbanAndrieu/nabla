@@ -99,7 +99,7 @@
 				<version>${maven.antrun.plugin.version}</version>
 				<executions>	
                    <execution>
-                        <id>lcovFileForSonar</id>
+                        <id>lcov</id>
                         <phase>test</phase>
                         <goals>
                             <goal>run</goal>
@@ -125,18 +125,16 @@
 								<echo message="Source directory: ${project.build.sourceDirectory}" />
 								<echo message="Relative source directory: ${relativeSourceDirectory}" />
 								<echo message="Fixing a problem with a path to the JavaScript path" />
-								<!--
                                 <replaceregexp byline="true">
                                     <regexp pattern="SF:\./app/(.*)" />
                                     <substitution expression="SF:/${relativeSourceDirectory}/\1" />
                                     <fileset dir="target">
                                         <include name="lcov.info" />
                                     </fileset>
-                                </replaceregexp>             
-                                -->              
+                                </replaceregexp>      
                             </target>
                         </configuration>
-                    </execution>	
+                    </execution>					            
 				</executions>	
 				<dependencies>
 					<dependency>
