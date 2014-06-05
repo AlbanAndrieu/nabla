@@ -1045,9 +1045,9 @@
 				<antlr.version>2.7.7</antlr.version>
 				<org.antlr.version>3.5.1</org.antlr.version>
 				<org.jdom.version>1.1.1</org.jdom.version>
-				<jdom.version>${org.jdom.version}</jdom.version>
-				<ant-nodeps.version>1.7.0</ant-nodeps.version>
+				<jdom.version>${org.jdom.version}</jdom.version>				
 				<ant.version>1.7.0</ant.version>
+				<!--<ant.nodeps.version>${ant.version}</ant.nodeps.version>-->
 				<ant.trax.version>1.7.0</ant.trax.version>
 				<ant.contrib.version>20020829</ant.contrib.version>
 				<c3p0.version>0.8.5.2</c3p0.version>
@@ -1458,6 +1458,7 @@
 				<maven.sonar.maven.plugin.version>2.3</maven.sonar.maven.plugin.version>
 				<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
 				<maven.cli.plugin.version>1.0.10</maven.cli.plugin.version>
+				<maven.frontend.plugin.version>0.0.14</maven.frontend.plugin.version>
 				<maven.shade.plugin.version>2.3</maven.shade.plugin.version>
 				<maven.rar.plugin.version>2.3</maven.rar.plugin.version>
 				<maven.install.plugin.version>2.5.1</maven.install.plugin.version>
@@ -1995,6 +1996,11 @@
 									<version>${maven.cli.plugin.version}</version>
 								</plugin>
 								<plugin>
+									<groupId>com.github.eirslett</groupId>
+									<artifactId>frontend-maven-plugin</artifactId>
+									<version>${maven.frontend.plugin.version}</version> 	
+								</plugin>
+								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-antrun-plugin</artifactId>
 										<version>${maven.antrun.plugin.version}</version>
@@ -2009,6 +2015,11 @@
 														<artifactId>ant-trax</artifactId>
 														<version>${ant.trax.version}</version>
 												</dependency>
+												<dependency>
+														<groupId>org.apache.ant</groupId>
+														<artifactId>ant-apache-regexp</artifactId>
+														<version>${ant.version}</version>
+												</dependency>												
 										</dependencies>					 
 								</plugin>
 								<plugin>
