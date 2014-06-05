@@ -83,7 +83,7 @@ module.exports = function(config){
 	//}            
 	coverageReporter: {
 		type: 'lcov',
-		dir: '../../../../target/karma-coverage'
+		dir: 'target/karma-coverage'
 	}			
   });
 };
