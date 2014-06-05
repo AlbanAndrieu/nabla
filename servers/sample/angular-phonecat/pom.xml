@@ -18,7 +18,7 @@
 		<sonar.exclusions>node/**,node_modules/**,app/bower_components/**</sonar.exclusions> 
 		<sonar.language>js</sonar.language> <!-- NOT NEEDED anymore for Sonar 4.3 -->
 		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
-		<sonar.javascript.lcov.reportPath>${project.build.directory}/lcov.info</sonar.javascript.lcov.reportPath>
+		<sonar.javascript.lcov.reportPath>${project.build.directory}/coverage/lcov.info</sonar.javascript.lcov.reportPath>
 	</properties>
 
 	<build>
@@ -122,9 +122,10 @@
                         <configuration>
                             <target>
 								<echo message="Copying LCOV file -> lcov.info for Sonar purpose to target directory" />
-                                <copy todir="${basedir}/target" flatten="true">
+                                <copy todir="${basedir}/target/coverage" flatten="true">
                                     <fileset dir="${basedir}/target">
-                                        <include name="karma-coverage/PhantomJS*/lcov.info" />
+                                        <!--<include name="karma-coverage/PhantomJS*/lcov.info" />-->
+                                        <include name="karma-coverage/PhantomJS*/**/*" />
                                     </fileset>
                                 </copy>
 
