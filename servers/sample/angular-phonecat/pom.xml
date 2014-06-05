@@ -14,15 +14,17 @@
 	
 	<properties>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
-		<!--
-		<build.timestamp>${maven.build.timestamp}</build.timestamp>
-		<maven.build.timestamp.format>yyyy-MM-dd HH:mm z</maven.build.timestamp.format>
-		-->
 		<sonar.sources>app/js,app/css,app/partials,test</sonar.sources> <!-- TODO removed workaround -->
 		<sonar.exclusions>node/**,node_modules/**,app/bower_components/**</sonar.exclusions> 
+		<sonar.language>js</sonar.language> <!-- NOT NEEDED anymore for Sonar 4.3 -->
+		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+		<sonar.javascript.lcov.reportPath>${project.build.directory}/lcov.info</sonar.javascript.lcov.reportPath>
 	</properties>
 
 	<build>
+		<sourceDirectory>app</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        		
 		<resources>
 			<!-- enable filtering on version.properties to generate build info -->
 			<resource>
@@ -49,7 +51,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>0.0.14</version> <!-- TODO removed hard coded -->
+				<version>${maven.frontend.plugin.version}</version>
 				<!--
 				<configuration>
 					<workingDirectory>src/main/webapp</workingDirectory>
@@ -91,6 +93,64 @@
 
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven.antrun.plugin.version}</version>
+				<executions>	
+                   <execution>
+                        <id>lcovFileForSonar</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+								<echo message="Copying LCOV file -> lcov.info for Sonar purpose to target directory" />
+                                <copy todir="${basedir}/target" flatten="true">
+                                    <fileset dir="${basedir}/target">
+                                        <include name="karma-coverage/PhantomJS*/lcov.info" />
+                                    </fileset>
+                                </copy>
+
+                                <path id="sourceDirectory.path">
+                                  <pathelement location="${project.build.sourceDirectory}"/>
+                                </path>
+
+                                <pathconvert targetos="unix" property="relativeSourceDirectory" refid="sourceDirectory.path">
+                                  <map from="${basedir}/" to=""/>
+                                </pathconvert>
+
+								<echo message="Base dir: ${basedir} " />
+								<echo message="Source directory: ${project.build.sourceDirectory}" />
+								<echo message="Relative source directory: ${relativeSourceDirectory}" />
+								<echo message="Fixing a problem with a path to the JavaScript path" />
+								<!--
+                                <replaceregexp byline="true">
+                                    <regexp pattern="SF:\./app/(.*)" />
+                                    <substitution expression="SF:/${relativeSourceDirectory}/\1" />
+                                    <fileset dir="target">
+                                        <include name="lcov.info" />
+                                    </fileset>
+                                </replaceregexp>             
+                                -->              
+                            </target>
+                        </configuration>
+                    </execution>	
+				</executions>	
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-apache-regexp</artifactId>
+						<version>${ant.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant</artifactId>
+						<version>${ant.version}</version>
+					</dependency>
+				</dependencies>				
+			</plugin>	
 		</plugins>
 	</build>
 	
