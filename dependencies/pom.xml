@@ -1046,7 +1046,7 @@
 				<org.antlr.version>3.5.1</org.antlr.version>
 				<org.jdom.version>1.1.1</org.jdom.version>
 				<jdom.version>${org.jdom.version}</jdom.version>				
-				<ant.version>1.7.0</ant.version>
+				<ant.version>1.9.4</ant.version>
 				<!--<ant.nodeps.version>${ant.version}</ant.nodeps.version>-->
 				<ant.trax.version>1.7.0</ant.trax.version>
 				<ant.contrib.version>20020829</ant.contrib.version>
