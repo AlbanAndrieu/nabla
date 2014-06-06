@@ -16,7 +16,7 @@
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<!--<sonar.sources>app/js,app/css,app/partials,test</sonar.sources>  TODO removed workaround -->
 		<sonar.exclusions>node/**,node_modules/**,app/bower_components/**</sonar.exclusions> 
-		<sonar.language>js</sonar.language> <!-- NOT NEEDED anymore for Sonar 4.3 -->
+		<!--<sonar.language>js</sonar.language>--> <!-- NOT NEEDED anymore for Sonar 4.3 -->
 		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
 		<sonar.javascript.lcov.reportPath>${project.build.directory}/coverage/lcov.info</sonar.javascript.lcov.reportPath>
 	</properties>
