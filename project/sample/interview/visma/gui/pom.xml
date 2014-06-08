@@ -263,7 +263,18 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
- 
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			 <scope>test</scope>
+		</dependency>
 		<!-- 
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -435,6 +446,7 @@
 				<groupId>org.codehaus.gmaven</groupId>
 				<artifactId>gmaven-plugin</artifactId>
 				<extensions>true</extensions>
+				<!--
 				<executions>
 					<execution>
 						<goals>
@@ -452,7 +464,9 @@
 						</configuration>
 					</execution>
 				</executions>
+				-->
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

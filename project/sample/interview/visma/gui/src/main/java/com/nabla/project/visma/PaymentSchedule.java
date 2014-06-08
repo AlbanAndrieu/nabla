@@ -35,6 +35,7 @@ package com.nabla.project.visma;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -77,13 +78,18 @@ public class PaymentSchedule implements Serializable
 
     private void setPayments(final Payment[] aPayments)
     {
-        this.paymentsDataModel = new ArrayDataModel<Payment>(aPayments);
+        if (aPayments == null)
+        {
+            this.paymentsDataModel = new ArrayDataModel<Payment>(new Payment[0]);
+        } else
+        {
+            this.paymentsDataModel = new ArrayDataModel<Payment>(Arrays.copyOf(aPayments, aPayments.length));
+        }
 
         if ((null == this.paymentsDataModel) || (this.paymentsDataModel.getRowCount() <= 0))
         {
             throw new IllegalArgumentException("Schedule cannot be null");
         }
-
     }
 
     private void setPayments(final Map<Integer, List<BigDecimal>> aPayments)
