@@ -127,42 +127,105 @@
 		</licenses>
 
 		<profiles>
-				<!-- ================= START Environment Profiles ================= -->
-		<profile>
-			  <id>m2e</id>
-			  <activation>
-				<property>
-				  <name>m2e.version</name>
-				</property>
-			  </activation>
-			  <build>
-				<plugins>
-				  <plugin>
-					<groupId>org.maven.ide.eclipse</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>${lifecycle.mapping.version}</version>
-					<configuration>
-					  <mappingId>customizable</mappingId>
-					  <configurators>
-						<configurator id='org.maven.ide.eclipse.configuration.wtp.configurator' />
-					  </configurators>
-					  <mojoExecutions>
-						<mojoExecution>org.apache.maven.plugins:maven-resources-plugin::</mojoExecution>
-					  </mojoExecutions>
-					</configuration>
-				  </plugin>
-				</plugins>
-				<pluginManagement>
-				  <plugins>
-					<plugin>
-					  <groupId>org.apache.maven.plugins</groupId>
-					  <artifactId>maven-resources-plugin</artifactId>
-					  <version>${maven.resources.plugin.version}</version>
-					</plugin>
-				  </plugins>
-				</pluginManagement>
-			  </build>
+			<!-- ================= START Environment Profiles ================= -->
+			<!-- Add this profile when you want to debug unit tests in Eclipse e.g. 
+				$> mvn install -Pdebugtest -->
+			<profile>
+				<id>debugtest</id>
+				<activation>
+					<activeByDefault>false</activeByDefault>
+				</activation>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${maven.surefire.plugin.version}</version>
+							<inherited>true</inherited>
+							<configuration>
+								<argLine> -Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000</argLine>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
 			</profile>
+			<profile>
+				<id>debugtest-nosuspend</id>
+				<activation>
+					<activeByDefault>false</activeByDefault>
+				</activation>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${maven.surefire.plugin.version}</version>
+							<inherited>true</inherited>
+							<configuration>
+								<argLine> -Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000,suspend=n -Dsuppress.jrisk.properties.logging=true
+								</argLine>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+			<profile>
+				<id>profiletest</id>
+				<activation>
+					<activeByDefault>false</activeByDefault>
+				</activation>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${maven.surefire.plugin.version}</version>
+							<inherited>true</inherited>
+							<configuration>
+								<argLine> -Xms256m -Xmx512m -agentlib:yjpagent -Dsuppress.jrisk.properties.logging=true
+								</argLine>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>			
+			<!-- This profile houses the m2e config for bypassed maven plugins, activated by m2e -->
+			<profile>
+				  <id>m2e</id>
+				  <activation>
+					<property>
+					  <name>m2e.version</name>
+					</property>
+				  </activation>
+				  <build>
+					<plugins>
+					  <plugin>
+						<!--<groupId>org.maven.ide.eclipse</groupId>-->
+						<groupId>org.eclipse.m2e</groupId>
+						<artifactId>lifecycle-mapping</artifactId>
+						<version>${lifecycle.mapping.version}</version>
+						<configuration>
+						  <mappingId>customizable</mappingId>
+						  <configurators>
+							<configurator id='org.maven.ide.eclipse.configuration.wtp.configurator' />
+						  </configurators>
+						  <mojoExecutions>
+							<mojoExecution>org.apache.maven.plugins:maven-resources-plugin::</mojoExecution>
+						  </mojoExecutions>
+						</configuration>
+					  </plugin>
+					</plugins>
+					<pluginManagement>
+					  <plugins>
+						<plugin>
+						  <groupId>org.apache.maven.plugins</groupId>
+						  <artifactId>maven-resources-plugin</artifactId>
+						  <version>${maven.resources.plugin.version}</version>
+						</plugin>
+					  </plugins>
+					</pluginManagement>
+				  </build>
+				</profile>
 				<profile>
 				  <id>env.WORKSPACE.default</id>
 				  <activation>
@@ -993,6 +1056,7 @@
 				<dbunit.version>2.4.9</dbunit.version>
 				<!--<testng.version>6.8.7</testng.version>-->
 				<testng.version>6.8.8</testng.version>
+				<cucumber.version>1.1.7</cucumber.version>
 				<htmlunit.version>1.11</htmlunit.version>
 				<org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
 				<oro.version>2.0.8</oro.version>
@@ -1123,7 +1187,8 @@
 				<jsf.impl.version>${jsf.version}</jsf.impl.version>
 				<sun.jsf.version>2.1.7</sun.jsf.version>
 				<ajax4jsf.version>1.0.6</ajax4jsf.version>
-				<aspectj.version>1.6.6</aspectj.version>
+				<aspectj.version>1.7.1</aspectj.version>
+		
 				<clickstream.version>1.0.2</clickstream.version>
 				<corejsf.validator.version>1.0</corejsf.validator.version>
 				<displaytag.version>1.2</displaytag.version>
@@ -1233,8 +1298,14 @@
 				<objectify.version>4.0b1</objectify.version>
 				<errai.version>2.0.Beta3</errai.version>
 				<weld.servlet.version>1.0.1-Final</weld.servlet.version>
+				<atmosphere.version>0.8.1</atmosphere.version>
+				<vaadin.version>6.7.4</vaadin.version>						
+				<refresher.version>1.1.0</refresher.version>
+				<vaadin.invient.charts.version>0.8.6</vaadin.invient.charts.version>
+				<vaadin.lazyquerycontainer.version>1.2.9</vaadin.lazyquerycontainer.version>
+				<vaadin.serverpush.version>1.0.6</vaadin.serverpush.version>
 
-		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
+				<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
 				<!--<selenium.version>2.37.1</selenium.version>-->
 				<selenium.version>2.41.0</selenium.version>
 				<!--<selenium.driver.version>2.9.0</selenium.driver.version>-->
@@ -1343,10 +1414,11 @@
 				<wss4j.version>1.5.8</wss4j.version>
 				<wsdl4j.version>1.6.2</wsdl4j.version>
 				<groovy.version>2.0.5</groovy.version>
+				<scala.version>2.9.0-1</scala.version>
 				<http.builder.version>0.6</http.builder.version>
-		<groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
-		<groovy.eclipse.batch.version>2.0.6-01</groovy.eclipse.batch.version>
-		<gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
+				<groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
+				<groovy.eclipse.batch.version>2.0.6-01</groovy.eclipse.batch.version>
+				<gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
 
 				<flex.sdk.version>4.6.b.23201</flex.sdk.version>
 				<flexlib.version>2.5</flexlib.version>
@@ -1406,6 +1478,8 @@
 
 				<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 				<maven.xml.plugin.version>1.0</maven.xml.plugin.version>
+				<maven.gae.plugin.version>0.7.3</maven.gae.plugin.version>
+				<maven.processor.plugin.version>2.0.5</maven.processor.plugin.version>	
 				<maven.karma.plugin.version>1.7</maven.karma.plugin.version>
 				<maven.grunt.plugin.version>1.3.0</maven.grunt.plugin.version>			  
 				<maven.jspc.plugin.version>2.0-alpha-3</maven.jspc.plugin.version>
@@ -1513,11 +1587,13 @@
 				<maven.default.skin.version>1.0</maven.default.skin.version>
 				<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
 				<maven.jaxb2.plugin.version>0.8.2</maven.jaxb2.plugin.version>
+				<maven.aspectj.plugin.version>1.4</maven.aspectj.plugin.version>
 				<maven.sql.plugin.version>1.5</maven.sql.plugin.version>
 				<maven.org.liquibase.plugin.version>3.1.1</maven.org.liquibase.plugin.version>
 				<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
 				<maven.exec.plugin.version>1.3</maven.exec.plugin.version>
 				<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
+				<maven.vaadin.plugin.version>1.0.2</maven.vaadin.plugin.version>
 				<maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
 				<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
 				<maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
@@ -1656,7 +1732,7 @@
 																		<pluginExecutionFilter>
 																				<groupId>org.codehaus.mojo</groupId>
 																				<artifactId>aspectj-maven-plugin</artifactId>
-																				<versionRange>[1.0,)</versionRange>
+																				<versionRange>[${maven.aspectj.plugin.version},)</versionRange>
 																				<goals>
 																						<goal>test-compile</goal>
 																						<goal>compile</goal>
@@ -1802,6 +1878,19 @@
 																		</action>
 																</pluginExecution>
 																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.apache.maven.plugins</groupId>
+																		<artifactId>maven-shade-plugin</artifactId>
+																		<versionRange>[${maven.shade.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>shade</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>																
+																<pluginExecution>
 																		<pluginExecutionFilter>
 																				<groupId>org.codehaus.gmaven</groupId>
 																				<artifactId>gmaven-plugin</artifactId>
@@ -1809,6 +1898,7 @@
 																				<goals>
 																						<goal>execute</goal>
 																						<goal>testCompile</goal>
+																						<goal>compile</goal>
 																				</goals>
 																		</pluginExecutionFilter>
 																		<action>
@@ -1874,6 +1964,7 @@
 																		  <versionRange>[${maven.gwt.plugin.version},)</versionRange>
 																		  <goals>
 																			<goal>resources</goal>
+																			<goal>compile</goal>
 																		  </goals>
 																		</pluginExecutionFilter>
 																		<action>
@@ -1881,10 +1972,23 @@
 																		</action>
 																</pluginExecution>
 																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>com.vaadin</groupId>
+																		<artifactId>vaadin-maven-plugin</artifactId>
+																		<versionRange>[${maven.vaadin.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>update-widgetset</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>																
+																<pluginExecution>
 																  <pluginExecutionFilter>
 																	<groupId>net.kindleit</groupId>
 																	<artifactId>maven-gae-plugin</artifactId>
-																	<versionRange>[0.7.3,)</versionRange>
+																	<versionRange>[${maven.gae.plugin.version},)</versionRange>
 																	<goals>
 																	  <goal>unpack</goal>
 																	</goals>
@@ -1898,7 +2002,7 @@
 																  <pluginExecutionFilter>
 																	<groupId>org.bsc.maven</groupId>
 																	<artifactId>maven-processor-plugin</artifactId>
-																	<versionRange>[2.0.5,)</versionRange>
+																	<versionRange>[${maven.processor.plugin.version},)</versionRange>
 																	<goals>
 																	  <goal>process</goal>
 																	</goals>
@@ -1908,17 +2012,17 @@
 																  </action>
 																</pluginExecution>
 																<pluginExecution>
-																		<pluginExecutionFilter>
-																				<groupId>org.codehaus.mojo</groupId>
-																				<artifactId>xml-maven-plugin</artifactId>
-																				<versionRange>[${maven.xml.plugin.version},)</versionRange>
-																				<goals>
-																						<goal>transform</goal>
-																				</goals>
-																		</pluginExecutionFilter>
-																		<action>
-																				<ignore></ignore>
-																		</action>
+																	<pluginExecutionFilter>
+																			<groupId>org.codehaus.mojo</groupId>
+																			<artifactId>xml-maven-plugin</artifactId>
+																			<versionRange>[${maven.xml.plugin.version},)</versionRange>
+																			<goals>
+																					<goal>transform</goal>
+																			</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																			<ignore></ignore>
+																	</action>
 																</pluginExecution>
 																<pluginExecution>
 																  <pluginExecutionFilter>
@@ -2039,11 +2143,24 @@
 												<showDeprecation>true</showDeprecation>
 												<showWarnings>true</showWarnings>
 												<encoding>${project.build.sourceEncoding}</encoding>
+												<!--<executable>${java.home}/bin/javac</executable> WARNING define in main/pom.xml -->
 												<compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
 												<!--
 														<verbose>true</verbose> <excludes>
 														<exclude>**/*Point*.java</exclude> </excludes>
 												-->
+												<compilerArguments>
+													<!--verbose/ -->
+													<Xmaxerrs>1000000</Xmaxerrs>
+													<Xmaxwarns>100</Xmaxwarns>
+													<!-- Commented the next line because it causes the following error 
+														with Maven 2.0.9: Embedded error: Unknown error trying to execute the external 
+														compiler: C:\Views\KFL_1_0\vendors\etc\win32\jdk1.5.0_12\bin\javac "@C:/Documents 
+														and Settings/philip.schwarz/Local Settings/Temp/org.codehaus.plexus.compiler.javac.JavacCompiler25355arguments" 
+														-J-Xmx512m -J-Xms128m The line does work with Maven 2.1-SNAPSHOT. NOTE: the 
+														error only seems to occur when there are compilation errors. -->
+													<!--Xstdout>compile.log</Xstdout -->
+												</compilerArguments>
 										</configuration>
 								</plugin>
 								<plugin>
@@ -2105,10 +2222,15 @@
 																		</requireMavenVersion>
 
 																		<requireJavaVersion>
-																				<message>You need at least Java ${jdkLevel}!</message>
+																				<message>
+																					################################################################################
+																					# To build Na, laenvironment variable JAVA_HOME must
+																					point to JDK ${jdkVersion}
+																					You need at least Java ${jdkLevel}!#
+																					################################################################################
+																				</message>																				
 																				<!-- minimum version is 1.5, higher versions allowed -->
 																				<version>[${jdkVersion},]</version>
-																				<!--<version>[1.6.0,]</version>-->
 																		</requireJavaVersion>
 																		<DependencyConvergence/>
 																		<requirePluginVersions>
@@ -2234,10 +2356,12 @@
 												<!-- Enable or disable JUnit tests -->
 												<skip>${maven.test.skip}</skip>
 												<linkXRef>true</linkXRef>
-												<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+												<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
 												<excludes>
 														<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
 												</excludes>
+												<!-- Continue with other tests if a single method fails -->
+												<configFailurePolicy>continue</configFailurePolicy>
 												<!-- Enable or disable Stop maven -->
 												<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 												<!-- when forked, debugging in Eclipse won't work -->
@@ -2278,6 +2402,12 @@
 												  <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
 												  <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
 												</additionalClasspathElements>
+												<!-- exclude interface apis -->
+												<classpathDependencyExcludes>
+													<classpathDependencyExclude>javaee:javaee-api</classpathDependencyExclude>
+													<classpathDependencyExclude>javax.jms:jms-api</classpathDependencyExclude>
+													<classpathDependencyExclude>javax.servlet:servlet-api</classpathDependencyExclude>
+												</classpathDependencyExcludes>												
 												<!-- Folder for generated testing stuff -->
 												<systemProperties>
 												  <property>
@@ -2430,6 +2560,40 @@
 									</execution>
 								  </executions>
 								  -->
+								<executions>
+									<execution>
+										<id>groovy compile</id>
+										<goals>
+											<goal>compile</goal>
+										</goals>
+										<configuration>
+											<sources>
+												<fileset>
+													<directory>${basedir}/src/main/groovy</directory>
+													<includes>
+														<include>**/*.groovy</include>
+													</includes>
+												</fileset>
+											</sources>
+										</configuration>
+									</execution>
+									<execution>
+										<id>groovy test compile</id>
+										<goals>
+											<goal>testCompile</goal>
+										</goals>
+										<configuration>
+											<sources>
+												<fileset>
+													<directory>${basedir}/src/test/groovy</directory>
+													<includes>
+														<include>**/*.groovy</include>
+													</includes>
+												</fileset>
+											</sources>
+										</configuration>
+									</execution>
+								</executions>								  
 								</plugin>
 								<plugin>
 									<groupId>org.codehaus.mojo</groupId>
@@ -2437,11 +2601,11 @@
 									<version>${maven.selenium.plugin.version}</version>
 									<!--
 									<configuration>
-								<browser>*firefox</browser>
-								<suite>src/test/selenium/SimpleSTest.html</suite>
-								<startURL>http://localhost:9090</startURL>
-							</configuration>
-							-->
+										<browser>*firefox</browser>
+										<suite>src/test/selenium/SimpleSTest.html</suite>
+										<startURL>http://localhost:9090</startURL>
+									</configuration>
+									-->
 									<executions>
 										<execution>
 											<phase>pre-integration-test</phase>
@@ -2777,6 +2941,7 @@
 										<version>${maven.war.plugin.version}</version>
 										<configuration>
 										  <encoding>${project.build.sourceEncoding}</encoding>
+										  <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
 										  <webResources>
 											<webResource>
 											  <directory>${basedir}/src/main/webapp/WEB-INF</directory>
@@ -2786,7 +2951,7 @@
 										  </webResources>
 										  <archive>
 											<!-- do not generate files that disturb jar diff between version -->
-									<addMavenDescriptor>false</addMavenDescriptor>
+											<addMavenDescriptor>false</addMavenDescriptor>
 											<pomPropertiesFile>false</pomPropertiesFile>
 											<manifest>
 											  <addClasspath>true</addClasspath>
@@ -3315,7 +3480,7 @@
 													<artifactId>build-tools</artifactId>
 													<version>1.0.1-SNAPSHOT</version>
 											</dependency>
-										</dependencies>									 
+										</dependencies>
 								</plugin>
 								
 								<plugin>
@@ -3529,6 +3694,48 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>gwt-maven-plugin</artifactId>
 										<version>${maven.gwt.plugin.version}</version>
+								</plugin>
+								<plugin>
+										<groupId>com.vaadin</groupId>
+										<artifactId>vaadin-maven-plugin</artifactId>
+										<version>${maven.vaadin.plugin.version}</version>
+								</plugin>
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>aspectj-maven-plugin</artifactId>
+									<version>${aspectj.plugin.version}</version>
+									<executions>
+										<execution>
+											<configuration>
+												<showWeaveInfo>true</showWeaveInfo>
+												<source>${jdkLevel}</source>
+												<target>${jdkLevel}</target>
+												<!--Xlint>ignore</Xlint -->
+												<!--verbose>true</verbose -->
+												<complianceLevel>${compiler.version}</complianceLevel>
+												<forceAjcCompile>false</forceAjcCompile>
+												<maxmem>750m</maxmem>
+											</configuration>
+											<goals>
+												<goal>compile</goal>
+											</goals>
+										</execution>
+									</executions>
+									<!-- Need to explicitly set the compiler dependencies for Java 1.7 (with 
+										plugin version 1.4) otherwise the plugin uses the dependencies defined in 
+										its pom (which are not good enough) -->
+									<dependencies>
+										<dependency>
+											<groupId>org.aspectj</groupId>
+											<artifactId>aspectjrt</artifactId>
+											<version>${aspectj.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.aspectj</groupId>
+											<artifactId>aspectjtools</artifactId>
+											<version>${aspectj.version}</version>
+										</dependency>
+									</dependencies>
 								</plugin>
 								<plugin>
 										<groupId>org.codehaus.mojo</groupId>
@@ -4235,12 +4442,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${mockito.version}</version>
 								<scope>test</scope>
 						</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-all</artifactId>
-				<version>${hamcrest.all.version}</version>
-				<scope>test</scope>
-			</dependency>
+						<dependency>
+							<groupId>org.hamcrest</groupId>
+							<artifactId>hamcrest-all</artifactId>
+							<version>${hamcrest.all.version}</version>
+							<scope>test</scope>
+						</dependency>
 						<dependency>
 								<groupId>org.springframework</groupId>
 								<artifactId>spring-mock</artifactId>
@@ -4266,24 +4473,54 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<!--<classifier>jdk15</classifier>-->
 								<scope>test</scope>
 						</dependency>
-			<dependency>
-				<groupId>org.codehaus.groovy.modules.http-builder</groupId>
-				<artifactId>http-builder</artifactId>
-				<version>${http.builder.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.bean-matchers</groupId>
-				<artifactId>bean-matchers</artifactId>
-				<version>${bean.matchers.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.mockito</groupId>
-						<artifactId>mockito-core</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-java</artifactId>
+							<version>${cucumber.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-junit</artifactId>
+							<version>${cucumber.version}</version>
+							 <scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-openejb</artifactId>
+							<version>${cucumber.version}</version>
+							 <scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-spring</artifactId>
+							<version>${cucumber.version}</version>
+							 <scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-guice</artifactId>
+							<version>${cucumber.version}</version>
+							 <scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.groovy.modules.http-builder</groupId>
+							<artifactId>http-builder</artifactId>
+							<version>${http.builder.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>com.google.code.bean-matchers</groupId>
+							<artifactId>bean-matchers</artifactId>
+							<version>${bean.matchers.version}</version>
+							<scope>test</scope>
+							<exclusions>
+								<exclusion>
+									<groupId>org.mockito</groupId>
+									<artifactId>mockito-core</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
 						<dependency>
 								<groupId>org.beanshell</groupId>
 								<artifactId>bsh</artifactId>
@@ -4985,6 +5222,17 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<scope>compile</scope>
 						</dependency>
 						-->
+
+						<dependency>
+							<groupId>org.scala-lang</groupId>
+							<artifactId>scala-library</artifactId>
+							<version>${scala.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.scala-lang</groupId>
+							<artifactId>scala-compiler</artifactId>
+							<version>${scala.version}</version>
+						</dependency>						
 						<!--
 						  groovy-all-1.5.4 provided by Seam-2.1.2, seam-2.2.0 and seam-2.2.1 root POM
 						  does not work with the gmaven-1.2 and 1.3 plugin, must use groovy-1.7.x.
@@ -5678,6 +5926,61 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</dependency>
 
 						<dependency>
+							<groupId>com.vaadin</groupId>
+							<artifactId>vaadin</artifactId>
+							<version>${vaadin.version}</version>
+							<type>jar</type>
+							<scope>compile</scope>
+						</dependency>
+						<dependency>
+							<!-- vaadin add-on -->
+							<groupId>com.github.wolfie</groupId>
+							<artifactId>refresher</artifactId>
+							<version>${refresher.version}</version>
+							<type>jar</type>
+							<scope>compile</scope>
+						</dependency>
+						<dependency>
+							<!-- vaadin add-on -->
+							<groupId>org.vaadin.addons</groupId>
+							<artifactId>invient-charts</artifactId>
+							<version>${vaadin.invient.charts.version}</version>
+							<type>jar</type>
+							<scope>compile</scope>
+						</dependency>
+						<dependency>
+							<!-- vaadin add-on -->
+							<groupId>org.vaadin.addons.lazyquerycontainer</groupId>
+							<artifactId>vaadin-lazyquerycontainer</artifactId>
+							<version>${vaadin.lazyquerycontainer.version}</version>
+							<type>jar</type>
+							<scope>compile</scope>
+						</dependency>
+						<!-- vaadin add-on -->
+						<dependency>
+							<groupId>org.vaadin.addons</groupId>
+							<artifactId>serverpush</artifactId>
+							<version>${vaadin.serverpush.version}</version>
+						</dependency>
+
+						<!-- Atmosphere - for ServerPush -->
+						<dependency>
+							<groupId>org.atmosphere</groupId>
+							<artifactId>atmosphere-gwt-server</artifactId>
+							<version>${atmosphere.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.atmosphere</groupId>
+							<artifactId>atmosphere-gwt-client</artifactId>
+							<version>${atmosphere.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.atmosphere</groupId>
+							<artifactId>atmosphere-runtime</artifactId>
+							<version>${atmosphere.version}</version>
+						</dependency>
+						
+						<dependency>
 						  <groupId>com.google.gwt</groupId>
 						  <artifactId>gwt-user</artifactId>
 						  <version>${gwt.version}</version>
@@ -5689,68 +5992,68 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						  <version>${gwt.version}</version>
 						</dependency>
 
-	<dependency>
-	  <groupId>com.googlecode.objectify</groupId>
-	  <artifactId>objectify</artifactId>
-	  <version>${objectify.version}</version>
-	</dependency>
+						<dependency>
+						  <groupId>com.googlecode.objectify</groupId>
+						  <artifactId>objectify</artifactId>
+						  <version>${objectify.version}</version>
+						</dependency>
 
-		   <dependency>
-			  <groupId>org.jboss.el</groupId>
-			  <artifactId>jboss-el</artifactId>
-			  <version>${jboss.el.version}</version>
-			  <exclusions>
-			  <exclusion>
-				<groupId>javax.el</groupId>
-				<artifactId>el-api</artifactId>
-			  </exclusion>
-			  </exclusions>
-			</dependency>
+					   <dependency>
+						  <groupId>org.jboss.el</groupId>
+						  <artifactId>jboss-el</artifactId>
+						  <version>${jboss.el.version}</version>
+						  <exclusions>
+						  <exclusion>
+							<groupId>javax.el</groupId>
+							<artifactId>el-api</artifactId>
+						  </exclusion>
+						  </exclusions>
+						</dependency>
 
-				<dependency>
-					<groupId>org.jboss.logging</groupId>
-					<artifactId>jboss-logging</artifactId>
-					<version>${jboss.logging.version}</version>
-				</dependency>
+						<dependency>
+							<groupId>org.jboss.logging</groupId>
+							<artifactId>jboss-logging</artifactId>
+							<version>${jboss.logging.version}</version>
+						</dependency>
 
-				<!--Fix: java.lang.ClassNotFoundException: org.jboss.util.id.SerialVersion-->
-				<dependency>
-				  <groupId>org.jboss</groupId>
-				  <artifactId>jboss-common-core</artifactId>
-				  <version>${jboss.common.core.version}</version>
-				</dependency>
+						<!--Fix: java.lang.ClassNotFoundException: org.jboss.util.id.SerialVersion-->
+						<dependency>
+						  <groupId>org.jboss</groupId>
+						  <artifactId>jboss-common-core</artifactId>
+						  <version>${jboss.common.core.version}</version>
+						</dependency>
 
-			<dependency>
-			  <groupId>org.jbpm</groupId>
-			  <artifactId>jbpm-jpdl</artifactId>
-			  <version>${jbpm.jpdl.version}</version>
-			  <exclusions>
-				<exclusion>
-				  <groupId>commons-logging</groupId>
-				  <artifactId>commons-logging</artifactId>
-				</exclusion>
-				<exclusion>
-				  <groupId>javax.servlet</groupId>
-				  <artifactId>servlet-api</artifactId>
-				</exclusion>
-			  </exclusions>
-			</dependency>
+						<dependency>
+						  <groupId>org.jbpm</groupId>
+						  <artifactId>jbpm-jpdl</artifactId>
+						  <version>${jbpm.jpdl.version}</version>
+						  <exclusions>
+							<exclusion>
+							  <groupId>commons-logging</groupId>
+							  <artifactId>commons-logging</artifactId>
+							</exclusion>
+							<exclusion>
+							  <groupId>javax.servlet</groupId>
+							  <artifactId>servlet-api</artifactId>
+							</exclusion>
+						  </exclusions>
+						</dependency>
 
-			<dependency>
-			  <groupId>jboss</groupId>
-			  <artifactId>jboss-cache</artifactId>
-			  <version>${jboss.cache.version}</version>
-			  <exclusions>
-				<exclusion>
-				  <groupId>jboss</groupId>
-				  <artifactId>jboss-system</artifactId>
-				</exclusion>
-				<exclusion>
-				  <groupId>jboss</groupId>
-				  <artifactId>jboss-jmx</artifactId>
-				</exclusion>
-			  </exclusions>
-			</dependency>
+						<dependency>
+						  <groupId>jboss</groupId>
+						  <artifactId>jboss-cache</artifactId>
+						  <version>${jboss.cache.version}</version>
+						  <exclusions>
+							<exclusion>
+							  <groupId>jboss</groupId>
+							  <artifactId>jboss-system</artifactId>
+							</exclusion>
+							<exclusion>
+							  <groupId>jboss</groupId>
+							  <artifactId>jboss-jmx</artifactId>
+							</exclusion>
+						  </exclusions>
+						</dependency>
 
 						<dependency>
 								<groupId>jboss</groupId>
@@ -5758,12 +6061,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${jboss4.version}</version>
 								<scope>provided</scope>
 						</dependency>
-		   <dependency>
-				<groupId>jboss</groupId>
-				<artifactId>jboss-ejb3-client</artifactId>
-				<version>${jboss4.version}</version>
-				<scope>provided</scope>
-			</dependency>
+					   <dependency>
+							<groupId>jboss</groupId>
+							<artifactId>jboss-ejb3-client</artifactId>
+							<version>${jboss4.version}</version>
+							<scope>provided</scope>
+						</dependency>
 						<dependency>
 							<groupId>jboss</groupId>
 							<artifactId>jboss-ejb3x</artifactId>
@@ -5776,12 +6079,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${jbossall.client.version}</version>
 							<scope>runtime</scope>
 						</dependency>
-		   <dependency>
-				<groupId>org.jboss</groupId>
-				<artifactId>ejb3-persistence</artifactId>
-				<version>${jboss.ejb3.persistence.version}</version>
-				<scope>provided</scope>
-			</dependency>
+					   <dependency>
+							<groupId>org.jboss</groupId>
+							<artifactId>ejb3-persistence</artifactId>
+							<version>${jboss.ejb3.persistence.version}</version>
+							<scope>provided</scope>
+						</dependency>
 						<dependency>
 							<groupId>jboss</groupId>
 							<artifactId>jboss-annotations-ejb3</artifactId>
@@ -5789,60 +6092,60 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<scope>provided</scope>
 						</dependency>
 						<dependency>
-								<groupId>org.jboss.spec.javax.interceptor</groupId>
-								<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
-								<version>${jboss.interceptors.api.spec.version}</version>
-								<scope>provided</scope>
+							<groupId>org.jboss.spec.javax.interceptor</groupId>
+							<artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+							<version>${jboss.interceptors.api.spec.version}</version>
+							<scope>provided</scope>
 						</dependency>
 
-			<dependency>
-				<groupId>jboss</groupId>
-				<artifactId>jboss-serialization</artifactId>
-				<version>${jboss4.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>jboss</groupId>
-				<artifactId>jboss-remoting</artifactId>
-				<version>${jboss4.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>jboss</groupId>
-				<artifactId>jboss-aop-jdk50-client</artifactId>
-				<version>${jboss4.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<!--dependency>
-				<groupId>org.jboss</groupId>
-				<artifactId>jboss-aspect-jdk50-client</artifactId>
-				<version>4.0.5-GA</version>
-				<scope>provided</scope>
-			</dependency-->
-			<dependency>
-				<groupId>jboss</groupId>
-				<artifactId>jnp-client</artifactId>
-				<version>${jboss4.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<!--dependency>
-				<groupId>org.jboss.microcontainer</groupId>
-				<artifactId>jboss-ejb3-all</artifactId>
-				<version>${jboss.microcontainer.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.microcontainer</groupId>
-				<artifactId>jms-ra</artifactId>
-				<version>${jboss.microcontainer.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.microcontainer</groupId>
-				<artifactId>jcainflow</artifactId>
-				<version>${jboss.microcontainer.version}</version>
-				<scope>provided</scope>
-			</dependency-->
+						<dependency>
+							<groupId>jboss</groupId>
+							<artifactId>jboss-serialization</artifactId>
+							<version>${jboss4.version}</version>
+							<scope>provided</scope>
+						</dependency>
+						<dependency>
+							<groupId>jboss</groupId>
+							<artifactId>jboss-remoting</artifactId>
+							<version>${jboss4.version}</version>
+							<scope>provided</scope>
+						</dependency>
+						<dependency>
+							<groupId>jboss</groupId>
+							<artifactId>jboss-aop-jdk50-client</artifactId>
+							<version>${jboss4.version}</version>
+							<scope>provided</scope>
+						</dependency>
+						<!--dependency>
+							<groupId>org.jboss</groupId>
+							<artifactId>jboss-aspect-jdk50-client</artifactId>
+							<version>4.0.5-GA</version>
+							<scope>provided</scope>
+						</dependency-->
+						<dependency>
+							<groupId>jboss</groupId>
+							<artifactId>jnp-client</artifactId>
+							<version>${jboss4.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						<!--dependency>
+							<groupId>org.jboss.microcontainer</groupId>
+							<artifactId>jboss-ejb3-all</artifactId>
+							<version>${jboss.microcontainer.version}</version>
+							<scope>provided</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.microcontainer</groupId>
+							<artifactId>jms-ra</artifactId>
+							<version>${jboss.microcontainer.version}</version>
+							<scope>provided</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.microcontainer</groupId>
+							<artifactId>jcainflow</artifactId>
+							<version>${jboss.microcontainer.version}</version>
+							<scope>provided</scope>
+						</dependency-->
 
 						<dependency>
 								<groupId>org.mvel</groupId>
@@ -6752,26 +7055,32 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 			</dependency>
 			<!-- // H2 -->
 			<!-- ORACLE -->
-								<dependency>
-										<groupId>com.oracle</groupId>
-										<artifactId>ojdbc14</artifactId>
-										<version>${jdbc.oracle.version}</version>
-								</dependency>
-									<!-- // ORACLE -->
+			<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc14</artifactId>
+					<version>${jdbc.oracle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>orai18n</artifactId>
+				<version>${jdbc.oracle.version}</version>
+				<scope>runtime</scope>
+			</dependency>								
+			<!-- // ORACLE -->
 			<!-- POSTGRESQL -->
-								<dependency>
-										<groupId>postgresql</groupId>
-										<artifactId>postgresql</artifactId>
-										<version>${jdbc.postgresql.version}</version>
-								</dependency>
-									<!-- // POSTGRESQL -->
+			<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>${jdbc.postgresql.version}</version>
+			</dependency>
+			<!-- // POSTGRESQL -->
 			<!-- MYSQL -->
-								<dependency>
-										<groupId>mysql</groupId>
-										<artifactId>mysql-connector-java</artifactId>
-										<version>${jdbc.mysql.version}</version>
-								</dependency>
-									<!-- // MYSQL -->
+			<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>${jdbc.mysql.version}</version>
+			</dependency>
+			<!-- // MYSQL -->
 			<!-- // Database -->
 			<dependency>
 				<groupId>org.codehaus.plexus</groupId>
@@ -7053,389 +7362,399 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 			</dependency>
 			<!-- // JAXB -->
 
-				<!-- Jackson -->
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-core-asl</artifactId>
-					<version>${jackson.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-jaxrs</artifactId>
-					<version>${jackson.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-mapper-asl</artifactId>
-					<version>${jackson.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-smile</artifactId>
-					<version>${jackson.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-xc</artifactId>
-					<version>${jackson.version}</version>
-				</dependency>
-				<!-- // Jackson -->
+						<!-- Jackson -->
+						<dependency>
+							<groupId>org.codehaus.jackson</groupId>
+							<artifactId>jackson-core-asl</artifactId>
+							<version>${jackson.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.jackson</groupId>
+							<artifactId>jackson-jaxrs</artifactId>
+							<version>${jackson.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.jackson</groupId>
+							<artifactId>jackson-mapper-asl</artifactId>
+							<version>${jackson.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.jackson</groupId>
+							<artifactId>jackson-smile</artifactId>
+							<version>${jackson.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.jackson</groupId>
+							<artifactId>jackson-xc</artifactId>
+							<version>${jackson.version}</version>
+						</dependency>
+						<!-- // Jackson -->
 
-				<!-- Jersey -->
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-core</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-json</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-client</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-server</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-apache-client</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-guice</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>wadl-resourcedoc-doclet</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-wadl-json-schema</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-multipart</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-				<!-- // Jersey -->
+						<!-- Jersey -->
+						<dependency>
+							<groupId>com.sun.jersey</groupId>
+							<artifactId>jersey-core</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey</groupId>
+							<artifactId>jersey-json</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey</groupId>
+							<artifactId>jersey-client</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey</groupId>
+							<artifactId>jersey-server</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey.contribs</groupId>
+							<artifactId>jersey-apache-client</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey.contribs</groupId>
+							<artifactId>jersey-guice</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey.contribs</groupId>
+							<artifactId>wadl-resourcedoc-doclet</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey.contribs</groupId>
+							<artifactId>jersey-wadl-json-schema</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.jersey.contribs</groupId>
+							<artifactId>jersey-multipart</artifactId>
+							<version>${jersey.version}</version>
+						</dependency>
+						<!-- // Jersey -->
 
-				<!-- Jetty -->
-				<!--
-				<dependency>
-					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>jetty</artifactId>
-					<version>${jetty.version}</version>
-					<scope>runtime</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>jetty-util</artifactId>
-					<version>${jetty.version}</version>
-					<scope>runtime</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>start</artifactId>
-					<version>${jetty.version}</version>
-					<scope>runtime</scope>
-				</dependency>
-				-->
-				<!-- // Jetty -->
+						<!-- Jetty -->
+						<!--
+						<dependency>
+							<groupId>org.mortbay.jetty</groupId>
+							<artifactId>jetty</artifactId>
+							<version>${jetty.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.mortbay.jetty</groupId>
+							<artifactId>jetty-util</artifactId>
+							<version>${jetty.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.mortbay.jetty</groupId>
+							<artifactId>start</artifactId>
+							<version>${jetty.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						-->
+						<!-- // Jetty -->
 
-				<!-- // Jetty7 -->
-				<!--
-				<dependency>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-server</artifactId>
-					<version>${jetty7.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-servlet</artifactId>
-					<version>${jetty7.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-servlets</artifactId>
-					<version>${jetty7.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-websocket</artifactId>
-					<version>${jetty7.version}</version>
-				</dependency>
-				-->
-				<!-- // Jetty7 -->
+						<!-- // Jetty7 -->
+						<!--
+						<dependency>
+							<groupId>org.eclipse.jetty</groupId>
+							<artifactId>jetty-server</artifactId>
+							<version>${jetty7.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.eclipse.jetty</groupId>
+							<artifactId>jetty-servlet</artifactId>
+							<version>${jetty7.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.eclipse.jetty</groupId>
+							<artifactId>jetty-servlets</artifactId>
+							<version>${jetty7.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.eclipse.jetty</groupId>
+							<artifactId>jetty-websocket</artifactId>
+							<version>${jetty7.version}</version>
+						</dependency>
+						-->
+						<!-- // Jetty7 -->
 
-			<!-- // Jetty8 -->
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-server</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-security</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-util</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-servlet</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-servlets</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-deploy</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-webapp</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-websocket</artifactId>
-				<version>${jetty.websocket.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-xml</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-continuation</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-http</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-io</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<!-- // Jetty8 -->
+					<!-- // Jetty8 -->
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-server</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-security</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-util</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-servlet</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-servlets</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-deploy</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-webapp</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-websocket</artifactId>
+						<version>${jetty.websocket.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-xml</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-continuation</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-http</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-io</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+					<!-- // Jetty8 -->
 
-			<!-- Logging -->
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${log4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jul-to-slf4j</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>log4j-over-slf4j</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-simple</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-jdk14</artifactId>
-				<version>${slf4j.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-core</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.lazyluke</groupId>
-				<artifactId>log4jdbc-remix</artifactId>
-				<version>${log4jdbc.remix.version}</version>
-			</dependency>
-			<!-- // Logging -->
+					<!-- Logging -->
+					<dependency>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+						<version>${log4j.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+						<version>${slf4j.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl-over-slf4j</artifactId>
+						<version>${slf4j.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jul-to-slf4j</artifactId>
+						<version>${slf4j.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>log4j-over-slf4j</artifactId>
+						<version>${slf4j.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+						<version>${slf4j.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-simple</artifactId>
+						<version>${slf4j.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-jdk14</artifactId>
+						<version>${slf4j.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-core</artifactId>
+						<version>${logback.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+						<version>${logback.version}</version>
+						<scope>runtime</scope>
+					</dependency>
+					<dependency>
+						<groupId>org.lazyluke</groupId>
+						<artifactId>log4jdbc-remix</artifactId>
+						<version>${log4jdbc.remix.version}</version>
+					</dependency>
+					<!-- // Logging -->
 
-				<dependency>
-					<groupId>com.google.code.findbugs</groupId>
-					<artifactId>jsr305</artifactId>
-					<version>${jsr305.version}</version>
-					<optional>true</optional><!-- needed only for annotations -->
-				</dependency>
-				<dependency>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-					<version>${guava.version}</version>
-				</dependency>
-				<!--
-				<dependency>
-					<groupId>com.pmease</groupId>
-					<artifactId>xmt</artifactId>
-					<version>${xmt.version}</version>
-				</dependency>
-				-->
-				<dependency>
-				  <groupId>org.drools</groupId>
-				  <artifactId>drools-core</artifactId>
-				  <version>${drools.version}</version>
-				</dependency>			 
-				<dependency>
-				  <groupId>org.drools</groupId>
-				  <artifactId>drools-compiler</artifactId>
-				  <version>${drools.version}</version>
-				</dependency>			   
-				<dependency>
-				  <groupId>org.drools</groupId>
-				  <artifactId>drools-api</artifactId>
-				  <version>${drools.version}</version>
-				</dependency>			 
-				<dependency>
-				  <groupId>org.drools</groupId>
-				  <artifactId>drools-decisiontables</artifactId>
-				  <version>${drools.version}</version>
-				</dependency>			  
-				<dependency>
-				  <groupId>org.drools</groupId>
-				  <artifactId>drools-templates</artifactId>
-				  <version>${drools.version}</version>
-				</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjrt</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.google.code.findbugs</groupId>
+						<artifactId>jsr305</artifactId>
+						<version>${jsr305.version}</version>
+						<optional>true</optional><!-- needed only for annotations -->
+					</dependency>
+					<dependency>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+						<version>${guava.version}</version>
+					</dependency>
+					<!--
+					<dependency>
+						<groupId>com.pmease</groupId>
+						<artifactId>xmt</artifactId>
+						<version>${xmt.version}</version>
+					</dependency>
+					-->
+					<dependency>
+					  <groupId>org.drools</groupId>
+					  <artifactId>drools-core</artifactId>
+					  <version>${drools.version}</version>
+					</dependency>			 
+					<dependency>
+					  <groupId>org.drools</groupId>
+					  <artifactId>drools-compiler</artifactId>
+					  <version>${drools.version}</version>
+					</dependency>			   
+					<dependency>
+					  <groupId>org.drools</groupId>
+					  <artifactId>drools-api</artifactId>
+					  <version>${drools.version}</version>
+					</dependency>			 
+					<dependency>
+					  <groupId>org.drools</groupId>
+					  <artifactId>drools-decisiontables</artifactId>
+					  <version>${drools.version}</version>
+					</dependency>			  
+					<dependency>
+					  <groupId>org.drools</groupId>
+					  <artifactId>drools-templates</artifactId>
+					  <version>${drools.version}</version>
+					</dependency>
 
-				<dependency>
-				  <groupId>org.drools</groupId>
-				  <artifactId>drools-transformer-xstream</artifactId>
-				  <version>${drools.transformer.xstream.version}</version>
-				</dependency>
-					
-				<dependency>
-					<groupId>com.thoughtworks.xstream</groupId>
-					<artifactId>xstream</artifactId>
-					<version>${xstream.version}</version>
-				</dependency>
-				<!--
-				<dependency>
-					<groupId>com.yourkit</groupId>
-					<artifactId>yjp-controller-api-redist</artifactId>
-					<version>${yourkit.version}</version>
-					<scope>test</scope>
-				</dependency>
-				-->
-				<dependency>
-					<groupId>jaxen</groupId>
-					<artifactId>jaxen</artifactId>
-					<version>${jaxen.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>joda-time</groupId>
-					<artifactId>joda-time</artifactId>
-					<version>${joda.time.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>net.java.dev.stax-utils</groupId>
-					<artifactId>stax-utils</artifactId>
-					<version>${stax.util.version}</version>
-					<exclusions>
-						<exclusion>
-							<groupId>com.bea.xml</groupId>
-							<artifactId>jsr173-ri</artifactId>
-						</exclusion>
-					</exclusions>
-				</dependency>
-				<dependency>
-					<groupId>net.sf.opencsv</groupId>
-					<artifactId>opencsv</artifactId>
-					<version>${opencsv.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.neethi</groupId>
-					<artifactId>neethi</artifactId>
-					<version>${neethi.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.xmlgraphics</groupId>
-					<artifactId>fop</artifactId>
-					<version>${fop.version}</version>
-					<exclusions>
-						<exclusion>
-							<groupId>xml-apis</groupId>
-							<artifactId>xml-apis</artifactId>
-						</exclusion>
-					</exclusions>
-				</dependency>
-				<dependency>
-					<groupId>org.jdom</groupId>
-					<artifactId>jdom</artifactId>
-					<version>${org.jdom.version}</version>
-				</dependency>
-				<!--
-				<dependency>
-					<groupId>jdom</groupId>--><!-- necessary to force the relocation to org.jdom --><!--
-					<artifactId>jdom</artifactId>
-					<version>${jdom.version}</version>
-				</dependency>
-				-->
-				<dependency>
-					<groupId>org.jvnet.hudson</groupId>
-					<artifactId>jtidy</artifactId>
-					<version>${jtidy.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>xpp3</groupId>
-					<artifactId>xpp3_min</artifactId>
-					<version>${xpp3.min.version}</version>
-				</dependency>
+					<dependency>
+					  <groupId>org.drools</groupId>
+					  <artifactId>drools-transformer-xstream</artifactId>
+					  <version>${drools.transformer.xstream.version}</version>
+					</dependency>
+						
+					<dependency>
+						<groupId>com.thoughtworks.xstream</groupId>
+						<artifactId>xstream</artifactId>
+						<version>${xstream.version}</version>
+					</dependency>
+					<!--
+					<dependency>
+						<groupId>com.yourkit</groupId>
+						<artifactId>yjp-controller-api-redist</artifactId>
+						<version>${yourkit.version}</version>
+						<scope>test</scope>
+					</dependency>
+					-->
+					<dependency>
+						<groupId>jaxen</groupId>
+						<artifactId>jaxen</artifactId>
+						<version>${jaxen.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>joda-time</groupId>
+						<artifactId>joda-time</artifactId>
+						<version>${joda.time.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>net.java.dev.stax-utils</groupId>
+						<artifactId>stax-utils</artifactId>
+						<version>${stax.util.version}</version>
+						<exclusions>
+							<exclusion>
+								<groupId>com.bea.xml</groupId>
+								<artifactId>jsr173-ri</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>net.sf.opencsv</groupId>
+						<artifactId>opencsv</artifactId>
+						<version>${opencsv.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.neethi</groupId>
+						<artifactId>neethi</artifactId>
+						<version>${neethi.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.xmlgraphics</groupId>
+						<artifactId>fop</artifactId>
+						<version>${fop.version}</version>
+						<exclusions>
+							<exclusion>
+								<groupId>xml-apis</groupId>
+								<artifactId>xml-apis</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.jdom</groupId>
+						<artifactId>jdom</artifactId>
+						<version>${org.jdom.version}</version>
+					</dependency>
+					<!--
+					<dependency>
+						<groupId>jdom</groupId>--><!-- necessary to force the relocation to org.jdom --><!--
+						<artifactId>jdom</artifactId>
+						<version>${jdom.version}</version>
+					</dependency>
+					-->
+					<dependency>
+						<groupId>org.jvnet.hudson</groupId>
+						<artifactId>jtidy</artifactId>
+						<version>${jtidy.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>xpp3</groupId>
+						<artifactId>xpp3_min</artifactId>
+						<version>${xpp3.min.version}</version>
+					</dependency>
 				<!-- // Misc -->
 				</dependencies>
 		</dependencyManagement>
-
+		
 		<repositories>
 				<repository>
 						<id>server-forge-release</id>
