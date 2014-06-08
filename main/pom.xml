@@ -109,13 +109,16 @@
 
                 <apache-continuum.version>1.2.3</apache-continuum.version>
 
-                <project.target>C:\target</project.target>
+                <!--<project.target>C:\target</project.target>-->
+                <project.target>/target</project.target>
                 <project.includeidl>${project.target}</project.includeidl>
                 <project.includexml>${project.target}</project.includexml>
                 <project.includedictionaries>${project.target}</project.includedictionaries>
                 <maven.build.generated>src/generated</maven.build.generated>
                 <maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
                 <append.to.project.name>trunk</append.to.project.name>                
+                <!-- Profile create-src-jars copies src JARs to the following directory -->
+				<src.jars.dir>${project.target}/src</src.jars.dir>
         </properties>
         <dependencyManagement>
                 <dependencies>
@@ -696,6 +699,107 @@
                                 <maven.javadoc.skip>false</maven.javadoc.skip>
                         </properties>
                 </profile>
+				<profile>
+					<id>src-jars</id>
+					<activation>
+						<activeByDefault>false</activeByDefault>
+					</activation>
+					<build>
+						<plugins>
+						<!-- The next two plugins (maven-assembly-plugin and maven-dependency-plugin) 
+							are used in the 'src-jars' profile to create extra JARs containing source 
+							code. Modules that have files in src/main/java and/or src/test/java must 
+							include the following snippet at the bottom of their POMs: <profiles> <profile> 
+							<id>src-jars</id> <activation> <activeByDefault>false</activeByDefault> </activation> 
+							<build> <plugins> <plugin> <artifactId>maven-assembly-plugin</artifactId> 
+							</plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId> </plugin> 
+							</plugins> </build> </profile> </profiles> This will cause the following 
+							extra JARs (containing the source files) to be created: <module-name>-0.0.1-SNAPSHOT-sources.jar 
+							<module-name>-0.0.1-SNAPSHOT-test-sources.jar It will also cause the JARs 
+							to be copied to the path specified by property ${src.jars.dir}, which has 
+							a default value defined in this POM, but can be overridden on the command 
+							line using -Dsrc.jars.dir=... NOTE: Currently the src-jars profile is only 
+							intended to be used by the TopOffice release tool. If you want to use it, 
+							then take into account the following: (1) There is no 'clean' functionality 
+							associated with the src JARs: the src JARs of a module are not deleted from 
+							${src.jars.dir} when you run 'mvn clean' for the module. (2) Even if a module 
+							has no tests, a source zip file for the module is still created: it will 
+							just be empty. -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-assembly-plugin</artifactId>
+							<dependencies>
+								<dependency>
+									<groupId>com.reuters.jrisk</groupId>
+									<artifactId>src-assembly-descriptors</artifactId>
+									<version>3.0</version>
+								</dependency>
+							</dependencies>
+							<executions>
+								<execution>
+									<id>create-src-jars</id>
+									<phase>package</phase>
+									<goals>
+										<goal>single</goal>
+									</goals>
+									<configuration>
+										<descriptorRefs>
+											<descriptorRef>src-assembly-descriptor</descriptorRef>
+											<descriptorRef>test-src-assembly-descriptor</descriptorRef>
+										</descriptorRefs>
+										<archive>
+											<!-- NOTE: if you make any changes to this element, then make sure 
+												you make the same changes in the same element of maven-jar-plugin and maven-war-plugin 
+												in this file. -->
+											<manifestEntries>
+												<Specification-Vendor>Misys</Specification-Vendor>
+												<Specification-Title>${project.artifactId}</Specification-Title>
+												<Implementation-Title>${project.artifactId}</Implementation-Title>
+												<!-- For information on the next attribute, see the comment accompanying 
+													the same attribute in the maven-jar-plugin element in this file -->
+												<Implementation-Version>${baseline}</Implementation-Version>
+											</manifestEntries>
+										</archive>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<!-- See comment for previous plugin -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>copy-src-jars</id>
+									<phase>install</phase>
+									<goals>
+										<goal>copy</goal>
+									</goals>
+									<configuration>
+										<artifactItems>
+											<artifactItem>
+												<groupId>${project.groupId}</groupId>
+												<artifactId>${project.artifactId}</artifactId>
+												<version>${project.version}</version>
+												<type>jar</type>
+												<classifier>sources</classifier>
+											</artifactItem>
+											<artifactItem>
+												<groupId>${project.groupId}</groupId>
+												<artifactId>${project.artifactId}</artifactId>
+												<version>${project.version}</version>
+												<type>jar</type>
+												<classifier>test-sources</classifier>
+											</artifactItem>
+										</artifactItems>
+										<outputDirectory>${src.jars.dir}</outputDirectory>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						</plugins>
+					</build>
+				</profile>                
                 <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->
 				<profile>
 				  <id>coverage</id>
@@ -886,6 +990,30 @@
 					</build>
 				</profile>
 				<profile>
+					<id>checkstyle.report</id>
+					<activation>
+						<activeByDefault>false</activeByDefault>
+					</activation>
+					<build>
+						<plugins>						
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-checkstyle-plugin</artifactId>
+								<version>${maven.checkstyle.plugin.version}</version>					
+								 <executions>
+									<execution>
+										<id>checkstyle</id>
+										<phase>verify</phase>
+										<goals>
+											<goal>checkstyle-aggregate</goal>
+										</goals>
+									</execution>
+								</executions>
+							</plugin>
+						</plugins>
+					</build>
+				</profile>				
+				<profile>
 					<id>clover.report</id>
 					<activation>
 						<activeByDefault>false</activeByDefault>
@@ -914,6 +1042,11 @@
 								<groupId>com.atlassian.maven.plugins</groupId>
 								<artifactId>maven-clover2-plugin</artifactId>
 								<version>${maven.clover.plugin.version}</version>
+								<configuration>
+									<excludes>
+										<exclude>**/*.groovy</exclude>
+									</excludes>
+								</configuration>								
 								<executions>
 									<execution>
 										<id>clover-reporting</id>
