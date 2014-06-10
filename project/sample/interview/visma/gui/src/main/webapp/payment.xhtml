@@ -16,7 +16,7 @@
 		<h:outputLabel>For your loan with interest rate 5.5 % :<br/>You will pay back the following amounts over the next #{input.scheduledPaymentNumber} month(s)</h:outputLabel>
 		<br/>
     	<h4>The payments are scheduled as follow :</h4>
-    	 <h:dataTable value="#{input.paymentSchedule.payments}" var="scheduledPayments" border="1" cellpadding="10"
+    	 <h:dataTable id="payments" value="#{input.paymentSchedule.payments}" var="scheduledPayments" border="1" cellpadding="10"
 				cellspacing="1"
          headerClass="paymentScheduleTableHeader"
          rowClasses="paymentScheduleTableOddRow,paymentScheduleTableEvenRow">
