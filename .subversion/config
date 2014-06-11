@@ -49,12 +49,14 @@ password-stores =
 ###   This will override the compile-time default, which is to use
 ###   Subversion's internal diff implementation.
 # diff-cmd = diff_program (diff, gdiff, etc.)
-diff-cmd = xxdiff-subversion
+#diff-cmd = xxdiff-subversion
+diff-cmd = meld
 ### Set diff3-cmd to the absolute path of your 'diff3' program.
 ###   This will override the compile-time default, which is to use
 ###   Subversion's internal diff3 implementation.
 # diff3-cmd = diff3_program (diff3, gdiff3, etc.)
-diff3-cmd = xxdiff-subversion
+#diff3-cmd = xxdiff-subversion
+diff3-cmd = meld
 ### Set diff3-has-program-arg to 'yes' if your 'diff3' program
 ###   accepts the '--diff-program' option.
 # diff3-has-program-arg = [yes | no]
