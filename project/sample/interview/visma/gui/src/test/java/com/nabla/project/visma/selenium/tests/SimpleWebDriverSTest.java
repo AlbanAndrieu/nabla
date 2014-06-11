@@ -62,15 +62,6 @@ public class SimpleWebDriverSTest
 
     }
 
-    /*
-     * @Before
-     * public void homePageRefresh() throws IOException
-     * {
-     * driver.manage().deleteAllCookies();
-     * // driver.get(propertyKeysLoader("login.base.url"));
-     * }
-     */
-
     @Test
     @InSequence(1)
     public void testWithGoodInputS() throws Exception
@@ -80,7 +71,7 @@ public class SimpleWebDriverSTest
 
         // Create an instance of Loan Page class
         // and provide the driver
-        final LoanPage loanPage = new LoanPage();
+        final LoanPage loanPage = new LoanPage(this.helper.getDriver());
 
         // Open the Loan Calculator Page
         loanPage.get();
@@ -119,7 +110,7 @@ public class SimpleWebDriverSTest
 
         // Create an instance of Loan Page class
         // and provide the driver
-        final LoanPage loanPage = new LoanPage();
+        final LoanPage loanPage = new LoanPage(this.helper.getDriver());
 
         // Open the Loan Calculator Page
         loanPage.get();

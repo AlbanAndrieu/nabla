@@ -70,36 +70,38 @@ public class GoogleSearchSTest
     @Test
     public void testGoogleSearch()
     {
-        try
+        // try
+        // {
+
+        // Find the text input element by its name
+        final WebElement element = this.driver.findElement(By.name("q"));
+
+        // Enter something to search for
+        element.sendKeys("Selenium testing tools cookbook");
+
+        // Now submit the form. WebDriver will find the form for us from the element
+        element.submit();
+
+        // Google's search is rendered dynamically with JavaScript.
+        // Wait for the page to load, timeout after 10 seconds
+        (new WebDriverWait(this.driver, 10)).until(new ExpectedCondition<Boolean>()
         {
-
-            // Find the text input element by its name
-            final WebElement element = this.driver.findElement(By.name("q"));
-
-            // Enter something to search for
-            element.sendKeys("Selenium testing tools cookbook");
-
-            // Now submit the form. WebDriver will find the form for us from the element
-            element.submit();
-
-            // Google's search is rendered dynamically with JavaScript.
-            // Wait for the page to load, timeout after 10 seconds
-            (new WebDriverWait(this.driver, 10)).until(new ExpectedCondition<Boolean>()
+            @Override
+            public Boolean apply(final WebDriver d)
             {
-                @Override
-                public Boolean apply(final WebDriver d)
-                {
-                    return d.getTitle().toLowerCase().startsWith("selenium testing tools cookbook");
-                }
-            });
+                return d.getTitle().toLowerCase().startsWith("selenium testing tools cookbook");
+            }
+        });
 
-            // Should see: selenium testing tools cookbook - Google Search
-            Assert.assertEquals("selenium testing tools cookbook - Google Search", this.driver.getTitle());
-        } catch (final Error e)
-        {
-            // Capture and append Exceptions/Errors
-            this.verificationErrors.append(e.toString());
-        }
+        // Should see: selenium testing tools cookbook - Google Search
+        Assert.assertEquals("Selenium testing tools cookbook - Google Search", this.driver.getTitle());
+        /*
+         * } catch (final Error e)
+         * {
+         * // Capture and append Exceptions/Errors
+         * this.verificationErrors.append(e.toString());
+         * }
+         */
     }
 
     @After

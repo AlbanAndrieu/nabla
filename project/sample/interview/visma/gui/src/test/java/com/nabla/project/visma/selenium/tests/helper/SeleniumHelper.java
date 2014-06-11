@@ -137,6 +137,10 @@ public class SeleniumHelper
         // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         this.driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         // driver.manage().window().setSize(new Dimension(1920, 1080));
+
+        // this.driver.manage().deleteAllCookies();
+        // this.driver.get(propertyKeysLoader("login.base.url"));
+
         this.selenium = new WebDriverBackedSelenium(this.driver, SeleniumHelper.baseUrl);
         this.selenium.waitForPageToLoad(SeleniumHelper.PAGE_TO_LOAD_TIMEOUT);
 

@@ -40,7 +40,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -76,9 +75,9 @@ public class LoanPage extends LoadableComponent<LoanPage>
     @FindBy(name = "loan_form:payment")
     private WebElement      calculate;
 
-    public LoanPage()
+    public LoanPage(final WebDriver aDriver)
     {
-        this.driver = new ChromeDriver();
+        this.driver = aDriver;
         PageFactory.initElements(this.driver, this);
     }
 
@@ -91,7 +90,9 @@ public class LoanPage extends LoadableComponent<LoanPage>
     @Override
     protected void isLoaded()
     {
-        Assert.assertTrue(this.driver.getTitle().equals(this.title));
+        final String url = this.driver.getCurrentUrl();
+        Assert.assertTrue("Not on the issue entry page: " + url, url.endsWith("/loan.xhtml"));
+        // Assert.assertTrue(this.driver.getTitle().equals(this.title));
     }
 
     public void close()
