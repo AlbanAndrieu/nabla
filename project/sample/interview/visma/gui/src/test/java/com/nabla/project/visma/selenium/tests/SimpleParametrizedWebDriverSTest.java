@@ -53,11 +53,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.nabla.project.visma.selenium.tests.helper.SeleniumHelper;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-
 @RunWith(value = Parameterized.class)
 public class SimpleParametrizedWebDriverSTest
 {
@@ -81,7 +76,7 @@ public class SimpleParametrizedWebDriverSTest
     }
 
     @Parameters
-    public static Collection testData()
+    public static Collection<Object[]> testData()
     {
         return Arrays.asList(new Object[][]
         {
@@ -105,34 +100,34 @@ public class SimpleParametrizedWebDriverSTest
      * }
      */
 
-    @Given("the user is on Loan Page")
+    // @Given("the user is on Loan Page")
     public void The_user_is_on_loan_page()
     {
 
         this.helper.getDriver().get(SeleniumHelper.baseUrl + "/visma/loan.xhtml");
     }
 
-    @When("he enters \"([^\"]*)\" as loan amount")
+    // @When("he enters \"([^\"]*)\" as loan amount")
     public void He_enters_loan_amount(final String loanAmount)
     {
         this.helper.getDriver().findElement(By.name("loan_form:loanAmount")).clear();
         this.helper.getDriver().findElement(By.name("loan_form:loanAmount")).sendKeys(loanAmount);
     }
 
-    @And("he enters \"([^\"]*)\" as payback time")
+    // @And("he enters \"([^\"]*)\" as payback time")
     public void He_enters_payback_time(final String paybackTime)
     {
         this.helper.getDriver().findElement(By.name("loan_form:paybackTime")).clear();
         this.helper.getDriver().findElement(By.name("loan_form:paybackTime")).sendKeys(paybackTime);
     }
 
-    @And("he Submits request for payments calculation")
+    // @And("he Submits request for payments calculation")
     public void He_submits_request_for_fund_transfer()
     {
         this.helper.getDriver().findElement(By.id("transfer")).click();
     }
 
-    @Then("ensure the payment schedule is accurate with \"([^\"]*)\" message")
+    // @Then("ensure the payment schedule is accurate with \"([^\"]*)\" message")
     public void Ensure_the_fund_transfer_is_complete(final String msg)
     {
         final WebElement message = this.helper.getDriver().findElement(By.cssSelector("h4"));
