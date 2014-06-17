@@ -32,15 +32,15 @@
 		<properties>
 			<!-- needed for maven-ear-plugin -->
 			<!-- TODO remove -->
-		<as.version>5</as.version>
-		<jboss.ear.version>5</jboss.ear.version>
-		<jboss.home>${env.JBOSS_HOME}</jboss.home>
-		<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
-		<jboss.server>standalone</jboss.server>
-		<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
-		<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
-		<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
-		<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
+			<as.version>5</as.version>
+			<jboss.ear.version>5</jboss.ear.version>
+			<jboss.home>${env.JBOSS_HOME}</jboss.home>
+			<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
+			<jboss.server>standalone</jboss.server>
+			<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
+			<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
+			<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
+			<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
 		</properties>
 
 	<build>
@@ -168,7 +168,7 @@
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
 				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
 				<!-- for jboss 7.1.1 compile -->
-								<!--<scope.type>${scope.provided}</scope.type> -->
+				<!--<scope.type>${scope.provided}</scope.type> -->
 				<scope.type>${scope.compile}</scope.type>
 				<!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
 								<!--
@@ -242,7 +242,7 @@
 								<id>deploy</id>
 								<phase>pre-integration-test</phase>
 								<goals>
-									<goal>redeploy</goal>
+									<goal>deployer-redeploy</goal>
 								</goals>
 							</execution>
 							<execution>
@@ -289,7 +289,7 @@
 			<properties>
 				<as.version>5</as.version>
 				<jboss.ear.version>5</jboss.ear.version>
-								<!-- START INFO USE BY MDA -->
+				<!-- START INFO USE BY MDA -->
 				<jboss.home>${env.JBOSS_HOME}</jboss.home>
 				<!--<jboss.home>C:\jboss-${jboss5.version}</jboss.home> -->
 				<jboss.version>${jboss5.version}</jboss.version> <!-- overrided -->
