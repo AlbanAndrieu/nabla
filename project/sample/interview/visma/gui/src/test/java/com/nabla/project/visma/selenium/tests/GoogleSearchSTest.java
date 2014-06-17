@@ -94,7 +94,8 @@ public class GoogleSearchSTest
         });
 
         // Should see: selenium testing tools cookbook - Google Search
-        Assert.assertEquals("Selenium testing tools cookbook - Google Search", this.driver.getTitle());
+        // Assert.assertEquals("Selenium testing tools cookbook - Google Search", this.driver.getTitle());
+        Assert.assertEquals("Selenium testing tools cookbook - Recherche Google", this.driver.getTitle());
         /*
          * } catch (final Error e)
          * {
