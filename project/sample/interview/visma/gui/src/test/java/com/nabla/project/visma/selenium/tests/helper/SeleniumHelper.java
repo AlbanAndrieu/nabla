@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -49,6 +50,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.UnreachableBrowserException;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
@@ -63,22 +65,24 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 public class SeleniumHelper
 {
 
-    private WebDriver           driver;
+    private static final transient Logger LOGGER               = Logger.getLogger(SeleniumHelper.class);
+
+    private static WebDriver              driver;
 
     // private final StringBuffer verificationErrors = new StringBuffer();
-    private DefaultSelenium     selenium;
+    private static DefaultSelenium        selenium;
 
     // private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe"; // "/var/lib/chromedriver"
     // private static final String DEFAULT_FIREFOXBIN = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"; // "/usr/lib/firefox/firefox"
-    private static final String DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";            // "C:\\chromedriver\\chromedriver.exe"
-    private static final String DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox";         // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
-    public static final String  PAGE_TO_LOAD_TIMEOUT = "30000";
+    private static final String           DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";               // "C:\\chromedriver\\chromedriver.exe"
+    private static final String           DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox";            // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+    public static final String            PAGE_TO_LOAD_TIMEOUT = "30000";
 
-    public static final String  DEFAULT_URL          = "http://localhost:9090";
+    public static final String            DEFAULT_URL          = "http://localhost:9090";
 
-    public static String        baseUrl              = SeleniumHelper.DEFAULT_URL;
-    public static String        chromeDriver         = SeleniumHelper.DEFAULT_CHROMEDRIVER;
-    public static String        firefoxBin           = SeleniumHelper.DEFAULT_FIREFOXBIN;
+    public static String                  baseUrl              = SeleniumHelper.DEFAULT_URL;
+    public static String                  chromeDriver         = SeleniumHelper.DEFAULT_CHROMEDRIVER;
+    public static String                  firefoxBin           = SeleniumHelper.DEFAULT_FIREFOXBIN;
 
     /**
      * DOCUMENT ME! albandri.
@@ -87,7 +91,7 @@ public class SeleniumHelper
      * @param selenium
      * @throws InterruptedException
      */
-    public void setUp() throws InterruptedException
+    public static void setUp() throws InterruptedException
     {
 
         SeleniumHelper.baseUrl = System.getProperty("webdriver.base.url");
@@ -123,7 +127,7 @@ public class SeleniumHelper
         // FirefoxBinary binary = new FirefoxBinary(new File(firefoxBin));
         // driver = new FirefoxDriver(binary, profile);
 
-        this.driver = new ChromeDriver();
+        SeleniumHelper.driver = SeleniumHelper.getCurrentDriver();
         // driver = new FirefoxDriver(profile);
         // driver = new HtmlUnitDriver(true);
 
@@ -133,16 +137,16 @@ public class SeleniumHelper
         // WebDriver augmentedDriver = new Augmenter().augment(driver);
         // File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
-        this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        SeleniumHelper.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        this.driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        SeleniumHelper.driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         // driver.manage().window().setSize(new Dimension(1920, 1080));
 
         // this.driver.manage().deleteAllCookies();
         // this.driver.get(propertyKeysLoader("login.base.url"));
 
-        this.selenium = new WebDriverBackedSelenium(this.driver, SeleniumHelper.baseUrl);
-        this.selenium.waitForPageToLoad(SeleniumHelper.PAGE_TO_LOAD_TIMEOUT);
+        SeleniumHelper.selenium = new WebDriverBackedSelenium(SeleniumHelper.driver, SeleniumHelper.baseUrl);
+        SeleniumHelper.selenium.waitForPageToLoad(SeleniumHelper.PAGE_TO_LOAD_TIMEOUT);
 
         Thread.sleep(10000); // 10 s
     }
@@ -152,10 +156,10 @@ public class SeleniumHelper
      * 
      * @param driver
      */
-    public void tearDown()
+    public static void tearDown()
     {
 
-        this.driver.quit();
+        SeleniumHelper.close();
         /*
          * final String verificationErrorString = this.verificationErrors.toString();
          * if (!"".equals(verificationErrorString))
@@ -166,14 +170,53 @@ public class SeleniumHelper
 
     }
 
-    public WebDriver getDriver()
+    public static WebDriver getDriver()
     {
-        return this.driver;
+        return SeleniumHelper.getCurrentDriver();
     }
 
-    public DefaultSelenium getSelenium()
+    public static DefaultSelenium getSelenium()
     {
-        return this.selenium;
+        return SeleniumHelper.selenium;
+    }
+
+    private synchronized static WebDriver getCurrentDriver()
+    {
+        if (SeleniumHelper.driver == null)
+        {
+            try
+            {
+                // driver = new FirefoxDriver(new FirefoxProfile());
+                SeleniumHelper.driver = new ChromeDriver();
+            } finally
+            {
+                Runtime.getRuntime().addShutdownHook(new Thread(new BrowserCleanup()));
+            }
+        }
+        return SeleniumHelper.driver;
+    }
+
+    private static class BrowserCleanup implements Runnable
+    {
+        @Override
+        public void run()
+        {
+            SeleniumHelper.LOGGER.info("Closing the browser");
+            SeleniumHelper.close();
+        }
+    }
+
+    public static void close()
+    {
+        try
+        {
+            SeleniumHelper.getCurrentDriver().quit();
+            SeleniumHelper.driver = null;
+            SeleniumHelper.LOGGER.info("closing the browser");
+        } catch (final UnreachableBrowserException e)
+        {
+            SeleniumHelper.LOGGER.info("cannot close browser: unreachable browser");
+        }
     }
 
     public static void testDragDrop(final String draggable, final String droppable, String expectedResult, final WebDriver driver, final StringBuffer verificationErrors)

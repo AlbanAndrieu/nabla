@@ -52,13 +52,11 @@ import com.nabla.project.visma.selenium.tests.pageobjects.LoanPage;
 public class SimpleWebDriverSTest
 {
 
-    private final SeleniumHelper helper = new SeleniumHelper();
-
     @Before
     public void setUp() throws Exception
     {
 
-        this.helper.setUp();
+        SeleniumHelper.setUp();
 
     }
 
@@ -71,7 +69,7 @@ public class SimpleWebDriverSTest
 
         // Create an instance of Loan Page class
         // and provide the driver
-        final LoanPage loanPage = new LoanPage(this.helper.getDriver());
+        final LoanPage loanPage = new LoanPage();
 
         // Open the Loan Calculator Page
         loanPage.get();
@@ -85,17 +83,17 @@ public class SimpleWebDriverSTest
         final long totalTime = endTime - startTime;
         System.out.println("Total Page Load Time: " + totalTime + " milliseconds");
 
-        Assert.assertEquals("Housing Loan Cost Calculator (Results)", this.helper.getDriver().findElement(By.cssSelector("h3")).getText());
+        Assert.assertEquals("Housing Loan Cost Calculator (Results)", SeleniumHelper.getDriver().findElement(By.cssSelector("h3")).getText());
         loanPage.Ensure_the_fund_transfer_is_complete("Payments total is : 1302315.33552576902309236382167649640");
-        final WebElement simpleTable = this.helper.getDriver().findElement(By.id("payments"));
+        final WebElement simpleTable = SeleniumHelper.getDriver().findElement(By.id("payments"));
         SeleniumHelper.testWebTable(simpleTable, 121);
-        Assert.assertEquals("10852.62779604807519243636518063747", this.helper.getDriver().findElement(By.xpath("//td[2]")).getText());
+        Assert.assertEquals("10852.62779604807519243636518063747", SeleniumHelper.getDriver().findElement(By.xpath("//td[2]")).getText());
 
-        SeleniumHelper.testTakesScreenshot("testWithGoodInputS.png", this.helper.getDriver());
+        SeleniumHelper.testTakesScreenshot("testWithGoodInputS.png", SeleniumHelper.getDriver());
         // Thread.sleep(1000);
 
-        this.helper.getSelenium().open("/visma/");
-        this.helper.getSelenium().waitForPageToLoad("1500");
+        SeleniumHelper.getSelenium().open("/visma/");
+        SeleniumHelper.getSelenium().waitForPageToLoad("1500");
 
         loanPage.close();
     }
@@ -110,7 +108,7 @@ public class SimpleWebDriverSTest
 
         // Create an instance of Loan Page class
         // and provide the driver
-        final LoanPage loanPage = new LoanPage(this.helper.getDriver());
+        final LoanPage loanPage = new LoanPage(/* SeleniumHelper.getDriver() */);
 
         // Open the Loan Calculator Page
         loanPage.get();
@@ -120,7 +118,7 @@ public class SimpleWebDriverSTest
 
         // wait for the application to get fully loaded
         /*
-         * final WebElement findOwnerLink = (new WebDriverWait(this.helper.getDriver(), 5)).until(new ExpectedCondition<WebElement>()
+         * final WebElement findOwnerLink = (new WebDriverWait(SeleniumHelper.getDriver(), 5)).until(new ExpectedCondition<WebElement>()
          * {
          * @Override
          * public WebElement apply(final WebDriver d)
@@ -132,25 +130,25 @@ public class SimpleWebDriverSTest
          * findOwnerLink.click();
          */
 
-        final WebDriverWait wait = new WebDriverWait(this.helper.getDriver(), 10);
+        final WebDriverWait wait = new WebDriverWait(SeleniumHelper.getDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(By.name("loan_form:payment")));
-        this.helper.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        SeleniumHelper.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        this.helper.getDriver().findElement(By.name("loan_form:payment")).click();
+        SeleniumHelper.getDriver().findElement(By.name("loan_form:payment")).click();
 
         loanPage.Ensure_a_transaction_failure_message(2, "Please enter the amount of your loan. Ex. 200000: Validation Error: Specified attribute is not between the expected values of 1 and 1,000,000,000.");
         loanPage.Ensure_a_transaction_failure_message(3, "Please enter the number of years you have to pay back your loan. Ex. 30: Validation Error: Specified attribute is not between the expected values of 1 and 120.");
 
-        SeleniumHelper.testTakesScreenshot("testWithWrongInputS.png", this.helper.getDriver());
+        SeleniumHelper.testTakesScreenshot("testWithWrongInputS.png", SeleniumHelper.getDriver());
         // Thread.sleep(1000);
 
-        this.helper.getSelenium().open("/visma/");
-        this.helper.getSelenium().waitForPageToLoad("1500");
+        SeleniumHelper.getSelenium().open("/visma/");
+        SeleniumHelper.getSelenium().waitForPageToLoad("1500");
     }
 
     @After
     public void tearDown() throws Exception
     {
-        this.helper.tearDown();
+        SeleniumHelper.tearDown();
     }
 }

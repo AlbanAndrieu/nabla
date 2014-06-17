@@ -45,8 +45,7 @@ import cucumber.api.junit.Cucumber;
  * @since $Date$
  */
 @RunWith(Cucumber.class)
-@Cucumber.Options(format =
-{ "pretty", "html:target/cucumber-html-report", "json-pretty:target/cucumber-report.json" })
-public class RunCukesTest
+// @Cucumber.Options(format = { "pretty", "html:target/cucumber-html-report", "json-pretty:target/cucumber-report.json" })
+public class RunCukesSTest
 {
 }

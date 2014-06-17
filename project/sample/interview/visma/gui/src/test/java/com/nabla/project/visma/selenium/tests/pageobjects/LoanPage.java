@@ -38,7 +38,6 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -63,22 +62,20 @@ import cucumber.api.java.en.When;
 public class LoanPage extends LoadableComponent<LoanPage>
 {
 
-    private final WebDriver driver;
-    private final String    url   = "/visma/loan.xhtml";
-    private final String    title = "JSF 2.0 Visma Loan test";
+    private final String url = "/visma/loan.xhtml";
+    // private final String title = "JSF 2.0 Visma Loan test";
 
     @FindBy(name = "loan_form:loanAmount")
-    private WebElement      loanAmount;
+    private WebElement   loanAmount;
     @FindBy(name = "loan_form:paybackTime")
-    private WebElement      paybackTime;
+    private WebElement   paybackTime;
 
     @FindBy(name = "loan_form:payment")
-    private WebElement      calculate;
+    private WebElement   calculate;
 
-    public LoanPage(final WebDriver aDriver)
+    public LoanPage()
     {
-        this.driver = aDriver;
-        PageFactory.initElements(this.driver, this);
+        PageFactory.initElements(SeleniumHelper.getDriver(), this);
     }
 
     @Override
@@ -90,23 +87,23 @@ public class LoanPage extends LoadableComponent<LoanPage>
     @Override
     protected void isLoaded()
     {
-        final String url = this.driver.getCurrentUrl();
+        final String url = SeleniumHelper.getDriver().getCurrentUrl();
         Assert.assertTrue("Not on the issue entry page: " + url, url.endsWith("/loan.xhtml"));
         // Assert.assertTrue(this.driver.getTitle().equals(this.title));
     }
 
     public void close()
     {
-        this.driver.close();
+        SeleniumHelper.close();
     }
 
     @Given("the user is on Loan Page")
     public void The_user_is_on_loan_page()
     {
 
-        this.driver.get(SeleniumHelper.DEFAULT_URL + this.url);
+        SeleniumHelper.getDriver().get(SeleniumHelper.DEFAULT_URL + this.url);
 
-        final JavascriptExecutor js = (JavascriptExecutor) this.driver;
+        final JavascriptExecutor js = (JavascriptExecutor) SeleniumHelper.getDriver();
 
         // Get the Load Event End
         final long loadEventEnd = (Long) js.executeScript("return window.performance.timing.loadEventEnd;");
@@ -118,10 +115,10 @@ public class LoanPage extends LoadableComponent<LoanPage>
         System.out.println("Page Load Time is " + ((loadEventEnd - navigationStart) / 1000) + " seconds.");
 
         // Wait for the Calculate Button
-        new WebDriverWait(this.driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form:payment")));
+        new WebDriverWait(SeleniumHelper.getDriver(), 10).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form:payment")));
 
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("loan_form")));
-        Assert.assertEquals("Housing Loan Cost Calculator", this.driver.findElement(By.cssSelector("h3")).getText());
+        Assert.assertEquals("Housing Loan Cost Calculator", SeleniumHelper.getDriver().findElement(By.cssSelector("h3")).getText());
 
     }
 
@@ -142,23 +139,23 @@ public class LoanPage extends LoadableComponent<LoanPage>
     @And("he Submits request for payments calculation")
     public void He_submits_request_for_fund_transfer()
     {
-        final WebDriverWait wait = new WebDriverWait(this.driver, 10);
+        final WebDriverWait wait = new WebDriverWait(SeleniumHelper.getDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(By.name("loan_form:payment")));
-        this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        SeleniumHelper.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         this.calculate.click();
     }
 
     @Then("ensure the payment schedule is accurate with \"([^\"]*)\" message")
     public void Ensure_the_fund_transfer_is_complete(final String msg)
     {
-        final WebElement message = this.driver.findElement(By.cssSelector("h4"));
+        final WebElement message = SeleniumHelper.getDriver().findElement(By.cssSelector("h4"));
         Assert.assertEquals(message.getText(), msg);
     }
 
     @Then("ensure a transaction failure message \"([^\"]*)\" is displayed")
     public void Ensure_a_transaction_failure_message(final int i, final String msg)
     {
-        final WebElement message = this.driver.findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr[" + i + "]/td[3]/span"));
+        final WebElement message = SeleniumHelper.getDriver().findElement(By.xpath("//table[@id='loan_form:panel']/tbody/tr[" + i + "]/td[3]/span"));
         Assert.assertEquals(message.getText(), msg);
 
     }
