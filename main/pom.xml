@@ -97,6 +97,7 @@
                 <archiva.port>8010</archiva.port>
                 <nexus.port>8081</nexus.port>
 				<jira.port>8082</jira.port><!-- http://localhost:8082/ control port 8006 -->
+				<fitnesse.port>8085</fitnesse.port>
 				<confluence.port>8090</confluence.port><!-- http://localhost:8090/ control port 8000 -->
                 <continuum.port>8020</continuum.port>
                 <mysql.port>3306</mysql.port>
@@ -989,6 +990,44 @@
 						</plugins>
 					</build>
 				</profile>
+				<profile>
+					<id>fitnesse</id>
+					<build>
+					  <plugins>
+						<plugin>
+						  <groupId>org.apache.maven.plugins</groupId>
+						  <artifactId>maven-antrun-plugin</artifactId>
+						  <version>${maven.antrun.plugin.version}</version>
+						  <executions>
+							<execution>
+							  <id>start-fitnesse</id>
+							  <phase>test</phase>
+							  <configuration>
+								<tasks>
+								  <echo taskname="fitnesse" message="Starting FitNesse..." />
+								  <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
+									<arg line="-p 8000" />
+									<arg line="-d ." />
+								  </java>
+								</tasks>
+							  </configuration>
+							  <goals>
+								<goal>run</goal>
+							  </goals>
+							</execution>
+						  </executions>
+						</plugin>
+					  </plugins>
+					</build>
+					<dependencies>
+					  <dependency>
+						<groupId>org.fitnesse.plugins</groupId>
+						<artifactId>maven-classpath-plugin</artifactId>
+						<version>${maven.classpath.fitnesse.version}</version>
+						<scope>runtime</scope>
+					  </dependency>
+					</dependencies>				
+			    </profile>				
 				<profile>
 					<id>checkstyle.report</id>
 					<activation>
