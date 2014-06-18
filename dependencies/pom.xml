@@ -1442,6 +1442,8 @@
 				<izpack.version>5.0.0-rc2</izpack.version>
 				<izpack.compiler.version>${izpack.version}</izpack.compiler.version>
 				<izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
+				<node.version>0.11.13</node.version> 
+				<npm.version>1.3.8</npm.version>
 
 				<!--
 						French Encoding in some files: can't use UTF-8, TODO update source
