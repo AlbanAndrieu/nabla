@@ -1316,6 +1316,7 @@
 				<selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
 				<saucelabs.selenium.version>2.6</saucelabs.selenium.version>
 				<saucelabs.junit.version>1.0.18</saucelabs.junit.version>
+				<fitnesse.version>20140418</fitnesse.version>
 				<!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<!--<arquillian>arq-jbossas-managed</arquillian>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -1606,6 +1607,7 @@
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
 				<maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
 				<maven.wro4j.plugin.version>1.7.5</maven.wro4j.plugin.version>
+				<maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>
 
 				<hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 
@@ -2103,7 +2105,7 @@
 									<groupId>com.github.eirslett</groupId>
 									<artifactId>frontend-maven-plugin</artifactId>
 									<version>${maven.frontend.plugin.version}</version> 	
-								</plugin>
+								</plugin>								
 								<plugin>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-antrun-plugin</artifactId>
@@ -2191,6 +2193,10 @@
 										<artifactId>maven-release-plugin</artifactId>
 										<version>${maven.release.plugin.version}</version>
 										<configuration>
+												<!-- TODO use with GIT
+												<pushChanges>false</pushChanges>
+												<localCheckout>true</localCheckout>
+												-->
 												<useReleaseProfile>true</useReleaseProfile>
 												<autoVersionSubmodules>true</autoVersionSubmodules>
 												<useReleaseProfile>true</useReleaseProfile>
@@ -4294,98 +4300,99 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<scope>import</scope>
 								<type>pom</type>
 						</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-java</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-remote-driver</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-firefox-driver</artifactId>
-				<version>${selenium.firefox.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-api</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-support</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-safari-driver</artifactId>
-				<version>${selenium.safari.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-iphone-driver</artifactId>
-				<version>${selenium.iphone.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-ie-driver</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-htmlunit-driver</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-android-driver</artifactId>
-				<version>${selenium.android.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-chrome-driver</artifactId>
-				<version>${selenium.driver.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-server</artifactId>
-				<version>${selenium.version}</version>
-				<scope>test</scope>
-			</dependency>
+						
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-java</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-remote-driver</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-firefox-driver</artifactId>
+							<version>${selenium.firefox.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-api</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-support</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-safari-driver</artifactId>
+							<version>${selenium.safari.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-iphone-driver</artifactId>
+							<version>${selenium.iphone.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-ie-driver</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-htmlunit-driver</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-android-driver</artifactId>
+							<version>${selenium.android.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-chrome-driver</artifactId>
+							<version>${selenium.driver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.seleniumhq.selenium</groupId>
+							<artifactId>selenium-server</artifactId>
+							<version>${selenium.version}</version>
+							<scope>test</scope>
+						</dependency>
+			  
+						<dependency>
+							<groupId>com.saucelabs</groupId>
+							<artifactId>sauce_junit</artifactId>
+							<version>${saucelabs.junit.version}</version>
+							<scope>test</scope>
+						</dependency>
 
-				<dependency>
-					<groupId>com.saucelabs</groupId>
-					<artifactId>sauce_junit</artifactId>
-					<version>${saucelabs.junit.version}</version>
-					<scope>test</scope>
-				</dependency>
-
-				<dependency>
-					<groupId>com.saucelabs.selenium</groupId>
-					<artifactId>sauce-ondemand-driver</artifactId>
-					<version>${saucelabs.selenium.version}</version>
-					<scope>test</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.saucelabs.selenium</groupId>
-					<artifactId>selenium-client-factory</artifactId>
-					<version>${saucelabs.selenium.version}</version>
-					<scope>test</scope>
-				</dependency>
+						<dependency>
+							<groupId>com.saucelabs.selenium</groupId>
+							<artifactId>sauce-ondemand-driver</artifactId>
+							<version>${saucelabs.selenium.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>com.saucelabs.selenium</groupId>
+							<artifactId>selenium-client-factory</artifactId>
+							<version>${saucelabs.selenium.version}</version>
+							<scope>test</scope>
+						</dependency>
 				
 						<dependency>
 							<groupId>org.jacoco</groupId>
@@ -4521,6 +4528,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								</exclusion>
 							</exclusions>
 						</dependency>
+						
+						<dependency>
+							<groupId>org.fitnesse</groupId>
+							<artifactId>fitnesse</artifactId>
+							<version>${fitnesse.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.fitnesse.plugins</groupId>
+							<artifactId>maven-classpath-plugin</artifactId>
+							<version>${maven.classpath.fitnesse.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+					  	
 						<dependency>
 								<groupId>org.beanshell</groupId>
 								<artifactId>bsh</artifactId>
