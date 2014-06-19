@@ -66,8 +66,8 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>v0.10.18</nodeVersion> <!-- TODO removed hard coded -->
-							<npmVersion>1.3.8</npmVersion> <!-- TODO removed hard coded -->
+							<nodeVersion>v${node.version}</nodeVersion>
+							<npmVersion>${npm.version}</npmVersion>
 						</configuration>
 					</execution>
 
