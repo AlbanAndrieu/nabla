@@ -839,8 +839,7 @@
 								<arquillian>${arquillian}</arquillian>
 								<cucumber.options>
 									  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
-								</cucumber.options>									
-							</systemPropertyVariables>							
+								</cucumber.options>				
 						  </systemPropertyVariables>						  
 						</configuration>
 					  </plugin>
