@@ -832,8 +832,15 @@
 							<exclude>**/*STest*</exclude>
 						  </excludes>
 						  <systemPropertyVariables>
-							<webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>						
-							<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
+								<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+								<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+								<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
+								<arquillian.launch>${arquillian}</arquillian.launch>
+								<arquillian>${arquillian}</arquillian>
+								<cucumber.options>
+									  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
+								</cucumber.options>									
+							</systemPropertyVariables>							
 						  </systemPropertyVariables>						  
 						</configuration>
 					  </plugin>
@@ -841,7 +848,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<configuration>
-						  <argLine>-Xmx1024m -XX:MaxPermSize=256m ${jacoco.agent.it.arg}</argLine>
+						  <argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>
 						  <!-- Specific to generate mapping between tests and covered code -->
 						  <properties>
 							<property>
@@ -1239,6 +1246,9 @@
 									<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
 									<arquillian.launch>${arquillian}</arquillian.launch>
 									<arquillian>${arquillian}</arquillian>
+									<cucumber.options>
+										  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
+									</cucumber.options>									
 								</systemPropertyVariables>
 							</configuration>
 							<executions>
