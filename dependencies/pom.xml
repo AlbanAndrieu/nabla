@@ -1015,6 +1015,10 @@
 				<sonar.issue.ignore.block.e2.beginBlockRegexp>Copyright</sonar.issue.ignore.block.e2.beginBlockRegexp>
 				<sonar.issue.ignore.block.e2.endBlockRegexp>License 1.0</sonar.issue.ignore.block.e2.endBlockRegexp>
 				
+				<cucumber.feature></cucumber.feature>
+				<cucumber.tags>~@no-tag-specified</cucumber.tags>
+				<cucumber.features.dir>src/test/resources/features</cucumber.features.dir>
+				
 				<!-- BEGIN of Thirdparties versions stick to project recommandations -->
 				<andromda.version>3.6-SNAPSHOT</andromda.version>
 
@@ -3296,40 +3300,19 @@
 												  <propertyName>jacoco.agent.it.arg</propertyName>
 												  <append>true</append>
 												</configuration>
-											  </execution>  
-											  <!--									  
-											<execution>
-												<id>default-prepare-agent</id>
-												<phase>process-test-classes</phase>
-												<goals>
-													<goal>prepare-agent</goal>
-												</goals>
-												<configuration>
-												  <destFile>${sonar.jacoco.reportPath}</destFile>
-												  <propertyName>jacoco.agent.ut.arg</propertyName>
-												  <append>true</append>
-												</configuration>												
-											</execution>
+											  </execution>  	
 											<execution>
 												<id>default-report</id>
 												<phase>prepare-package</phase>
 												<goals>
 													<goal>report</goal>
 												</goals>
-											</execution>
-											<execution>
-												<id>default-prepare-agent-integration</id>
-												<phase>pre-integration-test</phase>
-												<goals>
-													<goal>prepare-agent-integration</goal>
-												</goals>
 												<configuration>
-															<destFile>${sonar.jacoco.itReportPath}</destFile>
-															<propertyName>failsafe.argLine</propertyName>
-														</configuration>
+													<outputDirectory>${project.reporting.outputDirectory}/coverage-ut</outputDirectory>
+													<dataFile>${sonar.jacoco.reportPath}</dataFile>
+												</configuration>												
 											</execution>
-											-->
-											<!-- http://sonarqube.15.x6.nabble.com/Maven-Sonar-plugin-execute-surefire-tests-twice-when-setting-the-property-sonar-phase-post-integratit-td5017101.html
+											<!-- http://sonarqube.15.x6.nabble.com/Maven-Sonar-plugin-execute-surefire-tests-twice-when-setting-the-property-sonar-phase-post-integratit-td5017101.html -->
 											<execution>
 												<id>default-report-integration</id>
 												<phase>post-integration-test</phase>
@@ -3337,9 +3320,11 @@
 													<goal>report-integration</goal>
 												</goals>												
 												<configuration>
-															<dataFile>target/jacoco-it.exec</dataFile>
-														</configuration>														
+													<outputDirectory>${project.reporting.outputDirectory}/coverage-it</outputDirectory>
+													<dataFile>${sonar.jacoco.itReportPath}</dataFile>
+												</configuration>														
 											</execution>
+											<!--
 											<execution>
 												<id>default-check</id>
 												<goals>
@@ -3980,6 +3965,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										</goals>
 									  </execution>
 									</executions>
+									<configuration>
+									  <systemPropertyVariables>
+										<cucumber.options>
+										  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
+										</cucumber.options>
+									  </systemPropertyVariables>
+									</configuration>									
 								</plugin>
 
 								<plugin>
