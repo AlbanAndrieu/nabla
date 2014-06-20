@@ -2369,9 +2369,6 @@
 												<skip>${maven.test.skip}</skip>
 												<linkXRef>true</linkXRef>
 												<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
-												<excludes>
-														<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
-												</excludes>
 												<!-- Continue with other tests if a single method fails -->
 												<configFailurePolicy>continue</configFailurePolicy>
 												<!-- Enable or disable Stop maven -->
@@ -2429,8 +2426,13 @@
 												</systemProperties>		 
 												<excludes>
 													<exclude>**/*ITest*</exclude>
-													<exclude>**/*STest*</exclude>
-												</excludes>																	 
+													<exclude>**/*STest*</exclude>													
+												</excludes>				
+												<!--
+												<excludes>
+														<exclude implementation="java.lang.String">**/Abstract*.*</exclude>
+												</excludes>
+												-->
 										</configuration>
 
 										<!--
@@ -3302,7 +3304,7 @@
 												</configuration>
 											  </execution>  	
 											<execution>
-												<id>default-report</id>
+												<id>report</id>
 												<phase>prepare-package</phase>
 												<goals>
 													<goal>report</goal>
@@ -4041,10 +4043,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 											<param>com.nabla.todo.*</param>
 											<param>com.nabla.generated.*</param>
 											<param>com.nabla.project.visma.selenium.tests.*</param>
-											<!--
 											<param>**/*ITest*</param>
 											<param>**/*STest*</param>
-											-->
 										</excludedClasses>
 										<!--
 										<avoidCallsTo>
