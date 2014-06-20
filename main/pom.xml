@@ -896,6 +896,7 @@
 						<configuration>
 						  <excludes>
 							<exclude>jsp/**/*.class</exclude>
+							<exclude>**/*STest*</exclude>
 						  </excludes>
 						</configuration>						  
 					  </plugin>
@@ -1032,6 +1033,13 @@
 						<version>${maven.classpath.fitnesse.version}</version>
 						<scope>runtime</scope>
 					  </dependency>
+		
+					<dependency>
+						<groupId>org.fitnesse</groupId>
+						<artifactId>fitnesse</artifactId>
+						<version>${fitnesse.version}</version>
+						<scope>runtime</scope>
+					</dependency>						  
 					</dependencies>				
 			    </profile>				
 				<profile>
@@ -1209,6 +1217,16 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<version>${maven.failsafe.plugin.version}</version>
+						<configuration>
+							<includes>
+								<include>**/*ITest*</include>
+								<include>**/*STest*</include>
+							</includes>
+							<excludes>
+								<exclude>**/RunCukesSTest.java</exclude> <!-- exclude cucumber tests as it does not work with jacoco -->												
+							</excludes>															
+						</configuration>						
+						<!--
 						<executions>
 						  <execution>
 							<id>integration-test</id>
@@ -1225,6 +1243,7 @@
 							</goals>
 						  </execution>
 						</executions>
+						-->
 					  </plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1235,10 +1254,12 @@
 								<redirectTestOutputToFile>true</redirectTestOutputToFile>
 								<trimStackTrace>false</trimStackTrace>
 								<printSummary>true</printSummary>
+								<!--
 								<excludes>
 									<exclude>**/*ITest*</exclude>
 									<exclude>**/*STest*</exclude>
 								</excludes>
+								-->
 								<systemPropertyVariables>
 									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
 									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
@@ -1250,6 +1271,7 @@
 									</cucumber.options>									
 								</systemPropertyVariables>
 							</configuration>
+							<!--
 							<executions>
 								<execution>
 									<id>surefire-itest</id>
@@ -1268,6 +1290,7 @@
 									</configuration>
 								</execution>
 							</executions>
+							-->
 						</plugin>					  
 					</plugins>
 				  </build>
