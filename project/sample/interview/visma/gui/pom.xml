@@ -382,13 +382,7 @@
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.fitnesse</groupId>
-			<artifactId>fitnesse</artifactId>
-			<version>${fitnesse.version}</version>
-			<scope>runtime</scope>
-		</dependency>		
+	
 	</dependencies>
 
 	<build>
@@ -551,7 +545,7 @@
 								<context>/visma</context>
 							</properties>
 							<pingURL>http://${cargo.host}:${cargo.port}/visma</pingURL>
-							<pingTimeout>240000</pingTimeout> <!-- 4 minutes -->
+							<pingTimeout>60000</pingTimeout> 
 						</deployable>
 					</deployables>	 
 				</configuration>
