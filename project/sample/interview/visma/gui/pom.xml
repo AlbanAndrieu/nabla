@@ -269,12 +269,14 @@
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- WARNING cucumber does not work with Jacoco when activated with surefire-->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>${cucumber.version}</version>
 			 <scope>test</scope>
 		</dependency>
+		
 		<!-- 
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.resolver</groupId>

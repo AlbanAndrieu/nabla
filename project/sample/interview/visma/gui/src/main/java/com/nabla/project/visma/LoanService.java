@@ -52,6 +52,8 @@ public class LoanService implements ILoanService
     private static final transient Logger LOGGER = Logger.getLogger(LoanService.class);
 
     @Override
+    // @GET
+    // @Produces({ MediaType.APPLICATION_ATOM_XML, MediaType.APPLICATION_JSON })
     public Map<Integer, List<BigDecimal>> calcMonthlyPayment(final BigDecimal loanAmount, final int numberOfYears)
     {
 
@@ -68,6 +70,8 @@ public class LoanService implements ILoanService
     }
 
     @Override
+    // @GET
+    // @Produces({ MediaType.APPLICATION_ATOM_XML, MediaType.APPLICATION_JSON })
     public BigDecimal getTotalPayment(final BigDecimal loanAmount, final int numberOfYears)
     {
 
