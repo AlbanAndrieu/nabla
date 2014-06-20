@@ -282,7 +282,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle/
   
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -294,7 +294,7 @@ export PATH
 export JAVA_OPTS="-Xms256m -Xmx1548m"
 
 # MAVEN
-export M2_HOME=/usr/local/apache-maven-3.2.1
+export M2_HOME=/usr/share/maven
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -303,9 +303,10 @@ export PATH=${M2}:$PATH
 #Jenkins We have 48GB RAM and 44 GB swap and its 24 core server. 
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
-#MAVEN_OPTS="-Xms256m -Xmx512m -XX:PermSize=80M -XX:MaxPermSize=256M"
+MAVEN_OPTS="-Xms256m -Xmx1024m -XX:PermSize=80M -XX:MaxPermSize=256M -XX:+UseConcMarkSweepGC"
 #for java 8 PermSize and MaxPermSize can be removed
-MAVEN_OPTS="-Xms256m -Xmx512m"
+#MAVEN_OPTS="-Xms256m -Xmx512m"
+
 # -Djava.awt.headless=true
 if [ 1 -eq 1 ] ; then
   #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log
@@ -365,6 +366,9 @@ export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
 export PATH=${LUMBERMILL_HOME}/bin:${PATH}
 alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 echo "Lumbermill port is 4445"
+
+#export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 
 # GRAPHVIZ
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]

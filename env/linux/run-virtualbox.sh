@@ -32,3 +32,8 @@ sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
 sudo adduser albandri libvirtd
 sudo virsh -c qemu:///system list
 qemu-img convert -O vmdk OpenSolaris.raw OpenSolaris.vmdk
+
+#access global zone from windows host
+#http://10.0.2.4
+#http://10.0.2.2:9000/
+#sudo ifconfig -a

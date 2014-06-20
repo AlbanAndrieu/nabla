@@ -131,3 +131,7 @@ npm start : start a local development web-server
 npm test : start the Karma unit test runner
 npm run protractor : run the Protractor end 2 end tests
 npm run update-webdriver : install the drivers needed by Protractor
+
+#update clean up npm repo
+npm cache clear 
+npm update

@@ -312,3 +312,8 @@ wget http://registrationcenter.intel.com/irc_nas/4181/intel_sdk_for_ocl_applicat
 tar zxvf intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
 ./install-cpu.sh
 ll /usr/lib/x86_64-linux-gnu/libOpenCL.so
+
+#javascript coverage
+sudo apt-get install lcov
+#diff tool
+sudo apt-get install meld

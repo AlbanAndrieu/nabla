@@ -6,9 +6,9 @@
 #sudo wget http://dist.sonar.codehaus.org/sonarqube-4.0.zip
 sudo wget http://dist.sonar.codehaus.org/sonarqube-4.3.zip
 #unzip sonarqube-4.0.zip -d sonar-4.0
-unzip sonarqube-4.3.zip
+unzip sonarqube-4.3.1.zip
 
-ln -s sonarqube-4.3 sonar
+ln -s sonarqube-4.3.1 sonar
 sudo ln -s /workspace/sonar/bin/linux-x86-32/sonar.sh /usr/bin/sonar
 cd /etc/init.d
 sudo nano  /etc/init.d/sonar
@@ -38,11 +38,18 @@ sudo update-rc.d sonar defaults
 sudo gedit /workspace/sonar/conf/sonar.properties
 sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
 sudo gedit /workspace/sonar/conf/wrapper.conf
+#uncomment
+#wrapper.java.additional.7=-server
+#change
+wrapper.logfile.loglevel=DEBUG
 
 Copy the OLD_SONARQUBE_HOME/extensions/plugins directory into NEW_SONARQUBE_HOME/extensions/plugins (replace plugins with compatible versions if necessary)
-sudo cp sonar/extensions/plugins/* sonar/extensions/plugins/
+sudo cp sonarqube-4.3/extensions/plugins/* sonar/extensions/plugins/
 #sudo cp sonar/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
 If a custom JDBC driver is used, copy it into NEW_SONARQUBE_HOME/extensions/jdbc-driver/<dialect>
+
+#if your are using embedded database
+sudo cp /workspace/sonarqube-4.3/data/*.db /workspace/sonar/data
 
 /workspace/sonar/bin/linux-x86-32/sonar.sh start
 
@@ -103,3 +110,14 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 #add java patch
 #See BUG : http://jira.codehaus.org/browse/SONARJAVA-527
 #Download fix at : http://docs.codehaus.org/display/SONAR/Java+Ecosystem
+
+#BUG [ERROR] Fail to decorate
+#remove useless code tracker from Sonar 3.7.4
+
+#BUG Wrong plugin key (pmd) or rule key (AvoidCatchingThrowable)
+#Remove Security Rules 0.3.2 for Sonar 4.2
+
+#BUG
+#cd /workspace/sonar/extensions/plugins/
+#sudo rm sonar-pitest-plugin-0.3.jar
+#sudo wget https://sonarplugins.ci.cloudbees.com/job/pitest/ws/target/sonar-pitest-plugin-0.4-SNAPSHOT.jar

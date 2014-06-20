@@ -87,3 +87,10 @@ sudo a2dissite gearman
 
 #restart ldap if login issue
 sudo service slapd restart
+
+#sound
+cd /workspace
+sudo git clone https://github.com/jenkinsci/sounds-plugin.git
+cd /workspace/sounds-plugin/src/main/resources
+sudo cp /workspace/sounds-plugin/src/main/resources/sound-archive.zip /jenkins
+sudo chmod 777 sound-archive.zip
