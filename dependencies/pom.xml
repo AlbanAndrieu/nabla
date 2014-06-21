@@ -1159,7 +1159,7 @@
 				<jboss.microcontainer.version>alpha_9</jboss.microcontainer.version>
 				<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
 				<jboss.cache.version>1.4.1.SP9</jboss.cache.version>
-				<jboss.el.version>1.0_02.CR5</jboss.el.version>
+				<jboss.el.version>1.0_02.CR6</jboss.el.version>
 				<jboss.logging.version>3.1.2.GA</jboss.logging.version>
 				<jboss.common.core.version>2.2.20.GA</jboss.common.core.version>
 				<jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
@@ -1216,20 +1216,23 @@
 				<hibernate.legacy.entitymanager.version>${hibernate.legacy.core.version}</hibernate.legacy.entitymanager.version>
 				<!-- https://community.jboss.org/wiki/HibernateCompatibilityMatrix -->
 				<!--<hibernate3.version>3.6.8.Final</hibernate3.version>--> <!-- for hibernate-core and hibernate-entitymanager -->
-				<hibernate.core.version>3.3.2.GA</hibernate.core.version>
+				<!--OK <hibernate.core.version>3.3.2.GA</hibernate.core.version>-->
 				<!--<hibernate.core.version>3.6.8.Final</hibernate.core.version>-->
+				<hibernate.core.version>4.1.8.Final</hibernate.core.version>
 				<hibernate.entitymanager.version>${hibernate.core.version}</hibernate.entitymanager.version>
 				<!--<hibernate.infinispan.version>${hibernate.core.version}</hibernate.infinispan.version>-->
 				<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>
 				<!--<hibernate.annotations.version>3.3.1.GA</hibernate.annotations.version>-->
 				<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
 				<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
-				<hibernate.validator.version>3.1.0.GA</hibernate.validator.version> <!-- works with hibernate.core.version 3.3.2.GA -->
-				<!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.6.8.GA -->
-				<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->
-				<!--<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>--> <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
-				<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
 				<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
+				<!--OK <hibernate.validator.version>3.1.0.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->
+				<!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.6.8.GA -->				
+				<!--<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->
+				<hibernate.validator.version>4.3.1.Final</hibernate.validator.version> <!-- works with hibernate.core.version 4.1.8.Final -->	
+				<!--<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>--> <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
+				<!--OK <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->	
+				<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version> <!-- works with hibernate.core.version 4.1.8.Final -->		
 				<hibernate.search.version>3.1.1.GA</hibernate.search.version>
 				<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
 				<!--<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>-->
@@ -1285,6 +1288,8 @@
 				<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
 				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 				<org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
+				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>
+				<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
 				<wiser.version>1.2</wiser.version>
@@ -1640,6 +1645,7 @@
 				<org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
 				<jboss.bom.version>1.0.3.Final</jboss.bom.version>
+				<org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>   
 		</properties>
 
 		<build>
@@ -4240,28 +4246,38 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can
 								read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
 								for your project, such as Arquillian for testing) -->
-				<dependency>
-					<groupId>org.jboss.bom</groupId>
-					<artifactId>jboss-javaee-6.0-with-tools</artifactId>
-					<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
-					<type>pom</type>
-					<scope>import</scope>
-				</dependency>
+						<dependency>
+							<groupId>org.jboss.bom</groupId>
+							<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+							<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
 
-				<!-- JBoss distributes a complete set of Java EE 6 APIs including
-					a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
-					a collection) of artifacts. We use this here so that we always get the correct
-					versions of artifacts. Here we use the jboss-javaee-6.0-with-hibernate stack
-					(you can read this as the JBoss stack of the Java EE Web Profile 6 APIs with
-					extras from the Hibernate family of projects) -->
-				<dependency>
-					<groupId>org.jboss.bom</groupId>
-					<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-					<version>${jboss.bom.version}</version>
-					<type>pom</type>
-					<scope>import</scope>
-				</dependency>
-
+						<!-- JBoss distributes a complete set of Java EE 6 APIs including
+							a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
+							a collection) of artifacts. We use this here so that we always get the correct
+							versions of artifacts. Here we use the jboss-javaee-6.0-with-hibernate stack
+							(you can read this as the JBoss stack of the Java EE Web Profile 6 APIs with
+							extras from the Hibernate family of projects) -->
+						<dependency>
+							<groupId>org.jboss.bom</groupId>
+							<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+							<version>${jboss.bom.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+								
+						<!-- Similarly to the JBoss Java EE 6 BOM above, the RichFaces BOM specifies the
+							versions of artifacts required for using RichFaces in your project. -->
+						<dependency>
+							<groupId>org.richfaces</groupId>
+							<artifactId>richfaces-bom</artifactId>
+							<version>${org.richfaces.bom.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+						
 						<!-- TODO use jboss-javaee-6.0-with-tools instead of jboss-javaee-6.0-->
 						<dependency>
 								<groupId>org.hibernate.javax.persistence</groupId>
@@ -4523,6 +4539,38 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							</exclusions>
 						</dependency>
 						
+						<dependency>
+							<groupId>org.jboss.as</groupId>
+							<artifactId>jboss-as-arquillian-container-managed</artifactId>
+							<!--<version>7.1.1.Final</version>-->
+							<version>${org.jboss.as.arquillian.container.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.arquillian.protocol</groupId>
+							<artifactId>arquillian-protocol-servlet</artifactId>
+							<scope>test</scope>
+						</dependency>		
+						<dependency>
+							<groupId>org.jboss.as</groupId>
+							<artifactId>jboss-as-arquillian-container-remote</artifactId>
+							<version>${org.jboss.as.arquillian.container.version}</version>
+							<scope>test</scope>
+						</dependency>
+
+						<dependency>
+							<groupId>org.jboss.arquillian.container</groupId>
+							<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+							<version>${org.jboss.arquillian.glassfish.embedded.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.glassfish.main.extras</groupId>
+							<artifactId>glassfish-embedded-all</artifactId>
+							<version>${glassfish.embedded.all.version}</version>
+							<scope>provided</scope>
+						</dependency>
+																
 						<dependency>
 							<groupId>org.fitnesse</groupId>
 							<artifactId>fitnesse</artifactId>
@@ -4891,36 +4939,36 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					</exclusion>
 				</exclusions>
 			</dependency>
-						<dependency>
-								<groupId>org.hibernate</groupId>
-								<artifactId>ejb3-persistence</artifactId>
-								<version>${ejb3.persistence.version}</version>
-						</dependency>
-						<!-- With these dependencies here it is possible to use annotation processing
+			<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>ejb3-persistence</artifactId>
+					<version>${ejb3.persistence.version}</version>
+			</dependency>
+			<!-- With these dependencies here it is possible to use annotation processing
 			in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing
 			-> Enable Annotation Processing. Set target/generated-sources/annotations
 			as the generated source directory -->
-						<dependency>
-								<groupId>org.hibernate</groupId>
-								<artifactId>hibernate-jpamodelgen</artifactId>
-								<version>${hibernate.jpamodelgen.version}</version>
-								<scope>provided</scope>
-						</dependency>
-						<dependency>
-								<groupId>org.hibernate</groupId>
-								<artifactId>hibernate-search</artifactId>
-								<version>${hibernate.search.version}</version>
-								<exclusions>
-										<exclusion>
-												<groupId>org.hibernate</groupId>
-												<artifactId>hibernate</artifactId>
-										</exclusion>
-										<exclusion>
-												<groupId>org.hibernate</groupId>
-												<artifactId>ejb3-persistence</artifactId>
-										</exclusion>
-								</exclusions>
-						</dependency>
+			<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-jpamodelgen</artifactId>
+					<version>${hibernate.jpamodelgen.version}</version>
+					<scope>provided</scope>
+			</dependency>
+			<dependency>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-search</artifactId>
+					<version>${hibernate.search.version}</version>
+					<exclusions>
+							<exclusion>
+									<groupId>org.hibernate</groupId>
+									<artifactId>hibernate</artifactId>
+							</exclusion>
+							<exclusion>
+									<groupId>org.hibernate</groupId>
+									<artifactId>ejb3-persistence</artifactId>
+							</exclusion>
+					</exclusions>
+			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
