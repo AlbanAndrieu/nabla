@@ -22,14 +22,14 @@
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-        <javaee6.with.tools.version>1.0.0.M4</javaee6.with.tools.version>
+        <!--<javaee6.with.tools.version>1.0.0.M4</javaee6.with.tools.version>->
         <!-- Alternatively, comment out the above line, and un-comment the line below to use version 3.0.0.Beta1-redhat-1
         which is a release certified to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven repository. -->
         <!--
         <javaee6.spec.version>3.0.0.Beta1-redhat-1</javaee6.spec.version>
         -->
-		<org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>     
-		<log4j.version>1.2.17</log4j.version>    
+		<!-- <org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>-->
+		<!-- <log4j.version>1.2.17</log4j.version>-->
 	</properties>
 
     <dependencyManagement>
@@ -175,7 +175,8 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>1.1.1.Final</version>
+            <!--<version>1.1.1.Final</version>-->
+            <version>${hibernate.jpamodelgen.version}</version>
             <scope>provided</scope>
         </dependency>
 

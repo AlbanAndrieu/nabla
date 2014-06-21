@@ -16,16 +16,16 @@
 	<name>Java Server Faces Maven Webapp</name>
 
 	<!--       
-        <properties>
+    <properties>
 		<jsf.api.version>2.1</jsf.api.version>
-        	<jsf.impl.version>2.1</jsf.impl.version>		
+        <jsf.impl.version>2.1</jsf.impl.version>		
 		<jsf.api.version>1.2_15</jsf.api.version>
-        	<jsf.impl.version>1.2_15</jsf.impl.version>
+        <jsf.impl.version>1.2_15</jsf.impl.version>
 		<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
 		<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
-        	<el.api.version>2.2.1-b04</el.api.version>
-        	<jboss.el.version>1.0_02.CR6</jboss.el.version>	
-        </properties>
+		<el.api.version>2.2.1-b04</el.api.version>
+		<jboss.el.version>1.0_02.CR6</jboss.el.version>	
+    </properties>
 	-->	
  	
 	<dependencyManagement>
