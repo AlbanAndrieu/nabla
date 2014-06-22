@@ -1285,10 +1285,13 @@
 				<junit.version>4.11</junit.version>
 				<bean.matchers.version>0.8.1</bean.matchers.version>
 				<org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version>
-				<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>
+				<!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
+				<org.jboss.arquillian.junit.version>1.0.0.CR7</org.jboss.arquillian.junit.version>
 				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 				<org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
-				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>
+				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>	
+				<!--<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version>-->
+				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->			
 				<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
@@ -1640,8 +1643,7 @@
 				  repository. -->
 				<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>			   
-				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->
+				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>			   				
 				<org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
 				<jboss.bom.version>1.0.3.Final</jboss.bom.version>
@@ -4540,17 +4542,23 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</dependency>
 						
 						<dependency>
-							<groupId>org.jboss.as</groupId>
-							<artifactId>jboss-as-arquillian-container-managed</artifactId>
-							<!--<version>7.1.1.Final</version>-->
-							<version>${org.jboss.as.arquillian.container.version}</version>
+							<groupId>org.jboss.arquillian.junit</groupId>
+							<artifactId>arquillian-junit-container</artifactId>
+							<version>${org.jboss.arquillian.junit.version}</version>
 							<scope>test</scope>
-						</dependency>
+						</dependency>						
 						<dependency>
 							<groupId>org.jboss.arquillian.protocol</groupId>
 							<artifactId>arquillian-protocol-servlet</artifactId>
+							<version>${org.jboss.arquillian.junit.version}</version>
 							<scope>test</scope>
 						</dependency>		
+						<dependency>
+							<groupId>org.jboss.as</groupId>
+							<artifactId>jboss-as-arquillian-container-managed</artifactId>							
+							<version>${org.jboss.as.arquillian.container.version}</version>
+							<scope>test</scope>
+						</dependency>						
 						<dependency>
 							<groupId>org.jboss.as</groupId>
 							<artifactId>jboss-as-arquillian-container-remote</artifactId>
@@ -4835,10 +4843,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${javax.transaction.version}</version>
 						</dependency>
 
+						<!-- JSR-303 (Bean Validation) Implementation -->
+						<!-- Provides portable constraints such as @Email -->
+						<!-- Hibernate Validator is shipped in JBoss AS 7 -->
 						<dependency>
 								<groupId>org.hibernate</groupId>
 								<artifactId>hibernate-validator</artifactId>
 								<version>${hibernate.validator.version}</version>
+								<scope>provided</scope>
 								<!-- Some transitive dependencies of Hibernate 3 are available
 									in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib, but instead
 									depend on the modules -->
@@ -4853,182 +4865,182 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									</exclusion>
 								</exclusions>
 						</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${hibernate.entitymanager.version}</version>
-				<scope>provided</scope>
-				<!-- Some transitive dependencies of Hibernate 3 are available
-					in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib, but instead
-					depend on the modules -->
-				<exclusions>
-				  <exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>org.hibernate</groupId>
-					<artifactId>ejb3-persistence</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>jboss</groupId>
-					<artifactId>javassist</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>javax.persistence</groupId>
-					<artifactId>persistence-api</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>jta</artifactId>
-				  </exclusion>
-				  <exclusion>
-						<groupId>asm</groupId>
-						<artifactId>asm</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>javassist</groupId>
-					<artifactId>javassist</artifactId>
-				  </exclusion>
-				  <exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-				  </exclusion>
-				  <exclusion>
-						<groupId>cglib</groupId>
-						<artifactId>cglib</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>xml-apis</groupId>
-					<artifactId>xml-apis</artifactId>
-				  </exclusion>
-				  <exclusion>
-					  <groupId>org.jboss.logging</groupId>
-					  <artifactId>jboss-logging</artifactId>
-				  </exclusion>
-				  <exclusion>
-					  <groupId>org.jboss.spec.javax.interceptor</groupId>
-					  <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
-				  </exclusion>
-				  <exclusion>
-					  <groupId>org.jboss.spec.javax.transaction</groupId>
-					  <artifactId>jboss-transaction-api_1.1_spec</artifactId>
-				  </exclusion>
-				</exclusions>
-			</dependency>
-			<!-- https://docs.jboss.org/author/display/ISPN/Using+Infinispan+as+JPA-Hibernate+Second+Level+Cache+Provider -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-infinispan</artifactId>
-				<version>${hibernate.infinispan.version}</version>
-				<exclusions>
-					<!-- Some transitive dependencies of Hibernate 3 are
-						available in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib,
-						but instead depend on the modules -->
-					<exclusion>
-						<groupId>org.infinispan</groupId>
-						<artifactId>infinispan-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate-testing</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-					<groupId>org.hibernate</groupId>
-					<artifactId>ejb3-persistence</artifactId>
-					<version>${ejb3.persistence.version}</version>
-			</dependency>
-			<!-- With these dependencies here it is possible to use annotation processing
-			in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing
-			-> Enable Annotation Processing. Set target/generated-sources/annotations
-			as the generated source directory -->
-			<dependency>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-jpamodelgen</artifactId>
-					<version>${hibernate.jpamodelgen.version}</version>
-					<scope>provided</scope>
-			</dependency>
-			<dependency>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-search</artifactId>
-					<version>${hibernate.search.version}</version>
-					<exclusions>
-							<exclusion>
+						<dependency>
+							<groupId>org.hibernate</groupId>
+							<artifactId>hibernate-entitymanager</artifactId>
+							<version>${hibernate.entitymanager.version}</version>
+							<scope>provided</scope>
+							<!-- Some transitive dependencies of Hibernate 3 are available
+								in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib, but instead
+								depend on the modules -->
+							<exclusions>
+							  <exclusion>
+								<groupId>commons-logging</groupId>
+								<artifactId>commons-logging</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>org.hibernate</groupId>
+								<artifactId>ejb3-persistence</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>jboss</groupId>
+								<artifactId>javassist</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>javax.persistence</groupId>
+								<artifactId>persistence-api</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>javax.transaction</groupId>
+								<artifactId>jta</artifactId>
+							  </exclusion>
+							  <exclusion>
+									<groupId>asm</groupId>
+									<artifactId>asm</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>javassist</groupId>
+								<artifactId>javassist</artifactId>
+							  </exclusion>
+							  <exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-api</artifactId>
+							  </exclusion>
+							  <exclusion>
+									<groupId>cglib</groupId>
+									<artifactId>cglib</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>xml-apis</groupId>
+								<artifactId>xml-apis</artifactId>
+							  </exclusion>
+							  <exclusion>
+								  <groupId>org.jboss.logging</groupId>
+								  <artifactId>jboss-logging</artifactId>
+							  </exclusion>
+							  <exclusion>
+								  <groupId>org.jboss.spec.javax.interceptor</groupId>
+								  <artifactId>jboss-interceptors-api_1.1_spec</artifactId>
+							  </exclusion>
+							  <exclusion>
+								  <groupId>org.jboss.spec.javax.transaction</groupId>
+								  <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+							  </exclusion>
+							</exclusions>
+						</dependency>
+						<!-- https://docs.jboss.org/author/display/ISPN/Using+Infinispan+as+JPA-Hibernate+Second+Level+Cache+Provider -->
+						<dependency>
+							<groupId>org.hibernate</groupId>
+							<artifactId>hibernate-infinispan</artifactId>
+							<version>${hibernate.infinispan.version}</version>
+							<exclusions>
+								<!-- Some transitive dependencies of Hibernate 3 are
+									available in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib,
+									but instead depend on the modules -->
+								<exclusion>
+									<groupId>org.infinispan</groupId>
+									<artifactId>infinispan-core</artifactId>
+								</exclusion>
+								<exclusion>
 									<groupId>org.hibernate</groupId>
-									<artifactId>hibernate</artifactId>
-							</exclusion>
-							<exclusion>
-									<groupId>org.hibernate</groupId>
-									<artifactId>ejb3-persistence</artifactId>
-							</exclusion>
-					</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>${hibernate.core.version}</version>
-				<scope>provided</scope>
-				<!-- Some transitive dependencies of Hibernate 3 are available
-					in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib, but instead
-					depend on the modules -->
-				<exclusions>
-					<exclusion>
-						<groupId>antlr</groupId>
-						<artifactId>antlr</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>commons-collections</groupId>
-						<artifactId>commons-collections</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>dom4j</groupId>
-						<artifactId>dom4j</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>javax.transaction</groupId>
-						<artifactId>jta</artifactId>
-					</exclusion>
+									<artifactId>hibernate-testing</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-api</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+						<dependency>
+								<groupId>org.hibernate</groupId>
+								<artifactId>ejb3-persistence</artifactId>
+								<version>${ejb3.persistence.version}</version>
+						</dependency>
+						<!-- With these dependencies here it is possible to use annotation processing
+						in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing
+						-> Enable Annotation Processing. Set target/generated-sources/annotations
+						as the generated source directory -->
+						<dependency>
+								<groupId>org.hibernate</groupId>
+								<artifactId>hibernate-jpamodelgen</artifactId>
+								<version>${hibernate.jpamodelgen.version}</version>
+								<scope>provided</scope>
+						</dependency>
+						<dependency>
+								<groupId>org.hibernate</groupId>
+								<artifactId>hibernate-search</artifactId>
+								<version>${hibernate.search.version}</version>
+								<exclusions>
+										<exclusion>
+												<groupId>org.hibernate</groupId>
+												<artifactId>hibernate</artifactId>
+										</exclusion>
+										<exclusion>
+												<groupId>org.hibernate</groupId>
+												<artifactId>ejb3-persistence</artifactId>
+										</exclusion>
+								</exclusions>
+						</dependency>
+						<dependency>
+							<groupId>org.hibernate</groupId>
+							<artifactId>hibernate-core</artifactId>
+							<version>${hibernate.core.version}</version>
+							<scope>provided</scope>
+							<!-- Some transitive dependencies of Hibernate 3 are available
+								in JBoss AS 7 as modules, so we don't include them in WEB-INF/lib, but instead
+								depend on the modules -->
+							<exclusions>
+								<exclusion>
+									<groupId>antlr</groupId>
+									<artifactId>antlr</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>commons-collections</groupId>
+									<artifactId>commons-collections</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-api</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>dom4j</groupId>
+									<artifactId>dom4j</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>javax.transaction</groupId>
+									<artifactId>jta</artifactId>
+								</exclusion>
 
-				  <exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>net.sf.ehcache</groupId>
-					<artifactId>ehcache</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>junit</groupId>
-					<artifactId>junit</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>asm</groupId>
-					<artifactId>asm</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>asm</groupId>
-					<artifactId>asm-attrs</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>cglib</groupId>
-					<artifactId>cglib</artifactId>
-				  </exclusion>
-				  <exclusion>
-					<groupId>xml-apis</groupId>
-					<artifactId>xml-apis</artifactId>
-				  </exclusion>
-				</exclusions>
-			</dependency>
+							  <exclusion>
+								<groupId>commons-logging</groupId>
+								<artifactId>commons-logging</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>net.sf.ehcache</groupId>
+								<artifactId>ehcache</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>junit</groupId>
+								<artifactId>junit</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>asm</groupId>
+								<artifactId>asm</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>asm</groupId>
+								<artifactId>asm-attrs</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>cglib</groupId>
+								<artifactId>cglib</artifactId>
+							  </exclusion>
+							  <exclusion>
+								<groupId>xml-apis</groupId>
+								<artifactId>xml-apis</artifactId>
+							  </exclusion>
+							</exclusions>
+						</dependency>
 
 						<dependency>
 								<groupId>org.hibernate</groupId>
@@ -5042,13 +5054,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								</exclusions>
 						</dependency>
 
-	<dependency>
-	  <groupId>org.codehaus.izpack</groupId>
-	  <artifactId>izpack-standalone-compiler</artifactId>
-	  <version>${izpack.standalone.compiler.version}</version>
-	  <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
-	  <optional>true</optional>
-	</dependency>
+						<dependency>
+						  <groupId>org.codehaus.izpack</groupId>
+						  <artifactId>izpack-standalone-compiler</artifactId>
+						  <version>${izpack.standalone.compiler.version}</version>
+						  <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
+						  <optional>true</optional>
+						</dependency>
 
 						<dependency>
 								<groupId>net.sf.ehcache</groupId>
@@ -5069,10 +5081,10 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<type>jar</type>
 						</dependency>
 						<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache-terracotta</artifactId>
-				<version>${ehcache.terracotta.version}</version>
-			</dependency>
+							<groupId>net.sf.ehcache</groupId>
+							<artifactId>ehcache-terracotta</artifactId>
+							<version>${ehcache.terracotta.version}</version>
+						</dependency>
 						<dependency>
 								<groupId>org.javassist</groupId>
 								<artifactId>javassist</artifactId>
