@@ -4543,7 +4543,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								</exclusion>
 							</exclusions>
 						</dependency>
-						
+						<dependency>
+							<groupId>com.google.code.protoj</groupId>
+							<artifactId>protoj-nodep</artifactId>
+							<version>${protoj.nodep.version}</version>
+							<scope>test</scope>
+						</dependency>							
 						<dependency>
 							<groupId>org.jboss.arquillian.junit</groupId>
 							<artifactId>arquillian-junit-container</artifactId>
