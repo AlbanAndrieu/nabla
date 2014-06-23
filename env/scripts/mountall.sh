@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umount -f /owncloud
+
 mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp 
 mount -t nfs 192.168.0.46:/mnt/dpool/media/photo /media/photo 
 mount -t nfs 192.168.0.46:/mnt/dpool/media/music /media/music

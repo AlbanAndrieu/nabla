@@ -6,27 +6,27 @@ Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/p
 [INFO] Building Maven Java Server Faces Webapp for Visma 1.0.1-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/visma/core/1.0.1-SNAPSHOT/maven-metadata.xml
-2/2 KB               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/visma/core/1.0.1-SNAPSHOT/maven-metadata.xml (2 KB at 5.5 KB/sec)
+2/2 KB               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/visma/core/1.0.1-SNAPSHOT/maven-metadata.xml (2 KB at 4.6 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/visma/visma/1.0.1-SNAPSHOT/maven-metadata.xml
-836/836 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/visma/visma/1.0.1-SNAPSHOT/maven-metadata.xml (836 B at 3.4 KB/sec)
+836/836 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/visma/visma/1.0.1-SNAPSHOT/maven-metadata.xml (836 B at 2.1 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/interview/1.0.1-SNAPSHOT/maven-metadata.xml
-622/622 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/interview/1.0.1-SNAPSHOT/maven-metadata.xml (622 B at 2.9 KB/sec)
+622/622 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/interview/interview/1.0.1-SNAPSHOT/maven-metadata.xml (622 B at 1.7 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/sample/1.0.1-SNAPSHOT/maven-metadata.xml
-609/609 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/sample/1.0.1-SNAPSHOT/maven-metadata.xml (609 B at 2.1 KB/sec)
+609/609 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/sample/sample/1.0.1-SNAPSHOT/maven-metadata.xml (609 B at 1.2 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/project/1.0.1-SNAPSHOT/maven-metadata.xml
-603/603 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/project/1.0.1-SNAPSHOT/maven-metadata.xml (603 B at 4.1 KB/sec)
+603/603 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/project/1.0.1-SNAPSHOT/maven-metadata.xml (603 B at 2.4 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/servers/1.0.1-SNAPSHOT/maven-metadata.xml
-603/603 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/servers/1.0.1-SNAPSHOT/maven-metadata.xml (603 B at 3.1 KB/sec)
+603/603 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/servers/1.0.1-SNAPSHOT/maven-metadata.xml (603 B at 1.2 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/maven-metadata.xml
-605/605 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 2.5 KB/sec)
+605/605 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 2.8 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/main/1.0.1-SNAPSHOT/maven-metadata.xml
-602/602 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/main/1.0.1-SNAPSHOT/maven-metadata.xml (602 B at 3.3 KB/sec)
+602/602 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/main/1.0.1-SNAPSHOT/maven-metadata.xml (602 B at 1.4 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/customs/1.0.1-SNAPSHOT/maven-metadata.xml
-605/605 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/customs/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 1.9 KB/sec)
+605/605 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/customs/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 2.4 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/dependencies/1.0.1-SNAPSHOT/maven-metadata.xml
-610/610 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/dependencies/1.0.1-SNAPSHOT/maven-metadata.xml (610 B at 2.4 KB/sec)
+610/610 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/dependencies/1.0.1-SNAPSHOT/maven-metadata.xml (610 B at 2.3 KB/sec)
 Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/users/1.0.1-SNAPSHOT/maven-metadata.xml
-591/591 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/users/1.0.1-SNAPSHOT/maven-metadata.xml (591 B at 4.0 KB/sec)
+591/591 B               Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/users/1.0.1-SNAPSHOT/maven-metadata.xml (591 B at 1.2 KB/sec)
 [INFO] 
 [INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ gui ---
 [INFO] com.nabla.project.sample.interview.visma:gui:war:1.0.1-SNAPSHOT
@@ -173,7 +173,7 @@ Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/u
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 3:01.234s
-[INFO] Finished at: Mon Jun 23 04:36:03 CEST 2014
+[INFO] Total time: 3:35.037s
+[INFO] Finished at: Mon Jun 23 04:41:07 CEST 2014
 [INFO] Final Memory: 21M/243M
 [INFO] ------------------------------------------------------------------------

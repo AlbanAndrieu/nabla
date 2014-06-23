@@ -1159,7 +1159,7 @@
 				<jboss.microcontainer.version>alpha_9</jboss.microcontainer.version>
 				<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
 				<jboss.cache.version>1.4.1.SP9</jboss.cache.version>
-				<jboss.el.version>1.0_02.CR6</jboss.el.version>
+				<jboss.el.version>1.0_02.CR5</jboss.el.version>
 				<jboss.logging.version>3.1.2.GA</jboss.logging.version>
 				<jboss.common.core.version>2.2.20.GA</jboss.common.core.version>
 				<jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
@@ -1216,9 +1216,9 @@
 				<hibernate.legacy.entitymanager.version>${hibernate.legacy.core.version}</hibernate.legacy.entitymanager.version>
 				<!-- https://community.jboss.org/wiki/HibernateCompatibilityMatrix -->
 				<!--<hibernate3.version>3.6.8.Final</hibernate3.version>--> <!-- for hibernate-core and hibernate-entitymanager -->
-				<!--OK <hibernate.core.version>3.3.2.GA</hibernate.core.version>-->
+				<hibernate.core.version>3.3.2.GA</hibernate.core.version>
 				<!--<hibernate.core.version>3.6.8.Final</hibernate.core.version>-->
-				<hibernate.core.version>4.1.8.Final</hibernate.core.version>
+				<!--<hibernate.core.version>4.1.8.Final</hibernate.core.version>-->
 				<hibernate.entitymanager.version>${hibernate.core.version}</hibernate.entitymanager.version>
 				<!--<hibernate.infinispan.version>${hibernate.core.version}</hibernate.infinispan.version>-->
 				<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>
@@ -1226,13 +1226,14 @@
 				<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
 				<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
 				<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
-				<!--OK <hibernate.validator.version>3.1.0.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->
+				<!--<hibernate.validator.version>3.1.0.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->
 				<!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.6.8.GA -->				
 				<!--<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->
-				<hibernate.validator.version>4.3.1.Final</hibernate.validator.version> <!-- works with hibernate.core.version 4.1.8.Final -->	
+				<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->	
+				<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
 				<!--<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>--> <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
-				<!--OK <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->	
-				<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version> <!-- works with hibernate.core.version 4.1.8.Final -->		
+				<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version> <!-- works with hibernate.core.version 3.3.2.GA -->	
+				<!--<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->		
 				<hibernate.search.version>3.1.1.GA</hibernate.search.version>
 				<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
 				<!--<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>-->
@@ -1292,6 +1293,7 @@
 				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>	
 				<!--<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version>-->
 				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->			
+				<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>	
 				<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
