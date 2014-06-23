@@ -1,0 +1,69 @@
+[INFO] Scanning for projects...
+[WARNING] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is missing, no dependency information available
+[WARNING] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Databases DAO test 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is missing, no dependency information available
+[WARNING] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ test ---
+[INFO] com.nabla.project.databases.sample.dao.business.test:test:jar:1.0.1-SNAPSHOT
+[INFO] +- org.springframework:spring:jar:2.5.6:compile
+[INFO] +- xerces:xercesImpl:jar:2.9.1:provided
+[INFO] +- batik:batik-ext:jar:1.7:compile
+[INFO] +- org.springframework:spring-agent:jar:2.5.6:compile
+[INFO] +- org.springframework:spring-aspects:jar:2.5.6:compile
+[INFO] |  +- org.aspectj:aspectjrt:jar:1.7.1:compile
+[INFO] |  +- org.aspectj:aspectjweaver:jar:1.6.1:compile
+[INFO] |  \- org.springframework:spring-beans:jar:3.1.3.RELEASE:compile
+[INFO] |     \- org.springframework:spring-core:jar:3.1.3.RELEASE:compile
+[INFO] |        \- org.springframework:spring-asm:jar:3.1.3.RELEASE:compile
+[INFO] +- org.springframework:spring-mock:jar:2.0.8:test
+[INFO] +- commons-dbcp:commons-dbcp:jar:1.4:runtime
+[INFO] |  \- commons-pool:commons-pool:jar:1.4:runtime
+[INFO] +- jboss:jboss-common-core:jar:2.0.4.GA:compile
+[INFO] +- concurrent:concurrent:jar:1.3.4:compile
+[INFO] +- commons-logging:commons-logging:jar:1.1.1:compile
+[INFO] +- commons-collections:commons-collections:jar:3.2.1:compile
+[INFO] +- org.hibernate:hibernate:jar:3.2.6.ga:provided
+[INFO] |  +- net.sf.ehcache:ehcache:jar:1.5.0:provided
+[INFO] |  |  +- backport-util-concurrent:backport-util-concurrent:jar:3.1:runtime
+[INFO] |  |  \- net.sf.jsr107cache:jsr107cache:jar:1.0:provided
+[INFO] |  +- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |  \- antlr:antlr:jar:2.7.7:provided
+[INFO] +- asm:asm:jar:3.3.1:compile
+[INFO] +- cglib:cglib-nodep:jar:2.2.2:runtime
+[INFO] +- javax.transaction:jta:jar:1.1:compile
+[INFO] +- javassist:javassist:jar:3.12.1.GA:compile
+[INFO] +- org.hibernate:hibernate-annotations:jar:3.4.0.GA:compile
+[INFO] |  +- org.hibernate:ejb3-persistence:jar:1.0.2.GA:compile
+[INFO] |  +- org.hibernate:hibernate-commons-annotations:jar:3.2.0.Final:provided
+[INFO] |  +- org.hibernate:hibernate-core:jar:3.3.2.GA:provided
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.5:compile
+[INFO] +- org.hibernate:hibernate-entitymanager:jar:3.3.2.GA:provided
+[INFO] +- org.apache.derby:derby:jar:10.10.1.1:compile
+[INFO] +- org.apache.derby:derbytools:jar:10.10.1.1:compile
+[INFO] +- org.apache.derby:derbynet:jar:10.10.1.1:compile
+[INFO] +- javax.persistence:persistence-api:jar:1.0.2:compile
+[INFO] +- org.apache.derby:derbyclient:jar:10.10.1.1:provided
+[INFO] +- junit:junit:jar:4.11:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3.RC2:test
+[INFO] +- junitperf:junitperf:jar:1.9.1:test
+[INFO] +- xmlunit:xmlunit:jar:1.5:test
+[INFO] +- xalan:xalan:jar:2.7.1:provided
+[INFO] |  \- xalan:serializer:jar:2.7.1:provided
+[INFO] +- org.jboss.arquillian.extension:arquillian-jacoco:jar:1.0.0.Alpha6:test
+[INFO] |  +- org.jboss.shrinkwrap:shrinkwrap-api:jar:1.0.0-cr-1:test
+[INFO] |  \- org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-api-base:jar:2.0.0-alpha-5:test
+[INFO] \- org.jacoco:org.jacoco.core:jar:0.7.1.201405082137:provided
+[INFO]    \- org.ow2.asm:asm-debug-all:jar:5.0.1:provided
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 28.725s
+[INFO] Finished at: Mon Jun 23 02:39:51 CEST 2014
+[INFO] Final Memory: 20M/243M
+[INFO] ------------------------------------------------------------------------
+[WARNING] The requested profile "arq-jbossas-managed" could not be activated because it does not exist.
