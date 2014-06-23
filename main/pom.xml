@@ -158,6 +158,12 @@
                         <artifactId>junit</artifactId>
                         <scope>test</scope>
                 </dependency>
+                <!-- FIX BUG http://forum.spring.io/forum/spring-projects/container/52022-spring-test-breaks-in-junit-4-5 -->
+				<dependency>
+						<groupId>com.google.code.protoj</groupId>
+						<artifactId>protoj-nodep</artifactId>
+						<scope>test</scope>
+				</dependency>              
                 <dependency>
                         <groupId>junitperf</groupId>
                         <artifactId>junitperf</artifactId>
