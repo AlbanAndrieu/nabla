@@ -289,12 +289,12 @@
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-entitymanager</artifactId>
                     <version>${hibernate.legacy.entitymanager.version}</version>
-                  </dependency>                       
+                  </dependency>        
                   <dependency>
                       <groupId>org.hibernate</groupId>
                       <artifactId>hibernate-validator</artifactId>
-                      <version>${hibernate.validator.version}</version>
-                  </dependency>                  
+                      <version>${hibernate.legacy.validator.version}</version>
+                  </dependency>    
                   <dependency>
                       <groupId>javax.validation</groupId>
                       <artifactId>validation-api</artifactId>
