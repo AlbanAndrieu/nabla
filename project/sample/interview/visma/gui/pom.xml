@@ -301,7 +301,7 @@
 		<dependency>
 			<groupId>org.jboss.arquillian</groupId>
 			<artifactId>arquillian-spi</artifactId>
-			<version>${org.jboss.arquillian.junit.version}</version>
+			<version>${org.jboss.arquillian.spi.version}</version>
 			<scope>test</scope>
 		</dependency>
 	
