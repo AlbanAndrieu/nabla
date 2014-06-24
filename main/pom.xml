@@ -817,17 +817,22 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<inherited>true</inherited>
 						<configuration>
-						  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+						  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
+						  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:ReservedCodeCacheSize=128m</argLine>
+						  <!-- XX:-UseSplitVerifier -->
 						  <skip>${maven.test.skip}</skip>
+						  <forkMode>once</forkMode>
 						  <!-- Enable or disable Stop maven -->
 						  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 						  <!-- Specific to generate mapping between tests and covered code -->
+						  <!-- 
 						  <properties>
 							<property>
 							  <name>listener</name>
 							  <value>org.sonar.java.jacoco.JUnitListener</value>
 							</property>
 						  </properties>
+						  -->
 						  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 						  <excludes>
 							 <exclude>**/*DaoTest.java</exclude>
@@ -908,6 +913,7 @@
 					  </plugin>
 					</plugins>
 				  </build>
+				  <!--
 				  <dependencies>
 					<dependency>
 					  <groupId>org.codehaus.sonar-plugins.java</groupId>
@@ -916,6 +922,7 @@
 					  <scope>test</scope>					  
 					</dependency>
 				  </dependencies>
+				  -->
 				</profile>					
 				<!-- activate jacoco profile with coverage for arquillian to work -->
 				<profile>
