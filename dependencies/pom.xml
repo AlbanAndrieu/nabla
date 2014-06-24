@@ -1226,6 +1226,7 @@
 				<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
 				<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
 				<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
+				<hibernate.legacy.validator.version>4.1.0.Final</hibernate.legacy.validator.version>
 				<!--<hibernate.validator.version>3.1.0.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->
 				<!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.6.8.GA -->				
 				<!--<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->
