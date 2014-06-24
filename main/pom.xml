@@ -159,11 +159,13 @@
                         <type>jar</type>
                         <scope>test</scope>
                 </dependency>
-			   <dependency>
+                <!-- WARNING DO NOT activate bothe Junit and TestNG
+			    <dependency>
 						<groupId>org.testng</groupId>
 						<artifactId>testng</artifactId>
 						<scope>test</scope>
 				</dependency>
+				-->
                                                 
                 <!-- FIX BUG http://forum.spring.io/forum/spring-projects/container/52022-spring-test-breaks-in-junit-4-5 -->
 				<dependency>
