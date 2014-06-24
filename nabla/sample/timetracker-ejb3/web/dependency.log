@@ -1,0 +1,393 @@
+[INFO] Scanning for projects...
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/build-tools/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/build-tools/1.0.1-SNAPSHOT/maven-metadata.xml (781 B at 0.6 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/maven/plugins/andromdapp-maven-plugin/3.6-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/maven/plugins/andromdapp-maven-plugin/3.6-SNAPSHOT/maven-metadata.xml (796 B at 0.9 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/maven/plugins/andromda-maven-plugins/3.6-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/maven/plugins/andromda-maven-plugins/3.6-SNAPSHOT/maven-metadata.xml (833 B at 1.3 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/andromda/3.6-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/andromda/3.6-SNAPSHOT/maven-metadata.xml (805 B at 1.3 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/maven/maven-parent/3.6-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/maven/maven-parent/3.6-SNAPSHOT/maven-metadata.xml (605 B at 1.2 KB/sec)
+[WARNING] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/eclipse/m2e/lifecycle-mapping/1.0.0/lifecycle-mapping-1.0.0.jar
+[WARNING] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Could not find artifact org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 in nexus (http://home.nabla.mobi:8081/nexus/content/groups/public/)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/codehaus/mojo/findbugs-maven-plugin/2.5.4-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/org/codehaus/mojo/findbugs-maven-plugin/2.5.4-SNAPSHOT/maven-metadata.xml (788 B at 0.9 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/codehaus/mojo/javancss-maven-plugin/2.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/org/codehaus/mojo/javancss-maven-plugin/2.1-SNAPSHOT/maven-metadata.xml (372 B at 0.6 KB/sec)
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building [timetracker-ejb3 :: EJB3 Web] - web : 1.0.1-SNAPSHOT 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] The POM for org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+[WARNING] Failed to retrieve plugin descriptor for org.eclipse.m2e:lifecycle-mapping:1.0.0: Plugin org.eclipse.m2e:lifecycle-mapping:1.0.0 or one of its dependencies could not be resolved: Failure to find org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 in http://home.nabla.mobi:8081/nexus/content/groups/public/ was cached in the local repository, resolution will not be reattempted until the update interval of nexus has elapsed or updates are forced
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/timetracker/ejb3/common/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/timetracker/ejb3/timetracker-ejb3/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/uml/timetracker/sample/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/uml/timetracker/sample/1.0.1-SNAPSHOT/maven-metadata.xml (616 B at 0.9 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/uml/nabla/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/uml/nabla/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 1.2 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/uml/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/uml/1.0.1-SNAPSHOT/maven-metadata.xml (599 B at 1.7 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/project/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/project/1.0.1-SNAPSHOT/maven-metadata.xml (603 B at 1.4 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/servers/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/servers/1.0.1-SNAPSHOT/maven-metadata.xml (603 B at 1.0 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 1.2 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/databases-1.0.1-20140624.164415-38.pom
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/databases/1.0.1-SNAPSHOT/databases-1.0.1-20140624.164415-38.pom (43 KB at 6.1 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/main/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/main/1.0.1-SNAPSHOT/maven-metadata.xml (602 B at 1.1 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/customs/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/customs/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 1.4 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/dependencies/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/dependencies/1.0.1-SNAPSHOT/maven-metadata.xml (610 B at 0.9 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/users/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/users/1.0.1-SNAPSHOT/maven-metadata.xml (591 B at 1.2 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/org/andromda/timetracker/ejb3/core/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/core/gwt/gwt-seam/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/core/gwt/gwt-seam/1.0.1-SNAPSHOT/maven-metadata.xml (787 B at 0.9 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/core/core/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/core/core/1.0.1-SNAPSHOT/maven-metadata.xml (605 B at 1.0 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/nabla/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/com/nabla/project/nabla/1.0.1-SNAPSHOT/maven-metadata.xml (601 B at 1.0 KB/sec)
+Downloading: http://home.nabla.mobi:8081/nexus/content/groups/public/no/knowit/seam/root/2.2.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://home.nabla.mobi:8081/nexus/content/groups/public/no/knowit/seam/root/2.2.1-SNAPSHOT/maven-metadata.xml (595 B at 1.0 KB/sec)
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ web ---
+[INFO] org.andromda.timetracker.ejb3:web:war:1.0.1-SNAPSHOT
+[INFO] +- org.andromda.timetracker.ejb3:common:jar:1.0.1-SNAPSHOT:compile
+[INFO] +- org.andromda.timetracker.ejb3:core:ejb:1.0.1-SNAPSHOT:compile
+[INFO] |  +- org.jboss.logging:jboss-logging:jar:3.1.2.GA:compile
+[INFO] |  +- antlr:antlr:jar:2.7.7:compile
+[INFO] |  +- org.hibernate:hibernate-validator-legacy:jar:4.0.2.GA:compile
+[INFO] |  +- org.hibernate:hibernate-infinispan:jar:3.6.8.Final:compile
+[INFO] |  +- org.jboss.seam:jboss-seam:ejb:2.2.1.Final:compile
+[INFO] |  \- com.nabla.project.core.gwt:gwt-seam:jar:1.0.1-SNAPSHOT:compile
+[INFO] +- commons-codec:commons-codec:jar:1.5:compile
+[INFO] +- commons-logging:commons-logging:jar:1.1.1:compile
+[INFO] +- commons-io:commons-io:jar:2.1:compile
+[INFO] +- commons-lang:commons-lang:jar:2.6:compile
+[INFO] +- commons-beanutils:commons-beanutils:jar:1.8.3:compile
+[INFO] +- commons-collections:commons-collections:jar:3.2.1:compile
+[INFO] +- commons-digester:commons-digester:jar:2.1:compile
+[INFO] +- commons-fileupload:commons-fileupload:jar:1.2.2:compile
+[INFO] +- commons-validator:commons-validator:jar:1.3.1:compile
+[INFO] +- oro:oro:jar:2.0.8:compile
+[INFO] +- org.hibernate:hibernate-validator:jar:3.1.0.GA:compile
+[INFO] +- org.hibernate:hibernate-validator:jar:sources:3.1.0.GA:compile
+[INFO] +- org.hibernate:hibernate-search:jar:4.3.0.Final:compile
+[INFO] |  \- org.hibernate:hibernate-search-orm:jar:4.3.0.Final:compile
+[INFO] |     +- org.hibernate:hibernate-search-engine:jar:4.3.0.Final:compile
+[INFO] |     |  +- org.hibernate.common:hibernate-commons-annotations:jar:4.0.2.Final:compile
+[INFO] |     |  +- org.apache.avro:avro:jar:1.6.3:compile
+[INFO] |     |  |  +- org.codehaus.jackson:jackson-core-asl:jar:1.9.9:compile
+[INFO] |     |  |  +- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.9:compile
+[INFO] |     |  |  +- com.thoughtworks.paranamer:paranamer:jar:2.3:compile
+[INFO] |     |  |  \- org.xerial.snappy:snappy-java:jar:1.0.4.1:compile
+[INFO] |     |  \- org.apache.lucene:lucene-facet:jar:3.6.2:compile
+[INFO] |     \- org.hibernate:hibernate-search-analyzers:jar:4.3.0.Final:compile
+[INFO] |        \- org.apache.solr:solr-analysis-extras:jar:3.6.2:compile
+[INFO] |           +- org.apache.solr:solr-core:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.solr:solr-solrj:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.lucene:lucene-highlighter:jar:2.4.1:compile
+[INFO] |           |  +- org.apache.lucene:lucene-kuromoji:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.lucene:lucene-memory:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.lucene:lucene-misc:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.lucene:lucene-phonetic:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.lucene:lucene-spatial:jar:3.6.2:compile
+[INFO] |           |  +- org.apache.lucene:lucene-spellchecker:jar:3.6.2:compile
+[INFO] |           |  \- org.apache.lucene:lucene-grouping:jar:3.6.2:compile
+[INFO] |           +- org.apache.lucene:lucene-smartcn:jar:3.6.2:compile
+[INFO] |           \- org.apache.lucene:lucene-stempel:jar:3.6.2:compile
+[INFO] +- org.hibernate:hibernate-commons-annotations:jar:3.2.0.Final:compile
+[INFO] +- org.apache.ant:ant:jar:1.9.4:compile
+[INFO] |  \- org.apache.ant:ant-launcher:jar:1.9.4:compile
+[INFO] +- javax.validation:validation-api:jar:1.0.0.GA:compile
+[INFO] +- javax.validation:validation-api:jar:sources:1.0.0.GA:compile
+[INFO] +- com.sun.facelets:jsf-facelets:jar:1.1.15.B1:compile
+[INFO] +- org.richfaces.framework:richfaces-api:jar:3.3.3.Final:compile
+[INFO] +- org.richfaces.framework:richfaces-impl:jar:3.3.3.Final:compile
+[INFO] +- org.richfaces.ui:richfaces-ui:jar:3.3.3.Final:compile
+[INFO] +- org.richfaces.samples:glassX:jar:3.3.3.Final:compile
+[INFO] +- org.richfaces.samples:darkX:jar:3.3.3.Final:compile
+[INFO] +- javax.faces:jsf-api:jar:1.2_15:compile
+[INFO] +- com.sun.faces:jsf-api:jar:2.1.7:provided
+[INFO] +- com.sun.faces:jsf-impl:jar:2.1.7:provided
+[INFO] +- org.testng:testng:jar:6.8.8:test
+[INFO] |  +- org.beanshell:bsh:jar:2.0b5:test
+[INFO] |  \- com.beust:jcommander:jar:1.27:test
+[INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile
+[INFO] +- org.slf4j:slf4j-simple:jar:1.7.5:compile
+[INFO] +- log4j:log4j:jar:1.2.17:compile
+[INFO] +- javax.el:el-api:jar:2.2.1-b04:compile
+[INFO] +- javax.ejb:ejb-api:jar:3.0:compile
+[INFO] +- org.apache.lucene:lucene-core:jar:2.4.1:compile
+[INFO] +- org.apache.lucene:lucene-analyzers:jar:2.4.1:compile
+[INFO] +- org.jboss.seam:jboss-seam-ui:jar:2.2.1.Final:compile
+[INFO] +- org.jboss.seam:jboss-seam-debug:jar:2.2.1.Final:compile
+[INFO] +- org.jboss.seam:jboss-seam-remoting:jar:2.2.1.Final:compile
+[INFO] +- org.javassist:javassist:jar:3.18.1-GA:compile
+[INFO] +- asm:asm:jar:3.3.1:compile
+[INFO] +- cglib:cglib:jar:2.2:compile
+[INFO] +- javax.servlet:servlet-api:jar:2.5:provided
+[INFO] +- jboss:jboss-j2ee:jar:4.2.2.GA:provided
+[INFO] +- jboss:jboss-ejb3-client:jar:4.2.2.GA:provided
+[INFO] +- jboss:jboss-ejb3x:jar:4.2.2.GA:provided
+[INFO] +- org.jboss:ejb3-persistence:jar:4.0.5-GA:provided
+[INFO] +- org.hibernate:hibernate-entitymanager:jar:3.4.0.GA:compile
+[INFO] |  \- org.hibernate:hibernate-annotations:jar:3.4.0.GA:compile
+[INFO] +- org.hibernate:hibernate-core:jar:3.3.2.GA:compile
+[INFO] +- org.drools:drools-core:jar:5.5.0.Final:compile
+[INFO] |  +- org.drools:knowledge-api:jar:5.5.0.Final:compile
+[INFO] |  \- org.drools:knowledge-internal-api:jar:5.5.0.Final:compile
+[INFO] +- org.drools:drools-compiler:jar:5.5.0.Final:compile
+[INFO] |  +- org.antlr:antlr-runtime:jar:3.5.1:compile
+[INFO] |  +- org.antlr:antlr:jar:3.5.1:compile
+[INFO] |  |  \- org.antlr:ST4:jar:4.0.7:compile
+[INFO] |  +- org.antlr:stringtemplate:jar:3.2.1:compile
+[INFO] |  +- org.eclipse.jdt.core.compiler:ecj:jar:3.5.1:compile
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.4.2:compile
+[INFO] |     +- xmlpull:xmlpull:jar:1.1.3.1:compile
+[INFO] |     \- xpp3:xpp3_min:jar:1.1.4c:compile
+[INFO] +- org.mvel:mvel2:jar:2.1.0.Final:compile
+[INFO] +- org.jbpm:jbpm-jpdl:jar:3.2.3:compile
+[INFO] +- com.google.gwt:gwt-user:jar:2.5.1:compile
+[INFO] |  \- org.json:json:jar:20090211:compile
+[INFO] +- com.gwtplatform:gwtp-all:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-mvp-client:jar:1.0.2:compile
+[INFO] |  |  \- org.apache.velocity:velocity:jar:1.7:compile
+[INFO] |  +- com.gwtplatform:gwtp-clients-common:jar:1.0.2:compile
+[INFO] |  |  \- com.google.inject:guice:jar:4.0-beta:compile
+[INFO] |  |     +- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  |     \- com.google.guava:guava:jar:14.0.1:compile
+[INFO] |  +- com.gwtplatform:gwtp-dispatch-client:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-dispatch-shared:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-dispatch-server:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-dispatch-server-guice:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-dispatch-server-spring:jar:1.0.2:compile
+[INFO] |  |  +- org.springframework:spring-core:jar:3.2.3.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-context:jar:3.2.3.RELEASE:compile
+[INFO] |  |  |  +- org.springframework:spring-aop:jar:3.2.3.RELEASE:compile
+[INFO] |  |  |  \- org.springframework:spring-expression:jar:3.2.3.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-beans:jar:3.2.3.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-web:jar:3.2.3.RELEASE:compile
+[INFO] |  +- com.gwtplatform:gwtp-tester:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-processors:jar:1.0.2:compile
+[INFO] |  +- com.gwtplatform:gwtp-crawler:jar:1.0.2:compile
+[INFO] |  \- com.gwtplatform:gwtp-crawler-service:jar:1.0.2:compile
+[INFO] |     +- net.sourceforge.htmlunit:htmlunit:jar:2.12:compile
+[INFO] |     |  +- org.apache.commons:commons-lang3:jar:3.1:compile
+[INFO] |     |  +- org.apache.httpcomponents:httpclient:jar:4.2.3:compile
+[INFO] |     |  |  \- org.apache.httpcomponents:httpcore:jar:4.2.2:compile
+[INFO] |     |  +- org.apache.httpcomponents:httpmime:jar:4.2.3:compile
+[INFO] |     |  +- net.sourceforge.htmlunit:htmlunit-core-js:jar:2.12:compile
+[INFO] |     |  +- net.sourceforge.nekohtml:nekohtml:jar:1.9.17:provided
+[INFO] |     |  +- net.sourceforge.cssparser:cssparser:jar:0.9.5:compile
+[INFO] |     |  |  \- org.w3c.css:sac:jar:1.3:compile
+[INFO] |     |  \- org.eclipse.jetty:jetty-websocket:jar:8.1.14.v20131031:compile
+[INFO] |     |     +- org.eclipse.jetty:jetty-util:jar:8.1.14.v20131031:compile
+[INFO] |     |     +- org.eclipse.jetty:jetty-io:jar:8.1.14.v20131031:compile
+[INFO] |     |     \- org.eclipse.jetty:jetty-http:jar:8.1.14.v20131031:compile
+[INFO] |     +- com.google.appengine:appengine-api-1.0-sdk:jar:1.8.2:compile
+[INFO] |     +- com.google.inject.extensions:guice-servlet:jar:4.0-beta:compile
+[INFO] |     +- com.googlecode.objectify:objectify:jar:4.0b1:compile
+[INFO] |     |  +- org.joda:joda-money:jar:0.6:compile
+[INFO] |     |  +- joda-time:joda-time:jar:2.2:compile
+[INFO] |     |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.0.6:compile
+[INFO] |     |  |  \- com.fasterxml.jackson.core:jackson-annotations:jar:2.0.6:compile
+[INFO] |     |  +- com.google.appengine:appengine-api-labs:jar:1.7.2:compile
+[INFO] |     |  \- com.fasterxml.jackson.core:jackson-core:jar:2.0.6:compile
+[INFO] |     \- javax.persistence:persistence-api:jar:1.0.2:compile
+[INFO] +- xerces:xercesImpl:jar:2.9.1:compile
+[INFO] +- org.jboss.el:jboss-el:jar:1.0_02.CR6:compile
+[INFO] +- org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.1.Final:provided
+[INFO] +- nekohtml:nekohtml:jar:1.9.6.2:compile
+[INFO] +- no.knowit.seam:seam-utils-ejb:ejb:1.0:test
+[INFO] |  +- javax.faces:jsf-impl:jar:1.2_15:provided
+[INFO] |  +- javax.transaction:jta:jar:1.1:test
+[INFO] |  +- javax.jms:jms:jar:1.1:compile
+[INFO] |  \- commons-beanutils:commons-beanutils-core:jar:1.8.3:test
+[INFO] +- no.knowit.seam:seam-utils-openejb:ejb:1.0:test
+[INFO] |  \- org.apache.openejb:openejb-core:jar:3.1.4:test
+[INFO] |     +- org.apache.openejb:javaee-api:jar:5.0-3:test
+[INFO] |     +- org.apache.openejb:ejb31-api-experimental:jar:3.1.4:test
+[INFO] |     +- org.apache.openejb:openejb-api:jar:3.1.4:test
+[INFO] |     +- org.apache.openejb:openejb-loader:jar:3.1.4:test
+[INFO] |     +- org.apache.openejb:openejb-javaagent:jar:3.1.4:test
+[INFO] |     +- org.apache.openejb:openejb-jee:jar:3.1.4:test
+[INFO] |     |  +- org.codehaus.woodstox:wstx-asl:jar:3.2.9:compile
+[INFO] |     |  |  \- stax:stax-api:jar:1.0.1:runtime
+[INFO] |     |  \- com.sun.xml.bind:jaxb-impl:jar:2.1.13:compile
+[INFO] |     +- commons-cli:commons-cli:jar:1.2:compile
+[INFO] |     +- org.apache.activemq:activemq-ra:jar:5.3.1:test
+[INFO] |     +- org.apache.activemq:activemq-core:jar:4.1.1:runtime
+[INFO] |     |  +- backport-util-concurrent:backport-util-concurrent:jar:3.1:runtime
+[INFO] |     |  +- org.apache.activemq:activeio-core:jar:3.0.0-incubator:runtime
+[INFO] |     |  +- org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1:runtime
+[INFO] |     |  \- org.apache.geronimo.specs:geronimo-j2ee-management_1.0_spec:jar:1.0:runtime
+[INFO] |     +- org.apache.geronimo.components:geronimo-connector:jar:2.1:test
+[INFO] |     +- org.apache.geronimo.components:geronimo-transaction:jar:2.1:test
+[INFO] |     +- org.objectweb.howl:howl:jar:1.0.1-1:test
+[INFO] |     +- org.apache.geronimo.javamail:geronimo-javamail_1.4_mail:jar:1.8.2:test
+[INFO] |     +- org.apache.xbean:xbean-asm-shaded:jar:3.7:test
+[INFO] |     +- org.apache.xbean:xbean-finder-shaded:jar:3.7:test
+[INFO] |     +- org.apache.xbean:xbean-reflect:jar:3.7:test
+[INFO] |     +- org.apache.xbean:xbean-naming:jar:3.7:test
+[INFO] |     +- org.apache.openejb:commons-dbcp-all:jar:1.3-r699049:test
+[INFO] |     +- org.codehaus.swizzle:swizzle-stream:jar:1.0.1:test
+[INFO] |     \- wsdl4j:wsdl4j:jar:1.6.2:compile
+[INFO] +- dom4j:dom4j:jar:1.6.1:test
+[INFO] +- org.jboss.spec:jboss-javaee-6.0:pom:3.0.2.Final:provided
+[INFO] |  +- javax.activation:activation:jar:1.1.1:compile
+[INFO] |  +- javax.enterprise:cdi-api:jar:1.0-SP4:provided
+[INFO] |  +- javax.inject:javax.inject:jar:1:compile
+[INFO] |  +- javax.jws:jsr181-api:jar:1.0-MR1:provided
+[INFO] |  +- javax.mail:mail:jar:1.4.5:compile
+[INFO] |  +- org.jboss.spec.javax.annotation:jboss-annotations-api_1.1_spec:jar:1.0.0.Final:provided
+[INFO] |  +- org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.el:jboss-el-api_2.2_spec:jar:1.0.2.Final:provided
+[INFO] |  +- org.jboss.spec.javax.enterprise.deploy:jboss-jad-api_1.2_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.faces:jboss-jsf-api_2.1_spec:jar:2.1.28.Final:provided
+[INFO] |  +- org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:jar:1.0.0.Final:provided
+[INFO] |  +- org.jboss.spec.javax.management.j2ee:jboss-j2eemgmt-api_1.1_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.resource:jboss-connector-api_1.6_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.rmi:jboss-rmi-api_1.0_spec:jar:1.0.4.Final:provided
+[INFO] |  +- org.jboss.spec.javax.security.jacc:jboss-jacc-api_1.4_spec:jar:1.0.2.Final:provided
+[INFO] |  +- org.jboss.spec.javax.security.auth.message:jboss-jaspi-api_1.0_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.xml.registry:jboss-jaxr-api_1.0_spec:jar:1.0.2.Final:provided
+[INFO] |  +- org.jboss.spec.javax.jms:jboss-jms-api_1.1_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.servlet:jboss-servlet-api_3.0_spec:jar:1.0.2.Final:provided
+[INFO] |  +- org.jboss.spec.javax.servlet.jsp:jboss-jsp-api_2.2_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.servlet.jstl:jboss-jstl-api_1.2_spec:jar:1.0.3.Final:provided
+[INFO] |  +- org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_1.1_spec:jar:1.0.0.Final:provided
+[INFO] |  +- org.jboss.spec.javax.xml.bind:jboss-jaxb-api_2.2_spec:jar:1.0.4.Final:provided
+[INFO] |  +- org.jboss.spec.javax.xml.rpc:jboss-jaxrpc-api_1.1_spec:jar:1.0.1.Final:provided
+[INFO] |  +- org.jboss.spec.javax.xml.soap:jboss-saaj-api_1.3_spec:jar:1.0.2.Final:provided
+[INFO] |  \- org.jboss.spec.javax.xml.ws:jboss-jaxws-api_2.2_spec:jar:2.0.1.Final:provided
+[INFO] +- org.jboss.as:jboss-as-arquillian-container-managed:jar:7.2.0.Final:test
+[INFO] |  +- org.jboss.as:jboss-as-arquillian-common:jar:7.2.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.container:arquillian-container-osgi:jar:1.0.3.Final:test
+[INFO] |  |  +- org.jboss.arquillian.testenricher:arquillian-testenricher-cdi:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.testenricher:arquillian-testenricher-ejb:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.testenricher:arquillian-testenricher-initialcontext:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.testenricher:arquillian-testenricher-osgi:jar:1.0.3.Final:test
+[INFO] |  |  +- org.jboss.arquillian.testenricher:arquillian-testenricher-resource:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.container:arquillian-container-test-impl-base:jar:1.1.0.Final:test
+[INFO] |  |  |  \- org.jboss.arquillian.test:arquillian-test-api:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.as:jboss-as-arquillian-testenricher-msc:jar:7.2.0.Final:test
+[INFO] |  |  |  +- org.jboss.as:jboss-as-server:jar:7.2.0.Final:test
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-controller:jar:7.2.0.Final:test
+[INFO] |  |  |  |  |  \- org.jboss:staxmapper:jar:1.1.0.Final:test
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-domain-http-interface:jar:7.2.0.Final:test
+[INFO] |  |  |  |  |  +- org.jboss.as:jboss-as-domain-management:jar:7.2.0.Final:test
+[INFO] |  |  |  |  |  \- org.jboss.com.sun.httpserver:httpserver:jar:1.0.1.Final:test
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-deployment-repository:jar:7.2.0.Final:test
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-platform-mbean:jar:7.2.0.Final:test
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-process-controller:jar:7.2.0.Final:test
+[INFO] |  |  |  |  |  \- system:jdk-tools:jar:jdk:system
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-remoting:jar:7.2.0.Final:test
+[INFO] |  |  |  |  |  \- org.jboss.as:jboss-as-network:jar:7.2.0.Final:test
+[INFO] |  |  |  |  +- org.jboss.as:jboss-as-version:jar:7.2.0.Final:test
+[INFO] |  |  |  |  +- org.jboss:jandex:jar:1.0.3.Final:test
+[INFO] |  |  |  |  +- org.jboss.invocation:jboss-invocation:jar:1.1.1.Final:test
+[INFO] |  |  |  |  +- org.jboss.logmanager:log4j-jboss-logmanager:jar:1.0.1.Final:test
+[INFO] |  |  |  |  +- org.jboss.stdio:jboss-stdio:jar:1.0.1.GA:test
+[INFO] |  |  |  |  \- org.jboss:jboss-vfs:jar:3.1.0.Final:test
+[INFO] |  |  |  \- org.jboss.msc:jboss-msc:jar:1.0.4.GA:test
+[INFO] |  |  +- org.jboss.as:jboss-as-controller-client:jar:7.2.0.Final:test
+[INFO] |  |  |  +- org.jboss.as:jboss-as-protocol:jar:7.2.0.Final:test
+[INFO] |  |  |  +- org.jboss:jboss-dmr:jar:1.1.6.Final:test
+[INFO] |  |  |  \- org.jboss.threads:jboss-threads:jar:2.1.0.Final:test
+[INFO] |  |  +- org.jboss.as:jboss-as-jmx:jar:7.2.0.Final:test
+[INFO] |  |  |  +- org.jboss:jboss-common-core:jar:2.2.20.GA:test
+[INFO] |  |  |  \- org.jboss.as:jboss-as-naming:jar:7.2.0.Final:test
+[INFO] |  |  |     \- org.jboss:jboss-remote-naming:jar:1.0.5.Final:test
+[INFO] |  |  |        \- org.jboss:jboss-ejb-client:jar:1.0.0.Final:test
+[INFO] |  |  +- org.jboss.osgi.spi:jbosgi-spi:jar:3.2.0.Final:test
+[INFO] |  |  |  +- org.jboss.osgi.metadata:jbosgi-metadata:jar:2.1.1.CR9:test
+[INFO] |  |  |  \- org.jboss.osgi.vfs:jbosgi-vfs30:jar:1.2.0.Final:test
+[INFO] |  |  |     \- org.jboss.osgi.vfs:jbosgi-vfs:jar:1.2.0.Final:test
+[INFO] |  |  +- org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:jar:2.0.0:test
+[INFO] |  |  |  +- org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api-maven:jar:2.0.0:test
+[INFO] |  |  |  |  \- org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api:jar:2.0.0:test
+[INFO] |  |  |  +- org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-spi-maven:jar:2.0.0:test
+[INFO] |  |  |  |  \- org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-spi:jar:2.0.0:test
+[INFO] |  |  |  +- org.sonatype.aether:aether-api:jar:1.13.1:test
+[INFO] |  |  |  +- org.sonatype.aether:aether-impl:jar:1.13.1:test
+[INFO] |  |  |  +- org.sonatype.aether:aether-spi:jar:1.13.1:test
+[INFO] |  |  |  +- org.sonatype.aether:aether-util:jar:1.13.1:test
+[INFO] |  |  |  +- org.sonatype.aether:aether-connector-wagon:jar:1.13.1:test
+[INFO] |  |  |  +- org.apache.maven:maven-aether-provider:jar:3.0.5:test
+[INFO] |  |  |  +- org.apache.maven:maven-model:jar:3.0.5:test
+[INFO] |  |  |  +- org.apache.maven:maven-model-builder:jar:3.0.5:test
+[INFO] |  |  |  +- org.apache.maven:maven-repository-metadata:jar:3.0.5:test
+[INFO] |  |  |  +- org.apache.maven:maven-settings:jar:3.0.5:test
+[INFO] |  |  |  +- org.apache.maven:maven-settings-builder:jar:3.0.5:test
+[INFO] |  |  |  +- org.codehaus.plexus:plexus-interpolation:jar:1.14:test
+[INFO] |  |  |  +- org.codehaus.plexus:plexus-utils:jar:3.0.10:test
+[INFO] |  |  |  +- org.sonatype.plexus:plexus-sec-dispatcher:jar:1.4:test
+[INFO] |  |  |  |  \- org.sonatype.plexus:plexus-cipher:jar:1.4:test
+[INFO] |  |  |  +- org.apache.maven.wagon:wagon-provider-api:jar:2.4:test
+[INFO] |  |  |  +- org.apache.maven.wagon:wagon-file:jar:2.4:test
+[INFO] |  |  |  \- org.apache.maven.wagon:wagon-http-lightweight:jar:2.4:test
+[INFO] |  |  |     \- org.apache.maven.wagon:wagon-http-shared4:jar:2.4:test
+[INFO] |  |  |        \- org.jsoup:jsoup:jar:1.7.1:test
+[INFO] |  |  \- org.osgi:org.osgi.core:jar:4.2.0:test
+[INFO] |  +- org.jboss.as:jboss-as-arquillian-protocol-jmx:jar:7.2.0.Final:test
+[INFO] |  |  +- org.jboss.as:jboss-as-osgi-service:jar:7.2.0.Final:test
+[INFO] |  |  |  +- org.jboss.as:jboss-as-ee:jar:7.2.0.Final:test
+[INFO] |  |  |  |  +- org.jboss.metadata:jboss-metadata-common:jar:7.0.8.Final:test
+[INFO] |  |  |  |  \- org.jboss.metadata:jboss-metadata-ear:jar:7.0.8.Final:test
+[INFO] |  |  |  +- org.jboss.modules:jboss-modules:jar:1.2.0.CR1:test
+[INFO] |  |  |  +- org.jboss.osgi.framework:jbosgi-framework-core:jar:2.1.0.CR12:test
+[INFO] |  |  |  |  +- org.jboss.osgi.deployment:jbosgi-deployment:jar:1.3.0.CR1:test
+[INFO] |  |  |  |  \- org.jboss.osgi.resolver:jbosgi-resolver-felix:jar:3.0.1.Final:test
+[INFO] |  |  |  +- org.jboss.osgi.resolver:jbosgi-resolver-api:jar:3.0.1.Final:test
+[INFO] |  |  |  +- org.jboss.osgi.repository:jbosgi-repository-api:jar:2.1.0.Final:test
+[INFO] |  |  |  \- org.jboss.osgi.repository:jbosgi-repository-core:jar:2.1.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.core:arquillian-core-spi:jar:1.1.0.Final:test
+[INFO] |  |  \- org.jboss.arquillian.protocol:arquillian-protocol-jmx:jar:1.1.0.Final:test
+[INFO] |  +- org.jboss.remoting3:jboss-remoting:jar:3.2.14.GA:test
+[INFO] |  |  \- org.jboss.xnio:xnio-api:jar:3.0.7.GA:test
+[INFO] |  +- org.jboss.remotingjmx:remoting-jmx:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.logmanager:jboss-logmanager:jar:1.2.0.CR4:test
+[INFO] |  |  +- org.jboss.logging:jboss-logging-processor:jar:1.1.0.Final:test
+[INFO] |  |  |  \- org.jboss.jdeparser:jdeparser:jar:1.0.0.Final:test
+[INFO] |  |  +- org.jboss.marshalling:jboss-marshalling:jar:1.3.16.GA:test
+[INFO] |  |  +- org.jboss.marshalling:jboss-marshalling-river:jar:1.3.16.GA:test
+[INFO] |  |  \- org.jboss.xnio:xnio-nio:jar:3.0.7.GA:test
+[INFO] |  +- org.jboss.sasl:jboss-sasl:jar:1.0.3.Final:test
+[INFO] |  +- org.jboss.arquillian.core:arquillian-core-api:jar:1.1.0.Final:test
+[INFO] |  \- org.jboss.as:jboss-as-build-config:jar:7.2.0.Final:test
+[INFO] +- org.jboss.arquillian.protocol:arquillian-protocol-servlet:jar:1.0.0.CR7:test
+[INFO] |  +- org.jboss.arquillian.container:arquillian-container-spi:jar:1.1.0.Final:test
+[INFO] |  |  +- org.jboss.arquillian.config:arquillian-config-api:jar:1.1.0.Final:test
+[INFO] |  |  \- org.jboss.arquillian.config:arquillian-config-impl-base:jar:1.1.0.Final:test
+[INFO] |  |     \- org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-spi:jar:2.0.0-alpha-3:test
+[INFO] |  \- org.jboss.arquillian.container:arquillian-container-test-spi:jar:1.1.0.Final:test
+[INFO] |     +- org.jboss.arquillian.test:arquillian-test-spi:jar:1.1.0.Final:test
+[INFO] |     \- org.jboss.arquillian.container:arquillian-container-test-api:jar:1.1.0.Final:test
+[INFO] +- com.h2database:h2:jar:1.3.174:provided
+[INFO] +- junit:junit:jar:4.11:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3.RC2:test
+[INFO] +- com.google.code.protoj:protoj-nodep:jar:1.8.4:test
+[INFO] +- junitperf:junitperf:jar:1.9.1:test
+[INFO] +- xmlunit:xmlunit:jar:1.5:test
+[INFO] +- xalan:xalan:jar:2.7.1:provided
+[INFO] |  \- xalan:serializer:jar:2.7.1:provided
+[INFO] +- org.jboss.arquillian.extension:arquillian-jacoco:jar:1.0.0.Alpha6:test
+[INFO] |  +- org.jboss.shrinkwrap:shrinkwrap-api:jar:1.1.2:test
+[INFO] |  \- org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-api-base:jar:2.0.0-alpha-3:test
+[INFO] \- org.jacoco:org.jacoco.core:jar:0.7.1.201405082137:provided
+[INFO]    \- org.ow2.asm:asm-debug-all:jar:5.0.1:provided
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 29.086s
+[INFO] Finished at: Tue Jun 24 18:55:05 CEST 2014
+[INFO] Final Memory: 35M/247M
+[INFO] ------------------------------------------------------------------------
