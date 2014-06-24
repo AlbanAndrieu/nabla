@@ -26,9 +26,10 @@
 		</properties>
 	--> 
 	
+	<!--
 	<dependencyManagement>
 		<dependencies>
-
+			-->
 			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
 
 			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
@@ -37,16 +38,18 @@
 				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
 				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
 				for your project, such as Arquillian for testing) -->
+			<!--
 			<dependency>
 				<groupId>org.jboss.bom</groupId>
 				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
 				<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
 				<type>pom</type>
-				<scope>import</scope>
+				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+    -->
+    
 	<dependencies>
 
 		<!-- First declare the APIs we depend on and need for compilation. All 
@@ -126,6 +129,7 @@
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<version>${org.jboss.spec.javax.faces}</version>
 			<scope>provided</scope>
 		</dependency>  
 		
@@ -281,7 +285,7 @@
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.resolver</groupId>
 			<artifactId>shrinkwrap-resolver-bom</artifactId>
-			<version>2.0.0-alpha-1</version>
+			<version>2.0.0</version>
 			<scope>test</scope>
 			<type>pom</type>
 		</dependency>
@@ -289,12 +293,14 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
+			<version>${org.jboss.arquillian.junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.arquillian.protocol</groupId>
 			<artifactId>arquillian-protocol-servlet</artifactId>
+			<version>${org.jboss.arquillian.junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -684,6 +690,7 @@
 		</plugins>
 	</build>		
 
+<!--
   <profiles>
 		<profile>
             <id>jacoco</id>
@@ -704,6 +711,7 @@
 
             <build>
                 <plugins>
+					-->
 					<!--
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
@@ -744,6 +752,7 @@
                         </executions>
                     </plugin>
                     -->
+                    <!--
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
@@ -766,5 +775,6 @@
             </build>
         </profile>
     </profiles>	
+        -->    
 </project>
  

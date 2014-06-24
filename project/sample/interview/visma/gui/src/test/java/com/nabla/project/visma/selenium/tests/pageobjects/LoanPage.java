@@ -101,7 +101,7 @@ public class LoanPage extends LoadableComponent<LoanPage>
     public void The_user_is_on_loan_page()
     {
 
-        SeleniumHelper.getDriver().get(SeleniumHelper.DEFAULT_URL + this.url);
+        SeleniumHelper.getDriver().get(SeleniumHelper.baseUrl + this.url);
 
         final JavascriptExecutor js = (JavascriptExecutor) SeleniumHelper.getDriver();
 
