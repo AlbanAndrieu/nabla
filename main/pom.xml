@@ -156,8 +156,15 @@
                 <dependency>
                         <groupId>junit</groupId>
                         <artifactId>junit</artifactId>
+                        <type>jar</type>
                         <scope>test</scope>
                 </dependency>
+			   <dependency>
+						<groupId>org.testng</groupId>
+						<artifactId>testng</artifactId>
+						<scope>test</scope>
+				</dependency>
+                                                
                 <!-- FIX BUG http://forum.spring.io/forum/spring-projects/container/52022-spring-test-breaks-in-junit-4-5 -->
 				<dependency>
 						<groupId>com.google.code.protoj</groupId>
@@ -818,8 +825,7 @@
 						<inherited>true</inherited>
 						<configuration>
 						  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
-						  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:ReservedCodeCacheSize=128m</argLine>
-						  <!-- XX:-UseSplitVerifier -->
+						  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
 						  <skip>${maven.test.skip}</skip>
 						  <forkMode>once</forkMode>
 						  <!-- Enable or disable Stop maven -->
@@ -860,12 +866,14 @@
 						<configuration>
 						  <argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>
 						  <!-- Specific to generate mapping between tests and covered code -->
+						  <!--
 						  <properties>
 							<property>
 							  <name>listener</name>
 							  <value>org.sonar.java.jacoco.JUnitListener</value>
 							</property>
 						  </properties>
+						  -->
 						  <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
 						  <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>					  
 						</configuration>
@@ -992,6 +1000,7 @@
 							<plugin>
 								<groupId>org.jacoco</groupId>
 								<artifactId>jacoco-maven-plugin</artifactId>
+								<version>${jacoco.version}</version>
 								<executions>
 									<execution>
 										<goals>
