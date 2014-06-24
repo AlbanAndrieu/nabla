@@ -257,10 +257,10 @@
                 </dependency>
 
                 <dependency>
-                        <groupId>javax.el</groupId>
-                        <artifactId>el-api</artifactId>
-                        <version>${el.api.version}</version>
-                        <scope>provided</scope>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+					<version>${el.api.version}</version>
+					<scope>provided</scope>
                 </dependency>
 
                 <dependency>
@@ -433,14 +433,14 @@
                 <dependency>
                         <groupId>com.sun.faces</groupId>
                         <artifactId>jsf-api</artifactId>
-                        <version>${sun.jsf.api.version}</version>
-                        <scope>provided</scope>
+                        <version>${sun.jsf.version}</version>
+                        <scope>${scope.tomcat.only.type}</scope>
                 </dependency>
                 <dependency>
                         <groupId>com.sun.faces</groupId>
                         <artifactId>jsf-impl</artifactId>
-                        <version>${sun.jsf.impl.version}</version>
-                        <scope>provided</scope>
+                        <version>${sun.jsf.version}</version>
+                        <scope>${scope.tomcat.only.type}</scope>
                 </dependency>
 
                 <!-- *************** Drools / jBPM Dependency *************** -->
@@ -644,17 +644,17 @@
 
         <properties>
                 <loadPersistenceUnits>false</loadPersistenceUnits>
-        <!--
+				<!--
                 <maven.test.skip>false</maven.test.skip>
                 <maven.test.failure.skip>true</maven.test.failure.skip>
                  -->
-      <!-- Alternatively, comment out the above line, and un-comment the line below to
-         use version 1.0.0.Final-redhat-1 which is a release certified
-         to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven repository. -->
-      <!--
-      <jboss.bom.version>1.0.0.Final-redhat-1</jboss.bom.version>
-      -->
-   </properties>
+		  <!-- Alternatively, comment out the above line, and un-comment the line below to
+			 use version 1.0.0.Final-redhat-1 which is a release certified
+			 to work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven repository. -->
+		  <!--
+		  <jboss.bom.version>1.0.0.Final-redhat-1</jboss.bom.version>
+		  -->
+	   </properties>
 
         <build>
                 <plugins>
@@ -787,7 +787,7 @@
                                         <dependency>
                                                 <groupId>org.hibernate</groupId>
                                                 <artifactId>hibernate-validator</artifactId>
-                                                <version>${hibernate.validator.version}</version>
+                                                <version>${hibernate.legacy.validator.version}</version>
                                         </dependency>
                                         <dependency>
                                                 <groupId>javax.validation</groupId>
