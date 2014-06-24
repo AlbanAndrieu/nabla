@@ -118,12 +118,12 @@
             <artifactId>cglib</artifactId>
             <version>2.1</version>
         </dependency>
-	<dependency>
-	    <groupId>asm</groupId>
-	    <artifactId>asm</artifactId>
-	    <version>2.2.3</version>
-	</dependency>
-        -->	
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+			-->	
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
@@ -195,11 +195,11 @@
             <version>${jboss.logging.version}</version>
         </dependency>
         	
-	<dependency>
-	    <groupId>commons-io</groupId>
-	    <artifactId>commons-io</artifactId>
-	    <scope>test</scope>
-	</dependency>        
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<scope>test</scope>
+		</dependency>        
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -232,12 +232,12 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-		<filtering>true</filtering>
-		<includes>
-			<include>**/*.xml</include>
-			<include>**/*.properties</include>
-			<include>**/*.sql</include>
-		</includes>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+					<include>**/*.sql</include>
+				</includes>
             </resource>
             <resource>
                 <directory>${maven.build.generated}/main/resources</directory>
