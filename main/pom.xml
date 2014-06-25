@@ -849,6 +849,7 @@
 						  <excludes>
 							<exclude>**/*ITest*</exclude>
 							<exclude>**/*STest*</exclude>
+							<exclude>**/*HibernateEnumType*</exclude>
 						  </excludes>
 						  <systemPropertyVariables>
 								<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
