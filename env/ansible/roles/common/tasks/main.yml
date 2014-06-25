@@ -33,6 +33,7 @@
    - geany
    - gedit
    - xxdiff
+   - meld
    - dos2unix
    
 - name: Install cowsay (apt))
@@ -105,6 +106,8 @@
    - subversion
    - cvs
    - git
+#   - gitg
+#   - gitk   
       
 - name: Install JDK (apt))
   apt: pkg={{ item }} state=present update_cache=yes
@@ -286,6 +289,7 @@
    - pidgin 
    - pidgin-sipe 
    - pidgin-skype   
+   - teamviewer
 
 - name: Install VNC (apt))
   apt: pkg={{ item }} state=present update_cache=yes

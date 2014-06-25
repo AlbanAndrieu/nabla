@@ -90,6 +90,8 @@ deb http://us.archive.ubuntu.com/ubuntu/ precise main universe restricted multiv
 sudo apt-get update
 sudo apt-get install subversion
 
+sudo chmod +x ~/.subversion/svn-merge-meld.py
+
 sudo gedit /etc/apt/sources.list
 #comment the following line
 deb http://extras.ubuntu.com/ubuntu precise main
@@ -317,3 +319,9 @@ ll /usr/lib/x86_64-linux-gnu/libOpenCL.so
 sudo apt-get install lcov
 #diff tool
 sudo apt-get install meld
+
+#wallpaper
+#http://peterlevi.com/variety/
+sudo add-apt-repository ppa:peterlevi/ppa
+sudo apt-get update
+sudo apt-get install variety
