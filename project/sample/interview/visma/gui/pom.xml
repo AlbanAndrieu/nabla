@@ -13,7 +13,7 @@
 	<packaging>war</packaging>
 	<name>Maven Java Server Faces Webapp for Visma</name>
 
-	<!--	   
+	<!--	 
 		<properties>
 			<jsf.api.version>2.1</jsf.api.version>
 			<jsf.impl.version>2.1</jsf.impl.version>		
@@ -129,7 +129,7 @@
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
-			<version>${org.jboss.spec.javax.faces}</version>
+			<version>${org.jboss.spec.javax.faces.jsf.api.2.1.version}</version>
 			<scope>provided</scope>
 		</dependency>  
 		
@@ -296,7 +296,13 @@
 			<version>${org.jboss.arquillian.junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<artifactId>arquillian-core-api</artifactId>
+			<groupId>org.jboss.arquillian.core</groupId>
+			<version>${org.jboss.arquillian.core.version}</version>
+			<scope>test</scope>
+		</dependency>		
+						
 		<dependency>
 			<groupId>org.jboss.arquillian.protocol</groupId>
 			<artifactId>arquillian-protocol-servlet</artifactId>
@@ -777,4 +783,3 @@
     </profiles>	
         -->    
 </project>
- 
